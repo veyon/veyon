@@ -33,7 +33,7 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation>Перевод на данный язык еще не осуществлен.
+        <translation>Перевод на данный язык ещё не осуществлён.
 
 Если Вы желаете добавить перевод программы iTALC на новый язык или улучшить уже существующий, пожалуйста, свяжитесь с разработчиками iTALC!</translation>
     </message>
@@ -81,7 +81,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     </message>
     <message>
         <source>IP-address</source>
-        <translation>IP-адреса</translation>
+        <translation>IP-адрес</translation>
     </message>
     <message>
         <source>Usernames</source>
@@ -101,7 +101,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Используйте эту кнопку для экспорта этого списока компьютеров и пользователей в текстовый файл. Вы можете использовать этот файл позже для сбора файлов после завершения экзамена. Иногда это необходимо, потому что некоторые пользователи могли завершить работу и выполнить выход раньше и поэтому вы не сможете собрать их файлы в конце экзамена.</translation>
+        <translation>Используйте эту кнопку для экспорта этого списока компьютеров и пользователей в текстовый файл. Вы можете использовать этот файл позже для сбора файлов после завершения экзамена. Иногда это необходимо, потому что некоторые пользователи могли завершить работу и выполнить выход раньше, и поэтому вы не сможете собрать их файлы в конце экзамена.</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
@@ -213,7 +213,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Пожалуйста введите имя класса, который хотите создать.</translation>
+        <translation>Пожалуйста, введите имя класса, который хотите создать.</translation>
     </message>
 </context>
 <context>
@@ -306,7 +306,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Аппаратный/MAC-адреса клиента - используются только для включения клиента&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Аппаратный/MAC-адрес клиента - используются только для включения клиента&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -353,7 +353,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Здесь вы можете установить интервал между обновлениями клиентов. Высокое значение при низкоскоростной сети приведет к уменьшению трафика и использованию процессора компьютера.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Здесь вы можете установить интервал между обновлениями клиентов. Высокое значение при низкоскоростной сети приведёт к уменьшению трафика и использованию процессора компьютера.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -485,7 +485,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>Your role (needs according keys!)</source>
-        <translation>Ваша роль (требует соответствующего ключа!)</translation>
+        <translation>Ваша роль (требует соответствующих ключей!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -495,7 +495,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Здесь вы можете выбрать вашу роль. Меняйте что либо здесь если только уверены в этом. Иначе вы можете потерять доступ к любым клиентам до восстановления старой роли.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Здесь вы можете выбрать вашу роль. Меняйте что-либо здесь если только уверены в этом. Иначе вы можете потерять доступ к любым клиентам до восстановления старой роли.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -525,11 +525,11 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Здесь вы можете установить действие по двойному клику на окне клиента&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Здесь вы можете установить действие по двойному клику на окне клиента.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Удаленное управление</translation>
+        <translation>Удалённое управление</translation>
     </message>
     <message>
         <source>View live in fullscreen</source>
@@ -588,11 +588,11 @@ p, li { white-space: pre-wrap; }
     <name>KeyFileAssistant</name>
     <message>
         <source>iTALC Access Key Assistant</source>
-        <translation>Помощник операций с ключем доступа к iTALC</translation>
+        <translation>Помощник операций с ключём доступа к iTALC</translation>
     </message>
     <message>
         <source>Create/import iTALC access keys</source>
-        <translation>Создать/Импортировать ключи доступа к iTALC</translation>
+        <translation>Создать/импортировать ключи доступа к iTALC</translation>
     </message>
     <message>
         <source>This assistant will help you to create or import iTALC access keys.</source>
@@ -688,11 +688,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>• Create new access keys</source>
-        <translation>• Созданы новые ключи доступа</translation>
+        <translation>• Создать новые ключи доступа</translation>
     </message>
     <message>
         <source>• Import public access key from</source>
-        <translation>• Импортирован открытый ключ из</translation>
+        <translation>• Импортировать открытый ключ доступа из</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -700,19 +700,19 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>• Write access key(s) to</source>
-        <translation>• Записаны ключи в</translation>
+        <translation>• Записать ключ(и) доступа в</translation>
     </message>
     <message>
         <source>• Export public key to</source>
-        <translation>• Экспортирован открытый ключ в</translation>
+        <translation>• Экспортировать открытый ключ в</translation>
     </message>
     <message>
         <source>• Configure for user role</source>
-        <translation>• Выполнена настройка для роли пользователя</translation>
+        <translation>• Настроить роль пользователя</translation>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
-        <translation>Выберите каталог, в который будет осуществлен экспорт открытого ключа</translation>
+        <translation>Выберите каталог, в который будет осуществлён экспорт открытого ключа</translation>
     </message>
     <message>
         <source>Key files (*.key.txt)</source>
@@ -724,7 +724,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation>Выбранный файл не содержит открытый ключ доступа к iTALC</translation>
+        <translation>Выбранный файл не содержит открытый ключ доступа к iTALC!</translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -736,7 +736,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation>Не удается удалить ранее существующий файл %1.</translation>
+        <translation>Не удаётся удалить ранее существующий файл %1.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
@@ -748,7 +748,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Произошла ошибка при создании ключей доступа. Возможно, у выбранного каталога установлен запрет на запись.</translation>
+        <translation>Произошла ошибка при создании ключей доступа. Возможно у выбранного каталога установлен запрет на запись.</translation>
     </message>
     <message>
         <source>Public key import</source>
@@ -756,7 +756,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Произошла ошибка при импорте открытого ключа доступа. Возможно, у файла, содержащего исходный ключ, установлен запрет на чтение или существует запрет на запись в каталоге, содержащем ключи (конечном каталоге).</translation>
+        <translation>Произошла ошибка при импорте открытого ключа доступа. Возможно у файла, содержащего исходный ключ, установлен запрет на чтение или существует запрет на запись в каталоге, содержащем ключи (конечном каталоге).</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
@@ -940,11 +940,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Опрос полного экрана (оставьте включенным по-умолчанию)</translation>
+        <translation>Опрос полного экрана (оставьте включенным по умолчанию)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Низкая четкость (высокая скорость)</translation>
+        <translation>Низкая чёткость (высокая скорость)</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -976,7 +976,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Включить исключения рандмауэра</translation>
+        <translation>Включить исключения брандмауэра</translation>
     </message>
     <message>
         <source>Enable HTTP server which provides a JavaViewer applet</source>
@@ -1036,7 +1036,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation>Запустить помощник операций с ключем доступа</translation>
+        <translation>Запустить помощник операций с ключём доступа</translation>
     </message>
     <message>
         <source>Logon settings</source>
@@ -1074,7 +1074,7 @@ The public key part is used on the client computers to verify that any incoming 
         <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>При возникновении ошибки или другого неожиданного поведения iTALC желательно сообщить об этом разработчикам. В этом случае ошибки могут быть исправлены в будущих версиях. На этой странице можно создать отчет об ошибке.
+        <translation>При возникновении ошибки или другого неожиданного поведения iTALC желательно сообщить об этом разработчикам. В этом случае ошибки могут быть исправлены в будущих версиях. На этой странице можно создать отчёт об ошибке.
 
 Если ошибка повторно не воспроизводится, пропустите шаг 1) - 3).</translation>
     </message>
@@ -1112,7 +1112,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>Generate bug report archive</source>
-        <translation>Создать архив, содержащий отчет об ошибке</translation>
+        <translation>Создать архив, содержащий отчёт об ошибке</translation>
     </message>
     <message>
         <source>5)</source>
@@ -1123,7 +1123,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Откройте &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;трекер ошибок iTALC&lt;/a&gt;, откройте новую запись с ошибкой, опишите шаги, приводящие к ней (шаг 3) и прикрепите файл с отладочной информацией (шаг 4).&lt;/p&gt;
+        <translation>Откройте &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;atid=724375&quot;&gt;трекер ошибок iTALC&lt;/a&gt;, откройте новую запись с ошибкой, опишите шаги, приводящие к ней (шаг 3) и прикрепите файл с отладочной информацией (шаг 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Замечание: Если ошибка возникает на главном комьютере и клиентском компьютере одновременно, отправьте оба отчета об ошибке.</translation>
@@ -1182,7 +1182,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Невозможно читать/писать или создать директорию %1! Для запуска iTALC убедитесь что у вас есть права на создания или запись в эту директорию.</translation>
+        <translation>Невозможно читать/записать или создать директорию %1! Для запуска iTALC убедитесь, что у вас есть права на создания или запись в эту директорию.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1194,7 +1194,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Нажмите эту кнопку для открытия меню в котором можно выбрать активную классную комнату.</translation>
+        <translation>Нажмите эту кнопку для открытия меню, в котором можно выбрать активную классную комнату.</translation>
     </message>
     <message>
         <source>Click on this button, to switch between classrooms.</source>
@@ -1210,7 +1210,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Это режим iTALC по умолчанию и он позволяет выполнять обзор всех видимых компьютеров. Также нажатие на эту кнопку разблокирует блокированные рабочие станции или покинет демо-режим.</translation>
+        <translation>Это режим iTALC по умолчанию, и он позволяет выполнять обзор всех видимых компьютеров. Также нажатие на эту кнопку разблокирует заблокированные рабочие станции или покинет демо-режим.</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
@@ -1218,11 +1218,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Fullscreen Demo</source>
-        <translation>Полноэкранное Демо</translation>
+        <translation>Полноэкранное демо</translation>
     </message>
     <message>
         <source>Stop Demo</source>
-        <translation>Остановить Демо</translation>
+        <translation>Остановить демо</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
@@ -1242,7 +1242,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Lock/unlock desktops</source>
-        <translation>Блокировать/разблокировать компьютеры</translation>
+        <translation>Заблокировать/разблокировать компьютеры</translation>
     </message>
     <message>
         <source>Lock all</source>
@@ -1266,7 +1266,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Используйте эту кнопку для посылки текстового сообщения всем пользователям, например сказав им о новых задачах.</translation>
+        <translation>Используйте эту кнопку для посылки текстового сообщения всем пользователям, например, сказав им о новых задачах и т. д.</translation>
     </message>
     <message>
         <source>Power on computers</source>
@@ -1290,7 +1290,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Вы должны нажать эту кнопку для выключения всех отображаемых компьютеров (например после завершения урока).</translation>
+        <translation>Вы можете нажать эту кнопку для выключения всех отображаемых компьютеров (например, после завершения урока).</translation>
     </message>
     <message>
         <source>Support</source>
@@ -1302,7 +1302,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Если вам нужно поддерживать какой-нибудь пользователя на определенном компьютере, вы можете нажать на эту кнопку и ввести соответствующее имя компьютера или IP.</translation>
+        <translation>Если вам нужно поддерживать какого-нибудь пользователя на определённом компьютере, вы можете нажать на эту кнопку и ввести соответствующее имя компьютера или IP.</translation>
     </message>
     <message>
         <source>Adjust/align</source>
@@ -1310,7 +1310,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Adjust windows and their size</source>
-        <translation>Подогнать окно под его размер</translation>
+        <translation>Подогнать окна под их размер</translation>
     </message>
     <message>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
@@ -1334,11 +1334,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Невозможно соединиться с локальным сервисом iTALC. Возможно, Вы неправильно указали учетные данные или не установили файлы, содержащие ключи доступа. Попробуйте повторить попытку соединения. В случае, если ошибка повториться вновь, обратитесь к Вашему администратору для ее решения с помощью консоли управления iTALC.</translation>
+        <translation>Невозможно соединиться с локальным сервисом iTALC. Возможно вы неправильно указали учётные данные или не установили файлы, содержащие ключи доступа. Попробуйте повторить попытку соединения. В случае, если ошибка повториться вновь, обратитесь к Вашему администратору для её решения с помощью консоли управления iTALC.</translation>
     </message>
     <message>
         <source>iTALC Master Control</source>
-        <translation>Основной Контроль iTALC</translation>
+        <translation>Основное управление iTALC</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -1350,7 +1350,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Удаленное управление</translation>
+        <translation>Удалённое управление</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -1394,7 +1394,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить службу iTALC. Перезапустить ее сейчас?</translation>
+        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить службу iTALC. Перезапустить её сейчас?</translation>
     </message>
     <message>
         <source>Starting iTALC service</source>
@@ -1442,27 +1442,27 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation>Тестирования аутентификации входа в систему</translation>
+        <translation>Тестирование аутентификации входа в систему</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation>Аутентификация учетных данных прошла успешно.</translation>
+        <translation>Аутентификация учётных данных прошла успешно.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation>При прохождении аутентификации учетных данных возникли ошибки!</translation>
+        <translation>При прохождении аутентификации учётных данных возникли ошибки!</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation>Сохранить архив, содрежащий отчет об ошибках</translation>
+        <translation>Сохранить архив, содержащий отчёт об ошибках</translation>
     </message>
     <message>
         <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation>Архив отчета об ошибках iTALC (*.ibra.xml)</translation>
+        <translation>Архив отчёта об ошибках iTALC (*.ibra.xml)</translation>
     </message>
     <message>
         <source>iTALC bug report archive saved</source>
-        <translation>Архив, содержащий отчет об ошибках iTALC, сохранен</translation>
+        <translation>Архив, содержащий отчёт об ошибках iTALC, сохранён</translation>
     </message>
     <message>
         <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
@@ -1470,11 +1470,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Несохраненные настройки</translation>
+        <translation>Несохранённые настройки</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Существуют несохраненные настройки. Выйти, не сохранив их?</translation>
+        <translation>Существуют несохранённые настройки. Выйти, не сохранив их?</translation>
     </message>
 </context>
 <context>
@@ -1491,7 +1491,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Здесь вы видите на рабочую панель, которая содержит несколько кнопок. Каждая кнопка ведет к рабочей области. Просто взгляните на имеющиеся рабочие  области, нажав на соответствующую кнопку.</translation>
+        <translation>Здесь вы видите рабочую панель, которая содержит несколько кнопок. Каждая кнопка ведёт к рабочей области. Просто взгляните на имеющиеся рабочие области, нажав на соответствующую кнопку.</translation>
     </message>
     <message>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
@@ -1499,7 +1499,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Рабочая область снимков очень мощный инструмент. Он позволяет управлять сделанными вами снимками.</translation>
+        <translation>Рабочая область снимков - это очень мощный инструмент. Он позволяет управлять сделанными вами снимками.</translation>
     </message>
     <message>
         <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
@@ -1564,7 +1564,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>Служба &apos;%1&apos; невозможно зарегистрировать.</translation>
+        <translation>Службу &apos;%1&apos; невозможно зарегистрировать.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; was successfully registered.</source>
@@ -1580,7 +1580,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Служба &apos;%1&apos; не была зарегистрирована и поэтому невозможно ее отменить.</translation>
+        <translation>Служба &apos;%1&apos; не была зарегистрирована, и поэтому невозможно её отменить.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
@@ -1607,7 +1607,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remote control (%1 @ %2)</source>
-        <translation>Удаленное управление (%1 @ %2)</translation>
+        <translation>Удалённое управление (%1 @ %2)</translation>
     </message>
     <message>
         <source>unknown user</source>
@@ -1618,11 +1618,11 @@ p, li { white-space: pre-wrap; }
     <name>RemoteControlWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Только обзор</translation>
+        <translation>Только трансляция</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Удаленное управление</translation>
+        <translation>Удалённое управление</translation>
     </message>
     <message>
         <source>Lock student</source>
@@ -1661,11 +1661,11 @@ p, li { white-space: pre-wrap; }
     <name>RemoteLogonDialog</name>
     <message>
         <source>Remote logon</source>
-        <translation>Удаленный вход</translation>
+        <translation>Удалённый вход</translation>
     </message>
     <message>
         <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>Используйте приведенные ниже поля для ввода имени пользователя, пароля и необязательного названия домена. Эта информация будет использована для входа в систему(ы).</translation>
+        <translation>Используйте приведённые ниже поля для ввода имени пользователя, пароля и необязательного названия домена. Эта информация будет использована для входа в систему(ы).</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1684,7 +1684,7 @@ p, li { white-space: pre-wrap; }
     <name>RunCommandsDialog</name>
     <message>
         <source>Run commands</source>
-        <translation>Выполнить команды</translation>
+        <translation>Команды для запуска</translation>
     </message>
     <message>
         <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
@@ -1807,7 +1807,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Удаленное управление</translation>
+        <translation>Удалённое управление</translation>
     </message>
     <message>
         <source>Let student show demo</source>
@@ -1839,7 +1839,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Execute commands</source>
-        <translation>Запустить команду</translation>
+        <translation>Команды для выполнения</translation>
     </message>
 </context>
 </TS>

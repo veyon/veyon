@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="it_IT">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="it_IT" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -12,8 +10,16 @@
         <translation>Informazioni su</translation>
     </message>
     <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+    </message>
+    <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation></translation>
+        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -32,12 +38,6 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message>
         <source>License</source>
         <translation>Licenza</translation>
-    </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -94,12 +94,12 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Usa il menù contestuale (pulsante-destro del mouse) per aggiungere/rimuovere computer o aule.</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
+        <source>Export to text file</source>
         <translation>Esporta su file di testo</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Usa questo pulsante per esportare l&apos;elenco degli utenti in un file di testo. Puoi utilizzare questo file, ad esempio, dopo l&apos;esecuzione di un esame. Ciò può essere necessario, ad esempio, se alcuni utenti hanno terminato,  si sono disconnessi troppo presto e non è possibile recuperare i loro file alla fine dell&apos;esame.</translation>
+        <translation>Usa questo pulsante per esportare l&apos;elenco dei computer ed gli  username in un file di testo. Puoi usare questo file, per raccogliere i lavori prodotti dopo un esame. Ad esempio può essere utile, quando alcuni utenti, avendo terminato il lavoro, hanno chiuso la sessione prima che tu sia riuscito a raccogliere il loro lavoro al termine di un esame. </translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
@@ -142,30 +142,24 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Aggiungi un&apos;aula</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
-        <translation>Non è stato trovato un file di configurazione</translation>
+        <source>No configuration file found</source>
+        <translation>Non è stato trovato il file di configurazione.</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Non è possibile aprire il file di configurazione %1.
-E&apos; necessario configurare almeno un&apos;aula con i relativi computer utilizzando il menù contestuale nell&apos;area di lavoro Gestione-computer. Gestione-computer è disponibile nella barra applicazioni situata a sinistra all&apos;interno della finestra  del programma.</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>Non riesco ad aprire il file di configurazione %1. Bisogna aggiungere almeno un&apos;aula e relativi computer utilizzando &quot;Gestione Aule&quot; disponibile nella barra laterale a sinistra.</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
+        <source>Error in configuration file</source>
         <translation>Errore nel file di configurazione</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>Si è verificato un errore nell&apos;interpretazione del file di configurazione %1.
-Bisogna modificarlo con un editor. In alternativa, dovresti cancellarlo e riconfigurare aule e computer nuovamente.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>Si è verificato un errore di sintassi nella lettura del file di configurazione %1. Si prega di correggerlo a mano. In alternativa potresti cancellare il file e ricreare la configurazione aggiungendo Aula e computer nuovamente.</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>Si è verificato un errore nell&apos;interpretazione del file di configurazione %1.
-Bisogna modificarlo con un editor. In alternativa, dovresti cancellarlo e riconfigurare aule e computer nuovamente.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>Si è verificato un errore di sintassi nella lettura del file di configurazione %1. Si prega di correggerlo a mano o, in alternativa, cancellare il file.</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -242,6 +236,10 @@ Vuoi creare un&apos;aula adesso?</translation>
         <source>Desktop locked</source>
         <translation>Desktop bloccato</translation>
     </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Messaggio dall&apos;insegnante</translation>
+    </message>
 </context>
 <context>
     <name>ClientAction</name>
@@ -302,7 +300,7 @@ Vuoi creare un&apos;aula adesso?</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation></translation>
+        <translation>MAC address</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -337,12 +335,12 @@ Vuoi creare un&apos;aula adesso?</translation>
         <translation>Non è stato specificato l&apos;indirizzo IP o il nome del computer!</translation>
     </message>
     <message>
-        <source>Invalid MAC-address</source>
-        <translation>Indirizzo MAC-address non valido</translation>
+        <source>Invalid MAC address</source>
+        <translation>MAC address non valido</translation>
     </message>
     <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>E&apos; stato specificato un MAC-address non valido. Lasciare il campo vuoto o inserire un indirizzo MAC-address valido (utilizza&quot;:&quot; come separatore!)</translation>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>Il MAC address inserito non è valido. Puoi lasciare il campo vuoto o inserire un indirizzo valido (usa &quot;:&quot; come separatore!).</translation>
     </message>
 </context>
 <context>
@@ -384,13 +382,113 @@ Vuoi creare un&apos;aula adesso?</translation>
         <translation>Barra strumenti senza testo</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Linguaggio:</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Predefinito dal sistema</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>ar - العربية</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>cs - Česky</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>de - Deutsch</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>el - Ελληνικά</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>es - Español</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>fi - Suomi</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>fr - Français</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>he - עִבְרִית</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>hu - Magyar</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>it - Italiano</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>nl - Nederlands</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>nn - Norsk</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>pl - Polski</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>pt_br - Brasileiro</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>pt_pt - Português</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>ru - Русский</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>sk - Slovenský</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>sl - Slovenčina</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>sv - Svenska</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>tr - Türkçe</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>uk - Українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>zh_cn - 简体字</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>zh_tw - 簡體字</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>Il tuo ruolo (necessita di chiavi adeguate!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -414,21 +512,13 @@ p, li { white-space: pre-wrap; }
         <translation>Altro</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>Impostazioni per il multi-logon</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Dominio</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>Azione del doppio-click sulla finestra client</translation>
+        <source>Double click action for client window</source>
+        <translation>Doppio click per la finestra client</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;(new line)&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qui puoi decidere cosa dovrà accadere con il doppio click sulla finestra (miniatura) del client.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -444,106 +534,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Attenzione: alcune impostazioni non avranno effetto fino al prossimo riavvio di iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -554,13 +544,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>In questo spazio di lavoro puoi personalizzare iTALC secondo le tue esigenze.</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -577,8 +560,8 @@ p, li { white-space: pre-wrap; }
         <translation>Errore di autenticazione</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation>Qualcuno (IP: %1) cerca di accedere a questo computer ma non riesce ad autenticarsi!</translation>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Qualcuno (IP: %1) ha cercato di accedere al tuo computer ma l&apos;autenticazione non è riuscita!</translation>
     </message>
 </context>
 <context>
@@ -640,10 +623,6 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
         <translation>Crea una nuova coppia di chiavi (solo sul computer master/docente)</translation>
     </message>
     <message>
-        <source>assistantModeButtonGroup</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Import public key (client computer)</source>
         <translation>Importa la chiave pubblica (computer client/studente)</translation>
     </message>
@@ -685,7 +664,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
@@ -803,7 +782,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Groups with iTALC privileges</source>
@@ -828,8 +807,374 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
         <translation>BarraStrumenti</translation>
     </message>
     <message>
+        <source>iTALC Management Console</source>
+        <translation>iTALC Management Console</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Generale</translation>
+    </message>
+    <message>
+        <source>iTALC Server</source>
+        <translation>Servizio ITALC</translation>
+    </message>
+    <message>
+        <source>Paths</source>
+        <translation>Percorsi</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autenticazione</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>Debugging</translation>
+    </message>
+    <message>
+        <source>iTALC Service</source>
+        <translation>Servizio iTALC</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Nascondi l&apos;icona tray</translation>
+    </message>
+    <message>
+        <source>Autostart</source>
+        <translation>Avvio automatico</translation>
+    </message>
+    <message>
+        <source>Additional arguments</source>
+        <translation>Parametri aggiuntivi</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>Avvia il servizio</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>ferma il servizio</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>Stato:</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Fermato</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>Abilita lo scambio schermo come Blocco schermo (sperimentale)</translation>
+    </message>
+    <message>
+        <source>Logging</source>
+        <translation>Fase di autenticazione</translation>
+    </message>
+    <message>
+        <source>Log file directory</source>
+        <translation>Cartella per il Log file</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Log level</source>
+        <translation>Livello di Log</translation>
+    </message>
+    <message>
+        <source>Nothing</source>
+        <translation>Nessun log</translation>
+    </message>
+    <message>
+        <source>Only critical messages</source>
+        <translation>Solo i messaggi critici</translation>
+    </message>
+    <message>
+        <source>Errors and critical messages</source>
+        <translation>Errori e messaggi critici</translation>
+    </message>
+    <message>
+        <source>Warnings and errors</source>
+        <translation>Avvisi (warnings) ed errori</translation>
+    </message>
+    <message>
+        <source>Information, warnings and errors</source>
+        <translation>Informazioni, avvisi e errori</translation>
+    </message>
+    <message>
+        <source>Debug messages and everything else</source>
+        <translation>Messaggi di debug e quant&apos;altro</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Limite per il file di log</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Log to standard error output</source>
+        <translation>Log sullo standard error output</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>Log su Gestore eventi di Windows</translation>
+    </message>
+    <message>
+        <source>Clear all log files</source>
+        <translation>Cancella tutti i file di log</translation>
+    </message>
+    <message>
+        <source>Desktop capturing</source>
+        <translation>Cattura schermo</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Abilita cattura di finestre in livelli (semi-trasparente)</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Schermo pieno (lasciarlo abilitato per default)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>Bassa qualità (modalità turbo)</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Server per la modalità Presentazione</translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation>Backend</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC reflector</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>iTALC 1 demo server</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Rete</translation>
+    </message>
+    <message>
+        <source>Core server port</source>
+        <translation>Porta principale del Servizio</translation>
+    </message>
+    <message>
+        <source>Demo server port</source>
+        <translation>Porta per la modalità Presentazione</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>Abilita le eccezioni del firewall</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>Abilita il server HTTP che fornisce una applet JavaViewer</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>Porta del server HTTP</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Consenti connessioni solo da questo computer &apos;localhost&apos;</translation>
+    </message>
+    <message>
+        <source>Configuration files</source>
+        <translation>File di configurazione</translation>
+    </message>
+    <message>
+        <source>Global configuration</source>
+        <translation>Configurazione universale</translation>
+    </message>
+    <message>
+        <source>Personal configuration</source>
+        <translation>Configurazione personale</translation>
+    </message>
+    <message>
+        <source>Data directories</source>
+        <translation>Cartelle dati</translation>
+    </message>
+    <message>
+        <source>Snapshots</source>
+        <translation>Foto</translation>
+    </message>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Metodi di autenticazione</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Autenticazione con File chiave</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>Autenticazione basata sul Logon (Credenziali di accesso)</translation>
+    </message>
+    <message>
+        <source>Access key management</source>
+        <translation>Gestione chiavi di accesso</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Cartella chiave Pubblica</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Cartella chiave Privata</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Lancia l&apos;Assistente per la gestione delle chiavi</translation>
+    </message>
+    <message>
+        <source>Logon settings</source>
+        <translation>Impostazioni di Accesso (Logon)</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>Gestisci permessi</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Conferma accesso</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Puoi configurare iTALC per chiedere all&apos;utente il permesso di accedere al computer quando viene utilizzato un determinato metodo di accesso.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Autenticazione di accesso (Logon)</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>Permetti ad alcuni utenti di accedere al computer senza conferma</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>Debugging iTALC</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Quando riscontri errori o un funzionamento anomalo di iTALC è importante informare gli sviluppatori su quanto rilevato, così gli errori possono essere corretti nelle versioni successive. Questa pagina ti permette di inviare una relazione sugli errori.
+
+Se l&apos;errore non è riproducibile, salta i passaggi 1) -3).</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>Pulisci i file di LOG nella sezione Generale.</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>Nella sezione &quot;Generale&quot; imposta il livello di Log a &quot;Debug messaggi e quant&apos;altro&quot;.</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>Ripeti le azioni che hanno prodotto l&apos;errore o il comportamento anomalo.</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>Clicca sul seguente pulsante e salva il file in una cartella conosciuta.</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>Genera l&apos;archivio Rapporto Errori</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Vai all&apos;indirizzo  &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, apri un nuovo bug, descrivi cosa è suiccesso nello step 3) e allega il file che hai salvato nello step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Nota: Se il bug coinvolge sia il computer Master che il client, allega il &quot;bug report&quot; di entrambi i computer.</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;File</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Aiuto</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Esci</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings into file</source>
+        <translation>&amp;Salva impostazioni nel file</translation>
+    </message>
+    <message>
+        <source>Save settings into file</source>
+        <translation>Salva impostazioni nel file</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>C&amp;arica impostazioni dal file</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>About iTALC</source>
+        <translation>Informazioni su iTALC</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Informazioni su Qt</translation>
+    </message>
+    <message>
         <source>iTALC</source>
         <translation>iTALC</translation>
+    </message>
+    <message>
+        <source>No write access</source>
+        <translation>Nessun accesso in scrittura</translation>
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
@@ -980,376 +1325,6 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
         <translation>Utilizzando questo pulsante tutte le finestre visibili saranno ordinate e la loro dimensione ottimizzata per lo spazio disponibile.</translation>
     </message>
     <message>
-        <source>iTALC Master Control</source>
-        <translation>Gestione iTALC Master</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Controlla</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Esci</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Generale</translation>
-    </message>
-    <message>
-        <source>iTALC Server</source>
-        <translation>Servizio ITALC</translation>
-    </message>
-    <message>
-        <source>Paths</source>
-        <translation>Percorsi</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Autenticazione</translation>
-    </message>
-    <message>
-        <source>Debugging</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>iTALC Service</source>
-        <translation>Servizio iTALC</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>Nascondi l&apos;icona tray</translation>
-    </message>
-    <message>
-        <source>Autostart</source>
-        <translation>Avvio automatico</translation>
-    </message>
-    <message>
-        <source>Additional arguments</source>
-        <translation>Parametri aggiuntivi</translation>
-    </message>
-    <message>
-        <source>Start service</source>
-        <translation>Avvia il servizio</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>ferma il servizio</translation>
-    </message>
-    <message>
-        <source>State:</source>
-        <translation>Stato:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Fermato</translation>
-    </message>
-    <message>
-        <source>Logging</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Log file directory</source>
-        <translation>Cartella per il Log file</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Log level</source>
-        <translation>Livello di Log</translation>
-    </message>
-    <message>
-        <source>Nothing</source>
-        <translation>Nessun log</translation>
-    </message>
-    <message>
-        <source>Only critical messages</source>
-        <translation>Solo i messaggi critici</translation>
-    </message>
-    <message>
-        <source>Errors and critical messages</source>
-        <translation>Errori e messaggi critici</translation>
-    </message>
-    <message>
-        <source>Warnings and errors</source>
-        <translation>Avvisi (warnings) ed errori</translation>
-    </message>
-    <message>
-        <source>Information, warnings and errors</source>
-        <translation>Informazioni, avvisi e errori</translation>
-    </message>
-    <message>
-        <source>Debug messages and everything else</source>
-        <translation>Messaggi di debug e quant&apos;altro</translation>
-    </message>
-    <message>
-        <source>Limit log file size</source>
-        <translation>Limite per il file di log</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Log to standard error output</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Log to Windows event log</source>
-        <translation>Log su Gestore eventi di Windows</translation>
-    </message>
-    <message>
-        <source>Clear all log files</source>
-        <translation>Cancella tutti i file di log</translation>
-    </message>
-    <message>
-        <source>Desktop capturing</source>
-        <translation>Cattura schermo</translation>
-    </message>
-    <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Abilita cattura di finestre in livelli (semi-trasparente)</translation>
-    </message>
-    <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>Bassa qualità (modalità turbo)</translation>
-    </message>
-    <message>
-        <source>Demo server</source>
-        <translation>Server per la modalità Presentazione</translation>
-    </message>
-    <message>
-        <source>Backend</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Multithreading (può essere abilitato quando si utilizza il VNC reflector backend)</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>Rete</translation>
-    </message>
-    <message>
-        <source>Core server port</source>
-        <translation>Porta principale del Servizio</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Porta per la modalità Presentazione</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation>Abilita le eccezioni del firewall</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Abilita il server HTTP che fornisce una applet JavaViewer</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>Porta del server HTTP</translation>
-    </message>
-    <message>
-        <source>Configuration files</source>
-        <translation>File di configurazione</translation>
-    </message>
-    <message>
-        <source>Global configuration</source>
-        <translation>Configurazione universale</translation>
-    </message>
-    <message>
-        <source>Personal configuration</source>
-        <translation>Configurazione personale</translation>
-    </message>
-    <message>
-        <source>Data directories</source>
-        <translation>Cartelle dati</translation>
-    </message>
-    <message>
-        <source>Snapshots</source>
-        <translation>Foto</translation>
-    </message>
-    <message>
-        <source>Authentication methods</source>
-        <translation>Metodi di autenticazione</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Autenticazione con File chiave</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>Autenticazione basata sul Logon (Credenziali di accesso)</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Gestione chiavi di accesso</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Cartella chiave Pubblica</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Cartella chiave Privata</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Lancia l&apos;Assistente per la gestione delle chiavi</translation>
-    </message>
-    <message>
-        <source>Logon settings</source>
-        <translation>Impostazioni di Accesso (Logon)</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Gestisci permessi</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Conferma accesso</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Puoi configurare iTALC per chiedere all&apos;utente il permesso di accedere al computer quando viene utilizzato un determinato metodo di accesso.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Autenticazione di accesso (Logon)</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Permetti ad alcuni utenti di accedere al computer senza conferma</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Quando riscontri errori o un funzionamento anomalo di iTALC è importante informare gli sviluppatori su quanto rilevato, così gli errori possono essere corretti nelle versioni successive. Questa pagina ti permette di inviare una relazione sugli errori.
-
-Se l&apos;errore non è riproducibile, salta i passaggi 1) -3).</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Pulisci i file di LOG nella sezione Generale.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Nella sezione &quot;Generale&quot; imposta il livello di Log a &quot;Debug messaggi e quant&apos;altro&quot;.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Ripeti le azioni che hanno prodotto l&apos;errore o il comportamento anomalo.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Clicca sul seguente pulsante e salva il file in una cartella conosciuta.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Genera l&apos;archivio Rapporto Errori</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Vai all&apos;indirizzo&lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, Apri un nuovo bug (open a new bug), descrivi (in inglese) cosa hai fatto nel passo 3) e allega il file che hai preparato al passaggio 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul computer studente(client), allega l&apos;archivio Rapporto Errori per entrambi i computer.</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Aiuto</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Esci</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>&amp;Salva impostazioni nel file</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Salva impostazioni nel file</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>C&amp;arica impostazioni dal file</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>About iTALC</source>
-        <translation>Informazioni su iTALC</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Informazioni su Qt</translation>
-    </message>
-    <message>
-        <source>No write access</source>
-        <translation>Nessun accesso in scrittura</translation>
-    </message>
-    <message>
         <source>Could not contact iTALC service</source>
         <translation>Non riesco a contattare il servizio iTALC</translation>
     </message>
@@ -1358,12 +1333,24 @@ Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul comp
         <translation>Non riesco a contattare il servizio iTALC. Probabilmente hai inserito credenziali sbagliate o le chiavi non sono impostate correttamente. Riprova o contatta il tuo amministratore per risolvere il problema nell&apos;utilizzo di iTALC</translation>
     </message>
     <message>
+        <source>iTALC Master Control</source>
+        <translation>Gestione iTALC Master</translation>
+    </message>
+    <message>
         <source>Authentication impossible</source>
         <translation>Autenticazione impossibile</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>I file delle chiavi di autenticazione non sono stati trovati o sono scaduti. Crea nuovi file chiavi utilizzando &quot;iTALC Management Console&quot;. In alternativa si può utilizzare il metodo di autenticazione basato sul Logn (Credenziali di accesso). Altrimenti non avrai modo di accedere ai computer client attraverso iTALC.</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation>Controlla</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Esci</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1376,6 +1363,22 @@ Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul comp
     <message>
         <source>Could not change the firewall configuration for the iTALC Service.</source>
         <translation>Impossibile modificare la configurazione delle eccezioni del firewall per il servizio iTALC</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Il file di configurazione non è scrivibile</translation>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>Il file di configurazione non è scrivibile! Eseguire iTALC con privilegi adeguati.</translation>
+    </message>
+    <message>
+        <source>All settings were applied successfully.</source>
+        <translation>Tutte le impostazioni sono state applicate.</translation>
+    </message>
+    <message>
+        <source>An error occured while applying settings!</source>
+        <translation>Si è verificato un errore nell&apos;applicazioni delle impostazioni!</translation>
     </message>
     <message>
         <source>iTALC Management Console %1</source>
@@ -1427,7 +1430,7 @@ Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul comp
     </message>
     <message>
         <source>XML files (*.xml)</source>
-        <translation></translation>
+        <translation>XML files (*.xml)</translation>
     </message>
     <message>
         <source>Save settings to file</source>
@@ -1469,48 +1472,13 @@ Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul comp
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>Alcune impostazioni non sono state salvate. Esco comunque?</translation>
     </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Il file di configurazione non è scrivibile</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Il file di configurazione non è scrivibile! Eseguire iTALC con privilegi adeguati.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Tutte le impostazioni sono state applicate.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Si è verificato un errore nell&apos;applicazioni delle impostazioni!</translation>
-    </message>
-    <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Messaggio dall&apos;insegnante</translation>
-    </message>
 </context>
 <context>
     <name>Overview</name>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1553,7 +1521,7 @@ p, li { white-space: pre-wrap; }
     <name>PasswordDialog</name>
     <message>
         <source>iTALC Logon</source>
-        <translation></translation>
+        <translation>iTALC Logon</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
@@ -1569,18 +1537,22 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Manage</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestisci</translation>
     </message>
 </context>
 <context>
     <name>QApplication</name>
+    <message>
+        <source>iTALC Client %1 on %2:%3</source>
+        <translation>iTALC Client su %1:%2:%3</translation>
+    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Non è possibile registrare il servizio &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato registrato.</translation>
+        <translation>Il gestore dei servizi &quot;Service Control Manger&quot; non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato registrato.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1616,15 +1588,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato rimosso.</translation>
+        <translation>Il gestore dei servizi &quot;Service Control Manger&quot; non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato rimosso dal registro.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato fermato.</translation>
-    </message>
-    <message>
-        <source>iTALC Client %1 on %2:%3</source>
-        <translation>iTALC Client su %1:%2:%3</translation>
+        <translation>Il gestore dei servizi &quot;Service Control Manger&quot; non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato fermato.</translation>
     </message>
 </context>
 <context>
@@ -1750,7 +1718,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }

@@ -99,7 +99,7 @@ Se você estiver interessado em traduzir o iTALC em seu idioma local ou outro id
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Use este botão para exportar esta lista de computadores e nomes de usuários para um arquivo texto. Você pode usar este arquivo mais tarde para recolher os arquivos dos usuários depois que um exame terminou. As vezes isso é necessário, porque alguns usuários podem ter terminado o exame mais cedo e ter feito logoff do computador e por isso impedindo você de recolher seus arquivos no final do exame.</translation>
+        <translation>Use este botão para exportar a lista de computadores e nomes de usuários dentro de um arquivo de texto. Você pode usar este arquivo mais tarde para coletar documentos depois que uma prova for finalizada. Às vezes, é necessário realizar essa tarefa, pois alguns usuários podem ter finalizado suas sessões mais cedo e você não conseguirá recuperar seus arquivos ao final da prova.</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
@@ -147,15 +147,15 @@ Se você estiver interessado em traduzir o iTALC em seu idioma local ou outro id
     </message>
     <message>
         <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível abrir o arquivo de configuração %1. Você terá de adicionar pelo menos uma sala de aula e computadores usando o gerenciador de salas de aula que está localizado na barra de ferramentas à esquerda. </translation>
     </message>
     <message>
         <source>Error in configuration file</source>
-        <translation type="unfinished"/>
+        <translation>Erro no arquivo de configuração</translation>
     </message>
     <message>
         <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation type="unfinished"/>
+        <translation>Erro na leitura do arquivo de configuração %1. Por favor corriga-o  manualmente. Caso contrário será necessário apagar o arquivo e adicionar todas as salas de aula novamente.</translation>
     </message>
     <message>
         <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
@@ -340,7 +340,7 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation type="unfinished"/>
+        <translation>Você especificou um endereço MAC inválido. Deixe o campo em branco ou digite um endereço MAC válido (use &quot;:&quot; como separador!).</translation>
     </message>
 </context>
 <context>
@@ -383,7 +383,7 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Idioma:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>System default</source>
@@ -513,7 +513,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Double click action for client window</source>
-        <translation type="unfinished"/>
+        <translation>Ação para o clique duplo na janela cliente</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1121,10 +1121,7 @@ Se a falha não é reproduzível, pule o passo1) - 3).</translation>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Ir para o &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, abra um novo bug, descrever o que você fez no passo 3) e anexe o arquivo que você salvou no passo 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Nota: se o erro envolve ambos os computadores mestre e cliente, anexe os arquivos de relatório de erro para ambos os computadores.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1554,7 +1551,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1590,11 +1587,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi parado.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
