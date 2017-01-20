@@ -2,7 +2,7 @@
  * ItalcVncServer.cpp - implementation of ItalcVncServer, a VNC-server-
  *                      abstraction for platform independent VNC-server-usage
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -173,7 +173,8 @@ static bool authMsLogon( struct _rfbClientRec *cl )
 	credentials.setLogonPassword( passwd );
 
 	return LogonAuthentication::authenticateUser( credentials ) &&
-			AccessControlProvider().checkAccess( credentials.logonUsername(), cl->host ) == AccessControlProvider::AccessAllow;
+			ItalcCoreServer::instance()->performAccessControl( credentials.logonUsername(), cl->host,
+															   DesktopAccessPermission::LogonAuthentication );
 }
 
 
