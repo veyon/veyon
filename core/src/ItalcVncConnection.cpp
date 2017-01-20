@@ -177,6 +177,8 @@ rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
 			break;
 	}
 
+	t->m_frameBufferInitialized = true;
+
 	return true;
 }
 
@@ -322,7 +324,10 @@ void ItalcVncConnection::framebufferCleanup( void *framebuffer )
 
 ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	QThread( parent ),
-	m_framebufferInitialized( false ),
+	m_hostReachable( false ),
+	m_frameBufferInitialized( false ),
+	m_frameBufferValid( false ),
+	m_connectionTime(),
 	m_cl( NULL ),
 	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoClientQuality ),
@@ -486,7 +491,7 @@ void ItalcVncConnection::rescaleScreen()
 {
 	if( m_image.size().isValid() == false ||
 			m_scaledSize.isNull() ||
-			m_framebufferInitialized == false ||
+			m_frameBufferValid == false ||
 			m_scaledScreenNeedsUpdate == false )
 	{
 		return;
@@ -525,7 +530,8 @@ void ItalcVncConnection::doConnection()
 
 	m_state = Connecting;
 
-	m_framebufferInitialized = false;
+	m_frameBufferValid = false;
+	m_frameBufferInitialized = false;
 
 	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
@@ -560,8 +566,9 @@ void ItalcVncConnection::doConnection()
 
 		emit newClient( m_cl );
 
-		int argc = 0;
-		if( rfbInitClient( m_cl, &argc, NULL ) )
+		m_hostReachable = false;
+
+		if( rfbInitClient( m_cl, NULL, NULL ) )
 		{
 			emit connected();
 
@@ -570,14 +577,13 @@ void ItalcVncConnection::doConnection()
 		}
 		else
 		{
-			// guess reason why connection failed based on the state,
-			// libvncclient left the rfbClient structure
-			if( argc < 0 )
+			// guess reason why connection failed
+			if( m_hostReachable == false )
 			{
 				m_state = HostUnreachable;
 				emit stateChanged( m_state );
 			}
-			else if( argc > 0 )
+			else if( m_frameBufferInitialized == false )
 			{
 				m_state = AuthenticationFailed;
 				emit stateChanged( m_state );
@@ -611,17 +617,27 @@ void ItalcVncConnection::doConnection()
 		}
 	}
 
+	m_connectionTime.restart();
 	m_lastFullUpdate.restart();
 
 	// Main VNC event loop
 	while( isInterruptionRequested() == false )
 	{
-		if( m_framebufferInitialized == false )
+		if( m_frameBufferValid == false )
 		{
-			// request initial full framebuffer update
-			SendFramebufferUpdateRequest( m_cl, 0, 0,
-					framebufferSize().width(), framebufferSize().height(),
-					false );
+			// initial framebuffer timeout exceeded?
+			if( m_connectionTime.elapsed() < InitialFrameBufferTimeout )
+			{
+				// not yet so again request initial full framebuffer update
+				SendFramebufferUpdateRequest( m_cl, 0, 0,
+											  framebufferSize().width(), framebufferSize().height(),
+											  false );
+			}
+			else
+			{
+				// no so disconnect and try again
+				break;
+			}
 		}
 
 		const int i = WaitForMessage( m_cl, 500 );
@@ -698,9 +714,9 @@ void ItalcVncConnection::doConnection()
 
 void ItalcVncConnection::finishFrameBufferUpdate()
 {
-	if( m_framebufferInitialized == false )
+	if( m_frameBufferValid == false )
 	{
-		m_framebufferInitialized = true;
+		m_frameBufferValid = true;
 
 		emit framebufferSizeChanged( m_image.width(), m_image.height() );
 	}
@@ -709,7 +725,6 @@ void ItalcVncConnection::finishFrameBufferUpdate()
 
 	m_scaledScreenNeedsUpdate = true;
 }
-
 
 
 
@@ -853,6 +868,16 @@ void ItalcVncConnection::handleMsLogonIIAuth( rfbClient *client )
 
 
 
+void ItalcVncConnection::hookPrepareAuthentication(rfbClient *cl)
+{
+	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+
+	// set our internal flag which indicates that we basically have communication with the client
+	// which means that the host is reachable
+	t->m_hostReachable = true;
+}
+
+
 
 
 // global auth handlers used in modified libvncclient
@@ -871,15 +896,16 @@ int isLogonAuthenticationEnabled( rfbClient *client )
 }
 
 
+
 void handleSecTypeItalc( rfbClient *client )
 {
+	ItalcVncConnection::hookPrepareAuthentication( client );
 	ItalcVncConnection::handleSecTypeItalc( client );
 }
 
 
 void handleMsLogonIIAuth( rfbClient *client )
 {
+	ItalcVncConnection::hookPrepareAuthentication( client );
 	ItalcVncConnection::handleMsLogonIIAuth( client );
 }
-
-

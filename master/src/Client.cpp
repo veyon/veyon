@@ -891,7 +891,7 @@ void Client::paintEvent( QPaintEvent * _pe )
 
 	if( ( m_mode == Mode_Overview || m_mode == Mode_Locked ) &&
 			m_connection->isConnected() &&
-			m_connection->vncConnection()->framebufferInitialized() )
+			m_connection->vncConnection()->hasValidFrameBuffer() )
 	{
 		p.drawImage( CONTENT_OFFSET, m_connection->vncConnection()->scaledScreen() );
 	}

@@ -147,9 +147,10 @@ public:
 		return m_image.size();
 	}
 
-	bool framebufferInitialized() const
+	/** \brief Returns whether framebuffer data is valid, i.e. at least one full FB update received */
+	bool hasValidFrameBuffer() const
 	{
-		return m_framebufferInitialized;
+		return m_frameBufferValid;
 	}
 
 	void setScaledSize( const QSize &s )
@@ -174,6 +175,7 @@ public:
 	// authentication
 	static void handleSecTypeItalc( rfbClient *client );
 	static void handleMsLogonIIAuth( rfbClient *client );
+	static void hookPrepareAuthentication( rfbClient *cl );
 
 	void cursorShapeUpdatedExternal( const QImage &cursorShape, int xh, int yh )
 	{
@@ -208,6 +210,7 @@ protected:
 
 private:
 	enum {
+		InitialFrameBufferTimeout = 15000,	/**< A server has to send an initial framebuffer within given timeout in ms */
 		ThreadTerminationTimeout = 10000
 	};
 
@@ -225,7 +228,10 @@ private:
 						rfbServerToClientMsg *msg );
 	static void framebufferCleanup( void* framebuffer );
 
-	bool m_framebufferInitialized;
+	bool m_hostReachable;
+	bool m_frameBufferInitialized;
+	bool m_frameBufferValid;
+	QTime m_connectionTime;
 	rfbClient *m_cl;
 	ItalcAuthType m_italcAuthType;
 	QualityLevels m_quality;
