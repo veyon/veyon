@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.cpp - implementation of ItalcVncConnection class
  *
- * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -110,13 +110,11 @@ private:
 
 
 
-rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
+rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *)
-					rfbClientGetClientData( cl, 0) ;
+	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0) ;
 
-	const int size = (int) cl->width * cl->height *
-					( cl->format.bitsPerPixel / 8 );
+	const uint64_t size = (uint64_t) cl->width * cl->height * ( cl->format.bitsPerPixel / 8 );
 
 	cl->frameBuffer = new uint8_t[size];
 
@@ -128,7 +126,7 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 	t->m_image = QImage( cl->frameBuffer, cl->width, cl->height, QImage::Format_RGB32, framebufferCleanup, cl->frameBuffer );
 	t->m_imgLock.unlock();
 
-	// initialize desired framebuffer format
+	// set up pixel format according to QImage
 	cl->format.bitsPerPixel = 32;
 	cl->format.redShift = 16;
 	cl->format.greenShift = 8;
@@ -140,7 +138,7 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 	// only use remote cursor for remote control
 	cl->appData.useRemoteCursor = false;
 	cl->appData.compressLevel = 0;
-	cl->appData.useBGR233 = 0;
+	cl->appData.useBGR233 = false;
 	cl->appData.qualityLevel = 9;
 	cl->appData.enableJPEG = false;
 
@@ -534,7 +532,7 @@ void ItalcVncConnection::doConnection()
 	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
 		m_cl = rfbGetClient( 8, 3, 4 );
-		m_cl->MallocFrameBuffer = hookNewClient;
+		m_cl->MallocFrameBuffer = hookInitFrameBuffer;
 		m_cl->canHandleNewFBSize = true;
 		m_cl->GotFrameBufferUpdate = hookUpdateFB;
 		m_cl->FinishedFrameBufferUpdate = hookFinishFrameBufferUpdate;
