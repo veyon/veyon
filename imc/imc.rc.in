@@ -17,7 +17,7 @@ BEGIN
       VALUE "CompanyName",	"iTALC Solutions\0"
       VALUE "FileDescription",	"iTALC Management Console\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2010-2016 Tobias Doerffel\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2010-2017 Tobias Doerffel\0"
       VALUE "OriginalFilename",	"imc.exe\0"
       VALUE "ProductName",	"iTALC\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"

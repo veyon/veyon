@@ -27,7 +27,7 @@ provides lots of useful features such as:
 
 ## License
 
-Copyright (c) 2004-2016 Tobias Doerffel / iTALC Solutions.
+Copyright (c) 2004-2017 Tobias Doerffel / iTALC Solutions.
 
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
