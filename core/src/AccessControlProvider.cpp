@@ -1,7 +1,7 @@
 /*
  * AccessControlProvider.cpp - implementation of the AccessControlProvider class
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -130,9 +130,15 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 	}
 	else
 	{
+		qDebug( "AccessControlProvider::checkAccess(): "
+				"no access control method configured, allowing access." );
+
 		// no access control method configured, therefore grant access
 		return AccessAllow;
 	}
+
+	qDebug( "AccessControlProvider::checkAccess(): "
+			"configured access control method did not succeed, denying access." );
 
 	// configured access control method did not succeed, therefore deny access
 	return AccessDeny;
