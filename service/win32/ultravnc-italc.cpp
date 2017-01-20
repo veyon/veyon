@@ -1,7 +1,7 @@
 /*
- * ultravnc-italc.h - integration of UltraVNC server into iTALC service
+ * ultravnc-italc.cpp - integration of UltraVNC server into iTALC service
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,7 +26,6 @@
 
 #include <QtCore/QSettings>
 
-#include "DesktopAccessPermission.h"
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
 #include "ItalcConfiguration.h"
@@ -122,7 +121,6 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 
 BOOL ultravnc_italc_access_control( const char *username, const char *host )
 {
-	return AccessControlProvider().checkAccess( username, host ) == AccessControlProvider::AccessAllow &&
-	        DesktopAccessPermission( DesktopAccessPermission::LogonAuthentication ).ask( username, host );
+	return ItalcCoreServer::instance()->performAccessControl( username, host, DesktopAccessPermission::LogonAuthentication );
 }
 
