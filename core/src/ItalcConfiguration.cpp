@@ -114,7 +114,6 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setPublicKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/public" ) );
 
 	c.setPermissionRequiredWithLogonAuthentication( false );
-	c.setSameUserConfirmationDisabled( false );
 	c.setAuthorizedUserGroups( QStringList() );
 
 	c.setLdapServerPort( 389 );
