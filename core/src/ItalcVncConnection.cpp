@@ -177,8 +177,6 @@ rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
 			break;
 	}
 
-	SetFormatAndEncodings( cl );
-
 	return true;
 }
 
