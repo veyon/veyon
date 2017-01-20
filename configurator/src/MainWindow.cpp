@@ -26,12 +26,9 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
-#include <QtCore/QTimer>
 #include <QtGui/QCloseEvent>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QProgressBar>
-#include <QProgressDialog>
 
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
@@ -41,14 +38,11 @@
 #include "Configuration/UiMapping.h"
 
 #include "AboutDialog.h"
-#include "KeyFileAssistant.h"
 #include "FileSystemBrowser.h"
 #include "ConfiguratorCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
-#include "LogonAuthentication.h"
 #include "MainWindow.h"
-#include "PasswordDialog.h"
 #include "ServiceControl.h"
 
 #include "ui_MainWindow.h"
@@ -74,9 +68,6 @@ MainWindow::MainWindow() :
 		configurationChanged();
 	}
 
-	// connect widget signals to configuration property write methods
-	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-
 	for( auto page : findChildren<ConfigurationPage *>() )
 	{
 		page->connectWidgetsToProperties();
@@ -84,12 +75,6 @@ MainWindow::MainWindow() :
 
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
-
-	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
-	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
-
-	CONNECT_BUTTON_SLOT( launchKeyFileAssistant );
-	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -127,8 +112,6 @@ void MainWindow::reset( bool onlyUI )
 		*ItalcCore::config += ItalcConfiguration::defaultConfiguration();
 		*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
 	}
-
-	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
 	for( auto page : findChildren<ConfigurationPage *>() )
 	{
@@ -190,24 +173,6 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 
 
 
-void MainWindow::openPublicKeyBaseDir()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->publicKeyBaseDir );
-}
-
-
-
-
-void MainWindow::openPrivateKeyBaseDir()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->privateKeyBaseDir );
-}
-
-
-
-
 void MainWindow::loadSettingsFromFile()
 {
 	QString fileName = QFileDialog::getOpenFileName( this, tr( "Load settings from file" ),
@@ -247,36 +212,6 @@ void MainWindow::saveSettingsToFile()
 	}
 }
 
-
-
-
-void MainWindow::launchKeyFileAssistant()
-{
-	KeyFileAssistant().exec();
-}
-
-
-
-void MainWindow::testLogonAuthentication()
-{
-	PasswordDialog dlg( this );
-	if( dlg.exec() )
-	{
-		bool result = LogonAuthentication::authenticateUser( dlg.credentials() );
-		if( result )
-		{
-			QMessageBox::information( this, tr( "Logon authentication test" ),
-							tr( "Authentication with provided credentials "
-								"was successful." ) );
-		}
-		else
-		{
-			QMessageBox::critical( this, tr( "Logon authentication test" ),
-							tr( "Authentication with provided credentials "
-								"failed!" ) );
-		}
-	}
-}
 
 
 

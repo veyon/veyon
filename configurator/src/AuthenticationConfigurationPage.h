@@ -1,7 +1,7 @@
 /*
- * MainWindow.h - main window of the iTALC Configurator
+ * AuthenticationConfigurationPage.h - header for the AuthenticationConfigurationPage class
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,41 +22,33 @@
  *
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef AUTHENTICATION_CONFIGURATION_PAGE_H
+#define AUTHENTICATION_CONFIGURATION_PAGE_H
 
-#include <QMainWindow>
+#include "ConfigurationPage.h"
 
-class QAbstractButton;
+namespace Ui {
+class AuthenticationConfigurationPage;
+}
 
-namespace Ui { class MainWindow; } ;
-
-class MainWindow : public QMainWindow
+class AuthenticationConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	MainWindow();
-	virtual ~MainWindow();
+	AuthenticationConfigurationPage();
+	virtual ~AuthenticationConfigurationPage();
 
-	void reset( bool onlyUI = false );
-	void apply();
-
+	virtual void resetWidgets();
+	virtual void connectWidgetsToProperties();
 
 private slots:
-	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
-	void loadSettingsFromFile();
-	void saveSettingsToFile();
-	void generateBugReportArchive();
-	void aboutItalc();
-
+	void openPublicKeyBaseDir();
+	void openPrivateKeyBaseDir();
+	void launchKeyFileAssistant();
+	void testLogonAuthentication();
 
 private:
-	virtual void closeEvent( QCloseEvent *closeEvent );
+	Ui::AuthenticationConfigurationPage *ui;
+};
 
-	Ui::MainWindow *ui;
-	bool m_configChanged;
-
-} ;
-
-#endif
+#endif // AUTHENTICATION_CONFIGURATION_PAGE_H
