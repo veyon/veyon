@@ -33,7 +33,6 @@
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
 #include <QTimer>
-#include <QTime>
 #include <QtCore/QWaitCondition>
 #include <QtGui/QImage>
 
@@ -231,7 +230,6 @@ private:
 	bool m_hostReachable;
 	bool m_frameBufferInitialized;
 	bool m_frameBufferValid;
-	QTime m_connectionTime;
 	rfbClient *m_cl;
 	ItalcAuthType m_italcAuthType;
 	QualityLevels m_quality;
@@ -240,7 +238,6 @@ private:
 	QTimer m_terminateTimer;
 	QWaitCondition m_updateIntervalSleeper;
 	int m_framebufferUpdateInterval;
-	QTime m_lastFullUpdate;
 	QMutex m_mutex;
 	mutable QReadWriteLock m_imgLock;
 	QQueue<ClientEvent *> m_eventQueue;

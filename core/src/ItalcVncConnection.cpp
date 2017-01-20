@@ -327,14 +327,12 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_hostReachable( false ),
 	m_frameBufferInitialized( false ),
 	m_frameBufferValid( false ),
-	m_connectionTime(),
 	m_cl( NULL ),
 	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoClientQuality ),
 	m_port( PortOffsetVncServer ),
 	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
-	m_lastFullUpdate(),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
@@ -617,8 +615,11 @@ void ItalcVncConnection::doConnection()
 		}
 	}
 
-	m_connectionTime.restart();
-	m_lastFullUpdate.restart();
+	QTime connectionTime;
+	connectionTime.restart();
+
+	QTime lastFullUpdateTime;
+	lastFullUpdateTime.restart();
 
 	// Main VNC event loop
 	while( isInterruptionRequested() == false )
@@ -626,7 +627,7 @@ void ItalcVncConnection::doConnection()
 		if( m_frameBufferValid == false )
 		{
 			// initial framebuffer timeout exceeded?
-			if( m_connectionTime.elapsed() < InitialFrameBufferTimeout )
+			if( connectionTime.elapsed() < InitialFrameBufferTimeout )
 			{
 				// not yet so again request initial full framebuffer update
 				SendFramebufferUpdateRequest( m_cl, 0, 0,
@@ -665,12 +666,12 @@ void ItalcVncConnection::doConnection()
 		// ensure that we're not missing updates due to slow update rate therefore
 		// regularly request full updates
 		if( m_framebufferUpdateInterval > 0 &&
-					m_lastFullUpdate.elapsed() > 10*m_framebufferUpdateInterval )
+					lastFullUpdateTime.elapsed() > 10*m_framebufferUpdateInterval )
 		{
 			SendFramebufferUpdateRequest( m_cl, 0, 0,
 										  framebufferSize().width(), framebufferSize().height(),
 										  false );
-			m_lastFullUpdate.restart();
+			lastFullUpdateTime.restart();
 		}
 
 		m_mutex.lock();
