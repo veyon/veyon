@@ -339,6 +339,34 @@ void ItalcCoreServer::setAllowedIPs(const QStringList &allowedIPs)
 
 
 
+bool ItalcCoreServer::performAccessControl( const QString &username, const QString &host,
+											DesktopAccessPermission::AuthenticationMethod authenticationMethod )
+{
+	auto accessResult = AccessControlProvider().checkAccess( username, host );
+
+	DesktopAccessPermission desktopAccessPermission( authenticationMethod );
+
+	switch( accessResult )
+	{
+	case AccessControlProvider::AccessToBeConfirmed:
+		return desktopAccessPermission.ask( username, host );
+
+	case AccessControlProvider::AccessAllow:
+		if( desktopAccessPermission.authenticationMethodRequiresConfirmation() )
+		{
+			return desktopAccessPermission.ask( username, host );
+		}
+		return true;
+
+	default:
+		break;
+	}
+
+	return false;
+}
+
+
+
 void ItalcCoreServer::errorMsgAuth( const QString &ip )
 {
 	QMutexLocker l( &m_dataMutex );
@@ -440,30 +468,3 @@ bool ItalcCoreServer::doCommonSecretAuth( SocketDevice &sdev )
 	return false;
 }
 
-
-
-bool ItalcCoreServer::performAccessControl( const QString &username, const QString &host,
-											DesktopAccessPermission::AuthenticationMethod authenticationMethod )
-{
-	auto accessResult = AccessControlProvider().checkAccess( username, host );
-
-	DesktopAccessPermission desktopAccessPermission( authenticationMethod );
-
-	switch( accessResult )
-	{
-	case AccessControlProvider::AccessToBeConfirmed:
-		return desktopAccessPermission.ask( username, host );
-
-	case AccessControlProvider::AccessAllow:
-		if( desktopAccessPermission.authenticationMethodRequiresConfirmation() )
-		{
-			return desktopAccessPermission.ask( username, host );
-		}
-		break;
-
-	default:
-		break;
-	}
-
-	return false;
-}

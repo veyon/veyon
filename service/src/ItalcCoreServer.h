@@ -56,6 +56,9 @@ public:
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
+	bool performAccessControl( const QString& username, const QString& host,
+							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
+
 
 private:
 	void errorMsgAuth( const QString & _ip );
@@ -63,9 +66,6 @@ private:
 	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
 	bool doHostBasedAuth( const QString &host );
 	bool doCommonSecretAuth( SocketDevice &sdev );
-
-	bool performAccessControl( const QString& username, const QString& host,
-							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
 
 	static ItalcCoreServer *_this;
 
