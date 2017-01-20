@@ -98,6 +98,9 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
           <property name="sizeAdjustPolicy">
            <enum>QComboBox::AdjustToContents</enum>
           </property>
@@ -121,6 +124,9 @@
          <widget class="QComboBox" name="groupsComboBox">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QComboBox::AdjustToContents</enum>
