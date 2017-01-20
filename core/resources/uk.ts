@@ -1123,7 +1123,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Перейдіть на сторінку &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;стеження за вадами у iTALC&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
+        <translation>Перейдіть на сторінку &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;atid=724375&quot;&gt;стеження за вадами у iTALC&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Зауваження: якщо ваду виявлено на головному і клієнтському комп’ютерах одночасно, долучіть архіви звітів щодо вади для обох комп’ютерів.</translation>
@@ -1556,7 +1556,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - службу &apos;%1&apos; не зареєстровано.</translation>
+        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) - службу «%1» не зареєстровано.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1592,11 +1592,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - реєстрацію служби &apos;%1&apos; не було скасовано.</translation>
+        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) — реєстрацію служби «%1» не було скасовано.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - службу &apos;%1&apos; не було зупинено.</translation>
+        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) — службу «%1» не було зупинено.</translation>
     </message>
 </context>
 <context>

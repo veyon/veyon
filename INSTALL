@@ -30,6 +30,9 @@ Requirements:
 - libssl-dev/openssl-devel
 - libpam0g-dev/pam-devel
 
+for ubuntu 16.04
+- qttools5-dev and qttools5-dev-tools
+
 Of course GCC/G++, make and cmake must not be missing...
 
 

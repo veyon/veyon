@@ -1123,10 +1123,10 @@ If the bug is not reproducible, skip step 1) - 3).</source>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 错误反馈站点&lt;/a&gt;，建立一个新的错误报告，描述一下您在 3) 做了些什么，并附上 4) 所保存的日志文件。
+        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 缺陷跟踪器&lt;/a&gt;，新建一个反馈，描述您在第3）步的操作，然后附件上传您第4）保存的文件&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
-如果此问题需要在主机和客户机电脑上同时使用才会发生，请记得附上两台电脑上各自生成的日志文件。</translation>
+注意：如果教师端和学生端都出现这个问题，请上传两个电脑上的问题报告文件。</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1556,7 +1556,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 未被注册。</translation>
+        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务&apos;%1&apos; 未被注册。</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1592,11 +1592,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 未能被取消注册。</translation>
+        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务&apos;%1&apos; 未能注销。</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 不能停止。</translation>
+        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务&apos;%1&apos; 未能停止。</translation>
     </message>
 </context>
 <context>

@@ -101,7 +101,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>使用這個按鈕將這份電腦與使用者名稱的清單匯出為純文字檔案。稍後您可以在測驗結束後使用這個檔案來收集相關檔案。這在某些時候是必要的，因為有些使用者可能早已完成測驗並且登出，這麼一來您就不能在測驗結束後收集到他們的檔案。</translation>
+        <translation>用這個按鈕將這份電腦與使用者名稱的清單匯出為純文字檔案。稍後您可以在測驗結束後使用這個檔案來收集相關檔案。這在某些時候是必要的，因為有些使用者可能早已完成測驗並且登出，這麼一來您就不能在測驗結束後收集到他們的檔案。</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
@@ -389,7 +389,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>System default</source>
-        <translation>系統默認</translation>
+        <translation>系統預設</translation>
     </message>
     <message>
         <source>ar - العربية</source>
@@ -1123,10 +1123,10 @@ If the bug is not reproducible, skip step 1) - 3).</source>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>前往 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 錯誤回報站台&lt;/a&gt;，建立一個新的錯誤報告，描述一下您在 3) 做了些什麼，並附上您在 4) 所儲存的檔案。&lt;/p&gt;
+        <translation>前往&lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 錯誤回報站台&lt;/a&gt;，建立一個新的錯誤報告，描述一下您在 3) 做了些什麼，並附上您在 4) 所儲存的檔案。&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
-若是此問題需要在主電腦與客戶端電腦上同時使用時才會產生，請記得附上兩台電腦所產生的檔案。</translation>
+注意：若是此問題需要在主電腦與客戶端電腦上同時使用時才會產生，請記得附上兩台電腦所產生的檔案。</translation>
     </message>
     <message>
         <source>&amp;File</source>

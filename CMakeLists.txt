@@ -16,6 +16,7 @@ INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(CheckSymbolExists)
 INCLUDE(FindPkgConfig)
+INCLUDE(GNUInstallDirs)
 
 FIND_PACKAGE(Git)
 
@@ -33,7 +34,7 @@ ENDIF()
 IF(NOT VERSION_STRING)
 	SET(VERSION_MAJOR 3)
 	SET(VERSION_MINOR 0)
-	SET(VERSION_PATCH 2)
+	SET(VERSION_PATCH 3)
 	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 ELSE()
 	# remove leading character from tag name

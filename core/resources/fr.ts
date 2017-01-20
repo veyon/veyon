@@ -33,9 +33,9 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation>Le langage actuel n&apos;est pas encore traduit.
+        <translation>La langue actuelle n&apos;est pas encore traduite.
 
-Si vous êtes intéressé pour traduire iTALC dans votre langue natale ou dans un autre langage, ou pour améliorer la traduction existante, merci de contacter l&apos;équipe de développeur d&apos;iTALC !</translation>
+Si vous êtes intéressé pour traduire iTALC dans votre langue natale ou dans une autre langue, ou pour améliorer la traduction existante, merci de contacter l&apos;équipe de développeur d&apos;iTALC !</translation>
     </message>
     <message>
         <source>License</source>
@@ -97,12 +97,11 @@ Si vous êtes intéressé pour traduire iTALC dans votre langue natale ou dans u
     </message>
     <message>
         <source>Export to text file</source>
-        <translation>Exporte dans un fichier texte</translation>
+        <translation>Exporter dans un fichier texte</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Utilisez ce bouton pour exporter cette liste d&apos;ordinateurs et de noms d&apos;utilisateurs dans un fichier texte. 
-Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d&apos;un examen. C&apos;est parfois nécessaires, car certains étudiants peuvent terminer et se déconnecter en avance, ce qui vous empêche de collecter leurs fichiers.</translation>
+        <translation>Utilisez ce bouton pour exporter cette liste d&apos;ordinateurs et d&apos;utilisateurs dans un fichier texte. Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d&apos;un examen. C&apos;est parfois nécessaires car certains étudiants peuvent terminer en avance et se déconnecter, ce qui vous empêche de collecter leurs fichiers.</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
@@ -150,7 +149,7 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     </message>
     <message>
         <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Impossible d&apos;ouvrir le fichier de configuration %1.  Vous devrez ajouter au moins une salle de cours et des ordinateurs en utilisant le gestionnaire de salle de cours situé dans la barre d&apos;outils de gauche dans le programme.</translation>
+        <translation>Impossible d&apos;ouvrir le fichier de configuration %1.  Vous devez ajouter au moins une salle de cours et des ordinateurs en utilisant le gestionnaire de salle de cours situé dans la barre d&apos;outils de gauche dans le programme.</translation>
     </message>
     <message>
         <source>Error in configuration file</source>
@@ -158,11 +157,11 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     </message>
     <message>
         <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>Erreur lors de l&apos;analyse du fichier de configuration %1. Veuillez corriger le fichier manuellement, ou supprimer le et ajouter à nouveau les salles de cours et les ordinateurs.</translation>
+        <translation>Erreur lors de l&apos;analyse du fichier de configuration %1. Veuillez corriger le fichier manuellement, ou supprimez-le et ajouter à nouveau les salles de cours et les ordinateurs.</translation>
     </message>
     <message>
         <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>Erreur lors de l&apos;analyse du fichier de configuration %1. Veuillez corriger le fichier manuellement, ou supprimer le.</translation>
+        <translation>Erreur lors de l&apos;analyse du fichier de configuration %1. Veuillez corriger le fichier manuellement, ou supprimez-le.</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -195,7 +194,7 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     <message>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
-        <translation>Êtes vous sûr de vouloir supprimer la salle de cours « %1 » ?
+        <translation>Êtes-vous sûr de vouloir supprimer la salle de cours « %1 » ?
 Tous les ordinateurs seront aussi supprimés !</translation>
     </message>
     <message>
@@ -206,7 +205,7 @@ Tous les ordinateurs seront aussi supprimés !</translation>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Avant d&apos;ajouter des ordinateurs, vous devez créer au moins une salle de cours.
-Voulez vous créer une nouvelle salle de cours maintenant ?</translation>
+Voulez-vous créer une nouvelle salle de cours maintenant ?</translation>
     </message>
     <message>
         <source>New classroom</source>
@@ -229,7 +228,7 @@ Voulez vous créer une nouvelle salle de cours maintenant ?</translation>
     </message>
     <message>
         <source>Host unreachable</source>
-        <translation>Hôte inateignable</translation>
+        <translation>Hôte injoignable</translation>
     </message>
     <message>
         <source>Demo running</source>
@@ -307,7 +306,7 @@ Voulez vous créer une nouvelle salle de cours maintenant ?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Adresse MAC / physique du client - utilisée seulement pour allumer les clients&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Adresse MAC / physique du client - utilisée seulement pour allumer les postes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -386,103 +385,103 @@ Voulez vous créer une nouvelle salle de cours maintenant ?</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Langage :</translation>
+        <translation>Langues:</translation>
     </message>
     <message>
         <source>System default</source>
-        <translation>Paramètres système</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <source>ar - العربية</source>
-        <translation>ar - العربية</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>cs - Česky</source>
-        <translation>cs - Česky</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>de - Deutsch</source>
-        <translation>de - Deutsch</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>el - Ελληνικά</source>
-        <translation>el - Ελληνικά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>es - Español</source>
-        <translation>es - Español</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>fi - Suomi</source>
-        <translation>fi - Suomi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>fr - Français</source>
-        <translation>fr - Français</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>he - עִבְרִית</source>
-        <translation>he - עִבְרִית</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>hu - Magyar</source>
-        <translation>hu - Magyar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>it - Italiano</source>
-        <translation>it - Italiano</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>nl - Nederlands</source>
-        <translation>nl - Nederlands</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>nn - Norsk</source>
-        <translation>nn - Norsk</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>pl - Polski</source>
-        <translation>pl - Polski</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>pt_br - Brasileiro</source>
-        <translation>pt_br - Brasileiro</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>pt_pt - Português</source>
-        <translation>pt_pt - Português</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ru - Русский</source>
-        <translation>ru - Русский</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>sk - Slovenský</source>
-        <translation>sk - Slovenský</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>sl - Slovenčina</source>
-        <translation>sl - Slovenčina</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>sv - Svenska</source>
-        <translation>sv - Svenska</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>tr - Türkçe</source>
-        <translation>tr - Türkçe</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>uk - Українська</source>
-        <translation>uk - Українська</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>zh_cn - 简体字</source>
-        <translation>zh_cn - 简体字</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>zh_tw - 簡體字</source>
-        <translation>zh_tw - 簡體字</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Your role (needs according keys!)</source>
@@ -530,7 +529,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Contrôle a distance</translation>
+        <translation>Contrôle à distance</translation>
     </message>
     <message>
         <source>View live in fullscreen</source>
@@ -538,7 +537,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Attention, certains changements ne prendront effet qu&apos;au prochain démarrage d&apos;iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Attention, certains changements ne prendront effet qu&apos;au prochain redémarrage d&apos;iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -611,7 +610,7 @@ Using the private key part, users on the master computer will be able to access 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
         <translation>Les clés d&apos;accès d&apos;iTALC sont deux fichiers liés entre eux, une clé publique et une clé privée.
 
-En utilisant les clés privées, les utilisateurs de l&apos;ordinateur maitre seront capable d&apos;accéder aux ordinateurs clients. Il est important que seules les personnes autorisées aient les droits de lecture des fichiers de clés privées.
+En utilisant les clés privées, les utilisateurs de l&apos;ordinateur maître seront capable d&apos;accéder aux ordinateurs clients. Il est important que seules les personnes autorisées aient les droits de lecture des fichiers de clés privées.
 
 Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérifier que la connexion entrante est autorisée.</translation>
     </message>
@@ -665,7 +664,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation>Exporter la clé publique (ordinateur maitre)</translation>
+        <translation>Exporter la clé publique (ordinateur maître)</translation>
     </message>
     <message>
         <source>...</source>
@@ -1075,9 +1074,9 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Quant vous rencontrez des bogues et autres mauvais comportements avec iTALC, il est important d&apos;en informer les développeurs afin que ceux ci soient fixés dans les futures versions. Cette page vous permet de soumettre un rapport de bogue très utile rapidement.
+        <translation>Quant vous rencontrez des bug et autres dysfonctionnements d&apos;iTALC, il est important d&apos;en informer les développeurs afin que ceux-ci soient fixés dans les futures versions. Cette page vous permet de soumettre un rapport de bug très utile rapidement.
 
-Si le bogue n&apos;est pas reproductible, passez les étapes 1) - 3).</translation>
+Si le bug n&apos;est pas reproductible, passez les étapes 1) - 3).</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1101,7 +1100,7 @@ Si le bogue n&apos;est pas reproductible, passez les étapes 1) - 3).</translati
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Répétez les actions ayant menées au bogue ou au mauvais comportement du logiciel.</translation>
+        <translation>Répétez les actions ayant menées au bug ou au mauvais comportement du logiciel.</translation>
     </message>
     <message>
         <source>4)</source>
@@ -1113,7 +1112,7 @@ Si le bogue n&apos;est pas reproductible, passez les étapes 1) - 3).</translati
     </message>
     <message>
         <source>Generate bug report archive</source>
-        <translation>Générer l&apos;archive du rapport de bogue.</translation>
+        <translation>Générer l&apos;archive du rapport de bug.</translation>
     </message>
     <message>
         <source>5)</source>
@@ -1124,10 +1123,7 @@ Si le bogue n&apos;est pas reproductible, passez les étapes 1) - 3).</translati
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Allez sur &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;le tracker de bogue d&apos;iTALC&lt;/a&gt;, ouvrez un nouveau bogue, décrivez ce que vous avez fait à l&apos;étape 3) et joignez le fichier généré lors de l&apos;étape 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Nota : si le bogue impacte les ordinateurs clients et les ordinateurs maitres, joignez une archive de bogue pour chaque ordinateur.</translation>
+        <translation>Allez sur &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, ouvrez un nouveau bug, décrivez ce que vous avez fait à l&apos;étape 3) et joignez le fichier généré lors de l&apos;étape 4).&lt;/p&gt; &lt;br/&gt; &lt;br/&gt; Nota : si le bug impacte les ordinateurs clients et les ordinateurs maîtres, joignez un rapport de bug pour chaque ordinateur.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1151,7 +1147,7 @@ Nota : si le bogue impacte les ordinateurs clients et les ordinateurs maitres, j
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>Enregistre les paramètres dans un fichier</translation>
+        <translation>Enregistrer les paramètres dans un fichier</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -1183,7 +1179,7 @@ Nota : si le bogue impacte les ordinateurs clients et les ordinateurs maitres, j
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Impossible de lire, écrire ou créer le répertoire %1 ! Pour utiliser iTALC, assurez vous d&apos;avoir les permission de lecture / écriture dans ce répertoire.</translation>
+        <translation>Impossible de lire, écrire ou créer le répertoire %1 ! Pour utiliser iTALC, assurez vous d&apos;avoir les permissions de lecture / écriture dans ce répertoire.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1227,7 +1223,7 @@ Nota : si le bogue impacte les ordinateurs clients et les ordinateurs maitres, j
     </message>
     <message>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>Dans ce mode, votre écran est affiché sur tous les ordinateurs visibles. En outre, les utilisateurs ne peuvent rien faire d&apos;autre puisque leurs périphériques d&apos;entrée sont verrouillés.</translation>
+        <translation>Dans ce mode, votre écran est affiché sur tous les ordinateurs visibles. En outre, les utilisateurs ne peuvent rien faire d&apos;autre puisque leurs périphériques d&apos;entrées sont verrouillés.</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1303,7 +1299,7 @@ Nota : si le bogue impacte les ordinateurs clients et les ordinateurs maitres, j
     </message>
     <message>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Si vous avez besoin d&apos;assister quelqu&apos;un sur un ordinateur particulier, cliquez sur ce bouton puis entrez le nom d&apos;hôte ou son adresse IP.</translation>
+        <translation>Si vous avez besoin d&apos;assister quelqu&apos;un sur un ordinateur en particulier, cliquez sur ce bouton puis entrez le nom d&apos;hôte ou son adresse IP.</translation>
     </message>
     <message>
         <source>Adjust/align</source>
@@ -1455,7 +1451,7 @@ Nota : si le bogue impacte les ordinateurs clients et les ordinateurs maitres, j
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation>Enregistre l&apos;archive du rapport de bogue.</translation>
+        <translation>Enregistre l&apos;archive du rapport de bog.</translation>
     </message>
     <message>
         <source>iTALC bug report archive (*.ibra.xml)</source>
@@ -1557,7 +1553,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Le contrôleur de services (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été enregistré.</translation>
+        <translation>Le contrôleur de services ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été enregistré.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1593,11 +1589,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Le contrôleur de service (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été désenregistré.</translation>
+        <translation>Le contrôleur de services ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été enregistré.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Le contrôleur de services (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été arrêté.</translation>
+        <translation>Le contrôleur de services ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été enregistré.</translation>
     </message>
 </context>
 <context>
