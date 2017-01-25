@@ -1,5 +1,5 @@
 /*
- * NetworkObjectModel.h - data model returning hierarchically grouped network objects
+ * ComputerListModel.h - data model for computer objects
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,33 +22,35 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_MODEL_H
-#define NETWORK_OBJECT_MODEL_H
+#ifndef COMPUTER_LIST_MODEL_H
+#define COMPUTER_LIST_MODEL_H
 
-#include <QAbstractItemModel>
+#include <QAbstractListModel>
 
-class NetworkObjectModel : public QAbstractItemModel
+class ComputerManager;
+
+class ComputerListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectModel(QObject *parent = 0);
-
-	QModelIndex index(int row, int column,
-					  const QModelIndex &parent = QModelIndex()) const override;
-	QModelIndex parent(const QModelIndex &index) const override;
+	ComputerListModel(ComputerManager* manager, QObject *parent = 0);
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-	int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+private slots:
+	void beginInsertComputer( int index );
+	void endInsertComputer();
+
+	void beginRemoveComputer( int index );
+	void endRemoveComputer();
+
+	void reload();
 
 private:
-	QList<QString> m_groups;
-	QMap<QString, QList<QString>> m_objects;
+	ComputerManager* m_manager;
 
 };
 
-#endif // NETWORK_OBJECT_MODEL_H
+#endif // COMPUTER_LIST_MODEL_H

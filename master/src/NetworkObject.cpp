@@ -1,5 +1,5 @@
 /*
- * CheckableItemProxyModel.h - proxy model for overlaying checked property
+ * NetworkObject.cpp - data class representing a network object
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,31 +22,44 @@
  *
  */
 
-#ifndef CHECKABLE_ITEM_PROXY_MODEL_H
-#define CHECKABLE_ITEM_PROXY_MODEL_H
+#include <QHash>
 
-#include <QIdentityProxyModel>
+#include "NetworkObject.h"
 
-class CheckableItemProxyModel : public QIdentityProxyModel
+NetworkObject::NetworkObject(const NetworkObject &other) :
+	m_type( other.type() ),
+	m_name( other.name() ),
+	m_hostAddress( other.hostAddress() ),
+	m_macAddress( other.macAddress() )
 {
-	Q_OBJECT
-public:
-	CheckableItemProxyModel( int hashRole, QObject *parent = 0);
+}
 
-	Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-	bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+NetworkObject::NetworkObject(NetworkObject::Type type,
+							 const QString &name,
+							 const QString &hostAddress,
+							 const QString &macAddress) :
+	m_type( type ),
+	m_name( name ),
+	m_hostAddress( hostAddress ),
+	m_macAddress( macAddress )
+{
 
-	void updateNewRows(const QModelIndex &parent, int first, int last);
-	void removeRowStates(const QModelIndex &parent, int first, int last);
+}
 
-private:
-	int m_hashRole;
-	QHash<uint, Qt::CheckState> m_checkStates;
-	int m_callDepth;
 
-};
+bool NetworkObject::operator ==(const NetworkObject &other) const
+{
+	return type() == other.type() &&
+			name() == other.name() &&
+			hostAddress() == other.hostAddress() &&
+			macAddress() == other.macAddress();
+}
 
-#endif // CHECKABLE_ITEM_PROXY_MODEL_H
+
+
+uint qHash(const NetworkObject &key)
+{
+	return qHash( key.type() ) + qHash( key.name() );
+}

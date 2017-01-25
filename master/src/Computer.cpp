@@ -1,5 +1,5 @@
 /*
- * CheckedNetworkObjectListModel.h - data model returning all checked network objects
+ * Computer.cpp - represents a computer and provides control methods and data
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,24 +22,24 @@
  *
  */
 
-#ifndef CHECKED_NETWORK_OBJECT_LIST_MODEL_H
-#define CHECKED_NETWORK_OBJECT_LIST_MODEL_H
+#include "Computer.h"
 
-#include <QAbstractListModel>
 
-class CheckedNetworkObjectListModel : public QAbstractListModel
+Computer::Computer(const Computer &other) :
+	m_name( other.name() ),
+	m_hostAddress( other.hostAddress() ),
+	m_macAddress( other.macAddress() )
 {
-	Q_OBJECT
-public:
-	CheckedNetworkObjectListModel(QAbstractItemModel* sourceModel, QObject *parent = 0);
 
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+}
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-private:
-	QAbstractItemModel* m_sourceModel;
+Computer::Computer(const QString &name,
+				   const QString &hostAddress,
+				   const QString &macAddress) :
+	m_name( name ),
+	m_hostAddress( hostAddress ),
+	m_macAddress( macAddress )
+{
 
-};
-
-#endif // CHECKED_NETWORK_OBJECT_LIST_MODEL_H
+}

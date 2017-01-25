@@ -1,5 +1,5 @@
 /*
- * CheckableItemProxyModel.h - proxy model for overlaying checked property
+ * TestNetworkObjectDirectory.h - provides a NetworkObjectDirectory implementation for testing
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,31 +22,26 @@
  *
  */
 
-#ifndef CHECKABLE_ITEM_PROXY_MODEL_H
-#define CHECKABLE_ITEM_PROXY_MODEL_H
+#ifndef TEST_NETWORK_OBJECT_DIRECTORY_H
+#define TEST_NETWORK_OBJECT_DIRECTORY_H
 
-#include <QIdentityProxyModel>
+#include <QHash>
 
-class CheckableItemProxyModel : public QIdentityProxyModel
+#include "NetworkObjectDirectory.h"
+
+class TestNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	CheckableItemProxyModel( int hashRole, QObject *parent = 0);
+	TestNetworkObjectDirectory();
 
-	Qt::ItemFlags flags(const QModelIndex &index) const override;
+	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-	bool setData(const QModelIndex &index, const QVariant &value, int role) override;
-
-	void updateNewRows(const QModelIndex &parent, int first, int last);
-	void removeRowStates(const QModelIndex &parent, int first, int last);
+private slots:
+	void test();
 
 private:
-	int m_hashRole;
-	QHash<uint, Qt::CheckState> m_checkStates;
-	int m_callDepth;
-
+	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 
-#endif // CHECKABLE_ITEM_PROXY_MODEL_H
+#endif // TEST_NETWORK_OBJECT_DIRECTORY_H

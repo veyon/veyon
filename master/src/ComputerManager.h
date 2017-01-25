@@ -1,5 +1,5 @@
 /*
- * CheckableItemProxyModel.h - proxy model for overlaying checked property
+ * ComputerManager.h - maintains and provides a computer object list
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,31 +22,47 @@
  *
  */
 
-#ifndef CHECKABLE_ITEM_PROXY_MODEL_H
-#define CHECKABLE_ITEM_PROXY_MODEL_H
+#ifndef COMPUTER_MANAGER_H
+#define COMPUTER_MANAGER_H
 
-#include <QIdentityProxyModel>
+#include <QAbstractItemModel>
 
-class CheckableItemProxyModel : public QIdentityProxyModel
+#include "Computer.h"
+
+class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	CheckableItemProxyModel( int hashRole, QObject *parent = 0);
+	ComputerManager(QAbstractItemModel* networkObjectModel, QObject *parent = 0);
 
-	Qt::ItemFlags flags(const QModelIndex &index) const override;
+	const ComputerList& computerList() const
+	{
+		return m_computerList;
+	}
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+signals:
+	void computerListAboutToBeReset();
+	void computerListReset();
 
-	bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+	void computerAboutToBeInserted( int index );
+	void computerInserted();
 
-	void updateNewRows(const QModelIndex &parent, int first, int last);
-	void removeRowStates(const QModelIndex &parent, int first, int last);
+	void computerAboutToBeRemoved( int index );
+	void computerRemoved();
+
+	void dataChanged();
+
+public slots:
+	void updateComputerData();
+	void reloadComputerList();
+	void updateComputerList();
 
 private:
-	int m_hashRole;
-	QHash<uint, Qt::CheckState> m_checkStates;
-	int m_callDepth;
+	ComputerList getComputers( const QModelIndex& parent );
+
+	QAbstractItemModel* m_networkObjectModel;
+	ComputerList m_computerList;
 
 };
 
-#endif // CHECKABLE_ITEM_PROXY_MODEL_H
+#endif // COMPUTER_MANAGER_H
