@@ -24,22 +24,23 @@
 
 #include "Computer.h"
 
-
 Computer::Computer(const Computer &other) :
+	m_networkObjectUid( other.networkObjectUid() ),
 	m_name( other.name() ),
 	m_hostAddress( other.hostAddress() ),
 	m_macAddress( other.macAddress() )
 {
-
 }
 
 
-Computer::Computer(const QString &name,
-				   const QString &hostAddress,
-				   const QString &macAddress) :
+
+Computer::Computer( NetworkObject::Uid networkObjectUid,
+					const QString &name,
+					const QString &hostAddress,
+					const QString &macAddress ) :
+	m_networkObjectUid( networkObjectUid ),
 	m_name( name ),
 	m_hostAddress( hostAddress ),
 	m_macAddress( macAddress )
 {
-
 }

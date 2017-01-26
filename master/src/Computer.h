@@ -28,6 +28,8 @@
 #include <QString>
 #include <QList>
 
+#include "NetworkObject.h"
+
 class Computer
 {
 public:
@@ -49,7 +51,8 @@ public:
 	} State;
 
 	Computer( const Computer& other );
-	Computer( const QString& name = QString(),
+	Computer( NetworkObject::Uid networkObjectUid = 0,
+			  const QString& name = QString(),
 			  const QString& hostAddress = QString(),
 			  const QString& macAddress = QString() );
 
@@ -63,6 +66,11 @@ public:
 	bool operator!=( const Computer& other ) const
 	{
 		return !(*this == other);
+	}
+
+	NetworkObject::Uid networkObjectUid() const
+	{
+		return m_networkObjectUid;
 	}
 
 	void setName( const QString& name )
@@ -97,6 +105,7 @@ public:
 
 
 private:
+	NetworkObject::Uid m_networkObjectUid;
 	QString m_name;
 	QString m_hostAddress;
 	QString m_macAddress;
