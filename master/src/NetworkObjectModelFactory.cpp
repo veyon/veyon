@@ -1,5 +1,5 @@
 /*
- * ComputerListModel.h - data model for computer objects
+ * NetworkObjectModelFactory.cpp - factor class for NetworkObjectModel instances
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,35 +22,26 @@
  *
  */
 
-#ifndef COMPUTER_LIST_MODEL_H
-#define COMPUTER_LIST_MODEL_H
+#include <QSortFilterProxyModel>
 
-#include <QAbstractListModel>
+#include "NetworkObjectModelFactory.h"
 
-class ComputerManager;
+#include "TestNetworkObjectDirectory.h"
+#include "CheckableItemProxyModel.h"
+#include "NetworkObjectTreeModel.h"
 
-class ComputerListModel : public QAbstractListModel
+
+QAbstractItemModel* NetworkObjectModelFactory::create( QObject* parent )
 {
-	Q_OBJECT
-public:
-	ComputerListModel(ComputerManager& manager, QObject *parent = 0);
+	auto networkObjectDirectory = new TestNetworkObjectDirectory( parent );
 
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+	auto networkObjectTreeModel = new NetworkObjectTreeModel( networkObjectDirectory, parent );
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+	auto checkableItemProxy = new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectHashRole, parent );
+	checkableItemProxy->setSourceModel( networkObjectTreeModel );
 
-private slots:
-	void beginInsertComputer( int index );
-	void endInsertComputer();
+	QSortFilterProxyModel* sortProxy = new QSortFilterProxyModel( parent );
+	sortProxy->setSourceModel( checkableItemProxy );
 
-	void beginRemoveComputer( int index );
-	void endRemoveComputer();
-
-	void reload();
-
-private:
-	ComputerManager& m_manager;
-
-};
-
-#endif // COMPUTER_LIST_MODEL_H
+	return sortProxy;
+}

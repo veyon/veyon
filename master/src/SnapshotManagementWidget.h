@@ -1,7 +1,7 @@
 /*
- * ComputerListModel.h - data model for computer objects
+ * SnapshotManagementWidget.h - declaration of snapshot management view
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,35 +22,38 @@
  *
  */
 
-#ifndef COMPUTER_LIST_MODEL_H
-#define COMPUTER_LIST_MODEL_H
+#ifndef SNAPSHOT_MANAGEMENT_WIDGET_H
+#define SNAPSHOT_MANAGEMENT_WIDGET_H
 
-#include <QAbstractListModel>
+#include <QFileSystemModel>
+#include <QWidget>
 
-class ComputerManager;
+class QModelIndex;
 
-class ComputerListModel : public QAbstractListModel
+namespace Ui {
+class SnapshotManagementWidget;
+}
+
+class SnapshotManagementWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerListModel(ComputerManager& manager, QObject *parent = 0);
+	SnapshotManagementWidget( QWidget *parent );
+	virtual ~SnapshotManagementWidget();
 
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private slots:
-	void beginInsertComputer( int index );
-	void endInsertComputer();
+	void snapshotSelected( const QModelIndex &idx );
+	void snapshotDoubleClicked( const QModelIndex &idx );
 
-	void beginRemoveComputer( int index );
-	void endRemoveComputer();
+	void showSnapshot();
+	void deleteSnapshot();
 
-	void reload();
 
 private:
-	ComputerManager& m_manager;
+	Ui::SnapshotManagementWidget* ui;
+	QFileSystemModel m_fsModel;
 
-};
+} ;
 
-#endif // COMPUTER_LIST_MODEL_H
+#endif

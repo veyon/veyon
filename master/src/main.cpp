@@ -135,6 +135,7 @@ int main( int argc, char * * argv )
 	// now create the main-window
 	MainWindow mainWindow( screen );
 
+#if 0
 	if( !mainWindow.localICA() ||
 		!mainWindow.localICA()->isConnected() )
 	{
@@ -144,6 +145,7 @@ int main( int argc, char * * argv )
 			return -1;
 		}
 	}
+#endif
 
 	// hide splash-screen as soon as main-window is shown
 	splashScreen.finish( &mainWindow );

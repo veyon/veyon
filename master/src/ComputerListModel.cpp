@@ -28,23 +28,23 @@
 #include "ComputerManager.h"
 
 
-ComputerListModel::ComputerListModel(ComputerManager* manager, QObject *parent) :
-	QAbstractListModel(parent),
+ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) :
+	QAbstractListModel( parent ),
 	m_manager( manager )
 {
-	connect( m_manager, &ComputerManager::computerAboutToBeInserted,
+	connect( &m_manager, &ComputerManager::computerAboutToBeInserted,
 			 this, &ComputerListModel::beginInsertComputer );
-	connect( m_manager, &ComputerManager::computerInserted,
+	connect( &m_manager, &ComputerManager::computerInserted,
 			 this, &ComputerListModel::endInsertComputer );
 
-	connect( m_manager, &ComputerManager::computerAboutToBeRemoved,
+	connect( &m_manager, &ComputerManager::computerAboutToBeRemoved,
 			 this, &ComputerListModel::beginRemoveComputer );
-	connect( m_manager, &ComputerManager::computerRemoved,
+	connect( &m_manager, &ComputerManager::computerRemoved,
 			 this, &ComputerListModel::endRemoveComputer );
 
-	connect( m_manager, &ComputerManager::computerListAboutToBeReset,
+	connect( &m_manager, &ComputerManager::computerListAboutToBeReset,
 			 this, &ComputerListModel::beginResetModel );
-	connect( m_manager, &ComputerManager::computerListAboutToBeReset,
+	connect( &m_manager, &ComputerManager::computerListAboutToBeReset,
 			 this, &ComputerListModel::endResetModel );
 
 }
@@ -58,7 +58,7 @@ int ComputerListModel::rowCount(const QModelIndex &parent) const
 		return 0;
 	}
 
-	return m_manager->computerList().count();
+	return m_manager.computerList().count();
 }
 
 
@@ -80,7 +80,7 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	}
 
-	return m_manager->computerList()[index.row()].name();
+	return m_manager.computerList()[index.row()].name();
 }
 
 

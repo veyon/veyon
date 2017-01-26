@@ -1,5 +1,5 @@
 /*
- * ComputerListModel.h - data model for computer objects
+ * ComputerManagementView.h - provides a view for a network object tree
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,35 +22,29 @@
  *
  */
 
-#ifndef COMPUTER_LIST_MODEL_H
-#define COMPUTER_LIST_MODEL_H
+#ifndef COMPUTER_MANAGER_VIEW_H
+#define COMPUTER_MANAGER_VIEW_H
 
-#include <QAbstractListModel>
+#include <QWidget>
+
+namespace Ui {
+class ComputerManagementView;
+}
 
 class ComputerManager;
 
-class ComputerListModel : public QAbstractListModel
+class ComputerManagementView : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerListModel(ComputerManager& manager, QObject *parent = 0);
-
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-private slots:
-	void beginInsertComputer( int index );
-	void endInsertComputer();
-
-	void beginRemoveComputer( int index );
-	void endRemoveComputer();
-
-	void reload();
+	ComputerManagementView( ComputerManager& computerManager, QWidget *parent = 0 );
+	~ComputerManagementView();
 
 private:
-	ComputerManager& m_manager;
+	Ui::ComputerManagementView *ui;
+
+	ComputerManager& m_computerManager;
 
 };
 
-#endif // COMPUTER_LIST_MODEL_H
+#endif // COMPUTER_MANAGER_VIEW_H

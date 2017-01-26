@@ -33,7 +33,7 @@ class TestNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	TestNetworkObjectDirectory();
+	TestNetworkObjectDirectory( QObject* parent );
 
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
 

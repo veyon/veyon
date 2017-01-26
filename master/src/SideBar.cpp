@@ -1,7 +1,7 @@
 /*
  * SideBar.cpp - side bar in MainWindow
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of Linux MultiMedia Studio - http://lmms.sourceforge.net
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -30,7 +30,6 @@
 #include <QToolButton>
 
 #include "SideBar.h"
-#include "SideBarWidget.h"
 
 
 // internal helper class allowing to create QToolButtons with
@@ -135,8 +134,8 @@ private:
 
 
 
-SideBar::SideBar( QWidget * _parent ) :
-	QToolBar( _parent ),
+SideBar::SideBar( QWidget* parent ) :
+	QToolBar( parent ),
 	m_btnGroup( this )
 {
 	m_btnGroup.setExclusive( false );
@@ -158,18 +157,18 @@ SideBar::~SideBar()
 
 
 
-void SideBar::appendTab( SideBarWidget * _sbw )
+void SideBar::appendTab( QWidget* widget, const QString& title, const QIcon& icon )
 {
-	SideBarButton * btn = new SideBarButton( orientation(), this );
-	btn->setText( _sbw->title() );
-	btn->setIcon( _sbw->icon() );
+	SideBarButton* btn = new SideBarButton( orientation(), this );
+	btn->setText( title );
+	btn->setIcon( icon );
 	btn->setCheckable( true );
-	m_widgets[btn] = _sbw;
+	m_widgets[btn] = widget;
 	m_btnGroup.addButton( btn );
 	addWidget( btn );
 
-	_sbw->hide();
-	_sbw->setMinimumWidth( 200 );
+	widget->hide();
+	widget->setMinimumWidth( 200 );
 }
 
 

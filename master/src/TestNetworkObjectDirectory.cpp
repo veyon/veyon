@@ -26,7 +26,8 @@
 
 #include "TestNetworkObjectDirectory.h"
 
-TestNetworkObjectDirectory::TestNetworkObjectDirectory()
+TestNetworkObjectDirectory::TestNetworkObjectDirectory(  QObject* parent ) :
+	NetworkObjectDirectory( parent )
 {
 	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
 	NetworkObject lab2( NetworkObject::Group, "Lab 2" );

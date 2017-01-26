@@ -1,5 +1,5 @@
 /*
- * OverviewWidget.cpp - implementation of overview-widget for side-bar
+ * WelcomeWidget.h - declaration of welcome widget for side bar
  *
  * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,25 +22,27 @@
  *
  */
 
-#include <QLabel>
-#include <QLayout>
-#include <QPushButton>
+#ifndef WELCOME_WIDGET_H
+#define WELCOME_WIDGET_H
 
-#include "OverviewWidget.h"
-#include "MainWindow.h"
-#include "ItalcCore.h"
+#include <QWidget>
 
-
-OverviewWidget::OverviewWidget( MainWindow * _main_window, QWidget * _parent ) :
-	SideBarWidget( QPixmap( ":/resources/view-calendar-month.png" ),
-			tr( "Overview" ),
-			tr( "Some basic information on %1 Master and how to use it." ).
-				   arg( ItalcCore::applicationName() ), _main_window, _parent )
-{
-	setupUi( contentParent() );
-
-	connect( aboutButton, SIGNAL( clicked() ), mainWindow(), SLOT( aboutITALC() ) );
+namespace Ui {
+class WelcomeWidget;
 }
 
+class WelcomeWidget : public QWidget
+{
+	Q_OBJECT
+public:
+	WelcomeWidget( QWidget* parent );
 
+private slots:
+	void showAboutDialog();
 
+private:
+	Ui::WelcomeWidget* ui;
+
+} ;
+
+#endif

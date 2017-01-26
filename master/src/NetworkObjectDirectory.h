@@ -9,6 +9,8 @@ class NetworkObjectDirectory : public QObject
 {
 	Q_OBJECT
 public:
+	NetworkObjectDirectory( QObject* parent ) : QObject( parent ) { }
+
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) = 0;
 
 signals:

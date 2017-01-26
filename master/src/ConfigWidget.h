@@ -25,26 +25,32 @@
 #ifndef CONFIG_WIDGET_H
 #define CONFIG_WIDGET_H
 
-#include "SideBarWidget.h"
-#include "ui_Config.h"
+#include <QWidget>
 
+namespace Ui {
+class ConfigWidget;
+}
 
-class ConfigWidget : public SideBarWidget, private Ui::Config
+class ConfigWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	ConfigWidget( MainWindow * _main_window, QWidget * _parent );
+	ConfigWidget( QWidget* parent );
 	virtual ~ConfigWidget();
 
 
 protected slots:
+#if 0
 	void roleSelected( int );
 #ifndef ITALC3
 	void toggleToolButtonTips( bool _on );
 	void toggleIconOnlyToolButtons( bool _on );
 	void domainChanged( const QString & _domain );
 #endif
+#endif
 
+private:
+	Ui::ConfigWidget* ui;
 } ;
 
 

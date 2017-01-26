@@ -25,6 +25,7 @@
 #ifndef CLASSROOM_MANAGER_H
 #define CLASSROOM_MANAGER_H
 
+#if 0
 #include <QtCore/QString>
 #include <QtCore/QVector>
 #include <QDoubleSpinBox>
@@ -340,5 +341,6 @@ private:
 
 } ;
 
+#endif
 
 #endif

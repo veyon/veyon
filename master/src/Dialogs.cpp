@@ -44,7 +44,7 @@
 #endif
 
 
-
+#if 0
 ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 #ifndef ITALC3
 						MainWindow * _main_window,
@@ -169,7 +169,7 @@ m_mainWindow->getClassroomManager()->m_classRooms[ui->classRoomComboBox->current
 
 	QDialog::accept();
 }
-
+#endif
 
 
 
@@ -233,7 +233,7 @@ RemoteLogonDialog::RemoteLogonDialog( QWidget *parent ) :
 #ifdef ITALC3
 	ui->domainEdit->setText( MasterCore::globalConfig->defaultDomain() );
 #else
-	ui->domainEdit->setText( __default_domain );
+	//ui->domainEdit->setText( __default_domain );
 #endif
 	connect( ui->userNameEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( userNameChanged( const QString & ) ) );

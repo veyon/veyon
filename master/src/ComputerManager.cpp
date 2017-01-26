@@ -24,12 +24,14 @@
 
 #include "ComputerManager.h"
 #include "NetworkObject.h"
+#include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
 
 
-ComputerManager::ComputerManager(QAbstractItemModel* networkObjectModel, QObject *parent) :
-	QObject(parent),
-	m_networkObjectModel( networkObjectModel )
+ComputerManager::ComputerManager( QObject* parent ) :
+	QObject( parent ),
+	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
+	m_globalMode( Computer::ModeMonitoring )
 {
 	connect( m_networkObjectModel, &QAbstractItemModel::dataChanged,
 			 this, &ComputerManager::updateComputerData );
@@ -43,6 +45,18 @@ ComputerManager::ComputerManager(QAbstractItemModel* networkObjectModel, QObject
 			 this, &ComputerManager::updateComputerList );
 	connect( m_networkObjectModel, &QAbstractItemModel::rowsRemoved,
 			 this, &ComputerManager::updateComputerList );
+}
+
+
+
+void ComputerManager::setGlobalMode( Computer::Mode mode )
+{
+	for( auto computer : m_computerList )
+	{
+		//computer.setMode( mode )
+	}
+
+	m_globalMode = mode;
 }
 
 
@@ -108,6 +122,11 @@ void ComputerManager::updateComputerList()
 
 ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 {
+	if( m_networkObjectModel == Q_NULLPTR )
+	{
+		return ComputerList();
+	}
+
 	int rows = m_networkObjectModel->rowCount( parent );
 
 	ComputerList computers;

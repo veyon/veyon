@@ -1,7 +1,7 @@
 /*
- * OverviewWidget.h - declaration of overview-widget for side-bar
+ * NetworkObjectModelFactory.h - factor class for NetworkObjectModel instances
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,21 +22,19 @@
  *
  */
 
+#ifndef NETWORK_OBJECT_MODEL_FACTORY_H
+#define NETWORK_OBJECT_MODEL_FACTORY_H
 
-#ifndef OVERVIEW_WIDGET_H
-#define OVERVIEW_WIDGET_H
+class QAbstractItemModel;
+class QObject;
 
-#include "SideBarWidget.h"
-#include "ui_Overview.h"
-
-
-class OverviewWidget : public SideBarWidget, private Ui::Overview
+class NetworkObjectModelFactory
 {
-	Q_OBJECT
 public:
-	OverviewWidget( MainWindow * _main_window, QWidget * _parent );
+	NetworkObjectModelFactory() { }
 
-} ;
+	virtual QAbstractItemModel* create( QObject* parent );
 
+};
 
-#endif
+#endif // NETWORK_OBJECT_MODEL_FACTORY_H

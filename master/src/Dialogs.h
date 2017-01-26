@@ -40,7 +40,7 @@ class Client;
 class MainWindow;
 #endif
 
-
+#if 0
 class ClientSettingsDialog : public QDialog
 {
 	Q_OBJECT
@@ -61,7 +61,7 @@ private:
 #endif
 
 } ;
-
+#endif
 
 
 

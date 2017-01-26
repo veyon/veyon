@@ -33,12 +33,25 @@ class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager(QAbstractItemModel* networkObjectModel, QObject *parent = 0);
+	ComputerManager( QObject *parent = 0 );
+
+	QAbstractItemModel* networkObjectModel()
+	{
+		return m_networkObjectModel;
+	}
 
 	const ComputerList& computerList() const
 	{
 		return m_computerList;
 	}
+
+	Computer::Mode globalMode() const
+	{
+		return m_globalMode;
+	}
+
+	void setGlobalMode( Computer::Mode mode );
+
 
 signals:
 	void computerListAboutToBeReset();
@@ -62,6 +75,8 @@ private:
 
 	QAbstractItemModel* m_networkObjectModel;
 	ComputerList m_computerList;
+
+	Computer::Mode m_globalMode;
 
 };
 

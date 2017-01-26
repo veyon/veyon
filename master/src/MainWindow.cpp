@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,30 +24,34 @@
 
 #include <italcconfig.h>
 
+#include <QDesktopWidget>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QMessageBox>
+
+/*
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
 #include <QApplication>
 #include <QButtonGroup>
 #include <QCloseEvent>
-#include <QDesktopWidget>
 #include <QMenu>
 #include <QMenuBar>
-#include <QMessageBox>
 #include <QScrollArea>
 #include <QSplashScreen>
 #include <QToolBar>
 #include <QToolButton>
-#include <QtNetwork/QHostAddress>
+#include <QtNetwork/QHostAddress>*/
 
 #include "MainWindow.h"
-#include "AboutDialog.h"
 #include "AuthenticationCredentials.h"
 #include "ClassroomManager.h"
 #include "Dialogs.h"
 #include "PasswordDialog.h"
-#include "OverviewWidget.h"
-#include "SnapshotList.h"
+#include "WelcomeWidget.h"
+#include "ComputerManagementView.h"
+#include "SnapshotManagementWidget.h"
 #include "ConfigWidget.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
@@ -57,13 +61,16 @@
 #include "Logger.h"
 #include "RemoteControlWidget.h"
 
+#include "ui_MainWindow.h"
 
 
 MainWindow::MainWindow( int _rctrl_screen ) :
-	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
+	QMainWindow(),
+	ui( new Ui::MainWindow ),
+	m_computerManager( this ),
 	m_systemTrayIcon( this ),
 	m_openedTabInSideBar( 1 ),
-	m_localICA( NULL ),
+	//m_localICA( NULL ),
 	m_remoteControlWidget( NULL ),
 	m_remoteControlScreen( _rctrl_screen > -1 ?
 				qMin( _rctrl_screen,
@@ -71,11 +78,13 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				:
 				QApplication::desktop()->screenNumber( this ) )
 {
-	setupUi( this );
+	ui->setupUi( this );
 
 	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
 
-	if( LocalSystem::Path::ensurePathExists(
+	ui->computerMonitoringView->setComputerManager( m_computerManager );
+
+/*	if( LocalSystem::Path::ensurePathExists(
 						LocalSystem::Path::personalConfigDataPath() ) == false )
 	{
 		if( splashScreen != NULL )
@@ -89,47 +98,34 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 					LocalSystem::Path::personalConfigDataPath() ).
 								  arg( ItalcCore::applicationName() ) );
 		return;
-	}
+	}*/
 
 	// configure side bar
-	m_sideBar->setOrientation( Qt::Vertical );
+	ui->sideBar->setOrientation( Qt::Vertical );
 
-	// configure scroll area
-	m_scrollArea->setBackgroundRole( QPalette::Dark );
-	m_workspace = new clientWorkspace( m_scrollArea );
-
-
-	// now create all sidebar-workspaces
-	m_overviewWidget = new OverviewWidget( this, m_centralWidget );
-	m_classroomManager = new ClassroomManager( this, m_centralWidget );
-	m_snapshotList = new SnapshotList( this, m_centralWidget );
-	m_configWidget = new ConfigWidget( this, m_centralWidget );
-
-	m_workspace->m_contextMenu = m_classroomManager->quickSwitchMenu();
+	// create all sidebar workspaces
+	m_welcomeWidget = new WelcomeWidget( ui->centralWidget );
+	m_computerManagementView = new ComputerManagementView( m_computerManager, ui->centralWidget );
+	m_snapshotManagementWidget = new SnapshotManagementWidget( ui->centralWidget );
+	m_configWidget = new ConfigWidget( ui->centralWidget );
 
 	// append sidebar-workspaces to sidebar
-	m_sideBar->appendTab( m_overviewWidget );
-	m_sideBar->appendTab( m_classroomManager );
-	m_sideBar->appendTab( m_snapshotList );
-	m_sideBar->appendTab( m_configWidget );
+	ui->sideBar->appendTab( m_welcomeWidget, tr( "Welcome" ), QPixmap( ":/resources/view-calendar-month.png" ) );
+	ui->sideBar->appendTab( m_computerManagementView, tr( "Computer management" ), QPixmap( ":/resources/applications-education.png" ) );
+	ui->sideBar->appendTab( m_snapshotManagementWidget, tr( "Snapshot management" ), QPixmap( ":/resources/camera-photo.png" ) );
+	ui->sideBar->appendTab( m_configWidget, tr( "Configuration" ), QPixmap( ":/resources/adjustrgb.png" ) );
 
-	m_centralLayout->insertWidget( 0, m_overviewWidget );
-	m_centralLayout->insertWidget( 0, m_classroomManager );
-	m_centralLayout->insertWidget( 0, m_snapshotList );
-	m_centralLayout->insertWidget( 0, m_configWidget );
-/*	setCentralWidget( hbox );
-	hbox_layout->addWidget( m_sideBar );
-	hbox_layout->addWidget( m_splitter );*/
-
-
-
+	ui->centralLayout->insertWidget( 0, m_welcomeWidget );
+	ui->centralLayout->insertWidget( 0, m_computerManagementView );
+	ui->centralLayout->insertWidget( 0, m_snapshotManagementWidget );
+	ui->centralLayout->insertWidget( 0, m_configWidget );
 
 	// create the action-toolbar
-	m_toolBar->layout()->setSpacing( 4 );
-	m_toolBar->setObjectName( "maintoolbar" );
-	m_toolBar->toggleViewAction()->setEnabled( FALSE );
+	ui->toolBar->layout()->setSpacing( 4 );
+	ui->toolBar->setObjectName( "maintoolbar" );
+	ui->toolBar->toggleViewAction()->setEnabled( FALSE );
 
-	addToolBar( Qt::TopToolBarArea, m_toolBar );
+	addToolBar( Qt::TopToolBarArea, ui->toolBar );
 
 	ToolButton * scr = new ToolButton(
 			QPixmap( ":/resources/applications-education.png" ),
@@ -137,8 +133,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "Switch classroom" ),
 			tr( "Click this button to open a menu where you can "
 				"choose the active classroom." ),
-			NULL, NULL, m_toolBar );
-	scr->setMenu( m_classroomManager->quickSwitchMenu() );
+			NULL, NULL, ui->toolBar );
+	//scr->setMenu( m_classroomManager->quickSwitchMenu() );
 	scr->setPopupMode( ToolButton::InstantPopup );
 	scr->setWhatsThis( tr( "Click on this button, to switch between "
 							"classrooms." ) );
@@ -157,7 +153,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"computers. Also click on this button for "
 				"unlocking locked workstations or for leaving "
 				"demo-mode." ).arg( ItalcCore::applicationName() ),
-			this, SLOT( mapOverview() ), m_toolBar );
+			this, SLOT( mapOverview() ), ui->toolBar );
 
 
 	a = new QAction( QIcon( ":/resources/presentation-fullscreen.png" ),
@@ -169,7 +165,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"all shown computers. Furthermore the users "
 				"aren't able to do something else as all input "
 				"devices are locked in this mode." ),
-			this, SLOT( mapFullscreenDemo() ), m_toolBar );
+			this, SLOT( mapFullscreenDemo() ), ui->toolBar );
 
 	a = new QAction( QIcon( ":/resources/presentation-window.png" ),
 						tr( "Window demo" ), this );
@@ -180,7 +176,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"window on all shown computers. The users are "
 				"able to switch to other windows and thus "
 				"can continue to work." ),
-			this, SLOT( mapWindowDemo() ), m_toolBar );
+			this, SLOT( mapWindowDemo() ), ui->toolBar );
 
 	a = new QAction( QIcon( ":/resources/system-lock-screen.png" ),
 					tr( "Lock/unlock desktops" ), this );
@@ -191,17 +187,17 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"their desktops using this button. "
 				"In this mode all input devices are locked and "
 				"the screen is black." ),
-			this, SLOT( mapScreenLock() ), m_toolBar );
+			this, SLOT( mapScreenLock() ), ui->toolBar );
 
 	overview_mode->setCheckable( TRUE );
 	fsdemo_mode->setCheckable( TRUE );
 	windemo_mode->setCheckable( TRUE );
 	lock_mode->setCheckable( TRUE );
 
-	m_modeGroup->addButton( overview_mode, Client::Mode_Overview );
-	m_modeGroup->addButton( fsdemo_mode, Client::Mode_FullscreenDemo );
-	m_modeGroup->addButton( windemo_mode, Client::Mode_WindowDemo );
-	m_modeGroup->addButton( lock_mode, Client::Mode_Locked );
+	m_modeGroup->addButton( overview_mode, Computer::ModeMonitoring );
+	m_modeGroup->addButton( fsdemo_mode, Computer::ModeFullScreenDemo );
+	m_modeGroup->addButton( windemo_mode, Computer::ModeWindowDemo );
+	m_modeGroup->addButton( lock_mode, Computer::ModeLocked );
 
 	overview_mode->setChecked( TRUE );
 
@@ -214,7 +210,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			a, tr( "Text message" ), QString::null,
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
-			m_classroomManager, SLOT( sendMessage() ), m_toolBar );
+			&m_computerManager, SLOT( sendMessage() ), ui->toolBar );
 
 
 	a = new QAction( QIcon( ":/resources/preferences-system-power-management.png" ),
@@ -225,8 +221,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
 				"on each computer by hand." ),
-			m_classroomManager, SLOT( powerOnClients() ),
-								m_toolBar );
+			&m_computerManager, SLOT( powerOnClients() ),
+								ui->toolBar );
 
 	a = new QAction( QIcon( ":/resources/system-shutdown.png" ),
 					tr( "Power down computers" ), this );
@@ -236,8 +232,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
 				"button." ),
-			m_classroomManager,
-					SLOT( powerDownClients() ), m_toolBar );
+			&m_computerManager,
+					SLOT( powerDownClients() ), ui->toolBar );
 
 	ToolButton * directsupport = new ToolButton(
 			QPixmap( ":/resources/remote_control.png" ),
@@ -246,16 +242,16 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "If you need to support someone at a certain "
 				"computer you can click this button and enter "
 				"the according hostname or IP afterwards." ),
-			m_classroomManager, SLOT( directSupport() ), m_toolBar );
+			&m_computerManager, SLOT( directSupport() ), ui->toolBar );
 
-	ToolButton * adjust_size = new ToolButton(
+/*	ToolButton * adjust_size = new ToolButton(
 			QPixmap( ":/resources/zoom-fit-best.png" ),
 			tr( "Adjust/align" ), QString::null,
 			tr( "Adjust windows and their size" ),
 			tr( "When clicking this button the biggest possible "
 				"size for the client-windows is adjusted. "
 				"Furthermore all windows are aligned." ),
-			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
+			&m_computerManager, SLOT( adjustWindows() ), ui->toolBar );
 
 	ToolButton * auto_arrange = new ToolButton(
 			QPixmap( ":/resources/vcs-locally-modified.png" ),
@@ -263,29 +259,29 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "Auto re-arrange windows and their size" ),
 			tr( "When clicking this button all visible windows "
 					"are re-arranged and adjusted." ),
-			NULL, NULL, m_toolBar );
+			NULL, NULL, ui->toolBar );
 	auto_arrange->setCheckable( true );
 	auto_arrange->setChecked( m_classroomManager->isAutoArranged() );
 	connect( auto_arrange, SIGNAL( toggled( bool ) ), m_classroomManager,
-						 SLOT( arrangeWindowsToggle ( bool ) ) );
+						 SLOT( arrangeWindowsToggle ( bool ) ) );*/
 
-	scr->addTo( m_toolBar );
-	overview_mode->addTo( m_toolBar );
-	fsdemo_mode->addTo( m_toolBar );
-	windemo_mode->addTo( m_toolBar );
-	lock_mode->addTo( m_toolBar );
-	text_msg->addTo( m_toolBar );
-	power_on->addTo( m_toolBar );
-	power_off->addTo( m_toolBar );
-	directsupport->addTo( m_toolBar );
-	adjust_size->addTo( m_toolBar );
-	auto_arrange->addTo( m_toolBar );
+	scr->addTo( ui->toolBar );
+	overview_mode->addTo( ui->toolBar );
+	fsdemo_mode->addTo( ui->toolBar );
+	windemo_mode->addTo( ui->toolBar );
+	lock_mode->addTo( ui->toolBar );
+	text_msg->addTo( ui->toolBar );
+	power_on->addTo( ui->toolBar );
+	power_off->addTo( ui->toolBar );
+	directsupport->addTo( ui->toolBar );
+	//adjust_size->addTo( ui->toolBar );
+	//auto_arrange->addTo( ui->toolBar );
 
-	restoreState( QByteArray::fromBase64(
+/*	restoreState( QByteArray::fromBase64(
 				m_classroomManager->winCfg().toUtf8() ) );
 	QStringList hidden_buttons = m_classroomManager->toolBarCfg().
 								split( '#' );
-	foreach( QAction * a, m_toolBar->actions() )
+	foreach( QAction * a, ui->toolBar->actions() )
 	{
 		if( hidden_buttons.contains( a->text() ) )
 		{
@@ -299,9 +295,9 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		{
 			btn->setVisible( false );
 		}
-	}
+	}*/
 
-	ItalcVncConnection * conn = new ItalcVncConnection( this );
+/*	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	// attach ItalcCoreConnection to it so we can send extended iTALC commands
 	m_localICA = new ItalcCoreConnection( conn );
 
@@ -328,7 +324,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	// update the role under which ICA is running
 	m_localICA->setRole( ItalcCore::role );
 	m_localICA->startDemoServer( ItalcCore::config->coreServerPort(),
-									ItalcCore::config->demoServerPort() );
+									ItalcCore::config->demoServerPort() );*/
 
 	// setup system tray icon
 	QIcon icon( ":/resources/icon16.png" );
@@ -344,7 +340,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 					QSystemTrayIcon::ActivationReason ) ) );
 
 
-	m_updateThread = new MainWindowUpdateThread( this );
+	//m_updateThread = new MainWindowUpdateThread( this );
 
 	ItalcCore::enforceBranding( this );
 }
@@ -354,15 +350,10 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 MainWindow::~MainWindow()
 {
-	m_classroomManager->doCleanupWork();
-
-	// also delets clients
-	delete m_workspace;
-
-	m_localICA->stopDemoServer();
+	/*m_localICA->stopDemoServer();
 
 	delete m_localICA;
-	m_localICA = NULL;
+	m_localICA = NULL;*/
 
 	m_systemTrayIcon.hide();
 }
@@ -404,35 +395,17 @@ bool MainWindow::initAuthentication()
 
 
 
-void MainWindow::keyPressEvent( QKeyEvent * _e )
+void MainWindow::keyPressEvent( QKeyEvent* event )
 {
-	if( _e->key() == Qt::Key_F11 )
+	if( event->key() == Qt::Key_F11 )
 	{
-		QWidget::setWindowState( QWidget::windowState() ^
-							Qt::WindowFullScreen );
+		QWidget::setWindowState( QWidget::windowState() ^ Qt::WindowFullScreen );
 	}
 	else
 	{
-		QMainWindow::keyPressEvent( _e );
+		QMainWindow::keyPressEvent( event );
 	}
 }
-
-
-
-
-void MainWindow::closeEvent( QCloseEvent * _ce )
-{
-	m_updateThread->quit();
-	m_updateThread->wait();
-	delete m_updateThread;
-	m_updateThread = NULL;
-
-	m_classroomManager->savePersonalConfig();
-	m_classroomManager->saveGlobalClientConfig();
-
-	_ce->accept();
-}
-
 
 
 
@@ -457,11 +430,9 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 			QMenu rcm( this );
 			QAction * rc = m.addAction( tr( "Remote control" ) );
 			rc->setMenu( &rcm );
-			foreach( Client * c,
-					m_classroomManager->visibleClients() )
+			for( const auto& computer : m_computerManager.computerList() )
 			{
-				rcm.addAction( c->name() )->
-						setData( c->hostname() );
+				rcm.addAction( computer.name() )->setData( computer.hostAddress() );
 			}
 			connect( &rcm, SIGNAL( triggered( QAction * ) ),
 				this,
@@ -485,11 +456,11 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 
 
 
-void MainWindow::remoteControlClient( QAction * _a )
+void MainWindow::remoteControlClient( QAction* action )
 {
 	show();
-	remoteControlDisplay( _a->data().toString(),
-				m_classroomManager->clientDblClickAction() );
+/*	remoteControlDisplay( _a->data().toString(),
+				m_classroomManager->clientDblClickAction() );*/
 }
 
 
@@ -526,101 +497,23 @@ void MainWindow::remoteControlDisplay( const QString& hostname,
 
 void MainWindow::stopDemoAfterRemoteControl()
 {
-	m_classroomManager->changeGlobalClientMode( Client::Mode_Overview );
+	m_computerManager.setGlobalMode( Computer::ModeMonitoring );
 }
 
 
 
 
-void MainWindow::aboutITALC()
+void MainWindow::changeGlobalClientMode( int mode )
 {
-	AboutDialog( this ).exec();
-}
+	Computer::Mode newMode = static_cast<Computer::Modes>( mode );
 
-
-
-
-void MainWindow::changeGlobalClientMode( int _mode )
-{
-	Client::Modes new_mode = static_cast<Client::Modes>( _mode );
-	if( new_mode == m_classroomManager->globalClientMode()/* &&
-					new_mode != Client::Mode_Overview*/ )
+	if( newMode == m_computerManager.globalMode() )
 	{
-		m_classroomManager->changeGlobalClientMode(
-							Client::Mode_Overview );
-		m_modeGroup->button( Client::Mode_Overview )->setChecked(
-									TRUE );
+		m_computerManager.setGlobalMode( Computer::ModeMonitoring );
+		m_modeGroup->button( Computer::ModeMonitoring )->setChecked( true );
 	}
 	else
 	{
-		m_classroomManager->changeGlobalClientMode( _mode );
+		m_computerManager.setGlobalMode( newMode );
 	}
 }
-
-
-
-
-
-
-
-MainWindowUpdateThread::MainWindowUpdateThread( MainWindow * _main_window ) :
-	QThread(),
-	m_mainWindow( _main_window )
-{
-	start( QThread::LowestPriority );
-}
-
-
-
-
-void MainWindowUpdateThread::update()
-{
-	// now do cleanup-work
-	m_mainWindow->getClassroomManager()->doCleanupWork();
-}
-
-
-void MainWindowUpdateThread::run( void )
-{
-	QTimer t;
-	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ) );
-	t.start( m_mainWindow->getClassroomManager()->updateInterval() );
-	exec();
-}
-
-
-
-
-
-clientWorkspace::clientWorkspace( QScrollArea * _parent ) :
-	QWidget( _parent ),
-	m_contextMenu( NULL )
-{
-	setStyleSheet( "background-image: url(:/resources/toolbar-background.png);" );
-
-	_parent->setWidget( this );
-	_parent->setWidgetResizable( TRUE );
-	setSizePolicy( QSizePolicy( QSizePolicy::MinimumExpanding,
-					QSizePolicy::MinimumExpanding ) );
-	show();
-
-}
-
-
-
-QSize clientWorkspace::sizeHint( void ) const
-{
-	return( childrenRect().size() );
-}
-
-
-
-
-void clientWorkspace::contextMenuEvent( QContextMenuEvent * _event )
-{
-	m_contextMenu->exec( _event->globalPos() );
-	_event->accept();
-}
-
-
-

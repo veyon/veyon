@@ -1,6 +1,6 @@
 FILE(GLOB master_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-FILE(GLOB master_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)
+FILE(GLOB master_UI ${CMAKE_CURRENT_SOURCE_DIR}/forms/*.ui)
 SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/master.qrc)
 QT5_WRAP_CPP(master_MOC_out ${master_INCLUDES})
 QT5_WRAP_UI(master_UIC_out ${master_UI})

@@ -1,7 +1,7 @@
 /*
  * MainWindow.h - main window of iTALC Master Application
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,70 +32,25 @@
 #include <QSystemTrayIcon>
 #include <QToolButton>
 
-#include "ui_MainWindow.h"
-
-#include "Client.h"
-#include "SnapshotList.h"
-
+#include "ComputerManager.h"
 
 class QMenu;
-class QScrollArea;
-class QSplashScreen;
-class QSplitter;
-class ClassroomManager;
+class SideBar;
+class MainToolBar;
+class ComputerManagementView;
 class ConfigWidget;
-class OverviewWidget;
+class WelcomeWidget;
 class RemoteControlWidget;
-class UserList;
 class ItalcCoreConnection;
-class ItalcVncConnection;
-
-extern QString __default_domain;
+class SnapshotManagementWidget;
 
 
+namespace Ui {
 class MainWindow;
+}
 
 
-class MainWindowUpdateThread : public QThread
-{
-	Q_OBJECT
-public:
-	MainWindowUpdateThread( MainWindow * _main_window );
-
-private slots:
-	void update( void );
-
-private:
-	virtual void run( void );
-
-	MainWindow * m_mainWindow;
-
-} ;
-
-
-class clientWorkspace : public QWidget
-{
-public:
-	clientWorkspace( QScrollArea * _parent );
-	virtual ~clientWorkspace()
-	{
-	}
-
-	virtual QSize sizeHint( void ) const;
-
-
-private:
-	virtual void contextMenuEvent( QContextMenuEvent * _event );
-
-	QMenu * m_contextMenu;
-
-	friend class MainWindow;
-
-} ;
-
-
-
-class MainWindow : public QMainWindow, public Ui::MainWindow
+class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
@@ -103,21 +58,11 @@ public:
 	virtual ~MainWindow();
 
 	static bool initAuthentication();
-
-	QWidget * workspace()
-	{
-		return m_workspace;
-	}
-
-	ClassroomManager *getClassroomManager()
-	{
-		return m_classroomManager;
-	}
-
+/*
 	ItalcCoreConnection *localICA()
 	{
 		return m_localICA;
-	}
+	}*/
 
 	void checkModeButton( int _id )
 	{
@@ -129,15 +74,9 @@ public:
 		}
 	}
 
-	inline MainToolBar * toolBar()
-	{
-		return m_toolBar;
-	}
+	MainToolBar* toolBar();
 
-	inline SideBar * sideBar()
-	{
-		return m_sideBar;
-	}
+	SideBar* sideBar();
 
 	void remoteControlDisplay( const QString& hostname,
 								bool viewOnly = false,
@@ -145,7 +84,7 @@ public:
 
 
 protected:
-	void keyPressEvent( QKeyEvent *e );
+	void keyPressEvent( QKeyEvent *e ) override;
 
 
 private slots:
@@ -153,10 +92,8 @@ private slots:
 	void remoteControlClient( QAction * _c );
 	void stopDemoAfterRemoteControl();
 
-	void aboutITALC();
-
 	void changeGlobalClientMode( int );
-
+/*
 	void mapOverview( void )
 	{
 		changeGlobalClientMode( Client::Mode_Overview );
@@ -172,42 +109,33 @@ private slots:
 	void mapScreenLock( void )
 	{
 		changeGlobalClientMode( Client::Mode_Locked );
-	}
+	}*/
 
 
 private:
-	virtual void closeEvent( QCloseEvent * _ce );
+	Ui::MainWindow* ui;
 
-	MainWindowUpdateThread * m_updateThread;
+	ComputerManager m_computerManager;
 
-	clientWorkspace * m_workspace;
-
-	QButtonGroup * m_modeGroup;
+	QButtonGroup* m_modeGroup;
 
 	QSystemTrayIcon m_systemTrayIcon;
 	QList<QAction *> m_sysTrayActions;
 
-	QWidget * m_sideBarWidget;
+	//QWidget* m_sideBarWidget;
 	int m_openedTabInSideBar;
 
-	ItalcCoreConnection * m_localICA;
+	//ItalcCoreConnection * m_localICA;
 
 	QPointer<RemoteControlWidget> m_remoteControlWidget;
 	int m_remoteControlScreen;
 
-	OverviewWidget * m_overviewWidget;
-	ClassroomManager * m_classroomManager;
-	UserList * m_userList;
-	SnapshotList * m_snapshotList;
-	ConfigWidget * m_configWidget;
+	WelcomeWidget* m_welcomeWidget;
+	ComputerManagementView* m_computerManagementView;
+	SnapshotManagementWidget* m_snapshotManagementWidget;
+	ConfigWidget* m_configWidget;
 
-	friend class MainWindowUpdateThread;
-	friend class ClassroomManager;
 
 } ;
-
-
-extern QSplashScreen * splashScreen;
-
 
 #endif

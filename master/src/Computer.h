@@ -31,6 +31,23 @@
 class Computer
 {
 public:
+	typedef enum Modes
+	{
+		ModeMonitoring,
+		ModeFullScreenDemo,
+		ModeWindowDemo,
+		ModeLocked,
+		ModeCount
+	} Mode;
+
+	typedef enum States
+	{
+		StateUnreachable,
+		StateConnecting,
+		StateConnected,
+		StateCount
+	} State;
+
 	Computer( const Computer& other );
 	Computer( const QString& name = QString(),
 			  const QString& hostAddress = QString(),

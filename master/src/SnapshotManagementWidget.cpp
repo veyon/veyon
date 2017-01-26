@@ -27,57 +27,53 @@
 #include <QFileSystemModel>
 #include <QScrollArea>
 
-#include "SnapshotList.h"
+#include "SnapshotManagementWidget.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "LocalSystem.h"
 #include "Snapshot.h"
 
-#include "ui_Snapshots.h"
+#include "ui_SnapshotManagementWidget.h"
 
 
-SnapshotList::SnapshotList( MainWindow *mainWindow, QWidget *parent ) :
-	SideBarWidget( QPixmap( ":/resources/camera-photo.png" ),
-			tr( "Snapshots" ),
-			tr( "Simply manage the snapshots you made using this workspace." ),
-			mainWindow, parent ),
-	ui( new Ui::Snapshots ),
-	m_fsModel( new QFileSystemModel( this ) )
+SnapshotManagementWidget::SnapshotManagementWidget( QWidget *parent ) :
+	QWidget( parent ),
+	ui( new Ui::SnapshotManagementWidget ),
+	m_fsModel( this )
 {
-	ui->setupUi( contentParent() );
+	ui->setupUi( this );
 
 	LocalSystem::Path::ensurePathExists( ItalcCore::config->snapshotDirectory() );
 
-	m_fsModel->setNameFilters( QStringList() << "*.png" );
-	m_fsModel->setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
-	m_fsModel->setRootPath( LocalSystem::Path::expand(
+	m_fsModel.setNameFilters( QStringList() << "*.png" );
+	m_fsModel.setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
+	m_fsModel.setRootPath( LocalSystem::Path::expand(
 									ItalcCore::config->snapshotDirectory() ) );
 
-	ui->list->setModel( m_fsModel );
-	ui->list->setRootIndex( m_fsModel->index( m_fsModel->rootPath() ) );
+	ui->list->setModel( &m_fsModel );
+	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );
 
-	connect( ui->list, SIGNAL( clicked( const QModelIndex & ) ),
-				this, SLOT( snapshotSelected( const QModelIndex & ) ) );
-	connect( ui->list, SIGNAL( doubleClicked( const QModelIndex & ) ),
-				this, SLOT( showSnapshot() ) );
+	connect( ui->list, &QListView::clicked, this, &SnapshotManagementWidget::snapshotSelected );
+	connect( ui->list, &QListView::doubleClicked, this, &SnapshotManagementWidget::showSnapshot );
 
-	connect( ui->showBtn, SIGNAL( clicked() ), this, SLOT( showSnapshot() ) );
-	connect( ui->deleteBtn, SIGNAL( clicked() ), this, SLOT( deleteSnapshot() ) );
+	connect( ui->showBtn, &QPushButton::clicked, this, &SnapshotManagementWidget::showSnapshot );
+	connect( ui->deleteBtn, &QPushButton::clicked, this, &SnapshotManagementWidget::deleteSnapshot );
 }
 
 
 
 
-SnapshotList::~SnapshotList()
+SnapshotManagementWidget::~SnapshotManagementWidget()
 {
+	delete ui;
 }
 
 
 
 
-void SnapshotList::snapshotSelected( const QModelIndex &idx )
+void SnapshotManagementWidget::snapshotSelected( const QModelIndex &idx )
 {
-	Snapshot s( m_fsModel->filePath( idx ) );
+	Snapshot s( m_fsModel.filePath( idx ) );
 
 	ui->previewLbl->setPixmap( s.pixmap() );
 	ui->previewLbl->setFixedHeight( ui->previewLbl->width() * 3 / 4 );
@@ -91,10 +87,10 @@ void SnapshotList::snapshotSelected( const QModelIndex &idx )
 
 
 
-void SnapshotList::snapshotDoubleClicked( const QModelIndex &idx )
+void SnapshotManagementWidget::snapshotDoubleClicked( const QModelIndex &idx )
 {
 	QLabel * imgLabel = new QLabel;
-	imgLabel->setPixmap( m_fsModel->filePath( idx ) );
+	imgLabel->setPixmap( m_fsModel.filePath( idx ) );
 	if( imgLabel->pixmap() != NULL )
 	{
 		imgLabel->setFixedSize( imgLabel->pixmap()->width(),
@@ -105,14 +101,14 @@ void SnapshotList::snapshotDoubleClicked( const QModelIndex &idx )
 	sa->setAttribute( Qt::WA_DeleteOnClose, true );
 	sa->move( 0, 0 );
 	sa->setWidget( imgLabel );
-	sa->setWindowTitle( m_fsModel->fileName( idx ) );
+	sa->setWindowTitle( m_fsModel.fileName( idx ) );
 	sa->show();
 }
 
 
 
 
-void SnapshotList::showSnapshot()
+void SnapshotManagementWidget::showSnapshot()
 {
 	if( ui->list->currentIndex().isValid() )
 	{
@@ -123,13 +119,10 @@ void SnapshotList::showSnapshot()
 
 
 
-void SnapshotList::deleteSnapshot()
+void SnapshotManagementWidget::deleteSnapshot()
 {
 	if( ui->list->currentIndex().isValid() )
 	{
-		m_fsModel->remove( ui->list->currentIndex() );
+		m_fsModel.remove( ui->list->currentIndex() );
 	}
 }
-
-
-

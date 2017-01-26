@@ -1,5 +1,5 @@
 /*
- * ComputerListModel.h - data model for computer objects
+ * ComputerMonitoringView.h - provides a view with computer monitor thumbnails
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,35 +22,31 @@
  *
  */
 
-#ifndef COMPUTER_LIST_MODEL_H
-#define COMPUTER_LIST_MODEL_H
+#ifndef COMPUTER_MONITORING_VIEW_H
+#define COMPUTER_MONITORING_VIEW_H
 
-#include <QAbstractListModel>
+#include "ComputerListModel.h"
 
-class ComputerManager;
+#include <QWidget>
 
-class ComputerListModel : public QAbstractListModel
+namespace Ui {
+class ComputerMonitoringView;
+}
+
+class ComputerMonitoringView : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerListModel(ComputerManager& manager, QObject *parent = 0);
+	ComputerMonitoringView(QWidget *parent = 0);
+	~ComputerMonitoringView();
 
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-private slots:
-	void beginInsertComputer( int index );
-	void endInsertComputer();
-
-	void beginRemoveComputer( int index );
-	void endRemoveComputer();
-
-	void reload();
+	void setComputerManager( ComputerManager& manager );
 
 private:
-	ComputerManager& m_manager;
+	Ui::ComputerMonitoringView *ui;
+
+	ComputerListModel* m_computerListModel;
 
 };
 
-#endif // COMPUTER_LIST_MODEL_H
+#endif // COMPUTER_MONITORING_VIEW_H

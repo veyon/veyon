@@ -1,7 +1,7 @@
 /*
- * ConfigWidget.cpp - implementation of configuration-widget for side-bar
+ * ConfigWidget.cpp - implementation of configuration widget for side bar
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,31 +22,21 @@
  *
  */
 
-#include <QLabel>
-#include <QLayout>
-#include <QCheckBox>
-#include <QComboBox>
-#include <QMessageBox>
-
 #include "ConfigWidget.h"
-#include "ClassroomManager.h"
-#include "ItalcCore.h"
-#include "MainWindow.h"
-#include "ToolButton.h"
+
 #ifdef ITALC3
 #include "MasterCore.h"
 #include "PersonalConfig.h"
 #endif
 
+#include "ui_ConfigWidget.h"
 
-ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
-	SideBarWidget( QPixmap( ":/resources/adjustrgb.png" ),
-			tr( "Preferences" ),
-			tr( "In this workspace you can customize the user interface and its behaviour of %1 Master." ).arg( ItalcCore::applicationName() ),
-			_main_window, _parent )
+ConfigWidget::ConfigWidget( QWidget* parent ) :
+	QWidget( parent ),
+	ui( new Ui::ConfigWidget )
 {
-	setupUi( contentParent() );
-
+	ui->setupUi( this );
+#if 0
 #ifdef ITALC3
 
 #define LOAD_AND_CONNECT_PROPERTY(property,type,widget,setvalue,signal,slot) \
@@ -122,6 +112,7 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 				mainWindow()->getClassroomManager(),
 				SLOT( setClientDblClickAction( int ) ) );
 #endif
+#endif
 }
 
 
@@ -129,10 +120,11 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 
 ConfigWidget::~ConfigWidget()
 {
+	delete ui;
 }
 
 
-
+#if 0
 
 void ConfigWidget::roleSelected( int _role )
 {
@@ -166,6 +158,4 @@ void ConfigWidget::domainChanged( const QString & _domain )
 
 #endif
 
-
-
-
+#endif

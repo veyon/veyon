@@ -1,7 +1,7 @@
 /*
- * SnapshotList.h - declaration of snapshot-list for side-bar
+ * OverviewWidget.cpp - implementation of overview-widget for side-bar
  *
- * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,40 +22,24 @@
  *
  */
 
+#include "WelcomeWidget.h"
+#include "AboutDialog.h"
 
-#ifndef SNAPSHOT_LIST_H
-#define SNAPSHOT_LIST_H
+#include "ui_WelcomeWidget.h"
 
-#include <QWidget>
 
-#include "SideBarWidget.h"
-
-class QModelIndex;
-class QFileSystemModel;
-
-namespace Ui { class Snapshots; }
-
-class SnapshotList : public SideBarWidget
+WelcomeWidget::WelcomeWidget( QWidget* parent ) :
+	QWidget( parent ),
+	ui( new Ui::WelcomeWidget )
 {
-	Q_OBJECT
-public:
-	SnapshotList( MainWindow *mainWindow, QWidget *parent );
-	virtual ~SnapshotList();
+	ui->setupUi( this );
+
+	connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomeWidget::showAboutDialog );
+}
 
 
-private slots:
-	void snapshotSelected( const QModelIndex &idx );
-	void snapshotDoubleClicked( const QModelIndex &idx );
 
-	void showSnapshot();
-	void deleteSnapshot();
-
-
-private:
-	Ui::Snapshots *ui;
-	QFileSystemModel *m_fsModel;
-
-} ;
-
-
-#endif
+void WelcomeWidget::showAboutDialog()
+{
+	AboutDialog( this ).exec();
+}
