@@ -30,20 +30,23 @@
 
 ComputerManager::ComputerManager( QObject* parent ) :
 	QObject( parent ),
-	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
+	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, parent ) ),
+	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) ),
 	m_globalMode( Computer::ModeMonitoring )
 {
-	connect( m_networkObjectModel, &QAbstractItemModel::dataChanged,
-			 this, &ComputerManager::updateComputerData );
+	m_checkableNetworkObjectProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
+	m_networkObjectSortProxyModel->setSourceModel( m_checkableNetworkObjectProxyModel );
 
-	connect( m_networkObjectModel, &QAbstractItemModel::modelReset,
+	connect( networkObjectModel(), &QAbstractItemModel::modelReset,
+			 this, &ComputerManager::reloadComputerList );
+	connect( networkObjectModel(), &QAbstractItemModel::layoutChanged,
 			 this, &ComputerManager::reloadComputerList );
 
-	connect( m_networkObjectModel, &QAbstractItemModel::layoutChanged,
+	connect( networkObjectModel(), &QAbstractItemModel::dataChanged,
 			 this, &ComputerManager::updateComputerList );
-	connect( m_networkObjectModel, &QAbstractItemModel::rowsInserted,
+	connect( networkObjectModel(), &QAbstractItemModel::rowsInserted,
 			 this, &ComputerManager::updateComputerList );
-	connect( m_networkObjectModel, &QAbstractItemModel::rowsRemoved,
+	connect( networkObjectModel(), &QAbstractItemModel::rowsRemoved,
 			 this, &ComputerManager::updateComputerList );
 }
 
@@ -122,27 +125,22 @@ void ComputerManager::updateComputerList()
 
 ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 {
-	if( m_networkObjectModel == Q_NULLPTR )
-	{
-		return ComputerList();
-	}
-
-	int rows = m_networkObjectModel->rowCount( parent );
+	int rows = networkObjectModel()->rowCount( parent );
 
 	ComputerList computers;
 
 	for( int i = 0; i < rows; ++i )
 	{
-		QModelIndex entryIndex = m_networkObjectModel->index( i, 0, parent );
+		QModelIndex entryIndex = networkObjectModel()->index( i, 0, parent );
 
-		if( m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
+		if( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
 				Qt::Unchecked )
 		{
 			continue;
 		}
 
 		auto objectType = static_cast<NetworkObject::Type>(
-					m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+					networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
 
 		switch( objectType )
 		{
@@ -150,10 +148,10 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 			computers += getComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).toUInt(),
-								   m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
-								   m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
-								   m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
+			computers += Computer( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).toUInt(),
+								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
+								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
+								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
 			break;
 		default: break;
 		}

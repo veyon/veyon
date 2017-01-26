@@ -25,9 +25,10 @@
 #ifndef COMPUTER_MANAGER_H
 #define COMPUTER_MANAGER_H
 
-#include <QAbstractItemModel>
+#include <QSortFilterProxyModel>
 
 #include "Computer.h"
+#include "CheckableItemProxyModel.h"
 
 class ComputerManager : public QObject
 {
@@ -37,7 +38,7 @@ public:
 
 	QAbstractItemModel* networkObjectModel()
 	{
-		return m_networkObjectModel;
+		return m_networkObjectSortProxyModel;
 	}
 
 	const ComputerList& computerList() const
@@ -73,7 +74,9 @@ public slots:
 private:
 	ComputerList getComputers( const QModelIndex& parent );
 
-	QAbstractItemModel* m_networkObjectModel;
+	CheckableItemProxyModel* m_checkableNetworkObjectProxyModel;
+	QSortFilterProxyModel* m_networkObjectSortProxyModel;
+
 	ComputerList m_computerList;
 
 	Computer::Mode m_globalMode;

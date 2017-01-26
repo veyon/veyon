@@ -22,12 +22,9 @@
  *
  */
 
-#include <QSortFilterProxyModel>
-
 #include "NetworkObjectModelFactory.h"
 
 #include "TestNetworkObjectDirectory.h"
-#include "CheckableItemProxyModel.h"
 #include "NetworkObjectTreeModel.h"
 
 
@@ -35,13 +32,5 @@ QAbstractItemModel* NetworkObjectModelFactory::create( QObject* parent )
 {
 	auto networkObjectDirectory = new TestNetworkObjectDirectory( parent );
 
-	auto networkObjectTreeModel = new NetworkObjectTreeModel( networkObjectDirectory, parent );
-
-	auto checkableItemProxy = new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, parent );
-	checkableItemProxy->setSourceModel( networkObjectTreeModel );
-
-	QSortFilterProxyModel* sortProxy = new QSortFilterProxyModel( parent );
-	sortProxy->setSourceModel( checkableItemProxy );
-
-	return sortProxy;
+	return new NetworkObjectTreeModel( networkObjectDirectory, parent );
 }
