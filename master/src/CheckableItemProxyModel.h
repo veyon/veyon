@@ -25,6 +25,7 @@
 #ifndef CHECKABLE_ITEM_PROXY_MODEL_H
 #define CHECKABLE_ITEM_PROXY_MODEL_H
 
+#include <QJsonObject>
 #include <QIdentityProxyModel>
 
 class CheckableItemProxyModel : public QIdentityProxyModel
@@ -41,6 +42,9 @@ public:
 
 	void updateNewRows(const QModelIndex &parent, int first, int last);
 	void removeRowStates(const QModelIndex &parent, int first, int last);
+
+	QJsonObject saveStates();
+	void loadStates( const QJsonObject& data );
 
 private:
 	int m_uidRole;

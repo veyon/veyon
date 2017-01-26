@@ -143,3 +143,33 @@ void CheckableItemProxyModel::removeRowStates(const QModelIndex &parent, int fir
 		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_uidRole ).toUInt() );
 	}
 }
+
+
+
+QJsonObject CheckableItemProxyModel::saveStates()
+{
+	QJsonObject data;
+
+	for( auto it = m_checkStates.begin(); it != m_checkStates.end(); ++it )
+	{
+		data[QString::number( it.key(), 16 )] = it.value();
+	}
+
+	return data;
+}
+
+
+
+void CheckableItemProxyModel::loadStates( const QJsonObject& data )
+{
+	m_checkStates.clear();
+
+	for( auto it = data.begin(); it != data.end(); ++it )
+	{
+		uint uid = it.key().toUInt( NULL, 16 );
+		if( match( QModelIndex(), m_uidRole, uid, 1, Qt::MatchExactly | Qt::MatchRecursive ).isEmpty() == true )
+		{
+			m_checkStates[uid] = it.value().toVariant().value<Qt::CheckState>();
+		}
+	}
+}
