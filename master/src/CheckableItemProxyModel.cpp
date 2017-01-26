@@ -24,9 +24,9 @@
 
 #include "CheckableItemProxyModel.h"
 
-CheckableItemProxyModel::CheckableItemProxyModel( int hashRole, QObject *parent ) :
+CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent ) :
 	QIdentityProxyModel(parent),
-	m_hashRole( hashRole ),
+	m_uidRole( uidRole ),
 	m_callDepth( 0 )
 {
 	connect( this, &QIdentityProxyModel::rowsInserted,
@@ -58,7 +58,7 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 
 	if( role == Qt::CheckStateRole )
 	{
-		return m_checkStates.value( QIdentityProxyModel::data( index, m_hashRole ).toUInt() );
+		return m_checkStates.value( QIdentityProxyModel::data( index, m_uidRole ).toUInt() );
 	}
 
 	return QIdentityProxyModel::data(index, role);
@@ -82,7 +82,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 	Qt::CheckState checkState = value.value<Qt::CheckState>();
 
-	m_checkStates[QIdentityProxyModel::data( index, m_hashRole ).toUInt()] = checkState;
+	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUInt()] = checkState;
 
 	int childrenCount = rowCount( index );
 
@@ -140,6 +140,6 @@ void CheckableItemProxyModel::removeRowStates(const QModelIndex &parent, int fir
 {
 	for( int i = first; i <= last; ++i )
 	{
-		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_hashRole ).toUInt() );
+		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_uidRole ).toUInt() );
 	}
 }

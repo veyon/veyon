@@ -45,8 +45,8 @@ NetworkObject::NetworkObject(NetworkObject::Type type,
 	m_hostAddress( hostAddress ),
 	m_macAddress( macAddress )
 {
-
 }
+
 
 
 bool NetworkObject::operator ==(const NetworkObject &other) const
@@ -59,7 +59,7 @@ bool NetworkObject::operator ==(const NetworkObject &other) const
 
 
 
-uint qHash(const NetworkObject &key)
+NetworkObject::Uid NetworkObject::uid() const
 {
-	return qHash( key.type() ) + qHash( key.name() );
+	return qHash( type() ) + qHash( name() ) + qHash( hostAddress() );
 }

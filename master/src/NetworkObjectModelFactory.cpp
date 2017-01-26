@@ -37,7 +37,7 @@ QAbstractItemModel* NetworkObjectModelFactory::create( QObject* parent )
 
 	auto networkObjectTreeModel = new NetworkObjectTreeModel( networkObjectDirectory, parent );
 
-	auto checkableItemProxy = new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectHashRole, parent );
+	auto checkableItemProxy = new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, parent );
 	checkableItemProxy->setSourceModel( networkObjectTreeModel );
 
 	QSortFilterProxyModel* sortProxy = new QSortFilterProxyModel( parent );

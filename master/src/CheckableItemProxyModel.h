@@ -31,7 +31,7 @@ class CheckableItemProxyModel : public QIdentityProxyModel
 {
 	Q_OBJECT
 public:
-	CheckableItemProxyModel( int hashRole, QObject *parent = 0);
+	CheckableItemProxyModel( int uidRole, QObject *parent = 0 );
 
 	Qt::ItemFlags flags(const QModelIndex &index) const override;
 
@@ -43,7 +43,7 @@ public:
 	void removeRowStates(const QModelIndex &parent, int first, int last);
 
 private:
-	int m_hashRole;
+	int m_uidRole;
 	QHash<uint, Qt::CheckState> m_checkStates;
 	int m_callDepth;
 

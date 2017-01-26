@@ -30,6 +30,8 @@
 class NetworkObject
 {
 public:
+	typedef uint Uid;
+
 	typedef enum Types
 	{
 		None,
@@ -46,6 +48,8 @@ public:
 							const QString& macAddress = QString() );
 
 	bool operator ==( const NetworkObject& other ) const;
+
+	Uid uid() const;
 
 	void setType( Type type )
 	{
@@ -96,6 +100,9 @@ private:
 };
 
 
-uint qHash(const NetworkObject &key);
+static inline uint qHash( const NetworkObject& networkObject )
+{
+	return networkObject.uid();
+}
 
 #endif // NETWORK_OBJECT_H
