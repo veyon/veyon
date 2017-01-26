@@ -51,15 +51,12 @@ NetworkObject::NetworkObject(NetworkObject::Type type,
 
 bool NetworkObject::operator ==(const NetworkObject &other) const
 {
-	return type() == other.type() &&
-			name() == other.name() &&
-			hostAddress() == other.hostAddress() &&
-			macAddress() == other.macAddress();
+	return uid() == other.uid();
 }
 
 
 
 NetworkObject::Uid NetworkObject::uid() const
 {
-	return qHash( type() ) + qHash( name() ) + qHash( hostAddress() );
+	return qHash( type() ) + qHash( name() ) + qHash( hostAddress() ) + qHash( macAddress() );
 }
