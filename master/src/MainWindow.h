@@ -115,8 +115,6 @@ private slots:
 private:
 	Ui::MainWindow* ui;
 
-	ComputerManager m_computerManager;
-
 	QButtonGroup* m_modeGroup;
 
 	QSystemTrayIcon m_systemTrayIcon;

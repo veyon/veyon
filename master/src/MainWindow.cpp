@@ -29,21 +29,6 @@
 #include <QMenu>
 #include <QMessageBox>
 
-/*
-#include <QtCore/QDir>
-#include <QtCore/QDateTime>
-#include <QtCore/QTimer>
-#include <QApplication>
-#include <QButtonGroup>
-#include <QCloseEvent>
-#include <QMenu>
-#include <QMenuBar>
-#include <QScrollArea>
-#include <QSplashScreen>
-#include <QToolBar>
-#include <QToolButton>
-#include <QtNetwork/QHostAddress>*/
-
 #include "MainWindow.h"
 #include "AuthenticationCredentials.h"
 #include "ClassroomManager.h"
@@ -59,6 +44,7 @@
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "MasterCore.h"
 #include "RemoteControlWidget.h"
 
 #include "ui_MainWindow.h"
@@ -67,7 +53,6 @@
 MainWindow::MainWindow( int _rctrl_screen ) :
 	QMainWindow(),
 	ui( new Ui::MainWindow ),
-	m_computerManager( this ),
 	m_systemTrayIcon( this ),
 	m_openedTabInSideBar( 1 ),
 	//m_localICA( NULL ),
@@ -81,8 +66,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	ui->setupUi( this );
 
 	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
-
-	ui->computerMonitoringView->setComputerManager( m_computerManager );
 
 /*	if( LocalSystem::Path::ensurePathExists(
 						LocalSystem::Path::personalConfigDataPath() ) == false )
@@ -105,7 +88,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	// create all sidebar workspaces
 	m_welcomeWidget = new WelcomeWidget( ui->centralWidget );
-	m_computerManagementView = new ComputerManagementView( m_computerManager, ui->centralWidget );
+	m_computerManagementView = new ComputerManagementView( ui->centralWidget );
 	m_snapshotManagementWidget = new SnapshotManagementWidget( ui->centralWidget );
 	m_configWidget = new ConfigWidget( ui->centralWidget );
 
@@ -210,7 +193,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			a, tr( "Text message" ), QString::null,
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
-			&m_computerManager, SLOT( sendMessage() ), ui->toolBar );
+			&MasterCore::i().computerManager(), SLOT( sendMessage() ), ui->toolBar );
 
 
 	a = new QAction( QIcon( ":/resources/preferences-system-power-management.png" ),
@@ -221,7 +204,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
 				"on each computer by hand." ),
-			&m_computerManager, SLOT( powerOnClients() ),
+			&MasterCore::i().computerManager(), SLOT( powerOnClients() ),
 								ui->toolBar );
 
 	a = new QAction( QIcon( ":/resources/system-shutdown.png" ),
@@ -232,7 +215,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
 				"button." ),
-			&m_computerManager,
+			&MasterCore::i().computerManager(),
 					SLOT( powerDownClients() ), ui->toolBar );
 
 	ToolButton * directsupport = new ToolButton(
@@ -242,7 +225,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "If you need to support someone at a certain "
 				"computer you can click this button and enter "
 				"the according hostname or IP afterwards." ),
-			&m_computerManager, SLOT( directSupport() ), ui->toolBar );
+			&MasterCore::i().computerManager(), SLOT( directSupport() ), ui->toolBar );
 
 /*	ToolButton * adjust_size = new ToolButton(
 			QPixmap( ":/resources/zoom-fit-best.png" ),
@@ -251,7 +234,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			tr( "When clicking this button the biggest possible "
 				"size for the client-windows is adjusted. "
 				"Furthermore all windows are aligned." ),
-			&m_computerManager, SLOT( adjustWindows() ), ui->toolBar );
+			&MasterCore::i().computerManager(), SLOT( adjustWindows() ), ui->toolBar );
 
 	ToolButton * auto_arrange = new ToolButton(
 			QPixmap( ":/resources/vcs-locally-modified.png" ),
@@ -430,7 +413,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 			QMenu rcm( this );
 			QAction * rc = m.addAction( tr( "Remote control" ) );
 			rc->setMenu( &rcm );
-			for( const auto& computer : m_computerManager.computerList() )
+			for( const auto& computer : MasterCore::i().computerManager().computerList() )
 			{
 				rcm.addAction( computer.name() )->setData( computer.hostAddress() );
 			}
@@ -497,7 +480,7 @@ void MainWindow::remoteControlDisplay( const QString& hostname,
 
 void MainWindow::stopDemoAfterRemoteControl()
 {
-	m_computerManager.setGlobalMode( Computer::ModeMonitoring );
+	MasterCore::i().computerManager().setGlobalMode( Computer::ModeMonitoring );
 }
 
 
@@ -506,14 +489,15 @@ void MainWindow::stopDemoAfterRemoteControl()
 void MainWindow::changeGlobalClientMode( int mode )
 {
 	Computer::Mode newMode = static_cast<Computer::Modes>( mode );
+	ComputerManager& computerManager = MasterCore::i().computerManager();
 
-	if( newMode == m_computerManager.globalMode() )
+	if( newMode == computerManager.globalMode() )
 	{
-		m_computerManager.setGlobalMode( Computer::ModeMonitoring );
+		computerManager.setGlobalMode( Computer::ModeMonitoring );
 		m_modeGroup->button( Computer::ModeMonitoring )->setChecked( true );
 	}
 	else
 	{
-		m_computerManager.setGlobalMode( newMode );
+		computerManager.setGlobalMode( newMode );
 	}
 }

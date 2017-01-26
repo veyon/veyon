@@ -40,8 +40,6 @@ public:
 	ComputerMonitoringView(QWidget *parent = 0);
 	~ComputerMonitoringView();
 
-	void setComputerManager( ComputerManager& manager );
-
 private:
 	Ui::ComputerMonitoringView *ui;
 

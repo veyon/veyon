@@ -37,13 +37,11 @@ class ComputerManagementView : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerManagementView( ComputerManager& computerManager, QWidget *parent = 0 );
+	ComputerManagementView( QWidget *parent = 0 );
 	~ComputerManagementView();
 
 private:
 	Ui::ComputerManagementView *ui;
-
-	ComputerManager& m_computerManager;
 
 };
 

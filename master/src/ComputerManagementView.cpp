@@ -24,18 +24,18 @@
 
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
+#include "MasterCore.h"
 
 #include "ui_ComputerManagementView.h"
 
 
-ComputerManagementView::ComputerManagementView( ComputerManager& computerManager, QWidget *parent ) :
+ComputerManagementView::ComputerManagementView( QWidget *parent ) :
 	QWidget(parent),
-	ui(new Ui::ComputerManagementView),
-	m_computerManager( computerManager )
+	ui(new Ui::ComputerManagementView)
 {
 	ui->setupUi(this);
 
-	ui->treeView->setModel( m_computerManager.networkObjectModel() );
+	ui->treeView->setModel( MasterCore::i().computerManager().networkObjectModel() );
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 }
 
