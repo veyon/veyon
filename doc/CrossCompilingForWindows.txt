@@ -23,6 +23,7 @@ Cross compiling iTALC for Windows on Linux
   * libz-mingw-w64-dev
   * libpng-mingw-w64
   * openssl-mingw-w64
+  * interception-mingw-w64
   * default-jdk
 
 - Change into the iTALC source directory and type
