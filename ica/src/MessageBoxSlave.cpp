@@ -45,25 +45,31 @@ bool MessageBoxSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == ItalcSlaveManager::MessageBoxSlave::ShowMessageBox )
 	{
+		QMessageBox dialog;
+
+		QString msg = m.arg( ItalcSlaveManager::MessageBoxSlave::Text );
+		msg.replace(QRegExp("((?:https?|ftp)://\\S+)"), "<a href=\"\\1\">\\1</a>");
+		msg.replace("\n","<br />");
+
+		dialog.setTextInteractionFlags(Qt::TextBrowserInteraction);
+		dialog.setTextFormat(Qt::RichText);
+		dialog.setText(msg);
+		dialog.setWindowTitle(m.arg( ItalcSlaveManager::MessageBoxSlave::Title ));
+
+
 		if( m.arg( ItalcSlaveManager::MessageBoxSlave::Icon ).toInt() == QMessageBox::Warning )
 		{
-			QMessageBox::warning( Q_NULLPTR,
-								  m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
-								  m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
+			dialog.setIcon(QMessageBox::Icon::Warning );
 		}
 		else if( m.arg( ItalcSlaveManager::MessageBoxSlave::Icon ).toInt() == QMessageBox::Critical )
 		{
-			QMessageBox::critical( Q_NULLPTR,
-								   m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
-								   m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
+			dialog.setIcon(QMessageBox::Icon::Critical );
 		}
 		else
 		{
-			QMessageBox::information( Q_NULLPTR,
-									  m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
-									  m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
+			dialog.setIcon(QMessageBox::Icon::Information );
 		}
-
+		dialog.exec();
 		return true;
 	}
 
