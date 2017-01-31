@@ -256,15 +256,21 @@
  <tabstops>
   <tabstop>ruleNameLineEdit</tabstop>
   <tabstop>ruleDescriptionLineEdit</tabstop>
+  <tabstop>invertConditionsCheckBox</tabstop>
   <tabstop>entityComboBox</tabstop>
   <tabstop>isMemberOfGroupCheckBox</tabstop>
-  <tabstop>hasCommonGroupsCheckBox</tabstop>
-  <tabstop>isLocatedInSameComputerLabCheckBox</tabstop>
   <tabstop>groupsComboBox</tabstop>
+  <tabstop>hasCommonGroupsCheckBox</tabstop>
   <tabstop>commonGroupComboBox</tabstop>
+  <tabstop>isLocatedInComputerLabCheckBox</tabstop>
+  <tabstop>computerLabsComboBox</tabstop>
+  <tabstop>isLocatedInSameComputerLabCheckBox</tabstop>
   <tabstop>commonComputerLabComboBox</tabstop>
+  <tabstop>isLocalHostAccessCheckBox</tabstop>
+  <tabstop>isLocalUserAccessCheckBox</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
+  <tabstop>actionAskForPermissionRadioButton</tabstop>
   <tabstop>actionNoneRadioButton</tabstop>
  </tabstops>
  <resources/>
