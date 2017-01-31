@@ -326,6 +326,20 @@ bool AccessControlProvider::isLocatedInSameComputerLab( AccessControlRule::Entit
 
 
 
+bool AccessControlProvider::isLocalHost( const QString &accessingComputer ) const
+{
+	return QHostAddress( accessingComputer ).isLoopback();
+}
+
+
+
+bool AccessControlProvider::isLocalUser(const QString &accessingUser, const QString &localUser) const
+{
+	return accessingUser == localUser;
+}
+
+
+
 QString AccessControlProvider::lookupEntity( AccessControlRule::Entity entity,
 											 const QString &accessingUser, const QString &accessingComputer,
 											 const QString &localUser, const QString &localComputer )
@@ -512,6 +526,26 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 		if( isLocatedInSameComputerLab( ruleEntityType, ruleEntityValue,
 										secondEntityType, secondEntityValue ) == matchResult )
+		{
+			return false;
+		}
+	}
+
+	if( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalHost ) )
+	{
+		hasConditions = true;
+
+		if( isLocalHost( accessingComputer ) == matchResult )
+		{
+			return false;
+		}
+	}
+
+	if( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalUser ) )
+	{
+		hasConditions = true;
+
+		if( isLocalUser( accessingUser, localUser ) == matchResult )
 		{
 			return false;
 		}
