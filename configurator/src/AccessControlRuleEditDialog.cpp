@@ -65,6 +65,8 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->hasCommonGroupsCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionGroupsInCommon ) );
 	ui->isLocatedInComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInComputerLab ) );
 	ui->isLocatedInSameComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInSameComputerLab ) );
+	ui->isLocalHostAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalHost ) );
+	ui->isLocalUserAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalUser ) );
 
 	// load condition arguments
 	ui->groupsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() );
@@ -130,6 +132,16 @@ void AccessControlRuleEditDialog::accept()
 	{
 		m_rule.setCondition( AccessControlRule::ConditionLocatedInSameComputerLab,
 							 m_entityNameMap.key( ui->commonComputerLabComboBox->currentText() ) );
+	}
+
+	if( ui->isLocalHostAccessCheckBox->isChecked() )
+	{
+		m_rule.setCondition( AccessControlRule::ConditionAccessFromLocalHost, true );
+	}
+
+	if( ui->isLocalUserAccessCheckBox->isChecked() )
+	{
+		m_rule.setCondition( AccessControlRule::ConditionAccessFromLocalUser, true );
 	}
 
 	// save action

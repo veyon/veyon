@@ -15,14 +15,7 @@
       <item row="0" column="1">
        <widget class="QLineEdit" name="ruleNameLineEdit">
         <property name="placeholderText">
-         <string>add a short name for the rule here</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Rule description:</string>
+         <string>enter a short name for the rule here</string>
         </property>
        </widget>
       </item>
@@ -36,7 +29,21 @@
       <item row="1" column="1">
        <widget class="QLineEdit" name="ruleDescriptionLineEdit">
         <property name="placeholderText">
-         <string>add a description for the rule here</string>
+         <string>enter a description for the rule here</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Rule description:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="invertConditionsCheckBox">
+        <property name="text">
+         <string>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</string>
         </property>
        </widget>
       </item>
@@ -49,22 +56,21 @@
       <string>Conditions</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="2" column="0" colspan="3">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <italic>true</italic>
-         </font>
-        </property>
+      <item row="4" column="0" colspan="3">
+       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
         <property name="text">
-         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
+         <string>Accessing user is logged on user</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
+      <item row="2" column="0">
+       <widget class="QComboBox" name="entityComboBox">
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
          <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
@@ -142,14 +148,7 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QComboBox" name="entityComboBox">
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -162,10 +161,25 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="0" colspan="3">
-       <widget class="QCheckBox" name="invertConditionsCheckBox">
+      <item row="5" column="0" colspan="3">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <italic>true</italic>
+         </font>
+        </property>
         <property name="text">
-         <string>Invert all conditions (&quot;is member&quot; is interpreted as &quot;is not member&quot;)</string>
+         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="3">
+       <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
+        <property name="text">
+         <string>Accessing computer is localhost</string>
         </property>
        </widget>
       </item>
