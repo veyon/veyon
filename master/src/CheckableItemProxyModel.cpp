@@ -169,10 +169,13 @@ void CheckableItemProxyModel::loadStates( const QJsonObject& data )
 
 	for( auto it = data.begin(); it != data.end(); ++it )
 	{
-		uint uid = it.key().toUInt( NULL, 16 );
-		if( match( QModelIndex(), m_uidRole, uid, 1, Qt::MatchExactly | Qt::MatchRecursive ).isEmpty() == true )
+		const uint uid = it.key().toUInt( NULL, 16 );
+		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,
+									  Qt::MatchExactly | Qt::MatchRecursive );
+		if( indexList.isEmpty() == false &&
+				hasChildren( indexList.first() ) == false )
 		{
-			m_checkStates[uid] = it.value().toVariant().value<Qt::CheckState>();
+			setData( indexList.first(), it.value().toVariant(), Qt::CheckStateRole );
 		}
 	}
 }
