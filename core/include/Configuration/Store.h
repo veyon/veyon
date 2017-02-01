@@ -41,6 +41,7 @@ public:
 	{
 		LocalBackend,	// registry or similiar
 		XmlFile,
+		JsonFile,
 		NoBackend
 	} ;
 	typedef Backends Backend;
