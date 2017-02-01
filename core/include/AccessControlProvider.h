@@ -1,7 +1,7 @@
 /*
  * AccessControlProvider.h - declaration of class AccessControlProvider
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -65,6 +65,8 @@ private:
 							AccessControlRule::EntityType entityTwoType, const QString& entityTwo );
 	bool isLocatedInSameComputerLab( AccessControlRule::EntityType entityOneType, const QString& entityOne,
 									 AccessControlRule::EntityType entityTwoType, const QString& entityTwo );
+	bool isLocalHost( const QString& accessingComputer ) const;
+	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
 
 	QString lookupEntity( AccessControlRule::Entity entity,
 						  const QString& accessingUser, const QString& accessingComputer,

@@ -45,6 +45,7 @@ ShowInstDetails show
 ######################################################################
 
 !include "MUI.nsh"
+!include "FileFunc.nsh"
 
 !define MUI_ABORTWARNING
 !define MUI_UNABORTWARNING
@@ -197,6 +198,11 @@ ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -startservice'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
+${GetParameters} $R0
+${GetOptions} $R0 "/ApplyConfig=" $R1
+${If} $R1 != ""
+  ExecWait '"$INSTDIR\italc-configurator.exe" -quiet -applysettings $R1'
+${EndIf}
 SectionEnd
 
 Section "iTALC Master"

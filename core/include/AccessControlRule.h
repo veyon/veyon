@@ -75,6 +75,8 @@ public:
 		ConditionGroupsInCommon,
 		ConditionLocatedInComputerLab,
 		ConditionLocatedInSameComputerLab,
+		ConditionAccessFromLocalHost,
+		ConditionAccessFromLocalUser,
 		ConditionCount
 	} ;
 
