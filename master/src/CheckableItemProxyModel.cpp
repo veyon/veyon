@@ -152,7 +152,10 @@ QJsonObject CheckableItemProxyModel::saveStates()
 
 	for( auto it = m_checkStates.begin(); it != m_checkStates.end(); ++it )
 	{
-		data[QString::number( it.key(), 16 )] = it.value();
+		if( it.value() == Qt::Checked )
+		{
+			data[QString::number( it.key(), 16 )] = it.value();
+		}
 	}
 
 	return data;
