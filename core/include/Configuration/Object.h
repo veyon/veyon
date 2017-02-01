@@ -1,7 +1,7 @@
 /*
  * Configuration/Object.h - ConfigurationObject class
  *
- * Copyright (c) 2009-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,7 +25,8 @@
 #ifndef CONFIGURATION_OBJECT_H
 #define CONFIGURATION_OBJECT_H
 
-#include <QtCore/QObject>
+#include <QObject>
+#include <QJsonObject>
 
 #include "Configuration/Store.h"
 
@@ -46,12 +47,9 @@ public:
 	Object &operator=( const Object &ref );
 	Object &operator+=( const Object &ref );
 
-	QString value( const QString & _key,
-			const QString & _parentKey = QString() ) const;
+	QVariant value( const QString& key, const QString& parentKey = QString() ) const;
 
-	void setValue( const QString & _key,
-			const QString & _value,
-			const QString & _parentKey = QString() );
+	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );
 
 	void removeValue( const QString &key, const QString &parentKey );
 
@@ -105,19 +103,14 @@ private:
 	public:											\
 		inline QString get() const					\
 		{											\
-			return value( key, parentKey );			\
+			return value( key, parentKey ).toString();			\
 		}
 
 #define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,key,parentKey)\
 	public:													\
 		inline QStringList get() const						\
 		{													\
-			QString v = value( key, parentKey );			\
-			if( v.isEmpty() )								\
-			{												\
-				return QStringList();						\
-			}												\
-			return value( key, parentKey ).split( ';' );	\
+			return value( key, parentKey ).toStringList();	\
 		}
 
 #define DECLARE_CONFIG_INT_PROPERTY(get,key,parentKey)	\
@@ -135,6 +128,13 @@ private:
 										true : false;	\
 		}
 
+#define DECLARE_CONFIG_JSONOBJ_PROPERTY(get,key,parentKey)\
+	public:											\
+		inline QJsonObject get() const					\
+		{											\
+			return value( key, parentKey ).toJsonObject();			\
+		}
+
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
 			DECLARE_CONFIG_##type##_PROPERTY(get,key,parentKey)
 
@@ -148,19 +148,25 @@ private:
 #define IMPLEMENT_CONFIG_SET_STRINGLIST_PROPERTY(className,set,key,parentKey)\
 		void className::set( const QStringList &val )					\
 		{																\
-			setValue( key, val.join( ";" ),	parentKey );				\
+			setValue( key, val,	parentKey );							\
 		}
 
 #define IMPLEMENT_CONFIG_SET_INT_PROPERTY(className,set,key,parentKey)	\
 		void className::set( int val )									\
 		{																\
-			setValue( key, QString::number( val ), parentKey );			\
+			setValue( key, val, parentKey );			\
 		}
 
 #define IMPLEMENT_CONFIG_SET_BOOL_PROPERTY(className,set,key,parentKey)	\
 		void className::set( bool val )									\
 		{																\
-			setValue( key, QString::number( val ), parentKey );			\
+			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_JSONOBJ_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QJsonObject& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
 #define IMPLEMENT_CONFIG_SET_PROPERTY(className, config,type, get, set, key, parentKey)	\
