@@ -46,17 +46,17 @@ public:
 		return m_vncConn->state();
 	}
 
-	inline bool isConnected() const
+	bool isConnected() const
 	{
 		return m_vncConn->isConnected();
 	}
 
-	inline const QString & user() const
+	const QString & user() const
 	{
 		return m_user;
 	}
 
-	inline const QString & userHomeDir() const
+	const QString & userHomeDir() const
 	{
 		return m_userHomeDir;
 	}
