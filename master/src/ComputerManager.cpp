@@ -75,13 +75,6 @@ void ComputerManager::setGlobalMode( Computer::Mode mode )
 
 
 
-void ComputerManager::updateComputerData()
-{
-	emit dataChanged();
-}
-
-
-
 void ComputerManager::reloadComputerList()
 {
 	emit computerListAboutToBeReset();

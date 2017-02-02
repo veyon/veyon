@@ -67,10 +67,7 @@ signals:
 	void computerAboutToBeRemoved( int index );
 	void computerRemoved();
 
-	void dataChanged();
-
 public slots:
-	void updateComputerData();
 	void reloadComputerList();
 	void updateComputerList();
 
