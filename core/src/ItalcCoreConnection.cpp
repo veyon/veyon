@@ -1,7 +1,7 @@
 /*
  * ItalcCoreConnection.cpp - implementation of ItalcCoreConnection
  *
- * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -85,11 +85,6 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 
 ItalcCoreConnection::~ItalcCoreConnection()
 {
-	if( m_vncConn )
-	{
-		m_vncConn->stop();
-		m_vncConn = NULL;
-	}
 }
 
 
@@ -360,5 +355,3 @@ void ItalcCoreConnection::enqueueMessage( const ItalcCore::Msg &msg )
 	}
 	m_vncConn->enqueueEvent( new ItalcMessageEvent( m ) );
 }
-
-
