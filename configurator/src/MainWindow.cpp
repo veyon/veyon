@@ -73,24 +73,16 @@ MainWindow::MainWindow() :
 		page->connectWidgetsToProperties();
 	}
 
-#define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
+	connect( ui->generateBugReportArchive, &QPushButton::clicked, this, &MainWindow::generateBugReportArchive );
 
-	CONNECT_BUTTON_SLOT( generateBugReportArchive );
+	connect( ui->buttonBox, &QDialogButtonBox::clicked, this, &MainWindow::resetOrApply );
 
-	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
-				this, SLOT( resetOrApply( QAbstractButton * ) ) );
+	connect( ui->actionLoadSettings, &QAction::triggered, this, &MainWindow::loadSettingsFromFile );
+	connect( ui->actionSaveSettings, &QAction::triggered, this, &MainWindow::saveSettingsToFile );
 
-	connect( ui->actionLoadSettings, SIGNAL( triggered() ),
-				this, SLOT( loadSettingsFromFile() ) );
-	connect( ui->actionSaveSettings, SIGNAL( triggered() ),
-				this, SLOT( saveSettingsToFile() ) );
+	connect( ui->actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt );
 
-	connect( ui->actionAboutQt, SIGNAL( triggered() ),
-				QApplication::instance(), SLOT( aboutQt() ) );
-
-	connect( ItalcCore::config, SIGNAL( configurationChanged() ),
-				this, SLOT( configurationChanged() ) );
+	connect( ItalcCore::config, &ItalcConfiguration::configurationChanged, this, &MainWindow::configurationChanged );
 
 	ItalcCore::enforceBranding( this );
 }
