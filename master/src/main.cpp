@@ -1,7 +1,7 @@
 /*
- * main.cpp - main-file for iTALC Master Application
+ * main.cpp - startup routine for iTALC Master Application
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,14 +22,10 @@
  *
  */
 
-
-#include <QtCore/QModelIndex>
 #include <QApplication>
 #include <QSplashScreen>
 
-#ifdef ITALC3
 #include "MasterCore.h"
-#endif
 #include "MainWindow.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
@@ -39,11 +35,6 @@
 
 
 QSplashScreen * splashScreen = NULL;
-
-#ifndef ITALC3
-QString __default_domain;
-#endif
-
 
 // good old main-function... initializes qt-app and starts iTALC
 int main( int argc, char * * argv )
@@ -121,6 +112,7 @@ int main( int argc, char * * argv )
 		}
 	}
 
+	MasterCore masterCore;
 
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
 	if( ItalcCore::config->applicationName().isEmpty() )
@@ -133,7 +125,7 @@ int main( int argc, char * * argv )
 		return -1;
 	}
 	// now create the main-window
-	MainWindow mainWindow( screen );
+	MainWindow mainWindow( masterCore, screen );
 
 #if 0
 	if( !mainWindow.localICA() ||

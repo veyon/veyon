@@ -26,11 +26,13 @@
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
+#include "PersonalConfig.h"
 
 
-ComputerManager::ComputerManager( QObject* parent ) :
+ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
 	QObject( parent ),
-	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, parent ) ),
+	m_config( config ),
+	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
 	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) ),
 	m_globalMode( Computer::ModeMonitoring )
 {
@@ -48,6 +50,15 @@ ComputerManager::ComputerManager( QObject* parent ) :
 			 this, &ComputerManager::updateComputerList );
 	connect( networkObjectModel(), &QAbstractItemModel::rowsRemoved,
 			 this, &ComputerManager::updateComputerList );
+
+	m_checkableNetworkObjectProxyModel->loadStates( m_config.checkedNetworkObjects() );
+}
+
+
+
+ComputerManager::~ComputerManager()
+{
+	m_config.setCheckedNetworkObjects( m_checkableNetworkObjectProxyModel->saveStates() );
 }
 
 

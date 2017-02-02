@@ -27,14 +27,12 @@
 
 #include "ui_ComputerMonitoringView.h"
 
-ComputerMonitoringView::ComputerMonitoringView(QWidget *parent) :
+ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerMonitoringView),
-	m_computerListModel( new ComputerListModel( MasterCore::i().computerManager(), this ) )
+	m_computerListModel( nullptr )
 {
-	ui->setupUi(this);
-
-	ui->listView->setModel( m_computerListModel );
+	ui->setupUi( this );
 }
 
 
@@ -44,4 +42,15 @@ ComputerMonitoringView::~ComputerMonitoringView()
 	delete ui;
 
 	delete m_computerListModel;
+}
+
+
+
+void ComputerMonitoringView::setComputerManager( ComputerManager &computerManager )
+{
+	delete m_computerListModel;
+
+	m_computerListModel = new ComputerListModel( computerManager, this );
+
+	ui->listView->setModel( m_computerListModel );
 }

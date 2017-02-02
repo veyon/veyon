@@ -37,8 +37,10 @@ class ComputerMonitoringView : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerMonitoringView(QWidget *parent = 0);
+	ComputerMonitoringView( QWidget *parent = 0 );
 	~ComputerMonitoringView();
+
+	void setComputerManager( ComputerManager& computerManager );
 
 private:
 	Ui::ComputerMonitoringView *ui;

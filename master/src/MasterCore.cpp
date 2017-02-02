@@ -22,7 +22,7 @@
  *
  */
 
-#include <QtNetwork/QHostAddress>
+#include <QHostAddress>
 
 #include "MasterCore.h"
 #include "ItalcVncConnection.h"
@@ -31,13 +31,11 @@
 #include "PersonalConfig.h"
 
 
-MasterCore* MasterCore::s_instance = Q_NULLPTR;
-
 MasterCore::MasterCore() :
-	m_localDisplay( new ItalcVncConnection ),
+	m_localDisplay( new ItalcVncConnection( this ) ),
 	m_localService( new ItalcCoreConnection( m_localDisplay ) ),
-	m_personalConfig( new PersonalConfig( Configuration::Store::XmlFile ) ),
-	m_computerManager( new ComputerManager )
+	m_personalConfig( new PersonalConfig( Configuration::Store::JsonFile ) ),
+	m_computerManager( new ComputerManager( *m_personalConfig, this ) )
 {
 	/*	ItalcVncConnection * conn = new ItalcVncConnection( this );
 		// attach ItalcCoreConnection to it so we can send extended iTALC commands
@@ -58,12 +56,14 @@ MasterCore::MasterCore() :
 */
 }
 
-void MasterCore::shutdown()
-{
-	m_personalConfig->flushStore();
 
+
+MasterCore::~MasterCore()
+{
 	delete m_computerManager;
 	delete m_localService;
-	delete m_personalConfig;
 	delete m_localDisplay;
+
+	m_personalConfig->flushStore();
+	delete m_personalConfig;
 }

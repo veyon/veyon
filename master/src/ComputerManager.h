@@ -30,11 +30,14 @@
 #include "Computer.h"
 #include "CheckableItemProxyModel.h"
 
+class PersonalConfig;
+
 class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager( QObject *parent = 0 );
+	ComputerManager( PersonalConfig& config, QObject* parent );
+	~ComputerManager() override;
 
 	QAbstractItemModel* networkObjectModel()
 	{
@@ -73,6 +76,8 @@ public slots:
 
 private:
 	ComputerList getComputers( const QModelIndex& parent );
+
+	PersonalConfig& m_config;
 
 	CheckableItemProxyModel* m_checkableNetworkObjectProxyModel;
 	QSortFilterProxyModel* m_networkObjectSortProxyModel;

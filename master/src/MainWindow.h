@@ -37,6 +37,7 @@
 class QMenu;
 class SideBar;
 class MainToolBar;
+class MasterCore;
 class ComputerManagementView;
 class ConfigWidget;
 class WelcomeWidget;
@@ -54,7 +55,7 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MainWindow( int _screen );
+	MainWindow( MasterCore& masterCore, int _screen );
 	virtual ~MainWindow();
 
 	static bool initAuthentication();
@@ -114,6 +115,8 @@ private slots:
 
 private:
 	Ui::MainWindow* ui;
+
+	MasterCore& m_masterCore;
 
 	QButtonGroup* m_modeGroup;
 

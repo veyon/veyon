@@ -25,25 +25,19 @@
 #ifndef MASTER_CORE_H
 #define MASTER_CORE_H
 
+#include <QObject>
+
 class ItalcVncConnection;
 class ItalcCoreConnection;
 class ComputerManager;
 class PersonalConfig;
 
-class MasterCore
+class MasterCore : public QObject
 {
+	Q_OBJECT
 public:
-	static MasterCore& i()
-	{
-		if( s_instance == Q_NULLPTR )
-		{
-			s_instance = new MasterCore();
-		}
-
-		return *s_instance;
-	}
-
-	void shutdown();
+	MasterCore();
+	virtual ~MasterCore();
 
 	ItalcVncConnection& localDisplay()
 	{
@@ -67,11 +61,6 @@ public:
 
 
 private:
-	static MasterCore* s_instance;
-
-	MasterCore();
-	~MasterCore();
-
 	ItalcVncConnection* m_localDisplay;
 	ItalcCoreConnection* m_localService;
 	PersonalConfig* m_personalConfig;
