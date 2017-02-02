@@ -28,7 +28,8 @@ Computer::Computer(const Computer &other) :
 	m_networkObjectUid( other.networkObjectUid() ),
 	m_name( other.name() ),
 	m_hostAddress( other.hostAddress() ),
-	m_macAddress( other.macAddress() )
+	m_macAddress( other.macAddress() ),
+	m_controlInterface( *this )
 {
 }
 
@@ -41,6 +42,7 @@ Computer::Computer( NetworkObject::Uid networkObjectUid,
 	m_networkObjectUid( networkObjectUid ),
 	m_name( name ),
 	m_hostAddress( hostAddress ),
-	m_macAddress( macAddress )
+	m_macAddress( macAddress ),
+	m_controlInterface( *this )
 {
 }

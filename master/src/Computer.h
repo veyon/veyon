@@ -28,6 +28,7 @@
 #include <QString>
 #include <QList>
 
+#include "ComputerControlInterface.h"
 #include "NetworkObject.h"
 
 class Computer
@@ -103,12 +104,23 @@ public:
 		return m_macAddress;
 	}
 
+	const ComputerControlInterface& controlInterface() const
+	{
+		return m_controlInterface;
+	}
+
+	ComputerControlInterface& controlInterface()
+	{
+		return m_controlInterface;
+	}
 
 private:
 	NetworkObject::Uid m_networkObjectUid;
 	QString m_name;
 	QString m_hostAddress;
 	QString m_macAddress;
+
+	ComputerControlInterface m_controlInterface;
 
 };
 
