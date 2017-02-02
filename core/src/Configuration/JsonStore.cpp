@@ -96,7 +96,7 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 		{
 			jsonData[it.key()] = saveJsonTree( it.value().toMap() );
 		}
-		else if( it.value().type() == QMetaType::QJsonObject )
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
 		{
 			QJsonObject jsonObj = QJsonValue::fromVariant( it.value() ).toObject();
 			jsonObj["JsonObjectProperty"] = true;
