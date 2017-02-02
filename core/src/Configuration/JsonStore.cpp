@@ -51,9 +51,15 @@ static void loadJsonTree( Object* obj, const QJsonObject& jsonParent, const QStr
 	{
 		if( it.value().isObject() )
 		{
-			if( it.value().toObject().keys().contains( "JsonObjectProperty" ) )
+			QJsonObject jsonObject = it.value().toObject();
+
+			if( jsonObject.contains( "JsonStoreArray" ) )
 			{
-				obj->setValue( it.key(), it.value().toObject(), parentKey );
+				obj->setValue( it.key(), jsonObject["JsonStoreArray"].toArray(), parentKey );
+			}
+			else if( jsonObject.contains( "JsonStoreObject" ) )
+			{
+				obj->setValue( it.key(), jsonObject["JsonStoreObject"].toObject(), parentKey );
 			}
 			else
 			{
@@ -96,10 +102,16 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 		{
 			jsonData[it.key()] = saveJsonTree( it.value().toMap() );
 		}
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
+		{
+			QJsonObject jsonObj;
+			jsonObj["JsonStoreArray"] = QJsonValue::fromVariant( it.value() ).toArray();
+			jsonData[it.key()] = jsonObj;
+		}
 		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
 		{
-			QJsonObject jsonObj = QJsonValue::fromVariant( it.value() ).toObject();
-			jsonObj["JsonObjectProperty"] = true;
+			QJsonObject jsonObj;
+			jsonObj["JsonStoreObject"] = QJsonValue::fromVariant( it.value() ).toObject();
 			jsonData[it.key()] = jsonObj;
 		}
 		else
