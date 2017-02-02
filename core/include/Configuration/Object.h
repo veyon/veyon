@@ -26,6 +26,7 @@
 #define CONFIGURATION_OBJECT_H
 
 #include <QObject>
+#include <QJsonArray>
 #include <QJsonObject>
 
 #include "Configuration/Store.h"
@@ -101,21 +102,21 @@ private:
 
 #define DECLARE_CONFIG_STRING_PROPERTY(get,key,parentKey)\
 	public:											\
-		inline QString get() const					\
+		QString get() const					\
 		{											\
 			return value( key, parentKey ).toString();			\
 		}
 
 #define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,key,parentKey)\
 	public:													\
-		inline QStringList get() const						\
+		QStringList get() const						\
 		{													\
 			return value( key, parentKey ).toStringList();	\
 		}
 
 #define DECLARE_CONFIG_INT_PROPERTY(get,key,parentKey)	\
 	public:												\
-		inline int get() const							\
+		int get() const							\
 		{												\
 			return value( key, parentKey ).toInt();		\
 		}
@@ -124,15 +125,22 @@ private:
 	public:												\
 		bool get() const								\
 		{												\
-			return value( key, parentKey ).toInt() ?	\
-										true : false;	\
+			return value( key, parentKey ).toBool();	\
 		}
 
-#define DECLARE_CONFIG_JSONOBJ_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,key,parentKey)\
 	public:											\
-		inline QJsonObject get() const					\
+		QJsonObject get() const					\
 		{											\
 			return value( key, parentKey ).toJsonObject();			\
+		}
+
+
+#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,key,parentKey)\
+	public:											\
+		QJsonArray get() const					\
+		{											\
+			return value( key, parentKey ).toJsonArray();			\
 		}
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
@@ -163,8 +171,14 @@ private:
 			setValue( key, val, parentKey );			\
 		}
 
-#define IMPLEMENT_CONFIG_SET_JSONOBJ_PROPERTY(className,set,key,parentKey)	\
+#define IMPLEMENT_CONFIG_SET_JSONOBJECT_PROPERTY(className,set,key,parentKey)	\
 		void className::set( const QJsonObject& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_JSONARRAY_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QJsonArray& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
