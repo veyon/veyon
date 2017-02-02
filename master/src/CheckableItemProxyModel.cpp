@@ -149,15 +149,15 @@ void CheckableItemProxyModel::removeRowStates(const QModelIndex &parent, int fir
 
 
 
-QJsonObject CheckableItemProxyModel::saveStates()
+QJsonArray CheckableItemProxyModel::saveStates()
 {
-	QJsonObject data;
+	QJsonArray data;
 
 	for( auto it = m_checkStates.begin(); it != m_checkStates.end(); ++it )
 	{
 		if( it.value() == Qt::Checked )
 		{
-			data[QString::number( it.key(), 16 )] = it.value();
+			data += QString::number( it.key(), 16 );
 		}
 	}
 
@@ -166,19 +166,19 @@ QJsonObject CheckableItemProxyModel::saveStates()
 
 
 
-void CheckableItemProxyModel::loadStates( const QJsonObject& data )
+void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 {
 	m_checkStates.clear();
 
-	for( auto it = data.begin(); it != data.end(); ++it )
+	for( auto item : data )
 	{
-		const uint uid = it.key().toUInt( NULL, 16 );
+		const uint uid = item.toString().toUInt( NULL, 16 );
 		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,
 									  Qt::MatchExactly | Qt::MatchRecursive );
 		if( indexList.isEmpty() == false &&
 				hasChildren( indexList.first() ) == false )
 		{
-			setData( indexList.first(), it.value().toVariant(), Qt::CheckStateRole );
+			setData( indexList.first(), Qt::Checked, Qt::CheckStateRole );
 		}
 	}
 }
