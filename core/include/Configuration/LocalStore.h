@@ -1,7 +1,7 @@
 /*
  * Configuration/LocalStore.h - LocalStore class
  *
- * Copyright (c) 2009-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -37,9 +37,9 @@ class LocalStore : public Store
 public:
 	LocalStore( Scope scope );
 
-	virtual void load( Object *obj );
-	virtual void flush( Object *obj );
-	virtual bool isWritable() const;
+	void load( Object *obj ) override;
+	void flush( Object *obj ) override;
+	bool isWritable() const override;
 
 	QSettings *createSettingsObject() const;
 
