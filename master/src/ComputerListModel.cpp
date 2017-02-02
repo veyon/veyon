@@ -22,7 +22,7 @@
  *
  */
 
-#include <QColor>
+#include <QImage>
 
 #include "ComputerListModel.h"
 #include "ComputerManager.h"
@@ -47,6 +47,11 @@ ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) 
 	connect( &m_manager, &ComputerManager::computerListAboutToBeReset,
 			 this, &ComputerListModel::endResetModel );
 
+	connect( &m_manager, &ComputerManager::computerScreenUpdated,
+			 this, &ComputerListModel::updateComputerScreen );
+
+	connect( &m_manager, &ComputerManager::computerScreenSizeChanged,
+			 this, &ComputerListModel::updateComputerScreenSize );
 }
 
 
@@ -72,7 +77,7 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 
 	if( role == Qt::DecorationRole )
 	{
-		return QColor(Qt::darkBlue);
+		return m_manager.computerList()[index.row()].controlInterface().screen();
 	}
 
 	if( role != Qt::DisplayRole)
@@ -117,4 +122,20 @@ void ComputerListModel::reload()
 {
 	beginResetModel();
 	endResetModel();
+}
+
+
+
+void ComputerListModel::updateComputerScreen( int computerIndex )
+{
+	emit dataChanged( index( computerIndex, 0 ),
+					  index( computerIndex, 0 ),
+					  QVector<int>() << Qt::DecorationRole );
+}
+
+
+
+void ComputerListModel::updateComputerScreenSize()
+{
+	emit layoutChanged();
 }

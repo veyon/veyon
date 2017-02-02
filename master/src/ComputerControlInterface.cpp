@@ -31,6 +31,7 @@
 ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	QObject(),
 	m_computer( computer ),
+	m_screenSize( 160, 90 ),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
 	m_screenUpdated( false )
@@ -48,15 +49,20 @@ ComputerControlInterface::~ComputerControlInterface()
 
 void ComputerControlInterface::start()
 {
-	m_vncConnection = new ItalcVncConnection( this );
-	m_vncConnection->setHost( m_computer.hostAddress() );
-	m_vncConnection->setQuality( ItalcVncConnection::ThumbnailQuality );
-	m_vncConnection->setFramebufferUpdateInterval( 1000 );	// TODO: replace hard-coded value
+	if( m_computer.hostAddress().isEmpty() == false )
+	{
+		m_vncConnection = new ItalcVncConnection( this );
+		m_vncConnection->setHost( m_computer.hostAddress() );
+		m_vncConnection->setQuality( ItalcVncConnection::ThumbnailQuality );
+		m_vncConnection->setScaledSize( m_screenSize );
+		m_vncConnection->setFramebufferUpdateInterval( 1000 );	// TODO: replace hard-coded value
+		m_vncConnection->start();
 
-	m_coreConnection = new ItalcCoreConnection( m_vncConnection );
+		m_coreConnection = new ItalcCoreConnection( m_vncConnection );
 
-	connect( m_vncConnection, &ItalcVncConnection::framebufferUpdateComplete,
-			 this, &ComputerControlInterface::setScreenUpdateFlag );
+		connect( m_vncConnection, &ItalcVncConnection::framebufferUpdateComplete,
+				 this, &ComputerControlInterface::setScreenUpdateFlag );
+	}
 }
 
 
@@ -77,6 +83,19 @@ void ComputerControlInterface::stop()
 
 
 
+void ComputerControlInterface::setScreenSize(const QSize &size)
+{
+	m_screenSize = size;
+
+	if( m_vncConnection )
+	{
+		m_vncConnection->setScaledSize( size );
+	}
+
+	setScreenUpdateFlag();
+}
+
+
 
 QImage ComputerControlInterface::screen() const
 {
@@ -85,5 +104,7 @@ QImage ComputerControlInterface::screen() const
 		return m_vncConnection->scaledScreen();
 	}
 
-	return QImage();
+	QImage dummy( m_screenSize, QImage::Format_ARGB32 );
+	dummy.fill( Qt::white );
+	return dummy;
 }

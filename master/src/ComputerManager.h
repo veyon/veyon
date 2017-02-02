@@ -49,6 +49,8 @@ public:
 		return m_computerList;
 	}
 
+	void setComputerScreenSize( const QSize& size );
+
 	Computer::Mode globalMode() const
 	{
 		return m_globalMode;
@@ -67,9 +69,14 @@ signals:
 	void computerAboutToBeRemoved( int index );
 	void computerRemoved();
 
+	void computerScreenUpdated( int index );
+	void computerScreenSizeChanged();
+
 public slots:
 	void reloadComputerList();
 	void updateComputerList();
+
+	void updateComputerScreens();
 
 private:
 	ComputerList getComputers( const QModelIndex& parent );

@@ -48,6 +48,9 @@ private slots:
 
 	void reload();
 
+	void updateComputerScreen( int index );
+	void updateComputerScreenSize();
+
 private:
 	ComputerManager& m_manager;
 

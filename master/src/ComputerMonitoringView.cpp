@@ -22,6 +22,7 @@
  *
  */
 
+#include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
 #include "MasterCore.h"
 
@@ -30,9 +31,13 @@
 ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerMonitoringView),
+	m_computerManager( nullptr ),
 	m_computerListModel( nullptr )
 {
 	ui->setupUi( this );
+
+	connect( ui->gridSizeSlider, &QSlider::valueChanged,
+			 this, &ComputerMonitoringView::setComputerScreenSize );
 }
 
 
@@ -50,7 +55,20 @@ void ComputerMonitoringView::setComputerManager( ComputerManager &computerManage
 {
 	delete m_computerListModel;
 
+	m_computerManager = &computerManager;
+
 	m_computerListModel = new ComputerListModel( computerManager, this );
 
 	ui->listView->setModel( m_computerListModel );
+}
+
+
+
+void ComputerMonitoringView::setComputerScreenSize(int size)
+{
+	if( m_computerManager )
+	{
+		m_computerManager->setComputerScreenSize( QSize( size, size * 9 / 16 ) );
+		ui->listView->updateGeometry();
+	}
 }

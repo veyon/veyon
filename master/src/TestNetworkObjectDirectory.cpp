@@ -36,7 +36,7 @@ TestNetworkObjectDirectory::TestNetworkObjectDirectory(  QObject* parent ) :
 	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer B" );
 	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer C" );
 	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer D" );
-	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer A" );
+	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer A", "localhost" );
 	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer X" );
 	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer Y" );
 	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer Z" );
@@ -44,7 +44,7 @@ TestNetworkObjectDirectory::TestNetworkObjectDirectory(  QObject* parent ) :
 
 	QTimer*t = new QTimer( this );
 	connect( t, &QTimer::timeout, this, &TestNetworkObjectDirectory::test );
-	t->start(2000);
+	//t->start(2000);
 }
 
 

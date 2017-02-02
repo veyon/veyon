@@ -26,6 +26,7 @@
 #define COMPUTER_CONTROL_INTERFACE_H
 
 #include <QObject>
+#include <QSize>
 
 class QImage;
 
@@ -48,6 +49,8 @@ public:
 	void start();
 	void stop();
 
+	void setScreenSize( const QSize& size );
+
 	QImage screen() const;
 
 	bool hasScreenUpdates() const
@@ -69,6 +72,8 @@ private slots:
 
 private:
 	const Computer& m_computer;
+
+	QSize m_screenSize;
 
 	ItalcVncConnection* m_vncConnection;
 	ItalcCoreConnection* m_coreConnection;

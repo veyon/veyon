@@ -22,6 +22,8 @@
  *
  */
 
+#include <QTimer>
+
 #include "ComputerManager.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
@@ -52,6 +54,10 @@ ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
 			 this, &ComputerManager::updateComputerList );
 
 	m_checkableNetworkObjectProxyModel->loadStates( m_config.checkedNetworkObjects() );
+
+	QTimer* computerScreenUpdateTimer = new QTimer( this );
+	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
+	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
 }
 
 
@@ -63,9 +69,21 @@ ComputerManager::~ComputerManager()
 
 
 
+void ComputerManager::setComputerScreenSize( const QSize &size )
+{
+	for( auto& computer : m_computerList )
+	{
+		computer.controlInterface().setScreenSize( size );
+	}
+
+	emit computerScreenSizeChanged();
+}
+
+
+
 void ComputerManager::setGlobalMode( Computer::Mode mode )
 {
-	for( auto computer : m_computerList )
+	for( auto& computer : m_computerList )
 	{
 		//computer.setMode( mode )
 	}
@@ -79,6 +97,11 @@ void ComputerManager::reloadComputerList()
 {
 	emit computerListAboutToBeReset();
 	m_computerList = getComputers( QModelIndex() );
+
+	for( auto& computer : m_computerList )
+	{
+		computer.controlInterface().start();
+	}
 	emit computerListReset();
 }
 
@@ -113,14 +136,36 @@ void ComputerManager::updateComputerList()
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.insert( index, computer );
+			m_computerList[index].controlInterface().start();
 			emit computerInserted();
 		}
 		else if( index >= m_computerList.count() )
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.append( computer );
+			m_computerList.last().controlInterface().start();
 			emit computerInserted();
 		}
+
+		++index;
+	}
+}
+
+
+
+void ComputerManager::updateComputerScreens()
+{
+	int index = 0;
+
+	for( auto& computer : m_computerList )
+	{
+		if( computer.controlInterface().hasScreenUpdates() )
+		{
+			computer.controlInterface().clearScreenUpdateFlag();
+
+			emit computerScreenUpdated( index );
+		}
+
 		++index;
 	}
 }

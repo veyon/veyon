@@ -42,9 +42,13 @@ public:
 
 	void setComputerManager( ComputerManager& computerManager );
 
+private slots:
+	void setComputerScreenSize( int size );
+
 private:
 	Ui::ComputerMonitoringView *ui;
 
+	ComputerManager* m_computerManager;
 	ComputerListModel* m_computerListModel;
 
 };
