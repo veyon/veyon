@@ -136,7 +136,7 @@ void AccessControlPage::addAccessControlRule()
 
 	if( AccessControlRuleEditDialog( newRule, this ).exec() )
 	{
-		ItalcCore::config->setAccessControlRules( ItalcCore::config->accessControlRules() << newRule.encode() );
+		ItalcCore::config->setAccessControlRules( ItalcCore::config->accessControlRules() << newRule.toJson() );
 
 		updateAccessControlRules();
 	}
@@ -146,7 +146,7 @@ void AccessControlPage::addAccessControlRule()
 
 void AccessControlPage::removeAccessControlRule()
 {
-	QStringList accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
 
 	accessControlRules.removeAt( ui->accessControlRulesView->currentIndex().row() );
 
@@ -159,21 +159,20 @@ void AccessControlPage::removeAccessControlRule()
 
 void AccessControlPage::editAccessControlRule()
 {
-	QStringList accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 
-	QString encodedRule = accessControlRules.value( row );
-	if( encodedRule.isEmpty() )
+	if( row >= accessControlRules.count() )
 	{
 		return;
 	}
 
-	AccessControlRule rule( encodedRule );
+	AccessControlRule rule( accessControlRules[row] );
 
 	if( AccessControlRuleEditDialog( rule, this ).exec() )
 	{
-		accessControlRules.replace( row, rule.encode() );
+		accessControlRules.replace( row, rule.toJson() );
 
 		modifyAccessControlRules( accessControlRules, row );
 	}
@@ -183,14 +182,16 @@ void AccessControlPage::editAccessControlRule()
 
 void AccessControlPage::moveAccessControlRuleDown()
 {
-	QStringList accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row + 1;
 
 	if( newRow < accessControlRules.size() )
 	{
-		accessControlRules.move( row, newRow );
+		const QJsonValue swapValue = accessControlRules[row];
+		accessControlRules[row] = accessControlRules[newRow];
+		accessControlRules[newRow] = swapValue;
 
 		modifyAccessControlRules( accessControlRules, newRow );
 	}
@@ -200,14 +201,16 @@ void AccessControlPage::moveAccessControlRuleDown()
 
 void AccessControlPage::moveAccessControlRuleUp()
 {
-	QStringList accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row - 1;
 
 	if( newRow >= 0 )
 	{
-		accessControlRules.move( row, newRow );
+		const QJsonValue swapValue = accessControlRules[row];
+		accessControlRules[row] = accessControlRules[newRow];
+		accessControlRules[newRow] = swapValue;
 
 		modifyAccessControlRules( accessControlRules, newRow );
 	}
@@ -241,7 +244,7 @@ void AccessControlPage::testAccessControlRules()
 
 
 
-void AccessControlPage::modifyAccessControlRules(const QStringList &accessControlRules, int selectedRow)
+void AccessControlPage::modifyAccessControlRules(const QJsonArray &accessControlRules, int selectedRow)
 {
 	ItalcCore::config->setAccessControlRules( accessControlRules );
 

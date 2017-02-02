@@ -78,7 +78,7 @@
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\
 	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
+	OP( ItalcConfiguration, ItalcCore::config, JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
 #define FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isLdapIntegrationEnabled, setLdapIntegrationEnabled, "LdapIntegrationEnabled", "LDAP" );	\

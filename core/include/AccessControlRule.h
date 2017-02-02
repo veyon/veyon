@@ -26,6 +26,7 @@
 #define ACCESS_CONTROL_RULE_H
 
 #include <QObject>
+#include <QJsonObject>
 #include <QVariant>
 
 class AccessControlRule
@@ -89,7 +90,7 @@ public:
 
 	AccessControlRule();
 	AccessControlRule( const AccessControlRule& other );
-	AccessControlRule( const QString& encodedData );
+	AccessControlRule( const QJsonValueRef& jsonValue );
 
 	const QString& name() const
 	{
@@ -166,7 +167,7 @@ public:
 		m_conditions[condition] = conditionArgument;
 	}
 
-	QString encode() const;
+	QJsonObject toJson() const;
 
 	static EntityType entityType( Entity entity );
 

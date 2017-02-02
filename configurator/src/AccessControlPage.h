@@ -40,8 +40,8 @@ public:
 	AccessControlPage();
 	virtual ~AccessControlPage();
 
-	virtual void resetWidgets();
-	virtual void connectWidgetsToProperties();
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
 
 private slots:
 	void addAccessGroup();
@@ -58,7 +58,7 @@ private slots:
 	void testAccessControlRules();
 
 private:
-	void modifyAccessControlRules( const QStringList& accessControlRules, int selectedRow );
+	void modifyAccessControlRules( const QJsonArray& accessControlRules, int selectedRow );
 	void updateAccessControlRules();
 
 	Ui::AccessControlPage *ui;

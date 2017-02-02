@@ -34,9 +34,9 @@
 AccessControlProvider::AccessControlProvider() :
 	m_ldapDirectory()
 {
-	for( auto encodedRule : ItalcCore::config->accessControlRules() )
+	for( auto accessControlRule : ItalcCore::config->accessControlRules() )
 	{
-		m_accessControlRules.append( AccessControlRule( encodedRule ) );
+		m_accessControlRules.append( accessControlRule );
 	}
 }
 
