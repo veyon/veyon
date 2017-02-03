@@ -69,6 +69,7 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
 
 	ui->computerMonitoringView->setComputerManager( m_masterCore.computerManager() );
+	ui->computerMonitoringView->setConfiguration( m_masterCore.personalConfig() );
 
 /*	if( LocalSystem::Path::ensurePathExists(
 						LocalSystem::Path::personalConfigDataPath() ) == false )

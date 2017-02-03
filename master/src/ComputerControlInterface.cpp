@@ -33,7 +33,7 @@ ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	m_computer( computer ),
 	m_mode( ModeMonitoring ),
 	m_state( Disconnected ),
-	m_screenSize( 160, 90 ),
+	m_screenSize(),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
 	m_screenUpdated( false )
@@ -49,8 +49,10 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start()
+void ComputerControlInterface::start( const QSize &screenSize )
 {
+	m_screenSize = screenSize;
+
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
 		m_vncConnection = new ItalcVncConnection( this );

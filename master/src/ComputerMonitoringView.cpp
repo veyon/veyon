@@ -24,7 +24,7 @@
 
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
-#include "MasterCore.h"
+#include "PersonalConfig.h"
 
 #include "ui_ComputerMonitoringView.h"
 
@@ -51,6 +51,22 @@ ComputerMonitoringView::~ComputerMonitoringView()
 
 
 
+void ComputerMonitoringView::setConfiguration(PersonalConfig &config)
+{
+	m_config = &config;
+
+	if( m_config->monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	{
+		ui->gridSizeSlider->setValue( m_config->monitoringScreenSize() );
+	}
+	else
+	{
+		ui->gridSizeSlider->setValue( DefaultComputerScreenSize );
+	}
+}
+
+
+
 void ComputerMonitoringView::setComputerManager( ComputerManager &computerManager )
 {
 	delete m_computerListModel;
@@ -64,11 +80,12 @@ void ComputerMonitoringView::setComputerManager( ComputerManager &computerManage
 
 
 
-void ComputerMonitoringView::setComputerScreenSize(int size)
+void ComputerMonitoringView::setComputerScreenSize( int size )
 {
-	if( m_computerManager )
+	if( m_computerManager && m_config )
 	{
-		m_computerManager->setComputerScreenSize( QSize( size, size * 9 / 16 ) );
-		ui->listView->updateGeometry();
+		m_config->setMonitoringScreenSize( size );
+
+		m_computerManager->updateComputerScreenSize();
 	}
 }

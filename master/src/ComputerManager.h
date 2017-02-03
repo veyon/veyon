@@ -49,7 +49,7 @@ public:
 		return m_computerList;
 	}
 
-	void setComputerScreenSize( const QSize& size );
+	void updateComputerScreenSize();
 
 	ComputerControlInterface::Mode globalMode() const
 	{
@@ -80,6 +80,7 @@ public slots:
 
 private:
 	ComputerList getComputers( const QModelIndex& parent );
+	QSize computerScreenSize() const;
 
 	PersonalConfig& m_config;
 

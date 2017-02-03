@@ -60,7 +60,7 @@ public:
 	ComputerControlInterface( const Computer& computer );
 	~ComputerControlInterface() override;
 
-	void start();
+	void start( const QSize& screenSize );
 	void stop();
 
 	State state() const

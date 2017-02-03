@@ -33,6 +33,8 @@ namespace Ui {
 class ComputerMonitoringView;
 }
 
+class PersonalConfig;
+
 class ComputerMonitoringView : public QWidget
 {
 	Q_OBJECT
@@ -40,14 +42,20 @@ public:
 	ComputerMonitoringView( QWidget *parent = 0 );
 	~ComputerMonitoringView();
 
+	void setConfiguration( PersonalConfig& config );
 	void setComputerManager( ComputerManager& computerManager );
 
 private slots:
 	void setComputerScreenSize( int size );
 
 private:
+	enum {
+		DefaultComputerScreenSize = 160
+	};
+
 	Ui::ComputerMonitoringView *ui;
 
+	PersonalConfig* m_config;
 	ComputerManager* m_computerManager;
 	ComputerListModel* m_computerListModel;
 

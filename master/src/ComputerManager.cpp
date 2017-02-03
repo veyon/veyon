@@ -69,11 +69,11 @@ ComputerManager::~ComputerManager()
 
 
 
-void ComputerManager::setComputerScreenSize( const QSize &size )
+void ComputerManager::updateComputerScreenSize()
 {
 	for( auto& computer : m_computerList )
 	{
-		computer.controlInterface().setScreenSize( size );
+		computer.controlInterface().setScreenSize( computerScreenSize() );
 	}
 
 	emit computerScreenSizeChanged();
@@ -100,8 +100,9 @@ void ComputerManager::reloadComputerList()
 
 	for( auto& computer : m_computerList )
 	{
-		computer.controlInterface().start();
+		computer.controlInterface().start( computerScreenSize() );
 	}
+
 	emit computerListReset();
 }
 
@@ -136,14 +137,14 @@ void ComputerManager::updateComputerList()
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.insert( index, computer );
-			m_computerList[index].controlInterface().start();
+			m_computerList[index].controlInterface().start( computerScreenSize() );
 			emit computerInserted();
 		}
 		else if( index >= m_computerList.count() )
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.append( computer );
-			m_computerList.last().controlInterface().start();
+			m_computerList.last().controlInterface().start( computerScreenSize() );
 			emit computerInserted();
 		}
 
@@ -207,4 +208,12 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 	}
 
 	return computers;
+}
+
+
+
+QSize ComputerManager::computerScreenSize() const
+{
+	return QSize( m_config.monitoringScreenSize(),
+				  m_config.monitoringScreenSize() * 9 / 16 );
 }
