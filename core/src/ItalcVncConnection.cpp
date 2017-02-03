@@ -507,7 +507,7 @@ void ItalcVncConnection::rescaleScreen()
 void ItalcVncConnection::run()
 {
 	m_state = Disconnected;
-	emit stateChanged( m_state );
+	emit stateChanged();
 
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
@@ -571,7 +571,7 @@ void ItalcVncConnection::doConnection()
 			emit connected();
 
 			m_state = Connected;
-			emit stateChanged( m_state );
+			emit stateChanged();
 		}
 		else
 		{
@@ -579,18 +579,18 @@ void ItalcVncConnection::doConnection()
 			if( m_hostReachable == false )
 			{
 				m_state = HostUnreachable;
-				emit stateChanged( m_state );
+				emit stateChanged();
 			}
 			else if( m_frameBufferInitialized == false )
 			{
 				m_state = AuthenticationFailed;
-				emit stateChanged( m_state );
+				emit stateChanged();
 			}
 			else
 			{
 				// failed for an unknown reason
 				m_state = ConnectionFailed;
-				emit stateChanged( m_state );
+				emit stateChanged();
 			}
 
 			// do not sleep when already requested to stop
@@ -709,7 +709,7 @@ void ItalcVncConnection::doConnection()
 
 	m_state = Disconnected;
 
-	emit stateChanged( m_state );
+	emit stateChanged();
 }
 
 

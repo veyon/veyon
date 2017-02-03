@@ -193,7 +193,7 @@ signals:
 	void passwordRequest();
 	void outputErrorMessage( const QString &message );
 	void connected();
-	void stateChanged( State );
+	void stateChanged();
 
 
 public slots:
