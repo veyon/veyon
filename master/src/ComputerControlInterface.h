@@ -38,16 +38,45 @@ class ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:
+	typedef enum Modes
+	{
+		ModeMonitoring,
+		ModeFullScreenDemo,
+		ModeWindowDemo,
+		ModeLocked,
+		ModeCount
+	} Mode;
+
+	typedef enum States
+	{
+		Disconnected,
+		Unreachable,
+		Connecting,
+		Connected,
+		Unknown,
+		StateCount
+	} State;
+
 	ComputerControlInterface( const Computer& computer );
 	~ComputerControlInterface() override;
 
-	bool isActive() const
-	{
-		return m_vncConnection != nullptr;
-	}
-
 	void start();
 	void stop();
+
+	State state() const
+	{
+		return m_state;
+	}
+
+	Mode mode() const
+	{
+		return m_mode;
+	}
+
+	const QSize& screenSize() const
+	{
+		return m_screenSize;
+	}
 
 	void setScreenSize( const QSize& size );
 
@@ -70,8 +99,13 @@ private slots:
 		m_screenUpdated = true;
 	}
 
+	void updateState();
+
 private:
 	const Computer& m_computer;
+
+	Mode m_mode;
+	State m_state;
 
 	QSize m_screenSize;
 

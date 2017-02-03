@@ -180,10 +180,10 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 	windemo_mode->setCheckable( TRUE );
 	lock_mode->setCheckable( TRUE );
 
-	m_modeGroup->addButton( overview_mode, Computer::ModeMonitoring );
-	m_modeGroup->addButton( fsdemo_mode, Computer::ModeFullScreenDemo );
-	m_modeGroup->addButton( windemo_mode, Computer::ModeWindowDemo );
-	m_modeGroup->addButton( lock_mode, Computer::ModeLocked );
+	m_modeGroup->addButton( overview_mode, ComputerControlInterface::ModeMonitoring );
+	m_modeGroup->addButton( fsdemo_mode, ComputerControlInterface::ModeFullScreenDemo );
+	m_modeGroup->addButton( windemo_mode, ComputerControlInterface::ModeWindowDemo );
+	m_modeGroup->addButton( lock_mode, ComputerControlInterface::ModeLocked );
 
 	overview_mode->setChecked( TRUE );
 
@@ -483,7 +483,7 @@ void MainWindow::remoteControlDisplay( const QString& hostname,
 
 void MainWindow::stopDemoAfterRemoteControl()
 {
-	m_masterCore.computerManager().setGlobalMode( Computer::ModeMonitoring );
+	m_masterCore.computerManager().setGlobalMode( ComputerControlInterface::ModeMonitoring );
 }
 
 
@@ -491,13 +491,13 @@ void MainWindow::stopDemoAfterRemoteControl()
 
 void MainWindow::changeGlobalClientMode( int mode )
 {
-	Computer::Mode newMode = static_cast<Computer::Modes>( mode );
+	ComputerControlInterface::Mode newMode = static_cast<ComputerControlInterface::Modes>( mode );
 	ComputerManager& computerManager = m_masterCore.computerManager();
 
 	if( newMode == computerManager.globalMode() )
 	{
-		computerManager.setGlobalMode( Computer::ModeMonitoring );
-		m_modeGroup->button( Computer::ModeMonitoring )->setChecked( true );
+		computerManager.setGlobalMode( ComputerControlInterface::ModeMonitoring );
+		m_modeGroup->button( ComputerControlInterface::ModeMonitoring )->setChecked( true );
 	}
 	else
 	{

@@ -51,12 +51,12 @@ public:
 
 	void setComputerScreenSize( const QSize& size );
 
-	Computer::Mode globalMode() const
+	ComputerControlInterface::Mode globalMode() const
 	{
 		return m_globalMode;
 	}
 
-	void setGlobalMode( Computer::Mode mode );
+	void setGlobalMode( ComputerControlInterface::Mode mode );
 
 
 signals:
@@ -88,7 +88,7 @@ private:
 
 	ComputerList m_computerList;
 
-	Computer::Mode m_globalMode;
+	ComputerControlInterface::Mode m_globalMode;
 
 };
 

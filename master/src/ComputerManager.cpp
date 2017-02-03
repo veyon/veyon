@@ -36,7 +36,7 @@ ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
 	m_config( config ),
 	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
 	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) ),
-	m_globalMode( Computer::ModeMonitoring )
+	m_globalMode( ComputerControlInterface::ModeMonitoring )
 {
 	m_checkableNetworkObjectProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
 	m_networkObjectSortProxyModel->setSourceModel( m_checkableNetworkObjectProxyModel );
@@ -81,7 +81,7 @@ void ComputerManager::setComputerScreenSize( const QSize &size )
 
 
 
-void ComputerManager::setGlobalMode( Computer::Mode mode )
+void ComputerManager::setGlobalMode( ComputerControlInterface::Mode mode )
 {
 	for( auto& computer : m_computerList )
 	{

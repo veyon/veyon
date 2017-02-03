@@ -31,6 +31,8 @@
 ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	QObject(),
 	m_computer( computer ),
+	m_mode( ModeMonitoring ),
+	m_state( Disconnected ),
 	m_screenSize( 160, 90 ),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
@@ -62,6 +64,8 @@ void ComputerControlInterface::start()
 
 		connect( m_vncConnection, &ItalcVncConnection::framebufferUpdateComplete,
 				 this, &ComputerControlInterface::setScreenUpdateFlag );
+		connect( m_vncConnection, &ItalcVncConnection::stateChanged,
+				 this, &ComputerControlInterface::updateState );
 	}
 }
 
@@ -79,6 +83,8 @@ void ComputerControlInterface::stop()
 		// do not delete VNC connection but let it delete itself after stopping automatically
 		m_vncConnection->stop( true );
 	}
+
+	m_state = Disconnected;
 }
 
 
@@ -99,12 +105,33 @@ void ComputerControlInterface::setScreenSize(const QSize &size)
 
 QImage ComputerControlInterface::screen() const
 {
-	if( m_vncConnection )
+	if( m_vncConnection && m_vncConnection->isConnected() )
 	{
 		return m_vncConnection->scaledScreen();
 	}
 
-	QImage dummy( m_screenSize, QImage::Format_ARGB32 );
-	dummy.fill( Qt::white );
-	return dummy;
+	return QImage();
+}
+
+
+
+void ComputerControlInterface::updateState()
+{
+	if( m_vncConnection )
+	{
+		switch( m_vncConnection->state() )
+		{
+		case ItalcVncConnection::Disconnected: m_state = Disconnected; break;
+		case ItalcVncConnection::Connecting: m_state = Connecting; break;
+		case ItalcVncConnection::Connected: m_state = Connected; break;
+		case ItalcVncConnection::HostUnreachable: m_state = Unreachable; break;
+		default: m_state = Unknown; break;
+		}
+	}
+	else
+	{
+		m_state = Disconnected;
+	}
+
+	setScreenUpdateFlag();
 }
