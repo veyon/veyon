@@ -22,7 +22,7 @@
  *
  */
 
-#include <QImage>
+#include <QPainter>
 
 #include "ComputerListModel.h"
 #include "ComputerManager.h"
@@ -30,7 +30,10 @@
 
 ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) :
 	QAbstractListModel( parent ),
-	m_manager( manager )
+	m_manager( manager ),
+	m_iconUnknownState(),
+	m_iconComputerUnreachable(),
+	m_iconDemoMode()
 {
 	connect( &m_manager, &ComputerManager::computerAboutToBeInserted,
 			 this, &ComputerListModel::beginInsertComputer );
@@ -52,6 +55,8 @@ ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) 
 
 	connect( &m_manager, &ComputerManager::computerScreenSizeChanged,
 			 this, &ComputerListModel::updateComputerScreenSize );
+
+	loadIcons();
 }
 
 
@@ -77,7 +82,7 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 
 	if( role == Qt::DecorationRole )
 	{
-		return m_manager.computerList()[index.row()].controlInterface().screen();
+		return computerDecorationRole( m_manager.computerList()[index.row()].controlInterface() );
 	}
 
 	if( role != Qt::DisplayRole)
@@ -138,4 +143,55 @@ void ComputerListModel::updateComputerScreen( int computerIndex )
 void ComputerListModel::updateComputerScreenSize()
 {
 	emit layoutChanged();
+}
+
+
+
+void ComputerListModel::loadIcons()
+{
+	m_iconUnknownState = prepareIcon( QImage( ":/resources/preferences-desktop-display-gray.png" ) );
+	m_iconComputerUnreachable = prepareIcon( QImage( ":/resources/preferences-desktop-display-red.png" ) );
+	m_iconDemoMode = prepareIcon( QImage( ":/resources/preferences-desktop-display-orange.png" ) );
+}
+
+
+
+QImage ComputerListModel::prepareIcon(const QImage &icon)
+{
+	QImage wideIcon( icon.width() * 16 / 9, icon.height(), QImage::Format_ARGB32 );
+	wideIcon.fill( Qt::transparent );
+	QPainter p( &wideIcon );
+	p.drawImage( ( wideIcon.width() - icon.width() ) / 2, 0, icon );
+	return wideIcon;
+}
+
+
+
+QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface &controlInterface ) const
+{
+	QImage icon;
+
+	switch( controlInterface.state() )
+	{
+	case ComputerControlInterface::Connected:
+		switch( controlInterface.mode() )
+		{
+		case ComputerControlInterface::ModeWindowDemo:
+		case ComputerControlInterface::ModeFullScreenDemo:
+			icon = m_iconDemoMode;
+		default:
+			return controlInterface.screen();
+		}
+		break;
+
+	case ComputerControlInterface::Unreachable:
+		icon = m_iconComputerUnreachable;
+		break;
+
+	default:
+		icon = m_iconUnknownState;
+		break;
+	}
+
+	return icon.scaled( controlInterface.screenSize(), Qt::KeepAspectRatio );
 }

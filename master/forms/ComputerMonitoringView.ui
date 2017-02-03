@@ -37,11 +37,17 @@
      <property name="resizeMode">
       <enum>QListView::Adjust</enum>
      </property>
+     <property name="layoutMode">
+      <enum>QListView::Batched</enum>
+     </property>
      <property name="spacing">
       <number>16</number>
      </property>
      <property name="viewMode">
       <enum>QListView::IconMode</enum>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>true</bool>
      </property>
      <property name="selectionRectVisible">
       <bool>false</bool>

@@ -26,8 +26,10 @@
 #define COMPUTER_LIST_MODEL_H
 
 #include <QAbstractListModel>
+#include <QImage>
 
 class ComputerManager;
+class ComputerControlInterface;
 
 class ComputerListModel : public QAbstractListModel
 {
@@ -52,7 +54,14 @@ private slots:
 	void updateComputerScreenSize();
 
 private:
+	void loadIcons();
+	QImage prepareIcon( const QImage& icon );
+	QImage computerDecorationRole( const ComputerControlInterface& controlInterface ) const;
+
 	ComputerManager& m_manager;
+	QImage m_iconUnknownState;
+	QImage m_iconComputerUnreachable;
+	QImage m_iconDemoMode;
 
 };
 
