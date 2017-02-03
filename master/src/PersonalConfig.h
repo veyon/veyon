@@ -38,6 +38,7 @@ public:
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
 	OP( PersonalConfig, MasterCore::personalConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
+	OP( PersonalConfig, MasterCore::personalConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
 	OP( PersonalConfig, MasterCore::personalConfig, INT, clientUpdateInterval, setClientUpdateInterval, "ClientUpdateInterval", "Behaviour" );	\
 	OP( PersonalConfig, MasterCore::personalConfig, INT, clientDoubleClickAction, setClientDoubleClickAction, "ClientDoubleClickAction", "Behaviour" );	\
 	OP( PersonalConfig, MasterCore::personalConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
@@ -49,6 +50,7 @@ public:
 
 public slots:
 	void setCheckedNetworkObjects( const QJsonArray& );
+	void setMonitoringScreenSize( int );
 	void setClientUpdateInterval( int );
 	void setClientDoubleClickAction( int );
 	void setDefaultRole( int );
