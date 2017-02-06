@@ -30,7 +30,8 @@ NetworkObject::NetworkObject( const NetworkObject &other ) :
 	m_type( other.type() ),
 	m_name( other.name() ),
 	m_hostAddress( other.hostAddress() ),
-	m_macAddress( other.macAddress() )
+	m_macAddress( other.macAddress() ),
+	m_directoryAddress( other.directoryAddress() )
 {
 }
 
@@ -44,7 +45,8 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 	m_type( type ),
 	m_name( name ),
 	m_hostAddress( hostAddress ),
-	m_macAddress( macAddress )
+	m_macAddress( macAddress ),
+	m_directoryAddress( directoryAddress )
 {
 }
 
