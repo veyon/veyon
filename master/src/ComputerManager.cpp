@@ -38,8 +38,8 @@ ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
 	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) ),
 	m_globalMode( ComputerControlInterface::ModeMonitoring )
 {
-	m_checkableNetworkObjectProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
-	m_networkObjectSortProxyModel->setSourceModel( m_checkableNetworkObjectProxyModel );
+	m_networkObjectSortProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
+	m_checkableNetworkObjectProxyModel->setSourceModel( m_networkObjectSortProxyModel );
 
 	connect( networkObjectModel(), &QAbstractItemModel::modelReset,
 			 this, &ComputerManager::reloadComputerList );

@@ -41,7 +41,7 @@ public:
 
 	QAbstractItemModel* networkObjectModel()
 	{
-		return m_networkObjectSortProxyModel;
+		return m_checkableNetworkObjectProxyModel;
 	}
 
 	const ComputerList& computerList() const
