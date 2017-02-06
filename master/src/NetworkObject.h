@@ -45,7 +45,8 @@ public:
 	explicit NetworkObject( Type type = None,
 							const QString& name = QString(),
 							const QString& hostAddress = QString(),
-							const QString& macAddress = QString() );
+							const QString& macAddress = QString(),
+							const QString& directoryAddress = QString() );
 
 	bool operator ==( const NetworkObject& other ) const;
 
@@ -91,12 +92,22 @@ public:
 		return m_macAddress;
 	}
 
+	void setDirectoryAddress( const QString& directoryAddress )
+	{
+		m_directoryAddress = directoryAddress;
+	}
+
+	QString directoryAddress() const
+	{
+		return m_directoryAddress;
+	}
 
 private:
 	Type m_type;
 	QString m_name;
 	QString m_hostAddress;
 	QString m_macAddress;
+	QString m_directoryAddress;
 };
 
 

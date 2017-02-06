@@ -26,7 +26,7 @@
 
 #include "NetworkObject.h"
 
-NetworkObject::NetworkObject(const NetworkObject &other) :
+NetworkObject::NetworkObject( const NetworkObject &other ) :
 	m_type( other.type() ),
 	m_name( other.name() ),
 	m_hostAddress( other.hostAddress() ),
@@ -36,10 +36,11 @@ NetworkObject::NetworkObject(const NetworkObject &other) :
 
 
 
-NetworkObject::NetworkObject(NetworkObject::Type type,
-							 const QString &name,
-							 const QString &hostAddress,
-							 const QString &macAddress) :
+NetworkObject::NetworkObject( NetworkObject::Type type,
+							  const QString& name,
+							  const QString& hostAddress,
+							  const QString& macAddress,
+							  const QString& directoryAddress ) :
 	m_type( type ),
 	m_name( name ),
 	m_hostAddress( hostAddress ),
@@ -49,7 +50,7 @@ NetworkObject::NetworkObject(NetworkObject::Type type,
 
 
 
-bool NetworkObject::operator ==(const NetworkObject &other) const
+bool NetworkObject::operator ==( const NetworkObject& other ) const
 {
 	return uid() == other.uid();
 }
@@ -58,5 +59,12 @@ bool NetworkObject::operator ==(const NetworkObject &other) const
 
 NetworkObject::Uid NetworkObject::uid() const
 {
+	// if a directory address is set (e.g. full DN in LDAP) it should be unique and can be
+	// used for hashing
+	if( directoryAddress().isEmpty() == false )
+	{
+		return qHash( directoryAddress() );
+	}
+
 	return qHash( type() ) + qHash( name() ) + qHash( hostAddress() ) + qHash( macAddress() );
 }
