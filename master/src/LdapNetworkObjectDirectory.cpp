@@ -80,7 +80,7 @@ void LdapNetworkObjectDirectory::update()
 	}
 
 	int index = 0;
-	for( auto it = m_objects.begin(); it != m_objects.end(); ++it )
+	for( auto it = m_objects.begin(); it != m_objects.end(); )
 	{
 		if( computerLabs.contains( it.key().name() ) == false )
 		{
@@ -90,6 +90,7 @@ void LdapNetworkObjectDirectory::update()
 		}
 		else
 		{
+			++it;
 			++index;
 		}
 	}
