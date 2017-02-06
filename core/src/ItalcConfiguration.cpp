@@ -32,6 +32,7 @@
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "NetworkObjectDirectory.h"
 
 
 ItalcConfiguration::ItalcConfiguration(
@@ -66,6 +67,8 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setApplicationName( QString() );
 	c.setHighDPIScalingEnabled( false );
 	c.setUiLanguage( QString() );
+
+	c.setNetworkObjectDirectoryUpdateInterval( NetworkObjectDirectory::DefaultUpdateInterval );
 
 	c.setTrayIconHidden( false );
 	c.setServiceAutostart( true );

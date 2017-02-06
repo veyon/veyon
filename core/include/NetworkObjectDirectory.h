@@ -41,9 +41,18 @@ public:
 		BackendCount
 	} Backend;
 
+	enum {
+		MinimumUpdateInterval = 10,
+		DefaultUpdateInterval = 60,
+		MaximumUpdateInterval = 3600
+	};
+
 	NetworkObjectDirectory( QObject* parent );
 
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) = 0;
+
+public slots:
+	virtual void update() = 0;
 
 signals:
 	void objectsAboutToBeInserted( const NetworkObject& parent, int index, int count );
