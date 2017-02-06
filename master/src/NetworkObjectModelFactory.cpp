@@ -24,13 +24,26 @@
 
 #include "NetworkObjectModelFactory.h"
 
+#include "LdapNetworkObjectDirectory.h"
 #include "TestNetworkObjectDirectory.h"
 #include "NetworkObjectTreeModel.h"
-
+#include "ItalcConfiguration.h"
+#include "ItalcCore.h"
 
 QAbstractItemModel* NetworkObjectModelFactory::create( QObject* parent )
 {
-	auto networkObjectDirectory = new TestNetworkObjectDirectory( parent );
+	NetworkObjectDirectory* networkObjectDirectory = nullptr;
+
+	switch( ItalcCore::config->networkObjectDirectoryBackend() )
+	{
+	case NetworkObjectDirectory::LdapBackend:
+		networkObjectDirectory = new LdapNetworkObjectDirectory( parent );
+		break;
+	default:
+	case NetworkObjectDirectory::TestBackend:
+		networkObjectDirectory = new TestNetworkObjectDirectory( parent );
+		break;
+	}
 
 	return new NetworkObjectTreeModel( networkObjectDirectory, parent );
 }
