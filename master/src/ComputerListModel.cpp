@@ -135,7 +135,7 @@ void ComputerListModel::updateComputerScreen( int computerIndex )
 {
 	emit dataChanged( index( computerIndex, 0 ),
 					  index( computerIndex, 0 ),
-					  QVector<int>() << Qt::DecorationRole );
+					  QVector<int>( { Qt::DecorationRole } ) );
 }
 
 
