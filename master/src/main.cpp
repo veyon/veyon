@@ -112,8 +112,6 @@ int main( int argc, char * * argv )
 		}
 	}
 
-	MasterCore masterCore;
-
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
 	if( ItalcCore::config->applicationName().isEmpty() )
 	{
@@ -124,6 +122,9 @@ int main( int argc, char * * argv )
 	{
 		return -1;
 	}
+
+	MasterCore masterCore;
+
 	// now create the main-window
 	MainWindow mainWindow( masterCore, screen );
 
