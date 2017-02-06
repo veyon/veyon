@@ -41,10 +41,6 @@ TestNetworkObjectDirectory::TestNetworkObjectDirectory(  QObject* parent ) :
 	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer Y" );
 	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer Z" );
 	m_objects[lab3] = QList<NetworkObject>();
-
-	QTimer*t = new QTimer( this );
-	connect( t, &QTimer::timeout, this, &TestNetworkObjectDirectory::test );
-	//t->start(2000);
 }
 
 
@@ -66,7 +62,7 @@ QList<NetworkObject> TestNetworkObjectDirectory::objects(const NetworkObject &pa
 
 
 
-void TestNetworkObjectDirectory::test()
+void TestNetworkObjectDirectory::update()
 {
 	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
 

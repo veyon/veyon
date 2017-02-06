@@ -37,8 +37,7 @@ public:
 
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
-private slots:
-	void test();
+	void update() override;
 
 private:
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
