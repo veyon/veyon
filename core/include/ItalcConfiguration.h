@@ -63,6 +63,8 @@ public slots:
 	void setLimittedLogFileSize( bool );
 	void setLogFileSizeLimit( int );
 	void setLogFileDirectory( const QString & );
+	void setNetworkObjectDirectoryBackend( int );
+	void setNetworkObjectDirectoryUpdateInterval( int );
 	void setVncCaptureLayeredWindows( bool );
 	void setVncPollFullScreen( bool );
 	void setVncLowAccuracy( bool );

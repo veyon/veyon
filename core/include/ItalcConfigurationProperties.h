@@ -37,6 +37,10 @@
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 
+#define FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
+	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryBackend, setNetworkObjectDirectoryBackend, "Backend", "NetworkObjectDirectory" );			\
+	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory" );			\
+
 #define FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
@@ -109,6 +113,7 @@
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\
 	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(OP)			\
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP)			\
+	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)\
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP)			\
