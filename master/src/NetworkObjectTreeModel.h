@@ -55,7 +55,8 @@ public:
 		NetworkObjectUidRole = Qt::UserRole,
 		NetworkObjectTypeRole,
 		NetworkobjectHostAddressRole,
-		NetworkObjectMacAddressRole
+		NetworkObjectMacAddressRole,
+		NetworkObjectDirectoryAddressRole
 	} Role;
 
 private slots:
