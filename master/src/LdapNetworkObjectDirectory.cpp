@@ -101,40 +101,40 @@ void LdapNetworkObjectDirectory::update()
 void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory, const QString &computerLab )
 {
 	const NetworkObject computerLabObject( NetworkObject::Group, computerLab );
-	QList<NetworkObject>& computerLabList = m_objects[computerLabObject];
+	QList<NetworkObject>& computerLabObjects = m_objects[computerLabObject];
 
 	QStringList computers = ldapDirectory.computerLabMembers( computerLab );
 
-	for( auto& computer : computers )
+	for( auto computer : computers )
 	{
 		QString computerHostName = ldapDirectory.computerHostName( computer );
 		if( computerHostName.isEmpty() )
 		{
 			continue;
 		}
-		computer = computer.split( ',' ).first();
 
-		const NetworkObject computerObject( NetworkObject::Host, computer, computerHostName );
+		const NetworkObject computerObject( NetworkObject::Host, computerHostName, computerHostName, QString(), computer );
 
-		if( computerLabList.contains( computerObject ) == false )
+		if( computerLabObjects.contains( computerObject ) == false )
 		{
-			emit objectsAboutToBeInserted( computerLabObject, computerLabList.count(), 1 );
-			computerLabList += computerObject;
+			emit objectsAboutToBeInserted( computerLabObject, computerLabObjects.count(), 1 );
+			computerLabObjects += computerObject;
 			emit objectsInserted();
 		}
 	}
 
 	int index = 0;
-	for( auto it = computerLabList.begin(); it != computerLabList.end(); ++it )
+	for( auto it = computerLabObjects.begin(); it != computerLabObjects.end(); )
 	{
-		if( computers.contains( it->name() ) == false )
+		if( computers.contains( it->directoryAddress() ) == false )
 		{
 			emit objectsAboutToBeRemoved( computerLabObject, index, 1 );
-			it = computerLabList.erase( it );
+			it = computerLabObjects.erase( it );
 			emit objectsRemoved();
 		}
 		else
 		{
+			++it;
 			++index;
 		}
 	}
