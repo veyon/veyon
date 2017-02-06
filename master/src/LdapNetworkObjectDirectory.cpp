@@ -22,8 +22,6 @@
  *
  */
 
-#include <QTimer>
-
 #include "LdapNetworkObjectDirectory.h"
 #include "Ldap/LdapDirectory.h"
 
@@ -31,10 +29,6 @@
 LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( QObject* parent ) :
 	NetworkObjectDirectory( parent )
 {
-	/*QTimer*t = new QTimer( this );
-	connect( t, &QTimer::timeout, this, &LdapNetworkObjectDirectory::update );
-	t->start(2000);*/
-
 	update();
 }
 
