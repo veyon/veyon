@@ -29,10 +29,14 @@
 
 #include <QWidget>
 
+class QMenu;
+
 namespace Ui {
 class ComputerMonitoringView;
 }
 
+class Feature;
+class FeatureManager;
 class PersonalConfig;
 
 class ComputerMonitoringView : public QWidget
@@ -44,9 +48,14 @@ public:
 
 	void setConfiguration( PersonalConfig& config );
 	void setComputerManager( ComputerManager& computerManager );
+	void setFeatureManager( FeatureManager& featureManager );
+
+	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
 private slots:
+	void showContextMenu( const QPoint& pos );
 	void setComputerScreenSize( int size );
+	void runFeature( const Feature& feature );
 
 private:
 	enum {
@@ -55,9 +64,11 @@ private:
 
 	Ui::ComputerMonitoringView *ui;
 
+	QMenu* m_featureMenu;
 	PersonalConfig* m_config;
 	ComputerManager* m_computerManager;
 	ComputerListModel* m_computerListModel;
+	FeatureManager* m_featureManager;
 
 };
 

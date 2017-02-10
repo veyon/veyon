@@ -28,8 +28,9 @@
 #include <QAbstractListModel>
 #include <QImage>
 
+#include "ComputerControlInterface.h"
+
 class ComputerManager;
-class ComputerControlInterface;
 
 class ComputerListModel : public QAbstractListModel
 {
@@ -40,6 +41,8 @@ public:
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+	ComputerControlInterface& computerControlInterface( const QModelIndex& index );
 
 private slots:
 	void beginInsertComputer( int index );
@@ -58,6 +61,7 @@ private:
 	QImage prepareIcon( const QImage& icon );
 	QImage computerDecorationRole( const ComputerControlInterface& controlInterface ) const;
 
+	ComputerControlInterface m_dummyControlInterface;
 	ComputerManager& m_manager;
 	QImage m_iconUnknownState;
 	QImage m_iconComputerUnreachable;

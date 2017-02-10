@@ -31,10 +31,7 @@ class PersonalConfig : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	PersonalConfig( Configuration::Store::Backend backend ) :
-		Configuration::Object( backend, Configuration::Store::Personal )
-	{
-	}
+	PersonalConfig( Configuration::Store::Backend backend );
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
 	OP( PersonalConfig, MasterCore::personalConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\

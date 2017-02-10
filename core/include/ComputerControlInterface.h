@@ -25,6 +25,7 @@
 #ifndef COMPUTER_CONTROL_INTERFACE_H
 #define COMPUTER_CONTROL_INTERFACE_H
 
+#include <QList>
 #include <QObject>
 #include <QSize>
 
@@ -92,6 +93,11 @@ public:
 		m_screenUpdated = false;
 	}
 
+	ItalcCoreConnection* coreConnection()
+	{
+		return m_coreConnection;
+	}
+
 
 private slots:
 	void setScreenUpdateFlag()
@@ -115,5 +121,7 @@ private:
 	bool m_screenUpdated;
 
 };
+
+typedef QList<ComputerControlInterface *> ComputerControlInterfaceList;
 
 #endif // COMPUTER_CONTROL_INTERFACE_H

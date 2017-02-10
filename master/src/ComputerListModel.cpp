@@ -28,8 +28,11 @@
 #include "ComputerManager.h"
 
 
+
+
 ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) :
 	QAbstractListModel( parent ),
+	m_dummyControlInterface( Computer() ),
 	m_manager( manager ),
 	m_iconUnknownState(),
 	m_iconComputerUnreachable(),
@@ -80,6 +83,11 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	}
 
+	if( index.row() >= m_manager.computerList().count() )
+	{
+		qCritical( "ComputerListModel::data(): index out of range!" );
+	}
+
 	if( role == Qt::DecorationRole )
 	{
 		return computerDecorationRole( m_manager.computerList()[index.row()].controlInterface() );
@@ -91,6 +99,19 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 	}
 
 	return m_manager.computerList()[index.row()].name();
+}
+
+
+
+ComputerControlInterface& ComputerListModel::computerControlInterface(const QModelIndex &index)
+{
+	if( index.isValid() == false || index.row() >= m_manager.computerList().count( ) )
+	{
+		qCritical( "ComputerListModel::computerControlInterface(): invalid ComputerControlInterface requested!" );
+		return m_dummyControlInterface;
+	}
+
+	return m_manager.computerList()[index.row()].controlInterface();
 }
 
 

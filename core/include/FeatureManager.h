@@ -1,6 +1,5 @@
 /*
- * PersonalConfig.cpp - a Configuration object storing personal settings
- *                      for the iTALC Master Application
+ * FeatureManager.h - header for the FeatureManager class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,23 +22,40 @@
  *
  */
 
-#include <QMessageBox>
+#ifndef FEATURE_MANAGER_H
+#define FEATURE_MANAGER_H
 
-#include "ItalcCore.h"
-#include "PersonalConfig.h"
+#include <QObject>
 
-FOREACH_PERSONAL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
+#include "Feature.h"
+#include "ComputerControlInterface.h"
 
+class QMenu;
+class QToolBar;
 
-PersonalConfig::PersonalConfig(Configuration::Store::Backend backend) :
-	Configuration::Object( backend, Configuration::Store::Personal )
+class FeatureManager : public QObject
 {
-	if( isStoreWritable() == false )
+	Q_OBJECT
+public:
+
+	FeatureManager( QObject* parent );
+
+	const Feature& monitoringModeFeature() const
 	{
-		QMessageBox::information( nullptr,
-								  tr( "No write access" ),
-								  tr( "Could not write your personal settings! "
-									  "Please check the personal configuration "
-									  "file path using the %1 Configurator." ).arg( ItalcCore::applicationName() ) );
+		return m_monitoringModeFeature;
 	}
-}
+
+	const FeatureList& features() const
+	{
+		return m_features;
+	}
+
+	void runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces );
+
+
+private:
+	Feature m_monitoringModeFeature;
+	QList<Feature> m_features;
+};
+
+#endif // FEATURE_MANAGER_H

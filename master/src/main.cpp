@@ -59,7 +59,7 @@ int main( int argc, char * * argv )
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
-	int screen = -1;
+
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
@@ -78,10 +78,6 @@ int main( int argc, char * * argv )
 						false;
 			new RemoteControlWidget( host, view_only );
 			return app.exec();
-		}
-		else if( a == "-screen" && arg_it.hasNext() )
-		{
-			screen = arg_it.next().toInt();
 		}
 		else if( a == "-role" )
 		{
@@ -126,7 +122,7 @@ int main( int argc, char * * argv )
 	MasterCore masterCore;
 
 	// now create the main-window
-	MainWindow mainWindow( masterCore, screen );
+	MainWindow mainWindow( masterCore );
 
 #if 0
 	if( !mainWindow.localICA() ||

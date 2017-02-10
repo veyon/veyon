@@ -27,6 +27,7 @@
 
 #include <QObject>
 
+class FeatureManager;
 class ItalcVncConnection;
 class ItalcCoreConnection;
 class ComputerManager;
@@ -38,6 +39,11 @@ class MasterCore : public QObject
 public:
 	MasterCore();
 	virtual ~MasterCore();
+
+	FeatureManager& featureManager()
+	{
+		return *m_featureManager;
+	}
 
 	ItalcVncConnection& localDisplay()
 	{
@@ -61,6 +67,7 @@ public:
 
 
 private:
+	FeatureManager* m_featureManager;
 	ItalcVncConnection* m_localDisplay;
 	ItalcCoreConnection* m_localService;
 	PersonalConfig* m_personalConfig;

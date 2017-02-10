@@ -24,7 +24,6 @@
 
 #include <italcconfig.h>
 
-#include <QDesktopWidget>
 #include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
@@ -38,6 +37,7 @@
 #include "ComputerManagementView.h"
 #include "SnapshotManagementWidget.h"
 #include "ConfigWidget.h"
+#include "FeatureManager.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
@@ -50,19 +50,12 @@
 #include "ui_MainWindow.h"
 
 
-MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
+MainWindow::MainWindow( MasterCore &masterCore ) :
 	QMainWindow(),
 	ui( new Ui::MainWindow ),
 	m_masterCore( masterCore ),
-	m_systemTrayIcon( this ),
-	m_openedTabInSideBar( 1 ),
-	//m_localICA( NULL ),
-	m_remoteControlWidget( NULL ),
-	m_remoteControlScreen( _rctrl_screen > -1 ?
-				qMin( _rctrl_screen,
-					QApplication::desktop()->numScreens() )
-				:
-				QApplication::desktop()->screenNumber( this ) )
+	m_modeGroup( new QButtonGroup( this ) ),
+	m_systemTrayIcon( this )
 {
 	ui->setupUi( this );
 
@@ -70,22 +63,7 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 
 	ui->computerMonitoringView->setComputerManager( m_masterCore.computerManager() );
 	ui->computerMonitoringView->setConfiguration( m_masterCore.personalConfig() );
-
-/*	if( LocalSystem::Path::ensurePathExists(
-						LocalSystem::Path::personalConfigDataPath() ) == false )
-	{
-		if( splashScreen != NULL )
-		{
-			splashScreen->hide();
-		}
-		QMessageBox::information( this, tr( "No write access" ),
-			tr( "Could not read/write or create directory %1! "
-			"For running %2, make sure you're permitted to "
-			"create or write this directory." ).arg(
-					LocalSystem::Path::personalConfigDataPath() ).
-								  arg( ItalcCore::applicationName() ) );
-		return;
-	}*/
+	ui->computerMonitoringView->setFeatureManager( m_masterCore.featureManager() );
 
 	// configure side bar
 	ui->sideBar->setOrientation( Qt::Vertical );
@@ -109,7 +87,7 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 
 	// create the action-toolbar
 	ui->toolBar->layout()->setSpacing( 4 );
-	ui->toolBar->setObjectName( "maintoolbar" );
+	ui->toolBar->setObjectName( "MainToolBar" );
 	ui->toolBar->toggleViewAction()->setEnabled( FALSE );
 
 	addToolBar( Qt::TopToolBarArea, ui->toolBar );
@@ -117,152 +95,19 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 	ToolButton * scr = new ToolButton(
 			QPixmap( ":/resources/applications-education.png" ),
 			tr( "Classroom" ), QString::null,
-			tr( "Switch classroom" ),
 			tr( "Click this button to open a menu where you can "
-				"choose the active classroom." ),
-			NULL, NULL, ui->toolBar );
+				"choose the active classroom." ) );
 	//scr->setMenu( m_classroomManager->quickSwitchMenu() );
 	scr->setPopupMode( ToolButton::InstantPopup );
-	scr->setWhatsThis( tr( "Click on this button, to switch between "
-							"classrooms." ) );
+	scr->setWhatsThis( tr( "Click this button to switch between classrooms." ) );
 
-	m_modeGroup = new QButtonGroup( this );
-
-	QAction * a;
-
-	a = new QAction( QIcon( ":/resources/presentation-none.png" ),
-						tr( "Overview mode" ), this );
-	m_sysTrayActions << a;
-	ToolButton * overview_mode = new ToolButton(
-			a, tr( "Overview" ), QString::null,
-			tr( "This is the default mode in %1 and allows you "
-				"to have an overview over all visible "
-				"computers. Also click on this button for "
-				"unlocking locked workstations or for leaving "
-				"demo-mode." ).arg( ItalcCore::applicationName() ),
-			this, SLOT( mapOverview() ), ui->toolBar );
-
-
-	a = new QAction( QIcon( ":/resources/presentation-fullscreen.png" ),
-						tr( "Fullscreen demo" ), this );
-	m_sysTrayActions << a;
-	ToolButton * fsdemo_mode = new ToolButton(
-			a, tr( "Fullscreen Demo" ), tr( "Stop Demo" ),
-			tr( "In this mode your screen is being displayed on "
-				"all shown computers. Furthermore the users "
-				"aren't able to do something else as all input "
-				"devices are locked in this mode." ),
-			this, SLOT( mapFullscreenDemo() ), ui->toolBar );
-
-	a = new QAction( QIcon( ":/resources/presentation-window.png" ),
-						tr( "Window demo" ), this );
-	m_sysTrayActions << a;
-	ToolButton * windemo_mode = new ToolButton(
-			a, tr( "Window Demo" ), tr( "Stop Demo" ),
-			tr( "In this mode your screen being displayed in a "
-				"window on all shown computers. The users are "
-				"able to switch to other windows and thus "
-				"can continue to work." ),
-			this, SLOT( mapWindowDemo() ), ui->toolBar );
-
-	a = new QAction( QIcon( ":/resources/system-lock-screen.png" ),
-					tr( "Lock/unlock desktops" ), this );
-	m_sysTrayActions << a;
-	ToolButton * lock_mode = new ToolButton(
-			a, tr( "Lock all" ), tr( "Unlock all" ),
-			tr( "To have all user's full attention you can lock "
-				"their desktops using this button. "
-				"In this mode all input devices are locked and "
-				"the screen is black." ),
-			this, SLOT( mapScreenLock() ), ui->toolBar );
-
-	overview_mode->setCheckable( TRUE );
-	fsdemo_mode->setCheckable( TRUE );
-	windemo_mode->setCheckable( TRUE );
-	lock_mode->setCheckable( TRUE );
-
-	m_modeGroup->addButton( overview_mode, ComputerControlInterface::ModeMonitoring );
-	m_modeGroup->addButton( fsdemo_mode, ComputerControlInterface::ModeFullScreenDemo );
-	m_modeGroup->addButton( windemo_mode, ComputerControlInterface::ModeWindowDemo );
-	m_modeGroup->addButton( lock_mode, ComputerControlInterface::ModeLocked );
-
-	overview_mode->setChecked( TRUE );
-
-
-
-	a = new QAction( QIcon( ":/resources/dialog-information.png" ),
-					tr( "Send text message" ), this );
-//	m_sysTrayActions << a;
-	ToolButton * text_msg = new ToolButton(
-			a, tr( "Text message" ), QString::null,
-			tr( "Use this button to send a text message to all "
-				"users e.g. to tell them new tasks etc." ),
-			&m_masterCore.computerManager(), SLOT( sendMessage() ), ui->toolBar );
-
-
-	a = new QAction( QIcon( ":/resources/preferences-system-power-management.png" ),
-					tr( "Power on computers" ), this );
-	m_sysTrayActions << a;
-	ToolButton * power_on = new ToolButton(
-			a, tr( "Power on" ), QString::null,
-			tr( "Click this button to power on all visible "
-				"computers. This way you do not have to turn "
-				"on each computer by hand." ),
-			&m_masterCore.computerManager(), SLOT( powerOnClients() ),
-								ui->toolBar );
-
-	a = new QAction( QIcon( ":/resources/system-shutdown.png" ),
-					tr( "Power down computers" ), this );
-	m_sysTrayActions << a;
-	ToolButton * power_off = new ToolButton(
-			a, tr( "Power down" ), QString::null,
-			tr( "To power down all shown computers (e.g. after "
-				"the lesson has finished) you can click this "
-				"button." ),
-			&m_masterCore.computerManager(),
-					SLOT( powerDownClients() ), ui->toolBar );
-
-	ToolButton * directsupport = new ToolButton(
-			QPixmap( ":/resources/remote_control.png" ),
-			tr( "Support" ), QString::null,
-			tr( "Direct support" ),
-			tr( "If you need to support someone at a certain "
-				"computer you can click this button and enter "
-				"the according hostname or IP afterwards." ),
-			&m_masterCore.computerManager(), SLOT( directSupport() ), ui->toolBar );
-
-/*	ToolButton * adjust_size = new ToolButton(
-			QPixmap( ":/resources/zoom-fit-best.png" ),
-			tr( "Adjust/align" ), QString::null,
-			tr( "Adjust windows and their size" ),
-			tr( "When clicking this button the biggest possible "
-				"size for the client-windows is adjusted. "
-				"Furthermore all windows are aligned." ),
-			&MasterCore::i().computerManager(), SLOT( adjustWindows() ), ui->toolBar );
-
-	ToolButton * auto_arrange = new ToolButton(
-			QPixmap( ":/resources/vcs-locally-modified.png" ),
-			tr( "Auto view" ), QString::null,
-			tr( "Auto re-arrange windows and their size" ),
-			tr( "When clicking this button all visible windows "
-					"are re-arranged and adjusted." ),
-			NULL, NULL, ui->toolBar );
-	auto_arrange->setCheckable( true );
-	auto_arrange->setChecked( m_classroomManager->isAutoArranged() );
-	connect( auto_arrange, SIGNAL( toggled( bool ) ), m_classroomManager,
-						 SLOT( arrangeWindowsToggle ( bool ) ) );*/
 
 	scr->addTo( ui->toolBar );
-	overview_mode->addTo( ui->toolBar );
-	fsdemo_mode->addTo( ui->toolBar );
-	windemo_mode->addTo( ui->toolBar );
-	lock_mode->addTo( ui->toolBar );
-	text_msg->addTo( ui->toolBar );
-	power_on->addTo( ui->toolBar );
-	power_off->addTo( ui->toolBar );
-	directsupport->addTo( ui->toolBar );
-	//adjust_size->addTo( ui->toolBar );
-	//auto_arrange->addTo( ui->toolBar );
+
+	addFeaturesToToolBar();
+	addFeaturesToSystemTrayMenu();
+
+	m_modeGroup->button( qHash( m_masterCore.featureManager().monitoringModeFeature().uid() ) )->setChecked( true );
 
 /*	restoreState( QByteArray::fromBase64(
 				m_classroomManager->winCfg().toUtf8() ) );
@@ -326,9 +171,6 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 		this, SLOT( handleSystemTrayEvent(
 					QSystemTrayIcon::ActivationReason ) ) );
 
-
-	//m_updateThread = new MainWindowUpdateThread( this );
-
 	ItalcCore::enforceBranding( this );
 }
 
@@ -337,11 +179,6 @@ MainWindow::MainWindow( MasterCore &masterCore, int _rctrl_screen ) :
 
 MainWindow::~MainWindow()
 {
-	/*m_localICA->stopDemoServer();
-
-	delete m_localICA;
-	m_localICA = NULL;*/
-
 	m_systemTrayIcon.hide();
 }
 
@@ -442,7 +279,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 
 
 
-
+#if 0
 void MainWindow::remoteControlClient( QAction* action )
 {
 	show();
@@ -478,30 +315,49 @@ void MainWindow::remoteControlDisplay( const QString& hostname,
 				this, SLOT( stopDemoAfterRemoteControl() ) );
 	}
 }
+#endif
 
 
 
-
-void MainWindow::stopDemoAfterRemoteControl()
+void MainWindow::addFeaturesToToolBar()
 {
-	m_masterCore.computerManager().setGlobalMode( ComputerControlInterface::ModeMonitoring );
+	for( auto feature : m_masterCore.featureManager().features() )
+	{
+		ToolButton* btn = new ToolButton( feature.icon(),
+										  feature.name(),
+										  feature.nameActive(),
+										  feature.description() );
+		connect( btn, &QToolButton::clicked, [=] () {
+			m_masterCore.computerManager().runFeature( m_masterCore.featureManager(), feature );
+			updateModeButtonGroup();
+		} );
+		btn->addTo( ui->toolBar );
+
+		switch( feature.type() )
+		{
+		case Feature::Mode:
+			btn->setCheckable( true );
+			m_modeGroup->addButton( btn, qHash( feature.uid() ) );
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 
 
-
-void MainWindow::changeGlobalClientMode( int mode )
+void MainWindow::addFeaturesToSystemTrayMenu()
 {
-	ComputerControlInterface::Mode newMode = static_cast<ComputerControlInterface::Modes>( mode );
-	ComputerManager& computerManager = m_masterCore.computerManager();
+	// TODO
+}
 
-	if( newMode == computerManager.globalMode() )
+
+
+void MainWindow::updateModeButtonGroup()
+{
+	if( m_masterCore.computerManager().currentMode() == m_masterCore.featureManager().monitoringModeFeature().uid() )
 	{
-		computerManager.setGlobalMode( ComputerControlInterface::ModeMonitoring );
-		m_modeGroup->button( ComputerControlInterface::ModeMonitoring )->setChecked( true );
-	}
-	else
-	{
-		computerManager.setGlobalMode( newMode );
+		m_modeGroup->button( qHash( m_masterCore.featureManager().monitoringModeFeature().uid() ) )->setChecked( true );
 	}
 }

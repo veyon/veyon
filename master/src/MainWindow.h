@@ -44,7 +44,7 @@ class WelcomeWidget;
 class RemoteControlWidget;
 class ItalcCoreConnection;
 class SnapshotManagementWidget;
-
+class Feature;
 
 namespace Ui {
 class MainWindow;
@@ -55,7 +55,7 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MainWindow( MasterCore& masterCore, int _screen );
+	MainWindow( MasterCore& masterCore );
 	virtual ~MainWindow();
 
 	static bool initAuthentication();
@@ -90,30 +90,14 @@ protected:
 
 private slots:
 	void handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r );
-	void remoteControlClient( QAction * _c );
-	void stopDemoAfterRemoteControl();
-
-	void changeGlobalClientMode( int );
-/*
-	void mapOverview( void )
-	{
-		changeGlobalClientMode( Client::Mode_Overview );
-	}
-	void mapFullscreenDemo( void )
-	{
-		changeGlobalClientMode( Client::Mode_FullscreenDemo );
-	}
-	void mapWindowDemo( void )
-	{
-		changeGlobalClientMode( Client::Mode_WindowDemo );
-	}
-	void mapScreenLock( void )
-	{
-		changeGlobalClientMode( Client::Mode_Locked );
-	}*/
 
 
 private:
+	void addFeaturesToToolBar();
+	void addFeaturesToSystemTrayMenu();
+
+	void updateModeButtonGroup();
+
 	Ui::MainWindow* ui;
 
 	MasterCore& m_masterCore;
@@ -123,19 +107,10 @@ private:
 	QSystemTrayIcon m_systemTrayIcon;
 	QList<QAction *> m_sysTrayActions;
 
-	//QWidget* m_sideBarWidget;
-	int m_openedTabInSideBar;
-
-	//ItalcCoreConnection * m_localICA;
-
-	QPointer<RemoteControlWidget> m_remoteControlWidget;
-	int m_remoteControlScreen;
-
 	WelcomeWidget* m_welcomeWidget;
 	ComputerManagementView* m_computerManagementView;
 	SnapshotManagementWidget* m_snapshotManagementWidget;
 	ConfigWidget* m_configWidget;
-
 
 } ;
 

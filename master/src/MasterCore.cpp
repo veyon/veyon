@@ -25,6 +25,7 @@
 #include <QHostAddress>
 
 #include "MasterCore.h"
+#include "FeatureManager.h"
 #include "ItalcVncConnection.h"
 #include "ItalcCoreConnection.h"
 #include "ComputerManager.h"
@@ -32,6 +33,7 @@
 
 
 MasterCore::MasterCore() :
+	m_featureManager( new FeatureManager( this ) ),
 	m_localDisplay( new ItalcVncConnection( this ) ),
 	m_localService( new ItalcCoreConnection( m_localDisplay ) ),
 	m_personalConfig( new PersonalConfig( Configuration::Store::JsonFile ) ),
@@ -66,4 +68,6 @@ MasterCore::~MasterCore()
 
 	m_personalConfig->flushStore();
 	delete m_personalConfig;
+
+	delete m_featureManager;
 }

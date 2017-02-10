@@ -25,6 +25,7 @@
 #include <QTimer>
 
 #include "ComputerManager.h"
+#include "FeatureManager.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
@@ -36,7 +37,7 @@ ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
 	m_config( config ),
 	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
 	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) ),
-	m_globalMode( ComputerControlInterface::ModeMonitoring )
+	m_currentMode()
 {
 	m_networkObjectSortProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
 	m_checkableNetworkObjectProxyModel->setSourceModel( m_networkObjectSortProxyModel );
@@ -81,14 +82,31 @@ void ComputerManager::updateComputerScreenSize()
 
 
 
-void ComputerManager::setGlobalMode( ComputerControlInterface::Mode mode )
+void ComputerManager::runFeature( FeatureManager& featureManager, const Feature& feature )
 {
+	ComputerControlInterfaceList computerControlInterfaces;
 	for( auto& computer : m_computerList )
 	{
-		//computer.setMode( mode )
+		computerControlInterfaces += &computer.controlInterface();
 	}
 
-	m_globalMode = mode;
+	if( feature.type() == Feature::Mode  )
+	{
+		if( m_currentMode == feature.uid() )
+		{
+			featureManager.runMasterFeature( featureManager.monitoringModeFeature(), computerControlInterfaces );
+			m_currentMode = featureManager.monitoringModeFeature().uid();
+		}
+		else
+		{
+			featureManager.runMasterFeature( feature, computerControlInterfaces );
+			m_currentMode = feature.uid();
+		}
+	}
+	else
+	{
+		featureManager.runMasterFeature( feature, computerControlInterfaces );
+	}
 }
 
 

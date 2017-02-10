@@ -1,7 +1,7 @@
 /*
  * ToolButton.cpp - implementation of iTALC-tool-button
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -48,16 +48,14 @@ bool ToolButton::s_iconOnlyMode = false;
 
 ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
 				const QString & _alt_label,
-				const QString & _title, 
 				const QString & _desc, QObject * _receiver, 
-				const char * _slot, QWidget * _parent ) :
-	QToolButton( _parent ),
+				const char * _slot ) :
+	QToolButton(),
 	m_pixmap( pixmap ),
 	m_smallPixmap( pixmap.scaled( 32, 32, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
 	m_mouseOver( false ),
 	m_label( _label ),
 	m_altLabel( _alt_label ),
-	m_title( _title ),
 	m_descr( _desc )
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
@@ -73,30 +71,20 @@ ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
 
 
 
-
-ToolButton::ToolButton( QAction* a, const QString& label,
-				const QString & _alt_label,
-				const QString & _desc, QObject * _receiver, 
-				const char * _slot, QWidget * _parent ) :
-	QToolButton( _parent ),
-	m_pixmap( a->icon().pixmap( 128, 128 ) ),
-	m_smallPixmap( a->icon().pixmap( 32, 32 ) ),
+ToolButton::ToolButton(const QIcon &icon,
+					   const QString &label,
+					   const QString &altLabel,
+					   const QString &description) :
+	m_pixmap( icon.pixmap( 128, 128 ) ),
+	m_smallPixmap( icon.pixmap( 32, 32 ) ),
 	m_mouseOver( false ),
 	m_label( label ),
-	m_altLabel( _alt_label ),
-	m_title( a->text() ),
-	m_descr( _desc )
+	m_altLabel( altLabel ),
+	m_descr( description )
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
 
 	updateSize();
-
-	if( _receiver != NULL && _slot != NULL )
-	{
-		connect( this, SIGNAL( clicked() ), _receiver, _slot );
-		connect( a, SIGNAL( triggered( bool ) ), _receiver, _slot );
-	}
-
 }
 
 
@@ -127,7 +115,7 @@ void ToolButton::setIconOnlyMode( bool _enabled )
 void ToolButton::addTo( QToolBar * _tb )
 {
 	QAction * a = _tb->addWidget( this );
-	a->setText( m_title );
+	a->setText( m_label );
 }
 
 
@@ -136,23 +124,22 @@ void ToolButton::addTo( QToolBar * _tb )
 void ToolButton::enterEvent( QEvent * _e )
 {
 	m_mouseOver = true;
-	if( !s_toolTipsDisabled && !m_title.isEmpty() && !m_descr.isEmpty() )
+	if( !s_toolTipsDisabled && !m_label.isEmpty() && !m_descr.isEmpty() )
 	{
 		QPoint p = mapToGlobal( QPoint( 0, 0 ) );
-		int scr = QApplication::desktop()->isVirtualDesktop() ?
-				QApplication::desktop()->screenNumber( p ) :
-				QApplication::desktop()->screenNumber( this );
+		int screenNumber = QApplication::desktop()->isVirtualDesktop() ?
+					QApplication::desktop()->screenNumber( p ) :
+					QApplication::desktop()->screenNumber( this );
 
 #ifdef Q_WS_MAC
-		QRect screen = QApplication::desktop()->availableGeometry(
-									scr );
+		QRect screen = QApplication::desktop()->availableGeometry( screenNumber );
 #else
-		QRect screen = QApplication::desktop()->screenGeometry( scr );
+		QRect screen = QApplication::desktop()->screenGeometry( screenNumber );
 #endif
 
-		ToolButtonTip * tbt = new ToolButtonTip( m_pixmap, m_title,
+		ToolButtonTip * tbt = new ToolButtonTip( m_pixmap, m_label,
 							m_descr,
-				QApplication::desktop()->screen( scr ), this );
+				QApplication::desktop()->screen( screenNumber ), this );
 		connect( this, SIGNAL( mouseLeftButton() ),
 							tbt, SLOT( close() ) );
 

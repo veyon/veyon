@@ -22,8 +22,11 @@
  *
  */
 
+#include <QMenu>
+
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
+#include "FeatureManager.h"
 #include "PersonalConfig.h"
 
 #include "ui_ComputerMonitoringView.h"
@@ -31,11 +34,15 @@
 ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerMonitoringView),
+	m_featureMenu( new QMenu( this ) ),
 	m_computerManager( nullptr ),
-	m_computerListModel( nullptr )
+	m_computerListModel( nullptr ),
+	m_featureManager( nullptr )
 {
 	ui->setupUi( this );
 
+	connect( ui->listView, &QListView::customContextMenuRequested,
+			 this, &ComputerMonitoringView::showContextMenu );
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 this, &ComputerMonitoringView::setComputerScreenSize );
 }
@@ -80,6 +87,40 @@ void ComputerMonitoringView::setComputerManager( ComputerManager &computerManage
 
 
 
+void ComputerMonitoringView::setFeatureManager( FeatureManager& featureManager )
+{
+	for( auto feature : featureManager.features() )
+	{
+		m_featureMenu->addAction( feature.icon(), feature.name(),  [=] () { runFeature( feature ); } );
+	}
+}
+
+
+
+ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInterfaces()
+{
+	ComputerControlInterfaceList computerControlInterfaces;
+
+	if( m_computerListModel )
+	{
+		for( auto index : ui->listView->selectionModel()->selectedIndexes() )
+		{
+			computerControlInterfaces += &( m_computerListModel->computerControlInterface( index ) );
+		}
+	}
+
+	return computerControlInterfaces;
+}
+
+
+
+void ComputerMonitoringView::showContextMenu( const QPoint& pos )
+{
+	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
+}
+
+
+
 void ComputerMonitoringView::setComputerScreenSize( int size )
 {
 	if( m_computerManager && m_config )
@@ -88,4 +129,11 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 		m_computerManager->updateComputerScreenSize();
 	}
+}
+
+
+
+void ComputerMonitoringView::runFeature( const Feature& feature )
+{
+	m_featureManager->runMasterFeature( feature, selectedComputerControlInterfaces() );
 }

@@ -29,7 +29,9 @@
 
 #include "Computer.h"
 #include "CheckableItemProxyModel.h"
+#include "Feature.h"
 
+class FeatureManager;
 class PersonalConfig;
 
 class ComputerManager : public QObject
@@ -44,6 +46,11 @@ public:
 		return m_checkableNetworkObjectProxyModel;
 	}
 
+	ComputerList& computerList()
+	{
+		return m_computerList;
+	}
+
 	const ComputerList& computerList() const
 	{
 		return m_computerList;
@@ -51,13 +58,10 @@ public:
 
 	void updateComputerScreenSize();
 
-	ComputerControlInterface::Mode globalMode() const
+	const Feature::Uid& currentMode() const
 	{
-		return m_globalMode;
+		return m_currentMode;
 	}
-
-	void setGlobalMode( ComputerControlInterface::Mode mode );
-
 
 signals:
 	void computerListAboutToBeReset();
@@ -73,6 +77,8 @@ signals:
 	void computerScreenSizeChanged();
 
 public slots:
+	void runFeature( FeatureManager& featureManager, const Feature& feature );
+
 	void reloadComputerList();
 	void updateComputerList();
 
@@ -89,7 +95,7 @@ private:
 
 	ComputerList m_computerList;
 
-	ComputerControlInterface::Mode m_globalMode;
+	Feature::Uid m_currentMode;
 
 };
 

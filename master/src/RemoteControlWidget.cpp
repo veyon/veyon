@@ -60,29 +60,19 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 
 	ToolButton * vo_btn = new ToolButton(
 				QPixmap( ":/resources/kmag.png" ),
-				tr( "View only" ), tr( "Remote control" ),
-				QString::null, QString::null, 0, 0,
-				this );
+				tr( "View only" ), tr( "Remote control" ) );
 	ToolButton * ls_btn = new ToolButton(
 				QPixmap( ":/resources/kr_unselect.png" ),
-				tr( "Lock student" ), tr( "Unlock student" ),
-				QString::null, QString::null, 0, 0,
-				this );
+				tr( "Lock student" ), tr( "Unlock student" ) );
 	ToolButton * ss_btn = new ToolButton(
 				QPixmap( ":/resources/camera-photo.png" ),
-				tr( "Snapshot" ), QString::null,
-				QString::null, QString::null, 0, 0,
-				this );
+				tr( "Snapshot" ) );
 	ToolButton * fs_btn = new ToolButton(
 				QPixmap( ":/resources/view-fullscreen.png" ),
-				tr( "Fullscreen" ), tr( "Window" ),
-				QString::null, QString::null, 0, 0,
-				this );
+				tr( "Fullscreen" ), tr( "Window" ) );
 	ToolButton * quit_btn = new ToolButton(
 				QPixmap( ":/resources/application-exit.png" ),
-				tr( "Quit" ), QString::null,
-				QString::null, QString::null, 0, 0,
-				this );
+				tr( "Quit" ) );
 	vo_btn->setCheckable( true );
 	ls_btn->setCheckable( true );
 	fs_btn->setCheckable( true );

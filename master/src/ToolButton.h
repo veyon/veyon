@@ -1,7 +1,7 @@
 /*
  * ToolButton.h - declaration of class ToolButton
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,23 +27,21 @@
 
 #include <QToolButton>
 
-
 class QToolBar;
-
 
 class ToolButton : public QToolButton
 {
 	Q_OBJECT
 public:
 	ToolButton( const QPixmap & _pixmap, const QString & _label,
-				const QString & _alt_label,
-				const QString & _title, 
-				const QString & _desc, QObject * _receiver, 
-				const char * _slot, QWidget * _parent );
-	ToolButton( QAction * _a, const QString & _label,
-				const QString & _alt_label,
-				const QString & _desc, QObject * _receiver, 
-				const char * _slot, QWidget * _parent );
+				const QString & _alt_label = QString(),
+				const QString & _desc = QString(), QObject * _receiver = nullptr,
+				const char * _slot = nullptr );
+
+	ToolButton( const QIcon& icon,
+				const QString& label,
+				const QString & altLabel,
+				const QString & description );
 	virtual ~ToolButton();
 
 
@@ -99,11 +97,9 @@ private:
 
 	QString m_label;
 	QString m_altLabel;
-	QString m_title;
 	QString m_descr;
 
 } ;
-
 
 
 
@@ -135,7 +131,4 @@ private:
 
 } ;
 
-
-
 #endif
-
