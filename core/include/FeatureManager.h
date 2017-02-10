@@ -28,10 +28,12 @@
 #include <QObject>
 
 #include "Feature.h"
+#include "FeatureInterface.h"
 #include "ComputerControlInterface.h"
 
 class QMenu;
 class QToolBar;
+class QWidget;
 
 class FeatureManager : public QObject
 {
@@ -50,12 +52,14 @@ public:
 		return m_features;
 	}
 
-	void runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces );
+	void runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
 
 
 private:
 	Feature m_monitoringModeFeature;
-	QList<Feature> m_features;
+	FeatureList m_features;
+	FeatureInterfaceList m_featureInterfaces;
+
 };
 
 #endif // FEATURE_MANAGER_H

@@ -77,7 +77,7 @@ signals:
 	void computerScreenSizeChanged();
 
 public slots:
-	void runFeature( FeatureManager& featureManager, const Feature& feature );
+	void runFeature( FeatureManager& featureManager, const Feature& feature, QWidget* parent );
 
 	void reloadComputerList();
 	void updateComputerList();

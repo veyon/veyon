@@ -328,7 +328,7 @@ void MainWindow::addFeaturesToToolBar()
 										  feature.nameActive(),
 										  feature.description() );
 		connect( btn, &QToolButton::clicked, [=] () {
-			m_masterCore.computerManager().runFeature( m_masterCore.featureManager(), feature );
+			m_masterCore.computerManager().runFeature( m_masterCore.featureManager(), feature, this );
 			updateModeButtonGroup();
 		} );
 		btn->addTo( ui->toolBar );

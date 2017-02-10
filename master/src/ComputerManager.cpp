@@ -82,7 +82,7 @@ void ComputerManager::updateComputerScreenSize()
 
 
 
-void ComputerManager::runFeature( FeatureManager& featureManager, const Feature& feature )
+void ComputerManager::runFeature( FeatureManager& featureManager, const Feature& feature, QWidget* parent )
 {
 	ComputerControlInterfaceList computerControlInterfaces;
 	for( auto& computer : m_computerList )
@@ -94,18 +94,18 @@ void ComputerManager::runFeature( FeatureManager& featureManager, const Feature&
 	{
 		if( m_currentMode == feature.uid() )
 		{
-			featureManager.runMasterFeature( featureManager.monitoringModeFeature(), computerControlInterfaces );
+			featureManager.runMasterFeature( featureManager.monitoringModeFeature(), computerControlInterfaces, parent );
 			m_currentMode = featureManager.monitoringModeFeature().uid();
 		}
 		else
 		{
-			featureManager.runMasterFeature( feature, computerControlInterfaces );
+			featureManager.runMasterFeature( feature, computerControlInterfaces, parent );
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		featureManager.runMasterFeature( feature, computerControlInterfaces );
+		featureManager.runMasterFeature( feature, computerControlInterfaces, parent );
 	}
 }
 

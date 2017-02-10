@@ -135,5 +135,5 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 void ComputerMonitoringView::runFeature( const Feature& feature )
 {
-	m_featureManager->runMasterFeature( feature, selectedComputerControlInterfaces() );
+	m_featureManager->runMasterFeature( feature, selectedComputerControlInterfaces(), topLevelWidget() );
 }
