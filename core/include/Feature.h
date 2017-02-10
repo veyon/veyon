@@ -84,6 +84,11 @@ public:
 	{
 	}
 
+	bool operator==( const Feature& other ) const
+	{
+		return other.uid() == uid();
+	}
+
 	Type type() const
 	{
 		return m_type;
