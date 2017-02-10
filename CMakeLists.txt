@@ -279,6 +279,7 @@ ADD_SUBDIRECTORY(core)
 ADD_SUBDIRECTORY(service)
 ADD_SUBDIRECTORY(master)
 ADD_SUBDIRECTORY(configurator)
+ADD_SUBDIRECTORY(features)
 
 INSTALL()
 
@@ -325,7 +326,9 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND unzip -j -d ${TMP} ${TMP}/Interception.zip Interception/command\ line\ installer/install-interception.exe
 			COMMAND rm ${TMP}/*.zip
 			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe ${TMP}
-			COMMAND ${STRIP} ${TMP}/*
+			COMMAND mkdir -p ${TMP}/features
+			COMMAND cp features/*/*.dll ${TMP}/features
+			COMMAND ${STRIP} ${TMP}/* ${TMP}/features/*
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}

@@ -15,8 +15,8 @@
    <string>Send text message</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../master.qrc">
-    <normaloff>:/resources/dialog-information.png</normaloff>:/resources/dialog-information.png</iconset>
+   <iconset resource="textmessage.qrc">
+    <normaloff>:/dialog-information.png</normaloff>:/dialog-information.png</iconset>
   </property>
   <layout class="QVBoxLayout">
    <property name="spacing">
@@ -63,7 +63,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../master.qrc">:/resources/dialog-information.png</pixmap>
+        <pixmap resource="textmessage.qrc">:/dialog-information.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -109,7 +109,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../master.qrc"/>
+  <include location="textmessage.qrc"/>
  </resources>
  <connections>
   <connection>

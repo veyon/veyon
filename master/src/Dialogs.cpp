@@ -32,7 +32,6 @@
 #include "ItalcCore.h"
 
 #include "ui_ClientSettingsDialog.h"
-#include "ui_TextMessageDialog.h"
 #include "ui_SupportDialog.h"
 #include "ui_RemoteLogonDialog.h"
 
@@ -195,32 +194,6 @@ QString SupportDialog::getHost( QWidget *parent )
 
 	return QString();
 }
-
-
-
-
-
-TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::TextMessageDialog ),
-	m_msgStr( msgStr )
-{
-	ui->setupUi( this );
-
-	ItalcCore::enforceBranding( this );
-}
-
-
-
-
-void TextMessageDialog::accept()
-{
-	m_msgStr = ui->textEdit->toPlainText();
-	QDialog::accept();
-}
-
-
-
 
 
 

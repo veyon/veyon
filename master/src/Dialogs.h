@@ -30,7 +30,6 @@
 namespace Ui
 {
 	class ClientSettingsDialog;
-	class TextMessageDialog;
 	class SupportDialog;
 	class RemoteLogonDialog;
 }
@@ -77,28 +76,6 @@ private:
 	Ui::SupportDialog *ui;
 
 } ;
-
-
-
-
-class TextMessageDialog : public QDialog
-{
-	Q_OBJECT
-public:
-	TextMessageDialog( QString &msgStr, QWidget *parent );
-
-
-private slots:
-	virtual void accept();
-
-
-private:
-	Ui::TextMessageDialog *ui;
-	QString &m_msgStr;
-
-} ;
-
-
 
 
 class RemoteLogonDialog : public QDialog
