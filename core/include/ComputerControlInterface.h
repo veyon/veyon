@@ -32,6 +32,7 @@
 class QImage;
 
 class Computer;
+class FeatureMessage;
 class ItalcVncConnection;
 class ItalcCoreConnection;
 
@@ -93,10 +94,7 @@ public:
 		m_screenUpdated = false;
 	}
 
-	ItalcCoreConnection* coreConnection()
-	{
-		return m_coreConnection;
-	}
+	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 
 private slots:

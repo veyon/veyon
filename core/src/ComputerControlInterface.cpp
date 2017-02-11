@@ -117,6 +117,16 @@ QImage ComputerControlInterface::screen() const
 
 
 
+void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
+{
+	if( m_coreConnection && m_coreConnection->isConnected() )
+	{
+		m_coreConnection->sendFeatureMessage( featureMessage );
+	}
+}
+
+
+
 void ComputerControlInterface::updateState()
 {
 	if( m_vncConnection )
