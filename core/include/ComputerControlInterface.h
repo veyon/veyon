@@ -65,6 +65,11 @@ public:
 	void start( const QSize& screenSize );
 	void stop();
 
+	const Computer& computer() const
+	{
+		return m_computer;
+	}
+
 	State state() const
 	{
 		return m_state;
