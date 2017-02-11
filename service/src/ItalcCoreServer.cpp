@@ -138,18 +138,6 @@ bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 	{
 		LocalSystem::logoutUser();
 	}
-	else if( cmd == ItalcCore::PowerOnComputer )
-	{
-		LocalSystem::broadcastWOLPacket( msgIn.arg( "mac" ) );
-	}
-	else if( cmd == ItalcCore::PowerDownComputer )
-	{
-		LocalSystem::powerDown();
-	}
-	else if( cmd == ItalcCore::RestartComputer )
-	{
-		LocalSystem::reboot();
-	}
 	else if( cmd == ItalcCore::DisableLocalInputs )
 	{
 		// TODO

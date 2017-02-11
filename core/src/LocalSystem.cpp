@@ -25,17 +25,16 @@
 
 #include <italcconfig.h>
 
-#include <QtCore/QDir>
-#include <QtCore/QProcess>
+#include <QDir>
+#include <QProcess>
 #include <QWidget>
-#include <QtNetwork/QHostInfo>
-
+#include <QHostInfo>
 
 #ifdef ITALC_BUILD_WIN32
 
 #define UNICODE
-#include <QtCore/QLibrary>
-#include <QtGui/QGuiApplication>
+#include <QLibrary>
+#include <QGuiApplication>
 #include <qpa/qplatformnativeinterface.h>
 
 #include <windows.h>
@@ -44,6 +43,11 @@
 #include <sddl.h>
 #include <userenv.h>
 #include <lm.h>
+#include <reason.h>
+
+#define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
+#define SHUTDOWN_REASON SHTDN_REASON_MAJOR_OTHER
+
 
 
 namespace LocalSystem
@@ -932,9 +936,66 @@ void broadcastWOLPacket( const QString & _mac )
 
 
 
-static inline void pressAndReleaseKey( int _key )
+
+
+void powerDown()
 {
+#ifdef ITALC_BUILD_WIN32
+	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
+	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
+#else
+	if( LocalSystem::User::loggedOnUser().name() == "root" )
+	{
+		QProcess::startDetached( "poweroff" );
+	}
+	else
+	{
+		// Gnome shutdown
+		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown" );
+		// KDE 3 shutdown
+		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" );
+		// KDE 4 shutdown
+		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 2 0" );
+		// KDE 5 shutdown
+		QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2" );
+		// generic shutdown via consolekit
+		QProcess::startDetached( "dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop" );
+	}
+#endif
 }
+
+
+
+
+
+void reboot()
+{
+#ifdef ITALC_BUILD_WIN32
+	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
+	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
+#else
+	if( LocalSystem::User::loggedOnUser().name() == "root" )
+	{
+		QProcess::startDetached( "reboot" );
+	}
+	else
+	{
+		// Gnome reboot
+		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot" );
+		// KDE 3 reboot
+		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" );
+		// KDE 4 reboot
+		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 1 0" );
+		// KDE 5 reboot
+		QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:1 int32:1" );
+		// generic reboot via consolekit
+		QProcess::startDetached( "dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart" );
+	}
+#endif
+}
+
 
 
 void logonUser( const QString & _uname, const QString & _passwd,
@@ -943,6 +1004,23 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	// TODO
 }
 
+
+
+void logoutUser()
+{
+#ifdef ITALC_BUILD_WIN32
+	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+#else
+	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
+	QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" );
+	// KDE 3 logout
+	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" );
+	// KDE 4 logout
+	QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" );
+	// KDE 5 logout
+	QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" );
+#endif
+}
 
 
 
