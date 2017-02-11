@@ -324,8 +324,8 @@ void MainWindow::addFeaturesToToolBar()
 	for( auto feature : m_masterCore.featureManager().features() )
 	{
 		ToolButton* btn = new ToolButton( feature.icon(),
-										  feature.name(),
-										  feature.nameActive(),
+										  feature.displayName(),
+										  feature.displayNameActive(),
 										  feature.description() );
 		connect( btn, &QToolButton::clicked, [=] () {
 			m_masterCore.computerManager().runFeature( m_masterCore.featureManager(), feature, this );
