@@ -39,7 +39,7 @@ typedef enum
 } SocketOpCodes;
 
 
-typedef qint64 ( * socketDispatcher )( char *buffer, const qint64 bytes,
+typedef qint64 ( * SocketDispatcher )( char *buffer, const qint64 bytes,
 									const SocketOpCodes opCode, void *user );
 
 
@@ -50,7 +50,7 @@ extern qint64 libvncClientDispatcher( char *buffer, const qint64 bytes,
 class SocketDevice : public QIODevice
 {
 public:
-	SocketDevice( socketDispatcher sockDisp, void *user = NULL ) :
+	SocketDevice( SocketDispatcher sockDisp, void *user = NULL ) :
 		QIODevice(),
 		m_socketDispatcher( sockDisp ),
 		m_user( user )
@@ -72,7 +72,7 @@ public:
 		d << v;
 	}
 
-	socketDispatcher sockDispatcher()
+	SocketDispatcher sockDispatcher()
 	{
 		return m_socketDispatcher;
 	}
@@ -112,7 +112,7 @@ protected:
 
 
 private:
-	socketDispatcher m_socketDispatcher;
+	SocketDispatcher m_socketDispatcher;
 	void * m_user;
 
 } ;

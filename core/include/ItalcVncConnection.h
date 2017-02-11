@@ -47,12 +47,10 @@ extern "C"
 }
 
 
-class ClientEvent
+class MessageEvent
 {
 public:
-	virtual ~ClientEvent()
-	{
-	}
+	virtual ~MessageEvent() { }
 
 	virtual void fire( rfbClient *c ) = 0;
 } ;
@@ -129,7 +127,7 @@ public:
 		return m_quality;
 	}
 
-	void enqueueEvent( ClientEvent *e );
+	void enqueueEvent( MessageEvent *e );
 
 	const rfbClient *getRfbClient() const
 	{
@@ -240,7 +238,7 @@ private:
 	int m_framebufferUpdateInterval;
 	QMutex m_mutex;
 	mutable QReadWriteLock m_imgLock;
-	QQueue<ClientEvent *> m_eventQueue;
+	QQueue<MessageEvent *> m_eventQueue;
 
 	QImage m_image;
 	bool m_scaledScreenNeedsUpdate;

@@ -45,7 +45,7 @@ extern "C" void rfbClientEncryptBytes2( unsigned char *where, const int length, 
 
 
 
-class KeyClientEvent : public ClientEvent
+class KeyClientEvent : public MessageEvent
 {
 public:
 	KeyClientEvent( unsigned int key, bool pressed ) :
@@ -66,7 +66,7 @@ private:
 
 
 
-class PointerClientEvent : public ClientEvent
+class PointerClientEvent : public MessageEvent
 {
 public:
 	PointerClientEvent( int x, int y, int buttonMask ) :
@@ -89,7 +89,7 @@ private:
 
 
 
-class ClientCutEvent : public ClientEvent
+class ClientCutEvent : public MessageEvent
 {
 public:
 	ClientCutEvent( const QString& text ) :
@@ -679,7 +679,7 @@ void ItalcVncConnection::doConnection()
 
 		while( !m_eventQueue.isEmpty() )
 		{
-			ClientEvent * clientEvent = m_eventQueue.dequeue();
+			MessageEvent * clientEvent = m_eventQueue.dequeue();
 
 			// unlock the queue mutex during the runtime of ClientEvent::fire()
 			m_mutex.unlock();
@@ -730,7 +730,7 @@ void ItalcVncConnection::finishFrameBufferUpdate()
 
 
 
-void ItalcVncConnection::enqueueEvent( ClientEvent *e )
+void ItalcVncConnection::enqueueEvent( MessageEvent *e )
 {
 	QMutexLocker lock( &m_mutex );
 	if( m_state != Connected )

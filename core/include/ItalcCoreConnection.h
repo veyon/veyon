@@ -28,6 +28,7 @@
 #include "ItalcCore.h"
 #include "ItalcVncConnection.h"
 
+class FeatureMessage;
 
 class ItalcCoreConnection : public QObject
 {
@@ -48,7 +49,7 @@ public:
 
 	bool isConnected() const
 	{
-		return m_vncConn->isConnected();
+		return m_vncConn && m_vncConn->isConnected();
 	}
 
 	const QString & user() const
@@ -79,6 +80,8 @@ public:
 	GEN_SLAVE_STATE_HELPER(SystemTrayIconRunning)
 	GEN_SLAVE_STATE_HELPER(MessageBoxRunning)
 
+	void sendFeatureMessage( const FeatureMessage &featureMessage );
+
 	void sendGetUserInformationRequest();
 	void execCmds( const QString &cmd );
 	void startDemo( const QString &host, int port, bool fullscreen = false );
@@ -90,7 +93,6 @@ public:
 	void logonUser( const QString &uname, const QString &pw,
 						const QString &domain );
 	void logoutUser();
-	void displayTextMessage( const QString& title, const QString &msg );
 
 	void powerOnComputer( const QString &mac );
 	void powerDownComputer();

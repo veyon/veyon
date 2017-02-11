@@ -70,7 +70,6 @@ namespace ItalcCore
 	extern const Command UnlockInput;
 	extern const Command LogonUserCmd;
 	extern const Command LogoutUser;
-	extern const Command DisplayTextMessage;
 	extern const Command AccessDialog;
 	extern const Command ExecCmds;
 	extern const Command PowerOnComputer;

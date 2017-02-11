@@ -22,12 +22,13 @@
  *
  */
 
+#include "FeatureMessage.h"
 #include "ItalcCoreConnection.h"
 #include "Logger.h"
 #include "SocketDevice.h"
 
 
-class ItalcMessageEvent : public ClientEvent
+class ItalcMessageEvent : public MessageEvent
 {
 public:
 	ItalcMessageEvent( const ItalcCore::Msg &m ) :
@@ -47,6 +48,32 @@ public:
 
 private:
 	ItalcCore::Msg m_msg;
+
+} ;
+
+
+class FeatureMessageEvent : public MessageEvent
+{
+public:
+	FeatureMessageEvent( const FeatureMessage& featureMessage ) :
+		m_featureMessage( featureMessage )
+	{
+	}
+
+	virtual void fire( rfbClient *client )
+	{
+		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
+				 << "with arguments" << m_featureMessage.arguments();
+
+		SocketDevice socketDevice( libvncClientDispatcher, client );
+		QDataStream d( &socketDevice );
+		d << (uint8_t) rfbItalcFeatureRequest;
+		m_featureMessage.send( &socketDevice );
+	}
+
+
+private:
+	FeatureMessage m_featureMessage;
 
 } ;
 
@@ -87,6 +114,18 @@ ItalcCoreConnection::~ItalcCoreConnection()
 {
 }
 
+
+
+void ItalcCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
+{
+	if( !m_vncConn )
+	{
+		ilog( Error, "ItalcCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
+		return;
+	}
+
+	m_vncConn->enqueueEvent( new FeatureMessageEvent( featureMessage ) );
+}
 
 
 
@@ -245,17 +284,6 @@ void ItalcCoreConnection::logoutUser()
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::LogoutUser ) );
 }
-
-
-
-
-void ItalcCoreConnection::displayTextMessage( const QString& title, const QString &msg )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DisplayTextMessage ).
-						addArg( "title", title ).
-						addArg( "text", msg ) );
-}
-
 
 
 
