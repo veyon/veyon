@@ -36,9 +36,6 @@ static const Feature::Uid uidPresentationFullScreen = Feature::Uid( "7b6231bd-eb
 static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" );
 static const Feature::Uid uidComputerLock = Feature::Uid( "ccb535a2-1d24-4cc1-a709-8b47d2b2ac79" );
 static const Feature::Uid uidSnapshot = Feature::Uid( "fe539932-d158-49b0-aedb-f01dc1e88cfa" );
-static const Feature::Uid uidPowerOn = Feature::Uid( "f483c659-b5e7-4dbc-bd91-2c9403e70ebd" );
-static const Feature::Uid uidReboot = Feature::Uid( "4f7d98f0-395a-4fff-b968-e49b8d0f748c" );
-static const Feature::Uid uidPowerDown = Feature::Uid( "6f5a27a0-0e2f-496e-afcc-7aae62eede10" );
 static const Feature::Uid uidRemoteControl = Feature::Uid( "fc22fa22-2469-41b9-a626-1bd9875dec41" );
 static const Feature::Uid uidRemoteView = Feature::Uid( "6154bcd0-93d4-44cb-adc6-eb08edf5fae5" );
 
@@ -117,26 +114,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   tr( "Use this function to take a snapshot of all computers." ),
 						   QIcon( ":/resources/camera-photo.png" ) );
 
-	m_features += Feature( Feature::Action, Feature::ScopeAll, uidPowerOn,
-						   "PowerControl",
-						   tr( "Power on" ), QString(),
-						   tr( "Click this button to power on all computers. "
-							   "This way you do not have to power on each computer by hand." ),
-						   QIcon( ":/resources/preferences-system-power-management.png" ) );
-
-	m_features += Feature( Feature::Action, Feature::ScopeAll, uidReboot,
-						   "PowerControl",
-						   tr( "Reboot" ), QString(),
-						   tr( "Click this button to reboot all computers." ),
-						   QIcon( ":/resources/system-reboot.png" ) );
-
-	m_features += Feature( Feature::Action, Feature::ScopeAll, uidPowerDown,
-						   "PowerControl",
-						   tr( "Power down" ), QString(),
-						   tr( "Click this button to power down all computers. "
-							   "This way you do not have to power down each computer by hand." ),
-						   QIcon( ":/resources/system-shutdown.png" ) );
-
 	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteControl,
 						   "RemoteControl",
 						   tr( "Remote control" ), QString(),
@@ -160,31 +137,6 @@ void FeatureManager::startMasterFeature( const Feature& feature, const ComputerC
 	{
 		featureInterface->startMasterFeature( feature, computerControlInterfaces, parent );
 	}
-
-/*	if( feature.uid() == uidRemoteControl )
-	{
-
-	}
-	else if( feature.uid() == uidPowerOn )
-	{
-		for( auto computerControlInterface : computerControlInterfaces )
-		{
-			if( computerControlInterface->coreConnection() )
-			{
-				computerControlInterface->coreConnection()->powerOnComputer( QString() );
-			}
-		}
-	}
-	else if( feature.uid() == uidPowerDown )
-	{
-		for( auto computerControlInterface : computerControlInterfaces )
-		{
-			if( computerControlInterface->coreConnection() )
-			{
-				computerControlInterface->coreConnection()->powerDownComputer();
-			}
-		}
-	}*/
 }
 
 

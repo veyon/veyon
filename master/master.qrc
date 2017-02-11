@@ -23,12 +23,9 @@
         <file>resources/presentation-window.png</file>
         <file>resources/presentation-none.png</file>
         <file>resources/help-about.png</file>
-        <file>resources/preferences-system-power-management.png</file>
         <file>resources/system-lock-screen.png</file>
         <file>resources/preferences-system-login.png</file>
         <file>resources/view-calendar-month.png</file>
-        <file>resources/system-shutdown.png</file>
-        <file>resources/system-reboot.png</file>
         <file>resources/remote_control.png</file>
         <file>resources/remote_control_48.png</file>
         <file>resources/run-build.png</file>

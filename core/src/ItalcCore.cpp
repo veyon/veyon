@@ -386,9 +386,6 @@ const Command LogonUserCmd = "LogonUser";
 const Command LogoutUser = "LogoutUser";
 const Command AccessDialog = "AccessDialog";
 const Command ExecCmds = "ExecCmds";
-const Command PowerOnComputer = "PowerOnComputer";
-const Command PowerDownComputer = "PowerDownComputer";
-const Command RestartComputer = "RestartComputer";
 const Command DisableLocalInputs = "DisableLocalInputs";
 const Command SetRole = "SetRole";
 

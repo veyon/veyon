@@ -72,9 +72,6 @@ namespace ItalcCore
 	extern const Command LogoutUser;
 	extern const Command AccessDialog;
 	extern const Command ExecCmds;
-	extern const Command PowerOnComputer;
-	extern const Command PowerDownComputer;
-	extern const Command RestartComputer;
 	extern const Command DisableLocalInputs;
 	extern const Command SetRole;
 	extern const Command StartDemoServer;

@@ -1,1 +1,2 @@
+ADD_SUBDIRECTORY(powercontrol)
 ADD_SUBDIRECTORY(textmessage)

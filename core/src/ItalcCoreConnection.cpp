@@ -287,31 +287,6 @@ void ItalcCoreConnection::logoutUser()
 
 
 
-void ItalcCoreConnection::powerOnComputer( const QString &mac )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::PowerOnComputer ).
-						addArg( "mac",mac ) );
-}
-
-
-
-
-void ItalcCoreConnection::powerDownComputer()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::PowerDownComputer ) );
-}
-
-
-
-
-void ItalcCoreConnection::restartComputer()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::RestartComputer ) );
-}
-
-
-
-
 void ItalcCoreConnection::disableLocalInputs( bool disabled )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::DisableLocalInputs ).

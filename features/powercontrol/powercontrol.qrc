@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>preferences-system-power-management.png</file>
+        <file>system-shutdown.png</file>
+        <file>system-reboot.png</file>
+    </qresource>
+</RCC>

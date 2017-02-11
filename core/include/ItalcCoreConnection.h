@@ -94,9 +94,6 @@ public:
 						const QString &domain );
 	void logoutUser();
 
-	void powerOnComputer( const QString &mac );
-	void powerDownComputer();
-	void restartComputer();
 	void disableLocalInputs( bool disabled );
 
 	void setRole( const ItalcCore::UserRole role );
