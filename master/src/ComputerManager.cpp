@@ -92,20 +92,22 @@ void ComputerManager::runFeature( FeatureManager& featureManager, const Feature&
 
 	if( feature.type() == Feature::Mode  )
 	{
+		featureManager.stopMasterFeature( Feature( m_currentMode ), computerControlInterfaces, parent );
+
 		if( m_currentMode == feature.uid() )
 		{
-			featureManager.runMasterFeature( featureManager.monitoringModeFeature(), computerControlInterfaces, parent );
+			featureManager.startMasterFeature( featureManager.monitoringModeFeature(), computerControlInterfaces, parent );
 			m_currentMode = featureManager.monitoringModeFeature().uid();
 		}
 		else
 		{
-			featureManager.runMasterFeature( feature, computerControlInterfaces, parent );
+			featureManager.startMasterFeature( feature, computerControlInterfaces, parent );
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		featureManager.runMasterFeature( feature, computerControlInterfaces, parent );
+		featureManager.startMasterFeature( feature, computerControlInterfaces, parent );
 	}
 }
 
