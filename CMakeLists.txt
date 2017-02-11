@@ -328,8 +328,8 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND rm ${TMP}/*.zip
 			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe worker/italc-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/features
-			COMMAND cp features/*/*.dll ${TMP}/features
-			COMMAND ${STRIP} ${TMP}/* ${TMP}/features/*
+			COMMAND cp features/*/*.dll ${TMP}/features/
+			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/features/*
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
