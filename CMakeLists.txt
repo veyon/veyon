@@ -228,7 +228,7 @@ SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/rfb/rfbconfig.h)
 SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/config.h)
 
-SET(IN_FILES ${ITALC_CORE_INCLUDE_DIR}/italcconfig.h nsis/iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
+SET(IN_FILES ${ITALC_CORE_INCLUDE_DIR}/italcconfig.h nsis/iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc worker/italc-worker.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -279,6 +279,7 @@ ADD_SUBDIRECTORY(core)
 ADD_SUBDIRECTORY(service)
 ADD_SUBDIRECTORY(master)
 ADD_SUBDIRECTORY(configurator)
+ADD_SUBDIRECTORY(worker)
 ADD_SUBDIRECTORY(features)
 
 INSTALL()
@@ -325,7 +326,7 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND wget -P ${TMP} https://github.com/oblitum/Interception/releases/download/1.0.0/Interception.zip
 			COMMAND unzip -j -d ${TMP} ${TMP}/Interception.zip Interception/command\ line\ installer/install-interception.exe
 			COMMAND rm ${TMP}/*.zip
-			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe ${TMP}
+			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe worker/italc-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/features
 			COMMAND cp features/*/*.dll ${TMP}/features
 			COMMAND ${STRIP} ${TMP}/* ${TMP}/features/*
