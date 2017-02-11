@@ -31,9 +31,9 @@
 #include "FeatureInterface.h"
 #include "ComputerControlInterface.h"
 
-class QMenu;
-class QToolBar;
 class QWidget;
+
+class FeatureWorkerManager;
 
 class FeatureManager : public QObject
 {
@@ -52,8 +52,10 @@ public:
 		return m_features;
 	}
 
-	void runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
-
+	void startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
+	void stopMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
+	bool handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice, FeatureWorkerManager& featureWorkerManager );
+	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice );
 
 private:
 	Feature m_monitoringModeFeature;

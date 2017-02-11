@@ -70,6 +70,7 @@ public slots:
 	void setVncLowAccuracy( bool );
 	void setDemoServerBackend( int );
 	void setCoreServerPort( int );
+	void setFeatureWorkerManagerPort( int );
 	void setDemoServerPort( int );
 	void setFirewallExceptionEnabled( bool );
 	void setLocalConnectOnly( bool );

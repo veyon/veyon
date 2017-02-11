@@ -101,6 +101,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setDemoServerBackend( 0 );
 
 	c.setCoreServerPort( PortOffsetVncServer );
+	c.setFeatureWorkerManagerPort( PortOffsetFeatureManagerPort );
 	c.setDemoServerPort( PortOffsetDemoServer );
 	c.setFirewallExceptionEnabled( true );
 
