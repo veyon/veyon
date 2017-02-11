@@ -95,9 +95,13 @@ static rfbBool lvs_italcHandleMessage( struct _rfbClientRec *client,
 {
 	if( message->type == rfbItalcCoreRequest )
 	{
-		return ItalcCoreServer::instance()->
-				handleItalcClientMessage( libvncServerDispatcher, client );
+		return ItalcCoreServer::instance()->handleItalcCoreMessage( libvncServerDispatcher, client );
 	}
+	else if( message->type == rfbItalcFeatureRequest )
+	{
+		return ItalcCoreServer::instance()->handleItalcFeatureMessage( libvncServerDispatcher, client );
+	}
+
 	return false;
 }
 

@@ -151,7 +151,7 @@ static bool parseArguments( const QStringList &arguments )
 
 static int runCoreServer( int argc, char **argv )
 {
-	QCoreApplication app( argc, argv );
+	QGuiApplication app( argc, argv );
 
 	ItalcCore::init();
 

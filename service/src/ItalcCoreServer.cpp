@@ -37,6 +37,7 @@
 #include "AccessControlProvider.h"
 #include "DesktopAccessPermission.h"
 #include "DsaKey.h"
+#include "FeatureMessage.h"
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
 
@@ -48,6 +49,8 @@ ItalcCoreServer::ItalcCoreServer() :
 	QObject(),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
+	m_featureManager( this ),
+	m_featureWorkerManager( m_featureManager ),
 	m_slaveManager()
 {
 	Q_ASSERT( _this == NULL );
@@ -65,7 +68,7 @@ ItalcCoreServer::~ItalcCoreServer()
 
 
 
-int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
+bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 												void *user )
 {
 	SocketDevice sdev( sock, user );
@@ -188,10 +191,6 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	{
 		m_slaveManager.stopDemo();
 	}
-	else if( cmd == ItalcCore::DisplayTextMessage )
-	{
-		m_slaveManager.messageBox( msgIn.arg( "title" ), msgIn.arg( "text" ) );
-	}
 	else if( cmd == ItalcCore::LockScreen )
 	{
 		m_slaveManager.lockScreen();
@@ -234,11 +233,9 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 				addArg( "slavestateflags", m_slaveManager.slaveStateFlags() ).
 					send();
 	}
-	// TODO: handle plugins
 	else
 	{
-		qCritical() << "ItalcCoreServer::handleItalcClientMessage(...): "
-				"could not handle cmd" << cmd;
+		qCritical() << "ItalcCoreServer::handleItalcClientMessage(...): could not handle cmd" << cmd;
 	}
 
 	return true;
@@ -246,7 +243,23 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 
 
 
-bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
+bool ItalcCoreServer::handleItalcFeatureMessage( SocketDispatcher socketDispatcher, void *user )
+{
+	SocketDevice socketDevice( socketDispatcher, user );
+
+	// receive message
+	FeatureMessage featureMessage( &socketDevice );
+	featureMessage.receive();
+
+	qDebug() << "ItalcCoreServer::handleItalcFeatureMessage():" << featureMessage.featureUid()
+			 << "with arguments" << featureMessage.arguments();
+
+	return m_featureManager.handleServiceFeatureMessage( featureMessage, &socketDevice, m_featureWorkerManager );
+}
+
+
+
+bool ItalcCoreServer::authSecTypeItalc( SocketDispatcher sd, void *user )
 {
 	// find out IP of host - needed at several places
 	const int MAX_HOST_LEN = 255;
