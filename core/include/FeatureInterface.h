@@ -2,9 +2,10 @@
 #define FEATURE_INTERFACE_H
 
 #include "ComputerControlInterface.h"
-#include "ItalcCore.h"
+#include "FeatureMessage.h"
 #include "Feature.h"
 
+class FeatureWorkerManager;
 
 class FeatureInterface
 {
@@ -17,20 +18,41 @@ public:
 	virtual const FeatureList& featureList() const = 0;
 
 	/*!
-	 * \brief Run a feature on master side for given computer control interfaces
-	 * \param feature the feature to run
+	 * \brief Start a feature on master side for given computer control interfaces
+	 * \param feature the feature to start
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 * \param parent a pointer to the main window instance
 	 */
-	virtual bool runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent ) = 0;
+	virtual bool startMasterFeature( const Feature& feature,
+									 const ComputerControlInterfaceList& computerControlInterfaces,
+									 QWidget* parent ) = 0;
 
 	/*!
-	 * \brief Run a feature on service side after receiving given message
-	 * \param feature the feature to run
-	 * \param socketDevice the socket device which can be used for sending responses
-	 * \param message the message which has been received and needs to be handled
+	 * \brief Stops a feature on master side for given computer control interfaces
+	 * \param feature the feature to stop
+	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
+	 * \param parent a pointer to the main window instance
 	 */
-	virtual bool runServiceFeature( const Feature& feature, SocketDevice& socketDevice, const ItalcCore::Msg& message ) = 0;
+	virtual bool stopMasterFeature( const Feature& feature,
+									const ComputerControlInterfaceList& computerControlInterfaces,
+									QWidget* parent ) = 0;
+
+	/*!
+	 * \brief Handles a received feature message inside service
+	 * \param message the message which has been received and needs to be handled
+	 * \param socketDevice the socket device which can be used for sending responses
+	 */
+	virtual bool handleServiceFeatureMessage( const FeatureMessage& message,
+											  QIODevice* ioDevice,
+											  FeatureWorkerManager& featureWorkerManager ) = 0;
+
+	/*!
+	 * \brief Handles a received feature message inside worker
+	 * \param message the message which has been received and needs to be handled
+	 * \param socketDevice the socket device which can be used for sending responses
+	 */
+	virtual bool handleWorkerFeatureMessage( const FeatureMessage& message,
+											 QIODevice* ioDevice ) = 0;
 
 };
 
