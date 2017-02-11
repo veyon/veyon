@@ -53,6 +53,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	QObject( parent ),
 	m_monitoringModeFeature( Feature::Mode, Feature::ScopeAll,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
+							 "Monitoring",
 							 tr( "Monitoring" ), QString(),
 							 tr( "This is the default mode and allows you to monitor all computers in the classroom." ),
 							 QIcon( ":/resources/presentation-none.png" ) ),
@@ -84,6 +85,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	}
 
 	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidPresentationFullScreen,
+						   "Presentation",
 						   tr( "Fullscreen presentation" ), tr( "Stop presentation" ),
 						   tr( "In this mode your screen is being displayed on "
 							   "all computers. Furthermore the users "
@@ -92,6 +94,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   QIcon( ":/resources/presentation-fullscreen.png" ) );
 
 	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidPresentationWindow,
+						   "Presentation",
 						   tr( "Window presentation" ), tr( "Stop presentation" ),
 						   tr( "In this mode your screen being displayed in a "
 							   "window on all computers. The users are "
@@ -100,6 +103,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   QIcon( ":/resources/presentation-window.png" ) );
 
 	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidComputerLock,
+						   "ScreenLock",
 						   tr( "Lock" ), tr( "Unlock" ),
 						   tr( "To have all user's full attention you can lock "
 							   "their computers using this button. "
@@ -108,33 +112,39 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   QIcon( ":/resources/system-lock-screen.png" ) );
 
 	m_features += Feature( Feature::Action, Feature::ScopeMaster, uidSnapshot,
+						   "Snapshot",
 						   tr( "Snapshot" ), QString(),
 						   tr( "Use this function to take a snapshot of all computers." ),
 						   QIcon( ":/resources/camera-photo.png" ) );
 
 	m_features += Feature( Feature::Action, Feature::ScopeAll, uidPowerOn,
+						   "PowerControl",
 						   tr( "Power on" ), QString(),
 						   tr( "Click this button to power on all computers. "
 							   "This way you do not have to power on each computer by hand." ),
 						   QIcon( ":/resources/preferences-system-power-management.png" ) );
 
 	m_features += Feature( Feature::Action, Feature::ScopeAll, uidReboot,
+						   "PowerControl",
 						   tr( "Reboot" ), QString(),
 						   tr( "Click this button to reboot all computers." ),
 						   QIcon( ":/resources/system-reboot.png" ) );
 
 	m_features += Feature( Feature::Action, Feature::ScopeAll, uidPowerDown,
+						   "PowerControl",
 						   tr( "Power down" ), QString(),
 						   tr( "Click this button to power down all computers. "
 							   "This way you do not have to power down each computer by hand." ),
 						   QIcon( ":/resources/system-shutdown.png" ) );
 
 	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteControl,
+						   "RemoteControl",
 						   tr( "Remote control" ), QString(),
 						   tr( "Opens a remote control window" ),
 						   QIcon( ":/resources/remote_control.png" ) );
 
 	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteView,
+						   "RemoteControl",
 						   tr( "Remote view" ), QString(),
 						   tr( "Opens a remote view window" ),
 						   QIcon( ":/resources/kmag.png" ) );
@@ -142,16 +152,16 @@ FeatureManager::FeatureManager( QObject* parent ) :
 
 
 
-void FeatureManager::runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent )
+void FeatureManager::startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent )
 {
-	qDebug() << "Run master feature" << feature.name() << feature.uid() << computerControlInterfaces;
+	qDebug() << "Run master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : m_featureInterfaces )
 	{
-		featureInterface->runMasterFeature( feature, computerControlInterfaces, parent );
+		featureInterface->startMasterFeature( feature, computerControlInterfaces, parent );
 	}
 
-	if( feature.uid() == uidRemoteControl )
+/*	if( feature.uid() == uidRemoteControl )
 	{
 
 	}
@@ -174,5 +184,57 @@ void FeatureManager::runMasterFeature( const Feature& feature, const ComputerCon
 				computerControlInterface->coreConnection()->powerDownComputer();
 			}
 		}
+	}*/
+}
+
+
+
+void FeatureManager::stopMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent )
+{
+	qDebug() << "Stop master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
+
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		featureInterface->stopMasterFeature( feature, computerControlInterfaces, parent );
 	}
+}
+
+
+
+bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
+												  QIODevice* ioDevice,
+												  FeatureWorkerManager& featureWorkerManager )
+{
+	qDebug() << "FeatureManager::handleServiceFeatureMessage():" << message.featureUid();
+
+	bool handled = false;
+
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		if( featureInterface->handleServiceFeatureMessage( message, ioDevice, featureWorkerManager ) )
+		{
+			handled = true;
+		}
+	}
+
+	return handled;
+}
+
+
+
+bool FeatureManager::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+{
+	qDebug() << "FeatureManager::handleWorkerFeatureMessage():" << message.featureUid();
+
+	bool handled = false;
+
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		if( featureInterface->handleWorkerFeatureMessage( message, ioDevice ) )
+		{
+			handled = true;
+		}
+	}
+
+	return handled;
 }
