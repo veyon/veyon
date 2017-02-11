@@ -89,9 +89,11 @@ void ComputerMonitoringView::setComputerManager( ComputerManager &computerManage
 
 void ComputerMonitoringView::setFeatureManager( FeatureManager& featureManager )
 {
+	m_featureManager = &featureManager;
+
 	for( auto feature : featureManager.features() )
 	{
-		m_featureMenu->addAction( feature.icon(), feature.name(),  [=] () { runFeature( feature ); } );
+		m_featureMenu->addAction( feature.icon(), feature.displayName(), [=] () { runFeature( feature ); } );
 	}
 }
 
@@ -135,5 +137,5 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 void ComputerMonitoringView::runFeature( const Feature& feature )
 {
-	m_featureManager->runMasterFeature( feature, selectedComputerControlInterfaces(), topLevelWidget() );
+	m_featureManager->startMasterFeature( feature, selectedComputerControlInterfaces(), topLevelWidget() );
 }

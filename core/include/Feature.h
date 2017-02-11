@@ -37,6 +37,7 @@ public:
 	typedef QUuid Uid;
 	typedef enum Types
 	{
+		None,
 		Mode,
 		Action,
 		Session,
@@ -46,6 +47,7 @@ public:
 
 	enum ScopeFlags
 	{
+		ScopeNone = 0x00,
 		ScopeMaster = 0x01,
 		ScopeSingleService = 0x02,
 		ScopeAllServices = 0x04,
@@ -57,18 +59,35 @@ public:
 
 	Feature( Type type, Scopes scopes, const Uid& uid,
 			 const QString& name,
-			 const QString& nameActive,
+			 const QString& displayName,
+			 const QString& displayNameActive,
 			 const QString& description,
 			 const QIcon& icon = QIcon(),
 			 const QKeySequence& shortcut = QKeySequence() ) :
+		QObject(),
 		m_type( type ),
 		m_scopes( scopes ),
 		m_uid( uid ),
 		m_name( name ),
-		m_nameActive( nameActive ),
+		m_displayName( displayName ),
+		m_displayNameActive( displayNameActive ),
 		m_description( description ),
 		m_icon( icon ),
 		m_shortcut( shortcut )
+	{
+	}
+
+	Feature( const Uid& uid = Uid() ) :
+		QObject(),
+		m_type( None ),
+		m_scopes( ScopeNone ),
+		m_uid( uid ),
+		m_name(),
+		m_displayName(),
+		m_displayNameActive(),
+		m_description(),
+		m_icon(),
+		m_shortcut()
 	{
 	}
 
@@ -78,6 +97,8 @@ public:
 		m_scopes( other.scopes() ),
 		m_uid( other.uid() ),
 		m_name( other.name() ),
+		m_displayName( other.displayName() ),
+		m_displayNameActive( other.displayNameActive() ),
 		m_description( other.description() ),
 		m_icon( other.icon() ),
 		m_shortcut( other.shortcut() )
@@ -109,9 +130,14 @@ public:
 		return m_name;
 	}
 
-	const QString& nameActive() const
+	const QString& displayName() const
 	{
-		return m_nameActive;
+		return m_displayName;
+	}
+
+	const QString& displayNameActive() const
+	{
+		return m_displayNameActive;
 	}
 
 	const QString& description() const
@@ -134,7 +160,8 @@ private:
 	Scopes m_scopes;
 	Uid m_uid;
 	QString m_name;
-	QString m_nameActive;
+	QString m_displayName;
+	QString m_displayNameActive;
 	QString m_description;
 	QIcon m_icon;
 	QKeySequence m_shortcut;
