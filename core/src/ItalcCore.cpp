@@ -384,7 +384,6 @@ const Command LockInput = "LockInput";
 const Command UnlockInput = "UnlockInput";
 const Command LogonUserCmd = "LogonUser";
 const Command LogoutUser = "LogoutUser";
-const Command DisplayTextMessage = "DisplayTextMessage";
 const Command AccessDialog = "AccessDialog";
 const Command ExecCmds = "ExecCmds";
 const Command PowerOnComputer = "PowerOnComputer";

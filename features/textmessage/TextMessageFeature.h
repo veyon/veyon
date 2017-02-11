@@ -39,11 +39,28 @@ public:
 
 	const FeatureList& featureList() const override;
 
-	bool runMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent ) override;
+	bool startMasterFeature( const Feature& feature,
+							 const ComputerControlInterfaceList& computerControlInterfaces,
+							 QWidget* parent ) override;
 
-	bool runServiceFeature( const Feature& feature, SocketDevice& socketDevice, const ItalcCore::Msg& message ) override;
+	bool stopMasterFeature( const Feature& feature,
+							 const ComputerControlInterfaceList& computerControlInterfaces,
+							 QWidget* parent ) override;
+
+	bool handleServiceFeatureMessage( const FeatureMessage& message,
+									  QIODevice* ioDevice,
+									  FeatureWorkerManager& featureWorkerManager ) override;
+
+	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice ) override;
 
 private:
+	enum FeatureMessageArguments {
+		MessageTextArgument,
+		MessageIcon,
+		FeatureMessageArgumentCount
+	};
+
+	Feature m_textMessageFeature;
 	FeatureList m_features;
 
 };

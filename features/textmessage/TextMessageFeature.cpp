@@ -22,22 +22,26 @@
  *
  */
 
+#include <QMessageBox>
+
 #include "TextMessageFeature.h"
 #include "TextMessageDialog.h"
+#include "FeatureWorkerManager.h"
 #include "ComputerControlInterface.h"
-#include "ItalcCoreConnection.h"
 
 
 TextMessageFeature::TextMessageFeature() :
+	m_textMessageFeature( Feature( Feature::Action,
+								   Feature::ScopeAll,
+								   Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ),
+								   "TextMessage",
+								   tr( "Text message" ), QString(),
+								   tr( "Use this function to send a text message to all "
+									   "users e.g. to assign them new tasks." ),
+								   QIcon( ":/dialog-information.png" ) ) ),
 	m_features()
 {
-	m_features += Feature( Feature::Action,
-						   Feature::ScopeAll,
-						   Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ),
-						   tr( "Text message" ), QString(),
-						   tr( "Use this function to send a text message to all "
-							   "users e.g. to assign them new tasks." ),
-						   QIcon( ":/dialog-information.png" ) );
+	m_features += m_textMessageFeature;
 }
 
 
@@ -49,11 +53,11 @@ const FeatureList &TextMessageFeature::featureList() const
 
 
 
-bool TextMessageFeature::runMasterFeature( const Feature& feature,
-										   const ComputerControlInterfaceList& computerControlInterfaces,
-										   QWidget* parent )
+bool TextMessageFeature::startMasterFeature( const Feature& feature,
+											 const ComputerControlInterfaceList& computerControlInterfaces,
+											 QWidget* parent )
 {
-	if( m_features.contains( feature ) == false )
+	if( feature.uid() != m_textMessageFeature.uid() )
 	{
 		return false;
 	}
@@ -62,14 +66,15 @@ bool TextMessageFeature::runMasterFeature( const Feature& feature,
 
 	TextMessageDialog( textMessage, qobject_cast<QWidget *>( parent ) ).exec();
 
-	if( textMessage.isEmpty() )
+	if( textMessage.isEmpty() == false )
 	{
+		FeatureMessage featureMessage( m_textMessageFeature.uid() );
+		featureMessage.addArgument( MessageTextArgument, textMessage );
+		featureMessage.addArgument( MessageIcon, QMessageBox::Warning );
+
 		for( auto interface : computerControlInterfaces )
 		{
-			if( interface->coreConnection() )
-			{
-				interface->coreConnection()->displayTextMessage( tr( "Message from teacher" ), textMessage );
-			}
+			interface->sendFeatureMessage( featureMessage );
 		}
 	}
 
@@ -78,6 +83,57 @@ bool TextMessageFeature::runMasterFeature( const Feature& feature,
 
 
 
-bool TextMessageFeature::runServiceFeature( const Feature& feature, SocketDevice& socketDevice, const ItalcCore::Msg& message )
+bool TextMessageFeature::stopMasterFeature( const Feature& feature,
+											const ComputerControlInterfaceList& computerControlInterfaces,
+											QWidget* parent )
 {
+	Q_UNUSED(feature);
+	Q_UNUSED(computerControlInterfaces);
+	Q_UNUSED(parent);
+
+	return false;
+}
+
+
+
+bool TextMessageFeature::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+													  FeatureWorkerManager& featureWorkerManager )
+{
+	if( m_textMessageFeature.uid() == message.featureUid() )
+	{
+		// forward message to worker
+		featureWorkerManager.startWorker( m_textMessageFeature );
+		featureWorkerManager.sendMessage( message );
+	}
+
+	return true;
+}
+
+
+
+bool TextMessageFeature::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+{
+	if( message.featureUid() != m_textMessageFeature.uid() )
+	{
+		return false;
+	}
+
+	QString title = tr( "Message from teacher" );
+	QString text = message.argument( MessageTextArgument ).toString();
+	int icon = message.argument( MessageIcon ).toInt();
+
+	if( icon == QMessageBox::Warning )
+	{
+		QMessageBox::warning( Q_NULLPTR, title, text );
+	}
+	else if( icon == QMessageBox::Critical )
+	{
+		QMessageBox::critical( Q_NULLPTR, title, text );
+	}
+	else
+	{
+		QMessageBox::information( Q_NULLPTR, title, text );
+	}
+
+	return true;
 }
