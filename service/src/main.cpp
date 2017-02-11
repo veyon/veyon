@@ -39,7 +39,6 @@
 #include "AccessDialogSlave.h"
 #include "DemoClientSlave.h"
 #include "DemoServerSlave.h"
-#include "MessageBoxSlave.h"
 #include "InputLockSlave.h"
 #include "ScreenLockSlave.h"
 #include "SystemTrayIconSlave.h"
@@ -308,10 +307,6 @@ int main( int argc, char **argv )
 			else if( arg2 == ItalcSlaveManager::IdDemoClient )
 			{
 				return runSlave<DemoClientSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdMessageBox )
-			{
-				return runSlave<MessageBoxSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcSlaveManager::IdScreenLock )
 			{

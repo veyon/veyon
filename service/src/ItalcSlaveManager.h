@@ -41,7 +41,6 @@ public:
 	static const Ipc::Id IdAccessDialog;
 	static const Ipc::Id IdDemoClient;
 	static const Ipc::Id IdDemoServer;
-	static const Ipc::Id IdMessageBox;
 	static const Ipc::Id IdScreenLock;
 	static const Ipc::Id IdInputLock;
 	static const Ipc::Id IdSystemTrayIcon;
@@ -82,14 +81,6 @@ public:
 		static const Ipc::Argument AllowedHosts;
 	} ;
 
-	struct MessageBoxSlave
-	{
-		static const Ipc::Command ShowMessageBox;
-		static const Ipc::Argument Title;
-		static const Ipc::Argument Text;
-		static const Ipc::Argument Icon;
-	} ;
-
 	DemoServerMaster *demoServerMaster()
 	{
 		return &m_demoServerMaster;
@@ -104,7 +95,6 @@ public:
 	void lockInput();
 	void unlockInput();
 
-	void messageBox(const QString &title, const QString &msg, int icon = -1);
 	void setSystemTrayToolTip( const QString &tooltip );
 	void systemTrayMessage( const QString &title, const QString &msg );
 

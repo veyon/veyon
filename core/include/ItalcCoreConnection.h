@@ -78,7 +78,6 @@ public:
 	GEN_SLAVE_STATE_HELPER(ScreenLockRunning)
 	GEN_SLAVE_STATE_HELPER(InputLockRunning)
 	GEN_SLAVE_STATE_HELPER(SystemTrayIconRunning)
-	GEN_SLAVE_STATE_HELPER(MessageBoxRunning)
 
 	void sendFeatureMessage( const FeatureMessage &featureMessage );
 

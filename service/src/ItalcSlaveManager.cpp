@@ -38,7 +38,6 @@ const Ipc::Id ItalcSlaveManager::IdCoreServer = "CoreServer";
 const Ipc::Id ItalcSlaveManager::IdAccessDialog = "AccessDialog";
 const Ipc::Id ItalcSlaveManager::IdDemoClient = "DemoClient";
 const Ipc::Id ItalcSlaveManager::IdDemoServer = "DemoServer";
-const Ipc::Id ItalcSlaveManager::IdMessageBox = "MessageBox";
 const Ipc::Id ItalcSlaveManager::IdScreenLock = "ScreenLock";
 const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
 const Ipc::Id ItalcSlaveManager::IdSystemTrayIcon = "SystemTrayIcon";
@@ -60,11 +59,6 @@ const Ipc::Argument ItalcSlaveManager::DemoServer::CommonSecret = "CommonSecret"
 
 const Ipc::Command ItalcSlaveManager::DemoServer::UpdateAllowedHosts = "UpdateAllowedHosts";
 const Ipc::Argument ItalcSlaveManager::DemoServer::AllowedHosts = "AllowedHosts";
-
-const Ipc::Command ItalcSlaveManager::MessageBoxSlave::ShowMessageBox = "ShowMessageBox";
-const Ipc::Argument ItalcSlaveManager::MessageBoxSlave::Title = "Title";
-const Ipc::Argument ItalcSlaveManager::MessageBoxSlave::Text = "Text";
-const Ipc::Argument ItalcSlaveManager::MessageBoxSlave::Icon = "Icon";
 
 const Ipc::Command ItalcSlaveManager::SystemTrayIcon::SetToolTip = "SetToolTip";
 const Ipc::Argument ItalcSlaveManager::SystemTrayIcon::ToolTipText = "ToolTipText";
@@ -166,28 +160,13 @@ void ItalcSlaveManager::unlockInput()
 
 
 
-void ItalcSlaveManager::messageBox(const QString& title, const QString &msg, int icon )
-{
-	if( !isSlaveRunning( IdMessageBox ) )
-	{
-		createSlave( IdMessageBox );
-	}
-	sendMessage( IdMessageBox,
-				 Ipc::Msg( MessageBoxSlave::ShowMessageBox ).
-					addArg( MessageBoxSlave::Title, title ).
-					addArg( MessageBoxSlave::Text, msg ).
-					addArg( MessageBoxSlave::Icon, icon ) );
-}
-
-
-
-
 void ItalcSlaveManager::systemTrayMessage( const QString &title,
 										const QString &msg )
 {
 	if( ItalcCore::config->isTrayIconHidden() )
 	{
-		messageBox( title, msg );
+		// TODO
+		//messageBox( title, msg );
 		return;
 	}
 	if( !isSlaveRunning( IdSystemTrayIcon ) )
@@ -267,7 +246,6 @@ int ItalcSlaveManager::slaveStateFlags()
 	GEN_SLAVE_STATE_SETTER(ScreenLock)
 	GEN_SLAVE_STATE_SETTER(InputLock)
 	GEN_SLAVE_STATE_SETTER(SystemTrayIcon)
-	GEN_SLAVE_STATE_SETTER(MessageBox)
 
 	return s;
 }

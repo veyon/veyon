@@ -158,7 +158,6 @@ namespace ItalcCore
 		ScreenLockRunning 		= 8,
 		InputLockRunning 		= 16,
 		SystemTrayIconRunning 	= 32,
-		MessageBoxRunning 		= 64
 	} ;
 
 	QString userRoleName( UserRole role );
