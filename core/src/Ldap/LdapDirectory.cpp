@@ -374,7 +374,7 @@ QStringList LdapDirectory::computerLabs(const QString &filterValue)
 
 	computerLabs.removeDuplicates();
 
-	qSort( computerLabs );
+	std::sort( computerLabs.begin(), computerLabs.end() );
 
 	return computerLabs;
 }
