@@ -24,11 +24,6 @@
 
 #include <italcconfig.h>
 
-#include <QProcess>
-
-#include "PowerControl.h"
-#include "LocalSystem.h"
-
 #ifdef ITALC_BUILD_WIN32
 
 #define UNICODE
@@ -39,6 +34,10 @@
 
 #endif
 
+#include <QProcess>
+
+#include "PowerControl.h"
+#include "LocalSystem.h"
 
 #ifdef ITALC_HAVE_UNISTD_H
 #include <unistd.h>
