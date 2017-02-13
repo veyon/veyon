@@ -35,18 +35,21 @@ class FeatureMessage
 {
 public:
 	typedef Feature::Uid FeatureUid;
+	typedef qint32 Command;
 	typedef QMap<QString, QVariant> Arguments;
 
-	FeatureMessage( QIODevice* ioDevice = nullptr, const FeatureUid& featureUid = Feature::Uid() ) :
+	FeatureMessage( QIODevice* ioDevice = nullptr, const FeatureUid& featureUid = Feature::Uid(), Command command = -1 ) :
 		m_ioDevice( ioDevice ),
 		m_featureUid( featureUid ),
+		m_command( command ),
 		m_arguments()
 	{
 	}
 
-	FeatureMessage( const FeatureUid &featureUid ) :
+	FeatureMessage( const FeatureUid &featureUid, Command command = -1 ) :
 		m_ioDevice( nullptr ),
 		m_featureUid( featureUid ),
+		m_command( command ),
 		m_arguments()
 	{
 	}
@@ -54,6 +57,11 @@ public:
 	const FeatureUid& featureUid() const
 	{
 		return m_featureUid;
+	}
+
+	Command command() const
+	{
+		return m_command;
 	}
 
 	const Arguments& arguments() const
@@ -82,6 +90,7 @@ private:
 	QIODevice* m_ioDevice;
 
 	FeatureUid m_featureUid;
+	Command m_command;
 	Arguments m_arguments;
 
 } ;

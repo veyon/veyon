@@ -41,6 +41,7 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 	{
 		QDataStream d( ioDevice );
 		d << m_featureUid;
+		d << m_command;
 		d << QVariant( m_arguments );
 
 		return true;
@@ -58,6 +59,7 @@ FeatureMessage &FeatureMessage::receive()
 		QDataStream d( m_ioDevice );
 		QVariant args;
 		d >> m_featureUid;
+		d >> m_command;
 		d >> args;
 		m_arguments = args.toMap();
 	}
