@@ -79,6 +79,18 @@ public:
 	virtual bool handleWorkerFeatureMessage( const FeatureMessage& message,
 											 QIODevice* ioDevice ) = 0;
 
+protected:
+	bool sendFeatureMessage( const FeatureMessage& message,
+							 const ComputerControlInterfaceList& computerControlInterfaces )
+	{
+		for( auto interface : computerControlInterfaces )
+		{
+			interface->sendFeatureMessage( message );
+		}
+
+		return true;
+	}
+
 };
 
 typedef QList<FeaturePluginInterface *> FeaturePluginInterfaceList;
