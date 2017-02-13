@@ -47,6 +47,8 @@ public:
 
 	Q_INVOKABLE void sendMessage( const FeatureMessage& message );
 
+	bool isWorkerRunning( const Feature& feature );
+
 private slots:
 	void acceptConnection();
 	void processConnection( QTcpSocket* socket );

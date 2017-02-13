@@ -166,6 +166,14 @@ void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
 
 
 
+bool FeatureWorkerManager::isWorkerRunning( const Feature& feature )
+{
+	QMutexLocker locker( &m_workersMutex );
+	return m_workers.contains( feature.uid() );
+}
+
+
+
 void FeatureWorkerManager::acceptConnection()
 {
 	qDebug( "FeatureWorkerManager: accepting connection" );
