@@ -40,7 +40,6 @@ const Ipc::Id ItalcSlaveManager::IdDemoClient = "DemoClient";
 const Ipc::Id ItalcSlaveManager::IdDemoServer = "DemoServer";
 const Ipc::Id ItalcSlaveManager::IdScreenLock = "ScreenLock";
 const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
-const Ipc::Id ItalcSlaveManager::IdSystemTrayIcon = "SystemTrayIcon";
 
 const Ipc::Command ItalcSlaveManager::AccessDialog::Ask = "Ask";
 const Ipc::Argument ItalcSlaveManager::AccessDialog::User = "User";
@@ -59,13 +58,6 @@ const Ipc::Argument ItalcSlaveManager::DemoServer::CommonSecret = "CommonSecret"
 
 const Ipc::Command ItalcSlaveManager::DemoServer::UpdateAllowedHosts = "UpdateAllowedHosts";
 const Ipc::Argument ItalcSlaveManager::DemoServer::AllowedHosts = "AllowedHosts";
-
-const Ipc::Command ItalcSlaveManager::SystemTrayIcon::SetToolTip = "SetToolTip";
-const Ipc::Argument ItalcSlaveManager::SystemTrayIcon::ToolTipText = "ToolTipText";
-
-const Ipc::Command ItalcSlaveManager::SystemTrayIcon::ShowMessage = "ShowMessage";
-const Ipc::Argument ItalcSlaveManager::SystemTrayIcon::Title = "Title";
-const Ipc::Argument ItalcSlaveManager::SystemTrayIcon::Text = "Text";
 
 
 
@@ -159,47 +151,6 @@ void ItalcSlaveManager::unlockInput()
 
 
 
-
-void ItalcSlaveManager::systemTrayMessage( const QString &title,
-										const QString &msg )
-{
-	if( ItalcCore::config->isTrayIconHidden() )
-	{
-		// TODO
-		//messageBox( title, msg );
-		return;
-	}
-	if( !isSlaveRunning( IdSystemTrayIcon ) )
-	{
-		createSlave( IdSystemTrayIcon );
-	}
-	sendMessage( IdSystemTrayIcon,
-					Ipc::Msg( SystemTrayIcon::ShowMessage ).
-						addArg( SystemTrayIcon::Title, title ).
-						addArg( SystemTrayIcon::Text, msg ) );
-}
-
-
-
-
-void ItalcSlaveManager::setSystemTrayToolTip( const QString &tooltip )
-{
-	if( ItalcCore::config->isTrayIconHidden() )
-	{
-		return;
-	}
-	if( !isSlaveRunning( IdSystemTrayIcon ) )
-	{
-		createSlave( IdSystemTrayIcon );
-	}
-	sendMessage( IdSystemTrayIcon,
-					Ipc::Msg( SystemTrayIcon::SetToolTip ).
-						addArg( SystemTrayIcon::ToolTipText, tooltip ) );
-}
-
-
-
-
 int ItalcSlaveManager::execAccessDialog( const QString &user,
 											const QString &host,
 											int choiceFlags )
@@ -245,7 +196,6 @@ int ItalcSlaveManager::slaveStateFlags()
 	GEN_SLAVE_STATE_SETTER(DemoClient)
 	GEN_SLAVE_STATE_SETTER(ScreenLock)
 	GEN_SLAVE_STATE_SETTER(InputLock)
-	GEN_SLAVE_STATE_SETTER(SystemTrayIcon)
 
 	return s;
 }
@@ -257,8 +207,7 @@ void ItalcSlaveManager::createSlave( const Ipc::Id &id, Ipc::SlaveLauncher *slav
 	// only launch interactive iTALC slaves (screen lock, demo, message box,
 	// access dialog) if a user is logged on - prevents us from messing up logon
 	// dialog on Windows
-	if( id == IdSystemTrayIcon ||
-			!LocalSystem::User::loggedOnUser().name().isEmpty() )
+	if( !LocalSystem::User::loggedOnUser().name().isEmpty() )
 	{
 		Ipc::Master::createSlave( id, slaveLauncher );
 	}

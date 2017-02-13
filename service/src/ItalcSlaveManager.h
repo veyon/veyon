@@ -43,7 +43,6 @@ public:
 	static const Ipc::Id IdDemoServer;
 	static const Ipc::Id IdScreenLock;
 	static const Ipc::Id IdInputLock;
-	static const Ipc::Id IdSystemTrayIcon;
 
 	struct AccessDialog
 	{
@@ -52,15 +51,6 @@ public:
 		static const Ipc::Argument Host;
 		static const Ipc::Argument ChoiceFlags;
 		static const Ipc::Command ReportChoice;
-	} ;
-
-	struct SystemTrayIcon
-	{
-		static const Ipc::Command ShowMessage;
-		static const Ipc::Argument Title;
-		static const Ipc::Argument Text;
-		static const Ipc::Command SetToolTip;
-		static const Ipc::Argument ToolTipText;
 	} ;
 
 	struct DemoClient
@@ -94,9 +84,6 @@ public:
 
 	void lockInput();
 	void unlockInput();
-
-	void setSystemTrayToolTip( const QString &tooltip );
-	void systemTrayMessage( const QString &title, const QString &msg );
 
 	int execAccessDialog( const QString &user, const QString &host,
 							int choiceFlags );

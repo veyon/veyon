@@ -40,7 +40,6 @@
 #include "DemoClientSlave.h"
 #include "DemoServerSlave.h"
 #include "InputLockSlave.h"
-#include "SystemTrayIconSlave.h"
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -194,14 +193,6 @@ static int runCoreServer( int argc, char **argv )
 	ItalcCoreServer coreServer;
 	ItalcVncServer vncServer;
 
-	// start the SystemTrayIconSlave and set the default tooltip
-	coreServer.slaveManager()->setSystemTrayToolTip(
-		QApplication::tr( "%1 Service %2 at %3:%4" ).
-							arg( ItalcCore::applicationName() ).
-							arg( ITALC_VERSION ).
-							arg( QHostInfo::localHostName() ).
-							arg( QString::number( vncServer.serverPort() ) ) );
-
 	// make app terminate once the VNC server thread has finished
 	app.connect( &vncServer, SIGNAL( finished() ), SLOT( quit() ) );
 
@@ -310,10 +301,6 @@ int main( int argc, char **argv )
 			else if( arg2 == ItalcSlaveManager::IdInputLock )
 			{
 				return runSlave<InputLockSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdSystemTrayIcon )
-			{
-				return runSlave<SystemTrayIconSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcSlaveManager::IdDemoServer )
 			{
