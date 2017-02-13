@@ -37,6 +37,36 @@ public:
 	TextMessageFeaturePlugin();
 	virtual ~TextMessageFeaturePlugin() {}
 
+	Plugin::Uid uid() const override
+	{
+		return "8ae6668b-9c12-4b29-9bfc-ff89f6604164";
+	}
+
+	QString version() const override
+	{
+		return "1.0";
+	}
+
+	QString name() const override
+	{
+		return "TextMessage";
+	}
+
+	QString description() const override
+	{
+		return tr( "Send a message to a user" );
+	}
+
+	QString vendor() const override
+	{
+		return "iTALC Community";
+	}
+
+	QString copyright() const override
+	{
+		return "Tobias Doerffel";
+	}
+
 	const FeatureList& featureList() const override;
 
 	bool startMasterFeature( const Feature& feature,

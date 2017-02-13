@@ -28,10 +28,11 @@
 #include "ComputerControlInterface.h"
 #include "FeatureMessage.h"
 #include "Feature.h"
+#include "PluginInterface.h"
 
 class FeatureWorkerManager;
 
-class FeaturePluginInterface
+class FeaturePluginInterface : public PluginInterface
 {
 public:
 	virtual ~FeaturePluginInterface() {}

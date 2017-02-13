@@ -37,6 +37,36 @@ public:
 	PowerControlFeaturePlugin();
 	virtual ~PowerControlFeaturePlugin() {}
 
+	Plugin::Uid uid() const override
+	{
+		return "4122e8ca-b617-4e36-b851-8e050ed2d82e";
+	}
+
+	QString version() const override
+	{
+		return "1.0";
+	}
+
+	QString name() const override
+	{
+		return "PowerControl";
+	}
+
+	QString description() const override
+	{
+		return tr( "Power on/down or reboot a computer" );
+	}
+
+	QString vendor() const override
+	{
+		return "iTALC Community";
+	}
+
+	QString copyright() const override
+	{
+		return "Tobias Doerffel";
+	}
+
 	const FeatureList& featureList() const override;
 
 	bool startMasterFeature( const Feature& feature,
