@@ -42,6 +42,7 @@ public:
 		Action,
 		Session,
 		Operation,
+		BuiltinService,
 		TypeCount
 	} Type;
 
