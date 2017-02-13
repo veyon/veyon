@@ -1,5 +1,5 @@
 /*
- * PowerControlFeature.h - declaration of PowerControlFeature class
+ * PowerControlFeaturePlugin.h - declaration of PowerControlFeaturePlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#ifndef POWER_CONTROL_FEATURE_H
-#define POWER_CONTROL_FEATURE_H
+#ifndef POWER_CONTROL_FEATURE_PLUGIN_H
+#define POWER_CONTROL_FEATURE_PLUGIN_H
 
 #include "Feature.h"
-#include "FeatureInterface.h"
+#include "FeaturePluginInterface.h"
 
-class PowerControlFeature : public QObject, FeatureInterface
+class PowerControlFeaturePlugin : public QObject, FeaturePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Features.FeatureInterface")
-	Q_INTERFACES(FeatureInterface)
+	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface")
+	Q_INTERFACES(FeaturePluginInterface)
 public:
-	PowerControlFeature();
-	virtual ~PowerControlFeature() {}
+	PowerControlFeaturePlugin();
+	virtual ~PowerControlFeaturePlugin() {}
 
 	const FeatureList& featureList() const override;
 
@@ -66,4 +66,4 @@ private:
 
 };
 
-#endif // POWER_CONTROL_FEATURE_H
+#endif // POWER_CONTROL_FEATURE_PLUGIN_H

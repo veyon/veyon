@@ -1,5 +1,29 @@
-#ifndef FEATURE_INTERFACE_H
-#define FEATURE_INTERFACE_H
+/*
+ * FeaturePluginInterface.h - interface class for feature plugins
+ *
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
+ * This file is part of iTALC - http://italc.sourceforge.net
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program (see COPYING); if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ */
+
+#ifndef FEATURE_PLUGIN_INTERFACE_H
+#define FEATURE_PLUGIN_INTERFACE_H
 
 #include "ComputerControlInterface.h"
 #include "FeatureMessage.h"
@@ -7,10 +31,10 @@
 
 class FeatureWorkerManager;
 
-class FeatureInterface
+class FeaturePluginInterface
 {
 public:
-	virtual ~FeatureInterface() {}
+	virtual ~FeaturePluginInterface() {}
 
 	/*!
 	 * \brief Returns a list of features implemented by the feature class
@@ -56,10 +80,10 @@ public:
 
 };
 
-typedef QList<FeatureInterface *> FeatureInterfaceList;
+typedef QList<FeaturePluginInterface *> FeaturePluginInterfaceList;
 
-#define FeatureInterface_iid "org.italc-solutions.iTALC.Features.FeatureInterface"
+#define FeaturePluginInterface_iid "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface"
 
-Q_DECLARE_INTERFACE(FeatureInterface, FeatureInterface_iid)
+Q_DECLARE_INTERFACE(FeaturePluginInterface, FeaturePluginInterface_iid)
 
-#endif // FEATUREINTERFACE_H
+#endif // FEATURE_PLUGIN_INTERFACE_H

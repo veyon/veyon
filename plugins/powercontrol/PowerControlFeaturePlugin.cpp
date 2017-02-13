@@ -1,5 +1,5 @@
 /*
- * PowerControlFeature.cpp - implementation of PowerControlFeature class
+ * PowerControlFeaturePlugin.cpp - implementation of PowerControlFeaturePlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -25,10 +25,10 @@
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "LocalSystem.h"
-#include "PowerControlFeature.h"
+#include "PowerControlFeaturePlugin.h"
 
 
-PowerControlFeature::PowerControlFeature() :
+PowerControlFeaturePlugin::PowerControlFeaturePlugin() :
 	m_powerOnFeature( Feature::Action,
 					  Feature::ScopeAll,
 					  Feature::Uid( "f483c659-b5e7-4dbc-bd91-2c9403e70ebd" ),
@@ -61,14 +61,14 @@ PowerControlFeature::PowerControlFeature() :
 
 
 
-const FeatureList &PowerControlFeature::featureList() const
+const FeatureList &PowerControlFeaturePlugin::featureList() const
 {
 	return m_features;
 }
 
 
 
-bool PowerControlFeature::startMasterFeature( const Feature& feature,
+bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces,
 											  QWidget* parent )
 {
@@ -101,7 +101,7 @@ bool PowerControlFeature::startMasterFeature( const Feature& feature,
 
 
 
-bool PowerControlFeature::stopMasterFeature( const Feature& feature,
+bool PowerControlFeaturePlugin::stopMasterFeature( const Feature& feature,
 											 const ComputerControlInterfaceList& computerControlInterfaces,
 											 QWidget* parent )
 {
@@ -114,7 +114,7 @@ bool PowerControlFeature::stopMasterFeature( const Feature& feature,
 
 
 
-bool PowerControlFeature::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
 													   FeatureWorkerManager& featureWorkerManager )
 {
 	if( message.featureUid() == m_powerOnFeature.uid() )
@@ -139,7 +139,7 @@ bool PowerControlFeature::handleServiceFeatureMessage( const FeatureMessage& mes
 
 
 
-bool PowerControlFeature::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool PowerControlFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(ioDevice);

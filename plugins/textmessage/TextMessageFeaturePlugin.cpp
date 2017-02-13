@@ -1,5 +1,5 @@
 /*
- * TextMessageFeature.cpp - implementation of TextMessageFeature class
+ * TextMessageFeaturePlugin.cpp - implementation of TextMessageFeaturePlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -24,13 +24,13 @@
 
 #include <QMessageBox>
 
-#include "TextMessageFeature.h"
+#include "TextMessageFeaturePlugin.h"
 #include "TextMessageDialog.h"
 #include "FeatureWorkerManager.h"
 #include "ComputerControlInterface.h"
 
 
-TextMessageFeature::TextMessageFeature() :
+TextMessageFeaturePlugin::TextMessageFeaturePlugin() :
 	m_textMessageFeature( Feature( Feature::Action,
 								   Feature::ScopeAll,
 								   Feature::Uid( "e75ae9c8-ac17-4d00-8f0d-019348346208" ),
@@ -46,14 +46,14 @@ TextMessageFeature::TextMessageFeature() :
 
 
 
-const FeatureList &TextMessageFeature::featureList() const
+const FeatureList &TextMessageFeaturePlugin::featureList() const
 {
 	return m_features;
 }
 
 
 
-bool TextMessageFeature::startMasterFeature( const Feature& feature,
+bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 											 const ComputerControlInterfaceList& computerControlInterfaces,
 											 QWidget* parent )
 {
@@ -83,7 +83,7 @@ bool TextMessageFeature::startMasterFeature( const Feature& feature,
 
 
 
-bool TextMessageFeature::stopMasterFeature( const Feature& feature,
+bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces,
 											QWidget* parent )
 {
@@ -96,7 +96,7 @@ bool TextMessageFeature::stopMasterFeature( const Feature& feature,
 
 
 
-bool TextMessageFeature::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
 													  FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_textMessageFeature.uid() == message.featureUid() )
@@ -111,7 +111,7 @@ bool TextMessageFeature::handleServiceFeatureMessage( const FeatureMessage& mess
 
 
 
-bool TextMessageFeature::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool TextMessageFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
 {
 	if( message.featureUid() != m_textMessageFeature.uid() )
 	{

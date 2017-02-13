@@ -1,5 +1,5 @@
 /*
- * TextMessageFeature.h - declaration of TextMessageFeature class
+ * TextMessageFeaturePlugin.h - declaration of TextMessageFeature class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#ifndef TEXT_MESSAGE_FEATURE_H
-#define TEXT_MESSAGE_FEATURE_H
+#ifndef TEXT_MESSAGE_FEATURE_PLUGIN_H
+#define TEXT_MESSAGE_FEATURE_PLUGIN_H
 
 #include "Feature.h"
-#include "FeatureInterface.h"
+#include "FeaturePluginInterface.h"
 
-class TextMessageFeature : public QObject, FeatureInterface
+class TextMessageFeaturePlugin : public QObject, FeaturePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Features.FeatureInterface")
-	Q_INTERFACES(FeatureInterface)
+	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface")
+	Q_INTERFACES(FeaturePluginInterface)
 public:
-	TextMessageFeature();
-	virtual ~TextMessageFeature() {}
+	TextMessageFeaturePlugin();
+	virtual ~TextMessageFeaturePlugin() {}
 
 	const FeatureList& featureList() const override;
 
@@ -65,4 +65,4 @@ private:
 
 };
 
-#endif // TEXT_MESSAGE_FEATURE_H
+#endif // TEXT_MESSAGE_FEATURE_PLUGIN_H

@@ -1,5 +1,5 @@
 /*
- * FeatureManager.h - implementation of the FeatureManager class
+ * FeatureManager.cpp - implementation of the FeatureManager class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -34,7 +34,6 @@
 
 static const Feature::Uid uidPresentationFullScreen = Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" );
 static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" );
-static const Feature::Uid uidComputerLock = Feature::Uid( "ccb535a2-1d24-4cc1-a709-8b47d2b2ac79" );
 static const Feature::Uid uidSnapshot = Feature::Uid( "fe539932-d158-49b0-aedb-f01dc1e88cfa" );
 static const Feature::Uid uidRemoteControl = Feature::Uid( "fc22fa22-2469-41b9-a626-1bd9875dec41" );
 static const Feature::Uid uidRemoteView = Feature::Uid( "6154bcd0-93d4-44cb-adc6-eb08edf5fae5" );
@@ -68,12 +67,15 @@ FeatureManager::FeatureManager( QObject* parent ) :
 		}
 	};
 
-	addRelativeIfExists( "features" );
-	addRelativeIfExists( "../features" );
+#ifdef Q_OS_LINUX
+	addRelativeIfExists( "../plugins" );
+#else
+	addRelativeIfExists( "plugins" );
+#endif
 
 	for( auto fileInfo : QDir( "plugins:" ).entryInfoList( nameFilters ) )
 	{
-		auto featureInterface = qobject_cast<FeatureInterface *>( QPluginLoader(fileInfo.filePath()).instance() );
+		auto featureInterface = qobject_cast<FeaturePluginInterface *>( QPluginLoader(fileInfo.filePath()).instance() );
 		if( featureInterface )
 		{
 			m_features += featureInterface->featureList();
@@ -98,15 +100,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 							   "able to switch to other windows and thus "
 							   "can continue to work." ),
 						   QIcon( ":/resources/presentation-window.png" ) );
-
-	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidComputerLock,
-						   "ScreenLock",
-						   tr( "Lock" ), tr( "Unlock" ),
-						   tr( "To have all user's full attention you can lock "
-							   "their computers using this button. "
-							   "In this mode all input devices are locked and "
-							   "the screen is black." ),
-						   QIcon( ":/resources/system-lock-screen.png" ) );
 
 	m_features += Feature( Feature::Action, Feature::ScopeMaster, uidSnapshot,
 						   "Snapshot",

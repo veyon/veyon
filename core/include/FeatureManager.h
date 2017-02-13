@@ -28,7 +28,7 @@
 #include <QObject>
 
 #include "Feature.h"
-#include "FeatureInterface.h"
+#include "FeaturePluginInterface.h"
 #include "ComputerControlInterface.h"
 
 class QWidget;
@@ -60,7 +60,7 @@ public:
 private:
 	Feature m_monitoringModeFeature;
 	FeatureList m_features;
-	FeatureInterfaceList m_featureInterfaces;
+	FeaturePluginInterfaceList m_featureInterfaces;
 
 };
 
