@@ -40,6 +40,7 @@
 #include "FeatureMessage.h"
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
+#include "SystemTrayIcon.h"
 
 
 ItalcCoreServer * ItalcCoreServer::_this = NULL;
@@ -55,6 +56,14 @@ ItalcCoreServer::ItalcCoreServer() :
 {
 	Q_ASSERT( _this == NULL );
 	_this = this;
+
+	m_featureManager.builtinFeatures().systemTrayIcon().setToolTip(
+				tr( "%1 Service %2 at %3:%4" ).
+				arg( ItalcCore::applicationName() ).
+				arg( ITALC_VERSION ).
+				arg( QHostInfo::localHostName() ).
+				arg( QString::number( ItalcCore::serverPort ) ),
+				m_featureWorkerManager );
 }
 
 
@@ -375,10 +384,11 @@ void ItalcCoreServer::errorMsgAuth( const QString &ip )
 	if( m_failedAuthHosts.contains( ip ) == false )
 	{
 		m_failedAuthHosts += ip;
-		m_slaveManager.systemTrayMessage(
+		m_featureManager.builtinFeatures().systemTrayIcon().showMessage(
 					tr( "Authentication error" ),
 					tr( "Somebody (IP: %1) tried to access this computer "
-						"but could not authenticate successfully!" ).arg( ip ) );
+						"but could not authenticate successfully!" ).arg( ip ),
+					m_featureWorkerManager );
 	}
 }
 
