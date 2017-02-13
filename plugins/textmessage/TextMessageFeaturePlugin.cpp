@@ -53,8 +53,8 @@ const FeatureList &TextMessageFeaturePlugin::featureList() const
 
 
 bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+												   const ComputerControlInterfaceList& computerControlInterfaces,
+												   QWidget* parent )
 {
 	if( feature.uid() != m_textMessageFeature.uid() )
 	{
@@ -80,8 +80,8 @@ bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces,
-											QWidget* parent )
+												  const ComputerControlInterfaceList& computerControlInterfaces,
+												  QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -93,12 +93,15 @@ bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
-													  FeatureWorkerManager& featureWorkerManager )
+															FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_textMessageFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
-		featureWorkerManager.startWorker( m_textMessageFeature );
+		if( featureWorkerManager.isWorkerRunning( m_textMessageFeature ) == false )
+		{
+			featureWorkerManager.startWorker( m_textMessageFeature );
+		}
 		featureWorkerManager.sendMessage( message );
 	}
 
