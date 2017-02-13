@@ -197,10 +197,11 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 	// set socket information
 	if( m_workers.contains( message.featureUid() ) )
 	{
-		if( message.arguments().isEmpty() == false )
-		{
-			m_featureManager.handleServiceFeatureMessage( message, socket, *this );
-		}
+		m_workersMutex.unlock();
+
+		m_featureManager.handleServiceFeatureMessage( message, socket, *this );
+
+		m_workersMutex.lock();
 
 		// send pending messages
 		auto& worker = m_workers[message.featureUid()];
@@ -213,13 +214,14 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 		}
 
 		worker.pendingMessages.clear();
+
+		m_workersMutex.unlock();
 	}
 	else
 	{
 		qCritical() << "FeatureWorkerManager: got data from non-existing worker!" << message.featureUid();
 	}
 
-	m_workersMutex.unlock();
 }
 
 
