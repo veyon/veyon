@@ -1,3 +1,3 @@
-#ADD_SUBDIRECTORY(desktoplock)
 ADD_SUBDIRECTORY(powercontrol)
+ADD_SUBDIRECTORY(screenlock)
 ADD_SUBDIRECTORY(textmessage)
