@@ -59,7 +59,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 													loc.name() );
 	}
 
-	qSort( languages );
+	std::sort( languages.begin(), languages.end() );
 
 	ui->uiLanguage->addItems( languages );
 
