@@ -69,7 +69,7 @@ bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		FeatureMessage featureMessage( m_textMessageFeature.uid() );
 		featureMessage.addArgument( MessageTextArgument, textMessage );
-		featureMessage.addArgument( MessageIcon, QMessageBox::Warning );
+		featureMessage.addArgument( MessageIcon, QMessageBox::Information );
 
 		sendFeatureMessage( featureMessage, computerControlInterfaces );
 	}
