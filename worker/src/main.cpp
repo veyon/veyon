@@ -58,9 +58,11 @@ int main( int argc, char **argv )
 		qFatal( "Could not find specified feature" );
 	}
 
+	QString pluginName = featureManager.pluginName( featureManager.pluginUid( *workerFeature ) );
+
 	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
 
-	Logger l( "ItalcFeature" + workerFeature->name() );
+	Logger l( "ItalcFeature" + pluginName );
 
 	qInfo( "Exec" );
 
