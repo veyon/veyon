@@ -22,9 +22,9 @@
  *
  */
 
+#include <QDebug>
 #include <QIODevice>
 
-#include "ItalcRfbExt.h"
 #include "FeatureMessage.h"
 
 
@@ -39,6 +39,8 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 {
 	if( ioDevice )
 	{
+		qDebug() << "FeatureMessage::send():" << featureUid() << arguments();
+
 		QDataStream d( ioDevice );
 		d << m_featureUid;
 		d << m_command;
