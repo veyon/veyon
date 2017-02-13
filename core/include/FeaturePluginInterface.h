@@ -83,9 +83,9 @@ protected:
 	bool sendFeatureMessage( const FeatureMessage& message,
 							 const ComputerControlInterfaceList& computerControlInterfaces )
 	{
-		for( auto interface : computerControlInterfaces )
+		for( auto controlInterface : computerControlInterfaces )
 		{
-			interface->sendFeatureMessage( message );
+			controlInterface->sendFeatureMessage( message );
 		}
 
 		return true;
