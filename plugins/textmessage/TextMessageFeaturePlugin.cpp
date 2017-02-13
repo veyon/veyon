@@ -71,10 +71,7 @@ bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 		featureMessage.addArgument( MessageTextArgument, textMessage );
 		featureMessage.addArgument( MessageIcon, QMessageBox::Warning );
 
-		for( auto interface : computerControlInterfaces )
-		{
-			interface->sendFeatureMessage( featureMessage );
-		}
+		sendFeatureMessage( featureMessage, computerControlInterfaces );
 	}
 
 	return true;
