@@ -180,11 +180,6 @@ namespace LocalSystem
 
 	void sleep( const int _ms );
 
-	void broadcastWOLPacket( const QString & _mac );
-
-	void powerDown();
-	void reboot();
-
 	void logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
 	void logoutUser();

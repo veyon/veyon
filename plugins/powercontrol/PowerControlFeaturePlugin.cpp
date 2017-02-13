@@ -24,7 +24,7 @@
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
-#include "LocalSystem.h"
+#include "PowerControl.h"
 #include "PowerControlFeaturePlugin.h"
 
 
@@ -111,15 +111,15 @@ bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessag
 {
 	if( message.featureUid() == m_powerOnFeature.uid() )
 	{
-		LocalSystem::broadcastWOLPacket( message.argument( MacAddressArgument ).toString() );
+		PowerControl::broadcastWOLPacket( message.argument( MacAddressArgument ).toString() );
 	}
 	else if( message.featureUid() == m_powerDownFeature.uid() )
 	{
-		LocalSystem::powerDown();
+		PowerControl::powerDown();
 	}
 	else if( message.featureUid() == m_rebootFeature.uid() )
 	{
-		LocalSystem::reboot();
+		PowerControl::reboot();
 	}
 	else
 	{
