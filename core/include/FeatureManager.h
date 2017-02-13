@@ -27,6 +27,7 @@
 
 #include <QObject>
 
+#include "BuiltinFeatures.h"
 #include "Feature.h"
 #include "FeaturePluginInterface.h"
 #include "ComputerControlInterface.h"
@@ -40,8 +41,14 @@ class FeatureManager : public QObject
 {
 	Q_OBJECT
 public:
-
 	FeatureManager( QObject* parent );
+
+	BuiltinFeatures& builtinFeatures()
+	{
+		return m_builtinFeatures;
+	}
+
+	void registerBuiltinFeature( FeaturePluginInterface* featurePluginInterface );
 
 	const Feature& monitoringModeFeature() const
 	{
@@ -65,6 +72,8 @@ private:
 	Feature m_monitoringModeFeature;
 	FeatureList m_features;
 	FeaturePluginInterfaceList m_featureInterfaces;
+
+	BuiltinFeatures m_builtinFeatures;
 
 };
 

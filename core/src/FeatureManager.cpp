@@ -52,7 +52,8 @@ FeatureManager::FeatureManager( QObject* parent ) :
 							 tr( "Monitoring" ), QString(),
 							 tr( "This is the default mode and allows you to monitor all computers in the classroom." ),
 							 ":/resources/presentation-none.png" ),
-	m_features()
+	m_features(),
+	m_builtinFeatures( *this )
 {
 	m_features += m_monitoringModeFeature;
 
@@ -112,6 +113,15 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   tr( "Remote view" ), QString(),
 						   tr( "Opens a remote view window" ),
 						   ":/resources/kmag.png" );
+}
+
+
+
+void FeatureManager::registerBuiltinFeature( FeaturePluginInterface* featurePluginInterface )
+{
+	m_features += featurePluginInterface->featureList();
+
+	m_featureInterfaces += featurePluginInterface;
 }
 
 
