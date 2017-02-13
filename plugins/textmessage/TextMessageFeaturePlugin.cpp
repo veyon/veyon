@@ -38,7 +38,7 @@ TextMessageFeaturePlugin::TextMessageFeaturePlugin() :
 								   tr( "Text message" ), QString(),
 								   tr( "Use this function to send a text message to all "
 									   "users e.g. to assign them new tasks." ),
-								   QIcon( ":/dialog-information.png" ) ) ),
+								   ":/dialog-information.png" ) ),
 	m_features()
 {
 	m_features += m_textMessageFeature;

@@ -323,7 +323,7 @@ void MainWindow::addFeaturesToToolBar()
 {
 	for( auto feature : m_masterCore.featureManager().features() )
 	{
-		ToolButton* btn = new ToolButton( feature.icon(),
+		ToolButton* btn = new ToolButton( feature.iconUrl(),
 										  feature.displayName(),
 										  feature.displayNameActive(),
 										  feature.description() );

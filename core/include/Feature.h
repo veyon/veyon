@@ -62,7 +62,7 @@ public:
 			 const QString& displayName,
 			 const QString& displayNameActive,
 			 const QString& description,
-			 const QIcon& icon = QIcon(),
+			 const QString& iconUrl = QString(),
 			 const QKeySequence& shortcut = QKeySequence() ) :
 		QObject(),
 		m_type( type ),
@@ -72,7 +72,7 @@ public:
 		m_displayName( displayName ),
 		m_displayNameActive( displayNameActive ),
 		m_description( description ),
-		m_icon( icon ),
+		m_iconUrl( iconUrl ),
 		m_shortcut( shortcut )
 	{
 	}
@@ -86,7 +86,7 @@ public:
 		m_displayName(),
 		m_displayNameActive(),
 		m_description(),
-		m_icon(),
+		m_iconUrl(),
 		m_shortcut()
 	{
 	}
@@ -100,7 +100,7 @@ public:
 		m_displayName( other.displayName() ),
 		m_displayNameActive( other.displayNameActive() ),
 		m_description( other.description() ),
-		m_icon( other.icon() ),
+		m_iconUrl( other.iconUrl() ),
 		m_shortcut( other.shortcut() )
 	{
 	}
@@ -145,9 +145,9 @@ public:
 		return m_description;
 	}
 
-	const QIcon& icon() const
+	const QString& iconUrl() const
 	{
-		return m_icon;
+		return m_iconUrl;
 	}
 
 	const QKeySequence& shortcut() const
@@ -163,7 +163,7 @@ private:
 	QString m_displayName;
 	QString m_displayNameActive;
 	QString m_description;
-	QIcon m_icon;
+	QString m_iconUrl;
 	QKeySequence m_shortcut;
 
 };

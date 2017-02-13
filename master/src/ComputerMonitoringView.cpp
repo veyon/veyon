@@ -93,7 +93,9 @@ void ComputerMonitoringView::setFeatureManager( FeatureManager& featureManager )
 
 	for( auto feature : featureManager.features() )
 	{
-		m_featureMenu->addAction( feature.icon(), feature.displayName(), [=] () { runFeature( feature ); } );
+		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
+								  feature.displayName(),
+								  [=] () { runFeature( feature ); } );
 	}
 }
 
