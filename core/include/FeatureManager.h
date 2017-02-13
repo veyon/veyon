@@ -30,6 +30,7 @@
 #include "Feature.h"
 #include "FeaturePluginInterface.h"
 #include "ComputerControlInterface.h"
+#include "Plugin.h"
 
 class QWidget;
 
@@ -51,6 +52,9 @@ public:
 	{
 		return m_features;
 	}
+
+	Plugin::Uid pluginUid( const Feature& feature ) const;
+	QString pluginName( const Plugin::Uid& pluginUid ) const;
 
 	void startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
 	void stopMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );

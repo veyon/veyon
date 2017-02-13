@@ -122,6 +122,36 @@ FeatureManager::FeatureManager( QObject* parent ) :
 
 
 
+Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
+{
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		if( featureInterface->featureList().contains( feature ) )
+		{
+			return featureInterface->uid();
+		}
+	}
+
+	return Plugin::Uid();
+}
+
+
+
+QString FeatureManager::pluginName( const Plugin::Uid& pluginUid ) const
+{
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		if( featureInterface->uid() == pluginUid )
+		{
+			return featureInterface->name();
+		}
+	}
+
+	return "None";
+}
+
+
+
 void FeatureManager::startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent )
 {
 	qDebug() << "Run master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
