@@ -49,7 +49,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	QObject( parent ),
 	m_monitoringModeFeature( Feature::Mode, Feature::ScopeAll,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
-							 "Monitoring",
 							 tr( "Monitoring" ), QString(),
 							 tr( "This is the default mode and allows you to monitor all computers in the classroom." ),
 							 ":/resources/presentation-none.png" ),
@@ -84,7 +83,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	}
 
 	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidPresentationFullScreen,
-						   "Presentation",
 						   tr( "Fullscreen presentation" ), tr( "Stop presentation" ),
 						   tr( "In this mode your screen is being displayed on "
 							   "all computers. Furthermore the users "
@@ -93,7 +91,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   ":/resources/presentation-fullscreen.png" );
 
 	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidPresentationWindow,
-						   "Presentation",
 						   tr( "Window presentation" ), tr( "Stop presentation" ),
 						   tr( "In this mode your screen being displayed in a "
 							   "window on all computers. The users are "
@@ -102,19 +99,16 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   ":/resources/presentation-window.png" );
 
 	m_features += Feature( Feature::Action, Feature::ScopeMaster, uidSnapshot,
-						   "Snapshot",
 						   tr( "Snapshot" ), QString(),
 						   tr( "Use this function to take a snapshot of all computers." ),
 						   ":/resources/camera-photo.png" );
 
 	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteControl,
-						   "RemoteControl",
 						   tr( "Remote control" ), QString(),
 						   tr( "Opens a remote control window" ),
 						   ":/resources/remote_control.png" );
 
 	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteView,
-						   "RemoteControl",
 						   tr( "Remote view" ), QString(),
 						   tr( "Opens a remote view window" ),
 						   ":/resources/kmag.png" );

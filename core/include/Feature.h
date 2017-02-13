@@ -58,7 +58,6 @@ public:
 	Q_FLAG(Scopes)
 
 	Feature( Type type, Scopes scopes, const Uid& uid,
-			 const QString& name,
 			 const QString& displayName,
 			 const QString& displayNameActive,
 			 const QString& description,
@@ -68,7 +67,6 @@ public:
 		m_type( type ),
 		m_scopes( scopes ),
 		m_uid( uid ),
-		m_name( name ),
 		m_displayName( displayName ),
 		m_displayNameActive( displayNameActive ),
 		m_description( description ),
@@ -82,7 +80,6 @@ public:
 		m_type( None ),
 		m_scopes( ScopeNone ),
 		m_uid( uid ),
-		m_name(),
 		m_displayName(),
 		m_displayNameActive(),
 		m_description(),
@@ -96,7 +93,6 @@ public:
 		m_type( other.type() ),
 		m_scopes( other.scopes() ),
 		m_uid( other.uid() ),
-		m_name( other.name() ),
 		m_displayName( other.displayName() ),
 		m_displayNameActive( other.displayNameActive() ),
 		m_description( other.description() ),
@@ -123,11 +119,6 @@ public:
 	const Uid& uid() const
 	{
 		return m_uid;
-	}
-
-	const QString& name() const
-	{
-		return m_name;
 	}
 
 	const QString& displayName() const
@@ -159,7 +150,6 @@ private:
 	Type m_type;
 	Scopes m_scopes;
 	Uid m_uid;
-	QString m_name;
 	QString m_displayName;
 	QString m_displayNameActive;
 	QString m_description;
