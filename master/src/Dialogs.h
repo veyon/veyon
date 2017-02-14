@@ -30,7 +30,6 @@
 namespace Ui
 {
 	class ClientSettingsDialog;
-	class SupportDialog;
 	class RemoteLogonDialog;
 }
 
@@ -62,20 +61,6 @@ private:
 } ;
 #endif
 
-
-
-class SupportDialog : public QDialog
-{
-public:
-	SupportDialog( QWidget *parent );
-
-	static QString getHost( QWidget *parent );
-
-
-private:
-	Ui::SupportDialog *ui;
-
-} ;
 
 
 class RemoteLogonDialog : public QDialog

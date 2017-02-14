@@ -172,31 +172,6 @@ m_mainWindow->getClassroomManager()->m_classRooms[ui->classRoomComboBox->current
 
 
 
-
-SupportDialog::SupportDialog( QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::SupportDialog )
-{
-	ui->setupUi( this );
-
-	ItalcCore::enforceBranding( this );
-}
-
-
-
-QString SupportDialog::getHost( QWidget *parent )
-{
-	SupportDialog sd( parent );
-	if( sd.exec() == Accepted )
-	{
-		return sd.ui->hostEdit->text();
-	}
-
-	return QString();
-}
-
-
-
 RemoteLogonDialog::RemoteLogonDialog( QWidget *parent ) :
 	QDialog( parent ),
 	ui( new Ui::RemoteLogonDialog )
