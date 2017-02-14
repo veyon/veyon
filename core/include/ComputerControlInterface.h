@@ -62,7 +62,7 @@ public:
 	ComputerControlInterface( const Computer& computer );
 	~ComputerControlInterface() override;
 
-	void start( const QSize& screenSize );
+	void start( const QSize& scaledScreenSize );
 	void stop();
 
 	const Computer& computer() const
@@ -80,14 +80,14 @@ public:
 		return m_mode;
 	}
 
-	const QSize& screenSize() const
+	const QSize& scaledScreenSize() const
 	{
-		return m_screenSize;
+		return m_scaledScreenSize;
 	}
 
-	void setScreenSize( const QSize& size );
+	void setScaledScreenSize( const QSize& size );
 
-	QImage screen() const;
+	QImage scaledScreen() const;
 
 	bool hasScreenUpdates() const
 	{
@@ -116,7 +116,7 @@ private:
 	Mode m_mode;
 	State m_state;
 
-	QSize m_screenSize;
+	QSize m_scaledScreenSize;
 
 	ItalcVncConnection* m_vncConnection;
 	ItalcCoreConnection* m_coreConnection;

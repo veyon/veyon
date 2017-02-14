@@ -33,7 +33,7 @@ ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	m_computer( computer ),
 	m_mode( ModeMonitoring ),
 	m_state( Disconnected ),
-	m_screenSize(),
+	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
 	m_screenUpdated( false )
@@ -49,16 +49,16 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( const QSize &screenSize )
+void ComputerControlInterface::start( const QSize& scaledScreenSize )
 {
-	m_screenSize = screenSize;
+	m_scaledScreenSize = scaledScreenSize;
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
 		m_vncConnection = new ItalcVncConnection( this );
 		m_vncConnection->setHost( m_computer.hostAddress() );
 		m_vncConnection->setQuality( ItalcVncConnection::ThumbnailQuality );
-		m_vncConnection->setScaledSize( m_screenSize );
+		m_vncConnection->setScaledSize( m_scaledScreenSize );
 		m_vncConnection->setFramebufferUpdateInterval( 1000 );	// TODO: replace hard-coded value
 		m_vncConnection->start();
 
@@ -91,13 +91,13 @@ void ComputerControlInterface::stop()
 
 
 
-void ComputerControlInterface::setScreenSize(const QSize &size)
+void ComputerControlInterface::setScaledScreenSize( const QSize& scaledScreenSize )
 {
-	m_screenSize = size;
+	m_scaledScreenSize = scaledScreenSize;
 
 	if( m_vncConnection )
 	{
-		m_vncConnection->setScaledSize( size );
+		m_vncConnection->setScaledSize( m_scaledScreenSize );
 	}
 
 	setScreenUpdateFlag();
@@ -105,7 +105,7 @@ void ComputerControlInterface::setScreenSize(const QSize &size)
 
 
 
-QImage ComputerControlInterface::screen() const
+QImage ComputerControlInterface::scaledScreen() const
 {
 	if( m_vncConnection && m_vncConnection->isConnected() )
 	{

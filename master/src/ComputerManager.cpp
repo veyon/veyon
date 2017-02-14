@@ -74,7 +74,7 @@ void ComputerManager::updateComputerScreenSize()
 {
 	for( auto& computer : m_computerList )
 	{
-		computer.controlInterface().setScreenSize( computerScreenSize() );
+		computer.controlInterface().setScaledScreenSize( computerScreenSize() );
 	}
 
 	emit computerScreenSizeChanged();

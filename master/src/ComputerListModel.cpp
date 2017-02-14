@@ -201,7 +201,7 @@ QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface
 		case ComputerControlInterface::ModeFullScreenDemo:
 			icon = m_iconDemoMode;
 		default:
-			return controlInterface.screen();
+			return controlInterface.scaledScreen();
 		}
 		break;
 
@@ -214,5 +214,5 @@ QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface
 		break;
 	}
 
-	return icon.scaled( controlInterface.screenSize(), Qt::KeepAspectRatio );
+	return icon.scaled( controlInterface.scaledScreenSize(), Qt::KeepAspectRatio );
 }
