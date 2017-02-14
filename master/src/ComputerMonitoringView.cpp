@@ -93,6 +93,11 @@ void ComputerMonitoringView::setFeatureManager( FeatureManager& featureManager )
 
 	for( auto feature : featureManager.features() )
 	{
+		if( feature.type() == Feature::BuiltinService )
+		{
+			continue;
+		}
+
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  feature.displayName(),
 								  [=] () { runFeature( feature ); } );

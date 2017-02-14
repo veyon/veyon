@@ -320,6 +320,11 @@ void MainWindow::addFeaturesToToolBar()
 {
 	for( auto feature : m_masterCore.featureManager().features() )
 	{
+		if( feature.type() == Feature::BuiltinService )
+		{
+			continue;
+		}
+
 		ToolButton* btn = new ToolButton( feature.iconUrl(),
 										  feature.displayName(),
 										  feature.displayNameActive(),
