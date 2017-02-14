@@ -103,9 +103,11 @@ bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage
 			featureWorkerManager.startWorker( m_textMessageFeature );
 		}
 		featureWorkerManager.sendMessage( message );
+
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 
