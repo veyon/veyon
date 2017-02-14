@@ -105,9 +105,11 @@ bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 
 		// forward message to worker
 		featureWorkerManager.sendMessage( message );
+
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 
