@@ -31,7 +31,6 @@
 #include "ItalcCoreConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
-#include "RemoteControlWidget.h"
 
 
 QSplashScreen * splashScreen = NULL;
@@ -63,23 +62,7 @@ int main( int argc, char * * argv )
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
-		if( a == "-rctrl" && arg_it.hasNext() )
-		{
-			if( !ItalcCore::initAuthentication() )
-			{
-				ilog_failed( "ItalcCore::initAuthentication()" );
-				return -1;
-			}
-
-			const QString host = arg_it.next();
-			bool view_only = arg_it.hasNext() ?
-						arg_it.next().toInt()
-					:
-						false;
-			new RemoteControlWidget( host, view_only );
-			return app.exec();
-		}
-		else if( a == "-role" )
+		if( a == "-role" )
 		{
 			if( arg_it.hasNext() )
 			{

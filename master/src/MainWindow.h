@@ -41,7 +41,6 @@ class MasterCore;
 class ComputerManagementView;
 class ConfigWidget;
 class WelcomeWidget;
-class RemoteControlWidget;
 class ItalcCoreConnection;
 class SnapshotManagementWidget;
 class Feature;
@@ -78,10 +77,6 @@ public:
 	MainToolBar* toolBar();
 
 	SideBar* sideBar();
-
-	void remoteControlDisplay( const QString& hostname,
-								bool viewOnly = false,
-								bool stopDemoAfterwards = false );
 
 
 protected:

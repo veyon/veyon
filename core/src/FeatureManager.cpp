@@ -35,8 +35,6 @@
 static const Feature::Uid uidPresentationFullScreen = Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" );
 static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" );
 static const Feature::Uid uidSnapshot = Feature::Uid( "fe539932-d158-49b0-aedb-f01dc1e88cfa" );
-static const Feature::Uid uidRemoteControl = Feature::Uid( "fc22fa22-2469-41b9-a626-1bd9875dec41" );
-static const Feature::Uid uidRemoteView = Feature::Uid( "6154bcd0-93d4-44cb-adc6-eb08edf5fae5" );
 
 #ifdef ITALC_BUILD_WIN32
 static const QStringList nameFilters("*.dll");
@@ -75,7 +73,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 
 	for( auto fileInfo : QDir( "plugins:" ).entryInfoList( nameFilters ) )
 	{
-		auto featureInterface = qobject_cast<FeaturePluginInterface *>( QPluginLoader(fileInfo.filePath()).instance() );
+		auto featureInterface = qobject_cast<FeaturePluginInterface *>( QPluginLoader( fileInfo.filePath() ).instance() );
 		if( featureInterface )
 		{
 			m_features += featureInterface->featureList();
@@ -103,16 +101,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 						   tr( "Snapshot" ), QString(),
 						   tr( "Use this function to take a snapshot of all computers." ),
 						   ":/resources/camera-photo.png" );
-
-	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteControl,
-						   tr( "Remote control" ), QString(),
-						   tr( "Opens a remote control window" ),
-						   ":/resources/remote_control.png" );
-
-	m_features += Feature( Feature::Session, Feature::ScopeMaster, uidRemoteView,
-						   tr( "Remote view" ), QString(),
-						   tr( "Opens a remote view window" ),
-						   ":/resources/kmag.png" );
 }
 
 

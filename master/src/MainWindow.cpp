@@ -45,7 +45,6 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "MasterCore.h"
-#include "RemoteControlWidget.h"
 
 #include "ui_MainWindow.h"
 

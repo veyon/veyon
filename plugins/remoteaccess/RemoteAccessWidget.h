@@ -1,7 +1,7 @@
 /*
- *  RemoteControlWidget.h - widget containing a VNC-view and controls for it
+ *  RemoteAccessWidget.h - widget containing a VNC view and controls for it
  *
- *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,24 +21,24 @@
  *  USA.
  */
 
-#ifndef REMOTE_CONTROL_WIDGET_H
-#define REMOTE_CONTROL_WIDGET_H
+#ifndef REMOTE_ACCESS_WIDGET_H
+#define REMOTE_ACCESS_WIDGET_H
 
-#include <QtCore/QTimeLine>
+#include <QTimeLine>
 #include <QWidget>
 
 class VncView;
 class ItalcCoreConnection;
-class RemoteControlWidget;
+class RemoteAccessWidget;
 
 
-class RemoteControlWidgetToolBar : public QWidget
+class RemoteAccessWidgetToolBar : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteControlWidgetToolBar( RemoteControlWidget * _parent,
+	RemoteAccessWidgetToolBar( RemoteAccessWidget * _parent,
 							bool _view_only );
-	virtual ~RemoteControlWidgetToolBar();
+	virtual ~RemoteAccessWidgetToolBar();
 
 
 public slots:
@@ -59,7 +59,7 @@ private slots:
 
 
 private:
-	RemoteControlWidget * m_parent;
+	RemoteAccessWidget * m_parent;
 	QTimeLine m_showHideTimeLine;
 	QTimeLine m_iconStateTimeLine;
 
@@ -72,12 +72,12 @@ private:
 
 
 
-class RemoteControlWidget : public QWidget
+class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteControlWidget( const QString & _host, bool _view_only = false );
-	virtual ~RemoteControlWidget();
+	RemoteAccessWidget( const QString & _host, bool _view_only = false );
+	virtual ~RemoteAccessWidget();
 
 	const QString &host() const
 	{
@@ -105,13 +105,13 @@ private slots:
 
 
 private:
-	VncView * m_vncView;
-	ItalcCoreConnection *m_coreConnection;
-	RemoteControlWidgetToolBar * m_toolBar;
+	VncView* m_vncView;
+	ItalcCoreConnection* m_coreConnection;
+	RemoteAccessWidgetToolBar* m_toolBar;
 
 	QString m_host;
 
-	friend class RemoteControlWidgetToolBar;
+	friend class RemoteAccessWidgetToolBar;
 
 } ;
 
