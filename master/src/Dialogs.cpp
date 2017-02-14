@@ -32,7 +32,6 @@
 #include "ItalcCore.h"
 
 #include "ui_ClientSettingsDialog.h"
-#include "ui_SupportDialog.h"
 #include "ui_RemoteLogonDialog.h"
 
 
