@@ -87,9 +87,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	// create the action-toolbar
 	ui->toolBar->layout()->setSpacing( 4 );
 	ui->toolBar->setObjectName( "MainToolBar" );
-	ui->toolBar->toggleViewAction()->setEnabled( FALSE );
-
-	addToolBar( Qt::TopToolBarArea, ui->toolBar );
+	ui->toolBar->toggleViewAction()->setEnabled( false );
 
 	ToolButton * scr = new ToolButton(
 			QPixmap( ":/resources/applications-education.png" ),
