@@ -50,7 +50,8 @@ ItalcCoreServer::ItalcCoreServer() :
 	QObject(),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
-	m_featureManager( this ),
+	m_pluginManager(),
+	m_featureManager( m_pluginManager ),
 	m_featureWorkerManager( m_featureManager ),
 	m_slaveManager()
 {

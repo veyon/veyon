@@ -22,28 +22,18 @@
  *
  */
 
-#include <QCoreApplication>
 #include <QDebug>
-#include <QDir>
-#include <QMenu>
-#include <QPluginLoader>
-#include <QToolBar>
 
 #include "FeatureManager.h"
-#include "ItalcCoreConnection.h"
+#include "PluginInterface.h"
+#include "PluginManager.h"
 
 static const Feature::Uid uidPresentationFullScreen = Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" );
 static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" );
 
-#ifdef ITALC_BUILD_WIN32
-static const QStringList nameFilters("*.dll");
-#else
-static const QStringList nameFilters("*.so");
-#endif
-
-
-FeatureManager::FeatureManager( QObject* parent ) :
-	QObject( parent ),
+FeatureManager::FeatureManager( PluginManager& pluginManager ) :
+	QObject( &pluginManager ),
+	m_pluginManager( pluginManager ),
 	m_monitoringModeFeature( Feature::Mode, Feature::ScopeAll,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
 							 tr( "Monitoring" ), QString(),
@@ -54,25 +44,9 @@ FeatureManager::FeatureManager( QObject* parent ) :
 {
 	m_features += m_monitoringModeFeature;
 
-	// adds a search path relative to the main executable to if the path exists.
-	auto addRelativeIfExists = [this]( const QString& path )
+	for( auto pluginInterface : m_pluginManager.pluginInterfaces() )
 	{
-		QDir dir(qApp->applicationDirPath());
-		if( !path.isEmpty() && dir.cd( path ) )
-		{
-			QDir::addSearchPath( "plugins", dir.absolutePath() );
-		}
-	};
-
-#ifdef Q_OS_LINUX
-	addRelativeIfExists( "../plugins" );
-#else
-	addRelativeIfExists( "plugins" );
-#endif
-
-	for( auto fileInfo : QDir( "plugins:" ).entryInfoList( nameFilters ) )
-	{
-		auto featureInterface = qobject_cast<FeaturePluginInterface *>( QPluginLoader( fileInfo.filePath() ).instance() );
+		auto featureInterface = qobject_cast<FeaturePluginInterface *>( pluginInterface );
 		if( featureInterface )
 		{
 			m_features += featureInterface->featureList();
@@ -119,21 +93,6 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 	}
 
 	return Plugin::Uid();
-}
-
-
-
-QString FeatureManager::pluginName( const Plugin::Uid& pluginUid ) const
-{
-	for( auto featureInterface : m_featureInterfaces )
-	{
-		if( featureInterface->uid() == pluginUid )
-		{
-			return featureInterface->name();
-		}
-	}
-
-	return "None";
 }
 
 

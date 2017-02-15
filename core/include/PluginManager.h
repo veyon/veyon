@@ -1,5 +1,5 @@
 /*
- * PluginInterface.h - interface class for plugins
+ * PluginManager.h - header for the PluginManager class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,32 +22,36 @@
  *
  */
 
-#ifndef PLUGIN_INTERFACE_H
-#define PLUGIN_INTERFACE_H
+#ifndef PLUGIN_MANAGER_H
+#define PLUGIN_MANAGER_H
 
 #include <QObject>
 
 #include "Plugin.h"
+#include "PluginInterface.h"
 
-class PluginInterface : public QObject
+class PluginManager : public QObject
 {
 	Q_OBJECT
 public:
-	virtual ~PluginInterface() {}
+	PluginManager( QObject* parent = nullptr );
 
-	virtual Plugin::Uid uid() const = 0;
-	virtual QString version() const = 0;
-	virtual QString name() const = 0;
-	virtual QString description() const = 0;
-	virtual QString vendor() const = 0;
-	virtual QString copyright() const = 0;
+	const PluginInterfaceList& pluginInterfaces() const
+	{
+		return m_pluginInterfaces;
+	}
+
+	PluginInterfaceList& pluginInterfaces()
+	{
+		return m_pluginInterfaces;
+	}
+
+	QString pluginName( const Plugin::Uid& pluginUid ) const;
+
+
+private:
+	PluginInterfaceList m_pluginInterfaces;
 
 };
 
-typedef QList<PluginInterface *> PluginInterfaceList;
-
-#define PluginInterface_iid "org.italc-solutions.iTALC.Plugins.PluginInterface"
-
-Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)
-
-#endif // PLUGIN_INTERFACE_H
+#endif // PLUGIN_MANAGER_H

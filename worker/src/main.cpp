@@ -28,6 +28,7 @@
 #include "Logger.h"
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
+#include "PluginManager.h"
 
 
 int main( int argc, char **argv )
@@ -41,7 +42,8 @@ int main( int argc, char **argv )
 
 	ItalcCore::init();
 
-	FeatureManager featureManager( &app );
+	PluginManager pluginManager;
+	FeatureManager featureManager( pluginManager );
 
 	const Feature* workerFeature = nullptr;
 
@@ -58,7 +60,7 @@ int main( int argc, char **argv )
 		qFatal( "Could not find specified feature" );
 	}
 
-	QString pluginName = featureManager.pluginName( featureManager.pluginUid( *workerFeature ) );
+	QString pluginName = pluginManager.pluginName( featureManager.pluginUid( *workerFeature ) );
 
 	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
 

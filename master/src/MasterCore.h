@@ -32,6 +32,7 @@ class ItalcVncConnection;
 class ItalcCoreConnection;
 class ComputerManager;
 class PersonalConfig;
+class PluginManager;
 
 class MasterCore : public QObject
 {
@@ -67,6 +68,7 @@ public:
 
 
 private:
+	PluginManager* m_pluginManager;
 	FeatureManager* m_featureManager;
 	ItalcVncConnection* m_localDisplay;
 	ItalcCoreConnection* m_localService;

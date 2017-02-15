@@ -27,7 +27,7 @@
 
 #include "FeaturePluginInterface.h"
 
-class RemoteAccessFeaturePlugin : public QObject, FeaturePluginInterface
+class RemoteAccessFeaturePlugin : public FeaturePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.PluginFeatureInterface")

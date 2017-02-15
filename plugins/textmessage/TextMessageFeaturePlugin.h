@@ -28,7 +28,7 @@
 #include "Feature.h"
 #include "FeaturePluginInterface.h"
 
-class TextMessageFeaturePlugin : public QObject, FeaturePluginInterface
+class TextMessageFeaturePlugin : public FeaturePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface")

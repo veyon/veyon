@@ -30,10 +30,12 @@
 #include "ItalcCoreConnection.h"
 #include "ComputerManager.h"
 #include "PersonalConfig.h"
+#include "PluginManager.h"
 
 
 MasterCore::MasterCore() :
-	m_featureManager( new FeatureManager( this ) ),
+	m_pluginManager( new PluginManager ),
+	m_featureManager( new FeatureManager( *m_pluginManager ) ),
 	m_localDisplay( new ItalcVncConnection( this ) ),
 	m_localService( new ItalcCoreConnection( m_localDisplay ) ),
 	m_personalConfig( new PersonalConfig( Configuration::Store::JsonFile ) ),

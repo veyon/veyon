@@ -36,12 +36,13 @@
 class QWidget;
 
 class FeatureWorkerManager;
+class PluginManager;
 
 class FeatureManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureManager( QObject* parent );
+	FeatureManager( PluginManager& pluginManager );
 
 	BuiltinFeatures& builtinFeatures()
 	{
@@ -61,7 +62,6 @@ public:
 	}
 
 	Plugin::Uid pluginUid( const Feature& feature ) const;
-	QString pluginName( const Plugin::Uid& pluginUid ) const;
 
 	void startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
 	void stopMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
@@ -69,6 +69,7 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice );
 
 private:
+	PluginManager& m_pluginManager;
 	Feature m_monitoringModeFeature;
 	FeatureList m_features;
 	FeaturePluginInterfaceList m_featureInterfaces;

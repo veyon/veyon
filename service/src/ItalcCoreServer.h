@@ -30,6 +30,7 @@
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
+#include "PluginManager.h"
 #include "SocketDevice.h"
 #include "ItalcSlaveManager.h"
 #include "DesktopAccessPermission.h"
@@ -77,6 +78,7 @@ private:
 
 	QStringList m_failedAuthHosts;
 
+	PluginManager m_pluginManager;
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
 	ItalcSlaveManager m_slaveManager;
