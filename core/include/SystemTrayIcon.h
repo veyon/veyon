@@ -32,8 +32,6 @@ class QSystemTrayIcon;
 class SystemTrayIcon : public QObject, public FeaturePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface")
-	Q_INTERFACES(FeaturePluginInterface)
 public:
 	SystemTrayIcon();
 	virtual ~SystemTrayIcon() {}
