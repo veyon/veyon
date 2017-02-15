@@ -58,7 +58,7 @@ PluginManager::PluginManager( QObject* parent ) :
 
 	for( auto fileInfo : QDir( "plugins:" ).entryInfoList( nameFilters ) )
 	{
-		auto pluginInterface = dynamic_cast<PluginInterface *>( QPluginLoader( fileInfo.filePath() ).instance() );
+		auto pluginInterface = qobject_cast<PluginInterface *>( QPluginLoader( fileInfo.filePath() ).instance() );
 
 		if( pluginInterface )
 		{

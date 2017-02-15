@@ -28,11 +28,11 @@
 #include "Feature.h"
 #include "FeaturePluginInterface.h"
 
-class PowerControlFeaturePlugin : public FeaturePluginInterface
+class PowerControlFeaturePlugin : public QObject, FeaturePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface")
-	Q_INTERFACES(FeaturePluginInterface)
+	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	PowerControlFeaturePlugin();
 	virtual ~PowerControlFeaturePlugin() {}

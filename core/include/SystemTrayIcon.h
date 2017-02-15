@@ -29,7 +29,7 @@
 
 class QSystemTrayIcon;
 
-class SystemTrayIcon : public FeaturePluginInterface
+class SystemTrayIcon : public QObject, public FeaturePluginInterface
 {
 	Q_OBJECT
 public:

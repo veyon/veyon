@@ -29,9 +29,8 @@
 
 #include "Plugin.h"
 
-class PluginInterface : public QObject
+class PluginInterface
 {
-	Q_OBJECT
 public:
 	virtual ~PluginInterface() {}
 

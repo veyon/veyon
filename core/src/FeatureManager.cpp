@@ -46,7 +46,7 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 
 	for( auto pluginInterface : m_pluginManager.pluginInterfaces() )
 	{
-		auto featureInterface = qobject_cast<FeaturePluginInterface *>( pluginInterface );
+		auto featureInterface = dynamic_cast<FeaturePluginInterface *>( pluginInterface );
 		if( featureInterface )
 		{
 			m_features += featureInterface->featureList();

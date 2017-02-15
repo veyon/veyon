@@ -28,11 +28,11 @@
 #include "Feature.h"
 #include "FeaturePluginInterface.h"
 
-class ScreenshotFeaturePlugin : public FeaturePluginInterface
+class ScreenshotFeaturePlugin : public QObject, FeaturePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.FeaturePluginInterface")
-	Q_INTERFACES(FeaturePluginInterface)
+	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	ScreenshotFeaturePlugin();
 	virtual ~ScreenshotFeaturePlugin() {}
