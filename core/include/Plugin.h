@@ -25,6 +25,7 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
+#include <QList>
 #include <QUuid>
 
 class Plugin
@@ -33,5 +34,7 @@ public:
 	typedef QUuid Uid;
 
 };
+
+typedef QList<Plugin::Uid> PluginUidList;
 
 #endif // PLUGIN_H
