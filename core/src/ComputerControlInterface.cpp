@@ -78,12 +78,14 @@ void ComputerControlInterface::stop()
 	if( m_coreConnection )
 	{
 		delete m_coreConnection;
+		m_coreConnection = nullptr;
 	}
 
 	if( m_vncConnection )
 	{
 		// do not delete VNC connection but let it delete itself after stopping automatically
 		m_vncConnection->stop( true );
+		m_vncConnection = nullptr;
 	}
 
 	m_state = Disconnected;
