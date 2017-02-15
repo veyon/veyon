@@ -1,7 +1,7 @@
 /*
  *  Snapshot.cpp - class representing a screen snapshot
  *
- *  Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,16 +21,17 @@
  *  USA.
  */
 
-#include <QtCore/QDateTime>
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
+#include <QDateTime>
+#include <QDir>
+#include <QFileInfo>
 #include <QApplication>
 #include <QMessageBox>
-#include <QtGui/QPainter>
+#include <QPainter>
 
 #include "Snapshot.h"
 #include "ItalcConfiguration.h"
-#include "ItalcVncConnection.h"
+#include "Computer.h"
+#include "ComputerControlInterface.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
@@ -48,9 +49,9 @@ Snapshot::Snapshot( const QString &fileName ) :
 
 
 
-void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
+void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 {
-	QString u = user;
+	QString u = computerControlInterface.user();
 	if( u.isEmpty() )
 	{
 		u = tr( "unknown" );
@@ -61,7 +62,7 @@ void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
 	}
 
 	// construct text
-	QString txt = u + "@" + vncConn->host() + " " +
+	QString txt = u + "@" + computerControlInterface.computer().hostAddress() + " " +
 			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
@@ -83,7 +84,7 @@ void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
 
 	// construct filename
 	m_fileName =  QString( "_%1_%2_%3.png" ).
-						arg( vncConn->host() ).
+						arg( computerControlInterface.computer().hostAddress() ).
 						arg( QDate( QDate::currentDate() ).toString( Qt::ISODate ) ).
 						arg( QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
 					replace( ':', '-' );
@@ -95,7 +96,7 @@ void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
 	const int RECT_MARGIN = 10;
 	const int RECT_INNER_MARGIN = 5;
 
-	m_image = QImage( vncConn->image() );
+	m_image = QImage( computerControlInterface.screen() );
 
 	QPixmap icon( QPixmap( ":/resources/icon16.png" ) );
 

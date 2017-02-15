@@ -23,7 +23,6 @@
  */
 
 #include "RemoteAccessFeaturePlugin.h"
-#include "Computer.h"
 #include "RemoteAccessWidget.h"
 
 
@@ -71,7 +70,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
-			new RemoteAccessWidget( controlInterface->computer().hostAddress(), true );
+			new RemoteAccessWidget( *controlInterface, true );
 		}
 
 		return true;
@@ -80,7 +79,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
-			new RemoteAccessWidget( controlInterface->computer().hostAddress(), false );
+			new RemoteAccessWidget( *controlInterface, false );
 		}
 
 		return true;

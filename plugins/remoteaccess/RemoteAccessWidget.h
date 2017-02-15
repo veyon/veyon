@@ -28,6 +28,7 @@
 #include <QWidget>
 
 class VncView;
+class ComputerControlInterface;
 class ItalcCoreConnection;
 class RemoteAccessWidget;
 
@@ -76,13 +77,8 @@ class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidget( const QString & _host, bool _view_only = false );
+	RemoteAccessWidget( const ComputerControlInterface& computerControlInterface, bool _view_only = false );
 	virtual ~RemoteAccessWidget();
-
-	const QString &host() const
-	{
-		return m_host;
-	}
 
 
 public slots:
@@ -105,11 +101,10 @@ private slots:
 
 
 private:
+	const ComputerControlInterface& m_computerControlInterface;
 	VncView* m_vncView;
 	ItalcCoreConnection* m_coreConnection;
 	RemoteAccessWidgetToolBar* m_toolBar;
-
-	QString m_host;
 
 	friend class RemoteAccessWidgetToolBar;
 

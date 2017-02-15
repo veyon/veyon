@@ -24,6 +24,8 @@
 #include "RemoteAccessWidget.h"
 #include "VncView.h"
 #include "ItalcCoreConnection.h"
+#include "Computer.h"
+#include "ComputerControlInterface.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"
 #include "Snapshot.h"
@@ -240,8 +242,6 @@ void RemoteAccessWidgetToolBar::startConnection()
 
 void RemoteAccessWidgetToolBar::connectionEstablished()
 {
-	m_parent->m_coreConnection->sendGetUserInformationRequest();
-
 	m_connecting = false;
 	m_iconStateTimeLine.stop();
 	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
@@ -259,13 +259,13 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 
 
 
-RemoteAccessWidget::RemoteAccessWidget( const QString &host,
+RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computerControlInterface,
 											bool viewOnly ) :
 	QWidget( 0 ),
-	m_vncView( new VncView( host, this, VncView::RemoteControlMode ) ),
+	m_computerControlInterface( computerControlInterface ),
+	m_vncView( new VncView( computerControlInterface.computer().hostAddress(), this, VncView::RemoteControlMode ) ),
 	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
-	m_toolBar( new RemoteAccessWidgetToolBar( this, viewOnly ) ),
-	m_host( host )
+	m_toolBar( new RemoteAccessWidgetToolBar( this, viewOnly ) )
 {
 	setWindowIcon( QPixmap( ":/remoteaccess/kmag.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
@@ -305,7 +305,7 @@ void RemoteAccessWidget::updateWindowTitle()
 			tr( "View live (%1 @ %2)" )
 		:
 			tr( "Remote control (%1 @ %2)" );
-	QString u = m_coreConnection->user();
+	QString u = m_computerControlInterface.user();
 	if( u.isEmpty() )
 	{
 		u = tr( "unknown user" );
@@ -317,7 +317,8 @@ void RemoteAccessWidget::updateWindowTitle()
 			u = u.section( '(', 1 ).section( ')', 0, 0 );
 		}
 	}
-	setWindowTitle( s.arg( u ).arg( host() ) );
+
+	setWindowTitle( s.arg( u ).arg( m_computerControlInterface.computer().hostAddress() ) );
 }
 
 
@@ -408,7 +409,7 @@ void RemoteAccessWidget::toggleViewOnly( bool _on )
 
 void RemoteAccessWidget::takeSnapshot()
 {
-	Snapshot().take( m_vncView->vncConnection(), m_coreConnection->user() );
+	Snapshot().take( m_computerControlInterface );
 }
 
 
