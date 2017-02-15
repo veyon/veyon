@@ -89,6 +89,8 @@ public:
 
 	QImage scaledScreen() const;
 
+	QImage screen() const;
+
 	bool hasScreenUpdates() const
 	{
 		return m_screenUpdated;

@@ -117,6 +117,18 @@ QImage ComputerControlInterface::scaledScreen() const
 
 
 
+QImage ComputerControlInterface::screen() const
+{
+	if( m_vncConnection && m_vncConnection->isConnected() )
+	{
+		return m_vncConnection->image();
+	}
+
+	return QImage();
+}
+
+
+
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_coreConnection && m_coreConnection->isConnected() )
