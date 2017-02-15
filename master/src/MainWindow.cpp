@@ -76,7 +76,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	// append sidebar-workspaces to sidebar
 	ui->sideBar->appendTab( m_welcomeWidget, tr( "Welcome" ), QPixmap( ":/resources/view-calendar-month.png" ) );
 	ui->sideBar->appendTab( m_computerManagementView, tr( "Computer management" ), QPixmap( ":/resources/applications-education.png" ) );
-	ui->sideBar->appendTab( m_snapshotManagementWidget, tr( "Snapshot management" ), QPixmap( ":/resources/camera-photo.png" ) );
+	ui->sideBar->appendTab( m_snapshotManagementWidget, tr( "Snapshot management" ), QPixmap( ":/screenshot/camera-photo.png" ) );
 	ui->sideBar->appendTab( m_configWidget, tr( "Configuration" ), QPixmap( ":/resources/adjustrgb.png" ) );
 
 	ui->centralLayout->insertWidget( 0, m_welcomeWidget );

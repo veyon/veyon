@@ -1,4 +1,5 @@
 ADD_SUBDIRECTORY(powercontrol)
 ADD_SUBDIRECTORY(remoteaccess)
+ADD_SUBDIRECTORY(screenshot)
 ADD_SUBDIRECTORY(screenlock)
 ADD_SUBDIRECTORY(textmessage)

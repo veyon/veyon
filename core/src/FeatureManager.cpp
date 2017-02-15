@@ -34,7 +34,6 @@
 
 static const Feature::Uid uidPresentationFullScreen = Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" );
 static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" );
-static const Feature::Uid uidSnapshot = Feature::Uid( "fe539932-d158-49b0-aedb-f01dc1e88cfa" );
 
 #ifdef ITALC_BUILD_WIN32
 static const QStringList nameFilters("*.dll");
@@ -96,11 +95,6 @@ FeatureManager::FeatureManager( QObject* parent ) :
 							   "able to switch to other windows and thus "
 							   "can continue to work." ),
 						   ":/resources/presentation-window.png" );
-
-	m_features += Feature( Feature::Action, Feature::ScopeMaster, uidSnapshot,
-						   tr( "Snapshot" ), QString(),
-						   tr( "Use this function to take a snapshot of all computers." ),
-						   ":/resources/camera-photo.png" );
 }
 
 
