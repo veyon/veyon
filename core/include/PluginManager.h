@@ -46,6 +46,10 @@ public:
 		return m_pluginInterfaces;
 	}
 
+	PluginUidList pluginUids() const;
+
+	PluginInterface* pluginInterface( const Plugin::Uid& pluginUid );
+
 	QString pluginName( const Plugin::Uid& pluginUid ) const;
 
 

@@ -70,6 +70,37 @@ PluginManager::PluginManager( QObject* parent ) :
 
 
 
+PluginUidList PluginManager::pluginUids() const
+{
+	PluginUidList pluginUidList;
+
+	for( auto pluginInterface : m_pluginInterfaces )
+	{
+		pluginUidList += pluginInterface->uid();
+	}
+
+	std::sort( pluginUidList.begin(), pluginUidList.end() );
+
+	return pluginUidList;
+}
+
+
+
+PluginInterface* PluginManager::pluginInterface( const Plugin::Uid& pluginUid )
+{
+	for( auto pluginInterface : m_pluginInterfaces )
+	{
+		if( pluginInterface->uid() == pluginUid )
+		{
+			return pluginInterface;
+		}
+	}
+
+	return nullptr;
+}
+
+
+
 QString PluginManager::pluginName( const Plugin::Uid& pluginUid ) const
 {
 	for( auto pluginInterface : m_pluginInterfaces )
