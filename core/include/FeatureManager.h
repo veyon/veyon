@@ -61,6 +61,8 @@ public:
 		return m_features;
 	}
 
+	const FeatureList& features( const Plugin::Uid& pluginUid ) const;
+
 	Plugin::Uid pluginUid( const Feature& feature ) const;
 
 	void startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
@@ -72,6 +74,7 @@ private:
 	PluginManager& m_pluginManager;
 	Feature m_monitoringModeFeature;
 	FeatureList m_features;
+	FeatureList m_emptyFeatureList;
 	FeaturePluginInterfaceList m_featureInterfaces;
 
 	BuiltinFeatures m_builtinFeatures;

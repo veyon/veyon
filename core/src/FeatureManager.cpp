@@ -40,6 +40,7 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 							 tr( "This is the default mode and allows you to monitor all computers in the classroom." ),
 							 ":/resources/presentation-none.png" ),
 	m_features(),
+	m_emptyFeatureList(),
 	m_builtinFeatures( *this )
 {
 	m_features += m_monitoringModeFeature;
@@ -78,6 +79,21 @@ void FeatureManager::registerBuiltinFeature( FeaturePluginInterface* featurePlug
 	m_features += featurePluginInterface->featureList();
 
 	m_featureInterfaces += featurePluginInterface;
+}
+
+
+
+const FeatureList& FeatureManager::features( const Plugin::Uid& pluginUid ) const
+{
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		if( featureInterface->uid() == pluginUid )
+		{
+			return featureInterface->featureList();
+		}
+	}
+
+	return m_emptyFeatureList;
 }
 
 
