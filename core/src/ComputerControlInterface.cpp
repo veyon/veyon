@@ -129,6 +129,18 @@ QImage ComputerControlInterface::screen() const
 
 
 
+QString ComputerControlInterface::user() const
+{
+	if( m_coreConnection )
+	{
+		return m_coreConnection->user();
+	}
+
+	return QString();
+}
+
+
+
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_coreConnection && m_coreConnection->isConnected() )
@@ -150,6 +162,11 @@ void ComputerControlInterface::updateState()
 		case ItalcVncConnection::Connected: m_state = Connected; break;
 		case ItalcVncConnection::HostUnreachable: m_state = Unreachable; break;
 		default: m_state = Unknown; break;
+		}
+
+		if( m_coreConnection )
+		{
+			m_coreConnection->sendGetUserInformationRequest();
 		}
 	}
 	else

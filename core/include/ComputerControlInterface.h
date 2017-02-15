@@ -101,6 +101,8 @@ public:
 		m_screenUpdated = false;
 	}
 
+	QString user() const;
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 
