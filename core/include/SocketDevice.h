@@ -97,6 +97,14 @@ public:
 		return writeData( buf, bytes );
 	}
 
+	QString peerAddress()
+	{
+		char buf[256];
+		m_socketDispatcher( buf, sizeof(buf)-1, SocketGetPeerAddress, m_user );
+		buf[sizeof(buf)-1] = 0;
+
+		return QString( buf );
+	}
 
 protected:
 	qint64 readData( char *buf, qint64 bytes )
