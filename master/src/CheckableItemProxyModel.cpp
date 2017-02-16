@@ -118,6 +118,8 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 				emit dataChanged( index.parent(), index.parent(), QVector<int>( { role } ) );
 			}
 		}
+
+		emit dataChanged( index, index, QVector<int>( { role } ) );
 	}
 
 	--m_callDepth;
