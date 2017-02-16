@@ -27,6 +27,7 @@
 
 #include <QJsonArray>
 #include <QIdentityProxyModel>
+#include <QUuid>
 
 class CheckableItemProxyModel : public QIdentityProxyModel
 {
@@ -48,7 +49,7 @@ public:
 
 private:
 	int m_uidRole;
-	QHash<uint, Qt::CheckState> m_checkStates;
+	QHash<QUuid, Qt::CheckState> m_checkStates;
 	int m_callDepth;
 
 };

@@ -58,7 +58,7 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 
 	if( role == Qt::CheckStateRole )
 	{
-		return m_checkStates.value( QIdentityProxyModel::data( index, m_uidRole ).toUInt() );
+		return m_checkStates.value( QIdentityProxyModel::data( index, m_uidRole ).toUuid() );
 	}
 
 	return QIdentityProxyModel::data(index, role);
@@ -82,7 +82,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 	Qt::CheckState checkState = value.value<Qt::CheckState>();
 
-	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUInt()] = checkState;
+	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUuid()] = checkState;
 
 	int childrenCount = rowCount( index );
 
@@ -145,7 +145,7 @@ void CheckableItemProxyModel::removeRowStates(const QModelIndex &parent, int fir
 {
 	for( int i = first; i <= last; ++i )
 	{
-		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_uidRole ).toUInt() );
+		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_uidRole ).toUuid() );
 	}
 }
 
@@ -159,7 +159,7 @@ QJsonArray CheckableItemProxyModel::saveStates()
 	{
 		if( it.value() == Qt::Checked )
 		{
-			data += QString::number( it.key(), 16 );
+			data += it.key().toString();
 		}
 	}
 
@@ -174,7 +174,7 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 
 	for( auto item : data )
 	{
-		const uint uid = item.toString().toUInt( NULL, 16 );
+		const QUuid uid = QUuid( item.toString() );
 		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,
 									  Qt::MatchExactly | Qt::MatchRecursive );
 		if( indexList.isEmpty() == false &&
