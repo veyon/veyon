@@ -28,11 +28,11 @@
 #include <QObject>
 
 #include "Feature.h"
+#include "Computer.h"
+#include "ComputerControlInterface.h"
 
 class BuiltinFeatures;
 class FeatureManager;
-class ItalcVncConnection;
-class ItalcCoreConnection;
 class ComputerManager;
 class PersonalConfig;
 class PluginManager;
@@ -59,14 +59,9 @@ public:
 		return *m_featureManager;
 	}
 
-	ItalcVncConnection& localDisplay()
+	ComputerControlInterface& localComputerControlInterface()
 	{
-		return *m_localDisplay;
-	}
-
-	ItalcCoreConnection& localService()
-	{
-		return *m_localService;
+		return m_localComputerControlInterface;
 	}
 
 	PersonalConfig& personalConfig()
@@ -95,8 +90,8 @@ private:
 	PluginManager* m_pluginManager;
 	BuiltinFeatures* m_builtinFeatures;
 	FeatureManager* m_featureManager;
-	ItalcVncConnection* m_localDisplay;
-	ItalcCoreConnection* m_localService;
+	Computer m_localComputer;
+	ComputerControlInterface m_localComputerControlInterface;
 	PersonalConfig* m_personalConfig;
 	ComputerManager* m_computerManager;
 

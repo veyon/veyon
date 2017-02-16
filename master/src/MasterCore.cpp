@@ -39,29 +39,13 @@ MasterCore::MasterCore() :
 	m_pluginManager( new PluginManager ),
 	m_builtinFeatures( new BuiltinFeatures( *m_pluginManager ) ),
 	m_featureManager( new FeatureManager( *m_pluginManager ) ),
-	m_localDisplay( new ItalcVncConnection( this ) ),
-	m_localService( new ItalcCoreConnection( m_localDisplay ) ),
+	m_localComputer( NetworkObject::Uid::createUuid(), "localhost", QHostAddress( QHostAddress::LocalHost ).toString() ),
+	m_localComputerControlInterface( m_localComputer ),
 	m_personalConfig( new PersonalConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_personalConfig, this ) ),
 	m_currentMode()
 {
-	/*	ItalcVncConnection * conn = new ItalcVncConnection( this );
-		// attach ItalcCoreConnection to it so we can send extended iTALC commands
-		m_localICA = new ItalcCoreConnection( conn );
-
-		conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-		conn->setPort( ItalcCore::config->coreServerPort() );
-		conn->start();
-		*/
-	m_localDisplay->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	m_localDisplay->setFramebufferUpdateInterval( -1 );
-	m_localDisplay->start();
-/*
-	if( !m_localDisplay->waitForConnected( 5000 ) )
-	{
-		// TODO
-	}
-*/
+	m_localComputerControlInterface.start( QSize() );
 }
 
 
@@ -69,8 +53,6 @@ MasterCore::MasterCore() :
 MasterCore::~MasterCore()
 {
 	delete m_computerManager;
-	delete m_localService;
-	delete m_localDisplay;
 
 	m_personalConfig->flushStore();
 	delete m_personalConfig;
@@ -121,23 +103,27 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 
 	if( feature.type() == Feature::Mode  )
 	{
-		m_featureManager->stopMasterFeature( Feature( m_currentMode ), computerControlInterfaces, parent );
+		m_featureManager->stopMasterFeature( Feature( m_currentMode ), computerControlInterfaces,
+											 m_localComputerControlInterface, parent );
 
 		if( m_currentMode == feature.uid() )
 		{
 			const Feature& monitoringModeFeature = m_builtinFeatures->monitoringMode().feature();
 
-			m_featureManager->startMasterFeature( monitoringModeFeature, computerControlInterfaces, parent );
+			m_featureManager->startMasterFeature( monitoringModeFeature, computerControlInterfaces,
+												  m_localComputerControlInterface, parent );
 			m_currentMode = monitoringModeFeature.uid();
 		}
 		else
 		{
-			m_featureManager->startMasterFeature( feature, computerControlInterfaces, parent );
+			m_featureManager->startMasterFeature( feature, computerControlInterfaces,
+												  m_localComputerControlInterface, parent );
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		m_featureManager->startMasterFeature( feature, computerControlInterfaces, parent );
+		m_featureManager->startMasterFeature( feature, computerControlInterfaces,
+											  m_localComputerControlInterface, parent );
 	}
 }

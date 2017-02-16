@@ -146,6 +146,7 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 {
 	if( m_masterCore )
 	{
-		m_masterCore->featureManager().startMasterFeature( feature, selectedComputerControlInterfaces(), topLevelWidget() );
+		m_masterCore->featureManager().startMasterFeature( feature, selectedComputerControlInterfaces(),
+														   m_masterCore->localComputerControlInterface(), topLevelWidget() );
 	}
 }
