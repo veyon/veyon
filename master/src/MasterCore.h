@@ -27,6 +27,8 @@
 
 #include <QObject>
 
+#include "Feature.h"
+
 class BuiltinFeatures;
 class FeatureManager;
 class ItalcVncConnection;
@@ -77,6 +79,17 @@ public:
 		return *m_computerManager;
 	}
 
+	FeatureList features() const;
+
+	const Feature::Uid& currentMode() const
+	{
+		return m_currentMode;
+	}
+
+
+public slots:
+	void runFeature( const Feature& feature, QWidget* parent );
+
 
 private:
 	PluginManager* m_pluginManager;
@@ -86,6 +99,8 @@ private:
 	ItalcCoreConnection* m_localService;
 	PersonalConfig* m_personalConfig;
 	ComputerManager* m_computerManager;
+
+	Feature::Uid m_currentMode;
 
 } ;
 

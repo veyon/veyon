@@ -25,13 +25,10 @@
 #ifndef COMPUTER_MANAGER_H
 #define COMPUTER_MANAGER_H
 
-#include <QSortFilterProxyModel>
-
 #include "Computer.h"
 #include "CheckableItemProxyModel.h"
-#include "Feature.h"
 
-class MasterCore;
+class QSortFilterProxyModel;
 class PersonalConfig;
 
 class ComputerManager : public QObject
@@ -56,12 +53,10 @@ public:
 		return m_computerList;
 	}
 
+	ComputerControlInterfaceList computerControlInterfaces();
+
 	void updateComputerScreenSize();
 
-	const Feature::Uid& currentMode() const
-	{
-		return m_currentMode;
-	}
 
 signals:
 	void computerListAboutToBeReset();
@@ -77,8 +72,6 @@ signals:
 	void computerScreenSizeChanged();
 
 public slots:
-	void runFeature( MasterCore& masterCore, const Feature& feature, QWidget* parent );
-
 	void reloadComputerList();
 	void updateComputerList();
 
@@ -94,8 +87,6 @@ private:
 	QSortFilterProxyModel* m_networkObjectSortProxyModel;
 
 	ComputerList m_computerList;
-
-	Feature::Uid m_currentMode;
 
 };
 

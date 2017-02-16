@@ -22,13 +22,10 @@
  *
  */
 
+#include <QSortFilterProxyModel>
 #include <QTimer>
 
-#include "BuiltinFeatures.h"
 #include "ComputerManager.h"
-#include "FeatureManager.h"
-#include "MasterCore.h"
-#include "MonitoringMode.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
@@ -39,8 +36,7 @@ ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
 	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
-	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) ),
-	m_currentMode()
+	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) )
 {
 	m_networkObjectSortProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
 	m_checkableNetworkObjectProxyModel->setSourceModel( m_networkObjectSortProxyModel );
@@ -73,6 +69,20 @@ ComputerManager::~ComputerManager()
 
 
 
+ComputerControlInterfaceList ComputerManager::computerControlInterfaces()
+{
+	ComputerControlInterfaceList interfaces;
+
+	for( auto& computer : m_computerList )
+	{
+		interfaces += &computer.controlInterface();
+	}
+
+	return interfaces;
+}
+
+
+
 void ComputerManager::updateComputerScreenSize()
 {
 	for( auto& computer : m_computerList )
@@ -81,41 +91,6 @@ void ComputerManager::updateComputerScreenSize()
 	}
 
 	emit computerScreenSizeChanged();
-}
-
-
-
-void ComputerManager::runFeature( MasterCore& masterCore, const Feature& feature, QWidget* parent )
-{
-	FeatureManager& featureManager = masterCore.featureManager();
-
-	ComputerControlInterfaceList computerControlInterfaces;
-	for( auto& computer : m_computerList )
-	{
-		computerControlInterfaces += &computer.controlInterface();
-	}
-
-	if( feature.type() == Feature::Mode  )
-	{
-		featureManager.stopMasterFeature( Feature( m_currentMode ), computerControlInterfaces, parent );
-
-		if( m_currentMode == feature.uid() )
-		{
-			const Feature& monitoringModeFeature = masterCore.builtinFeatures().monitoringMode().feature();
-
-			featureManager.startMasterFeature( monitoringModeFeature, computerControlInterfaces, parent );
-			m_currentMode = monitoringModeFeature.uid();
-		}
-		else
-		{
-			featureManager.startMasterFeature( feature, computerControlInterfaces, parent );
-			m_currentMode = feature.uid();
-		}
-	}
-	else
-	{
-		featureManager.startMasterFeature( feature, computerControlInterfaces, parent );
-	}
 }
 
 
