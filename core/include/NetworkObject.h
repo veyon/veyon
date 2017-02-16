@@ -25,12 +25,13 @@
 #ifndef NETWORK_OBJECT_H
 #define NETWORK_OBJECT_H
 
+#include <QUuid>
 #include <QString>
 
 class NetworkObject
 {
 public:
-	typedef uint Uid;
+	typedef QUuid Uid;
 
 	typedef enum Types
 	{
@@ -50,11 +51,9 @@ public:
 
 	bool operator ==( const NetworkObject& other ) const;
 
-	Uid uid() const;
-
-	void setType( Type type )
+	const Uid& uid() const
 	{
-		m_type = type;
+		return m_uid;
 	}
 
 	Type type() const
@@ -62,58 +61,44 @@ public:
 		return m_type;
 	}
 
-	void setName( const QString& name )
-	{
-		m_name = name;
-	}
-
-	QString name() const
+	const QString& name() const
 	{
 		return m_name;
 	}
 
-	void setHostAddress( const QString& hostAddress )
-	{
-		m_hostAddress = hostAddress;
-	}
-
-	QString hostAddress() const
+	const QString& hostAddress() const
 	{
 		return m_hostAddress;
 	}
 
-	void setMacAddress( const QString& macAddress )
-	{
-		m_macAddress = macAddress;
-	}
-
-	QString macAddress() const
+	const QString& macAddress() const
 	{
 		return m_macAddress;
 	}
 
-	void setDirectoryAddress( const QString& directoryAddress )
-	{
-		m_directoryAddress = directoryAddress;
-	}
-
-	QString directoryAddress() const
+	const QString& directoryAddress() const
 	{
 		return m_directoryAddress;
 	}
 
 private:
+	Uid calculateUid() const;
+
 	Type m_type;
 	QString m_name;
 	QString m_hostAddress;
 	QString m_macAddress;
 	QString m_directoryAddress;
+	Uid m_uid;
+
+	static const QUuid networkObjectNamespace;
+
 };
 
 
 static inline uint qHash( const NetworkObject& networkObject )
 {
-	return networkObject.uid();
+	return qHash( networkObject.uid() );
 }
 
 #endif // NETWORK_OBJECT_H

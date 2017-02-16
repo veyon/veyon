@@ -22,16 +22,19 @@
  *
  */
 
-#include <QHash>
-
 #include "NetworkObject.h"
+
+
+const QUuid NetworkObject::networkObjectNamespace( "8a6c479e-243e-4ccb-8e5a-0ddf5cf3c7d0" );
+
 
 NetworkObject::NetworkObject( const NetworkObject &other ) :
 	m_type( other.type() ),
 	m_name( other.name() ),
 	m_hostAddress( other.hostAddress() ),
 	m_macAddress( other.macAddress() ),
-	m_directoryAddress( other.directoryAddress() )
+	m_directoryAddress( other.directoryAddress() ),
+	m_uid( other.uid() )
 {
 }
 
@@ -46,7 +49,8 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 	m_name( name ),
 	m_hostAddress( hostAddress ),
 	m_macAddress( macAddress ),
-	m_directoryAddress( directoryAddress )
+	m_directoryAddress( directoryAddress ),
+	m_uid( calculateUid() )
 {
 }
 
@@ -59,14 +63,14 @@ bool NetworkObject::operator ==( const NetworkObject& other ) const
 
 
 
-NetworkObject::Uid NetworkObject::uid() const
+NetworkObject::Uid NetworkObject::calculateUid() const
 {
 	// if a directory address is set (e.g. full DN in LDAP) it should be unique and can be
 	// used for hashing
 	if( directoryAddress().isEmpty() == false )
 	{
-		return qHash( directoryAddress() );
+		return QUuid::createUuidV5( networkObjectNamespace, directoryAddress() );
 	}
 
-	return qHash( type() ) + qHash( name() ) + qHash( hostAddress() ) + qHash( macAddress() );
+	return QUuid::createUuidV5( networkObjectNamespace, name() + hostAddress() + macAddress() );
 }
