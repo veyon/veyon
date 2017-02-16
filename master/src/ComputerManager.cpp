@@ -218,7 +218,7 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 			computers += getComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).toUInt(),
+			computers += Computer( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>(),
 								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
 								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
 								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
