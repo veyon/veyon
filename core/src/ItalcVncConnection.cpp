@@ -99,7 +99,7 @@ public:
 
 	virtual void fire( rfbClient *cl )
 	{
-		SendClientCutText( cl, m_text.constData(), m_text.size() );
+		SendClientCutText( cl, m_text.data(), m_text.size() );
 	}
 
 private:
