@@ -66,8 +66,8 @@ const FeatureList &PowerControlFeaturePlugin::featureList() const
 
 
 bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
-											  const ComputerControlInterfaceList& computerControlInterfaces,
-											  QWidget* parent )
+													const ComputerControlInterfaceList& computerControlInterfaces,
+													QWidget* parent )
 {
 	if( m_features.contains( feature ) == false )
 	{
@@ -78,9 +78,7 @@ bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		for( auto interface : computerControlInterfaces )
 		{
-			FeatureMessage featureMessage( feature.uid() );
-			featureMessage.addArgument( MacAddressArgument, interface->computer().macAddress() );
-			interface->sendFeatureMessage( featureMessage );
+			PowerControl::broadcastWOLPacket( interface->computer().macAddress() );
 		}
 	}
 	else
@@ -94,8 +92,8 @@ bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 bool PowerControlFeaturePlugin::stopMasterFeature( const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+												   const ComputerControlInterfaceList& computerControlInterfaces,
+												   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -107,13 +105,9 @@ bool PowerControlFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
-													   FeatureWorkerManager& featureWorkerManager )
+															 FeatureWorkerManager& featureWorkerManager )
 {
-	if( message.featureUid() == m_powerOnFeature.uid() )
-	{
-		PowerControl::broadcastWOLPacket( message.argument( MacAddressArgument ).toString() );
-	}
-	else if( message.featureUid() == m_powerDownFeature.uid() )
+	if( message.featureUid() == m_powerDownFeature.uid() )
 	{
 		PowerControl::powerDown();
 	}

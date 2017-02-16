@@ -84,11 +84,6 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice ) override;
 
 private:
-	enum FeatureMessageArguments {
-		MacAddressArgument,
-		FeatureMessageArgumentCount
-	};
-
 	Feature m_powerOnFeature;
 	Feature m_rebootFeature;
 	Feature m_powerDownFeature;
