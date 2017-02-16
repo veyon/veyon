@@ -31,11 +31,11 @@
 
 ScreenshotFeaturePlugin::ScreenshotFeaturePlugin() :
 	m_screenshotFeature( Feature( Feature::Action,
-								   Feature::ScopeAll,
-								   Feature::Uid( "d5ee3aac-2a87-4d05-b827-0c20344490bd" ),
-								   tr( "Screenshot" ), QString(),
-								   tr( "Use this function to take a screenshot of selected computers." ),
-								   ":/screenshot/camera-photo.png" ) ),
+								  Feature::ScopeAll,
+								  Feature::Uid( "d5ee3aac-2a87-4d05-b827-0c20344490bd" ),
+								  tr( "Screenshot" ), QString(),
+								  tr( "Use this function to take a screenshot of selected computers." ),
+								  ":/screenshot/camera-photo.png" ) ),
 	m_features()
 {
 	m_features += m_screenshotFeature;
@@ -51,9 +51,12 @@ const FeatureList &ScreenshotFeaturePlugin::featureList() const
 
 
 bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
-												   const ComputerControlInterfaceList& computerControlInterfaces,
-												   QWidget* parent )
+												  const ComputerControlInterfaceList& computerControlInterfaces,
+												  ComputerControlInterface& localComputerControlInterface,
+												  QWidget* parent )
 {
+	Q_UNUSED(localComputerControlInterface);
+
 	if( feature.uid() == m_screenshotFeature.uid() )
 	{
 		for( auto controlInterface : computerControlInterfaces )
@@ -75,10 +78,12 @@ bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
-												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  QWidget* parent )
+												 const ComputerControlInterfaceList& computerControlInterfaces,
+												 ComputerControlInterface& localComputerControlInterface,
+												 QWidget* parent )
 {
 	Q_UNUSED(feature);
+	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 
@@ -88,7 +93,7 @@ bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool ScreenshotFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
-															FeatureWorkerManager& featureWorkerManager )
+														   FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(ioDevice);

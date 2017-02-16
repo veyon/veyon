@@ -52,8 +52,14 @@ public:
 
 	Plugin::Uid pluginUid( const Feature& feature ) const;
 
-	void startMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
-	void stopMasterFeature( const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
+	void startMasterFeature( const Feature& feature,
+							 const ComputerControlInterfaceList& computerControlInterfaces,
+							 ComputerControlInterface& localComputerControlInterface,
+							 QWidget* parent );
+	void stopMasterFeature( const Feature& feature,
+							const ComputerControlInterfaceList& computerControlInterfaces,
+							ComputerControlInterface& localComputerControlInterface,
+							QWidget* parent );
 	bool handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice, FeatureWorkerManager& featureWorkerManager );
 	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice );
 

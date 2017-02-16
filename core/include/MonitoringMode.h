@@ -40,7 +40,7 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return "1b08265b-348f-4978-acaa-45d4f6b90bd9";
+		return "1a6a59b1-c7a1-43cc-bcab-c136a4d91be8";
 	}
 
 	QString version() const override
@@ -72,11 +72,13 @@ public:
 
 	bool startMasterFeature( const Feature& feature,
 	                         const ComputerControlInterfaceList& computerControlInterfaces,
-	                         QWidget* parent ) override;
+							 ComputerControlInterface& localComputerControlInterface,
+							 QWidget* parent ) override;
 
 	bool stopMasterFeature( const Feature& feature,
 	                        const ComputerControlInterfaceList& computerControlInterfaces,
-	                        QWidget* parent ) override;
+							ComputerControlInterface& localComputerControlInterface,
+							QWidget* parent ) override;
 
 	bool handleServiceFeatureMessage( const FeatureMessage& message,
 	                                  QIODevice* ioDevice,
