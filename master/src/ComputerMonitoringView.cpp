@@ -83,8 +83,21 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	ui->listView->setModel( m_computerListModel );
 
 	// populate feature menu
+	Plugin::Uid previousPluginUid;
+
 	for( auto feature : m_masterCore->features() )
 	{
+		Plugin::Uid pluginUid = m_masterCore->featureManager().pluginUid( feature );
+
+		if( previousPluginUid.isNull() == false &&
+				pluginUid != previousPluginUid &&
+				feature.type() != Feature::Mode )
+		{
+			m_featureMenu->addSeparator();
+		}
+
+		previousPluginUid = pluginUid;
+
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  feature.displayName(),
 								  [=] () { runFeature( feature ); } );
