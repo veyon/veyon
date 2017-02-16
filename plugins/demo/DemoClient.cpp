@@ -1,7 +1,7 @@
 /*
  * DemoClient.cpp - client widget for demo mode
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,6 +28,7 @@
 #include <QDesktopWidget>
 
 #include "DemoClient.h"
+#include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "LockWidget.h"
 #include "RfbLZORLE.h"
@@ -59,7 +60,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	RfbLZORLE();
 	RfbItalcCursor();
 
-	m_vncView = new VncView( host, m_toplevel, VncView::DemoMode );
+	m_vncView = new VncView( host + ":" + QString::number( ItalcCore::config->demoServerPort() ), m_toplevel, VncView::DemoMode );
 
 	QVBoxLayout * toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setMargin( 0 );

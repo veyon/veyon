@@ -73,22 +73,12 @@ public:
 				return slaveStateFlags() & ItalcCore::x;	\
 			}
 
-	GEN_SLAVE_STATE_HELPER(DemoServerRunning)
-	GEN_SLAVE_STATE_HELPER(DemoClientRunning)
-	GEN_SLAVE_STATE_HELPER(ScreenLockRunning)
 	GEN_SLAVE_STATE_HELPER(InputLockRunning)
-	GEN_SLAVE_STATE_HELPER(SystemTrayIconRunning)
 
 	void sendFeatureMessage( const FeatureMessage &featureMessage );
 
 	void sendGetUserInformationRequest();
 	void execCmds( const QString &cmd );
-	void startDemo( const QString &host, int port, bool fullscreen = false );
-	void stopDemo();
-	void lockScreen();
-	void unlockScreen();
-	void lockInput();
-	void unlockInput();
 	void logonUser( const QString &uname, const QString &pw,
 						const QString &domain );
 	void logoutUser();
@@ -96,11 +86,6 @@ public:
 	void disableLocalInputs( bool disabled );
 
 	void setRole( const ItalcCore::UserRole role );
-
-	void startDemoServer( int sourcePort, int destinationPort );
-	void stopDemoServer();
-	void demoServerAllowHost( const QString &host );
-	void demoServerUnallowHost( const QString &host );
 
 	void reportSlaveStateFlags();
 

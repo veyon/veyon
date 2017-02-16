@@ -214,59 +214,6 @@ void ItalcCoreConnection::execCmds( const QString &cmd )
 
 
 
-
-void ItalcCoreConnection::startDemo( const QString &host, int port,
-										bool fullscreen )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemo ).
-					addArg( "host", host ).
-					addArg( "port", port ).
-					addArg( "fullscreen", fullscreen ) );
-}
-
-
-
-
-void ItalcCoreConnection::stopDemo()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StopDemo ) );
-}
-
-
-
-
-void ItalcCoreConnection::lockScreen()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LockScreen ) );
-}
-
-
-
-
-void ItalcCoreConnection::unlockScreen()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockScreen ) );
-}
-
-
-
-
-void ItalcCoreConnection::lockInput()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LockInput ) );
-}
-
-
-
-
-void ItalcCoreConnection::unlockInput()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockInput ) );
-}
-
-
-
-
 void ItalcCoreConnection::logonUser( const QString &uname,
 						const QString &pw,
 						const QString &domain )
@@ -301,43 +248,6 @@ void ItalcCoreConnection::setRole( const ItalcCore::UserRole role )
 	enqueueMessage( ItalcCore::Msg( ItalcCore::SetRole ).
 						addArg( "role", role ) );
 }
-
-
-
-
-void ItalcCoreConnection::startDemoServer( int sourcePort, int destinationPort )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemoServer ).
-						addArg( "sourceport", sourcePort ).
-						addArg( "destinationport", destinationPort ) );
-}
-
-
-
-
-void ItalcCoreConnection::stopDemoServer()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StopDemoServer ) );
-}
-
-
-
-
-void ItalcCoreConnection::demoServerAllowHost( const QString &host )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerAllowHost ).
-						addArg( "host", host ) );
-}
-
-
-
-
-void ItalcCoreConnection::demoServerUnallowHost( const QString &host )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerUnallowHost ).
-						addArg( "host", host ) );
-}
-
 
 
 

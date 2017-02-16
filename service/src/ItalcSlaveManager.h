@@ -27,7 +27,6 @@
 #define ITALC_SLAVE_MANAGER_H
 
 #include "Ipc/Master.h"
-#include "DemoServerMaster.h"
 
 
 class ItalcSlaveManager : protected Ipc::Master
@@ -39,9 +38,6 @@ public:
 
 	static const Ipc::Id IdCoreServer;
 	static const Ipc::Id IdAccessDialog;
-	static const Ipc::Id IdDemoClient;
-	static const Ipc::Id IdDemoServer;
-	static const Ipc::Id IdScreenLock;
 	static const Ipc::Id IdInputLock;
 
 	struct AccessDialog
@@ -52,35 +48,6 @@ public:
 		static const Ipc::Argument ChoiceFlags;
 		static const Ipc::Command ReportChoice;
 	} ;
-
-	struct DemoClient
-	{
-		static const Ipc::Command StartDemo;
-		static const Ipc::Argument MasterHost;
-		static const Ipc::Argument FullScreen;
-	} ;
-
-	struct DemoServer
-	{
-		static const Ipc::Command StartDemoServer;
-		static const Ipc::Argument SourcePort;
-		static const Ipc::Argument DestinationPort;
-		static const Ipc::Argument CommonSecret;
-
-		static const Ipc::Command UpdateAllowedHosts;
-		static const Ipc::Argument AllowedHosts;
-	} ;
-
-	DemoServerMaster *demoServerMaster()
-	{
-		return &m_demoServerMaster;
-	}
-
-	void startDemo( const QString &masterHost, bool fullscreen);
-	void stopDemo();
-
-	void lockScreen();
-	void unlockScreen();
 
 	void lockInput();
 	void unlockInput();
@@ -97,10 +64,7 @@ private:
 
 	virtual bool handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m );
 
-	DemoServerMaster m_demoServerMaster;
 	volatile int m_accessDialogChoice;
-
-	friend class DemoServerMaster;
 
 } ;
 

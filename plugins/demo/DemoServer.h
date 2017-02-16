@@ -38,7 +38,7 @@ class DemoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	DemoServer( int srcPort, int dstPort, QObject *parent );
+	DemoServer( const QString& token, QObject *parent );
 	virtual ~DemoServer();
 
 	QPoint cursorPos()
@@ -70,6 +70,8 @@ private slots:
 private:
 	virtual void incomingConnection( qintptr sock );
 
+	QString m_token;
+
 	ItalcVncConnection m_vncConn;
 	QReadWriteLock m_cursorLock;
 	QImage m_initialCursorShape;
@@ -86,7 +88,7 @@ class DemoServerClient : public QThread
 {
 	Q_OBJECT
 public:
-	DemoServerClient( qintptr sock, const ItalcVncConnection *vncConn,
+	DemoServerClient( const QString& token, qintptr sock, const ItalcVncConnection *vncConn,
 							DemoServer *parent );
 	virtual ~DemoServerClient();
 
@@ -122,6 +124,8 @@ private:
 	// thread-entry-point - does some initializations and then enters
 	// event-loop of thread
 	virtual void run();
+
+	QString m_token;
 
 	DemoServer * m_demoServer;
 	QMutex m_dataMutex;

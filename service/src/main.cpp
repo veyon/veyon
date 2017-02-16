@@ -37,8 +37,6 @@
 #include "Logger.h"
 
 #include "AccessDialogSlave.h"
-#include "DemoClientSlave.h"
-#include "DemoServerSlave.h"
 #include "InputLockSlave.h"
 
 
@@ -294,17 +292,9 @@ int main( int argc, char **argv )
 			{
 				return runSlave<AccessDialogSlave, QApplication>( argc, argv );
 			}
-			else if( arg2 == ItalcSlaveManager::IdDemoClient )
-			{
-				return runSlave<DemoClientSlave, QApplication>( argc, argv );
-			}
 			else if( arg2 == ItalcSlaveManager::IdInputLock )
 			{
 				return runSlave<InputLockSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdDemoServer )
-			{
-				return runSlave<DemoServerSlave, QApplication>( argc, argv );
 			}
 			else
 			{

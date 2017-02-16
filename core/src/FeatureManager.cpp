@@ -28,9 +28,6 @@
 #include "PluginInterface.h"
 #include "PluginManager.h"
 
-static const Feature::Uid uidPresentationFullScreen = Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" );
-static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" );
-
 FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	QObject( &pluginManager ),
 	m_pluginManager( pluginManager ),
@@ -47,21 +44,6 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 		}
 	}
 
-	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidPresentationFullScreen,
-						   tr( "Fullscreen presentation" ), tr( "Stop presentation" ),
-						   tr( "In this mode your screen is being displayed on "
-							   "all computers. Furthermore the users "
-							   "aren't able to do something else as all input "
-							   "devices are locked in this mode." ),
-						   ":/resources/presentation-fullscreen.png" );
-
-	m_features += Feature( Feature::Mode, Feature::ScopeAll, uidPresentationWindow,
-						   tr( "Window presentation" ), tr( "Stop presentation" ),
-						   tr( "In this mode your screen being displayed in a "
-							   "window on all computers. The users are "
-							   "able to switch to other windows and thus "
-							   "can continue to work." ),
-						   ":/resources/presentation-window.png" );
 }
 
 

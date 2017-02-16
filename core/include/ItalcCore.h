@@ -62,10 +62,6 @@ namespace ItalcCore
 	// static commands
 	extern const Command GetUserInformation;
 	extern const Command UserInformation;
-	extern const Command StartDemo;
-	extern const Command StopDemo;
-	extern const Command LockScreen;
-	extern const Command UnlockScreen;
 	extern const Command LockInput;
 	extern const Command UnlockInput;
 	extern const Command LogonUserCmd;
@@ -74,10 +70,6 @@ namespace ItalcCore
 	extern const Command ExecCmds;
 	extern const Command DisableLocalInputs;
 	extern const Command SetRole;
-	extern const Command StartDemoServer;
-	extern const Command StopDemoServer;
-	extern const Command DemoServerAllowHost;
-	extern const Command DemoServerUnallowHost;
 	extern const Command ReportSlaveStateFlags;
 
 	class Msg
@@ -153,11 +145,7 @@ namespace ItalcCore
 	enum SlaveStateFlags
 	{
 		AccessDialogRunning 	= 1,
-		DemoServerRunning 		= 2,
-		DemoClientRunning 		= 4,
-		ScreenLockRunning 		= 8,
 		InputLockRunning 		= 16,
-		SystemTrayIconRunning 	= 32,
 	} ;
 
 	QString userRoleName( UserRole role );

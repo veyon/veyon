@@ -1,3 +1,4 @@
+ADD_SUBDIRECTORY(demo)
 ADD_SUBDIRECTORY(powercontrol)
 ADD_SUBDIRECTORY(remoteaccess)
 ADD_SUBDIRECTORY(screenshot)

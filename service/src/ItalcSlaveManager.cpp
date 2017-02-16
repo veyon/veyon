@@ -36,9 +36,6 @@
 
 const Ipc::Id ItalcSlaveManager::IdCoreServer = "CoreServer";
 const Ipc::Id ItalcSlaveManager::IdAccessDialog = "AccessDialog";
-const Ipc::Id ItalcSlaveManager::IdDemoClient = "DemoClient";
-const Ipc::Id ItalcSlaveManager::IdDemoServer = "DemoServer";
-const Ipc::Id ItalcSlaveManager::IdScreenLock = "ScreenLock";
 const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
 
 const Ipc::Command ItalcSlaveManager::AccessDialog::Ask = "Ask";
@@ -47,23 +44,10 @@ const Ipc::Argument ItalcSlaveManager::AccessDialog::Host = "Host";
 const Ipc::Argument ItalcSlaveManager::AccessDialog::ChoiceFlags = "ChoiceFlags";
 const Ipc::Command ItalcSlaveManager::AccessDialog::ReportChoice = "ReportChoice";
 
-const Ipc::Command ItalcSlaveManager::DemoClient::StartDemo = "StartDemo";
-const Ipc::Argument ItalcSlaveManager::DemoClient::MasterHost = "MasterHost";
-const Ipc::Argument ItalcSlaveManager::DemoClient::FullScreen = "FullScreen";
-
-const Ipc::Command ItalcSlaveManager::DemoServer::StartDemoServer = "StartDemoServer";
-const Ipc::Argument ItalcSlaveManager::DemoServer::SourcePort = "SourcePort";
-const Ipc::Argument ItalcSlaveManager::DemoServer::DestinationPort = "DestinationPort";
-const Ipc::Argument ItalcSlaveManager::DemoServer::CommonSecret = "CommonSecret";
-
-const Ipc::Command ItalcSlaveManager::DemoServer::UpdateAllowedHosts = "UpdateAllowedHosts";
-const Ipc::Argument ItalcSlaveManager::DemoServer::AllowedHosts = "AllowedHosts";
-
 
 
 ItalcSlaveManager::ItalcSlaveManager() :
-	Ipc::Master( QCoreApplication::applicationFilePath() ),
-	m_demoServerMaster( this )
+	Ipc::Master( QCoreApplication::applicationFilePath() )
 {
 }
 
@@ -73,66 +57,6 @@ ItalcSlaveManager::ItalcSlaveManager() :
 ItalcSlaveManager::~ItalcSlaveManager()
 {
 }
-
-
-
-
-void ItalcSlaveManager::startDemo( const QString &masterHost, bool fullscreen )
-{
-	// if a demo-server is started, it's likely that the demo was started
-	// on master-computer as well therefore we deny starting a demo on
-	// hosts on which a demo-server is running
-	if( isSlaveRunning( IdDemoServer ) )
-	{
-		return;
-	}
-
-	Ipc::SlaveLauncher *slaveLauncher = NULL;
-	if( fullscreen && ItalcCore::config->lockWithDesktopSwitching() )
-	{
-		slaveLauncher = new ScreenLockSlaveLauncher( applicationFilePath() );
-	}
-	createSlave( IdDemoClient, slaveLauncher );
-	sendMessage( IdDemoClient,
-					Ipc::Msg( DemoClient::StartDemo ).
-						addArg( DemoClient::MasterHost, masterHost ).
-						addArg( DemoClient::FullScreen, fullscreen ) );
-}
-
-
-
-
-void ItalcSlaveManager::stopDemo()
-{
-	stopSlave( IdDemoClient );
-}
-
-
-
-
-void ItalcSlaveManager::lockScreen()
-{
-	if( isSlaveRunning( IdDemoServer ) )
-	{
-		return;
-	}
-
-	Ipc::SlaveLauncher *slaveLauncher = NULL;
-	if( ItalcCore::config->lockWithDesktopSwitching() )
-	{
-		slaveLauncher = new ScreenLockSlaveLauncher( applicationFilePath() );
-	}
-	createSlave( IdScreenLock, slaveLauncher );
-}
-
-
-
-
-void ItalcSlaveManager::unlockScreen()
-{
-	stopSlave( IdScreenLock );
-}
-
 
 
 
@@ -192,9 +116,6 @@ int ItalcSlaveManager::slaveStateFlags()
 				s |= ItalcCore::x##Running;		\
 			}
 	GEN_SLAVE_STATE_SETTER(AccessDialog)
-	GEN_SLAVE_STATE_SETTER(DemoServer)
-	GEN_SLAVE_STATE_SETTER(DemoClient)
-	GEN_SLAVE_STATE_SETTER(ScreenLock)
 	GEN_SLAVE_STATE_SETTER(InputLock)
 
 	return s;

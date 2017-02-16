@@ -162,42 +162,6 @@ bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 			ItalcCore::role = static_cast<ItalcCore::UserRoles>( role );
 		}
 	}
-	else if( cmd == ItalcCore::StartDemo )
-	{
-		QString host = msgIn.arg( "host" );
-		QString port = msgIn.arg( "port" );
-		// no host given?
-		if( host.isEmpty() )
-		{
-			// then guess IP from remote peer address
-			const int MAX_HOST_LEN = 255;
-			char hostArr[MAX_HOST_LEN+1];
-			sock( hostArr, MAX_HOST_LEN, SocketGetPeerAddress, user );
-			hostArr[MAX_HOST_LEN] = 0;
-			host = hostArr;
-		}
-		if( port.isEmpty() )
-		{
-			port = QString::number( PortOffsetDemoServer );
-		}
-		if( !host.contains( ':' ) )
-		{
-			host += ':' + port;
-		}
-		m_slaveManager.startDemo( host, msgIn.arg( "fullscreen" ).toInt() );
-	}
-	else if( cmd == ItalcCore::StopDemo )
-	{
-		m_slaveManager.stopDemo();
-	}
-	else if( cmd == ItalcCore::LockScreen )
-	{
-		m_slaveManager.lockScreen();
-	}
-	else if( cmd == ItalcCore::UnlockScreen )
-	{
-		m_slaveManager.unlockScreen();
-	}
 	else if( cmd == ItalcCore::LockInput )
 	{
 		m_slaveManager.lockInput();
@@ -205,26 +169,6 @@ bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 	else if( cmd == ItalcCore::UnlockInput )
 	{
 		m_slaveManager.unlockInput();
-	}
-	else if( cmd == ItalcCore::StartDemoServer )
-	{
-		ItalcCore::authenticationCredentials->setCommonSecret(
-									DsaKey::generateChallenge().toBase64() );
-		m_slaveManager.demoServerMaster()->start(
-			msgIn.arg( "sourceport" ).toInt(),
-			msgIn.arg( "destinationport" ).toInt() );
-	}
-	else if( cmd == ItalcCore::StopDemoServer )
-	{
-		m_slaveManager.demoServerMaster()->stop();
-	}
-	else if( cmd == ItalcCore::DemoServerAllowHost )
-	{
-		m_slaveManager.demoServerMaster()->allowHost( msgIn.arg( "host" ) );
-	}
-	else if( cmd == ItalcCore::DemoServerUnallowHost )
-	{
-		m_slaveManager.demoServerMaster()->unallowHost( msgIn.arg( "host" ) );
 	}
 	else if( cmd == ItalcCore::ReportSlaveStateFlags )
 	{
@@ -473,7 +417,8 @@ bool ItalcCoreServer::doCommonSecretAuth( SocketDevice &sdev )
 	qDebug() << "ItalcCoreServer: doing common secret auth";
 
 	const QString secret = sdev.read().toString();
-	if( secret == ItalcCore::authenticationCredentials->commonSecret() )
+	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::CommonSecret ) &&
+			secret == ItalcCore::authenticationCredentials->commonSecret() )
 	{
 		return true;
 	}
