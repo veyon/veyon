@@ -321,19 +321,40 @@ void MainWindow::remoteControlDisplay( const QString& hostname,
 
 void MainWindow::addFeaturesToToolBar()
 {
-	for( auto feature : m_masterCore.featureManager().features() )
-	{
-		if( feature.type() == Feature::BuiltinService )
-		{
-			continue;
-		}
+	FeatureList features;
 
+	for( auto pluginUid : m_masterCore.pluginManager().pluginUids() )
+	{
+		for( auto feature : m_masterCore.featureManager().features( pluginUid ) )
+		{
+			if( feature.type() == Feature::Mode )
+			{
+				features += feature;
+			}
+		}
+	}
+
+	for( auto pluginUid : m_masterCore.pluginManager().pluginUids() )
+	{
+		for( auto feature : m_masterCore.featureManager().features( pluginUid ) )
+		{
+			if( feature.type() == Feature::Action ||
+					feature.type() == Feature::Session ||
+					feature.type() == Feature::Operation )
+			{
+				features += feature;
+			}
+		}
+	}
+
+	for( auto feature : features )
+	{
 		ToolButton* btn = new ToolButton( feature.iconUrl(),
 										  feature.displayName(),
 										  feature.displayNameActive(),
 										  feature.description() );
 		connect( btn, &QToolButton::clicked, [=] () {
-			m_masterCore.computerManager().runFeature( m_masterCore.featureManager(), feature, this );
+			m_masterCore.computerManager().runFeature( m_masterCore, feature, this );
 			updateModeButtonGroup();
 		} );
 		btn->addTo( ui->toolBar );
