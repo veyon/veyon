@@ -36,8 +36,7 @@ class ComputerMonitoringView;
 }
 
 class Feature;
-class FeatureManager;
-class PersonalConfig;
+class MasterCore;
 
 class ComputerMonitoringView : public QWidget
 {
@@ -46,9 +45,7 @@ public:
 	ComputerMonitoringView( QWidget *parent = 0 );
 	~ComputerMonitoringView();
 
-	void setConfiguration( PersonalConfig& config );
-	void setComputerManager( ComputerManager& computerManager );
-	void setFeatureManager( FeatureManager& featureManager );
+	void setMasterCore( MasterCore& masterCore );
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
@@ -64,11 +61,9 @@ private:
 
 	Ui::ComputerMonitoringView *ui;
 
+	MasterCore* m_masterCore;
 	QMenu* m_featureMenu;
-	PersonalConfig* m_config;
-	ComputerManager* m_computerManager;
 	ComputerListModel* m_computerListModel;
-	FeatureManager* m_featureManager;
 
 };
 

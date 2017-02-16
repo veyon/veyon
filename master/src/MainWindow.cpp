@@ -39,7 +39,6 @@
 #include "SnapshotManagementWidget.h"
 #include "ConfigWidget.h"
 #include "FeatureManager.h"
-#include "PluginManager.h"
 #include "MonitoringMode.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
@@ -63,9 +62,8 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 
 	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
 
-	ui->computerMonitoringView->setComputerManager( m_masterCore.computerManager() );
-	ui->computerMonitoringView->setConfiguration( m_masterCore.personalConfig() );
-	ui->computerMonitoringView->setFeatureManager( m_masterCore.featureManager() );
+	ui->computerMonitoringView->setMasterCore( m_masterCore );
+
 
 	// configure side bar
 	ui->sideBar->setOrientation( Qt::Vertical );

@@ -26,6 +26,7 @@
 
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
+#include "MasterCore.h"
 #include "FeatureManager.h"
 #include "PersonalConfig.h"
 
@@ -34,10 +35,9 @@
 ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerMonitoringView),
+	m_masterCore( nullptr ),
 	m_featureMenu( new QMenu( this ) ),
-	m_computerManager( nullptr ),
-	m_computerListModel( nullptr ),
-	m_featureManager( nullptr )
+	m_computerListModel( nullptr )
 {
 	ui->setupUi( this );
 
@@ -58,46 +58,33 @@ ComputerMonitoringView::~ComputerMonitoringView()
 
 
 
-void ComputerMonitoringView::setConfiguration(PersonalConfig &config)
+void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 {
-	m_config = &config;
-
-	if( m_config->monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	if( m_masterCore )
 	{
-		ui->gridSizeSlider->setValue( m_config->monitoringScreenSize() );
+		return;
+	}
+
+	m_masterCore = &masterCore;
+
+	// initialize grid size slider
+	if( m_masterCore->personalConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	{
+		ui->gridSizeSlider->setValue( m_masterCore->personalConfig().monitoringScreenSize() );
 	}
 	else
 	{
 		ui->gridSizeSlider->setValue( DefaultComputerScreenSize );
 	}
-}
 
-
-
-void ComputerMonitoringView::setComputerManager( ComputerManager &computerManager )
-{
-	delete m_computerListModel;
-
-	m_computerManager = &computerManager;
-
-	m_computerListModel = new ComputerListModel( computerManager, this );
+	// create computer list model and attach it to list view
+	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
 
 	ui->listView->setModel( m_computerListModel );
-}
 
-
-
-void ComputerMonitoringView::setFeatureManager( FeatureManager& featureManager )
-{
-	m_featureManager = &featureManager;
-
-	for( auto feature : featureManager.features() )
+	// populate feature menu
+	for( auto feature : m_masterCore->features() )
 	{
-		if( feature.type() == Feature::BuiltinService )
-		{
-			continue;
-		}
-
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  feature.displayName(),
 								  [=] () { runFeature( feature ); } );
@@ -132,11 +119,11 @@ void ComputerMonitoringView::showContextMenu( const QPoint& pos )
 
 void ComputerMonitoringView::setComputerScreenSize( int size )
 {
-	if( m_computerManager && m_config )
+	if( m_masterCore )
 	{
-		m_config->setMonitoringScreenSize( size );
+		m_masterCore->personalConfig().setMonitoringScreenSize( size );
 
-		m_computerManager->updateComputerScreenSize();
+		m_masterCore->computerManager().updateComputerScreenSize();
 	}
 }
 
@@ -144,5 +131,8 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 void ComputerMonitoringView::runFeature( const Feature& feature )
 {
-	m_featureManager->startMasterFeature( feature, selectedComputerControlInterfaces(), topLevelWidget() );
+	if( m_masterCore )
+	{
+		m_masterCore->featureManager().startMasterFeature( feature, selectedComputerControlInterfaces(), topLevelWidget() );
+	}
 }
