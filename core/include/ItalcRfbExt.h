@@ -26,7 +26,6 @@
 #ifndef ITALC_RFB_EXT_H
 #define ITALC_RFB_EXT_H
 
-#include <rfb/rfbproto.h>
 #include <rfb/rfbclient.h>
 
 // new rfb-command which tells server or client that an italc-request/response
