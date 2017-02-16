@@ -42,9 +42,7 @@ public:
 
 	bool operator==( const Computer& other ) const
 	{
-		return name() == other.name() &&
-				hostAddress() == other.hostAddress() &&
-				macAddress() == other.macAddress();
+		return networkObjectUid() == other.networkObjectUid();
 	}
 
 	bool operator!=( const Computer& other ) const
