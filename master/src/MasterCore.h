@@ -27,6 +27,7 @@
 
 #include <QObject>
 
+class BuiltinFeatures;
 class FeatureManager;
 class ItalcVncConnection;
 class ItalcCoreConnection;
@@ -40,6 +41,16 @@ class MasterCore : public QObject
 public:
 	MasterCore();
 	virtual ~MasterCore();
+
+	PluginManager& pluginManager()
+	{
+		return *m_pluginManager;
+	}
+
+	BuiltinFeatures& builtinFeatures()
+	{
+		return *m_builtinFeatures;
+	}
 
 	FeatureManager& featureManager()
 	{
@@ -69,6 +80,7 @@ public:
 
 private:
 	PluginManager* m_pluginManager;
+	BuiltinFeatures* m_builtinFeatures;
 	FeatureManager* m_featureManager;
 	ItalcVncConnection* m_localDisplay;
 	ItalcCoreConnection* m_localService;

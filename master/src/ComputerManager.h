@@ -31,7 +31,7 @@
 #include "CheckableItemProxyModel.h"
 #include "Feature.h"
 
-class FeatureManager;
+class MasterCore;
 class PersonalConfig;
 
 class ComputerManager : public QObject
@@ -77,7 +77,7 @@ signals:
 	void computerScreenSizeChanged();
 
 public slots:
-	void runFeature( FeatureManager& featureManager, const Feature& feature, QWidget* parent );
+	void runFeature( MasterCore& masterCore, const Feature& feature, QWidget* parent );
 
 	void reloadComputerList();
 	void updateComputerList();

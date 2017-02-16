@@ -29,6 +29,7 @@
 #include <QMessageBox>
 
 #include "MainWindow.h"
+#include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
 #include "ClassroomManager.h"
 #include "Dialogs.h"
@@ -38,6 +39,8 @@
 #include "SnapshotManagementWidget.h"
 #include "ConfigWidget.h"
 #include "FeatureManager.h"
+#include "PluginManager.h"
+#include "MonitoringMode.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
@@ -104,7 +107,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	addFeaturesToToolBar();
 	addFeaturesToSystemTrayMenu();
 
-	m_modeGroup->button( qHash( m_masterCore.featureManager().monitoringModeFeature().uid() ) )->setChecked( true );
+	m_modeGroup->button( qHash( m_masterCore.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
 
 /*	restoreState( QByteArray::fromBase64(
 				m_classroomManager->winCfg().toUtf8() ) );
@@ -358,8 +361,10 @@ void MainWindow::addFeaturesToSystemTrayMenu()
 
 void MainWindow::updateModeButtonGroup()
 {
-	if( m_masterCore.computerManager().currentMode() == m_masterCore.featureManager().monitoringModeFeature().uid() )
+	const Feature::Uid& monitoringMode = m_masterCore.builtinFeatures().monitoringMode().feature().uid();
+
+	if( m_masterCore.computerManager().currentMode() == monitoringMode )
 	{
-		m_modeGroup->button( qHash( m_masterCore.featureManager().monitoringModeFeature().uid() ) )->setChecked( true );
+		m_modeGroup->button( qHash( monitoringMode ) )->setChecked( true );
 	}
 }

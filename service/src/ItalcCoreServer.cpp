@@ -51,6 +51,7 @@ ItalcCoreServer::ItalcCoreServer() :
 	m_allowedIPs(),
 	m_failedAuthHosts(),
 	m_pluginManager(),
+	m_builtinFeatures( m_pluginManager ),
 	m_featureManager( m_pluginManager ),
 	m_featureWorkerManager( m_featureManager ),
 	m_slaveManager()
@@ -58,7 +59,7 @@ ItalcCoreServer::ItalcCoreServer() :
 	Q_ASSERT( _this == NULL );
 	_this = this;
 
-	m_featureManager.builtinFeatures().systemTrayIcon().setToolTip(
+	m_builtinFeatures.systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).
 				arg( ItalcCore::applicationName() ).
 				arg( ITALC_VERSION ).
@@ -385,7 +386,7 @@ void ItalcCoreServer::errorMsgAuth( const QString &ip )
 	if( m_failedAuthHosts.contains( ip ) == false )
 	{
 		m_failedAuthHosts += ip;
-		m_featureManager.builtinFeatures().systemTrayIcon().showMessage(
+		m_builtinFeatures.systemTrayIcon().showMessage(
 					tr( "Authentication error" ),
 					tr( "Somebody (IP: %1) tried to access this computer "
 						"but could not authenticate successfully!" ).arg( ip ),

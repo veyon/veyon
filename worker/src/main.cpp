@@ -26,6 +26,7 @@
 
 #include "ItalcCore.h"
 #include "Logger.h"
+#include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
 #include "PluginManager.h"
@@ -43,6 +44,7 @@ int main( int argc, char **argv )
 	ItalcCore::init();
 
 	PluginManager pluginManager;
+	BuiltinFeatures builtinFeatures( pluginManager );
 	FeatureManager featureManager( pluginManager );
 
 	const Feature* workerFeature = nullptr;

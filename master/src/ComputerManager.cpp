@@ -24,8 +24,11 @@
 
 #include <QTimer>
 
+#include "BuiltinFeatures.h"
 #include "ComputerManager.h"
 #include "FeatureManager.h"
+#include "MasterCore.h"
+#include "MonitoringMode.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
@@ -82,8 +85,10 @@ void ComputerManager::updateComputerScreenSize()
 
 
 
-void ComputerManager::runFeature( FeatureManager& featureManager, const Feature& feature, QWidget* parent )
+void ComputerManager::runFeature( MasterCore& masterCore, const Feature& feature, QWidget* parent )
 {
+	FeatureManager& featureManager = masterCore.featureManager();
+
 	ComputerControlInterfaceList computerControlInterfaces;
 	for( auto& computer : m_computerList )
 	{
@@ -96,8 +101,10 @@ void ComputerManager::runFeature( FeatureManager& featureManager, const Feature&
 
 		if( m_currentMode == feature.uid() )
 		{
-			featureManager.startMasterFeature( featureManager.monitoringModeFeature(), computerControlInterfaces, parent );
-			m_currentMode = featureManager.monitoringModeFeature().uid();
+			const Feature& monitoringModeFeature = masterCore.builtinFeatures().monitoringMode().feature();
+
+			featureManager.startMasterFeature( monitoringModeFeature, computerControlInterfaces, parent );
+			m_currentMode = monitoringModeFeature.uid();
 		}
 		else
 		{

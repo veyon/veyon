@@ -28,6 +28,7 @@
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>
 
+#include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "PluginManager.h"
@@ -79,6 +80,7 @@ private:
 	QStringList m_failedAuthHosts;
 
 	PluginManager m_pluginManager;
+	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
 	ItalcSlaveManager m_slaveManager;

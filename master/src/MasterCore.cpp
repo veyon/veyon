@@ -25,6 +25,7 @@
 #include <QHostAddress>
 
 #include "MasterCore.h"
+#include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "ItalcVncConnection.h"
 #include "ItalcCoreConnection.h"
@@ -35,6 +36,7 @@
 
 MasterCore::MasterCore() :
 	m_pluginManager( new PluginManager ),
+	m_builtinFeatures( new BuiltinFeatures( *m_pluginManager ) ),
 	m_featureManager( new FeatureManager( *m_pluginManager ) ),
 	m_localDisplay( new ItalcVncConnection( this ) ),
 	m_localService( new ItalcCoreConnection( m_localDisplay ) ),
