@@ -70,6 +70,13 @@ PluginManager::PluginManager( QObject* parent ) :
 
 
 
+void PluginManager::registerExtraPluginInterface( PluginInterface* pluginInterface )
+{
+	m_pluginInterfaces += pluginInterface;
+}
+
+
+
 PluginUidList PluginManager::pluginUids() const
 {
 	PluginUidList pluginUidList;

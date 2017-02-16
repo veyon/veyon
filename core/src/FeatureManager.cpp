@@ -34,17 +34,9 @@ static const Feature::Uid uidPresentationWindow = Feature::Uid( "ae45c3db-dc2e-4
 FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	QObject( &pluginManager ),
 	m_pluginManager( pluginManager ),
-	m_monitoringModeFeature( Feature::Mode, Feature::ScopeAll,
-							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
-							 tr( "Monitoring" ), QString(),
-							 tr( "This is the default mode and allows you to monitor all computers in the classroom." ),
-							 ":/resources/presentation-none.png" ),
 	m_features(),
-	m_emptyFeatureList(),
-	m_builtinFeatures( *this )
+	m_emptyFeatureList()
 {
-	m_features += m_monitoringModeFeature;
-
 	for( auto pluginInterface : m_pluginManager.pluginInterfaces() )
 	{
 		auto featureInterface = dynamic_cast<FeaturePluginInterface *>( pluginInterface );
@@ -70,15 +62,6 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 							   "able to switch to other windows and thus "
 							   "can continue to work." ),
 						   ":/resources/presentation-window.png" );
-}
-
-
-
-void FeatureManager::registerBuiltinFeature( FeaturePluginInterface* featurePluginInterface )
-{
-	m_features += featurePluginInterface->featureList();
-
-	m_featureInterfaces += featurePluginInterface;
 }
 
 

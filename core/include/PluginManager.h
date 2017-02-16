@@ -46,6 +46,8 @@ public:
 		return m_pluginInterfaces;
 	}
 
+	void registerExtraPluginInterface( PluginInterface* pluginInterface );
+
 	PluginUidList pluginUids() const;
 
 	PluginInterface* pluginInterface( const Plugin::Uid& pluginUid );

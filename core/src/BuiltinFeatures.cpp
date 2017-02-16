@@ -23,14 +23,17 @@
  */
 
 #include "BuiltinFeatures.h"
+#include "MonitoringMode.h"
+#include "PluginManager.h"
 #include "SystemTrayIcon.h"
-#include "FeatureManager.h"
 
 
-BuiltinFeatures::BuiltinFeatures( FeatureManager& featureManager ) :
-	m_systemTrayIcon( new SystemTrayIcon )
+BuiltinFeatures::BuiltinFeatures( PluginManager& pluginManager ) :
+	m_systemTrayIcon( new SystemTrayIcon ),
+	m_monitoringMode( new MonitoringMode )
 {
-	featureManager.registerBuiltinFeature( m_systemTrayIcon );
+	pluginManager.registerExtraPluginInterface( m_systemTrayIcon );
+	pluginManager.registerExtraPluginInterface( m_monitoringMode );
 }
 
 
@@ -38,4 +41,5 @@ BuiltinFeatures::BuiltinFeatures( FeatureManager& featureManager ) :
 BuiltinFeatures::~BuiltinFeatures()
 {
 	delete m_systemTrayIcon;
+	delete m_monitoringMode;
 }

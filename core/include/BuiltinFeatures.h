@@ -25,13 +25,14 @@
 #ifndef BUILTIN_FEATURES_H
 #define BUILTIN_FEATURES_H
 
-class FeatureManager;
+class PluginManager;
+class MonitoringMode;
 class SystemTrayIcon;
 
 class BuiltinFeatures
 {
 public:
-	BuiltinFeatures( FeatureManager& featureManager );
+	BuiltinFeatures( PluginManager& pluginManager );
 	~BuiltinFeatures();
 
 	SystemTrayIcon& systemTrayIcon()
@@ -39,9 +40,15 @@ public:
 		return *m_systemTrayIcon;
 	}
 
+	MonitoringMode& monitoringMode()
+	{
+		return *m_monitoringMode;
+	}
+
 
 private:
 	SystemTrayIcon* m_systemTrayIcon;
+	MonitoringMode* m_monitoringMode;
 
 };
 
