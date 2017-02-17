@@ -38,19 +38,34 @@ public:
 	typedef qint32 Command;
 	typedef QMap<QString, QVariant> Arguments;
 
-	FeatureMessage( QIODevice* ioDevice = nullptr, const FeatureUid& featureUid = Feature::Uid(), Command command = -1 ) :
+	enum SpecialCommands
+	{
+		DefaultCommand = 0,
+		InvalidCommand = -1,
+		InitCommand = -2,
+	};
+
+	explicit FeatureMessage( QIODevice* ioDevice = nullptr ) :
 		m_ioDevice( ioDevice ),
+		m_featureUid(),
+		m_command( InvalidCommand ),
+		m_arguments()
+	{
+	}
+
+	explicit FeatureMessage( const FeatureUid& featureUid, Command command ) :
+		m_ioDevice( nullptr ),
 		m_featureUid( featureUid ),
 		m_command( command ),
 		m_arguments()
 	{
 	}
 
-	FeatureMessage( const FeatureUid &featureUid, Command command = -1 ) :
-		m_ioDevice( nullptr ),
-		m_featureUid( featureUid ),
-		m_command( command ),
-		m_arguments()
+	explicit FeatureMessage( const FeatureMessage& other ) :
+		m_ioDevice( other.m_ioDevice ),
+		m_featureUid( other.featureUid() ),
+		m_command( other.command() ),
+		m_arguments( other.arguments() )
 	{
 	}
 
