@@ -39,7 +39,7 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 {
 	if( ioDevice )
 	{
-		qDebug() << "FeatureMessage::send():" << featureUid() << arguments();
+		qDebug() << "FeatureMessage::send():" << featureUid() << command() << arguments();
 
 		QDataStream d( ioDevice );
 		d << m_featureUid;
@@ -48,6 +48,8 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 
 		return true;
 	}
+
+	qCritical( "FeatureMessage::send(): no IO device!" );
 
 	return false;
 }
@@ -64,6 +66,12 @@ FeatureMessage &FeatureMessage::receive()
 		d >> m_command;
 		d >> args;
 		m_arguments = args.toMap();
+
+		qDebug() << "FeatureMessage::receive():" << featureUid() << command() << arguments();
+	}
+	else
+	{
+		qCritical( "FeatureMessage::receive(): no IO device!" );
 	}
 
 	return *this;
