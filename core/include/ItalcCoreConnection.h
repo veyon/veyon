@@ -25,6 +25,8 @@
 #ifndef ITALC_CORE_CONNECTION_H
 #define ITALC_CORE_CONNECTION_H
 
+#include <QPointer>
+
 #include "ItalcCore.h"
 #include "ItalcVncConnection.h"
 
@@ -105,7 +107,7 @@ private:
 	void enqueueMessage( const ItalcCore::Msg &msg );
 
 
-	ItalcVncConnection *m_vncConn;
+	QPointer<ItalcVncConnection> m_vncConn;
 
 	QString m_user;
 	QString m_userHomeDir;
