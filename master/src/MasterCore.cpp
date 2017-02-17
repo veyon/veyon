@@ -39,6 +39,7 @@ MasterCore::MasterCore() :
 	m_pluginManager( new PluginManager ),
 	m_builtinFeatures( new BuiltinFeatures( *m_pluginManager ) ),
 	m_featureManager( new FeatureManager( *m_pluginManager ) ),
+	m_features( featureList() ),
 	m_localComputer( NetworkObject::Uid::createUuid(), "localhost", QHostAddress( QHostAddress::LocalHost ).toString() ),
 	m_localComputerControlInterface( m_localComputer ),
 	m_personalConfig( new PersonalConfig( Configuration::Store::JsonFile ) ),
@@ -59,41 +60,6 @@ MasterCore::~MasterCore()
 
 	delete m_featureManager;
 }
-
-
-
-
-FeatureList MasterCore::features() const
-{
-	FeatureList features;
-
-	for( auto pluginUid : m_pluginManager->pluginUids() )
-	{
-		for( auto feature : m_featureManager->features( pluginUid ) )
-		{
-			if( feature.type() == Feature::Mode )
-			{
-				features += feature;
-			}
-		}
-	}
-
-	for( auto pluginUid : m_pluginManager->pluginUids() )
-	{
-		for( auto feature : m_featureManager->features( pluginUid ) )
-		{
-			if( feature.type() == Feature::Action ||
-					feature.type() == Feature::Session ||
-					feature.type() == Feature::Operation )
-			{
-				features += feature;
-			}
-		}
-	}
-
-	return features;
-}
-
 
 
 
@@ -126,4 +92,37 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 		m_featureManager->startMasterFeature( feature, computerControlInterfaces,
 											  m_localComputerControlInterface, parent );
 	}
+}
+
+
+
+FeatureList MasterCore::featureList() const
+{
+	FeatureList features;
+
+	for( auto pluginUid : m_pluginManager->pluginUids() )
+	{
+		for( auto feature : m_featureManager->features( pluginUid ) )
+		{
+			if( feature.type() == Feature::Mode )
+			{
+				features += feature;
+			}
+		}
+	}
+
+	for( auto pluginUid : m_pluginManager->pluginUids() )
+	{
+		for( auto feature : m_featureManager->features( pluginUid ) )
+		{
+			if( feature.type() == Feature::Action ||
+					feature.type() == Feature::Session ||
+					feature.type() == Feature::Operation )
+			{
+				features += feature;
+			}
+		}
+	}
+
+	return features;
 }

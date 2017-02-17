@@ -74,7 +74,10 @@ public:
 		return *m_computerManager;
 	}
 
-	FeatureList features() const;
+	const FeatureList& features() const
+	{
+		return m_features;
+	}
 
 	const Feature::Uid& currentMode() const
 	{
@@ -87,9 +90,12 @@ public slots:
 
 
 private:
+	FeatureList featureList() const;
+
 	PluginManager* m_pluginManager;
 	BuiltinFeatures* m_builtinFeatures;
 	FeatureManager* m_featureManager;
+	const FeatureList m_features;
 	Computer m_localComputer;
 	ComputerControlInterface m_localComputerControlInterface;
 	PersonalConfig* m_personalConfig;
