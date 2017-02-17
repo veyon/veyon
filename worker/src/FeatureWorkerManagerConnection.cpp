@@ -55,12 +55,13 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& 
 void FeatureWorkerManagerConnection::sendInitMessage()
 {
 	qDebug() << "FeatureWorkerManagerConnection::sendInitMessage():" << m_featureUid;
-	FeatureMessage( &m_socket, m_featureUid ).send();
+	FeatureMessage( m_featureUid, FeatureMessage::InitCommand ).send( &m_socket );
 }
 
 
 
 void FeatureWorkerManagerConnection::receiveMessage()
 {
+	qDebug() << "FeatureWorkerManagerConnection::receiveMessage():" << m_featureUid;
 	m_featureManager.handleWorkerFeatureMessage( FeatureMessage( &m_socket ).receive(), &m_socket );
 }
