@@ -31,7 +31,6 @@
 ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	QObject(),
 	m_computer( computer ),
-	m_mode( ModeMonitoring ),
 	m_state( Disconnected ),
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
