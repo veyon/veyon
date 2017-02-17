@@ -68,7 +68,10 @@ public:
 		return "Tobias Doerffel";
 	}
 
-	const FeatureList& featureList() const override;
+	const FeatureList& featureList() const override
+	{
+		return m_features;
+	}
 
 	bool startMasterFeature( const Feature& feature,
 							 const ComputerControlInterfaceList& computerControlInterfaces,

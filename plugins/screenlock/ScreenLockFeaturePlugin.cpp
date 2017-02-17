@@ -52,13 +52,6 @@ ScreenLockFeaturePlugin::~ScreenLockFeaturePlugin()
 
 
 
-const FeatureList &ScreenLockFeaturePlugin::featureList() const
-{
-	return m_features;
-}
-
-
-
 bool ScreenLockFeaturePlugin::startMasterFeature( const Feature& feature,
 												  const ComputerControlInterfaceList& computerControlInterfaces,
 												  ComputerControlInterface& localComputerControlInterface,
