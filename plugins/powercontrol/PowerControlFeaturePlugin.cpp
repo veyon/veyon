@@ -86,7 +86,7 @@ bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 	}
 	else
 	{
-		sendFeatureMessage( FeatureMessage( feature.uid() ), computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ), computerControlInterfaces );
 	}
 
 	return true;
