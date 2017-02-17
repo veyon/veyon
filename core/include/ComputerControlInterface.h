@@ -42,15 +42,6 @@ class ITALC_CORE_EXPORT ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:
-	typedef enum Modes
-	{
-		ModeMonitoring,
-		ModeFullScreenDemo,
-		ModeWindowDemo,
-		ModeLocked,
-		ModeCount
-	} Mode;
-
 	typedef enum States
 	{
 		Disconnected,
@@ -75,11 +66,6 @@ public:
 	State state() const
 	{
 		return m_state;
-	}
-
-	Mode mode() const
-	{
-		return m_mode;
 	}
 
 	const QSize& scaledScreenSize() const
@@ -119,7 +105,6 @@ private slots:
 private:
 	const Computer& m_computer;
 
-	Mode m_mode;
 	State m_state;
 
 	QSize m_scaledScreenSize;
