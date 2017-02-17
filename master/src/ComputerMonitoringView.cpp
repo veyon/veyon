@@ -85,7 +85,7 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	// populate feature menu
 	Plugin::Uid previousPluginUid;
 
-	for( auto feature : m_masterCore->features() )
+	for( const auto& feature : m_masterCore->features() )
 	{
 		Plugin::Uid pluginUid = m_masterCore->featureManager().pluginUid( feature );
 
@@ -144,9 +144,26 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 
 void ComputerMonitoringView::runFeature( const Feature& feature )
 {
-	if( m_masterCore )
+	if( m_masterCore == nullptr )
 	{
-		m_masterCore->featureManager().startMasterFeature( feature, selectedComputerControlInterfaces(),
-														   m_masterCore->localComputerControlInterface(), topLevelWidget() );
+		return;
 	}
+
+	ComputerControlInterfaceList computerControlInterfaces = selectedComputerControlInterfaces();
+
+	// stop any active mode feature
+	if( feature.type() == Feature::Mode )
+	{
+		for( const auto& currentFeature : m_masterCore->features() )
+		{
+			if( currentFeature.type() == Feature::Mode && currentFeature != feature )
+			{
+				m_masterCore->featureManager().stopMasterFeature( currentFeature, computerControlInterfaces,
+																  m_masterCore->localComputerControlInterface(), topLevelWidget() );
+			}
+		}
+	}
+
+	m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces,
+													   m_masterCore->localComputerControlInterface(), topLevelWidget() );
 }
