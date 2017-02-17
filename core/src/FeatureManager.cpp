@@ -112,7 +112,10 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 												  QIODevice* ioDevice,
 												  FeatureWorkerManager& featureWorkerManager )
 {
-	qDebug() << "FeatureManager::handleServiceFeatureMessage():" << message.featureUid();
+	qDebug() << "FeatureManager::handleServiceFeatureMessage():"
+			 << message.featureUid()
+			 << message.command()
+			 << message.arguments();
 
 	bool handled = false;
 
