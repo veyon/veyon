@@ -60,7 +60,7 @@ bool ScreenLockFeaturePlugin::startMasterFeature( const Feature& feature,
 	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
-	if( feature.uid() == m_screenLockFeature.uid() )
+	if( feature == m_screenLockFeature )
 	{
 		return sendFeatureMessage( FeatureMessage( m_screenLockFeature.uid(), StartLockCommand ),
 								   computerControlInterfaces );
@@ -79,7 +79,7 @@ bool ScreenLockFeaturePlugin::stopMasterFeature( const Feature& feature,
 	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
-	if( feature.uid() == m_screenLockFeature.uid() )
+	if( feature == m_screenLockFeature )
 	{
 		return sendFeatureMessage( FeatureMessage( m_screenLockFeature.uid(), StopLockCommand ),
 								   computerControlInterfaces );
