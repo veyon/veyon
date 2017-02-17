@@ -195,8 +195,10 @@ bool ItalcCoreServer::handleItalcFeatureMessage( SocketDispatcher socketDispatch
 	FeatureMessage featureMessage( &socketDevice );
 	featureMessage.receive();
 
-	qDebug() << "ItalcCoreServer::handleItalcFeatureMessage():" << featureMessage.featureUid()
-			 << "with arguments" << featureMessage.arguments();
+	qDebug() << "ItalcCoreServer::handleItalcFeatureMessage():"
+			 << featureMessage.featureUid()
+			 << featureMessage.command()
+			 << featureMessage.arguments();
 
 	return m_featureManager.handleServiceFeatureMessage( featureMessage, &socketDevice, m_featureWorkerManager );
 }
