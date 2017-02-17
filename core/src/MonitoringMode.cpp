@@ -37,13 +37,6 @@ MonitoringMode::MonitoringMode() :
 
 
 
-const FeatureList &MonitoringMode::featureList() const
-{
-	return m_features;
-}
-
-
-
 bool MonitoringMode::startMasterFeature( const Feature& feature,
 										 const ComputerControlInterfaceList& computerControlInterfaces,
 										 ComputerControlInterface& localComputerControlInterface,

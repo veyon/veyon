@@ -78,13 +78,6 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 
-const FeatureList &SystemTrayIcon::featureList() const
-{
-	return m_features;
-}
-
-
-
 bool SystemTrayIcon::startMasterFeature( const Feature& feature,
 										 const ComputerControlInterfaceList& computerControlInterfaces,
 										 ComputerControlInterface& localComputerControlInterface,
