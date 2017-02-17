@@ -28,7 +28,9 @@
 #include <QUuid>
 #include <QString>
 
-class NetworkObject
+#include "ItalcCore.h"
+
+class ITALC_CORE_EXPORT NetworkObject
 {
 public:
 	typedef QUuid Uid;

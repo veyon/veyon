@@ -30,7 +30,9 @@
 #include <QString>
 #include <QUuid>
 
-class Feature : public QObject
+#include "ItalcCore.h"
+
+class ITALC_CORE_EXPORT Feature : public QObject
 {
 	Q_OBJECT
 public:

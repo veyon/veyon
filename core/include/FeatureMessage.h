@@ -31,7 +31,7 @@
 
 class QIODevice;
 
-class FeatureMessage
+class ITALC_CORE_EXPORT FeatureMessage
 {
 public:
 	typedef Feature::Uid FeatureUid;

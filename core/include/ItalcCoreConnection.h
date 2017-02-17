@@ -30,7 +30,7 @@
 
 class FeatureMessage;
 
-class ItalcCoreConnection : public QObject
+class ITALC_CORE_EXPORT ItalcCoreConnection : public QObject
 {
 	Q_OBJECT
 public:

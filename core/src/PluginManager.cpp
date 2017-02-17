@@ -48,6 +48,7 @@ PluginManager::PluginManager( QObject* parent ) :
 		{
 			QDir::addSearchPath( "plugins", dir.absolutePath() );
 		}
+
 	};
 
 #ifdef Q_OS_LINUX

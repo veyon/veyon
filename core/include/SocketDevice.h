@@ -30,6 +30,7 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
+#include "ItalcCore.h"
 
 typedef enum
 {
@@ -39,12 +40,12 @@ typedef enum
 } SocketOpCodes;
 
 
-typedef qint64 ( * SocketDispatcher )( char *buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void *user );
+typedef qint64 ( * SocketDispatcher )( char* buffer, const qint64 bytes,
+									   const SocketOpCodes opCode, void* user );
 
 
-extern qint64 libvncClientDispatcher( char *buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void *user );
+extern qint64 ITALC_CORE_EXPORT libvncClientDispatcher( char* buffer, const qint64 bytes,
+														const SocketOpCodes opCode, void* user );
 
 
 class SocketDevice : public QIODevice

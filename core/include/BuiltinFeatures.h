@@ -25,11 +25,13 @@
 #ifndef BUILTIN_FEATURES_H
 #define BUILTIN_FEATURES_H
 
+#include "ItalcCore.h"
+
 class PluginManager;
 class MonitoringMode;
 class SystemTrayIcon;
 
-class BuiltinFeatures
+class ITALC_CORE_EXPORT BuiltinFeatures
 {
 public:
 	BuiltinFeatures( PluginManager& pluginManager );

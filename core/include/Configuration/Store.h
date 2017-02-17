@@ -29,6 +29,8 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
+#include "ItalcCore.h"
+
 namespace Configuration
 {
 

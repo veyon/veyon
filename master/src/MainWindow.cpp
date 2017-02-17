@@ -185,7 +185,7 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initAuthentication()
 {
-	if( ItalcCore::initAuthentication() )
+	if( ItalcCore::initAuthentication( AuthenticationCredentials::AllTypes ) )
 	{
 		return true;
 	}

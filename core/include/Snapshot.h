@@ -24,12 +24,14 @@
 #ifndef SNAPSHOT_H
 #define SNAPSHOT_H
 
+#include "ItalcCore.h"
+
 #include <QImage>
 #include <QPixmap>
 
 class ComputerControlInterface;
 
-class Snapshot : public QObject
+class ITALC_CORE_EXPORT Snapshot : public QObject
 {
 	Q_OBJECT
 public:

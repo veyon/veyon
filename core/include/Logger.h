@@ -25,16 +25,16 @@
 #ifndef ITALCCORE_LOGGER_H
 #define ITALCCORE_LOGGER_H
 
-#include <italcconfig.h>
-
 #include <QtCore/QDebug>
 #include <QtCore/QTextStream>
 #include <QtCore/QMutex>
 
+#include "ItalcCore.h"
+
 class QFile;
 class CXEventLog;
 
-class Logger
+class ITALC_CORE_EXPORT Logger
 {
 public:
 	enum LogLevels

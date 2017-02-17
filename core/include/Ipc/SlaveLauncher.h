@@ -32,7 +32,7 @@
 namespace Ipc
 {
 
-class SlaveLauncher : public QObject
+class ITALC_CORE_EXPORT SlaveLauncher : public QObject
 {
 	Q_OBJECT
 public:

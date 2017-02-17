@@ -56,7 +56,7 @@ public:
 } ;
 
 
-class ItalcVncConnection: public QThread
+class ITALC_CORE_EXPORT ItalcVncConnection: public QThread
 {
 	Q_OBJECT
 public:

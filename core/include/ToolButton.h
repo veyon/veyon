@@ -27,9 +27,11 @@
 
 #include <QToolButton>
 
+#include "ItalcCore.h"
+
 class QToolBar;
 
-class ToolButton : public QToolButton
+class ITALC_CORE_EXPORT ToolButton : public QToolButton
 {
 	Q_OBJECT
 public:

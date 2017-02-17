@@ -29,7 +29,7 @@
 
 #include "NetworkObject.h"
 
-class NetworkObjectDirectory : public QObject
+class ITALC_CORE_EXPORT NetworkObjectDirectory : public QObject
 {
 	Q_OBJECT
 public:

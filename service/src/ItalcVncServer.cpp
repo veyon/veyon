@@ -59,26 +59,25 @@ extern "C"
 extern "C" int x11vnc_main( int argc, char * * argv );
 
 
+#ifndef ITALC_BUILD_WIN32
 
-qint64 libvncServerDispatcher( char * _buf, const qint64 _len,
-				const SocketOpCodes _op_code, void * _user )
+static qint64 libvncServerDispatcher( char * buffer, const qint64 bytes,
+									  const SocketOpCodes opCode, void * user )
 {
-	rfbClientPtr cl = (rfbClientPtr) _user;
-	switch( _op_code )
+	rfbClientPtr cl = (rfbClientPtr) user;
+	switch( opCode )
 	{
-		case SocketRead:
-			return rfbReadExact( cl, _buf, _len ) == 1 ? _len : 0;
-		case SocketWrite:
-			return rfbWriteExact( cl, _buf, _len ) == 1 ? _len : 0;
-		case SocketGetPeerAddress:
-			strncpy( _buf, cl->host, _len );
-			break;
+	case SocketRead:
+		return rfbReadExact( cl, buffer, bytes ) == 1 ? bytes : 0;
+	case SocketWrite:
+		return rfbWriteExact( cl, buffer, bytes ) == 1 ? bytes : 0;
+	case SocketGetPeerAddress:
+		strncpy( buffer, cl->host, bytes );
+		break;
 	}
 	return 0;
 
 }
-
-
 
 
 static rfbBool italcCoreNewClient( struct _rfbClientRec *, void * * )
@@ -131,7 +130,6 @@ static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
 
 
 
-#ifndef ITALC_BUILD_WIN32
 
 static void vncDecryptBytes(unsigned char *where, const int length, const unsigned char *key)
 {
@@ -226,7 +224,7 @@ ItalcVncServer::~ItalcVncServer()
 }
 
 
-
+#ifdef ITALC_BUILD_LINUX
 static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 {
 	cmdline
@@ -236,7 +234,6 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 				// set port where the VNC server should listen
 		;
 
-#ifdef ITALC_BUILD_LINUX
 	// workaround for x11vnc when running in an NX session or a Thin client LTSP session
 	foreach( const QString &s, QProcess::systemEnvironment() )
 	{
@@ -245,7 +242,6 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 			cmdline << "-noxdamage";
 		}
 	}
-#endif
 
 	// build new C-style command line array based on cmdline-QStringList
 	char **argv = new char *[cmdline.size()+1];
@@ -295,21 +291,7 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 	x11vnc_main( argc, argv );
 
 }
-
-
-
-void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
-{
-	QStringList args;
-	args << "-viewonly"
-		<< "-reflect"
-		<< QString( "localhost:%1" ).arg( srcPort );
-
-	while( 1 )
-	{
-		runX11vnc( args, dstPort, true );
-	}
-}
+#endif
 
 
 
@@ -350,5 +332,3 @@ void ItalcVncServer::run()
 #endif
 
 }
-
-

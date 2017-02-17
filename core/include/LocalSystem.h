@@ -39,7 +39,7 @@ class QWidget;
 namespace LocalSystem
 {
 
-	class Desktop
+	class ITALC_CORE_EXPORT Desktop
 	{
 	public:
 		Desktop( const QString &name = QString() );
@@ -63,7 +63,7 @@ namespace LocalSystem
 		QString m_name;
 	} ;
 
-	class User
+	class ITALC_CORE_EXPORT User
 	{
 	public:
 #ifdef ITALC_BUILD_WIN32
@@ -128,7 +128,7 @@ namespace LocalSystem
 
 	} ;
 
-	class Process
+	class ITALC_CORE_EXPORT Process
 	{
 	public:
 #ifdef ITALC_BUILD_WIN32
@@ -161,7 +161,7 @@ namespace LocalSystem
 	} ;
 
 
-	class Path
+	class ITALC_CORE_EXPORT Path
 	{
 	public:
 		static QString expand( QString path );
@@ -180,19 +180,19 @@ namespace LocalSystem
 
 	void sleep( const int _ms );
 
-	void logonUser( const QString & _uname, const QString & _pw,
+	void ITALC_CORE_EXPORT logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
-	void logoutUser();
+	void ITALC_CORE_EXPORT logoutUser();
 
 #ifdef ITALC_BUILD_WIN32
-	BOOL enablePrivilege( const QString& privilegeName, bool enable );
-	HWND getHWNDForWidget( const QWidget* widget );
+	BOOL ITALC_CORE_EXPORT enablePrivilege( const QString& privilegeName, bool enable );
+	HWND ITALC_CORE_EXPORT getHWNDForWidget( const QWidget* widget );
 #endif
 
-	void activateWindow( QWidget * _window );
+	void ITALC_CORE_EXPORT activateWindow( QWidget * _window );
 
-	QStringList userGroups();
-	QStringList groupsOfUser( const QString& userName );
+	QStringList ITALC_CORE_EXPORT userGroups();
+	QStringList ITALC_CORE_EXPORT groupsOfUser( const QString& userName );
 
 }
 

@@ -29,6 +29,7 @@
 #include <QAbstractNativeEventFilter>
 #include <QtNetwork/QHostInfo>
 
+#include "AuthenticationCredentials.h"
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"

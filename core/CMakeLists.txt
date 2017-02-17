@@ -52,16 +52,13 @@ ELSE()
 	SET(WIN32_AUTHSSP_SOURCES "")
 ENDIF()
 
-SET(libvncclient_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/libvncclient)
-
 SET(libvncclient_SOURCES
-${libvncserver_DIR}/common/turbojpeg.c
-${libvncserver_DIR}/libvncclient/cursor.c
-${libvncserver_DIR}/libvncclient/listen.c
-${libvncserver_DIR}/libvncclient/rfbproto.c
-${libvncserver_DIR}/libvncclient/sockets.c
-${libvncserver_DIR}/libvncclient/tls_none.c
-${libvncserver_DIR}/libvncclient/vncviewer.c)
+	${libvncserver_DIR}/libvncclient/cursor.c
+	${libvncserver_DIR}/libvncclient/listen.c
+	${libvncserver_DIR}/libvncclient/rfbproto.c
+	${libvncserver_DIR}/libvncclient/sockets.c
+	${libvncserver_DIR}/libvncclient/tls_none.c
+	${libvncserver_DIR}/libvncclient/vncviewer.c)
 
 
 SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc)
@@ -77,9 +74,10 @@ QT5_ADD_RESOURCES(ic_RCC_out ${QRC_FILE} ${CMAKE_CURRENT_BINARY_DIR}/builddata.q
 
 IF(ITALC_BUILD_WIN32)
 	LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32 -linterception)
-	SET(CMAKE_MODULE_LINKER_FLAGS -Wl,-export-all-symbols)
 	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ultravnc_DIR}/addon/ms-logon/authSSP)
 ENDIF(ITALC_BUILD_WIN32)
+
+ADD_DEFINITIONS(-DBUILD_ITALC_CORE_LIBRARY)
 
 INCLUDE_DIRECTORIES(${Ldap_INCLUDE_DIRS} ${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${libvncserver_DIR}/common/ ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR})
 ADD_LIBRARY(italc-core SHARED ${ic_SOURCES} ${kldap_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${kldap_MOC_out} ${ic_UIC_out} ${ic_RCC_out} ${ic_qt_qm_out} ${libvncclient_SOURCES} ${WIN32_AUTHSSP_SOURCES})

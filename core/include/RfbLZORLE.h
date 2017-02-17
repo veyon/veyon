@@ -1,12 +1,9 @@
 /*
- * RfbItalcCursor.h - iTALC cursor rectangle encoding
+ * RfbLZORLE.h - LZO+RLE-based RFB rectangle encoding
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
- *
- * code partly taken from KRDC / vncclientthread.h:
- * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,17 +22,27 @@
  *
  */
 
-#ifndef RFB_ITALC_CURSOR_H
-#define RFB_ITALC_CURSOR_H
+#ifndef RFB_LZO_RLE_H
+#define RFB_LZO_RLE_H
 
-#define rfbEncodingItalcCursor 31
+#include "ItalcCore.h"
 
-class RfbItalcCursor
+#include <stdint.h>
+
+#define rfbEncodingLZORLE 30
+
+class ITALC_CORE_EXPORT RfbLZORLE
 {
 public:
-	RfbItalcCursor();
+	RfbLZORLE();
+
+	struct Header
+	{
+		uint8_t compressed;
+		uint32_t bytesLZO;
+		uint32_t bytesRLE;
+	} ;
 
 } ;
 
 #endif
-

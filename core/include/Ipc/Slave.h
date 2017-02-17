@@ -35,7 +35,7 @@
 namespace Ipc
 {
 
-class Slave : public QTcpSocket
+class ITALC_CORE_EXPORT Slave : public QTcpSocket
 {
 	Q_OBJECT
 public:

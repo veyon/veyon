@@ -1,7 +1,7 @@
 /*
- * RfbLZORLE.h - LZO+RLE-based RFB rectangle encoding
+ * RfbItalcCursor.h - iTALC cursor rectangle encoding
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,26 +25,18 @@
  *
  */
 
-#ifndef RFB_LZO_RLE_H
-#define RFB_LZO_RLE_H
+#ifndef RFB_ITALC_CURSOR_H
+#define RFB_ITALC_CURSOR_H
 
-#include <stdint.h>
+#include "ItalcCore.h"
 
-#define rfbEncodingLZORLE 30
+#define rfbEncodingItalcCursor 31
 
-class RfbLZORLE
+class ITALC_CORE_EXPORT RfbItalcCursor
 {
 public:
-	RfbLZORLE();
-
-	struct Header
-	{
-		uint8_t compressed;
-		uint32_t bytesLZO;
-		uint32_t bytesRLE;
-	} ;
+	RfbItalcCursor();
 
 } ;
 
 #endif
-

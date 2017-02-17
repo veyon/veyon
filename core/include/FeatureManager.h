@@ -37,7 +37,7 @@ class QWidget;
 class FeatureWorkerManager;
 class PluginManager;
 
-class FeatureManager : public QObject
+class ITALC_CORE_EXPORT FeatureManager : public QObject
 {
 	Q_OBJECT
 public:

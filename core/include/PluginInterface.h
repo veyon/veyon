@@ -27,9 +27,10 @@
 
 #include <QObject>
 
+#include "ItalcCore.h"
 #include "Plugin.h"
 
-class PluginInterface
+class ITALC_CORE_EXPORT PluginInterface
 {
 public:
 	virtual ~PluginInterface() {}

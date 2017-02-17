@@ -31,7 +31,7 @@
 #include "ComputerControlInterface.h"
 #include "NetworkObject.h"
 
-class Computer
+class ITALC_CORE_EXPORT Computer
 {
 public:
 	Computer( const Computer& other );

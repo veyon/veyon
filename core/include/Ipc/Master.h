@@ -39,7 +39,7 @@
 namespace Ipc
 {
 
-class Master : public QTcpServer
+class ITALC_CORE_EXPORT Master : public QTcpServer
 {
 	Q_OBJECT
 public:

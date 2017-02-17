@@ -28,7 +28,7 @@
 #include "Ldap/LdapDirectory.h"
 #include "AccessControlRule.h"
 
-class AccessControlProvider
+class ITALC_CORE_EXPORT AccessControlProvider
 {
 public:
 	typedef enum AccessResults {

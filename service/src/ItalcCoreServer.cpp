@@ -35,6 +35,7 @@
 
 #include "ItalcCoreServer.h"
 #include "AccessControlProvider.h"
+#include "AuthenticationCredentials.h"
 #include "DesktopAccessPermission.h"
 #include "DsaKey.h"
 #include "FeatureMessage.h"

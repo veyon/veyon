@@ -32,7 +32,7 @@
 
 class FeatureWorkerManager;
 
-class FeaturePluginInterface : public PluginInterface
+class ITALC_CORE_EXPORT FeaturePluginInterface : public PluginInterface
 {
 public:
 	virtual ~FeaturePluginInterface() {}

@@ -29,7 +29,9 @@
 #include <QJsonObject>
 #include <QVariant>
 
-class AccessControlRule
+#include "ItalcCore.h"
+
+class ITALC_CORE_EXPORT AccessControlRule
 {
 	Q_GADGET
 public:

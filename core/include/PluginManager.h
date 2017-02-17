@@ -30,7 +30,7 @@
 #include "Plugin.h"
 #include "PluginInterface.h"
 
-class PluginManager : public QObject
+class ITALC_CORE_EXPORT PluginManager : public QObject
 {
 	Q_OBJECT
 public:

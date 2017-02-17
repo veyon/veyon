@@ -430,7 +430,7 @@ void DemoServerClient::sendUpdates()
 				{
 					if( data[x] != last_pix || rle_cnt > 254 )
 					{
-						*( (QRgb *) out_ptr ) = Swap32IfBE( last_pix );
+						*( (QRgb *) out_ptr ) = Swap32IfLE( last_pix );
 						*( out_ptr + 3 ) = rle_cnt - rle_sub;
 						out_ptr += 4;
 						last_pix = data[x];

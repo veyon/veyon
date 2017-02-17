@@ -35,7 +35,7 @@
 
 class FeatureManager;
 
-class FeatureWorkerManager : public QObject
+class ITALC_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:

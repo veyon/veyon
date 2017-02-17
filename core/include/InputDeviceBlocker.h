@@ -1,7 +1,7 @@
 /*
  * InputDeviceBlocker.h - class for blocking all input devices
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,7 +25,7 @@
 #ifndef INPUT_DEVICE_BLOCKER_H
 #define INPUT_DEVICE_BLOCKER_H
 
-#include <italcconfig.h>
+#include "ItalcCore.h"
 
 #ifdef ITALC_BUILD_WIN32
 #include <interception.h>
@@ -35,7 +35,7 @@
 #include <QtCore/QMutex>
 
 
-class InputDeviceBlocker
+class ITALC_CORE_EXPORT InputDeviceBlocker
 {
 public:
 	InputDeviceBlocker( bool enable = true );

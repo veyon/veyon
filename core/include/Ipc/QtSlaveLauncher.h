@@ -37,7 +37,7 @@ class QProcess;
 namespace Ipc
 {
 
-class QtSlaveLauncher : public SlaveLauncher
+class ITALC_CORE_EXPORT QtSlaveLauncher : public SlaveLauncher
 {
 	Q_OBJECT
 public:

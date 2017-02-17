@@ -39,8 +39,6 @@ public:
 		return m_port;
 	}
 
-	static void runVncReflector( int srcPort, int dstPort );
-
 
 private:
 	virtual void run();

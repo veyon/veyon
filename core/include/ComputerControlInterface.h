@@ -29,6 +29,8 @@
 #include <QObject>
 #include <QSize>
 
+#include "ItalcCore.h"
+
 class QImage;
 
 class Computer;
@@ -36,7 +38,7 @@ class FeatureMessage;
 class ItalcVncConnection;
 class ItalcCoreConnection;
 
-class ComputerControlInterface : public QObject
+class ITALC_CORE_EXPORT ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:

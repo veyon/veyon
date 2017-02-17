@@ -28,7 +28,9 @@
 #include <QObject>
 #include <QUrl>
 
-class LdapDirectory : public QObject
+#include "ItalcCore.h"
+
+class ITALC_CORE_EXPORT LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:

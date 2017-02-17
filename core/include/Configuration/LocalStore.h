@@ -32,7 +32,7 @@ class QSettings;
 namespace Configuration
 {
 
-class LocalStore : public Store
+class ITALC_CORE_EXPORT LocalStore : public Store
 {
 public:
 	LocalStore( Scope scope );

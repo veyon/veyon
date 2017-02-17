@@ -27,11 +27,10 @@
 
 #include "Configuration/Store.h"
 
-
 namespace Configuration
 {
 
-class XmlStore : public Store
+class ITALC_CORE_EXPORT XmlStore : public Store
 {
 public:
 	XmlStore( Scope scope, const QString & file = QString() );

@@ -28,11 +28,12 @@
 
 #include <QtCore/QStringList>
 
+#include "ItalcCore.h"
 #include "Configuration/Object.h"
 
 #include "ItalcConfigurationProperties.h"
 
-class ItalcConfiguration : public Configuration::Object
+class ITALC_CORE_EXPORT ItalcConfiguration : public Configuration::Object
 {
 	Q_OBJECT
 public:

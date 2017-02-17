@@ -29,12 +29,13 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
+#include "ItalcCore.h"
 #include "Configuration/Store.h"
 
 namespace Configuration
 {
 
-class Object : public QObject
+class ITALC_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:

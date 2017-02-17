@@ -68,7 +68,7 @@ static bool handleRaw( rfbClient *c, int rx, int ry, int rw, int rh )
 
 
 
-static rfbBool handleEncodingLZORLE( rfbClient *c,
+static rfbBool handleEncodingLZORLE( rfbClient *client,
 										rfbFramebufferUpdateRectHeader *r )
 {
 	if( r->encoding != rfbEncodingLZORLE )
@@ -82,7 +82,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *c,
 	const uint16_t rh = r->r.h;
 
 	RfbLZORLE::Header hdr;
-	if( !ReadFromRFBServer( c, (char *) &hdr, sizeof( hdr ) ) )
+	if( !ReadFromRFBServer( client, (char *) &hdr, sizeof( hdr ) ) )
 	{
 		qWarning( "failed reading RfbLZORLE::Header from server" );
 		return false;
@@ -90,15 +90,15 @@ static rfbBool handleEncodingLZORLE( rfbClient *c,
 
 	if( !hdr.compressed )
 	{
-		return handleRaw( c, rx, ry, rw, rh );
+		return handleRaw( client, rx, ry, rw, rh );
 	}
 
-	hdr.bytesLZO = Swap32IfLE( hdr.bytesLZO );
-	hdr.bytesRLE = Swap32IfLE( hdr.bytesRLE );
+	hdr.bytesLZO = rfbClientSwap32IfLE( hdr.bytesLZO );
+	hdr.bytesRLE = rfbClientSwap32IfLE( hdr.bytesRLE );
 
 	uint8_t *lzo_data = new uint8_t[hdr.bytesLZO];
 
-	if( !ReadFromRFBServer( c, (char *) lzo_data, hdr.bytesLZO ) )
+	if( !ReadFromRFBServer( client, (char *) lzo_data, hdr.bytesLZO ) )
 	{
 		qWarning( "failed reading LZO data from server" );
 		delete[] lzo_data;
@@ -121,13 +121,13 @@ static rfbBool handleEncodingLZORLE( rfbClient *c,
 		return false;
 	}
 
-	QRgb *dst = ( (QRgb *) c->frameBuffer ) + c->width*ry + rx;
+	QRgb *dst = ( (QRgb *) client->frameBuffer ) + client->width*ry + rx;
 	int dx = 0;
 	bool done = FALSE;
-	const int sh = c->height;
+	const int sh = client->height;
 	for( uint32_t i = 0; i < hdr.bytesRLE && done == false; i+=4 )
 	{
-		const QRgb val = Swap32IfBE( *( (QRgb*)( rle_data + i ) ) ) & 0xffffff;
+		const QRgb val = rfbClientSwap32IfLE( *( (QRgb*)( rle_data + i ) ) ) & 0xffffff;
 		const uint8_t rleCount = rle_data[i+3];
 		for( uint16_t j = 0; j <= rleCount; ++j )
 		{
@@ -138,7 +138,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *c,
 				if( ry+1 < sh )
 				{
 					++ry;
-					dst = ( (QRgb *) c->frameBuffer ) + c->width*ry + rx;
+					dst = ( (QRgb *) client->frameBuffer ) + client->width*ry + rx;
 				}
 				else
 				{
@@ -184,5 +184,3 @@ RfbLZORLE::RfbLZORLE()
 		rfbClientRegisterExtension( __lzoRleProtocolExt );
 	}
 }
-
-

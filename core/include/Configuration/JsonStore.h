@@ -27,11 +27,10 @@
 
 #include "Configuration/Store.h"
 
-
 namespace Configuration
 {
 
-class JsonStore : public Store
+class ITALC_CORE_EXPORT JsonStore : public Store
 {
 public:
 	JsonStore( Scope scope, const QString & file = QString() );

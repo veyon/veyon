@@ -1,7 +1,7 @@
 /*
  *  LockWidget.h - widget for locking a client
  *
- *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,15 +24,14 @@
 #ifndef LOCK_WIDGET_H
 #define LOCK_WIDGET_H
 
-#include <italcconfig.h>
-
 #include <QWidget>
 #include <QPixmap>
 
+#include "ItalcCore.h"
 #include "InputDeviceBlocker.h"
 
 
-class LockWidget : public QWidget
+class ITALC_CORE_EXPORT LockWidget : public QWidget
 {
 	Q_OBJECT
 public:
@@ -57,4 +56,3 @@ private:
 } ;
 
 #endif
-
