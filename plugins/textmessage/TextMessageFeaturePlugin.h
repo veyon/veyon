@@ -86,6 +86,10 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice ) override;
 
 private:
+	enum Commands {
+		ShowTextMessage
+	};
+
 	enum FeatureMessageArguments {
 		MessageTextArgument,
 		MessageIcon,

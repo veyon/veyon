@@ -70,7 +70,7 @@ bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 
 	if( textMessage.isEmpty() == false )
 	{
-		FeatureMessage featureMessage( m_textMessageFeature.uid() );
+		FeatureMessage featureMessage( m_textMessageFeature.uid(), ShowTextMessage );
 		featureMessage.addArgument( MessageTextArgument, textMessage );
 		featureMessage.addArgument( MessageIcon, QMessageBox::Information );
 
@@ -119,26 +119,16 @@ bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage
 
 bool TextMessageFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
 {
-	if( message.featureUid() != m_textMessageFeature.uid() )
+	if( message.featureUid() == m_textMessageFeature.uid() )
 	{
-		return false;
-	}
+		QMessageBox* messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( MessageIcon ).toInt() ),
+												   tr( "Message from teacher" ),
+												   message.argument( MessageTextArgument ).toString() );
+		messageBox->show();
 
-	QString title = tr( "Message from teacher" );
-	QString text = message.argument( MessageTextArgument ).toString();
-	int icon = message.argument( MessageIcon ).toInt();
+		connect( messageBox, &QMessageBox::accepted, messageBox, &QMessageBox::deleteLater );
 
-	if( icon == QMessageBox::Warning )
-	{
-		QMessageBox::warning( Q_NULLPTR, title, text );
-	}
-	else if( icon == QMessageBox::Critical )
-	{
-		QMessageBox::critical( Q_NULLPTR, title, text );
-	}
-	else
-	{
-		QMessageBox::information( Q_NULLPTR, title, text );
+		return true;
 	}
 
 	return true;
