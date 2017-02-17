@@ -195,14 +195,7 @@ QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface
 	switch( controlInterface.state() )
 	{
 	case ComputerControlInterface::Connected:
-		switch( controlInterface.mode() )
-		{
-		case ComputerControlInterface::ModeWindowDemo:
-		case ComputerControlInterface::ModeFullScreenDemo:
-			icon = m_iconDemoMode;
-		default:
-			return controlInterface.scaledScreen();
-		}
+		return controlInterface.scaledScreen();
 		break;
 
 	case ComputerControlInterface::Unreachable:
