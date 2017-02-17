@@ -52,6 +52,9 @@ public:
 private slots:
 	void acceptConnection();
 	void processConnection( QTcpSocket* socket );
+	void closeConnection( QTcpSocket* socket );
+
+	void sendPendingMessages();
 
 private:
 	static QString workerProcessFilePath();
@@ -84,7 +87,6 @@ private:
 	WorkerMap m_workers;
 
 	QMutex m_workersMutex;
-
 
 } ;
 

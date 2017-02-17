@@ -52,6 +52,11 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
+
+	QTimer* pendingMessagesTimer = new QTimer( this );
+	connect( pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages );
+
+	pendingMessagesTimer->start( 100 );
 }
 
 
@@ -108,6 +113,8 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 
 		auto& worker = m_workers[feature.uid()];
 
+		m_workersMutex.unlock();
+
 		if( worker.socket )
 		{
 			worker.socket->close();
@@ -123,6 +130,7 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 			killTimer->start( 5000 );
 		}
 
+		m_workersMutex.lock();
 		m_workers.remove( feature.uid() );
 	}
 
@@ -133,27 +141,11 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 
 void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
 {
-	if( thread() != QThread::currentThread() )
-	{
-		QMetaObject::invokeMethod( this, "sendMessage", Qt::BlockingQueuedConnection,
-								   Q_ARG( const FeatureMessage&, message ) );
-		return;
-	}
-
 	m_workersMutex.lock();
 
 	if( m_workers.contains( message.featureUid() ) )
 	{
-		auto& worker = m_workers[message.featureUid()];
-
-		if( worker.socket )
-		{
-			message.send( worker.socket );
-		}
-		else
-		{
-			worker.pendingMessages += message;
-		}
+		m_workers[message.featureUid()].pendingMessages += message;
 	}
 	else
 	{
@@ -183,6 +175,9 @@ void FeatureWorkerManager::acceptConnection()
 	// connect to readyRead() signal of new connection
 	connect( socket, &QTcpSocket::readyRead,
 			 this, [=] () { processConnection( socket ); } );
+
+	connect( socket, &QTcpSocket::disconnected,
+			 this, [=] () { closeConnection( socket ); } );
 }
 
 
@@ -197,31 +192,73 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 	// set socket information
 	if( m_workers.contains( message.featureUid() ) )
 	{
-		m_workersMutex.unlock();
-
-		m_featureManager.handleServiceFeatureMessage( message, socket, *this );
-
-		m_workersMutex.lock();
-
-		// send pending messages
-		auto& worker = m_workers[message.featureUid()];
-
-		worker.socket = socket;
-
-		for( auto message : worker.pendingMessages )
+		if( m_workers[message.featureUid()].socket == nullptr )
 		{
-			message.send( socket );
+			m_workers[message.featureUid()].socket = socket;
 		}
 
-		worker.pendingMessages.clear();
-
 		m_workersMutex.unlock();
+
+		if( message.command() >= 0 )
+		{
+			m_featureManager.handleServiceFeatureMessage( message, socket, *this );
+		}
+
 	}
 	else
 	{
+		m_workersMutex.unlock();
+
 		qCritical() << "FeatureWorkerManager: got data from non-existing worker!" << message.featureUid();
 	}
+}
 
+
+
+void FeatureWorkerManager::closeConnection( QTcpSocket* socket )
+{
+	m_workersMutex.lock();
+
+	for( auto it = m_workers.begin(); it != m_workers.end(); )
+	{
+		if( it.value().socket == socket )
+		{
+			qDebug() << "FeatureWorkerManager::closeConnection(): removing worker after socket has been closed";
+			it = m_workers.erase( it );
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	m_workersMutex.unlock();
+
+	socket->deleteLater();
+}
+
+
+
+void FeatureWorkerManager::sendPendingMessages()
+{
+	m_workersMutex.lock();
+
+	for( auto it = m_workers.begin(); it != m_workers.end(); ++it )
+	{
+		auto& worker = it.value();
+
+		if( worker.socket && worker.pendingMessages.isEmpty() == false )
+		{
+			for( const auto& message : worker.pendingMessages )
+			{
+				message.send( worker.socket );
+			}
+
+			worker.pendingMessages.clear();
+		}
+	}
+
+	m_workersMutex.unlock();
 }
 
 
@@ -230,4 +267,3 @@ QString FeatureWorkerManager::workerProcessFilePath()
 {
 	return QCoreApplication::applicationDirPath() + QDir::separator() + "italc-worker";
 }
-
