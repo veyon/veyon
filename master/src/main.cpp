@@ -1,7 +1,7 @@
 /*
- * main.cpp - main-file for iTALC Master Application
+ * main.cpp - startup routine for iTALC Master Application
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,28 +22,18 @@
  *
  */
 
-
-#include <QtCore/QModelIndex>
 #include <QApplication>
 #include <QSplashScreen>
 
-#ifdef ITALC3
 #include "MasterCore.h"
-#endif
 #include "MainWindow.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
-#include "RemoteControlWidget.h"
 
 
 QSplashScreen * splashScreen = NULL;
-
-#ifndef ITALC3
-QString __default_domain;
-#endif
-
 
 // good old main-function... initializes qt-app and starts iTALC
 int main( int argc, char * * argv )
@@ -68,31 +58,11 @@ int main( int argc, char * * argv )
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
-	int screen = -1;
+
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
-		if( a == "-rctrl" && arg_it.hasNext() )
-		{
-			if( !ItalcCore::initAuthentication() )
-			{
-				ilog_failed( "ItalcCore::initAuthentication()" );
-				return -1;
-			}
-
-			const QString host = arg_it.next();
-			bool view_only = arg_it.hasNext() ?
-						arg_it.next().toInt()
-					:
-						false;
-			new RemoteControlWidget( host, view_only );
-			return app.exec();
-		}
-		else if( a == "-screen" && arg_it.hasNext() )
-		{
-			screen = arg_it.next().toInt();
-		}
-		else if( a == "-role" )
+		if( a == "-role" )
 		{
 			if( arg_it.hasNext() )
 			{
@@ -121,7 +91,6 @@ int main( int argc, char * * argv )
 		}
 	}
 
-
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
 	if( ItalcCore::config->applicationName().isEmpty() )
 	{
@@ -132,9 +101,13 @@ int main( int argc, char * * argv )
 	{
 		return -1;
 	}
-	// now create the main-window
-	MainWindow mainWindow( screen );
 
+	MasterCore masterCore;
+
+	// now create the main-window
+	MainWindow mainWindow( masterCore );
+
+#if 0
 	if( !mainWindow.localICA() ||
 		!mainWindow.localICA()->isConnected() )
 	{
@@ -144,6 +117,7 @@ int main( int argc, char * * argv )
 			return -1;
 		}
 	}
+#endif
 
 	// hide splash-screen as soon as main-window is shown
 	splashScreen.finish( &mainWindow );

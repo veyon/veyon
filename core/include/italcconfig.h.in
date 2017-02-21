@@ -115,7 +115,7 @@
 
 #cmakedefine ITALC_HAVE_WS2TCPIP_H  1
 
-#cmakedefine LDAP_FOUND
+#define LDAP_FOUND
 #cmakedefine SASL2_FOUND
 #cmakedefine HAVE_LDAP_H
 #cmakedefine HAVE_LDAP_START_TLS_S

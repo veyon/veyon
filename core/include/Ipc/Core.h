@@ -31,6 +31,8 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
+#include "ItalcCore.h"
+
 namespace Ipc
 {
 	typedef QString Command;

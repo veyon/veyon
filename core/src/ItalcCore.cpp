@@ -22,8 +22,7 @@
  *
  */
 
-#include <italcconfig.h>
-
+#include "ItalcCore.h"
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
 #endif
@@ -38,7 +37,6 @@
 #include <QGroupBox>
 #include <QLabel>
 
-#include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
@@ -46,7 +44,7 @@
 #include "PasswordDialog.h"
 #include "SocketDevice.h"
 
-#include <rfb/rfbclient.h>
+#include "rfb/rfbclient.h"
 
 #include <lzo/lzo1x.h>
 
@@ -73,26 +71,23 @@ void initResources()
 
 
 
-qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
-				const SocketOpCodes _op_code, void * _user )
+qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
+							   const SocketOpCodes opCode, void * user )
 {
-	rfbClient * cl = (rfbClient *) _user;
-	switch( _op_code )
+	rfbClient * cl = (rfbClient *) user;
+	switch( opCode )
 	{
-		case SocketRead:
-			return ReadFromRFBServer( cl, _buf, _len ) != 0 ?
-								_len : 0;
-		case SocketWrite:
-			return WriteToRFBServer( cl, _buf, _len ) != 0 ?
-								_len : 0;
-		case SocketGetPeerAddress:
-//			strncpy( _buf, cl->host, _len );
-			break;
+	case SocketRead:
+		return ReadFromRFBServer( cl, buffer, bytes ) != 0 ? bytes : 0;
+	case SocketWrite:
+		return WriteToRFBServer( cl, buffer, bytes ) != 0 ? bytes : 0;
+	case SocketGetPeerAddress:
+		//			strncpy( _buf, cl->host, _len );
+		break;
 	}
 	return 0;
 
 }
-
 
 
 static void killWisPtis()
@@ -384,12 +379,8 @@ const Command LockInput = "LockInput";
 const Command UnlockInput = "UnlockInput";
 const Command LogonUserCmd = "LogonUser";
 const Command LogoutUser = "LogoutUser";
-const Command DisplayTextMessage = "DisplayTextMessage";
 const Command AccessDialog = "AccessDialog";
 const Command ExecCmds = "ExecCmds";
-const Command PowerOnComputer = "PowerOnComputer";
-const Command PowerDownComputer = "PowerDownComputer";
-const Command RestartComputer = "RestartComputer";
 const Command DisableLocalInputs = "DisableLocalInputs";
 const Command SetRole = "SetRole";
 

@@ -34,9 +34,9 @@
 AccessControlProvider::AccessControlProvider() :
 	m_ldapDirectory()
 {
-	for( auto encodedRule : ItalcCore::config->accessControlRules() )
+	for( auto accessControlRule : ItalcCore::config->accessControlRules() )
 	{
-		m_accessControlRules.append( AccessControlRule( encodedRule ) );
+		m_accessControlRules.append( accessControlRule );
 	}
 }
 
@@ -58,7 +58,7 @@ QStringList AccessControlProvider::userGroups()
 		groups = LocalSystem::userGroups();
 	}
 
-	qSort( groups );
+	std::sort( groups.begin(), groups.end() );
 
 	return groups;
 }
@@ -74,7 +74,7 @@ QStringList AccessControlProvider::computerGroups()
 		groups = m_ldapDirectory.toRelativeDnList( m_ldapDirectory.computerGroups() );
 	}
 
-	qSort( groups );
+	std::sort( groups.begin(), groups.end() );
 
 	return groups;
 }
@@ -90,7 +90,7 @@ QStringList AccessControlProvider::computerLabs()
 		computerLabList = m_ldapDirectory.computerLabs();
 	}
 
-	qSort( computerLabList );
+	std::sort( computerLabList.begin(), computerLabList.end() );
 
 	return computerLabList;
 }

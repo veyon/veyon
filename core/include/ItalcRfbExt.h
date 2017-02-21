@@ -26,13 +26,14 @@
 #ifndef ITALC_RFB_EXT_H
 #define ITALC_RFB_EXT_H
 
-#include <rfb/rfbproto.h>
 #include <rfb/rfbclient.h>
 
 // new rfb-command which tells server or client that an italc-request/response
 // is following
 #define rfbItalcCoreRequest		40
 #define rfbItalcCoreResponse		rfbItalcCoreRequest
+#define rfbItalcFeatureRequest		41
+#define rfbItalcFeatureResponse		rfbItalcFeatureRequest
 
 
 #define rfbSecTypeItalc 40
@@ -41,7 +42,8 @@
 enum PortOffsets
 {
 	PortOffsetVncServer = 11100,
-	PortOffsetDemoServer = PortOffsetVncServer + 300
+	PortOffsetFeatureManagerPort = PortOffsetVncServer+100,
+	PortOffsetDemoServer = PortOffsetVncServer+200,
 } ;
 
 

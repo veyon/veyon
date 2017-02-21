@@ -32,8 +32,6 @@
 #include "ItalcCore.h"
 
 #include "ui_ClientSettingsDialog.h"
-#include "ui_TextMessageDialog.h"
-#include "ui_SupportDialog.h"
 #include "ui_RemoteLogonDialog.h"
 
 
@@ -44,7 +42,7 @@
 #endif
 
 
-
+#if 0
 ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 #ifndef ITALC3
 						MainWindow * _main_window,
@@ -169,58 +167,7 @@ m_mainWindow->getClassroomManager()->m_classRooms[ui->classRoomComboBox->current
 
 	QDialog::accept();
 }
-
-
-
-
-
-SupportDialog::SupportDialog( QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::SupportDialog )
-{
-	ui->setupUi( this );
-
-	ItalcCore::enforceBranding( this );
-}
-
-
-
-QString SupportDialog::getHost( QWidget *parent )
-{
-	SupportDialog sd( parent );
-	if( sd.exec() == Accepted )
-	{
-		return sd.ui->hostEdit->text();
-	}
-
-	return QString();
-}
-
-
-
-
-
-TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::TextMessageDialog ),
-	m_msgStr( msgStr )
-{
-	ui->setupUi( this );
-
-	ItalcCore::enforceBranding( this );
-}
-
-
-
-
-void TextMessageDialog::accept()
-{
-	m_msgStr = ui->textEdit->toPlainText();
-	QDialog::accept();
-}
-
-
-
+#endif
 
 
 
@@ -233,7 +180,7 @@ RemoteLogonDialog::RemoteLogonDialog( QWidget *parent ) :
 #ifdef ITALC3
 	ui->domainEdit->setText( MasterCore::globalConfig->defaultDomain() );
 #else
-	ui->domainEdit->setText( __default_domain );
+	//ui->domainEdit->setText( __default_domain );
 #endif
 	connect( ui->userNameEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( userNameChanged( const QString & ) ) );

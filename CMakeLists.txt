@@ -180,7 +180,9 @@ CHECK_INCLUDE_FILES(sys/time.h HAVE_SYS_TIME_H)
 FIND_PACKAGE(Sasl2)
 
 # find X libraries
-IF(NOT ITALC_BUILD_WIN32)
+IF(ITALC_BUILD_WIN32)
+	ADD_DEFINITIONS(-DLIBVNCSERVER_NEED_INADDR_T)
+ELSE()
 	FIND_PACKAGE(X11 REQUIRED)
 
 	SET(CMAKE_REQUIRED_LIBRARIES ${X11_LIBRARIES} ${X11_XTest_LIB})
@@ -219,7 +221,7 @@ IF(NOT ITALC_BUILD_WIN32)
 		CHECK_FUNCTION_EXISTS(XkbSelectEvents ITALC_HAVE_XKEYBOARD)
 	ENDIF(ITALC_HAVE_XKBLIB_H)
 	SET(ITALC_HAVE_LIBCRYPT FALSE)
-ENDIF(NOT ITALC_BUILD_WIN32)
+ENDIF()
 SET(ITALC_ALLOW24BPP TRUE)
 SET(ITALC_BACKCHANNEL TRUE)
 
@@ -228,7 +230,7 @@ SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/rfb/rfbconfig.h)
 SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/config.h)
 
-SET(IN_FILES ${ITALC_CORE_INCLUDE_DIR}/italcconfig.h nsis/iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
+SET(IN_FILES ${ITALC_CORE_INCLUDE_DIR}/italcconfig.h nsis/iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc worker/italc-worker.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -260,12 +262,16 @@ IF(PNG_FOUND)
 	ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBPNG)
 ENDIF(PNG_FOUND)
 
+ADD_DEFINITIONS(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050600)
+
 SET(3rdparty_DIR ${CMAKE_SOURCE_DIR}/3rdparty)
 SET(ultravnc_DIR ${3rdparty_DIR}/ultravnc)
 SET(libvncserver_DIR ${3rdparty_DIR}/libvncserver)
 SET(x11vnc_DIR ${3rdparty_DIR}/x11vnc)
 
 INCLUDE_DIRECTORIES(${ZLIB_INCLUDE_DIR} ${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${LZO_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/${ITALC_CORE_INCLUDE_DIR} ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR})
+INCLUDE_DIRECTORIES(${libvncserver_DIR})
+
 LINK_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/core ${CMAKE_BINARY_DIR}/core)
 LINK_LIBRARIES(${QT_LIBRARIES} ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${PNG_LIBRARIES} ${OPENSSL_LIBRARIES})
 
@@ -279,6 +285,8 @@ ADD_SUBDIRECTORY(core)
 ADD_SUBDIRECTORY(service)
 ADD_SUBDIRECTORY(master)
 ADD_SUBDIRECTORY(configurator)
+ADD_SUBDIRECTORY(worker)
+ADD_SUBDIRECTORY(plugins)
 
 INSTALL()
 
@@ -324,8 +332,10 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND wget -P ${TMP} https://github.com/oblitum/Interception/releases/download/1.0.0/Interception.zip
 			COMMAND unzip -j -d ${TMP} ${TMP}/Interception.zip Interception/command\ line\ installer/install-interception.exe
 			COMMAND rm ${TMP}/*.zip
-			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe ${TMP}
-			COMMAND ${STRIP} ${TMP}/*
+			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe worker/italc-worker.exe ${TMP}
+			COMMAND mkdir -p ${TMP}/plugins
+			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
+			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}

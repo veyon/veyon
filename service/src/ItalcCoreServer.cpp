@@ -35,10 +35,13 @@
 
 #include "ItalcCoreServer.h"
 #include "AccessControlProvider.h"
+#include "AuthenticationCredentials.h"
 #include "DesktopAccessPermission.h"
 #include "DsaKey.h"
+#include "FeatureMessage.h"
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
+#include "SystemTrayIcon.h"
 
 
 ItalcCoreServer * ItalcCoreServer::_this = NULL;
@@ -48,10 +51,22 @@ ItalcCoreServer::ItalcCoreServer() :
 	QObject(),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
+	m_pluginManager(),
+	m_builtinFeatures( m_pluginManager ),
+	m_featureManager( m_pluginManager ),
+	m_featureWorkerManager( m_featureManager ),
 	m_slaveManager()
 {
 	Q_ASSERT( _this == NULL );
 	_this = this;
+
+	m_builtinFeatures.systemTrayIcon().setToolTip(
+				tr( "%1 Service %2 at %3:%4" ).
+				arg( ItalcCore::applicationName() ).
+				arg( ITALC_VERSION ).
+				arg( QHostInfo::localHostName() ).
+				arg( QString::number( ItalcCore::serverPort ) ),
+				m_featureWorkerManager );
 }
 
 
@@ -65,7 +80,7 @@ ItalcCoreServer::~ItalcCoreServer()
 
 
 
-int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
+bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 												void *user )
 {
 	SocketDevice sdev( sock, user );
@@ -135,18 +150,6 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	{
 		LocalSystem::logoutUser();
 	}
-	else if( cmd == ItalcCore::PowerOnComputer )
-	{
-		LocalSystem::broadcastWOLPacket( msgIn.arg( "mac" ) );
-	}
-	else if( cmd == ItalcCore::PowerDownComputer )
-	{
-		LocalSystem::powerDown();
-	}
-	else if( cmd == ItalcCore::RestartComputer )
-	{
-		LocalSystem::reboot();
-	}
 	else if( cmd == ItalcCore::DisableLocalInputs )
 	{
 		// TODO
@@ -160,46 +163,6 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 			ItalcCore::role = static_cast<ItalcCore::UserRoles>( role );
 		}
 	}
-	else if( cmd == ItalcCore::StartDemo )
-	{
-		QString host = msgIn.arg( "host" );
-		QString port = msgIn.arg( "port" );
-		// no host given?
-		if( host.isEmpty() )
-		{
-			// then guess IP from remote peer address
-			const int MAX_HOST_LEN = 255;
-			char hostArr[MAX_HOST_LEN+1];
-			sock( hostArr, MAX_HOST_LEN, SocketGetPeerAddress, user );
-			hostArr[MAX_HOST_LEN] = 0;
-			host = hostArr;
-		}
-		if( port.isEmpty() )
-		{
-			port = QString::number( PortOffsetDemoServer );
-		}
-		if( !host.contains( ':' ) )
-		{
-			host += ':' + port;
-		}
-		m_slaveManager.startDemo( host, msgIn.arg( "fullscreen" ).toInt() );
-	}
-	else if( cmd == ItalcCore::StopDemo )
-	{
-		m_slaveManager.stopDemo();
-	}
-	else if( cmd == ItalcCore::DisplayTextMessage )
-	{
-		m_slaveManager.messageBox( msgIn.arg( "title" ), msgIn.arg( "text" ) );
-	}
-	else if( cmd == ItalcCore::LockScreen )
-	{
-		m_slaveManager.lockScreen();
-	}
-	else if( cmd == ItalcCore::UnlockScreen )
-	{
-		m_slaveManager.unlockScreen();
-	}
 	else if( cmd == ItalcCore::LockInput )
 	{
 		m_slaveManager.lockInput();
@@ -208,37 +171,15 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	{
 		m_slaveManager.unlockInput();
 	}
-	else if( cmd == ItalcCore::StartDemoServer )
-	{
-		ItalcCore::authenticationCredentials->setCommonSecret(
-									DsaKey::generateChallenge().toBase64() );
-		m_slaveManager.demoServerMaster()->start(
-			msgIn.arg( "sourceport" ).toInt(),
-			msgIn.arg( "destinationport" ).toInt() );
-	}
-	else if( cmd == ItalcCore::StopDemoServer )
-	{
-		m_slaveManager.demoServerMaster()->stop();
-	}
-	else if( cmd == ItalcCore::DemoServerAllowHost )
-	{
-		m_slaveManager.demoServerMaster()->allowHost( msgIn.arg( "host" ) );
-	}
-	else if( cmd == ItalcCore::DemoServerUnallowHost )
-	{
-		m_slaveManager.demoServerMaster()->unallowHost( msgIn.arg( "host" ) );
-	}
 	else if( cmd == ItalcCore::ReportSlaveStateFlags )
 	{
 		ItalcCore::Msg( &sdev, cmd ).
 				addArg( "slavestateflags", m_slaveManager.slaveStateFlags() ).
 					send();
 	}
-	// TODO: handle plugins
 	else
 	{
-		qCritical() << "ItalcCoreServer::handleItalcClientMessage(...): "
-				"could not handle cmd" << cmd;
+		qCritical() << "ItalcCoreServer::handleItalcClientMessage(...): could not handle cmd" << cmd;
 	}
 
 	return true;
@@ -246,7 +187,25 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 
 
 
-bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
+bool ItalcCoreServer::handleItalcFeatureMessage( SocketDispatcher socketDispatcher, void *user )
+{
+	SocketDevice socketDevice( socketDispatcher, user );
+
+	// receive message
+	FeatureMessage featureMessage( &socketDevice );
+	featureMessage.receive();
+
+	qDebug() << "ItalcCoreServer::handleItalcFeatureMessage():"
+			 << featureMessage.featureUid()
+			 << featureMessage.command()
+			 << featureMessage.arguments();
+
+	return m_featureManager.handleServiceFeatureMessage( featureMessage, &socketDevice, m_featureWorkerManager );
+}
+
+
+
+bool ItalcCoreServer::authSecTypeItalc( SocketDispatcher sd, void *user )
 {
 	// find out IP of host - needed at several places
 	const int MAX_HOST_LEN = 255;
@@ -374,10 +333,11 @@ void ItalcCoreServer::errorMsgAuth( const QString &ip )
 	if( m_failedAuthHosts.contains( ip ) == false )
 	{
 		m_failedAuthHosts += ip;
-		m_slaveManager.systemTrayMessage(
+		m_builtinFeatures.systemTrayIcon().showMessage(
 					tr( "Authentication error" ),
 					tr( "Somebody (IP: %1) tried to access this computer "
-						"but could not authenticate successfully!" ).arg( ip ) );
+						"but could not authenticate successfully!" ).arg( ip ),
+					m_featureWorkerManager );
 	}
 }
 
@@ -460,7 +420,8 @@ bool ItalcCoreServer::doCommonSecretAuth( SocketDevice &sdev )
 	qDebug() << "ItalcCoreServer: doing common secret auth";
 
 	const QString secret = sdev.read().toString();
-	if( secret == ItalcCore::authenticationCredentials->commonSecret() )
+	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::CommonSecret ) &&
+			secret == ItalcCore::authenticationCredentials->commonSecret() )
 	{
 		return true;
 	}

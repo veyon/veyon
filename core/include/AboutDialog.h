@@ -27,13 +27,14 @@
 
 #include <QDialog>
 
+#include "ItalcCore.h"
+
 namespace Ui
 {
 	class AboutDialog;
 }
 
-
-class AboutDialog : public QDialog
+class ITALC_CORE_EXPORT AboutDialog : public QDialog
 {
 public:
 	AboutDialog( QWidget *parent );

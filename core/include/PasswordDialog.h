@@ -31,7 +31,7 @@
 
 namespace Ui { class PasswordDialog; }
 
-class PasswordDialog : public QDialog
+class ITALC_CORE_EXPORT PasswordDialog : public QDialog
 {
 	Q_OBJECT
 public:

@@ -22,31 +22,44 @@
  *
  */
 
-#include <QColor>
+#include <QPainter>
 
 #include "ComputerListModel.h"
 #include "ComputerManager.h"
 
 
-ComputerListModel::ComputerListModel(ComputerManager* manager, QObject *parent) :
-	QAbstractListModel(parent),
-	m_manager( manager )
+
+
+ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) :
+	QAbstractListModel( parent ),
+	m_dummyControlInterface( Computer() ),
+	m_manager( manager ),
+	m_iconUnknownState(),
+	m_iconComputerUnreachable(),
+	m_iconDemoMode()
 {
-	connect( m_manager, &ComputerManager::computerAboutToBeInserted,
+	connect( &m_manager, &ComputerManager::computerAboutToBeInserted,
 			 this, &ComputerListModel::beginInsertComputer );
-	connect( m_manager, &ComputerManager::computerInserted,
+	connect( &m_manager, &ComputerManager::computerInserted,
 			 this, &ComputerListModel::endInsertComputer );
 
-	connect( m_manager, &ComputerManager::computerAboutToBeRemoved,
+	connect( &m_manager, &ComputerManager::computerAboutToBeRemoved,
 			 this, &ComputerListModel::beginRemoveComputer );
-	connect( m_manager, &ComputerManager::computerRemoved,
+	connect( &m_manager, &ComputerManager::computerRemoved,
 			 this, &ComputerListModel::endRemoveComputer );
 
-	connect( m_manager, &ComputerManager::computerListAboutToBeReset,
+	connect( &m_manager, &ComputerManager::computerListAboutToBeReset,
 			 this, &ComputerListModel::beginResetModel );
-	connect( m_manager, &ComputerManager::computerListAboutToBeReset,
+	connect( &m_manager, &ComputerManager::computerListAboutToBeReset,
 			 this, &ComputerListModel::endResetModel );
 
+	connect( &m_manager, &ComputerManager::computerScreenUpdated,
+			 this, &ComputerListModel::updateComputerScreen );
+
+	connect( &m_manager, &ComputerManager::computerScreenSizeChanged,
+			 this, &ComputerListModel::updateComputerScreenSize );
+
+	loadIcons();
 }
 
 
@@ -58,7 +71,7 @@ int ComputerListModel::rowCount(const QModelIndex &parent) const
 		return 0;
 	}
 
-	return m_manager->computerList().count();
+	return m_manager.computerList().count();
 }
 
 
@@ -70,9 +83,14 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	}
 
+	if( index.row() >= m_manager.computerList().count() )
+	{
+		qCritical( "ComputerListModel::data(): index out of range!" );
+	}
+
 	if( role == Qt::DecorationRole )
 	{
-		return QColor(Qt::darkBlue);
+		return computerDecorationRole( m_manager.computerList()[index.row()].controlInterface() );
 	}
 
 	if( role != Qt::DisplayRole)
@@ -80,7 +98,20 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	}
 
-	return m_manager->computerList()[index.row()].name();
+	return m_manager.computerList()[index.row()].name();
+}
+
+
+
+ComputerControlInterface& ComputerListModel::computerControlInterface(const QModelIndex &index)
+{
+	if( index.isValid() == false || index.row() >= m_manager.computerList().count( ) )
+	{
+		qCritical( "ComputerListModel::computerControlInterface(): invalid ComputerControlInterface requested!" );
+		return m_dummyControlInterface;
+	}
+
+	return m_manager.computerList()[index.row()].controlInterface();
 }
 
 
@@ -117,4 +148,64 @@ void ComputerListModel::reload()
 {
 	beginResetModel();
 	endResetModel();
+}
+
+
+
+void ComputerListModel::updateComputerScreen( int computerIndex )
+{
+	emit dataChanged( index( computerIndex, 0 ),
+					  index( computerIndex, 0 ),
+					  QVector<int>( { Qt::DecorationRole } ) );
+}
+
+
+
+void ComputerListModel::updateComputerScreenSize()
+{
+	emit layoutChanged();
+}
+
+
+
+void ComputerListModel::loadIcons()
+{
+	m_iconUnknownState = prepareIcon( QImage( ":/resources/preferences-desktop-display-gray.png" ) );
+	m_iconComputerUnreachable = prepareIcon( QImage( ":/resources/preferences-desktop-display-red.png" ) );
+	m_iconDemoMode = prepareIcon( QImage( ":/resources/preferences-desktop-display-orange.png" ) );
+}
+
+
+
+QImage ComputerListModel::prepareIcon(const QImage &icon)
+{
+	QImage wideIcon( icon.width() * 16 / 9, icon.height(), QImage::Format_ARGB32 );
+	wideIcon.fill( Qt::transparent );
+	QPainter p( &wideIcon );
+	p.drawImage( ( wideIcon.width() - icon.width() ) / 2, 0, icon );
+	return wideIcon;
+}
+
+
+
+QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface &controlInterface ) const
+{
+	QImage icon;
+
+	switch( controlInterface.state() )
+	{
+	case ComputerControlInterface::Connected:
+		return controlInterface.scaledScreen();
+		break;
+
+	case ComputerControlInterface::Unreachable:
+		icon = m_iconComputerUnreachable;
+		break;
+
+	default:
+		icon = m_iconUnknownState;
+		break;
+	}
+
+	return icon.scaled( controlInterface.scaledScreenSize(), Qt::KeepAspectRatio );
 }

@@ -29,6 +29,7 @@
 #include <QAbstractNativeEventFilter>
 #include <QtNetwork/QHostInfo>
 
+#include "AuthenticationCredentials.h"
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -37,12 +38,7 @@
 #include "Logger.h"
 
 #include "AccessDialogSlave.h"
-#include "DemoClientSlave.h"
-#include "DemoServerSlave.h"
-#include "MessageBoxSlave.h"
 #include "InputLockSlave.h"
-#include "ScreenLockSlave.h"
-#include "SystemTrayIconSlave.h"
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -196,14 +192,6 @@ static int runCoreServer( int argc, char **argv )
 	ItalcCoreServer coreServer;
 	ItalcVncServer vncServer;
 
-	// start the SystemTrayIconSlave and set the default tooltip
-	coreServer.slaveManager()->setSystemTrayToolTip(
-		QApplication::tr( "%1 Service %2 at %3:%4" ).
-							arg( ItalcCore::applicationName() ).
-							arg( ITALC_VERSION ).
-							arg( QHostInfo::localHostName() ).
-							arg( QString::number( vncServer.serverPort() ) ) );
-
 	// make app terminate once the VNC server thread has finished
 	app.connect( &vncServer, SIGNAL( finished() ), SLOT( quit() ) );
 
@@ -305,29 +293,9 @@ int main( int argc, char **argv )
 			{
 				return runSlave<AccessDialogSlave, QApplication>( argc, argv );
 			}
-			else if( arg2 == ItalcSlaveManager::IdDemoClient )
-			{
-				return runSlave<DemoClientSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdMessageBox )
-			{
-				return runSlave<MessageBoxSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdScreenLock )
-			{
-				return runSlave<ScreenLockSlave, QApplication>( argc, argv );
-			}
 			else if( arg2 == ItalcSlaveManager::IdInputLock )
 			{
 				return runSlave<InputLockSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdSystemTrayIcon )
-			{
-				return runSlave<SystemTrayIconSlave, QApplication>( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdDemoServer )
-			{
-				return runSlave<DemoServerSlave, QApplication>( argc, argv );
 			}
 			else
 			{

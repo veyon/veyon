@@ -37,6 +37,10 @@
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 
+#define FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
+	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryBackend, setNetworkObjectDirectoryBackend, "Backend", "NetworkObjectDirectory" );			\
+	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory" );			\
+
 #define FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
@@ -55,6 +59,7 @@
 
 #define FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
+	OP( ItalcConfiguration, ItalcCore::config, INT, featureWorkerManagerPort, setFeatureWorkerManagerPort, "FeatureWorkerManagerPort", "Network" );			\
 	OP( ItalcConfiguration, ItalcCore::config, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network" );					\
@@ -78,7 +83,7 @@
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\
 	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
+	OP( ItalcConfiguration, ItalcCore::config, JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
 #define FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isLdapIntegrationEnabled, setLdapIntegrationEnabled, "LdapIntegrationEnabled", "LDAP" );	\
@@ -109,6 +114,7 @@
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\
 	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(OP)			\
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP)			\
+	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)\
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP)			\

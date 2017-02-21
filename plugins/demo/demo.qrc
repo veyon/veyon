@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/demo" >
+        <file>presentation-fullscreen.png</file>
+        <file>presentation-window.png</file>
+    </qresource>
+</RCC>

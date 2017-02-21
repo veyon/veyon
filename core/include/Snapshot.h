@@ -1,7 +1,7 @@
 /*
  *  Snapshot.h - class representing a screen snapshot
  *
- *  Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,18 +24,20 @@
 #ifndef SNAPSHOT_H
 #define SNAPSHOT_H
 
-#include <QtGui/QImage>
-#include <QtGui/QPixmap>
+#include "ItalcCore.h"
 
-class ItalcVncConnection;
+#include <QImage>
+#include <QPixmap>
 
-class Snapshot : public QObject
+class ComputerControlInterface;
+
+class ITALC_CORE_EXPORT Snapshot : public QObject
 {
 	Q_OBJECT
 public:
 	Snapshot( const QString &fileName = QString() );
 
-	void take( ItalcVncConnection *vncConn, const QString &user );
+	void take( const ComputerControlInterface& computerControlInterface );
 
 	bool isValid() const
 	{

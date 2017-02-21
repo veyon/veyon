@@ -31,6 +31,7 @@
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "ServiceControl.h"
+#include "NetworkObjectDirectory.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_GeneralConfigurationPage.h"
@@ -58,7 +59,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 													loc.name() );
 	}
 
-	qSort( languages );
+	std::sort( languages.begin(), languages.end() );
 
 	ui->uiLanguage->addItems( languages );
 
@@ -71,6 +72,13 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	CONNECT_BUTTON_SLOT( openLogFileDirectory );
 	CONNECT_BUTTON_SLOT( clearLogFiles );
+
+	QMap<NetworkObjectDirectory::Backend, QString> backends;
+	backends[NetworkObjectDirectory::ConfigurationBackend] = tr( "Local configuration" );
+	backends[NetworkObjectDirectory::LdapBackend] = tr( "LDAP" );
+	backends[NetworkObjectDirectory::TestBackend] = tr( "Test" );
+
+	ui->networkObjectDirectoryBackend->addItems( backends.values() );
 }
 
 
@@ -86,6 +94,7 @@ void GeneralConfigurationPage::resetWidgets()
 {
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
@@ -94,6 +103,7 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 {
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 

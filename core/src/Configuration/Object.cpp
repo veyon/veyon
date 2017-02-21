@@ -1,7 +1,7 @@
 /*
  * ConfigurationObject.cpp - implementation of ConfigurationObject
  *
- * Copyright (c) 2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,10 +22,9 @@
  *
  */
 
-#include <QtCore/QStringList>
-
 #include "Configuration/Object.h"
 #include "Configuration/LocalStore.h"
+#include "Configuration/JsonStore.h"
 #include "Configuration/XmlStore.h"
 
 #include "Logger.h"
@@ -41,18 +40,21 @@ Object::Object( Store::Backend _backend, Store::Scope _scope ) :
 {
 	switch( _backend )
 	{
-		case Store::LocalBackend:
-			m_store = new LocalStore( _scope );
-			break;
-		case Store::XmlFile:
-			m_store = new XmlStore( _scope );
-			break;
-		case Store::NoBackend:
-			break;
-		default:
-			qCritical( "Invalid Store::Backend %d selected in "
-					"Object::Object()", _backend );
-			break;
+	case Store::LocalBackend:
+		m_store = new LocalStore( _scope );
+		break;
+	case Store::XmlFile:
+		m_store = new XmlStore( _scope );
+		break;
+	case Store::JsonFile:
+		m_store = new JsonStore( _scope );
+		break;
+	case Store::NoBackend:
+		break;
+	default:
+		qCritical( "Invalid Store::Backend %d selected in "
+				   "Object::Object()", _backend );
+		break;
 	}
 
 	reloadFromStore();
@@ -100,17 +102,20 @@ Object &Object::operator=( const Object &ref )
 
 		switch( ref.m_store->backend() )
 		{
-			case Store::LocalBackend:
-				m_store = new LocalStore( ref.m_store->scope() );
-				break;
-			case Store::XmlFile:
-				m_store = new XmlStore( ref.m_store->scope() );
-				break;
-			case Store::NoBackend:
-				break;
-			default:
-				qCritical( "Invalid Store::Backend %d selected in "
-							"Object::operator=()", ref.m_store->backend() );
+		case Store::LocalBackend:
+			m_store = new LocalStore( ref.m_store->scope() );
+			break;
+		case Store::XmlFile:
+			m_store = new XmlStore( ref.m_store->scope() );
+			break;
+		case Store::JsonFile:
+			m_store = new JsonStore( ref.m_store->scope() );
+			break;
+		case Store::NoBackend:
+			break;
+		default:
+			qCritical( "Invalid Store::Backend %d selected in "
+					   "Object::operator=()", ref.m_store->backend() );
 			break;
 		}
 	}
@@ -153,42 +158,42 @@ Object &Object::operator+=( const Object &ref )
 
 
 
-QString Object::value( const QString & _key, const QString & _parentKey ) const
+QVariant Object::value( const QString & key, const QString & parentKey ) const
 {
 	// empty parentKey?
-	if( _parentKey.isEmpty() )
+	if( parentKey.isEmpty() )
 	{
 		// search for key in toplevel data map
-		if( m_data.contains( _key ) )
+		if( m_data.contains( key ) )
 		{
-			return m_data[_key].toString();
+			return m_data[key];
 		}
-		return QString();
+		return QVariant();
 	}
 
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
-	const QStringList subLevels = _parentKey.split( '/' );
+	const QStringList subLevels = parentKey.split( '/' );
 	DataMap currentMap = m_data;
-	foreach( const QString & _level, subLevels )
+	for( auto level : subLevels )
 	{
-		if( currentMap.contains( _level ) &&
-			currentMap[_level].type() == QVariant::Map )
+		if( currentMap.contains( level ) &&
+			currentMap[level].type() == QVariant::Map )
 		{
-			currentMap = currentMap[_level].toMap();
+			currentMap = currentMap[level].toMap();
 		}
 		else
 		{
-			return QString();
+			return QVariant();
 		}
 	}
 
 	// ok, we're there - does the current submap then contain our key?
-	if( currentMap.contains( _key ) )
+	if( currentMap.contains( key ) )
 	{
-		return currentMap[_key].toString();
+		return currentMap[key];
 	}
-	return QString();
+	return QVariant();
 }
 
 
@@ -197,19 +202,18 @@ QString Object::value( const QString & _key, const QString & _parentKey ) const
 static Object::DataMap setValueRecursive( Object::DataMap data,
 											QStringList subLevels,
 											const QString &key,
-											const QString &value )
+											const QVariant &value )
 {
 	if( subLevels.isEmpty() )
 	{
 		// search for key in toplevel data map
-		if( !data.contains( key ) || data[key].type() == QVariant::String )
+		if( !data.contains( key ) || data[key].type() != QVariant::Map )
 		{
 			data[key] = value;
 		}
 		else
 		{
-			qWarning( "cannot replace sub data map with a "
-						"string value!" );
+			qWarning( "cannot replace sub data map with a value!" );
 		}
 
 		return data;
@@ -237,14 +241,13 @@ static Object::DataMap setValueRecursive( Object::DataMap data,
 
 
 
-void Object::setValue( const QString & key,
-			const QString & value,
-			const QString & parentKey )
+void Object::setValue( const QString& key, const QVariant& value, const QString& parentKey )
 {
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
 	QStringList subLevels = parentKey.split( '/' );
 	DataMap data = setValueRecursive( m_data, subLevels, key, value );
+
 	if( data != m_data )
 	{
 		m_data = data;
@@ -313,9 +316,9 @@ static void addSubObjectRecursive( const Object::DataMap &dataMap,
 			}
 			addSubObjectRecursive( it.value().toMap(), _this, newParentKey );
 		}
-		else if( it.value().type() == QVariant::String )
+		else
 		{
-			_this->setValue( it.key(), it.value().toString(), parentKey );
+			_this->setValue( it.key(), it.value(), parentKey );
 		}
 	}
 }

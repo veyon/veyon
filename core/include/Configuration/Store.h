@@ -29,6 +29,8 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
+#include "ItalcCore.h"
+
 namespace Configuration
 {
 
@@ -41,6 +43,7 @@ public:
 	{
 		LocalBackend,	// registry or similiar
 		XmlFile,
+		JsonFile,
 		NoBackend
 	} ;
 	typedef Backends Backend;

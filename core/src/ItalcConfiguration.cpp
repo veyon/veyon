@@ -32,6 +32,7 @@
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "NetworkObjectDirectory.h"
 
 
 ItalcConfiguration::ItalcConfiguration(
@@ -67,6 +68,8 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setHighDPIScalingEnabled( false );
 	c.setUiLanguage( QString() );
 
+	c.setNetworkObjectDirectoryUpdateInterval( NetworkObjectDirectory::DefaultUpdateInterval );
+
 	c.setTrayIconHidden( false );
 	c.setServiceAutostart( true );
 	c.setServiceArguments( QString() );
@@ -98,6 +101,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setDemoServerBackend( 0 );
 
 	c.setCoreServerPort( PortOffsetVncServer );
+	c.setFeatureWorkerManagerPort( PortOffsetFeatureManagerPort );
 	c.setDemoServerPort( PortOffsetDemoServer );
 	c.setFirewallExceptionEnabled( true );
 

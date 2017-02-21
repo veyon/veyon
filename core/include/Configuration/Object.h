@@ -1,7 +1,7 @@
 /*
  * Configuration/Object.h - ConfigurationObject class
  *
- * Copyright (c) 2009-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,14 +25,17 @@
 #ifndef CONFIGURATION_OBJECT_H
 #define CONFIGURATION_OBJECT_H
 
-#include <QtCore/QObject>
+#include <QObject>
+#include <QJsonArray>
+#include <QJsonObject>
 
+#include "ItalcCore.h"
 #include "Configuration/Store.h"
 
 namespace Configuration
 {
 
-class Object : public QObject
+class ITALC_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:
@@ -46,12 +49,9 @@ public:
 	Object &operator=( const Object &ref );
 	Object &operator+=( const Object &ref );
 
-	QString value( const QString & _key,
-			const QString & _parentKey = QString() ) const;
+	QVariant value( const QString& key, const QString& parentKey = QString() ) const;
 
-	void setValue( const QString & _key,
-			const QString & _value,
-			const QString & _parentKey = QString() );
+	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );
 
 	void removeValue( const QString &key, const QString &parentKey );
 
@@ -103,26 +103,21 @@ private:
 
 #define DECLARE_CONFIG_STRING_PROPERTY(get,key,parentKey)\
 	public:											\
-		inline QString get() const					\
+		QString get() const					\
 		{											\
-			return value( key, parentKey );			\
+			return value( key, parentKey ).toString();			\
 		}
 
 #define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,key,parentKey)\
 	public:													\
-		inline QStringList get() const						\
+		QStringList get() const						\
 		{													\
-			QString v = value( key, parentKey );			\
-			if( v.isEmpty() )								\
-			{												\
-				return QStringList();						\
-			}												\
-			return value( key, parentKey ).split( ';' );	\
+			return value( key, parentKey ).toStringList();	\
 		}
 
 #define DECLARE_CONFIG_INT_PROPERTY(get,key,parentKey)	\
 	public:												\
-		inline int get() const							\
+		int get() const							\
 		{												\
 			return value( key, parentKey ).toInt();		\
 		}
@@ -131,8 +126,22 @@ private:
 	public:												\
 		bool get() const								\
 		{												\
-			return value( key, parentKey ).toInt() ?	\
-										true : false;	\
+			return value( key, parentKey ).toBool();	\
+		}
+
+#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,key,parentKey)\
+	public:											\
+		QJsonObject get() const					\
+		{											\
+			return value( key, parentKey ).toJsonObject();			\
+		}
+
+
+#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,key,parentKey)\
+	public:											\
+		QJsonArray get() const					\
+		{											\
+			return value( key, parentKey ).toJsonArray();			\
 		}
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
@@ -148,19 +157,31 @@ private:
 #define IMPLEMENT_CONFIG_SET_STRINGLIST_PROPERTY(className,set,key,parentKey)\
 		void className::set( const QStringList &val )					\
 		{																\
-			setValue( key, val.join( ";" ),	parentKey );				\
+			setValue( key, val,	parentKey );							\
 		}
 
 #define IMPLEMENT_CONFIG_SET_INT_PROPERTY(className,set,key,parentKey)	\
 		void className::set( int val )									\
 		{																\
-			setValue( key, QString::number( val ), parentKey );			\
+			setValue( key, val, parentKey );			\
 		}
 
 #define IMPLEMENT_CONFIG_SET_BOOL_PROPERTY(className,set,key,parentKey)	\
 		void className::set( bool val )									\
 		{																\
-			setValue( key, QString::number( val ), parentKey );			\
+			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_JSONOBJECT_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QJsonObject& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_JSONARRAY_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QJsonArray& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
 #define IMPLEMENT_CONFIG_SET_PROPERTY(className, config,type, get, set, key, parentKey)	\

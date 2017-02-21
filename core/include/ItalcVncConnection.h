@@ -47,18 +47,16 @@ extern "C"
 }
 
 
-class ClientEvent
+class MessageEvent
 {
 public:
-	virtual ~ClientEvent()
-	{
-	}
+	virtual ~MessageEvent() { }
 
 	virtual void fire( rfbClient *c ) = 0;
 } ;
 
 
-class ItalcVncConnection: public QThread
+class ITALC_CORE_EXPORT ItalcVncConnection: public QThread
 {
 	Q_OBJECT
 public:
@@ -129,7 +127,7 @@ public:
 		return m_quality;
 	}
 
-	void enqueueEvent( ClientEvent *e );
+	void enqueueEvent( MessageEvent *e );
 
 	const rfbClient *getRfbClient() const
 	{
@@ -193,7 +191,7 @@ signals:
 	void passwordRequest();
 	void outputErrorMessage( const QString &message );
 	void connected();
-	void stateChanged( const int );
+	void stateChanged();
 
 
 public slots:
@@ -240,7 +238,7 @@ private:
 	int m_framebufferUpdateInterval;
 	QMutex m_mutex;
 	mutable QReadWriteLock m_imgLock;
-	QQueue<ClientEvent *> m_eventQueue;
+	QQueue<MessageEvent *> m_eventQueue;
 
 	QImage m_image;
 	bool m_scaledScreenNeedsUpdate;

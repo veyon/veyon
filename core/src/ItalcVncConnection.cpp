@@ -45,7 +45,7 @@ extern "C" void rfbClientEncryptBytes2( unsigned char *where, const int length, 
 
 
 
-class KeyClientEvent : public ClientEvent
+class KeyClientEvent : public MessageEvent
 {
 public:
 	KeyClientEvent( unsigned int key, bool pressed ) :
@@ -66,7 +66,7 @@ private:
 
 
 
-class PointerClientEvent : public ClientEvent
+class PointerClientEvent : public MessageEvent
 {
 public:
 	PointerClientEvent( int x, int y, int buttonMask ) :
@@ -89,7 +89,7 @@ private:
 
 
 
-class ClientCutEvent : public ClientEvent
+class ClientCutEvent : public MessageEvent
 {
 public:
 	ClientCutEvent( const QString& text ) :
@@ -99,7 +99,7 @@ public:
 
 	virtual void fire( rfbClient *cl )
 	{
-		SendClientCutText( cl, m_text.constData(), m_text.size() );
+		SendClientCutText( cl, m_text.data(), m_text.size() );
 	}
 
 private:
@@ -507,7 +507,7 @@ void ItalcVncConnection::rescaleScreen()
 void ItalcVncConnection::run()
 {
 	m_state = Disconnected;
-	emit stateChanged( m_state );
+	emit stateChanged();
 
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
@@ -571,7 +571,7 @@ void ItalcVncConnection::doConnection()
 			emit connected();
 
 			m_state = Connected;
-			emit stateChanged( m_state );
+			emit stateChanged();
 		}
 		else
 		{
@@ -579,18 +579,18 @@ void ItalcVncConnection::doConnection()
 			if( m_hostReachable == false )
 			{
 				m_state = HostUnreachable;
-				emit stateChanged( m_state );
+				emit stateChanged();
 			}
 			else if( m_frameBufferInitialized == false )
 			{
 				m_state = AuthenticationFailed;
-				emit stateChanged( m_state );
+				emit stateChanged();
 			}
 			else
 			{
 				// failed for an unknown reason
 				m_state = ConnectionFailed;
-				emit stateChanged( m_state );
+				emit stateChanged();
 			}
 
 			// do not sleep when already requested to stop
@@ -679,7 +679,7 @@ void ItalcVncConnection::doConnection()
 
 		while( !m_eventQueue.isEmpty() )
 		{
-			ClientEvent * clientEvent = m_eventQueue.dequeue();
+			MessageEvent * clientEvent = m_eventQueue.dequeue();
 
 			// unlock the queue mutex during the runtime of ClientEvent::fire()
 			m_mutex.unlock();
@@ -709,7 +709,7 @@ void ItalcVncConnection::doConnection()
 
 	m_state = Disconnected;
 
-	emit stateChanged( m_state );
+	emit stateChanged();
 }
 
 
@@ -730,7 +730,7 @@ void ItalcVncConnection::finishFrameBufferUpdate()
 
 
 
-void ItalcVncConnection::enqueueEvent( ClientEvent *e )
+void ItalcVncConnection::enqueueEvent( MessageEvent *e )
 {
 	QMutexLocker lock( &m_mutex );
 	if( m_state != Connected )

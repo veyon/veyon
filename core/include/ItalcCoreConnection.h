@@ -25,11 +25,14 @@
 #ifndef ITALC_CORE_CONNECTION_H
 #define ITALC_CORE_CONNECTION_H
 
+#include <QPointer>
+
 #include "ItalcCore.h"
 #include "ItalcVncConnection.h"
 
+class FeatureMessage;
 
-class ItalcCoreConnection : public QObject
+class ITALC_CORE_EXPORT ItalcCoreConnection : public QObject
 {
 	Q_OBJECT
 public:
@@ -46,17 +49,17 @@ public:
 		return m_vncConn->state();
 	}
 
-	inline bool isConnected() const
+	bool isConnected() const
 	{
-		return m_vncConn->isConnected();
+		return m_vncConn && m_vncConn->isConnected();
 	}
 
-	inline const QString & user() const
+	const QString & user() const
 	{
 		return m_user;
 	}
 
-	inline const QString & userHomeDir() const
+	const QString & userHomeDir() const
 	{
 		return m_userHomeDir;
 	}
@@ -72,37 +75,19 @@ public:
 				return slaveStateFlags() & ItalcCore::x;	\
 			}
 
-	GEN_SLAVE_STATE_HELPER(DemoServerRunning)
-	GEN_SLAVE_STATE_HELPER(DemoClientRunning)
-	GEN_SLAVE_STATE_HELPER(ScreenLockRunning)
 	GEN_SLAVE_STATE_HELPER(InputLockRunning)
-	GEN_SLAVE_STATE_HELPER(SystemTrayIconRunning)
-	GEN_SLAVE_STATE_HELPER(MessageBoxRunning)
+
+	void sendFeatureMessage( const FeatureMessage &featureMessage );
 
 	void sendGetUserInformationRequest();
 	void execCmds( const QString &cmd );
-	void startDemo( const QString &host, int port, bool fullscreen = false );
-	void stopDemo();
-	void lockScreen();
-	void unlockScreen();
-	void lockInput();
-	void unlockInput();
 	void logonUser( const QString &uname, const QString &pw,
 						const QString &domain );
 	void logoutUser();
-	void displayTextMessage( const QString& title, const QString &msg );
 
-	void powerOnComputer( const QString &mac );
-	void powerDownComputer();
-	void restartComputer();
 	void disableLocalInputs( bool disabled );
 
 	void setRole( const ItalcCore::UserRole role );
-
-	void startDemoServer( int sourcePort, int destinationPort );
-	void stopDemoServer();
-	void demoServerAllowHost( const QString &host );
-	void demoServerUnallowHost( const QString &host );
 
 	void reportSlaveStateFlags();
 
@@ -122,7 +107,7 @@ private:
 	void enqueueMessage( const ItalcCore::Msg &msg );
 
 
-	ItalcVncConnection *m_vncConn;
+	QPointer<ItalcVncConnection> m_vncConn;
 
 	QString m_user;
 	QString m_userHomeDir;

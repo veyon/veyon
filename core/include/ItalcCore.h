@@ -31,28 +31,29 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
-#include "Ipc/Core.h"
+#if defined(BUILD_ITALC_CORE_LIBRARY)
+#  define ITALC_CORE_EXPORT Q_DECL_EXPORT
+#else
+#  define ITALC_CORE_EXPORT Q_DECL_IMPORT
+#endif
 
-#include "AuthenticationCredentials.h"
-
-
+class AuthenticationCredentials;
 class ItalcConfiguration;
 class SocketDevice;
 class QWidget;
 
 namespace ItalcCore
 {
-	void setupApplicationParameters();
-	bool init();
-	bool initAuthentication( int credentialTypes =
-										AuthenticationCredentials::AllTypes );
-	void destroy();
+	void ITALC_CORE_EXPORT setupApplicationParameters();
+	bool ITALC_CORE_EXPORT init();
+	bool ITALC_CORE_EXPORT initAuthentication( int credentialTypes );
+	void ITALC_CORE_EXPORT destroy();
 
-	QString applicationName();
-	void enforceBranding( QWidget* topLevelWidget );
+	QString ITALC_CORE_EXPORT applicationName();
+	void ITALC_CORE_EXPORT enforceBranding( QWidget* topLevelWidget );
 
-	extern ItalcConfiguration *config;
-	extern AuthenticationCredentials *authenticationCredentials;
+	extern ITALC_CORE_EXPORT ItalcConfiguration *config;
+	extern ITALC_CORE_EXPORT AuthenticationCredentials *authenticationCredentials;
 
 	typedef QString Command;
 	typedef QMap<QString, QVariant> CommandArgs;
@@ -60,31 +61,19 @@ namespace ItalcCore
 								CommandList;
 
 	// static commands
-	extern const Command GetUserInformation;
-	extern const Command UserInformation;
-	extern const Command StartDemo;
-	extern const Command StopDemo;
-	extern const Command LockScreen;
-	extern const Command UnlockScreen;
-	extern const Command LockInput;
-	extern const Command UnlockInput;
-	extern const Command LogonUserCmd;
-	extern const Command LogoutUser;
-	extern const Command DisplayTextMessage;
-	extern const Command AccessDialog;
-	extern const Command ExecCmds;
-	extern const Command PowerOnComputer;
-	extern const Command PowerDownComputer;
-	extern const Command RestartComputer;
-	extern const Command DisableLocalInputs;
-	extern const Command SetRole;
-	extern const Command StartDemoServer;
-	extern const Command StopDemoServer;
-	extern const Command DemoServerAllowHost;
-	extern const Command DemoServerUnallowHost;
-	extern const Command ReportSlaveStateFlags;
+	extern ITALC_CORE_EXPORT const Command GetUserInformation;
+	extern ITALC_CORE_EXPORT const Command UserInformation;
+	extern ITALC_CORE_EXPORT const Command LockInput;
+	extern ITALC_CORE_EXPORT const Command UnlockInput;
+	extern ITALC_CORE_EXPORT const Command LogonUserCmd;
+	extern ITALC_CORE_EXPORT const Command LogoutUser;
+	extern ITALC_CORE_EXPORT const Command AccessDialog;
+	extern ITALC_CORE_EXPORT const Command ExecCmds;
+	extern ITALC_CORE_EXPORT const Command DisableLocalInputs;
+	extern ITALC_CORE_EXPORT const Command SetRole;
+	extern ITALC_CORE_EXPORT const Command ReportSlaveStateFlags;
 
-	class Msg
+	class ITALC_CORE_EXPORT Msg
 	{
 	public:
 		Msg( SocketDevice *sockDev, const Command &cmd = Command() ) :
@@ -157,19 +146,14 @@ namespace ItalcCore
 	enum SlaveStateFlags
 	{
 		AccessDialogRunning 	= 1,
-		DemoServerRunning 		= 2,
-		DemoClientRunning 		= 4,
-		ScreenLockRunning 		= 8,
 		InputLockRunning 		= 16,
-		SystemTrayIconRunning 	= 32,
-		MessageBoxRunning 		= 64
 	} ;
 
 	QString userRoleName( UserRole role );
 
 
-	extern int serverPort;
-	extern UserRoles role;
+	extern ITALC_CORE_EXPORT int serverPort;
+	extern ITALC_CORE_EXPORT UserRoles role;
 
 }
 

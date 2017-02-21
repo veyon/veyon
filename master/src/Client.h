@@ -1,3 +1,4 @@
+#if 0
 /*
  * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
@@ -328,5 +329,7 @@ private:
 
 } ;
 
+
+#endif
 
 #endif

@@ -1,7 +1,7 @@
 /*
  * ConfigurationLocalStore.cpp - implementation of LocalStore
  *
- * Copyright (c) 2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,19 +22,18 @@
  *
  */
 
-#include <QtCore/QSettings>
-#include <QtCore/QStringList>
+#include <QJsonDocument>
+#include <QSettings>
 
 #include "Configuration/LocalStore.h"
 #include "Configuration/Object.h"
-#include "Logger.h"
 
 
 namespace Configuration
 {
 
-LocalStore::LocalStore( Scope _scope ) :
-	Store( Store::LocalBackend, _scope )
+LocalStore::LocalStore( Scope scope ) :
+	Store( Store::LocalBackend, scope )
 {
 }
 
@@ -55,7 +54,29 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 
 	foreach( const QString &k, s->childKeys() )
 	{
-		obj->setValue( k, s->value( k ).toString(), parentKey );
+		QString stringValue = s->value( k ).toString();
+		QRegExp jsonValueRX( "@JsonValue(\\(.*\\))" );
+
+		if( jsonValueRX.indexIn( stringValue ) == 0 )
+		{
+			auto jsonValue = QJsonDocument::fromJson( QByteArray::fromBase64( jsonValueRX.cap( 1 ).toUtf8() ) ).object();
+			if( jsonValue.contains( "a" ) )
+			{
+				obj->setValue( k, jsonValue["a"].toArray(), parentKey );
+			}
+			else if( jsonValue.contains( "o" ) )
+			{
+				obj->setValue( k, jsonValue["o"].toObject(), parentKey );
+			}
+			else
+			{
+				qCritical( "LocalStore: trying to load unknown JSON value type!" );
+			}
+		}
+		else
+		{
+			obj->setValue( k, s->value( k ), parentKey );
+		}
 	}
 }
 
@@ -70,12 +91,31 @@ void LocalStore::load( Object *obj )
 
 
 
-
-static void saveSettingsTree( const Object::DataMap &dataMap,
-								QSettings *s )
+static QString serializeJsonValue( const QJsonValue& jsonValue )
 {
-	for( Object::DataMap::ConstIterator it = dataMap.begin();
-						it != dataMap.end(); ++it )
+	QJsonObject jsonObject;
+
+	if( jsonValue.isArray() )
+	{
+		jsonObject["a"] = jsonValue;
+	}
+	else if( jsonValue.isObject() )
+	{
+		jsonObject["o"] = jsonValue;
+	}
+	else
+	{
+		qCritical( "LocalStore: trying to save unknown JSON value type!" );
+	}
+
+	return "@JsonValue(" + QJsonDocument( jsonObject ).toJson( QJsonDocument::Compact ).toBase64() + ")";
+}
+
+
+
+static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
+{
+	for( auto it = dataMap.begin(); it != dataMap.end(); ++it )
 	{
 		if( it.value().type() == QVariant::Map )
 		{
@@ -83,9 +123,14 @@ static void saveSettingsTree( const Object::DataMap &dataMap,
 			saveSettingsTree( it.value().toMap(), s );
 			s->endGroup();
 		}
-		else if( it.value().type() == QVariant::String )
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray ||
+				 static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
 		{
-			s->setValue( it.key(), it.value().toString() );
+			s->setValue( it.key(), serializeJsonValue( QJsonValue::fromVariant( it.value() ) ) );
+		}
+		else
+		{
+			s->setValue( it.key(), it.value() );
 		}
 	}
 }

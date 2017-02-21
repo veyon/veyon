@@ -134,7 +134,34 @@
       <string>Network</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="coreServerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="demoServerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
       <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
+        <property name="text">
+         <string>Enable firewall exception</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
        <widget class="QCheckBox" name="localConnectOnly">
         <property name="text">
          <string>Allow connections from localhost only</string>
@@ -148,32 +175,22 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="demoServerPort">
-        <property name="minimum">
-         <number>1024</number>
-        </property>
-        <property name="maximum">
-         <number>65535</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
-        <property name="text">
-         <string>Enable firewall exception</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QLabel" name="label_13">
         <property name="text">
          <string>Demo server port</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="coreServerPort">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>Feature worker manager port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="featureWorkerManagerPort">
         <property name="minimum">
          <number>1024</number>
         </property>

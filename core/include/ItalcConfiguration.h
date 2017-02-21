@@ -28,11 +28,12 @@
 
 #include <QtCore/QStringList>
 
+#include "ItalcCore.h"
 #include "Configuration/Object.h"
 
 #include "ItalcConfigurationProperties.h"
 
-class ItalcConfiguration : public Configuration::Object
+class ITALC_CORE_EXPORT ItalcConfiguration : public Configuration::Object
 {
 	Q_OBJECT
 public:
@@ -63,11 +64,14 @@ public slots:
 	void setLimittedLogFileSize( bool );
 	void setLogFileSizeLimit( int );
 	void setLogFileDirectory( const QString & );
+	void setNetworkObjectDirectoryBackend( int );
+	void setNetworkObjectDirectoryUpdateInterval( int );
 	void setVncCaptureLayeredWindows( bool );
 	void setVncPollFullScreen( bool );
 	void setVncLowAccuracy( bool );
 	void setDemoServerBackend( int );
 	void setCoreServerPort( int );
+	void setFeatureWorkerManagerPort( int );
 	void setDemoServerPort( int );
 	void setFirewallExceptionEnabled( bool );
 	void setLocalConnectOnly( bool );
@@ -83,7 +87,7 @@ public slots:
 	void setAccessRestrictedToUserGroups( bool );
 	void setAccessControlRulesProcessingEnabled( bool );
 	void setAuthorizedUserGroups( const QStringList& );
-	void setAccessControlRules( const QStringList& );
+	void setAccessControlRules( const QJsonArray& );
 	void setLdapIntegrationEnabled( bool );
 	void setLdapServerHost( const QString& );
 	void setLdapServerPort( int );

@@ -1,3 +1,4 @@
+#if 0
 /*
  * ClassroomManager.cpp - implementation of classroom-manager
  *
@@ -2146,3 +2147,4 @@ void classRoomItem::setUser( const QString & user )
 
 
 
+#endif

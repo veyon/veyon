@@ -23,6 +23,8 @@
 #ifndef __RFB_DH_H__
 #define __RFB_DH_H__
 
+#include "ItalcCore.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -46,7 +48,7 @@
 #define DH DiffieHellman
 #endif
 
-class DiffieHellman
+class ITALC_CORE_EXPORT DiffieHellman
 {
 public:
 	DiffieHellman();
@@ -76,8 +78,8 @@ private:
 
 };
 
-int bits(int64_t number);
-bool int64ToBytes(const uint64_t integer, char* const bytes);
-uint64_t bytesToInt64(const char* const bytes);
+int ITALC_CORE_EXPORT bits(int64_t number);
+bool ITALC_CORE_EXPORT int64ToBytes(const uint64_t integer, char* const bytes);
+uint64_t ITALC_CORE_EXPORT bytesToInt64( const char* const bytes);
 
 #endif // __RFB_DH_H__

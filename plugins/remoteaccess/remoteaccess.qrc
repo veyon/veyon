@@ -1,0 +1,10 @@
+<RCC>
+	<qresource prefix="/remoteaccess">
+		<file>kr_unselect.png</file>
+		<file>view-fullscreen.png</file>
+		<file>application-exit.png</file>
+		<file>remote_control.png</file>
+		<file>kmag.png</file>
+		<file>camera-photo.png</file>
+	</qresource>
+</RCC>

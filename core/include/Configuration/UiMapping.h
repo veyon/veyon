@@ -1,7 +1,7 @@
 /*
  * Configuration/UiMapping.h - helper macros for connecting config with UI
  *
- * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -51,6 +51,10 @@
 				qobject_cast<QListWidget *>( ui->property )->addItems( config->property() );	\
 			}*/
 
+#define INIT_WIDGET_FROM_JSONOBJECT_PROPERTY(config,property,slot)
+
+#define INIT_WIDGET_FROM_JSONARRAY_PROPERTY(config,property,slot)
+
 #define INIT_WIDGET_FROM_INT_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
 				_INIT_WIDGET_FROM_PROPERTY(config,property,QComboBox,setCurrentIndex)	\
@@ -68,6 +72,10 @@
 						config, SLOT(slot(bool)) );
 
 #define CONNECT_WIDGET_TO_STRINGLIST_PROPERTY(config,property,slot)
+
+#define CONNECT_WIDGET_TO_JSONOBJECT_PROPERTY(config,property,slot)
+
+#define CONNECT_WIDGET_TO_JSONARRAY_PROPERTY(config,property,slot)
 
 #define CONNECT_WIDGET_TO_STRING_PROPERTY(config,property,slot)						\
 		if(ui->property->inherits("QComboBox"))	{							\

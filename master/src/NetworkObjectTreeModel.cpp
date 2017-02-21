@@ -139,11 +139,12 @@ QVariant NetworkObjectTreeModel::data(const QModelIndex &index, int role) const
 
 	switch( role )
 	{
+	case NetworkObjectUidRole: return networkObject.uid();
 	case NetworkObjectNameRole: return networkObject.name();
 	case NetworkObjectTypeRole: return networkObject.type();
 	case NetworkobjectHostAddressRole: return networkObject.hostAddress();
 	case NetworkObjectMacAddressRole: return networkObject.macAddress();
-	case NetworkObjectHashRole: return qHash( networkObject );
+	case NetworkObjectDirectoryAddressRole: return networkObject.directoryAddress();
 	default: break;
 	}
 

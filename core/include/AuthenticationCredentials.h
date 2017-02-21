@@ -1,7 +1,7 @@
 /*
  * AuthenticationCredentials.h - class holding credentials for authentication
  *
- * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,11 +25,13 @@
 #ifndef AUTHENTICATION_CREDENTIALS_H
 #define AUTHENTICATION_CREDENTIALS_H
 
-#include <QtCore/QString>
+#include "ItalcCore.h"
+
+#include <QString>
 
 class PrivateDSAKey;
 
-class AuthenticationCredentials
+class ITALC_CORE_EXPORT AuthenticationCredentials
 {
 public:
 	enum TypeFlags

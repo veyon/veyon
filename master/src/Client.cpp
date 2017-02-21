@@ -1,3 +1,4 @@
+#if 0
 /*
  * Client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
@@ -1184,3 +1185,5 @@ Client::States Client::currentState( void ) const
 
 	return State_Unkown;
 }
+
+#endif

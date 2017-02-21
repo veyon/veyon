@@ -21,10 +21,9 @@
  * USA.
  */
 
-#include <italcconfig.h>
-
-#include <QtCore/QDebug>
-#include <QtCore/QProcess>
+#include <QDebug>
+#include <QDataStream>
+#include <QProcess>
 
 #include "LogonAuthentication.h"
 #include "ItalcConfiguration.h"

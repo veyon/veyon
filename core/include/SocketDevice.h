@@ -30,6 +30,7 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
+#include "ItalcCore.h"
 
 typedef enum
 {
@@ -39,18 +40,18 @@ typedef enum
 } SocketOpCodes;
 
 
-typedef qint64 ( * socketDispatcher )( char *buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void *user );
+typedef qint64 ( * SocketDispatcher )( char* buffer, const qint64 bytes,
+									   const SocketOpCodes opCode, void* user );
 
 
-extern qint64 libvncClientDispatcher( char *buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void *user );
+extern qint64 ITALC_CORE_EXPORT libvncClientDispatcher( char* buffer, const qint64 bytes,
+														const SocketOpCodes opCode, void* user );
 
 
 class SocketDevice : public QIODevice
 {
 public:
-	SocketDevice( socketDispatcher sockDisp, void *user = NULL ) :
+	SocketDevice( SocketDispatcher sockDisp, void *user = NULL ) :
 		QIODevice(),
 		m_socketDispatcher( sockDisp ),
 		m_user( user )
@@ -72,7 +73,7 @@ public:
 		d << v;
 	}
 
-	socketDispatcher sockDispatcher()
+	SocketDispatcher sockDispatcher()
 	{
 		return m_socketDispatcher;
 	}
@@ -97,6 +98,14 @@ public:
 		return writeData( buf, bytes );
 	}
 
+	QString peerAddress()
+	{
+		char buf[256];
+		m_socketDispatcher( buf, sizeof(buf)-1, SocketGetPeerAddress, m_user );
+		buf[sizeof(buf)-1] = 0;
+
+		return QString( buf );
+	}
 
 protected:
 	qint64 readData( char *buf, qint64 bytes )
@@ -112,7 +121,7 @@ protected:
 
 
 private:
-	socketDispatcher m_socketDispatcher;
+	SocketDispatcher m_socketDispatcher;
 	void * m_user;
 
 } ;

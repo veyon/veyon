@@ -147,6 +147,9 @@ typedef enum {
 #define rfbRequestSession 20
 #define rfbSetSession 21
 
+
+// adzm - 2010-07 - Extended clipboard support
+#define rfbEncodingExtendedClipboard  0xC0A1E5CE
   
 // adzm 2010-09 - Notify streaming DSM plugin support
 #define rfbEncodingPluginStreaming       0xC0A1E5CF

@@ -27,9 +27,11 @@
 
 #include <QObject>
 
+#include "ItalcCore.h"
+
 class QWidget;
 
-class ServiceControl : public QObject
+class ITALC_CORE_EXPORT ServiceControl : public QObject
 {
 	Q_OBJECT
 public:

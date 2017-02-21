@@ -24,9 +24,9 @@
 
 #include "CheckableItemProxyModel.h"
 
-CheckableItemProxyModel::CheckableItemProxyModel( int hashRole, QObject *parent ) :
+CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent ) :
 	QIdentityProxyModel(parent),
-	m_hashRole( hashRole ),
+	m_uidRole( uidRole ),
 	m_callDepth( 0 )
 {
 	connect( this, &QIdentityProxyModel::rowsInserted,
@@ -58,7 +58,7 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 
 	if( role == Qt::CheckStateRole )
 	{
-		return m_checkStates.value( QIdentityProxyModel::data( index, m_hashRole ).toUInt() );
+		return m_checkStates.value( QIdentityProxyModel::data( index, m_uidRole ).toUuid() );
 	}
 
 	return QIdentityProxyModel::data(index, role);
@@ -82,7 +82,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 	Qt::CheckState checkState = value.value<Qt::CheckState>();
 
-	m_checkStates[QIdentityProxyModel::data( index, m_hashRole ).toUInt()] = checkState;
+	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUuid()] = checkState;
 
 	int childrenCount = rowCount( index );
 
@@ -93,7 +93,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 			setData( this->index( i, 0, index ), value, role );
 		}
 
-		emit dataChanged( this->index( 0, 0, index ), this->index( childrenCount, 0, index ), QVector<int>( role ) );
+		emit dataChanged( this->index( 0, 0, index ), this->index( childrenCount, 0, index ), QVector<int>( { role } ) );
 	}
 	else if( index.parent().isValid() )
 	{
@@ -110,9 +110,16 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 			}
 		}
 
-		setData( index.parent(), parentCheckState, role );
+		if( data( index.parent(), Qt::CheckStateRole ).value<Qt::CheckState>() != parentCheckState )
+		{
+			setData( index.parent(), parentCheckState, role );
+			if( m_callDepth == 0 )
+			{
+				emit dataChanged( index.parent(), index.parent(), QVector<int>( { role } ) );
+			}
+		}
 
-		emit dataChanged( index.parent(), index.parent(), QVector<int>( role ) );
+		emit dataChanged( index, index, QVector<int>( { role } ) );
 	}
 
 	--m_callDepth;
@@ -140,6 +147,42 @@ void CheckableItemProxyModel::removeRowStates(const QModelIndex &parent, int fir
 {
 	for( int i = first; i <= last; ++i )
 	{
-		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_hashRole ).toUInt() );
+		m_checkStates.remove( QIdentityProxyModel::data( index( i, 0, parent ), m_uidRole ).toUuid() );
+	}
+}
+
+
+
+QJsonArray CheckableItemProxyModel::saveStates()
+{
+	QJsonArray data;
+
+	for( auto it = m_checkStates.begin(); it != m_checkStates.end(); ++it )
+	{
+		if( it.value() == Qt::Checked )
+		{
+			data += it.key().toString();
+		}
+	}
+
+	return data;
+}
+
+
+
+void CheckableItemProxyModel::loadStates( const QJsonArray& data )
+{
+	m_checkStates.clear();
+
+	for( auto item : data )
+	{
+		const QUuid uid = QUuid( item.toString() );
+		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,
+									  Qt::MatchExactly | Qt::MatchRecursive );
+		if( indexList.isEmpty() == false &&
+				hasChildren( indexList.first() ) == false )
+		{
+			setData( indexList.first(), Qt::Checked, Qt::CheckStateRole );
+		}
 	}
 }

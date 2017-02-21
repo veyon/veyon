@@ -23,9 +23,7 @@
  */
 
 #include <QDebug>
-#include <QJsonDocument>
 #include <QJsonArray>
-#include <QJsonObject>
 
 #include "AccessControlRule.h"
 
@@ -55,7 +53,7 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 
 
 
-AccessControlRule::AccessControlRule(const QString &encodedData) :
+AccessControlRule::AccessControlRule(const QJsonValueRef &jsonValue) :
 	m_name(),
 	m_description(),
 	m_action( ActionNone ),
@@ -63,25 +61,28 @@ AccessControlRule::AccessControlRule(const QString &encodedData) :
 	m_invertConditions( false ),
 	m_conditions()
 {
-	QJsonObject json = QJsonDocument::fromJson( QByteArray::fromBase64( encodedData.toUtf8() ) ).object();
-
-	m_name = json["n"].toString();
-	m_description = json["d"].toString();
-	m_action = static_cast<Action>( json["a"].toInt() );
-	m_entity = static_cast<Entity>( json["e"].toInt() );
-	m_invertConditions = json["i"].toBool();
-
-	for( auto conditionValue : json["c"].toArray() )
+	if( jsonValue.isObject() )
 	{
-		QJsonObject conditionObj = conditionValue.toObject();
-		Condition condition = static_cast<Condition>(conditionObj["c"].toInt());
-		m_conditions[condition] = conditionObj["a"].toVariant();
+		QJsonObject json = jsonValue.toObject();
+
+		m_name = json["n"].toString();
+		m_description = json["d"].toString();
+		m_action = static_cast<Action>( json["a"].toInt() );
+		m_entity = static_cast<Entity>( json["e"].toInt() );
+		m_invertConditions = json["i"].toBool();
+
+		for( auto conditionValue : json["c"].toArray() )
+		{
+			QJsonObject conditionObj = conditionValue.toObject();
+			Condition condition = static_cast<Condition>(conditionObj["c"].toInt());
+			m_conditions[condition] = conditionObj["a"].toVariant();
+		}
 	}
 }
 
 
 
-QString AccessControlRule::encode() const
+QJsonObject AccessControlRule::toJson() const
 {
 	QJsonObject json;
 
@@ -103,7 +104,7 @@ QString AccessControlRule::encode() const
 
 	json["c"] = conditions;
 
-	return QString::fromUtf8( QJsonDocument( json ).toJson( QJsonDocument::Compact ).toBase64() );
+	return json;
 }
 
 

@@ -28,6 +28,10 @@
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>
 
+#include "BuiltinFeatures.h"
+#include "FeatureManager.h"
+#include "FeatureWorkerManager.h"
+#include "PluginManager.h"
 #include "SocketDevice.h"
 #include "ItalcSlaveManager.h"
 #include "DesktopAccessPermission.h"
@@ -45,9 +49,10 @@ public:
 		return _this;
 	}
 
-	int handleItalcClientMessage( socketDispatcher sd, void *user );
+	bool handleItalcCoreMessage( SocketDispatcher socketDispatcher, void *user );
+	bool handleItalcFeatureMessage( SocketDispatcher socketDispatcher, void *user );
 
-	bool authSecTypeItalc( socketDispatcher sd, void *user );
+	bool authSecTypeItalc( SocketDispatcher sd, void *user );
 
 	ItalcSlaveManager * slaveManager()
 	{
@@ -74,6 +79,10 @@ private:
 
 	QStringList m_failedAuthHosts;
 
+	PluginManager m_pluginManager;
+	BuiltinFeatures m_builtinFeatures;
+	FeatureManager m_featureManager;
+	FeatureWorkerManager m_featureWorkerManager;
 	ItalcSlaveManager m_slaveManager;
 
 } ;

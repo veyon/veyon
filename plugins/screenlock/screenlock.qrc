@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/screenlock" >
+        <file>system-lock-screen.png</file>
+    </qresource>
+</RCC>

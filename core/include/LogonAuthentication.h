@@ -1,7 +1,7 @@
 /*
  * LogonAuthentication.h - a global class providing logon authentication
  *
- * Copyright (c) 2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2011-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,7 +27,7 @@
 
 #include "AuthenticationCredentials.h"
 
-class LogonAuthentication
+class ITALC_CORE_EXPORT LogonAuthentication
 {
 public:
 	static bool authenticateUser( const AuthenticationCredentials &cred );

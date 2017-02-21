@@ -26,6 +26,9 @@
 #define COMPUTER_LIST_MODEL_H
 
 #include <QAbstractListModel>
+#include <QImage>
+
+#include "ComputerControlInterface.h"
 
 class ComputerManager;
 
@@ -33,11 +36,13 @@ class ComputerListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	ComputerListModel(ComputerManager* manager, QObject *parent = 0);
+	ComputerListModel(ComputerManager& manager, QObject *parent = 0);
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+	ComputerControlInterface& computerControlInterface( const QModelIndex& index );
 
 private slots:
 	void beginInsertComputer( int index );
@@ -48,8 +53,19 @@ private slots:
 
 	void reload();
 
+	void updateComputerScreen( int index );
+	void updateComputerScreenSize();
+
 private:
-	ComputerManager* m_manager;
+	void loadIcons();
+	QImage prepareIcon( const QImage& icon );
+	QImage computerDecorationRole( const ComputerControlInterface& controlInterface ) const;
+
+	ComputerControlInterface m_dummyControlInterface;
+	ComputerManager& m_manager;
+	QImage m_iconUnknownState;
+	QImage m_iconComputerUnreachable;
+	QImage m_iconDemoMode;
 
 };
 

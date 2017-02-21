@@ -1,7 +1,7 @@
 /*
  * SideBar.h - side bar in MainWindow
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of Linux MultiMedia Studio - http://lmms.sourceforge.net
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -26,22 +26,21 @@
 #ifndef SIDE_BAR_H
 #define SIDE_BAR_H
 
-#include <QtCore/QMap>
+#include <QMap>
 #include <QButtonGroup>
 #include <QToolBar>
 
 class QToolButton;
-class SideBarWidget;
 
 
 class SideBar : public QToolBar
 {
 	Q_OBJECT
 public:
-	SideBar( QWidget * _parent );
+	SideBar( QWidget* parent );
 	virtual ~SideBar();
 
-	void appendTab( SideBarWidget * _sbw );
+	void appendTab(  QWidget* widget, const QString& title, const QIcon& icon  );
 	int activeTab() const;
 
 	QList<QAbstractButton *> tabs() const
@@ -51,13 +50,13 @@ public:
 
 
 private slots:
-	void toggleButton( QAction * _a );
-	void toggleButton( QAbstractButton * _btn );
+	void toggleButton( QAction* action );
+	void toggleButton( QAbstractButton* button );
 
 
 private:
-	virtual void contextMenuEvent( QContextMenuEvent * _e );
-	virtual void paintEvent( QPaintEvent * _pe );
+	virtual void contextMenuEvent( QContextMenuEvent* event );
+	virtual void paintEvent( QPaintEvent* event );
 
 	QButtonGroup m_btnGroup;
 	typedef QMap<QToolButton *, QWidget *> ButtonMap;

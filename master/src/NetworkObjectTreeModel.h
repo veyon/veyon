@@ -52,10 +52,11 @@ public:
 	{
 		CheckStateRole = Qt::CheckStateRole,
 		NetworkObjectNameRole = Qt::DisplayRole,
-		NetworkObjectTypeRole = Qt::UserRole + 1,
+		NetworkObjectUidRole = Qt::UserRole,
+		NetworkObjectTypeRole,
 		NetworkobjectHostAddressRole,
 		NetworkObjectMacAddressRole,
-		NetworkObjectHashRole
+		NetworkObjectDirectoryAddressRole
 	} Role;
 
 private slots:

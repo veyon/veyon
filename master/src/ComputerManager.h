@@ -25,20 +25,38 @@
 #ifndef COMPUTER_MANAGER_H
 #define COMPUTER_MANAGER_H
 
-#include <QAbstractItemModel>
-
 #include "Computer.h"
+#include "CheckableItemProxyModel.h"
+
+class QSortFilterProxyModel;
+class PersonalConfig;
 
 class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager(QAbstractItemModel* networkObjectModel, QObject *parent = 0);
+	ComputerManager( PersonalConfig& config, QObject* parent );
+	~ComputerManager() override;
+
+	QAbstractItemModel* networkObjectModel()
+	{
+		return m_checkableNetworkObjectProxyModel;
+	}
+
+	ComputerList& computerList()
+	{
+		return m_computerList;
+	}
 
 	const ComputerList& computerList() const
 	{
 		return m_computerList;
 	}
+
+	ComputerControlInterfaceList computerControlInterfaces();
+
+	void updateComputerScreenSize();
+
 
 signals:
 	void computerListAboutToBeReset();
@@ -50,17 +68,24 @@ signals:
 	void computerAboutToBeRemoved( int index );
 	void computerRemoved();
 
-	void dataChanged();
+	void computerScreenUpdated( int index );
+	void computerScreenSizeChanged();
 
 public slots:
-	void updateComputerData();
 	void reloadComputerList();
 	void updateComputerList();
 
+	void updateComputerScreens();
+
 private:
 	ComputerList getComputers( const QModelIndex& parent );
+	QSize computerScreenSize() const;
 
-	QAbstractItemModel* m_networkObjectModel;
+	PersonalConfig& m_config;
+
+	CheckableItemProxyModel* m_checkableNetworkObjectProxyModel;
+	QSortFilterProxyModel* m_networkObjectSortProxyModel;
+
 	ComputerList m_computerList;
 
 };

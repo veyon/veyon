@@ -1,7 +1,7 @@
 /*
  * ItalcCoreConnection.cpp - implementation of ItalcCoreConnection
  *
- * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,12 +22,13 @@
  *
  */
 
+#include "FeatureMessage.h"
 #include "ItalcCoreConnection.h"
 #include "Logger.h"
 #include "SocketDevice.h"
 
 
-class ItalcMessageEvent : public ClientEvent
+class ItalcMessageEvent : public MessageEvent
 {
 public:
 	ItalcMessageEvent( const ItalcCore::Msg &m ) :
@@ -47,6 +48,32 @@ public:
 
 private:
 	ItalcCore::Msg m_msg;
+
+} ;
+
+
+class FeatureMessageEvent : public MessageEvent
+{
+public:
+	FeatureMessageEvent( const FeatureMessage& featureMessage ) :
+		m_featureMessage( featureMessage )
+	{
+	}
+
+	virtual void fire( rfbClient *client )
+	{
+		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
+				 << "with arguments" << m_featureMessage.arguments();
+
+		SocketDevice socketDevice( libvncClientDispatcher, client );
+		QDataStream d( &socketDevice );
+		d << (uint8_t) rfbItalcFeatureRequest;
+		m_featureMessage.send( &socketDevice );
+	}
+
+
+private:
+	FeatureMessage m_featureMessage;
 
 } ;
 
@@ -85,13 +112,20 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 
 ItalcCoreConnection::~ItalcCoreConnection()
 {
-	if( m_vncConn )
-	{
-		m_vncConn->stop();
-		m_vncConn = NULL;
-	}
 }
 
+
+
+void ItalcCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
+{
+	if( !m_vncConn )
+	{
+		ilog( Error, "ItalcCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
+		return;
+	}
+
+	m_vncConn->enqueueEvent( new FeatureMessageEvent( featureMessage ) );
+}
 
 
 
@@ -180,59 +214,6 @@ void ItalcCoreConnection::execCmds( const QString &cmd )
 
 
 
-
-void ItalcCoreConnection::startDemo( const QString &host, int port,
-										bool fullscreen )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemo ).
-					addArg( "host", host ).
-					addArg( "port", port ).
-					addArg( "fullscreen", fullscreen ) );
-}
-
-
-
-
-void ItalcCoreConnection::stopDemo()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StopDemo ) );
-}
-
-
-
-
-void ItalcCoreConnection::lockScreen()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LockScreen ) );
-}
-
-
-
-
-void ItalcCoreConnection::unlockScreen()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockScreen ) );
-}
-
-
-
-
-void ItalcCoreConnection::lockInput()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LockInput ) );
-}
-
-
-
-
-void ItalcCoreConnection::unlockInput()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockInput ) );
-}
-
-
-
-
 void ItalcCoreConnection::logonUser( const QString &uname,
 						const QString &pw,
 						const QString &domain )
@@ -253,42 +234,6 @@ void ItalcCoreConnection::logoutUser()
 
 
 
-
-void ItalcCoreConnection::displayTextMessage( const QString& title, const QString &msg )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DisplayTextMessage ).
-						addArg( "title", title ).
-						addArg( "text", msg ) );
-}
-
-
-
-
-void ItalcCoreConnection::powerOnComputer( const QString &mac )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::PowerOnComputer ).
-						addArg( "mac",mac ) );
-}
-
-
-
-
-void ItalcCoreConnection::powerDownComputer()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::PowerDownComputer ) );
-}
-
-
-
-
-void ItalcCoreConnection::restartComputer()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::RestartComputer ) );
-}
-
-
-
-
 void ItalcCoreConnection::disableLocalInputs( bool disabled )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::DisableLocalInputs ).
@@ -303,43 +248,6 @@ void ItalcCoreConnection::setRole( const ItalcCore::UserRole role )
 	enqueueMessage( ItalcCore::Msg( ItalcCore::SetRole ).
 						addArg( "role", role ) );
 }
-
-
-
-
-void ItalcCoreConnection::startDemoServer( int sourcePort, int destinationPort )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemoServer ).
-						addArg( "sourceport", sourcePort ).
-						addArg( "destinationport", destinationPort ) );
-}
-
-
-
-
-void ItalcCoreConnection::stopDemoServer()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::StopDemoServer ) );
-}
-
-
-
-
-void ItalcCoreConnection::demoServerAllowHost( const QString &host )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerAllowHost ).
-						addArg( "host", host ) );
-}
-
-
-
-
-void ItalcCoreConnection::demoServerUnallowHost( const QString &host )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerUnallowHost ).
-						addArg( "host", host ) );
-}
-
 
 
 
@@ -360,5 +268,3 @@ void ItalcCoreConnection::enqueueMessage( const ItalcCore::Msg &msg )
 	}
 	m_vncConn->enqueueEvent( new ItalcMessageEvent( m ) );
 }
-
-

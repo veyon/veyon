@@ -22,34 +22,75 @@
  *
  */
 
+#include <QSortFilterProxyModel>
+#include <QTimer>
+
 #include "ComputerManager.h"
 #include "NetworkObject.h"
+#include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
+#include "PersonalConfig.h"
 
 
-ComputerManager::ComputerManager(QAbstractItemModel* networkObjectModel, QObject *parent) :
-	QObject(parent),
-	m_networkObjectModel( networkObjectModel )
+ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
+	QObject( parent ),
+	m_config( config ),
+	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
+	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) )
 {
-	connect( m_networkObjectModel, &QAbstractItemModel::dataChanged,
-			 this, &ComputerManager::updateComputerData );
+	m_networkObjectSortProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
+	m_checkableNetworkObjectProxyModel->setSourceModel( m_networkObjectSortProxyModel );
 
-	connect( m_networkObjectModel, &QAbstractItemModel::modelReset,
+	connect( networkObjectModel(), &QAbstractItemModel::modelReset,
+			 this, &ComputerManager::reloadComputerList );
+	connect( networkObjectModel(), &QAbstractItemModel::layoutChanged,
 			 this, &ComputerManager::reloadComputerList );
 
-	connect( m_networkObjectModel, &QAbstractItemModel::layoutChanged,
+	connect( networkObjectModel(), &QAbstractItemModel::dataChanged,
 			 this, &ComputerManager::updateComputerList );
-	connect( m_networkObjectModel, &QAbstractItemModel::rowsInserted,
+	connect( networkObjectModel(), &QAbstractItemModel::rowsInserted,
 			 this, &ComputerManager::updateComputerList );
-	connect( m_networkObjectModel, &QAbstractItemModel::rowsRemoved,
+	connect( networkObjectModel(), &QAbstractItemModel::rowsRemoved,
 			 this, &ComputerManager::updateComputerList );
+
+	m_checkableNetworkObjectProxyModel->loadStates( m_config.checkedNetworkObjects() );
+
+	QTimer* computerScreenUpdateTimer = new QTimer( this );
+	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
+	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
 }
 
 
 
-void ComputerManager::updateComputerData()
+ComputerManager::~ComputerManager()
 {
-	emit dataChanged();
+	m_config.setCheckedNetworkObjects( m_checkableNetworkObjectProxyModel->saveStates() );
+}
+
+
+
+ComputerControlInterfaceList ComputerManager::computerControlInterfaces()
+{
+	ComputerControlInterfaceList interfaces;
+
+	for( auto& computer : m_computerList )
+	{
+		interfaces += &computer.controlInterface();
+	}
+
+	return interfaces;
+}
+
+
+
+void ComputerManager::updateComputerScreenSize()
+{
+	for( auto& computer : m_computerList )
+	{
+		computer.controlInterface().setScaledScreenSize( computerScreenSize() );
+	}
+
+	emit computerScreenSizeChanged();
 }
 
 
@@ -58,6 +99,12 @@ void ComputerManager::reloadComputerList()
 {
 	emit computerListAboutToBeReset();
 	m_computerList = getComputers( QModelIndex() );
+
+	for( auto& computer : m_computerList )
+	{
+		computer.controlInterface().start( computerScreenSize() );
+	}
+
 	emit computerListReset();
 }
 
@@ -92,14 +139,36 @@ void ComputerManager::updateComputerList()
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.insert( index, computer );
+			m_computerList[index].controlInterface().start( computerScreenSize() );
 			emit computerInserted();
 		}
 		else if( index >= m_computerList.count() )
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.append( computer );
+			m_computerList.last().controlInterface().start( computerScreenSize() );
 			emit computerInserted();
 		}
+
+		++index;
+	}
+}
+
+
+
+void ComputerManager::updateComputerScreens()
+{
+	int index = 0;
+
+	for( auto& computer : m_computerList )
+	{
+		if( computer.controlInterface().hasScreenUpdates() )
+		{
+			computer.controlInterface().clearScreenUpdateFlag();
+
+			emit computerScreenUpdated( index );
+		}
+
 		++index;
 	}
 }
@@ -108,22 +177,22 @@ void ComputerManager::updateComputerList()
 
 ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 {
-	int rows = m_networkObjectModel->rowCount( parent );
+	int rows = networkObjectModel()->rowCount( parent );
 
 	ComputerList computers;
 
 	for( int i = 0; i < rows; ++i )
 	{
-		QModelIndex entryIndex = m_networkObjectModel->index( i, 0, parent );
+		QModelIndex entryIndex = networkObjectModel()->index( i, 0, parent );
 
-		if( m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
+		if( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
 				Qt::Unchecked )
 		{
 			continue;
 		}
 
 		auto objectType = static_cast<NetworkObject::Type>(
-					m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+					networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
 
 		switch( objectType )
 		{
@@ -131,13 +200,22 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 			computers += getComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
-								   m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
-								   m_networkObjectModel->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
+			computers += Computer( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>(),
+								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
+								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
+								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
 			break;
 		default: break;
 		}
 	}
 
 	return computers;
+}
+
+
+
+QSize ComputerManager::computerScreenSize() const
+{
+	return QSize( m_config.monitoringScreenSize(),
+				  m_config.monitoringScreenSize() * 9 / 16 );
 }
