@@ -73,13 +73,6 @@ DemoFeaturePlugin::~DemoFeaturePlugin()
 
 
 
-const FeatureList &DemoFeaturePlugin::featureList() const
-{
-	return m_features;
-}
-
-
-
 bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces,
 											ComputerControlInterface& localServiceInterface,
