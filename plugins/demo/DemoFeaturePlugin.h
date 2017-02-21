@@ -110,7 +110,7 @@ private:
 
 	FeatureList m_features;
 	QString m_token;
-	QStringList m_demoClients;
+	QStringList m_demoClientHosts;
 
 	DemoServer* m_demoServer;
 	DemoClient* m_demoClient;

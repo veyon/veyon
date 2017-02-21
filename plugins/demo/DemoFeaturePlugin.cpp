@@ -50,19 +50,24 @@ DemoFeaturePlugin::DemoFeaturePlugin() :
 							 "able to switch to other windows and thus "
 							 "can continue to work." ),
 						 ":/demo/presentation-window.png" ),
-	m_demoServerFeature( Feature::Mode,
-						 Feature::ScopeAll,
+	m_demoServerFeature( Feature::BuiltinService,
+						 Feature::ScopeSingleService,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 QString(), QString(), QString() ),
-	m_demoClientFeature( Feature::Mode,
-						 Feature::ScopeAll,
+	m_demoClientFeature( Feature::BuiltinService,
+						 Feature::ScopeSingleService,
 						 Feature::Uid( "7b68b525-1114-4aea-8d42-ab4f26bbf5e5" ),
 						 QString(), QString(), QString() ),
 	m_features(),
-	m_token( DsaKey::generateChallenge().toBase64() )
+	m_token( DsaKey::generateChallenge().toBase64() ),
+	m_demoClientHosts(),
+	m_demoServer( nullptr ),
+	m_demoClient( nullptr )
 {
 	m_features += m_fullscreenDemoFeature;
 	m_features += m_windowDemoFeature;
+	m_features += m_demoServerFeature;
+	m_features += m_demoClientFeature;
 }
 
 
@@ -85,8 +90,10 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 
 		for( auto computerControlInterface : computerControlInterfaces )
 		{
-			m_demoClients += computerControlInterface->computer().hostAddress();
+			m_demoClientHosts += computerControlInterface->computer().hostAddress();
 		}
+
+		qDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
 
 		return sendFeatureMessage( FeatureMessage( m_demoClientFeature.uid(), StartDemoClient ).
 								   addArgument( DemoAccessToken, m_token ).
@@ -112,11 +119,13 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 		for( auto computerControlInterface : computerControlInterfaces )
 		{
-			m_demoClients.removeAll( computerControlInterface->computer().hostAddress() );
+			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
 		}
 
+		qDebug() << "DemoFeaturePlugin::stopMasterFeature(): clients:" << m_demoClientHosts;
+
 		// no demo clients left?
-		if( m_demoClients.isEmpty() )
+		if( m_demoClientHosts.isEmpty() )
 		{
 			// then we can stop the server
 			localComputerControlInterface.sendFeatureMessage( FeatureMessage( m_demoServerFeature.uid(), StopDemoServer ) );
