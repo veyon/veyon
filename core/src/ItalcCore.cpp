@@ -209,6 +209,8 @@ bool ItalcCore::init()
 
 	serverPort = config->coreServerPort();
 
+	initAuthentication( AuthenticationCredentials::None );
+
 	return true;
 }
 
@@ -220,7 +222,7 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 	if( authenticationCredentials )
 	{
 		delete authenticationCredentials;
-		authenticationCredentials = NULL;
+		authenticationCredentials = nullptr;
 	}
 
 	authenticationCredentials = new AuthenticationCredentials;
