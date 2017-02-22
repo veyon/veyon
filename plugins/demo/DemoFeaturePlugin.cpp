@@ -24,11 +24,13 @@
 
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
-#include "DemoFeaturePlugin.h"
-#include "FeatureWorkerManager.h"
-#include "DsaKey.h"
-#include "DemoServer.h"
 #include "DemoClient.h"
+#include "DemoFeaturePlugin.h"
+#include "DemoServer.h"
+#include "DsaKey.h"
+#include "FeatureWorkerManager.h"
+#include "ItalcConfiguration.h"
+#include "Logger.h"
 #include "SocketDevice.h"
 
 
@@ -166,8 +168,9 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 	{
 		// if a demo server is started, it's likely that the demo accidentally was
 		// started on master computer as well therefore we deny starting a demo on
-		// hosts on which a demo server is running
-		if( featureWorkerManager.isWorkerRunning( m_demoServerFeature ) )
+		// hosts on which a demo server is running - exception: debug mode
+		if( featureWorkerManager.isWorkerRunning( m_demoServerFeature ) &&
+				ItalcCore::config->logLevel() < Logger::LogLevelDebug )
 		{
 			return false;
 		}
