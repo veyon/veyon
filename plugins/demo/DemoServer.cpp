@@ -472,7 +472,7 @@ void DemoServerClient::sendUpdates()
 			hdr.bytesLZO = Swap32IfLE( bytes_lzo );
 
 			sd.write( (const char *) &hdr, sizeof( hdr ) );
-			sd.write( (const char *) comp, Swap32IfLE( hdr.bytesLZO ) );
+			sd.write( (const char *) comp, bytes_lzo );
 
 		}
 		else
