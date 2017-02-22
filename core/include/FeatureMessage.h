@@ -95,6 +95,11 @@ public:
 		return m_arguments[QString::number(index)];
 	}
 
+	bool hasArgument( int index ) const
+	{
+		return m_arguments.contains( QString::number( index ) );
+	}
+
 	bool send();
 	bool send( QIODevice* ioDevice ) const;
 
