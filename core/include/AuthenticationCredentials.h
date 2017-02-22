@@ -36,6 +36,7 @@ class ITALC_CORE_EXPORT AuthenticationCredentials
 public:
 	enum TypeFlags
 	{
+		None = 0x00,
 		PrivateKey = 0x01,
 		UserLogon = 0x02,
 		CommonSecret = 0x04,
