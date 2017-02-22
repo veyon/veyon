@@ -61,7 +61,7 @@ public:
 							ComputerControlInterface& localComputerControlInterface,
 							QWidget* parent );
 	bool handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice, FeatureWorkerManager& featureWorkerManager );
-	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice );
+	bool handleWorkerFeatureMessage( const FeatureMessage& message );
 
 private:
 	PluginManager& m_pluginManager;

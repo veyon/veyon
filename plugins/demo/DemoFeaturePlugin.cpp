@@ -191,10 +191,8 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 
 
 
-bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
-	Q_UNUSED(ioDevice);
-
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
 		switch( message.command() )

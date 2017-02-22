@@ -87,7 +87,7 @@ public:
 									  QIODevice* ioDevice,
 									  FeatureWorkerManager& featureWorkerManager ) override;
 
-	bool handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice ) override;
+	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
 private:
 	enum Commands

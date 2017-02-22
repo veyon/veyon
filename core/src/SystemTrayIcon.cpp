@@ -129,7 +129,7 @@ bool SystemTrayIcon::handleServiceFeatureMessage( const FeatureMessage& message,
 
 
 
-bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	if( message.featureUid() != m_systemTrayIconFeature.uid() )
 	{

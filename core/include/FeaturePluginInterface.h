@@ -76,10 +76,8 @@ public:
 	/*!
 	 * \brief Handles a received feature message inside worker
 	 * \param message the message which has been received and needs to be handled
-	 * \param socketDevice the socket device which can be used for sending responses
 	 */
-	virtual bool handleWorkerFeatureMessage( const FeatureMessage& message,
-											 QIODevice* ioDevice ) = 0;
+	virtual bool handleWorkerFeatureMessage( const FeatureMessage& message ) = 0;
 
 protected:
 	bool sendFeatureMessage( const FeatureMessage& message,

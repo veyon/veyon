@@ -119,10 +119,9 @@ bool RemoteAccessFeaturePlugin::handleServiceFeatureMessage( const FeatureMessag
 
 
 
-bool RemoteAccessFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool RemoteAccessFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	Q_UNUSED(message);
-	Q_UNUSED(ioDevice);
 
 	return false;
 }

@@ -117,7 +117,7 @@ bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage
 
 
 
-bool TextMessageFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool TextMessageFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{

@@ -130,10 +130,9 @@ bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessag
 
 
 
-bool PowerControlFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool PowerControlFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	Q_UNUSED(message);
-	Q_UNUSED(ioDevice);
 
 	return false;
 }

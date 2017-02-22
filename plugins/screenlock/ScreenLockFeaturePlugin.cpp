@@ -111,10 +111,8 @@ bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 
 
 
-bool ScreenLockFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool ScreenLockFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
-	Q_UNUSED(ioDevice);
-
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
 		switch( message.command() )

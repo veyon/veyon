@@ -79,10 +79,9 @@ bool MonitoringMode::handleServiceFeatureMessage( const FeatureMessage& message,
 
 
 
-bool MonitoringMode::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool MonitoringMode::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	Q_UNUSED(message);
-	Q_UNUSED(ioDevice);
 
 	return false;
 }

@@ -65,6 +65,6 @@ void FeatureWorkerManagerConnection::receiveMessage()
 	qDebug() << "FeatureWorkerManagerConnection::receiveMessage():" << m_featureUid;
 	while( m_socket.bytesAvailable() > 0 )
 	{
-		m_featureManager.handleWorkerFeatureMessage( FeatureMessage( &m_socket ).receive(), &m_socket );
+		m_featureManager.handleWorkerFeatureMessage( FeatureMessage( &m_socket ).receive() );
 	}
 }

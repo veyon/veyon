@@ -104,10 +104,9 @@ bool ScreenshotFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 
 
 
-bool ScreenshotFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice )
+bool ScreenshotFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	Q_UNUSED(message);
-	Q_UNUSED(ioDevice);
 
 	return false;
 }
