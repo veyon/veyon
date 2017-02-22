@@ -63,5 +63,8 @@ void FeatureWorkerManagerConnection::sendInitMessage()
 void FeatureWorkerManagerConnection::receiveMessage()
 {
 	qDebug() << "FeatureWorkerManagerConnection::receiveMessage():" << m_featureUid;
-	m_featureManager.handleWorkerFeatureMessage( FeatureMessage( &m_socket ).receive(), &m_socket );
+	while( m_socket.bytesAvailable() > 0 )
+	{
+		m_featureManager.handleWorkerFeatureMessage( FeatureMessage( &m_socket ).receive(), &m_socket );
+	}
 }
