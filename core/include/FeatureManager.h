@@ -60,7 +60,7 @@ public:
 							const ComputerControlInterfaceList& computerControlInterfaces,
 							ComputerControlInterface& localComputerControlInterface,
 							QWidget* parent );
-	bool handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice, FeatureWorkerManager& featureWorkerManager );
+	bool handleServiceFeatureMessage( const FeatureMessage& message, FeatureWorkerManager& featureWorkerManager );
 	bool handleWorkerFeatureMessage( const FeatureMessage& message );
 
 private:

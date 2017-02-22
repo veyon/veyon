@@ -67,11 +67,10 @@ bool MonitoringMode::stopMasterFeature( const Feature& feature,
 
 
 
-bool MonitoringMode::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool MonitoringMode::handleServiceFeatureMessage( const FeatureMessage& message,
 												  FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(message);
-	Q_UNUSED(ioDevice);
 	Q_UNUSED(featureWorkerManager);
 
 	return false;

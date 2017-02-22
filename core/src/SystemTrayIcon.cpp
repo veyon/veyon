@@ -108,7 +108,7 @@ bool SystemTrayIcon::stopMasterFeature( const Feature& feature,
 
 
 
-bool SystemTrayIcon::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool SystemTrayIcon::handleServiceFeatureMessage( const FeatureMessage& message,
 												  FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_systemTrayIconFeature.uid() == message.featureUid() )

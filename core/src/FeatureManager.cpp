@@ -109,7 +109,6 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 
 
 bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
-												  QIODevice* ioDevice,
 												  FeatureWorkerManager& featureWorkerManager )
 {
 	qDebug() << "FeatureManager::handleServiceFeatureMessage():"
@@ -121,7 +120,7 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 
 	for( auto featureInterface : m_featureInterfaces )
 	{
-		if( featureInterface->handleServiceFeatureMessage( message, ioDevice, featureWorkerManager ) )
+		if( featureInterface->handleServiceFeatureMessage( message, featureWorkerManager ) )
 		{
 			handled = true;
 		}

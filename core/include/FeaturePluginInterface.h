@@ -67,10 +67,9 @@ public:
 	/*!
 	 * \brief Handles a received feature message inside service
 	 * \param message the message which has been received and needs to be handled
-	 * \param socketDevice the socket device which can be used for sending responses
+	 * \param featureWorkerManager a reference to a FeatureWorkerManager which can be used for starting/stopping workers and communicating with them
 	 */
 	virtual bool handleServiceFeatureMessage( const FeatureMessage& message,
-											  QIODevice* ioDevice,
 											  FeatureWorkerManager& featureWorkerManager ) = 0;
 
 	/*!

@@ -90,7 +90,7 @@ bool ScreenLockFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 														   FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_screenLockFeature.uid() == message.featureUid() )

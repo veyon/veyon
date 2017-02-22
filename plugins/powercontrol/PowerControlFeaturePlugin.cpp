@@ -109,7 +109,7 @@ bool PowerControlFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 															 FeatureWorkerManager& featureWorkerManager )
 {
 	if( message.featureUid() == m_powerDownFeature.uid() )

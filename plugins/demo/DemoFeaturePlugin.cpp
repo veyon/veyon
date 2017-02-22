@@ -144,7 +144,7 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 													 FeatureWorkerManager& featureWorkerManager )
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )

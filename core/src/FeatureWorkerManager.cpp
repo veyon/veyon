@@ -201,7 +201,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		if( message.command() >= 0 )
 		{
-			m_featureManager.handleServiceFeatureMessage( message, socket, *this );
+			m_featureManager.handleServiceFeatureMessage( message, *this );
 		}
 
 	}

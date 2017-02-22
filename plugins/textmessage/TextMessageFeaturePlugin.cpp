@@ -97,7 +97,7 @@ bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message, QIODevice* ioDevice,
+bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 															FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_textMessageFeature.uid() == message.featureUid() )

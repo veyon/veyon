@@ -84,7 +84,6 @@ public:
 							QWidget* parent ) override;
 
 	bool handleServiceFeatureMessage( const FeatureMessage& message,
-									  QIODevice* ioDevice,
 									  FeatureWorkerManager& featureWorkerManager ) override;
 
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;

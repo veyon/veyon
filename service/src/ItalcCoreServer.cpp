@@ -200,7 +200,7 @@ bool ItalcCoreServer::handleItalcFeatureMessage( SocketDispatcher socketDispatch
 			 << featureMessage.command()
 			 << featureMessage.arguments();
 
-	return m_featureManager.handleServiceFeatureMessage( featureMessage, &socketDevice, m_featureWorkerManager );
+	return m_featureManager.handleServiceFeatureMessage( featureMessage, m_featureWorkerManager );
 }
 
 
