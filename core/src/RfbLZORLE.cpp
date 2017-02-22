@@ -68,6 +68,13 @@ static bool handleRaw( rfbClient *c, int rx, int ry, int rw, int rh )
 
 
 
+
+#define rfbClientSwap24(l) ((((l) & 0xff) << 16) | (((l) >> 16) & 0xff) | \
+				   (((l) & 0x00ff00)))
+#define rfbClientSwap24IfLE(l) (*(char *)&client->endianTest ? Swap24(l) : (l))
+
+
+
 static rfbBool handleEncodingLZORLE( rfbClient *client,
 										rfbFramebufferUpdateRectHeader *r )
 {
@@ -127,7 +134,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 	const int sh = client->height;
 	for( uint32_t i = 0; i < hdr.bytesRLE && done == false; i+=4 )
 	{
-		const QRgb val = rfbClientSwap32IfLE( *( (QRgb*)( rle_data + i ) ) ) & 0xffffff;
+		const QRgb val = rfbClientSwap24IfLE( *( (QRgb*)( rle_data + i ) ) );
 		const uint8_t rleCount = rle_data[i+3];
 		for( uint16_t j = 0; j <= rleCount; ++j )
 		{
