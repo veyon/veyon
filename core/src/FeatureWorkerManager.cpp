@@ -145,7 +145,7 @@ void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
 
 	if( m_workers.contains( message.featureUid() ) )
 	{
-		m_workers[message.featureUid()].pendingMessages += message;
+		m_workers[message.featureUid()].pendingMessages.append( message );
 	}
 	else
 	{
@@ -247,14 +247,10 @@ void FeatureWorkerManager::sendPendingMessages()
 	{
 		auto& worker = it.value();
 
-		if( worker.socket && worker.pendingMessages.isEmpty() == false )
+		while( worker.socket && worker.pendingMessages.isEmpty() == false )
 		{
-			for( const auto& message : worker.pendingMessages )
-			{
-				message.send( worker.socket );
-			}
-
-			worker.pendingMessages.clear();
+			worker.pendingMessages.first().send( worker.socket );
+			worker.pendingMessages.removeFirst();
 		}
 	}
 
