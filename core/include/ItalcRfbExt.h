@@ -58,9 +58,8 @@ enum ItalcAuthTypes
 	// client has to sign some data to verify it's authority
 	ItalcAuthDSA,
 
-	// client has to prove its authenticity by knowing an application-internal
-	// secret
-	ItalcAuthCommonSecret,
+	// client has to prove its authenticity by knowing common token
+	ItalcAuthToken,
 
 	NumItalcAuthTypes
 

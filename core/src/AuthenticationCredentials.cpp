@@ -30,7 +30,7 @@ AuthenticationCredentials::AuthenticationCredentials() :
 	m_privateKey( NULL ),
 	m_logonUsername(),
 	m_logonPassword(),
-	m_commonSecret()
+	m_token()
 {
 }
 
@@ -40,7 +40,7 @@ AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCreden
 	m_privateKey( NULL ),
 	m_logonUsername( other.logonUsername() ),
 	m_logonPassword( other.logonPassword() ),
-	m_commonSecret( other.commonSecret() )
+	m_token( other.token() )
 {
 }
 
@@ -59,10 +59,10 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 				m_logonPassword.isEmpty() == false;
 	}
 
-	if( credentialType & CommonSecret )
+	if( credentialType & Token )
 	{
-		return !m_commonSecret.isEmpty() &&
-				QByteArray::fromBase64( m_commonSecret.toLatin1() ).size() ==
+		return !m_token.isEmpty() &&
+				QByteArray::fromBase64( m_token.toLatin1() ).size() ==
 												DsaKey::DefaultChallengeSize;
 	}
 

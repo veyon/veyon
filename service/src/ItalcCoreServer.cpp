@@ -221,9 +221,9 @@ bool ItalcCoreServer::authSecTypeItalc( SocketDispatcher sd, void *user )
 	supportedAuthTypes["ItalcAuthDSA"] = ItalcAuthDSA;
 	supportedAuthTypes["ItalcAuthHostBased"] = ItalcAuthHostBased;
 	if( ItalcCore::authenticationCredentials->hasCredentials(
-									AuthenticationCredentials::CommonSecret ) )
+									AuthenticationCredentials::Token ) )
 	{
-		supportedAuthTypes["ItalcAuthCommonSecret"] = ItalcAuthCommonSecret;
+		supportedAuthTypes["ItalcAuthToken"] = ItalcAuthToken;
 	}
 	sdev.write( supportedAuthTypes );
 
@@ -263,8 +263,8 @@ bool ItalcCoreServer::authSecTypeItalc( SocketDispatcher sd, void *user )
 			}
 			break;
 
-		case ItalcAuthCommonSecret:
-			if( doCommonSecretAuth( sdev ) )
+		case ItalcAuthToken:
+			if( performTokenAuthentication( sdev ) )
 			{
 				result = rfbVncAuthOK;
 			}
@@ -415,13 +415,13 @@ bool ItalcCoreServer::doHostBasedAuth( const QString &host )
 
 
 
-bool ItalcCoreServer::doCommonSecretAuth( SocketDevice &sdev )
+bool ItalcCoreServer::performTokenAuthentication( SocketDevice &sdev )
 {
-	qDebug() << "ItalcCoreServer: doing common secret auth";
+	qDebug() << "ItalcCoreServer: performing token authentication";
 
-	const QString secret = sdev.read().toString();
-	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::CommonSecret ) &&
-			secret == ItalcCore::authenticationCredentials->commonSecret() )
+	const QString token = sdev.read().toString();
+	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) &&
+			token == ItalcCore::authenticationCredentials->token() )
 	{
 		return true;
 	}

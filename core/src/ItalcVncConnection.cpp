@@ -775,7 +775,7 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 	// read list of supported authentication types
 	QMap<QString, QVariant> supportedAuthTypes = socketDev.read().toMap();
 
-	int chosenAuthType = ItalcAuthCommonSecret;
+	int chosenAuthType = ItalcAuthToken;
 	if( !supportedAuthTypes.isEmpty() )
 	{
 		chosenAuthType = supportedAuthTypes.values().first().toInt();
@@ -826,9 +826,9 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		// nothing to do - we just get accepted if our IP is in the list of
 		// allowed hosts
 	}
-	else if( chosenAuthType == ItalcAuthCommonSecret )
+	else if( chosenAuthType == ItalcAuthToken )
 	{
-		socketDev.write( ItalcCore::authenticationCredentials->commonSecret() );
+		socketDev.write( ItalcCore::authenticationCredentials->token() );
 	}
 	else if( chosenAuthType == ItalcAuthNone )
 	{

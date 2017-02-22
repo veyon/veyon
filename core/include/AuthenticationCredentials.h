@@ -39,8 +39,8 @@ public:
 		None = 0x00,
 		PrivateKey = 0x01,
 		UserLogon = 0x02,
-		CommonSecret = 0x04,
-		AllTypes = PrivateKey | UserLogon | CommonSecret
+		Token = 0x04,
+		AllTypes = PrivateKey | UserLogon | Token
 	} ;
 	typedef int TypeFlag;
 
@@ -70,15 +70,14 @@ public:
 		return m_logonPassword;
 	}
 
-	// common secret auth
-	void setCommonSecret( const QString &secret )
+	void setToken( const QString &token )
 	{
-		m_commonSecret = secret;
+		m_token = token;
 	}
 
-	const QString &commonSecret() const
+	const QString &token() const
 	{
-		return m_commonSecret;
+		return m_token;
 	}
 
 
@@ -88,7 +87,7 @@ private:
 	QString m_logonUsername;
 	QString m_logonPassword;
 
-	QString m_commonSecret;
+	QString m_token;
 
 } ;
 

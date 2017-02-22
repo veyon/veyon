@@ -153,10 +153,6 @@ static int runCoreServer( int argc, char **argv )
 
 	Logger l( "ItalcCoreServer" );
 
-	// initialize global AuthenticationCredentials object so we can read and
-	// write a common secret later
-	ItalcCore::initAuthentication( AuthenticationCredentials::CommonSecret );
-
 	if( !parseArguments( app.arguments() ) )
 	{
 		return -1;
@@ -222,7 +218,7 @@ static int runSlave( int argc, char **argv )
 
 	// initialize global AuthenticationCredentials object so we can read and
 	// write a common secret later
-	ItalcCore::initAuthentication( AuthenticationCredentials::CommonSecret );
+	ItalcCore::initAuthentication( AuthenticationCredentials::Token );
 
 	if( !parseArguments( app.arguments() ) )
 	{

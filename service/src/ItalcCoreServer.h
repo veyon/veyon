@@ -70,7 +70,7 @@ private:
 
 	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
 	bool doHostBasedAuth( const QString &host );
-	bool doCommonSecretAuth( SocketDevice &sdev );
+	bool performTokenAuthentication( SocketDevice &sdev );
 
 	static ItalcCoreServer *_this;
 
