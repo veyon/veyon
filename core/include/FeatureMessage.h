@@ -105,6 +105,10 @@ public:
 
 	FeatureMessage& receive();
 
+	QIODevice* ioDevice() const
+	{
+		return m_ioDevice;
+	}
 
 private:
 	QIODevice* m_ioDevice;
