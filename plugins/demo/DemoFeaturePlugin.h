@@ -100,7 +100,8 @@ private:
 
 	enum FeatureMessageArguments {
 		DemoAccessToken,
-		IsWindowDemo,
+		VncServerToken,
+		IsFullscreenDemo,
 	};
 
 	Feature m_fullscreenDemoFeature;
@@ -109,7 +110,8 @@ private:
 	Feature m_demoClientFeature;
 
 	FeatureList m_features;
-	QString m_token;
+	QString m_demoAccessToken;
+	QString m_demoServerToken;
 	QStringList m_demoClientHosts;
 
 	DemoServer* m_demoServer;

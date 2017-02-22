@@ -22,6 +22,7 @@
  *
  */
 
+#include "AuthenticationCredentials.h"
 #include "Computer.h"
 #include "DemoFeaturePlugin.h"
 #include "FeatureWorkerManager.h"
@@ -59,7 +60,8 @@ DemoFeaturePlugin::DemoFeaturePlugin() :
 						 Feature::Uid( "7b68b525-1114-4aea-8d42-ab4f26bbf5e5" ),
 						 QString(), QString(), QString() ),
 	m_features(),
-	m_token( DsaKey::generateChallenge().toBase64() ),
+	m_demoAccessToken( DsaKey::generateChallenge().toBase64() ),
+	m_demoServerToken( DsaKey::generateChallenge().toBase64() ),
 	m_demoClientHosts(),
 	m_demoServer( nullptr ),
 	m_demoClient( nullptr )
@@ -86,7 +88,8 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
 		localServiceInterface.sendFeatureMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
-													  addArgument( DemoAccessToken, m_token ) );
+												  addArgument( VncServerToken, m_demoServerToken ).
+												  addArgument( DemoAccessToken, m_demoAccessToken ) );
 
 		for( auto computerControlInterface : computerControlInterfaces )
 		{
@@ -96,8 +99,8 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 		qDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
 
 		return sendFeatureMessage( FeatureMessage( m_demoClientFeature.uid(), StartDemoClient ).
-								   addArgument( DemoAccessToken, m_token ).
-								   addArgument( IsWindowDemo, feature == m_windowDemoFeature ),
+								   addArgument( DemoAccessToken, m_demoAccessToken ).
+								   addArgument( IsFullscreenDemo, feature == m_fullscreenDemoFeature ),
 								   computerControlInterfaces );
 	}
 
@@ -149,6 +152,11 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			featureWorkerManager.startWorker( m_demoServerFeature );
 		}
 
+		if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) == false )
+		{
+			ItalcCore::authenticationCredentials->setToken( message.argument( VncServerToken ).toString() );
+		}
+
 		// forward message to worker
 		featureWorkerManager.sendMessage( message );
 
@@ -191,7 +199,9 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 		case StartDemoServer:
 			if( m_demoServer == nullptr )
 			{
-				m_demoServer = new DemoServer( message.argument( DemoAccessToken ).toString(), this );
+				m_demoServer = new DemoServer( message.argument( VncServerToken ).toString(),
+											   message.argument( DemoAccessToken ).toString(),
+											   this );
 			}
 			return true;
 
@@ -209,15 +219,20 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 		switch( message.command() )
 		{
 		case StartDemoClient:
+			ItalcCore::authenticationCredentials->setToken( message.argument( DemoAccessToken ).toString() );
+
 			if( m_demoClient == nullptr )
 			{
-				SocketDevice* socketDevice = dynamic_cast<SocketDevice *>( ioDevice );
-				if( socketDevice == nullptr )
+				QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
+				if( socket == nullptr )
 				{
-					qCritical( "DemoFeaturePlugin::handleWorkerFeatureMessage(): socketDevice is NULL!" );
+					qCritical( "DemoFeaturePlugin::handleWorkerFeatureMessage(): socket is NULL!" );
 					return false;
 				}
-				m_demoClient = new DemoClient( socketDevice->peerAddress(), message.argument( IsWindowDemo ).toBool() );
+
+				qDebug() << "DemoClient: connecting with master" << socket->peerAddress();
+				m_demoClient = new DemoClient( socket->peerAddress().toString(),
+											   message.argument( IsFullscreenDemo ).toBool() );
 			}
 			return true;
 

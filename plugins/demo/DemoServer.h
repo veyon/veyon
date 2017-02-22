@@ -38,7 +38,7 @@ class DemoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	DemoServer( const QString& token, QObject *parent );
+	DemoServer( const QString& vncServerToken, const QString& demoAccessToken, QObject *parent );
 	virtual ~DemoServer();
 
 	QPoint cursorPos()
@@ -70,7 +70,7 @@ private slots:
 private:
 	virtual void incomingConnection( qintptr sock );
 
-	QString m_token;
+	QString m_demoAccessToken;
 
 	ItalcVncConnection m_vncConn;
 	QReadWriteLock m_cursorLock;
@@ -88,7 +88,7 @@ class DemoServerClient : public QThread
 {
 	Q_OBJECT
 public:
-	DemoServerClient( const QString& token, qintptr sock, const ItalcVncConnection *vncConn,
+	DemoServerClient( const QString& demoAccessToken, qintptr sock, const ItalcVncConnection *vncConn,
 							DemoServer *parent );
 	virtual ~DemoServerClient();
 
@@ -125,7 +125,7 @@ private:
 	// event-loop of thread
 	virtual void run();
 
-	QString m_token;
+	QString m_demoAccessToken;
 
 	DemoServer * m_demoServer;
 	QMutex m_dataMutex;
@@ -155,4 +155,3 @@ private:
 
 
 #endif
-

@@ -28,6 +28,7 @@
 #include <QtCore/QTimer>
 #include <QtGui/QCursor>
 
+#include "AuthenticationCredentials.h"
 #include "DemoServer.h"
 #include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
@@ -124,9 +125,9 @@ static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
 
 
 
-DemoServer::DemoServer( const QString& token, QObject *parent ) :
+DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccessToken, QObject *parent ) :
 	QTcpServer( parent ),
-	m_token( token ),
+	m_demoAccessToken( demoAccessToken ),
 	m_vncConn()
 {
 	if( listen( QHostAddress::Any, ItalcCore::config->demoServerPort() ) == false )
@@ -135,9 +136,10 @@ DemoServer::DemoServer( const QString& token, QObject *parent ) :
 		return;
 	}
 
+	ItalcCore::authenticationCredentials->setToken( vncServerToken );
 	m_vncConn.setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
 	m_vncConn.setPort( ItalcCore::config->coreServerPort() );
-	m_vncConn.setItalcAuthType( ItalcAuthCommonSecret );
+	m_vncConn.setItalcAuthType( ItalcAuthToken );
 	m_vncConn.setQuality( ItalcVncConnection::DemoServerQuality );
 	m_vncConn.start();
 
@@ -190,7 +192,7 @@ void DemoServer::updateInitialCursorShape( const QImage &img, int x, int y )
 
 void DemoServer::incomingConnection( qintptr sock )
 {
-	new DemoServerClient( m_token, sock, &m_vncConn, this );
+	new DemoServerClient( m_demoAccessToken, sock, &m_vncConn, this );
 }
 
 
@@ -198,12 +200,12 @@ void DemoServer::incomingConnection( qintptr sock )
 
 #define RAW_MAX_PIXELS 1024
 
-DemoServerClient::DemoServerClient( const QString& token,
+DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 									qintptr sock,
 									const ItalcVncConnection *vncConn,
 									DemoServer *parent ) :
 	QThread( parent ),
-	m_token( token ),
+	m_demoAccessToken( demoAccessToken ),
 	m_demoServer( parent ),
 	m_dataMutex( QMutex::Recursive ),
 	m_updateRequested( false ),
@@ -650,12 +652,12 @@ void DemoServerClient::run()
 	// here due to a strange bug in Qt
 	QMap<QString, QVariant> supportedAuthTypes;
 
-	supportedAuthTypes["ItalcAuthCommonSecret"] = ItalcAuthCommonSecret;
+	supportedAuthTypes["ItalcAuthToken"] = ItalcAuthToken;
 	socketDevice.write( supportedAuthTypes );
 
 	ItalcAuthTypes chosenItalcAuthType = static_cast<ItalcAuthTypes>( socketDevice.read().toInt() );
 
-	if( chosenItalcAuthType != ItalcAuthCommonSecret )
+	if( chosenItalcAuthType != ItalcAuthToken )
 	{
 		qWarning("DemoServerClient::run(): demo client authentication failed\n");
 		deleteLater();
@@ -666,7 +668,7 @@ void DemoServerClient::run()
 	Q_UNUSED(username);
 
 	const QString token = socketDevice.read().toString();
-	if( token != m_token )
+	if( token != m_demoAccessToken )
 	{
 		qWarning("DemoServerClient::run(): demo client authentication failed\n");
 		deleteLater();
@@ -737,5 +739,3 @@ void DemoServerClient::run()
 
 	deleteLater();
 }
-
-
