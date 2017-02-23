@@ -62,6 +62,9 @@
 				_INIT_WIDGET_FROM_PROPERTY(config,property,QSpinBox,setValue)			\
 			}
 
+#define INIT_WIDGET_FROM_UUID_PROPERTY(config,property,slot)							\
+			ui->property->setCurrentIndex( ui->property->findData( config->property() ) );
+
 #define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey)	\
 			INIT_WIDGET_FROM_##type##_PROPERTY(config,get,set)
 
@@ -94,6 +97,10 @@
 				connect( ui->property, SIGNAL(valueChanged(int)),				\
 							config, SLOT(slot(int)) );				\
 			}
+
+#define CONNECT_WIDGET_TO_UUID_PROPERTY(config,property,slot)						\
+		connect( ui->property, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),		\
+					[=] () { config->slot( ui->property->itemData( ui->property->currentIndex() ).toUuid() ); } );	\
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey)	\
 			CONNECT_WIDGET_TO_##type##_PROPERTY(config,get,set)

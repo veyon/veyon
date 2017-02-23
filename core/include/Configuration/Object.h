@@ -28,6 +28,7 @@
 #include <QObject>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QUuid>
 
 #include "ItalcCore.h"
 #include "Configuration/Store.h"
@@ -136,12 +137,18 @@ private:
 			return value( key, parentKey ).toJsonObject();			\
 		}
 
-
 #define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,key,parentKey)\
 	public:											\
 		QJsonArray get() const					\
 		{											\
 			return value( key, parentKey ).toJsonArray();			\
+		}
+
+#define DECLARE_CONFIG_UUID_PROPERTY(get,key,parentKey)\
+	public:											\
+		QUuid get() const					\
+		{											\
+			return value( key, parentKey ).toUuid();			\
 		}
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
@@ -180,6 +187,12 @@ private:
 
 #define IMPLEMENT_CONFIG_SET_JSONARRAY_PROPERTY(className,set,key,parentKey)	\
 		void className::set( const QJsonArray& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_UUID_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QUuid& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
