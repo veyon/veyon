@@ -22,10 +22,10 @@
  *
  */
 
-#include "ClassroomSelectionDialog.h"
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
 #include "ItalcConfiguration.h"
+#include "RoomSelectionDialog.h"
 
 #include "ui_ComputerManagementView.h"
 
@@ -55,9 +55,9 @@ ComputerManagementView::~ComputerManagementView()
 
 void ComputerManagementView::addClassroom()
 {
-	ClassroomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
-	if( dialog.exec() && dialog.selectedClassroom().isEmpty() == false )
+	RoomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
+	if( dialog.exec() && dialog.selectedRoom().isEmpty() == false )
 	{
-		m_computerManager.addRoom( dialog.selectedClassroom() );
+		m_computerManager.addRoom( dialog.selectedRoom() );
 	}
 }

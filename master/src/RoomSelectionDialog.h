@@ -1,5 +1,5 @@
 /*
- * ClassroomSelectionDialog.h - header file for ClassroomSelectionDialog
+ * RoomSelectionDialog.h - header file for RoomSelectionDialog
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,26 +22,26 @@
  *
  */
 
-#ifndef CLASSROOM_SELECTION_DIALOG_H
-#define CLASSROOM_SELECTION_DIALOG_H
+#ifndef ROOM_SELECTION_DIALOG_H
+#define ROOM_SELECTION_DIALOG_H
 
 #include <QDialog>
 #include <QSortFilterProxyModel>
 
 namespace Ui {
-class ClassroomSelectionDialog;
+class RoomSelectionDialog;
 }
 
-class ClassroomSelectionDialog : public QDialog
+class RoomSelectionDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	ClassroomSelectionDialog( QAbstractItemModel* classroomListModel, QWidget *parent = 0 );
-	~ClassroomSelectionDialog();
+	RoomSelectionDialog( QAbstractItemModel* roomListModel, QWidget *parent = 0 );
+	~RoomSelectionDialog();
 
-	const QString& selectedClassroom() const
+	const QString& selectedRoom() const
 	{
-		return m_selectedClassroom;
+		return m_selectedRoom;
 	}
 
 private slots:
@@ -49,10 +49,10 @@ private slots:
 	void updateSelection( const QModelIndex& current, const QModelIndex& previous );
 
 private:
-	Ui::ClassroomSelectionDialog *ui;
+	Ui::RoomSelectionDialog *ui;
 
 	QSortFilterProxyModel m_sortFilterProxyModel;
-	QString m_selectedClassroom;
+	QString m_selectedRoom;
 };
 
-#endif // CLASSROOM_SELECTION_DIALOG_H
+#endif // ROOM_SELECTION_DIALOG_H
