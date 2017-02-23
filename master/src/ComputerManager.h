@@ -40,7 +40,12 @@ public:
 
 	QAbstractItemModel* networkObjectModel()
 	{
-		return m_checkableNetworkObjectProxyModel;
+		return m_networkObjectModel;
+	}
+
+	QAbstractItemModel* computerTreeModel()
+	{
+		return m_computerTreeModel;
 	}
 
 	ComputerList& computerList()
@@ -83,7 +88,8 @@ private:
 
 	UserConfig& m_config;
 
-	CheckableItemProxyModel* m_checkableNetworkObjectProxyModel;
+	QAbstractItemModel* m_networkObjectModel;
+	CheckableItemProxyModel* m_computerTreeModel;
 	QSortFilterProxyModel* m_networkObjectSortProxyModel;
 
 	ComputerList m_computerList;

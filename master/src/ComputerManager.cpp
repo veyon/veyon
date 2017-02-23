@@ -35,25 +35,26 @@
 ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
-	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
+	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
+	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
 	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) )
 {
-	m_networkObjectSortProxyModel->setSourceModel( NetworkObjectModelFactory().create( this ) );
-	m_checkableNetworkObjectProxyModel->setSourceModel( m_networkObjectSortProxyModel );
+	m_networkObjectSortProxyModel->setSourceModel( m_networkObjectModel );
+	m_computerTreeModel->setSourceModel( m_networkObjectSortProxyModel );
 
-	connect( networkObjectModel(), &QAbstractItemModel::modelReset,
+	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
 			 this, &ComputerManager::reloadComputerList );
-	connect( networkObjectModel(), &QAbstractItemModel::layoutChanged,
+	connect( computerTreeModel(), &QAbstractItemModel::layoutChanged,
 			 this, &ComputerManager::reloadComputerList );
 
-	connect( networkObjectModel(), &QAbstractItemModel::dataChanged,
+	connect( computerTreeModel(), &QAbstractItemModel::dataChanged,
 			 this, &ComputerManager::updateComputerList );
-	connect( networkObjectModel(), &QAbstractItemModel::rowsInserted,
+	connect( computerTreeModel(), &QAbstractItemModel::rowsInserted,
 			 this, &ComputerManager::updateComputerList );
-	connect( networkObjectModel(), &QAbstractItemModel::rowsRemoved,
+	connect( computerTreeModel(), &QAbstractItemModel::rowsRemoved,
 			 this, &ComputerManager::updateComputerList );
 
-	m_checkableNetworkObjectProxyModel->loadStates( m_config.checkedNetworkObjects() );
+	m_computerTreeModel->loadStates( m_config.checkedNetworkObjects() );
 
 	QTimer* computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
@@ -64,7 +65,7 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 
 ComputerManager::~ComputerManager()
 {
-	m_config.setCheckedNetworkObjects( m_checkableNetworkObjectProxyModel->saveStates() );
+	m_config.setCheckedNetworkObjects( m_computerTreeModel->saveStates() );
 }
 
 
@@ -177,22 +178,22 @@ void ComputerManager::updateComputerScreens()
 
 ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 {
-	int rows = networkObjectModel()->rowCount( parent );
+	int rows = computerTreeModel()->rowCount( parent );
 
 	ComputerList computers;
 
 	for( int i = 0; i < rows; ++i )
 	{
-		QModelIndex entryIndex = networkObjectModel()->index( i, 0, parent );
+		QModelIndex entryIndex = computerTreeModel()->index( i, 0, parent );
 
-		if( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
+		if( computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
 				Qt::Unchecked )
 		{
 			continue;
 		}
 
 		auto objectType = static_cast<NetworkObject::Type>(
-					networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+					computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
 
 		switch( objectType )
 		{
@@ -200,10 +201,10 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 			computers += getComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>(),
-								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
-								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
-								   networkObjectModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
+			computers += Computer( computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>(),
+								   computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
+								   computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
+								   computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
 			break;
 		default: break;
 		}
