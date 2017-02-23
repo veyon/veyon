@@ -42,8 +42,7 @@ public:
 	virtual void connectWidgetsToProperties();
 
 private slots:
-	void openGlobalConfig();
-	void openPersonalConfig();
+	void openUserConfigurationDirectory();
 	void openSnapshotDirectory();
 
 private:

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>896</width>
-    <height>437</height>
+    <width>695</width>
+    <height>532</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Configuration files</string>
+      <string>Directories</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <property name="leftMargin">
@@ -32,28 +32,8 @@
       <property name="horizontalSpacing">
        <number>10</number>
       </property>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="globalConfigurationPath"/>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Global configuration</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Personal configuration</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="personalConfigurationPath"/>
-      </item>
       <item row="0" column="2">
-       <widget class="QToolButton" name="openGlobalConfig">
+       <widget class="QToolButton" name="openUserConfigurationDirectory">
         <property name="text">
          <string>...</string>
         </property>
@@ -63,8 +43,28 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>User configuration</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="userConfigurationDirectory"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Snapshots</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="snapshotDirectory"/>
+      </item>
       <item row="1" column="2">
-       <widget class="QToolButton" name="openPersonalConfig">
+       <widget class="QToolButton" name="openSnapshotDirectory">
         <property name="text">
          <string>...</string>
         </property>
@@ -78,48 +78,39 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>Data directories</string>
+      <string>User interface &amp;&amp; behaviour</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <property name="leftMargin">
-       <number>10</number>
-      </property>
-      <property name="horizontalSpacing">
-       <number>10</number>
-      </property>
-      <item row="0" column="1">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="snapshotDirectory"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Snapshots</string>
+         <string>Feature on computer double click:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QToolButton" name="openSnapshotDirectory">
+      <item row="3" column="1">
+       <widget class="QComboBox" name="computerDoubleClickFeature"/>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="manualClassroomAdditionAllowed">
         <property name="text">
-         <string>...</string>
+         <string>Allow adding classrooms to computer manager manually</string>
         </property>
-        <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
-          <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="balloonTooltipsDisabled">
+        <property name="text">
+         <string>Disable balloon tooltips</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="onlyCurrentClassroomVisible">
+        <property name="text">
+         <string>Only show current classroom in computer manager</string>
         </property>
        </widget>
       </item>

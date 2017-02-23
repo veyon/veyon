@@ -40,8 +40,7 @@ MasterConfigurationPage::MasterConfigurationPage() :
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
-	CONNECT_BUTTON_SLOT( openGlobalConfig );
-	CONNECT_BUTTON_SLOT( openPersonalConfig );
+	CONNECT_BUTTON_SLOT( openUserConfigurationDirectory );
 	CONNECT_BUTTON_SLOT( openSnapshotDirectory );
 }
 
@@ -56,31 +55,23 @@ MasterConfigurationPage::~MasterConfigurationPage()
 
 void MasterConfigurationPage::resetWidgets()
 {
-	FOREACH_ITALC_CONFIG_FILE_PATHS_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_DATA_DIRECTORIES_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
 
 void MasterConfigurationPage::connectWidgetsToProperties()
 {
-	FOREACH_ITALC_CONFIG_FILE_PATHS_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_DATA_DIRECTORIES_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
 
-void MasterConfigurationPage::openGlobalConfig()
+void MasterConfigurationPage::openUserConfigurationDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->globalConfigurationPath );
-}
-
-
-
-
-void MasterConfigurationPage::openPersonalConfig()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->personalConfigurationPath );
+	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->userConfigurationDirectory );
 }
 
 
