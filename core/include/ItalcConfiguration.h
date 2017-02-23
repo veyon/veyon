@@ -77,8 +77,8 @@ public slots:
 	void setLocalConnectOnly( bool );
 	void setUserConfigurationDirectory( const QString & );
 	void setSnapshotDirectory( const QString & );
-	void setOnlyCurrentClassroomVisible( bool );
-	void setManualClassroomAdditionAllowed( bool );
+	void setOnlyCurrentRoomVisible( bool );
+	void setManualRoomAdditionAllowed( bool );
 	void setBalloonTooltipsDisabled( bool );
 	void setComputerDoubleClickFeature( const QString& );
 	void setKeyAuthenticationEnabled( bool );

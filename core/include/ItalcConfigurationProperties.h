@@ -69,8 +69,8 @@
 	OP( ItalcConfiguration, ItalcCore::config, STRING, snapshotDirectory, setSnapshotDirectory, "Snapshots", "Directories" );	\
 
 #define FOREACH_ITALC_MASTER_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, onlyCurrentClassroomVisible, setOnlyCurrentClassroomVisible, "OnlyCurrentClassroomVisible", "Master" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, manualClassroomAdditionAllowed, setManualClassroomAdditionAllowed, "ManualClassroomAdditionAllowed", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, onlyCurrentRoomVisible, setOnlyCurrentRoomVisible, "OnlyCurrentRoomVisible", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, manualRoomAdditionAllowed, setManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, balloonTooltipsDisabled, setBalloonTooltipsDisabled, "BalloonTooltipsDisabled", "Master" );	\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
 
