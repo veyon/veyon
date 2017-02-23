@@ -23,8 +23,8 @@
  */
 
 #include "DesktopAccessPermission.h"
+#include "DesktopAccessDialog.h"
 #include "ItalcConfiguration.h"
-#include "ItalcCoreServer.h"
 #include "ItalcCore.h"
 
 
@@ -60,10 +60,12 @@ bool DesktopAccessPermission::authenticationMethodRequiresConfirmation()
 
 
 
-
-bool DesktopAccessPermission::ask( const QString &user, const QString &host )
+bool DesktopAccessPermission::ask( FeatureWorkerManager& featureWorkerManager,
+								   DesktopAccessDialog& dialog,
+								   const QString& user,
+								   const QString& host )
 {
-	int r = ItalcCoreServer::instance()->slaveManager()->execAccessDialog( user, host, ChoiceDefault );
+	int r = dialog.exec( featureWorkerManager, user, host, ChoiceDefault );
 
 	if( r & ChoiceNo )
 	{

@@ -308,12 +308,12 @@ bool ItalcCoreServer::performAccessControl( const QString &username, const QStri
 	switch( accessResult )
 	{
 	case AccessControlProvider::AccessToBeConfirmed:
-		return desktopAccessPermission.ask( username, host );
+		return desktopAccessPermission.ask( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), username, host );
 
 	case AccessControlProvider::AccessAllow:
 		if( desktopAccessPermission.authenticationMethodRequiresConfirmation() )
 		{
-			return desktopAccessPermission.ask( username, host );
+			return desktopAccessPermission.ask( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), username, host );
 		}
 		return true;
 
@@ -428,4 +428,3 @@ bool ItalcCoreServer::performTokenAuthentication( SocketDevice &sdev )
 
 	return false;
 }
-

@@ -26,14 +26,17 @@
 #include "MonitoringMode.h"
 #include "PluginManager.h"
 #include "SystemTrayIcon.h"
+#include "DesktopAccessDialog.h"
 
 
 BuiltinFeatures::BuiltinFeatures( PluginManager& pluginManager ) :
 	m_systemTrayIcon( new SystemTrayIcon ),
-	m_monitoringMode( new MonitoringMode )
+	m_monitoringMode( new MonitoringMode ),
+	m_desktopAccessDialog( new DesktopAccessDialog )
 {
 	pluginManager.registerExtraPluginInterface( m_systemTrayIcon );
 	pluginManager.registerExtraPluginInterface( m_monitoringMode );
+	pluginManager.registerExtraPluginInterface( m_desktopAccessDialog );
 }
 
 
@@ -42,4 +45,5 @@ BuiltinFeatures::~BuiltinFeatures()
 {
 	delete m_systemTrayIcon;
 	delete m_monitoringMode;
+	delete m_desktopAccessDialog;
 }

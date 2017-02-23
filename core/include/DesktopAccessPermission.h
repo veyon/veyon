@@ -27,18 +27,22 @@
 
 #include <QtCore/QString>
 
+class DesktopAccessDialog;
+class FeatureWorkerManager;
+
 class DesktopAccessPermission
 {
 public:
-	enum Choices
+	typedef enum Choices
 	{
+		ChoiceNone		= 0x00,
 		ChoiceYes 		= 0x01,
 		ChoiceNo		= 0x02,
 		ChoiceAlways	= 0x04,
 		ChoiceNever		= 0x08,
 		ChoiceDefault	= ChoiceYes | ChoiceNo,
 		AllChoices		= ChoiceYes | ChoiceNo | ChoiceAlways | ChoiceNever
-	} ;
+	} Choice;
 
 	enum AuthenticationMethods
 	{
@@ -52,7 +56,10 @@ public:
 
 	bool authenticationMethodRequiresConfirmation();
 
-	bool ask( const QString &user, const QString &host );
+	bool ask( FeatureWorkerManager& featureWorkerManager,
+			  DesktopAccessDialog& dialog,
+			  const QString& user,
+			  const QString& host );
 
 
 private:

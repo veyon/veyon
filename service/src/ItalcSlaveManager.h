@@ -37,23 +37,10 @@ public:
 	virtual ~ItalcSlaveManager();
 
 	static const Ipc::Id IdCoreServer;
-	static const Ipc::Id IdAccessDialog;
 	static const Ipc::Id IdInputLock;
-
-	struct AccessDialog
-	{
-		static const Ipc::Command Ask;
-		static const Ipc::Argument User;
-		static const Ipc::Argument Host;
-		static const Ipc::Argument ChoiceFlags;
-		static const Ipc::Command ReportChoice;
-	} ;
 
 	void lockInput();
 	void unlockInput();
-
-	int execAccessDialog( const QString &user, const QString &host,
-							int choiceFlags );
 
 	int slaveStateFlags();
 

@@ -35,16 +35,7 @@
 #include "ScreenLockSlaveLauncher.h"
 
 const Ipc::Id ItalcSlaveManager::IdCoreServer = "CoreServer";
-const Ipc::Id ItalcSlaveManager::IdAccessDialog = "AccessDialog";
 const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
-
-const Ipc::Command ItalcSlaveManager::AccessDialog::Ask = "Ask";
-const Ipc::Argument ItalcSlaveManager::AccessDialog::User = "User";
-const Ipc::Argument ItalcSlaveManager::AccessDialog::Host = "Host";
-const Ipc::Argument ItalcSlaveManager::AccessDialog::ChoiceFlags = "ChoiceFlags";
-const Ipc::Command ItalcSlaveManager::AccessDialog::ReportChoice = "ReportChoice";
-
-
 
 ItalcSlaveManager::ItalcSlaveManager() :
 	Ipc::Master( QCoreApplication::applicationFilePath() )
@@ -75,38 +66,6 @@ void ItalcSlaveManager::unlockInput()
 
 
 
-int ItalcSlaveManager::execAccessDialog( const QString &user,
-											const QString &host,
-											int choiceFlags )
-{
-	m_accessDialogChoice = -1;
-
-	createSlave( IdAccessDialog );
-	sendMessage( IdAccessDialog,
-					Ipc::Msg( AccessDialog::Ask ).
-						addArg( AccessDialog::User , user ).
-						addArg( AccessDialog::Host, host ).
-						addArg( AccessDialog::ChoiceFlags, choiceFlags ) );
-
-	// wait for answer
-	QTime t;
-	t.start();
-	while( m_accessDialogChoice < 0 )
-	{
-		QCoreApplication::processEvents();
-		if( t.elapsed() > 30000 )
-		{
-			stopSlave( IdAccessDialog );
-			return DesktopAccessPermission::ChoiceNo;
-		}
-	}
-
-	return m_accessDialogChoice;
-}
-
-
-
-
 int ItalcSlaveManager::slaveStateFlags()
 {
 	int s = 0;
@@ -115,7 +74,6 @@ int ItalcSlaveManager::slaveStateFlags()
 			{									\
 				s |= ItalcCore::x##Running;		\
 			}
-	GEN_SLAVE_STATE_SETTER(AccessDialog)
 	GEN_SLAVE_STATE_SETTER(InputLock)
 
 	return s;
@@ -143,14 +101,7 @@ void ItalcSlaveManager::createSlave( const Ipc::Id &id, Ipc::SlaveLauncher *slav
 
 bool ItalcSlaveManager::handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m )
 {
-	if( slaveId == IdAccessDialog )
-	{
-		if( m.cmd() == AccessDialog::ReportChoice )
-		{
-			m_accessDialogChoice = m.arg( AccessDialog::ChoiceFlags ).toInt();
-			return true;
-		}
-	}
+
 	return false;
 }
 

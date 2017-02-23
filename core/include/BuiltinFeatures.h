@@ -28,6 +28,7 @@
 #include "ItalcCore.h"
 
 class PluginManager;
+class DesktopAccessDialog;
 class MonitoringMode;
 class SystemTrayIcon;
 
@@ -47,10 +48,15 @@ public:
 		return *m_monitoringMode;
 	}
 
+	DesktopAccessDialog& desktopAccessDialog()
+	{
+		return *m_desktopAccessDialog;
+	}
 
 private:
 	SystemTrayIcon* m_systemTrayIcon;
 	MonitoringMode* m_monitoringMode;
+	DesktopAccessDialog* m_desktopAccessDialog;
 
 };
 
