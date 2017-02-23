@@ -1,7 +1,7 @@
 /*
  * Configuration/Store.h - ConfigurationStore class
  *
- * Copyright (c) 2009-2012 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -50,8 +50,7 @@ public:
 
 	enum Scopes
 	{
-		Personal,	// for current user
-		Global,		// for all users
+		User,		// for current user
 		System,		// system-wide (service settings etc.)
 		BugReportArchive
 	} ;
@@ -82,8 +81,7 @@ public:
 	{
 		switch( scope() )
 		{
-			case Global: return "GlobalConfig";
-			case Personal: return "PersonalConfig";
+			case User: return "UserConfig";
 			case System: return "SystemConfig";
 			case BugReportArchive: return "BugReportArchive";
 		}

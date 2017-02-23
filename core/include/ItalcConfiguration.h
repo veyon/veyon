@@ -75,9 +75,12 @@ public slots:
 	void setDemoServerPort( int );
 	void setFirewallExceptionEnabled( bool );
 	void setLocalConnectOnly( bool );
-	void setGlobalConfigurationPath( const QString & );
-	void setPersonalConfigurationPath( const QString & );
+	void setUserConfigurationDirectory( const QString & );
 	void setSnapshotDirectory( const QString & );
+	void setOnlyCurrentClassroomVisible( bool );
+	void setManualClassroomAdditionAllowed( bool );
+	void setBalloonTooltipsDisabled( bool );
+	void setComputerDoubleClickFeature( const QString& );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
 	void setPermissionRequiredWithKeyAuthentication( bool );

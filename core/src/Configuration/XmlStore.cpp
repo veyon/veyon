@@ -156,11 +156,8 @@ QString XmlStore::configurationFilePath() const
 	QString base;
 	switch( scope() )
 	{
-		case Global:
-			base = ItalcConfiguration::defaultConfiguration().globalConfigurationPath();
-			break;
-		case Personal:
-			base = ItalcConfiguration::defaultConfiguration().personalConfigurationPath();
+		case User:
+			base = ItalcConfiguration::defaultConfiguration().userConfigurationDirectory();
 			break;
 		case System:
 			base = LocalSystem::Path::systemConfigDataPath();

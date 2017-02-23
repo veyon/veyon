@@ -142,6 +142,10 @@ void JsonStore::flush( Object* obj )
 
 bool JsonStore::isWritable() const
 {
+	QFile outfile( configurationFilePath() );
+	outfile.open( QFile::WriteOnly );
+	outfile.close();
+
 	return QFileInfo( configurationFilePath() ).isWritable();
 
 }
@@ -158,11 +162,8 @@ QString JsonStore::configurationFilePath() const
 	QString base;
 	switch( scope() )
 	{
-	case Global:
-		base = ItalcConfiguration::defaultConfiguration().globalConfigurationPath();
-		break;
-	case Personal:
-		base = ItalcConfiguration::defaultConfiguration().personalConfigurationPath();
+	case User:
+		base = ItalcConfiguration::defaultConfiguration().userConfigurationDirectory();
 		break;
 	case System:
 		base = LocalSystem::Path::systemConfigDataPath();

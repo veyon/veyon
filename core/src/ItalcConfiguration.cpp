@@ -105,9 +105,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setDemoServerPort( PortOffsetDemoServer );
 	c.setFirewallExceptionEnabled( true );
 
-	c.setGlobalConfigurationPath( QDTNS( "$APPDATA/GlobalConfig.xml" ) );
-	c.setPersonalConfigurationPath( QDTNS( "$APPDATA/PersonalConfig.xml" ) );
-
+	c.setUserConfigurationDirectory( QDTNS( "$APPDATA/Config" ) );
 	c.setSnapshotDirectory( QDTNS( "$APPDATA/Snapshots" ) );
 
 	c.setKeyAuthenticationEnabled( true );

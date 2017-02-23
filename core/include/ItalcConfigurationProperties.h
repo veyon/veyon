@@ -64,12 +64,15 @@
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network" );					\
 
-#define FOREACH_ITALC_CONFIG_FILE_PATHS_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, STRING, globalConfigurationPath, setGlobalConfigurationPath, "GlobalConfiguration", "Paths" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, personalConfigurationPath, setPersonalConfigurationPath, "PersonalConfiguration", "Paths" );	\
+#define FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(OP) \
+	OP( ItalcConfiguration, ItalcCore::config, STRING, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories" );	\
+	OP( ItalcConfiguration, ItalcCore::config, STRING, snapshotDirectory, setSnapshotDirectory, "Snapshots", "Directories" );	\
 
-#define FOREACH_ITALC_DATA_DIRECTORIES_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, STRING, snapshotDirectory, setSnapshotDirectory, "SnapshotDirectory", "Paths" );	\
+#define FOREACH_ITALC_MASTER_CONFIG_PROPERTY(OP) \
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, onlyCurrentClassroomVisible, setOnlyCurrentClassroomVisible, "OnlyCurrentClassroomVisible", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, manualClassroomAdditionAllowed, setManualClassroomAdditionAllowed, "ManualClassroomAdditionAllowed", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, balloonTooltipsDisabled, setBalloonTooltipsDisabled, "BalloonTooltipsDisabled", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config, STRING, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
 
 #define FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
@@ -118,8 +121,8 @@
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP)			\
-	FOREACH_ITALC_CONFIG_FILE_PATHS_CONFIG_PROPERTY(OP)	\
-	FOREACH_ITALC_DATA_DIRECTORIES_CONFIG_PROPERTY(OP)	\
+	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(OP)	\
+	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(OP)	\
 	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(OP)	\
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(OP)	\
 	FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP)				\

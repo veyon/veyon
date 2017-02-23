@@ -37,13 +37,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="showAllCheckBox">
-     <property name="text">
-      <string>Show all classrooms</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QCheckBox" name="showUserNamesCheckBox">
      <property name="text">
       <string>Show user names</string>
