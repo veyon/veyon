@@ -28,7 +28,8 @@
 #include "Computer.h"
 #include "CheckableItemProxyModel.h"
 
-class QSortFilterProxyModel;
+class QHostAddress;
+class StringListFilterProxyModel;
 class UserConfig;
 
 class ComputerManager : public QObject
@@ -62,6 +63,8 @@ public:
 
 	void updateComputerScreenSize();
 
+	void addRoom( const QString& room );
+
 
 signals:
 	void computerListAboutToBeReset();
@@ -83,6 +86,10 @@ public slots:
 	void updateComputerScreens();
 
 private:
+	void initRoomFilterList();
+	void updateRoomFilterList();
+	QString findRoomOfComputer( const QHostAddress& hostAddress, const QModelIndex& parent );
+
 	ComputerList getComputers( const QModelIndex& parent );
 	QSize computerScreenSize() const;
 
@@ -90,8 +97,9 @@ private:
 
 	QAbstractItemModel* m_networkObjectModel;
 	CheckableItemProxyModel* m_computerTreeModel;
-	QSortFilterProxyModel* m_networkObjectSortProxyModel;
+	StringListFilterProxyModel* m_networkObjectSortFilterProxyModel;
 
+	QStringList m_roomFilterList;
 	ComputerList m_computerList;
 
 };

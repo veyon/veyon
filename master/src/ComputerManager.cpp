@@ -22,13 +22,17 @@
  *
  */
 
-#include <QSortFilterProxyModel>
+#include <QHostAddress>
+#include <QHostInfo>
+#include <QMessageBox>
 #include <QTimer>
 
 #include "ComputerManager.h"
+#include "ItalcConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
+#include "StringListFilterProxyModel.h"
 #include "UserConfig.h"
 
 
@@ -37,10 +41,10 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_config( config ),
 	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
-	m_networkObjectSortProxyModel( new QSortFilterProxyModel( this ) )
+	m_networkObjectSortFilterProxyModel( new StringListFilterProxyModel( this ) )
 {
-	m_networkObjectSortProxyModel->setSourceModel( m_networkObjectModel );
-	m_computerTreeModel->setSourceModel( m_networkObjectSortProxyModel );
+	m_networkObjectSortFilterProxyModel->setSourceModel( m_networkObjectModel );
+	m_computerTreeModel->setSourceModel( m_networkObjectSortFilterProxyModel );
 
 	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
 			 this, &ComputerManager::reloadComputerList );
@@ -59,6 +63,8 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	QTimer* computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
 	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
+
+	initRoomFilterList();
 }
 
 
@@ -92,6 +98,15 @@ void ComputerManager::updateComputerScreenSize()
 	}
 
 	emit computerScreenSizeChanged();
+}
+
+
+
+void ComputerManager::addRoom( const QString& room )
+{
+	m_roomFilterList.append( room );
+
+	updateRoomFilterList();
 }
 
 
@@ -172,6 +187,79 @@ void ComputerManager::updateComputerScreens()
 
 		++index;
 	}
+}
+
+
+
+void ComputerManager::initRoomFilterList()
+{
+	if( ItalcCore::config->onlyCurrentClassroomVisible() )
+	{
+		for( auto hostAddress : QHostInfo::fromName( QHostInfo::localHostName() ).addresses() )
+		{
+			qDebug() << "ComputerManager::initRoomFilterList(): adding room for" << hostAddress;
+			m_roomFilterList.append( findRoomOfComputer( hostAddress, QModelIndex() ) );
+		}
+
+		if( m_roomFilterList.isEmpty() )
+		{
+			QMessageBox::warning( nullptr,
+								  tr( "Room detection failed" ),
+								  tr( "Could not determine the room which this computer belongs to. "
+									  "This indicates a problem with the system configuration. "
+									  "All rooms will be shown in the computer management instead." ) );
+			qWarning( "ComputerManager::initRoomFilterList(): room detection failed" );
+		}
+
+		updateRoomFilterList();
+	}
+}
+
+
+
+void ComputerManager::updateRoomFilterList()
+{
+	if( ItalcCore::config->onlyCurrentClassroomVisible() )
+	{
+		m_networkObjectSortFilterProxyModel->setStringList( m_roomFilterList );
+	}
+}
+
+
+
+QString ComputerManager::findRoomOfComputer( const QHostAddress& hostAddress, const QModelIndex& parent )
+{
+	QAbstractItemModel* model = networkObjectModel();
+
+	int rows = model->rowCount( parent );
+
+	for( int i = 0; i < rows; ++i )
+	{
+		QModelIndex entryIndex = model->index( i, 0, parent );
+
+		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+
+		if( objectType == NetworkObject::Group )
+		{
+			QString room = findRoomOfComputer( hostAddress, entryIndex );
+			if( room.isEmpty() == false )
+			{
+				return room;
+			}
+		}
+		else if( objectType == NetworkObject::Host )
+		{
+			QString currentHostAddress = model->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString();
+
+			if ( QHostAddress( currentHostAddress ) == hostAddress ||
+				 QHostInfo::fromName( currentHostAddress ).addresses().contains( hostAddress ) )
+			{
+				return model->data( parent, NetworkObjectTreeModel::NetworkObjectNameRole ).toString();
+			}
+		}
+	}
+
+	return QString();
 }
 
 
