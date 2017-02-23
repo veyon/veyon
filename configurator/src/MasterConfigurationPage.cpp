@@ -22,6 +22,8 @@
  *
  */
 
+#include "PluginManager.h"
+#include "FeatureManager.h"
 #include "FileSystemBrowser.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
@@ -32,16 +34,18 @@
 
 
 MasterConfigurationPage::MasterConfigurationPage() :
-    ConfigurationPage(),
+	ConfigurationPage(),
 	ui(new Ui::MasterConfigurationPage)
 {
 	ui->setupUi(this);
 
 #define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
+	connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
 	CONNECT_BUTTON_SLOT( openUserConfigurationDirectory );
 	CONNECT_BUTTON_SLOT( openSnapshotDirectory );
+
+	populateFeatureComboBox();
 }
 
 
@@ -79,4 +83,25 @@ void MasterConfigurationPage::openUserConfigurationDirectory()
 void MasterConfigurationPage::openSnapshotDirectory()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->snapshotDirectory );
+}
+
+
+
+void MasterConfigurationPage::populateFeatureComboBox()
+{
+	PluginManager pluginManager;
+	FeatureManager featureManager( pluginManager );
+
+	for( const auto& feature : featureManager.features() )
+	{
+		if( feature.type() == Feature::Mode ||
+				feature.type() == Feature::Action ||
+				feature.type() == Feature::Session ||
+				feature.type() == Feature::Operation )
+		{
+			ui->computerDoubleClickFeature->addItem( QIcon( feature.iconUrl() ),
+													 feature.displayName(),
+													 feature.uid() );
+		}
+	}
 }

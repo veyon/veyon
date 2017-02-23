@@ -46,6 +46,8 @@ private slots:
 	void openSnapshotDirectory();
 
 private:
+	void populateFeatureComboBox();
+
 	Ui::MasterConfigurationPage *ui;
 };
 
