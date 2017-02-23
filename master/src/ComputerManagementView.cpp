@@ -22,20 +22,26 @@
  *
  */
 
+#include "ClassroomSelectionDialog.h"
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
+#include "ItalcConfiguration.h"
 
 #include "ui_ComputerManagementView.h"
 
 
 ComputerManagementView::ComputerManagementView( ComputerManager& computerManager, QWidget *parent ) :
 	QWidget(parent),
-	ui(new Ui::ComputerManagementView)
+	ui(new Ui::ComputerManagementView),
+	m_computerManager( computerManager )
 {
 	ui->setupUi(this);
 
-	ui->treeView->setModel( computerManager.networkObjectModel() );
+	ui->treeView->setModel( computerManager.computerTreeModel() );
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
+
+	ui->addClassroomButton->setVisible( ItalcCore::config->onlyCurrentClassroomVisible() &&
+										ItalcCore::config->manualClassroomAdditionAllowed() );
 }
 
 
@@ -43,4 +49,15 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 ComputerManagementView::~ComputerManagementView()
 {
 	delete ui;
+}
+
+
+
+void ComputerManagementView::addClassroom()
+{
+	ClassroomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
+	if( dialog.exec() )
+	{
+		//dialog.selectedClassroom();
+	}
 }

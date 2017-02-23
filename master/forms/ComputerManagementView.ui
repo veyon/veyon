@@ -44,6 +44,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="addClassroomButton">
+     <property name="text">
+      <string>Add classroom</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="saveListButton">
      <property name="text">
       <string>Save computer/user list</string>
@@ -53,5 +60,25 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>addClassroomButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ComputerManagementView</receiver>
+   <slot>addClassroom()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>262</x>
+     <y>663</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>375</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addClassroom()</slot>
+ </slots>
 </ui>

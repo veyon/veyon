@@ -40,8 +40,12 @@ public:
 	ComputerManagementView( ComputerManager& computerManager, QWidget *parent = 0 );
 	~ComputerManagementView();
 
+private slots:
+	void addClassroom();
+
 private:
 	Ui::ComputerManagementView *ui;
+	ComputerManager& m_computerManager;
 
 };
 
