@@ -25,12 +25,12 @@
 #ifndef DESKTOP_ACCESS_PERMISSION_H
 #define DESKTOP_ACCESS_PERMISSION_H
 
-#include <QtCore/QString>
+#include "ItalcCore.h"
 
 class DesktopAccessDialog;
 class FeatureWorkerManager;
 
-class DesktopAccessPermission
+class ITALC_CORE_EXPORT DesktopAccessPermission
 {
 public:
 	typedef enum Choices
