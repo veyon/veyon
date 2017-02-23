@@ -85,15 +85,12 @@ public:
 						const QString &domain );
 	void logoutUser();
 
-	void disableLocalInputs( bool disabled );
-
 	void setRole( const ItalcCore::UserRole role );
 
 	void reportSlaveStateFlags();
 
 signals:
 	void receivedUserInfo( const QString &, const QString & );
-	void receivedSlaveStateFlags( const int );
 
 private slots:
 	void initNewClient( rfbClient *client );

@@ -29,15 +29,12 @@
 #include <QAbstractNativeEventFilter>
 #include <QtNetwork/QHostInfo>
 
-#include "AuthenticationCredentials.h"
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
 #include "Logger.h"
-
-#include "InputLockSlave.h"
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -204,35 +201,6 @@ static int runCoreServer( int argc, char **argv )
 	return ret;
 }
 
-
-
-template<class SlaveClass, class Application>
-static int runSlave( int argc, char **argv )
-{
-	Application app( argc, argv );
-
-	ItalcCore::init();
-
-	Logger l( "Italc" + SlaveClass::slaveName() );
-
-	// initialize global AuthenticationCredentials object so we can read and
-	// write a common secret later
-	ItalcCore::initAuthentication( AuthenticationCredentials::Token );
-
-	if( !parseArguments( app.arguments() ) )
-	{
-		return -1;
-	}
-
-	SlaveClass s;
-
-	ilog( Info, "Exec" );
-
-	return app.exec();
-}
-
-
-
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
 
@@ -272,28 +240,6 @@ int main( int argc, char **argv )
 			}
 		}
 #endif
-		if( arg1.toLower() == "-slave" )
-		{
-			if( argc <= 2 )
-			{
-				qCritical( "Need to specify slave" );
-				return -1;
-			}
-			const QString arg2 = argv[2];
-			if( arg2 == ItalcSlaveManager::IdCoreServer )
-			{
-				return runCoreServer( argc, argv );
-			}
-			else if( arg2 == ItalcSlaveManager::IdInputLock )
-			{
-				return runSlave<InputLockSlave, QApplication>( argc, argv );
-			}
-			else
-			{
-				qCritical( "Unknown slave" );
-				return -1;
-			}
-		}
 	}
 
 	return runCoreServer( argc, argv );

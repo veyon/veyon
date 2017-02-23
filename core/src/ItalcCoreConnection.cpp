@@ -170,12 +170,6 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t msg )
 			m_userHomeDir = m.arg( "homedir" );
 			emit receivedUserInfo( m_user, m_userHomeDir );
 		}
-		else if( m.cmd() == ItalcCore::ReportSlaveStateFlags )
-		{
-			m_slaveStateFlags = m.arg( "slavestateflags" ).toInt();
-			emit receivedSlaveStateFlags( m_slaveStateFlags );
-		}
-		// TODO: plugin hook
 		else
 		{
 			qCritical() << "ItalcCoreConnection::"
@@ -234,26 +228,10 @@ void ItalcCoreConnection::logoutUser()
 
 
 
-void ItalcCoreConnection::disableLocalInputs( bool disabled )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DisableLocalInputs ).
-					addArg( "disabled", disabled ) );
-}
-
-
-
-
 void ItalcCoreConnection::setRole( const ItalcCore::UserRole role )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::SetRole ).
 						addArg( "role", role ) );
-}
-
-
-
-void ItalcCoreConnection::reportSlaveStateFlags()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::ReportSlaveStateFlags ) );
 }
 
 

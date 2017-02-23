@@ -373,23 +373,13 @@ Msg &Msg::receive()
 
 const Command GetUserInformation = "GetUserInformation";
 const Command UserInformation = "UserInformation";
-const Command StartDemo = "StartDemo";
-const Command StopDemo = "StopDemo";
-const Command LockScreen = "LockScreen";
-const Command UnlockScreen = "UnlockScreen";
 const Command LockInput = "LockInput";
 const Command UnlockInput = "UnlockInput";
 const Command LogonUserCmd = "LogonUser";
 const Command LogoutUser = "LogoutUser";
-const Command AccessDialog = "AccessDialog";
 const Command ExecCmds = "ExecCmds";
 const Command DisableLocalInputs = "DisableLocalInputs";
 const Command SetRole = "SetRole";
-
-const Command DemoServerAllowHost = "DemoServerAllowHost";
-const Command DemoServerUnallowHost = "DemoServerUnallowHost";
-const Command StartDemoServer = "StartDemoServer";
-const Command StopDemoServer = "StopDemoServer";
 
 const Command ReportSlaveStateFlags = "ReportSlaveStateFlags";
 

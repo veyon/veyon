@@ -54,8 +54,7 @@ ItalcCoreServer::ItalcCoreServer() :
 	m_pluginManager(),
 	m_builtinFeatures( m_pluginManager ),
 	m_featureManager( m_pluginManager ),
-	m_featureWorkerManager( m_featureManager ),
-	m_slaveManager()
+	m_featureWorkerManager( m_featureManager )
 {
 	Q_ASSERT( _this == NULL );
 	_this = this;
@@ -150,11 +149,6 @@ bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 	{
 		LocalSystem::logoutUser();
 	}
-	else if( cmd == ItalcCore::DisableLocalInputs )
-	{
-		// TODO
-		//LocalSystem::disableLocalInputs( msgIn.arg( "disabled" ).toInt() );
-	}
 	else if( cmd == ItalcCore::SetRole )
 	{
 		const int role = msgIn.arg( "role" ).toInt();
@@ -162,20 +156,6 @@ bool ItalcCoreServer::handleItalcCoreMessage( SocketDispatcher sock,
 		{
 			ItalcCore::role = static_cast<ItalcCore::UserRoles>( role );
 		}
-	}
-	else if( cmd == ItalcCore::LockInput )
-	{
-		m_slaveManager.lockInput();
-	}
-	else if( cmd == ItalcCore::UnlockInput )
-	{
-		m_slaveManager.unlockInput();
-	}
-	else if( cmd == ItalcCore::ReportSlaveStateFlags )
-	{
-		ItalcCore::Msg( &sdev, cmd ).
-				addArg( "slavestateflags", m_slaveManager.slaveStateFlags() ).
-					send();
 	}
 	else
 	{

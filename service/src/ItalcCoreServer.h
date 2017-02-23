@@ -33,7 +33,6 @@
 #include "FeatureWorkerManager.h"
 #include "PluginManager.h"
 #include "SocketDevice.h"
-#include "ItalcSlaveManager.h"
 #include "DesktopAccessPermission.h"
 
 class ItalcCoreServer : public QObject
@@ -53,11 +52,6 @@ public:
 	bool handleItalcFeatureMessage( SocketDispatcher socketDispatcher, void *user );
 
 	bool authSecTypeItalc( SocketDispatcher sd, void *user );
-
-	ItalcSlaveManager * slaveManager()
-	{
-		return &m_slaveManager;
-	}
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
@@ -83,9 +77,7 @@ private:
 	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
-	ItalcSlaveManager m_slaveManager;
 
 } ;
-
 
 #endif

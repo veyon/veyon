@@ -63,15 +63,10 @@ namespace ItalcCore
 	// static commands
 	extern ITALC_CORE_EXPORT const Command GetUserInformation;
 	extern ITALC_CORE_EXPORT const Command UserInformation;
-	extern ITALC_CORE_EXPORT const Command LockInput;
-	extern ITALC_CORE_EXPORT const Command UnlockInput;
 	extern ITALC_CORE_EXPORT const Command LogonUserCmd;
 	extern ITALC_CORE_EXPORT const Command LogoutUser;
-	extern ITALC_CORE_EXPORT const Command AccessDialog;
 	extern ITALC_CORE_EXPORT const Command ExecCmds;
-	extern ITALC_CORE_EXPORT const Command DisableLocalInputs;
 	extern ITALC_CORE_EXPORT const Command SetRole;
-	extern ITALC_CORE_EXPORT const Command ReportSlaveStateFlags;
 
 	class ITALC_CORE_EXPORT Msg
 	{
