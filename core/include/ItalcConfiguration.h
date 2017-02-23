@@ -80,7 +80,7 @@ public slots:
 	void setOnlyCurrentRoomVisible( bool );
 	void setManualRoomAdditionAllowed( bool );
 	void setBalloonTooltipsDisabled( bool );
-	void setComputerDoubleClickFeature( const QString& );
+	void setComputerDoubleClickFeature( const QUuid& );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
 	void setPermissionRequiredWithKeyAuthentication( bool );
