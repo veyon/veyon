@@ -40,7 +40,7 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 	ui->treeView->setModel( computerManager.computerTreeModel() );
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 
-	ui->addClassroomButton->setVisible( ItalcCore::config->onlyCurrentRoomVisible() &&
+	ui->addRoomButton->setVisible( ItalcCore::config->onlyCurrentRoomVisible() &&
 										ItalcCore::config->manualRoomAdditionAllowed() );
 }
 
@@ -53,7 +53,7 @@ ComputerManagementView::~ComputerManagementView()
 
 
 
-void ComputerManagementView::addClassroom()
+void ComputerManagementView::addRoom()
 {
 	RoomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
 	if( dialog.exec() && dialog.selectedRoom().isEmpty() == false )

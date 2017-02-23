@@ -44,9 +44,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="addClassroomButton">
+    <widget class="QPushButton" name="addRoomButton">
      <property name="text">
-      <string>Add classroom</string>
+      <string>Add room</string>
      </property>
     </widget>
    </item>
@@ -62,10 +62,10 @@
  <resources/>
  <connections>
   <connection>
-   <sender>addClassroomButton</sender>
+   <sender>addRoomButton</sender>
    <signal>clicked()</signal>
    <receiver>ComputerManagementView</receiver>
-   <slot>addClassroom()</slot>
+   <slot>addRoom()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>262</x>
@@ -79,6 +79,6 @@
   </connection>
  </connections>
  <slots>
-  <slot>addClassroom()</slot>
+  <slot>addRoom()</slot>
  </slots>
 </ui>

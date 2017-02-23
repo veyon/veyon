@@ -41,7 +41,7 @@ public:
 	~ComputerManagementView();
 
 private slots:
-	void addClassroom();
+	void addRoom();
 
 private:
 	Ui::ComputerManagementView *ui;
