@@ -1,5 +1,5 @@
 /*
- * PersonalConfig.h - PersonalConfig class
+ * UserConfig.h - UserConfig class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -27,20 +27,20 @@
 
 #include "Configuration/Object.h"
 
-class PersonalConfig : public Configuration::Object
+class UserConfig : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	PersonalConfig( Configuration::Store::Backend backend );
+	UserConfig( Configuration::Store::Backend backend );
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
-	OP( PersonalConfig, MasterCore::personalConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
-	OP( PersonalConfig, MasterCore::personalConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
-	OP( PersonalConfig, MasterCore::personalConfig, INT, clientUpdateInterval, setClientUpdateInterval, "ClientUpdateInterval", "Behaviour" );	\
-	OP( PersonalConfig, MasterCore::personalConfig, INT, clientDoubleClickAction, setClientDoubleClickAction, "ClientDoubleClickAction", "Behaviour" );	\
-	OP( PersonalConfig, MasterCore::personalConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
-	OP( PersonalConfig, MasterCore::personalConfig, INT, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "Interface" );	\
-	OP( PersonalConfig, MasterCore::personalConfig, INT, noToolTips, setNoToolTips, "NoToolTips", "Interface" );	\
+	OP( UserConfig, MasterCore::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, INT, clientUpdateInterval, setClientUpdateInterval, "ClientUpdateInterval", "Behaviour" );	\
+	OP( UserConfig, MasterCore::userConfig, INT, clientDoubleClickAction, setClientDoubleClickAction, "ClientDoubleClickAction", "Behaviour" );	\
+	OP( UserConfig, MasterCore::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
+	OP( UserConfig, MasterCore::userConfig, INT, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "Interface" );	\
+	OP( UserConfig, MasterCore::userConfig, INT, noToolTips, setNoToolTips, "NoToolTips", "Interface" );	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 

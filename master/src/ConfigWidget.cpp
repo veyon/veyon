@@ -26,7 +26,7 @@
 
 #ifdef ITALC3
 #include "MasterCore.h"
-#include "PersonalConfig.h"
+#include "UserConfig.h"
 #endif
 
 #include "ui_ConfigWidget.h"
@@ -40,9 +40,9 @@ ConfigWidget::ConfigWidget( QWidget* parent ) :
 #ifdef ITALC3
 
 #define LOAD_AND_CONNECT_PROPERTY(property,type,widget,setvalue,signal,slot) \
-		widget->setvalue( MasterCore::personalConfig->property() );  \
+		widget->setvalue( MasterCore::userConfig->property() );  \
 		connect( widget, SIGNAL(signal(type)),                       \
-			MasterCore::personalConfig, SLOT(slot(type)) );
+			MasterCore::userConfig, SLOT(slot(type)) );
 
 	LOAD_AND_CONNECT_PROPERTY(clientUpdateInterval,
 					int,

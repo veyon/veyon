@@ -1,5 +1,5 @@
 /*
- * PersonalConfig.cpp - a Configuration object storing personal settings
+ * UserConfig.cpp - a Configuration object storing personal settings
  *                      for the iTALC Master Application
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
@@ -26,12 +26,12 @@
 #include <QMessageBox>
 
 #include "ItalcCore.h"
-#include "PersonalConfig.h"
+#include "UserConfig.h"
 
 FOREACH_PERSONAL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
 
 
-PersonalConfig::PersonalConfig(Configuration::Store::Backend backend) :
+UserConfig::UserConfig(Configuration::Store::Backend backend) :
 	Configuration::Object( backend, Configuration::Store::User )
 {
 	if( isStoreWritable() == false )

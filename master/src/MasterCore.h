@@ -34,7 +34,7 @@
 class BuiltinFeatures;
 class FeatureManager;
 class ComputerManager;
-class PersonalConfig;
+class UserConfig;
 class PluginManager;
 
 class MasterCore : public QObject
@@ -64,9 +64,9 @@ public:
 		return m_localComputerControlInterface;
 	}
 
-	PersonalConfig& personalConfig()
+	UserConfig& userConfig()
 	{
-		return *m_personalConfig;
+		return *m_userConfig;
 	}
 
 	ComputerManager& computerManager()
@@ -98,7 +98,7 @@ private:
 	const FeatureList m_features;
 	Computer m_localComputer;
 	ComputerControlInterface m_localComputerControlInterface;
-	PersonalConfig* m_personalConfig;
+	UserConfig* m_userConfig;
 	ComputerManager* m_computerManager;
 
 	Feature::Uid m_currentMode;

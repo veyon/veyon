@@ -29,10 +29,10 @@
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
 #include "NetworkObjectTreeModel.h"
-#include "PersonalConfig.h"
+#include "UserConfig.h"
 
 
-ComputerManager::ComputerManager( PersonalConfig& config, QObject* parent ) :
+ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
 	m_checkableNetworkObjectProxyModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),

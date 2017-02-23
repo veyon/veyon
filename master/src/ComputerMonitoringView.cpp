@@ -28,7 +28,7 @@
 #include "ComputerMonitoringView.h"
 #include "MasterCore.h"
 #include "FeatureManager.h"
-#include "PersonalConfig.h"
+#include "UserConfig.h"
 
 #include "ui_ComputerMonitoringView.h"
 
@@ -68,9 +68,9 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	m_masterCore = &masterCore;
 
 	// initialize grid size slider
-	if( m_masterCore->personalConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	if( m_masterCore->userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
 	{
-		ui->gridSizeSlider->setValue( m_masterCore->personalConfig().monitoringScreenSize() );
+		ui->gridSizeSlider->setValue( m_masterCore->userConfig().monitoringScreenSize() );
 	}
 	else
 	{
@@ -134,7 +134,7 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 {
 	if( m_masterCore )
 	{
-		m_masterCore->personalConfig().setMonitoringScreenSize( size );
+		m_masterCore->userConfig().setMonitoringScreenSize( size );
 
 		m_masterCore->computerManager().updateComputerScreenSize();
 	}

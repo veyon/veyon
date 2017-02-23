@@ -86,7 +86,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 			tr( "Use this workspace to manage your computers and "
 				"classrooms in an easy way." ),
 			_main_window, _parent ),
-	m_personalConfiguration( LocalSystem::Path::expand( ItalcCore::config->personalConfigurationPath() ) ),
+	m_userConfiguration( LocalSystem::Path::expand( ItalcCore::config->userConfigurationPath() ) ),
 	m_globalClientConfiguration( LocalSystem::Path::expand( ItalcCore::config->globalConfigurationPath() ) ),
 	m_quickSwitchMenu( new QMenu( this ) ),
 	m_qsmClassRoomSeparator( m_quickSwitchMenu->addSeparator() ),
@@ -167,7 +167,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 	setupMenus();
 
 	loadGlobalClientConfig();
-	loadPersonalConfig();
+	loadUserConfig();
 
 	show();
 }
@@ -335,7 +335,7 @@ void ClassroomManager::saveGlobalClientConfig( void )
 
 
 
-void ClassroomManager::savePersonalConfig( void )
+void ClassroomManager::saveUserConfig( void )
 {
 	QDomDocument doc( "italc-config-file" );
 
@@ -410,10 +410,10 @@ void ClassroomManager::savePersonalConfig( void )
 	}
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
-	QFile( m_personalConfiguration + ".bak" ).remove();
-	QFile( m_personalConfiguration ).copy( m_personalConfiguration +
+	QFile( m_userConfiguration + ".bak" ).remove();
+	QFile( m_userConfiguration ).copy( m_userConfiguration +
 								".bak" );
-	QFile outfile( m_personalConfiguration );
+	QFile outfile( m_userConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 
 	outfile.write( xml.toUtf8() );
@@ -881,17 +881,17 @@ void ClassroomManager::setDefaultWindowsSizeAndPosition( void )
 
 
 
-void ClassroomManager::loadPersonalConfig( void )
+void ClassroomManager::loadUserConfig( void )
 {
-	if( !QFileInfo( m_personalConfiguration ).exists() &&
-		QFileInfo( m_personalConfiguration + ".bak" ).exists() )
+	if( !QFileInfo( m_userConfiguration ).exists() &&
+		QFileInfo( m_userConfiguration + ".bak" ).exists() )
 	{
-		QFile( m_personalConfiguration + ".bak" ).copy(
-						m_personalConfiguration );
+		QFile( m_userConfiguration + ".bak" ).copy(
+						m_userConfiguration );
 	}
 
 	// read the XML file and create DOM tree
-	QFile cfg_file( m_personalConfiguration );
+	QFile cfg_file( m_userConfiguration );
 	if( !cfg_file.open( QIODevice::ReadOnly ) )
 	{
 		setDefaultWindowsSizeAndPosition();
@@ -909,7 +909,7 @@ void ClassroomManager::loadPersonalConfig( void )
 		QMessageBox::critical( this, tr( "Error in configuration file" ),
 					tr( "Error while parsing configuration file %1. Please fix the "
 						"file manually. Otherwise you should delete the file." ).
-					arg( m_personalConfiguration ) );
+					arg( m_userConfiguration ) );
 		cfg_file.close();
 		setDefaultWindowsSizeAndPosition();
 		return;
@@ -1495,7 +1495,7 @@ void ClassroomManager::editClientSettings( void )
 			settingsDlg.exec();
 		}
 		saveGlobalClientConfig();
-		savePersonalConfig();
+		saveUserConfig();
 	}
 }
 
@@ -1618,7 +1618,7 @@ void ClassroomManager::editClassRoomName( void )
 			cr->setText( 0, classroom_name );
 		}
 		saveGlobalClientConfig();
-		savePersonalConfig();
+		saveUserConfig();
 	}
 }
 
@@ -1717,7 +1717,7 @@ void ClassroomManager::addClient( void )
 	settingsDlg.setWindowTitle( tr( "Add computer" ) );
 	settingsDlg.exec();
 	saveGlobalClientConfig();
-	savePersonalConfig();
+	saveUserConfig();
 }
 
 

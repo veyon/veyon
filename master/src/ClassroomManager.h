@@ -64,8 +64,8 @@ public:
 
 	void loadGlobalClientConfig( void );
 	void saveGlobalClientConfig( void );
-	void loadPersonalConfig( void );
-	void savePersonalConfig( void );
+	void loadUserConfig( void );
+	void saveUserConfig( void );
 	void setDefaultWindowsSizeAndPosition( void );
 
 	QVector<Client *> visibleClients( void ) const;
@@ -210,7 +210,7 @@ private:
 	QVector<Client *> m_clientsToRemove;
 	QVector<classRoom *> m_classRoomsToRemove;
 
-	const QString m_personalConfiguration;
+	const QString m_userConfiguration;
 	const QString m_globalClientConfiguration;
 
 	/* context menu: */

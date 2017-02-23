@@ -31,7 +31,7 @@
 #include "ItalcCoreConnection.h"
 #include "ComputerManager.h"
 #include "MonitoringMode.h"
-#include "PersonalConfig.h"
+#include "UserConfig.h"
 #include "PluginManager.h"
 
 
@@ -42,8 +42,8 @@ MasterCore::MasterCore() :
 	m_features( featureList() ),
 	m_localComputer( NetworkObject::Uid::createUuid(), "localhost", QHostAddress( QHostAddress::LocalHost ).toString() ),
 	m_localComputerControlInterface( m_localComputer ),
-	m_personalConfig( new PersonalConfig( Configuration::Store::JsonFile ) ),
-	m_computerManager( new ComputerManager( *m_personalConfig, this ) ),
+	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
+	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_currentMode()
 {
 	m_localComputerControlInterface.start( QSize() );
@@ -55,8 +55,8 @@ MasterCore::~MasterCore()
 {
 	delete m_computerManager;
 
-	m_personalConfig->flushStore();
-	delete m_personalConfig;
+	m_userConfig->flushStore();
+	delete m_userConfig;
 
 	delete m_featureManager;
 }

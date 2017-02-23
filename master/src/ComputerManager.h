@@ -29,13 +29,13 @@
 #include "CheckableItemProxyModel.h"
 
 class QSortFilterProxyModel;
-class PersonalConfig;
+class UserConfig;
 
 class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager( PersonalConfig& config, QObject* parent );
+	ComputerManager( UserConfig& config, QObject* parent );
 	~ComputerManager() override;
 
 	QAbstractItemModel* networkObjectModel()
@@ -81,7 +81,7 @@ private:
 	ComputerList getComputers( const QModelIndex& parent );
 	QSize computerScreenSize() const;
 
-	PersonalConfig& m_config;
+	UserConfig& m_config;
 
 	CheckableItemProxyModel* m_checkableNetworkObjectProxyModel;
 	QSortFilterProxyModel* m_networkObjectSortProxyModel;
