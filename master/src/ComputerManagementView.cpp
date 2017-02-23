@@ -56,8 +56,8 @@ ComputerManagementView::~ComputerManagementView()
 void ComputerManagementView::addClassroom()
 {
 	ClassroomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
-	if( dialog.exec() )
+	if( dialog.exec() && dialog.selectedClassroom().isEmpty() == false )
 	{
-		//dialog.selectedClassroom();
+		m_computerManager.addRoom( dialog.selectedClassroom() );
 	}
 }
