@@ -25,12 +25,11 @@
 #ifndef NETWORK_OBJECT_TREE_MODEL_H
 #define NETWORK_OBJECT_TREE_MODEL_H
 
-#include <QAbstractItemModel>
+#include "NetworkObjectModel.h"
 
-class NetworkObject;
 class NetworkObjectDirectory;
 
-class NetworkObjectTreeModel : public QAbstractItemModel
+class NetworkObjectTreeModel : public NetworkObjectModel
 {
 	Q_OBJECT
 public:
@@ -47,17 +46,6 @@ public:
 
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-
-	typedef enum Roles
-	{
-		CheckStateRole = Qt::CheckStateRole,
-		NetworkObjectNameRole = Qt::DisplayRole,
-		NetworkObjectUidRole = Qt::UserRole,
-		NetworkObjectTypeRole,
-		NetworkobjectHostAddressRole,
-		NetworkObjectMacAddressRole,
-		NetworkObjectDirectoryAddressRole
-	} Role;
 
 private slots:
 	void beginInsertObjects( const NetworkObject& parent, int index, int count );

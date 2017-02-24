@@ -26,8 +26,8 @@
 #include "NetworkObjectTreeModel.h"
 
 
-NetworkObjectTreeModel::NetworkObjectTreeModel(NetworkObjectDirectory* directory, QObject *parent) :
-	QAbstractItemModel(parent),
+NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* directory, QObject* parent ) :
+	NetworkObjectModel( parent ),
 	m_directory( directory )
 {
 	connect( m_directory, &NetworkObjectDirectory::objectsAboutToBeInserted,
