@@ -35,8 +35,7 @@
 
 
 DemoFeaturePlugin::DemoFeaturePlugin() :
-	m_fullscreenDemoFeature( Feature::Mode,
-							 Feature::ScopeAll,
+	m_fullscreenDemoFeature( Feature::Mode | Feature::AllComponents,
 							 Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
 							 tr( "Fullscreen demo" ), tr( "Stop demo" ),
 							 tr( "In this mode your screen is being displayed on "
@@ -44,8 +43,7 @@ DemoFeaturePlugin::DemoFeaturePlugin() :
 								 "aren't able to do something else as all input "
 								 "devices are locked in this mode." ),
 							 ":/demo/presentation-fullscreen.png" ),
-	m_windowDemoFeature( Feature::Mode,
-						 Feature::ScopeAll,
+	m_windowDemoFeature( Feature::Mode | Feature::AllComponents,
 						 Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
 						 tr( "Window demo" ), tr( "Stop demo" ),
 						 tr( "In this mode your screen being displayed in a "
@@ -53,12 +51,10 @@ DemoFeaturePlugin::DemoFeaturePlugin() :
 							 "able to switch to other windows and thus "
 							 "can continue to work." ),
 						 ":/demo/presentation-window.png" ),
-	m_demoServerFeature( Feature::BuiltinService,
-						 Feature::ScopeSingleService,
+	m_demoServerFeature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 QString(), QString(), QString() ),
-	m_demoClientFeature( Feature::BuiltinService,
-						 Feature::ScopeSingleService,
+	m_demoClientFeature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 						 Feature::Uid( "7b68b525-1114-4aea-8d42-ab4f26bbf5e5" ),
 						 QString(), QString(), QString() ),
 	m_features(),

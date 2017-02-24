@@ -25,7 +25,7 @@
 #include "MonitoringMode.h"
 
 MonitoringMode::MonitoringMode() :
-	m_monitoringModeFeature( Feature::Mode, Feature::ScopeAll,
+	m_monitoringModeFeature( Feature::Mode | Feature::Master | Feature::Builtin,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
 							 tr( "Monitoring" ), QString(),
 							 tr( "This is the default mode and allows you to monitor all computers in the classroom." ),

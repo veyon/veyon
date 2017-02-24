@@ -30,8 +30,7 @@
 
 
 ScreenshotFeaturePlugin::ScreenshotFeaturePlugin() :
-	m_screenshotFeature( Feature( Feature::Action,
-								  Feature::ScopeAll,
+	m_screenshotFeature( Feature( Feature::Action | Feature::Master,
 								  Feature::Uid( "d5ee3aac-2a87-4d05-b827-0c20344490bd" ),
 								  tr( "Screenshot" ), QString(),
 								  tr( "Use this function to take a screenshot of selected computers." ),

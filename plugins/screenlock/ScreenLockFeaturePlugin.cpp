@@ -28,8 +28,7 @@
 
 
 ScreenLockFeaturePlugin::ScreenLockFeaturePlugin() :
-	m_screenLockFeature( Feature::Mode,
-						 Feature::ScopeAll,
+	m_screenLockFeature( Feature::Mode | Feature::AllComponents,
 						 Feature::Uid( "ccb535a2-1d24-4cc1-a709-8b47d2b2ac79" ),
 						 tr( "Lock" ), tr( "Unlock" ),
 						 tr( "To have all user's full attention you can lock "

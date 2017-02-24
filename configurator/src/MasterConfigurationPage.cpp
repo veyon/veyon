@@ -94,10 +94,7 @@ void MasterConfigurationPage::populateFeatureComboBox()
 
 	for( const auto& feature : featureManager.features() )
 	{
-		if( feature.type() == Feature::Mode ||
-				feature.type() == Feature::Action ||
-				feature.type() == Feature::Session ||
-				feature.type() == Feature::Operation )
+		if( feature.testFlag( Feature::Master ) )
 		{
 			ui->computerDoubleClickFeature->addItem( QIcon( feature.iconUrl() ),
 													 feature.displayName(),

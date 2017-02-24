@@ -331,14 +331,10 @@ void MainWindow::addFeaturesToToolBar()
 		} );
 		btn->addTo( ui->toolBar );
 
-		switch( feature.type() )
+		if( feature.testFlag( Feature::Mode ) )
 		{
-		case Feature::Mode:
 			btn->setCheckable( true );
 			m_modeGroup->addButton( btn, qHash( feature.uid() ) );
-			break;
-		default:
-			break;
 		}
 	}
 }

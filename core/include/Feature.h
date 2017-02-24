@@ -37,38 +37,34 @@ class ITALC_CORE_EXPORT Feature : public QObject
 	Q_OBJECT
 public:
 	typedef QUuid Uid;
-	typedef enum Types
-	{
-		None,
-		Mode,
-		Action,
-		Session,
-		Operation,
-		BuiltinService,
-		TypeCount
-	} Type;
 
-	enum ScopeFlags
+	enum FeatureFlag
 	{
-		ScopeNone = 0x00,
-		ScopeMaster = 0x01,
-		ScopeSingleService = 0x02,
-		ScopeAllServices = 0x04,
-		ScopeAll = ScopeMaster | ScopeAllServices
+		NoFlags,
+		Mode = 0x0001,
+		Action = 0x0002,
+		Session = 0x0004,
+		Operation = 0x0008,
+		Dialog = 0x0010,
+		Master = 0x0100,
+		Service = 0x0200,
+		Worker = 0x0400,
+		Builtin = 0x1000,
+		AllComponents = Master | Service | Worker
 	} ;
 
-	Q_DECLARE_FLAGS(Scopes, ScopeFlags)
-	Q_FLAG(Scopes)
+	Q_DECLARE_FLAGS(Flags, FeatureFlag)
+	Q_FLAG(Flags)
 
-	Feature( Type type, Scopes scopes, const Uid& uid,
+	Feature( Flags flags,
+			 const Uid& uid,
 			 const QString& displayName,
 			 const QString& displayNameActive,
 			 const QString& description,
 			 const QString& iconUrl = QString(),
 			 const QKeySequence& shortcut = QKeySequence() ) :
 		QObject(),
-		m_type( type ),
-		m_scopes( scopes ),
+		m_flags( flags ),
 		m_uid( uid ),
 		m_displayName( displayName ),
 		m_displayNameActive( displayNameActive ),
@@ -80,8 +76,7 @@ public:
 
 	Feature( const Uid& uid = Uid() ) :
 		QObject(),
-		m_type( None ),
-		m_scopes( ScopeNone ),
+		m_flags( NoFlags ),
 		m_uid( uid ),
 		m_displayName(),
 		m_displayNameActive(),
@@ -93,8 +88,7 @@ public:
 
 	Feature( const Feature& other ) :
 		QObject(),
-		m_type( other.type() ),
-		m_scopes( other.scopes() ),
+		m_flags( other.flags() ),
 		m_uid( other.uid() ),
 		m_displayName( other.displayName() ),
 		m_displayNameActive( other.displayNameActive() ),
@@ -114,14 +108,9 @@ public:
 		return other.uid() != uid();
 	}
 
-	Type type() const
+	bool testFlag( FeatureFlag flag ) const
 	{
-		return m_type;
-	}
-
-	Scopes scopes() const
-	{
-		return m_scopes;
+		return m_flags.testFlag( flag );
 	}
 
 	const Uid& uid() const
@@ -155,8 +144,12 @@ public:
 	}
 
 private:
-	Type m_type;
-	Scopes m_scopes;
+	Flags flags() const
+	{
+		return m_flags;
+	}
+
+	Flags m_flags;
 	Uid m_uid;
 	QString m_displayName;
 	QString m_displayNameActive;
@@ -165,6 +158,8 @@ private:
 	QKeySequence m_shortcut;
 
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Feature::Flags)
 
 typedef QList<Feature> FeatureList;
 

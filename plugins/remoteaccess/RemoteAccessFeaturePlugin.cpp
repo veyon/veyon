@@ -27,14 +27,12 @@
 
 
 RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin() :
-	m_remoteViewFeature( Feature::Session,
-						 Feature::ScopeMaster,
+	m_remoteViewFeature( Feature::Session | Feature::Master,
 						 Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ),
 						 tr( "Remote view" ), QString(),
 						 tr( "Open a remote view for a computer without interaction." ),
 						 ":/remoteaccess/kmag.png" ),
-	m_remoteControlFeature( Feature::Session,
-							Feature::ScopeMaster,
+	m_remoteControlFeature( Feature::Session | Feature::Master,
 							Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ),
 							tr( "Remote control" ), QString(),
 							tr( "Open a remote control window for a computer." ),

@@ -91,7 +91,7 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 
 		if( previousPluginUid.isNull() == false &&
 				pluginUid != previousPluginUid &&
-				feature.type() != Feature::Mode )
+				feature.testFlag( Feature::Mode ) == false )
 		{
 			m_featureMenu->addSeparator();
 		}
@@ -152,11 +152,11 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 	ComputerControlInterfaceList computerControlInterfaces = selectedComputerControlInterfaces();
 
 	// stop any active mode feature
-	if( feature.type() == Feature::Mode )
+	if( feature.testFlag( Feature::Mode ) )
 	{
 		for( const auto& currentFeature : m_masterCore->features() )
 		{
-			if( currentFeature.type() == Feature::Mode && currentFeature != feature )
+			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != feature )
 			{
 				m_masterCore->featureManager().stopMasterFeature( currentFeature, computerControlInterfaces,
 																  m_masterCore->localComputerControlInterface(), topLevelWidget() );

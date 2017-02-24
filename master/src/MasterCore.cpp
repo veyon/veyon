@@ -67,7 +67,7 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 {
 	ComputerControlInterfaceList computerControlInterfaces = m_computerManager->computerControlInterfaces();
 
-	if( feature.type() == Feature::Mode  )
+	if( feature.testFlag( Feature::Mode ) )
 	{
 		m_featureManager->stopMasterFeature( Feature( m_currentMode ), computerControlInterfaces,
 											 m_localComputerControlInterface, parent );
@@ -104,7 +104,8 @@ FeatureList MasterCore::featureList() const
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
-			if( feature.type() == Feature::Mode )
+			if( feature.testFlag( Feature::Master ) &&
+					feature.testFlag( Feature::Mode ) )
 			{
 				features += feature;
 			}
@@ -115,9 +116,8 @@ FeatureList MasterCore::featureList() const
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
-			if( feature.type() == Feature::Action ||
-					feature.type() == Feature::Session ||
-					feature.type() == Feature::Operation )
+			if( feature.testFlag( Feature::Master ) &&
+					feature.testFlag( Feature::Mode ) == false )
 			{
 				features += feature;
 			}
