@@ -29,6 +29,7 @@
 #include "CheckableItemProxyModel.h"
 
 class QHostAddress;
+class NetworkObjectOverlayDataModel;
 class StringListFilterProxyModel;
 class UserConfig;
 
@@ -93,9 +94,14 @@ private:
 	ComputerList getComputers( const QModelIndex& parent );
 	QSize computerScreenSize() const;
 
+	void startComputerControlInterface( Computer& computer );
+	void updateUser( Computer& computer );
+	QModelIndex findNetworkObject( const NetworkObject::Uid& networkObjectUid, const QModelIndex& parent = QModelIndex() );
+
 	UserConfig& m_config;
 
 	QAbstractItemModel* m_networkObjectModel;
+	NetworkObjectOverlayDataModel* m_networkObjectOverlayDataModel;
 	CheckableItemProxyModel* m_computerTreeModel;
 	StringListFilterProxyModel* m_networkObjectSortFilterProxyModel;
 

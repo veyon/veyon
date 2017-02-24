@@ -31,6 +31,7 @@
 #include "ItalcConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
+#include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectTreeModel.h"
 #include "StringListFilterProxyModel.h"
 #include "UserConfig.h"
@@ -40,10 +41,12 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
 	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
+	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
 	m_networkObjectSortFilterProxyModel( new StringListFilterProxyModel( this ) )
 {
-	m_networkObjectSortFilterProxyModel->setSourceModel( m_networkObjectModel );
+	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
+	m_networkObjectSortFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
 	m_computerTreeModel->setSourceModel( m_networkObjectSortFilterProxyModel );
 
 	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
@@ -118,7 +121,7 @@ void ComputerManager::reloadComputerList()
 
 	for( auto& computer : m_computerList )
 	{
-		computer.controlInterface().start( computerScreenSize() );
+		startComputerControlInterface( computer );
 	}
 
 	emit computerListReset();
@@ -155,14 +158,14 @@ void ComputerManager::updateComputerList()
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.insert( index, computer );
-			m_computerList[index].controlInterface().start( computerScreenSize() );
+			startComputerControlInterface( m_computerList[index] );
 			emit computerInserted();
 		}
 		else if( index >= m_computerList.count() )
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.append( computer );
-			m_computerList.last().controlInterface().start( computerScreenSize() );
+			startComputerControlInterface( m_computerList.last() );
 			emit computerInserted();
 		}
 
@@ -307,4 +310,63 @@ QSize ComputerManager::computerScreenSize() const
 {
 	return QSize( m_config.monitoringScreenSize(),
 				  m_config.monitoringScreenSize() * 9 / 16 );
+}
+
+
+
+void ComputerManager::startComputerControlInterface( Computer& computer )
+{
+	computer.controlInterface().start( computerScreenSize() );
+
+	connect( &computer.controlInterface(), &ComputerControlInterface::userChanged,
+			 [&] () { updateUser( computer ); } );
+}
+
+
+
+void ComputerManager::updateUser( Computer& computer )
+{
+	QModelIndex networkObjectIndex = findNetworkObject( computer.networkObjectUid() );
+
+	if( networkObjectIndex.isValid() )
+	{
+		networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
+		m_networkObjectOverlayDataModel->setData( networkObjectIndex,
+												  computer.controlInterface().user(),
+												  Qt::DisplayRole );
+	}
+}
+
+
+
+QModelIndex ComputerManager::findNetworkObject( const NetworkObject::Uid& networkObjectUid, const QModelIndex& parent )
+{
+	QAbstractItemModel* model = networkObjectModel();
+
+	int rows = model->rowCount( parent );
+
+	for( int i = 0; i < rows; ++i )
+	{
+		QModelIndex entryIndex = model->index( i, 0, parent );
+
+		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+
+		if( objectType == NetworkObject::Group )
+		{
+			QModelIndex index = findNetworkObject( networkObjectUid, entryIndex );
+			if( index.isValid() )
+			{
+				return index;
+			}
+		}
+		else if( objectType == NetworkObject::Host )
+		{
+			if( model->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>() == networkObjectUid )
+			{
+				return entryIndex;
+			}
+		}
+	}
+
+	return QModelIndex();
 }
