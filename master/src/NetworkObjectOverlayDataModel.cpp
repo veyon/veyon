@@ -65,7 +65,7 @@ QVariant NetworkObjectOverlayDataModel::data( const QModelIndex& index, int role
 		return QIdentityProxyModel::data( index, role );
 	}
 
-	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::NetworkObjectUidRole ).value<NetworkObject::Uid>();
+	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>();
 
 	if( networkObjectUid.isNull() == false && m_overlayData.contains( networkObjectUid ) )
 	{
@@ -84,7 +84,7 @@ bool NetworkObjectOverlayDataModel::setData( const QModelIndex& index, const QVa
 		return QIdentityProxyModel::setData( index, value, role );
 	}
 
-	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::NetworkObjectUidRole ).value<NetworkObject::Uid>();
+	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>();
 
 	m_overlayData[networkObjectUid] = value;
 

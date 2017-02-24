@@ -41,12 +41,12 @@ public:
 	typedef enum Roles
 	{
 		CheckStateRole = Qt::CheckStateRole,
-		NetworkObjectNameRole = Qt::DisplayRole,
-		NetworkObjectUidRole = Qt::UserRole,
-		NetworkObjectTypeRole,
-		NetworkobjectHostAddressRole,
-		NetworkObjectMacAddressRole,
-		NetworkObjectDirectoryAddressRole
+		NameRole = Qt::DisplayRole,
+		UidRole = Qt::UserRole,
+		TypeRole,
+		HostAddressRole,
+		MacAddressRole,
+		DirectoryAddressRole
 	} Role;
 
 };

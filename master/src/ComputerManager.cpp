@@ -42,7 +42,7 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_config( config ),
 	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
-	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectTreeModel::NetworkObjectUidRole, this ) ),
+	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectSortFilterProxyModel( new StringListFilterProxyModel( this ) )
 {
 	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
@@ -240,7 +240,7 @@ QString ComputerManager::findRoomOfComputer( const QHostAddress& hostAddress, co
 	{
 		QModelIndex entryIndex = model->index( i, 0, parent );
 
-		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
 
 		if( objectType == NetworkObject::Group )
 		{
@@ -252,12 +252,12 @@ QString ComputerManager::findRoomOfComputer( const QHostAddress& hostAddress, co
 		}
 		else if( objectType == NetworkObject::Host )
 		{
-			QString currentHostAddress = model->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString();
+			QString currentHostAddress = model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString();
 
 			if ( QHostAddress( currentHostAddress ) == hostAddress ||
 				 QHostInfo::fromName( currentHostAddress ).addresses().contains( hostAddress ) )
 			{
-				return model->data( parent, NetworkObjectTreeModel::NetworkObjectNameRole ).toString();
+				return model->data( parent, NetworkObjectModel::NameRole ).toString();
 			}
 		}
 	}
@@ -277,14 +277,14 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 	{
 		QModelIndex entryIndex = computerTreeModel()->index( i, 0, parent );
 
-		if( computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::CheckStateRole ).value<Qt::CheckState>() ==
+		if( computerTreeModel()->data( entryIndex, NetworkObjectModel::CheckStateRole ).value<Qt::CheckState>() ==
 				Qt::Unchecked )
 		{
 			continue;
 		}
 
 		auto objectType = static_cast<NetworkObject::Type>(
-					computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+					computerTreeModel()->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
 
 		switch( objectType )
 		{
@@ -292,10 +292,10 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 			computers += getComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>(),
-								   computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectNameRole ).toString(),
-								   computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkobjectHostAddressRole ).toString(),
-								   computerTreeModel()->data( entryIndex, NetworkObjectTreeModel::NetworkObjectMacAddressRole ).toString() );
+			computers += Computer( computerTreeModel()->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
+								   computerTreeModel()->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
+								   computerTreeModel()->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
+								   computerTreeModel()->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
 			break;
 		default: break;
 		}
@@ -349,7 +349,7 @@ QModelIndex ComputerManager::findNetworkObject( const NetworkObject::Uid& networ
 	{
 		QModelIndex entryIndex = model->index( i, 0, parent );
 
-		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectTreeModel::NetworkObjectTypeRole ).toInt() );
+		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
 
 		if( objectType == NetworkObject::Group )
 		{
@@ -361,7 +361,7 @@ QModelIndex ComputerManager::findNetworkObject( const NetworkObject::Uid& networ
 		}
 		else if( objectType == NetworkObject::Host )
 		{
-			if( model->data( entryIndex, NetworkObjectTreeModel::NetworkObjectUidRole ).value<NetworkObject::Uid>() == networkObjectUid )
+			if( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>() == networkObjectUid )
 			{
 				return entryIndex;
 			}
