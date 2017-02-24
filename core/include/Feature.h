@@ -108,6 +108,11 @@ public:
 		return other.uid() != uid();
 	}
 
+	bool isValid() const
+	{
+		return m_flags != NoFlags;
+	}
+
 	bool testFlag( FeatureFlag flag ) const
 	{
 		return m_flags.testFlag( flag );
