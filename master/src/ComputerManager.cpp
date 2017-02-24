@@ -269,22 +269,22 @@ QString ComputerManager::findRoomOfComputer( const QHostAddress& hostAddress, co
 
 ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 {
-	int rows = computerTreeModel()->rowCount( parent );
+	QAbstractItemModel* model = computerTreeModel();
+
+	int rows = model->rowCount( parent );
 
 	ComputerList computers;
 
 	for( int i = 0; i < rows; ++i )
 	{
-		QModelIndex entryIndex = computerTreeModel()->index( i, 0, parent );
+		QModelIndex entryIndex = model->index( i, 0, parent );
 
-		if( computerTreeModel()->data( entryIndex, NetworkObjectModel::CheckStateRole ).value<Qt::CheckState>() ==
-				Qt::Unchecked )
+		if( model->data( entryIndex, NetworkObjectModel::CheckStateRole ).value<Qt::CheckState>() == Qt::Unchecked )
 		{
 			continue;
 		}
 
-		auto objectType = static_cast<NetworkObject::Type>(
-					computerTreeModel()->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
+		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
 
 		switch( objectType )
 		{
@@ -292,10 +292,10 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 			computers += getComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( computerTreeModel()->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
-								   computerTreeModel()->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
-								   computerTreeModel()->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
-								   computerTreeModel()->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
+			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
+								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
+								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
+								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
 			break;
 		default: break;
 		}
