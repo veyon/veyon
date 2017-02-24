@@ -50,6 +50,8 @@ public:
 
 	const FeatureList& features( const Plugin::Uid& pluginUid ) const;
 
+	const Feature& feature( const Feature::Uid& featureUid ) const;
+
 	Plugin::Uid pluginUid( const Feature& feature ) const;
 
 	void startMasterFeature( const Feature& feature,
@@ -68,6 +70,7 @@ private:
 	FeatureList m_features;
 	FeatureList m_emptyFeatureList;
 	FeaturePluginInterfaceList m_featureInterfaces;
+	Feature m_dummyFeature;
 
 
 };

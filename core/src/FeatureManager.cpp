@@ -32,7 +32,8 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	QObject( &pluginManager ),
 	m_pluginManager( pluginManager ),
 	m_features(),
-	m_emptyFeatureList()
+	m_emptyFeatureList(),
+	m_dummyFeature()
 {
 	for( auto pluginInterface : m_pluginManager.pluginInterfaces() )
 	{
@@ -59,6 +60,24 @@ const FeatureList& FeatureManager::features( const Plugin::Uid& pluginUid ) cons
 	}
 
 	return m_emptyFeatureList;
+}
+
+
+
+const Feature& FeatureManager::feature( const Feature::Uid& featureUid ) const
+{
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		for( const auto& feature : featureInterface->featureList() )
+		{
+			if( feature.uid() == featureUid )
+			{
+				return feature;
+			}
+		}
+	}
+
+	return m_dummyFeature;
 }
 
 
