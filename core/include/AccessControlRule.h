@@ -80,6 +80,7 @@ public:
 		ConditionLocatedInSameComputerLab,
 		ConditionAccessFromLocalHost,
 		ConditionAccessFromLocalUser,
+		ConditionAccessFromAlreadyConnectedUser,
 		ConditionCount
 	} ;
 
