@@ -89,7 +89,10 @@ public:
 		m_screenUpdated = false;
 	}
 
-	QString user() const;
+	const QString& user() const
+	{
+		return m_user;
+	}
 
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
@@ -101,11 +104,13 @@ private slots:
 	}
 
 	void updateState();
+	void updateUser();
 
 private:
 	const Computer& m_computer;
 
 	State m_state;
+	QString m_user;
 
 	QSize m_scaledScreenSize;
 
@@ -113,6 +118,9 @@ private:
 	ItalcCoreConnection* m_coreConnection;
 
 	bool m_screenUpdated;
+
+signals:
+	void userChanged();
 
 };
 

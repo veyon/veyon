@@ -32,6 +32,7 @@ ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	QObject(),
 	m_computer( computer ),
 	m_state( Disconnected ),
+	m_user(),
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
@@ -67,6 +68,8 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize )
 				 this, &ComputerControlInterface::setScreenUpdateFlag );
 		connect( m_vncConnection, &ItalcVncConnection::stateChanged,
 				 this, &ComputerControlInterface::updateState );
+		connect( m_coreConnection, &ItalcCoreConnection::receivedUserInfo,
+				 this, &ComputerControlInterface::updateUser );
 	}
 }
 
@@ -130,18 +133,6 @@ QImage ComputerControlInterface::screen() const
 
 
 
-QString ComputerControlInterface::user() const
-{
-	if( m_coreConnection )
-	{
-		return m_coreConnection->user();
-	}
-
-	return QString();
-}
-
-
-
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_coreConnection && m_coreConnection->isConnected() )
@@ -165,15 +156,38 @@ void ComputerControlInterface::updateState()
 		default: m_state = Unknown; break;
 		}
 
-		if( m_coreConnection )
+		if( m_state == Connected && m_coreConnection )
 		{
 			m_coreConnection->sendGetUserInformationRequest();
+		}
+		else
+		{
+			updateUser();
 		}
 	}
 	else
 	{
 		m_state = Disconnected;
+		updateUser();
 	}
 
 	setScreenUpdateFlag();
+}
+
+
+
+void ComputerControlInterface::updateUser()
+{
+	if( m_state == Connected && m_coreConnection && m_coreConnection->user() != m_user )
+	{
+		m_user = m_coreConnection->user();
+
+		emit userChanged();
+	}
+	else if( m_user.isEmpty() == false )
+	{
+		m_user.clear();
+
+		emit userChanged();
+	}
 }
