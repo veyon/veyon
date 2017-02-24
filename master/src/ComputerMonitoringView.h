@@ -50,6 +50,7 @@ public:
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
 private slots:
+	void runDoubleClickFeature( const QModelIndex& index );
 	void showContextMenu( const QPoint& pos );
 	void setComputerScreenSize( int size );
 	void runFeature( const Feature& feature );

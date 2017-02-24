@@ -28,6 +28,7 @@
 #include "ComputerMonitoringView.h"
 #include "MasterCore.h"
 #include "FeatureManager.h"
+#include "ItalcConfiguration.h"
 #include "UserConfig.h"
 
 #include "ui_ComputerMonitoringView.h"
@@ -41,8 +42,12 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
+	connect( ui->listView, &QListView::doubleClicked,
+			 this, &ComputerMonitoringView::runDoubleClickFeature );
+
 	connect( ui->listView, &QListView::customContextMenuRequested,
 			 this, &ComputerMonitoringView::showContextMenu );
+
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 this, &ComputerMonitoringView::setComputerScreenSize );
 }
@@ -119,6 +124,19 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 	}
 
 	return computerControlInterfaces;
+}
+
+
+
+void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
+{
+	const Feature& feature = m_masterCore->featureManager().feature( ItalcCore::config->computerDoubleClickFeature() );
+
+	if( index.isValid() && feature.isValid() )
+	{
+		ui->listView->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		runFeature( feature );
+	}
 }
 
 
