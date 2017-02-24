@@ -39,7 +39,7 @@ CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent )
 
 Qt::ItemFlags CheckableItemProxyModel::flags(const QModelIndex &index) const
 {
-	if( index.isValid() == false )
+	if( index.isValid() == false || index.column() > 0 )
 	{
 		return QIdentityProxyModel::flags( index );
 	}
@@ -56,7 +56,7 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	}
 
-	if( role == Qt::CheckStateRole )
+	if( role == Qt::CheckStateRole && index.column() == 0 )
 	{
 		return m_checkStates.value( QIdentityProxyModel::data( index, m_uidRole ).toUuid() );
 	}
@@ -68,7 +68,7 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 
 bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-	if( role != Qt::CheckStateRole )
+	if( role != Qt::CheckStateRole || index.column() > 0 )
 	{
 		return QIdentityProxyModel::setData( index, value, role );
 	}
