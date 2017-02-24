@@ -95,12 +95,7 @@ int NetworkObjectTreeModel::rowCount(const QModelIndex &parent) const
 
 int NetworkObjectTreeModel::columnCount(const QModelIndex &parent) const
 {
-	if( parent.isValid() == false || parent.internalId() == 0 )
-	{
-		return 1;
-	}
-
-	return 0;
+	return 1;
 }
 
 
