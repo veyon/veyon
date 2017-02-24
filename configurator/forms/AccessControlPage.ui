@@ -83,7 +83,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="authorizedGroupsComboBox">
+    <widget class="QGroupBox" name="authorizedUserGroups">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -197,7 +197,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="accessControlRulesComboBox">
+    <widget class="QGroupBox" name="accessControlRules">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -439,7 +439,7 @@
   <connection>
    <sender>isAccessRestrictedToUserGroups</sender>
    <signal>toggled(bool)</signal>
-   <receiver>authorizedGroupsComboBox</receiver>
+   <receiver>authorizedUserGroups</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -455,7 +455,7 @@
   <connection>
    <sender>isAccessControlRulesProcessingEnabled</sender>
    <signal>toggled(bool)</signal>
-   <receiver>accessControlRulesComboBox</receiver>
+   <receiver>accessControlRules</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
