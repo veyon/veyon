@@ -190,22 +190,28 @@ QImage ComputerListModel::prepareIcon(const QImage &icon)
 
 QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface &controlInterface ) const
 {
-	QImage icon;
+	QImage image;
 
 	switch( controlInterface.state() )
 	{
 	case ComputerControlInterface::Connected:
-		return controlInterface.scaledScreen();
+		image = controlInterface.scaledScreen();
+		if( image.isNull() == false )
+		{
+			return image;
+		}
+
+		image = m_iconUnknownState;
 		break;
 
 	case ComputerControlInterface::Unreachable:
-		icon = m_iconComputerUnreachable;
+		image = m_iconComputerUnreachable;
 		break;
 
 	default:
-		icon = m_iconUnknownState;
+		image = m_iconUnknownState;
 		break;
 	}
 
-	return icon.scaled( controlInterface.scaledScreenSize(), Qt::KeepAspectRatio );
+	return image.scaled( controlInterface.scaledScreenSize(), Qt::KeepAspectRatio );
 }
