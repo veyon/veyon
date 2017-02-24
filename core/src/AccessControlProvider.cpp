@@ -551,6 +551,14 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
+	if( rule.hasCondition( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) )
+	{
+		hasConditions = true;
+
+		// TODO: implement connection list check logic
+		return false;
+	}
+
 	// do not match the rule if no conditions are set at all
 	if( hasConditions == false )
 	{
