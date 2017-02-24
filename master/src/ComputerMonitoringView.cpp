@@ -73,14 +73,13 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	m_masterCore = &masterCore;
 
 	// initialize grid size slider
+	int size = DefaultComputerScreenSize;
 	if( m_masterCore->userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
 	{
-		ui->gridSizeSlider->setValue( m_masterCore->userConfig().monitoringScreenSize() );
+		size = m_masterCore->userConfig().monitoringScreenSize();
 	}
-	else
-	{
-		ui->gridSizeSlider->setValue( DefaultComputerScreenSize );
-	}
+
+	ui->gridSizeSlider->setValue( size );
 
 	// create computer list model and attach it to list view
 	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
@@ -155,6 +154,8 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 		m_masterCore->userConfig().setMonitoringScreenSize( size );
 
 		m_masterCore->computerManager().updateComputerScreenSize();
+
+		ui->listView->setIconSize( QSize( size, size * 9 / 16 ) );
 	}
 }
 
