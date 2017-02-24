@@ -143,7 +143,7 @@ void JsonStore::flush( Object* obj )
 bool JsonStore::isWritable() const
 {
 	QFile outfile( configurationFilePath() );
-	outfile.open( QFile::WriteOnly );
+	outfile.open( QFile::WriteOnly | QFile::Append );
 	outfile.close();
 
 	return QFileInfo( configurationFilePath() ).isWritable();
