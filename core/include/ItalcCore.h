@@ -27,9 +27,10 @@
 
 #include <italcconfig.h>
 
-#include <QtCore/QPair>
-#include <QtCore/QString>
-#include <QtCore/QVariant>
+#include <QPair>
+#include <QString>
+#include <QVariant>
+#include <QDebug>
 
 #if defined(BUILD_ITALC_CORE_LIBRARY)
 #  define ITALC_CORE_EXPORT Q_DECL_EXPORT
