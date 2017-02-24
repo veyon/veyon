@@ -67,6 +67,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->isLocatedInSameComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInSameComputerLab ) );
 	ui->isLocalHostAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalHost ) );
 	ui->isLocalUserAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalUser ) );
+	ui->isSameUserAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) );
 
 	// load condition arguments
 	ui->groupsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() );
@@ -142,6 +143,11 @@ void AccessControlRuleEditDialog::accept()
 	if( ui->isLocalUserAccessCheckBox->isChecked() )
 	{
 		m_rule.setCondition( AccessControlRule::ConditionAccessFromLocalUser, true );
+	}
+
+	if( ui->isSameUserAccessCheckBox->isChecked() )
+	{
+		m_rule.setCondition( AccessControlRule::ConditionAccessFromAlreadyConnectedUser, true );
 	}
 
 	// save action
