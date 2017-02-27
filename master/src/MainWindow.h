@@ -39,7 +39,6 @@ class SideBar;
 class MainToolBar;
 class MasterCore;
 class ComputerManagementView;
-class WelcomeWidget;
 class ItalcCoreConnection;
 class SnapshotManagementWidget;
 class Feature;
@@ -90,7 +89,6 @@ protected:
 private slots:
 	void handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r );
 
-
 private:
 	void addFeaturesToToolBar();
 	void addFeaturesToSystemTrayMenu();
@@ -106,7 +104,6 @@ private:
 	QSystemTrayIcon m_systemTrayIcon;
 	QList<QAction *> m_sysTrayActions;
 
-	WelcomeWidget* m_welcomeWidget;
 	ComputerManagementView* m_computerManagementView;
 	SnapshotManagementWidget* m_snapshotManagementWidget;
 
