@@ -37,7 +37,6 @@
 #include "WelcomeWidget.h"
 #include "ComputerManagementView.h"
 #include "SnapshotManagementWidget.h"
-#include "ConfigWidget.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "ToolButton.h"
@@ -72,18 +71,15 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	m_welcomeWidget = new WelcomeWidget( ui->centralWidget );
 	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), ui->centralWidget );
 	m_snapshotManagementWidget = new SnapshotManagementWidget( ui->centralWidget );
-	m_configWidget = new ConfigWidget( ui->centralWidget );
 
 	// append sidebar-workspaces to sidebar
 	ui->sideBar->appendTab( m_welcomeWidget, tr( "Welcome" ), QPixmap( ":/resources/view-calendar-month.png" ) );
 	ui->sideBar->appendTab( m_computerManagementView, tr( "Computer management" ), QPixmap( ":/resources/applications-education.png" ) );
 	ui->sideBar->appendTab( m_snapshotManagementWidget, tr( "Snapshot management" ), QPixmap( ":/screenshot/camera-photo.png" ) );
-	ui->sideBar->appendTab( m_configWidget, tr( "Configuration" ), QPixmap( ":/resources/adjustrgb.png" ) );
 
 	ui->centralLayout->insertWidget( 0, m_welcomeWidget );
 	ui->centralLayout->insertWidget( 0, m_computerManagementView );
 	ui->centralLayout->insertWidget( 0, m_snapshotManagementWidget );
-	ui->centralLayout->insertWidget( 0, m_configWidget );
 
 	// create the action-toolbar
 	ui->toolBar->layout()->setSpacing( 4 );

@@ -39,7 +39,6 @@ class SideBar;
 class MainToolBar;
 class MasterCore;
 class ComputerManagementView;
-class ConfigWidget;
 class WelcomeWidget;
 class ItalcCoreConnection;
 class SnapshotManagementWidget;
@@ -110,7 +109,6 @@ private:
 	WelcomeWidget* m_welcomeWidget;
 	ComputerManagementView* m_computerManagementView;
 	SnapshotManagementWidget* m_snapshotManagementWidget;
-	ConfigWidget* m_configWidget;
 
 } ;
 
