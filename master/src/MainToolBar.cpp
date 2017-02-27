@@ -1,7 +1,7 @@
 /*
  *  MainToolBar.cpp - MainToolBar for MainWindow
  *
- *  Copyright (c) 2007-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2007-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,23 +21,28 @@
  *  USA.
  */
 
-
 #include <QMenu>
-#include <QtGui/QPainter>
+#include <QPainter>
 #include <QPaintEvent>
 
 #include "MainToolBar.h"
+#include "MainWindow.h"
+#include "MasterCore.h"
+#include "ToolButton.h"
+#include "UserConfig.h"
 
 
-
-MainToolBar::MainToolBar( QWidget * _parent ) :
-	QToolBar( tr( "Actions" ), _parent )
+MainToolBar::MainToolBar( QWidget* parent ) :
+	QToolBar( tr( "Configuration" ), parent ),
+	m_mainWindow( dynamic_cast<MainWindow *>( parent ) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
 	setPalette( pal );
-}
 
+	ToolButton::setToolTipsDisabled( m_mainWindow->masterCore().userConfig().noToolTips() );
+	ToolButton::setIconOnlyMode( m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
+}
 
 
 
@@ -47,48 +52,48 @@ MainToolBar::~MainToolBar()
 
 
 
-
-void MainToolBar::contextMenuEvent( QContextMenuEvent * _e )
+void MainToolBar::contextMenuEvent( QContextMenuEvent* event )
 {
-	QMenu m( this );
-	foreach( QAction * a, actions() )
-	{
-		QAction * ma = m.addAction( a->text() );
-		ma->setCheckable( true );
-		ma->setChecked( a->isVisible() );
-	}
-	connect( &m, SIGNAL( triggered( QAction * ) ),
-				this, SLOT( toggleButton( QAction * ) ) );
-	m.exec( _e->globalPos() );
+	QMenu menu( this );
 
+	QAction* toolTipAction = menu.addAction( tr( "Disable balloon tooltips" ), this, &MainToolBar::toggleToolTips );
+	toolTipAction->setCheckable( true );
+	toolTipAction->setChecked( m_mainWindow->masterCore().userConfig().noToolTips() );
+
+	QAction* iconModeAction = menu.addAction( tr( "Show icons only" ), this, &MainToolBar::toggleIconMode );
+	iconModeAction->setCheckable( true );
+	iconModeAction->setChecked( m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
+
+	menu.exec( event->globalPos() );
 }
 
 
 
-
-void MainToolBar::paintEvent( QPaintEvent * _pe )
+void MainToolBar::paintEvent( QPaintEvent* event )
 {
 	QPainter p( this );
 	p.setPen( QColor( 48, 48, 48 ) );
-	p.fillRect( _pe->rect(), palette().brush( QPalette::Window ) );
+	p.fillRect( event->rect(), palette().brush( QPalette::Window ) );
 	p.drawLine( 0, 0, width(), 0 );
 	p.drawLine( 0, height()-1, width(), height()-1 );
 }
 
 
 
-
-void MainToolBar::toggleButton( QAction * _a )
+void MainToolBar::toggleToolTips()
 {
-	foreach( QAction * a, actions() )
-	{
-		if( a->text() == _a->text() )
-		{
-			a->setVisible( !a->isVisible() );
-			break;
-		}
-	}
+	bool newToolTipState = !m_mainWindow->masterCore().userConfig().noToolTips();
+
+	ToolButton::setToolTipsDisabled( newToolTipState );
+	m_mainWindow->masterCore().userConfig().setNoToolTips( newToolTipState );
 }
 
 
 
+void MainToolBar::toggleIconMode()
+{
+	bool newToolButtonIconMode = !m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode();
+
+	ToolButton::setIconOnlyMode( newToolButtonIconMode );
+	m_mainWindow->masterCore().userConfig().setToolButtonIconOnlyMode( newToolButtonIconMode );
+}

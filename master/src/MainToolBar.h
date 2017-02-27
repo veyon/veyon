@@ -1,7 +1,7 @@
 /*
  * MainToolBar.h - MainToolBar for MainWindow
  *
- * Copyright (c) 2007-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2007-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,24 +26,27 @@
 
 #include <QToolBar>
 
+class MainWindow;
 
 class MainToolBar : public QToolBar
 {
 	Q_OBJECT
 public:
-	MainToolBar( QWidget * _parent );
+	MainToolBar( QWidget* parent );
 	virtual ~MainToolBar();
 
 
-private:
-	virtual void contextMenuEvent( QContextMenuEvent * _e );
-	virtual void paintEvent( QPaintEvent * _pe );
-
-
 private slots:
-	void toggleButton( QAction * );
+	void toggleToolTips();
+	void toggleIconMode();
+
+
+private:
+	void contextMenuEvent( QContextMenuEvent* event ) override;
+	void paintEvent( QPaintEvent* event ) override;
+
+	MainWindow* m_mainWindow;
 
 } ;
 
 #endif
-
