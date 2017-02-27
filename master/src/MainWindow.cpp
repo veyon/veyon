@@ -31,7 +31,6 @@
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
-#include "ClassroomManager.h"
 #include "Dialogs.h"
 #include "PasswordDialog.h"
 #include "WelcomeWidget.h"

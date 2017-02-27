@@ -27,7 +27,6 @@
 
 #include "Dialogs.h"
 #include "Client.h"
-#include "ClassroomManager.h"
 #include "MainWindow.h"
 #include "ItalcCore.h"
 
