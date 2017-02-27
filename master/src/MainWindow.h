@@ -64,6 +64,11 @@ public:
 		return m_localICA;
 	}*/
 
+	MasterCore& masterCore()
+	{
+		return m_masterCore;
+	}
+
 	void checkModeButton( int _id )
 	{
 		QToolButton * btn = dynamic_cast<QToolButton *>(
