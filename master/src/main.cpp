@@ -48,11 +48,6 @@ int main( int argc, char * * argv )
 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-	// load translations
-	qRegisterMetaType<QModelIndex>( "QModelIndex" );
-	qRegisterMetaType<quint16>( "quint16" );
-
-
 	ItalcCore::role = ItalcCore::RoleTeacher;
 
 	// parse arguments

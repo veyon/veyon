@@ -25,23 +25,13 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
-#include <QtCore/QThread>
-#include <QPointer>
-#include <QButtonGroup>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-#include <QToolButton>
 
-#include "ComputerManager.h"
-
-class QMenu;
-class SideBar;
-class MainToolBar;
+class QButtonGroup;
 class MasterCore;
 class ComputerManagementView;
-class ItalcCoreConnection;
 class SnapshotManagementWidget;
-class Feature;
 
 namespace Ui {
 class MainWindow;
@@ -56,28 +46,11 @@ public:
 	virtual ~MainWindow();
 
 	static bool initAuthentication();
-/*
-	ItalcCoreConnection *localICA()
-	{
-		return m_localICA;
-	}*/
 
 	MasterCore& masterCore()
 	{
 		return m_masterCore;
 	}
-
-	void checkModeButton( int _id )
-	{
-		QToolButton * btn = dynamic_cast<QToolButton *>(
-						m_modeGroup->button( _id ) );
-		if( btn != NULL )
-		{
-			btn->setChecked( true );
-		}
-	}
-
-	MainToolBar* toolBar();
 
 
 protected:

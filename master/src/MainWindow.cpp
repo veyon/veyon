@@ -22,8 +22,6 @@
  *
  */
 
-#include <italcconfig.h>
-
 #include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
@@ -32,17 +30,14 @@
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
 #include "Dialogs.h"
-#include "PasswordDialog.h"
+#include "ComputerManager.h"
 #include "ComputerManagementView.h"
 #include "SnapshotManagementWidget.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
-#include "ItalcCoreConnection.h"
-#include "ItalcVncConnection.h"
 #include "LocalSystem.h"
-#include "Logger.h"
 #include "MasterCore.h"
 #include "UserConfig.h"
 
@@ -122,35 +117,6 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	addFeaturesToSystemTrayMenu();
 
 	m_modeGroup->button( qHash( m_masterCore.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
-
-/*	ItalcVncConnection * conn = new ItalcVncConnection( this );
-	// attach ItalcCoreConnection to it so we can send extended iTALC commands
-	m_localICA = new ItalcCoreConnection( conn );
-
-	conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	conn->setPort( ItalcCore::config->coreServerPort() );
-	conn->start();
-
-	if( !conn->waitForConnected( 5000 ) )
-	{
-		QMessageBox::information( this,
-			tr( "Could not contact %1 service" ).arg( ItalcCore::applicationName() ),
-			tr( "Could not contact the local %1 service. It is likely "
-				"that you entered wrong credentials or key files are "
-				"not set up properly. Try again or contact your "
-				"administrator for solving this problem using the %2 "
-				"Configurator." ).arg( ItalcCore::applicationName() ).
-								  arg( ItalcCore::applicationName() ) );
-		if( ItalcCore::config->logLevel() < Logger::LogLevelDebug )
-		{
-			return;
-		}
-	}
-
-	// update the role under which ICA is running
-	m_localICA->setRole( ItalcCore::role );
-	m_localICA->startDemoServer( ItalcCore::config->coreServerPort(),
-									ItalcCore::config->demoServerPort() );*/
 
 	// setup system tray icon
 	QIcon icon( ":/resources/icon16.png" );
@@ -237,7 +203,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 		case QSystemTrayIcon::Context:
 		{
 			QMenu m( this );
-			m.addAction( m_systemTrayIcon.toolTip() )->setEnabled( FALSE );
+			m.addAction( m_systemTrayIcon.toolTip() )->setEnabled( false );
 			foreach( QAction * a, m_sysTrayActions )
 			{
 				m.addAction( a );
