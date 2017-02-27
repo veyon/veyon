@@ -42,6 +42,10 @@ class ComputerMonitoringView : public QWidget
 {
 	Q_OBJECT
 public:
+	enum {
+		DefaultComputerScreenSize = 160
+	};
+
 	ComputerMonitoringView( QWidget *parent = 0 );
 	~ComputerMonitoringView();
 
@@ -49,17 +53,15 @@ public:
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
+public slots:
+	void setComputerScreenSize( int size );
+
 private slots:
 	void runDoubleClickFeature( const QModelIndex& index );
 	void showContextMenu( const QPoint& pos );
-	void setComputerScreenSize( int size );
 	void runFeature( const Feature& feature );
 
 private:
-	enum {
-		DefaultComputerScreenSize = 160
-	};
-
 	Ui::ComputerMonitoringView *ui;
 
 	MasterCore* m_masterCore;

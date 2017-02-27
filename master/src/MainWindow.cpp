@@ -33,7 +33,6 @@
 #include "AuthenticationCredentials.h"
 #include "Dialogs.h"
 #include "PasswordDialog.h"
-#include "WelcomeWidget.h"
 #include "ComputerManagementView.h"
 #include "SnapshotManagementWidget.h"
 #include "FeatureManager.h"
@@ -45,6 +44,7 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "MasterCore.h"
+#include "UserConfig.h"
 
 #include "ui_MainWindow.h"
 
@@ -62,31 +62,50 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 
 	ui->computerMonitoringView->setMasterCore( m_masterCore );
 
+	// add widgets to status bar
+	ui->statusBar->addWidget( ui->computerManagementButton );
+	ui->statusBar->addWidget( ui->snapshotManagementButton );
+	ui->statusBar->addWidget( ui->spacerLabel, 1 );
+	ui->statusBar->addWidget( ui->gridSizeSlider, 1 );
+	ui->statusBar->addWidget( ui->autoFitButton );
 
-	// configure side bar
-	ui->sideBar->setOrientation( Qt::Vertical );
-
-	// create all sidebar workspaces
-	m_welcomeWidget = new WelcomeWidget( ui->centralWidget );
+	// create all views
 	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), ui->centralWidget );
 	m_snapshotManagementWidget = new SnapshotManagementWidget( ui->centralWidget );
 
-	// append sidebar-workspaces to sidebar
-	ui->sideBar->appendTab( m_welcomeWidget, tr( "Welcome" ), QPixmap( ":/resources/view-calendar-month.png" ) );
-	ui->sideBar->appendTab( m_computerManagementView, tr( "Computer management" ), QPixmap( ":/resources/applications-education.png" ) );
-	ui->sideBar->appendTab( m_snapshotManagementWidget, tr( "Snapshot management" ), QPixmap( ":/screenshot/camera-photo.png" ) );
+	// hide views per default and connect related button
+	m_computerManagementView->hide();
+	m_snapshotManagementWidget->hide();
 
-	ui->centralLayout->insertWidget( 0, m_welcomeWidget );
-	ui->centralLayout->insertWidget( 0, m_computerManagementView );
 	ui->centralLayout->insertWidget( 0, m_snapshotManagementWidget );
+	ui->centralLayout->insertWidget( 0, m_computerManagementView );
 
-	// create the action-toolbar
+	connect( ui->computerManagementButton, &QAbstractButton::toggled,
+			 m_computerManagementView, &QWidget::setVisible );
+	connect( ui->snapshotManagementButton, &QAbstractButton::toggled,
+			 m_snapshotManagementWidget, &QWidget::setVisible );
+
+
+	// initialize monitoring screen size slider
+	int size = ComputerMonitoringView::DefaultComputerScreenSize;
+	if( m_masterCore.userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	{
+		size = m_masterCore.userConfig().monitoringScreenSize();
+	}
+
+	ui->gridSizeSlider->setValue( size );
+
+	connect( ui->gridSizeSlider, &QSlider::valueChanged,
+			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
+
+
+	// create the main toolbar
 	ui->toolBar->layout()->setSpacing( 4 );
-	ui->toolBar->setObjectName( "MainToolBar" );
-	ui->toolBar->toggleViewAction()->setEnabled( FALSE );
+	ui->toolBar->toggleViewAction()->setEnabled( false );
 
 	addToolBar( Qt::TopToolBarArea, ui->toolBar );
 
+#if 0
 	ToolButton * scr = new ToolButton(
 			QPixmap( ":/resources/applications-education.png" ),
 			tr( "Classroom" ), QString::null,
@@ -96,33 +115,13 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	scr->setPopupMode( ToolButton::InstantPopup );
 	scr->setWhatsThis( tr( "Click this button to switch between classrooms." ) );
 
-
 	scr->addTo( ui->toolBar );
+#endif
 
 	addFeaturesToToolBar();
 	addFeaturesToSystemTrayMenu();
 
 	m_modeGroup->button( qHash( m_masterCore.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
-
-/*	restoreState( QByteArray::fromBase64(
-				m_classroomManager->winCfg().toUtf8() ) );
-	QStringList hidden_buttons = m_classroomManager->toolBarCfg().
-								split( '#' );
-	foreach( QAction * a, ui->toolBar->actions() )
-	{
-		if( hidden_buttons.contains( a->text() ) )
-		{
-			a->setVisible( FALSE );
-		}
-	}
-
-	foreach( QAbstractButton * btn, m_sideBar->tabs() )
-	{
-		if( hidden_buttons.contains( btn->text() ) )
-		{
-			btn->setVisible( false );
-		}
-	}*/
 
 /*	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	// attach ItalcCoreConnection to it so we can send extended iTALC commands

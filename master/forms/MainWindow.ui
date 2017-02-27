@@ -35,32 +35,122 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="ComputerMonitoringView" name="computerMonitoringView" native="true"/>
+     <widget class="ComputerMonitoringView" name="computerMonitoringView" native="true">
+      <widget class="QToolButton" name="autoFitButton">
+       <property name="geometry">
+        <rect>
+         <x>870</x>
+         <y>580</y>
+         <width>69</width>
+         <height>37</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Auto</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="gridSizeSlider">
+       <property name="geometry">
+        <rect>
+         <x>491</x>
+         <y>580</y>
+         <width>351</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>50</number>
+       </property>
+       <property name="maximum">
+        <number>500</number>
+       </property>
+       <property name="singleStep">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>50</number>
+       </property>
+       <property name="value">
+        <number>150</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="computerManagementButton">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>570</y>
+         <width>227</width>
+         <height>37</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Computer rooms</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../master.qrc">
+         <normaloff>:/resources/applications-education.png</normaloff>:/resources/applications-education.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">buttonGroup</string>
+       </attribute>
+      </widget>
+      <widget class="QToolButton" name="snapshotManagementButton">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>570</y>
+         <width>158</width>
+         <height>37</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Snapshots</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../plugins/screenshot/screenshot.qrc">
+         <normaloff>:/screenshot/camera-photo.png</normaloff>:/screenshot/camera-photo.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">buttonGroup</string>
+       </attribute>
+      </widget>
+      <widget class="QLabel" name="spacerLabel">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>580</y>
+         <width>99</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="SideBar" name="sideBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>16</width>
-     <height>16</height>
-    </size>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
   <widget class="MainToolBar" name="toolBar">
    <property name="windowTitle">
@@ -73,13 +163,9 @@
     <bool>false</bool>
    </attribute>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>SideBar</class>
-   <extends>QToolBar</extends>
-   <header>SideBar.h</header>
-  </customwidget>
   <customwidget>
    <class>MainToolBar</class>
    <extends>QToolBar</extends>
@@ -94,6 +180,15 @@
  </customwidgets>
  <resources>
   <include location="../../core/core.qrc"/>
+  <include location="../master.qrc"/>
+  <include location="../../plugins/screenshot/screenshot.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
+ </buttongroups>
 </ui>

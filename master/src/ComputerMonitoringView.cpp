@@ -47,9 +47,6 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 
 	connect( ui->listView, &QListView::customContextMenuRequested,
 			 this, &ComputerMonitoringView::showContextMenu );
-
-	connect( ui->gridSizeSlider, &QSlider::valueChanged,
-			 this, &ComputerMonitoringView::setComputerScreenSize );
 }
 
 
@@ -71,15 +68,6 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	}
 
 	m_masterCore = &masterCore;
-
-	// initialize grid size slider
-	int size = DefaultComputerScreenSize;
-	if( m_masterCore->userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
-	{
-		size = m_masterCore->userConfig().monitoringScreenSize();
-	}
-
-	ui->gridSizeSlider->setValue( size );
 
 	// create computer list model and attach it to list view
 	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
