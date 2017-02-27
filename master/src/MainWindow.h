@@ -59,6 +59,7 @@ protected:
 
 private slots:
 	void handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r );
+	void showAboutDialog();
 
 private:
 	void addFeaturesToToolBar();

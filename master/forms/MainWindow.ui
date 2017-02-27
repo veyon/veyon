@@ -39,8 +39,8 @@
       <widget class="QToolButton" name="autoFitButton">
        <property name="geometry">
         <rect>
-         <x>870</x>
-         <y>580</y>
+         <x>760</x>
+         <y>570</y>
          <width>69</width>
          <height>37</height>
         </rect>
@@ -54,7 +54,7 @@
         <rect>
          <x>491</x>
          <y>580</y>
-         <width>351</width>
+         <width>251</width>
          <height>25</height>
         </rect>
        </property>
@@ -138,14 +138,41 @@
          <height>30</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="aboutButton">
+       <property name="geometry">
+        <rect>
+         <x>880</x>
+         <y>570</y>
+         <width>113</width>
+         <height>37</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>About</string>
+       </property>
+       <property name="text">
+        <string>About</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../core/core.qrc">
+         <normaloff>:/resources/icon64.png</normaloff>:/resources/icon64.png</iconset>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="spacerLabel2">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>570</y>
+         <width>99</width>
+         <height>30</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -183,7 +210,27 @@
   <include location="../master.qrc"/>
   <include location="../../plugins/screenshot/screenshot.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>aboutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showAboutDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>968</x>
+     <y>625</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>346</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>showAboutDialog()</slot>
+ </slots>
  <buttongroups>
   <buttongroup name="buttonGroup">
    <property name="exclusive">

@@ -26,6 +26,7 @@
 #include <QMenu>
 #include <QMessageBox>
 
+#include "AboutDialog.h"
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
@@ -60,8 +61,10 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	ui->statusBar->addWidget( ui->computerManagementButton );
 	ui->statusBar->addWidget( ui->snapshotManagementButton );
 	ui->statusBar->addWidget( ui->spacerLabel, 1 );
-	ui->statusBar->addWidget( ui->gridSizeSlider, 1 );
+	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
+	ui->statusBar->addWidget( ui->spacerLabel2 );
+	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
 	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), ui->centralWidget );
@@ -234,6 +237,13 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 		default:
 			break;
 	}
+}
+
+
+
+void MainWindow::showAboutDialog()
+{
+	AboutDialog( this ).exec();
 }
 
 
