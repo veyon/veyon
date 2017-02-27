@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef PERSONAL_CONFIG_H
-#define PERSONAL_CONFIG_H
+#ifndef USER_CONFIG_H
+#define USER_CONFIG_H
 
 #include "Configuration/Object.h"
 
@@ -36,11 +36,9 @@ public:
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
 	OP( UserConfig, MasterCore::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, INT, clientUpdateInterval, setClientUpdateInterval, "ClientUpdateInterval", "Behaviour" );	\
-	OP( UserConfig, MasterCore::userConfig, INT, clientDoubleClickAction, setClientDoubleClickAction, "ClientDoubleClickAction", "Behaviour" );	\
 	OP( UserConfig, MasterCore::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
-	OP( UserConfig, MasterCore::userConfig, INT, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "Interface" );	\
-	OP( UserConfig, MasterCore::userConfig, INT, noToolTips, setNoToolTips, "NoToolTips", "Interface" );	\
+	OP( UserConfig, MasterCore::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "Interface" );	\
+	OP( UserConfig, MasterCore::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "Interface" );	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -48,11 +46,9 @@ public:
 public slots:
 	void setCheckedNetworkObjects( const QJsonArray& );
 	void setMonitoringScreenSize( int );
-	void setClientUpdateInterval( int );
-	void setClientDoubleClickAction( int );
 	void setDefaultRole( int );
-	void setToolButtonIconOnlyMode( int );
-	void setNoToolTips( int );
+	void setToolButtonIconOnlyMode( bool );
+	void setNoToolTips( bool );
 
 } ;
 
