@@ -62,71 +62,7 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QToolBar" name="toolBar">
-   <property name="palette">
-    <palette>
-     <active>
-      <colorrole role="Base">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>252</red>
-         <green>252</green>
-         <blue>252</blue>
-        </color>
-       </brush>
-      </colorrole>
-      <colorrole role="Window">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>64</red>
-         <green>64</green>
-         <blue>64</blue>
-        </color>
-       </brush>
-      </colorrole>
-     </active>
-     <inactive>
-      <colorrole role="Base">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>252</red>
-         <green>252</green>
-         <blue>252</blue>
-        </color>
-       </brush>
-      </colorrole>
-      <colorrole role="Window">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>64</red>
-         <green>64</green>
-         <blue>64</blue>
-        </color>
-       </brush>
-      </colorrole>
-     </inactive>
-     <disabled>
-      <colorrole role="Base">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>64</red>
-         <green>64</green>
-         <blue>64</blue>
-        </color>
-       </brush>
-      </colorrole>
-      <colorrole role="Window">
-       <brush brushstyle="SolidPattern">
-        <color alpha="255">
-         <red>64</red>
-         <green>64</green>
-         <blue>64</blue>
-        </color>
-       </brush>
-      </colorrole>
-     </disabled>
-    </palette>
-   </property>
+  <widget class="MainToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -143,6 +79,11 @@
    <class>SideBar</class>
    <extends>QToolBar</extends>
    <header>SideBar.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MainToolBar</class>
+   <extends>QToolBar</extends>
+   <header>MainToolBar.h</header>
   </customwidget>
   <customwidget>
    <class>ComputerMonitoringView</class>
