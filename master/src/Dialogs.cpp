@@ -26,7 +26,6 @@
 #include <QMessageBox>
 
 #include "Dialogs.h"
-#include "Client.h"
 #include "MainWindow.h"
 #include "ItalcCore.h"
 
