@@ -79,8 +79,6 @@ public:
 
 	MainToolBar* toolBar();
 
-	SideBar* sideBar();
-
 
 protected:
 	void keyPressEvent( QKeyEvent *e ) override;
