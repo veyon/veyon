@@ -29,7 +29,6 @@
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
-#include "Dialogs.h"
 #include "ComputerManager.h"
 #include "ComputerManagementView.h"
 #include "SnapshotManagementWidget.h"
