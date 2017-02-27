@@ -46,25 +46,22 @@ public:
 				const QString & description );
 	virtual ~ToolButton();
 
+	static void setIconOnlyMode( bool enabled );
 
-#ifndef ITALC3
-	static void setIconOnlyMode( bool _enabled );
-
-	static bool iconOnlyMode( void )
+	static bool iconOnlyMode()
 	{
-		return( s_iconOnlyMode );
+		return s_iconOnlyMode;
 	}
 
-	static void setToolTipsDisabled( bool _disabled )
+	static void setToolTipsDisabled( bool disabled )
 	{
-		s_toolTipsDisabled = _disabled;
+		s_toolTipsDisabled = disabled;
 	}
 
-	static bool toolTipsDisabled( void )
+	static bool toolTipsDisabled()
 	{
-		return( s_toolTipsDisabled );
+		return s_toolTipsDisabled;
 	}
-#endif
 
 	void addTo( QToolBar * );
 
@@ -87,11 +84,8 @@ private slots:
 private:
 	void updateSize();
 
-
-#ifndef ITALC3
 	static bool s_toolTipsDisabled;
 	static bool s_iconOnlyMode;
-#endif
 
 	QPixmap m_pixmap;
 	QPixmap m_smallPixmap;

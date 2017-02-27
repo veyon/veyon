@@ -40,10 +40,8 @@
 const int MARGIN = 10;
 const int ROUNDED = 2000;
 
-#ifndef ITALC3
 bool ToolButton::s_toolTipsDisabled = false;
 bool ToolButton::s_iconOnlyMode = false;
-#endif
 
 
 ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
