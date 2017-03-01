@@ -79,7 +79,6 @@ public slots:
 	void setSnapshotDirectory( const QString & );
 	void setOnlyCurrentRoomVisible( bool );
 	void setManualRoomAdditionAllowed( bool );
-	void setBalloonTooltipsDisabled( bool );
 	void setComputerDoubleClickFeature( const QUuid& );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );

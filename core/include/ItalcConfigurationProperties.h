@@ -71,7 +71,6 @@
 #define FOREACH_ITALC_MASTER_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, onlyCurrentRoomVisible, setOnlyCurrentRoomVisible, "OnlyCurrentRoomVisible", "Master" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, manualRoomAdditionAllowed, setManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, balloonTooltipsDisabled, setBalloonTooltipsDisabled, "BalloonTooltipsDisabled", "Master" );	\
 	OP( ItalcConfiguration, ItalcCore::config, UUID, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
 
 #define FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(OP) \
