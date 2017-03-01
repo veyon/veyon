@@ -55,6 +55,9 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 
 	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
 
+	restoreState( QByteArray::fromBase64( m_masterCore.userConfig().windowState().toUtf8() ) );
+	restoreGeometry( QByteArray::fromBase64( m_masterCore.userConfig().windowGeometry().toUtf8() ) );
+
 	ui->computerMonitoringView->setMasterCore( m_masterCore );
 
 	// add widgets to status bar
@@ -178,6 +181,15 @@ bool MainWindow::initAuthentication()
 	return false;
 }
 
+
+
+void MainWindow::closeEvent( QCloseEvent* event )
+{
+	m_masterCore.userConfig().setWindowState( saveState().toBase64() );
+	m_masterCore.userConfig().setWindowGeometry( saveGeometry().toBase64() );
+
+	QMainWindow::closeEvent( event );
+}
 
 
 

@@ -54,6 +54,7 @@ public:
 
 
 protected:
+	void closeEvent( QCloseEvent* event ) override;
 	void keyPressEvent( QKeyEvent *e ) override;
 
 
