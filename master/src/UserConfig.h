@@ -37,8 +37,10 @@ public:
 	OP( UserConfig, MasterCore::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
-	OP( UserConfig, MasterCore::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "Interface" );	\
-	OP( UserConfig, MasterCore::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "Interface" );	\
+	OP( UserConfig, MasterCore::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, STRING, windowState, setWindowState, "WindowState", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI" );	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -49,6 +51,8 @@ public slots:
 	void setDefaultRole( int );
 	void setToolButtonIconOnlyMode( bool );
 	void setNoToolTips( bool );
+	void setWindowState( const QString& );
+	void setWindowGeometry( const QString& );
 
 } ;
 
