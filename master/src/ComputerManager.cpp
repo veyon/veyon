@@ -49,6 +49,14 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_networkObjectSortFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
 	m_computerTreeModel->setSourceModel( m_networkObjectSortFilterProxyModel );
 
+	QTimer* computerScreenUpdateTimer = new QTimer( this );
+	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
+	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
+
+	initRoomFilterList();
+
+	m_computerTreeModel->loadStates( m_config.checkedNetworkObjects() );
+
 	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
 			 this, &ComputerManager::reloadComputerList );
 	connect( computerTreeModel(), &QAbstractItemModel::layoutChanged,
@@ -60,14 +68,6 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 			 this, &ComputerManager::updateComputerList );
 	connect( computerTreeModel(), &QAbstractItemModel::rowsRemoved,
 			 this, &ComputerManager::updateComputerList );
-
-	m_computerTreeModel->loadStates( m_config.checkedNetworkObjects() );
-
-	QTimer* computerScreenUpdateTimer = new QTimer( this );
-	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
-	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
-
-	initRoomFilterList();
 }
 
 
