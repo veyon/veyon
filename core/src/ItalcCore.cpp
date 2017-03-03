@@ -43,6 +43,7 @@
 #include "Logger.h"
 #include "PasswordDialog.h"
 #include "SocketDevice.h"
+#include "VariantStream.h"
 
 #include "rfb/rfbclient.h"
 
@@ -78,13 +79,12 @@ qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 	switch( opCode )
 	{
 	case SocketRead:
-		return ReadFromRFBServer( cl, buffer, bytes ) != 0 ? bytes : 0;
+		return ReadFromRFBServer( cl, buffer, bytes ) ? bytes : 0;
+
 	case SocketWrite:
-		return WriteToRFBServer( cl, buffer, bytes ) != 0 ? bytes : 0;
-	case SocketGetPeerAddress:
-		//			strncpy( _buf, cl->host, _len );
-		break;
+		return WriteToRFBServer( cl, buffer, bytes ) ? bytes : 0;
 	}
+
 	return 0;
 
 }
@@ -350,10 +350,13 @@ namespace ItalcCore
 
 bool Msg::send()
 {
-	QDataStream d( m_socketDevice );
-	d << (uint8_t) rfbItalcCoreRequest;
-	d << m_cmd;
-	d << m_args;
+	char messageType = rfbItalcCoreRequest;
+	m_ioDevice->write( &messageType, sizeof(messageType) );
+
+	VariantStream stream( m_ioDevice );
+
+	stream.write( m_cmd );
+	stream.write( m_args );
 
 	return true;
 }
@@ -362,9 +365,10 @@ bool Msg::send()
 
 Msg &Msg::receive()
 {
-	QDataStream d( m_socketDevice );
-	d >> m_cmd;
-	d >> m_args;
+	VariantStream stream( m_ioDevice );
+
+	m_cmd = stream.read().toString();
+	m_args = stream.read().toMap();
 
 	return *this;
 }

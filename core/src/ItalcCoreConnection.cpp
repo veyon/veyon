@@ -39,7 +39,7 @@ public:
 	virtual void fire( rfbClient *client )
 	{
 		SocketDevice socketDev( libvncClientDispatcher, client );
-		m_msg.setSocketDevice( &socketDev );
+		m_msg.setIoDevice( &socketDev );
 		qDebug() << "ItalcMessageEvent::fire(): sending message" << m_msg.cmd()
 					<< "with arguments" << m_msg.args();
 		m_msg.send();
@@ -66,8 +66,9 @@ public:
 				 << "with arguments" << m_featureMessage.arguments();
 
 		SocketDevice socketDevice( libvncClientDispatcher, client );
-		QDataStream d( &socketDevice );
-		d << (uint8_t) rfbItalcFeatureRequest;
+		char messageType = rfbItalcFeatureRequest;
+		socketDevice.write( &messageType, sizeof(messageType) );
+
 		m_featureMessage.send( &socketDevice );
 	}
 

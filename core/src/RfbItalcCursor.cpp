@@ -1,7 +1,7 @@
 /*
  * RfbItalcCursor.cpp - iTALC cursor rectangle encoding
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,6 +25,7 @@
 #include "ItalcVncConnection.h"
 #include "RfbItalcCursor.h"
 #include "SocketDevice.h"
+#include "VariantStream.h"
 
 #include <rfb/rfb.h>
 #include <rfb/rfbclient.h>
@@ -39,8 +40,9 @@ static rfbBool handleEncodingItalcCursor( rfbClient *c,
 		return false;
 	}
 
-	QImage cursorShape(
-				SocketDevice( libvncClientDispatcher, c ).read().value<QImage>() );
+	SocketDevice socketDevice( libvncClientDispatcher, c );
+
+	QImage cursorShape( VariantStream( &socketDevice ).read().value<QImage>() );
 
 	t->cursorShapeUpdatedExternal( cursorShape, r->r.x, r->r.y );
 

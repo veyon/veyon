@@ -32,6 +32,7 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "SocketDevice.h"
+#include "VariantStream.h"
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
@@ -328,7 +329,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_frameBufferInitialized( false ),
 	m_frameBufferValid( false ),
 	m_cl( NULL ),
-	m_italcAuthType( ItalcAuthDSA ),
+	m_italcAuthType( RfbItalcAuth::DSA ),
 	m_quality( DemoClientQuality ),
 	m_port( PortOffsetVncServer ),
 	m_terminateTimer( this ),
@@ -341,11 +342,8 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 {
 	m_terminateTimer.setSingleShot( true );
 	m_terminateTimer.setInterval( ThreadTerminationTimeout );
-#if QT_VERSION < 0x050400
-	connect( &m_terminateTimer, SIGNAL(timeout()), this, SLOT(terminate()) );
-#else
+
 	connect( &m_terminateTimer, &QTimer::timeout, this, &ItalcVncConnection::terminate );
-#endif
 }
 
 
@@ -770,69 +768,76 @@ void ItalcVncConnection::clientCut( const QString &text )
 
 void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 {
-	SocketDevice socketDev( libvncClientDispatcher, client );
+	SocketDevice socketDevice( libvncClientDispatcher, client );
+	VariantStream stream( &socketDevice );
 
-	// read list of supported authentication types
-	QMap<QString, QVariant> supportedAuthTypes = socketDev.read().toMap();
+	int authTypeCount = stream.read().toInt();
 
-	int chosenAuthType = ItalcAuthToken;
-	if( !supportedAuthTypes.isEmpty() )
+	QList<RfbItalcAuth::Type> authTypes;
+	for( int i = 0; i < authTypeCount; ++i )
 	{
-		chosenAuthType = supportedAuthTypes.values().first().toInt();
+		authTypes.append( stream.read().value<RfbItalcAuth::Type>() );
+	}
+
+	qDebug() << authTypes;
+
+	RfbItalcAuth::Type chosenAuthType = RfbItalcAuth::Token;
+	if( authTypes.count() > 0 )
+	{
+		chosenAuthType = authTypes.first();
 
 		// look whether the ItalcVncConnection recommends a specific
 		// authentication type (e.g. ItalcAuthHostBased when running as
 		// demo client)
-		ItalcVncConnection *t = (ItalcVncConnection *)
-										rfbClientGetClientData( client, 0 );
+		ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( client, 0 );
 
 		if( t != NULL )
 		{
-			foreach( const QVariant &v, supportedAuthTypes )
+			for( auto authType : authTypes )
 			{
-				if( t->italcAuthType() == v.toInt() )
+				if( t->italcAuthType() == authType )
 				{
-					chosenAuthType = v.toInt();
+					chosenAuthType = authType;
 				}
 			}
 		}
 	}
 
-	socketDev.write( QVariant( chosenAuthType ) );
+	qDebug() << "chosen" << chosenAuthType;
+	stream.write( chosenAuthType );
+
 	// send username which is used when displaying an access confirm dialog
-	if( ItalcCore::authenticationCredentials->hasCredentials(
-									AuthenticationCredentials::UserLogon ) )
+	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::UserLogon ) )
 	{
-		socketDev.write( ItalcCore::authenticationCredentials->logonUsername() );
+		stream.write( ItalcCore::authenticationCredentials->logonUsername() );
 	}
 	else
 	{
-		socketDev.write( LocalSystem::User::loggedOnUser().name() );
+		stream.write( LocalSystem::User::loggedOnUser().name() );
 	}
 
-	if( chosenAuthType == ItalcAuthDSA )
+	switch( chosenAuthType )
 	{
-		if( ItalcCore::authenticationCredentials->hasCredentials(
-				AuthenticationCredentials::PrivateKey ) )
+	case RfbItalcAuth::DSA:
+		if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::PrivateKey ) )
 		{
-			QByteArray chall = socketDev.read().toByteArray();
-			socketDev.write( QVariant( (int) ItalcCore::role ) );
-			socketDev.write( ItalcCore::authenticationCredentials->
-													privateKey()->sign( chall ) );
+			QByteArray chall = stream.read().toByteArray();
+			stream.write( (int) ItalcCore::role );
+			stream.write( ItalcCore::authenticationCredentials->privateKey()->sign( chall ) );
 		}
-	}
-	else if( chosenAuthType == ItalcAuthHostBased )
-	{
-		// nothing to do - we just get accepted if our IP is in the list of
-		// allowed hosts
-	}
-	else if( chosenAuthType == ItalcAuthToken )
-	{
-		socketDev.write( ItalcCore::authenticationCredentials->token() );
-	}
-	else if( chosenAuthType == ItalcAuthNone )
-	{
+		break;
+
+	case RfbItalcAuth::HostWhiteList:
+		// nothing to do - we just get accepted because the host white list contains our IP
+		break;
+
+	case RfbItalcAuth::Token:
+		stream.write( ItalcCore::authenticationCredentials->token() );
+		break;
+
+	default:
 		// nothing to do - we just get accepted
+		break;
 	}
 }
 
@@ -882,32 +887,8 @@ void ItalcVncConnection::hookPrepareAuthentication(rfbClient *cl)
 
 
 
-// global auth handlers used in modified libvncclient
-
-int isLogonAuthenticationEnabled( rfbClient *client )
-{
-	if( ItalcCore::config->isLogonAuthenticationEnabled() &&
-			ItalcCore::authenticationCredentials->hasCredentials(
-										AuthenticationCredentials::UserLogon ) )
-	{
-
-		return 1;
-	}
-
-	return 0;
-}
-
-
-
 void handleSecTypeItalc( rfbClient *client )
 {
 	ItalcVncConnection::hookPrepareAuthentication( client );
 	ItalcVncConnection::handleSecTypeItalc( client );
-}
-
-
-void handleMsLogonIIAuth( rfbClient *client )
-{
-	ItalcVncConnection::hookPrepareAuthentication( client );
-	ItalcVncConnection::handleMsLogonIIAuth( client );
 }

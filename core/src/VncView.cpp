@@ -59,7 +59,7 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	if( m_mode == DemoMode )
 	{
 		m_vncConn->setQuality( ItalcVncConnection::DemoClientQuality );
-		m_vncConn->setItalcAuthType( ItalcAuthHostBased );
+		m_vncConn->setItalcAuthType( RfbItalcAuth::HostWhiteList );
 		m_establishingConnection = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
 					":/resources/watch%1.png", 16, this );

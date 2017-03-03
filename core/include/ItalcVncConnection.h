@@ -37,7 +37,7 @@
 #include <QtGui/QImage>
 
 #include "ItalcCore.h"
-#include "ItalcRfbExt.h"
+#include "RfbItalcAuth.h"
 
 class PrivateDSAKey;
 
@@ -107,12 +107,12 @@ public:
 		return m_host;
 	}
 
-	void setItalcAuthType( ItalcAuthType t )
+	void setItalcAuthType( RfbItalcAuth::Type authType )
 	{
-		m_italcAuthType = t;
+		m_italcAuthType = authType;
 	}
 
-	ItalcAuthType italcAuthType() const
+	RfbItalcAuth::Type italcAuthType() const
 	{
 		return m_italcAuthType;
 	}
@@ -229,7 +229,7 @@ private:
 	bool m_frameBufferInitialized;
 	bool m_frameBufferValid;
 	rfbClient *m_cl;
-	ItalcAuthType m_italcAuthType;
+	RfbItalcAuth::Type m_italcAuthType;
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
