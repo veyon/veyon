@@ -23,9 +23,9 @@
  */
 
 #include <QDebug>
-#include <QIODevice>
 
 #include "FeatureMessage.h"
+#include "VariantStream.h"
 
 
 bool FeatureMessage::send()
@@ -41,10 +41,10 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 	{
 		qDebug() << "FeatureMessage::send():" << featureUid() << command() << arguments();
 
-		QDataStream d( ioDevice );
-		d << m_featureUid;
-		d << m_command;
-		d << QVariant( m_arguments );
+		VariantStream stream( ioDevice );
+		stream.write( m_featureUid );
+		stream.write( m_command );
+		stream.write( m_arguments );
 
 		return true;
 	}
@@ -60,12 +60,10 @@ FeatureMessage &FeatureMessage::receive()
 {
 	if( m_ioDevice )
 	{
-		QDataStream d( m_ioDevice );
-		QVariant args;
-		d >> m_featureUid;
-		d >> m_command;
-		d >> args;
-		m_arguments = args.toMap();
+		VariantStream stream( m_ioDevice );
+		m_featureUid = stream.read().toUuid();
+		m_command = stream.read().value<Command>();
+		m_arguments = stream.read().toMap();
 
 		qDebug() << "FeatureMessage::receive():" << featureUid() << command() << arguments();
 	}
