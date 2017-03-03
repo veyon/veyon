@@ -26,7 +26,7 @@
 #ifndef ITALC_RFB_EXT_H
 #define ITALC_RFB_EXT_H
 
-#include <rfb/rfbclient.h>
+typedef struct _rfbClient rfbClient;
 
 // new rfb-command which tells server or client that an italc-request/response
 // is following
@@ -38,7 +38,6 @@
 
 #define rfbSecTypeItalc 40
 
-
 enum PortOffsets
 {
 	PortOffsetVncServer = 11100,
@@ -46,35 +45,11 @@ enum PortOffsets
 	PortOffsetDemoServer = PortOffsetVncServer+200,
 } ;
 
-
-enum ItalcAuthTypes
-{
-	// no authentication needed
-	ItalcAuthNone,
-
-	// only hosts in internal host-list are allowed
-	ItalcAuthHostBased,
-
-	// client has to sign some data to verify it's authority
-	ItalcAuthDSA,
-
-	// client has to prove its authenticity by knowing common token
-	ItalcAuthToken,
-
-	NumItalcAuthTypes
-
-} ;
-
-typedef enum ItalcAuthTypes ItalcAuthType;
-
-
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-int isLogonAuthenticationEnabled( rfbClient *client );
 void handleSecTypeItalc( rfbClient *client );
-void handleMsLogonIIAuth( rfbClient *client );
 #ifdef __cplusplus
 }
 #endif
