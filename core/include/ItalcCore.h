@@ -72,16 +72,21 @@ namespace ItalcCore
 	class ITALC_CORE_EXPORT Msg
 	{
 	public:
-		Msg( SocketDevice *sockDev, const Command &cmd = Command() ) :
-			m_socketDevice( sockDev ),
+		Msg( QIODevice *ioDevice, const Command &cmd = Command() ) :
+			m_ioDevice( ioDevice ),
 			m_cmd( cmd )
 		{
 		}
 
 		Msg( const Command &cmd ) :
-			m_socketDevice( NULL ),
+			m_ioDevice( NULL ),
 			m_cmd( cmd )
 		{
+		}
+
+		void setIoDevice( QIODevice* ioDevice )
+		{
+			m_ioDevice = ioDevice;
 		}
 
 		const Command &cmd() const
@@ -92,11 +97,6 @@ namespace ItalcCore
 		const CommandArgs &args() const
 		{
 			return m_args;
-		}
-
-		void setSocketDevice( SocketDevice *sockDev )
-		{
-			m_socketDevice = sockDev;
 		}
 
 		Msg &addArg( const QString &key, const QString &value )
@@ -121,7 +121,7 @@ namespace ItalcCore
 
 
 	private:
-		SocketDevice *m_socketDevice;
+		QIODevice *m_ioDevice;
 
 		Command m_cmd;
 		CommandArgs m_args;
