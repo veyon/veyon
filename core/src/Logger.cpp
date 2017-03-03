@@ -152,7 +152,7 @@ QString Logger::formatMessage( LogLevel ll, const QString &msg )
 
 
 
-void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const QString& msg )
+void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext& context, const QString& msg )
 {
 	LogLevel ll = LogLevelDefault;
 
@@ -166,7 +166,14 @@ void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const 
 			break;
 	}
 
-	log( ll, msg );
+	if( context.category && strcmp(context.category, "default") != 0 )
+	{
+		log( ll, QString("[%1] ").arg(context.category) + msg );
+	}
+	else
+	{
+		log( ll, msg );
+	}
 }
 
 
