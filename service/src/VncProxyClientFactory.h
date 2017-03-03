@@ -1,8 +1,7 @@
 /*
- * ItalcVncServer.h - class ItalcVncServer, a VNC server abstraction for
- *                    platform-independent VNC server usage
+ * VncProxyClientFactory.h - abstract factory class for VncClientProxy objects 
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,29 +22,18 @@
  *
  */
 
-#ifndef ITALC_VNC_SERVER_H
-#define ITALC_VNC_SERVER_H
+#ifndef VNC_PROXY_CLIENT_FACTORY_H
+#define VNC_PROXY_CLIENT_FACTORY_H
 
-#include <QtCore/QThread>
+class QObject;
+class QTcpSocket;
+class VncProxyClient;
 
-class ItalcVncServer : public QThread
+class VncProxyClientFactory
 {
 public:
-	ItalcVncServer();
-	virtual ~ItalcVncServer();
-
-	int serverPort() const
-	{
-		return m_port;
-	}
-
-
-private:
-	virtual void run();
-
-	int m_port;
+	virtual VncProxyClient* createVncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) = 0;
 
 } ;
 
 #endif
-

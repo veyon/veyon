@@ -32,8 +32,8 @@
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
-#include "ItalcCoreServer.h"
-#include "ItalcVncServer.h"
+#include "ComputerControlServer.h"
+#include "VncServer.h"
 #include "Logger.h"
 
 
@@ -181,13 +181,8 @@ static int runCoreServer( int argc, char **argv )
 	app.installNativeEventFilter( &eventFilter );
 #endif
 
-	ItalcCoreServer coreServer;
-	ItalcVncServer vncServer;
-
-	// make app terminate once the VNC server thread has finished
-	app.connect( &vncServer, SIGNAL( finished() ), SLOT( quit() ) );
-
-	vncServer.start();
+	ComputerControlServer coreServer;
+	coreServer.start();
 
 	ilog( Info, "Exec" );
 	int ret = app.exec();

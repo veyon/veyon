@@ -1,5 +1,5 @@
 /*
- * ItalcCoreServer.h - ItalcCoreServer
+ * ComputerControlServer.h - header file for ComputerControlServer
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef ITALC_CORE_SERVER_H
-#define ITALC_CORE_SERVER_H
+#ifndef COMPUTER_CONTROL_SERVER_H
+#define COMPUTER_CONTROL_SERVER_H
 
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>
@@ -31,27 +31,35 @@
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
+#include "RfbItalcAuth.h"
 #include "PluginManager.h"
 #include "SocketDevice.h"
 #include "DesktopAccessPermission.h"
+#include "ServerAuthenticationManager.h"
+#include "VncProxyServer.h"
+#include "VncProxyClientFactory.h"
+#include "VncServer.h"
 
-class ItalcCoreServer : public QObject
+class ComputerControlServer : public QObject, VncProxyClientFactory
 {
 	Q_OBJECT
 public:
-	ItalcCoreServer();
-	virtual ~ItalcCoreServer();
+	ComputerControlServer();
+	virtual ~ComputerControlServer();
 
-	static ItalcCoreServer *instance()
+	void start();
+
+	VncProxyClient* createVncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) override;
+
+	ServerAuthenticationManager& serverAuthenticationManager()
 	{
-		Q_ASSERT( _this != NULL );
-		return _this;
+		return m_serverAuthenticationManager;
 	}
 
-	bool handleItalcCoreMessage( SocketDispatcher socketDispatcher, void *user );
-	bool handleItalcFeatureMessage( SocketDispatcher socketDispatcher, void *user );
+	//bool authenticateClient( QTcpSocket* socket, RfbItalcAuth::Type authType );
 
-	bool authSecTypeItalc( SocketDispatcher sd, void *user );
+	bool handleCoreMessage( QTcpSocket* socket );
+	bool handleFeatureMessage( QTcpSocket* socket );
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
@@ -60,13 +68,7 @@ public:
 
 
 private:
-	void errorMsgAuth( const QString & _ip );
-
-	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
-	bool doHostBasedAuth( const QString &host );
-	bool performTokenAuthentication( SocketDevice &sdev );
-
-	static ItalcCoreServer *_this;
+	void showAuthenticationErrorMessage( QString host, QString user );
 
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;
@@ -77,6 +79,11 @@ private:
 	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
+
+	ServerAuthenticationManager m_serverAuthenticationManager;
+
+	VncServer m_vncServer;
+	VncProxyServer m_vncProxyServer;
 
 } ;
 
