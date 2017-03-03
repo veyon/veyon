@@ -35,8 +35,7 @@
 typedef enum
 {
 	SocketRead,
-	SocketWrite,
-	SocketGetPeerAddress
+	SocketWrite
 } SocketOpCodes;
 
 
@@ -57,20 +56,6 @@ public:
 		m_user( user )
 	{
 		open( ReadWrite | Unbuffered );
-	}
-
-	QVariant read()
-	{
-		QDataStream d( this );
-		QVariant v;
-		d >> v;
-		return v;
-	}
-
-	void write( const QVariant &v )
-	{
-		QDataStream d( this );
-		d << v;
 	}
 
 	SocketDispatcher sockDispatcher()
@@ -96,15 +81,6 @@ public:
 	qint64 write( const char *buf, qint64 bytes )
 	{
 		return writeData( buf, bytes );
-	}
-
-	QString peerAddress()
-	{
-		char buf[256];
-		m_socketDispatcher( buf, sizeof(buf)-1, SocketGetPeerAddress, m_user );
-		buf[sizeof(buf)-1] = 0;
-
-		return QString( buf );
 	}
 
 protected:
