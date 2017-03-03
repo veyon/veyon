@@ -139,7 +139,7 @@ private:
 	volatile bool m_cursorShapeChanged;
 
 	qintptr m_socketDescriptor;
-	QTcpSocket *m_sock;
+	QTcpSocket *m_socket;
 	const ItalcVncConnection *m_vncConn;
 	bool m_otherEndianess;
 	char *m_lzoWorkMem;

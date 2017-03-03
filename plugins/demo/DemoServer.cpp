@@ -35,6 +35,7 @@
 #include "RfbLZORLE.h"
 #include "RfbItalcCursor.h"
 #include "SocketDevice.h"
+#include "VariantStream.h"
 
 #include <lzo/lzo1x.h>
 #include "rfb/rfb.h"
@@ -47,82 +48,6 @@ char rfbEndianTest = (1==0);
 #else
 char rfbEndianTest = (1==1);
 #endif
-
-
-static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void * user )
-{
-	QTcpSocket * sock = static_cast<QTcpSocket *>( user );
-	qint64 ret = 0;
-
-	QTime opStartTime;
-	opStartTime.start();
-
-	switch( opCode )
-	{
-	case SocketRead:
-		while( ret < bytes )
-		{
-			qint64 bytesRead = sock->read( buffer+ret, bytes-ret );
-			if( bytesRead < 0 || opStartTime.elapsed() > 5000 )
-			{
-				qWarning( "qtcpsocketDispatcher(...): connection closed while reading" );
-				return 0;
-			}
-			else if( bytesRead == 0 )
-			{
-				if( sock->state() != QTcpSocket::ConnectedState )
-				{
-					qWarning( "qtcpsocketDispatcher(...): connection failed while reading "
-							  "state:%d  error:%d", sock->state(), sock->error() );
-					return 0;
-				}
-				sock->waitForReadyRead( 10 );
-			}
-			else
-			{
-				ret += bytesRead;
-				opStartTime.restart();
-			}
-		}
-		break;
-
-	case SocketWrite:
-		while( ret < bytes )
-		{
-			qint64 written = sock->write( buffer+ret, bytes-ret );
-			if( written < 0 || opStartTime.elapsed() > 5000 )
-			{
-				qWarning( "qtcpsocketDispatcher(...): connection closed while writing" );
-				return 0;
-			}
-			else if( written == 0 )
-			{
-				if( sock->state() != QTcpSocket::ConnectedState )
-				{
-					qWarning( "qtcpsocketDispatcher(...): connection failed while writing  "
-							  "state:%d error:%d", sock->state(), sock->error() );
-					return 0;
-				}
-			}
-			else
-			{
-				ret += written;
-				opStartTime.restart();
-			}
-		}
-		break;
-
-	case SocketGetPeerAddress:
-		strncpy( buffer,
-				 sock->peerAddress().toString().toUtf8().constData(), bytes );
-		break;
-	}
-
-	return ret;
-}
-
-
 
 
 DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccessToken, QObject *parent ) :
@@ -139,7 +64,7 @@ DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccess
 	ItalcCore::authenticationCredentials->setToken( vncServerToken );
 	m_vncConn.setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
 	m_vncConn.setPort( ItalcCore::config->coreServerPort() );
-	m_vncConn.setItalcAuthType( ItalcAuthToken );
+	m_vncConn.setItalcAuthType( RfbItalcAuth::Token );
 	m_vncConn.setQuality( ItalcVncConnection::DemoServerQuality );
 	m_vncConn.start();
 
@@ -215,7 +140,7 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 	m_cursorHotY( 0 ),
 	m_cursorShapeChanged( false ),
 	m_socketDescriptor( sock ),
-	m_sock( NULL ),
+	m_socket( NULL ),
 	m_vncConn( vncConn ),
 	m_otherEndianess( false ),
 	m_lzoWorkMem( new char[sizeof( lzo_align_t ) *
@@ -304,7 +229,7 @@ void DemoServerClient::moveCursor()
 			(uint16_t) Swap16IfLE( 1 )
 		} ;
 
-		m_sock->write( (const char *) &m, sizeof( m ) );
+		m_socket->write( (const char *) &m, sizeof( m ) );
 
 		const rfbRectangle rr =
 		{
@@ -320,8 +245,8 @@ void DemoServerClient::moveCursor()
 			Swap32IfLE( rfbEncodingPointerPos )
 		} ;
 
-		m_sock->write( (const char *) &rh, sizeof( rh ) );
-		m_sock->flush();
+		m_socket->write( (const char *) &rh, sizeof( rh ) );
+		m_socket->flush();
 		m_dataMutex.unlock();
 	}
 }
@@ -372,8 +297,7 @@ void DemoServerClient::sendUpdates()
 		( m_cursorShapeChanged ? 1 : 0 ) )
 	} ;
 
-	SocketDevice sd( qtcpsocketDispatcher, m_sock );
-	sd.write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
+	m_socket->write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
 
 	// process each rect
 	for( auto rect : rects )
@@ -396,7 +320,7 @@ void DemoServerClient::sendUpdates()
 			(uint32_t) Swap32IfLE( rfbEncodingLZORLE )
 		} ;
 
-		sd.write( (const char *) &rhdr, sizeof( rhdr ) );
+		m_socket->write( (const char *) &rhdr, sizeof( rhdr ) );
 
 		const QImage & i = m_vncConn->image();
 		RfbLZORLE::Header hdr = { 0, 0, 0 } ;
@@ -471,13 +395,13 @@ void DemoServerClient::sendUpdates()
 			hdr.bytesRLE = Swap32IfLE( hdr.bytesRLE );
 			hdr.bytesLZO = Swap32IfLE( bytes_lzo );
 
-			sd.write( (const char *) &hdr, sizeof( hdr ) );
-			sd.write( (const char *) comp, bytes_lzo );
+			m_socket->write( (const char *) &hdr, sizeof( hdr ) );
+			m_socket->write( (const char *) comp, bytes_lzo );
 
 		}
 		else
 		{
-			sd.write( (const char *) &hdr, sizeof( hdr ) );
+			m_socket->write( (const char *) &hdr, sizeof( hdr ) );
 			QRgb *dst = m_rawBuf;
 			if( m_otherEndianess )
 			{
@@ -501,7 +425,7 @@ void DemoServerClient::sendUpdates()
 					}
 				}
 			}
-			sd.write( (const char *) m_rawBuf, rh * rw * sizeof( QRgb ) );
+			m_socket->write( (const char *) m_rawBuf, rh * rw * sizeof( QRgb ) );
 		}
 	}
 
@@ -522,12 +446,12 @@ void DemoServerClient::sendUpdates()
 			(uint32_t) Swap32IfLE( rfbEncodingItalcCursor )
 		} ;
 
-		sd.write( (const char *) &rh, sizeof( rh ) );
+		m_socket->write( (const char *) &rh, sizeof( rh ) );
 
-		sd.write( QVariant::fromValue( cur ) );
+		VariantStream( m_socket ).write( QVariant::fromValue( cur ) );
 	}
 
-	m_sock->flush();
+	m_socket->flush();
 
 	// reset vars
 	m_changedRects.clear();
@@ -548,13 +472,11 @@ void DemoServerClient::sendUpdates()
 
 void DemoServerClient::processClient()
 {
-	SocketDevice sd( qtcpsocketDispatcher, m_sock );
-
 	m_dataMutex.lock();
-	while( m_sock->bytesAvailable() > 0 )
+	while( m_socket->bytesAvailable() > 0 )
 	{
 		rfbClientToServerMsg msg;
-		if( sd.read( (char *) &msg, 1 ) <= 0 )
+		if( m_socket->read( (char *) &msg, 1 ) <= 0 )
 		{
 			qWarning( "DemoServerClient::processClient(): "
 					  "could not read cmd" );
@@ -564,33 +486,33 @@ void DemoServerClient::processClient()
 		switch( msg.type )
 		{
 		case rfbSetEncodings:
-			sd.read( ((char *)&msg)+1, sz_rfbSetEncodingsMsg-1 );
+			m_socket->read( ((char *)&msg)+1, sz_rfbSetEncodingsMsg-1 );
 			msg.se.nEncodings = Swap16IfLE(msg.se.nEncodings);
 			for( int i = 0; i < msg.se.nEncodings; ++i )
 			{
 				uint32_t enc;
-				sd.read( (char *) &enc, 4 );
+				m_socket->read( (char *) &enc, 4 );
 			}
 			continue;
 
 		case rfbSetPixelFormat:
-			sd.read( ((char *) &msg)+1, sz_rfbSetPixelFormatMsg-1 );
+			m_socket->read( ((char *) &msg)+1, sz_rfbSetPixelFormatMsg-1 );
 			continue;
 		case rfbSetServerInput:
-			sd.read( ((char *) &msg)+1, sz_rfbSetServerInputMsg-1 );
+			m_socket->read( ((char *) &msg)+1, sz_rfbSetServerInputMsg-1 );
 			continue;
 		case rfbClientCutText:
-			sd.read( ((char *) &msg)+1, sz_rfbClientCutTextMsg-1 );
+			m_socket->read( ((char *) &msg)+1, sz_rfbClientCutTextMsg-1 );
 			msg.cct.length = Swap32IfLE( msg.cct.length );
 			if( msg.cct.length )
 			{
 				char *t = new char[msg.cct.length];
-				sd.read( t, msg.cct.length );
+				m_socket->read( t, msg.cct.length );
 				delete[] t;
 			}
 			continue;
 		case rfbFramebufferUpdateRequest:
-			sd.read( ((char *) &msg)+1, sz_rfbFramebufferUpdateRequestMsg-1 );
+			m_socket->read( ((char *) &msg)+1, sz_rfbFramebufferUpdateRequestMsg-1 );
 			m_updateRequested = true;
 			break;
 		default:
@@ -616,29 +538,30 @@ void DemoServerClient::run()
 {
 	QMutexLocker ml( &m_dataMutex );
 
-	QTcpSocket sock;
-	m_sock = &sock;
-	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
+	QTcpSocket socket;
+	m_socket = &socket;
+	if( !m_socket->setSocketDescriptor( m_socketDescriptor ) )
 	{
 		qCritical( "DemoServerClient::run(): could not set socket descriptor - aborting" );
 		deleteLater();
 		return;
 	}
 
-	SocketDevice socketDevice( qtcpsocketDispatcher, m_sock );
+	//SocketDevice socketDevice( qtcpsocketDispatcher, m_sock );
+	VariantStream stream( m_socket );
 
 	rfbProtocolVersionMsg pv;
 	sprintf( pv, rfbProtocolVersionFormat, rfbProtocolMajorVersion,
 			 rfbProtocolMinorVersion );
 
-	socketDevice.write( pv, sz_rfbProtocolVersionMsg );
-	socketDevice.read( pv, sz_rfbProtocolVersionMsg );
+	socket.write( pv, sz_rfbProtocolVersionMsg );
+	socket.read( pv, sz_rfbProtocolVersionMsg );
 
 	const uint8_t secTypeList[2] = { 1, rfbSecTypeItalc } ;
-	socketDevice.write( (const char *) secTypeList, sizeof( secTypeList ) );
+	socket.write( (const char *) secTypeList, sizeof( secTypeList ) );
 
 	uint8_t chosen = 0;
-	socketDevice.read( (char *) &chosen, sizeof( chosen ) );
+	socket.read( (char *) &chosen, sizeof( chosen ) );
 
 	if( chosen != rfbSecTypeItalc )
 	{
@@ -648,26 +571,22 @@ void DemoServerClient::run()
 		return;
 	}
 
-	// send list of supported authentication types - can't use QList<QVariant>
-	// here due to a strange bug in Qt
-	QMap<QString, QVariant> supportedAuthTypes;
+	// send list of supported authentication types
+	stream.write( QVariantList( { RfbItalcAuth::Token } ) );
 
-	supportedAuthTypes["ItalcAuthToken"] = ItalcAuthToken;
-	socketDevice.write( supportedAuthTypes );
+	auto chosenItalcAuthType = stream.read().value<RfbItalcAuth::Type>();
 
-	ItalcAuthTypes chosenItalcAuthType = static_cast<ItalcAuthTypes>( socketDevice.read().toInt() );
-
-	if( chosenItalcAuthType != ItalcAuthToken )
+	if( chosenItalcAuthType != RfbItalcAuth::Token )
 	{
 		qWarning("DemoServerClient::run(): demo client authentication failed\n");
 		deleteLater();
 		return;
 	}
 
-	const QString username = socketDevice.read().toString();
+	const QString username = stream.read().toString();
 	Q_UNUSED(username);
 
-	const QString token = socketDevice.read().toString();
+	const QString token = stream.read().toString();
 	if( token != m_demoAccessToken )
 	{
 		qWarning("DemoServerClient::run(): demo client authentication failed\n");
@@ -677,11 +596,11 @@ void DemoServerClient::run()
 
 	uint32_t authResult = Swap32IfLE(rfbVncAuthOK);
 
-	socketDevice.write( (char *) &authResult, sizeof( authResult ) );
+	socket.write( (char *) &authResult, sizeof( authResult ) );
 
 	rfbClientInitMsg ci;
 
-	if( socketDevice.read( (char *) &ci, sz_rfbClientInitMsg ) == false )
+	if( socket.read( (char *) &ci, sz_rfbClientInitMsg ) == false )
 	{
 		qWarning( "failed reading rfbClientInitMsg" );
 		deleteLater();
@@ -697,7 +616,7 @@ void DemoServerClient::run()
 	si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian )
 			? 1 : 0;
 	si.nameLength = 0;
-	if( socketDevice.write( ( const char *) &si, sz_rfbServerInitMsg ) == false )
+	if( socket.write( ( const char *) &si, sz_rfbServerInitMsg ) == false )
 	{
 		qWarning( "failed writing rfbServerInitMsg" );
 		deleteLater();
@@ -720,8 +639,8 @@ void DemoServerClient::run()
 	QSize s = m_vncConn->framebufferSize();
 	updateRect( 0, 0, s.width(), s.height() );
 
-	connect( m_sock, &QTcpSocket::readyRead, this, &DemoServerClient::processClient, Qt::DirectConnection );
-	connect( m_sock, &QTcpSocket::disconnected, this, &DemoServerClient::quit );
+	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerClient::processClient, Qt::DirectConnection );
+	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerClient::quit );
 
 	// TODO
 	/*	QTimer t;
