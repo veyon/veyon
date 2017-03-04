@@ -165,6 +165,7 @@ static void runX11vnc( QStringList cmdline, int port, const QString& password  )
 {
 	cmdline
 		<< "-passwd" << password
+		<< "-localhost"
 		<< "-nosel"	// do not exchange clipboard-contents
 		<< "-nosetclipboard"	// do not exchange clipboard-contents
 		<< "-rfbport" << QString::number( port )
@@ -218,12 +219,6 @@ void VncServer::run()
 		{
 			cmdline.append( arg );
 		}
-	}
-
-	if( ItalcCore::config->localConnectOnly() ||
-			AccessControlProvider().isAccessDeniedByLocalState() )
-	{
-		cmdline.append( "-localhost" );
 	}
 
 	runX11vnc( cmdline, m_serverPort, m_password );
