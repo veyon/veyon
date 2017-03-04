@@ -57,8 +57,15 @@ public:
 	}
 
 	// user logon auth
-	void setLogonUsername( const QString &username );
-	void setLogonPassword( const QString &password );
+	void setLogonUsername( const QString &username )
+	{
+		m_logonUsername = username;
+	}
+
+	void setLogonPassword( const QString &password )
+	{
+		m_logonPassword = password;
+	}
 
 	const QString &logonUsername() const
 	{
@@ -80,6 +87,15 @@ public:
 		return m_token;
 	}
 
+	void setInternalVncServerPassword( const QString& password )
+	{
+		m_internalVncServerPassword = password;
+	}
+
+	const QString& internalVncServerPassword() const
+	{
+		return m_internalVncServerPassword;
+	}
 
 private:
 	PrivateDSAKey *m_privateKey;
@@ -88,6 +104,8 @@ private:
 	QString m_logonPassword;
 
 	QString m_token;
+
+	QString m_internalVncServerPassword;
 
 } ;
 

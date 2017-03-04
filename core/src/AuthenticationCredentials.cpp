@@ -1,7 +1,7 @@
 /*
  * AuthenticationCredentials.cpp - class holding credentials for authentication
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,14 +23,14 @@
 
 #include "AuthenticationCredentials.h"
 #include "DsaKey.h"
-#include "Logger.h"
 
 
 AuthenticationCredentials::AuthenticationCredentials() :
 	m_privateKey( NULL ),
 	m_logonUsername(),
 	m_logonPassword(),
-	m_token()
+	m_token(),
+	m_internalVncServerPassword()
 {
 }
 
@@ -40,7 +40,8 @@ AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCreden
 	m_privateKey( NULL ),
 	m_logonUsername( other.logonUsername() ),
 	m_logonPassword( other.logonPassword() ),
-	m_token( other.token() )
+	m_token( other.token() ),
+	m_internalVncServerPassword( other.internalVncServerPassword() )
 {
 }
 
@@ -66,7 +67,7 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 												DsaKey::DefaultChallengeSize;
 	}
 
-	ilog_failedf( "credential type check", "%d", credentialType );
+	qCritical( "AuthenticationCredentials::hasCredentials(): no valid credential type given: %d", credentialType );
 
 	return false;
 }
@@ -90,18 +91,3 @@ bool AuthenticationCredentials::loadPrivateKey( const QString &privKeyFile )
 
 	return m_privateKey->isValid();
 }
-
-
-
-void AuthenticationCredentials::setLogonUsername( const QString &username )
-{
-	m_logonUsername = username;
-}
-
-
-
-void AuthenticationCredentials::setLogonPassword( const QString &password )
-{
-	m_logonPassword = password;
-}
-
