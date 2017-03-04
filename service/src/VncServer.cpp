@@ -53,9 +53,87 @@ extern int WinVNCAppMain();
 void ultravnc_italc_load_password( char* out, int size )
 {
 	QByteArray password = ItalcCore::authenticationCredentials->internalVncServerPassword().toLatin1();
-	strncpy( out, password.constData(), size );
+	memcpy( out, password.constData(), std::min<int>( size, password.length() ) );
 }
 
+static VncServer* vncServerInstance = nullptr;
+
+BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
+{
+	if( strcmp( valname, "LoopbackOnly" ) == 0 )
+	{
+		*out = 1;
+		return true;
+	}
+	if( strcmp( valname, "DisableTrayIcon" ) == 0 )
+	{
+		*out = 1;
+		return true;
+	}
+	if( strcmp( valname, "AuthRequired" ) == 0 )
+	{
+		*out = 1;
+		return true;
+	}
+	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
+	{
+		*out = ItalcCore::config->vncCaptureLayeredWindows() ? 1 : 0;
+		return true;
+	}
+	if( strcmp( valname, "PollFullScreen" ) == 0 )
+	{
+		*out = ItalcCore::config->vncPollFullScreen() ? 1 : 0;
+		return true;
+	}
+	if( strcmp( valname, "TurboMode" ) == 0 )
+	{
+		*out = ItalcCore::config->vncLowAccuracy() ? 1 : 0;
+		return true;
+	}
+	if( strcmp( valname, "NewMSLogon" ) == 0 )
+	{
+		*out = 1;
+		return true;
+	}
+	if( strcmp( valname, "MSLogonRequired" ) == 0 )
+	{
+		*out = ItalcCore::config->isLogonAuthenticationEnabled() ? 1 : 0;
+		return true;
+	}
+	if( strcmp( valname, "RemoveWallpaper" ) == 0 )
+	{
+		*out = 0;
+		return true;
+	}
+	if( strcmp( valname, "FileTransferEnabled" ) == 0 )
+	{
+		*out = 0;
+		return true;
+	}
+	if( strcmp( valname, "AllowLoopback" ) == 0 )
+	{
+		*out = 1;
+		return true;
+	}
+	if( strcmp( valname, "AutoPortSelect" ) == 0 )
+	{
+		*out = 0;
+		return true;
+	}
+
+	if( strcmp( valname, "HTTPConnect" ) == 0 )
+	{
+		return false;
+	}
+
+	if( strcmp( valname, "PortNumber" ) == 0 )
+	{
+		*out = vncServerInstance->serverPort();
+		return true;
+	}
+
+	return false;
+}
 #endif
 
 
@@ -66,12 +144,18 @@ VncServer::VncServer( int serverPort ) :
 	m_serverPort( serverPort )
 {
 	ItalcCore::authenticationCredentials->setInternalVncServerPassword( m_password );
+#ifdef ITALC_BUILD_WIN32
+	vncServerInstance = this;
+#endif
 }
 
 
 
 VncServer::~VncServer()
 {
+#ifdef ITALC_BUILD_WIN32
+	vncServerInstance = nullptr;
+#endif
 }
 
 
