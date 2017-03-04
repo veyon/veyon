@@ -24,12 +24,9 @@
 
 #include <windows.h>
 
-#include <QtCore/QSettings>
-
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "AccessControlProvider.h"
-#include "Configuration/LocalStore.h"
 
 
 BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )

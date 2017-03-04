@@ -29,11 +29,15 @@
 #include "ComputerControlServer.h"
 
 
-ComputerControlClient::ComputerControlClient( ComputerControlServer* server, QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) :
-	VncProxyClient( clientSocket, vncServerPort, parent ),
+ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
+											  QTcpSocket* clientSocket,
+											  int vncServerPort,
+											  const QString& vncServerPassword,
+											  QObject* parent ) :
+	VncProxyConnection( clientSocket, vncServerPort, parent ),
 	m_server( server ),
 	m_serverProtocol( proxyClientSocket(), server->serverAuthenticationManager() ),
-	m_clientProtocol( vncServerSocket() )
+	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
 	m_serverProtocol.start();
 	m_clientProtocol.start();
@@ -47,7 +51,7 @@ ComputerControlClient::~ComputerControlClient()
 
 
 
-void ComputerControlClient::readFromServer()
+void ComputerControlClient::readFromClient()
 {
 	if( m_serverProtocol.state() != VncServerProtocol::Authenticated )
 	{
@@ -57,18 +61,20 @@ void ComputerControlClient::readFromServer()
 	}
 	else if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
 	{
-		forwardAllDataToClient();
+		while( proxyClientSocket()->bytesAvailable() > 0 && receiveMessage() )
+		{
+		}
 	}
 	else
 	{
 		// try again as client connection is not yet ready and we can't forward data
-		QTimer::singleShot( ProtocolRetryTime, this, &ComputerControlClient::readFromServer );
+		QTimer::singleShot( ProtocolRetryTime, this, &ComputerControlClient::readFromClient );
 	}
 }
 
 
 
-void ComputerControlClient::readFromClient()
+void ComputerControlClient::readFromServer()
 {
 	if( m_clientProtocol.state() != VncClientProtocol::Authenticated )
 	{
@@ -78,14 +84,12 @@ void ComputerControlClient::readFromClient()
 	}
 	else if( m_serverProtocol.state() == VncServerProtocol::Authenticated )
 	{
-		while( proxyClientSocket()->bytesAvailable() > 0 && receiveMessage() )
-		{
-		}
+		forwardAllDataToClient();
 	}
 	else
 	{
 		// try again as server connection is not yet ready and we can't forward data
-		QTimer::singleShot( ProtocolRetryTime, this, &ComputerControlClient::readFromClient );
+		QTimer::singleShot( ProtocolRetryTime, this, &ComputerControlClient::readFromServer );
 	}
 }
 

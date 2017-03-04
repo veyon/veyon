@@ -2,7 +2,7 @@
  * VncServer.h - class VncServer, a VNC server abstraction for
  *                    platform-independent VNC server usage
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,10 +23,10 @@
  *
  */
 
-#ifndef ITALC_VNC_SERVER_H
-#define ITALC_VNC_SERVER_H
+#ifndef VNC_SERVER_H
+#define VNC_SERVER_H
 
-#include <QtCore/QThread>
+#include <QThread>
 
 class VncServer : public QThread
 {
@@ -39,10 +39,15 @@ public:
 		return m_serverPort;
 	}
 
+	const QString& password() const
+	{
+		return m_password;
+	}
 
 private:
 	virtual void run();
 
+	QString m_password;
 	int m_serverPort;
 
 } ;

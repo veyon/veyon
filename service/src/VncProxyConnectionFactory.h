@@ -1,5 +1,5 @@
 /*
- * VncProxyClientFactory.h - abstract factory class for VncClientProxy objects 
+ * VncProxyConnectionFactory.h - abstract factory class for VncProxyConnectionFactory objects
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,17 +22,20 @@
  *
  */
 
-#ifndef VNC_PROXY_CLIENT_FACTORY_H
-#define VNC_PROXY_CLIENT_FACTORY_H
+#ifndef VNC_PROXY_CONNECTION_FACTORY_H
+#define VNC_PROXY_CONNECTION_FACTORY_H
 
 class QObject;
 class QTcpSocket;
-class VncProxyClient;
+class VncProxyConnection;
 
-class VncProxyClientFactory
+class VncProxyConnectionFactory
 {
 public:
-	virtual VncProxyClient* createVncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) = 0;
+	virtual VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
+														  int vncServerPort,
+														  const QString& vncServerPassword,
+														  QObject* parent ) = 0;
 
 } ;
 

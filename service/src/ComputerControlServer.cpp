@@ -49,7 +49,7 @@ ComputerControlServer::ComputerControlServer() :
 	m_featureWorkerManager( m_featureManager ),
 	m_serverAuthenticationManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog() ),
 	m_vncServer( 12345 ),
-	m_vncProxyServer( m_vncServer.serverPort(), ItalcCore::serverPort, this, this )
+	m_vncProxyServer( m_vncServer.serverPort(), m_vncServer.password(), ItalcCore::serverPort, this, this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).
@@ -82,9 +82,12 @@ void ComputerControlServer::start()
 
 
 
-VncProxyClient* ComputerControlServer::createVncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent )
+VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket* clientSocket,
+																 int vncServerPort,
+																 const QString& vncServerPassword,
+																 QObject* parent )
 {
-	return new ComputerControlClient( this, clientSocket, vncServerPort, parent );
+	return new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
 }
 
 

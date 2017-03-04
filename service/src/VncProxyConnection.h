@@ -1,5 +1,5 @@
 /*
- * VncProxyClient.h - class representing a client of a VncProxyServer
+ * VncProxyConnection.h - class representing a connection within VncProxyServer
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,19 +22,19 @@
  *
  */
 
-#ifndef VNC_PROXY_CLIENT_H
-#define VNC_PROXY_CLIENT_H
+#ifndef VNC_PROXY_CONNECTION_H
+#define VNC_PROXY_CONNECTION_H
 
 #include <QObject>
 
 class QTcpSocket;
 
-class VncProxyClient : public QObject
+class VncProxyConnection : public QObject
 {
 	Q_OBJECT
 public:
-	VncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
-	virtual ~VncProxyClient();
+	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
+	virtual ~VncProxyConnection();
 
 protected:
 	QTcpSocket* proxyClientSocket()

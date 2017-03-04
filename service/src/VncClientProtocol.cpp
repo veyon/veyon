@@ -26,6 +26,8 @@
 
 #ifdef ITALC_BUILD_WIN32
 #include <winsock2.h>
+
+#include "vncauth.h"
 #endif
 
 #include <QTcpSocket>
@@ -34,6 +36,10 @@ extern "C"
 {
 #include "rfb/rfbproto.h"
 }
+
+#ifdef ITALC_BUILD_WIN32
+#define rfbEncryptBytes vncEncryptBytes
+#endif
 
 #include "VncClientProtocol.h"
 #include "VariantStream.h"

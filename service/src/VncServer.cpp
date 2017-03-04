@@ -23,101 +23,38 @@
  *
  */
 
-#include <italcconfig.h>
+#include "ItalcCore.h"
 
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
 #endif
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QProcess>
+#include <QCoreApplication>
+#include <QProcess>
+
+#include "rfb/rfbproto.h"
 
 #include "AccessControlProvider.h"
+#include "AuthenticationCredentials.h"
 #include "ItalcConfiguration.h"
-#include "ItalcCore.h"
 #include "VncServer.h"
+#include "DsaKey.h"
 
 
+#ifdef ITALC_BUILD_LINUX
 extern "C" int x11vnc_main( int argc, char * * argv );
-
-
-#ifndef ITALC_BUILD_WIN32
-
-#if 0
-static qint64 libvncServerDispatcher( char * buffer, const qint64 bytes,
-									  const SocketOpCodes opCode, void * user )
-{
-	rfbClientPtr cl = (rfbClientPtr) user;
-	switch( opCode )
-	{
-	case SocketRead:
-		return rfbReadExact( cl, buffer, bytes ) == 1 ? bytes : 0;
-	case SocketWrite:
-		return rfbWriteExact( cl, buffer, bytes ) == 1 ? bytes : 0;
-	case SocketGetPeerAddress:
-		strncpy( buffer, cl->host, bytes );
-		break;
-	}
-	return 0;
-
-}
-
-
-static rfbBool italcCoreNewClient( struct _rfbClientRec *, void * * )
-{
-	return true;
-}
-
-
-
-
-static rfbBool lvs_italcHandleMessage( struct _rfbClientRec *client,
-					void *data,
-					const rfbClientToServerMsg *message )
-{
-	if( message->type == rfbItalcCoreRequest )
-	{
-		return ComputerControlServer::instance()->handleItalcCoreMessage( libvncServerDispatcher, client );
-	}
-	else if( message->type == rfbItalcFeatureRequest )
-	{
-		return ComputerControlServer::instance()->handleItalcFeatureMessage( libvncServerDispatcher, client );
-	}
-
-	return false;
-}
-
-
-extern "C" void rfbClientSendString(rfbClientPtr cl, char *reason);
-
-
-static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
-{
-	bool authOK = ComputerControlServer::instance()->
-								authSecTypeItalc( libvncServerDispatcher, cl );
-
-	uint32_t result = authOK ? rfbVncAuthOK : rfbVncAuthFailed;
-	result = Swap32IfLE( result );
-	rfbWriteExact( cl, (char *) &result, 4 );
-
-	if( authOK )
-	{
-		cl->state = rfbClientRec::RFB_INITIALISATION;
-	}
-	else
-	{
-		rfbClientSendString( cl, (char *) "Signature verification failed!" );
-    }
-}
-#endif
-
 #endif
 
 
 #ifdef ITALC_BUILD_WIN32
-
 extern bool Myinit( HINSTANCE hInstance );
 extern int WinVNCAppMain();
+
+void ultravnc_italc_load_password( char* out, int size )
+{
+	QByteArray password = ItalcCore::authenticationCredentials->internalVncServerPassword().toLatin1();
+	strncpy( out, password.constData(), size );
+}
 
 #endif
 
@@ -125,8 +62,10 @@ extern int WinVNCAppMain();
 
 VncServer::VncServer( int serverPort ) :
 	QThread(),
+	m_password( DsaKey::generateChallenge().toBase64().left( MAXPWLEN ) ),
 	m_serverPort( serverPort )
 {
+	ItalcCore::authenticationCredentials->setInternalVncServerPassword( m_password );
 }
 
 
@@ -138,9 +77,10 @@ VncServer::~VncServer()
 
 
 #ifdef ITALC_BUILD_LINUX
-static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
+static void runX11vnc( QStringList cmdline, int port, const QString& password  )
 {
 	cmdline
+		<< "-passwd" << password
 		<< "-nosel"	// do not exchange clipboard-contents
 		<< "-nosetclipboard"	// do not exchange clipboard-contents
 		<< "-rfbport" << QString::number( port )
@@ -167,40 +107,6 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 		argv[argc] = new char[it->length() + 1];
 		strcpy( argv[argc], it->toUtf8().constData() );
 	}
-
-#if 0
-	static bool firstTime = true;
-
-	if( firstTime )
-	{
-		if( plainVnc == false )
-		{
-			// register iTALC protocol extension
-			static rfbProtocolExtension pe;
-
-			// initialize all pointers inside the struct to NULL
-			memset( &pe, 0, sizeof( pe ) );
-
-			// register our own handlers
-			pe.newClient = italcCoreNewClient;
-			pe.handleMessage = lvs_italcHandleMessage;
-
-			rfbRegisterProtocolExtension( &pe );
-		}
-
-		// register handler for iTALC's security-type
-		static rfbSecurityHandler shi = { rfbSecTypeItalc, lvs_italcSecurityHandler, NULL };
-		rfbRegisterSecurityHandler( &shi );
-
-#ifndef ITALC_BUILD_WIN32
-		// register handler for MS Logon II security type
-		static rfbSecurityHandler shmsl = { rfbUltraVNC_MsLogonIIAuth, lvs_msLogonIISecurityHandler, NULL };
-		rfbRegisterSecurityHandler( &shmsl );
-#endif
-
-		firstTime = false;
-	}
-#endif
 
 	// run x11vnc-server
 	x11vnc_main( argc, argv );
@@ -236,7 +142,7 @@ void VncServer::run()
 		cmdline.append( "-localhost" );
 	}
 
-	runX11vnc( cmdline, m_serverPort, false );
+	runX11vnc( cmdline, m_serverPort, m_password );
 
 #elif ITALC_BUILD_WIN32
 

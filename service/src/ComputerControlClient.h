@@ -25,35 +25,32 @@
 #ifndef COMPUTER_CONTROL_CLIENT_H
 #define COMPUTER_CONTROL_CLIENT_H
 
-#include "VncProxyClient.h"
+#include "VncProxyConnection.h"
 #include "VncClientProtocol.h"
 #include "VncServerProtocol.h"
 
 class ComputerControlServer;
 
-class ComputerControlClient : public VncProxyClient
+class ComputerControlClient : public VncProxyConnection
 {
 	Q_OBJECT
 public:
-	ComputerControlClient( ComputerControlServer* server, QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
+	ComputerControlClient( ComputerControlServer* server,
+						   QTcpSocket* clientSocket,
+						   int vncServerPort,
+						   const QString& vncServerPassword,
+						   QObject* parent );
 	virtual ~ComputerControlClient();
 
-	void readFromServer() override;
 	void readFromClient() override;
+	void readFromServer() override;
 
 private:
 	enum {
 		ProtocolRetryTime = 100
 	};
 
-/*	void receiveSecurityTypesFromServer();
-
-	void sendSecurityTypes();
-	void receiveSecurityTypeResponse();
-	void sendAuthenticationTypes();
-	void receiveAuthenticationTypeResponse();*/
 	bool receiveMessage();
-
 
 	ComputerControlServer* m_server;
 

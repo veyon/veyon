@@ -29,35 +29,40 @@
 #include <QVector>
 
 class QTcpServer;
-class VncProxyClient;
-class VncProxyClientFactory;
+class VncProxyConnection;
+class VncProxyConnectionFactory;
 
 class VncProxyServer : public QObject
 {
 	Q_OBJECT
 public:
-	typedef QVector<VncProxyClient *> VncProxyClientList;
+	typedef QVector<VncProxyConnection *> VncProxyConnectionList;
 
-	VncProxyServer( int vncServerPort, int listenPort, VncProxyClientFactory* clientFactory, QObject* parent = nullptr );
+	VncProxyServer( int vncServerPort,
+					const QString& vncServerPassword,
+					int listenPort,
+					VncProxyConnectionFactory* clientFactory,
+					QObject* parent = nullptr );
 	virtual ~VncProxyServer();
 
 	void start();
 
-	const VncProxyClientList& clients() const
+	const VncProxyConnectionList& clients() const
 	{
-		return m_clients;
+		return m_connections;
 	}
 
 private slots:
 	void acceptConnection();
-	void closeConnection( VncProxyClient* );
+	void closeConnection( VncProxyConnection* );
 
 private:
 	int m_vncServerPort;
+	QString m_vncServerPassword;
 	int m_listenPort;
 	QTcpServer* m_server;
-	VncProxyClientFactory* m_clientFactory;
-	VncProxyClientList m_clients;
+	VncProxyConnectionFactory* m_connectionFactory;
+	VncProxyConnectionList m_connections;
 
 } ;
 

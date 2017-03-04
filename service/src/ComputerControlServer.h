@@ -37,10 +37,10 @@
 #include "DesktopAccessPermission.h"
 #include "ServerAuthenticationManager.h"
 #include "VncProxyServer.h"
-#include "VncProxyClientFactory.h"
+#include "VncProxyConnectionFactory.h"
 #include "VncServer.h"
 
-class ComputerControlServer : public QObject, VncProxyClientFactory
+class ComputerControlServer : public QObject, VncProxyConnectionFactory
 {
 	Q_OBJECT
 public:
@@ -49,7 +49,10 @@ public:
 
 	void start();
 
-	VncProxyClient* createVncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) override;
+	VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
+												  int vncServerPort,
+												  const QString& vncServerPassword,
+												  QObject* parent ) override;
 
 	ServerAuthenticationManager& serverAuthenticationManager()
 	{

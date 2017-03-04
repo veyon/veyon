@@ -1,5 +1,5 @@
 /*
- * VncProxyClient.cpp - class representing a client of a VncProxyServer
+ * VncProxyConnection.cpp - class representing a connection within VncProxyServer
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -25,25 +25,25 @@
 #include <QHostAddress>
 #include <QTcpSocket>
 
-#include "VncProxyClient.h"
+#include "VncProxyConnection.h"
 
-VncProxyClient::VncProxyClient( QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) :
+VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent ) :
 	QObject( parent ),
 	m_proxyClientSocket( clientSocket ),
 	m_vncServerSocket( new QTcpSocket( this ) )
 {
-	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyClient::readFromClient );
-	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyClient::readFromServer );
+	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient );
+	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer );
 
-	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyClient::clientConnectionClosed );
-	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyClient::serverConnectionClosed );
+	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed );
+	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed );
 
 	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, vncServerPort );
 }
 
 
 
-VncProxyClient::~VncProxyClient()
+VncProxyConnection::~VncProxyConnection()
 {
 	delete m_vncServerSocket;
 	delete m_proxyClientSocket;
@@ -51,7 +51,7 @@ VncProxyClient::~VncProxyClient()
 
 
 
-void VncProxyClient::forwardAllDataToClient()
+void VncProxyConnection::forwardAllDataToClient()
 {
 	m_proxyClientSocket->write( m_vncServerSocket->readAll() );
 //	m_proxyClientSocket->flush();
@@ -59,7 +59,7 @@ void VncProxyClient::forwardAllDataToClient()
 
 
 
-void VncProxyClient::forwardAllDataToServer()
+void VncProxyConnection::forwardAllDataToServer()
 {
 	m_vncServerSocket->write( m_proxyClientSocket->readAll() );
 //	m_vncServerSocket->flush();

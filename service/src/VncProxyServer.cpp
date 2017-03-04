@@ -26,16 +26,21 @@
 #include <QTcpSocket>
 
 #include "VncProxyServer.h"
-#include "VncProxyClient.h"
-#include "VncProxyClientFactory.h"
+#include "VncProxyConnection.h"
+#include "VncProxyConnectionFactory.h"
 
 
-VncProxyServer::VncProxyServer( int vncServerPort, int listenPort, VncProxyClientFactory* clientFactory, QObject* parent ) :
+VncProxyServer::VncProxyServer( int vncServerPort,
+								const QString& vncServerPassword,
+								int listenPort,
+								VncProxyConnectionFactory* connectionFactory,
+								QObject* parent ) :
 	QObject( parent ),
 	m_vncServerPort( vncServerPort ),
+	m_vncServerPassword( vncServerPassword ),
 	m_listenPort( listenPort ),
 	m_server( new QTcpServer( this ) ),
-	m_clientFactory( clientFactory )
+	m_connectionFactory( connectionFactory )
 {
 	connect( m_server, &QTcpServer::newConnection, this, &VncProxyServer::acceptConnection );
 }
@@ -44,7 +49,7 @@ VncProxyServer::VncProxyServer( int vncServerPort, int listenPort, VncProxyClien
 
 VncProxyServer::~VncProxyServer()
 {
-	for( auto client : m_clients )
+	for( auto client : m_connections )
 	{
 		delete client;
 	}
@@ -69,19 +74,23 @@ void VncProxyServer::start()
 
 void VncProxyServer::acceptConnection()
 {
-	VncProxyClient* client = m_clientFactory->createVncProxyClient( m_server->nextPendingConnection(), m_vncServerPort, this );
+	VncProxyConnection* connection =
+			m_connectionFactory->createVncProxyConnection( m_server->nextPendingConnection(),
+														   m_vncServerPort,
+														   m_vncServerPassword,
+														   this );
 
-	connect( client, &VncProxyClient::clientConnectionClosed, [=]() { closeConnection( client ); } );
-	connect( client, &VncProxyClient::serverConnectionClosed, [=]() { closeConnection( client ); } );
+	connect( connection, &VncProxyConnection::clientConnectionClosed, [=]() { closeConnection( connection ); } );
+	connect( connection, &VncProxyConnection::serverConnectionClosed, [=]() { closeConnection( connection ); } );
 
-	m_clients += client;
+	m_connections += connection;
 }
 
 
 
-void VncProxyServer::closeConnection( VncProxyClient* client )
+void VncProxyServer::closeConnection( VncProxyConnection* connection )
 {
-	m_clients.removeAll( client );
+	m_connections.removeAll( connection );
 
-	client->deleteLater();
+	connection->deleteLater();
 }
