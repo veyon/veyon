@@ -30,15 +30,20 @@
 
 #include <QTcpSocket>
 
+extern "C"
+{
 #include "rfb/rfbproto.h"
+}
 
 #include "VncClientProtocol.h"
 #include "VariantStream.h"
 
 
-VncClientProtocol::VncClientProtocol( QTcpSocket* socket ) :
+
+VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPassword ) :
 	m_socket( socket ),
-	m_state( Disconnected )
+	m_state( Disconnected ),
+	m_vncPassword( vncPassword.toLatin1() )
 {
 }
 
@@ -59,6 +64,9 @@ bool VncClientProtocol::read()
 
 	case SecurityInit:
 		return receiveSecurityTypes();
+
+	case SecurityChallenge:
+		return receiveSecurityChallenge();
 
 	case SecurityResult:
 		return receiveSecurityResult();
@@ -128,7 +136,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 			return false;
 		}
 
-		char securityType = rfbSecTypeNone;
+		char securityType = rfbSecTypeVncAuth;
 
 		if( securityTypeList.contains( securityType ) == false )
 		{
@@ -139,6 +147,27 @@ bool VncClientProtocol::receiveSecurityTypes()
 		}
 
 		m_socket->write( &securityType, sizeof(securityType) );
+
+		m_state = SecurityChallenge;
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool VncClientProtocol::receiveSecurityChallenge()
+{
+	if( m_socket->bytesAvailable() >= CHALLENGESIZE )
+	{
+		uint8_t challenge[CHALLENGESIZE];
+		m_socket->read( (char *) challenge, CHALLENGESIZE );
+
+		rfbEncryptBytes( challenge, m_vncPassword.data() );
+
+		m_socket->write( (const char *) challenge, CHALLENGESIZE );
 
 		m_state = SecurityResult;
 

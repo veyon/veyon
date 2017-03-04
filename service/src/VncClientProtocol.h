@@ -25,6 +25,8 @@
 #ifndef VNC_CLIENT_PROTOCOL_H
 #define VNC_CLIENT_PROTOCOL_H
 
+#include <QString>
+
 class QTcpSocket;
 
 class VncClientProtocol
@@ -34,13 +36,14 @@ public:
 		Disconnected,
 		Protocol,
 		SecurityInit,
+		SecurityChallenge,
 		SecurityResult,
 		Authenticated,
 		Connected,
 		StateCount
 	} State;
 
-	VncClientProtocol( QTcpSocket* socket );
+	VncClientProtocol( QTcpSocket* socket, const QString& vncPassword );
 
 	State state() const
 	{
@@ -57,10 +60,13 @@ private:
 
 	bool readProtocol();
 	bool receiveSecurityTypes();
+	bool receiveSecurityChallenge();
 	bool receiveSecurityResult();
 
 	QTcpSocket* m_socket;
 	State m_state;
+
+	QByteArray m_vncPassword;
 
 } ;
 
