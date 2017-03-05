@@ -94,7 +94,10 @@ VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket*
 
 bool ComputerControlServer::handleCoreMessage( QTcpSocket* socket )
 {
-	// receive message
+	char messageType;
+	socket->read( &messageType, sizeof(messageType) );
+
+			// receive message
 	ItalcCore::Msg msgIn( socket );
 	msgIn.receive();
 
@@ -179,8 +182,17 @@ bool ComputerControlServer::handleCoreMessage( QTcpSocket* socket )
 
 bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 {
+	char messageType;
+	socket->getChar( &messageType );
+
 	// receive message
 	FeatureMessage featureMessage( socket );
+	if( featureMessage.isReadyForReceive() == false )
+	{
+		socket->ungetChar( messageType );
+		return false;
+	}
+
 	featureMessage.receive();
 
 	qDebug() << "ComputerControlServer::handleItalcFeatureMessage():"

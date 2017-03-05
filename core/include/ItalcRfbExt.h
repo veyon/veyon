@@ -32,8 +32,7 @@ typedef struct _rfbClient rfbClient;
 // is following
 #define rfbItalcCoreRequest		40
 #define rfbItalcCoreResponse		rfbItalcCoreRequest
-#define rfbItalcFeatureRequest		41
-#define rfbItalcFeatureResponse		rfbItalcFeatureRequest
+#define rfbItalcFeatureMessage		41
 
 
 #define rfbSecTypeItalc 40

@@ -66,7 +66,7 @@ public:
 				 << "with arguments" << m_featureMessage.arguments();
 
 		SocketDevice socketDevice( libvncClientDispatcher, client );
-		char messageType = rfbItalcFeatureRequest;
+		char messageType = rfbItalcFeatureMessage;
 		socketDevice.write( &messageType, sizeof(messageType) );
 
 		m_featureMessage.send( &socketDevice );

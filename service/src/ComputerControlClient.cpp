@@ -61,7 +61,7 @@ void ComputerControlClient::readFromClient()
 	}
 	else if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
 	{
-		while( proxyClientSocket()->bytesAvailable() > 0 && receiveMessage() )
+		while( receiveMessage() )
 		{
 		}
 	}
@@ -103,27 +103,28 @@ bool ComputerControlClient::receiveMessage()
 	}
 
 	char messageType = 0;
-	if( proxyClientSocket()->read( &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	if( proxyClientSocket()->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
 	{
-		qCritical( "ComputerControlClient:::receiveMessage(): could not read message type - closing connection" );
+		qCritical( "ComputerControlClient:::receiveMessage(): could not peek message type - closing connection" );
 
 		deleteLater();
 		return false;
 	}
+
+	qWarning( "ComputerControlClient:::messageType(): %d", (int) messageType );
 
 	switch( messageType )
 	{
 	case rfbItalcCoreRequest:
 		return m_server->handleCoreMessage( proxyClientSocket() );
 
-	case rfbItalcFeatureRequest:
+	case rfbItalcFeatureMessage:
 		return m_server->handleFeatureMessage( proxyClientSocket() );
 
 	default:
 		break;
 	}
 
-	vncServerSocket()->write( &messageType, sizeof(messageType) );
 	forwardAllDataToServer();
 
 	return true;

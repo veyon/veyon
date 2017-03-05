@@ -34,6 +34,7 @@ class QIODevice;
 class ITALC_CORE_EXPORT FeatureMessage
 {
 public:
+	typedef quint32 MessageSize;
 	typedef Feature::Uid FeatureUid;
 	typedef qint32 Command;
 	typedef QMap<QString, QVariant> Arguments;
@@ -102,6 +103,8 @@ public:
 
 	bool send();
 	bool send( QIODevice* ioDevice ) const;
+
+	bool isReadyForReceive();
 
 	FeatureMessage& receive();
 

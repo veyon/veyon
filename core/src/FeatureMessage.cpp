@@ -22,7 +22,15 @@
  *
  */
 
-#include <QDebug>
+#include "ItalcCore.h"
+
+#ifdef ITALC_BUILD_WIN32
+#include <winsock2.h>
+#else
+#include <netinet/in.h>
+#endif
+
+#include <QBuffer>
 
 #include "FeatureMessage.h"
 #include "VariantStream.h"
@@ -41,10 +49,19 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 	{
 		qDebug() << "FeatureMessage::send():" << featureUid() << command() << arguments();
 
-		VariantStream stream( ioDevice );
+		QBuffer buffer;
+		buffer.open( QBuffer::ReadWrite );
+
+		VariantStream stream( &buffer );
 		stream.write( m_featureUid );
 		stream.write( m_command );
 		stream.write( m_arguments );
+
+		buffer.seek( 0 );
+
+		MessageSize messageSize = htonl( buffer.size() );
+		ioDevice->write( (const char *) &messageSize, sizeof(messageSize) );
+		ioDevice->write( buffer.data() );
 
 		return true;
 	}
@@ -56,10 +73,32 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 
 
 
+bool FeatureMessage::isReadyForReceive()
+{
+	MessageSize messageSize;
+
+	m_ioDevice->peek( (char *) &messageSize, sizeof(messageSize) );
+	messageSize = ntohl(messageSize);
+
+	return m_ioDevice->bytesAvailable() >= qint64( sizeof(messageSize) + messageSize );
+}
+
+
+
 FeatureMessage &FeatureMessage::receive()
 {
 	if( m_ioDevice )
 	{
+		MessageSize messageSize;
+
+		if( m_ioDevice->read( (char *) &messageSize, sizeof(messageSize) ) != sizeof(messageSize) )
+		{
+			qWarning( "FeatureMessage::receive(): could not read message size!" );
+			return *this;
+		}
+
+		messageSize = ntohl(messageSize);
+
 		VariantStream stream( m_ioDevice );
 		m_featureUid = stream.read().toUuid();
 		m_command = stream.read().value<Command>();
