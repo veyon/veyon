@@ -22,18 +22,8 @@
  *
  */
 
-#include "ItalcCore.h"
-
-#ifdef ITALC_BUILD_WIN32
-#include <winsock2.h>
-#else
-#include <netinet/in.h>
-#endif
-
-#include <QBuffer>
-
 #include "FeatureMessage.h"
-#include "VariantStream.h"
+#include "VariantArrayMessage.h"
 
 
 bool FeatureMessage::send()
@@ -49,21 +39,13 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 	{
 		qDebug() << "FeatureMessage::send():" << featureUid() << command() << arguments();
 
-		QBuffer buffer;
-		buffer.open( QBuffer::ReadWrite );
+		VariantArrayMessage message( ioDevice );
 
-		VariantStream stream( &buffer );
-		stream.write( m_featureUid );
-		stream.write( m_command );
-		stream.write( m_arguments );
+		message.stream().write( m_featureUid );
+		message.stream().write( m_command );
+		message.stream().write( m_arguments );
 
-		buffer.seek( 0 );
-
-		MessageSize messageSize = htonl( buffer.size() );
-		ioDevice->write( (const char *) &messageSize, sizeof(messageSize) );
-		ioDevice->write( buffer.data() );
-
-		return true;
+		return message.send();
 	}
 
 	qCritical( "FeatureMessage::send(): no IO device!" );
@@ -75,12 +57,8 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 
 bool FeatureMessage::isReadyForReceive()
 {
-	MessageSize messageSize;
-
-	m_ioDevice->peek( (char *) &messageSize, sizeof(messageSize) );
-	messageSize = ntohl(messageSize);
-
-	return m_ioDevice->bytesAvailable() >= qint64( sizeof(messageSize) + messageSize );
+	return m_ioDevice != nullptr &&
+			VariantArrayMessage( m_ioDevice ).isReadyForReceive();
 }
 
 
@@ -89,20 +67,17 @@ FeatureMessage &FeatureMessage::receive()
 {
 	if( m_ioDevice )
 	{
-		MessageSize messageSize;
+		VariantArrayMessage message( m_ioDevice );
 
-		if( m_ioDevice->read( (char *) &messageSize, sizeof(messageSize) ) != sizeof(messageSize) )
+		if( message.receive() == false )
 		{
-			qWarning( "FeatureMessage::receive(): could not read message size!" );
+			qWarning( "FeatureMessage::receive(): could not receive message!" );
 			return *this;
 		}
 
-		messageSize = ntohl(messageSize);
-
-		VariantStream stream( m_ioDevice );
-		m_featureUid = stream.read().toUuid();
-		m_command = stream.read().value<Command>();
-		m_arguments = stream.read().toMap();
+		m_featureUid = message.stream().read().toUuid();
+		m_command = message.stream().read().value<Command>();
+		m_arguments = message.stream().read().toMap();
 
 		qDebug() << "FeatureMessage::receive():" << featureUid() << command() << arguments();
 	}
