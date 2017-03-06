@@ -1,5 +1,5 @@
 /*
- * VariantArrayMessage.h - class for sending a variant array as message
+ * VariantArrayMessage.h - class for sending/receiving a variant array as message
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -28,9 +28,9 @@
 #include <QBuffer>
 #include <QVariant>
 
-#include "VariantStream.h"
+#include "ItalcCore.h"
 
-class QIODevice;
+class VariantStream;
 
 class ITALC_CORE_EXPORT VariantArrayMessage
 {
@@ -38,17 +38,17 @@ public:
 	typedef quint32 MessageSize;
 
 	VariantArrayMessage( QIODevice* ioDevice );
-
-	VariantStream& stream()
-	{
-		return m_stream;
-	}
+	~VariantArrayMessage();
 
 	bool send();
 
 	bool isReadyForReceive();
 
 	bool receive();
+
+	QVariant read();
+
+	VariantArrayMessage& write( const QVariant& v );
 
 	QIODevice* ioDevice() const
 	{
@@ -57,7 +57,7 @@ public:
 
 private:
 	QBuffer m_buffer;
-	VariantStream m_stream;
+	VariantStream* m_stream;
 	QIODevice* m_ioDevice;
 
 } ;

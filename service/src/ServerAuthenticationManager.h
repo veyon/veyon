@@ -31,16 +31,79 @@
 #include "RfbItalcAuth.h"
 #include "DesktopAccessPermission.h"
 
-class QTcpSocket;
+class VariantArrayMessage;
 
 class ServerAuthenticationManager : public QObject
 {
 	Q_OBJECT
 public:
+	class Client
+	{
+	public:
+		typedef enum States {
+			Init,
+			Challenge,
+			FinishedSuccess,
+			FinishedFail,
+		} State;
+
+		Client( RfbItalcAuth::Type authType, const QString& username, const QString& hostAddress ) :
+			m_state( Init ),
+			m_authType( authType ),
+			m_username( username ),
+			m_hostAddress( hostAddress ),
+			m_challenge()
+		{
+		}
+
+		State state() const
+		{
+			return m_state;
+		}
+
+		void setState( State state )
+		{
+			m_state = state;
+		}
+
+		RfbItalcAuth::Type authType() const
+		{
+			return m_authType;
+		}
+
+		const QString& username() const
+		{
+			return m_username;
+		}
+
+		const QString& hostAddress() const
+		{
+			return m_hostAddress;
+		}
+
+		const QByteArray& challenge() const
+		{
+			return m_challenge;
+		}
+
+		void setChallenge( const QByteArray& challenge )
+		{
+			m_challenge = challenge;
+		}
+
+	private:
+		State m_state;
+		RfbItalcAuth::Type m_authType;
+		QString m_username;
+		QString m_hostAddress;
+		QByteArray m_challenge;
+	} ;
+
 	ServerAuthenticationManager( FeatureWorkerManager& featureWorkerManager,
 								 DesktopAccessDialog& desktopAccessDialog );
 
-	bool authenticateClient( QTcpSocket* socket, RfbItalcAuth::Type authType );
+	void processAuthenticationMessage( Client* client,
+									   VariantArrayMessage& message );
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
@@ -52,10 +115,10 @@ signals:
 	void authenticationError( QString host, QString user );
 
 private:
-	bool performKeyAuthentication( QTcpSocket* socket );
-	bool performLogonAuthentication( QTcpSocket* socket );
-	bool performHostWhitelistAuth( QTcpSocket* socket );
-	bool performTokenAuthentication( QTcpSocket* socket );
+	Client::State performKeyAuthentication( Client* client, VariantArrayMessage& message );
+	Client::State performLogonAuthentication( Client* client, VariantArrayMessage& message );
+	Client::State performHostWhitelistAuth( Client* client, VariantArrayMessage& message );
+	Client::State performTokenAuthentication( Client* client, VariantArrayMessage& message );
 
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;

@@ -28,13 +28,14 @@
 #include <winsock2.h>
 #endif
 
+#include <QHostAddress>
 #include <QTcpSocket>
 
 #include "rfb/rfbproto.h"
 
 #include "AuthenticationCredentials.h"
 #include "ServerAuthenticationManager.h"
-#include "VariantStream.h"
+#include "VariantArrayMessage.h"
 #include "VncServerProtocol.h"
 
 
@@ -42,12 +43,21 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket, ServerAuthenticationMa
 	m_socket( socket ),
 	m_serverAuthenticationManager( serverAuthenticationManager ),
 	m_state( Disconnected ),
-	m_supportedAuthTypes( { RfbItalcAuth::DSA, RfbItalcAuth::Logon, RfbItalcAuth::HostWhiteList } )
+	m_supportedAuthTypes( { RfbItalcAuth::DSA, RfbItalcAuth::Logon, RfbItalcAuth::HostWhiteList } ),
+	m_authUser(),
+	m_authClient( nullptr )
 {
 	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) )
 	{
 		m_supportedAuthTypes.append( RfbItalcAuth::Token );
 	}
+}
+
+
+
+VncServerProtocol::~VncServerProtocol()
+{
+	delete m_authClient;
 }
 
 
@@ -80,6 +90,9 @@ bool VncServerProtocol::read()
 
 	case AuthenticationTypes:
 		return receiveAuthenticationTypeResponse();
+
+	case Authenticating:
+		return receiveAuthenticationMessage();
 
 	default:
 		break;
@@ -163,26 +176,28 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 
 bool VncServerProtocol::sendAuthenticationTypes()
 {
-	VariantStream stream( m_socket );
-	stream.write( QVariant( m_supportedAuthTypes.count() ) );
+	VariantArrayMessage message( m_socket );
+	message.write( m_supportedAuthTypes.count() );
 
 	for( auto authType : m_supportedAuthTypes )
 	{
-		stream.write( QVariant( authType ) );
+		message.write( authType );
 	}
 
-	return true;
+	return message.send();
 }
 
 
 
 bool VncServerProtocol::receiveAuthenticationTypeResponse()
 {
-	if( m_socket->bytesAvailable() >= 1 )
-	{
-		auto chosenSecurityType = VariantStream( m_socket ).read().value<RfbItalcAuth::Type>();
+	VariantArrayMessage message( m_socket );
 
-		if( m_supportedAuthTypes.contains( chosenSecurityType ) == false )
+	if( message.isReadyForReceive() && message.receive() )
+	{
+		auto chosenAuthType = message.read().value<RfbItalcAuth::Type>();
+
+		if( m_supportedAuthTypes.contains( chosenAuthType ) == false )
 		{
 			qCritical( "VncServerProtocol:::receiveAuthenticationTypeResponse(): unsupported authentication type chosen by client!" );
 			m_socket->close();
@@ -190,26 +205,76 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 			return false;
 		}
 
-		if( m_serverAuthenticationManager.authenticateClient( m_socket, chosenSecurityType ) )
+		if( chosenAuthType == RfbItalcAuth::None )
 		{
-			uint32_t authResult = htonl(rfbVncAuthOK);
-			m_socket->write( (char *) &authResult, sizeof(authResult) );
-
+			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): allowing access without authentication." );
 			m_state = Authenticated;
-
 			return true;
 		}
-		else
-		{
-			qCritical( "VncServerProtocol:::receiveAuthenticationTypeResponse(): authentication failed - closing connection" );
-			m_socket->close();
 
-			return false;
-		}
+		const QString username = message.read().toString();
+
+		m_authClient = new ServerAuthenticationManager::Client( chosenAuthType, username, m_socket->peerAddress().toString() );
+
+		m_state = Authenticating;
+
+		// init authentication
+		VariantArrayMessage dummyMessage( m_socket );
+		processAuthentication( dummyMessage );
+
 	}
-	else
+
+	return false;
+}
+
+
+
+bool VncServerProtocol::receiveAuthenticationMessage()
+{
+	if( m_authClient == nullptr )
 	{
-		qDebug("VncServerProtocol::receiveAuthenticationTypeResponse(): not enough data available (%d)", (int) m_socket->bytesAvailable() );
+		qCritical( "VncServerProtocol:::receiveAuthenticationMessage(): auth client is NULL!" );
+
+		m_socket->close();
+		return false;
+	}
+
+	VariantArrayMessage message( m_socket );
+
+	if( message.isReadyForReceive() && message.receive() )
+	{
+		return processAuthentication( message );
+	}
+
+	return false;
+}
+
+
+
+bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
+{
+	m_serverAuthenticationManager.processAuthenticationMessage( m_authClient, message );
+
+	switch( m_authClient->state() )
+	{
+	case ServerAuthenticationManager::Client::FinishedSuccess:
+	{
+		uint32_t authResult = htonl(rfbVncAuthOK);
+		m_socket->write( (char *) &authResult, sizeof(authResult) );
+
+		m_state = Authenticated;
+		break;
+	}
+
+	case ServerAuthenticationManager::Client::FinishedFail:
+		qCritical( "VncServerProtocol:::receiveAuthenticationMessage(): authentication failed - closing connection" );
+		m_socket->close();
+
+		return false;
+		break;
+
+	default:
+		break;
 	}
 
 	return false;

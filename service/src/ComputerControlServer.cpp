@@ -38,6 +38,7 @@
 #include "SystemTrayIcon.h"
 #include "VariantStream.h"
 
+//ItalcCore::config->localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState()
 
 ComputerControlServer::ComputerControlServer() :
 	QObject(),
@@ -207,6 +208,8 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 void ComputerControlServer::showAuthenticationErrorMessage( QString host, QString user )
 {
+	qWarning() << "ComputerControlServer: failed authenticating client" << host << user;
+
 	QMutexLocker l( &m_dataMutex );
 
 	if( m_failedAuthHosts.contains( host ) == false )

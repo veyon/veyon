@@ -23,7 +23,6 @@
  */
 
 #include <QHostAddress>
-#include <QTcpSocket>
 
 #include "ServerAuthenticationManager.h"
 #include "AccessControlProvider.h"
@@ -32,14 +31,7 @@
 #include "DsaKey.h"
 #include "LocalSystem.h"
 #include "LogonAuthentication.h"
-#include "VariantStream.h"
-
-#include "rfb/dh.h"
-
-extern "C"
-{
-#include "common/d3des.h"
-}
+#include "VariantArrayMessage.h"
 
 
 ServerAuthenticationManager::ServerAuthenticationManager( FeatureWorkerManager& featureWorkerManager,
@@ -53,69 +45,51 @@ ServerAuthenticationManager::ServerAuthenticationManager( FeatureWorkerManager& 
 }
 
 
-bool ServerAuthenticationManager::authenticateClient( QTcpSocket* socket, RfbItalcAuth::Type authType )
+
+void ServerAuthenticationManager::processAuthenticationMessage( Client* client,
+																VariantArrayMessage& message )
 {
-	QString username = VariantStream( socket ).read().toString();
-
-	const QString hostAddress = socket->peerAddress().toString();
-
 	qDebug() << "ServerAuthenticationManager::authenticateClient():"
-			 << "type" << authType
-			 << "host" << hostAddress
-			 << "user" << username;
+			 << "state" << client->state()
+			 << "type" << client->authType()
+			 << "host" << client->hostAddress()
+			 << "user" << client->username();
 
-	switch( authType )
+	switch( client->authType() )
 	{
 	// no authentication
 	case RfbItalcAuth::None:
-		return true;
+		client->setState( Client::FinishedSuccess );
 		break;
 
 		// host has to be in list of allowed hosts
 	case RfbItalcAuth::HostWhiteList:
-		if( performHostWhitelistAuth( socket ) )
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		client->setState( performHostWhitelistAuth( client, message ) );
 		break;
 
 		// authentication via DSA-challenge/-response
 	case RfbItalcAuth::DSA:
-		if( performKeyAuthentication( socket ) &&
-				performAccessControl( username, hostAddress, DesktopAccessPermission::KeyAuthentication ) )
-		{
-			return true;
-		}
+		client->setState( performKeyAuthentication( client, message ) );
+		//				performAccessControl( username, hostAddress, DesktopAccessPermission::KeyAuthentication ) )
 		break;
 
 	case RfbItalcAuth::Logon:
-		if( performLogonAuthentication( socket ) &&
-				performAccessControl( username, hostAddress, DesktopAccessPermission::LogonAuthentication ) )
-		{
-			return true;
-		}
+		client->setState( performLogonAuthentication( client, message ) );
+		//performAccessControl( username, hostAddress, DesktopAccessPermission::LogonAuthentication ) )
 		break;
 
 	case RfbItalcAuth::Token:
-		if( performTokenAuthentication( socket ) )
-		{
-			return true;
-		}
+		client->setState( performTokenAuthentication( client, message ) );
 		break;
 
 	default:
 		break;
 	}
 
-	qWarning() << "ServerAuthenticationManager::authenticateClient(): failed authenticating client" << hostAddress << username;
-
-	emit authenticationError( hostAddress, username );
-
-	return false;
+	if( client->state() == Client::FinishedFail )
+	{
+		emit authenticationError( client->hostAddress(), client->username() );
+	}
 }
 
 
@@ -156,135 +130,128 @@ bool ServerAuthenticationManager::performAccessControl( const QString &username,
 
 
 
-bool ServerAuthenticationManager::performKeyAuthentication( QTcpSocket* socket )
+ServerAuthenticationManager::Client::State ServerAuthenticationManager::performKeyAuthentication( Client* client, VariantArrayMessage& message )
 {
-	VariantStream stream( socket );
-
-	// generate data to sign and send to client
-	const QByteArray chall = DsaKey::generateChallenge();
-	stream.write( chall );
-
-	// get user role
-	const ItalcCore::UserRoles urole = static_cast<ItalcCore::UserRoles>( stream.read().toInt() );
-
-	// now try to verify received signed data using public key of the user
-	// under which the client claims to run
-	const QByteArray sig = stream.read().toByteArray();
-
-	qDebug() << "Loading public key" << LocalSystem::Path::publicKeyPath( urole )
-			 << "for role" << urole;
-	// (publicKeyPath does range-checking of urole)
-	PublicDSAKey pubKey( LocalSystem::Path::publicKeyPath( urole ) );
-
-	if( pubKey.verifySignature( chall, sig ) )
+	switch( client->state() )
 	{
-		qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
+	case Client::Init:
+		client->setChallenge( DsaKey::generateChallenge() );
+		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() )
+		{
+			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): failed to send challenge" );
+			return Client::Challenge;
+		}
+		else
+		{
+			return Client::FinishedFail;
+		}
+		break;
 
-		return true;
+	case Client::Challenge:
+	{
+		// get user role
+		const ItalcCore::UserRoles urole = static_cast<ItalcCore::UserRoles>( message.read().toInt() );
+
+		// now try to verify received signed data using public key of the user
+		// under which the client claims to run
+		const QByteArray sig = message.read().toByteArray();
+
+		qDebug() << "Loading public key" << LocalSystem::Path::publicKeyPath( urole ) << "for role" << urole;
+		// (publicKeyPath does range-checking of urole)
+		PublicDSAKey pubKey( LocalSystem::Path::publicKeyPath( urole ) );
+
+		if( pubKey.verifySignature( client->challenge(), sig ) )
+		{
+			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
+			return Client::FinishedSuccess;
+		}
+		else
+		{
+			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): FAIL" );
+			return Client::FinishedFail;
+		}
+		break;
 	}
 
-	qDebug( "ServerAuthenticationManager::performKeyAuthentication(): FAIL" );
-	return false;
-}
-
-
-#ifndef ITALC_BUILD_WIN32
-
-static void vncDecryptBytes(unsigned char *where, const int length, const unsigned char *key)
-{
-	int i, j;
-	rfbDesKey((unsigned char*) key, DE1);
-	for (i = length - 8; i > 0; i -= 8) {
-		rfbDes(where + i, where + i);
-		for (j = 0; j < 8; j++)
-			where[i + j] ^= where[i + j - 8];
+	default:
+		break;
 	}
-	/* i = 0 */
-	rfbDes(where, where);
-	for (i = 0; i < 8; i++)
-		where[i] ^= key[i];
+
+	return Client::FinishedFail;
 }
 
-#endif
 
 
-bool ServerAuthenticationManager::performLogonAuthentication( QTcpSocket* socket )
+ServerAuthenticationManager::Client::State ServerAuthenticationManager::performLogonAuthentication( Client* client,
+																									VariantArrayMessage& message )
 {
-#ifndef ITALC_BUILD_WIN32
+	switch( client->state() )
+	{
+	case Client::Init:
+	{
+		// TODO: decrypt password
+		QString password = message.read().toString();
 
-	DiffieHellman dh;
-	char gen[8], mod[8], pub[8], resp[8];
-	char user[256], passwd[64];
-	unsigned char key[8];
+		AuthenticationCredentials credentials;
+		credentials.setLogonUsername( client->username() );
+		credentials.setLogonPassword( password );
 
-	dh.createKeys();
-	int64ToBytes( dh.getValue(DH_GEN), gen );
-	int64ToBytes( dh.getValue(DH_MOD), mod );
-	int64ToBytes( dh.createInterKey(), pub );
-	if( socket->write( gen, sizeof(gen) ) != sizeof(gen) ) return false;
-	if( socket->write( mod, sizeof(mod) ) != sizeof(mod) ) return false;
-	if( socket->write( pub, sizeof(pub) ) != sizeof(pub) ) return false;
-	socket->flush();
+		if( LogonAuthentication::authenticateUser( credentials ) )
+		{
+			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): SUCCESS" );
+			return Client::FinishedSuccess;
+		}
 
-	if( socket->read( resp, sizeof(resp) ) != sizeof(resp) ) return false;
-	if( socket->read( user, sizeof(user) ) != sizeof(resp) ) return false;
-	if( socket->read( passwd, sizeof(passwd) ) != sizeof(resp) ) return false;
+		qDebug( "ServerAuthenticationManager::performLogonAuthentication(): FAIL" );
+		return Client::FinishedFail;
+	}
+	default:
+		break;
+	}
 
-	int64ToBytes( dh.createEncryptionKey( bytesToInt64( resp ) ), (char*) key );
-	vncDecryptBytes( (unsigned char*) user, sizeof(user), key ); user[255] = '\0';
-	vncDecryptBytes( (unsigned char*) passwd, sizeof(passwd), key ); passwd[63] = '\0';
-
-	AuthenticationCredentials credentials;
-	credentials.setLogonUsername( user );
-	credentials.setLogonPassword( passwd );
-
-	return LogonAuthentication::authenticateUser( credentials );
-#else
-	// TODO
-	return false;
-#endif
+	return Client::FinishedFail;
 }
 
 
-
-bool ServerAuthenticationManager::performHostWhitelistAuth( QTcpSocket* socket )
+ServerAuthenticationManager::Client::State ServerAuthenticationManager::performHostWhitelistAuth( Client* client,
+																								  VariantArrayMessage& message )
 {
 	QMutexLocker l( &m_dataMutex );
 
 	if( m_allowedIPs.isEmpty() )
 	{
 		qWarning( "ServerAuthenticationManager: empty list of allowed IPs" );
-		return false;
+		return Client::FinishedFail;
 	}
 
-	const QString host = socket->peerAddress().toString();
-
-	if( m_allowedIPs.contains( host ) )
+	if( m_allowedIPs.contains( client->hostAddress() ) )
 	{
 		qDebug( "ServerAuthenticationManager::performHostWhitelistAuth(): SUCCESS" );
-		return true;
+		return Client::FinishedSuccess;
 	}
 
 	qWarning( "ServerAuthenticationManager::performHostWhitelistAuth(): FAIL" );
 
 	// authentication failed
-	return false;
+	return Client::FinishedFail;
 }
 
 
 
-bool ServerAuthenticationManager::performTokenAuthentication( QTcpSocket* socket )
+ServerAuthenticationManager::Client::State ServerAuthenticationManager::performTokenAuthentication( Client* client,
+																									VariantArrayMessage& message )
 {
+	Q_UNUSED(client);
 
 	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) &&
-			VariantStream( socket ).read().toString() == ItalcCore::authenticationCredentials->token() )
+			message.read().toString() == ItalcCore::authenticationCredentials->token() )
 	{
 		qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
 
-		return true;
+		return Client::FinishedSuccess;
 	}
 
 	qDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
 
-	return false;
+	return Client::FinishedFail;
 }

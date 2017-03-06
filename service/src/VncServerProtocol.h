@@ -28,9 +28,11 @@
 #include <QVector>
 
 #include "RfbItalcAuth.h"
+#include "ServerAuthenticationManager.h"
 
 class QTcpSocket;
-class ServerAuthenticationManager;
+
+class VariantArrayMessage;
 
 class VncServerProtocol
 {
@@ -40,12 +42,14 @@ public:
 		Protocol,
 		SecurityInit,
 		AuthenticationTypes,
+		Authenticating,
 		Authenticated,
 		Connected,
 		StateCount
 	} State;
 
 	VncServerProtocol( QTcpSocket* socket, ServerAuthenticationManager& serverAuthenticationManager );
+	~VncServerProtocol();
 
 	State state() const
 	{
@@ -61,6 +65,9 @@ private:
 	bool receiveSecurityTypeResponse();
 	bool sendAuthenticationTypes();
 	bool receiveAuthenticationTypeResponse();
+	bool receiveAuthenticationMessage();
+
+	bool processAuthentication( VariantArrayMessage& message );
 
 	QTcpSocket* m_socket;
 	ServerAuthenticationManager& m_serverAuthenticationManager;
@@ -68,6 +75,9 @@ private:
 	State m_state;
 
 	QVector<RfbItalcAuth::Type> m_supportedAuthTypes;
+
+	QString m_authUser;
+	ServerAuthenticationManager::Client* m_authClient;
 
 } ;
 

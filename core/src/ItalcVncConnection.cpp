@@ -32,7 +32,7 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "SocketDevice.h"
-#include "VariantStream.h"
+#include "VariantArrayMessage.h"
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
@@ -769,17 +769,18 @@ void ItalcVncConnection::clientCut( const QString &text )
 void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 {
 	SocketDevice socketDevice( libvncClientDispatcher, client );
-	VariantStream stream( &socketDevice );
+	VariantArrayMessage message( &socketDevice );
+	message.receive();
 
-	int authTypeCount = stream.read().toInt();
+	int authTypeCount = message.read().toInt();
 
 	QList<RfbItalcAuth::Type> authTypes;
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-		authTypes.append( stream.read().value<RfbItalcAuth::Type>() );
+		authTypes.append( message.read().value<RfbItalcAuth::Type>() );
 	}
 
-	qDebug() << authTypes;
+	qDebug() << "ItalcVncConnection::handleSecTypeItalc(): received authentication types:" << authTypes;
 
 	RfbItalcAuth::Type chosenAuthType = RfbItalcAuth::Token;
 	if( authTypes.count() > 0 )
@@ -803,27 +804,36 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		}
 	}
 
-	qDebug() << "chosen" << chosenAuthType;
-	stream.write( chosenAuthType );
+	qDebug() << "ItalcVncConnection::handleSecTypeItalc(): chose authentication type" << chosenAuthType;
+	VariantArrayMessage authReplyMessage( &socketDevice );
+
+	authReplyMessage.write( chosenAuthType );
 
 	// send username which is used when displaying an access confirm dialog
 	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::UserLogon ) )
 	{
-		stream.write( ItalcCore::authenticationCredentials->logonUsername() );
+		authReplyMessage.write( ItalcCore::authenticationCredentials->logonUsername() );
 	}
 	else
 	{
-		stream.write( LocalSystem::User::loggedOnUser().name() );
+		authReplyMessage.write( LocalSystem::User::loggedOnUser().name() );
 	}
+
+	authReplyMessage.send();
 
 	switch( chosenAuthType )
 	{
 	case RfbItalcAuth::DSA:
 		if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::PrivateKey ) )
 		{
-			QByteArray chall = stream.read().toByteArray();
-			stream.write( (int) ItalcCore::role );
-			stream.write( ItalcCore::authenticationCredentials->privateKey()->sign( chall ) );
+			VariantArrayMessage challengeReceiveMessage( &socketDevice );
+			challengeReceiveMessage.receive();
+			QByteArray chall = challengeReceiveMessage.read().toByteArray();
+
+			VariantArrayMessage challengeResponseMessage( &socketDevice );
+			challengeResponseMessage.write( (int) ItalcCore::role );
+			challengeResponseMessage.write( ItalcCore::authenticationCredentials->privateKey()->sign( chall ) );
+			challengeResponseMessage.send();
 		}
 		break;
 
@@ -832,8 +842,12 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		break;
 
 	case RfbItalcAuth::Token:
-		stream.write( ItalcCore::authenticationCredentials->token() );
+	{
+		VariantArrayMessage tokenAuthMessage( &socketDevice );
+		tokenAuthMessage.write( ItalcCore::authenticationCredentials->token() );
+		tokenAuthMessage.send();
 		break;
+	}
 
 	default:
 		// nothing to do - we just get accepted

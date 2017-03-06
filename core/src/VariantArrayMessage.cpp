@@ -31,16 +31,24 @@
 #endif
 
 #include "VariantArrayMessage.h"
+#include "VariantStream.h"
 
 
 VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
 	m_buffer(),
-	m_stream( &m_buffer ),
+	m_stream( new VariantStream( &m_buffer ) ),
 	m_ioDevice( ioDevice )
 {
 	Q_ASSERT( m_ioDevice != nullptr );
 
-	m_buffer.open( QBuffer::WriteOnly );
+	m_buffer.open( QBuffer::ReadWrite );
+}
+
+
+
+VariantArrayMessage::~VariantArrayMessage()
+{
+	delete m_stream;
 }
 
 
@@ -94,4 +102,20 @@ bool VariantArrayMessage::receive()
 	m_buffer.open( QBuffer::ReadOnly );
 
 	return true;
+}
+
+
+
+QVariant VariantArrayMessage::read()
+{
+	return m_stream->read();
+}
+
+
+
+VariantArrayMessage& VariantArrayMessage::write( const QVariant& v )
+{
+	m_stream->write( v );
+
+	return *this;
 }

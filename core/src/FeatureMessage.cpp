@@ -41,9 +41,9 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 
 		VariantArrayMessage message( ioDevice );
 
-		message.stream().write( m_featureUid );
-		message.stream().write( m_command );
-		message.stream().write( m_arguments );
+		message.write( m_featureUid );
+		message.write( m_command );
+		message.write( m_arguments );
 
 		return message.send();
 	}
@@ -75,9 +75,9 @@ FeatureMessage &FeatureMessage::receive()
 			return *this;
 		}
 
-		m_featureUid = message.stream().read().toUuid();
-		m_command = message.stream().read().value<Command>();
-		m_arguments = message.stream().read().toMap();
+		m_featureUid = message.read().toUuid();
+		m_command = message.read().value<Command>();
+		m_arguments = message.read().toMap();
 
 		qDebug() << "FeatureMessage::receive():" << featureUid() << command() << arguments();
 	}
