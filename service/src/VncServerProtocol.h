@@ -74,9 +74,6 @@ private:
 
 	State m_state;
 
-	QVector<RfbItalcAuth::Type> m_supportedAuthTypes;
-
-	QString m_authUser;
 	ServerAuthenticationManager::Client* m_authClient;
 
 } ;

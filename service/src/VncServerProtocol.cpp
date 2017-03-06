@@ -43,14 +43,8 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket, ServerAuthenticationMa
 	m_socket( socket ),
 	m_serverAuthenticationManager( serverAuthenticationManager ),
 	m_state( Disconnected ),
-	m_supportedAuthTypes( { RfbItalcAuth::DSA, RfbItalcAuth::Logon, RfbItalcAuth::HostWhiteList } ),
-	m_authUser(),
 	m_authClient( nullptr )
 {
-	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) )
-	{
-		m_supportedAuthTypes.append( RfbItalcAuth::Token );
-	}
 }
 
 
@@ -177,9 +171,9 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 bool VncServerProtocol::sendAuthenticationTypes()
 {
 	VariantArrayMessage message( m_socket );
-	message.write( m_supportedAuthTypes.count() );
+	message.write( m_serverAuthenticationManager.supportedAuthTypes().count() );
 
-	for( auto authType : m_supportedAuthTypes )
+	for( auto authType : m_serverAuthenticationManager.supportedAuthTypes() )
 	{
 		message.write( authType );
 	}
@@ -197,7 +191,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 	{
 		auto chosenAuthType = message.read().value<RfbItalcAuth::Type>();
 
-		if( m_supportedAuthTypes.contains( chosenAuthType ) == false )
+		if( m_serverAuthenticationManager.supportedAuthTypes().contains( chosenAuthType ) == false )
 		{
 			qCritical( "VncServerProtocol:::receiveAuthenticationTypeResponse(): unsupported authentication type chosen by client!" );
 			m_socket->close();

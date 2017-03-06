@@ -43,6 +43,7 @@ public:
 		typedef enum States {
 			Init,
 			Challenge,
+			Password,
 			FinishedSuccess,
 			FinishedFail,
 		} State;
@@ -91,16 +92,33 @@ public:
 			m_challenge = challenge;
 		}
 
+		const QString& privateKey() const
+		{
+			return m_privateKey;
+		}
+
+		void setPrivateKey( const QString& privateKey )
+		{
+			m_privateKey = privateKey;
+		}
+
 	private:
 		State m_state;
 		RfbItalcAuth::Type m_authType;
 		QString m_username;
 		QString m_hostAddress;
 		QByteArray m_challenge;
+		QString m_privateKey;
+
 	} ;
 
 	ServerAuthenticationManager( FeatureWorkerManager& featureWorkerManager,
 								 DesktopAccessDialog& desktopAccessDialog );
+
+	const QVector<RfbItalcAuth::Type>& supportedAuthTypes() const
+	{
+		return m_supportedAuthTypes;
+	}
 
 	void processAuthenticationMessage( Client* client,
 									   VariantArrayMessage& message );
@@ -122,6 +140,8 @@ private:
 
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;
+
+	QVector<RfbItalcAuth::Type> m_supportedAuthTypes;
 
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;

@@ -22,6 +22,7 @@
  *
  */
 
+#include <QtCrypto>
 #include <QHostAddress>
 
 #include "ServerAuthenticationManager.h"
@@ -29,6 +30,7 @@
 #include "AuthenticationCredentials.h"
 #include "DesktopAccessPermission.h"
 #include "DsaKey.h"
+#include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "LogonAuthentication.h"
 #include "VariantArrayMessage.h"
@@ -39,9 +41,25 @@ ServerAuthenticationManager::ServerAuthenticationManager( FeatureWorkerManager& 
 	QObject(),
 	m_featureWorkerManager( featureWorkerManager ),
 	m_desktopAccessDialog( desktopAccessDialog ),
+	m_supportedAuthTypes( { RfbItalcAuth::HostWhiteList } ),
 	m_allowedIPs(),
 	m_failedAuthHosts()
 {
+	if( ItalcCore::config->isKeyAuthenticationEnabled() )
+	{
+		m_supportedAuthTypes.append( RfbItalcAuth::DSA );
+	}
+
+	if( ItalcCore::config->isLogonAuthenticationEnabled() )
+	{
+		m_supportedAuthTypes.append( RfbItalcAuth::Logon );
+	}
+
+	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) )
+	{
+		m_supportedAuthTypes.append( RfbItalcAuth::Token );
+	}
+
 }
 
 
@@ -138,11 +156,11 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performK
 		client->setChallenge( DsaKey::generateChallenge() );
 		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() )
 		{
-			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): failed to send challenge" );
 			return Client::Challenge;
 		}
 		else
 		{
+			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): failed to send challenge" );
 			return Client::FinishedFail;
 		}
 		break;
@@ -189,12 +207,40 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performL
 	{
 	case Client::Init:
 	{
-		// TODO: decrypt password
-		QString password = message.read().toString();
+		QCA::PrivateKey privateKey = QCA::KeyGenerator().createRSA( 1024 );
+
+		client->setPrivateKey( privateKey.toPEM() );
+
+		QCA::PublicKey publicKey = privateKey.toPublicKey();
+
+		if( VariantArrayMessage( message.ioDevice() ).write( publicKey.toPEM() ).send() )
+		{
+			return Client::Password;
+		}
+		else
+		{
+			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
+			return Client::FinishedFail;
+		}
+	}
+
+	case Client::Password:
+	{
+		QCA::PrivateKey privateKey = QCA::PrivateKey::fromPEM( client->privateKey() );
+
+		QCA::SecureArray encryptedPassword( message.read().toByteArray() );
+
+		QCA::SecureArray decryptedPassword;
+
+		if( privateKey.decrypt( encryptedPassword, &decryptedPassword, QCA::EME_PKCS1_OAEP ) == false )
+		{
+			qWarning( "ServerAuthenticationManager::performLogonAuthentication(): failed to decrypt password" );
+			return Client::FinishedFail;
+		}
 
 		AuthenticationCredentials credentials;
 		credentials.setLogonUsername( client->username() );
-		credentials.setLogonPassword( password );
+		credentials.setLogonPassword( QString::fromUtf8( decryptedPassword.toByteArray() ) );
 
 		if( LogonAuthentication::authenticateUser( credentials ) )
 		{
@@ -205,6 +251,7 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performL
 		qDebug( "ServerAuthenticationManager::performLogonAuthentication(): FAIL" );
 		return Client::FinishedFail;
 	}
+
 	default:
 		break;
 	}

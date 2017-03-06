@@ -27,6 +27,8 @@
 #include <windows.h>
 #endif
 
+#include <QtCrypto>
+
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtCore/QLocale>
@@ -58,6 +60,8 @@ int ItalcCore::serverPort = PortOffsetVncServer;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 
 static QString appName = "iTALC";
+
+static QCA::Initializer* qcaInit = nullptr;
 
 
 void initResources()
@@ -207,6 +211,9 @@ bool ItalcCore::init()
 		appName = config->applicationName();
 	}
 
+	// init QCA
+	qcaInit = new QCA::Initializer;
+
 	serverPort = config->coreServerPort();
 
 	initAuthentication( AuthenticationCredentials::None );
@@ -279,6 +286,9 @@ void ItalcCore::destroy()
 {
 	delete authenticationCredentials;
 	authenticationCredentials = NULL;
+
+	delete qcaInit;
+	qcaInit = nullptr;
 
 	delete config;
 	config = NULL;

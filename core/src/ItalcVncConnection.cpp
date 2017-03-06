@@ -25,25 +25,17 @@
  *
  */
 
+#include <QtCore/QCoreApplication>
+#include <QtCore/QMutexLocker>
+#include <QtCrypto>
+
 #include "AuthenticationCredentials.h"
 #include "DsaKey.h"
 #include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
-#include "Logger.h"
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
-
-#include <QtCore/QCoreApplication>
-#include <QtCore/QMutexLocker>
-#include <QtCore/QTime>
-#include <QtCore/QTimer>
-
-#include <rfb/dh.h>
-
-extern "C" void rfbClientEncryptBytes2( unsigned char *where, const int length, unsigned char *key );
-
-
 
 
 class KeyClientEvent : public MessageEvent
@@ -283,7 +275,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 	va_end(args);
 
 	message = message.trimmed();
-	ilog( Warning, "ItalcVncConnection: " + message );
+	qWarning() << "ItalcVncConnection: VNC message:" << message;
 
 #if 0
 	if( ( message.contains( "Couldn't convert " ) ) ||
@@ -344,6 +336,11 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_terminateTimer.setInterval( ThreadTerminationTimeout );
 
 	connect( &m_terminateTimer, &QTimer::timeout, this, &ItalcVncConnection::terminate );
+
+	if( ItalcCore::config->isLogonAuthenticationEnabled() )
+	{
+		m_italcAuthType = RfbItalcAuth::Logon;
+	}
 }
 
 
@@ -841,6 +838,33 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		// nothing to do - we just get accepted because the host white list contains our IP
 		break;
 
+	case RfbItalcAuth::Logon:
+	{
+		VariantArrayMessage publicKeyMessage( &socketDevice );
+		publicKeyMessage.receive();
+
+		QCA::PublicKey publicKey = QCA::PublicKey::fromPEM( publicKeyMessage.read().toString() );
+
+		if( publicKey.canEncrypt() == false )
+		{
+			qCritical( "ItalcVncConnection::handleSecTypeItalc(): can't encrypt with given public key!" );
+			break;
+		}
+
+		QCA::SecureArray plainTextPassword( ItalcCore::authenticationCredentials->logonPassword().toUtf8() );
+		QCA::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, QCA::EME_PKCS1_OAEP );
+		if( encryptedPassword.isEmpty() )
+		{
+			qCritical( "ItalcVncConnection::handleSecTypeItalc(): password encryption failed!" );
+			break;
+		}
+
+		VariantArrayMessage passwordResponse( &socketDevice );
+		passwordResponse.write( encryptedPassword.toByteArray() );
+		passwordResponse.send();
+		break;
+	}
+
 	case RfbItalcAuth::Token:
 	{
 		VariantArrayMessage tokenAuthMessage( &socketDevice );
@@ -853,38 +877,6 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		// nothing to do - we just get accepted
 		break;
 	}
-}
-
-
-
-
-void ItalcVncConnection::handleMsLogonIIAuth( rfbClient *client )
-{
-	char gen[8], mod[8], pub[8], resp[8];
-	char user[256], passwd[64];
-	unsigned char key[8];
-
-	ReadFromRFBServer(client, gen, sizeof(gen));
-	ReadFromRFBServer(client, mod, sizeof(mod));
-	ReadFromRFBServer(client, resp, sizeof(resp));
-
-	DiffieHellman dh(bytesToInt64(gen), bytesToInt64(mod));
-	int64ToBytes(dh.createInterKey(), pub);
-
-	WriteToRFBServer(client, pub, sizeof(pub));
-
-	int64ToBytes(dh.createEncryptionKey(bytesToInt64(resp)), (char*) key);
-
-	strcpy( user, ItalcCore::authenticationCredentials->
-										logonUsername().toUtf8().constData() );
-	strcpy( passwd, ItalcCore::authenticationCredentials->
-										logonPassword().toUtf8().constData() );
-
-	rfbClientEncryptBytes2((unsigned char*) user, sizeof(user), key);
-	rfbClientEncryptBytes2((unsigned char*) passwd, sizeof(passwd), key);
-
-	WriteToRFBServer(client, user, sizeof(user));
-	WriteToRFBServer(client, passwd, sizeof(passwd));
 }
 
 

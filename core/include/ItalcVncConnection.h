@@ -28,23 +28,23 @@
 #ifndef ITALC_VNC_CONNECTION_H
 #define ITALC_VNC_CONNECTION_H
 
-#include <QtCore/QMutex>
-#include <QtCore/QQueue>
-#include <QtCore/QReadWriteLock>
-#include <QtCore/QThread>
+#include <QMutex>
+#include <QQueue>
+#include <QReadWriteLock>
+#include <QThread>
 #include <QTimer>
-#include <QtCore/QWaitCondition>
-#include <QtGui/QImage>
-
-#include "ItalcCore.h"
-#include "RfbItalcAuth.h"
-
-class PrivateDSAKey;
+#include <QWaitCondition>
+#include <QImage>
 
 extern "C"
 {
 	#include <rfb/rfbclient.h>
 }
+
+#include "ItalcCore.h"
+#include "RfbItalcAuth.h"
+
+class PrivateDSAKey;
 
 
 class MessageEvent
