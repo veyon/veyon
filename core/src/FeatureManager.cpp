@@ -25,8 +25,13 @@
 #include <QDebug>
 
 #include "FeatureManager.h"
+#include "FeatureMessage.h"
 #include "PluginInterface.h"
 #include "PluginManager.h"
+
+Q_DECLARE_METATYPE(Feature)
+Q_DECLARE_METATYPE(FeatureMessage)
+
 
 FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	QObject( &pluginManager ),
@@ -35,6 +40,9 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	m_emptyFeatureList(),
 	m_dummyFeature()
 {
+	qRegisterMetaType<Feature>();
+	qRegisterMetaType<FeatureMessage>();
+
 	for( auto pluginInterface : m_pluginManager.pluginInterfaces() )
 	{
 		auto featureInterface = dynamic_cast<FeaturePluginInterface *>( pluginInterface );

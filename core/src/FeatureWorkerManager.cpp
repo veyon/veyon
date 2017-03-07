@@ -33,10 +33,6 @@
 #include "FeatureManager.h"
 
 
-Q_DECLARE_METATYPE(Feature)
-Q_DECLARE_METATYPE(FeatureMessage)
-
-
 FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 	QObject(),
 	m_featureManager( featureManager ),
@@ -49,9 +45,6 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 	{
 		qCritical( "FeatureWorkerManager: can't listen on localhost!" );
 	}
-
-	qRegisterMetaType<Feature>();
-	qRegisterMetaType<FeatureMessage>();
 
 	QTimer* pendingMessagesTimer = new QTimer( this );
 	connect( pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages );
