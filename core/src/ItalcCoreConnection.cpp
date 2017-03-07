@@ -138,14 +138,12 @@ void ItalcCoreConnection::initNewClient( rfbClient *cl )
 
 
 
-rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient *cl,
-						rfbServerToClientMsg * msg )
+rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient* client, rfbServerToClientMsg* msg )
 {
-	ItalcCoreConnection * icc = (ItalcCoreConnection *)
-				rfbClientGetClientData( cl, ItalcCoreConnectionTag );
-	if( icc )
+	auto coreConnection = (ItalcCoreConnection *) rfbClientGetClientData( client, ItalcCoreConnectionTag );
+	if( coreConnection )
 	{
-		return icc->handleServerMessage( cl, msg->type );
+		return coreConnection->handleServerMessage( client, msg->type );
 	}
 
 	return false;
@@ -154,50 +152,32 @@ rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient *cl,
 
 
 
-bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t msg )
+bool ItalcCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 {
-	if( msg == rfbItalcCoreResponse )
+	if( msg == rfbItalcFeatureMessage )
 	{
-		SocketDevice socketDev( libvncClientDispatcher, cl );
-		ItalcCore::Msg m( &socketDev );
+		SocketDevice socketDev( libvncClientDispatcher, client );
+		FeatureMessage featureMessage( &socketDev );
+		featureMessage.receive();
 
-		m.receive();
-		qDebug() << "ItalcCoreConnection: received message" << m.cmd()
-					<< "with arguments" << m.args();
+		qDebug() << "ItalcCoreConnection: received feature message"
+				 << featureMessage.command()
+				 << "with arguments" << featureMessage.arguments();
 
-		if( m.cmd() == ItalcCore::UserInformation )
-		{
-			m_user = m.arg( "username" );
-			m_userHomeDir = m.arg( "homedir" );
-			emit receivedUserInfo();
-		}
-		else
-		{
-			qCritical() << "ItalcCoreConnection::"
-				"handleServerMessage(): unknown server "
-				"response" << m.cmd();
-			return false;
-		}
+		emit featureMessageReceived(  featureMessage );
+
+		return true;
 	}
 	else
 	{
 		qCritical( "ItalcCoreConnection::handleServerMessage(): "
 				"unknown message type %d from server. Closing "
-				"connection. Will re-open it later.", msg );
+				"connection. Will re-open it later.", (int) msg );
 		return false;
 	}
 
 	return true;
 }
-
-
-
-
-void ItalcCoreConnection::sendGetUserInformationRequest()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::GetUserInformation ) );
-}
-
 
 
 

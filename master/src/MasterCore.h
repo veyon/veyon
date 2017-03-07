@@ -88,7 +88,6 @@ public:
 public slots:
 	void runFeature( const Feature& feature, QWidget* parent );
 
-
 private:
 	FeatureList featureList() const;
 

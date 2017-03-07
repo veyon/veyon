@@ -27,7 +27,9 @@
 #include <QMessageBox>
 #include <QTimer>
 
+#include "BuiltinFeatures.h"
 #include "ComputerManager.h"
+#include "FeatureManager.h"
 #include "ItalcConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
@@ -35,11 +37,17 @@
 #include "NetworkObjectTreeModel.h"
 #include "StringListFilterProxyModel.h"
 #include "UserConfig.h"
+#include "UserSessionControl.h"
 
 
-ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
+ComputerManager::ComputerManager( UserConfig& config,
+								  FeatureManager& featureManager,
+								  BuiltinFeatures& builtinFeatures,
+								  QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
+	m_featureManager( featureManager ),
+	m_builtinFeatures( builtinFeatures ),
 	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
@@ -316,7 +324,11 @@ QSize ComputerManager::computerScreenSize() const
 
 void ComputerManager::startComputerControlInterface( Computer& computer )
 {
-	computer.controlInterface().start( computerScreenSize() );
+	computer.controlInterface().start( computerScreenSize(),
+									   &m_builtinFeatures.userSessionControl() );
+
+	connect( &computer.controlInterface(), &ComputerControlInterface::featureMessageReceived,
+			 &m_featureManager, &FeatureManager::handleMasterFeatureMessage );
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::userChanged,
 			 [&] () { updateUser( computer ); } );

@@ -62,8 +62,6 @@ namespace ItalcCore
 								CommandList;
 
 	// static commands
-	extern ITALC_CORE_EXPORT const Command GetUserInformation;
-	extern ITALC_CORE_EXPORT const Command UserInformation;
 	extern ITALC_CORE_EXPORT const Command LogonUserCmd;
 	extern ITALC_CORE_EXPORT const Command LogoutUser;
 	extern ITALC_CORE_EXPORT const Command ExecCmds;

@@ -26,6 +26,7 @@
 #include "Computer.h"
 #include "ItalcVncConnection.h"
 #include "ItalcCoreConnection.h"
+#include "UserSessionControl.h"
 
 
 ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
@@ -36,6 +37,7 @@ ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
+	m_userSessionControl( nullptr ),
 	m_screenUpdated( false )
 {
 }
@@ -49,9 +51,10 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( const QSize& scaledScreenSize )
+void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSessionControl* userSessionControl )
 {
 	m_scaledScreenSize = scaledScreenSize;
+	m_userSessionControl = userSessionControl;
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
@@ -68,8 +71,8 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize )
 				 this, &ComputerControlInterface::setScreenUpdateFlag );
 		connect( m_vncConnection, &ItalcVncConnection::stateChanged,
 				 this, &ComputerControlInterface::updateState );
-		connect( m_coreConnection, &ItalcCoreConnection::receivedUserInfo,
-				 this, &ComputerControlInterface::updateUser );
+		connect( m_coreConnection, &ItalcCoreConnection::featureMessageReceived,
+				 this, &ComputerControlInterface::handleFeatureMessage );
 	}
 }
 
@@ -133,6 +136,18 @@ QImage ComputerControlInterface::screen() const
 
 
 
+void ComputerControlInterface::setUser( const QString& user )
+{
+	if( user != m_user )
+	{
+		m_user = user;
+
+		emit userChanged();
+	}
+}
+
+
+
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_coreConnection && m_coreConnection->isConnected() )
@@ -158,17 +173,17 @@ void ComputerControlInterface::updateState()
 
 		if( m_state == Connected && m_coreConnection )
 		{
-			m_coreConnection->sendGetUserInformationRequest();
+			m_userSessionControl->getUserSessionInfo( ComputerControlInterfaceList( { this } ) );
 		}
 		else
 		{
-			updateUser();
+			setUser( QString() );
 		}
 	}
 	else
 	{
 		m_state = Disconnected;
-		updateUser();
+		setUser( QString() );
 	}
 
 	setScreenUpdateFlag();
@@ -176,18 +191,7 @@ void ComputerControlInterface::updateState()
 
 
 
-void ComputerControlInterface::updateUser()
+void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
 {
-	if( m_state == Connected && m_coreConnection && m_coreConnection->user() != m_user )
-	{
-		m_user = m_coreConnection->user();
-
-		emit userChanged();
-	}
-	else if( m_user.isEmpty() == false )
-	{
-		m_user.clear();
-
-		emit userChanged();
-	}
+	emit featureMessageReceived( message, *this );
 }

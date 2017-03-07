@@ -31,7 +31,6 @@ typedef struct _rfbClient rfbClient;
 // new rfb-command which tells server or client that an italc-request/response
 // is following
 #define rfbItalcCoreRequest		40
-#define rfbItalcCoreResponse		rfbItalcCoreRequest
 #define rfbItalcFeatureMessage		41
 
 

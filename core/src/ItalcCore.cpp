@@ -385,10 +385,6 @@ Msg &Msg::receive()
 
 
 
-const Command GetUserInformation = "GetUserInformation";
-const Command UserInformation = "UserInformation";
-const Command LockInput = "LockInput";
-const Command UnlockInput = "UnlockInput";
 const Command LogonUserCmd = "LogonUser";
 const Command LogoutUser = "LogoutUser";
 const Command ExecCmds = "ExecCmds";

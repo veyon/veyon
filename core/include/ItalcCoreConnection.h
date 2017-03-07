@@ -79,7 +79,6 @@ public:
 
 	void sendFeatureMessage( const FeatureMessage &featureMessage );
 
-	void sendGetUserInformationRequest();
 	void execCmds( const QString &cmd );
 	void logonUser( const QString &uname, const QString &pw,
 						const QString &domain );
@@ -90,17 +89,15 @@ public:
 	void reportSlaveStateFlags();
 
 signals:
-	void receivedUserInfo();
+	void featureMessageReceived( const FeatureMessage& );
 
 private slots:
 	void initNewClient( rfbClient *client );
 
-
 private:
-	static rfbBool handleItalcMessage( rfbClient *cl,
-						rfbServerToClientMsg *msg );
+	static rfbBool handleItalcMessage( rfbClient* client, rfbServerToClientMsg *msg );
 
-	bool handleServerMessage( rfbClient *cl, uint8_t msg );
+	bool handleServerMessage( rfbClient* client, uint8_t msg );
 	void enqueueMessage( const ItalcCore::Msg &msg );
 
 

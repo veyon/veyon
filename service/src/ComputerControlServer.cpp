@@ -107,29 +107,7 @@ bool ComputerControlServer::handleCoreMessage( QTcpSocket* socket )
 			 << "with arguments" << msgIn.args();
 
 	const QString cmd = msgIn.cmd();
-	if( cmd == ItalcCore::GetUserInformation )
-	{
-		static QString lastUserName, lastFullUsername;
-
-		LocalSystem::User user = LocalSystem::User::loggedOnUser();
-		QString currentUsername = user.name();
-		if( lastUserName != currentUsername )
-		{
-			lastUserName = currentUsername;
-			lastFullUsername = user.fullName();
-		}
-		if( !lastFullUsername.isEmpty() &&
-				currentUsername != lastFullUsername )
-		{
-			currentUsername = QString( "%1 (%2)" ).arg( currentUsername ).
-					arg( lastFullUsername );
-		}
-		ItalcCore::Msg( socket, ItalcCore::UserInformation ).
-				addArg( "username", currentUsername ).
-				addArg( "homedir", user.homePath() ).
-				send();
-	}
-	else if( cmd == ItalcCore::ExecCmds )
+	if( cmd == ItalcCore::ExecCmds )
 	{
 		const QString cmds = msgIn.arg( "cmds" );
 		if( !cmds.isEmpty() )

@@ -37,6 +37,7 @@ class Computer;
 class FeatureMessage;
 class ItalcVncConnection;
 class ItalcCoreConnection;
+class UserSessionControl;
 
 class ITALC_CORE_EXPORT ComputerControlInterface : public QObject
 {
@@ -55,7 +56,7 @@ public:
 	ComputerControlInterface( const Computer& computer );
 	~ComputerControlInterface() override;
 
-	void start( const QSize& scaledScreenSize );
+	void start( const QSize& scaledScreenSize, UserSessionControl* userSessionControl );
 	void stop();
 
 	const Computer& computer() const
@@ -94,6 +95,8 @@ public:
 		return m_user;
 	}
 
+	void setUser( const QString& user );
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 
@@ -104,7 +107,8 @@ private slots:
 	}
 
 	void updateState();
-	void updateUser();
+
+	void handleFeatureMessage( const FeatureMessage& message );
 
 private:
 	const Computer& m_computer;
@@ -116,10 +120,12 @@ private:
 
 	ItalcVncConnection* m_vncConnection;
 	ItalcCoreConnection* m_coreConnection;
+	UserSessionControl* m_userSessionControl;
 
 	bool m_screenUpdated;
 
 signals:
+	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface& );
 	void userChanged();
 
 };

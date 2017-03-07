@@ -29,6 +29,8 @@
 #include "CheckableItemProxyModel.h"
 
 class QHostAddress;
+class BuiltinFeatures;
+class FeatureManager;
 class NetworkObjectOverlayDataModel;
 class StringListFilterProxyModel;
 class UserConfig;
@@ -37,7 +39,10 @@ class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager( UserConfig& config, QObject* parent );
+	ComputerManager( UserConfig& config,
+					 FeatureManager& featureManager,
+					 BuiltinFeatures& builtinFeatures,
+					 QObject* parent );
 	~ComputerManager() override;
 
 	QAbstractItemModel* networkObjectModel()
@@ -99,6 +104,8 @@ private:
 	QModelIndex findNetworkObject( const NetworkObject::Uid& networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
 	UserConfig& m_config;
+	FeatureManager& m_featureManager;
+	BuiltinFeatures& m_builtinFeatures;
 
 	QAbstractItemModel* m_networkObjectModel;
 	NetworkObjectOverlayDataModel* m_networkObjectOverlayDataModel;
