@@ -27,6 +27,7 @@
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
+#include "ItalcRfbExt.h"
 
 
 UserSessionControl::UserSessionControl() :
@@ -105,6 +106,9 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		FeatureMessage reply( message.featureUid(), message.command() );
 		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( user.name() ).arg( user.fullName() ) );
 		reply.addArgument( HomeDir, user.homePath() );
+
+		uint8_t rfbMessageType = rfbItalcFeatureMessage;
+		message.ioDevice()->write( (const char *) &rfbMessageType, sizeof(rfbMessageType) );
 
 		reply.send( message.ioDevice() );
 
