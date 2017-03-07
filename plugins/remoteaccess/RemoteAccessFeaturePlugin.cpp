@@ -105,6 +105,17 @@ bool RemoteAccessFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
+bool RemoteAccessFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
+															ComputerControlInterface& computerControlInterface )
+{
+	Q_UNUSED(message);
+	Q_UNUSED(computerControlInterface);
+
+	return false;
+}
+
+
+
 bool RemoteAccessFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 															 FeatureWorkerManager& featureWorkerManager )
 {

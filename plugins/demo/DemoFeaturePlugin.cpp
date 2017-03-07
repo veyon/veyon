@@ -140,6 +140,17 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
+bool DemoFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
+													ComputerControlInterface& computerControlInterface )
+{
+	Q_UNUSED(message);
+	Q_UNUSED(computerControlInterface);
+
+	return false;
+}
+
+
+
 bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 													 FeatureWorkerManager& featureWorkerManager )
 {

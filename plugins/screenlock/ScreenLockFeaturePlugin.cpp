@@ -89,6 +89,17 @@ bool ScreenLockFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
+bool ScreenLockFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
+														  ComputerControlInterface& computerControlInterface )
+{
+	Q_UNUSED(message);
+	Q_UNUSED(computerControlInterface);
+
+	return false;
+}
+
+
+
 bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 														   FeatureWorkerManager& featureWorkerManager )
 {

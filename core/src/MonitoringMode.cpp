@@ -67,6 +67,17 @@ bool MonitoringMode::stopMasterFeature( const Feature& feature,
 
 
 
+bool MonitoringMode::handleMasterFeatureMessage( const FeatureMessage& message,
+												 ComputerControlInterface& computerControlInterface )
+{
+	Q_UNUSED(message);
+	Q_UNUSED(computerControlInterface);
+
+	return false;
+}
+
+
+
 bool MonitoringMode::handleServiceFeatureMessage( const FeatureMessage& message,
 												  FeatureWorkerManager& featureWorkerManager )
 {

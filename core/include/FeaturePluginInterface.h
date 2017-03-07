@@ -65,6 +65,14 @@ public:
 									QWidget* parent ) = 0;
 
 	/*!
+	 * \brief Handles a received feature message inside master
+	 * \param message the message which has been received and needs to be handled
+	 * \param computerControlInterfaces the interface over which the message has been received
+	 */
+	virtual bool handleMasterFeatureMessage( const FeatureMessage& message,
+											 ComputerControlInterface& computerControlInterface ) = 0;
+
+	/*!
 	 * \brief Handles a received feature message inside service
 	 * \param message the message which has been received and needs to be handled
 	 * \param featureWorkerManager a reference to a FeatureWorkerManager which can be used for starting/stopping workers and communicating with them

@@ -96,6 +96,17 @@ bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
+bool TextMessageFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
+														   ComputerControlInterface& computerControlInterface )
+{
+	Q_UNUSED(message);
+	Q_UNUSED(computerControlInterface);
+
+	return false;
+}
+
+
+
 bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 															FeatureWorkerManager& featureWorkerManager )
 {

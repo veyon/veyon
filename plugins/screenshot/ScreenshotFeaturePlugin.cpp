@@ -91,6 +91,17 @@ bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
+bool ScreenshotFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
+														  ComputerControlInterface& computerControlInterface )
+{
+	Q_UNUSED(message);
+	Q_UNUSED(computerControlInterface);
+
+	return false;
+}
+
+
+
 bool ScreenshotFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
 														   FeatureWorkerManager& featureWorkerManager )
 {
