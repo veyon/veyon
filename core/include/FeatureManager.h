@@ -62,6 +62,9 @@ public:
 							const ComputerControlInterfaceList& computerControlInterfaces,
 							ComputerControlInterface& localComputerControlInterface,
 							QWidget* parent );
+
+public slots:
+	bool handleMasterFeatureMessage( const FeatureMessage& message, ComputerControlInterface& computerControlInterface );
 	bool handleServiceFeatureMessage( const FeatureMessage& message, FeatureWorkerManager& featureWorkerManager );
 	bool handleWorkerFeatureMessage( const FeatureMessage& message );
 

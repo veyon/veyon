@@ -127,6 +127,29 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 
 
 
+bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
+												 ComputerControlInterface& computerControlInterface )
+{
+	qDebug() << "FeatureManager::handleMasterFeatureMessage():"
+			 << message.featureUid()
+			 << message.command()
+			 << message.arguments();
+
+	bool handled = false;
+
+	for( auto featureInterface : m_featureInterfaces )
+	{
+		if( featureInterface->handleMasterFeatureMessage( message, computerControlInterface ) )
+		{
+			handled = true;
+		}
+	}
+
+	return handled;
+}
+
+
+
 bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 												  FeatureWorkerManager& featureWorkerManager )
 {
