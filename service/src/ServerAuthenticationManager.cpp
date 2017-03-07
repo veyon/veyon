@@ -26,9 +26,7 @@
 #include <QHostAddress>
 
 #include "ServerAuthenticationManager.h"
-#include "AccessControlProvider.h"
 #include "AuthenticationCredentials.h"
-#include "DesktopAccessPermission.h"
 #include "DsaKey.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
@@ -36,11 +34,8 @@
 #include "VariantArrayMessage.h"
 
 
-ServerAuthenticationManager::ServerAuthenticationManager( FeatureWorkerManager& featureWorkerManager,
-														  DesktopAccessDialog& desktopAccessDialog ) :
-	QObject(),
-	m_featureWorkerManager( featureWorkerManager ),
-	m_desktopAccessDialog( desktopAccessDialog ),
+ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
+	QObject( parent ),
 	m_supportedAuthTypes( { RfbItalcAuth::HostWhiteList } ),
 	m_allowedIPs(),
 	m_failedAuthHosts()
@@ -88,12 +83,10 @@ void ServerAuthenticationManager::processAuthenticationMessage( Client* client,
 		// authentication via DSA-challenge/-response
 	case RfbItalcAuth::DSA:
 		client->setState( performKeyAuthentication( client, message ) );
-		//				performAccessControl( username, hostAddress, DesktopAccessPermission::KeyAuthentication ) )
 		break;
 
 	case RfbItalcAuth::Logon:
 		client->setState( performLogonAuthentication( client, message ) );
-		//performAccessControl( username, hostAddress, DesktopAccessPermission::LogonAuthentication ) )
 		break;
 
 	case RfbItalcAuth::Token:
@@ -120,35 +113,8 @@ void ServerAuthenticationManager::setAllowedIPs(const QStringList &allowedIPs)
 
 
 
-bool ServerAuthenticationManager::performAccessControl( const QString &username, const QString &host,
-														DesktopAccessPermission::AuthenticationMethod authenticationMethod )
-{
-	auto accessResult = AccessControlProvider().checkAccess( username, host );
-
-	DesktopAccessPermission desktopAccessPermission( authenticationMethod );
-
-	switch( accessResult )
-	{
-	case AccessControlProvider::AccessToBeConfirmed:
-		return desktopAccessPermission.ask( m_featureWorkerManager, m_desktopAccessDialog, username, host );
-
-	case AccessControlProvider::AccessAllow:
-		if( desktopAccessPermission.authenticationMethodRequiresConfirmation() )
-		{
-			return desktopAccessPermission.ask( m_featureWorkerManager, m_desktopAccessDialog, username, host );
-		}
-		return true;
-
-	default:
-		break;
-	}
-
-	return false;
-}
-
-
-
-ServerAuthenticationManager::Client::State ServerAuthenticationManager::performKeyAuthentication( Client* client, VariantArrayMessage& message )
+ServerAuthenticationManager::Client::State ServerAuthenticationManager::performKeyAuthentication( Client* client,
+																								  VariantArrayMessage& message )
 {
 	switch( client->state() )
 	{

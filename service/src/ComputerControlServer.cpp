@@ -48,7 +48,8 @@ ComputerControlServer::ComputerControlServer() :
 	m_builtinFeatures( m_pluginManager ),
 	m_featureManager( m_pluginManager ),
 	m_featureWorkerManager( m_featureManager ),
-	m_serverAuthenticationManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog() ),
+	m_serverAuthenticationManager( this ),
+	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
 	m_vncServer( 12345 ),
 	m_vncProxyServer( m_vncServer.serverPort(), m_vncServer.password(), ItalcCore::serverPort, this, this )
 {
@@ -84,9 +85,9 @@ void ComputerControlServer::start()
 
 
 VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket* clientSocket,
-																 int vncServerPort,
-																 const QString& vncServerPassword,
-																 QObject* parent )
+																	 int vncServerPort,
+																	 const QString& vncServerPassword,
+																	 QObject* parent )
 {
 	return new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
 }
@@ -98,7 +99,7 @@ bool ComputerControlServer::handleCoreMessage( QTcpSocket* socket )
 	char messageType;
 	socket->read( &messageType, sizeof(messageType) );
 
-			// receive message
+	// receive message
 	ItalcCore::Msg msgIn( socket );
 	msgIn.receive();
 

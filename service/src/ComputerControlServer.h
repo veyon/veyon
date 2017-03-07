@@ -36,6 +36,7 @@
 #include "SocketDevice.h"
 #include "DesktopAccessPermission.h"
 #include "ServerAuthenticationManager.h"
+#include "ServerAccessControlManager.h"
 #include "VncProxyServer.h"
 #include "VncProxyConnectionFactory.h"
 #include "VncServer.h"
@@ -57,6 +58,11 @@ public:
 	ServerAuthenticationManager& serverAuthenticationManager()
 	{
 		return m_serverAuthenticationManager;
+	}
+
+	ServerAccessControlManager& serverAccessControlManager()
+	{
+		return m_serverAccessControlManager;
 	}
 
 	//bool authenticateClient( QTcpSocket* socket, RfbItalcAuth::Type authType );
@@ -84,6 +90,7 @@ private:
 	FeatureWorkerManager m_featureWorkerManager;
 
 	ServerAuthenticationManager m_serverAuthenticationManager;
+	ServerAccessControlManager m_serverAccessControlManager;
 
 	VncServer m_vncServer;
 	VncProxyServer m_vncProxyServer;

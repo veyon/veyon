@@ -29,6 +29,7 @@
 
 #include "RfbItalcAuth.h"
 #include "ServerAuthenticationManager.h"
+#include "ServerAccessControlManager.h"
 
 class QTcpSocket;
 
@@ -43,12 +44,14 @@ public:
 		SecurityInit,
 		AuthenticationTypes,
 		Authenticating,
-		Authenticated,
-		Connected,
+		AccessControl,
+		Initialized,
 		StateCount
 	} State;
 
-	VncServerProtocol( QTcpSocket* socket, ServerAuthenticationManager& serverAuthenticationManager );
+	VncServerProtocol( QTcpSocket* socket,
+					   ServerAuthenticationManager& serverAuthenticationManager,
+					   ServerAccessControlManager& serverAccessControlManager );
 	~VncServerProtocol();
 
 	State state() const
@@ -68,9 +71,11 @@ private:
 	bool receiveAuthenticationMessage();
 
 	bool processAuthentication( VariantArrayMessage& message );
+	bool processAccessControl();
 
 	QTcpSocket* m_socket;
 	ServerAuthenticationManager& m_serverAuthenticationManager;
+	ServerAccessControlManager& m_serverAccessControlManager;
 
 	State m_state;
 

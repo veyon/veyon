@@ -39,9 +39,12 @@
 #include "VncServerProtocol.h"
 
 
-VncServerProtocol::VncServerProtocol( QTcpSocket* socket, ServerAuthenticationManager& serverAuthenticationManager ) :
+VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
+									  ServerAuthenticationManager& serverAuthenticationManager,
+									  ServerAccessControlManager& serverAccessControlManager ) :
 	m_socket( socket ),
 	m_serverAuthenticationManager( serverAuthenticationManager ),
+	m_serverAccessControlManager( serverAccessControlManager ),
 	m_state( Disconnected ),
 	m_authClient( nullptr )
 {
@@ -87,6 +90,9 @@ bool VncServerProtocol::read()
 
 	case Authenticating:
 		return receiveAuthenticationMessage();
+
+	case AccessControl:
+		return processAccessControl();
 
 	default:
 		break;
@@ -201,8 +207,8 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 		if( chosenAuthType == RfbItalcAuth::None )
 		{
-			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): allowing access without authentication." );
-			m_state = Authenticated;
+			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): skipping authentication." );
+			m_state = AccessControl;
 			return true;
 		}
 
@@ -215,7 +221,6 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		// init authentication
 		VariantArrayMessage dummyMessage( m_socket );
 		processAuthentication( dummyMessage );
-
 	}
 
 	return false;
@@ -256,8 +261,8 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 		uint32_t authResult = htonl(rfbVncAuthOK);
 		m_socket->write( (char *) &authResult, sizeof(authResult) );
 
-		m_state = Authenticated;
-		break;
+		m_state = AccessControl;
+		return true;
 	}
 
 	case ServerAuthenticationManager::Client::FinishedFail:
@@ -265,11 +270,26 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 		m_socket->close();
 
 		return false;
-		break;
 
 	default:
 		break;
 	}
+
+	return false;
+}
+
+
+
+bool VncServerProtocol::processAccessControl()
+{
+	if( m_serverAccessControlManager.processClient( m_authClient ) )
+	{
+		m_state = Initialized;
+		return true;
+	}
+
+	qCritical( "VncServerProtocol:::processAccessControl(): access control failed - closing connection" );
+	m_socket->close();
 
 	return false;
 }

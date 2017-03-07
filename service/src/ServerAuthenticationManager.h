@@ -29,7 +29,6 @@
 #include <QStringList>
 
 #include "RfbItalcAuth.h"
-#include "DesktopAccessPermission.h"
 
 class VariantArrayMessage;
 
@@ -112,8 +111,7 @@ public:
 
 	} ;
 
-	ServerAuthenticationManager( FeatureWorkerManager& featureWorkerManager,
-								 DesktopAccessDialog& desktopAccessDialog );
+	ServerAuthenticationManager( QObject* parent );
 
 	const QVector<RfbItalcAuth::Type>& supportedAuthTypes() const
 	{
@@ -125,9 +123,6 @@ public:
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
-	bool performAccessControl( const QString& username, const QString& host,
-							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
-
 
 signals:
 	void authenticationError( QString host, QString user );
@@ -137,9 +132,6 @@ private:
 	Client::State performLogonAuthentication( Client* client, VariantArrayMessage& message );
 	Client::State performHostWhitelistAuth( Client* client, VariantArrayMessage& message );
 	Client::State performTokenAuthentication( Client* client, VariantArrayMessage& message );
-
-	FeatureWorkerManager& m_featureWorkerManager;
-	DesktopAccessDialog& m_desktopAccessDialog;
 
 	QVector<RfbItalcAuth::Type> m_supportedAuthTypes;
 

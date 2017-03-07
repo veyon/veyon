@@ -36,7 +36,7 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 											  QObject* parent ) :
 	VncProxyConnection( clientSocket, vncServerPort, parent ),
 	m_server( server ),
-	m_serverProtocol( proxyClientSocket(), server->serverAuthenticationManager() ),
+	m_serverProtocol( proxyClientSocket(), server->serverAuthenticationManager(), server->serverAccessControlManager() ),
 	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
 	m_serverProtocol.start();
@@ -53,7 +53,7 @@ ComputerControlClient::~ComputerControlClient()
 
 void ComputerControlClient::readFromClient()
 {
-	if( m_serverProtocol.state() != VncServerProtocol::Authenticated )
+	if( m_serverProtocol.state() != VncServerProtocol::Initialized )
 	{
 		while( m_serverProtocol.read() )
 		{
@@ -82,7 +82,7 @@ void ComputerControlClient::readFromServer()
 		{
 		}
 	}
-	else if( m_serverProtocol.state() == VncServerProtocol::Authenticated )
+	else if( m_serverProtocol.state() == VncServerProtocol::Initialized )
 	{
 		forwardAllDataToClient();
 	}
