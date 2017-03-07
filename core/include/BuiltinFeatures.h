@@ -31,6 +31,7 @@ class PluginManager;
 class DesktopAccessDialog;
 class MonitoringMode;
 class SystemTrayIcon;
+class UserSessionControl;
 
 class ITALC_CORE_EXPORT BuiltinFeatures
 {
@@ -53,11 +54,16 @@ public:
 		return *m_desktopAccessDialog;
 	}
 
+	UserSessionControl& userSessionControl()
+	{
+		return *m_userSessionControl;
+	}
+
 private:
 	SystemTrayIcon* m_systemTrayIcon;
 	MonitoringMode* m_monitoringMode;
 	DesktopAccessDialog* m_desktopAccessDialog;
-
+	UserSessionControl* m_userSessionControl;
 };
 
 #endif // BUILTIN_FEATURES_H
