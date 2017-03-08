@@ -39,10 +39,7 @@ class ServerAuthenticationManager : public QObject
 public:
 	ServerAuthenticationManager( QObject* parent );
 
-	const QVector<RfbItalcAuth::Type>& supportedAuthTypes() const
-	{
-		return m_supportedAuthTypes;
-	}
+	QVector<RfbItalcAuth::Type> supportedAuthTypes() const;
 
 	void processAuthenticationMessage( VncServerClient* client,
 									   VariantArrayMessage& message );
@@ -58,8 +55,6 @@ private:
 	VncServerClient::AuthState performLogonAuthentication( VncServerClient* client, VariantArrayMessage& message );
 	VncServerClient::AuthState performHostWhitelistAuth( VncServerClient* client, VariantArrayMessage& message );
 	VncServerClient::AuthState performTokenAuthentication( VncServerClient* client, VariantArrayMessage& message );
-
-	QVector<RfbItalcAuth::Type> m_supportedAuthTypes;
 
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;

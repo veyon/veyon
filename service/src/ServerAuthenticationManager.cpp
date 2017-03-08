@@ -36,25 +36,37 @@
 
 ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 	QObject( parent ),
-	m_supportedAuthTypes( { RfbItalcAuth::HostWhiteList } ),
 	m_allowedIPs(),
 	m_failedAuthHosts()
 {
+
+
+}
+
+
+
+QVector<RfbItalcAuth::Type> ServerAuthenticationManager::supportedAuthTypes() const
+{
+	QVector<RfbItalcAuth::Type> authTypes;
+
+	authTypes.append( RfbItalcAuth::HostWhiteList );
+
 	if( ItalcCore::config->isKeyAuthenticationEnabled() )
 	{
-		m_supportedAuthTypes.append( RfbItalcAuth::DSA );
+		authTypes.append( RfbItalcAuth::DSA );
 	}
 
 	if( ItalcCore::config->isLogonAuthenticationEnabled() )
 	{
-		m_supportedAuthTypes.append( RfbItalcAuth::Logon );
+		authTypes.append( RfbItalcAuth::Logon );
 	}
 
 	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) )
 	{
-		m_supportedAuthTypes.append( RfbItalcAuth::Token );
+		authTypes.append( RfbItalcAuth::Token );
 	}
 
+	return authTypes;
 }
 
 
