@@ -25,39 +25,23 @@
 #ifndef VNC_SERVER_PROTOCOL_H
 #define VNC_SERVER_PROTOCOL_H
 
-#include <QVector>
-
 #include "RfbItalcAuth.h"
-#include "ServerAuthenticationManager.h"
-#include "ServerAccessControlManager.h"
 
 class QTcpSocket;
 
+class ServerAuthenticationManager;
+class ServerAccessControlManager;
 class VariantArrayMessage;
+class VncServerClient;
 
 class VncServerProtocol
 {
 public:
-	typedef enum States {
-		Disconnected,
-		Protocol,
-		SecurityInit,
-		AuthenticationTypes,
-		Authenticating,
-		AccessControl,
-		Initialized,
-		StateCount
-	} State;
-
 	VncServerProtocol( QTcpSocket* socket,
+					   VncServerClient* client,
 					   ServerAuthenticationManager& serverAuthenticationManager,
 					   ServerAccessControlManager& serverAccessControlManager );
 	~VncServerProtocol();
-
-	State state() const
-	{
-		return m_state;
-	}
 
 	void start();
 	bool read();
@@ -74,12 +58,9 @@ private:
 	bool processAccessControl();
 
 	QTcpSocket* m_socket;
+	VncServerClient* m_client;
 	ServerAuthenticationManager& m_serverAuthenticationManager;
 	ServerAccessControlManager& m_serverAccessControlManager;
-
-	State m_state;
-
-	ServerAuthenticationManager::Client* m_authClient;
 
 } ;
 

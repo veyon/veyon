@@ -27,6 +27,7 @@
 
 #include "VncProxyConnection.h"
 #include "VncClientProtocol.h"
+#include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
 class ComputerControlServer;
@@ -53,6 +54,8 @@ private:
 	bool receiveMessage();
 
 	ComputerControlServer* m_server;
+
+	VncServerClient m_serverClient;
 
 	VncServerProtocol m_serverProtocol;
 	VncClientProtocol m_clientProtocol;

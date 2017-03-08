@@ -31,6 +31,7 @@
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "VariantArrayMessage.h"
+#include "VncServerClient.h"
 
 
 ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& featureWorkerManager,
@@ -44,7 +45,7 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 
 
 
-bool ServerAccessControlManager::processClient( ServerAuthenticationManager::Client* client )
+bool ServerAccessControlManager::processClient( VncServerClient* client )
 {
 	switch( client->authType() )
 	{
@@ -63,7 +64,7 @@ bool ServerAccessControlManager::processClient( ServerAuthenticationManager::Cli
 
 
 
-bool ServerAccessControlManager::performAccessControl( ServerAuthenticationManager::Client* client,
+bool ServerAccessControlManager::performAccessControl( VncServerClient* client,
 													   DesktopAccessPermission::AuthenticationMethod authenticationMethod )
 {
 	auto accessResult = AccessControlProvider().checkAccess( client->username(), client->hostAddress() );

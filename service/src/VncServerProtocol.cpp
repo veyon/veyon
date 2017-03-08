@@ -35,18 +35,20 @@
 
 #include "AuthenticationCredentials.h"
 #include "ServerAuthenticationManager.h"
+#include "ServerAccessControlManager.h"
 #include "VariantArrayMessage.h"
+#include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
 
 VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
+									  VncServerClient* client,
 									  ServerAuthenticationManager& serverAuthenticationManager,
 									  ServerAccessControlManager& serverAccessControlManager ) :
 	m_socket( socket ),
+	m_client( client ),
 	m_serverAuthenticationManager( serverAuthenticationManager ),
-	m_serverAccessControlManager( serverAccessControlManager ),
-	m_state( Disconnected ),
-	m_authClient( nullptr )
+	m_serverAccessControlManager( serverAccessControlManager )
 {
 }
 
@@ -54,14 +56,13 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 
 VncServerProtocol::~VncServerProtocol()
 {
-	delete m_authClient;
 }
 
 
 
 void VncServerProtocol::start()
 {
-	if( m_state == Disconnected )
+	if( m_client->protocolState() == VncServerClient::Disconnected )
 	{
 		char protocol[sz_rfbProtocolVersionMsg+1];
 
@@ -69,7 +70,7 @@ void VncServerProtocol::start()
 
 		m_socket->write( protocol, sz_rfbProtocolVersionMsg );
 
-		m_state = Protocol;
+		m_client->setProtocolState( VncServerClient::Protocol );
 	}
 }
 
@@ -77,21 +78,21 @@ void VncServerProtocol::start()
 
 bool VncServerProtocol::read()
 {
-	switch( m_state )
+	switch( m_client->protocolState() )
 	{
-	case Protocol:
+	case VncServerClient::Protocol:
 		return readProtocol();
 
-	case SecurityInit:
+	case VncServerClient::SecurityInit:
 		return receiveSecurityTypeResponse();
 
-	case AuthenticationTypes:
+	case VncServerClient::AuthenticationTypes:
 		return receiveAuthenticationTypeResponse();
 
-	case Authenticating:
+	case VncServerClient::Authenticating:
 		return receiveAuthenticationMessage();
 
-	case AccessControl:
+	case VncServerClient::AccessControl:
 		return processAccessControl();
 
 	default:
@@ -120,7 +121,7 @@ bool VncServerProtocol::readProtocol()
 			return false;
 		}
 
-		m_state = SecurityInit;
+		m_client->setProtocolState( VncServerClient::SecurityInit );
 
 		return sendSecurityTypes();
 	}
@@ -160,7 +161,7 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 			return false;
 		}
 
-		m_state = AuthenticationTypes;
+		m_client->setProtocolState( VncServerClient::AuthenticationTypes );
 
 		return sendAuthenticationTypes();
 	}
@@ -208,15 +209,17 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		if( chosenAuthType == RfbItalcAuth::None )
 		{
 			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): skipping authentication." );
-			m_state = AccessControl;
+			m_client->setProtocolState( VncServerClient::AccessControl );
 			return true;
 		}
 
 		const QString username = message.read().toString();
 
-		m_authClient = new ServerAuthenticationManager::Client( chosenAuthType, username, m_socket->peerAddress().toString() );
+		m_client->setAuthType( chosenAuthType );
+		m_client->setUsername( username );
+		m_client->setHostAddress( m_socket->peerAddress().toString() );
 
-		m_state = Authenticating;
+		m_client->setProtocolState( VncServerClient::Authenticating );
 
 		// init authentication
 		VariantArrayMessage dummyMessage( m_socket );
@@ -230,14 +233,6 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 bool VncServerProtocol::receiveAuthenticationMessage()
 {
-	if( m_authClient == nullptr )
-	{
-		qCritical( "VncServerProtocol:::receiveAuthenticationMessage(): auth client is NULL!" );
-
-		m_socket->close();
-		return false;
-	}
-
 	VariantArrayMessage message( m_socket );
 
 	if( message.isReadyForReceive() && message.receive() )
@@ -252,20 +247,20 @@ bool VncServerProtocol::receiveAuthenticationMessage()
 
 bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 {
-	m_serverAuthenticationManager.processAuthenticationMessage( m_authClient, message );
+	m_serverAuthenticationManager.processAuthenticationMessage( m_client, message );
 
-	switch( m_authClient->state() )
+	switch( m_client->authState() )
 	{
-	case ServerAuthenticationManager::Client::FinishedSuccess:
+	case VncServerClient::AuthFinishedSuccess:
 	{
 		uint32_t authResult = htonl(rfbVncAuthOK);
 		m_socket->write( (char *) &authResult, sizeof(authResult) );
 
-		m_state = AccessControl;
+		m_client->setProtocolState( VncServerClient::AccessControl );
 		return true;
 	}
 
-	case ServerAuthenticationManager::Client::FinishedFail:
+	case VncServerClient::AuthFinishedFail:
 		qCritical( "VncServerProtocol:::receiveAuthenticationMessage(): authentication failed - closing connection" );
 		m_socket->close();
 
@@ -282,9 +277,9 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 
 bool VncServerProtocol::processAccessControl()
 {
-	if( m_serverAccessControlManager.processClient( m_authClient ) )
+	if( m_serverAccessControlManager.processClient( m_client ) )
 	{
-		m_state = Initialized;
+		m_client->setProtocolState( VncServerClient::Initialized );
 		return true;
 	}
 

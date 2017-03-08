@@ -59,11 +59,11 @@ ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 
 
 
-void ServerAuthenticationManager::processAuthenticationMessage( Client* client,
+void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient* client,
 																VariantArrayMessage& message )
 {
 	qDebug() << "ServerAuthenticationManager::authenticateClient():"
-			 << "state" << client->state()
+			 << "state" << client->authState()
 			 << "type" << client->authType()
 			 << "host" << client->hostAddress()
 			 << "user" << client->username();
@@ -72,32 +72,32 @@ void ServerAuthenticationManager::processAuthenticationMessage( Client* client,
 	{
 	// no authentication
 	case RfbItalcAuth::None:
-		client->setState( Client::FinishedSuccess );
+		client->setAuthState( VncServerClient::AuthFinishedSuccess );
 		break;
 
 		// host has to be in list of allowed hosts
 	case RfbItalcAuth::HostWhiteList:
-		client->setState( performHostWhitelistAuth( client, message ) );
+		client->setAuthState( performHostWhitelistAuth( client, message ) );
 		break;
 
 		// authentication via DSA-challenge/-response
 	case RfbItalcAuth::DSA:
-		client->setState( performKeyAuthentication( client, message ) );
+		client->setAuthState( performKeyAuthentication( client, message ) );
 		break;
 
 	case RfbItalcAuth::Logon:
-		client->setState( performLogonAuthentication( client, message ) );
+		client->setAuthState( performLogonAuthentication( client, message ) );
 		break;
 
 	case RfbItalcAuth::Token:
-		client->setState( performTokenAuthentication( client, message ) );
+		client->setAuthState( performTokenAuthentication( client, message ) );
 		break;
 
 	default:
 		break;
 	}
 
-	if( client->state() == Client::FinishedFail )
+	if( client->authState() == VncServerClient::AuthFinishedFail )
 	{
 		emit authenticationError( client->hostAddress(), client->username() );
 	}
@@ -113,25 +113,25 @@ void ServerAuthenticationManager::setAllowedIPs(const QStringList &allowedIPs)
 
 
 
-ServerAuthenticationManager::Client::State ServerAuthenticationManager::performKeyAuthentication( Client* client,
-																								  VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication( VncServerClient* client,
+																				  VariantArrayMessage& message )
 {
-	switch( client->state() )
+	switch( client->authState() )
 	{
-	case Client::Init:
+	case VncServerClient::AuthInit:
 		client->setChallenge( DsaKey::generateChallenge() );
 		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() )
 		{
-			return Client::Challenge;
+			return VncServerClient::AuthChallenge;
 		}
 		else
 		{
 			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): failed to send challenge" );
-			return Client::FinishedFail;
+			return VncServerClient::AuthFinishedFail;
 		}
 		break;
 
-	case Client::Challenge:
+	case VncServerClient::AuthChallenge:
 	{
 		// get user role
 		const ItalcCore::UserRoles urole = static_cast<ItalcCore::UserRoles>( message.read().toInt() );
@@ -147,12 +147,12 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performK
 		if( pubKey.verifySignature( client->challenge(), sig ) )
 		{
 			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
-			return Client::FinishedSuccess;
+			return VncServerClient::AuthFinishedSuccess;
 		}
 		else
 		{
 			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): FAIL" );
-			return Client::FinishedFail;
+			return VncServerClient::AuthFinishedFail;
 		}
 		break;
 	}
@@ -161,17 +161,17 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performK
 		break;
 	}
 
-	return Client::FinishedFail;
+	return VncServerClient::AuthFinishedFail;
 }
 
 
 
-ServerAuthenticationManager::Client::State ServerAuthenticationManager::performLogonAuthentication( Client* client,
-																									VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthentication( VncServerClient* client,
+																					VariantArrayMessage& message )
 {
-	switch( client->state() )
+	switch( client->authState() )
 	{
-	case Client::Init:
+	case VncServerClient::AuthInit:
 	{
 		QCA::PrivateKey privateKey = QCA::KeyGenerator().createRSA( 1024 );
 
@@ -181,16 +181,16 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performL
 
 		if( VariantArrayMessage( message.ioDevice() ).write( publicKey.toPEM() ).send() )
 		{
-			return Client::Password;
+			return VncServerClient::AuthPassword;
 		}
 		else
 		{
 			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
-			return Client::FinishedFail;
+			return VncServerClient::AuthFinishedFail;
 		}
 	}
 
-	case Client::Password:
+	case VncServerClient::AuthPassword:
 	{
 		QCA::PrivateKey privateKey = QCA::PrivateKey::fromPEM( client->privateKey() );
 
@@ -201,7 +201,7 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performL
 		if( privateKey.decrypt( encryptedPassword, &decryptedPassword, QCA::EME_PKCS1_OAEP ) == false )
 		{
 			qWarning( "ServerAuthenticationManager::performLogonAuthentication(): failed to decrypt password" );
-			return Client::FinishedFail;
+			return VncServerClient::AuthFinishedFail;
 		}
 
 		AuthenticationCredentials credentials;
@@ -211,48 +211,48 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performL
 		if( LogonAuthentication::authenticateUser( credentials ) )
 		{
 			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): SUCCESS" );
-			return Client::FinishedSuccess;
+			return VncServerClient::AuthFinishedSuccess;
 		}
 
 		qDebug( "ServerAuthenticationManager::performLogonAuthentication(): FAIL" );
-		return Client::FinishedFail;
+		return VncServerClient::AuthFinishedFail;
 	}
 
 	default:
 		break;
 	}
 
-	return Client::FinishedFail;
+	return VncServerClient::AuthFinishedFail;
 }
 
 
-ServerAuthenticationManager::Client::State ServerAuthenticationManager::performHostWhitelistAuth( Client* client,
-																								  VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performHostWhitelistAuth( VncServerClient* client,
+																				  VariantArrayMessage& message )
 {
 	QMutexLocker l( &m_dataMutex );
 
 	if( m_allowedIPs.isEmpty() )
 	{
 		qWarning( "ServerAuthenticationManager: empty list of allowed IPs" );
-		return Client::FinishedFail;
+		return VncServerClient::AuthFinishedFail;
 	}
 
 	if( m_allowedIPs.contains( client->hostAddress() ) )
 	{
 		qDebug( "ServerAuthenticationManager::performHostWhitelistAuth(): SUCCESS" );
-		return Client::FinishedSuccess;
+		return VncServerClient::AuthFinishedSuccess;
 	}
 
 	qWarning( "ServerAuthenticationManager::performHostWhitelistAuth(): FAIL" );
 
 	// authentication failed
-	return Client::FinishedFail;
+	return VncServerClient::AuthFinishedFail;
 }
 
 
 
-ServerAuthenticationManager::Client::State ServerAuthenticationManager::performTokenAuthentication( Client* client,
-																									VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthentication( VncServerClient* client,
+																					VariantArrayMessage& message )
 {
 	Q_UNUSED(client);
 
@@ -261,10 +261,10 @@ ServerAuthenticationManager::Client::State ServerAuthenticationManager::performT
 	{
 		qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
 
-		return Client::FinishedSuccess;
+		return VncServerClient::AuthFinishedSuccess;
 	}
 
 	qDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
 
-	return Client::FinishedFail;
+	return VncServerClient::AuthFinishedFail;
 }
