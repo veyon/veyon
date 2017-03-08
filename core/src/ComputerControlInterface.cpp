@@ -58,7 +58,7 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSession
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
-		m_vncConnection = new ItalcVncConnection( this );
+		m_vncConnection = new ItalcVncConnection();
 		m_vncConnection->setHost( m_computer.hostAddress() );
 		m_vncConnection->setQuality( ItalcVncConnection::ThumbnailQuality );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
