@@ -49,6 +49,7 @@ signals:
 private:
 	bool performAccessControl( VncServerClient* client,
 							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
+	QStringList connectedUsers() const;
 
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;

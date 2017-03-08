@@ -127,3 +127,17 @@ bool ServerAccessControlManager::performAccessControl( VncServerClient* client,
 
 	return false;
 }
+
+
+
+QStringList ServerAccessControlManager::connectedUsers() const
+{
+	QStringList users;
+
+	for( auto client : m_clients )
+	{
+		users += client->username();
+	}
+
+	return users;
+}
