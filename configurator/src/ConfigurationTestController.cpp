@@ -38,7 +38,8 @@ int ConfigurationTestController::run()
 
 	if( command == "checkaccess" )
 	{
-		switch( AccessControlProvider().checkAccess( testArgument( 1 ), testArgument( 2 ) ) )
+		switch( AccessControlProvider().checkAccess( testArgument( 1 ), testArgument( 2 ),
+													 QStringList( testArgument( 3 ) ) ) )
 		{
 		case AccessControlProvider::AccessAllow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return 0;
 		case AccessControlProvider::AccessDeny: printf( "[TEST]: CheckAccess: DENY\n" ); return 0;
@@ -61,7 +62,8 @@ int ConfigurationTestController::run()
 	else if( command == "accesscontrolrules" )
 	{
 		switch( AccessControlProvider().processAccessControlRules( testArgument( 1 ), testArgument( 2 ),
-		                                                           testArgument( 3 ), testArgument( 4 ) ) )
+																   testArgument( 3 ), testArgument( 4 ),
+																   QStringList( testArgument( 5 ) ) ) )
 		{
 		case AccessControlRule::ActionAllow: printf( "[TEST]: AccessControlRules: ALLOW\n" ); return 0;
 		case AccessControlRule::ActionDeny: printf( "[TEST]: AccessControlRules: DENY\n" ); return 0;
@@ -86,9 +88,9 @@ int ConfigurationTestController::run()
 	{
 		printf( "TEST COMMANDS:\n\n" );
 		printf( "IsAccessDeniedByLocalState\n" );
-		printf( "CheckAccess [ACCESSING USER] [ACCESSING COMPUTER]\n" );
+		printf( "CheckAccess [ACCESSING USER] [ACCESSING COMPUTER] [CONNECTED USER]\n" );
 		printf( "AuthorizedGroups [ACCESSING USER]\n" );
-		printf( "AccessControlRules [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER]\n" );
+		printf( "AccessControlRules [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER] [CONNECTED USER]\n" );
 	}
 
 	printf( "\n------------------------------------------------------------------------------\n\n" );

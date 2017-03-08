@@ -66,7 +66,8 @@ void AccessControlRulesTestDialog::accept()
 			AccessControlProvider().processAccessControlRules( ui->accessingUserLineEdit->text(),
 															   ui->accessingComputerLineEdit->text(),
 															   ui->localUserLineEdit->text(),
-															   ui->localComputerLineEdit->text() );
+															   ui->localComputerLineEdit->text(),
+															   ui->connectedUsersLineEdit->text().split( ',' ) );
 	QString resultText;
 
 	switch( result )

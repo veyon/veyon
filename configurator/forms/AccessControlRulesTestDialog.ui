@@ -6,21 +6,21 @@
    <string>Access control rules test</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="1">
-    <widget class="QLineEdit" name="localComputerLineEdit"/>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="localUserLineEdit"/>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Local user:</string>
+   <item row="6" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="accessingUserLineEdit"/>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="localComputerLineEdit"/>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="accessingComputerLineEdit"/>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label">
@@ -28,9 +28,6 @@
       <string>Accessing user:</string>
      </property>
     </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="accessingComputerLineEdit"/>
    </item>
    <item row="4" column="0">
     <widget class="QLabel" name="label_4">
@@ -43,16 +40,6 @@
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>Accessing computer:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Close|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
@@ -71,6 +58,29 @@
       <bool>true</bool>
      </property>
     </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Local user:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="localUserLineEdit"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="accessingUserLineEdit"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>Connected users:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLineEdit" name="connectedUsersLineEdit"/>
    </item>
   </layout>
  </widget>
