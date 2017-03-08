@@ -39,8 +39,8 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 	m_serverClient(),
 	m_serverProtocol( proxyClientSocket(),
 					  &m_serverClient,
-					  server->serverAuthenticationManager(),
-					  server->serverAccessControlManager() ),
+					  server->authenticationManager(),
+					  server->accessControlManager() ),
 	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
 	m_serverProtocol.start();

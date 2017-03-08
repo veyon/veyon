@@ -55,12 +55,12 @@ public:
 												  const QString& vncServerPassword,
 												  QObject* parent ) override;
 
-	ServerAuthenticationManager& serverAuthenticationManager()
+	ServerAuthenticationManager& authenticationManager()
 	{
 		return m_serverAuthenticationManager;
 	}
 
-	ServerAccessControlManager& serverAccessControlManager()
+	ServerAccessControlManager& accessControlManager()
 	{
 		return m_serverAccessControlManager;
 	}
