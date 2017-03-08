@@ -53,8 +53,6 @@ private:
 
 	qint64 writeData( const char* data, qint64 maxSize ) override;
 
-	bool waitForMoreData( int msTimeout );
-
 	QDataStream m_dataStream;
 	QIODevice* m_ioDevice;
 	QTcpSocket* m_socket;

@@ -40,7 +40,7 @@ static rfbBool handleEncodingItalcCursor( rfbClient *c,
 		return false;
 	}
 
-	SocketDevice socketDevice( libvncClientDispatcher, c );
+	SocketDevice socketDevice( ItalcVncConnection::libvncClientDispatcher, c );
 
 	QImage cursorShape( VariantStream( &socketDevice ).read().value<QImage>() );
 

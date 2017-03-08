@@ -886,6 +886,23 @@ void ItalcVncConnection::hookPrepareAuthentication(rfbClient *cl)
 
 
 
+qint64 ItalcVncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
+												   SocketDevice::SocketOperation operation, void* user )
+{
+	rfbClient * cl = (rfbClient *) user;
+	switch( operation )
+	{
+	case SocketDevice::SocketOpRead:
+		return ReadFromRFBServer( cl, buffer, bytes ) ? bytes : 0;
+
+	case SocketDevice::SocketOpWrite:
+		return WriteToRFBServer( cl, buffer, bytes ) ? bytes : 0;
+	}
+
+	return 0;
+}
+
+
 
 void handleSecTypeItalc( rfbClient *client )
 {

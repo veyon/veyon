@@ -33,7 +33,6 @@
 #include "FeatureWorkerManager.h"
 #include "RfbItalcAuth.h"
 #include "PluginManager.h"
-#include "SocketDevice.h"
 #include "DesktopAccessPermission.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"

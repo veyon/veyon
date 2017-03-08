@@ -38,7 +38,7 @@ public:
 
 	virtual void fire( rfbClient *client )
 	{
-		SocketDevice socketDev( libvncClientDispatcher, client );
+		SocketDevice socketDev( ItalcVncConnection::libvncClientDispatcher, client );
 		m_msg.setIoDevice( &socketDev );
 		qDebug() << "ItalcMessageEvent::fire(): sending message" << m_msg.cmd()
 					<< "with arguments" << m_msg.args();
@@ -65,7 +65,7 @@ public:
 		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
 				 << "with arguments" << m_featureMessage.arguments();
 
-		SocketDevice socketDevice( libvncClientDispatcher, client );
+		SocketDevice socketDevice( ItalcVncConnection::libvncClientDispatcher, client );
 		char messageType = rfbItalcFeatureMessage;
 		socketDevice.write( &messageType, sizeof(messageType) );
 
@@ -156,7 +156,7 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 {
 	if( msg == rfbItalcFeatureMessage )
 	{
-		SocketDevice socketDev( libvncClientDispatcher, client );
+		SocketDevice socketDev( ItalcVncConnection::libvncClientDispatcher, client );
 		FeatureMessage featureMessage( &socketDev );
 		featureMessage.receive();
 

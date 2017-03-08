@@ -43,6 +43,7 @@ extern "C"
 
 #include "ItalcCore.h"
 #include "RfbItalcAuth.h"
+#include "SocketDevice.h"
 
 class PrivateDSAKey;
 
@@ -173,6 +174,9 @@ public:
 	static void handleSecTypeItalc( rfbClient *client );
 	static void handleMsLogonIIAuth( rfbClient *client );
 	static void hookPrepareAuthentication( rfbClient *cl );
+
+	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
+										  SocketDevice::SocketOperation operation, void * user );
 
 	void cursorShapeUpdatedExternal( const QImage &cursorShape, int xh, int yh )
 	{

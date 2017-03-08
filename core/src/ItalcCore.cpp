@@ -44,7 +44,6 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
-#include "SocketDevice.h"
 #include "VariantStream.h"
 
 #include "rfb/rfbclient.h"
@@ -73,24 +72,6 @@ void initResources()
 #endif
 }
 
-
-
-qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
-							   const SocketOpCodes opCode, void * user )
-{
-	rfbClient * cl = (rfbClient *) user;
-	switch( opCode )
-	{
-	case SocketRead:
-		return ReadFromRFBServer( cl, buffer, bytes ) ? bytes : 0;
-
-	case SocketWrite:
-		return WriteToRFBServer( cl, buffer, bytes ) ? bytes : 0;
-	}
-
-	return 0;
-
-}
 
 
 static void killWisPtis()

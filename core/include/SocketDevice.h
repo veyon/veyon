@@ -32,35 +32,31 @@
 
 #include "ItalcCore.h"
 
-typedef enum
-{
-	SocketRead,
-	SocketWrite
-} SocketOpCodes;
-
-
-typedef qint64 ( * SocketDispatcher )( char* buffer, const qint64 bytes,
-									   const SocketOpCodes opCode, void* user );
-
-
-extern qint64 ITALC_CORE_EXPORT libvncClientDispatcher( char* buffer, const qint64 bytes,
-														const SocketOpCodes opCode, void* user );
 
 
 class SocketDevice : public QIODevice
 {
 public:
-	SocketDevice( SocketDispatcher sockDisp, void *user = NULL ) :
+	typedef enum SocketOperations
+	{
+		SocketOpRead,
+		SocketOpWrite
+	} SocketOperation;
+
+	typedef qint64 (* Dispatcher )( char* buffer, const qint64 bytes,
+									SocketOperation operation, void* user );
+
+	SocketDevice( Dispatcher dispatcher, void *user = NULL ) :
 		QIODevice(),
-		m_socketDispatcher( sockDisp ),
+		m_dispatcher( dispatcher ),
 		m_user( user )
 	{
 		open( ReadWrite | Unbuffered );
 	}
 
-	SocketDispatcher sockDispatcher()
+	Dispatcher dispatcher()
 	{
-		return m_socketDispatcher;
+		return m_dispatcher;
 	}
 
 	void *user()
@@ -86,18 +82,18 @@ public:
 protected:
 	qint64 readData( char *buf, qint64 bytes )
 	{
-		return m_socketDispatcher( buf, bytes, SocketRead, m_user );
+		return m_dispatcher( buf, bytes, SocketOpRead, m_user );
 	}
 
 	qint64 writeData( const char *buf, qint64 bytes )
 	{
-		return m_socketDispatcher( const_cast<char *>( buf ), bytes,
-												SocketWrite, m_user );
+		return m_dispatcher( const_cast<char *>( buf ), bytes,
+												SocketOpWrite, m_user );
 	}
 
 
 private:
-	SocketDispatcher m_socketDispatcher;
+	Dispatcher m_dispatcher;
 	void * m_user;
 
 } ;

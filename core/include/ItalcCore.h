@@ -40,7 +40,6 @@
 
 class AuthenticationCredentials;
 class ItalcConfiguration;
-class SocketDevice;
 class QWidget;
 
 namespace ItalcCore

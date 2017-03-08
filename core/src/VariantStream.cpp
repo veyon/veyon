@@ -22,9 +22,7 @@
  *
  */
 
-#include <QEventLoop>
 #include <QTcpSocket>
-#include <QTimer>
 
 #include "VariantStream.h"
 
@@ -101,7 +99,7 @@ qint64 VariantStream::readData( char* data, qint64 maxSize )
 			return -1;
 		}
 		bytesRead += n;
-		if( bytesRead < maxSize && waitForMoreData( 5000 ) == false )
+		if( bytesRead < maxSize && m_ioDevice->waitForReadyRead( 5000 ) == false )
 		{
 			qDebug( "VariantStream: timeout after reading %d of %d bytes", (int) bytesRead, (int) maxSize );
 			return bytesRead;
@@ -116,32 +114,4 @@ qint64 VariantStream::readData( char* data, qint64 maxSize )
 qint64 VariantStream::writeData( const char* data, qint64 maxSize )
 {
 	return m_ioDevice->write( data, maxSize );
-}
-
-
-
-bool VariantStream::waitForMoreData( int msTimeout )
-{
-#if 0
-	QTimer timer;
-	timer.setSingleShot( true );
-
-	QEventLoop loop;
-
-	connect( m_ioDevice, &QIODevice::readyRead, &loop, &QEventLoop::quit);
-	connect( &timer, &QTimer::timeout, &loop, &QEventLoop::quit );
-
-	timer.start( msTimeout );
-	loop.exec( QEventLoop::ExcludeUserInputEvents );
-	return timer.isActive();
-
-#else
-	if( m_ioDevice->waitForReadyRead( msTimeout ) == false )
-	{
-		qWarning( "VariantStream::waitForMoreData() failed!" );
-		return false;
-	}
-
-	return true;
-#endif
 }
