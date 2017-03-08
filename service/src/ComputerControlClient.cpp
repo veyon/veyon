@@ -51,6 +51,7 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 
 ComputerControlClient::~ComputerControlClient()
 {
+	m_server->accessControlManager().removeClient( &m_serverClient );
 }
 
 

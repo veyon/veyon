@@ -40,6 +40,7 @@ public:
 		Authenticating,
 		AccessControl,
 		Initialized,
+		Close,
 		StateCount
 	} ProtocolState;
 
@@ -141,5 +142,7 @@ private:
 	QString m_privateKey;
 
 } ;
+
+typedef QList<VncServerClient *> VncServerClientList;
 
 #endif

@@ -27,9 +27,9 @@
 
 #include "RfbItalcAuth.h"
 #include "DesktopAccessPermission.h"
+#include "VncServerClient.h"
 
 class VariantArrayMessage;
-class VncServerClient;
 
 class ServerAccessControlManager : public QObject
 {
@@ -39,7 +39,8 @@ public:
 								DesktopAccessDialog& desktopAccessDialog,
 								QObject* parent );
 
-	bool processClient( VncServerClient* client );
+	bool addClient( VncServerClient* client );
+	void removeClient( VncServerClient* client );
 
 
 signals:
@@ -51,6 +52,8 @@ private:
 
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;
+
+	VncServerClientList m_clients;
 
 } ;
 

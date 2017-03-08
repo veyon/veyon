@@ -31,7 +31,6 @@
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "VariantArrayMessage.h"
-#include "VncServerClient.h"
 
 
 ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& featureWorkerManager,
@@ -45,21 +44,58 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 
 
 
-bool ServerAccessControlManager::processClient( VncServerClient* client )
+bool ServerAccessControlManager::addClient( VncServerClient* client )
 {
+	bool result = false;
+
 	switch( client->authType() )
 	{
 	case RfbItalcAuth::DSA:
-		return performAccessControl( client, DesktopAccessPermission::KeyAuthentication );
+		result = performAccessControl( client, DesktopAccessPermission::KeyAuthentication );
+		break;
 
 	case RfbItalcAuth::Logon:
-		return performAccessControl( client, DesktopAccessPermission::LogonAuthentication );
+		result = performAccessControl( client, DesktopAccessPermission::LogonAuthentication );
+		break;
+
+	case RfbItalcAuth::None:
+		result = true;
+
+	case RfbItalcAuth::HostWhiteList:
+		result = true;
 
 	default:
 		break;
 	}
 
-	return true;
+	if( result )
+	{
+		m_clients.append( client );
+	}
+
+	return result;
+}
+
+
+
+void ServerAccessControlManager::removeClient( VncServerClient* client )
+{
+	m_clients.removeAll( client );
+
+	// force all remaining clients to pass access control again as conditions might
+	// have changed (e.g. AccessControlRule::ConditionAccessFromAlreadyConnectedUser)
+
+	VncServerClientList previousClients = m_clients;
+	m_clients.clear();
+
+	for( auto client : previousClients )
+	{
+		if( addClient( client ) == false )
+		{
+			qDebug( "ServerAccessControlManager::removeClient(): closing connection as client does not pass access control any longer" );
+			client->setProtocolState( VncServerClient::Close );
+		}
+	}
 }
 
 

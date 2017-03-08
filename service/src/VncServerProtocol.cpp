@@ -95,6 +95,11 @@ bool VncServerProtocol::read()
 	case VncServerClient::AccessControl:
 		return processAccessControl();
 
+	case VncServerClient::Close:
+		qDebug( "VncServerProtocol::read(): closing connection per protocol state" );
+		m_socket->close();
+		break;
+
 	default:
 		break;
 	}
@@ -277,7 +282,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 
 bool VncServerProtocol::processAccessControl()
 {
-	if( m_serverAccessControlManager.processClient( m_client ) )
+	if( m_serverAccessControlManager.addClient( m_client ) )
 	{
 		m_client->setProtocolState( VncServerClient::Initialized );
 		return true;
