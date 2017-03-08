@@ -266,17 +266,25 @@ VncServerClient::AuthState ServerAuthenticationManager::performHostWhitelistAuth
 VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthentication( VncServerClient* client,
 																					VariantArrayMessage& message )
 {
-	Q_UNUSED(client);
-
-	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) &&
-			message.read().toString() == ItalcCore::authenticationCredentials->token() )
+	switch( client->authState() )
 	{
-		qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
+	case VncServerClient::AuthInit:
+		return VncServerClient::AuthToken;
 
-		return VncServerClient::AuthFinishedSuccess;
+	case VncServerClient::AuthToken:
+		if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) &&
+				message.read().toString() == ItalcCore::authenticationCredentials->token() )
+		{
+			qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
+			return VncServerClient::AuthFinishedSuccess;
+		}
+
+		qDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
+		return VncServerClient::AuthFinishedFail;
+
+	default:
+		break;
 	}
-
-	qDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
 
 	return VncServerClient::AuthFinishedFail;
 }

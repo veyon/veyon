@@ -48,6 +48,7 @@ public:
 		AuthInit,
 		AuthChallenge,
 		AuthPassword,
+		AuthToken,
 		AuthFinishedSuccess,
 		AuthFinishedFail,
 	} AuthState;
