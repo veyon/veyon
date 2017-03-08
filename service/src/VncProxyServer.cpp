@@ -32,12 +32,14 @@
 
 VncProxyServer::VncProxyServer( int vncServerPort,
 								const QString& vncServerPassword,
+								const QHostAddress& listenAddress,
 								int listenPort,
 								VncProxyConnectionFactory* connectionFactory,
 								QObject* parent ) :
 	QObject( parent ),
 	m_vncServerPort( vncServerPort ),
 	m_vncServerPassword( vncServerPassword ),
+	m_listenAddress( listenAddress ),
 	m_listenPort( listenPort ),
 	m_server( new QTcpServer( this ) ),
 	m_connectionFactory( connectionFactory )
@@ -61,7 +63,7 @@ VncProxyServer::~VncProxyServer()
 
 void VncProxyServer::start()
 {
-	if( m_server->listen( QHostAddress::Any, m_listenPort ) == false )
+	if( m_server->listen( m_listenAddress, m_listenPort ) == false )
 	{
 		qWarning() << "VncProxyServer: could not listen on port" << m_listenPort << m_server->errorString();
 	}

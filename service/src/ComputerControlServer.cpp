@@ -31,6 +31,7 @@
 #include <QCoreApplication>
 #include <QHostInfo>
 
+#include "AccessControlProvider.h"
 #include "ComputerControlServer.h"
 #include "ComputerControlClient.h"
 #include "FeatureMessage.h"
@@ -39,7 +40,6 @@
 #include "SystemTrayIcon.h"
 #include "VariantStream.h"
 
-//ItalcCore::config->localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState()
 
 ComputerControlServer::ComputerControlServer() :
 	QObject(),
@@ -54,6 +54,8 @@ ComputerControlServer::ComputerControlServer() :
 	m_vncServer( ItalcCore::config->vncServerPort() ),
 	m_vncProxyServer( m_vncServer.serverPort(),
 					  m_vncServer.password(),
+					  ItalcCore::config->localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?
+						  QHostAddress::LocalHost : QHostAddress::Any,
 					  ItalcCore::config->computerControlServerPort(),
 					  this,
 					  this )

@@ -25,7 +25,7 @@
 #ifndef VNC_PROXY_H
 #define VNC_PROXY_H
 
-#include <QObject>
+#include <QHostAddress>
 #include <QVector>
 
 class QTcpServer;
@@ -40,6 +40,7 @@ public:
 
 	VncProxyServer( int vncServerPort,
 					const QString& vncServerPassword,
+					const QHostAddress& listenAddress,
 					int listenPort,
 					VncProxyConnectionFactory* clientFactory,
 					QObject* parent = nullptr );
@@ -59,6 +60,7 @@ private slots:
 private:
 	int m_vncServerPort;
 	QString m_vncServerPassword;
+	QHostAddress m_listenAddress;
 	int m_listenPort;
 	QTcpServer* m_server;
 	VncProxyConnectionFactory* m_connectionFactory;
