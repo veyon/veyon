@@ -130,10 +130,6 @@ bool VncServerProtocol::readProtocol()
 
 		return sendSecurityTypes();
 	}
-	else
-	{
-		qDebug( "VncServerProtocol::readProtocol(): not enough data available (%d)", (int) m_socket->bytesAvailable() );
-	}
 
 	return false;
 }
@@ -169,10 +165,6 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 		m_client->setProtocolState( VncServerClient::AuthenticationTypes );
 
 		return sendAuthenticationTypes();
-	}
-	else
-	{
-		qDebug( "VncServerProtocol::receiveSecurityTypeResponse(): not enough data available (%d)", (int) m_socket->bytesAvailable() );
 	}
 
 	return false;
