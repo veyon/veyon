@@ -278,6 +278,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 	connect( m_vncView, SIGNAL( sizeHintChanged() ),
 					this, SLOT( updateSize() ) );
 
+	// TODO: read from ComputerControlInterface after making VncView use existing connection
 	connect( m_coreConnection, SIGNAL( receivedUserInfo( QString, QString ) ),
 			 this, SLOT( updateWindowTitle() ) );
 
