@@ -63,6 +63,14 @@ void ComputerControlClient::readFromClient()
 		while( m_serverProtocol.read() )
 		{
 		}
+
+		// did we finish server protocol initialization? then we must not miss this
+		// read signaĺ from client but process it as the client is still waiting
+		// for our response
+		if( m_serverClient.protocolState() == VncServerClient::Initialized )
+		{
+			readFromClient();
+		}
 	}
 	else if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
 	{
@@ -85,6 +93,14 @@ void ComputerControlClient::readFromServer()
 	{
 		while( m_clientProtocol.read() )
 		{
+		}
+
+		// did we finish client protocol initialization? then we must not miss this
+		// read signaĺ from server but process it as the server is still waiting
+		// for our response
+		if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
+		{
+			readFromServer();
 		}
 	}
 	else if( m_serverClient.protocolState() == VncServerClient::Initialized )
