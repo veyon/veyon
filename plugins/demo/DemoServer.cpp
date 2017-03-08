@@ -36,6 +36,7 @@
 #include "RfbItalcCursor.h"
 #include "SocketDevice.h"
 #include "VariantStream.h"
+#include "VariantArrayMessage.h"
 
 #include <lzo/lzo1x.h>
 #include "rfb/rfb.h"
@@ -476,7 +477,7 @@ void DemoServerClient::processClient()
 	while( m_socket->bytesAvailable() > 0 )
 	{
 		rfbClientToServerMsg msg;
-		if( m_socket->read( (char *) &msg, 1 ) <= 0 )
+		if( readExact( (char *) &msg, 1 ) <= 0 )
 		{
 			qWarning( "DemoServerClient::processClient(): "
 					  "could not read cmd" );
@@ -486,33 +487,33 @@ void DemoServerClient::processClient()
 		switch( msg.type )
 		{
 		case rfbSetEncodings:
-			m_socket->read( ((char *)&msg)+1, sz_rfbSetEncodingsMsg-1 );
+			readExact( ((char *)&msg)+1, sz_rfbSetEncodingsMsg-1 );
 			msg.se.nEncodings = Swap16IfLE(msg.se.nEncodings);
 			for( int i = 0; i < msg.se.nEncodings; ++i )
 			{
 				uint32_t enc;
-				m_socket->read( (char *) &enc, 4 );
+				readExact( (char *) &enc, 4 );
 			}
 			continue;
 
 		case rfbSetPixelFormat:
-			m_socket->read( ((char *) &msg)+1, sz_rfbSetPixelFormatMsg-1 );
+			readExact( ((char *) &msg)+1, sz_rfbSetPixelFormatMsg-1 );
 			continue;
 		case rfbSetServerInput:
-			m_socket->read( ((char *) &msg)+1, sz_rfbSetServerInputMsg-1 );
+			readExact( ((char *) &msg)+1, sz_rfbSetServerInputMsg-1 );
 			continue;
 		case rfbClientCutText:
-			m_socket->read( ((char *) &msg)+1, sz_rfbClientCutTextMsg-1 );
+			readExact( ((char *) &msg)+1, sz_rfbClientCutTextMsg-1 );
 			msg.cct.length = Swap32IfLE( msg.cct.length );
 			if( msg.cct.length )
 			{
 				char *t = new char[msg.cct.length];
-				m_socket->read( t, msg.cct.length );
+				readExact( t, msg.cct.length );
 				delete[] t;
 			}
 			continue;
 		case rfbFramebufferUpdateRequest:
-			m_socket->read( ((char *) &msg)+1, sz_rfbFramebufferUpdateRequestMsg-1 );
+			readExact( ((char *) &msg)+1, sz_rfbFramebufferUpdateRequestMsg-1 );
 			m_updateRequested = true;
 			break;
 		default:
@@ -538,8 +539,8 @@ void DemoServerClient::run()
 {
 	QMutexLocker ml( &m_dataMutex );
 
-	QTcpSocket socket;
-	m_socket = &socket;
+	QTcpSocket _socket;
+	m_socket = &_socket;
 	if( !m_socket->setSocketDescriptor( m_socketDescriptor ) )
 	{
 		qCritical( "DemoServerClient::run(): could not set socket descriptor - aborting" );
@@ -547,34 +548,43 @@ void DemoServerClient::run()
 		return;
 	}
 
-	//SocketDevice socketDevice( qtcpsocketDispatcher, m_sock );
-	VariantStream stream( m_socket );
-
 	rfbProtocolVersionMsg pv;
 	sprintf( pv, rfbProtocolVersionFormat, rfbProtocolMajorVersion,
 			 rfbProtocolMinorVersion );
 
-	socket.write( pv, sz_rfbProtocolVersionMsg );
-	socket.read( pv, sz_rfbProtocolVersionMsg );
+	writeExact( pv, sz_rfbProtocolVersionMsg );
+	readExact( pv, sz_rfbProtocolVersionMsg );
 
 	const uint8_t secTypeList[2] = { 1, rfbSecTypeItalc } ;
-	socket.write( (const char *) secTypeList, sizeof( secTypeList ) );
+	writeExact( (const char *) secTypeList, sizeof( secTypeList ) );
 
 	uint8_t chosen = 0;
-	socket.read( (char *) &chosen, sizeof( chosen ) );
+	readExact( (char *) &chosen, sizeof( chosen ) );
 
 	if( chosen != rfbSecTypeItalc )
 	{
-		qCritical( "DemoServerClient:::run(): "
-				   "protocol initialization failed" );
+		qCritical( "DemoServerClient:::run(): protocol initialization failed" );
 		deleteLater();
 		return;
 	}
 
 	// send list of supported authentication types
-	stream.write( QVariantList( { RfbItalcAuth::Token } ) );
+	VariantArrayMessage supportedAuthTypesMessage( m_socket );
+	supportedAuthTypesMessage.write( 1 );
+	supportedAuthTypesMessage.write( RfbItalcAuth::Token );
+	supportedAuthTypesMessage.send();
 
-	auto chosenItalcAuthType = stream.read().value<RfbItalcAuth::Type>();
+	VariantArrayMessage authTypeMessageResponse( m_socket );
+	if( ( authTypeMessageResponse.isReadyForReceive() == false &&
+			m_socket->waitForReadyRead() == false ) ||
+			authTypeMessageResponse.receive() == false )
+	{
+		qWarning("DemoServerClient::run(): demo client authentication failed\n");
+		deleteLater();
+		return;
+	}
+
+	auto chosenItalcAuthType = authTypeMessageResponse.read().value<RfbItalcAuth::Type>();
 
 	if( chosenItalcAuthType != RfbItalcAuth::Token )
 	{
@@ -583,11 +593,19 @@ void DemoServerClient::run()
 		return;
 	}
 
-	const QString username = stream.read().toString();
-	Q_UNUSED(username);
+	const QString username = authTypeMessageResponse.read().toString();
+	qDebug() << "DemoServerClient::run(): authenticate for user" << username;
 
-	const QString token = stream.read().toString();
-	if( token != m_demoAccessToken )
+	VariantArrayMessage tokenMessage( m_socket );
+	if( ( tokenMessage.isReadyForReceive() == false &&
+		  m_socket->waitForReadyRead() == false ) ||
+			tokenMessage.receive() == false )
+	{
+		qDebug() << "DemoServerClient::run(): could not receive token";
+	}
+
+	const QString token = tokenMessage.read().toString();
+	if( token.isEmpty() == false && token != m_demoAccessToken )
 	{
 		qWarning("DemoServerClient::run(): demo client authentication failed\n");
 		deleteLater();
@@ -596,11 +614,11 @@ void DemoServerClient::run()
 
 	uint32_t authResult = Swap32IfLE(rfbVncAuthOK);
 
-	socket.write( (char *) &authResult, sizeof( authResult ) );
+	writeExact( (char *) &authResult, sizeof( authResult ) );
 
 	rfbClientInitMsg ci;
 
-	if( socket.read( (char *) &ci, sz_rfbClientInitMsg ) == false )
+	if( readExact( (char *) &ci, sz_rfbClientInitMsg ) != sz_rfbClientInitMsg )
 	{
 		qWarning( "failed reading rfbClientInitMsg" );
 		deleteLater();
@@ -616,7 +634,7 @@ void DemoServerClient::run()
 	si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian )
 			? 1 : 0;
 	si.nameLength = 0;
-	if( socket.write( ( const char *) &si, sz_rfbServerInitMsg ) == false )
+	if( writeExact( ( const char *) &si, sz_rfbServerInitMsg ) != sz_rfbServerInitMsg )
 	{
 		qWarning( "failed writing rfbServerInitMsg" );
 		deleteLater();
@@ -657,4 +675,40 @@ void DemoServerClient::run()
 	exec();
 
 	deleteLater();
+}
+
+
+
+qint64 DemoServerClient::writeExact( const char* buffer, qint64 size )
+{
+	qint64 result = m_socket->write( buffer, size );
+	m_socket->flush();
+
+	return result;
+}
+
+
+
+qint64 DemoServerClient::readExact( char* buffer, qint64 size )
+{
+	// implement blocking read
+
+	qint64 bytesRead = 0;
+	while( bytesRead < size )
+	{
+		qint64 n = m_socket->read( buffer + bytesRead, size - bytesRead );
+		if( n < 0 )
+		{
+			qDebug( "DemoServerClient::readExact(): read() returned %d while reading %d of %d bytes", (int) n, (int) bytesRead, (int) size );
+			return -1;
+		}
+		bytesRead += n;
+		if( bytesRead < size && m_socket->waitForReadyRead( 5000 ) == false )
+		{
+			qDebug( "DemoServerClient::readExact(): timeout after reading %d of %d bytes", (int) bytesRead, (int) size );
+			return bytesRead;
+		}
+	}
+
+	return bytesRead;
 }

@@ -31,7 +31,6 @@
 #include "FeatureWorkerManager.h"
 #include "ItalcConfiguration.h"
 #include "Logger.h"
-#include "SocketDevice.h"
 
 
 DemoFeaturePlugin::DemoFeaturePlugin() :

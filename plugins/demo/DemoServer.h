@@ -125,6 +125,9 @@ private:
 	// event-loop of thread
 	virtual void run();
 
+	qint64 writeExact( const char* buffer, qint64 size );
+	qint64 readExact( char* buffer, qint64 size );
+
 	QString m_demoAccessToken;
 
 	DemoServer * m_demoServer;
