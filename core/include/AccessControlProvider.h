@@ -44,14 +44,16 @@ public:
 	QStringList computerGroups();
 	QStringList computerLabs();
 
-	AccessResult checkAccess( QString accessingUser, QString accessingComputer );
+	AccessResult checkAccess( QString accessingUser, QString accessingComputer,
+							  const QStringList& connectedUsers );
 
 	bool processAuthorizedGroups( const QString& accessingUser );
 
 	AccessControlRule::Action processAccessControlRules( const QString& accessingUser,
 														 const QString& accessingComputer,
 														 const QString& localUser,
-														 const QString& localComputer );
+														 const QString& localComputer,
+														 const QStringList& connectedUsers );
 
 	bool isAccessDeniedByLocalState();
 
@@ -78,7 +80,8 @@ private:
 
 	bool matchConditions( const AccessControlRule& rule,
 						  const QString& accessingUser, const QString& accessingComputer,
-						  const QString& localUser, const QString& localComputer);
+						  const QString& localUser, const QString& localComputer,
+						  const QStringList& connectedUsers );
 
 	LdapDirectory m_ldapDirectory;
 	QList<AccessControlRule> m_accessControlRules;

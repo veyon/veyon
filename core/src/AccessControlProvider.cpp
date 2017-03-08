@@ -97,7 +97,9 @@ QStringList AccessControlProvider::computerLabs()
 
 
 
-AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString accessingUser, QString accessingComputer )
+AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString accessingUser,
+																		QString accessingComputer,
+																		const QStringList& connectedUsers )
 {
 	// remove the domain part of the accessing user (e.g. "EXAMPLE.COM\Teacher" -> "TEACHER")
 	int domainSeparator = accessingUser.indexOf( '\\' );
@@ -118,7 +120,8 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 		auto action = processAccessControlRules( accessingUser,
 												 accessingComputer,
 												 LocalSystem::User::loggedOnUser().name(),
-												 QHostInfo::localHostName() );
+												 QHostInfo::localHostName(),
+												 connectedUsers );
 		switch( action )
 		{
 		case AccessControlRule::ActionAllow:
@@ -159,13 +162,14 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 
 
 
-AccessControlRule::Action AccessControlProvider::processAccessControlRules(const QString &accessingUser,
-																		   const QString &accessingComputer,
-																		   const QString &localUser,
-																		   const QString &localComputer)
+AccessControlRule::Action AccessControlProvider::processAccessControlRules( const QString& accessingUser,
+																			const QString& accessingComputer,
+																			const QString& localUser,
+																			const QString& localComputer,
+																			const QStringList& connectedUsers )
 {
 	qDebug() << "AccessControlProvider::processAccessControlRules(): processing rules for"
-			 << accessingUser << accessingComputer << localUser << localComputer;
+			 << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
 
 	for( auto rule : m_accessControlRules )
 	{
@@ -176,7 +180,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules(const
 			continue;
 		}
 
-		if( matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer ) )
+		if( matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers ) )
 		{
 			qDebug() << "AccessControlProvider::processAccessControlRules(): rule"
 					 << rule.name() << "matched with action" << rule.action();
@@ -205,7 +209,8 @@ bool AccessControlProvider::isAccessDeniedByLocalState()
 		if( rule.action() == AccessControlRule::ActionDeny &&
 				matchConditions( rule, QString(), QString(),
 								 LocalSystem::User::loggedOnUser().name(),
-								 QHostInfo::localHostName() ) )
+								 QHostInfo::localHostName(),
+								 QStringList() ) )
 		{
 			return true;
 		}
@@ -448,7 +453,8 @@ QStringList AccessControlProvider::ldapComputerLabsOfEntity( AccessControlRule::
 
 bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 											 const QString& accessingUser, const QString& accessingComputer,
-											 const QString& localUser, const QString& localComputer)
+											 const QString& localUser, const QString& localComputer,
+											 const QStringList& connectedUsers )
 {
 	const AccessControlRule::Entity ruleEntity = rule.entity();
 	const AccessControlRule::EntityType ruleEntityType = AccessControlRule::entityType( ruleEntity );
@@ -555,8 +561,10 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	{
 		hasConditions = true;
 
-		// TODO: implement connection list check logic
-		return false;
+		if( connectedUsers.contains( accessingUser ) == matchResult )
+		{
+			return false;
+		}
 	}
 
 	// do not match the rule if no conditions are set at all
