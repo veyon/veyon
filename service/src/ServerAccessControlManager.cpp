@@ -59,10 +59,10 @@ bool ServerAccessControlManager::addClient( VncServerClient* client )
 		break;
 
 	case RfbItalcAuth::None:
-		result = true;
-
 	case RfbItalcAuth::HostWhiteList:
+	case RfbItalcAuth::Token:
 		result = true;
+		break;
 
 	default:
 		break;
