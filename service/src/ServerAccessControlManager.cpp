@@ -103,7 +103,9 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 bool ServerAccessControlManager::performAccessControl( VncServerClient* client,
 													   DesktopAccessPermission::AuthenticationMethod authenticationMethod )
 {
-	auto accessResult = AccessControlProvider().checkAccess( client->username(), client->hostAddress() );
+	auto accessResult = AccessControlProvider().checkAccess( client->username(),
+															 client->hostAddress(),
+															 connectedUsers() );
 
 	DesktopAccessPermission desktopAccessPermission( authenticationMethod );
 
