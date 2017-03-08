@@ -134,8 +134,8 @@
       <string>Network</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_11">
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="coreServerPort">
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="featureWorkerManagerPort">
         <property name="minimum">
          <number>1024</number>
         </property>
@@ -144,7 +144,45 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Demo server port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="computerControlServerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>Feature worker manager port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>Computer control server port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
+        <property name="text">
+         <string>Enable firewall exception</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
        <widget class="QSpinBox" name="demoServerPort">
         <property name="minimum">
          <number>1024</number>
@@ -154,43 +192,22 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
-        <property name="text">
-         <string>Enable firewall exception</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2">
+      <item row="5" column="0" colspan="2">
        <widget class="QCheckBox" name="localConnectOnly">
         <property name="text">
          <string>Allow connections from localhost only</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>Core server port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Demo server port</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="label_14">
+       <widget class="QLabel" name="label_15">
         <property name="text">
-         <string>Feature worker manager port</string>
+         <string>Internal VNC server port</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QSpinBox" name="featureWorkerManagerPort">
+       <widget class="QSpinBox" name="vncServerPort">
         <property name="minimum">
          <number>1024</number>
         </property>
@@ -233,63 +250,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_9">
-     <property name="title">
-      <string>Fine tuning</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,2">
-        <property name="spacing">
-         <number>16</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Demo server backend</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="demoServerBackend">
-          <item>
-           <property name="text">
-            <string>VNC reflector</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>iTALC 1 demo server</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_15">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="lockWithDesktopSwitching">
-        <property name="text">
-         <string>Enable desktop switching for screen lock (experimental)</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -304,6 +264,22 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>isTrayIconHidden</tabstop>
+  <tabstop>autostartService</tabstop>
+  <tabstop>serviceArguments</tabstop>
+  <tabstop>startService</tabstop>
+  <tabstop>stopService</tabstop>
+  <tabstop>computerControlServerPort</tabstop>
+  <tabstop>vncServerPort</tabstop>
+  <tabstop>featureWorkerManagerPort</tabstop>
+  <tabstop>demoServerPort</tabstop>
+  <tabstop>isFirewallExceptionEnabled</tabstop>
+  <tabstop>localConnectOnly</tabstop>
+  <tabstop>vncCaptureLayeredWindows</tabstop>
+  <tabstop>vncPollFullScreen</tabstop>
+  <tabstop>vncLowAccuracy</tabstop>
+ </tabstops>
  <resources>
   <include location="../italc-configurator.qrc"/>
  </resources>

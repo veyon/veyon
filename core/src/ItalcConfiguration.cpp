@@ -98,9 +98,8 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setVncPollFullScreen( true );
 	c.setVncLowAccuracy( true );
 
-	c.setDemoServerBackend( 0 );
-
-	c.setCoreServerPort( PortOffsetVncServer );
+	c.setComputerControlServerPort( PortOffsetComputerControlServer );
+	c.setVncServerPort( PortOffsetVncServer );
 	c.setFeatureWorkerManagerPort( PortOffsetFeatureManagerPort );
 	c.setDemoServerPort( PortOffsetDemoServer );
 	c.setFirewallExceptionEnabled( true );

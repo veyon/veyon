@@ -34,6 +34,7 @@
 #include "ComputerControlServer.h"
 #include "ComputerControlClient.h"
 #include "FeatureMessage.h"
+#include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "SystemTrayIcon.h"
 #include "VariantStream.h"
@@ -50,15 +51,19 @@ ComputerControlServer::ComputerControlServer() :
 	m_featureWorkerManager( m_featureManager ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
-	m_vncServer( 12345 ),
-	m_vncProxyServer( m_vncServer.serverPort(), m_vncServer.password(), ItalcCore::serverPort, this, this )
+	m_vncServer( ItalcCore::config->vncServerPort() ),
+	m_vncProxyServer( m_vncServer.serverPort(),
+					  m_vncServer.password(),
+					  ItalcCore::config->computerControlServerPort(),
+					  this,
+					  this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).
 				arg( ItalcCore::applicationName() ).
 				arg( ITALC_VERSION ).
 				arg( QHostInfo::localHostName() ).
-				arg( QString::number( ItalcCore::serverPort ) ),
+				arg( QString::number( ItalcCore::config->computerControlServerPort() ) ),
 				m_featureWorkerManager );
 
 	// make app terminate once the VNC server thread has finished

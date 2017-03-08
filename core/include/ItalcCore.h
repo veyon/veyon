@@ -147,6 +147,7 @@ namespace ItalcCore
 
 
 	extern ITALC_CORE_EXPORT int serverPort;
+	extern ITALC_CORE_EXPORT int serverPort;
 	extern ITALC_CORE_EXPORT UserRoles role;
 
 }

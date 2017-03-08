@@ -63,7 +63,7 @@ DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccess
 
 	ItalcCore::authenticationCredentials->setToken( vncServerToken );
 	m_vncConn.setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	m_vncConn.setPort( ItalcCore::config->coreServerPort() );
+	m_vncConn.setPort( ItalcCore::config->computerControlServerPort() );
 	m_vncConn.setItalcAuthType( RfbItalcAuth::Token );
 	m_vncConn.setQuality( ItalcVncConnection::DemoServerQuality );
 	m_vncConn.start();

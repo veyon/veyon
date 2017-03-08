@@ -56,7 +56,6 @@
 ItalcConfiguration *ItalcCore::config = NULL;
 AuthenticationCredentials *ItalcCore::authenticationCredentials = NULL;
 
-int ItalcCore::serverPort = PortOffsetVncServer;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 
 static QString appName = "iTALC";
@@ -213,8 +212,6 @@ bool ItalcCore::init()
 
 	// init QCA
 	qcaInit = new QCA::Initializer;
-
-	serverPort = config->coreServerPort();
 
 	initAuthentication( AuthenticationCredentials::None );
 

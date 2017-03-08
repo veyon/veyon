@@ -75,11 +75,7 @@ static bool parseArguments( const QStringList &arguments )
 	while( argIt.hasNext() )
 	{
 		const QString & a = argIt.next().toLower();
-		if( a == "-port" && argIt.hasNext() )
-		{
-			ItalcCore::serverPort = argIt.next().toInt();
-		}
-		else if( a == "-role" )
+		if( a == "-role" )
 		{
 			if( argIt.hasNext() )
 			{

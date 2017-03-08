@@ -55,7 +55,6 @@ public slots:
 	void setUiLanguage( const QString& );
 	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
-	void setLockWithDesktopSwitching( bool );
 	void setServiceAutostart( bool );
 	void setServiceArguments( const QString & );
 	void setLogLevel( int );
@@ -69,8 +68,8 @@ public slots:
 	void setVncCaptureLayeredWindows( bool );
 	void setVncPollFullScreen( bool );
 	void setVncLowAccuracy( bool );
-	void setDemoServerBackend( int );
-	void setCoreServerPort( int );
+	void setComputerControlServerPort( int );
+	void setVncServerPort( int );
 	void setFeatureWorkerManagerPort( int );
 	void setDemoServerPort( int );
 	void setFirewallExceptionEnabled( bool );
