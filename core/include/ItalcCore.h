@@ -27,6 +27,7 @@
 
 #include <italcconfig.h>
 
+#include <QtEndian>
 #include <QPair>
 #include <QString>
 #include <QVariant>
