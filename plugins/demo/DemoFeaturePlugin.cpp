@@ -186,8 +186,18 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			featureWorkerManager.startWorker( m_demoClientFeature );
 		}
 
+		QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
+		if( socket == nullptr )
+		{
+			qCritical( "DemoFeaturePlugin::handleServiceFeatureMessage(): socket is NULL!" );
+			return false;
+		}
+
 		// forward message to worker
-		featureWorkerManager.sendMessage( message );
+		featureWorkerManager.sendMessage( FeatureMessage( m_demoClientFeature.uid(), StartDemoClient ).
+										  addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ).
+										  addArgument( IsFullscreenDemo, message.argument( IsFullscreenDemo ) ).
+										  addArgument( DemoServerHost, socket->peerAddress().toString() ) );
 
 		return true;
 	}
@@ -230,15 +240,8 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 
 			if( m_demoClient == nullptr )
 			{
-				QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
-				if( socket == nullptr )
-				{
-					qCritical( "DemoFeaturePlugin::handleWorkerFeatureMessage(): socket is NULL!" );
-					return false;
-				}
-
-				qDebug() << "DemoClient: connecting with master" << socket->peerAddress();
-				m_demoClient = new DemoClient( socket->peerAddress().toString(),
+				qDebug() << "DemoClient: connecting with master" << message.argument( DemoServerHost ).toString();
+				m_demoClient = new DemoClient( message.argument( DemoServerHost ).toString(),
 											   message.argument( IsFullscreenDemo ).toBool() );
 			}
 			return true;

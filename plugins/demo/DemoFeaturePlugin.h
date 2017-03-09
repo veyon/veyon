@@ -100,10 +100,11 @@ private:
 		StopDemoClient
 	};
 
-	enum FeatureMessageArguments {
+	enum Arguments {
 		DemoAccessToken,
 		VncServerToken,
 		IsFullscreenDemo,
+		DemoServerHost,
 	};
 
 	Feature m_fullscreenDemoFeature;
