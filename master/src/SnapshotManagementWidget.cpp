@@ -76,7 +76,8 @@ void SnapshotManagementWidget::snapshotSelected( const QModelIndex &idx )
 	Snapshot s( m_fsModel.filePath( idx ) );
 
 	ui->previewLbl->setPixmap( s.pixmap() );
-	ui->previewLbl->setFixedHeight( ui->previewLbl->width() * 3 / 4 );
+	ui->previewLbl->setMaximumWidth( window()->width()/2 );
+	ui->previewLbl->setMaximumHeight( window()->height()/2 );
 
 	ui->userLbl->setText( s.user() );
 	ui->hostLbl->setText( s.host() );
