@@ -60,6 +60,8 @@ private:
 	VncServerProtocol m_serverProtocol;
 	VncClientProtocol m_clientProtocol;
 
+	QMap<int, int> m_rfbMessageSizes;
+
 } ;
 
 #endif

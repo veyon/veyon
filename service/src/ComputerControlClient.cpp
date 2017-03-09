@@ -22,8 +22,11 @@
  *
  */
 
+#include <QtEndian>
 #include <QTcpSocket>
 #include <QTimer>
+
+#include <rfb/rfbproto.h>
 
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"
@@ -43,6 +46,11 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 					  server->accessControlManager() ),
 	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
+	m_rfbMessageSizes[rfbSetPixelFormat] = sz_rfbSetPixelFormatMsg;
+	m_rfbMessageSizes[rfbFramebufferUpdateRequest] = sz_rfbFramebufferUpdateRequestMsg;
+	m_rfbMessageSizes[rfbKeyEvent] = sz_rfbKeyEventMsg;
+	m_rfbMessageSizes[rfbPointerEvent] = sz_rfbPointerEventMsg;
+
 	m_serverProtocol.start();
 	m_clientProtocol.start();
 }
@@ -74,7 +82,7 @@ void ComputerControlClient::readFromClient()
 	}
 	else if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
 	{
-		while( receiveMessage() )
+		while( proxyClientSocket()->bytesAvailable() >= 1 && receiveMessage() )
 		{
 		}
 	}
@@ -105,7 +113,7 @@ void ComputerControlClient::readFromServer()
 	}
 	else if( m_serverClient.protocolState() == VncServerClient::Initialized )
 	{
-		forwardAllDataToClient();
+		forwardDataToClient();
 	}
 	else
 	{
@@ -118,13 +126,10 @@ void ComputerControlClient::readFromServer()
 
 bool ComputerControlClient::receiveMessage()
 {
-	if( proxyClientSocket()->bytesAvailable() < 1 )
-	{
-		return false;
-	}
+	QTcpSocket* socket = proxyClientSocket();
 
 	char messageType = 0;
-	if( proxyClientSocket()->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	if( socket->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
 	{
 		qCritical( "ComputerControlClient:::receiveMessage(): could not peek message type - closing connection" );
 
@@ -132,19 +137,31 @@ bool ComputerControlClient::receiveMessage()
 		return false;
 	}
 
+	int rfbMessageSize = m_rfbMessageSizes.value( messageType, 0 );
+
 	switch( messageType )
 	{
 	case rfbItalcCoreRequest:
-		return m_server->handleCoreMessage( proxyClientSocket() );
+		return m_server->handleCoreMessage( socket );
 
 	case rfbItalcFeatureMessage:
-		return m_server->handleFeatureMessage( proxyClientSocket() );
+		return m_server->handleFeatureMessage( socket );
+
+	case rfbSetEncodings:
+		if( socket->bytesAvailable() >= sz_rfbSetEncodingsMsg )
+		{
+			rfbSetEncodingsMsg setEncodingsMessage;
+			if( socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
+			{
+				return forwardDataToServer( sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t) );
+			}
+		}
+		break;
 
 	default:
-		break;
+		return forwardDataToServer( rfbMessageSize );
+
 	}
 
-	forwardAllDataToServer();
-
-	return true;
+	return false;
 }
