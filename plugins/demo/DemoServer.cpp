@@ -579,7 +579,7 @@ void DemoServerClient::run()
 			m_socket->waitForReadyRead() == false ) ||
 			authTypeMessageResponse.receive() == false )
 	{
-		qWarning("DemoServerClient::run(): demo client authentication failed\n");
+		qWarning("DemoServerClient::run(): could not receive auth type message response\n");
 		deleteLater();
 		return;
 	}
@@ -588,7 +588,7 @@ void DemoServerClient::run()
 
 	if( chosenItalcAuthType != RfbItalcAuth::Token )
 	{
-		qWarning("DemoServerClient::run(): demo client authentication failed\n");
+		qWarning("DemoServerClient::run(): client did not chose token authentication\n");
 		deleteLater();
 		return;
 	}
@@ -605,9 +605,9 @@ void DemoServerClient::run()
 	}
 
 	const QString token = tokenMessage.read().toString();
-	if( token.isEmpty() == false && token != m_demoAccessToken )
+	if( token.isEmpty() || token != m_demoAccessToken )
 	{
-		qWarning("DemoServerClient::run(): demo client authentication failed\n");
+		qWarning("DemoServerClient::run(): client sent empty or invalid token\n");
 		deleteLater();
 		return;
 	}
