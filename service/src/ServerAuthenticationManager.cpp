@@ -74,7 +74,7 @@ QVector<RfbItalcAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient* client,
 																VariantArrayMessage& message )
 {
-	qDebug() << "ServerAuthenticationManager::authenticateClient():"
+	qDebug() << "ServerAuthenticationManager::processAuthenticationMessage():"
 			 << "state" << client->authState()
 			 << "type" << client->authType()
 			 << "host" << client->hostAddress()
