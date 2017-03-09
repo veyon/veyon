@@ -28,46 +28,45 @@ IF(GIT_FOUND)
 	STRING(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
 	STRING(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
 	STRING(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
+
+	# determine build number to use in NSIS installer and resource files
+	EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
+					COMMAND cut -d "-" -f2
+					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+					OUTPUT_STRIP_TRAILING_WHITESPACE
+					OUTPUT_VARIABLE VERSION_BUILD)
+	IF(NOT VERSION_BUILD GREATER 0)
+		SET(VERSION_BUILD 0)
+	ENDIF()
+
+	# Get list of all committers from git history, ordered by number of commits.
+	# The CONTRIBUTORS file is used by AboutDialog. This information can be provided
+	# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead. For instance, to generate
+	# this file for version 3.0.2, the command is:
+	#   git shortlog -sne v3.0.2 | cut -c8-
+	IF(AND NOT CONTRIBUTORS)
+		SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
+		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -sne
+						COMMAND cut -c8-
+						COMMAND grep -v root
+						OUTPUT_FILE "${CONTRIBUTORS}"
+						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+						TIMEOUT 1)
+		FILE(RELATIVE_PATH CONTRIBUTORS ${CMAKE_BINARY_DIR}/core ${CONTRIBUTORS})
+	ENDIF()
+
 ENDIF()
 
 # can't retrieve version information as not building from Git repository?
 IF(NOT VERSION_STRING)
 	SET(VERSION_MAJOR 3)
-	SET(VERSION_MINOR 0)
-	SET(VERSION_PATCH 3)
+	SET(VERSION_MINOR 12)
+	SET(VERSION_PATCH 4
+	SET(VERSION_BUILD 0)
 	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 ELSE()
 	# remove leading character from tag name
 	STRING(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
-ENDIF()
-
-# determine build number to use in NSIS installer and resource files
-EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-		COMMAND cut -d "-" -f2
-		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-		OUTPUT_STRIP_TRAILING_WHITESPACE
-		OUTPUT_VARIABLE VERSION_BUILD)
-IF(NOT VERSION_BUILD GREATER 0)
-	SET(VERSION_BUILD 0)
-ENDIF()
-
-
-# Get list of all committers from git history, ordered by number of commits.
-# The CONTRIBUTORS file is used by AboutDialog. This information can be provided
-# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead. For instance, to generate
-# this file for version 3.0.2, the command is:
-#   git shortlog -sne v3.0.2 | cut -c8-
-FIND_PACKAGE(Git)
-IF(GIT_FOUND AND NOT CONTRIBUTORS)
-    SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
-    EXECUTE_PROCESS(
-        COMMAND "${GIT_EXECUTABLE}" shortlog -sne
-        COMMAND cut -c8-
-		COMMAND grep -v root
-		OUTPUT_FILE "${CONTRIBUTORS}"
-        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-        TIMEOUT 1)
-	FILE(RELATIVE_PATH CONTRIBUTORS ${CMAKE_BINARY_DIR}/core ${CONTRIBUTORS})
 ENDIF()
 
 
