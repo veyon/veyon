@@ -106,6 +106,7 @@ public slots:
 	void setLdapGroupMemberAttribute( const QString& );
 	void setLdapComputerHostNameAttribute( const QString& );
 	void setLdapComputerHostNameAsFQDN( bool );
+	void setLdapComputerMacAddressAttribute( const QString& );
 	void setLdapUsersFilter( const QString& );
 	void setLdapUserGroupsFilter( const QString& );
 	void setLdapIdentifyGroupMembersByNameAttribute( bool );

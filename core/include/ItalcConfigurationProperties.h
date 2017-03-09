@@ -102,6 +102,7 @@
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerHostNameAsFQDN, setLdapComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
