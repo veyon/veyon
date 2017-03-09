@@ -170,7 +170,10 @@ bool ComputerControlServer::handleCoreMessage( QTcpSocket* socket )
 bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 {
 	char messageType;
-	socket->getChar( &messageType );
+	if( socket->getChar( &messageType ) == false )
+	{
+		qDebug( "ComputerControlServer::handleFeatureMessage(): could not read feature message!" );
+	}
 
 	// receive message
 	FeatureMessage featureMessage( socket );
@@ -182,7 +185,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive();
 
-	qDebug() << "ComputerControlServer::handleItalcFeatureMessage():"
+	qDebug() << "ComputerControlServer::handleFeatureMessage():"
 			 << featureMessage.featureUid()
 			 << featureMessage.command()
 			 << featureMessage.arguments();
