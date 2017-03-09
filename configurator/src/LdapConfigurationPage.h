@@ -53,6 +53,7 @@ private slots:
 	void testLdapUserLoginAttribute();
 	void testLdapGroupMemberAttribute();
 	void testLdapComputerHostNameAttribute();
+	void testLdapComputerMacAddressAttribute();
 	void testLdapUsersFilter();
 	void testLdapUserGroupsFilter();
 	void testLdapComputerGroupsFilter();

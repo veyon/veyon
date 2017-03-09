@@ -53,6 +53,7 @@ LdapConfigurationPage::LdapConfigurationPage() :
 	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
 	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
 	CONNECT_BUTTON_SLOT( testLdapComputerHostNameAttribute );
+	CONNECT_BUTTON_SLOT( testLdapComputerMacAddressAttribute );
 
 	CONNECT_BUTTON_SLOT( testLdapUsersFilter );
 	CONNECT_BUTTON_SLOT( testLdapUserGroupsFilter );
@@ -312,6 +313,27 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 
 		reportLdapObjectQueryResults( tr( "computer objects" ), tr( "computer host name attribute" ),
 									  ldapDirectory.computers( computerName ), ldapDirectory );
+	}
+}
+
+
+
+void LdapConfigurationPage::testLdapComputerMacAddressAttribute()
+{
+	QString computerDn = QInputDialog::getText( this, tr( "Enter computer DN" ),
+										  tr( "Please enter the DN of a computer whose MAC address to query:") );
+	if( computerDn.isEmpty() == false )
+	{
+		qDebug() << "[TEST][LDAP] Testing computer MAC address attribute";
+
+		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
+
+		QString macAddress = ldapDirectory.computerMacAddress( computerDn );
+
+		reportLdapObjectQueryResults( tr( "computer MAC addresses" ), tr( "computer MAC address attribute" ),
+									  macAddress.isEmpty() ? QStringList() : QStringList( macAddress ),
+									  ldapDirectory );
 	}
 }
 
