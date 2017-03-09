@@ -52,8 +52,8 @@ protected slots:
 	virtual void readFromServer() = 0;
 
 protected:
-	void forwardAllDataToClient();
-	void forwardAllDataToServer();
+	bool forwardDataToClient( qint64 size = -1 );
+	bool forwardDataToServer( qint64 size = -1 );
 
 private:
 	QTcpSocket* m_proxyClientSocket;

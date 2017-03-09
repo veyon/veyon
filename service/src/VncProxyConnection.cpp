@@ -51,16 +51,32 @@ VncProxyConnection::~VncProxyConnection()
 
 
 
-void VncProxyConnection::forwardAllDataToClient()
+bool VncProxyConnection::forwardDataToClient( qint64 size )
 {
-	m_proxyClientSocket->write( m_vncServerSocket->readAll() );
-//	m_proxyClientSocket->flush();
+	if( size <= 0 )
+	{
+		return m_proxyClientSocket->write( m_vncServerSocket->readAll() ) > 0;
+	}
+	else if( m_vncServerSocket->bytesAvailable() >= size )
+	{
+		return m_proxyClientSocket->write( m_vncServerSocket->read( size ) ) == size;
+	}
+
+	return false;
 }
 
 
 
-void VncProxyConnection::forwardAllDataToServer()
+bool VncProxyConnection::forwardDataToServer( qint64 size )
 {
-	m_vncServerSocket->write( m_proxyClientSocket->readAll() );
-//	m_vncServerSocket->flush();
+	if( size <= 0 )
+	{
+		return m_vncServerSocket->write( m_proxyClientSocket->readAll() ) > 0;
+	}
+	else if( m_proxyClientSocket->bytesAvailable() >= size )
+	{
+		return m_vncServerSocket->write( m_proxyClientSocket->read( size ) ) == size;
+	}
+
+	return false;
 }
