@@ -24,12 +24,6 @@
 
 #include "ItalcCore.h"
 
-#ifdef ITALC_BUILD_WIN32
-#include <winsock2.h>
-#else
-#include <netinet/in.h>
-#endif
-
 #include "VariantArrayMessage.h"
 #include "VariantStream.h"
 
@@ -57,7 +51,7 @@ bool VariantArrayMessage::send()
 {
 	m_buffer.seek( 0 );
 
-	MessageSize messageSize = htonl( m_buffer.size() );
+	MessageSize messageSize = qToBigEndian( m_buffer.size() );
 	m_ioDevice->write( (const char *) &messageSize, sizeof(messageSize) );
 	m_ioDevice->write( m_buffer.data() );
 
@@ -92,7 +86,7 @@ bool VariantArrayMessage::receive()
 		return false;
 	}
 
-	messageSize = ntohl(messageSize);
+	messageSize = qFromBigEndian(messageSize);
 
 	QByteArray data = m_ioDevice->read( messageSize );
 	if( data.size() != (int) messageSize )
