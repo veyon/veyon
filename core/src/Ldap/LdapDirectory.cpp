@@ -178,6 +178,7 @@ public:
 	QString groupMemberAttribute;
 	QString computerHostNameAttribute;
 	bool computerHostNameAsFQDN;
+	QString computerMacAddressAttribute;
 
 	QString usersFilter;
 	QString userGroupsFilter;
@@ -234,6 +235,7 @@ void LdapDirectory::disableAttributes()
 {
 	d->userLoginAttribute.clear();
 	d->computerHostNameAttribute.clear();
+	d->computerMacAddressAttribute.clear();
 }
 
 
@@ -495,6 +497,18 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 
 
 
+QString LdapDirectory::computerMacAddress(const QString &computerDn)
+{
+	if( computerDn.isEmpty() )
+	{
+		return QString();
+	}
+
+	return d->queryAttributes( computerDn, d->computerMacAddressAttribute ).value( 0 );
+}
+
+
+
 QString LdapDirectory::groupMemberUserIdentification(const QString &userDn)
 {
 	if( d->identifyGroupMembersByNameAttribute )
@@ -646,6 +660,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
 	d->computerHostNameAttribute = c->ldapComputerHostNameAttribute();
 	d->computerHostNameAsFQDN = c->ldapComputerHostNameAsFQDN();
+	d->computerMacAddressAttribute = c->ldapComputerMacAddressAttribute();
 
 	d->usersFilter = c->ldapUsersFilter();
 	d->userGroupsFilter = c->ldapUserGroupsFilter();

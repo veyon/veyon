@@ -72,6 +72,7 @@ public:
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
 	QString computerHostName( const QString& computerDn );
+	QString computerMacAddress( const QString& computerDn );
 	QString groupMemberUserIdentification( const QString& userDn );
 	QString groupMemberComputerIdentification( const QString& computerDn );
 
