@@ -22,6 +22,7 @@
  *
  */
 
+#include "ItalcConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
 #include "Ldap/LdapDirectory.h"
 
@@ -99,6 +100,8 @@ void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory
 
 	QStringList computers = ldapDirectory.computerLabMembers( computerLab );
 
+	bool hasMacAddressAttribute = ( ItalcCore::config->ldapComputerMacAddressAttribute().count() > 0 );
+
 	for( auto computer : computers )
 	{
 		QString computerHostName = ldapDirectory.computerHostName( computer );
@@ -107,7 +110,17 @@ void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory
 			continue;
 		}
 
-		const NetworkObject computerObject( NetworkObject::Host, computerHostName, computerHostName, QString(), computer );
+		QString computerMacAddress;
+		if( hasMacAddressAttribute )
+		{
+			computerMacAddress = ldapDirectory.computerMacAddress( computer );
+		}
+
+		const NetworkObject computerObject( NetworkObject::Host,
+											computerHostName,
+											computerHostName,
+											computerMacAddress,
+											computer );
 
 		if( computerLabObjects.contains( computerObject ) == false )
 		{
