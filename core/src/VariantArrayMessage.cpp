@@ -70,10 +70,14 @@ bool VariantArrayMessage::isReadyForReceive()
 {
 	MessageSize messageSize;
 
-	m_ioDevice->peek( (char *) &messageSize, sizeof(messageSize) );
-	messageSize = ntohl(messageSize);
+	if( m_ioDevice->peek( (char *) &messageSize, sizeof(messageSize) ) == sizeof(messageSize) )
+	{
+		messageSize = qFromBigEndian(messageSize);
 
-	return m_ioDevice->bytesAvailable() >= qint64( sizeof(messageSize) + messageSize );
+		return m_ioDevice->bytesAvailable() >= qint64( sizeof(messageSize) + messageSize );
+	}
+
+	return false;
 }
 
 
