@@ -227,23 +227,23 @@ void DemoServerClient::moveCursor()
 		{
 			rfbFramebufferUpdate,
 			0,
-			(uint16_t) Swap16IfLE( 1 )
+			qToBigEndian<uint16_t>( 1 )
 		} ;
 
 		m_socket->write( (const char *) &m, sizeof( m ) );
 
 		const rfbRectangle rr =
 		{
-			(uint16_t) Swap16IfLE( m_lastCursorPos.x() ),
-			(uint16_t) Swap16IfLE( m_lastCursorPos.y() ),
-			(uint16_t) Swap16IfLE( 0 ),
-			(uint16_t) Swap16IfLE( 0 )
+			qToBigEndian<uint16_t>( m_lastCursorPos.x() ),
+			qToBigEndian<uint16_t>( m_lastCursorPos.y() ),
+			qToBigEndian<uint16_t>( 0 ),
+			qToBigEndian<uint16_t>( 0 )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rh =
 		{
 			rr,
-			Swap32IfLE( rfbEncodingPointerPos )
+			qToBigEndian<uint32_t>( rfbEncodingPointerPos )
 		} ;
 
 		m_socket->write( (const char *) &rh, sizeof( rh ) );
@@ -294,7 +294,7 @@ void DemoServerClient::sendUpdates()
 	{
 		rfbFramebufferUpdate,
 		0,
-		(uint16_t) Swap16IfLE( rects.size() +
+		qToBigEndian<uint16_t>( rects.size() +
 		( m_cursorShapeChanged ? 1 : 0 ) )
 	} ;
 
@@ -309,16 +309,16 @@ void DemoServerClient::sendUpdates()
 		const int rh = rect.height();
 		const rfbRectangle rr =
 		{
-			(uint16_t) Swap16IfLE( rx ),
-			(uint16_t) Swap16IfLE( ry ),
-			(uint16_t) Swap16IfLE( rw ),
-			(uint16_t) Swap16IfLE( rh )
+			qToBigEndian<uint16_t>( rx ),
+			qToBigEndian<uint16_t>( ry ),
+			qToBigEndian<uint16_t>( rw ),
+			qToBigEndian<uint16_t>( rh )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rhdr =
 		{
 			rr,
-			(uint32_t) Swap32IfLE( rfbEncodingLZORLE )
+			qToBigEndian<uint32_t>( rfbEncodingLZORLE )
 		} ;
 
 		m_socket->write( (const char *) &rhdr, sizeof( rhdr ) );
@@ -393,8 +393,8 @@ void DemoServerClient::sendUpdates()
 			lzo1x_1_compress( (const unsigned char *) out, (lzo_uint) hdr.bytesRLE,
 							  (unsigned char *) comp,
 							  &bytes_lzo, m_lzoWorkMem );
-			hdr.bytesRLE = Swap32IfLE( hdr.bytesRLE );
-			hdr.bytesLZO = Swap32IfLE( bytes_lzo );
+			hdr.bytesRLE = qToBigEndian<uint32_t>( hdr.bytesRLE );
+			hdr.bytesLZO = qToBigEndian<uint32_t>( bytes_lzo );
 
 			m_socket->write( (const char *) &hdr, sizeof( hdr ) );
 			m_socket->write( (const char *) comp, bytes_lzo );
@@ -411,7 +411,7 @@ void DemoServerClient::sendUpdates()
 					const QRgb *src = (const QRgb *) i.scanLine( ry + y ) + rx;
 					for( int x = 0; x < rw; ++x, ++src, ++dst )
 					{
-						*dst = Swap32( *src );
+						*dst = qToBigEndian<uint32_t>( *src );
 					}
 				}
 			}
@@ -435,16 +435,16 @@ void DemoServerClient::sendUpdates()
 		const QImage cur = m_cursorShape;
 		const rfbRectangle rr =
 		{
-			(uint16_t) Swap16IfLE( m_cursorHotX ),
-			(uint16_t) Swap16IfLE( m_cursorHotY ),
-			(uint16_t) Swap16IfLE( cur.width() ),
-			(uint16_t) Swap16IfLE( cur.height() )
+			qToBigEndian<uint16_t>( m_cursorHotX ),
+			qToBigEndian<uint16_t>( m_cursorHotY ),
+			qToBigEndian<uint16_t>( cur.width() ),
+			qToBigEndian<uint16_t>( cur.height() )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rh =
 		{
 			rr,
-			(uint32_t) Swap32IfLE( rfbEncodingItalcCursor )
+			qToBigEndian<uint32_t>( rfbEncodingItalcCursor )
 		} ;
 
 		m_socket->write( (const char *) &rh, sizeof( rh ) );
@@ -488,7 +488,7 @@ void DemoServerClient::processClient()
 		{
 		case rfbSetEncodings:
 			readExact( ((char *)&msg)+1, sz_rfbSetEncodingsMsg-1 );
-			msg.se.nEncodings = Swap16IfLE(msg.se.nEncodings);
+			msg.se.nEncodings = qFromBigEndian<uint16_t>(msg.se.nEncodings);
 			for( int i = 0; i < msg.se.nEncodings; ++i )
 			{
 				uint32_t enc;
@@ -504,7 +504,7 @@ void DemoServerClient::processClient()
 			continue;
 		case rfbClientCutText:
 			readExact( ((char *) &msg)+1, sz_rfbClientCutTextMsg-1 );
-			msg.cct.length = Swap32IfLE( msg.cct.length );
+			msg.cct.length = qFromBigEndian<uint32_t>( msg.cct.length );
 			if( msg.cct.length )
 			{
 				char *t = new char[msg.cct.length];
@@ -612,7 +612,7 @@ void DemoServerClient::run()
 		return;
 	}
 
-	uint32_t authResult = Swap32IfLE(rfbVncAuthOK);
+	uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
 
 	writeExact( (char *) &authResult, sizeof( authResult ) );
 
@@ -626,13 +626,12 @@ void DemoServerClient::run()
 	}
 
 	rfbServerInitMsg si = m_vncConn->getRfbClient()->si;
-	si.framebufferWidth = Swap16IfLE( si.framebufferWidth );
-	si.framebufferHeight = Swap16IfLE( si.framebufferHeight );
-	si.format.redMax = Swap16IfLE( si.format.redMax );
-	si.format.greenMax = Swap16IfLE( si.format.greenMax );
-	si.format.blueMax = Swap16IfLE( si.format.blueMax );
-	si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian )
-			? 1 : 0;
+	si.framebufferWidth = qToBigEndian<uint16_t>( si.framebufferWidth );
+	si.framebufferHeight = qToBigEndian<uint16_t>( si.framebufferHeight );
+	si.format.redMax = qToBigEndian<uint16_t>( si.format.redMax );
+	si.format.greenMax = qToBigEndian<uint16_t>( si.format.greenMax );
+	si.format.blueMax = qToBigEndian<uint16_t>( si.format.blueMax );
+	si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian ) ? 1 : 0;
 	si.nameLength = 0;
 	if( writeExact( ( const char *) &si, sz_rfbServerInitMsg ) != sz_rfbServerInitMsg )
 	{
