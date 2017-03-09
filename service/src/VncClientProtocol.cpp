@@ -193,7 +193,7 @@ bool VncClientProtocol::receiveSecurityResult()
 
 		m_socket->read( (char *) &authResult, sizeof(authResult) );
 
-		if( ntohl( authResult ) != rfbVncAuthOK )
+		if( qFromBigEndian( authResult ) != rfbVncAuthOK )
 		{
 			qCritical( "VncClientProtocol::receiveSecurityResult(): authentication failed!" );
 			m_socket->close();

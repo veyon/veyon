@@ -250,7 +250,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 	{
 	case VncServerClient::AuthFinishedSuccess:
 	{
-		uint32_t authResult = htonl(rfbVncAuthOK);
+		uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
 		m_socket->write( (char *) &authResult, sizeof(authResult) );
 
 		m_client->setProtocolState( VncServerClient::AccessControl );
