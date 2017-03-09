@@ -87,6 +87,9 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 
 
 	// initialize monitoring screen size slider
+	connect( ui->gridSizeSlider, &QSlider::valueChanged,
+			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
+
 	int size = ComputerMonitoringView::DefaultComputerScreenSize;
 	if( m_masterCore.userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
 	{
@@ -94,9 +97,6 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	}
 
 	ui->gridSizeSlider->setValue( size );
-
-	connect( ui->gridSizeSlider, &QSlider::valueChanged,
-			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
 
 
 	// create the main toolbar
