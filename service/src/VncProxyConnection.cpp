@@ -32,8 +32,8 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket, int vncServerP
 	m_proxyClientSocket( clientSocket ),
 	m_vncServerSocket( new QTcpSocket( this ) )
 {
-	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient, Qt::QueuedConnection );
-	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer, Qt::QueuedConnection );
+	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient );
+	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer );
 
 	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed );
 	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed );
