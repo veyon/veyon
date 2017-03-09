@@ -193,11 +193,20 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			return false;
 		}
 
-		// forward message to worker
-		featureWorkerManager.sendMessage( FeatureMessage( m_demoClientFeature.uid(), StartDemoClient ).
-										  addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ).
-										  addArgument( IsFullscreenDemo, message.argument( IsFullscreenDemo ) ).
-										  addArgument( DemoServerHost, socket->peerAddress().toString() ) );
+		if( message.command() == StartDemoClient )
+		{
+			// construct a new message as we have to append the peer address as demo server host
+			FeatureMessage startDemoClientMessage( message.featureUid(), message.command() );
+			startDemoClientMessage.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) );
+			startDemoClientMessage.addArgument( IsFullscreenDemo, message.argument( IsFullscreenDemo ) );
+			startDemoClientMessage.addArgument( DemoServerHost, socket->peerAddress().toString() );
+			featureWorkerManager.sendMessage( startDemoClientMessage );
+		}
+		else
+		{
+			// forward message to worker
+			featureWorkerManager.sendMessage( message );
+		}
 
 		return true;
 	}
