@@ -55,6 +55,7 @@ public:
 
 public slots:
 	void setComputerScreenSize( int size );
+	void autoAdjustComputerScreenSize();
 
 private slots:
 	void runDoubleClickFeature( const QModelIndex& index );

@@ -23,6 +23,7 @@
  */
 
 #include <QMenu>
+#include <QScrollBar>
 
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
@@ -144,6 +145,34 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 		m_masterCore->computerManager().updateComputerScreenSize();
 
 		ui->listView->setIconSize( QSize( size, size * 9 / 16 ) );
+	}
+}
+
+
+
+void ComputerMonitoringView::autoAdjustComputerScreenSize()
+{
+	int size = ui->listView->iconSize().width();
+
+	if( ui->listView->verticalScrollBar()->isVisible() )
+	{
+		while( ui->listView->verticalScrollBar()->isVisible() )
+		{
+			size -= 10;
+			setComputerScreenSize( size );
+			QApplication::processEvents();
+		}
+	}
+	else
+	{
+		while( ui->listView->verticalScrollBar()->isVisible() == false )
+		{
+			size += 10;
+			setComputerScreenSize( size );
+			QApplication::processEvents();
+		}
+
+		setComputerScreenSize( size-20 );
 	}
 }
 

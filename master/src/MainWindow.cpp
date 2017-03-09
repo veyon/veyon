@@ -89,6 +89,8 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	// initialize monitoring screen size slider
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
+	connect( ui->autoFitButton, &QToolButton::clicked,
+			 ui->computerMonitoringView, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 
 	int size = ComputerMonitoringView::DefaultComputerScreenSize;
 	if( m_masterCore.userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
