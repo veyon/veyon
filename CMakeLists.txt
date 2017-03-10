@@ -323,15 +323,21 @@ ENDFOREACH(_item ${qm_targets})
 #
 # add target for generating Windows installer
 #
-SET(TMP "italc-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
 
-ADD_CUSTOM_TARGET(win-nsi
+IF(WIN32)
+	SET(InterceptionZip ${CMAKE_BINARY_DIR}/Interception.zip)
+	SET(InterceptionInstaller ${CMAKE_BINARY_DIR}/install-interception.exe)
+	IF (NOT EXISTS "${MY_DOWNLOAD_PATH}")
+		FILE(DOWNLOAD "https://github.com/oblitum/Interception/releases/download/1.0.0/Interception.zip" ${InterceptionZip} SHOW_PROGRESS EXPECTED_HASH SHA256=c43cb37e78c1d5f5a76b07d1104b9e1fe46866cc44eff433de952890e5e7598b)
+	ENDIF()
+
+	SET(TMP "italc-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
+
+	ADD_CUSTOM_TARGET(win-nsi
 			COMMAND make
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
-			COMMAND wget -P ${TMP} https://github.com/oblitum/Interception/releases/download/1.0.0/Interception.zip
-			COMMAND unzip -j -d ${TMP} ${TMP}/Interception.zip Interception/command\ line\ installer/install-interception.exe
-			COMMAND rm ${TMP}/*.zip
+			COMMAND unzip -j -d ${TMP} ${InterceptionZip} Interception/command\ line\ installer/install-interception.exe
 			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe worker/italc-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
@@ -347,7 +353,7 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND mv ${TMP}/italc-*setup.exe .
 			#COMMAND rm -rf ${TMP}
 		)
-
+ENDIF()
 
 #
 # display configuration information
