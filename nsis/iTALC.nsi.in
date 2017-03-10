@@ -144,12 +144,6 @@ ShowInstDetails show
 
 ######################################################################
 
-Function .onInit
-#!insertmacro MUI_LANGDLL_DISPLAY
-FunctionEnd
-
-######################################################################
-
 Section "iTALC Service"
 SectionIn RO
 ${INSTALL_TYPE}
@@ -210,7 +204,7 @@ ${If} $R1 != ""
 ${EndIf}
 SectionEnd
 
-Section "iTALC Master"
+Section "iTALC Master" SEC_MASTER
 ${INSTALL_TYPE}
 SetOutPath "$INSTDIR"
 File "italc-master.exe"
@@ -232,6 +226,18 @@ SectionEnd
 
 Function RunConfigurator
 	Exec '"$INSTDIR\italc-configurator.exe"'
+FunctionEnd
+
+
+######################################################################
+
+Function .onInit
+#!insertmacro MUI_LANGDLL_DISPLAY
+${GetParameters} $R0
+${GetOptions} $R0 "/NoMaster" $R1
+${IfNot} ${Errors}
+  !insertmacro UnselectSection ${SEC_MASTER}
+${EndIf}
 FunctionEnd
 
 ######################################################################
