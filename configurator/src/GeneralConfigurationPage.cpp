@@ -125,7 +125,7 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	if( serviceControl.isServiceRunning() )
 	{
-		if( QMessageBox::question( this, tr( "%1 Service" ).arg( ItalcCore::applicationName() ),
+		if( QMessageBox::question( this, tr( "%1 service" ).arg( ItalcCore::applicationName() ),
 				tr( "The %1 service needs to be stopped temporarily "
 					"in order to remove the log files. Continue?"
 					).arg( ItalcCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,

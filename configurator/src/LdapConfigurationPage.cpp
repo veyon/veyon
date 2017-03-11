@@ -443,7 +443,7 @@ void LdapConfigurationPage::testLdapGroupsOfComputer()
 			QMessageBox::warning( this, tr( "Computer not found" ),
 								  tr( "Could not find a computer with the host name \"%1\". "
 									  "Please check the host name or the computer tree "
-									  "tree parameter.").arg( computerHostName ) );
+									  "parameter.").arg( computerHostName ) );
 		}
 	}
 }
@@ -551,7 +551,7 @@ void LdapConfigurationPage::reportLdapObjectQueryResults( const QString &objects
 {
 	if( results.isEmpty() )
 	{
-		QMessageBox::critical( this, tr( "LDAP %2 test failed").arg( parameterName ),
+		QMessageBox::critical( this, tr( "LDAP %1 test failed").arg( parameterName ),
 							   tr( "Could not query any %1. "
 								   "Please check the %2 parameter or enter the name of an existing object.\n\n"
 								   "%3" ).arg( objectsName, parameterName, directory.ldapErrorDescription() ) );

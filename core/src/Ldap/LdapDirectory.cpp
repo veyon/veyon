@@ -153,7 +153,7 @@ public:
 		QString errorString = connection.ldapErrorString();
 		if( errorString.isEmpty() == false )
 		{
-			return tr( "LDAP error description: %1" ).arg( errorString );
+			return LdapDirectory::tr( "LDAP error description: %1" ).arg( errorString );
 		}
 
 		return QString();

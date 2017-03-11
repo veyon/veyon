@@ -38,8 +38,8 @@ UserConfig::UserConfig(Configuration::Store::Backend backend) :
 	{
 		QMessageBox::information( nullptr,
 								  tr( "No write access" ),
-								  tr( "Could not write your personal settings! "
-									  "Please check the personal configuration "
+								  tr( "Could not save your personal settings! "
+									  "Please check the user configuration "
 									  "file path using the %1 Configurator." ).arg( ItalcCore::applicationName() ) );
 	}
 }

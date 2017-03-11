@@ -120,14 +120,14 @@
          <property name="text">
           <string>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</string>
+Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</string>
+          <string notr="true">&lt;a href=&quot;http://github.com/italc/italc&quot;&gt;http://github.com/italc/italc&lt;/a&gt;</string>
          </property>
          <property name="openExternalLinks">
           <bool>true</bool>
