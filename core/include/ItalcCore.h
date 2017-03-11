@@ -40,6 +40,7 @@
 #endif
 
 class AuthenticationCredentials;
+class CryptoCore;
 class ItalcConfiguration;
 class QWidget;
 
@@ -55,6 +56,7 @@ namespace ItalcCore
 
 	extern ITALC_CORE_EXPORT ItalcConfiguration *config;
 	extern ITALC_CORE_EXPORT AuthenticationCredentials *authenticationCredentials;
+	extern ITALC_CORE_EXPORT CryptoCore *cryptoCore;
 
 	typedef QString Command;
 	typedef QMap<QString, QVariant> CommandArgs;

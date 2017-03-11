@@ -27,6 +27,21 @@
 #include "CryptoCore.h"
 
 
+CryptoCore::CryptoCore() :
+	m_qcaInitializer()
+{
+	qDebug() << "CryptoCore instance created - features supported by QCA:" << QCA::supportedFeatures();
+}
+
+
+
+CryptoCore::~CryptoCore()
+{
+	qDebug( "CryptoCore instance destroyed" );
+}
+
+
+
 QByteArray CryptoCore::generateChallenge()
 {
 	BIGNUM * challengeBigNum = BN_new();
