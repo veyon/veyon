@@ -27,10 +27,9 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
-#include <QtCrypto>
 
 #include "AuthenticationCredentials.h"
-#include "DsaKey.h"
+#include "CryptoCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
@@ -819,11 +818,13 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
-			QByteArray chall = challengeReceiveMessage.read().toByteArray();
+			QByteArray challenge = challengeReceiveMessage.read().toByteArray();
+			QByteArray signature = ItalcCore::authenticationCredentials->
+					privateKey().signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
 			challengeResponseMessage.write( (int) ItalcCore::role );
-			challengeResponseMessage.write( ItalcCore::authenticationCredentials->privateKey()->sign( chall ) );
+			challengeResponseMessage.write( signature );
 			challengeResponseMessage.send();
 		}
 		break;
@@ -837,7 +838,7 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		VariantArrayMessage publicKeyMessage( &socketDevice );
 		publicKeyMessage.receive();
 
-		QCA::PublicKey publicKey = QCA::PublicKey::fromPEM( publicKeyMessage.read().toString() );
+		CryptoCore::PublicKey publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
 
 		if( publicKey.canEncrypt() == false )
 		{
@@ -845,8 +846,8 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 			break;
 		}
 
-		QCA::SecureArray plainTextPassword( ItalcCore::authenticationCredentials->logonPassword().toUtf8() );
-		QCA::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, QCA::EME_PKCS1_OAEP );
+		CryptoCore::SecureArray plainTextPassword( ItalcCore::authenticationCredentials->logonPassword().toUtf8() );
+		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
 			qCritical( "ItalcVncConnection::handleSecTypeItalc(): password encryption failed!" );

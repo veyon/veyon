@@ -24,10 +24,10 @@
 
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
+#include "CryptoCore.h"
 #include "DemoClient.h"
 #include "DemoFeaturePlugin.h"
 #include "DemoServer.h"
-#include "DsaKey.h"
 #include "FeatureWorkerManager.h"
 #include "ItalcConfiguration.h"
 #include "Logger.h"
@@ -57,8 +57,8 @@ DemoFeaturePlugin::DemoFeaturePlugin() :
 						 Feature::Uid( "7b68b525-1114-4aea-8d42-ab4f26bbf5e5" ),
 						 QString(), QString(), QString() ),
 	m_features(),
-	m_demoAccessToken( DsaKey::generateChallenge().toBase64() ),
-	m_demoServerToken( DsaKey::generateChallenge().toBase64() ),
+	m_demoAccessToken( CryptoCore::generateChallenge().toBase64() ),
+	m_demoServerToken( CryptoCore::generateChallenge().toBase64() ),
 	m_demoClientHosts(),
 	m_demoServer( nullptr ),
 	m_demoClient( nullptr )

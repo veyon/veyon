@@ -25,11 +25,8 @@
 #ifndef AUTHENTICATION_CREDENTIALS_H
 #define AUTHENTICATION_CREDENTIALS_H
 
+#include "CryptoCore.h"
 #include "ItalcCore.h"
-
-#include <QString>
-
-class PrivateDSAKey;
 
 class ITALC_CORE_EXPORT AuthenticationCredentials
 {
@@ -50,8 +47,8 @@ public:
 	bool hasCredentials( TypeFlags credentialType ) const;
 
 	// private key auth
-	bool loadPrivateKey( const QString &path );
-	const PrivateDSAKey *privateKey() const
+	bool loadPrivateKey( const QString& privateKeyFile );
+	CryptoCore::PrivateKey& privateKey()
 	{
 		return m_privateKey;
 	}
@@ -98,7 +95,7 @@ public:
 	}
 
 private:
-	PrivateDSAKey *m_privateKey;
+	CryptoCore::PrivateKey m_privateKey;
 
 	QString m_logonUsername;
 	QString m_logonPassword;

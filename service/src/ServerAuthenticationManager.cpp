@@ -22,12 +22,11 @@
  *
  */
 
-#include <QtCrypto>
 #include <QHostAddress>
 
 #include "ServerAuthenticationManager.h"
 #include "AuthenticationCredentials.h"
-#include "DsaKey.h"
+#include "CryptoCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "LogonAuthentication.h"
@@ -131,7 +130,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 	switch( client->authState() )
 	{
 	case VncServerClient::AuthInit:
-		client->setChallenge( DsaKey::generateChallenge() );
+		client->setChallenge( CryptoCore::generateChallenge() );
 		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() )
 		{
 			return VncServerClient::AuthChallenge;
@@ -150,13 +149,13 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 
 		// now try to verify received signed data using public key of the user
 		// under which the client claims to run
-		const QByteArray sig = message.read().toByteArray();
+		const QByteArray signature = message.read().toByteArray();
 
 		qDebug() << "Loading public key" << LocalSystem::Path::publicKeyPath( urole ) << "for role" << urole;
 		// (publicKeyPath does range-checking of urole)
-		PublicDSAKey pubKey( LocalSystem::Path::publicKeyPath( urole ) );
+		CryptoCore::PublicKey publicKey( LocalSystem::Path::publicKeyPath( urole ) );
 
-		if( pubKey.verifySignature( client->challenge(), sig ) )
+		if( publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) )
 		{
 			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;
@@ -185,11 +184,11 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 	{
 	case VncServerClient::AuthInit:
 	{
-		QCA::PrivateKey privateKey = QCA::KeyGenerator().createRSA( 1024 );
+		CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
 
 		client->setPrivateKey( privateKey.toPEM() );
 
-		QCA::PublicKey publicKey = privateKey.toPublicKey();
+		CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
 
 		if( VariantArrayMessage( message.ioDevice() ).write( publicKey.toPEM() ).send() )
 		{
@@ -204,13 +203,15 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 
 	case VncServerClient::AuthPassword:
 	{
-		QCA::PrivateKey privateKey = QCA::PrivateKey::fromPEM( client->privateKey() );
+		CryptoCore::PrivateKey privateKey = CryptoCore::PrivateKey::fromPEM( client->privateKey() );
 
-		QCA::SecureArray encryptedPassword( message.read().toByteArray() );
+		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() );
 
-		QCA::SecureArray decryptedPassword;
+		CryptoCore::SecureArray decryptedPassword;
 
-		if( privateKey.decrypt( encryptedPassword, &decryptedPassword, QCA::EME_PKCS1_OAEP ) == false )
+		if( privateKey.decrypt( encryptedPassword,
+								&decryptedPassword,
+								CryptoCore::DefaultEncryptionAlgorithm ) == false )
 		{
 			qWarning( "ServerAuthenticationManager::performLogonAuthentication(): failed to decrypt password" );
 			return VncServerClient::AuthFinishedFail;

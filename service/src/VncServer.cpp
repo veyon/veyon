@@ -36,9 +36,9 @@
 
 #include "AccessControlProvider.h"
 #include "AuthenticationCredentials.h"
+#include "CryptoCore.h"
 #include "ItalcConfiguration.h"
 #include "VncServer.h"
-#include "DsaKey.h"
 
 
 #ifdef ITALC_BUILD_LINUX
@@ -140,7 +140,7 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 
 VncServer::VncServer( int serverPort ) :
 	QThread(),
-	m_password( DsaKey::generateChallenge().toBase64().left( MAXPWLEN ) ),
+	m_password( CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) ),
 	m_serverPort( serverPort )
 {
 	ItalcCore::authenticationCredentials->setInternalVncServerPassword( m_password );

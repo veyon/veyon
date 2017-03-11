@@ -45,8 +45,6 @@ extern "C"
 #include "RfbItalcAuth.h"
 #include "SocketDevice.h"
 
-class PrivateDSAKey;
-
 
 class MessageEvent
 {

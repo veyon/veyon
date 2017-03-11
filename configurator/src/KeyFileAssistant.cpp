@@ -26,7 +26,7 @@
 #include <QMessageBox>
 
 #include "KeyFileAssistant.h"
-#include "DsaKey.h"
+#include "CryptoCore.h"
 #include "FileSystemBrowser.h"
 #include "ConfiguratorCore.h"
 #include "ItalcConfiguration.h"
@@ -85,7 +85,7 @@ void KeyFileAssistant::openPubKeyDir()
 				tr( "Select directory in which to export the public key" ),
 				tr( "Key files (*.key.txt)" ) );
 
-		if( !PublicDSAKey( m_ui->publicKeyDir->text() ).isValid() )
+		if( CryptoCore::PublicKey( m_ui->publicKeyDir->text() ).isNull() )
 		{
 			m_ui->publicKeyDir->setText( origPath );
 			QMessageBox::critical( this, tr( "Invalid public key" ),

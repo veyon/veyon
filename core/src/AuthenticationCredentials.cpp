@@ -22,11 +22,10 @@
  */
 
 #include "AuthenticationCredentials.h"
-#include "DsaKey.h"
 
 
 AuthenticationCredentials::AuthenticationCredentials() :
-	m_privateKey( NULL ),
+	m_privateKey(),
 	m_logonUsername(),
 	m_logonPassword(),
 	m_token(),
@@ -37,7 +36,7 @@ AuthenticationCredentials::AuthenticationCredentials() :
 
 
 AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCredentials &other ) :
-	m_privateKey( NULL ),
+	m_privateKey(),
 	m_logonUsername( other.logonUsername() ),
 	m_logonPassword( other.logonPassword() ),
 	m_token( other.token() ),
@@ -51,7 +50,7 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 {
 	if( credentialType & PrivateKey )
 	{
-		return m_privateKey && m_privateKey->isValid();
+		return m_privateKey.isNull() == false;
 	}
 
 	if( credentialType & UserLogon )
@@ -62,9 +61,8 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 
 	if( credentialType & Token )
 	{
-		return !m_token.isEmpty() &&
-				QByteArray::fromBase64( m_token.toLatin1() ).size() ==
-												DsaKey::DefaultChallengeSize;
+		return m_token.isEmpty() == false &&
+				QByteArray::fromBase64( m_token.toLatin1() ).size() == CryptoCore::ChallengeSize;
 	}
 
 	qCritical( "AuthenticationCredentials::hasCredentials(): no valid credential type given: %d", credentialType );
@@ -74,20 +72,14 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 
 
 
-bool AuthenticationCredentials::loadPrivateKey( const QString &privKeyFile )
+bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
 {
-	if( m_privateKey )
-	{
-		delete m_privateKey;
-		m_privateKey = NULL;
-	}
-
-	if( privKeyFile.isEmpty() )
+	if( privateKeyFile.isEmpty() )
 	{
 		return false;
 	}
 
-	m_privateKey = new PrivateDSAKey( privKeyFile );
+	m_privateKey = CryptoCore::PrivateKey( privateKeyFile );
 
-	return m_privateKey->isValid();
+	return m_privateKey.isNull() == false;
 }

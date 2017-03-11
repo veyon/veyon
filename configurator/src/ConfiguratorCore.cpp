@@ -25,11 +25,9 @@
 #include <QApplication>
 #include <QMessageBox>
 
-#include <italcconfig.h>
-
 #include "Configuration/LocalStore.h"
-#include "DsaKey.h"
 #include "ConfiguratorCore.h"
+#include "CryptoCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "LocalSystem.h"
@@ -127,31 +125,41 @@ void listConfiguration( const ItalcConfiguration &config )
 
 bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 {
-	QString priv = LocalSystem::Path::privateKeyPath( role, destDir );
-	QString pub = LocalSystem::Path::publicKeyPath( role, destDir );
-	LogStream() << "ConfiguratorCore: creating new key pair in" << priv << "and" << pub;
+	QString privateKeyFile = LocalSystem::Path::privateKeyPath( role, destDir );
+	QString publicKeyFile = LocalSystem::Path::publicKeyPath( role, destDir );
 
-	PrivateDSAKey pkey( 1024 );
-	if( !pkey.isValid() )
+	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFile ).path() );
+	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFile ).path() );
+
+	LogStream() << "ConfiguratorCore: creating new key pair in" << privateKeyFile << "and" << publicKeyFile;
+
+	CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
+	CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
+
+	if( privateKey.isNull() || publicKey.isNull() )
 	{
 		ilog_failed( "key generation" );
 		return false;
 	}
-	if( !pkey.save( priv ) )
+
+	if( privateKey.toPEMFile( privateKeyFile ) == false )
 	{
 		ilog_failed( "saving private key" );
 		return false;
 	}
 
-	if( !PublicDSAKey( pkey ).save( pub ) )
+	if( publicKey.toPEMFile( publicKeyFile ) == false )
 	{
 		ilog_failed( "saving public key" );
 		return false;
 	}
 
+	QFile( privateKeyFile ).setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
+	QFile( publicKeyFile ).setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
+
 	printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
-						priv.toUtf8().constData(),
-						pub.toUtf8().constData() );
+						privateKeyFile.toUtf8().constData(),
+						publicKeyFile.toUtf8().constData() );
 	printf( "\n\n\nFor now the file is only readable by "
 				"root and members of group root (if you\n"
 				"didn't ran this command as non-root).\n"
@@ -167,19 +175,19 @@ bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 
 
 bool importPublicKey( ItalcCore::UserRole role,
-							const QString &pubKey, const QString &destDir )
+							const QString& publicKeyFile, const QString &destDir )
 {
 	// look whether the public key file is valid
-	PublicDSAKey dsaKey( pubKey );
-	if( !dsaKey.isValid() )
+	CryptoCore::PublicKey publicKey( publicKeyFile );
+	if( publicKey.isNull() )
 	{
-		qCritical() << "ConfiguratorCore::importPublicKey(): file" << pubKey
+		qCritical() << "ConfiguratorCore::importPublicKey(): file" << publicKeyFile
 					<< "is not a valid public key file";
 		return false;
 	}
 
-	QString pub = LocalSystem::Path::publicKeyPath( role, destDir );
-	QFile destFile( pub );
+	QString destinationPublicKeyPath = LocalSystem::Path::publicKeyPath( role, destDir );
+	QFile destFile( destinationPublicKeyPath );
 	if( destFile.exists() )
 	{
 		destFile.setPermissions( QFile::WriteOwner );
@@ -192,7 +200,7 @@ bool importPublicKey( ItalcCore::UserRole role,
 	}
 
 	// now try to copy it
-	return dsaKey.save( pub );
+	return publicKey.toPEMFile( destinationPublicKeyPath );
 }
 
 
@@ -220,7 +228,4 @@ void criticalMessage( const QString &title, const QString &msg )
 }
 
 
-
 }
-
-
