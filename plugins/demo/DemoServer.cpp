@@ -23,6 +23,8 @@
  *
  */
 
+#include "rfb/rfb.h"
+
 #include <QtCore/QDateTime>
 #include <QtNetwork/QTcpSocket>
 #include <QtCore/QTimer>
@@ -39,7 +41,6 @@
 #include "VariantArrayMessage.h"
 
 #include <lzo/lzo1x.h>
-#include "rfb/rfb.h"
 
 const int CURSOR_UPDATE_TIME = 35;
 
