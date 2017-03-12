@@ -118,6 +118,7 @@ IF(ITALC_BUILD_WIN32)
 		${ultravnc_DIR}/DSMPlugin/DSMPlugin.cpp
 		${ultravnc_DIR}/common/Clipboard.cpp
 		${ultravnc_DIR}/common/win32_helpers.cpp
+		${ultravnc_DIR}/rfb/dh.cpp
 		${ultravnc_DIR}/rdr/ZlibOutStream.cxx
 		${ultravnc_DIR}/rdr/ZlibInStream.cxx
 		)
