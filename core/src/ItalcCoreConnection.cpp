@@ -88,8 +88,7 @@ static void * ItalcCoreConnectionTag = (void *) PortOffsetVncServer; // an uniqu
 ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 	m_vncConn( vncConn ),
 	m_user(),
-	m_userHomeDir(),
-	m_slaveStateFlags( 0 )
+	m_userHomeDir()
 {
 	if( __italcProtocolExt == NULL )
 	{

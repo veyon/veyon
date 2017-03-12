@@ -53,11 +53,11 @@ static void configApplyError( const QString &msg )
 bool applyConfiguration( const ItalcConfiguration &c )
 {
 	// merge configuration
-	*ItalcCore::config += c;
+	ItalcCore::config() += c;
 
 	// do necessary modifications of system configuration
 	if( !SystemConfigurationModifier::setServiceAutostart(
-									ItalcCore::config->autostartService() ) )
+									ItalcCore::config().autostartService() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not modify the autostart property "
@@ -65,14 +65,14 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	}
 
 	if( !SystemConfigurationModifier::setServiceArguments(
-									ItalcCore::config->serviceArguments() ) )
+									ItalcCore::config().serviceArguments() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not modify the service arguments "
 									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
 	if( !SystemConfigurationModifier::enableFirewallException(
-							ItalcCore::config->isFirewallExceptionEnabled() ) )
+							ItalcCore::config().isFirewallExceptionEnabled() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not change the firewall configuration "
@@ -81,7 +81,7 @@ bool applyConfiguration( const ItalcConfiguration &c )
 
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( ItalcCore::config );
+	localStore.flush( &ItalcCore::config() );
 
 	return true;
 }

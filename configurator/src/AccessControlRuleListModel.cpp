@@ -43,7 +43,7 @@ void AccessControlRuleListModel::reload()
 
 	m_accessControlRules.clear();
 
-	for( auto accessControlRule : ItalcCore::config->accessControlRules() )
+	for( auto accessControlRule : ItalcCore::config().accessControlRules() )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}

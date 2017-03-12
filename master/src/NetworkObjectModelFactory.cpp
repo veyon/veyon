@@ -34,7 +34,7 @@ QAbstractItemModel* NetworkObjectModelFactory::create( QObject* parent )
 {
 	NetworkObjectDirectory* networkObjectDirectory = nullptr;
 
-	switch( ItalcCore::config->networkObjectDirectoryBackend() )
+	switch( ItalcCore::config().networkObjectDirectoryBackend() )
 	{
 	case NetworkObjectDirectory::LdapBackend:
 		networkObjectDirectory = new LdapNetworkObjectDirectory( parent );

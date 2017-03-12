@@ -41,7 +41,7 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );
 
-	if( !m_tcpServer.listen( QHostAddress::LocalHost, ItalcCore::config->featureWorkerManagerPort() ) )
+	if( !m_tcpServer.listen( QHostAddress::LocalHost, ItalcCore::config().featureWorkerManagerPort() ) )
 	{
 		qCritical( "FeatureWorkerManager: can't listen on localhost!" );
 	}

@@ -204,7 +204,7 @@ void ComputerManager::updateComputerScreens()
 
 void ComputerManager::initRoomFilterList()
 {
-	if( ItalcCore::config->onlyCurrentRoomVisible() )
+	if( ItalcCore::config().onlyCurrentRoomVisible() )
 	{
 		for( auto hostAddress : QHostInfo::fromName( QHostInfo::localHostName() ).addresses() )
 		{
@@ -230,7 +230,7 @@ void ComputerManager::initRoomFilterList()
 
 void ComputerManager::updateRoomFilterList()
 {
-	if( ItalcCore::config->onlyCurrentRoomVisible() )
+	if( ItalcCore::config().onlyCurrentRoomVisible() )
 	{
 		m_networkObjectSortFilterProxyModel->setStringList( m_roomFilterList );
 	}

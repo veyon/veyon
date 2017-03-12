@@ -60,7 +60,7 @@ bool checkPrivileges( int argc, char **argv )
 bool checkWritableConfiguration()
 {
 	if( !ItalcConfiguration().isStoreWritable() &&
-			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+			ItalcCore::config().logLevel() < Logger::LogLevelDebug )
 	{
 		ConfiguratorCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
 			MainWindow::tr( "The local configuration backend reported that the "
@@ -131,9 +131,9 @@ int setConfigurationValue( QStringListIterator& argIt )
 	const QString key = prop.section( '/', -1, -1 );
 	const QString parentKey = prop.section( '/', 0, -2 );
 
-	ItalcCore::config->setValue( key, value, parentKey );
+	ItalcCore::config().setValue( key, value, parentKey );
 
-	ConfiguratorCore::applyConfiguration( *ItalcCore::config );
+	ConfiguratorCore::applyConfiguration( ItalcCore::config() );
 
 	return 0;
 }
@@ -143,7 +143,7 @@ int setConfigurationValue( QStringListIterator& argIt )
 int createKeyPair( QStringListIterator& argIt )
 {
 	const QString destDir = argIt.hasNext() ? argIt.next() : QString();
-	ConfiguratorCore::createKeyPair( ItalcCore::role, destDir );
+	ConfiguratorCore::createKeyPair( ItalcCore::instance()->userRole(), destDir );
 	return 0;
 }
 
@@ -173,14 +173,16 @@ int importPublicKey( QStringListIterator& argIt )
 		pubKeyFile = argIt.next();
 	}
 
-	if( !ConfiguratorCore::importPublicKey( ItalcCore::role, pubKeyFile, QString() ) )
+	if( ConfiguratorCore::importPublicKey( ItalcCore::instance()->userRole(),
+										   pubKeyFile,
+										   QString() ) == false )
 	{
-		LogStream( Logger::LogLevelInfo ) << "Public key import "
-											"failed";
+		qInfo( "Public key import failed" );
 		return -1;
 	}
-	LogStream( Logger::LogLevelInfo ) << "Public key successfully "
-											"imported";
+
+	qInfo( "Public key successfully imported" );
+
 	return 0;
 }
 
@@ -193,15 +195,15 @@ bool parseRole( QStringListIterator& argIt )
 		const QString role = argIt.next();
 		if( role == "teacher" )
 		{
-			ItalcCore::role = ItalcCore::RoleTeacher;
+			ItalcCore::instance()->setUserRole( ItalcCore::RoleTeacher );
 		}
 		else if( role == "admin" )
 		{
-			ItalcCore::role = ItalcCore::RoleAdmin;
+			ItalcCore::instance()->setUserRole( ItalcCore::RoleAdmin );
 		}
 		else if( role == "supporter" )
 		{
-			ItalcCore::role = ItalcCore::RoleSupporter;
+			ItalcCore::instance()->setUserRole( ItalcCore::RoleSupporter );
 		}
 	}
 	else
@@ -233,7 +235,7 @@ int autoConfigureLdapBaseDn( QStringListIterator& argIt )
 
 		if( argIt.hasNext() )
 		{
-			ItalcCore::config->setLdapNamingContextAttribute( argIt.next() );
+			ItalcCore::config().setLdapNamingContextAttribute( argIt.next() );
 		}
 		else
 		{
@@ -252,9 +254,9 @@ int autoConfigureLdapBaseDn( QStringListIterator& argIt )
 
 	qInfo() << "Configuring" << baseDn << "as base DN and disabling naming context queries.";
 
-	ItalcCore::config->setLdapBaseDn( baseDn );
-	ItalcCore::config->setLdapQueryNamingContext( false );
-	ConfiguratorCore::applyConfiguration( *ItalcCore::config );
+	ItalcCore::config().setLdapBaseDn( baseDn );
+	ItalcCore::config().setLdapQueryNamingContext( false );
+	ConfiguratorCore::applyConfiguration( ItalcCore::config() );
 
 	return 0;
 }
@@ -283,17 +285,11 @@ int main( int argc, char **argv )
 	app = new QApplication( argc, argv );
 #endif
 
-	ItalcCore::init();
+	ItalcCore* core = new ItalcCore( app, "Configurator" );
 
 	ConfiguratorCore::silent = app->arguments().contains( "-quiet" ) ||
 						app->arguments().contains( "-silent" ) ||
 						app->arguments().contains( "-q" );
-
-
-	// default to teacher role for various command line operations
-	ItalcCore::role = ItalcCore::RoleTeacher;
-
-	Logger l( "ItalcConfigurator" );
 
 	if( checkWritableConfiguration() == false )
 	{
@@ -313,7 +309,7 @@ int main( int argc, char **argv )
 		}
 		else if( a == "-listconfig" || a == "-l" )
 		{
-			ConfiguratorCore::listConfiguration( *ItalcCore::config );
+			ConfiguratorCore::listConfiguration( ItalcCore::config() );
 
 			return 0;
 		}
@@ -355,10 +351,8 @@ int main( int argc, char **argv )
 
 	int ret = app->exec();
 
-	ItalcCore::destroy();
-
+	delete core;
 	delete app;
 
 	return ret;
 }
-

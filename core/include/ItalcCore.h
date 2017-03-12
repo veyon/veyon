@@ -39,24 +39,38 @@
 #  define ITALC_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
+class QCoreApplication;
+class QWidget;
+
 class AuthenticationCredentials;
 class CryptoCore;
 class ItalcConfiguration;
-class QWidget;
+class Logger;
 
-namespace ItalcCore
+class ITALC_CORE_EXPORT ItalcCore : public QObject
 {
-	void ITALC_CORE_EXPORT setupApplicationParameters();
-	bool ITALC_CORE_EXPORT init();
-	bool ITALC_CORE_EXPORT initAuthentication( int credentialTypes );
-	void ITALC_CORE_EXPORT destroy();
+	Q_OBJECT
+public:
+	ItalcCore( QCoreApplication* application, const QString& appComponentName );
+	~ItalcCore();
 
-	QString ITALC_CORE_EXPORT applicationName();
-	void ITALC_CORE_EXPORT enforceBranding( QWidget* topLevelWidget );
+	static ItalcCore* instance();
 
-	extern ITALC_CORE_EXPORT ItalcConfiguration *config;
-	extern ITALC_CORE_EXPORT AuthenticationCredentials *authenticationCredentials;
-	extern ITALC_CORE_EXPORT CryptoCore *cryptoCore;
+	static ItalcConfiguration& config()
+	{
+		return *( instance()->m_config );
+	}
+
+	static AuthenticationCredentials& authenticationCredentials()
+	{
+		return *( instance()->m_authenticationCredentials );
+	}
+
+	static void setupApplicationParameters();
+	bool initAuthentication( int credentialTypes );
+
+	static QString applicationName();
+	static void enforceBranding( QWidget* topLevelWidget );
 
 	typedef QString Command;
 	typedef QMap<QString, QVariant> CommandArgs;
@@ -64,10 +78,10 @@ namespace ItalcCore
 								CommandList;
 
 	// static commands
-	extern ITALC_CORE_EXPORT const Command LogonUserCmd;
-	extern ITALC_CORE_EXPORT const Command LogoutUser;
-	extern ITALC_CORE_EXPORT const Command ExecCmds;
-	extern ITALC_CORE_EXPORT const Command SetRole;
+	static const Command LogonUserCmd;
+	static const Command LogoutUser;
+	static const Command ExecCmds;
+	static const Command SetRole;
 
 	class ITALC_CORE_EXPORT Msg
 	{
@@ -128,7 +142,7 @@ namespace ItalcCore
 
 	} ;
 
-	enum UserRoles
+	typedef enum UserRoles
 	{
 		RoleNone,
 		RoleTeacher,
@@ -136,22 +150,33 @@ namespace ItalcCore
 		RoleSupporter,
 		RoleOther,
 		RoleCount
-	} ;
-	typedef UserRoles UserRole;
+	} UserRole;
 
-	enum SlaveStateFlags
+	Q_ENUM(UserRole)
+
+	static QString userRoleName( UserRole role );
+
+	UserRole userRole()
 	{
-		AccessDialogRunning 	= 1,
-		InputLockRunning 		= 16,
-	} ;
+		return m_userRole;
+	}
 
-	QString userRoleName( UserRole role );
+	void setUserRole( UserRole userRole )
+	{
+		m_userRole = userRole;
+	}
 
 
-	extern ITALC_CORE_EXPORT int serverPort;
-	extern ITALC_CORE_EXPORT int serverPort;
-	extern ITALC_CORE_EXPORT UserRoles role;
+private:
+	static ItalcCore* s_instance;
 
-}
+	ItalcConfiguration* m_config;
+	Logger* m_logger;
+	AuthenticationCredentials* m_authenticationCredentials;
+	CryptoCore* m_cryptoCore;
+	QString m_applicationName;
+	UserRole m_userRole;
+
+};
 
 #endif

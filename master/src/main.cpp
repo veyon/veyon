@@ -41,14 +41,9 @@ int main( int argc, char * * argv )
 	ItalcCore::setupApplicationParameters();
 
 	QApplication app( argc, argv );
-
-	ItalcCore::init();
-
-	Logger l( "ItalcMaster" );
-
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-	ItalcCore::role = ItalcCore::RoleTeacher;
+	ItalcCore core( &app, "Master" );
 
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
@@ -64,15 +59,15 @@ int main( int argc, char * * argv )
 				const QString role = arg_it.next();
 				if( role == "teacher" )
 				{
-					ItalcCore::role = ItalcCore::RoleTeacher;
+					core.setUserRole( ItalcCore::RoleTeacher );
 				}
 				else if( role == "admin" )
 				{
-					ItalcCore::role = ItalcCore::RoleAdmin;
+					core.setUserRole( ItalcCore::RoleAdmin );
 				}
 				else if( role == "supporter" )
 				{
-					ItalcCore::role = ItalcCore::RoleSupporter;
+					core.setUserRole( ItalcCore::RoleSupporter );
 				}
 			}
 			else
@@ -87,7 +82,7 @@ int main( int argc, char * * argv )
 	}
 
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
-	if( ItalcCore::config->applicationName().isEmpty() )
+	if( ItalcCore::config().applicationName().isEmpty() )
 	{
 		splashScreen.show();
 	}
@@ -107,7 +102,7 @@ int main( int argc, char * * argv )
 		!mainWindow.localICA()->isConnected() )
 	{
 		qCritical( "No connection to local ICA - terminating now" );
-		if( ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+		if( ItalcCore::config().logLevel() < Logger::LogLevelDebug )
 		{
 			return -1;
 		}

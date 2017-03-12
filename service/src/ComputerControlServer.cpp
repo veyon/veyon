@@ -51,12 +51,12 @@ ComputerControlServer::ComputerControlServer() :
 	m_featureWorkerManager( m_featureManager ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
-	m_vncServer( ItalcCore::config->vncServerPort() ),
+	m_vncServer( ItalcCore::config().vncServerPort() ),
 	m_vncProxyServer( m_vncServer.serverPort(),
 					  m_vncServer.password(),
-					  ItalcCore::config->localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?
+					  ItalcCore::config().localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
-					  ItalcCore::config->computerControlServerPort(),
+					  ItalcCore::config().computerControlServerPort(),
 					  this,
 					  this )
 {
@@ -65,7 +65,7 @@ ComputerControlServer::ComputerControlServer() :
 				arg( ItalcCore::applicationName() ).
 				arg( ITALC_VERSION ).
 				arg( QHostInfo::localHostName() ).
-				arg( QString::number( ItalcCore::config->computerControlServerPort() ) ),
+				arg( QString::number( ItalcCore::config().computerControlServerPort() ) ),
 				m_featureWorkerManager );
 
 	// make app terminate once the VNC server thread has finished
@@ -154,7 +154,7 @@ bool ComputerControlServer::handleCoreMessage( QTcpSocket* socket )
 		const int role = msgIn.arg( "role" ).toInt();
 		if( role > ItalcCore::RoleNone && role < ItalcCore::RoleCount )
 		{
-			ItalcCore::role = static_cast<ItalcCore::UserRoles>( role );
+			ItalcCore::instance()->setUserRole( static_cast<ItalcCore::UserRole>( role ) );
 		}
 	}
 	else

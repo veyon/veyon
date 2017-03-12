@@ -56,15 +56,15 @@ DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccess
 	m_demoAccessToken( demoAccessToken ),
 	m_vncConn()
 {
-	if( listen( QHostAddress::Any, ItalcCore::config->demoServerPort() ) == false )
+	if( listen( QHostAddress::Any, ItalcCore::config().demoServerPort() ) == false )
 	{
 		qCritical( "DemoServer::DemoServer(): could not start demo server!" );
 		return;
 	}
 
-	ItalcCore::authenticationCredentials->setToken( vncServerToken );
+	ItalcCore::authenticationCredentials().setToken( vncServerToken );
 	m_vncConn.setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	m_vncConn.setPort( ItalcCore::config->computerControlServerPort() );
+	m_vncConn.setPort( ItalcCore::config().computerControlServerPort() );
 	m_vncConn.setItalcAuthType( RfbItalcAuth::Token );
 	m_vncConn.setQuality( ItalcVncConnection::DemoServerQuality );
 	m_vncConn.start();

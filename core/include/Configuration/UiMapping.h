@@ -96,7 +96,7 @@ inline void initWidgetFromProperty( ItalcConfiguration* config, QStringList (Ita
 
 // widget initialization
 #define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey)	\
-			initWidgetFromProperty<>( config, &className::get, ui->get );
+			initWidgetFromProperty<>( &config(), &className::get, ui->get );
 
 
 // connect widget signals to configuration property write methods
@@ -165,6 +165,6 @@ template<>
 inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( const QJsonArray& ), QGroupBox* widget ) { }
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey)	\
-	connectWidgetToProperty( config, &className::set, ui->get );
+	connectWidgetToProperty( &config(), &className::set, ui->get );
 
 #endif

@@ -40,8 +40,8 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 	ui->treeView->setModel( computerManager.computerTreeModel() );
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 
-	ui->addRoomButton->setVisible( ItalcCore::config->onlyCurrentRoomVisible() &&
-										ItalcCore::config->manualRoomAdditionAllowed() );
+	ui->addRoomButton->setVisible( ItalcCore::config().onlyCurrentRoomVisible() &&
+										ItalcCore::config().manualRoomAdditionAllowed() );
 }
 
 

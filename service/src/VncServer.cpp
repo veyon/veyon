@@ -52,7 +52,7 @@ extern int WinVNCAppMain();
 
 void ultravnc_italc_load_password( char* out, int size )
 {
-	QByteArray password = ItalcCore::authenticationCredentials->internalVncServerPassword().toLatin1();
+	QByteArray password = ItalcCore::authenticationCredentials().internalVncServerPassword().toLatin1();
 	memcpy( out, password.constData(), std::min<int>( size, password.length() ) );
 }
 
@@ -77,17 +77,17 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 	}
 	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
 	{
-		*out = ItalcCore::config->vncCaptureLayeredWindows() ? 1 : 0;
+		*out = ItalcCore::config().vncCaptureLayeredWindows() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "PollFullScreen" ) == 0 )
 	{
-		*out = ItalcCore::config->vncPollFullScreen() ? 1 : 0;
+		*out = ItalcCore::config().vncPollFullScreen() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "TurboMode" ) == 0 )
 	{
-		*out = ItalcCore::config->vncLowAccuracy() ? 1 : 0;
+		*out = ItalcCore::config().vncLowAccuracy() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "NewMSLogon" ) == 0 )
@@ -97,7 +97,7 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 	}
 	if( strcmp( valname, "MSLogonRequired" ) == 0 )
 	{
-		*out = ItalcCore::config->isLogonAuthenticationEnabled() ? 1 : 0;
+		*out = ItalcCore::config().isLogonAuthenticationEnabled() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "RemoveWallpaper" ) == 0 )
@@ -143,7 +143,7 @@ VncServer::VncServer( int serverPort ) :
 	m_password( CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) ),
 	m_serverPort( serverPort )
 {
-	ItalcCore::authenticationCredentials->setInternalVncServerPassword( m_password );
+	ItalcCore::authenticationCredentials().setInternalVncServerPassword( m_password );
 #ifdef ITALC_BUILD_WIN32
 	vncServerInstance = this;
 #endif

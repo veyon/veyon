@@ -31,11 +31,11 @@
 NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	QObject( parent )
 {
-	if( ItalcCore::config->networkObjectDirectoryUpdateInterval() >= MinimumUpdateInterval )
+	if( ItalcCore::config().networkObjectDirectoryUpdateInterval() >= MinimumUpdateInterval )
 	{
 		// create and start directory update timer
 		QTimer*t = new QTimer( this );
 		connect( t, &QTimer::timeout, this, &NetworkObjectDirectory::update );
-		t->start( ItalcCore::config->networkObjectDirectoryUpdateInterval() * 1000 );
+		t->start( ItalcCore::config().networkObjectDirectoryUpdateInterval() * 1000 );
 	}
 }

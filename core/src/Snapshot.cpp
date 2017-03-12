@@ -67,7 +67,7 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
 	const QString dir = LocalSystem::Path::expand(
-									ItalcCore::config->snapshotDirectory() );
+									ItalcCore::config().snapshotDirectory() );
 	if( !LocalSystem::Path::ensurePathExists( dir ) )
 	{
 		QString msg = tr( "Could not take a snapshot as directory %1 "

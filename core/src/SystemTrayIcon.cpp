@@ -146,7 +146,7 @@ bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
 		return false;
 	}
 
-	if( m_systemTrayIcon == nullptr && ItalcCore::config->isTrayIconHidden() == false )
+	if( m_systemTrayIcon == nullptr && ItalcCore::config().isTrayIconHidden() == false )
 	{
 		m_systemTrayIcon = new QSystemTrayIcon;
 

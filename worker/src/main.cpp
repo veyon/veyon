@@ -41,8 +41,6 @@ int main( int argc, char **argv )
 		qFatal( "Not enough arguments (feature)" );
 	}
 
-	ItalcCore::init();
-
 	PluginManager pluginManager;
 	BuiltinFeatures builtinFeatures( pluginManager );
 	FeatureManager featureManager( pluginManager );
@@ -64,9 +62,9 @@ int main( int argc, char **argv )
 
 	QString pluginName = pluginManager.pluginName( featureManager.pluginUid( *workerFeature ) );
 
-	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
+	ItalcCore core( &app, "FeatureWorker" + pluginName );
 
-	Logger l( "ItalcFeature" + pluginName );
+	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
 
 	qInfo( "Exec" );
 

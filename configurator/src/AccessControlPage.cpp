@@ -62,7 +62,7 @@ void AccessControlPage::resetWidgets()
 {
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
-	m_accessGroups = ItalcCore::config->authorizedUserGroups();
+	m_accessGroups = ItalcCore::config().authorizedUserGroups();
 
 	updateAccessGroupsLists();
 	updateAccessControlRules();
@@ -85,7 +85,7 @@ void AccessControlPage::addAccessGroup()
 		m_accessGroups += item->text();
 	}
 
-	ItalcCore::config->setAuthorizedUserGroups( m_accessGroups );
+	ItalcCore::config().setAuthorizedUserGroups( m_accessGroups );
 
 	updateAccessGroupsLists();
 }
@@ -99,7 +99,7 @@ void AccessControlPage::removeAccessGroup()
 		m_accessGroups.removeAll( item->text() );
 	}
 
-	ItalcCore::config->setAuthorizedUserGroups( m_accessGroups );
+	ItalcCore::config().setAuthorizedUserGroups( m_accessGroups );
 
 	updateAccessGroupsLists();
 }
@@ -136,7 +136,7 @@ void AccessControlPage::addAccessControlRule()
 
 	if( AccessControlRuleEditDialog( newRule, this ).exec() )
 	{
-		ItalcCore::config->setAccessControlRules( ItalcCore::config->accessControlRules() << newRule.toJson() );
+		ItalcCore::config().setAccessControlRules( ItalcCore::config().accessControlRules() << newRule.toJson() );
 
 		updateAccessControlRules();
 	}
@@ -146,11 +146,11 @@ void AccessControlPage::addAccessControlRule()
 
 void AccessControlPage::removeAccessControlRule()
 {
-	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
 
 	accessControlRules.removeAt( ui->accessControlRulesView->currentIndex().row() );
 
-	ItalcCore::config->setAccessControlRules( accessControlRules );
+	ItalcCore::config().setAccessControlRules( accessControlRules );
 
 	updateAccessControlRules();
 }
@@ -159,7 +159,7 @@ void AccessControlPage::removeAccessControlRule()
 
 void AccessControlPage::editAccessControlRule()
 {
-	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 
@@ -182,7 +182,7 @@ void AccessControlPage::editAccessControlRule()
 
 void AccessControlPage::moveAccessControlRuleDown()
 {
-	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row + 1;
@@ -201,7 +201,7 @@ void AccessControlPage::moveAccessControlRuleDown()
 
 void AccessControlPage::moveAccessControlRuleUp()
 {
-	QJsonArray accessControlRules = ItalcCore::config->accessControlRules();
+	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row - 1;
@@ -246,7 +246,7 @@ void AccessControlPage::testAccessControlRules()
 
 void AccessControlPage::modifyAccessControlRules(const QJsonArray &accessControlRules, int selectedRow)
 {
-	ItalcCore::config->setAccessControlRules( accessControlRules );
+	ItalcCore::config().setAccessControlRules( accessControlRules );
 
 	updateAccessControlRules();
 

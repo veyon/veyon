@@ -154,19 +154,19 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initAuthentication()
 {
-	if( ItalcCore::initAuthentication( AuthenticationCredentials::AllTypes ) )
+	if( ItalcCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) )
 	{
 		return true;
 	}
 
-	if( ItalcCore::role != ItalcCore::RoleTeacher )
+	if( ItalcCore::instance()->userRole() != ItalcCore::RoleTeacher )
 	{
-		ItalcCore::role = ItalcCore::RoleTeacher;
+		ItalcCore::instance()->setUserRole( ItalcCore::RoleTeacher );
 		return initAuthentication();
 	}
 
 	// if we have logon credentials, assume they are fine and continue
-	if( ItalcCore::authenticationCredentials->hasCredentials(
+	if( ItalcCore::authenticationCredentials().hasCredentials(
 									AuthenticationCredentials::UserLogon ) )
 	{
 		return true;

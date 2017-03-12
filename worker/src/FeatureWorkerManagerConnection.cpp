@@ -47,7 +47,7 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& 
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
-	m_socket.connectToHost( QHostAddress::LocalHost, ItalcCore::config->featureWorkerManagerPort() );
+	m_socket.connectToHost( QHostAddress::LocalHost, ItalcCore::config().featureWorkerManagerPort() );
 }
 
 

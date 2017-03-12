@@ -336,7 +336,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 
 	connect( &m_terminateTimer, &QTimer::timeout, this, &ItalcVncConnection::terminate );
 
-	if( ItalcCore::config->isLogonAuthenticationEnabled() )
+	if( ItalcCore::config().isLogonAuthenticationEnabled() )
 	{
 		m_italcAuthType = RfbItalcAuth::Logon;
 	}
@@ -800,9 +800,9 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 	authReplyMessage.write( chosenAuthType );
 
 	// send username which is used when displaying an access confirm dialog
-	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::UserLogon ) )
+	if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
 	{
-		authReplyMessage.write( ItalcCore::authenticationCredentials->logonUsername() );
+		authReplyMessage.write( ItalcCore::authenticationCredentials().logonUsername() );
 	}
 	else
 	{
@@ -814,16 +814,16 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 	switch( chosenAuthType )
 	{
 	case RfbItalcAuth::DSA:
-		if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::PrivateKey ) )
+		if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::PrivateKey ) )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
 			QByteArray challenge = challengeReceiveMessage.read().toByteArray();
-			QByteArray signature = ItalcCore::authenticationCredentials->
+			QByteArray signature = ItalcCore::authenticationCredentials().
 					privateKey().signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
-			challengeResponseMessage.write( (int) ItalcCore::role );
+			challengeResponseMessage.write( ItalcCore::instance()->userRole() );
 			challengeResponseMessage.write( signature );
 			challengeResponseMessage.send();
 		}
@@ -846,7 +846,7 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 			break;
 		}
 
-		CryptoCore::SecureArray plainTextPassword( ItalcCore::authenticationCredentials->logonPassword().toUtf8() );
+		CryptoCore::SecureArray plainTextPassword( ItalcCore::authenticationCredentials().logonPassword().toUtf8() );
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
@@ -863,7 +863,7 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 	case RfbItalcAuth::Token:
 	{
 		VariantArrayMessage tokenAuthMessage( &socketDevice );
-		tokenAuthMessage.write( ItalcCore::authenticationCredentials->token() );
+		tokenAuthMessage.write( ItalcCore::authenticationCredentials().token() );
 		tokenAuthMessage.send();
 		break;
 	}

@@ -118,7 +118,7 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 
 void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 {
-	const Feature& feature = m_masterCore->featureManager().feature( ItalcCore::config->computerDoubleClickFeature() );
+	const Feature& feature = m_masterCore->featureManager().feature( ItalcCore::config().computerDoubleClickFeature() );
 
 	if( index.isValid() && feature.isValid() )
 	{

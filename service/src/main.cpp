@@ -75,36 +75,9 @@ static bool parseArguments( const QStringList &arguments )
 	while( argIt.hasNext() )
 	{
 		const QString & a = argIt.next().toLower();
-		if( a == "-role" )
-		{
-			if( argIt.hasNext() )
-			{
-				const QString role = argIt.next();
-				if( role == "teacher" )
-				{
-					ItalcCore::role = ItalcCore::RoleTeacher;
-				}
-				else if( role == "admin" )
-				{
-					ItalcCore::role = ItalcCore::RoleAdmin;
-				}
-				else if( role == "supporter" )
-				{
-					ItalcCore::role = ItalcCore::RoleSupporter;
-				}
-			}
-			else
-			{
-				printf( "-role needs an argument:\n"
-					"	teacher\n"
-					"	admin\n"
-					"	supporter\n\n" );
-				return false;
-			}
-		}
 #ifdef ITALC_BUILD_LINUX
 		// accept these options for x11vnc
-		else if( a == "-nosel" || a == "-nosetclipboard" ||
+		if( a == "-nosel" || a == "-nosetclipboard" ||
 				a == "-noshm" || a == "-solid" ||
 				a == "-xrandr" || a == "-onetile" )
 		{
@@ -115,14 +88,10 @@ static bool parseArguments( const QStringList &arguments )
 			return false;
 		}
 #endif
-		else if( a == "-v" || a == "--version" )
+		if( a == "-v" || a == "--version" )
 		{
 			printf( "%s\n", ITALC_VERSION );
 			return false;
-		}
-		else if( a == "-slave" )
-		{
-			return true;
 		}
 		else
 		{
@@ -141,9 +110,7 @@ static int runCoreServer( int argc, char **argv )
 {
 	QCoreApplication app( argc, argv );
 
-	ItalcCore::init();
-
-	Logger l( "ItalcCoreServer" );
+	ItalcCore core( &app, "Service" );
 
 	if( !parseArguments( app.arguments() ) )
 	{

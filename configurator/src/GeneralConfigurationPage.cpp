@@ -141,7 +141,7 @@ void GeneralConfigurationPage::clearLogFiles()
 	}
 
 	bool success = true;
-	QDir d( LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() ) );
+	QDir d( LocalSystem::Path::expand( ItalcCore::config().logFileDirectory() ) );
 	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
 	{
 		if( f != "ItalcConfigurator.log" )

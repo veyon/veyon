@@ -64,19 +64,6 @@ public:
 		return m_userHomeDir;
 	}
 
-	int slaveStateFlags() const
-	{
-		return m_slaveStateFlags;
-	}
-
-#define GEN_SLAVE_STATE_HELPER(x)							\
-			bool is##x() const								\
-			{												\
-				return slaveStateFlags() & ItalcCore::x;	\
-			}
-
-	GEN_SLAVE_STATE_HELPER(InputLockRunning)
-
 	void sendFeatureMessage( const FeatureMessage &featureMessage );
 
 	void execCmds( const QString &cmd );
@@ -85,8 +72,6 @@ public:
 	void logoutUser();
 
 	void setRole( const ItalcCore::UserRole role );
-
-	void reportSlaveStateFlags();
 
 signals:
 	void featureMessageReceived( const FeatureMessage& );
@@ -106,9 +91,6 @@ private:
 	QString m_user;
 	QString m_userHomeDir;
 
-	int m_slaveStateFlags;
-
 } ;
-
 
 #endif

@@ -287,7 +287,7 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 										  tr( "Please enter a computer host name to query:") );
 	if( computerName.isEmpty() == false )
 	{
-		if( ItalcCore::config->ldapComputerHostNameAsFQDN() &&
+		if( ItalcCore::config().ldapComputerHostNameAsFQDN() &&
 				computerName.contains( '.' ) == false )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
@@ -296,7 +296,7 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 									   "a host name without domain." ) );
 			return;
 		}
-		else if( ItalcCore::config->ldapComputerHostNameAsFQDN() == false &&
+		else if( ItalcCore::config().ldapComputerHostNameAsFQDN() == false &&
 				 computerName.contains( '.') )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),

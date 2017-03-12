@@ -43,12 +43,12 @@ SnapshotManagementWidget::SnapshotManagementWidget( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	LocalSystem::Path::ensurePathExists( ItalcCore::config->snapshotDirectory() );
+	LocalSystem::Path::ensurePathExists( ItalcCore::config().snapshotDirectory() );
 
 	m_fsModel.setNameFilters( QStringList() << "*.png" );
 	m_fsModel.setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
 	m_fsModel.setRootPath( LocalSystem::Path::expand(
-									ItalcCore::config->snapshotDirectory() ) );
+									ItalcCore::config().snapshotDirectory() ) );
 
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );

@@ -46,7 +46,7 @@ KeyFileAssistant::KeyFileAssistant() :
 	m_ui->directoriesPage->setUi( m_ui );
 
 	// init destination directory line edit
-	QDir d( LocalSystem::Path::expand( ItalcCore::config->privateKeyBaseDir() ) );
+	QDir d( LocalSystem::Path::expand( ItalcCore::config().privateKeyBaseDir() ) );
 	d.cdUp();
 	m_ui->destDirEdit->setText( QDTNS( d.absolutePath() ) );
 

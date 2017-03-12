@@ -50,17 +50,17 @@ QVector<RfbItalcAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 
 	authTypes.append( RfbItalcAuth::HostWhiteList );
 
-	if( ItalcCore::config->isKeyAuthenticationEnabled() )
+	if( ItalcCore::config().isKeyAuthenticationEnabled() )
 	{
 		authTypes.append( RfbItalcAuth::DSA );
 	}
 
-	if( ItalcCore::config->isLogonAuthenticationEnabled() )
+	if( ItalcCore::config().isLogonAuthenticationEnabled() )
 	{
 		authTypes.append( RfbItalcAuth::Logon );
 	}
 
-	if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) )
+	if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) )
 	{
 		authTypes.append( RfbItalcAuth::Token );
 	}
@@ -273,8 +273,8 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 		return VncServerClient::AuthToken;
 
 	case VncServerClient::AuthToken:
-		if( ItalcCore::authenticationCredentials->hasCredentials( AuthenticationCredentials::Token ) &&
-				message.read().toString() == ItalcCore::authenticationCredentials->token() )
+		if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) &&
+				message.read().toString() == ItalcCore::authenticationCredentials().token() )
 		{
 			qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;

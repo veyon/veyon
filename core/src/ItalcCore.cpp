@@ -49,14 +49,7 @@
 #include <lzo/lzo1x.h>
 
 
-
-ItalcConfiguration *ItalcCore::config = NULL;
-AuthenticationCredentials *ItalcCore::authenticationCredentials = NULL;
-CryptoCore *ItalcCore::cryptoCore = nullptr;
-
-ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
-
-static QString appName = "iTALC";
+ItalcCore *ItalcCore::s_instance = nullptr;
 
 
 void initResources()
@@ -128,13 +121,15 @@ void ItalcCore::setupApplicationParameters()
 
 
 
-bool ItalcCore::init()
+ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponentName ) :
+	QObject( application ),
+	m_config( nullptr ),
+	m_logger( nullptr ),
+	m_authenticationCredentials( nullptr ),
+	m_cryptoCore( nullptr ),
+	m_applicationName( "iTALC" ),
+	m_userRole( RoleTeacher )
 {
-	if( config )
-	{
-		return false;
-	}
-
 	killWisPtis();
 
 	lzo_init();
@@ -143,13 +138,17 @@ bool ItalcCore::init()
 
 	initResources();
 
-	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
-	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
+	s_instance = this;
+
+	m_config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
+	*m_config += ItalcConfiguration( Configuration::Store::LocalBackend );
+
+	m_logger = new Logger( appComponentName, m_config );
 
 	QLocale configuredLocale( QLocale::C );
 
 	QRegExp localeRegEx( "[^(]*\\(([^)]*)\\)");
-	if( localeRegEx.indexIn( config->uiLanguage() ) == 0 )
+	if( localeRegEx.indexIn( config().uiLanguage() ) == 0 )
 	{
 		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
 	}
@@ -183,16 +182,39 @@ bool ItalcCore::init()
 		QApplication::setLayoutDirection( Qt::RightToLeft );
 	}
 
-	if( config->applicationName().isEmpty() == false )
+	if( config().applicationName().isEmpty() == false )
 	{
-		appName = config->applicationName();
+		m_applicationName = config().applicationName();
 	}
 
-	cryptoCore = new CryptoCore;
+	m_cryptoCore = new CryptoCore;
 
 	initAuthentication( AuthenticationCredentials::None );
+}
 
-	return true;
+
+
+ItalcCore::~ItalcCore()
+{
+	delete m_authenticationCredentials;
+	m_authenticationCredentials = nullptr;
+
+	delete m_cryptoCore;
+	m_cryptoCore = nullptr;
+
+	delete m_config;
+	m_config = nullptr;
+
+	s_instance = nullptr;
+}
+
+
+
+ItalcCore* ItalcCore::instance()
+{
+	Q_ASSERT(s_instance != nullptr);
+
+	return s_instance;
 }
 
 
@@ -200,18 +222,18 @@ bool ItalcCore::init()
 
 bool ItalcCore::initAuthentication( int credentialTypes )
 {
-	if( authenticationCredentials )
+	if( m_authenticationCredentials )
 	{
-		delete authenticationCredentials;
-		authenticationCredentials = nullptr;
+		delete m_authenticationCredentials;
+		m_authenticationCredentials = nullptr;
 	}
 
-	authenticationCredentials = new AuthenticationCredentials;
+	m_authenticationCredentials = new AuthenticationCredentials;
 
 	bool success = true;
 
 	if( credentialTypes & AuthenticationCredentials::UserLogon &&
-			config->isLogonAuthenticationEnabled() )
+			config().isLogonAuthenticationEnabled() )
 	{
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
@@ -219,8 +241,8 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 			if( dlg.exec() &&
 				dlg.credentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
 			{
-				authenticationCredentials->setLogonUsername( dlg.username() );
-				authenticationCredentials->setLogonPassword( dlg.password() );
+				m_authenticationCredentials->setLogonUsername( dlg.username() );
+				m_authenticationCredentials->setLogonPassword( dlg.password() );
 
 				success &= true;
 			}
@@ -236,11 +258,11 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 	}
 
 	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
-			config->isKeyAuthenticationEnabled() )
+			config().isKeyAuthenticationEnabled() )
 	{
-		const QString privKeyFile = LocalSystem::Path::privateKeyPath( ItalcCore::role );
-		qDebug() << "Loading private key" << privKeyFile << "for role" << ItalcCore::role;
-		if( authenticationCredentials->loadPrivateKey( privKeyFile ) )
+		const QString privKeyFile = LocalSystem::Path::privateKeyPath( userRole() );
+		qDebug() << "Loading private key" << privKeyFile << "for role" << userRole();
+		if( m_authenticationCredentials->loadPrivateKey( privKeyFile ) )
 		{
 			success &= true;
 		}
@@ -255,24 +277,9 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 
 
 
-
-void ItalcCore::destroy()
-{
-	delete authenticationCredentials;
-	authenticationCredentials = NULL;
-
-	delete cryptoCore;
-	cryptoCore = nullptr;
-
-	delete config;
-	config = NULL;
-}
-
-
-
 QString ItalcCore::applicationName()
 {
-	return appName;
+	return instance()->m_applicationName;
 }
 
 
@@ -309,30 +316,23 @@ void ItalcCore::enforceBranding( QWidget *topLevelWidget )
 
 
 
-static const char *userRoleNames[] =
+QString ItalcCore::userRoleName( ItalcCore::UserRole role )
 {
-	"none",
-	"teacher",
-	"admin",
-	"supporter",
-	"other"
-} ;
+	static const char *userRoleNames[] =
+	{
+		"none",
+		"teacher",
+		"admin",
+		"supporter",
+		"other"
+	} ;
 
-
-
-QString ItalcCore::userRoleName( UserRole role )
-{
 	return userRoleNames[role];
 }
 
 
 
-
-namespace ItalcCore
-{
-
-
-bool Msg::send()
+bool ItalcCore::Msg::send()
 {
 	char messageType = rfbItalcCoreRequest;
 	m_ioDevice->write( &messageType, sizeof(messageType) );
@@ -347,7 +347,7 @@ bool Msg::send()
 
 
 
-Msg &Msg::receive()
+ItalcCore::Msg &ItalcCore::Msg::receive()
 {
 	VariantStream stream( m_ioDevice );
 
@@ -359,12 +359,7 @@ Msg &Msg::receive()
 
 
 
-const Command LogonUserCmd = "LogonUser";
-const Command LogoutUser = "LogoutUser";
-const Command ExecCmds = "ExecCmds";
-const Command DisableLocalInputs = "DisableLocalInputs";
-const Command SetRole = "SetRole";
-
-const Command ReportSlaveStateFlags = "ReportSlaveStateFlags";
-
-} ;
+const ItalcCore::Command ItalcCore::LogonUserCmd = "LogonUser";
+const ItalcCore::Command ItalcCore::LogoutUser = "LogoutUser";
+const ItalcCore::Command ItalcCore::ExecCmds = "ExecCmds";
+const ItalcCore::Command ItalcCore::SetRole = "SetRole";

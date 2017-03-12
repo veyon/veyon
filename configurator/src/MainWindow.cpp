@@ -63,7 +63,7 @@ MainWindow::MainWindow() :
 	// if local configuration is incomplete, re-enable the apply button
 	if( ItalcConfiguration(
 			Configuration::Store::LocalBackend ).data().size() <
-										ItalcCore::config->data().size() )
+										ItalcCore::config().data().size() )
 	{
 		configurationChanged();
 	}
@@ -82,7 +82,7 @@ MainWindow::MainWindow() :
 
 	connect( ui->actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt );
 
-	connect( ItalcCore::config, &ItalcConfiguration::configurationChanged, this, &MainWindow::configurationChanged );
+	connect( &ItalcCore::config(), &ItalcConfiguration::configurationChanged, this, &MainWindow::configurationChanged );
 
 	ItalcCore::enforceBranding( this );
 }
@@ -100,9 +100,9 @@ void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )
 	{
-		ItalcCore::config->clear();
-		*ItalcCore::config += ItalcConfiguration::defaultConfiguration();
-		*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
+		ItalcCore::config().clear();
+		ItalcCore::config() += ItalcConfiguration::defaultConfiguration();
+		ItalcCore::config() += ItalcConfiguration( Configuration::Store::LocalBackend );
 	}
 
 	for( auto page : findChildren<ConfigurationPage *>() )
@@ -119,7 +119,7 @@ void MainWindow::reset( bool onlyUI )
 
 void MainWindow::apply()
 {
-	if( ConfiguratorCore::applyConfiguration( *ItalcCore::config ) )
+	if( ConfiguratorCore::applyConfiguration( ItalcCore::config() ) )
 	{
 		ServiceControl serviceControl( this );
 
@@ -172,8 +172,7 @@ void MainWindow::loadSettingsFromFile()
 	if( !fileName.isEmpty() )
 	{
 		// write current configuration to output file
-		Configuration::XmlStore( Configuration::XmlStore::System,
-										fileName ).load( ItalcCore::config );
+		Configuration::XmlStore( Configuration::XmlStore::System, fileName ).load( &ItalcCore::config() );
 		reset( true );
 		configurationChanged();	// give user a chance to apply possible changes
 	}
@@ -196,8 +195,7 @@ void MainWindow::saveSettingsToFile()
 		bool configChangedPrevious = m_configChanged;
 
 		// write current configuration to output file
-		Configuration::XmlStore( Configuration::XmlStore::System,
-										fileName ).flush( ItalcCore::config );
+		Configuration::XmlStore( Configuration::XmlStore::System, fileName ).flush( &ItalcCore::config() );
 
 		m_configChanged = configChangedPrevious;
 		ui->buttonBox->setEnabled( m_configChanged );
@@ -288,12 +286,12 @@ void MainWindow::generateBugReportArchive()
 
 
 	// add current iTALC configuration
-	obj.addSubObject( ItalcCore::config, "Configuration" );
+	obj.addSubObject( &ItalcCore::config(), "Configuration" );
 
 
 	// compress all log files and encode them as base64
 	QStringList paths;
-	paths << LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() );
+	paths << LocalSystem::Path::expand( ItalcCore::config().logFileDirectory() );
 #ifdef ITALC_BUILD_WIN32
 	paths << "C:\\Windows\\Temp";
 #else

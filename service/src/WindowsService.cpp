@@ -138,16 +138,13 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 
 	if( argv[1] == m_arg )
 	{
-		ItalcCore::init();
-		Logger l( "ItalcServiceMonitor" );
+		ItalcCore core( nullptr, "ServiceMonitor" );
 		return runAsService();
 	}
 
 	QApplication app( argc, argv );
 
-	ItalcCore::init();
-
-	Logger l( "ItalcServiceControl" );
+	ItalcCore core( &app, "ServiceControl" );
 
 	QStringList args = app.arguments();
 	args.removeFirst();

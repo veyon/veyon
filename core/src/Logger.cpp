@@ -48,20 +48,20 @@ int Logger::lastMsgCount = 0;
 CXEventLog *Logger::winEventLog = NULL;
 #endif
 
-Logger::Logger( const QString &appName ) :
-	m_appName( appName ),
+Logger::Logger( const QString &appName, ItalcConfiguration* config ) :
+	m_appName( "Italc" + appName ),
 	m_logFile( NULL )
 {
 	instance = this;
 
-	int ll = ItalcCore::config->logLevel();
+	int ll = config->logLevel();
 	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
-	initLogFile();
+	initLogFile( config );
 
 	qInstallMessageHandler( qtMsgHandler );
 
 #ifdef ITALC_BUILD_WIN32
-	if( ItalcCore::config->logToWindowsEventLog() )
+	if( config->logToWindowsEventLog() )
 	{
 		winEventLog = new CXEventLog( appName.toUtf8().constData() );
 	}
@@ -97,9 +97,9 @@ Logger::~Logger()
 
 
 
-void Logger::initLogFile()
+void Logger::initLogFile( ItalcConfiguration* config )
 {
-	QString logPath = LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() );
+	QString logPath = LocalSystem::Path::expand( config->logFileDirectory() );
 
 	if( !QDir( logPath ).exists() )
 	{
@@ -252,7 +252,7 @@ void Logger::outputMessage( const QString &msg )
 		m_logFile->flush();
 	}
 
-	if( !ItalcCore::config || ItalcCore::config->logToStdErr() )
+	if( ItalcCore::config().logToStdErr() )
 	{
 		fprintf( stderr, "%s", msg.toUtf8().constData() );
 		fflush( stderr );

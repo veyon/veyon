@@ -53,7 +53,7 @@ public:
 
 	typedef LogLevels LogLevel;
 
-	Logger( const QString &appName );
+	Logger( const QString &appName, ItalcConfiguration* config );
 	~Logger();
 
 	static void log( LogLevel ll, const QString &msg );
@@ -61,7 +61,7 @@ public:
 
 
 private:
-	void initLogFile();
+	void initLogFile( ItalcConfiguration* config );
 	void outputMessage( const QString &msg );
 
 	static QString formatMessage( LogLevel ll, const QString &msg );

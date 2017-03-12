@@ -989,7 +989,7 @@ QString Path::privateKeyPath( ItalcCore::UserRoles role, QString baseDir )
 {
 	if( baseDir.isEmpty() )
 	{
-		baseDir = expand( ItalcCore::config->privateKeyBaseDir() );
+		baseDir = expand( ItalcCore::config().privateKeyBaseDir() );
 	}
 	else
 	{
@@ -1006,7 +1006,7 @@ QString Path::publicKeyPath( ItalcCore::UserRoles role, QString baseDir )
 {
 	if( baseDir.isEmpty() )
 	{
-		baseDir = expand( ItalcCore::config->publicKeyBaseDir() );
+		baseDir = expand( ItalcCore::config().publicKeyBaseDir() );
 	}
 	else
 	{

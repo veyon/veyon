@@ -210,7 +210,7 @@ LdapDirectory::~LdapDirectory()
 
 bool LdapDirectory::isEnabled() const
 {
-	return ItalcCore::config->isLdapIntegrationEnabled();
+	return ItalcCore::config().isLdapIntegrationEnabled();
 }
 
 
@@ -567,9 +567,9 @@ QStringList LdapDirectory::computerGroupsNames()
 
 bool LdapDirectory::reconnect( const QUrl &url )
 {
-	ItalcConfiguration* c = ItalcCore::config;
+	const ItalcConfiguration& c = ItalcCore::config();
 
-	if( c->isLdapIntegrationEnabled() == false )
+	if( c.isLdapIntegrationEnabled() == false )
 	{
 		d->isConnected = false;
 		d->isBound = false;
@@ -585,13 +585,13 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	}
 	else
 	{
-		server.setHost( c->ldapServerHost() );
-		server.setPort( c->ldapServerPort() );
+		server.setHost( c.ldapServerHost() );
+		server.setPort( c.ldapServerPort() );
 
-		if( c->ldapUseBindCredentials() )
+		if( c.ldapUseBindCredentials() )
 		{
-			server.setBindDn( c->ldapBindDn() );
-			server.setPassword( c->ldapBindPassword() );
+			server.setBindDn( c.ldapBindDn() );
+			server.setPassword( c.ldapBindPassword() );
 			server.setAuth( KLDAP::LdapServer::Simple );
 		}
 		else
@@ -624,7 +624,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 
 	d->isBound = true;
 
-	d->namingContextAttribute = c->ldapNamingContextAttribute();
+	d->namingContextAttribute = c.ldapNamingContextAttribute();
 
 	if( d->namingContextAttribute.isEmpty() )
 	{
@@ -633,21 +633,21 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	}
 
 	// query base DN via naming context if configured
-	if( c->ldapQueryNamingContext() )
+	if( c.ldapQueryNamingContext() )
 	{
 		d->baseDn = queryNamingContext();
 	}
 	else
 	{
 		// use the configured base DN
-		d->baseDn = c->ldapBaseDn();
+		d->baseDn = c.ldapBaseDn();
 	}
 
-	d->usersDn = c->ldapUserTree() + "," + d->baseDn;
-	d->groupsDn = c->ldapGroupTree() + "," + d->baseDn;
-	d->computersDn = c->ldapComputerTree() + "," + d->baseDn;
+	d->usersDn = c.ldapUserTree() + "," + d->baseDn;
+	d->groupsDn = c.ldapGroupTree() + "," + d->baseDn;
+	d->computersDn = c.ldapComputerTree() + "," + d->baseDn;
 
-	if( c->ldapRecursiveSearchOperations() )
+	if( c.ldapRecursiveSearchOperations() )
 	{
 		d->defaultSearchScope = KLDAP::LdapUrl::Sub;
 	}
@@ -656,20 +656,20 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		d->defaultSearchScope = KLDAP::LdapUrl::One;
 	}
 
-	d->userLoginAttribute = c->ldapUserLoginAttribute();
-	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
-	d->computerHostNameAttribute = c->ldapComputerHostNameAttribute();
-	d->computerHostNameAsFQDN = c->ldapComputerHostNameAsFQDN();
-	d->computerMacAddressAttribute = c->ldapComputerMacAddressAttribute();
+	d->userLoginAttribute = c.ldapUserLoginAttribute();
+	d->groupMemberAttribute = c.ldapGroupMemberAttribute();
+	d->computerHostNameAttribute = c.ldapComputerHostNameAttribute();
+	d->computerHostNameAsFQDN = c.ldapComputerHostNameAsFQDN();
+	d->computerMacAddressAttribute = c.ldapComputerMacAddressAttribute();
 
-	d->usersFilter = c->ldapUsersFilter();
-	d->userGroupsFilter = c->ldapUserGroupsFilter();
-	d->computerGroupsFilter = c->ldapComputerGroupsFilter();
+	d->usersFilter = c.ldapUsersFilter();
+	d->userGroupsFilter = c.ldapUserGroupsFilter();
+	d->computerGroupsFilter = c.ldapComputerGroupsFilter();
 
-	d->identifyGroupMembersByNameAttribute = c->ldapIdentifyGroupMembersByNameAttribute();
+	d->identifyGroupMembersByNameAttribute = c.ldapIdentifyGroupMembersByNameAttribute();
 
-	d->computerLabMembersByAttribute = c->ldapComputerLabMembersByAttribute();
-	d->computerLabAttribute = c->ldapComputerLabAttribute();
+	d->computerLabMembersByAttribute = c.ldapComputerLabMembersByAttribute();
+	d->computerLabAttribute = c.ldapComputerLabAttribute();
 
 	return true;
 }

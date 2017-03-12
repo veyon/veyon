@@ -100,7 +100,7 @@ void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory
 
 	QStringList computers = ldapDirectory.computerLabMembers( computerLab );
 
-	bool hasMacAddressAttribute = ( ItalcCore::config->ldapComputerMacAddressAttribute().count() > 0 );
+	bool hasMacAddressAttribute = ( ItalcCore::config().ldapComputerMacAddressAttribute().count() > 0 );
 
 	for( auto computer : computers )
 	{

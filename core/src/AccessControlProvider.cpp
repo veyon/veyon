@@ -34,7 +34,7 @@
 AccessControlProvider::AccessControlProvider() :
 	m_ldapDirectory()
 {
-	for( auto accessControlRule : ItalcCore::config->accessControlRules() )
+	for( auto accessControlRule : ItalcCore::config().accessControlRules() )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}
@@ -108,14 +108,14 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 		accessingUser = accessingUser.mid( domainSeparator + 1 );
 	}
 
-	if( ItalcCore::config->isAccessRestrictedToUserGroups() )
+	if( ItalcCore::config().isAccessRestrictedToUserGroups() )
 	{
 		if( processAuthorizedGroups( accessingUser ) )
 		{
 			return AccessAllow;
 		}
 	}
-	else if( ItalcCore::config->isAccessControlRulesProcessingEnabled() )
+	else if( ItalcCore::config().isAccessControlRulesProcessingEnabled() )
 	{
 		auto action = processAccessControlRules( accessingUser,
 												 accessingComputer,
@@ -154,9 +154,9 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->authorizedUserGroups().toSet() );
+	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config().authorizedUserGroups().toSet() );
 #else
-	return groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config->authorizedUserGroups().toSet() ).isEmpty() == false;
+	return groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config().authorizedUserGroups().toSet() ).isEmpty() == false;
 #endif
 }
 
@@ -199,7 +199,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
  */
 bool AccessControlProvider::isAccessDeniedByLocalState()
 {
-	if( ItalcCore::config->isAccessControlRulesProcessingEnabled() == false )
+	if( ItalcCore::config().isAccessControlRulesProcessingEnabled() == false )
 	{
 		return false;
 	}

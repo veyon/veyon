@@ -40,13 +40,13 @@ bool DesktopAccessPermission::authenticationMethodRequiresConfirmation()
 	switch( m_authenticationMethod )
 	{
 	case KeyAuthentication:
-		if( ItalcCore::config->isPermissionRequiredWithKeyAuthentication() )
+		if( ItalcCore::config().isPermissionRequiredWithKeyAuthentication() )
 		{
 			return true;
 		}
 		break;
 	case LogonAuthentication:
-		if( ItalcCore::config->isPermissionRequiredWithLogonAuthentication() )
+		if( ItalcCore::config().isPermissionRequiredWithLogonAuthentication() )
 		{
 			return true;
 		}
