@@ -159,6 +159,7 @@ void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext& context,
 	switch( msgType )
 	{
 		case QtDebugMsg: ll = LogLevelDebug; break;
+		case QtInfoMsg: ll = LogLevelInfo; break;
 		case QtWarningMsg: ll = LogLevelWarning; break;
 		case QtCriticalMsg: ll = LogLevelError; break;
 		case QtFatalMsg: ll = LogLevelCritical; break;
