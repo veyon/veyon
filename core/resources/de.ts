@@ -1084,7 +1084,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Bitte geben Sie den abzufragenden Nutzerlogin-Name ein (Platzhalter erlaubt).</translation>
+        <translation>Bitte geben Sie den abzufragenden Nutzerlogin-Name ein (Platzhalter erlaubt):</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -1451,10 +1451,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Einstellungen aus Datei laden</translation>
     </message>
     <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML-Dateien (*.xml)</translation>
-    </message>
-    <message>
         <source>Save settings to file</source>
         <translation>Einstellungen in Datei speichern</translation>
     </message>
@@ -1609,10 +1605,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
     </message>
     <message>
-        <source>%1 bug report archive (*.ibra.xml)</source>
-        <translation>%1-Fehlerberichtsarchiv (*.ibra.xml)</translation>
-    </message>
-    <message>
         <source>%1 bug report archive saved</source>
         <translation>%1-Fehlerberichtsarchiv gespeichert</translation>
     </message>
@@ -1651,6 +1643,22 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
         <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind nicht mehr aktuell. Bitte erzeugen Sie neue Schlüsseldateien mit Hilfe des %1 Configurators. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe des %1 Configurators einrichten. Andernfalls werden Sie nicht in der Lage sein, mit %1 auf Computer zuzugreifen.</translation>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation>JSON-Dateien (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation>%1-Fehlerbericht (*.json)</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Konfiguration gelöscht</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>Die lokale Konfiguration wurde erfolgreich gelöscht.</translation>
     </message>
 </context>
 <context>
@@ -1836,6 +1844,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Remote view or control a computer</source>
         <translation>Fernansicht oder -Steuerung eines Computers</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Fernzugriff</translation>
+    </message>
+    <message>
+        <source>Please enter a hostname or IP address of the host to access:</source>
+        <translation>Bitte geben Sie den Rechnername oder IP-Adresse des Rechners ein, auf den zugegriffen werden soll:</translation>
     </message>
 </context>
 <context>
