@@ -34,7 +34,7 @@
 #include <windows.h>
 #endif
 
-#include "Configuration/XmlStore.h"
+#include "Configuration/JsonStore.h"
 #include "Configuration/UiMapping.h"
 
 #include "AboutDialog.h"
@@ -168,11 +168,11 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 void MainWindow::loadSettingsFromFile()
 {
 	QString fileName = QFileDialog::getOpenFileName( this, tr( "Load settings from file" ),
-											QDir::homePath(), tr( "XML files (*.xml)" ) );
+											QDir::homePath(), tr( "JSON files (*.json)" ) );
 	if( !fileName.isEmpty() )
 	{
 		// write current configuration to output file
-		Configuration::XmlStore( Configuration::XmlStore::System, fileName ).load( &ItalcCore::config() );
+		Configuration::JsonStore( Configuration::JsonStore::System, fileName ).load( &ItalcCore::config() );
 		reset( true );
 		configurationChanged();	// give user a chance to apply possible changes
 	}
@@ -184,18 +184,18 @@ void MainWindow::loadSettingsFromFile()
 void MainWindow::saveSettingsToFile()
 {
 	QString fileName = QFileDialog::getSaveFileName( this, tr( "Save settings to file" ),
-											QDir::homePath(), tr( "XML files (*.xml)" ) );
+											QDir::homePath(), tr( "JSON files (*.json)" ) );
 	if( !fileName.isEmpty() )
 	{
-		if( !fileName.endsWith( ".xml", Qt::CaseInsensitive ) )
+		if( !fileName.endsWith( ".json", Qt::CaseInsensitive ) )
 		{
-			fileName += ".xml";
+			fileName += ".json";
 		}
 
 		bool configChangedPrevious = m_configChanged;
 
 		// write current configuration to output file
-		Configuration::XmlStore( Configuration::XmlStore::System, fileName ).flush( &ItalcCore::config() );
+		Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &ItalcCore::config() );
 
 		m_configChanged = configChangedPrevious;
 		ui->buttonBox->setEnabled( m_configChanged );
@@ -212,20 +212,19 @@ void MainWindow::generateBugReportArchive()
 	fsb.setExpandPath( false );
 	QString outfile = fsb.exec( QDir::homePath(),
 								tr( "Save bug report archive" ),
-								tr( "%1 bug report archive (*.ibra.xml)" ).arg( ItalcCore::applicationName() ) );
+								tr( "%1 bug report (*.json)" ).arg( ItalcCore::applicationName() ) );
 	if( outfile.isEmpty() )
 	{
 		return;
 	}
 
-	if( !outfile.endsWith( ".ibra.xml" ) )
+	if( !outfile.endsWith( ".json" ) )
 	{
-		outfile += ".ibra.xml";
+		outfile += ".json";
 	}
 
-	Configuration::XmlStore bugReportXML(
-							Configuration::Store::BugReportArchive, outfile );
-	Configuration::Object obj( &bugReportXML );
+	Configuration::JsonStore bugReportJson( Configuration::Store::BugReportArchive, outfile );
+	Configuration::Object obj( &bugReportJson );
 
 
 	// retrieve some basic system information

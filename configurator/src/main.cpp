@@ -28,7 +28,7 @@
 #include <QApplication>
 
 #include "ConfigurationTestController.h"
-#include "Configuration/XmlStore.h"
+#include "Configuration/JsonStore.h"
 #include "ConfiguratorCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -82,7 +82,7 @@ int applySettings( QStringListIterator& argIt )
 	}
 
 	const QString file = argIt.next();
-	Configuration::XmlStore xs( Configuration::XmlStore::System, file );
+	Configuration::JsonStore xs( Configuration::JsonStore::System, file );
 
 	if( ConfiguratorCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
 	{
