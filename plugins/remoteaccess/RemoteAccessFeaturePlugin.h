@@ -25,6 +25,7 @@
 #ifndef REMOTE_ACCESS_FEATURE_PLUGIN_H
 #define REMOTE_ACCESS_FEATURE_PLUGIN_H
 
+#include "Computer.h"
 #include "FeaturePluginInterface.h"
 
 class RemoteAccessFeaturePlugin : public QObject, FeaturePluginInterface
@@ -90,6 +91,8 @@ private:
 	Feature m_remoteViewFeature;
 	Feature m_remoteControlFeature;
 	FeatureList m_features;
+	Computer m_customComputer;
+	ComputerControlInterface m_customComputerControlInterface;
 
 };
 

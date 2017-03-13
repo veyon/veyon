@@ -22,6 +22,8 @@
  *
  */
 
+#include <QInputDialog>
+
 #include "RemoteAccessFeaturePlugin.h"
 #include "RemoteAccessWidget.h"
 
@@ -37,7 +39,9 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin() :
 							tr( "Remote control" ), QString(),
 							tr( "Open a remote control window for a computer." ),
 							":/remoteaccess/remote_control.png" ),
-	m_features()
+	m_features(),
+	m_customComputer(),
+	m_customComputerControlInterface( m_customComputer )
 {
 	m_features += m_remoteViewFeature;
 	m_features += m_remoteControlFeature;
@@ -66,21 +70,45 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
+	// determine which computer to access and ask if neccessary
+	ComputerControlInterface* remoteAccessComputer = nullptr;
+
+	if( ( feature.uid() == m_remoteViewFeature.uid() ||
+			feature.uid() == m_remoteControlFeature.uid() ) &&
+			computerControlInterfaces.count() != 1 )
+	{
+		QString hostName = QInputDialog::getText( parent, tr( "Remote access" ),
+												  tr( "Please enter a hostname or IP address of the host to access:" ) );
+		if( hostName.isEmpty() )
+		{
+			return false;
+		}
+
+		m_customComputer.setHostAddress( hostName );
+		remoteAccessComputer = &m_customComputerControlInterface;
+	}
+	else
+	{
+		if( computerControlInterfaces.count() >= 1 )
+		{
+			remoteAccessComputer = computerControlInterfaces.first();
+		}
+	}
+
+	if( remoteAccessComputer == nullptr )
+	{
+		return false;
+	}
+
 	if( feature.uid() == m_remoteViewFeature.uid() )
 	{
-		for( auto controlInterface : computerControlInterfaces )
-		{
-			new RemoteAccessWidget( *controlInterface, true );
-		}
+		new RemoteAccessWidget( *remoteAccessComputer, true );
 
 		return true;
 	}
 	else if( feature.uid() == m_remoteControlFeature.uid() )
 	{
-		for( auto controlInterface : computerControlInterfaces )
-		{
-			new RemoteAccessWidget( *controlInterface, false );
-		}
+		new RemoteAccessWidget( *remoteAccessComputer, false );
 
 		return true;
 	}
