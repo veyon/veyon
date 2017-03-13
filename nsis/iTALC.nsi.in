@@ -247,11 +247,19 @@ SectionEnd
 
 Section Uninstall
 ${INSTALL_TYPE}
+
 ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=0'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
 ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
+
+${GetParameters} $R0
+${GetOptions} $R0 "/ClearConfig" $R1
+${IfNot} ${Errors}
+	ExecWait '"$INSTDIR\italc-configurator.exe" -quiet -clearconfiguration'
+${EndIf}
+
 Delete "$INSTDIR\italc-service.exe"
 Delete "$INSTDIR\libwinpthread-1.dll"
 Delete "$INSTDIR\libgcc_s_sjlj-1.dll"
