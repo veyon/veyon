@@ -160,6 +160,7 @@ bool LocalStore::isWritable() const
 void LocalStore::clear()
 {
 	QSettings* s = createSettingsObject();
+	s->setFallbacksEnabled( false );
 	s->clear();
 	delete s;
 }
