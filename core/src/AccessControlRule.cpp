@@ -65,17 +65,17 @@ AccessControlRule::AccessControlRule(const QJsonValueRef &jsonValue) :
 	{
 		QJsonObject json = jsonValue.toObject();
 
-		m_name = json["n"].toString();
-		m_description = json["d"].toString();
-		m_action = static_cast<Action>( json["a"].toInt() );
-		m_entity = static_cast<Entity>( json["e"].toInt() );
-		m_invertConditions = json["i"].toBool();
+		m_name = json["Name"].toString();
+		m_description = json["Description"].toString();
+		m_action = static_cast<Action>( json["Action"].toInt() );
+		m_entity = static_cast<Entity>( json["Entity"].toInt() );
+		m_invertConditions = json["InvertConditions"].toBool();
 
-		for( auto conditionValue : json["c"].toArray() )
+		for( auto conditionValue : json["Conditions"].toArray() )
 		{
 			QJsonObject conditionObj = conditionValue.toObject();
-			Condition condition = static_cast<Condition>(conditionObj["c"].toInt());
-			m_conditions[condition] = conditionObj["a"].toVariant();
+			Condition condition = static_cast<Condition>(conditionObj["Condition"].toInt());
+			m_conditions[condition] = conditionObj["Argument"].toVariant();
 		}
 	}
 }
@@ -86,23 +86,23 @@ QJsonObject AccessControlRule::toJson() const
 {
 	QJsonObject json;
 
-	json["n"] = m_name;
-	json["d"] = m_description;
-	json["a"] = m_action;
-	json["e"] = m_entity;
-	json["i"] = m_invertConditions;
+	json["Name"] = m_name;
+	json["Description"] = m_description;
+	json["Action"] = m_action;
+	json["Entity"] = m_entity;
+	json["InvertConditions"] = m_invertConditions;
 
 	QJsonArray conditions;
 
 	for( auto condition : m_conditions.keys() )
 	{
 		QJsonObject conditionObj;
-		conditionObj["c"] = condition;
-		conditionObj["a"] = QJsonValue::fromVariant( m_conditions[condition] );
+		conditionObj["Condition"] = condition;
+		conditionObj["Argument"] = QJsonValue::fromVariant( m_conditions[condition] );
 		conditions.append( conditionObj );
 	}
 
-	json["c"] = conditions;
+	json["Conditions"] = conditions;
 
 	return json;
 }
