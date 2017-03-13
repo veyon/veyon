@@ -150,6 +150,11 @@ bool XmlStore::isWritable() const
 
 
 
+void XmlStore::clear()
+{
+}
+
+
 
 QString XmlStore::configurationFilePath() const
 {
@@ -175,8 +180,4 @@ QString XmlStore::configurationFilePath() const
 }
 
 
-
-
-
 }
-

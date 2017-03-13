@@ -152,6 +152,15 @@ bool JsonStore::isWritable() const
 
 
 
+void JsonStore::clear()
+{
+	// truncate configuration file
+	QFile outfile( configurationFilePath() );
+	outfile.open( QIODevice::WriteOnly | QIODevice::Truncate );
+}
+
+
+
 QString JsonStore::configurationFilePath() const
 {
 	if( m_file.isEmpty() == false )

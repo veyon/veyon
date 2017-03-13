@@ -157,6 +157,15 @@ bool LocalStore::isWritable() const
 
 
 
+void LocalStore::clear()
+{
+	QSettings* s = createSettingsObject();
+	s->clear();
+	delete s;
+}
+
+
+
 QSettings *LocalStore::createSettingsObject() const
 {
 	return new QSettings( scope() == System ?

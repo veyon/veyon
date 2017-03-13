@@ -40,6 +40,7 @@ public:
 	void load( Object *obj ) override;
 	void flush( Object *obj ) override;
 	bool isWritable() const override;
+	void clear() override;
 
 	QSettings *createSettingsObject() const;
 
