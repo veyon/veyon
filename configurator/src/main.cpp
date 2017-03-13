@@ -100,6 +100,8 @@ int applySettings( QStringListIterator& argIt )
 	return 0;
 }
 
+
+
 int setConfigurationValue( QStringListIterator& argIt )
 {
 	if( !argIt.hasNext() )
@@ -316,6 +318,10 @@ int main( int argc, char **argv )
 		else if( a == "-setconfigvalue" || a == "-s" )
 		{
 			return setConfigurationValue( argIt );
+		}
+		else if( a == "-clearconfiguration" )
+		{
+			return ConfiguratorCore::clearConfiguration();
 		}
 		else if( a == "-role" )
 		{

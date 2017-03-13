@@ -228,4 +228,17 @@ void criticalMessage( const QString &title, const QString &msg )
 }
 
 
+
+int clearConfiguration()
+{
+	// clear global configuration
+	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+
+	informationMessage( MainWindow::tr( "Configuration cleared" ),
+						MainWindow::tr( "The local configuration has been cleared successfully." ) );
+
+	return 0;
+}
+
+
 }
