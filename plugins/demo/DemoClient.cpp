@@ -60,7 +60,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	RfbLZORLE();
 	RfbItalcCursor();
 
-	m_vncView = new VncView( host + ":" + QString::number( ItalcCore::config().demoServerPort() ), m_toplevel, VncView::DemoMode );
+	m_vncView = new VncView( host, ItalcCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
 
 	QVBoxLayout * toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setMargin( 0 );

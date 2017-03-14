@@ -47,7 +47,7 @@ public:
 	} ;
 	typedef Modes Mode;
 
-	VncView( const QString &host, QWidget *parent, Mode mode );
+	VncView( const QString &host, int port, QWidget *parent, Mode mode );
 	virtual ~VncView();
 
 	inline bool isViewOnly() const

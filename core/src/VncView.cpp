@@ -1,7 +1,7 @@
 /*
  * VncView.cpp - VNC viewer widget
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -36,7 +36,7 @@
 
 
 
-VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
+VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
 	m_vncConn( new ItalcVncConnection( QCoreApplication::instance() ) ),
 	m_mode( mode ),
@@ -56,6 +56,8 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
 {
 	m_vncConn->setHost( host );
+	m_vncConn->setPort( port );
+
 	if( m_mode == DemoMode )
 	{
 		m_vncConn->setQuality( ItalcVncConnection::DemoClientQuality );

@@ -419,11 +419,6 @@ void ItalcVncConnection::setHost( const QString &host )
 {
 	QMutexLocker locker( &m_mutex );
 	m_host = host;
-	if( m_host.contains( ':' ) )
-	{
-		m_port = m_host.section( ':', 1, 1 ).toInt();
-		m_host = m_host.section( ':', 0, 0 );
-	}
 }
 
 
@@ -539,14 +534,17 @@ void ItalcVncConnection::doConnection()
 
 		m_mutex.lock();
 
-		if( m_port < 0 ) // port is invalid or empty...
+		if( m_port < 0 ) // use default port?
 		{
-			m_port = PortOffsetComputerControlServer;
+			m_cl->serverPort = ItalcCore::config().computerControlServerPort();
+		}
+		else
+		{
+			m_cl->serverPort = m_port;
 		}
 
 		free( m_cl->serverHost );
 		m_cl->serverHost = strdup( m_host.toUtf8().constData() );
-		m_cl->serverPort = m_port;
 
 		m_mutex.unlock();
 
