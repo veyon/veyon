@@ -90,6 +90,7 @@
 
 
 /* x11vnc configuration */
+#define ITALC_IPv6 1
 #cmakedefine ITALC_ALLOW24BPP
 #cmakedefine ITALC_BACKCHANNEL
 #cmakedefine ITALC_HAVE_X11 1
