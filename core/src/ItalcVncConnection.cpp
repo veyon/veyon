@@ -419,6 +419,15 @@ void ItalcVncConnection::setHost( const QString &host )
 {
 	QMutexLocker locker( &m_mutex );
 	m_host = host;
+
+	// is IPv6-mapped IPv4 address?
+	QRegExp rx( "::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)" );
+	if( rx.indexIn( m_host ) == 0 )
+	{
+		// then use plain IPv4 address as libvncclient cannot handle
+		// IPv6-mapped IPv4 addresses on Windows properly
+		m_host = rx.cap( 1 );
+	}
 }
 
 
