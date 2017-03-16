@@ -61,8 +61,9 @@ int main( int argc, char **argv )
 	}
 
 	QString pluginName = pluginManager.pluginName( featureManager.pluginUid( *workerFeature ) );
+	QString featureUid = workerFeature->uid().toString().replace( "{", "" ).replace( "}", "" );
 
-	ItalcCore core( &app, "FeatureWorker" + pluginName );
+	ItalcCore core( &app, "FeatureWorker" + pluginName + "-" + featureUid );
 
 	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
 
