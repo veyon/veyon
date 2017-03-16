@@ -99,8 +99,6 @@ public:
 		return state() == Connected && isRunning();
 	}
 
-	bool waitForConnected( int timeout = 10000 ) const;
-
 	const QString &host() const
 	{
 		return m_host;

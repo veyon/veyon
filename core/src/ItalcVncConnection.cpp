@@ -25,7 +25,6 @@
  *
  */
 
-#include <QCoreApplication>
 #include <QHostAddress>
 #include <QMutexLocker>
 
@@ -443,26 +442,6 @@ void ItalcVncConnection::setPort( int port )
 	QMutexLocker locker( &m_mutex );
 	m_port = port;
 }
-
-
-
-
-bool ItalcVncConnection::waitForConnected( int timeout ) const
-{
-	QTime startTime;
-	startTime.start();
-
-	while( !isConnected() && startTime.elapsed() < timeout )
-	{
-		if( QCoreApplication::instance() )
-		{
-			QCoreApplication::processEvents();
-		}
-	}
-
-	return isConnected();
-}
-
 
 
 
