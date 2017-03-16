@@ -123,7 +123,8 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 
 	if( strcmp( valname, "HTTPConnect" ) == 0 )
 	{
-		return false;
+		*out = 0;
+		return true;
 	}
 
 	if( strcmp( valname, "PortNumber" ) == 0 )
