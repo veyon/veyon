@@ -15,6 +15,12 @@ p, li { white-space: pre-wrap; }
    </item>
    <item>
     <widget class="QLabel" name="previewLbl">
+     <property name="minimumSize">
+      <size>
+       <width>1</width>
+       <height>1</height>
+      </size>
+     </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>

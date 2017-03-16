@@ -42,6 +42,9 @@ public:
 	virtual ~SnapshotManagementWidget();
 
 
+protected:
+	void resizeEvent( QResizeEvent* event ) override;
+
 private slots:
 	void snapshotSelected( const QModelIndex &idx );
 	void snapshotDoubleClicked( const QModelIndex &idx );

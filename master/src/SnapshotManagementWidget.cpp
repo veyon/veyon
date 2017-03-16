@@ -70,14 +70,24 @@ SnapshotManagementWidget::~SnapshotManagementWidget()
 
 
 
+void SnapshotManagementWidget::resizeEvent( QResizeEvent* event )
+{
+	int maxWidth = contentsRect().width();
+	int maxHeight = maxWidth * 9 / 16;
+
+	ui->previewLbl->setMaximumSize( maxWidth, maxHeight );
+
+	QWidget::resizeEvent( event );
+}
+
+
+
 
 void SnapshotManagementWidget::snapshotSelected( const QModelIndex &idx )
 {
 	Snapshot s( m_fsModel.filePath( idx ) );
 
 	ui->previewLbl->setPixmap( s.pixmap() );
-	ui->previewLbl->setMaximumWidth( window()->width()/2 );
-	ui->previewLbl->setMaximumHeight( window()->height()/2 );
 
 	ui->userLbl->setText( s.user() );
 	ui->hostLbl->setText( s.host() );
