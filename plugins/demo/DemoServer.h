@@ -84,7 +84,7 @@ private:
 // the demo-server creates an instance of this class for each client, i.e.
 // each client is connected to a different server-thread for a maximum
 // performance
-class DemoServerClient : public QThread
+class DemoServerClient : public QObject
 {
 	Q_OBJECT
 public:
@@ -92,6 +92,8 @@ public:
 							DemoServer *parent );
 	virtual ~DemoServerClient();
 
+public slots:
+	void start();
 
 private slots:
 	// connected to imageUpdated(...)-signal of demo-server's
@@ -108,9 +110,13 @@ private slots:
 	// in DemoServerClient-thread-context as we're writing to socket
 	void moveCursor();
 
-	// connected to readyRead()-signal of our client-socket and called as
+	// connected to readyRead() signal of our client-socket and called as
 	// soon as the clients sends something (e.g. an update-request)
 	void processClient();
+
+	bool processProtocol();
+
+	bool processMessage();
 
 	// actually sends framebuffer update - if there's nothing to send but
 	// an update response pending, it will start a singleshot timer
@@ -121,12 +127,20 @@ private:
 		MaxRects = 100
 	};
 
-	// thread-entry-point - does some initializations and then enters
-	// event-loop of thread
-	virtual void run();
+	typedef enum ProtocolStates
+	{
+		ProtocolInvalid,
+		ProtocolVersion,
+		ProtocolSecurityType,
+		ProtocolAuthTypes,
+		ProtocolToken,
+		ProtocolClientInitMessage,
+		ProtocolRunning,
+	} ProtocolState;
 
-	qint64 writeExact( const char* buffer, qint64 size );
 	qint64 readExact( char* buffer, qint64 size );
+
+	ProtocolState m_protocolState;
 
 	QString m_demoAccessToken;
 

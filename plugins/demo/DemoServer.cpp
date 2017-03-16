@@ -68,6 +68,7 @@ DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccess
 	m_vncConn.setPort( ItalcCore::config().computerControlServerPort() );
 	m_vncConn.setItalcAuthType( RfbItalcAuth::Token );
 	m_vncConn.setQuality( ItalcVncConnection::DemoServerQuality );
+	m_vncConn.setFramebufferUpdateInterval( 100 );
 	m_vncConn.start();
 
 	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
@@ -119,7 +120,14 @@ void DemoServer::updateInitialCursorShape( const QImage &img, int x, int y )
 
 void DemoServer::incomingConnection( qintptr sock )
 {
-	new DemoServerClient( m_demoAccessToken, sock, &m_vncConn, this );
+	QThread* clientThead = new QThread( this );
+	auto client = new DemoServerClient( m_demoAccessToken, sock, &m_vncConn, this );
+	client->moveToThread( clientThead );
+
+	connect( clientThead, &QThread::started, client, &DemoServerClient::start );
+	connect( clientThead, &QThread::finished, client, &DemoServerClient::deleteLater );
+
+	clientThead->start();
 }
 
 
@@ -131,7 +139,8 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 									qintptr sock,
 									const ItalcVncConnection *vncConn,
 									DemoServer *parent ) :
-	QThread( parent ),
+	QObject(),
+	m_protocolState( ProtocolInvalid ),
 	m_demoAccessToken( demoAccessToken ),
 	m_demoServer( parent ),
 	m_dataMutex( QMutex::Recursive ),
@@ -142,7 +151,7 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 	m_cursorHotY( 0 ),
 	m_cursorShapeChanged( false ),
 	m_socketDescriptor( sock ),
-	m_socket( NULL ),
+	m_socket( nullptr ),
 	m_vncConn( vncConn ),
 	m_otherEndianess( false ),
 	m_lzoWorkMem( new char[sizeof( lzo_align_t ) *
@@ -155,7 +164,6 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 	m_lzoOutBuf( NULL ),
 	m_currentLzoOutBufSize( 0 )
 {
-	start();
 }
 
 
@@ -163,8 +171,7 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 
 DemoServerClient::~DemoServerClient()
 {
-	exit();
-	wait();
+	delete m_socket;
 
 	if( m_lzoOutBuf )
 	{
@@ -176,6 +183,37 @@ DemoServerClient::~DemoServerClient()
 	}
 	delete[] m_lzoWorkMem;
 	delete[] m_rawBuf;
+}
+
+
+
+void DemoServerClient::start()
+{
+	if( m_socket )
+	{
+		qCritical( "DemoServerClient already running!" );
+		return;
+	}
+
+	m_socket = new QTcpSocket( this );
+
+	if( !m_socket->setSocketDescriptor( m_socketDescriptor ) )
+	{
+		qCritical( "DemoServerClient::run(): could not set socket descriptor - aborting" );
+		deleteLater();
+		return;
+	}
+
+	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerClient::processClient );
+	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerClient::deleteLater );
+
+	rfbProtocolVersionMsg pv;
+	sprintf( pv, rfbProtocolVersionFormat, rfbProtocolMajorVersion,
+			 rfbProtocolMinorVersion );
+
+	m_socket->write( (const char *) pv, sz_rfbProtocolVersionMsg );
+
+	m_protocolState = ProtocolVersion;
 }
 
 
@@ -264,7 +302,7 @@ void DemoServerClient::sendUpdates()
 	{
 		if( m_updateRequested )
 		{
-			QTimer::singleShot( 50, this, SLOT( sendUpdates() ) );
+			QTimer::singleShot( 50, this, &DemoServerClient::sendUpdates );
 		}
 		return;
 	}
@@ -453,8 +491,6 @@ void DemoServerClient::sendUpdates()
 		VariantStream( m_socket ).write( QVariant::fromValue( cur ) );
 	}
 
-	m_socket->flush();
-
 	// reset vars
 	m_changedRects.clear();
 	m_cursorShapeChanged = false;
@@ -464,7 +500,7 @@ void DemoServerClient::sendUpdates()
 	{
 		// make sure to send an update once more even if there has
 		// been no update request
-		QTimer::singleShot( 1000, this, SLOT( sendUpdates() ) );
+		QTimer::singleShot( 1000, this, &DemoServerClient::sendUpdates );
 	}
 
 	m_updateRequested = false;
@@ -473,6 +509,182 @@ void DemoServerClient::sendUpdates()
 
 
 void DemoServerClient::processClient()
+{
+	while( m_socket->bytesAvailable() && processProtocol() )
+	{
+	}
+}
+
+
+
+bool DemoServerClient::processProtocol()
+{
+	switch( m_protocolState )
+	{
+	case ProtocolVersion:
+		if( m_socket->bytesAvailable() >= sz_rfbProtocolVersionMsg )
+		{
+			m_socket->read( sz_rfbProtocolVersionMsg );
+
+			const uint8_t secTypeList[2] = { 1, rfbSecTypeItalc } ;
+			m_socket->write( (const char *) secTypeList, sizeof( secTypeList ) );
+			m_protocolState = ProtocolSecurityType;
+
+			return true;
+		}
+		break;
+
+	case ProtocolSecurityType:
+		if( m_socket->bytesAvailable() >= 1 )
+		{
+			uint8_t chosen = 0;
+			m_socket->read( (char *) &chosen, sizeof( chosen ) );
+
+			if( chosen != rfbSecTypeItalc )
+			{
+				qCritical( "DemoServerClient:::run(): protocol initialization failed" );
+				deleteLater();
+				return false;
+			}
+
+			// send list of supported authentication types
+			VariantArrayMessage supportedAuthTypesMessage( m_socket );
+			supportedAuthTypesMessage.write( 1 );
+			supportedAuthTypesMessage.write( RfbItalcAuth::Token );
+			supportedAuthTypesMessage.send();
+
+			m_protocolState = ProtocolAuthTypes;
+
+			return true;
+		}
+		break;
+
+	case ProtocolAuthTypes:
+	{
+		VariantArrayMessage authTypeMessageResponse( m_socket );
+		if( authTypeMessageResponse.isReadyForReceive() && authTypeMessageResponse.receive() )
+		{
+			auto chosenItalcAuthType = authTypeMessageResponse.read().value<RfbItalcAuth::Type>();
+
+			if( chosenItalcAuthType != RfbItalcAuth::Token )
+			{
+				qWarning("DemoServerClient::run(): client did not chose token authentication\n");
+				deleteLater();
+				return false;
+			}
+
+			const QString username = authTypeMessageResponse.read().toString();
+			qDebug() << "DemoServerClient::run(): authenticate for user" << username;
+
+			// send auth type ack so we can receive token later
+			VariantArrayMessage( m_socket ).send();
+
+			m_protocolState = ProtocolToken;
+
+			return true;
+		}
+		break;
+	}
+
+	case ProtocolToken:
+	{
+		VariantArrayMessage tokenMessage( m_socket );
+		if( tokenMessage.isReadyForReceive() && tokenMessage.receive() )
+		{
+			const QString token = tokenMessage.read().toString();
+			if( token.isEmpty() || token != m_demoAccessToken )
+			{
+				qWarning("DemoServerClient::run(): client sent empty or invalid token\n");
+				deleteLater();
+				return false;
+			}
+
+			uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
+
+			m_socket->write( (char *) &authResult, sizeof( authResult ) );
+
+			m_protocolState = ProtocolClientInitMessage;
+
+			return true;
+		}
+		break;
+	}
+
+	case ProtocolClientInitMessage:
+		if( m_socket->bytesAvailable() >= sz_rfbClientInitMsg )
+		{
+			rfbClientInitMsg ci;
+			m_socket->read( (char *) &ci, sz_rfbClientInitMsg );
+
+			rfbServerInitMsg si = m_vncConn->getRfbClient()->si;
+			si.framebufferWidth = qToBigEndian<uint16_t>( si.framebufferWidth );
+			si.framebufferHeight = qToBigEndian<uint16_t>( si.framebufferHeight );
+			si.format.redMax = qToBigEndian<uint16_t>( 255 );
+			si.format.greenMax = qToBigEndian<uint16_t>( 255 );
+			si.format.blueMax = qToBigEndian<uint16_t>( 255 );
+			si.format.redShift = 16;
+			si.format.greenShift = 8;
+			si.format.blueShift = 0;
+			si.format.bitsPerPixel = 32;
+			si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian ) ? 1 : 0;
+			si.nameLength = qToBigEndian<uint32_t>( 4 );
+			if( m_socket->write( ( const char *) &si, sz_rfbServerInitMsg ) != sz_rfbServerInitMsg )
+			{
+				qWarning( "failed writing rfbServerInitMsg" );
+				deleteLater();
+				return false;
+			}
+
+			if( m_socket->write( "DEMO", 4 ) != 4 )
+			{
+				qWarning( "failed writing desktop name" );
+				deleteLater();
+				return false;
+			}
+
+			connect( m_vncConn, &ItalcVncConnection::cursorShapeUpdated,
+					 this, &DemoServerClient::updateCursorShape, Qt::QueuedConnection );
+
+			connect( m_vncConn, &ItalcVncConnection::imageUpdated,
+					 this, &DemoServerClient::updateRect, Qt::QueuedConnection );
+
+			// TODO
+			//updateCursorShape( m_demoServer->initialCursorShape(), 0, 0 );
+
+			// first time send a key-frame
+			QSize s = m_vncConn->framebufferSize();
+			updateRect( 0, 0, s.width(), s.height() );
+
+			// TODO
+			/*	QTimer t;
+	connect( &t, SIGNAL( timeout() ),
+			this, SLOT( moveCursor() ), Qt::DirectConnection );
+	t.start( CURSOR_UPDATE_TIME );*/
+
+			/*	QTimer t2;
+	connect( &t2, SIGNAL( timeout() ),
+			this, SLOT( processClient() ), Qt::DirectConnection );
+	t2.start( 2*CURSOR_UPDATE_TIME );*/
+
+			m_protocolState = ProtocolRunning;
+
+			return true;
+		}
+		break;
+
+	case ProtocolRunning:
+		return processMessage();
+
+	default:
+		qWarning( "DemoServerClient: unhandled protocol state!" );
+		break;
+	}
+
+	return false;
+}
+
+
+bool DemoServerClient::processMessage()
 {
 	m_dataMutex.lock();
 	while( m_socket->bytesAvailable() > 0 )
@@ -518,9 +730,9 @@ void DemoServerClient::processClient()
 			m_updateRequested = true;
 			break;
 		default:
-			qWarning( "DemoServerClient::processClient(): "
-					  "ignoring msg type %d", msg.type );
-			continue;
+			qWarning( "DemoServerClient::processClient(): unknown message type %d", msg.type );
+			deleteLater();
+			return false;
 		}
 
 	}
@@ -531,160 +743,8 @@ void DemoServerClient::processClient()
 	}
 
 	m_dataMutex.unlock();
-}
 
-
-
-
-void DemoServerClient::run()
-{
-	QMutexLocker ml( &m_dataMutex );
-
-	QTcpSocket _socket;
-	m_socket = &_socket;
-	if( !m_socket->setSocketDescriptor( m_socketDescriptor ) )
-	{
-		qCritical( "DemoServerClient::run(): could not set socket descriptor - aborting" );
-		deleteLater();
-		return;
-	}
-
-	rfbProtocolVersionMsg pv;
-	sprintf( pv, rfbProtocolVersionFormat, rfbProtocolMajorVersion,
-			 rfbProtocolMinorVersion );
-
-	writeExact( pv, sz_rfbProtocolVersionMsg );
-	readExact( pv, sz_rfbProtocolVersionMsg );
-
-	const uint8_t secTypeList[2] = { 1, rfbSecTypeItalc } ;
-	writeExact( (const char *) secTypeList, sizeof( secTypeList ) );
-
-	uint8_t chosen = 0;
-	readExact( (char *) &chosen, sizeof( chosen ) );
-
-	if( chosen != rfbSecTypeItalc )
-	{
-		qCritical( "DemoServerClient:::run(): protocol initialization failed" );
-		deleteLater();
-		return;
-	}
-
-	// send list of supported authentication types
-	VariantArrayMessage supportedAuthTypesMessage( m_socket );
-	supportedAuthTypesMessage.write( 1 );
-	supportedAuthTypesMessage.write( RfbItalcAuth::Token );
-	supportedAuthTypesMessage.send();
-
-	VariantArrayMessage authTypeMessageResponse( m_socket );
-	if( ( authTypeMessageResponse.isReadyForReceive() == false &&
-			m_socket->waitForReadyRead() == false ) ||
-			authTypeMessageResponse.receive() == false )
-	{
-		qWarning("DemoServerClient::run(): could not receive auth type message response\n");
-		deleteLater();
-		return;
-	}
-
-	auto chosenItalcAuthType = authTypeMessageResponse.read().value<RfbItalcAuth::Type>();
-
-	if( chosenItalcAuthType != RfbItalcAuth::Token )
-	{
-		qWarning("DemoServerClient::run(): client did not chose token authentication\n");
-		deleteLater();
-		return;
-	}
-
-	const QString username = authTypeMessageResponse.read().toString();
-	qDebug() << "DemoServerClient::run(): authenticate for user" << username;
-
-	VariantArrayMessage tokenMessage( m_socket );
-	if( ( tokenMessage.isReadyForReceive() == false &&
-		  m_socket->waitForReadyRead() == false ) ||
-			tokenMessage.receive() == false )
-	{
-		qDebug() << "DemoServerClient::run(): could not receive token";
-	}
-
-	const QString token = tokenMessage.read().toString();
-	if( token.isEmpty() || token != m_demoAccessToken )
-	{
-		qWarning("DemoServerClient::run(): client sent empty or invalid token\n");
-		deleteLater();
-		return;
-	}
-
-	uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
-
-	writeExact( (char *) &authResult, sizeof( authResult ) );
-
-	rfbClientInitMsg ci;
-
-	if( readExact( (char *) &ci, sz_rfbClientInitMsg ) != sz_rfbClientInitMsg )
-	{
-		qWarning( "failed reading rfbClientInitMsg" );
-		deleteLater();
-		return;
-	}
-
-	rfbServerInitMsg si = m_vncConn->getRfbClient()->si;
-	si.framebufferWidth = qToBigEndian<uint16_t>( si.framebufferWidth );
-	si.framebufferHeight = qToBigEndian<uint16_t>( si.framebufferHeight );
-	si.format.redMax = qToBigEndian<uint16_t>( si.format.redMax );
-	si.format.greenMax = qToBigEndian<uint16_t>( si.format.greenMax );
-	si.format.blueMax = qToBigEndian<uint16_t>( si.format.blueMax );
-	si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian ) ? 1 : 0;
-	si.nameLength = 0;
-	if( writeExact( ( const char *) &si, sz_rfbServerInitMsg ) != sz_rfbServerInitMsg )
-	{
-		qWarning( "failed writing rfbServerInitMsg" );
-		deleteLater();
-		return;
-	}
-
-
-	connect( m_vncConn, &ItalcVncConnection::cursorShapeUpdated,
-			 this, &DemoServerClient::updateCursorShape, Qt::QueuedConnection );
-
-	connect( m_vncConn, &ItalcVncConnection::imageUpdated,
-			 this, &DemoServerClient::updateRect, Qt::QueuedConnection );
-
-	ml.unlock();
-
-	// TODO
-	//updateCursorShape( m_demoServer->initialCursorShape(), 0, 0 );
-
-	// first time send a key-frame
-	QSize s = m_vncConn->framebufferSize();
-	updateRect( 0, 0, s.width(), s.height() );
-
-	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerClient::processClient, Qt::DirectConnection );
-	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerClient::quit );
-
-	// TODO
-	/*	QTimer t;
-	connect( &t, SIGNAL( timeout() ),
-			this, SLOT( moveCursor() ), Qt::DirectConnection );
-	t.start( CURSOR_UPDATE_TIME );*/
-
-	/*	QTimer t2;
-	connect( &t2, SIGNAL( timeout() ),
-			this, SLOT( processClient() ), Qt::DirectConnection );
-	t2.start( 2*CURSOR_UPDATE_TIME );*/
-
-	// now run our own event-loop for optimal scheduling
-	exec();
-
-	deleteLater();
-}
-
-
-
-qint64 DemoServerClient::writeExact( const char* buffer, qint64 size )
-{
-	qint64 result = m_socket->write( buffer, size );
-	m_socket->flush();
-
-	return result;
+	return false;	// everything processed - do not call again until new data is available
 }
 
 
