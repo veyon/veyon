@@ -71,6 +71,7 @@ public:
 
 	void addRoom( const QString& room );
 
+	bool saveComputerAndUsersList( const QString& fileName );
 
 signals:
 	void computerListAboutToBeReset();

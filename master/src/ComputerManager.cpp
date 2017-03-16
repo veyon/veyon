@@ -22,6 +22,7 @@
  *
  */
 
+#include <QFile>
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QMessageBox>
@@ -118,6 +119,41 @@ void ComputerManager::addRoom( const QString& room )
 	m_roomFilterList.append( room );
 
 	updateRoomFilterList();
+}
+
+
+
+bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
+{
+	QStringList lines( tr( "Computer name;Host name;User" ) );
+
+	for( auto& computer : m_computerList )
+	{
+		QModelIndex networkObjectIndex = findNetworkObject( computer.networkObjectUid() );
+		if( networkObjectIndex.isValid() )
+		{
+			// create index for user column
+			networkObjectIndex = m_networkObjectOverlayDataModel->
+					index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
+			// fetch user
+			QString user = m_networkObjectOverlayDataModel->data( networkObjectIndex ).toString();
+			// create new line with computer and user
+			lines += computer.name() + ";" + computer.hostAddress() + ";" + user;
+		}
+	}
+
+	// append empty string to generate final newline at end of file
+	lines += QString();
+
+	QFile outputFile( fileName );
+	if( outputFile.open( QFile::WriteOnly | QFile::Truncate ) == false )
+	{
+		return false;
+	}
+
+	outputFile.write( lines.join( "\r\n" ).toUtf8() );
+
+	return true;
 }
 
 
