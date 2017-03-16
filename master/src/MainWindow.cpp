@@ -25,6 +25,7 @@
 #include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
+#include <QSplitter>
 
 #include "AboutDialog.h"
 #include "MainWindow.h"
@@ -70,15 +71,21 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
-	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), ui->centralWidget );
-	m_snapshotManagementWidget = new SnapshotManagementWidget( ui->centralWidget );
+	QSplitter* splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
+	splitter->setChildrenCollapsible( false );
+
+	ui->centralLayout->addWidget( splitter );
+
+	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), splitter );
+	m_snapshotManagementWidget = new SnapshotManagementWidget( splitter );
+
+	splitter->addWidget( m_computerManagementView );
+	splitter->addWidget( m_snapshotManagementWidget );
+	splitter->addWidget( ui->computerMonitoringView );
 
 	// hide views per default and connect related button
 	m_computerManagementView->hide();
 	m_snapshotManagementWidget->hide();
-
-	ui->centralLayout->insertWidget( 0, m_snapshotManagementWidget );
-	ui->centralLayout->insertWidget( 0, m_computerManagementView );
 
 	connect( ui->computerManagementButton, &QAbstractButton::toggled,
 			 m_computerManagementView, &QWidget::setVisible );
