@@ -802,6 +802,9 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 	authReplyMessage.send();
 
+	VariantArrayMessage authAckMessage( &socketDevice );
+	authAckMessage.receive();
+
 	switch( chosenAuthType )
 	{
 	case RfbItalcAuth::DSA:

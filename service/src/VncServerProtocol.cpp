@@ -218,6 +218,9 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 		m_client->setProtocolState( VncServerClient::Authenticating );
 
+		// send auth ack message
+		VariantArrayMessage( m_socket ).send();
+
 		// init authentication
 		VariantArrayMessage dummyMessage( m_socket );
 		processAuthentication( dummyMessage );
