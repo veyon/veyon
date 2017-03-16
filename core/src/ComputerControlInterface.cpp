@@ -74,6 +74,10 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSession
 		connect( m_coreConnection, &ItalcCoreConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
 	}
+	else
+	{
+		qWarning( "ComputerControlInterface::start(): computer host address is empty!" );
+	}
 }
 
 
