@@ -22,6 +22,9 @@
  *
  */
 
+#include <QFileDialog>
+#include <QMessageBox>
+
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
 #include "ItalcConfiguration.h"
@@ -59,5 +62,22 @@ void ComputerManagementView::addRoom()
 	if( dialog.exec() && dialog.selectedRoom().isEmpty() == false )
 	{
 		m_computerManager.addRoom( dialog.selectedRoom() );
+	}
+}
+
+
+
+void ComputerManagementView::saveList()
+{
+	QString fileName = QFileDialog::getSaveFileName( this, tr( "Select output filename" ),
+													 QDir::homePath(), tr( "CSV files (*.csv)" ) );
+	if( fileName.isEmpty() == false )
+	{
+		if( m_computerManager.saveComputerAndUsersList( fileName ) == false )
+		{
+			QMessageBox::critical( this, tr( "File error"),
+								   tr( "Could not write the computer and users list to %1! "
+									   "Please check the file access permissions." ).arg( fileName ) );
+		}
 	}
 }

@@ -68,8 +68,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>saveListButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ComputerManagementView</receiver>
+   <slot>saveList()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>142</x>
+     <y>219</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>142</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addRoom()</slot>
+  <slot>saveList()</slot>
  </slots>
 </ui>

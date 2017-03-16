@@ -42,6 +42,7 @@ public:
 
 private slots:
 	void addRoom();
+	void saveList();
 
 private:
 	Ui::ComputerManagementView *ui;
