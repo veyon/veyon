@@ -25,8 +25,9 @@
  *
  */
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QMutexLocker>
+#include <QCoreApplication>
+#include <QHostAddress>
+#include <QMutexLocker>
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
@@ -427,6 +428,10 @@ void ItalcVncConnection::setHost( const QString &host )
 		// then use plain IPv4 address as libvncclient cannot handle
 		// IPv6-mapped IPv4 addresses on Windows properly
 		m_host = rx.cap( 1 );
+	}
+	else if( m_host == "::1" )
+	{
+		m_host = QHostAddress( QHostAddress::LocalHost ).toString();
 	}
 }
 
