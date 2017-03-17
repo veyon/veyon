@@ -1,5 +1,5 @@
 /*
- * StringListFilterProxyModel.cpp - implementation of StringListFilterProxyModel
+ * NetworkObjectFilterProxyModel.h - header file for NetworkObjectFilterProxyModel
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,33 +22,26 @@
  *
  */
 
-#include "StringListFilterProxyModel.h"
+#ifndef NETWORK_OBJECT_FILTER_PROXY_MODEL_H
+#define NETWORK_OBJECT_FILTER_PROXY_MODEL_H
 
-StringListFilterProxyModel::StringListFilterProxyModel( QObject* parent ) :
-	QSortFilterProxyModel( parent ),
-	m_stringList()
+#include <QSortFilterProxyModel>
+
+class NetworkObjectFilterProxyModel : public QSortFilterProxyModel
 {
-}
+public:
+	NetworkObjectFilterProxyModel( QObject* parent );
 
+	void setGroupFilter( const QStringList& groupList );
+	void setComputerExcludeFilter( const QStringList& computerExcludeList );
 
+protected:
+	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
 
-void StringListFilterProxyModel::setStringList( const QStringList& stringList )
-{
-	beginResetModel();
-	m_stringList = stringList;
-	endResetModel();
-}
+private:
+	QStringList m_groupList;
+	QStringList m_computerExcludeList;
 
+};
 
-
-bool StringListFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
-{
-	Q_UNUSED(sourceParent);
-
-	if( sourceParent.isValid() || m_stringList.isEmpty() )
-	{
-		return true;
-	}
-
-	return m_stringList.contains( sourceModel()->data( sourceModel()->index( sourceRow, 0 ) ).toString() );
-}
+#endif // NETWORK_OBJECT_FILTER_PROXY_MODEL_H

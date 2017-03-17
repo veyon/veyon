@@ -31,8 +31,8 @@
 class QHostAddress;
 class BuiltinFeatures;
 class FeatureManager;
+class NetworkObjectFilterProxyModel;
 class NetworkObjectOverlayDataModel;
-class StringListFilterProxyModel;
 class UserConfig;
 
 class ComputerManager : public QObject
@@ -111,7 +111,7 @@ private:
 	QAbstractItemModel* m_networkObjectModel;
 	NetworkObjectOverlayDataModel* m_networkObjectOverlayDataModel;
 	CheckableItemProxyModel* m_computerTreeModel;
-	StringListFilterProxyModel* m_networkObjectSortFilterProxyModel;
+	NetworkObjectFilterProxyModel* m_networkObjectFilterProxyModel;
 
 	QStringList m_roomFilterList;
 	ComputerList m_computerList;

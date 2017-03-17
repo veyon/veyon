@@ -34,9 +34,9 @@
 #include "ItalcConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectModelFactory.h"
+#include "NetworkObjectFilterProxyModel.h"
 #include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectTreeModel.h"
-#include "StringListFilterProxyModel.h"
 #include "UserConfig.h"
 #include "UserSessionControl.h"
 
@@ -52,11 +52,16 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
-	m_networkObjectSortFilterProxyModel( new StringListFilterProxyModel( this ) )
+	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) )
 {
 	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
-	m_networkObjectSortFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
-	m_computerTreeModel->setSourceModel( m_networkObjectSortFilterProxyModel );
+	m_networkObjectFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
+	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
+
+	if( ItalcCore::config().localComputerHidden() )
+	{
+		m_networkObjectFilterProxyModel->setComputerExcludeFilter( QStringList( QHostInfo::localHostName() ) );
+	}
 
 	QTimer* computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
@@ -268,7 +273,7 @@ void ComputerManager::updateRoomFilterList()
 {
 	if( ItalcCore::config().onlyCurrentRoomVisible() )
 	{
-		m_networkObjectSortFilterProxyModel->setStringList( m_roomFilterList );
+		m_networkObjectFilterProxyModel->setGroupFilter( m_roomFilterList );
 	}
 }
 
