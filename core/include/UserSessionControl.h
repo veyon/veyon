@@ -38,7 +38,7 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return "a4fffc03-0834-49c4-b13b-9462a18f5360";
+		return "80580500-2e59-4297-9e35-e53959b028cd";
 	}
 
 	QString version() const override
@@ -104,6 +104,7 @@ private:
 	};
 
 	Feature m_userSessionInfoFeature;
+	Feature m_userLogoutFeature;
 	FeatureList m_features;
 
 };

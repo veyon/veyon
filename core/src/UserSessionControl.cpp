@@ -34,9 +34,15 @@ UserSessionControl::UserSessionControl() :
 	m_userSessionInfoFeature( Feature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 									   Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
 									   QString(), QString(), QString() ) ),
+	m_userLogoutFeature( Feature::Action | Feature::Master | Feature::Service,
+						 Feature::Uid( "7311d43d-ab53-439e-a03a-8cb25f7ed526" ),
+						 tr( "Logout user" ), QString(),
+						 tr( "Click this button to logout users from all computers." ),
+						 ":/resources/system-suspend-hibernate.png" ),
 	m_features()
 {
 	m_features += m_userSessionInfoFeature;
+	m_features += m_userLogoutFeature;
 }
 
 
@@ -54,10 +60,14 @@ bool UserSessionControl::startMasterFeature( const Feature& feature,
 											 ComputerControlInterface& localComputerControlInterface,
 											 QWidget* parent )
 {
-	Q_UNUSED(feature);
 	Q_UNUSED(localComputerControlInterface);
-	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
+
+	if( feature == m_userLogoutFeature )
+	{
+		return sendFeatureMessage( FeatureMessage( m_userLogoutFeature.uid(), FeatureMessage::DefaultCommand ),
+								   computerControlInterfaces );
+	}
 
 	return false;
 }
@@ -113,6 +123,10 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		reply.send( message.ioDevice() );
 
 		return true;
+	}
+	else if( m_userLogoutFeature.uid() == message.featureUid() )
+	{
+		LocalSystem::logoutUser();
 	}
 
 	return false;

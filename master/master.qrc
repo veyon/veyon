@@ -25,7 +25,6 @@
         <file>resources/window-duplicate.png</file>
         <file>resources/edit-find.png</file>
         <file>resources/dot-green.png</file>
-        <file>resources/system-suspend-hibernate.png</file>
         <file>resources/user-group-new.png</file>
         <file>resources/toolbar-background.png</file>
     </qresource>
