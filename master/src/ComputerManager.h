@@ -93,13 +93,15 @@ public slots:
 	void updateComputerScreens();
 
 private:
-	void initRoomFilterList();
+	void initRooms();
 	void initNetworkObjectLayer();
 	void initComputerTreeModel();
 	void updateRoomFilterList();
 	QString findRoomOfComputer( const QHostAddress& hostAddress, const QModelIndex& parent );
 
-	ComputerList getComputers( const QModelIndex& parent );
+	ComputerList getComputersInRoom( const QString& roomName, const QModelIndex& parent = QModelIndex() );
+
+	ComputerList getCheckedComputers( const QModelIndex& parent );
 	QSize computerScreenSize() const;
 
 	void startComputerControlInterface( Computer& computer );
@@ -115,6 +117,7 @@ private:
 	CheckableItemProxyModel* m_computerTreeModel;
 	NetworkObjectFilterProxyModel* m_networkObjectFilterProxyModel;
 
+	QStringList m_currentRooms;
 	QStringList m_roomFilterList;
 	ComputerList m_computerList;
 

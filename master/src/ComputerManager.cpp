@@ -55,7 +55,7 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) )
 {
 	initNetworkObjectLayer();
-	initRoomFilterList();
+	initRooms();
 	initComputerTreeModel();
 
 	QTimer* computerScreenUpdateTimer = new QTimer( this );
@@ -145,7 +145,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 void ComputerManager::reloadComputerList()
 {
 	emit computerListAboutToBeReset();
-	m_computerList = getComputers( QModelIndex() );
+	m_computerList = getCheckedComputers( QModelIndex() );
 
 	for( auto& computer : m_computerList )
 	{
@@ -159,7 +159,7 @@ void ComputerManager::reloadComputerList()
 
 void ComputerManager::updateComputerList()
 {
-	ComputerList newComputerList = getComputers( QModelIndex() );
+	ComputerList newComputerList = getCheckedComputers( QModelIndex() );
 
 	int index = 0;
 
@@ -222,17 +222,17 @@ void ComputerManager::updateComputerScreens()
 
 
 
-void ComputerManager::initRoomFilterList()
+void ComputerManager::initRooms()
 {
+	for( auto hostAddress : QHostInfo::fromName( QHostInfo::localHostName() ).addresses() )
+	{
+		qDebug() << "ComputerManager::initRooms(): adding room for" << hostAddress;
+		m_currentRooms.append( findRoomOfComputer( hostAddress, QModelIndex() ) );
+	}
+
 	if( ItalcCore::config().onlyCurrentRoomVisible() )
 	{
-		for( auto hostAddress : QHostInfo::fromName( QHostInfo::localHostName() ).addresses() )
-		{
-			qDebug() << "ComputerManager::initRoomFilterList(): adding room for" << hostAddress;
-			m_roomFilterList.append( findRoomOfComputer( hostAddress, QModelIndex() ) );
-		}
-
-		if( m_roomFilterList.isEmpty() )
+		if( m_currentRooms.isEmpty() )
 		{
 			QMessageBox::warning( nullptr,
 								  tr( "Room detection failed" ),
@@ -242,6 +242,7 @@ void ComputerManager::initRoomFilterList()
 			qWarning( "ComputerManager::initRoomFilterList(): room detection failed" );
 		}
 
+		m_roomFilterList = m_currentRooms;
 		updateRoomFilterList();
 	}
 }
@@ -264,7 +265,23 @@ void ComputerManager::initNetworkObjectLayer()
 
 void ComputerManager::initComputerTreeModel()
 {
-	m_computerTreeModel->loadStates( m_config.checkedNetworkObjects() );
+	QJsonArray checkedNetworkObjects;
+	if( ItalcCore::config().autoSwitchToCurrentRoom() )
+	{
+		for( auto room : m_currentRooms )
+		{
+			for( const auto& computer : getComputersInRoom( room ) )
+			{
+				checkedNetworkObjects += computer.networkObjectUid().toString();
+			}
+		}
+	}
+	else
+	{
+		checkedNetworkObjects = m_config.checkedNetworkObjects();
+	}
+
+	m_computerTreeModel->loadStates( checkedNetworkObjects );
 
 	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
 			 this, &ComputerManager::reloadComputerList );
@@ -328,7 +345,41 @@ QString ComputerManager::findRoomOfComputer( const QHostAddress& hostAddress, co
 
 
 
-ComputerList ComputerManager::getComputers(const QModelIndex &parent)
+ComputerList ComputerManager::getComputersInRoom( const QString& roomName, const QModelIndex& parent )
+{
+	QAbstractItemModel* model = computerTreeModel();
+
+	int rows = model->rowCount( parent );
+
+	ComputerList computers;
+
+	for( int i = 0; i < rows; ++i )
+	{
+		QModelIndex entryIndex = model->index( i, 0, parent );
+
+		auto objectType = static_cast<NetworkObject::Type>( model->data( entryIndex, NetworkObjectModel::TypeRole ).toInt() );
+
+		switch( objectType )
+		{
+		case NetworkObject::Group:
+			computers += getComputersInRoom( roomName, entryIndex );
+			break;
+		case NetworkObject::Host:
+			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
+								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
+								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
+								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
+			break;
+		default: break;
+		}
+	}
+
+	return computers;
+}
+
+
+
+ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 {
 	QAbstractItemModel* model = computerTreeModel();
 
@@ -350,7 +401,7 @@ ComputerList ComputerManager::getComputers(const QModelIndex &parent)
 		switch( objectType )
 		{
 		case NetworkObject::Group:
-			computers += getComputers( entryIndex );
+			computers += getCheckedComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
