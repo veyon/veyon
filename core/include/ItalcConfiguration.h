@@ -76,8 +76,10 @@ public slots:
 	void setLocalConnectOnly( bool );
 	void setUserConfigurationDirectory( const QString & );
 	void setSnapshotDirectory( const QString & );
+	void setAutoSwitchToCurrentRoom( bool );
 	void setOnlyCurrentRoomVisible( bool );
 	void setManualRoomAdditionAllowed( bool );
+	void setLocalComputerHidden( bool );
 	void setComputerDoubleClickFeature( const QUuid& );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
