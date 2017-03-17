@@ -54,34 +54,13 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) )
 {
-	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
-	m_networkObjectFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
-	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
-
-	if( ItalcCore::config().localComputerHidden() )
-	{
-		m_networkObjectFilterProxyModel->setComputerExcludeFilter( QStringList( QHostInfo::localHostName() ) );
-	}
+	initNetworkObjectLayer();
+	initRoomFilterList();
+	initComputerTreeModel();
 
 	QTimer* computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
 	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
-
-	initRoomFilterList();
-
-	m_computerTreeModel->loadStates( m_config.checkedNetworkObjects() );
-
-	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
-			 this, &ComputerManager::reloadComputerList );
-	connect( computerTreeModel(), &QAbstractItemModel::layoutChanged,
-			 this, &ComputerManager::reloadComputerList );
-
-	connect( computerTreeModel(), &QAbstractItemModel::dataChanged,
-			 this, &ComputerManager::updateComputerList );
-	connect( computerTreeModel(), &QAbstractItemModel::rowsInserted,
-			 this, &ComputerManager::updateComputerList );
-	connect( computerTreeModel(), &QAbstractItemModel::rowsRemoved,
-			 this, &ComputerManager::updateComputerList );
 }
 
 
@@ -265,6 +244,39 @@ void ComputerManager::initRoomFilterList()
 
 		updateRoomFilterList();
 	}
+}
+
+
+
+void ComputerManager::initNetworkObjectLayer()
+{
+	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
+	m_networkObjectFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
+	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
+
+	if( ItalcCore::config().localComputerHidden() )
+	{
+		m_networkObjectFilterProxyModel->setComputerExcludeFilter( QStringList( QHostInfo::localHostName() ) );
+	}
+}
+
+
+
+void ComputerManager::initComputerTreeModel()
+{
+	m_computerTreeModel->loadStates( m_config.checkedNetworkObjects() );
+
+	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
+			 this, &ComputerManager::reloadComputerList );
+	connect( computerTreeModel(), &QAbstractItemModel::layoutChanged,
+			 this, &ComputerManager::reloadComputerList );
+
+	connect( computerTreeModel(), &QAbstractItemModel::dataChanged,
+			 this, &ComputerManager::updateComputerList );
+	connect( computerTreeModel(), &QAbstractItemModel::rowsInserted,
+			 this, &ComputerManager::updateComputerList );
+	connect( computerTreeModel(), &QAbstractItemModel::rowsRemoved,
+			 this, &ComputerManager::updateComputerList );
 }
 
 

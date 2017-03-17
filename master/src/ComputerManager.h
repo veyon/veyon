@@ -94,6 +94,8 @@ public slots:
 
 private:
 	void initRoomFilterList();
+	void initNetworkObjectLayer();
+	void initComputerTreeModel();
 	void updateRoomFilterList();
 	QString findRoomOfComputer( const QHostAddress& hostAddress, const QModelIndex& parent );
 
