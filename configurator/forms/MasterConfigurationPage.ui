@@ -83,29 +83,46 @@
       <string>User interface &amp;&amp; behaviour</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_3">
+      <item row="5" column="1">
+       <widget class="QComboBox" name="computerDoubleClickFeature"/>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="localComputerHidden">
         <property name="text">
-         <string>Feature on computer double click:</string>
+         <string>Hide local computer in computer management</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2">
+      <item row="2" column="0" colspan="2">
        <widget class="QCheckBox" name="manualRoomAdditionAllowed">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Allow adding rooms to computer management manually</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="2">
+      <item row="1" column="0" colspan="2">
        <widget class="QCheckBox" name="onlyCurrentRoomVisible">
         <property name="text">
          <string>Only show current room in computer management</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="computerDoubleClickFeature"/>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Feature on computer double click:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
+        <property name="text">
+         <string>Automatically switch to current room at start</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -125,8 +142,36 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>userConfigurationDirectory</tabstop>
+  <tabstop>openUserConfigurationDirectory</tabstop>
+  <tabstop>snapshotDirectory</tabstop>
+  <tabstop>openSnapshotDirectory</tabstop>
+  <tabstop>autoSwitchToCurrentRoom</tabstop>
+  <tabstop>onlyCurrentRoomVisible</tabstop>
+  <tabstop>manualRoomAdditionAllowed</tabstop>
+  <tabstop>localComputerHidden</tabstop>
+  <tabstop>computerDoubleClickFeature</tabstop>
+ </tabstops>
  <resources>
   <include location="../italc-configurator.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>onlyCurrentRoomVisible</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>manualRoomAdditionAllowed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>347</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>347</x>
+     <y>279</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
