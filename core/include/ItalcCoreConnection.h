@@ -66,13 +66,6 @@ public:
 
 	void sendFeatureMessage( const FeatureMessage &featureMessage );
 
-	void execCmds( const QString &cmd );
-	void logonUser( const QString &uname, const QString &pw,
-						const QString &domain );
-	void logoutUser();
-
-	void setRole( const ItalcCore::UserRole role );
-
 signals:
 	void featureMessageReceived( const FeatureMessage& );
 
@@ -83,7 +76,6 @@ private:
 	static rfbBool handleItalcMessage( rfbClient* client, rfbServerToClientMsg *msg );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
-	void enqueueMessage( const ItalcCore::Msg &msg );
 
 
 	QPointer<ItalcVncConnection> m_vncConn;

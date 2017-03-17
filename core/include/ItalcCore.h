@@ -28,9 +28,7 @@
 #include <italcconfig.h>
 
 #include <QtEndian>
-#include <QPair>
 #include <QString>
-#include <QVariant>
 #include <QDebug>
 
 #if defined(BUILD_ITALC_CORE_LIBRARY)
@@ -71,76 +69,6 @@ public:
 
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
-
-	typedef QString Command;
-	typedef QMap<QString, QVariant> CommandArgs;
-	typedef QList<QPair<ItalcCore::Command, ItalcCore::CommandArgs> >
-								CommandList;
-
-	// static commands
-	static const Command LogonUserCmd;
-	static const Command LogoutUser;
-	static const Command ExecCmds;
-	static const Command SetRole;
-
-	class ITALC_CORE_EXPORT Msg
-	{
-	public:
-		Msg( QIODevice *ioDevice, const Command &cmd = Command() ) :
-			m_ioDevice( ioDevice ),
-			m_cmd( cmd )
-		{
-		}
-
-		Msg( const Command &cmd ) :
-			m_ioDevice( NULL ),
-			m_cmd( cmd )
-		{
-		}
-
-		void setIoDevice( QIODevice* ioDevice )
-		{
-			m_ioDevice = ioDevice;
-		}
-
-		const Command &cmd() const
-		{
-			return m_cmd;
-		}
-
-		const CommandArgs &args() const
-		{
-			return m_args;
-		}
-
-		Msg &addArg( const QString &key, const QString &value )
-		{
-			m_args[key.toLower()] = value;
-			return *this;
-		}
-
-		Msg &addArg( const QString &key, const int value )
-		{
-			m_args[key.toLower()] = QString::number( value );
-			return *this;
-		}
-
-		QString arg( const QString &key ) const
-		{
-			return m_args[key.toLower()].toString();
-		}
-
-		bool send();
-		Msg &receive();
-
-
-	private:
-		QIODevice *m_ioDevice;
-
-		Command m_cmd;
-		CommandArgs m_args;
-
-	} ;
 
 	typedef enum UserRoles
 	{

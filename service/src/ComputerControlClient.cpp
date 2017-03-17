@@ -141,9 +141,6 @@ bool ComputerControlClient::receiveMessage()
 
 	switch( messageType )
 	{
-	case rfbItalcCoreRequest:
-		return m_server->handleCoreMessage( socket );
-
 	case rfbItalcFeatureMessage:
 		return m_server->handleFeatureMessage( socket );
 

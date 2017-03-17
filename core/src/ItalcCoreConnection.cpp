@@ -28,30 +28,6 @@
 #include "SocketDevice.h"
 
 
-class ItalcMessageEvent : public MessageEvent
-{
-public:
-	ItalcMessageEvent( const ItalcCore::Msg &m ) :
-		m_msg( m )
-	{
-	}
-
-	virtual void fire( rfbClient *client )
-	{
-		SocketDevice socketDev( ItalcVncConnection::libvncClientDispatcher, client );
-		m_msg.setIoDevice( &socketDev );
-		qDebug() << "ItalcMessageEvent::fire(): sending message" << m_msg.cmd()
-					<< "with arguments" << m_msg.args();
-		m_msg.send();
-	}
-
-
-private:
-	ItalcCore::Msg m_msg;
-
-} ;
-
-
 class FeatureMessageEvent : public MessageEvent
 {
 public:
@@ -176,53 +152,4 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 	}
 
 	return true;
-}
-
-
-
-void ItalcCoreConnection::execCmds( const QString &cmd )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::ExecCmds ).
-						addArg( "cmds", cmd ) );
-}
-
-
-
-void ItalcCoreConnection::logonUser( const QString &uname,
-						const QString &pw,
-						const QString &domain )
-{
-/*	enqueueMessage( ItalcCore::Msg( ItalcCore::LogonUserCmd ).
-						addArg( "uname", uname ).
-						addArg( "passwd", pw ).
-						addArg( "domain", domain ) );*/
-}
-
-
-
-
-void ItalcCoreConnection::logoutUser()
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LogoutUser ) );
-}
-
-
-
-void ItalcCoreConnection::setRole( const ItalcCore::UserRole role )
-{
-	enqueueMessage( ItalcCore::Msg( ItalcCore::SetRole ).
-						addArg( "role", role ) );
-}
-
-
-
-void ItalcCoreConnection::enqueueMessage( const ItalcCore::Msg &msg )
-{
-	ItalcCore::Msg m( msg );
-	if (!m_vncConn)
-	{
-		ilog(Error, "ItalcCoreConnection: cannot call enqueueEvent - m_vncConn is NULL");
-		return;
-	}
-	m_vncConn->enqueueEvent( new ItalcMessageEvent( m ) );
 }

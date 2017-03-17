@@ -2,7 +2,7 @@
  * ItalcRfbExt.h - an extension of the RFB-protocol, used for communication
  *                 between master and clients
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,9 +28,7 @@
 
 typedef struct _rfbClient rfbClient;
 
-// new rfb-command which tells server or client that an italc-request/response
-// is following
-#define rfbItalcCoreRequest		40
+// new rfb command which tells server or client that an italc feature message is following
 #define rfbItalcFeatureMessage		41
 
 

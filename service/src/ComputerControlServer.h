@@ -64,9 +64,6 @@ public:
 		return m_serverAccessControlManager;
 	}
 
-	//bool authenticateClient( QTcpSocket* socket, RfbItalcAuth::Type authType );
-
-	bool handleCoreMessage( QTcpSocket* socket );
 	bool handleFeatureMessage( QTcpSocket* socket );
 
 	void setAllowedIPs( const QStringList &allowedIPs );

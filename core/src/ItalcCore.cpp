@@ -329,37 +329,3 @@ QString ItalcCore::userRoleName( ItalcCore::UserRole role )
 
 	return userRoleNames[role];
 }
-
-
-
-bool ItalcCore::Msg::send()
-{
-	char messageType = rfbItalcCoreRequest;
-	m_ioDevice->write( &messageType, sizeof(messageType) );
-
-	VariantStream stream( m_ioDevice );
-
-	stream.write( m_cmd );
-	stream.write( m_args );
-
-	return true;
-}
-
-
-
-ItalcCore::Msg &ItalcCore::Msg::receive()
-{
-	VariantStream stream( m_ioDevice );
-
-	m_cmd = stream.read().toString();
-	m_args = stream.read().toMap();
-
-	return *this;
-}
-
-
-
-const ItalcCore::Command ItalcCore::LogonUserCmd = "LogonUser";
-const ItalcCore::Command ItalcCore::LogoutUser = "LogoutUser";
-const ItalcCore::Command ItalcCore::ExecCmds = "ExecCmds";
-const ItalcCore::Command ItalcCore::SetRole = "SetRole";
