@@ -379,6 +379,22 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
         <source>Save computer/user list</source>
         <translation>Computer-/Benutzerliste speichern</translation>
     </message>
+    <message>
+        <source>Select output filename</source>
+        <translation>Ausgabedateiname wählen</translation>
+    </message>
+    <message>
+        <source>CSV files (*.csv)</source>
+        <translation>CSV-Dateien (*.csv)</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Dateifehler</translation>
+    </message>
+    <message>
+        <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation>Die Computer- und Benutzerliste konnte nicht in die Datei %1 geschrieben werden. Bitte überprüfen Sie die Dateizugriffsrechte.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManager</name>
@@ -393,6 +409,10 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
         <translation>Es konnte nicht festgestellt werden, zu welchem Raum dieser Computer gehört. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Räume in der Computerverwaltung angezeigt.</translation>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation>Computername;Rechnername;Benutzer</translation>
     </message>
 </context>
 <context>
@@ -457,6 +477,33 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
     <message>
         <source>Desktop access dialog</source>
         <translation>Desktopzugriffsdialog</translation>
+    </message>
+</context>
+<context>
+    <name>DesktopServicesFeaturePlugin</name>
+    <message>
+        <source>Run program</source>
+        <translation>Programm starten</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on each computer.</source>
+        <translation>Klicken Sie auf diesen Button, um ein Programm auf jedem Computer zu starten.</translation>
+    </message>
+    <message>
+        <source>Open website</source>
+        <translation>Website öffnen</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um eine Website auf allen Computern zu öffnen.</translation>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Bitte geben Sie die URL der zu öffnenden Website ein:</translation>
+    </message>
+    <message>
+        <source>Start programs and services in user desktop</source>
+        <translation>Programme und Dienste im Benutzerdesktop starten</translation>
     </message>
 </context>
 <context>
@@ -1699,6 +1746,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Only show current room in computer management</source>
         <translation>Nur aktuellen Raum in Computerverwaltung anzeigen</translation>
     </message>
+    <message>
+        <source>Hide local computer in computer management</source>
+        <translation>Lokalen Computer in Computerverwaltung ausblenden</translation>
+    </message>
+    <message>
+        <source>Automatically switch to current room at start</source>
+        <translation>Beim Start automatisch zu aktuellem Klassenraum wechseln</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1932,6 +1987,21 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
         <translation>Bitte geben Sie die Befehle ein, die auf den gewählten Clients ausgeführt werden sollen. Sie können mehre Befehle zeilenweise trennen.</translation>
+    </message>
+</context>
+<context>
+    <name>RunProgramDialog</name>
+    <message>
+        <source>Run commands</source>
+        <translation>Befehle ausführen</translation>
+    </message>
+    <message>
+        <source>Run program</source>
+        <translation>Programm starten</translation>
+    </message>
+    <message>
+        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation>Bitte geben Sie das Programm oder die Befehle ein, die auf den gewählten Computern gestartet werden sollen. Sie können mehrere Programme/Befehle über einzelne Zeilen angeben.</translation>
     </message>
 </context>
 <context>
@@ -2176,6 +2246,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>System tray icon</source>
         <translation>Icon im Infobereich</translation>
+    </message>
+    <message>
+        <source>Logout user</source>
+        <translation>Benutzer abmelden</translation>
+    </message>
+    <message>
+        <source>Click this button to logout users from all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
     </message>
 </context>
 <context>
