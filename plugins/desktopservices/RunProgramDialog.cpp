@@ -1,7 +1,9 @@
 /*
- * RunCommandsDialog.h - declaration of class RunCommandsDialog
+ * RunProgramDialog.cpp - implementation of RunProgramDialog
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
+ * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -20,29 +22,29 @@
  *
  */
 
-#ifndef RUN_COMMANDS_DIALOG_H
-#define RUN_COMMANDS_DIALOG_H
+#include "RunProgramDialog.h"
 
-#include <QDialog>
+#include "ui_RunProgramDialog.h"
 
-namespace Ui { class RunCommandsDialog; }
-
-class RunCommandsDialog : public QDialog
+RunProgramDialog::RunProgramDialog( QWidget* parent ) :
+	QDialog( parent ),
+	ui( new Ui::RunProgramDialog ),
+	m_programs()
 {
-	Q_OBJECT
-public:
-	RunCommandsDialog( QString &cmdStr, QWidget *parent );
-	virtual ~RunCommandsDialog();
+	ui->setupUi( this );
+}
 
 
-private slots:
-	virtual void accept();
+
+RunProgramDialog::~RunProgramDialog()
+{
+}
 
 
-private:
-	Ui::RunCommandsDialog *ui;
-	QString & m_cmdsStr;
 
-} ;
+void RunProgramDialog::accept()
+{
+	m_programs = ui->programInputTextEdit->toPlainText().split( '\n' );
 
-#endif
+	QDialog::accept();
+}

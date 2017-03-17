@@ -1,9 +1,7 @@
 /*
- * RunCommandsDialog.cpp - implementation of command-input-dialog
+ * RunProgramDialog.h - declaration of class RunProgramDialog
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,32 +20,32 @@
  *
  */
 
-#include "RunCommandsDialog.h"
+#ifndef RUN_PROGRAM_DIALOG_H
+#define RUN_PROGRAM_DIALOG_H
 
-#include "ui_RunCommandsDialog.h"
+#include <QDialog>
 
-RunCommandsDialog::RunCommandsDialog( QString &cmdStr, QWidget * _parent ) :
-	QDialog( _parent ),
-	ui( new Ui::RunCommandsDialog ),
-	m_cmdsStr( cmdStr )
+namespace Ui { class RunProgramDialog; }
+
+class RunProgramDialog : public QDialog
 {
-	ui->setupUi( this );
-}
+	Q_OBJECT
+public:
+	RunProgramDialog( QWidget *parent );
+	virtual ~RunProgramDialog();
 
+	const QStringList& programs() const
+	{
+		return m_programs;
+	}
 
+private slots:
+	virtual void accept();
 
+private:
+	Ui::RunProgramDialog* ui;
+	QStringList m_programs;
 
-RunCommandsDialog::~RunCommandsDialog()
-{
-}
+} ;
 
-
-
-
-void RunCommandsDialog::accept()
-{
-	m_cmdsStr = ui->cmdInputTextEdit->toPlainText();
-	QDialog::accept();
-}
-
-
+#endif
