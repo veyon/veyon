@@ -27,7 +27,6 @@
 #include <QtCore/QProcess>
 #include <QApplication>
 #include <QAbstractNativeEventFilter>
-#include <QtNetwork/QHostInfo>
 
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
