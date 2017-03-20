@@ -97,7 +97,7 @@ private:
 	void initNetworkObjectLayer();
 	void initComputerTreeModel();
 	void updateRoomFilterList();
-	QString findRoomOfComputer( const QHostAddress& hostAddress, const QModelIndex& parent );
+	QString findRoomOfComputer( const QString& hostName, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent );
 
 	ComputerList getComputersInRoom( const QString& roomName, const QModelIndex& parent = QModelIndex() );
 
