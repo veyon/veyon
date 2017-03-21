@@ -27,14 +27,29 @@
 
 #include "PluginInterface.h"
 
-class ITALC_CORE_EXPORT CommandLinePluginInterface : public PluginInterface
+class ITALC_CORE_EXPORT CommandLinePluginInterface : public QObject, public PluginInterface
 {
+	Q_OBJECT
 public:
+	typedef enum RunResults
+	{
+		Unknown,
+		Successful,
+		Failed,
+		NotEnoughArguments,
+		InvalidCommand,
+		RunResultCount
+	} RunResult;
+
+	Q_ENUM(RunResult)
+
 	virtual ~CommandLinePluginInterface() {}
 
-	virtual const char* commandName() const = 0;
-	virtual const char* commandHelp() const = 0;
-	virtual bool runCommand( const QStringList& arguments ) = 0;
+	virtual QString commandName() const = 0;
+	virtual QString commandHelp() const = 0;
+	virtual QStringList subCommands() const = 0;
+	virtual QString subCommandHelp( const QString& command ) const = 0;
+	virtual RunResult runCommand( const QStringList& arguments ) = 0;
 
 };
 
