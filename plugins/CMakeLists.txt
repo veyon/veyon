@@ -1,3 +1,4 @@
+ADD_SUBDIRECTORY(config)
 ADD_SUBDIRECTORY(demo)
 ADD_SUBDIRECTORY(desktopservices)
 ADD_SUBDIRECTORY(powercontrol)
