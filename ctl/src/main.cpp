@@ -39,7 +39,7 @@ int main( int argc, char **argv )
 		return -1;
 	}
 
-	QString command = app.arguments()[1];
+	ItalcCore* core = new ItalcCore( &app, "Control" );
 
 	PluginManager pluginManager;
 	CommandLinePluginInterfaceList commandLinePluginInterfaces;
@@ -53,15 +53,66 @@ int main( int argc, char **argv )
 		}
 	}
 
+	QString command = app.arguments()[1];
+
 	for( auto interface : commandLinePluginInterfaces )
 	{
 		if( interface->commandName() == command )
 		{
-			ItalcCore core( &app, "Control" );
+			CommandLinePluginInterface::RunResult runResult = CommandLinePluginInterface::Unknown;
 
-			return interface->runCommand( app.arguments().mid( 2 ) ) ? 0 : -1;
+			if( app.arguments().count() > 2 )
+			{
+				QString subCommand = app.arguments()[2];
+
+				if( QMetaObject::invokeMethod( interface,
+											   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
+											   Qt::DirectConnection,
+											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
+											   Q_ARG( QStringList, app.arguments().mid( 3 ) ) ) )
+				{
+					// runResult contains result
+				}
+				else
+				{
+					runResult = interface->runCommand( app.arguments().mid( 2 ) );
+				}
+			}
+			else
+			{
+				runResult = CommandLinePluginInterface::NotEnoughArguments;
+			}
+
+			delete core;
+
+			switch( runResult )
+			{
+			case CommandLinePluginInterface::Successful:
+				qInfo( "[OK]" );
+				return 0;
+			case CommandLinePluginInterface::Failed:
+				qInfo( "[FAIL]" );
+				return -1;
+			case CommandLinePluginInterface::InvalidCommand:
+				qCritical( "Invalid subcommand:" );
+				for( auto subCommand : interface->subCommands() )
+				{
+					qCritical( "    %s - %s", subCommand.toUtf8().constData(),
+							   interface->subCommandHelp( subCommand ).toUtf8().constData() );
+				}
+				return -1;
+			case CommandLinePluginInterface::NotEnoughArguments:
+				qCritical( "Not enough arguments given - use \"%s help\" for more information",
+						   command.toUtf8().constData() );
+				return -1;
+			default:
+				qCritical( "Unknown result!" );
+				return -1;
+			}
 		}
 	}
+
+	delete core;
 
 	if( command == "help" )
 	{
@@ -74,7 +125,9 @@ int main( int argc, char **argv )
 
 	for( auto interface : commandLinePluginInterfaces )
 	{
-		qCritical( "    %s - %s", interface->commandName(), interface->commandHelp() );
+		qCritical( "    %s - %s",
+				   interface->commandName().toUtf8().constData(),
+				   interface->commandHelp().toUtf8().constData() );
 	}
 
 	return -1;
