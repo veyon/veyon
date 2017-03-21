@@ -630,21 +630,16 @@ static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
 int Process::findProcessId( const QString &processName,
 							int sessionId, const User *processOwner )
 {
-	LogStream( Logger::LogLevelDebug )
-			<< "Process::findProcessId("
-				<< processName
-				<< sessionId
-				<< processOwner
-			<< ")";
+	//qDebug() << "Process::findProcessId(" << processName << sessionId << processOwner << ")";
 
 	int pid = -1;
 #ifdef ITALC_BUILD_WIN32
 	pid = findProcessId_WTS( processName, sessionId, processOwner );
-	ilogf( Debug, "findProcessId_WTS(): %d", pid );
+	//ilogf( Debug, "findProcessId_WTS(): %d", pid );
 	if( pid < 0 )
 	{
 		pid = findProcessId_TH32( processName, sessionId, processOwner );
-		ilogf( Debug, "findProcessId_TH32(): %d", pid );
+		//ilogf( Debug, "findProcessId_TH32(): %d", pid );
 	}
 #endif
 	return pid;

@@ -55,8 +55,7 @@ public:
 		char appPath[MAX_PATH];
 		if( GetModuleFileName( NULL, appPath, ARRAYSIZE(appPath) ) )
 		{
-			LogStream() << "Starting core server for user"
-						<< LocalSystem::User::loggedOnUser().name();
+			qInfo() << "Starting core server for user" << LocalSystem::User::loggedOnUser().name();
 			// run with the same user as winlogon.exe does
 			m_subProcessHandle =
 				LocalSystem::Process(

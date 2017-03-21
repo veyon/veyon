@@ -90,39 +90,4 @@ private:
 #define ilog_failed(what) ilogf( Warning, "%s: %s failed", __PRETTY_FUNCTION__, what )
 #define ilog_failedf(what, format, ...) ilogf( Warning, "%s: %s failed: " format, __PRETTY_FUNCTION__, what, __VA_ARGS__ )
 
-
-// helper class for easily streaming Qt datatypes into logfiles
-class LogStream : public QTextStream
-{
-public:
-	LogStream( Logger::LogLevel ll = Logger::LogLevelInfo ) :
-		QTextStream(),
-		m_logLevel( ll ),
-		m_out()
-	{
-		setString( &m_out );
-	}
-
-	~LogStream()
-	{
-		flush();
-		Logger::log( m_logLevel, m_out );
-	}
-
-	// allows to stream advanced data types such as lists, maps etc. by
-	// using QDebug's stream operator
-	template<class QDEBUG_STREAMABLE>
-	LogStream &operator<<( const QDEBUG_STREAMABLE &s )
-	{
-		QDebug( &m_out ) << s;
-		return *this;
-	}
-
-
-private:
-	Logger::LogLevel m_logLevel;
-	QString m_out;
-
-} ;
-
 #endif

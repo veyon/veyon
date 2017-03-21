@@ -72,13 +72,11 @@ Logger::Logger( const QString &appName, ItalcConfiguration* config ) :
 	if( QCoreApplication::instance() )
 	{
 		// log current application start up
-		LogStream() << "Startup for user" << user
-					<< "with arguments" << QCoreApplication::arguments();
+		qDebug() << "Startup for user" << user << "with arguments" << QCoreApplication::arguments();
 	}
 	else
 	{
-		LogStream() << "Startup for user" << user
-					<< "without QCoreApplication instance";
+		qDebug() << "Startup for user" << user << "without QCoreApplication instance";
 	}
 }
 

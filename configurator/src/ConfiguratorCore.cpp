@@ -131,7 +131,7 @@ bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFile ).path() );
 	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFile ).path() );
 
-	LogStream() << "ConfiguratorCore: creating new key pair in" << privateKeyFile << "and" << publicKeyFile;
+	qInfo() << "ConfiguratorCore: creating new key pair in" << privateKeyFile << "and" << publicKeyFile;
 
 	CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
 	CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
@@ -207,8 +207,7 @@ bool importPublicKey( ItalcCore::UserRole role,
 
 void informationMessage( const QString &title, const QString &msg )
 {
-	LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
-								<< ":" << msg.toUtf8().constData();
+	qInfo() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
 	{
 		QMessageBox::information( NULL, title, msg );
@@ -219,8 +218,7 @@ void informationMessage( const QString &title, const QString &msg )
 
 void criticalMessage( const QString &title, const QString &msg )
 {
-	LogStream( Logger::LogLevelCritical ) << title.toUtf8().constData()
-								<< ":" << msg.toUtf8().constData();
+	qCritical() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
 	{
 		QMessageBox::critical( NULL, title, msg );
