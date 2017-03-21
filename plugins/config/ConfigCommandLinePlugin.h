@@ -26,11 +26,12 @@
 #define CONFIG_COMMAND_LINE_PLUGIN_H
 
 #include "CommandLinePluginInterface.h"
+#include "ItalcConfiguration.h"
 
-class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface
+class ConfigCommandLinePlugin : public CommandLinePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.PluginCommandLineInterface")
+	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.ConfigCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ConfigCommandLinePlugin();
@@ -43,12 +44,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral( "1.0" );
 	}
 
 	QString name() const override
 	{
-		return "Config";
+		return QStringLiteral( "Config" );
 	}
 
 	QString description() const override
@@ -58,25 +59,39 @@ public:
 
 	QString vendor() const override
 	{
-		return "iTALC Community";
+		return QStringLiteral( "iTALC Community" );
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral( "Tobias Doerffel" );
 	}
 
-	const char* commandName() const override
+	QString commandName() const override
 	{
-		return "config";
+		return QStringLiteral( "config" );
 	}
 
-	const char* commandHelp() const override
+	QString commandHelp() const override
 	{
-		return "operations for changing the configuration of iTALC";
+		return QStringLiteral( "operations for changing the configuration of iTALC" );
 	}
 
-	bool runCommand( const QStringList& arguments );
+	QStringList subCommands() const override;
+	QString subCommandHelp( const QString& subCommand ) const override;
+	RunResult runCommand( const QStringList& arguments ) override;
+
+public slots:
+	CommandLinePluginInterface::RunResult handle_clear( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_import( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
+
+private:
+	void listConfiguration( const ItalcConfiguration::DataMap &map,
+							const QString &parentKey );
+
+	QMap<QString, QString> m_subCommands;
 
 };
 
