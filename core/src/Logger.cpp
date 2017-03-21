@@ -85,7 +85,9 @@ Logger::Logger( const QString &appName, ItalcConfiguration* config ) :
 
 Logger::~Logger()
 {
-	LogStream() << "Shutdown";
+	qDebug() << "Shutdown";
+
+	qInstallMessageHandler(0);
 
 	instance = NULL;
 

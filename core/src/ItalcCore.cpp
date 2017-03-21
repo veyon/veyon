@@ -202,6 +202,9 @@ ItalcCore::~ItalcCore()
 	delete m_cryptoCore;
 	m_cryptoCore = nullptr;
 
+	delete m_logger;
+	m_logger = nullptr;
+
 	delete m_config;
 	m_config = nullptr;
 
