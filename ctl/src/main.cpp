@@ -23,6 +23,7 @@
  */
 
 #include <QApplication>
+#include <QProcessEnvironment>
 
 #include "CommandLinePluginInterface.h"
 #include "PluginManager.h"
@@ -30,16 +31,30 @@
 
 int main( int argc, char **argv )
 {
-	QApplication app( argc, argv );
+	QCoreApplication* app = nullptr;
 
-	if( app.arguments().count() < 2 )
+#ifdef ITALC_BUILD_LINUX
+	// do not create graphical application if DISPLAY is not available
+	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) == false )
+	{
+		app = new QCoreApplication( argc, argv );
+	}
+	else
+	{
+		app = new QApplication( argc, argv );
+	}
+#else
+	app = new QApplication( argc, argv );
+#endif
+
+	if( app->arguments().count() < 2 )
 	{
 		qCritical( "ERROR: not enough arguments - please specify a command" );
 
 		return -1;
 	}
 
-	ItalcCore* core = new ItalcCore( &app, "Control" );
+	ItalcCore* core = new ItalcCore( app, "Control" );
 
 	PluginManager pluginManager;
 	CommandLinePluginInterfaceList commandLinePluginInterfaces;
@@ -53,7 +68,7 @@ int main( int argc, char **argv )
 		}
 	}
 
-	QString command = app.arguments()[1];
+	QString command = app->arguments()[1];
 
 	for( auto interface : commandLinePluginInterfaces )
 	{
@@ -61,21 +76,21 @@ int main( int argc, char **argv )
 		{
 			CommandLinePluginInterface::RunResult runResult = CommandLinePluginInterface::Unknown;
 
-			if( app.arguments().count() > 2 )
+			if( app->arguments().count() > 2 )
 			{
-				QString subCommand = app.arguments()[2];
+				QString subCommand = app->arguments()[2];
 
 				if( QMetaObject::invokeMethod( interface,
 											   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
 											   Qt::DirectConnection,
 											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
-											   Q_ARG( QStringList, app.arguments().mid( 3 ) ) ) )
+											   Q_ARG( QStringList, app->arguments().mid( 3 ) ) ) )
 				{
 					// runResult contains result
 				}
 				else
 				{
-					runResult = interface->runCommand( app.arguments().mid( 2 ) );
+					runResult = interface->runCommand( app->arguments().mid( 2 ) );
 				}
 			}
 			else
@@ -131,6 +146,8 @@ int main( int argc, char **argv )
 				   interface->commandName().toUtf8().constData(),
 				   interface->commandHelp().toUtf8().constData() );
 	}
+
+	delete app;
 
 	return -1;
 }
