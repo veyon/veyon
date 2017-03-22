@@ -2,7 +2,7 @@
  * SystemConfigurationModifier.h - class for easy modification of iTALC-related
  *                                 settings in the operating system
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,9 +26,9 @@
 #ifndef SYSTEM_CONFIGURATION_MODIFIER_H
 #define SYSTEM_CONFIGURATION_MODIFIER_H
 
-#include <QtCore/QString>
+#include "ItalcCore.h"
 
-class SystemConfigurationModifier
+class ITALC_CORE_EXPORT SystemConfigurationModifier
 {
 public:
 	static bool setServiceAutostart( bool enabled );
