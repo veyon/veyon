@@ -30,7 +30,7 @@
 #include "CommandLinePluginInterface.h"
 
 
-class RemoteAccessFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
+class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.RemoteAccess")
@@ -89,12 +89,34 @@ public:
 
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
+	QString commandName() const override
+	{
+		return QStringLiteral( "remoteaccess" );
+	}
+
+	QString commandHelp() const override
+	{
+		return description();
+	}
+
+	QStringList subCommands() const override;
+
+	QString subCommandHelp( const QString& subCommand ) const override;
+
+	RunResult runCommand( const QStringList& arguments ) override;
+
+private slots:
+	CommandLinePluginInterface::RunResult handle_view( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_control( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
+
 private:
 	Feature m_remoteViewFeature;
 	Feature m_remoteControlFeature;
 	FeatureList m_features;
 	Computer m_customComputer;
 	ComputerControlInterface m_customComputerControlInterface;
+	QMap<QString, QString> m_subCommands;
 
 };
 

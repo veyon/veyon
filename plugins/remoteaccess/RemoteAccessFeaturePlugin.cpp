@@ -22,6 +22,7 @@
  *
  */
 
+#include <QApplication>
 #include <QInputDialog>
 
 #include "RemoteAccessFeaturePlugin.h"
@@ -41,7 +42,12 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin() :
 							":/remoteaccess/remote_control.png" ),
 	m_features(),
 	m_customComputer(),
-	m_customComputerControlInterface( m_customComputer )
+	m_customComputerControlInterface( m_customComputer ),
+	m_subCommands( {
+				   std::pair<QString, QString>( "view", m_remoteViewFeature.displayName() ),
+				   std::pair<QString, QString>( "control", m_remoteControlFeature.displayName() ),
+				   std::pair<QString, QString>( "help", "show help about subcommand" ),
+				   } )
 {
 	m_features += m_remoteViewFeature;
 	m_features += m_remoteControlFeature;
@@ -74,7 +80,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 	ComputerControlInterface* remoteAccessComputer = nullptr;
 
 	if( ( feature.uid() == m_remoteViewFeature.uid() ||
-			feature.uid() == m_remoteControlFeature.uid() ) &&
+		  feature.uid() == m_remoteControlFeature.uid() ) &&
 			computerControlInterfaces.count() != 1 )
 	{
 		QString hostName = QInputDialog::getText( parent, tr( "Remote access" ),
@@ -160,4 +166,81 @@ bool RemoteAccessFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage
 	Q_UNUSED(message);
 
 	return false;
+}
+
+
+
+QStringList RemoteAccessFeaturePlugin::subCommands() const
+{
+	return m_subCommands.keys();
+}
+
+
+
+QString RemoteAccessFeaturePlugin::subCommandHelp( const QString& subCommand ) const
+{
+	return m_subCommands.value( subCommand );
+}
+
+
+
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::runCommand( const QStringList& arguments )
+{
+	return InvalidCommand;
+}
+
+
+
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( const QStringList& arguments )
+{
+	if( arguments.count() < 1 )
+	{
+		return NotEnoughArguments;
+	}
+
+	Computer remoteComputer;
+	remoteComputer.setHostAddress( arguments.first() );
+
+	new RemoteAccessWidget( remoteComputer, true );
+
+	qApp->exec();
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control( const QStringList& arguments )
+{
+	if( arguments.count() < 1 )
+	{
+		return NotEnoughArguments;
+	}
+
+	Computer remoteComputer;
+	remoteComputer.setHostAddress( arguments.first() );
+
+	new RemoteAccessWidget( remoteComputer, false );
+
+	qApp->exec();
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( const QStringList& arguments )
+{
+	if( arguments.value( 0 ) == "view" )
+	{
+		printf( "\nremoteaccess view <host>\n\n" );
+		return NoResult;
+	}
+	else if( arguments.value( 0 ) == "control" )
+	{
+		printf( "\nremoteaccess control <host>\n}n" );
+		return NoResult;
+	}
+
+	return InvalidCommand;
 }
