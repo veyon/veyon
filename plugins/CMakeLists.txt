@@ -1,6 +1,7 @@
 ADD_SUBDIRECTORY(config)
 ADD_SUBDIRECTORY(demo)
 ADD_SUBDIRECTORY(desktopservices)
+ADD_SUBDIRECTORY(ldap)
 ADD_SUBDIRECTORY(powercontrol)
 ADD_SUBDIRECTORY(remoteaccess)
 ADD_SUBDIRECTORY(screenshot)
