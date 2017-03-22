@@ -40,6 +40,9 @@
 	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryBackend, setNetworkObjectDirectoryBackend, "Backend", "NetworkObjectDirectory" );			\
 	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory" );			\
 
+#define FOREACH_ITALC_FEATURES_CONFIG_PROPERTY(OP)				\
+	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, disabledFeatures, setDisabledFeatures, "DisabledFeatures", "Features" );			\
+
 #define FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
@@ -117,6 +120,7 @@
 	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(OP)			\
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP)			\
 	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)\
+	FOREACH_ITALC_FEATURES_CONFIG_PROPERTY(OP)\
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP)			\
 	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(OP)	\

@@ -65,6 +65,7 @@ public slots:
 	void setLogFileDirectory( const QString & );
 	void setNetworkObjectDirectoryBackend( int );
 	void setNetworkObjectDirectoryUpdateInterval( int );
+	void setDisabledFeatures( const QStringList& );
 	void setVncCaptureLayeredWindows( bool );
 	void setVncPollFullScreen( bool );
 	void setVncLowAccuracy( bool );
