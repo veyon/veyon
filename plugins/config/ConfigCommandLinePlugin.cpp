@@ -107,27 +107,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( co
 	// merge configuration
 	ItalcCore::config() += ItalcConfiguration( &xs );
 
-	// do necessary modifications of system configuration
-	if( SystemConfigurationModifier::setServiceAutostart( ItalcCore::config().autostartService() ) == false )
-	{
-		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( ItalcCore::applicationName() ) );
-	}
-
-	if( SystemConfigurationModifier::setServiceArguments( ItalcCore::config().serviceArguments() ) == false )
-	{
-		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( ItalcCore::applicationName() ) );
-	}
-
-	if( SystemConfigurationModifier::enableFirewallException( ItalcCore::config().isFirewallExceptionEnabled() ) == false )
-	{
-		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( ItalcCore::applicationName() ) );
-	}
-
-	// write global configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &ItalcCore::config() );
-
-	return Successful;
+	return applyConfiguration();
 }
 
 
@@ -205,11 +185,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 
 	ItalcCore::config().setValue( key, value, parentKey );
 
-	// write global configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &ItalcCore::config() );
-
-	return Successful;
+	return applyConfiguration();
 }
 
 
@@ -234,11 +210,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( con
 
 	ItalcCore::config().removeValue( key, parentKey );
 
-	// write global configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &ItalcCore::config() );
-
-	return Successful;
+	return applyConfiguration();
 }
 
 
@@ -264,6 +236,33 @@ void ConfigCommandLinePlugin::listConfiguration( const ItalcConfiguration::DataM
 			qWarning() << "Key" << it.key() << "has unknown value type:" << it.value();
 		}
 	}
+}
+
+
+
+CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguration()
+{
+	// do necessary modifications of system configuration
+	if( SystemConfigurationModifier::setServiceAutostart( ItalcCore::config().autostartService() ) == false )
+	{
+		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+	}
+
+	if( SystemConfigurationModifier::setServiceArguments( ItalcCore::config().serviceArguments() ) == false )
+	{
+		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+	}
+
+	if( SystemConfigurationModifier::enableFirewallException( ItalcCore::config().isFirewallExceptionEnabled() ) == false )
+	{
+		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+	}
+
+	// write global configuration
+	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	localStore.flush( &ItalcCore::config() );
+
+	return Successful;
 }
 
 
