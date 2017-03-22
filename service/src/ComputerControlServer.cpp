@@ -107,6 +107,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 	if( socket->getChar( &messageType ) == false )
 	{
 		qDebug( "ComputerControlServer::handleFeatureMessage(): could not read feature message!" );
+		return false;
 	}
 
 	// receive message
