@@ -1,7 +1,7 @@
 /*
  * GeneralConfigurationPage.h - configuration page with general settings
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,8 +26,10 @@
 #define GENERAL_CONFIGURATION_PAGE_H
 
 #include "ConfigurationPage.h"
+#include "PluginManager.h"
+#include "FeatureManager.h"
 
-namespace Ui { class GeneralConfigurationPage; } ;
+namespace Ui { class GeneralConfigurationPage; }
 
 class GeneralConfigurationPage : public ConfigurationPage
 {
@@ -43,9 +45,17 @@ public:
 private slots:
 	void openLogFileDirectory();
 	void clearLogFiles();
+	void enableFeature();
+	void disableFeature();
 
 private:
+	void updateFeatureLists();
+
 	Ui::GeneralConfigurationPage *ui;
+
+	PluginManager m_pluginManager;
+	FeatureManager m_featureManager;
+	QStringList m_disabledFeatures;
 
 } ;
 

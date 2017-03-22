@@ -33,13 +33,14 @@
 #include "ServiceControl.h"
 #include "NetworkObjectDirectory.h"
 #include "Configuration/UiMapping.h"
-
 #include "ui_GeneralConfigurationPage.h"
 
 
 GeneralConfigurationPage::GeneralConfigurationPage() :
 	ConfigurationPage(),
-	ui(new Ui::GeneralConfigurationPage)
+	ui(new Ui::GeneralConfigurationPage),
+	m_pluginManager( this ),
+	m_featureManager( m_pluginManager )
 {
 	ui->setupUi(this);
 
@@ -95,6 +96,10 @@ void GeneralConfigurationPage::resetWidgets()
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
+	m_disabledFeatures = ItalcCore::config().disabledFeatures();
+
+	updateFeatureLists();
 }
 
 
@@ -179,4 +184,68 @@ void GeneralConfigurationPage::clearLogFiles()
 		QMessageBox::critical( this, tr( "Error" ),
 			tr( "Could not remove all log files." ) );
 	}
+}
+
+
+
+void GeneralConfigurationPage::enableFeature()
+{
+	for( auto item : ui->disabledFeaturesListWidget->selectedItems() )
+	{
+		m_disabledFeatures.removeAll( item->data( Qt::UserRole ).toString() );
+	}
+
+	ItalcCore::config().setDisabledFeatures( m_disabledFeatures );
+
+	updateFeatureLists();
+}
+
+
+
+void GeneralConfigurationPage::disableFeature()
+{
+	for( auto item : ui->allFeaturesListWidget->selectedItems() )
+	{
+		QString featureUid = item->data( Qt::UserRole ).toString();
+		m_disabledFeatures.removeAll( featureUid );
+		m_disabledFeatures.append( featureUid );
+	}
+
+	ItalcCore::config().setDisabledFeatures( m_disabledFeatures );
+
+	updateFeatureLists();
+}
+
+
+
+void GeneralConfigurationPage::updateFeatureLists()
+{
+	ui->allFeaturesListWidget->setUpdatesEnabled( false );
+	ui->disabledFeaturesListWidget->setUpdatesEnabled( false );
+
+	ui->allFeaturesListWidget->clear();
+	ui->disabledFeaturesListWidget->clear();
+
+	for( auto feature : m_featureManager.features() )
+	{
+		if( feature.testFlag( Feature::Builtin ) )
+		{
+			continue;
+		}
+
+		QListWidgetItem* item = new QListWidgetItem( QIcon( feature.iconUrl() ), feature.displayName() );
+		item->setData( Qt::UserRole, feature.uid().toString() );
+
+		if( m_disabledFeatures.contains( feature.uid().toString() ) )
+		{
+			ui->disabledFeaturesListWidget->addItem( item );
+		}
+		else
+		{
+			ui->allFeaturesListWidget->addItem( item );
+		}
+	}
+
+	ui->allFeaturesListWidget->setUpdatesEnabled( true );
+	ui->disabledFeaturesListWidget->setUpdatesEnabled( true );
 }
