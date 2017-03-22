@@ -36,6 +36,9 @@ ConfigCommandLinePlugin::ConfigCommandLinePlugin() :
 				   std::pair<QString, QString>( "list", "list all configuration keys and values" ),
 				   std::pair<QString, QString>( "import", "import configuration from given file" ),
 				   std::pair<QString, QString>( "export", "export configuration to given file" ),
+				   std::pair<QString, QString>( "get", "read and output configuration value for given key" ),
+				   std::pair<QString, QString>( "set", "write given value to given configuration key" ),
+				   std::pair<QString, QString>( "unset", "unset (remove) given configuration key" ),
 				   } )
 {
 }
@@ -140,6 +143,100 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_export( co
 
 	// write current configuration to output file
 	Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &ItalcCore::config() );
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const QStringList& arguments )
+{
+	QString key = arguments.value( 0 );
+
+	if( key.isEmpty() )
+	{
+		return operationError( tr( "Please specify a valid key." ) );
+	}
+
+	QStringList keyParts = key.split( '/' );
+	key = keyParts.last();
+	QString parentKey;
+
+	if( keyParts.size() > 1 )
+	{
+		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
+	}
+
+	if( ItalcCore::config().hasValue( key, parentKey ) == false )
+	{
+		return operationError( tr( "Specified key does not exist in current configuration!" ) );
+	}
+
+	printf( "%s\n", qUtf8Printable( ItalcCore::config().value( key, parentKey ).toString() ) );
+
+	return NoResult;
+}
+
+
+
+CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const QStringList& arguments )
+{
+	QString key = arguments.value( 0 );
+	QString value = arguments.value( 1 );
+
+	if( key.isEmpty() )
+	{
+		return operationError( tr( "Please specify a valid key." ) );
+	}
+
+	if( value.isEmpty() )
+	{
+		return operationError( tr( "Please specify a valid value." ) );
+	}
+
+	QStringList keyParts = key.split( '/' );
+	key = keyParts.last();
+	QString parentKey;
+
+	if( keyParts.size() > 1 )
+	{
+		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
+	}
+
+	ItalcCore::config().setValue( key, value, parentKey );
+
+	// write global configuration
+	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	localStore.flush( &ItalcCore::config() );
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( const QStringList& arguments )
+{
+	QString key = arguments.value( 0 );
+
+	if( key.isEmpty() )
+	{
+		return operationError( tr( "Please specify a valid key." ) );
+	}
+
+	QStringList keyParts = key.split( '/' );
+	key = keyParts.last();
+	QString parentKey;
+
+	if( keyParts.size() > 1 )
+	{
+		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
+	}
+
+	ItalcCore::config().removeValue( key, parentKey );
+
+	// write global configuration
+	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	localStore.flush( &ItalcCore::config() );
 
 	return Successful;
 }

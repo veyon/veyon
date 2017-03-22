@@ -86,6 +86,9 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_import( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_get( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_set( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_unset( const QStringList& arguments );
 
 private:
 	void listConfiguration( const ItalcConfiguration::DataMap &map,
