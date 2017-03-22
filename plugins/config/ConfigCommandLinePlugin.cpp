@@ -22,8 +22,12 @@
  *
  */
 
+#include <QFile>
+
+#include "Configuration/JsonStore.h"
 #include "Configuration/LocalStore.h"
 #include "ConfigCommandLinePlugin.h"
+#include "SystemConfigurationModifier.h"
 
 
 ConfigCommandLinePlugin::ConfigCommandLinePlugin() :
@@ -88,6 +92,38 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( cons
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( const QStringList& arguments )
 {
+	QString fileName = arguments.value( 0 );
+
+	if( fileName.isEmpty() || QFile( fileName ).exists() == false )
+	{
+		return operationError( tr( "Please specify an existing configuration file to import." ) );
+	}
+
+	Configuration::JsonStore xs( Configuration::JsonStore::System, fileName );
+
+	// merge configuration
+	ItalcCore::config() += ItalcConfiguration( &xs );
+
+	// do necessary modifications of system configuration
+	if( SystemConfigurationModifier::setServiceAutostart( ItalcCore::config().autostartService() ) == false )
+	{
+		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+	}
+
+	if( SystemConfigurationModifier::setServiceArguments( ItalcCore::config().serviceArguments() ) == false )
+	{
+		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+	}
+
+	if( SystemConfigurationModifier::enableFirewallException( ItalcCore::config().isFirewallExceptionEnabled() ) == false )
+	{
+		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+	}
+
+	// write global configuration
+	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	localStore.flush( &ItalcCore::config() );
+
 	return Successful;
 }
 
@@ -95,6 +131,16 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( co
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_export( const QStringList& arguments )
 {
+	QString fileName = arguments.value( 0 );
+
+	if( fileName.isEmpty() )
+	{
+		return operationError( tr( "Please specify a valid filename for the configuration export." ) );
+	}
+
+	// write current configuration to output file
+	Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &ItalcCore::config() );
+
 	return Successful;
 }
 
@@ -121,4 +167,13 @@ void ConfigCommandLinePlugin::listConfiguration( const ItalcConfiguration::DataM
 			qWarning() << "Key" << it.key() << "has unknown value type:" << it.value();
 		}
 	}
+}
+
+
+
+CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::operationError( const QString& message )
+{
+	qCritical( "%s", qUtf8Printable( message ) );
+
+	return Failed;
 }

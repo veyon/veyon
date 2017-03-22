@@ -90,6 +90,7 @@ public slots:
 private:
 	void listConfiguration( const ItalcConfiguration::DataMap &map,
 							const QString &parentKey );
+	CommandLinePluginInterface::RunResult operationError( const QString& message );
 
 	QMap<QString, QString> m_subCommands;
 
