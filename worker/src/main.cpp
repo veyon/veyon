@@ -24,6 +24,7 @@
 
 #include <QApplication>
 
+#include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "Logger.h"
 #include "BuiltinFeatures.h"
@@ -61,9 +62,14 @@ int main( int argc, char **argv )
 	}
 
 	QString pluginName = pluginManager.pluginName( featureManager.pluginUid( *workerFeature ) );
-	QString featureUid = workerFeature->uid().toString().replace( "{", "" ).replace( "}", "" );
+	QString featureUid = workerFeature->uid().toString();
 
-	ItalcCore core( &app, "FeatureWorker" + pluginName + "-" + featureUid );
+	ItalcCore core( &app, "FeatureWorker" + pluginName + "-" + featureUid.replace( "{", "" ).replace( "}", "" ) );
+
+	if( core.config().disabledFeatures().contains( featureUid ) )
+	{
+		qFatal( "Specified feature is disabled by configuration!" );
+	}
 
 	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
 
