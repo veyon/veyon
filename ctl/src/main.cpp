@@ -105,6 +105,8 @@ int main( int argc, char **argv )
 				qCritical( "Not enough arguments given - use \"%s help\" for more information",
 						   command.toUtf8().constData() );
 				return -1;
+			case CommandLinePluginInterface::NoResult:
+				return 0;
 			default:
 				qCritical( "Unknown result!" );
 				return -1;

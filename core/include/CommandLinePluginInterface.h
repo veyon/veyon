@@ -38,6 +38,7 @@ public:
 		Failed,
 		NotEnoughArguments,
 		InvalidCommand,
+		NoResult,
 		RunResultCount
 	} RunResult;
 
