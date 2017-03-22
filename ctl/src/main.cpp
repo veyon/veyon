@@ -109,12 +109,19 @@ int main( int argc, char **argv )
 				qInfo( "[FAIL]" );
 				return -1;
 			case CommandLinePluginInterface::InvalidCommand:
-				qCritical( "Invalid subcommand:" );
+				if( app->arguments().contains( "help" ) == false )
+				{
+					qCritical( "Invalid subcommand!" );
+				}
+				qCritical( "Available subcommands:" );
 				for( auto subCommand : interface->subCommands() )
 				{
 					qCritical( "    %s - %s", subCommand.toUtf8().constData(),
 							   interface->subCommandHelp( subCommand ).toUtf8().constData() );
 				}
+				return -1;
+			case CommandLinePluginInterface::InvalidArguments:
+				qCritical( "Invalid arguments specified" );
 				return -1;
 			case CommandLinePluginInterface::NotEnoughArguments:
 				qCritical( "Not enough arguments given - use \"%s help\" for more information",

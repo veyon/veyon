@@ -36,6 +36,7 @@ public:
 		Unknown,
 		Successful,
 		Failed,
+		InvalidArguments,
 		NotEnoughArguments,
 		InvalidCommand,
 		NoResult,
