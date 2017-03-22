@@ -167,6 +167,7 @@ File "italc-service.exe"
 File "vnchooks.dll"
 File "italc-core.dll"
 File "italc-configurator.exe"
+File "italc-ctl.exe"
 File "italc-worker.exe"
 File "LICENSE.TXT"
 File "README.TXT"
@@ -185,14 +186,14 @@ SetOutPath "$INSTDIR\contrib\en-US"
 File "contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -registerservice'
-ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=1'
+ExecWait '"$INSTDIR\italc-ctl.exe" config set Network/FirewallExceptionEnabled 1'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -startservice'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
-  ExecWait '"$INSTDIR\italc-configurator.exe" -quiet -applysettings $R1'
+  ExecWait '"$INSTDIR\italc-ctl.exe" config import $R1'
 ${EndIf}
 SectionEnd
 
@@ -248,7 +249,7 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 
-ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=0'
+ExecWait '"$INSTDIR\italc-ctl.exe" config set Network/FirewallExceptionEnabled 0'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
 ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
@@ -257,7 +258,7 @@ Sleep 2000
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ClearConfig" $R1
 ${IfNot} ${Errors}
-	ExecWait '"$INSTDIR\italc-configurator.exe" -quiet -clearconfiguration'
+	ExecWait '"$INSTDIR\italc-ctl.exe" config clear'
 ${EndIf}
 
 Delete "$INSTDIR\italc-service.exe"
@@ -281,6 +282,7 @@ Delete "$INSTDIR\libqca-qt5.dll"
 Delete "$INSTDIR\LICENSE.TXT"
 Delete "$INSTDIR\vnchooks.dll"
 Delete "$INSTDIR\italc-configurator.exe"
+Delete "$INSTDIR\italc-ctl.exe"
 Delete "$INSTDIR\italc-worker.exe"
 Delete "$INSTDIR\italc-master.exe"
 Delete "$INSTDIR\README.TXT"
