@@ -25,12 +25,10 @@
 #include <QApplication>
 
 #include "ConfigurationTestController.h"
-#include "Configuration/JsonStore.h"
 #include "ConfiguratorCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "MainWindow.h"
-#include "Ldap/LdapDirectory.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
@@ -151,49 +149,6 @@ bool parseRole( QStringListIterator& argIt )
 
 
 
-int autoConfigureLdapBaseDn( QStringListIterator& argIt )
-{
-	QUrl ldapUrl;
-
-	if( argIt.hasNext() )
-	{
-		ldapUrl.setUrl( argIt.next(), QUrl::StrictMode );
-		if( ldapUrl.isValid() == false || ldapUrl.host().isEmpty() )
-		{
-			qCritical() << "Please specify a valid LDAP url following the schema \"ldap[s]://[user[:password]@]hostname[:port]\"";
-			return -1;
-		}
-
-		if( argIt.hasNext() )
-		{
-			ItalcCore::config().setLdapNamingContextAttribute( argIt.next() );
-		}
-		else
-		{
-			qWarning() << "No naming context attribute name given - falling back to configured value.";
-		}
-	}
-
-	LdapDirectory ldapDirectory( ldapUrl );
-	QString baseDn = ldapDirectory.queryNamingContext();
-
-	if( baseDn.isEmpty() )
-	{
-		qCritical() << "Could not query base DN. Please check your LDAP configuration.";
-		return -1;
-	}
-
-	qInfo() << "Configuring" << baseDn << "as base DN and disabling naming context queries.";
-
-	ItalcCore::config().setLdapBaseDn( baseDn );
-	ItalcCore::config().setLdapQueryNamingContext( false );
-	ConfiguratorCore::applyConfiguration( ItalcCore::config() );
-
-	return 0;
-}
-
-
-
 int main( int argc, char **argv )
 {
 	if( checkPrivileges( argc, argv ) == false )
@@ -236,10 +191,6 @@ int main( int argc, char **argv )
 		else if( a == "-importpublickey" || a == "-i" )
 		{
 			return importPublicKey( argIt );
-		}
-		else if( a == "-autoconfigureldapbasedn" )
-		{
-			return autoConfigureLdapBaseDn( argIt );
 		}
 		else if( a == "-test" )
 		{
