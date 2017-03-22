@@ -27,7 +27,7 @@
 
 #include "CommandLinePluginInterface.h"
 
-class LdapCommandLinePlugin : public CommandLinePluginInterface
+class LdapCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.LdapCommandLineInterface")

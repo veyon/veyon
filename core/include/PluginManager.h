@@ -46,7 +46,12 @@ public:
 		return m_pluginInterfaces;
 	}
 
-	void registerExtraPluginInterface( PluginInterface* pluginInterface );
+	QObjectList& pluginObjects()
+	{
+		return m_pluginObjects;
+	}
+
+	void registerExtraPluginInterface( QObject* pluginObject );
 
 	PluginUidList pluginUids() const;
 
@@ -57,6 +62,7 @@ public:
 
 private:
 	PluginInterfaceList m_pluginInterfaces;
+	QObjectList m_pluginObjects;
 
 };
 

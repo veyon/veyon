@@ -38,18 +38,22 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	m_pluginManager( pluginManager ),
 	m_features(),
 	m_emptyFeatureList(),
+	m_pluginObjects(),
 	m_dummyFeature()
 {
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
 
-	for( auto pluginInterface : m_pluginManager.pluginInterfaces() )
+	for( auto pluginObject : m_pluginManager.pluginObjects() )
 	{
-		auto featureInterface = dynamic_cast<FeaturePluginInterface *>( pluginInterface );
-		if( featureInterface )
+		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
+
+		if( featurePluginInterface )
 		{
-			m_features += featureInterface->featureList();
-			m_featureInterfaces += featureInterface;
+			m_pluginObjects += pluginObject;
+			m_featurePluginInterfaces += featurePluginInterface;
+
+			m_features += featurePluginInterface->featureList();
 		}
 	}
 
@@ -59,11 +63,14 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 
 const FeatureList& FeatureManager::features( const Plugin::Uid& pluginUid ) const
 {
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto pluginObject : m_pluginObjects )
 	{
-		if( featureInterface->uid() == pluginUid )
+		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
+		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
+
+		if( pluginInterface && featurePluginInterface && pluginInterface->uid() == pluginUid )
 		{
-			return featureInterface->featureList();
+			return featurePluginInterface->featureList();
 		}
 	}
 
@@ -74,7 +81,7 @@ const FeatureList& FeatureManager::features( const Plugin::Uid& pluginUid ) cons
 
 const Feature& FeatureManager::feature( const Feature::Uid& featureUid ) const
 {
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto featureInterface : m_featurePluginInterfaces )
 	{
 		for( const auto& feature : featureInterface->featureList() )
 		{
@@ -92,11 +99,15 @@ const Feature& FeatureManager::feature( const Feature::Uid& featureUid ) const
 
 Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 {
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto pluginObject : m_pluginObjects )
 	{
-		if( featureInterface->featureList().contains( feature ) )
+		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
+		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
+
+		if( pluginInterface && featurePluginInterface &&
+				featurePluginInterface->featureList().contains( feature ) )
 		{
-			return featureInterface->uid();
+			return pluginInterface->uid();
 		}
 	}
 
@@ -112,7 +123,7 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 {
 	qDebug() << "Run master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto featureInterface : m_featurePluginInterfaces )
 	{
 		featureInterface->startMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
 	}
@@ -127,7 +138,7 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 {
 	qDebug() << "Stop master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto featureInterface : m_featurePluginInterfaces )
 	{
 		featureInterface->stopMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
 	}
@@ -145,7 +156,7 @@ bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
 
 	bool handled = false;
 
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto featureInterface : m_featurePluginInterfaces )
 	{
 		if( featureInterface->handleMasterFeatureMessage( message, computerControlInterface ) )
 		{
@@ -168,7 +179,7 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 
 	bool handled = false;
 
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto featureInterface : m_featurePluginInterfaces )
 	{
 		if( featureInterface->handleServiceFeatureMessage( message, featureWorkerManager ) )
 		{
@@ -187,7 +198,7 @@ bool FeatureManager::handleWorkerFeatureMessage( const FeatureMessage& message )
 
 	bool handled = false;
 
-	for( auto featureInterface : m_featureInterfaces )
+	for( auto featureInterface : m_featurePluginInterfaces )
 	{
 		if( featureInterface->handleWorkerFeatureMessage( message ) )
 		{

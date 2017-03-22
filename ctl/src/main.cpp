@@ -57,20 +57,20 @@ int main( int argc, char **argv )
 	ItalcCore* core = new ItalcCore( app, "Control" );
 
 	PluginManager pluginManager;
-	CommandLinePluginInterfaceList commandLinePluginInterfaces;
+	QMap<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 
-	for( auto pluginInterface : pluginManager.pluginInterfaces() )
+	for( auto pluginObject : pluginManager.pluginObjects() )
 	{
-		auto commandLinePluginInterface = dynamic_cast<CommandLinePluginInterface *>( pluginInterface );
+		auto commandLinePluginInterface = qobject_cast<CommandLinePluginInterface *>( pluginObject );
 		if( commandLinePluginInterface )
 		{
-			commandLinePluginInterfaces += commandLinePluginInterface;
+			commandLinePluginInterfaces[commandLinePluginInterface] = pluginObject;
 		}
 	}
 
 	QString command = app->arguments()[1];
 
-	for( auto interface : commandLinePluginInterfaces )
+	for( auto interface : commandLinePluginInterfaces.keys() )
 	{
 		if( interface->commandName() == command )
 		{
@@ -80,7 +80,7 @@ int main( int argc, char **argv )
 			{
 				QString subCommand = app->arguments()[2];
 
-				if( QMetaObject::invokeMethod( interface,
+				if( QMetaObject::invokeMethod( commandLinePluginInterfaces[interface],
 											   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
 											   Qt::DirectConnection,
 											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
@@ -147,7 +147,7 @@ int main( int argc, char **argv )
 		qCritical( "command not found - available commands are:" );
 	}
 
-	for( auto interface : commandLinePluginInterfaces )
+	for( auto interface : commandLinePluginInterfaces.keys() )
 	{
 		qCritical( "    %s - %s",
 				   interface->commandName().toUtf8().constData(),

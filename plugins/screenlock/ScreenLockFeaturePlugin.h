@@ -29,7 +29,7 @@
 
 class LockWidget;
 
-class ScreenLockFeaturePlugin : public QObject, FeaturePluginInterface
+class ScreenLockFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.PluginFeatureInterface")

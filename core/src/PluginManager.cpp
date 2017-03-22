@@ -38,7 +38,8 @@ static const QStringList nameFilters("*.so");
 
 PluginManager::PluginManager( QObject* parent ) :
 	QObject( parent ),
-	m_pluginInterfaces()
+	m_pluginInterfaces(),
+	m_pluginObjects()
 {
 	// adds a search path relative to the main executable to if the path exists.
 	auto addRelativeIfExists = [this]( const QString& path )
@@ -59,21 +60,29 @@ PluginManager::PluginManager( QObject* parent ) :
 
 	for( auto fileInfo : QDir( "plugins:" ).entryInfoList( nameFilters ) )
 	{
-		auto pluginInterface = qobject_cast<PluginInterface *>( QPluginLoader( fileInfo.filePath() ).instance() );
+		auto pluginObject = QPluginLoader( fileInfo.filePath() ).instance();
+		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 
-		if( pluginInterface )
+		if( pluginObject && pluginInterface )
 		{
 			qDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
 			m_pluginInterfaces += pluginInterface;
+			m_pluginObjects += pluginObject;
 		}
 	}
 }
 
 
 
-void PluginManager::registerExtraPluginInterface( PluginInterface* pluginInterface )
+void PluginManager::registerExtraPluginInterface( QObject* pluginObject )
 {
-	m_pluginInterfaces += pluginInterface;
+	auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
+	qCritical() << pluginInterface << pluginObject;
+	if( pluginInterface )
+	{
+		m_pluginInterfaces += pluginInterface;
+		m_pluginObjects += pluginObject;
+	}
 }
 
 

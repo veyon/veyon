@@ -27,9 +27,9 @@
 
 #include "PluginInterface.h"
 
-class ITALC_CORE_EXPORT CommandLinePluginInterface : public QObject, public PluginInterface
+class ITALC_CORE_EXPORT CommandLinePluginInterface
 {
-	Q_OBJECT
+	Q_GADGET
 public:
 	typedef enum RunResults
 	{

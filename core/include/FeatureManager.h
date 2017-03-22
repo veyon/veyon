@@ -72,7 +72,8 @@ private:
 	PluginManager& m_pluginManager;
 	FeatureList m_features;
 	FeatureList m_emptyFeatureList;
-	FeaturePluginInterfaceList m_featureInterfaces;
+	QObjectList m_pluginObjects;
+	FeaturePluginInterfaceList m_featurePluginInterfaces;
 	Feature m_dummyFeature;
 
 

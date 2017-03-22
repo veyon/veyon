@@ -29,9 +29,10 @@
 
 class QSystemTrayIcon;
 
-class ITALC_CORE_EXPORT SystemTrayIcon : public QObject, public FeaturePluginInterface
+class ITALC_CORE_EXPORT SystemTrayIcon : public QObject, public FeaturePluginInterface, public PluginInterface
 {
 	Q_OBJECT
+	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
 	SystemTrayIcon();
 	virtual ~SystemTrayIcon() {}

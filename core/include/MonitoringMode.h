@@ -27,9 +27,10 @@
 
 #include "FeaturePluginInterface.h"
 
-class MonitoringMode : public QObject, public FeaturePluginInterface
+class MonitoringMode : public QObject, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
+	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
 	MonitoringMode();
 

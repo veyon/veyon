@@ -30,7 +30,7 @@
 class DemoServer;
 class DemoClient;
 
-class DemoFeaturePlugin : public QObject, FeaturePluginInterface
+class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.PluginFeatureInterface")

@@ -28,7 +28,7 @@
 #include "CommandLinePluginInterface.h"
 #include "ItalcConfiguration.h"
 
-class ConfigCommandLinePlugin : public CommandLinePluginInterface
+class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.ConfigCommandLineInterface")
