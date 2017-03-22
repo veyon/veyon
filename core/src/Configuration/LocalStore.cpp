@@ -140,6 +140,9 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 void LocalStore::flush( Object *obj )
 {
 	QSettings *s = createSettingsObject();
+	// clear previously saved items
+	s->setFallbacksEnabled( false );
+	s->clear();
 	saveSettingsTree( obj->data(), s );
 	delete s;
 }
