@@ -50,6 +50,8 @@ public:
 	Object &operator=( const Object &ref );
 	Object &operator+=( const Object &ref );
 
+	bool hasValue( const QString& key, const QString& parentKey = QString() ) const;
+
 	QVariant value( const QString& key, const QString& parentKey = QString() ) const;
 
 	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );

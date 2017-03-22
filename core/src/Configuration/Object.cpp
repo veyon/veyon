@@ -157,6 +157,39 @@ Object &Object::operator+=( const Object &ref )
 
 
 
+bool Object::hasValue(const QString &key, const QString &parentKey) const
+{
+	// empty parentKey?
+	if( parentKey.isEmpty() )
+	{
+		// search for key in toplevel data map
+		return m_data.contains( key );
+	}
+
+	// recursively search through data maps and sub data-maps until
+	// all levels of the parentKey are processed
+	const QStringList subLevels = parentKey.split( '/' );
+	DataMap currentMap = m_data;
+
+	for( auto level : subLevels )
+	{
+		if( currentMap.contains( level ) &&
+			currentMap[level].type() == QVariant::Map )
+		{
+			currentMap = currentMap[level].toMap();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	// ok, we're there - does the current submap then contain our key?
+	return currentMap.contains( key );
+}
+
+
+
 
 QVariant Object::value( const QString & key, const QString & parentKey ) const
 {
