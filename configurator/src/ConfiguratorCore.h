@@ -37,7 +37,6 @@ class MainWindow;
 namespace ConfiguratorCore
 {
 	bool applyConfiguration( const ItalcConfiguration &config );
-	void listConfiguration( const ItalcConfiguration &config );
 	int clearConfiguration();
 
 	bool createKeyPair( ItalcCore::UserRole role, const QString &destDir );

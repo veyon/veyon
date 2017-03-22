@@ -88,41 +88,6 @@ bool applyConfiguration( const ItalcConfiguration &c )
 
 
 
-
-static void listConfiguration( const ItalcConfiguration::DataMap &map,
-									const QString &parentKey )
-{
-	for( ItalcConfiguration::DataMap::ConstIterator it = map.begin();
-												it != map.end(); ++it )
-	{
-		QString curParentKey = parentKey.isEmpty() ?
-									it.key() : parentKey + "/" + it.key();
-		if( it.value().type() == QVariant::Map )
-		{
-			listConfiguration( it.value().toMap(), curParentKey );
-		}
-		else if( it.value().type() == QVariant::String )
-		{
-			QTextStream( stdout ) << curParentKey << "="
-									<< it.value().toString() << endl;
-		}
-		else
-		{
-			qWarning( "unknown value in configuration data map" );
-		}
-	}
-}
-
-
-
-void listConfiguration( const ItalcConfiguration &config )
-{
-	listConfiguration( config.data(), QString() );
-}
-
-
-
-
 bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 {
 	QString privateKeyFile = LocalSystem::Path::privateKeyPath( role, destDir );

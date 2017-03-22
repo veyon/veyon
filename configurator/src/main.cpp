@@ -73,74 +73,6 @@ bool checkWritableConfiguration()
 }
 
 
-int applySettings( QStringListIterator& argIt )
-{
-	if( argIt.hasNext() == false )
-	{
-		qCritical( "Please specify settings file!" );
-		return -1;
-	}
-
-	const QString file = argIt.next();
-	Configuration::JsonStore xs( Configuration::JsonStore::System, file );
-
-	if( ConfiguratorCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
-	{
-		ConfiguratorCore::informationMessage(
-			MainWindow::tr( "%1 Configurator" ).arg( ItalcCore::applicationName() ),
-			MainWindow::tr( "All settings were applied successfully." ) );
-	}
-	else
-	{
-		ConfiguratorCore::criticalMessage(
-			MainWindow::tr( "%1 Configurator" ).arg( ItalcCore::applicationName() ),
-			MainWindow::tr( "An error occured while applying settings!" ) );
-	}
-
-	return 0;
-}
-
-
-
-int setConfigurationValue( QStringListIterator& argIt )
-{
-	if( !argIt.hasNext() )
-	{
-		qCritical( "No configuration property specified!" );
-		return -1;
-	}
-
-	QString prop = argIt.next();
-	QString value;
-	if( !argIt.hasNext() )
-	{
-		if( !prop.contains( '=' ) )
-		{
-			qCritical() << "No value for property" << prop << "specified!";
-			return -1;
-		}
-		else
-		{
-			value = prop.section( '=', -1, -1 );
-			prop = prop.section( '=', 0, -2 );
-		}
-	}
-	else
-	{
-		value = argIt.next();
-	}
-
-	const QString key = prop.section( '/', -1, -1 );
-	const QString parentKey = prop.section( '/', 0, -2 );
-
-	ItalcCore::config().setValue( key, value, parentKey );
-
-	ConfiguratorCore::applyConfiguration( ItalcCore::config() );
-
-	return 0;
-}
-
-
 
 int createKeyPair( QStringListIterator& argIt )
 {
@@ -305,25 +237,8 @@ int main( int argc, char **argv )
 	while( argc > 1 && argIt.hasNext() )
 	{
 		const QString a = argIt.next().toLower();
-		if( a == "-applysettings" || a == "-a"  )
-		{
-			return applySettings( argIt );
-		}
-		else if( a == "-listconfig" || a == "-l" )
-		{
-			ConfiguratorCore::listConfiguration( ItalcCore::config() );
 
-			return 0;
-		}
-		else if( a == "-setconfigvalue" || a == "-s" )
-		{
-			return setConfigurationValue( argIt );
-		}
-		else if( a == "-clearconfiguration" )
-		{
-			return ConfiguratorCore::clearConfiguration();
-		}
-		else if( a == "-role" )
+		if( a == "-role" )
 		{
 			if( parseRole( argIt ) == false )
 			{
