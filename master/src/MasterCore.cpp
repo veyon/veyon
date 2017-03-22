@@ -28,6 +28,7 @@
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "ItalcVncConnection.h"
+#include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "ComputerManager.h"
 #include "MonitoringMode.h"
@@ -99,13 +100,15 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 FeatureList MasterCore::featureList() const
 {
 	FeatureList features;
+	auto disabledFeatures = ItalcCore::config().disabledFeatures();
 
 	for( auto pluginUid : m_pluginManager->pluginUids() )
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
-					feature.testFlag( Feature::Mode ) )
+					feature.testFlag( Feature::Mode ) &&
+					disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;
 			}
@@ -117,7 +120,8 @@ FeatureList MasterCore::featureList() const
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
-					feature.testFlag( Feature::Mode ) == false )
+					feature.testFlag( Feature::Mode ) == false &&
+					disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;
 			}
