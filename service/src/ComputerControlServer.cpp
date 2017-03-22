@@ -119,6 +119,13 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive();
 
+	if( ItalcCore::config().disabledFeatures().contains( featureMessage.featureUid().toString() ) )
+	{
+		qWarning() << "ComputerControlServer::handleFeatureMessage(): ignoring message as feature"
+				   << featureMessage.featureUid() << "is disabled by configuration!";
+		return false;
+	}
+
 	qDebug() << "ComputerControlServer::handleFeatureMessage():"
 			 << featureMessage.featureUid()
 			 << featureMessage.command()
