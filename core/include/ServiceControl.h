@@ -29,6 +29,7 @@
 
 #include "ItalcCore.h"
 
+class QProcess;
 class QWidget;
 
 class ITALC_CORE_EXPORT ServiceControl : public QObject
@@ -39,15 +40,21 @@ public:
 
 	static QString serviceFilePath();
 
+	bool isServiceRegistered();
+	void registerService();
+	void unregisterService();
+
 	bool isServiceRunning();
 
 	void startService();
 	void stopService();
 
-	void serviceControlWithProgressBar( const QString &title, const QString &arg );
-
 
 private:
+	void serviceControl( const QString &title, const QString &arg );
+	void graphicalFeedback( const QString &title, const QProcess& serviceProcess );
+	void textFeedback( const QString &title, const QProcess& serviceProcess );
+
 	QWidget* m_parent;
 
 };

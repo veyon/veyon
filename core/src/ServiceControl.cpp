@@ -61,6 +61,33 @@ QString ServiceControl::serviceFilePath()
 
 
 
+bool ServiceControl::isServiceRegistered()
+{
+#ifdef ITALC_BUILD_WIN32
+	SC_HANDLE serviceManager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
+	if( !serviceManager )
+	{
+		return false;
+	}
+
+	SC_HANDLE serviceHandle = OpenService( serviceManager, "ItalcService", SERVICE_QUERY_STATUS );
+	if( !serviceHandle )
+	{
+		CloseServiceHandle( serviceManager );
+		return false;
+	}
+
+	CloseServiceHandle( serviceHandle );
+	CloseServiceHandle( serviceManager );
+
+	return true;
+#else
+	return false;
+#endif
+}
+
+
+
 bool ServiceControl::isServiceRunning()
 {
 #ifdef ITALC_BUILD_WIN32
@@ -95,7 +122,7 @@ bool ServiceControl::isServiceRunning()
 
 void ServiceControl::startService()
 {
-	serviceControlWithProgressBar( tr( "Starting %1 service" ).arg( ItalcCore::applicationName() ), "-startservice" );
+	serviceControl( tr( "Starting %1 Service" ).arg( ItalcCore::applicationName() ), "-startservice" );
 }
 
 
@@ -103,17 +130,45 @@ void ServiceControl::startService()
 
 void ServiceControl::stopService()
 {
-	serviceControlWithProgressBar( tr( "Stopping %1 service" ).arg( ItalcCore::applicationName() ), "-stopservice" );
+	serviceControl( tr( "Stopping %1 Service" ).arg( ItalcCore::applicationName() ), "-stopservice" );
 }
 
 
 
-void ServiceControl::serviceControlWithProgressBar( const QString &title, const QString &arg )
+void ServiceControl::registerService()
 {
-	QProcess p;
-	p.start( serviceFilePath(), QStringList() << arg );
-	p.waitForStarted();
+	serviceControl( tr( "Registering %1 Service" ).arg( ItalcCore::applicationName() ), "-registerservice" );
+}
 
+
+
+void ServiceControl::unregisterService()
+{
+	serviceControl( tr( "Unregistering %1 Service" ).arg( ItalcCore::applicationName() ), "-unregisterservice" );
+}
+
+
+
+void ServiceControl::serviceControl( const QString& title, const QString& arg )
+{
+	QProcess serviceProcess;
+	serviceProcess.start( serviceFilePath(), QStringList() << arg );
+	serviceProcess.waitForStarted();
+
+	if( m_parent )
+	{
+		graphicalFeedback( title, serviceProcess);
+	}
+	else
+	{
+		textFeedback( title, serviceProcess );
+	}
+}
+
+
+
+void ServiceControl::graphicalFeedback( const QString &title, const QProcess& serviceProcess )
+{
 	QProgressDialog pd( title, QString(), 0, 0, m_parent );
 	pd.setWindowTitle( ItalcCore::applicationName() );
 
@@ -126,10 +181,24 @@ void ServiceControl::serviceControlWithProgressBar( const QString &title, const 
 	pd.show();
 
 	int j = 0;
-	while( p.state() == QProcess::Running )
+	while( serviceProcess.state() == QProcess::Running )
 	{
 		QCoreApplication::processEvents();
 		b->setValue( ++j % 100 );
 		QThread::msleep( 10 );
+	}
+}
+
+
+
+void ServiceControl::textFeedback( const QString& title, const QProcess& serviceProcess )
+{
+	printf( "%s", qUtf8Printable( title ) );
+
+	while( serviceProcess.state() == QProcess::Running )
+	{
+		QCoreApplication::processEvents();
+		QThread::msleep( 200 );
+		printf( "." );
 	}
 }
