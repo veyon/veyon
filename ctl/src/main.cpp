@@ -80,11 +80,12 @@ int main( int argc, char **argv )
 			{
 				QString subCommand = app->arguments()[2];
 
-				if( QMetaObject::invokeMethod( commandLinePluginInterfaces[interface],
-											   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
-											   Qt::DirectConnection,
-											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
-											   Q_ARG( QStringList, app->arguments().mid( 3 ) ) ) )
+				if( interface->subCommands().contains( subCommand ) &&
+						QMetaObject::invokeMethod( commandLinePluginInterfaces[interface],
+												   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
+												   Qt::DirectConnection,
+												   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
+												   Q_ARG( QStringList, app->arguments().mid( 3 ) ) ) )
 				{
 					// runResult contains result
 				}
