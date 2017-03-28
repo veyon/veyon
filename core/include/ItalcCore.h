@@ -27,6 +27,13 @@
 
 #include <italcconfig.h>
 
+#ifdef ITALC_BUILD_WIN32
+#include <winsock2.h>
+#include <windows.h>
+#endif
+
+#include "rfb/rfbproto.h"
+
 #include <QtEndian>
 #include <QString>
 #include <QDebug>

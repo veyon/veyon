@@ -25,6 +25,12 @@
 
 #include <italcconfig.h>
 
+#ifdef ITALC_BUILD_WIN32
+#define UNICODE
+#endif
+
+#include "ItalcCore.h"
+
 #include <QDir>
 #include <QProcess>
 #include <QWidget>
@@ -32,12 +38,10 @@
 
 #ifdef ITALC_BUILD_WIN32
 
-#define UNICODE
 #include <QLibrary>
 #include <QGuiApplication>
 #include <qpa/qplatformnativeinterface.h>
 
-#include <windows.h>
 #include <shlobj.h>
 #include <wtsapi32.h>
 #include <sddl.h>

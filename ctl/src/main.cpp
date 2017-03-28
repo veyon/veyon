@@ -70,9 +70,9 @@ int main( int argc, char **argv )
 
 	QString command = app->arguments()[1];
 
-	for( auto interface : commandLinePluginInterfaces.keys() )
+	for( auto commandLinePluginInterface : commandLinePluginInterfaces.keys() )
 	{
-		if( interface->commandName() == command )
+		if( commandLinePluginInterface->commandName() == command )
 		{
 			CommandLinePluginInterface::RunResult runResult = CommandLinePluginInterface::Unknown;
 
@@ -80,8 +80,8 @@ int main( int argc, char **argv )
 			{
 				QString subCommand = app->arguments()[2];
 
-				if( interface->subCommands().contains( subCommand ) &&
-						QMetaObject::invokeMethod( commandLinePluginInterfaces[interface],
+				if( commandLinePluginInterface->subCommands().contains( subCommand ) &&
+						QMetaObject::invokeMethod( commandLinePluginInterfaces[commandLinePluginInterface],
 												   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
 												   Qt::DirectConnection,
 												   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
@@ -91,7 +91,7 @@ int main( int argc, char **argv )
 				}
 				else
 				{
-					runResult = interface->runCommand( app->arguments().mid( 2 ) );
+					runResult = commandLinePluginInterface->runCommand( app->arguments().mid( 2 ) );
 				}
 			}
 			else
@@ -115,10 +115,10 @@ int main( int argc, char **argv )
 					qCritical( "Invalid subcommand!" );
 				}
 				qCritical( "Available subcommands:" );
-				for( auto subCommand : interface->subCommands() )
+				for( auto subCommand : commandLinePluginInterface->subCommands() )
 				{
 					qCritical( "    %s - %s", subCommand.toUtf8().constData(),
-							   interface->subCommandHelp( subCommand ).toUtf8().constData() );
+							   commandLinePluginInterface->subCommandHelp( subCommand ).toUtf8().constData() );
 				}
 				return -1;
 			case CommandLinePluginInterface::InvalidArguments:
@@ -148,11 +148,11 @@ int main( int argc, char **argv )
 		qCritical( "command not found - available commands are:" );
 	}
 
-	for( auto interface : commandLinePluginInterfaces.keys() )
+	for( auto commandLinePluginInterface : commandLinePluginInterfaces.keys() )
 	{
 		qCritical( "    %s - %s",
-				   interface->commandName().toUtf8().constData(),
-				   interface->commandHelp().toUtf8().constData() );
+				   commandLinePluginInterface->commandName().toUtf8().constData(),
+				   commandLinePluginInterface->commandHelp().toUtf8().constData() );
 	}
 
 	delete app;

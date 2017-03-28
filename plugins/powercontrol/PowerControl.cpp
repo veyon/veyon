@@ -27,6 +27,7 @@
 #ifdef ITALC_BUILD_WIN32
 
 #define UNICODE
+#include <winsock2.h>
 #include <windows.h>
 
 #define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)

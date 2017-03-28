@@ -52,6 +52,7 @@
 	OP( ItalcConfiguration, ItalcCore::config, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
 
 #define FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP) \
+	OP( ItalcConfiguration, ItalcCore::config, UUID, vncServerPlugin, setVncServerPlugin, "ServerPlugin", "VNC" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\

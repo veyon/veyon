@@ -344,6 +344,7 @@ IF(WIN32)
 			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe ctl/italc-ctl.exe worker/italc-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
+			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
 			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}

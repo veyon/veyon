@@ -51,7 +51,7 @@ ComputerControlServer::ComputerControlServer() :
 	m_featureWorkerManager( m_featureManager ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
-	m_vncServer( ItalcCore::config().vncServerPort() ),
+	m_vncServer( m_pluginManager, ItalcCore::config().vncServerPort() ),
 	m_vncProxyServer( m_vncServer.serverPort(),
 					  m_vncServer.password(),
 					  ItalcCore::config().localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?

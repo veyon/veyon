@@ -22,15 +22,14 @@
  *
  */
 
-#include <italcconfig.h>
+#include "ItalcCore.h"
 
-#include <QtCore/QProcess>
+#include <QProcess>
 #include <QApplication>
 #include <QAbstractNativeEventFilter>
 
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
-#include "ItalcCore.h"
 #include "ComputerControlServer.h"
 #include "VncServer.h"
 #include "Logger.h"
@@ -158,24 +157,12 @@ static int runCoreServer( int argc, char **argv )
 	return ret;
 }
 
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-
-extern HINSTANCE	hAppInstance;
-extern DWORD		mainthreadId;
-#endif
 
 int main( int argc, char **argv )
 {
 #ifdef DEBUG
 	extern int _Xdebug;
 //	_Xdebug = 1;
-#endif
-
-#ifdef ITALC_BUILD_WIN32
-	// initialize global instance handler and main thread ID
-	hAppInstance = GetModuleHandle( NULL );
-	mainthreadId = GetCurrentThreadId();
 #endif
 
 	// decide in what mode to run

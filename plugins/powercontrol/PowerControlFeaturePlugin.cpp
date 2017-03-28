@@ -76,9 +76,9 @@ bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 
 	if( feature == m_powerOnFeature )
 	{
-		for( auto interface : computerControlInterfaces )
+		for( auto controlInterface : computerControlInterfaces )
 		{
-			PowerControl::broadcastWOLPacket( interface->computer().macAddress() );
+			PowerControl::broadcastWOLPacket( controlInterface->computer().macAddress() );
 		}
 	}
 	else

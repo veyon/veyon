@@ -222,24 +222,41 @@
    <item>
     <widget class="QGroupBox" name="groupBox_6">
      <property name="title">
-      <string>Desktop capturing</string>
+      <string>VNC server</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="1">
+       <widget class="QComboBox" name="vncServerPlugin">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Plugin:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
        <widget class="QCheckBox" name="vncCaptureLayeredWindows">
         <property name="text">
          <string>Enable capturing of layered (semi-transparent) windows</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="0" colspan="2">
        <widget class="QCheckBox" name="vncPollFullScreen">
         <property name="text">
          <string>Poll full screen (leave this enabled per default)</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0" colspan="2">
        <widget class="QCheckBox" name="vncLowAccuracy">
         <property name="text">
          <string>Low accuracy (turbo mode)</string>

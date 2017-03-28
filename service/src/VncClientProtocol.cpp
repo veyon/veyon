@@ -24,25 +24,44 @@
 
 #include "ItalcCore.h"
 
-#ifdef ITALC_BUILD_WIN32
-#include <winsock2.h>
-
-#include "vncauth.h"
-#endif
-
 #include <QTcpSocket>
 
 extern "C"
 {
 #include "rfb/rfbproto.h"
+#include "common/d3des.h"
 }
 
-#ifdef ITALC_BUILD_WIN32
-#define rfbEncryptBytes vncEncryptBytes
-#endif
-
 #include "VncClientProtocol.h"
-#include "VariantStream.h"
+
+
+/*
+ * Encrypt CHALLENGESIZE bytes in memory using a password.
+ */
+
+static void
+vncEncryptBytes(unsigned char *bytes, char *passwd)
+{
+	unsigned char key[8];
+	unsigned int i;
+
+	/* key is simply password padded with nulls */
+
+	for (i = 0; i < 8; i++) {
+		if (i < strlen(passwd)) {
+			key[i] = passwd[i];
+		} else {
+			key[i] = 0;
+		}
+	}
+
+	rfbDesKey(key, EN0);
+
+	for (i = 0; i < CHALLENGESIZE; i += 8) {
+		rfbDes(bytes+i, bytes+i);
+	}
+}
+
 
 
 
@@ -171,7 +190,7 @@ bool VncClientProtocol::receiveSecurityChallenge()
 		uint8_t challenge[CHALLENGESIZE];
 		m_socket->read( (char *) challenge, CHALLENGESIZE );
 
-		rfbEncryptBytes( challenge, m_vncPassword.data() );
+		vncEncryptBytes( challenge, m_vncPassword.data() );
 
 		m_socket->write( (const char *) challenge, CHALLENGESIZE );
 

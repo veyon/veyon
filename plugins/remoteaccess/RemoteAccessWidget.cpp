@@ -30,6 +30,8 @@
 #include "ToolButton.h"
 #include "Snapshot.h"
 
+#include "rfb/rfbclient.h"
+
 #include <math.h>
 
 #include <QtCore/QTimer>

@@ -22,9 +22,10 @@
  *
  */
 
-#include <QtCore/QDebug>
-#include <QtCore/QProcess>
-#include <QtCore/QTime>
+#include "ItalcCore.h"
+
+#include <QProcess>
+#include <QTime>
 #include <QApplication>
 #include <QMessageBox>
 

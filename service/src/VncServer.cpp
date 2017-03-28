@@ -25,211 +25,65 @@
 
 #include "ItalcCore.h"
 
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#endif
-
-#include <QCoreApplication>
-#include <QProcess>
-
-#include "rfb/rfbproto.h"
-
-#include "AccessControlProvider.h"
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
 #include "ItalcConfiguration.h"
+#include "PluginManager.h"
 #include "VncServer.h"
+#include "VncServerPluginInterface.h"
 
 
-#ifdef ITALC_BUILD_LINUX
-extern "C" int x11vnc_main( int argc, char * * argv );
-#endif
-
-
-#ifdef ITALC_BUILD_WIN32
-extern bool Myinit( HINSTANCE hInstance );
-extern int WinVNCAppMain();
-
-void ultravnc_italc_load_password( char* out, int size )
-{
-	QByteArray password = ItalcCore::authenticationCredentials().internalVncServerPassword().toLatin1();
-	memcpy( out, password.constData(), std::min<int>( size, password.length() ) );
-}
-
-static VncServer* vncServerInstance = nullptr;
-
-BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
-{
-	if( strcmp( valname, "LoopbackOnly" ) == 0 )
-	{
-		*out = 1;
-		return true;
-	}
-	if( strcmp( valname, "DisableTrayIcon" ) == 0 )
-	{
-		*out = 1;
-		return true;
-	}
-	if( strcmp( valname, "AuthRequired" ) == 0 )
-	{
-		*out = 1;
-		return true;
-	}
-	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
-	{
-		*out = ItalcCore::config().vncCaptureLayeredWindows() ? 1 : 0;
-		return true;
-	}
-	if( strcmp( valname, "PollFullScreen" ) == 0 )
-	{
-		*out = ItalcCore::config().vncPollFullScreen() ? 1 : 0;
-		return true;
-	}
-	if( strcmp( valname, "TurboMode" ) == 0 )
-	{
-		*out = ItalcCore::config().vncLowAccuracy() ? 1 : 0;
-		return true;
-	}
-	if( strcmp( valname, "NewMSLogon" ) == 0 )
-	{
-		*out = 1;
-		return true;
-	}
-	if( strcmp( valname, "MSLogonRequired" ) == 0 )
-	{
-		*out = ItalcCore::config().isLogonAuthenticationEnabled() ? 1 : 0;
-		return true;
-	}
-	if( strcmp( valname, "RemoveWallpaper" ) == 0 )
-	{
-		*out = 0;
-		return true;
-	}
-	if( strcmp( valname, "FileTransferEnabled" ) == 0 )
-	{
-		*out = 0;
-		return true;
-	}
-	if( strcmp( valname, "AllowLoopback" ) == 0 )
-	{
-		*out = 1;
-		return true;
-	}
-	if( strcmp( valname, "AutoPortSelect" ) == 0 )
-	{
-		*out = 0;
-		return true;
-	}
-
-	if( strcmp( valname, "HTTPConnect" ) == 0 )
-	{
-		*out = 0;
-		return true;
-	}
-
-	if( strcmp( valname, "PortNumber" ) == 0 )
-	{
-		*out = vncServerInstance->serverPort();
-		return true;
-	}
-
-	return false;
-}
-#endif
-
-
-
-VncServer::VncServer( int serverPort ) :
+VncServer::VncServer( PluginManager& pluginManager, int serverPort ) :
 	QThread(),
 	m_password( CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) ),
-	m_serverPort( serverPort )
+	m_serverPort( serverPort ),
+	m_pluginInterface( nullptr )
 {
 	ItalcCore::authenticationCredentials().setInternalVncServerPassword( m_password );
-#ifdef ITALC_BUILD_WIN32
-	vncServerInstance = this;
-#endif
+
+
+	VncServerPluginInterfaceList availableVncServerPlugins;
+
+	for( auto pluginObject : pluginManager.pluginObjects() )
+	{
+		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
+		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
+
+		if( pluginInterface && vncServerPluginInterface )
+		{
+			availableVncServerPlugins.append( vncServerPluginInterface );
+
+			if( pluginInterface->uid() == ItalcCore::config().vncServerPlugin() )
+			{
+				m_pluginInterface = vncServerPluginInterface;
+			}
+		}
+	}
+
+	if( m_pluginInterface == nullptr )
+	{
+		if( availableVncServerPlugins.isEmpty() )
+		{
+			qCritical( "VncServer::VncServer(): no VNC server plugins found!" );
+		}
+		else
+		{
+			m_pluginInterface = availableVncServerPlugins.first();
+		}
+	}
 }
 
 
 
 VncServer::~VncServer()
 {
-#ifdef ITALC_BUILD_WIN32
-	vncServerInstance = nullptr;
-#endif
 }
-
-
-
-#ifdef ITALC_BUILD_LINUX
-static void runX11vnc( QStringList cmdline, int port, const QString& password  )
-{
-	cmdline
-		<< "-passwd" << password
-		<< "-localhost"
-		<< "-nosel"	// do not exchange clipboard-contents
-		<< "-nosetclipboard"	// do not exchange clipboard-contents
-		<< "-rfbport" << QString::number( port )
-				// set port where the VNC server should listen
-		;
-
-	// workaround for x11vnc when running in an NX session or a Thin client LTSP session
-	foreach( const QString &s, QProcess::systemEnvironment() )
-	{
-		if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) || s.startsWith( "LTSP_CLIENT_MAC=" ) )
-		{
-			cmdline << "-noxdamage";
-		}
-	}
-
-	// build new C-style command line array based on cmdline-QStringList
-	char **argv = new char *[cmdline.size()+1];
-	argv[0] = qstrdup( QCoreApplication::arguments()[0].toUtf8().constData() );
-	int argc = 1;
-
-	for( QStringList::iterator it = cmdline.begin();
-				it != cmdline.end(); ++it, ++argc )
-	{
-		argv[argc] = new char[it->length() + 1];
-		strcpy( argv[argc], it->toUtf8().constData() );
-	}
-
-	// run x11vnc-server
-	x11vnc_main( argc, argv );
-
-}
-#endif
-
 
 
 void VncServer::run()
 {
-#ifdef ITALC_BUILD_LINUX
-	QStringList cmdline;
-
-	QStringList acceptedArguments;
-	acceptedArguments
-			<< "-noshm"
-			<< "-solid"
-			<< "-xrandr"
-			<< "-onetile";
-
-	foreach( const QString & arg, QCoreApplication::arguments() )
+	if( m_pluginInterface )
 	{
-		if( acceptedArguments.contains( arg ) )
-		{
-			cmdline.append( arg );
-		}
+		m_pluginInterface->run( serverPort(), password() );
 	}
-
-	runX11vnc( cmdline, m_serverPort, m_password );
-
-#elif ITALC_BUILD_WIN32
-
-	// run winvnc-server
-	Myinit( GetModuleHandle( NULL ) );
-	WinVNCAppMain();
-
-#endif
-
 }

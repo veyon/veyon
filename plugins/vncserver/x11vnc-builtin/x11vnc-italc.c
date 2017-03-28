@@ -2,45 +2,6 @@
 #include <rfb/keysym.h>
 #include <config.h>
 
-#ifdef WIN32
-#define WNOHANG 1
-#define SIGUSR1 10
-#include <fcntl.h>
-#include <io.h>
-#include <stdio.h>
-#include <errno.h>
-static int geteuid()
-{
-	errno = ENOSYS;
-	return -1;
-}
-static int getuid()
-{
-	errno = ENOSYS;
-	return -1;
-}
-static int kill(int pid, int sig)
-{
-	errno = ENOSYS;
-	return -1;
-}
-static int fork()
-{
-	errno = ENOSYS;
-	return -1;
-}
-static int waitpid(int pid, int * loc, int options)
-{
-	errno = ENOSYS;
-	return -1;
-}
-static int mkstemp(char * template)
-{
-	mktemp(template);
-	return open(template, O_RDWR);
-}
-#endif
-
 #include "x11vnc/src/avahi.c"
 #include "x11vnc/src/pm.c"
 #include "x11vnc/src/rates.c"
@@ -93,4 +54,3 @@ static int mkstemp(char * template)
 #define main x11vnc_main
 
 #include "x11vnc/src/x11vnc.c"
-

@@ -22,11 +22,11 @@
  *
  */
 
+#include "ItalcCore.h"
+
 #include <QtEndian>
 #include <QTcpSocket>
 #include <QTimer>
-
-#include <rfb/rfbproto.h>
 
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"

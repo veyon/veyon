@@ -27,10 +27,11 @@
 
 #include "ConfiguratorCore.h"
 #include "FileSystemBrowser.h"
-#include "ItalcCore.h"
 #include "ItalcConfiguration.h"
+#include "PluginManager.h"
 #include "ServiceConfigurationPage.h"
 #include "ServiceControl.h"
+#include "VncServerPluginInterface.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_ServiceConfigurationPage.h"
@@ -49,6 +50,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	CONNECT_BUTTON_SLOT( stopService );
 
 	updateServiceControl();
+	populateVncServerPluginComboBox();
 
 	QTimer *serviceUpdateTimer = new QTimer( this );
 	serviceUpdateTimer->start( 2000 );
@@ -114,4 +116,22 @@ void ServiceConfigurationPage::updateServiceControl()
 	ui->stopService->setEnabled( false );
 #endif
 	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+}
+
+
+
+void ServiceConfigurationPage::populateVncServerPluginComboBox()
+{
+	PluginManager pluginManager;
+
+	for( auto pluginObject : pluginManager.pluginObjects() )
+	{
+		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
+		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
+
+		if( pluginInterface && vncServerPluginInterface )
+		{
+			ui->vncServerPlugin->addItem( pluginInterface->description(), pluginInterface->uid() );
+		}
+	}
 }

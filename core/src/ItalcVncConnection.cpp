@@ -36,6 +36,11 @@
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
 
+extern "C"
+{
+	#include <rfb/rfbclient.h>
+}
+
 
 class KeyClientEvent : public MessageEvent
 {

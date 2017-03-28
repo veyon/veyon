@@ -27,6 +27,11 @@
 #include "Logger.h"
 #include "SocketDevice.h"
 
+extern "C"
+{
+	#include <rfb/rfbclient.h>
+}
+
 
 class FeatureMessageEvent : public MessageEvent
 {

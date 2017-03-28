@@ -27,6 +27,7 @@
 
 #ifdef ITALC_BUILD_WIN32
 #define INITGUID
+#include <winsock2.h>
 #include <windows.h>
 #include <netfw.h>
 #endif

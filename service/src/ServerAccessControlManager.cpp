@@ -22,6 +22,8 @@
  *
  */
 
+#include "ItalcCore.h"
+
 #include <QtCrypto>
 #include <QHostAddress>
 

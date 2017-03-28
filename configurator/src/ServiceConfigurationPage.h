@@ -52,6 +52,8 @@ private slots:
 
 
 private:
+	void populateVncServerPluginComboBox();
+
 	Ui::ServiceConfigurationPage *ui;
 
 };

@@ -22,17 +22,13 @@
  *
  */
 
-#include <italcconfig.h>
+#include "ItalcCore.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QProcess>
-#include <QtGui/QCloseEvent>
+#include <QDir>
+#include <QProcess>
+#include <QCloseEvent>
 #include <QFileDialog>
 #include <QMessageBox>
-
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#endif
 
 #include "Configuration/JsonStore.h"
 #include "Configuration/UiMapping.h"

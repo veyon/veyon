@@ -28,6 +28,8 @@
 #ifndef ITALC_VNC_CONNECTION_H
 #define ITALC_VNC_CONNECTION_H
 
+#include "ItalcCore.h"
+
 #include <QMutex>
 #include <QQueue>
 #include <QReadWriteLock>
@@ -36,12 +38,6 @@
 #include <QWaitCondition>
 #include <QImage>
 
-extern "C"
-{
-	#include <rfb/rfbclient.h>
-}
-
-#include "ItalcCore.h"
 #include "RfbItalcAuth.h"
 #include "SocketDevice.h"
 
@@ -214,14 +210,14 @@ private:
 	void finishFrameBufferUpdate();
 
 	// hooks for LibVNCClient
-	static rfbBool hookInitFrameBuffer( rfbClient *cl );
+	static int8_t hookInitFrameBuffer( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
 	static void hookFinishFrameBufferUpdate( rfbClient *cl );
-	static rfbBool hookHandleCursorPos( rfbClient *cl, int x, int y );
+	static int8_t hookHandleCursorPos( rfbClient *cl, int x, int y );
 	static void hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp );
 	static void hookCutText( rfbClient *cl, const char *text, int textlen );
 	static void hookOutputHandler( const char *format, ... );
-	static rfbBool hookHandleItalcMessage( rfbClient *cl,
+	static int8_t hookHandleItalcMessage( rfbClient *cl,
 						rfbServerToClientMsg *msg );
 	static void framebufferCleanup( void* framebuffer );
 

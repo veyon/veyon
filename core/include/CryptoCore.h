@@ -25,9 +25,9 @@
 #ifndef CRYPTO_CORE_H
 #define CRYPTO_CORE_H
 
-#include <QtCrypto>
-
 #include "ItalcCore.h"
+
+#include <QtCrypto>
 
 class CryptoCore
 {
