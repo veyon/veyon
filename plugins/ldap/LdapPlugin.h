@@ -27,12 +27,13 @@
 
 #include "CommandLinePluginInterface.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
+#include "UsersAndGroupsPluginInterface.h"
 
-class LdapPlugin : public QObject, PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface
+class LdapPlugin : public QObject,PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, UsersAndGroupsPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.Ldap")
-	Q_INTERFACES(PluginInterface CommandLinePluginInterface NetworkObjectDirectoryPluginInterface)
+	Q_INTERFACES(PluginInterface CommandLinePluginInterface NetworkObjectDirectoryPluginInterface UsersAndGroupsPluginInterface)
 public:
 	LdapPlugin();
 	virtual ~LdapPlugin();
@@ -87,6 +88,11 @@ public:
 	}
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
+
+	QStringList users() const override;
+	QStringList groups() const override;
+	QStringList groupsOfUser( const QString& user ) const override;
+
 
 public slots:
 	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn( const QStringList& arguments );

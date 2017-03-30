@@ -75,6 +75,35 @@ NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* paren
 
 
 
+QStringList LdapPlugin::users() const
+{
+	return LdapDirectory().users();
+}
+
+
+
+QStringList LdapPlugin::groups() const
+{
+	return LdapDirectory().groups();
+}
+
+
+
+QStringList LdapPlugin::groupsOfUser( const QString& user ) const
+{
+	LdapDirectory ldapDirectory;
+	const QString userDn = ldapDirectory.users( user ).value( 0 );
+
+	if( userDn.isEmpty() == false )
+	{
+		return ldapDirectory.toRelativeDnList( ldapDirectory.groupsOfUser( userDn ) );
+	}
+
+	return QStringList();
+}
+
+
+
 CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( const QStringList& arguments )
 {
 	QUrl ldapUrl;
