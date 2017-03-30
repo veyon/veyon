@@ -29,7 +29,7 @@
 
 #include "NetworkObjectDirectory.h"
 
-class ConfigurationNetworkObjectDirectory : public NetworkObjectDirectory
+class ITALC_CORE_EXPORT ConfigurationNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
