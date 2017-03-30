@@ -224,44 +224,27 @@
      <property name="title">
       <string>VNC server</string>
      </property>
-     <layout class="QGridLayout" name="vncServerGroupBoxLayout">
-      <item row="0" column="1">
-       <widget class="QComboBox" name="vncServerPlugin">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Plugin:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QCheckBox" name="vncCaptureLayeredWindows">
-        <property name="text">
-         <string>Enable capturing of layered (semi-transparent) windows</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QCheckBox" name="vncPollFullScreen">
-        <property name="text">
-         <string>Poll full screen (leave this enabled per default)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QCheckBox" name="vncLowAccuracy">
-        <property name="text">
-         <string>Low accuracy (turbo mode)</string>
-        </property>
-       </widget>
+     <layout class="QVBoxLayout" name="vncServerGroupBoxLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Plugin:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="vncServerPlugin">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -293,9 +276,6 @@
   <tabstop>demoServerPort</tabstop>
   <tabstop>isFirewallExceptionEnabled</tabstop>
   <tabstop>localConnectOnly</tabstop>
-  <tabstop>vncCaptureLayeredWindows</tabstop>
-  <tabstop>vncPollFullScreen</tabstop>
-  <tabstop>vncLowAccuracy</tabstop>
  </tabstops>
  <resources>
   <include location="../italc-configurator.qrc"/>

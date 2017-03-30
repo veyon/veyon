@@ -25,7 +25,7 @@
 #ifndef BUILTIN_UltraVNC_SERVER_H
 #define BUILTIN_UltraVNC_SERVER_H
 
-#include "PluginInterface.h"
+#include "UltraVncConfiguration.h"
 #include "VncServerPluginInterface.h"
 
 class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface
@@ -67,7 +67,14 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
+	QWidget* configurationWidget() override;
+
 	void run( int serverPort, const QString& password ) override;
+
+	const UltraVncConfiguration& configuration() const
+	{
+		return m_configuration;
+	}
 
 	int serverPort() const
 	{
@@ -80,6 +87,8 @@ public:
 	}
 
 private:
+	UltraVncConfiguration m_configuration;
+
 	int m_serverPort;
 	QString m_password;
 

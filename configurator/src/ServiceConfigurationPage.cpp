@@ -124,8 +124,12 @@ void ServiceConfigurationPage::updateServiceControl()
 void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
 {
 	delete m_vncServerPluginConfigurationWidget;
+	m_vncServerPluginConfigurationWidget = nullptr;
 
-	auto vncServerPluginInterface = m_vncServerPluginInterfaces.value( ui->vncServerPlugin->currentData().toUuid() );
+	auto pluginUid = ui->vncServerPlugin->currentData().toUuid();
+
+	auto vncServerPluginInterface = m_vncServerPluginInterfaces.value( pluginUid );
+
 	if( vncServerPluginInterface )
 	{
 		m_vncServerPluginConfigurationWidget = vncServerPluginInterface->configurationWidget();

@@ -23,7 +23,8 @@
  */
 
 #include "BuiltinUltraVncServer.h"
-#include "ItalcConfiguration.h"
+#include "UltraVncConfiguration.h"
+#include "UltraVncConfigurationWidget.h"
 
 extern bool Myinit( HINSTANCE hInstance );
 extern int WinVNCAppMain();
@@ -61,27 +62,27 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 	}
 	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
 	{
-		*out = ItalcCore::config().vncCaptureLayeredWindows() ? 1 : 0;
+		*out = vncServerInstance->configuration().vncCaptureLayeredWindows() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "PollFullScreen" ) == 0 )
 	{
-		*out = ItalcCore::config().vncPollFullScreen() ? 1 : 0;
+		*out = vncServerInstance->configuration().vncPollFullScreen() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "TurboMode" ) == 0 )
 	{
-		*out = ItalcCore::config().vncLowAccuracy() ? 1 : 0;
+		*out = vncServerInstance->configuration().vncLowAccuracy() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "NewMSLogon" ) == 0 )
 	{
-		*out = 1;
+		*out = 0;
 		return true;
 	}
 	if( strcmp( valname, "MSLogonRequired" ) == 0 )
 	{
-		*out = ItalcCore::config().isLogonAuthenticationEnabled() ? 1 : 0;
+		*out = 0;
 		return true;
 	}
 	if( strcmp( valname, "RemoveWallpaper" ) == 0 )
@@ -122,7 +123,8 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 
 
 
-BuiltinUltraVncServer::BuiltinUltraVncServer()
+BuiltinUltraVncServer::BuiltinUltraVncServer() :
+    m_configuration()
 {
 	vncServerInstance = this;
 
@@ -136,6 +138,13 @@ BuiltinUltraVncServer::BuiltinUltraVncServer()
 BuiltinUltraVncServer::~BuiltinUltraVncServer()
 {
 	vncServerInstance = nullptr;
+}
+
+
+
+QWidget* BuiltinUltraVncServer::configurationWidget()
+{
+	return new UltraVncConfigurationWidget( m_configuration );
 }
 
 

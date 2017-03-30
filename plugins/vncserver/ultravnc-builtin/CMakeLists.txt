@@ -84,10 +84,16 @@ ENDIF(ITALC_BUILD_WIN64)
 
 BUILD_PLUGIN(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
+	UltraVncConfiguration.cpp
+	UltraVncConfigurationWidget.cpp
 	ultravnc.cpp
 	vncntlm.cpp
 	${ultravnc_SOURCES}
-	MOCFILES BuiltinUltraVncServer.h)
+	MOCFILES
+	BuiltinUltraVncServer.h
+	UltraVncConfigurationWidget.h
+	UltraVncConfiguration.h
+	FORMS UltraVncConfigurationWidget.ui)
 
 TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
 SET_TARGET_PROPERTIES(builtin-ultravnc-server PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unknown-pragmas -Wno-strict-aliasing -Wno-terminate -Wno-format-zero-length -fexceptions")
