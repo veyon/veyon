@@ -1,5 +1,5 @@
 /*
- * TestNetworkObjectDirectory.h - provides a NetworkObjectDirectory implementation for testing
+ * NetworkObjectDirectoryManager.h - header file for NetworkObjectDirectoryManager
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,25 +22,33 @@
  *
  */
 
-#ifndef TEST_NETWORK_OBJECT_DIRECTORY_H
-#define TEST_NETWORK_OBJECT_DIRECTORY_H
+#ifndef NETWORK_OBJECT_DIRECTORY_MANAGER_H
+#define NETWORK_OBJECT_DIRECTORY_MANAGER_H
 
-#include <QHash>
+#include "ConfigurationNetworkObjectDirectory.h"
+#include "Plugin.h"
 
-#include "NetworkObjectDirectory.h"
+class NetworkObjectDirectory;
+class NetworkObjectDirectoryPluginInterface;
+class PluginInterface;
+class PluginManager;
 
-class TestNetworkObjectDirectory : public NetworkObjectDirectory
+class ITALC_CORE_EXPORT NetworkObjectDirectoryManager : public QObject
 {
 	Q_OBJECT
 public:
-	TestNetworkObjectDirectory( QObject* parent );
+	NetworkObjectDirectoryManager( PluginManager& pluginManager );
 
-	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
+	QMap<Plugin::Uid, QString> availableDirectories();
 
-	void update() override;
+	NetworkObjectDirectory* createDirectory( QObject* parent );
 
 private:
-	QHash<NetworkObject, QList<NetworkObject>> m_objects;
+	PluginManager& m_pluginManager;
+	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces;
+	Plugin::Uid m_defaultDirectoryUid;
+	ConfigurationNetworkObjectDirectory m_defaultDirectory;
+
 };
 
-#endif // TEST_NETWORK_OBJECT_DIRECTORY_H
+#endif // NETWORK_OBJECT_DIRECTORY_MANAGER_H

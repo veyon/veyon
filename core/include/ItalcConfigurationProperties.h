@@ -37,7 +37,7 @@
 	OP( ItalcConfiguration, ItalcCore::config(), STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 
 #define FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
-	OP( ItalcConfiguration, ItalcCore::config(), INT, networkObjectDirectoryBackend, setNetworkObjectDirectoryBackend, "Backend", "NetworkObjectDirectory" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), UUID, networkObjectDirectoryPlugin, setNetworkObjectDirectoryPlugin, "Plugin", "NetworkObjectDirectory" );			\
 	OP( ItalcConfiguration, ItalcCore::config(), INT, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory" );			\
 
 #define FOREACH_ITALC_FEATURES_CONFIG_PROPERTY(OP)				\
@@ -52,7 +52,7 @@
 	OP( ItalcConfiguration, ItalcCore::config(), STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
 
 #define FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config(), UUID, vncServerPlugin, setVncServerPlugin, "ServerPlugin", "VNC" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), UUID, vncServerPlugin, setVncServerPlugin, "Plugin", "VncServer" );	\
 
 #define FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config(), INT, computerControlServerPort, setComputerControlServerPort, "ComputerControlServerPort", "Network" );			\

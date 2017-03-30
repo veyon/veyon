@@ -22,19 +22,20 @@
  *
  */
 
-#ifndef LDAP_COMMAND_LINE_PLUGIN_H
-#define LDAP_COMMAND_LINE_PLUGIN_H
+#ifndef LDAP_PLUGIN_H
+#define LDAP_PLUGIN_H
 
 #include "CommandLinePluginInterface.h"
+#include "NetworkObjectDirectoryPluginInterface.h"
 
-class LdapCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
+class LdapPlugin : public QObject, PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.LdapCommandLineInterface")
-	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
+	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.Ldap")
+	Q_INTERFACES(PluginInterface CommandLinePluginInterface NetworkObjectDirectoryPluginInterface)
 public:
-	LdapCommandLinePlugin();
-	virtual ~LdapCommandLinePlugin();
+	LdapPlugin();
+	virtual ~LdapPlugin();
 
 	Plugin::Uid uid() const override
 	{
@@ -80,6 +81,13 @@ public:
 	QString subCommandHelp( const QString& subCommand ) const override;
 	RunResult runCommand( const QStringList& arguments ) override;
 
+	QString directoryName() const override
+	{
+		return tr( "LDAP (load objects from LDAP/AD)" );
+	}
+
+	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
+
 public slots:
 	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
@@ -89,4 +97,4 @@ private:
 
 };
 
-#endif // LDAP_COMMAND_LINE_PLUGIN_H
+#endif // LDAP_PLUGIN_H

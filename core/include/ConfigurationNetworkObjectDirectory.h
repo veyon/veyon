@@ -1,5 +1,5 @@
 /*
- * NetworkObjectModelFactory.cpp - factor class for NetworkObjectModel instances
+ * ConfigurationNetworkObjectDirectory.h - NetworkObjects from ItalcConfiguration
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,28 +22,25 @@
  *
  */
 
-#include "NetworkObjectModelFactory.h"
+#ifndef CONFIGURATION_NETWORK_OBJECT_DIRECTORY_H
+#define CONFIGURATION_NETWORK_OBJECT_DIRECTORY_H
 
-#include "LdapNetworkObjectDirectory.h"
-#include "TestNetworkObjectDirectory.h"
-#include "NetworkObjectTreeModel.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include <QHash>
 
-QAbstractItemModel* NetworkObjectModelFactory::create( QObject* parent )
+#include "NetworkObjectDirectory.h"
+
+class ConfigurationNetworkObjectDirectory : public NetworkObjectDirectory
 {
-	NetworkObjectDirectory* networkObjectDirectory = nullptr;
+	Q_OBJECT
+public:
+	ConfigurationNetworkObjectDirectory( QObject* parent );
 
-	switch( ItalcCore::config().networkObjectDirectoryBackend() )
-	{
-	case NetworkObjectDirectory::LdapBackend:
-		networkObjectDirectory = new LdapNetworkObjectDirectory( parent );
-		break;
-	default:
-	case NetworkObjectDirectory::TestBackend:
-		networkObjectDirectory = new TestNetworkObjectDirectory( parent );
-		break;
-	}
+	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
-	return new NetworkObjectTreeModel( networkObjectDirectory, parent );
-}
+	void update() override;
+
+private:
+	QHash<NetworkObject, QList<NetworkObject>> m_objects;
+};
+
+#endif // CONFIGURATION_NETWORK_OBJECT_DIRECTORY_H

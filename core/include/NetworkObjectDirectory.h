@@ -33,14 +33,6 @@ class ITALC_CORE_EXPORT NetworkObjectDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	typedef enum Backends
-	{
-		ConfigurationBackend,
-		LdapBackend,
-		TestBackend,
-		BackendCount
-	} Backend;
-
 	enum {
 		MinimumUpdateInterval = 10,
 		DefaultUpdateInterval = 60,

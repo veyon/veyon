@@ -31,8 +31,11 @@
 class QHostAddress;
 class BuiltinFeatures;
 class FeatureManager;
+class NetworkObjectDirectory;
+class NetworkObjectDirectoryManager;
 class NetworkObjectFilterProxyModel;
 class NetworkObjectOverlayDataModel;
+class PluginManager;
 class UserConfig;
 
 class ComputerManager : public QObject
@@ -40,6 +43,7 @@ class ComputerManager : public QObject
 	Q_OBJECT
 public:
 	ComputerManager( UserConfig& config,
+					 PluginManager& pluginManager,
 					 FeatureManager& featureManager,
 					 BuiltinFeatures& builtinFeatures,
 					 QObject* parent );
@@ -112,6 +116,8 @@ private:
 	FeatureManager& m_featureManager;
 	BuiltinFeatures& m_builtinFeatures;
 
+	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
+	NetworkObjectDirectory* m_networkObjectDirectory;
 	QAbstractItemModel* m_networkObjectModel;
 	NetworkObjectOverlayDataModel* m_networkObjectOverlayDataModel;
 	CheckableItemProxyModel* m_computerTreeModel;

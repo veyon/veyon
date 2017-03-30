@@ -1,5 +1,5 @@
 /*
- * TestNetworkObjectDirectory.cpp - provides a NetworkObjectDirectory implementation for testing
+ * ConfigurationNetworkObjectDirectory.cpp - NetworkObjects from ItalcConfiguration
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,11 +22,9 @@
  *
  */
 
-#include <QTimer>
+#include "ConfigurationNetworkObjectDirectory.h"
 
-#include "TestNetworkObjectDirectory.h"
-
-TestNetworkObjectDirectory::TestNetworkObjectDirectory(  QObject* parent ) :
+ConfigurationNetworkObjectDirectory::ConfigurationNetworkObjectDirectory(  QObject* parent ) :
 	NetworkObjectDirectory( parent )
 {
 	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
@@ -45,7 +43,7 @@ TestNetworkObjectDirectory::TestNetworkObjectDirectory(  QObject* parent ) :
 
 
 
-QList<NetworkObject> TestNetworkObjectDirectory::objects(const NetworkObject &parent)
+QList<NetworkObject> ConfigurationNetworkObjectDirectory::objects( const NetworkObject& parent )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
@@ -62,8 +60,9 @@ QList<NetworkObject> TestNetworkObjectDirectory::objects(const NetworkObject &pa
 
 
 
-void TestNetworkObjectDirectory::update()
+void ConfigurationNetworkObjectDirectory::update()
 {
+#if 0
 	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
 
 	emit objectsAboutToBeInserted( lab1, m_objects[lab1].count(), 1 );
@@ -76,4 +75,5 @@ void TestNetworkObjectDirectory::update()
 	emit objectsAboutToBeRemoved( lab1, 0, 1 );
 	m_objects[lab1].takeFirst();
 	emit objectsRemoved();
+#endif
 }

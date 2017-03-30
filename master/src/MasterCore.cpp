@@ -44,7 +44,7 @@ MasterCore::MasterCore() :
 	m_localComputer( NetworkObject::Uid::createUuid(), "localhost", QHostAddress( QHostAddress::LocalHost ).toString() ),
 	m_localComputerControlInterface( m_localComputer ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
-	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
+	m_computerManager( new ComputerManager( *m_userConfig, *m_pluginManager, *m_featureManager, *m_builtinFeatures, this ) ),
 	m_currentMode()
 {
 	m_localComputerControlInterface.start( QSize(), &m_builtinFeatures->userSessionControl() );

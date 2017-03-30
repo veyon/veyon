@@ -46,6 +46,8 @@ private slots:
 
 
 private:
+	void populateNetworkObjectDirectories();
+
 	Ui::GeneralConfigurationPage *ui;
 
 } ;

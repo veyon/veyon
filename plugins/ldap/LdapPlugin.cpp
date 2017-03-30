@@ -24,11 +24,12 @@
 
 #include "Configuration/LocalStore.h"
 #include "ItalcConfiguration.h"
-#include "LdapCommandLinePlugin.h"
+#include "LdapNetworkObjectDirectory.h"
+#include "LdapPlugin.h"
 #include "Ldap/LdapDirectory.h"
 
 
-LdapCommandLinePlugin::LdapCommandLinePlugin() :
+LdapPlugin::LdapPlugin() :
 	m_subCommands( {
 				   std::pair<QString, QString>( "autoconfigurebasedn", "auto-configure the base DN via naming context" ),
 				   std::pair<QString, QString>( "help", "show help about subcommand" ),
@@ -38,27 +39,27 @@ LdapCommandLinePlugin::LdapCommandLinePlugin() :
 
 
 
-LdapCommandLinePlugin::~LdapCommandLinePlugin()
+LdapPlugin::~LdapPlugin()
 {
 }
 
 
 
-QStringList LdapCommandLinePlugin::subCommands() const
+QStringList LdapPlugin::subCommands() const
 {
 	return m_subCommands.keys();
 }
 
 
 
-QString LdapCommandLinePlugin::subCommandHelp( const QString& subCommand ) const
+QString LdapPlugin::subCommandHelp( const QString& subCommand ) const
 {
 	return m_subCommands.value( subCommand );
 }
 
 
 
-CommandLinePluginInterface::RunResult LdapCommandLinePlugin::runCommand( const QStringList& arguments )
+CommandLinePluginInterface::RunResult LdapPlugin::runCommand( const QStringList& arguments )
 {
 	// all subcommands are handled as slots so if we land here an unsupported subcommand has been called
 	return InvalidCommand;
@@ -66,7 +67,14 @@ CommandLinePluginInterface::RunResult LdapCommandLinePlugin::runCommand( const Q
 
 
 
-CommandLinePluginInterface::RunResult LdapCommandLinePlugin::handle_autoconfigurebasedn( const QStringList& arguments )
+NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* parent )
+{
+	return new LdapNetworkObjectDirectory( parent );
+}
+
+
+
+CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( const QStringList& arguments )
 {
 	QUrl ldapUrl;
 	ldapUrl.setUrl( arguments.value( 0 ), QUrl::StrictMode );
@@ -111,7 +119,7 @@ CommandLinePluginInterface::RunResult LdapCommandLinePlugin::handle_autoconfigur
 
 
 
-CommandLinePluginInterface::RunResult LdapCommandLinePlugin::handle_help( const QStringList& arguments )
+CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList& arguments )
 {
 	if( arguments.value( 0 ) == "autoconfigurebasedn" )
 	{

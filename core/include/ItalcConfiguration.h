@@ -63,7 +63,7 @@ public slots:
 	void setLimittedLogFileSize( bool );
 	void setLogFileSizeLimit( int );
 	void setLogFileDirectory( const QString & );
-	void setNetworkObjectDirectoryBackend( int );
+	void setNetworkObjectDirectoryPlugin( const QUuid& );
 	void setNetworkObjectDirectoryUpdateInterval( int );
 	void setDisabledFeatures( const QStringList& );
 	void setVncServerPlugin( const QUuid& );

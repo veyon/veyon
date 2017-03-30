@@ -1,5 +1,6 @@
 /*
- * NetworkObjectModelFactory.h - factor class for NetworkObjectModel instances
+ * NetworkObjectDirectoryPluginInterface.h - plugin interface for network
+ *                                           object directory implementations
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,19 +23,25 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_MODEL_FACTORY_H
-#define NETWORK_OBJECT_MODEL_FACTORY_H
+#ifndef NETWORK_OBJECT_DIRECTORY_PLUGIN_INTERFACE_H
+#define NETWORK_OBJECT_DIRECTORY_PLUGIN_INTERFACE_H
 
-class QAbstractItemModel;
-class QObject;
+#include "PluginInterface.h"
 
-class NetworkObjectModelFactory
+class NetworkObjectDirectory;
+
+class NetworkObjectDirectoryPluginInterface
 {
 public:
-	NetworkObjectModelFactory() { }
-
-	virtual QAbstractItemModel* create( QObject* parent );
+	virtual QString directoryName() const = 0;
+	virtual NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) = 0;
 
 };
 
-#endif // NETWORK_OBJECT_MODEL_FACTORY_H
+typedef QList<NetworkObjectDirectoryPluginInterface> NetworkObjectDirectoryPluginInterfaceList;
+
+#define NetworkObjectDirectoryPluginInterface_iid "org.italc-solutions.iTALC.Plugins.NetworkObjectPluginInterface"
+
+Q_DECLARE_INTERFACE(NetworkObjectDirectoryPluginInterface, NetworkObjectDirectoryPluginInterface_iid)
+
+#endif // NETWORK_OBJECT_DIRECTORY_PLUGIN_INTERFACE_H

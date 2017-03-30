@@ -30,8 +30,9 @@
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
+#include "NetworkObjectDirectoryManager.h"
+#include "PluginManager.h"
 #include "ServiceControl.h"
-#include "NetworkObjectDirectory.h"
 #include "Configuration/UiMapping.h"
 #include "ui_GeneralConfigurationPage.h"
 
@@ -72,12 +73,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 	CONNECT_BUTTON_SLOT( openLogFileDirectory );
 	CONNECT_BUTTON_SLOT( clearLogFiles );
 
-	QMap<NetworkObjectDirectory::Backend, QString> backends;
-	backends[NetworkObjectDirectory::ConfigurationBackend] = tr( "Local configuration" );
-	backends[NetworkObjectDirectory::LdapBackend] = tr( "LDAP" );
-	backends[NetworkObjectDirectory::TestBackend] = tr( "Test" );
-
-	ui->networkObjectDirectoryBackend->addItems( backends.values() );
+	populateNetworkObjectDirectories();
 }
 
 
@@ -177,5 +173,20 @@ void GeneralConfigurationPage::clearLogFiles()
 	{
 		QMessageBox::critical( this, tr( "Error" ),
 			tr( "Could not remove all log files." ) );
+	}
+}
+
+
+
+void GeneralConfigurationPage::populateNetworkObjectDirectories()
+{
+	PluginManager pluginManager;
+	NetworkObjectDirectoryManager networkObjectDirectoryManager( pluginManager );
+
+	auto directories = networkObjectDirectoryManager.availableDirectories();
+
+	for( auto directoryUid : directories.keys() )
+	{
+		ui->networkObjectDirectoryPlugin->addItem( directories[directoryUid], directoryUid );
 	}
 }

@@ -33,7 +33,7 @@
 #include "FeatureManager.h"
 #include "ItalcConfiguration.h"
 #include "NetworkObject.h"
-#include "NetworkObjectModelFactory.h"
+#include "NetworkObjectDirectoryManager.h"
 #include "NetworkObjectFilterProxyModel.h"
 #include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectTreeModel.h"
@@ -42,6 +42,7 @@
 
 
 ComputerManager::ComputerManager( UserConfig& config,
+								  PluginManager& pluginManager,
 								  FeatureManager& featureManager,
 								  BuiltinFeatures& builtinFeatures,
 								  QObject* parent ) :
@@ -49,7 +50,9 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_config( config ),
 	m_featureManager( featureManager ),
 	m_builtinFeatures( builtinFeatures ),
-	m_networkObjectModel( NetworkObjectModelFactory().create( this ) ),
+	m_networkObjectDirectoryManager( new NetworkObjectDirectoryManager( pluginManager ) ),
+	m_networkObjectDirectory( m_networkObjectDirectoryManager->createDirectory( this ) ),
+	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) )
