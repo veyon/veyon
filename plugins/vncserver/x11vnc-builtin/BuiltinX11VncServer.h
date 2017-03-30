@@ -27,6 +27,7 @@
 
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
+#include "X11VncConfiguration.h"
 
 class BuiltinX11VncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
@@ -67,7 +68,12 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
+	QWidget* configurationWidget() override;
+
 	void run( int serverPort, const QString& password ) override;
+
+private:
+	X11VncConfiguration m_configuration;
 
 };
 

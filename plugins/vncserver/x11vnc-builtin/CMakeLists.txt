@@ -35,10 +35,16 @@ SET(libvncserver_SOURCES
 
 BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
+	X11VncConfiguration.cpp
+	X11VncConfigurationWidget.cpp
 	x11vnc-italc.c
 	${x11vnc_DIR}/src/appshare.c
 	${libvncserver_SOURCES}
-	MOCFILES BuiltinX11VncServer.h)
+	MOCFILES
+	BuiltinX11VncServer.h
+	X11VncConfigurationWidget.h
+	X11VncConfiguration.h
+	FORMS X11VncConfigurationWidget.ui)
 
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	-lpthread

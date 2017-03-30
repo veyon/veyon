@@ -26,11 +26,13 @@
 #include <QProcess>
 
 #include "BuiltinX11VncServer.h"
+#include "X11VncConfigurationWidget.h"
 
 extern "C" int x11vnc_main( int argc, char * * argv );
 
 
-BuiltinX11VncServer::BuiltinX11VncServer()
+BuiltinX11VncServer::BuiltinX11VncServer() :
+	m_configuration()
 {
 }
 
@@ -38,6 +40,13 @@ BuiltinX11VncServer::BuiltinX11VncServer()
 
 BuiltinX11VncServer::~BuiltinX11VncServer()
 {
+}
+
+
+
+QWidget* BuiltinX11VncServer::configurationWidget()
+{
+	return new X11VncConfigurationWidget( m_configuration );
 }
 
 
@@ -51,28 +60,21 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 							"-rfbport", QString::number( serverPort ) // set port at which the VNC server should listen
 						  } ;
 
-	QStringList acceptedArguments;
-	acceptedArguments
-			<< "-noshm"
-			<< "-solid"
-			<< "-xrandr"
-			<< "-onetile";
+	cmdline.append( m_configuration.extraArguments().split( " " ) );
 
-	for( auto arg : QCoreApplication::arguments() )
+	if( m_configuration.isXDamageDisabled() )
 	{
-		if( acceptedArguments.contains( arg ) )
-		{
-			cmdline.append( arg );
-		}
+		cmdline.append( "-noxdamage" );
 	}
-
-
-	// workaround for x11vnc when running in an NX session or a Thin client LTSP session
-	for( auto s : QProcess::systemEnvironment() )
+	else
 	{
-		if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) || s.startsWith( "LTSP_CLIENT_MAC=" ) )
+		// workaround for x11vnc when running in an NX session or a Thin client LTSP session
+		for( auto s : QProcess::systemEnvironment() )
 		{
-			cmdline.append( "-noxdamage" );
+			if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) || s.startsWith( "LTSP_CLIENT_MAC=" ) )
+			{
+				cmdline.append( "-noxdamage" );
+			}
 		}
 	}
 
