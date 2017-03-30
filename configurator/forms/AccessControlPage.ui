@@ -96,9 +96,6 @@
         <property name="sizeAdjustPolicy">
          <enum>QAbstractScrollArea::AdjustToContents</enum>
         </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::MultiSelection</enum>
-        </property>
         <property name="sortingEnabled">
          <bool>true</bool>
         </property>
@@ -125,9 +122,6 @@
        <widget class="QListWidget" name="accessGroupsList">
         <property name="sizeAdjustPolicy">
          <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::MultiSelection</enum>
         </property>
         <property name="sortingEnabled">
          <bool>true</bool>
@@ -475,8 +469,8 @@
    <slot>editAccessControlRule()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>739</x>
-     <y>652</y>
+     <x>331</x>
+     <y>791</y>
     </hint>
     <hint type="destinationlabel">
      <x>983</x>
@@ -545,6 +539,38 @@
     <hint type="destinationlabel">
      <x>914</x>
      <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allGroupsList</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>AccessControlPage</receiver>
+   <slot>addAccessGroup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>181</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>accessGroupsList</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>AccessControlPage</receiver>
+   <slot>removeAccessGroup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>534</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
