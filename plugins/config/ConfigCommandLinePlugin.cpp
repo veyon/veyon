@@ -23,6 +23,7 @@
  */
 
 #include <QFile>
+#include <QJsonDocument>
 
 #include "Configuration/JsonStore.h"
 #include "Configuration/LocalStore.h"
@@ -152,7 +153,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 		return operationError( tr( "Specified key does not exist in current configuration!" ) );
 	}
 
-	printf( "%s\n", qUtf8Printable( ItalcCore::config().value( key, parentKey ).toString() ) );
+	printf( "%s\n", qUtf8Printable( printableConfigurationValue( ItalcCore::config().value( key, parentKey ) ) ) );
 
 	return NoResult;
 }
@@ -226,14 +227,17 @@ void ConfigCommandLinePlugin::listConfiguration( const ItalcConfiguration::DataM
 		{
 			listConfiguration( it.value().toMap(), curParentKey );
 		}
-		else if( it.value().type() == QVariant::String ||
-				 it.value().type() == QVariant::Uuid )
-		{
-			QTextStream( stdout ) << curParentKey << "=" << it.value().toString() << endl;
-		}
 		else
 		{
-			qWarning() << "Key" << it.key() << "has unknown value type:" << it.value();
+			QString value = printableConfigurationValue( it.value() );
+			if( value.isNull() )
+			{
+				qWarning() << "Key" << it.key() << "has unknown value type:" << it.value();
+			}
+			else
+			{
+				QTextStream( stdout ) << curParentKey << "=" << value << endl;
+			}
 		}
 	}
 }
@@ -263,6 +267,34 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 	localStore.flush( &ItalcCore::config() );
 
 	return Successful;
+}
+
+
+
+QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& value )
+{
+	if( value.type() == QVariant::String ||
+			value.type() == QVariant::Uuid ||
+			value.type() == QVariant::UInt ||
+			value.type() == QVariant::Bool )
+	{
+		return value.toString();
+	}
+	else if( value.type() == QVariant::StringList )
+	{
+		QStringList list = value.toStringList();
+		for( auto& str : list )
+		{
+			str = "\"" + str + "\"";
+		}
+		return "(" + list.join( ',' ) + ")";
+	}
+	else if( value.userType() == QMetaType::type( "QJsonArray" ) )
+	{
+		return QString::fromUtf8( QJsonDocument( value.value<QJsonArray>() ).toJson( QJsonDocument::Compact ) );
+	}
+
+	return QString();
 }
 
 

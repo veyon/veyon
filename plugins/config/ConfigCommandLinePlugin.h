@@ -95,6 +95,8 @@ private:
 							const QString &parentKey );
 	CommandLinePluginInterface::RunResult applyConfiguration();
 
+	static QString printableConfigurationValue( const QVariant& value );
+
 	CommandLinePluginInterface::RunResult operationError( const QString& message );
 
 	QMap<QString, QString> m_subCommands;
