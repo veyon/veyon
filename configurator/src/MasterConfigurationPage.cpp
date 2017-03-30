@@ -35,7 +35,9 @@
 
 MasterConfigurationPage::MasterConfigurationPage() :
 	ConfigurationPage(),
-	ui(new Ui::MasterConfigurationPage)
+	ui(new Ui::MasterConfigurationPage),
+	m_pluginManager( this ),
+	m_featureManager( m_pluginManager )
 {
 	ui->setupUi(this);
 
@@ -61,6 +63,10 @@ void MasterConfigurationPage::resetWidgets()
 {
 	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
+	m_disabledFeatures = ItalcCore::config().disabledFeatures();
+
+	updateFeatureLists();
 }
 
 
@@ -87,6 +93,36 @@ void MasterConfigurationPage::openSnapshotDirectory()
 
 
 
+void MasterConfigurationPage::enableFeature()
+{
+	for( auto item : ui->disabledFeaturesListWidget->selectedItems() )
+	{
+		m_disabledFeatures.removeAll( item->data( Qt::UserRole ).toString() );
+	}
+
+	ItalcCore::config().setDisabledFeatures( m_disabledFeatures );
+
+	updateFeatureLists();
+}
+
+
+
+void MasterConfigurationPage::disableFeature()
+{
+	for( auto item : ui->allFeaturesListWidget->selectedItems() )
+	{
+		QString featureUid = item->data( Qt::UserRole ).toString();
+		m_disabledFeatures.removeAll( featureUid );
+		m_disabledFeatures.append( featureUid );
+	}
+
+	ItalcCore::config().setDisabledFeatures( m_disabledFeatures );
+
+	updateFeatureLists();
+}
+
+
+
 void MasterConfigurationPage::populateFeatureComboBox()
 {
 	PluginManager pluginManager;
@@ -101,4 +137,38 @@ void MasterConfigurationPage::populateFeatureComboBox()
 													 feature.uid() );
 		}
 	}
+}
+
+
+
+void MasterConfigurationPage::updateFeatureLists()
+{
+	ui->allFeaturesListWidget->setUpdatesEnabled( false );
+	ui->disabledFeaturesListWidget->setUpdatesEnabled( false );
+
+	ui->allFeaturesListWidget->clear();
+	ui->disabledFeaturesListWidget->clear();
+
+	for( auto feature : m_featureManager.features() )
+	{
+		if( feature.testFlag( Feature::Builtin ) )
+		{
+			continue;
+		}
+
+		QListWidgetItem* item = new QListWidgetItem( QIcon( feature.iconUrl() ), feature.displayName() );
+		item->setData( Qt::UserRole, feature.uid().toString() );
+
+		if( m_disabledFeatures.contains( feature.uid().toString() ) )
+		{
+			ui->disabledFeaturesListWidget->addItem( item );
+		}
+		else
+		{
+			ui->allFeaturesListWidget->addItem( item );
+		}
+	}
+
+	ui->allFeaturesListWidget->setUpdatesEnabled( true );
+	ui->disabledFeaturesListWidget->setUpdatesEnabled( true );
 }

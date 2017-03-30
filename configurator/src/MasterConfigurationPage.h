@@ -26,6 +26,8 @@
 #define MASTER_CONFIGURATION_PAGE_H
 
 #include "ConfigurationPage.h"
+#include "PluginManager.h"
+#include "FeatureManager.h"
 
 namespace Ui {
 class MasterConfigurationPage;
@@ -44,11 +46,19 @@ public:
 private slots:
 	void openUserConfigurationDirectory();
 	void openSnapshotDirectory();
+	void enableFeature();
+	void disableFeature();
 
 private:
 	void populateFeatureComboBox();
+	void updateFeatureLists();
 
 	Ui::MasterConfigurationPage *ui;
+
+	PluginManager m_pluginManager;
+	FeatureManager m_featureManager;
+	QStringList m_disabledFeatures;
+
 };
 
 #endif // MASTER_CONFIGURATION_PAGE_H

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>724</width>
-    <height>798</height>
+    <height>918</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
@@ -268,85 +268,17 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Features</string>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>All features</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Disabled features</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <layout class="QVBoxLayout" name="verticalLayout_18">
-        <item>
-         <spacer name="verticalSpacer_15">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QToolButton" name="disableFeatureButton">
-          <property name="text">
-           <string>...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
-            <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="enableFeatureButton">
-          <property name="text">
-           <string>...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
-            <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_16">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <widget class="QListWidget" name="allFeaturesListWidget"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QListWidget" name="disabledFeaturesListWidget"/>
-      </item>
-     </layout>
-    </widget>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
@@ -367,70 +299,6 @@
     <hint type="destinationlabel">
      <x>408</x>
      <y>377</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>enableFeatureButton</sender>
-   <signal>clicked()</signal>
-   <receiver>GeneralConfigurationPage</receiver>
-   <slot>enableFeature()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>361</x>
-     <y>903</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>361</x>
-     <y>533</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>disableFeatureButton</sender>
-   <signal>clicked()</signal>
-   <receiver>GeneralConfigurationPage</receiver>
-   <slot>disableFeature()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>361</x>
-     <y>860</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>361</x>
-     <y>533</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>allFeaturesListWidget</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>GeneralConfigurationPage</receiver>
-   <slot>disableFeature()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>183</x>
-     <y>881</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>361</x>
-     <y>533</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>disabledFeaturesListWidget</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>GeneralConfigurationPage</receiver>
-   <slot>enableFeature()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>540</x>
-     <y>881</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>361</x>
-     <y>533</y>
     </hint>
    </hints>
   </connection>
