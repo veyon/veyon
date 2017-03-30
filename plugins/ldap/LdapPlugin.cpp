@@ -32,6 +32,7 @@
 LdapPlugin::LdapPlugin() :
 	m_subCommands( {
 				   std::pair<QString, QString>( "autoconfigurebasedn", "auto-configure the base DN via naming context" ),
+				   std::pair<QString, QString>( "query", "query objects from LDAP directory" ),
 				   std::pair<QString, QString>( "help", "show help about subcommand" ),
 				   } )
 {
@@ -119,9 +120,51 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 
 
+CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringList& arguments )
+{
+	LdapDirectory d;
+
+	QString objectType = arguments.value( 0 );
+	QString filter = arguments.value( 1 );
+	QStringList results;
+
+	if( objectType == "rooms" )
+	{
+		results = d.computerLabs( filter );
+	}
+	else if( objectType == "computers" )
+	{
+		results = d.computers( filter );
+	}
+	else if( objectType == "groups" )
+	{
+		results = d.groups( filter );
+	}
+	else if( objectType == "users" )
+	{
+		results = d.users( filter );
+	}
+	else
+	{
+		return InvalidArguments;
+	}
+
+	for( auto result : results )
+	{
+		printf( "%s\n", qUtf8Printable( result ) );
+	}
+
+	return Successful;
+}
+
+
+
+
 CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList& arguments )
 {
-	if( arguments.value( 0 ) == "autoconfigurebasedn" )
+	QString subCommand = arguments.value( 0 );
+
+	if( subCommand == "autoconfigurebasedn" )
 	{
 		printf( "\n"
 				"ldap autoconfigurebasedn <LDAP URL> [<naming context attribute name>]\n"
@@ -131,6 +174,17 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 				"needs to follow the schema:\n"
 				"\n"
 				"  ldap[s]://[user[:password]@]hostname[:port]\n\n" );
+		return NoResult;
+	}
+	else if( subCommand == "query" )
+	{
+		printf( "\n"
+				"ldap query <object type> [filter]\n"
+				"\n"
+				"Query objects from configured LDAP directory where <object type> may be one\n"
+				"of \"rooms\", \"computers\", \"groups\" or \"users\". You can optionally\n"
+				"specify a filter such as \"foo*\".\n"
+				"\n" );
 		return NoResult;
 	}
 

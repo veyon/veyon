@@ -90,6 +90,7 @@ public:
 
 public slots:
 	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_query( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
