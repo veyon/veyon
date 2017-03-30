@@ -30,6 +30,16 @@
 class VncServerPluginInterface
 {
 public:
+	/*!
+	 * \brief Create configuration widget for VNC server plugin - used in Configurator
+	 */
+	virtual QWidget* configurationWidget() = 0;
+
+	/*!
+	 * \brief Run the VNC server and make it listen at given port and use given password - function has to block
+	 * \param serverPort the port the VNC server should listen at
+	 * \param password the password to be used for VNC authentication
+	 */
 	virtual void run( int serverPort, const QString& password ) = 0;
 
 } ;
