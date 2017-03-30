@@ -39,12 +39,13 @@
 
 ServiceConfigurationPage::ServiceConfigurationPage() :
 	ConfigurationPage(),
-	ui(new Ui::ServiceConfigurationPage)
+	ui(new Ui::ServiceConfigurationPage),
+	m_vncServerPluginConfigurationWidget( nullptr )
 {
 	ui->setupUi(this);
 
 #define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
+	connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
 	CONNECT_BUTTON_SLOT( startService );
 	CONNECT_BUTTON_SLOT( stopService );
@@ -56,7 +57,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	serviceUpdateTimer->start( 2000 );
 
 	connect( serviceUpdateTimer, SIGNAL( timeout() ),
-				this, SLOT( updateServiceControl() ) );
+			 this, SLOT( updateServiceControl() ) );
 }
 
 
@@ -120,6 +121,24 @@ void ServiceConfigurationPage::updateServiceControl()
 
 
 
+void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
+{
+	delete m_vncServerPluginConfigurationWidget;
+
+	auto vncServerPluginInterface = m_vncServerPluginInterfaces.value( ui->vncServerPlugin->currentData().toUuid() );
+	if( vncServerPluginInterface )
+	{
+		m_vncServerPluginConfigurationWidget = vncServerPluginInterface->configurationWidget();
+
+		if( m_vncServerPluginConfigurationWidget )
+		{
+			ui->vncServerGroupBoxLayout->addWidget( m_vncServerPluginConfigurationWidget );
+		}
+	}
+}
+
+
+
 void ServiceConfigurationPage::populateVncServerPluginComboBox()
 {
 	PluginManager pluginManager;
@@ -131,6 +150,7 @@ void ServiceConfigurationPage::populateVncServerPluginComboBox()
 
 		if( pluginInterface && vncServerPluginInterface )
 		{
+			m_vncServerPluginInterfaces[pluginInterface->uid()] = vncServerPluginInterface;
 			ui->vncServerPlugin->addItem( pluginInterface->description(), pluginInterface->uid() );
 		}
 	}

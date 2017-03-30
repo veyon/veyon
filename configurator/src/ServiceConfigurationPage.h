@@ -25,11 +25,16 @@
 #ifndef SERVICE_CONFIGURATION_PAGE_H
 #define SERVICE_CONFIGURATION_PAGE_H
 
+#include <QMap>
+
 #include "ConfigurationPage.h"
+#include "Plugin.h"
 
 namespace Ui {
 class ServiceConfigurationPage;
 }
+
+class VncServerPluginInterface;
 
 class ServiceConfigurationPage : public ConfigurationPage
 {
@@ -49,12 +54,15 @@ public slots:
 
 private slots:
 	void updateServiceControl();
-
+	void updateVncServerPluginConfigurationWidget();
 
 private:
 	void populateVncServerPluginComboBox();
 
 	Ui::ServiceConfigurationPage *ui;
+
+	QMap<Plugin::Uid, VncServerPluginInterface*> m_vncServerPluginInterfaces;
+	QWidget* m_vncServerPluginConfigurationWidget;
 
 };
 

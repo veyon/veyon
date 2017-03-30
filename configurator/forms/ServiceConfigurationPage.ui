@@ -220,11 +220,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_6">
+    <widget class="QGroupBox" name="vncServerGroupBox">
      <property name="title">
       <string>VNC server</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_7">
+     <layout class="QGridLayout" name="vncServerGroupBoxLayout">
       <item row="0" column="1">
        <widget class="QComboBox" name="vncServerPlugin">
         <property name="sizePolicy">
@@ -300,5 +300,25 @@
  <resources>
   <include location="../italc-configurator.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>vncServerPlugin</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>ServiceConfigurationPage</receiver>
+   <slot>updateVncServerPluginConfigurationWidget()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>381</x>
+     <y>703</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>340</x>
+     <y>484</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>updateVncServerPluginConfigurationWidget()</slot>
+ </slots>
 </ui>
