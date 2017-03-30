@@ -23,9 +23,7 @@
  *
  */
 
-#include <QtCore/QDir>
-#include <QtCore/QProcessEnvironment>
-#include <QtCore/QSysInfo>
+#include <QDir>
 
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -86,17 +84,6 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 		"$TEMP"
 #endif
 				);
-
-	c.setVncCaptureLayeredWindows(
-#ifdef ITALC_BUILD_WIN32
-						QSysInfo::windowsVersion() == QSysInfo::WV_VISTA ||
-						QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7
-#else
-						false
-#endif
-								);
-	c.setVncPollFullScreen( true );
-	c.setVncLowAccuracy( true );
 
 	c.setComputerControlServerPort( PortOffsetComputerControlServer );
 	c.setVncServerPort( PortOffsetVncServer );

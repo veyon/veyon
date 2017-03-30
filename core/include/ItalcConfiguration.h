@@ -67,9 +67,6 @@ public slots:
 	void setNetworkObjectDirectoryUpdateInterval( int );
 	void setDisabledFeatures( const QStringList& );
 	void setVncServerPlugin( const QUuid& );
-	void setVncCaptureLayeredWindows( bool );
-	void setVncPollFullScreen( bool );
-	void setVncLowAccuracy( bool );
 	void setComputerControlServerPort( int );
 	void setVncServerPort( int );
 	void setFeatureWorkerManagerPort( int );
