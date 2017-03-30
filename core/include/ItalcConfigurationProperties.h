@@ -27,94 +27,94 @@
 #define ITALC_CONFIGURATION_PROPERTIES_H
 
 #define FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, applicationName, setApplicationName, "ApplicationName", "UI" );			\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, applicationName, setApplicationName, "ApplicationName", "UI" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
 
 #define FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(OP)				\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 
 #define FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
-	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryBackend, setNetworkObjectDirectoryBackend, "Backend", "NetworkObjectDirectory" );			\
-	OP( ItalcConfiguration, ItalcCore::config, INT, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, networkObjectDirectoryBackend, setNetworkObjectDirectoryBackend, "Backend", "NetworkObjectDirectory" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory" );			\
 
 #define FOREACH_ITALC_FEATURES_CONFIG_PROPERTY(OP)				\
-	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, disabledFeatures, setDisabledFeatures, "DisabledFeatures", "Features" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), STRINGLIST, disabledFeatures, setDisabledFeatures, "DisabledFeatures", "Features" );			\
 
 #define FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
-	OP( ItalcConfiguration, ItalcCore::config, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
 
 #define FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, UUID, vncServerPlugin, setVncServerPlugin, "ServerPlugin", "VNC" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
+	OP( ItalcConfiguration, ItalcCore::config(), UUID, vncServerPlugin, setVncServerPlugin, "ServerPlugin", "VNC" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
 
 #define FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, INT, computerControlServerPort, setComputerControlServerPort, "ComputerControlServerPort", "Network" );			\
-	OP( ItalcConfiguration, ItalcCore::config, INT, vncServerPort, setVncServerPort, "VncServerPort", "Network" );			\
-	OP( ItalcConfiguration, ItalcCore::config, INT, featureWorkerManagerPort, setFeatureWorkerManagerPort, "FeatureWorkerManagerPort", "Network" );			\
-	OP( ItalcConfiguration, ItalcCore::config, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network" );					\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, computerControlServerPort, setComputerControlServerPort, "ComputerControlServerPort", "Network" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, vncServerPort, setVncServerPort, "VncServerPort", "Network" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, featureWorkerManagerPort, setFeatureWorkerManagerPort, "FeatureWorkerManagerPort", "Network" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network" );					\
 
 #define FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, STRING, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, snapshotDirectory, setSnapshotDirectory, "Snapshots", "Directories" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, snapshotDirectory, setSnapshotDirectory, "Snapshots", "Directories" );	\
 
 #define FOREACH_ITALC_MASTER_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, autoSwitchToCurrentRoom, setAutoSwitchToCurrentRoom, "AutoSwitchToCurrentRoom", "Master" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, onlyCurrentRoomVisible, setOnlyCurrentRoomVisible, "OnlyCurrentRoomVisible", "Master" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, manualRoomAdditionAllowed, setManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, localComputerHidden, setLocalComputerHidden, "LocalComputerHidden", "Master" );	\
-	OP( ItalcConfiguration, ItalcCore::config, UUID, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, autoSwitchToCurrentRoom, setAutoSwitchToCurrentRoom, "AutoSwitchToCurrentRoom", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, onlyCurrentRoomVisible, setOnlyCurrentRoomVisible, "OnlyCurrentRoomVisible", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, manualRoomAdditionAllowed, setManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, localComputerHidden, setLocalComputerHidden, "LocalComputerHidden", "Master" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), UUID, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
 
 #define FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithKeyAuthentication, setPermissionRequiredWithKeyAuthentication, "PermissionRequiredWithKeyAuthentication", "Authentication" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithLogonAuthentication, setPermissionRequiredWithLogonAuthentication, "PermissionRequiredWithLogonAuthentication", "Authentication" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isPermissionRequiredWithKeyAuthentication, setPermissionRequiredWithKeyAuthentication, "PermissionRequiredWithKeyAuthentication", "Authentication" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isPermissionRequiredWithLogonAuthentication, setPermissionRequiredWithLogonAuthentication, "PermissionRequiredWithLogonAuthentication", "Authentication" );	\
 
 #define FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\
-	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
-	OP( ItalcConfiguration, ItalcCore::config, JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
 #define FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isLdapIntegrationEnabled, setLdapIntegrationEnabled, "LdapIntegrationEnabled", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapNamingContextAttribute, setLdapNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerHostNameAsFQDN, setLdapComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerLabMembersByAttribute, setLdapComputerLabMembersByAttribute, "ComputerLabMembersByAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerLabAttribute, setLdapComputerLabAttribute, "ComputerLabAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isLdapIntegrationEnabled, setLdapIntegrationEnabled, "LdapIntegrationEnabled", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapNamingContextAttribute, setLdapNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapComputerHostNameAsFQDN, setLdapComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapComputerLabMembersByAttribute, setLdapComputerLabMembersByAttribute, "ComputerLabMembersByAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerLabAttribute, setLdapComputerLabAttribute, "ComputerLabAttribute", "LDAP" );	\
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)				\
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\

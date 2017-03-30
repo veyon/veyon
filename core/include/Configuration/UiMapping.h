@@ -39,64 +39,64 @@ class QLabel;
 template<class Config, typename DataType, class WidgetType>
 inline void initWidgetFromProperty( Config* config, DataType (Config::*getter)() const, WidgetType* widget );
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, bool (ItalcConfiguration::*getter)() const, QCheckBox* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, bool (Config::*getter)() const, QCheckBox* widget )
 {
 	widget->setChecked( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, bool (ItalcConfiguration::*getter)() const, QGroupBox* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, bool (Config::*getter)() const, QGroupBox* widget )
 {
 	widget->setChecked( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, bool (ItalcConfiguration::*getter)() const, QRadioButton* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, bool (Config::*getter)() const, QRadioButton* widget )
 {
 	widget->setChecked( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, QString (ItalcConfiguration::*getter)() const, QComboBox* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QComboBox* widget )
 {
 	widget->setCurrentText( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, QString (ItalcConfiguration::*getter)() const, QLineEdit* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QLineEdit* widget )
 {
 	widget->setText( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, int (ItalcConfiguration::*getter)() const, QComboBox* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, int (Config::*getter)() const, QComboBox* widget )
 {
 	widget->setCurrentIndex( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, int (ItalcConfiguration::*getter)() const, QSpinBox* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, int (Config::*getter)() const, QSpinBox* widget )
 {
 	widget->setValue( (config->*getter)() );
 }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, QUuid (ItalcConfiguration::*getter)() const, QComboBox* widget )
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QUuid (Config::*getter)() const, QComboBox* widget )
 {
 	widget->setCurrentIndex( widget->findData( (config->*getter)() ) );
 }
 
 // specializations for special properties which can't be mapped to widgets
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, QJsonArray (ItalcConfiguration::*getter)() const, QGroupBox* ptr) { }
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QJsonArray (Config::*getter)() const, QGroupBox* ptr) { }
 
-template<>
-inline void initWidgetFromProperty( ItalcConfiguration* config, QStringList (ItalcConfiguration::*getter)() const, QGroupBox* ptr) { }
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QStringList (Config::*getter)() const, QGroupBox* ptr) { }
 
 // widget initialization
 #define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey)	\
-			initWidgetFromProperty<>( &config(), &className::get, ui->get );
+			initWidgetFromProperty<>( &config, &className::get, ui->get );
 
 
 // connect widget signals to configuration property write methods
@@ -104,52 +104,52 @@ inline void initWidgetFromProperty( ItalcConfiguration* config, QStringList (Ita
 template<class Config, typename DataType, class WidgetType>
 inline void connectWidgetToProperty( Config* config, void (Config::*setter)( DataType ), WidgetType* widget );
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( bool ), QCheckBox* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( bool ), QCheckBox* widget )
 {
 	QObject::connect( widget, &QCheckBox::toggled, config, setter );
 }
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( bool ), QGroupBox* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( bool ), QGroupBox* widget )
 {
 	QObject::connect( widget, &QGroupBox::toggled, config, setter );
 }
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( bool ), QRadioButton* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( bool ), QRadioButton* widget )
 {
 	QObject::connect( widget, &QCheckBox::toggled, config, setter );
 }
 
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( const QString& ), QComboBox* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QComboBox* widget )
 {
 	QObject::connect( widget, &QComboBox::currentTextChanged, config, setter );
 }
 
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( const QString& ), QLineEdit* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QLineEdit* widget )
 {
 	QObject::connect( widget, &QLineEdit::textChanged, config, setter );
 }
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( int ), QComboBox* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( int ), QComboBox* widget )
 {
 	QObject::connect( widget, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), config, setter );
 }
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( int ), QSpinBox* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( int ), QSpinBox* widget )
 {
 	QObject::connect( widget, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), config, setter );
 }
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( const QUuid& ), QComboBox* widget )
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QUuid& ), QComboBox* widget )
 {
 	QObject::connect( widget, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
 				[=] () { (config->*setter)( widget->itemData( widget->currentIndex() ).toUuid() ); } );
@@ -158,13 +158,13 @@ inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConf
 
 // specializations for special properties which can't be connected to widgets
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( const QStringList& ), QGroupBox* widget ) { }
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QStringList& ), QGroupBox* widget ) { }
 
-template<>
-inline void connectWidgetToProperty( ItalcConfiguration* config, void (ItalcConfiguration::*setter)( const QJsonArray& ), QGroupBox* widget ) { }
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QJsonArray& ), QGroupBox* widget ) { }
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey)	\
-	connectWidgetToProperty( &config(), &className::set, ui->get );
+	connectWidgetToProperty( &config, &className::set, ui->get );
 
 #endif
