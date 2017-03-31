@@ -191,9 +191,6 @@ namespace LocalSystem
 
 	void ITALC_CORE_EXPORT activateWindow( QWidget * _window );
 
-	QStringList ITALC_CORE_EXPORT userGroups();
-	QStringList ITALC_CORE_EXPORT groupsOfUser( const QString& userName );
-
 }
 
 #endif
