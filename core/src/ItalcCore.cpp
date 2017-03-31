@@ -42,6 +42,7 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
+#include "PluginManager.h"
 #include "VariantStream.h"
 
 #include "rfb/rfbclient.h"
@@ -127,6 +128,7 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),
 	m_cryptoCore( nullptr ),
+	m_pluginManager( nullptr ),
 	m_applicationName( "iTALC" ),
 	m_userRole( RoleTeacher )
 {
@@ -190,12 +192,17 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 	m_cryptoCore = new CryptoCore;
 
 	initAuthentication( AuthenticationCredentials::None );
+
+	m_pluginManager = new PluginManager( this );
 }
 
 
 
 ItalcCore::~ItalcCore()
 {
+	delete m_pluginManager;
+	m_pluginManager = nullptr;
+
 	delete m_authenticationCredentials;
 	m_authenticationCredentials = nullptr;
 

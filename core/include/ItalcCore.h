@@ -51,6 +51,7 @@ class AuthenticationCredentials;
 class CryptoCore;
 class ItalcConfiguration;
 class Logger;
+class PluginManager;
 
 class ITALC_CORE_EXPORT ItalcCore : public QObject
 {
@@ -69,6 +70,11 @@ public:
 	static AuthenticationCredentials& authenticationCredentials()
 	{
 		return *( instance()->m_authenticationCredentials );
+	}
+
+	static PluginManager& pluginManager()
+	{
+		return *( instance()->m_pluginManager );
 	}
 
 	static void setupApplicationParameters();
@@ -101,7 +107,6 @@ public:
 		m_userRole = userRole;
 	}
 
-
 private:
 	static ItalcCore* s_instance;
 
@@ -109,6 +114,7 @@ private:
 	Logger* m_logger;
 	AuthenticationCredentials* m_authenticationCredentials;
 	CryptoCore* m_cryptoCore;
+	PluginManager* m_pluginManager;
 	QString m_applicationName;
 	UserRole m_userRole;
 
