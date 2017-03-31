@@ -18,27 +18,7 @@
       <string>Computer access control</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" columnstretch="1,0">
-      <item row="2" column="0">
-       <widget class="QRadioButton" name="isAccessControlRulesProcessingEnabled">
-        <property name="text">
-         <string>Process access control rules</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">accessControlModeGroup</string>
-        </attribute>
-       </widget>
-      </item>
       <item row="1" column="0">
-       <widget class="QRadioButton" name="isAccessRestrictedToUserGroups">
-        <property name="text">
-         <string>Restrict access to members of certain user groups</string>
-        </property>
-        <attribute name="buttonGroup">
-         <string notr="true">accessControlModeGroup</string>
-        </attribute>
-       </widget>
-      </item>
-      <item row="0" column="0">
        <widget class="QRadioButton" name="skipAccessControl">
         <property name="text">
          <string>Grant access to every authenticated user (default)</string>
@@ -51,7 +31,7 @@
         </attribute>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="3" column="1">
        <widget class="QPushButton" name="testAccessControlRulesButton">
         <property name="enabled">
          <bool>false</bool>
@@ -65,7 +45,27 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="0">
+       <widget class="QRadioButton" name="isAccessRestrictedToUserGroups">
+        <property name="text">
+         <string>Restrict access to members of certain user groups</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QRadioButton" name="isAccessControlRulesProcessingEnabled">
+        <property name="text">
+         <string>Process access control rules</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="2" column="1">
        <widget class="QPushButton" name="testUserGroupsAccessControlButton">
         <property name="enabled">
          <bool>false</bool>
@@ -78,6 +78,20 @@
           <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
         </property>
        </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Users and groups backend:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="usersAndGroupsPlugin"/>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

@@ -24,6 +24,7 @@
 
 #include "AccessControlRuleEditDialog.h"
 #include "AccessControlProvider.h"
+#include "UsersAndGroupsBackendManager.h"
 
 #include "ui_AccessControlRuleEditDialog.h"
 
@@ -45,7 +46,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	// populate comboboxes
 	QStringList entityNames = m_entityNameMap.values();
 	ui->entityComboBox->addItems( entityNames );
-	ui->groupsComboBox->addItems( accessControlProvider.userGroups() + accessControlProvider.computerGroups() );
+	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
 	ui->commonGroupComboBox->addItems( entityNames );
 	ui->computerLabsComboBox->addItems( accessControlProvider.computerLabs() );
 	ui->commonComputerLabComboBox->addItems( entityNames );

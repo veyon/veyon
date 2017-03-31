@@ -32,6 +32,7 @@
 #include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
+#include "UsersAndGroupsBackendManager.h"
 
 #include "ui_AccessControlPage.h"
 
@@ -42,6 +43,12 @@ AccessControlPage::AccessControlPage() :
 	m_accessControlRulesTestDialog( this )
 {
 	ui->setupUi(this);
+
+	auto usersAndGroupsBackends = UsersAndGroupsBackendManager().availableBackends();
+	for( auto backend : usersAndGroupsBackends.keys() )
+	{
+		ui->usersAndGroupsPlugin->addItem( usersAndGroupsBackends[backend], backend );
+	}
 
 	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
 
@@ -113,7 +120,11 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	for( auto group : AccessControlProvider().userGroups() )
+	auto groups = UsersAndGroupsBackendManager().configuredBackend()->userGroups();
+
+	std::sort( groups.begin(), groups.end() );
+
+	for( auto group : groups )
 	{
 		if( m_accessGroups.contains( group ) )
 		{
