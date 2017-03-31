@@ -27,6 +27,9 @@
 
 #include "Ldap/LdapDirectory.h"
 #include "AccessControlRule.h"
+#include "UsersAndGroupsBackendManager.h"
+
+class UsersAndGroupsPluginInterface;
 
 class ITALC_CORE_EXPORT AccessControlProvider
 {
@@ -40,8 +43,7 @@ public:
 
 	AccessControlProvider();
 
-	QStringList userGroups();
-	QStringList computerGroups();
+	QStringList userGroups() const;
 	QStringList computerLabs();
 
 	AccessResult checkAccess( QString accessingUser, QString accessingComputer,
@@ -59,8 +61,6 @@ public:
 
 
 private:
-	QStringList groupsOfUser( const QString& userName );
-
 	bool isMemberOfGroup( AccessControlRule::EntityType entityType, const QString& entity, const QString& groupName );
 	bool isLocatedInComputerLab( AccessControlRule::EntityType entityType, const QString& entity, const QString& computerLabName );
 	bool hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString& entityOne,
@@ -85,6 +85,8 @@ private:
 
 	LdapDirectory m_ldapDirectory;
 	QList<AccessControlRule> m_accessControlRules;
+	UsersAndGroupsBackendManager m_usersAndGroupsBackendManager;
+	UsersAndGroupsPluginInterface* m_usersAndGroups;
 
 } ;
 

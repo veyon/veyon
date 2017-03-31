@@ -32,7 +32,11 @@
 
 
 AccessControlProvider::AccessControlProvider() :
-	m_ldapDirectory()
+	m_ldapDirectory(),
+	m_accessControlRules(),
+	m_usersAndGroupsBackendManager(),
+	m_usersAndGroups( m_usersAndGroupsBackendManager.configuredBackend() )
+
 {
 	for( auto accessControlRule : ItalcCore::config().accessControlRules() )
 	{
@@ -42,41 +46,9 @@ AccessControlProvider::AccessControlProvider() :
 
 
 
-QStringList AccessControlProvider::userGroups()
+QStringList AccessControlProvider::userGroups() const
 {
-	QStringList groups;
-
-	if( m_ldapDirectory.isEnabled() )
-	{
-		if( m_ldapDirectory.isBound() )
-		{
-			groups = m_ldapDirectory.toRelativeDnList( m_ldapDirectory.userGroups() );
-		}
-	}
-	else
-	{
-		groups = LocalSystem::userGroups();
-	}
-
-	std::sort( groups.begin(), groups.end() );
-
-	return groups;
-}
-
-
-
-QStringList AccessControlProvider::computerGroups()
-{
-	QStringList groups;
-
-	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
-	{
-		groups = m_ldapDirectory.toRelativeDnList( m_ldapDirectory.computerGroups() );
-	}
-
-	std::sort( groups.begin(), groups.end() );
-
-	return groups;
+	return m_usersAndGroups->userGroups();
 }
 
 
@@ -154,9 +126,9 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config().authorizedUserGroups().toSet() );
+	return m_usersAndGroups->groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config().authorizedUserGroups().toSet() );
 #else
-	return groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config().authorizedUserGroups().toSet() ).isEmpty() == false;
+	return m_usersAndGroups->groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config().authorizedUserGroups().toSet() ).isEmpty() == false;
 #endif
 }
 
@@ -221,30 +193,6 @@ bool AccessControlProvider::isAccessDeniedByLocalState()
 
 
 
-QStringList AccessControlProvider::groupsOfUser( const QString &userName )
-{
-	if( m_ldapDirectory.isEnabled() )
-	{
-		if( m_ldapDirectory.isBound() )
-		{
-			const QString userDn = m_ldapDirectory.users( userName ).value( 0 );
-
-			if( userDn.isEmpty() == false )
-			{
-				return m_ldapDirectory.toRelativeDnList( m_ldapDirectory.groupsOfUser( userDn ) );
-			}
-		}
-	}
-	else
-	{
-		return LocalSystem::groupsOfUser( userName );
-	}
-
-	return QStringList();
-}
-
-
-
 bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entityType,
 											 const QString &entity,
 											 const QString &groupName )
@@ -258,10 +206,10 @@ bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entit
 
 	if( groupNameRX.isValid() )
 	{
-		return groupsOfUser( entity ).indexOf( QRegExp( groupName ) ) >= 0;
+		return m_usersAndGroups->groupsOfUser( entity ).indexOf( QRegExp( groupName ) ) >= 0;
 	}
 
-	return groupsOfUser( entity ).contains( groupName );
+	return m_usersAndGroups->groupsOfUser( entity ).contains( groupName );
 }
 
 
@@ -293,21 +241,11 @@ bool AccessControlProvider::isLocatedInComputerLab( AccessControlRule::EntityTyp
 bool AccessControlProvider::hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString &entityOne,
 											   AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
 {
-	if( m_ldapDirectory.isEnabled() )
+	if( entityOneType == AccessControlRule::EntityTypeUser &&
+			entityTwoType == AccessControlRule::EntityTypeUser )
 	{
-		if( m_ldapDirectory.isBound() )
-		{
-			QStringList objectOneGroups = ldapGroupsOfEntity( entityOneType, entityOne );
-			QStringList objectTwoGroups = ldapGroupsOfEntity( entityTwoType, entityTwo );
-
-			return objectOneGroups.toSet().intersect( objectTwoGroups.toSet() ).isEmpty() == false;
-		}
-	}
-	else if( entityOneType == AccessControlRule::EntityTypeUser &&
-			 entityTwoType == AccessControlRule::EntityTypeUser )
-	{
-		return LocalSystem::groupsOfUser( entityOne ).toSet().
-				intersect( LocalSystem::groupsOfUser( entityTwo ).toSet() ).isEmpty() == false;
+		return m_usersAndGroups->groupsOfUser( entityOne ).toSet().
+				intersect( m_usersAndGroups->groupsOfUser( entityTwo ).toSet() ).isEmpty() == false;
 	}
 
 	return false;
