@@ -82,9 +82,11 @@ QStringList LdapPlugin::users() const
 
 
 
-QStringList LdapPlugin::groups() const
+QStringList LdapPlugin::userGroups() const
 {
-	return LdapDirectory().groups();
+	LdapDirectory ldapDirectory;
+
+	return ldapDirectory.toRelativeDnList( ldapDirectory.userGroups() );
 }
 
 

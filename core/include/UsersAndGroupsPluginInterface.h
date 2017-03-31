@@ -31,8 +31,9 @@
 class UsersAndGroupsPluginInterface
 {
 public:
+	virtual QString usersAndGroupsBackendName() const = 0;
 	virtual QStringList users() const = 0;
-	virtual QStringList groups() const = 0;
+	virtual QStringList userGroups() const = 0;
 	virtual QStringList groupsOfUser( const QString& user ) const = 0;
 
 };

@@ -89,8 +89,13 @@ public:
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
 
+	QString usersAndGroupsBackendName() const override
+	{
+		return tr( "LDAP (load users and groups from LDAP/AD)" );
+	}
+
 	QStringList users() const override;
-	QStringList groups() const override;
+	QStringList userGroups() const override;
 	QStringList groupsOfUser( const QString& user ) const override;
 
 
