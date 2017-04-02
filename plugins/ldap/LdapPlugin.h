@@ -27,13 +27,13 @@
 
 #include "CommandLinePluginInterface.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
-#include "UsersAndGroupsPluginInterface.h"
+#include "AccessControlDataBackendInterface.h"
 
-class LdapPlugin : public QObject,PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, UsersAndGroupsPluginInterface
+class LdapPlugin : public QObject,PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, AccessControlDataBackendInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.Ldap")
-	Q_INTERFACES(PluginInterface CommandLinePluginInterface NetworkObjectDirectoryPluginInterface UsersAndGroupsPluginInterface)
+	Q_INTERFACES(PluginInterface CommandLinePluginInterface NetworkObjectDirectoryPluginInterface AccessControlDataBackendInterface)
 public:
 	LdapPlugin();
 	virtual ~LdapPlugin();
@@ -89,14 +89,16 @@ public:
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
 
-	QString usersAndGroupsBackendName() const override
+	QString accessControlDataBackendName() const override
 	{
-		return tr( "LDAP (load users and groups from LDAP/AD)" );
+		return tr( "LDAP (load users/groups and computers/rooms from LDAP/AD)" );
 	}
 
 	QStringList users() const override;
 	QStringList userGroups() const override;
-	QStringList groupsOfUser( const QString& user ) const override;
+	QStringList groupsOfUser( const QString& userName ) const override;
+	QStringList allRooms() const override;
+	QStringList roomsOfComputer( const QString& computerName ) const;
 
 
 public slots:

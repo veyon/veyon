@@ -84,12 +84,12 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Users and groups backend:</string>
+           <string>Data backend:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="usersAndGroupsPlugin"/>
+         <widget class="QComboBox" name="accessControlDataBackend"/>
         </item>
        </layout>
       </item>

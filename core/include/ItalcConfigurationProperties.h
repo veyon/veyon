@@ -82,7 +82,7 @@
 	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isPermissionRequiredWithLogonAuthentication, setPermissionRequiredWithLogonAuthentication, "PermissionRequiredWithLogonAuthentication", "Authentication" );	\
 
 #define FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
-	OP( ItalcConfiguration, ItalcCore::config(), UUID, usersAndGroupsPlugin, setUsersAndGroupsPlugin, "UsersAndGroupsPlugin", "AccessControl");		\
+	OP( ItalcConfiguration, ItalcCore::config(), UUID, accessControlDataBackend, setAccessControlDataBackend, "DataBackend", "AccessControl");		\
 	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
 	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\
 	OP( ItalcConfiguration, ItalcCore::config(), STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\

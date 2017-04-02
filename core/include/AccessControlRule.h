@@ -46,38 +46,13 @@ public:
 
 	Q_ENUM(Action)
 
-
-	typedef enum Entities
-	{
-		EntityNone,
-		EntityAccessingUser,
-		EntityAccessingComputer,
-		EntityLocalUser,
-		EntityLocalComputer,
-		EntityCount
-	} Entity;
-
-	Q_ENUM(Entity)
-
-
-	typedef enum EntityTypes
-	{
-		EntityTypeNone,
-		EntityTypeUser,
-		EntityTypeComputer,
-		EntityTypeCount
-	} EntityType;
-
-	Q_ENUM(EntityType)
-
-
 	enum Condition
 	{
 		ConditionNone,
-		ConditionMemberOfGroup,
+		ConditionMemberOfUserGroup,
 		ConditionGroupsInCommon,
-		ConditionLocatedInComputerLab,
-		ConditionLocatedInSameComputerLab,
+		ConditionLocatedInRoom,
+		ConditionLocatedInSameRoom,
 		ConditionAccessFromLocalHost,
 		ConditionAccessFromLocalUser,
 		ConditionAccessFromAlreadyConnectedUser,
@@ -86,9 +61,28 @@ public:
 
 	Q_ENUM(Condition)
 
+	typedef enum Subjects
+	{
+		SubjectNone,
+		SubjectAccessingUser,
+		SubjectAccessingComputer,
+		SubjectLocalUser,
+		SubjectLocalComputer,
+		SubjectCount
+	} Subject;
+
+	Q_ENUM(Subject)
 
 	typedef QVariant ConditionArgument;
-	typedef QMap<Condition, ConditionArgument> Conditions;
+
+	struct ConditionParameters
+	{
+		bool enabled;
+		Subject subject;
+		ConditionArgument argument;
+	};
+
+	typedef QMap<Condition, ConditionParameters> ConditionParameterMap;
 
 
 	AccessControlRule();
@@ -125,14 +119,19 @@ public:
 		m_action = action;
 	}
 
-	Entity entity() const
+	const ConditionParameterMap& parameters() const
 	{
-		return m_entity;
+		return m_parameters;
 	}
 
-	void setEntity( Entity entity )
+	Subject subject( Condition condition ) const
 	{
-		m_entity = entity;
+		return m_parameters.value( condition ).subject;
+	}
+
+	void setSubject( Condition condition, Subject subject )
+	{
+		m_parameters[condition].subject = subject;
 	}
 
 	bool areConditionsInverted() const
@@ -145,43 +144,45 @@ public:
 		m_invertConditions = inverted;
 	}
 
-	bool hasCondition( Condition condition ) const
+	bool isConditionEnabled( Condition condition ) const
 	{
-		return m_conditions.contains( condition );
+		return m_parameters.value( condition ).enabled;
 	}
 
-	const Conditions conditions() const
+	void setConditionEnabled( Condition condition, bool enabled )
+	{
+		m_parameters[condition].enabled = enabled;
+	}
+
+/*	const ConditionArgumentMap conditions() const
 	{
 		return m_conditions;
+	}*/
+
+	ConditionArgument argument( Condition condition ) const
+	{
+		return m_parameters.value( condition ).argument;
 	}
 
-	ConditionArgument conditionArgument( Condition condition ) const
+	void clearParameters()
 	{
-		return m_conditions.value( condition );
+		m_parameters.clear();
 	}
 
-	void clearConditions()
+	void setArgument( Condition condition, ConditionArgument conditionArgument )
 	{
-		m_conditions.clear();
-	}
-
-	void setCondition( Condition condition, ConditionArgument conditionArgument )
-	{
-		m_conditions[condition] = conditionArgument;
+		m_parameters[condition].argument = conditionArgument;
 	}
 
 	QJsonObject toJson() const;
-
-	static EntityType entityType( Entity entity );
 
 
 private:
 	QString m_name;
 	QString m_description;
 	Action m_action;
-	Entity m_entity;
+	ConditionParameterMap m_parameters;
 	bool m_invertConditions;
-	Conditions m_conditions;
 
 } ;
 

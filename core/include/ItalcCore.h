@@ -47,6 +47,7 @@
 class QCoreApplication;
 class QWidget;
 
+class AccessControlDataBackendManager;
 class AuthenticationCredentials;
 class CryptoCore;
 class ItalcConfiguration;
@@ -75,6 +76,11 @@ public:
 	static PluginManager& pluginManager()
 	{
 		return *( instance()->m_pluginManager );
+	}
+
+	static AccessControlDataBackendManager& accessControlDataBackendManager()
+	{
+		return *( instance()->m_accessControlDataBackendManager );
 	}
 
 	static void setupApplicationParameters();
@@ -115,6 +121,8 @@ private:
 	AuthenticationCredentials* m_authenticationCredentials;
 	CryptoCore* m_cryptoCore;
 	PluginManager* m_pluginManager;
+	AccessControlDataBackendManager* m_accessControlDataBackendManager;
+
 	QString m_applicationName;
 	UserRole m_userRole;
 

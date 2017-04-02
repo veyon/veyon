@@ -1,6 +1,5 @@
 /*
- * UsersAndGroupsPluginInterface.h - plugin interface for network
- *                                           object directory implementations
+ * AccessControlDataBackendInterface.h - interface for an AccessControlDataBackend
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -23,25 +22,27 @@
  *
  */
 
-#ifndef USERS_AND_GROUPS_PLUGIN_INTERFACE_H
-#define USERS_AND_GROUPS_PLUGIN_INTERFACE_H
+#ifndef ACCESS_CONTROL_DATA_BACKEND_INTERFACE_H
+#define ACCESS_CONTROL_DATA_BACKEND_INTERFACE_H
 
 #include "PluginInterface.h"
 
-class UsersAndGroupsPluginInterface
+class AccessControlDataBackendInterface
 {
 public:
-	virtual QString usersAndGroupsBackendName() const = 0;
+	virtual QString accessControlDataBackendName() const = 0;
 	virtual QStringList users() const = 0;
 	virtual QStringList userGroups() const = 0;
-	virtual QStringList groupsOfUser( const QString& user ) const = 0;
+	virtual QStringList groupsOfUser( const QString& userName ) const = 0;
+	virtual QStringList allRooms() const = 0;
+	virtual QStringList roomsOfComputer( const QString& computerName ) const = 0;
 
 };
 
-typedef QList<UsersAndGroupsPluginInterface> UsersAndGroupsPluginInterfaceList;
+typedef QList<AccessControlDataBackendInterface> AccessControlDataBackendInterfaceList;
 
-#define UsersAndGroupsPluginInterface_iid "org.italc-solutions.iTALC.Plugins.UsersAndGroups"
+#define AccessControlDataBackendInterface_iid "org.italc-solutions.iTALC.Plugins.AccessControlDataBackend"
 
-Q_DECLARE_INTERFACE(UsersAndGroupsPluginInterface, UsersAndGroupsPluginInterface_iid)
+Q_DECLARE_INTERFACE(AccessControlDataBackendInterface, AccessControlDataBackendInterface_iid)
 
-#endif // USERS_AND_GROUPS_PLUGIN_INTERFACE_H
+#endif // ACCESS_CONTROL_DATA_BACKEND_INTERFACE_H

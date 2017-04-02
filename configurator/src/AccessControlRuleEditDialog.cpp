@@ -24,7 +24,6 @@
 
 #include "AccessControlRuleEditDialog.h"
 #include "AccessControlProvider.h"
-#include "UsersAndGroupsBackendManager.h"
 
 #include "ui_AccessControlRuleEditDialog.h"
 
@@ -32,56 +31,69 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	QDialog(parent),
 	ui(new Ui::AccessControlRuleEditDialog),
 	m_rule( rule ),
-	m_entityNameMap( {
-			{ AccessControlRule::EntityAccessingUser, tr( "Accessing user" ) },
-			{ AccessControlRule::EntityAccessingComputer, tr( "Accessing computer" ) },
-			{ AccessControlRule::EntityLocalUser, tr( "Local (logged on) user" ) },
-			{ AccessControlRule::EntityLocalComputer, tr( "Local computer" ) },
+	m_subjectNameMap( {
+			{ AccessControlRule::SubjectAccessingUser, tr( "Accessing user" ) },
+			{ AccessControlRule::SubjectAccessingComputer, tr( "Accessing computer" ) },
+			{ AccessControlRule::SubjectLocalUser, tr( "Local (logged on) user" ) },
+			{ AccessControlRule::SubjectLocalComputer, tr( "Local computer" ) },
 		} )
 {
 	ui->setupUi(this);
 
 	AccessControlProvider accessControlProvider;
 
-	// populate comboboxes
-	QStringList entityNames = m_entityNameMap.values();
-	ui->entityComboBox->addItems( entityNames );
+	// populate user subject comboboxes
+	for( auto combobox : { ui->isMemberOfGroupSubjectComboBox, ui->hasCommonGroupsSubjectComboBox, ui->commonGroupComboBox } )
+	{
+		combobox->addItem( m_subjectNameMap[AccessControlRule::SubjectAccessingUser], AccessControlRule::SubjectAccessingUser );
+		combobox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalUser], AccessControlRule::SubjectLocalUser );
+	}
+
+	// populate computer subject comboboxes
+	for( auto combobox : { ui->isLocatedInRoomSubjectComboBox, ui->isLocatedInSameRoomSubjectComboBox, ui->commonComputerLabComboBox } )
+	{
+		combobox->addItem( m_subjectNameMap[AccessControlRule::SubjectAccessingComputer], AccessControlRule::SubjectAccessingComputer );
+		combobox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalComputer], AccessControlRule::SubjectLocalComputer );
+	}
+
+	// populate groups and rooms comboboxes
 	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
-	ui->commonGroupComboBox->addItems( entityNames );
-	ui->computerLabsComboBox->addItems( accessControlProvider.computerLabs() );
-	ui->commonComputerLabComboBox->addItems( entityNames );
+	ui->roomsComboBox->addItems( accessControlProvider.rooms() );
 
 	// load general settings
 	ui->ruleNameLineEdit->setText( rule.name() );
 	ui->ruleDescriptionLineEdit->setText( rule.description() );
 
-	// load selected entity
-	ui->entityComboBox->setCurrentText( m_entityNameMap.value( rule.entity() ) );
-
 	// load condition invertion setting
 	ui->invertConditionsCheckBox->setChecked( rule.areConditionsInverted() );
 
-	// load conditions
-	ui->isMemberOfGroupCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) );
-	ui->hasCommonGroupsCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionGroupsInCommon ) );
-	ui->isLocatedInComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInComputerLab ) );
-	ui->isLocatedInSameComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInSameComputerLab ) );
-	ui->isLocalHostAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalHost ) );
-	ui->isLocalUserAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalUser ) );
-	ui->isSameUserAccessCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) );
+	// load condition states
+	ui->isMemberOfGroupCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionMemberOfUserGroup ) );
+	ui->hasCommonGroupsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionGroupsInCommon ) );
+	ui->isLocatedInRoomCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedInRoom ) );
+	ui->isLocatedInSameRoomCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedInSameRoom ) );
+	ui->isLocalHostAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost ) );
+	ui->isLocalUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser ) );
+	ui->isSameUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) );
+
+	// load selected condition subjects
+	ui->isMemberOfGroupSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionMemberOfUserGroup ) ) );
+	ui->hasCommonGroupsSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionGroupsInCommon ) ) );
+	ui->isLocatedInRoomSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionLocatedInRoom ) ) );
+	ui->isLocatedInSameRoomSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionLocatedInSameRoom ) ) );
 
 	// load condition arguments
-	ui->groupsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() );
+	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionMemberOfUserGroup ).toString() );
 
 	ui->commonGroupComboBox->setCurrentText(
-				m_entityNameMap.value( rule.conditionArgument( AccessControlRule::ConditionGroupsInCommon ).
-									   value<AccessControlRule::Entity>() ) );
+				m_subjectNameMap.value( rule.argument( AccessControlRule::ConditionGroupsInCommon ).
+										value<AccessControlRule::Subject>() ) );
 
-	ui->computerLabsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionLocatedInComputerLab ).toString() );
+	ui->roomsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionLocatedInRoom ).toString() );
 
 	ui->commonComputerLabComboBox->setCurrentText(
-				m_entityNameMap.value( rule.conditionArgument( AccessControlRule::ConditionLocatedInSameComputerLab ).
-									   value<AccessControlRule::Entity>() ) );
+				m_subjectNameMap.value( rule.argument( AccessControlRule::ConditionLocatedInSameRoom ).
+									   value<AccessControlRule::Subject>() ) );
 
 	// load action
 	ui->actionNoneRadioButton->setChecked( rule.action() == AccessControlRule::ActionNone );
@@ -105,51 +117,52 @@ void AccessControlRuleEditDialog::accept()
 	m_rule.setName( ui->ruleNameLineEdit->text() );
 	m_rule.setDescription( ui->ruleDescriptionLineEdit->text() );
 
-	// save selected entity
-	m_rule.setEntity( m_entityNameMap.key( ui->entityComboBox->currentText() ) );
-
 	// save condition invertion setting
 	m_rule.setConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
 
 	// save conditions
-	m_rule.clearConditions();
+	m_rule.clearParameters();
 
-	if( ui->isMemberOfGroupCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionMemberOfGroup, ui->groupsComboBox->currentText() );
-	}
+	// member of user group
+	m_rule.setConditionEnabled( AccessControlRule::ConditionMemberOfUserGroup,
+								ui->isMemberOfGroupCheckBox->isChecked() );
+	m_rule.setSubject( AccessControlRule::ConditionMemberOfUserGroup,
+					   m_subjectNameMap.key( ui->isMemberOfGroupSubjectComboBox->currentText() ) );
+	m_rule.setArgument( AccessControlRule::ConditionMemberOfUserGroup,
+						ui->groupsComboBox->currentText() );
 
-	if( ui->hasCommonGroupsCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionGroupsInCommon,
-							 m_entityNameMap.key( ui->commonGroupComboBox->currentText() ) );
-	}
+	// common groups
+	m_rule.setConditionEnabled( AccessControlRule::ConditionGroupsInCommon,
+								ui->hasCommonGroupsCheckBox->isChecked() );
+	m_rule.setSubject( AccessControlRule::ConditionGroupsInCommon,
+					   m_subjectNameMap.key( ui->hasCommonGroupsSubjectComboBox->currentText() ) );
+	m_rule.setArgument( AccessControlRule::ConditionGroupsInCommon,
+						m_subjectNameMap.key( ui->commonGroupComboBox->currentText() ) );
 
-	if( ui->isLocatedInComputerLabCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionLocatedInComputerLab, ui->computerLabsComboBox->currentText() );
-	}
+	// located in room
+	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedInRoom,
+								ui->isLocatedInRoomCheckBox->isChecked() );
+	m_rule.setSubject( AccessControlRule::ConditionLocatedInRoom,
+					   m_subjectNameMap.key( ui->isLocatedInRoomSubjectComboBox->currentText() ) );
+	m_rule.setArgument( AccessControlRule::ConditionLocatedInRoom,
+						ui->roomsComboBox->currentText() );
 
-	if( ui->isLocatedInSameComputerLabCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionLocatedInSameComputerLab,
-							 m_entityNameMap.key( ui->commonComputerLabComboBox->currentText() ) );
-	}
+	// located in same room as
+	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedInSameRoom,
+								ui->isLocatedInSameRoomCheckBox->isChecked() );
+	m_rule.setSubject( AccessControlRule::ConditionLocatedInSameRoom,
+					   m_subjectNameMap.key( ui->isLocatedInSameRoomSubjectComboBox->currentText() ) );
+	m_rule.setArgument( AccessControlRule::ConditionLocatedInSameRoom,
+						m_subjectNameMap.key( ui->commonComputerLabComboBox->currentText() ) );
 
-	if( ui->isLocalHostAccessCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionAccessFromLocalHost, true );
-	}
+	m_rule.setConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost,
+								ui->isLocalHostAccessCheckBox->isChecked() );
 
-	if( ui->isLocalUserAccessCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionAccessFromLocalUser, true );
-	}
+	m_rule.setConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser,
+								ui->isLocalUserAccessCheckBox->isChecked() );
 
-	if( ui->isSameUserAccessCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionAccessFromAlreadyConnectedUser, true );
-	}
+	m_rule.setConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser,
+								ui->isSameUserAccessCheckBox->isChecked() );
 
 	// save action
 	if( ui->actionAllowRadioButton->isChecked() )

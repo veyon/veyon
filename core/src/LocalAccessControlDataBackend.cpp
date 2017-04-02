@@ -32,7 +32,7 @@
 #include <lm.h>
 #endif
 
-#include "LocalUsersAndGroupsBuiltin.h"
+#include "LocalAccessControlDataBackend.h"
 
 #include <QProcess>
 
@@ -45,7 +45,7 @@
 #endif
 
 
-QStringList LocalUsersAndGroupsBuiltin::users() const
+QStringList LocalAccessControlDataBackend::users() const
 {
 	// TODO
 	return QStringList();
@@ -53,7 +53,7 @@ QStringList LocalUsersAndGroupsBuiltin::users() const
 
 
 
-QStringList LocalUsersAndGroupsBuiltin::userGroups() const
+QStringList LocalAccessControlDataBackend::userGroups() const
 {
 	QStringList groupList;
 
@@ -174,7 +174,7 @@ QStringList LocalUsersAndGroupsBuiltin::userGroups() const
 
 
 
-QStringList LocalUsersAndGroupsBuiltin::groupsOfUser( const QString& user ) const
+QStringList LocalAccessControlDataBackend::groupsOfUser( const QString& userName ) const
 {
 	QStringList groupList;
 
@@ -187,7 +187,7 @@ QStringList LocalUsersAndGroupsBuiltin::groupsOfUser( const QString& user ) cons
 	{
 		QStringList groupComponents = group.split( ':' );
 		if( groupComponents.size() == 4 &&
-				groupComponents.last().split( ',' ).contains( user ) )
+				groupComponents.last().split( ',' ).contains( userName ) )
 		{
 			groupList += groupComponents.first();
 		}
@@ -199,7 +199,7 @@ QStringList LocalUsersAndGroupsBuiltin::groupsOfUser( const QString& user ) cons
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetUserGetLocalGroups( NULL, (LPCWSTR) user.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+	if( NetUserGetLocalGroups( NULL, (LPCWSTR) userName.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
 							   &entriesRead, &totalEntries ) == NERR_Success )
 	{
 		LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
@@ -216,4 +216,18 @@ QStringList LocalUsersAndGroupsBuiltin::groupsOfUser( const QString& user ) cons
 	groupList.removeAll( "" );
 
 	return groupList;
+}
+
+
+
+QStringList LocalAccessControlDataBackend::allRooms() const
+{
+	return QStringList();
+}
+
+
+
+QStringList LocalAccessControlDataBackend::roomsOfComputer( const QString& computerName ) const
+{
+	return QStringList();
 }

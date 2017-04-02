@@ -32,7 +32,7 @@
 #include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
-#include "UsersAndGroupsBackendManager.h"
+#include "AccessControlDataBackendManager.h"
 
 #include "ui_AccessControlPage.h"
 
@@ -44,10 +44,10 @@ AccessControlPage::AccessControlPage() :
 {
 	ui->setupUi(this);
 
-	auto usersAndGroupsBackends = UsersAndGroupsBackendManager().availableBackends();
-	for( auto backend : usersAndGroupsBackends.keys() )
+	auto backends = ItalcCore::accessControlDataBackendManager().availableBackends();
+	for( auto backend : backends.keys() )
 	{
-		ui->usersAndGroupsPlugin->addItem( usersAndGroupsBackends[backend], backend );
+		ui->accessControlDataBackend->addItem( backends[backend], backend );
 	}
 
 	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
@@ -120,9 +120,7 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	auto groups = UsersAndGroupsBackendManager().configuredBackend()->userGroups();
-
-	std::sort( groups.begin(), groups.end() );
+	auto groups = ItalcCore::accessControlDataBackendManager().configuredBackend()->userGroups();
 
 	for( auto group : groups )
 	{

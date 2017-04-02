@@ -37,6 +37,7 @@
 #include <QGroupBox>
 #include <QLabel>
 
+#include "AccessControlDataBackendManager.h"
 #include "ItalcConfiguration.h"
 #include "ItalcRfbExt.h"
 #include "LocalSystem.h"
@@ -129,6 +130,7 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 	m_authenticationCredentials( nullptr ),
 	m_cryptoCore( nullptr ),
 	m_pluginManager( nullptr ),
+	m_accessControlDataBackendManager( nullptr ),
 	m_applicationName( "iTALC" ),
 	m_userRole( RoleTeacher )
 {
@@ -194,12 +196,17 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 	initAuthentication( AuthenticationCredentials::None );
 
 	m_pluginManager = new PluginManager( this );
+
+	m_accessControlDataBackendManager = new AccessControlDataBackendManager( *m_pluginManager );
 }
 
 
 
 ItalcCore::~ItalcCore()
 {
+	delete m_accessControlDataBackendManager;
+	m_accessControlDataBackendManager = nullptr;
+
 	delete m_pluginManager;
 	m_pluginManager = nullptr;
 

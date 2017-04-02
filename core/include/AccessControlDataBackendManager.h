@@ -1,7 +1,7 @@
 /*
- * LocalUsersAndGroupsBuiltin.h - implementation of UsersAndGroupsPluginInterface
+ * AccessControlDataBackendManager.h - header file for AccessControlDataBackendManager
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,24 +22,30 @@
  *
  */
 
-#ifndef LOCAL_USERS_AND_GROUPS_BUILTIN_H
-#define LOCAL_USERS_AND_GROUPS_BUILTIN_H
+#ifndef ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
+#define ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
 
-#include "UsersAndGroupsPluginInterface.h"
+#include "LocalAccessControlDataBackend.h"
 
-class ITALC_CORE_EXPORT LocalUsersAndGroupsBuiltin : public QObject, public UsersAndGroupsPluginInterface
+class ITALC_CORE_EXPORT AccessControlDataBackendManager : public QObject
 {
 	Q_OBJECT
 public:
-	QString usersAndGroupsBackendName() const override
+	AccessControlDataBackendManager( PluginManager& pluginManager );
+
+	QMap<Plugin::Uid, QString> availableBackends();
+
+	AccessControlDataBackendInterface* configuredBackend()
 	{
-		return tr( "System (local users and groups)" );
+		return m_configuredBackend;
 	}
 
-	QStringList users() const override;
-	QStringList userGroups() const override;
-	QStringList groupsOfUser( const QString& user ) const override;
+private:	
+	AccessControlDataBackendInterface* m_configuredBackend;
+
+	QMap<Plugin::Uid, AccessControlDataBackendInterface *> m_backends;
+	LocalAccessControlDataBackend m_defaultBackend;
 
 };
 
-#endif
+#endif // ACCESS_CONTROL_DATA_BACKEND_MANAGER_H

@@ -91,17 +91,44 @@ QStringList LdapPlugin::userGroups() const
 
 
 
-QStringList LdapPlugin::groupsOfUser( const QString& user ) const
+QStringList LdapPlugin::groupsOfUser( const QString& userName ) const
 {
 	LdapDirectory ldapDirectory;
-	const QString userDn = ldapDirectory.users( user ).value( 0 );
+	const QString userDn = ldapDirectory.users( userName ).value( 0 );
 
 	if( userDn.isEmpty() == false )
 	{
-		return ldapDirectory.toRelativeDnList( ldapDirectory.groupsOfUser( userDn ) );
+		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << userName;
+		return QStringList();
 	}
 
-	return QStringList();
+	return ldapDirectory.toRelativeDnList( ldapDirectory.groupsOfUser( userDn ) );
+}
+
+
+
+QStringList LdapPlugin::allRooms() const
+{
+	QStringList roomList = LdapDirectory().computerLabs();
+
+	return roomList;
+}
+
+
+
+QStringList LdapPlugin::roomsOfComputer( const QString& computerName ) const
+{
+	LdapDirectory ldapDirectory;
+
+	const QString computerDn = ldapDirectory.computerObjectFromHost( computerName );
+
+	if( computerDn.isEmpty() )
+	{
+		qWarning() << "LdapPlugin::roomsOfComputer(): empty computer DN for computer" << computerName;
+		return QStringList();
+	}
+
+	return ldapDirectory.computerLabsOfComputer( computerDn );
 }
 
 

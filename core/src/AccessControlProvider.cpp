@@ -25,6 +25,7 @@
 #include <QDebug>
 #include <QHostInfo>
 
+#include "AccessControlDataBackendManager.h"
 #include "AccessControlProvider.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -32,11 +33,8 @@
 
 
 AccessControlProvider::AccessControlProvider() :
-	m_ldapDirectory(),
 	m_accessControlRules(),
-	m_usersAndGroupsBackendManager(),
-	m_usersAndGroups( m_usersAndGroupsBackendManager.configuredBackend() )
-
+	m_dataBackend( ItalcCore::accessControlDataBackendManager().configuredBackend() )
 {
 	for( auto accessControlRule : ItalcCore::config().accessControlRules() )
 	{
@@ -48,23 +46,22 @@ AccessControlProvider::AccessControlProvider() :
 
 QStringList AccessControlProvider::userGroups() const
 {
-	return m_usersAndGroups->userGroups();
+	auto userGroupList = m_dataBackend->userGroups();
+
+	std::sort( userGroupList.begin(), userGroupList.end() );
+
+	return userGroupList;
 }
 
 
 
-QStringList AccessControlProvider::computerLabs()
+QStringList AccessControlProvider::rooms()
 {
-	QStringList computerLabList;
+	auto roomList = m_dataBackend->allRooms();
 
-	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
-	{
-		computerLabList = m_ldapDirectory.computerLabs();
-	}
+	std::sort( roomList.begin(), roomList.end() );
 
-	std::sort( computerLabList.begin(), computerLabList.end() );
-
-	return computerLabList;
+	return roomList;
 }
 
 
@@ -125,11 +122,7 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 {
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-	return m_usersAndGroups->groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config().authorizedUserGroups().toSet() );
-#else
-	return m_usersAndGroups->groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config().authorizedUserGroups().toSet() ).isEmpty() == false;
-#endif
+	return m_dataBackend->groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config().authorizedUserGroups().toSet() );
 }
 
 
@@ -193,78 +186,44 @@ bool AccessControlProvider::isAccessDeniedByLocalState()
 
 
 
-bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entityType,
-											 const QString &entity,
-											 const QString &groupName )
+bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
+												 const QString &groupName )
 {
-	if( entityType != AccessControlRule::EntityTypeUser )
-	{
-		return false;
-	}
-
 	QRegExp groupNameRX( groupName );
 
 	if( groupNameRX.isValid() )
 	{
-		return m_usersAndGroups->groupsOfUser( entity ).indexOf( QRegExp( groupName ) ) >= 0;
+		return m_dataBackend->groupsOfUser( user ).indexOf( QRegExp( groupName ) ) >= 0;
 	}
 
-	return m_usersAndGroups->groupsOfUser( entity ).contains( groupName );
+	return m_dataBackend->groupsOfUser( user ).contains( groupName );
 }
 
 
 
-bool AccessControlProvider::isLocatedInComputerLab( AccessControlRule::EntityType entityType,
-													const QString &entity,
-													const QString &computerLabName )
+bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QString &roomName )
 {
-	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
-	{
-		QStringList computerLabMembers = m_ldapDirectory.computerLabMembers( computerLabName );
-
-		if( computerLabMembers.isEmpty() )
-		{
-			qWarning() << "AccessControlProvider::isMemberOfComputerLab(): empty computer lab!";
-			return false;
-		}
-
-		const QString objectDn = ldapObjectOfEntity( entityType, entity );
-
-		return objectDn.isEmpty() == false && computerLabMembers.contains( objectDn );
-	}
-
-	return false;
+	return m_dataBackend->roomsOfComputer( computer ).contains( roomName );
 }
 
 
 
-bool AccessControlProvider::hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString &entityOne,
-											   AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
+bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo )
 {
-	if( entityOneType == AccessControlRule::EntityTypeUser &&
-			entityTwoType == AccessControlRule::EntityTypeUser )
-	{
-		return m_usersAndGroups->groupsOfUser( entityOne ).toSet().
-				intersect( m_usersAndGroups->groupsOfUser( entityTwo ).toSet() ).isEmpty() == false;
-	}
+	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne );
+	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne );
 
-	return false;
+	return userOneGroups.toSet().intersects( userTwoGroups.toSet() );
 }
 
 
 
-bool AccessControlProvider::isLocatedInSameComputerLab( AccessControlRule::EntityType entityOneType, const QString &entityOne,
-														AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
+bool AccessControlProvider::isLocatedInSameRoom( const QString &computerOne, const QString &computerTwo )
 {
-	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
-	{
-		QStringList objectOneComputerLabs = ldapComputerLabsOfEntity( entityOneType, entityOne );
-		QStringList objectTwoComputerLabs = ldapComputerLabsOfEntity( entityTwoType, entityTwo );
+	const auto computerOneRooms = m_dataBackend->roomsOfComputer( computerOne );
+	const auto computerTwoRooms = m_dataBackend->roomsOfComputer( computerTwo );
 
-		return objectOneComputerLabs.toSet().intersect( objectTwoComputerLabs.toSet() ).isEmpty() == false;
-	}
-
-	return false;
+	return computerOneRooms.toSet().intersects( computerTwoRooms.toSet() );
 }
 
 
@@ -276,115 +235,27 @@ bool AccessControlProvider::isLocalHost( const QString &accessingComputer ) cons
 
 
 
-bool AccessControlProvider::isLocalUser(const QString &accessingUser, const QString &localUser) const
+bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QString &localUser ) const
 {
 	return accessingUser == localUser;
 }
 
 
 
-QString AccessControlProvider::lookupEntity( AccessControlRule::Entity entity,
-											 const QString &accessingUser, const QString &accessingComputer,
-											 const QString &localUser, const QString &localComputer )
+QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject,
+											  const QString &accessingUser, const QString &accessingComputer,
+											  const QString &localUser, const QString &localComputer )
 {
-	switch( entity )
+	switch( subject )
 	{
-	case AccessControlRule::EntityAccessingUser: return accessingUser;
-	case AccessControlRule::EntityAccessingComputer: return accessingComputer;
-	case AccessControlRule::EntityLocalUser: return localUser;
-	case AccessControlRule::EntityLocalComputer: return localComputer;
+	case AccessControlRule::SubjectAccessingUser: return accessingUser;
+	case AccessControlRule::SubjectAccessingComputer: return accessingComputer;
+	case AccessControlRule::SubjectLocalUser: return localUser;
+	case AccessControlRule::SubjectLocalComputer: return localComputer;
 	default: break;
 	}
 
 	return QString();
-}
-
-
-
-QString AccessControlProvider::ldapObjectOfEntity( AccessControlRule::EntityType entityType, const QString &entity )
-{
-	QStringList objects;
-
-	// do not query objects without a filter value
-	if( entity.isEmpty() )
-	{
-		qWarning() << "AccessControlProvider::getLdapObjectForEntity(): empty entity of type" << entityType;
-		return QString();
-	}
-
-	switch( entityType )
-	{
-	case AccessControlRule::EntityTypeUser:
-		objects = m_ldapDirectory.users( entity );
-		break;
-	case AccessControlRule::EntityTypeComputer:
-		return m_ldapDirectory.computerObjectFromHost( entity );
-		break;
-	default: break;
-	}
-
-	if( objects.isEmpty() )
-	{
-		return QString();
-	}
-
-	if( objects.count() > 1 )
-	{
-		qWarning() << "AccessControlProvider::getLdapObjectForEntity(): more than one entity object resolved from LDAP!";
-
-		// return empty result in order to prevent undesired effects leading to possible security issues
-		return QString();
-	}
-
-	return objects.first();
-}
-
-
-
-QStringList AccessControlProvider::ldapGroupsOfEntity( AccessControlRule::EntityType entityType, const QString &entity )
-{
-	const QString objectDn = ldapObjectOfEntity( entityType, entity );
-
-	if( objectDn.isEmpty() )
-	{
-		return QStringList();
-	}
-
-	if( entityType == AccessControlRule::EntityTypeUser )
-	{
-		return m_ldapDirectory.groupsOfUser( objectDn );
-	}
-	else if( entityType == AccessControlRule::EntityTypeComputer )
-	{
-		// use LdapDirectory::groupsOfComputer() as it automatically uses the correct group
-		// member attribute and resolves the required attribute of the computer object
-		return m_ldapDirectory.groupsOfComputer( objectDn );
-	}
-
-	return QStringList();
-}
-
-
-
-QStringList AccessControlProvider::ldapComputerLabsOfEntity( AccessControlRule::EntityType entityType, const QString &entity )
-{
-	const QString objectDn = ldapObjectOfEntity( entityType, entity );
-
-	if( objectDn.isEmpty() )
-	{
-		return QStringList();
-	}
-
-	if( entityType == AccessControlRule::EntityTypeUser )
-	{
-		return m_ldapDirectory.computerLabsOfUser( objectDn );
-	}
-	else if( entityType == AccessControlRule::EntityTypeComputer )
-	{
-		return m_ldapDirectory.computerLabsOfComputer( objectDn );
-	}
-
-	return QStringList();
 }
 
 
@@ -394,112 +265,109 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 											 const QString& localUser, const QString& localComputer,
 											 const QStringList& connectedUsers )
 {
-	const AccessControlRule::Entity ruleEntity = rule.entity();
-	const AccessControlRule::EntityType ruleEntityType = AccessControlRule::entityType( ruleEntity );
-
-	const QString ruleEntityValue = lookupEntity( ruleEntity, accessingUser, accessingComputer, localUser, localComputer );
-
-	// we can't match empty entity values therefore ignore this rule
-	if( ruleEntityValue.isEmpty() )
-	{
-		return false;
-	}
-
 	bool hasConditions = false;
 
 	// normally all selected conditions have to match in order to make the whole rule match
 	// if conditions should be inverted (i.e. "is member of" is to be interpreted as "is NOT member of")
 	// we have to check against the opposite boolean value
-	bool matchResult = rule.areConditionsInverted();
+	bool matchResult = rule.areConditionsInverted() == false;
 
-	qDebug() << "AccessControlProvider::matchConditions():" << rule.name() << rule.entity() << ruleEntityValue << matchResult << rule.conditions();
+	qDebug() << "AccessControlProvider::matchConditions():" << rule.toJson() << matchResult;
 
-	if( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) )
+	auto condition = AccessControlRule::ConditionMemberOfUserGroup;
+
+	if( rule.isConditionEnabled( condition ) )
 	{
 		hasConditions = true;
 
-		if( isMemberOfGroup( ruleEntityType,
-							 ruleEntityValue,
-							 rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() ) == matchResult )
+		const auto user = lookupSubject( rule.subject( condition ), accessingUser, QString(), localUser, QString() );
+		const auto group = rule.argument( condition ).toString();
+
+		if( user.isEmpty() || group.isEmpty() ||
+				isMemberOfUserGroup( user, group ) != matchResult )
+		{
+			return false;
+		}
+	}
+
+	condition = AccessControlRule::ConditionGroupsInCommon;
+
+	if( rule.isConditionEnabled( condition ) )
+	{
+		hasConditions = true;
+
+		const auto userOne = lookupSubject( rule.subject( condition ), accessingUser, QString(), localUser, QString() );
+
+		const auto userTwo = lookupSubject( rule.argument( condition ).value<AccessControlRule::Subject>(),
+											accessingUser, QString(), localUser, QString() );
+
+		if( userOne.isEmpty() || userTwo.isEmpty() ||
+				hasGroupsInCommon( userOne, userTwo ) != matchResult )
+		{
+			return false;
+		}
+	}
+
+	condition = AccessControlRule::ConditionLocatedInRoom;
+
+	if( rule.isConditionEnabled( condition ) )
+	{
+		hasConditions = true;
+
+		const auto computer = lookupSubject( rule.subject( condition ), QString(), accessingComputer, QString(), localComputer );
+		const auto room = rule.argument( condition ).toString();
+
+		if( computer.isEmpty() || room.isEmpty() ||
+				isLocatedInRoom( computer, room ) != matchResult )
 		{
 			return false;
 		}
 	}
 
 
-	if( rule.hasCondition( AccessControlRule::ConditionGroupsInCommon ) )
+	condition = AccessControlRule::ConditionLocatedInSameRoom;
+
+	if( rule.isConditionEnabled( condition ) )
 	{
 		hasConditions = true;
 
-		const AccessControlRule::Entity secondEntity =
-				rule.conditionArgument( AccessControlRule::ConditionGroupsInCommon ).value<AccessControlRule::Entity>();
+		const auto computerOne = lookupSubject( rule.subject( condition ), QString(), accessingComputer, QString(), localComputer );
 
-		const AccessControlRule::EntityType secondEntityType = AccessControlRule::entityType( secondEntity );
-		const QString secondEntityValue = lookupEntity( secondEntity, accessingUser, accessingComputer, localUser, localComputer );
+		const auto computerTwo = lookupSubject( rule.argument( condition ).value<AccessControlRule::Subject>(),
+												  QString(), accessingComputer, QString(), localComputer  );
 
-		if( hasGroupsInCommon( ruleEntityType, ruleEntityValue,
-							   secondEntityType, secondEntityValue ) == matchResult )
+		if( computerOne.isEmpty() || computerTwo.isEmpty() ||
+				isLocatedInSameRoom( computerOne, computerTwo ) != matchResult )
 		{
 			return false;
 		}
 	}
 
-
-	if( rule.hasCondition( AccessControlRule::ConditionLocatedInComputerLab ) )
+	if( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost ) )
 	{
 		hasConditions = true;
 
-		if( isLocatedInComputerLab( ruleEntityType,
-									ruleEntityValue,
-									rule.conditionArgument( AccessControlRule::ConditionLocatedInComputerLab ).toString() ) == matchResult )
+		if( isLocalHost( accessingComputer ) != matchResult )
 		{
 			return false;
 		}
 	}
 
-
-	if( rule.hasCondition( AccessControlRule::ConditionLocatedInSameComputerLab ) )
+	if( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser ) )
 	{
 		hasConditions = true;
 
-		const AccessControlRule::Entity secondEntity =
-				rule.conditionArgument( AccessControlRule::ConditionLocatedInSameComputerLab ).value<AccessControlRule::Entity>();
-
-		const AccessControlRule::EntityType secondEntityType = AccessControlRule::entityType( secondEntity );
-		const QString secondEntityValue = lookupEntity( secondEntity, accessingUser, accessingComputer, localUser, localComputer );
-
-		if( isLocatedInSameComputerLab( ruleEntityType, ruleEntityValue,
-										secondEntityType, secondEntityValue ) == matchResult )
+		if( isLocalUser( accessingUser, localUser ) != matchResult )
 		{
 			return false;
 		}
 	}
 
-	if( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalHost ) )
+	if( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) )
 	{
 		hasConditions = true;
 
-		if( isLocalHost( accessingComputer ) == matchResult )
-		{
-			return false;
-		}
-	}
-
-	if( rule.hasCondition( AccessControlRule::ConditionAccessFromLocalUser ) )
-	{
-		hasConditions = true;
-
-		if( isLocalUser( accessingUser, localUser ) == matchResult )
-		{
-			return false;
-		}
-	}
-
-	if( rule.hasCondition( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) )
-	{
-		hasConditions = true;
-
-		if( connectedUsers.contains( accessingUser ) == matchResult )
+		if( connectedUsers.contains( accessingUser ) != matchResult )
 		{
 			return false;
 		}

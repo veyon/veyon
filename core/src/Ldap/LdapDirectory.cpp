@@ -412,22 +412,6 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 
 
 
-QStringList LdapDirectory::computerLabsOfUser(const QString &userDn)
-{
-	if( d->computerLabMembersByAttribute )
-	{
-		return d->queryAttributes( userDn, d->computerLabAttribute );
-	}
-
-	QString userId = groupMemberUserIdentification( userDn );
-
-	return d->queryCommonNames( d->groupsDn,
-								constructQueryFilter( d->groupMemberAttribute, userId, d->computerGroupsFilter ),
-								d->defaultSearchScope );
-}
-
-
-
 QStringList LdapDirectory::computerLabsOfComputer(const QString &computerDn)
 {
 	if( d->computerLabMembersByAttribute )

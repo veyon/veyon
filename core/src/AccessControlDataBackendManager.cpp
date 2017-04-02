@@ -1,5 +1,5 @@
 /*
- * UsersAndGroupsManager.cpp - implementation of UsersAndGroupsManager
+ * AccessControlDataBackendManager.cpp - implementation of AccessControlDataBackendManager
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -24,44 +24,44 @@
 
 #include "ItalcConfiguration.h"
 #include "PluginManager.h"
-#include "UsersAndGroupsBackendManager.h"
+#include "AccessControlDataBackendManager.h"
 
 
-UsersAndGroupsBackendManager::UsersAndGroupsBackendManager() :
+AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager& pluginManager ) :
 	m_configuredBackend( nullptr ),
-	m_usersAndGroupsPluginInterfaces(),
-	m_localUsersAndGroupsBuiltin()
+	m_backends(),
+	m_defaultBackend()
 {
-	m_usersAndGroupsPluginInterfaces[Plugin::Uid("4826d624-4a04-4429-9412-2df4af4df695")] = &m_localUsersAndGroupsBuiltin;
+	m_backends[Plugin::Uid("4826d624-4a04-4429-9412-2df4af4df695")] = &m_defaultBackend;
 
-	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : pluginManager.pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto usersAndGroupsInterface = qobject_cast<UsersAndGroupsPluginInterface *>( pluginObject );
+		auto accessControlDataBackendInterface = qobject_cast<AccessControlDataBackendInterface *>( pluginObject );
 
-		if( pluginInterface && usersAndGroupsInterface )
+		if( pluginInterface && accessControlDataBackendInterface )
 		{
-			m_usersAndGroupsPluginInterfaces[pluginInterface->uid()] = usersAndGroupsInterface;
+			m_backends[pluginInterface->uid()] = accessControlDataBackendInterface;
 		}
 	}
 
-	m_configuredBackend = m_usersAndGroupsPluginInterfaces.value( ItalcCore::config().usersAndGroupsPlugin() );
+	m_configuredBackend = m_backends.value( ItalcCore::config().accessControlDataBackend() );
 
 	if( m_configuredBackend == nullptr )
 	{
-		m_configuredBackend = &m_localUsersAndGroupsBuiltin;
+		m_configuredBackend = &m_defaultBackend;
 	}
 }
 
 
 
-QMap<Plugin::Uid, QString> UsersAndGroupsBackendManager::availableBackends()
+QMap<Plugin::Uid, QString> AccessControlDataBackendManager::availableBackends()
 {
 	QMap<Plugin::Uid, QString> items;
 
-	for( auto pluginUid : m_usersAndGroupsPluginInterfaces.keys() )
+	for( auto pluginUid : m_backends.keys() )
 	{
-		items[pluginUid] = m_usersAndGroupsPluginInterfaces[pluginUid]->usersAndGroupsBackendName();
+		items[pluginUid] = m_backends[pluginUid]->accessControlDataBackendName();
 	}
 
 	return items;

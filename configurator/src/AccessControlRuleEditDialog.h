@@ -1,7 +1,7 @@
 /*
  * AccessControlRuleEditDialog.h - dialog for editing an AccessControlRule
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -46,7 +46,7 @@ public:
 private:
 	Ui::AccessControlRuleEditDialog *ui;
 	AccessControlRule& m_rule;
-	QMap<AccessControlRule::Entity, QString> m_entityNameMap;
+	QMap<AccessControlRule::Subject, QString> m_subjectNameMap;
 
 };
 

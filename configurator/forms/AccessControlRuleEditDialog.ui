@@ -55,120 +55,177 @@
      <property name="title">
       <string>Conditions</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="4" column="0" colspan="3">
-       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
+     <layout class="QGridLayout" name="gridLayout" columnstretch="0,1,0,1">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
         <property name="text">
-         <string>Accessing user is logged on user</string>
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="isMemberOfGroupSubjectComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>is member of group</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QComboBox" name="groupsComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="hasCommonGroupsSubjectComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>has one or more groups in common with</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QComboBox" name="commonGroupComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="isLocatedInRoomCheckBox">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="isLocatedInRoomSubjectComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
         </property>
        </widget>
       </item>
       <item row="2" column="2">
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
-          <property name="text">
-           <string>is member of group</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QComboBox" name="commonComputerLabComboBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="commonGroupComboBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QComboBox" name="computerLabsComboBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
-          <property name="text">
-           <string>has one or more groups in common with</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QCheckBox" name="isLocatedInComputerLabCheckBox">
-          <property name="text">
-           <string>is located in computer lab</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="groupsComboBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QCheckBox" name="isLocatedInSameComputerLabCheckBox">
-          <property name="text">
-           <string>is located in the same computer lab as</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>is located in room</string>
+        </property>
+       </widget>
       </item>
-      <item row="3" column="0" colspan="3">
+      <item row="2" column="3">
+       <widget class="QComboBox" name="roomsComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="isLocatedInSameRoomCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="isLocatedInSameRoomSubjectComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>is located in the same room as</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QComboBox" name="commonComputerLabComboBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
        <widget class="QCheckBox" name="isLocalHostAccessCheckBox">
         <property name="text">
          <string>Accessing computer is localhost</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="0">
-       <widget class="QComboBox" name="entityComboBox">
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
+      <item row="5" column="0" colspan="2">
+       <widget class="QCheckBox" name="isLocalUserAccessCheckBox">
+        <property name="text">
+         <string>Accessing user is logged on user</string>
         </property>
        </widget>
       </item>
       <item row="6" column="0" colspan="3">
+       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
+        <property name="text">
+         <string>Accessing user is already connected</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="4">
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -180,13 +237,6 @@
         </property>
         <property name="wordWrap">
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0" colspan="3">
-       <widget class="QCheckBox" name="isSameUserAccessCheckBox">
-        <property name="text">
-         <string>Accessing user is already connected</string>
         </property>
        </widget>
       </item>
@@ -264,14 +314,9 @@
   <tabstop>ruleNameLineEdit</tabstop>
   <tabstop>ruleDescriptionLineEdit</tabstop>
   <tabstop>invertConditionsCheckBox</tabstop>
-  <tabstop>entityComboBox</tabstop>
-  <tabstop>isMemberOfGroupCheckBox</tabstop>
   <tabstop>groupsComboBox</tabstop>
-  <tabstop>hasCommonGroupsCheckBox</tabstop>
   <tabstop>commonGroupComboBox</tabstop>
-  <tabstop>isLocatedInComputerLabCheckBox</tabstop>
-  <tabstop>computerLabsComboBox</tabstop>
-  <tabstop>isLocatedInSameComputerLabCheckBox</tabstop>
+  <tabstop>roomsComboBox</tabstop>
   <tabstop>commonComputerLabComboBox</tabstop>
   <tabstop>isLocalHostAccessCheckBox</tabstop>
   <tabstop>isLocalUserAccessCheckBox</tabstop>
@@ -331,9 +376,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isLocatedInComputerLabCheckBox</sender>
+   <sender>isLocatedInRoomCheckBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>computerLabsComboBox</receiver>
+   <receiver>roomsComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -363,7 +408,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>isLocatedInSameComputerLabCheckBox</sender>
+   <sender>isLocatedInSameRoomCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>commonComputerLabComboBox</receiver>
    <slot>setEnabled(bool)</slot>
@@ -375,6 +420,70 @@
     <hint type="destinationlabel">
      <x>867</x>
      <y>231</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isMemberOfGroupCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>isMemberOfGroupSubjectComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>295</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLocatedInRoomCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>isLocatedInRoomSubjectComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>391</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLocatedInSameRoomCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>isLocatedInSameRoomSubjectComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>439</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>439</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hasCommonGroupsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>hasCommonGroupsSubjectComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>343</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>343</y>
     </hint>
    </hints>
   </connection>

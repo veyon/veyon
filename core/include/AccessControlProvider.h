@@ -25,11 +25,9 @@
 #ifndef ACCESS_CONTROL_PROVIDER_H
 #define ACCESS_CONTROL_PROVIDER_H
 
-#include "Ldap/LdapDirectory.h"
 #include "AccessControlRule.h"
-#include "UsersAndGroupsBackendManager.h"
 
-class UsersAndGroupsPluginInterface;
+class AccessControlDataBackendInterface;
 
 class ITALC_CORE_EXPORT AccessControlProvider
 {
@@ -44,7 +42,7 @@ public:
 	AccessControlProvider();
 
 	QStringList userGroups() const;
-	QStringList computerLabs();
+	QStringList rooms();
 
 	AccessResult checkAccess( QString accessingUser, QString accessingComputer,
 							  const QStringList& connectedUsers );
@@ -61,32 +59,24 @@ public:
 
 
 private:
-	bool isMemberOfGroup( AccessControlRule::EntityType entityType, const QString& entity, const QString& groupName );
-	bool isLocatedInComputerLab( AccessControlRule::EntityType entityType, const QString& entity, const QString& computerLabName );
-	bool hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString& entityOne,
-							AccessControlRule::EntityType entityTwoType, const QString& entityTwo );
-	bool isLocatedInSameComputerLab( AccessControlRule::EntityType entityOneType, const QString& entityOne,
-									 AccessControlRule::EntityType entityTwoType, const QString& entityTwo );
+	bool isMemberOfUserGroup( const QString& user, const QString& groupName );
+	bool isLocatedInRoom( const QString& computer, const QString& roomName );
+	bool hasGroupsInCommon( const QString& userOne, const QString& userTwo );
+	bool isLocatedInSameRoom( const QString& computerOne, const QString& computerTwo );
 	bool isLocalHost( const QString& accessingComputer ) const;
 	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
 
-	QString lookupEntity( AccessControlRule::Entity entity,
-						  const QString& accessingUser, const QString& accessingComputer,
-						  const QString& localUser, const QString& localComputer );
-
-	QString ldapObjectOfEntity( AccessControlRule::EntityType entityType, const QString& entity );
-	QStringList ldapGroupsOfEntity( AccessControlRule::EntityType entityType, const QString& entity );
-	QStringList ldapComputerLabsOfEntity( AccessControlRule::EntityType entityType, const QString& entity );
+	QString lookupSubject( AccessControlRule::Subject subject,
+						   const QString& accessingUser, const QString& accessingComputer,
+						   const QString& localUser, const QString& localComputer );
 
 	bool matchConditions( const AccessControlRule& rule,
 						  const QString& accessingUser, const QString& accessingComputer,
 						  const QString& localUser, const QString& localComputer,
 						  const QStringList& connectedUsers );
 
-	LdapDirectory m_ldapDirectory;
 	QList<AccessControlRule> m_accessControlRules;
-	UsersAndGroupsBackendManager m_usersAndGroupsBackendManager;
-	UsersAndGroupsPluginInterface* m_usersAndGroups;
+	AccessControlDataBackendInterface* m_dataBackend;
 
 } ;
 

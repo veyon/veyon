@@ -31,11 +31,9 @@ AccessControlRule::AccessControlRule() :
 	m_name(),
 	m_description(),
 	m_action( ActionNone ),
-	m_entity( EntityNone ),
-	m_invertConditions( false ),
-	m_conditions()
+	m_parameters(),
+	m_invertConditions( false )
 {
-
 }
 
 
@@ -44,11 +42,9 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 	m_name( other.name() ),
 	m_description( other.description() ),
 	m_action( other.action() ),
-	m_entity( other.entity() ),
-	m_invertConditions( other.areConditionsInverted() ),
-	m_conditions( other.conditions() )
+	m_parameters( other.parameters() ),
+	m_invertConditions( other.areConditionsInverted() )
 {
-
 }
 
 
@@ -57,9 +53,8 @@ AccessControlRule::AccessControlRule(const QJsonValueRef &jsonValue) :
 	m_name(),
 	m_description(),
 	m_action( ActionNone ),
-	m_entity( EntityNone ),
-	m_invertConditions( false ),
-	m_conditions()
+	m_parameters(),
+	m_invertConditions( false )
 {
 	if( jsonValue.isObject() )
 	{
@@ -68,14 +63,16 @@ AccessControlRule::AccessControlRule(const QJsonValueRef &jsonValue) :
 		m_name = json["Name"].toString();
 		m_description = json["Description"].toString();
 		m_action = static_cast<Action>( json["Action"].toInt() );
-		m_entity = static_cast<Entity>( json["Entity"].toInt() );
 		m_invertConditions = json["InvertConditions"].toBool();
 
-		for( auto conditionValue : json["Conditions"].toArray() )
+		for( auto parametersValue : json["Parameters"].toArray() )
 		{
-			QJsonObject conditionObj = conditionValue.toObject();
-			Condition condition = static_cast<Condition>(conditionObj["Condition"].toInt());
-			m_conditions[condition] = conditionObj["Argument"].toVariant();
+			QJsonObject parametersObj = parametersValue.toObject();
+			auto condition = static_cast<Condition>( parametersObj["Condition"].toInt() );
+
+			m_parameters[condition].enabled = parametersObj["Enabled"].toBool();
+			m_parameters[condition].subject = static_cast<Subject>( parametersObj["Subject"].toInt() );
+			m_parameters[condition].argument = parametersObj["Argument"].toVariant();
 		}
 	}
 }
@@ -89,38 +86,21 @@ QJsonObject AccessControlRule::toJson() const
 	json["Name"] = m_name;
 	json["Description"] = m_description;
 	json["Action"] = m_action;
-	json["Entity"] = m_entity;
 	json["InvertConditions"] = m_invertConditions;
 
-	QJsonArray conditions;
+	QJsonArray parameters;
 
-	for( auto condition : m_conditions.keys() )
+	for( auto condition : m_parameters.keys() )
 	{
-		QJsonObject conditionObj;
-		conditionObj["Condition"] = condition;
-		conditionObj["Argument"] = QJsonValue::fromVariant( m_conditions[condition] );
-		conditions.append( conditionObj );
+		QJsonObject parametersObject;
+		parametersObject["Condition"] = condition;
+		parametersObject["Enabled"] = isConditionEnabled( condition );
+		parametersObject["Subject"] = subject( condition );
+		parametersObject["Argument"] = QJsonValue::fromVariant( argument( condition ) );
+		parameters.append( parametersObject );
 	}
 
-	json["Conditions"] = conditions;
+	json["Parameters"] = parameters;
 
 	return json;
-}
-
-
-
-AccessControlRule::EntityType AccessControlRule::entityType( Entity entity )
-{
-	switch( entity )
-	{
-	case EntityAccessingUser:
-	case EntityLocalUser:
-		return EntityTypeUser;
-	case EntityAccessingComputer:
-	case EntityLocalComputer:
-		return EntityTypeComputer;
-	default: break;
-	}
-
-	return EntityTypeNone;
 }
