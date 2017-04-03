@@ -105,7 +105,7 @@ QStringList LdapPlugin::groupsOfUser( const QString& userName ) const
 {
 	const QString userDn = m_ldapDirectory->users( userName ).value( 0 );
 
-	if( userDn.isEmpty() == false )
+	if( userDn.isEmpty() )
 	{
 		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << userName;
 		return QStringList();
