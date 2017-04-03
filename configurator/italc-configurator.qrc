@@ -12,14 +12,8 @@
         <file>resources/go-next.png</file>
         <file>resources/go-previous.png</file>
         <file>resources/tools-wizard.png</file>
-        <file>resources/user-group-properties.png</file>
-        <file>resources/dialog-ok-apply.png</file>
-        <file>resources/configure.png</file>
-        <file>resources/computer.png</file>
-        <file>resources/distribute-vertical-margin.png</file>
         <file>resources/configure-shortcuts.png</file>
         <file>resources/debug-step-into.png</file>
-        <file>resources/folder-publicshare.png</file>
         <file>resources/preferences-system-windows-effect-presentwindows.png</file>
         <file>resources/preferences-system-login.png</file>
         <file>resources/run-build.png</file>

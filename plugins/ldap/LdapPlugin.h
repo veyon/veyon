@@ -25,17 +25,26 @@
 #ifndef LDAP_PLUGIN_H
 #define LDAP_PLUGIN_H
 
-#include "CommandLinePluginInterface.h"
-#include "NetworkObjectDirectoryPluginInterface.h"
 #include "AccessControlDataBackendInterface.h"
+#include "CommandLinePluginInterface.h"
+#include "ConfigurationPagePluginInterface.h"
+#include "NetworkObjectDirectoryPluginInterface.h"
 
 class LdapDirectory;
 
-class LdapPlugin : public QObject,PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, AccessControlDataBackendInterface
+class LdapPlugin : public QObject, PluginInterface,
+		CommandLinePluginInterface,
+		NetworkObjectDirectoryPluginInterface,
+		AccessControlDataBackendInterface,
+		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.Ldap")
-	Q_INTERFACES(PluginInterface CommandLinePluginInterface NetworkObjectDirectoryPluginInterface AccessControlDataBackendInterface)
+	Q_INTERFACES(PluginInterface
+				 CommandLinePluginInterface
+				 NetworkObjectDirectoryPluginInterface
+				 AccessControlDataBackendInterface
+				 ConfigurationPagePluginInterface)
 public:
 	LdapPlugin();
 	virtual ~LdapPlugin();
@@ -103,6 +112,8 @@ public:
 	QStringList groupsOfUser( const QString& userName ) const override;
 	QStringList allRooms() const override;
 	QStringList roomsOfComputer( const QString& computerName ) const;
+
+	ConfigurationPage* createConfigurationPage() override;
 
 
 public slots:

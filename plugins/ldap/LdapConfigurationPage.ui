@@ -2,6 +2,21 @@
 <ui version="4.0">
  <class>LdapConfigurationPage</class>
  <widget class="QWidget" name="LdapConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1016</width>
+    <height>1093</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LDAP</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ldap.qrc">
+    <normaloff>:/ldap/folder-publicshare.png</normaloff>:/ldap/folder-publicshare.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
     <number>0</number>
@@ -116,8 +131,8 @@
            <string>Test</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
-            <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+           <iconset resource="ldap.qrc">
+            <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
           </property>
          </widget>
         </item>
@@ -151,8 +166,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -205,8 +220,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -253,8 +268,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -264,8 +279,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -275,8 +290,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -316,8 +331,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -334,8 +349,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -387,8 +402,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -398,8 +413,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -460,8 +475,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -471,8 +486,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -503,8 +518,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -558,8 +573,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="../italc-configurator.qrc">
-              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -635,8 +650,8 @@
           <string>Get common aggregations of two objects</string>
          </property>
          <property name="icon">
-          <iconset resource="../italc-configurator.qrc">
-           <normaloff>:/resources/distribute-vertical-margin.png</normaloff>:/resources/distribute-vertical-margin.png</iconset>
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
          </property>
         </widget>
        </item>
@@ -646,8 +661,8 @@
           <string>List all groups of a user</string>
          </property>
          <property name="icon">
-          <iconset resource="../italc-configurator.qrc">
-           <normaloff>:/resources/user-group-properties.png</normaloff>:/resources/user-group-properties.png</iconset>
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/user-group-properties.png</normaloff>:/ldap/user-group-properties.png</iconset>
          </property>
         </widget>
        </item>
@@ -657,8 +672,8 @@
           <string>List all members of a computer lab</string>
          </property>
          <property name="icon">
-          <iconset resource="../italc-configurator.qrc">
-           <normaloff>:/resources/configure.png</normaloff>:/resources/configure.png</iconset>
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/configure.png</normaloff>:/ldap/configure.png</iconset>
          </property>
         </widget>
        </item>
@@ -681,8 +696,8 @@
           <string>List all groups of a computer</string>
          </property>
          <property name="icon">
-          <iconset resource="../italc-configurator.qrc">
-           <normaloff>:/resources/computer.png</normaloff>:/resources/computer.png</iconset>
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
          </property>
         </widget>
        </item>
@@ -692,8 +707,8 @@
           <string>Get computer object by IP address</string>
          </property>
          <property name="icon">
-          <iconset resource="../italc-configurator.qrc">
-           <normaloff>:/resources/computer.png</normaloff>:/resources/computer.png</iconset>
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
          </property>
         </widget>
        </item>
@@ -704,7 +719,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="ldap.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -856,9 +871,9 @@
   <slot>aboutItalc()</slot>
  </slots>
  <buttongroups>
-  <buttongroup name="baseDnConfigGroup"/>
-  <buttongroup name="computerGroupingGroup"/>
   <buttongroup name="groupMemberMatchingGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>

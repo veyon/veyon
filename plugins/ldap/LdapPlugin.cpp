@@ -26,6 +26,7 @@
 #include "ItalcConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
 #include "LdapPlugin.h"
+#include "LdapConfigurationPage.h"
 #include "Ldap/LdapDirectory.h"
 
 
@@ -136,6 +137,13 @@ QStringList LdapPlugin::roomsOfComputer( const QString& computerName ) const
 	}
 
 	return m_ldapDirectory->computerLabsOfComputer( computerDn );
+}
+
+
+
+ConfigurationPage *LdapPlugin::createConfigurationPage()
+{
+	return new LdapConfigurationPage;
 }
 
 

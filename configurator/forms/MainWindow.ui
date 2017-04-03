@@ -21,7 +21,6 @@
       <widget class="MasterConfigurationPage" name="masterConfigurationPage"/>
       <widget class="AuthenticationConfigurationPage" name="authenticationConfigurationPage"/>
       <widget class="AccessControlPage" name="accessControlPage"/>
-      <widget class="LdapConfigurationPage" name="ldapConfigurationPage"/>
       <widget class="QWidget" name="debugPage">
        <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,1">
         <property name="topMargin">
@@ -443,18 +442,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </item>
       <item>
        <property name="text">
-        <string>LDAP</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/folder-publicshare.png</normaloff>:/resources/folder-publicshare.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>Debugging</string>
        </property>
        <property name="icon">
@@ -565,12 +552,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>LdapConfigurationPage</class>
-   <extends>QWidget</extends>
-   <header>LdapConfigurationPage.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>AccessControlPage</class>
    <extends>QWidget</extends>
