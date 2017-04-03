@@ -74,6 +74,12 @@ void AuthenticationConfigurationPage::connectWidgetsToProperties()
 
 
 
+void AuthenticationConfigurationPage::applyConfiguration()
+{
+}
+
+
+
 void AuthenticationConfigurationPage::launchKeyFileAssistant()
 {
 	KeyFileAssistant().exec();

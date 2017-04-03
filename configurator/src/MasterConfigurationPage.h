@@ -40,8 +40,9 @@ public:
 	MasterConfigurationPage();
 	virtual ~MasterConfigurationPage();
 
-	virtual void resetWidgets();
-	virtual void connectWidgetsToProperties();
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
 private slots:
 	void openUserConfigurationDirectory();

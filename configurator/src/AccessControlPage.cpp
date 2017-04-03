@@ -84,6 +84,13 @@ void AccessControlPage::connectWidgetsToProperties()
 
 
 
+void AccessControlPage::applyConfiguration()
+{
+	ItalcCore::accessControlDataBackendManager().reloadConfiguration();
+}
+
+
+
 void AccessControlPage::addAccessGroup()
 {
 	foreach( QListWidgetItem *item, ui->allGroupsList->selectedItems() )

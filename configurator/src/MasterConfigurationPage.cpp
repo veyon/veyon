@@ -79,6 +79,12 @@ void MasterConfigurationPage::connectWidgetsToProperties()
 
 
 
+void MasterConfigurationPage::applyConfiguration()
+{
+}
+
+
+
 void MasterConfigurationPage::openUserConfigurationDirectory()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->userConfigurationDirectory );

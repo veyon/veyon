@@ -42,6 +42,7 @@ public:
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
 private slots:
 	void addAccessGroup();

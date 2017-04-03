@@ -39,7 +39,6 @@
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "MainWindow.h"
-#include "ServiceControl.h"
 
 #include "ui_MainWindow.h"
 
@@ -117,17 +116,9 @@ void MainWindow::apply()
 {
 	if( ConfiguratorCore::applyConfiguration( ItalcCore::config() ) )
 	{
-		ServiceControl serviceControl( this );
-
-		if( serviceControl.isServiceRunning() &&
-			QMessageBox::question( this, tr( "Restart %1 Service" ).arg( ItalcCore::applicationName() ),
-				tr( "All settings were saved successfully. In order to take "
-					"effect the %1 service needs to be restarted. "
-					"Restart it now?" ).arg( ItalcCore::applicationName() ),
-				QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
+		for( auto page : findChildren<ConfigurationPage *>() )
 		{
-			serviceControl.stopService();
-			serviceControl.startService();
+			page->applyConfiguration();
 		}
 
 		ui->buttonBox->setEnabled( false );

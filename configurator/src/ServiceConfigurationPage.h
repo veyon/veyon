@@ -43,9 +43,9 @@ public:
 	ServiceConfigurationPage();
 	virtual ~ServiceConfigurationPage();
 
-	virtual void resetWidgets();
-	virtual void connectWidgetsToProperties();
-
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
 public slots:
 	void startService();

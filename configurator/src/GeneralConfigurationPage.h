@@ -36,9 +36,9 @@ public:
 	GeneralConfigurationPage();
 	virtual ~GeneralConfigurationPage();
 
-	virtual void resetWidgets();
-	virtual void connectWidgetsToProperties();
-
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
 private slots:
 	void openLogFileDirectory();

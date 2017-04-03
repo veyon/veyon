@@ -103,6 +103,12 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 
 
 
+void GeneralConfigurationPage::applyConfiguration()
+{
+}
+
+
+
 void GeneralConfigurationPage::openLogFileDirectory()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).

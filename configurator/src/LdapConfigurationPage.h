@@ -40,8 +40,9 @@ public:
 	LdapConfigurationPage();
 	~LdapConfigurationPage();
 
-	virtual void resetWidgets();
-	virtual void connectWidgetsToProperties();
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
 private slots:
 	bool testLdapBind(bool reportSuccess = true);

@@ -86,6 +86,23 @@ void ServiceConfigurationPage::connectWidgetsToProperties()
 }
 
 
+void ServiceConfigurationPage::applyConfiguration()
+{
+	ServiceControl serviceControl( this );
+
+	if( serviceControl.isServiceRunning() &&
+		QMessageBox::question( this, tr( "Restart %1 Service" ).arg( ItalcCore::applicationName() ),
+			tr( "All settings were saved successfully. In order to take "
+				"effect the %1 service needs to be restarted. "
+				"Restart it now?" ).arg( ItalcCore::applicationName() ),
+			QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
+	{
+		serviceControl.stopService();
+		serviceControl.startService();
+	}
+}
+
+
 
 void ServiceConfigurationPage::startService()
 {

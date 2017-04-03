@@ -91,6 +91,12 @@ void LdapConfigurationPage::connectWidgetsToProperties()
 
 
 
+void LdapConfigurationPage::applyConfiguration()
+{
+}
+
+
+
 bool LdapConfigurationPage::testLdapBind(bool reportSuccess )
 {
 	qDebug() << "[TEST][LDAP] Testing bind";

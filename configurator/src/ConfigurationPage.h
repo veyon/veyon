@@ -1,7 +1,7 @@
 /*
  * ConfigurationPage.h - base class for all configuration pages
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -36,6 +36,7 @@ public:
 
 	virtual void resetWidgets() = 0;
 	virtual void connectWidgetsToProperties() = 0;
+	virtual void applyConfiguration() = 0;
 
 };
 
