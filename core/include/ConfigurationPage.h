@@ -25,9 +25,11 @@
 #ifndef CONFIGURATION_PAGE_H
 #define CONFIGURATION_PAGE_H
 
+#include "ItalcCore.h"
+
 #include <QWidget>
 
-class ConfigurationPage : public QWidget
+class ITALC_CORE_EXPORT ConfigurationPage : public QWidget
 {
 	Q_OBJECT
 public:
