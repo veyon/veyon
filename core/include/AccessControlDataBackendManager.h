@@ -40,6 +40,8 @@ public:
 		return m_configuredBackend;
 	}
 
+	void reloadConfiguration();
+
 private:	
 	AccessControlDataBackendInterface* m_configuredBackend;
 

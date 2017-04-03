@@ -45,12 +45,7 @@ AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager&
 		}
 	}
 
-	m_configuredBackend = m_backends.value( ItalcCore::config().accessControlDataBackend() );
-
-	if( m_configuredBackend == nullptr )
-	{
-		m_configuredBackend = &m_defaultBackend;
-	}
+	reloadConfiguration();
 }
 
 
@@ -65,4 +60,16 @@ QMap<Plugin::Uid, QString> AccessControlDataBackendManager::availableBackends()
 	}
 
 	return items;
+}
+
+
+
+void AccessControlDataBackendManager::reloadConfiguration()
+{
+	m_configuredBackend = m_backends.value( ItalcCore::config().accessControlDataBackend() );
+
+	if( m_configuredBackend == nullptr )
+	{
+		m_configuredBackend = &m_defaultBackend;
+	}
 }
