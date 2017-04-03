@@ -1,5 +1,5 @@
 /*
- * LdapCommandLinePlugin.cpp - implementation of LdapCommandLinePlugin class
+ * LdapPlugin.cpp - implementation of LdapPlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -30,18 +30,22 @@
 
 
 LdapPlugin::LdapPlugin() :
+	m_ldapDirectory( nullptr ),
 	m_subCommands( {
 				   std::pair<QString, QString>( "autoconfigurebasedn", "auto-configure the base DN via naming context" ),
 				   std::pair<QString, QString>( "query", "query objects from LDAP directory" ),
 				   std::pair<QString, QString>( "help", "show help about subcommand" ),
 				   } )
 {
+	reloadConfiguration();
 }
 
 
 
 LdapPlugin::~LdapPlugin()
 {
+	delete m_ldapDirectory;
+	m_ldapDirectory = nullptr;
 }
 
 
@@ -75,26 +79,31 @@ NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* paren
 
 
 
+void LdapPlugin::reloadConfiguration()
+{
+	delete m_ldapDirectory;
+	m_ldapDirectory = new LdapDirectory;
+}
+
+
+
 QStringList LdapPlugin::users() const
 {
-	return LdapDirectory().users();
+	return m_ldapDirectory->users();
 }
 
 
 
 QStringList LdapPlugin::userGroups() const
 {
-	LdapDirectory ldapDirectory;
-
-	return ldapDirectory.toRelativeDnList( ldapDirectory.userGroups() );
+	return m_ldapDirectory->toRelativeDnList( m_ldapDirectory->userGroups() );
 }
 
 
 
 QStringList LdapPlugin::groupsOfUser( const QString& userName ) const
 {
-	LdapDirectory ldapDirectory;
-	const QString userDn = ldapDirectory.users( userName ).value( 0 );
+	const QString userDn = m_ldapDirectory->users( userName ).value( 0 );
 
 	if( userDn.isEmpty() == false )
 	{
@@ -102,14 +111,14 @@ QStringList LdapPlugin::groupsOfUser( const QString& userName ) const
 		return QStringList();
 	}
 
-	return ldapDirectory.toRelativeDnList( ldapDirectory.groupsOfUser( userDn ) );
+	return m_ldapDirectory->toRelativeDnList( m_ldapDirectory->groupsOfUser( userDn ) );
 }
 
 
 
 QStringList LdapPlugin::allRooms() const
 {
-	QStringList roomList = LdapDirectory().computerLabs();
+	QStringList roomList = m_ldapDirectory->computerLabs();
 
 	return roomList;
 }
@@ -118,9 +127,7 @@ QStringList LdapPlugin::allRooms() const
 
 QStringList LdapPlugin::roomsOfComputer( const QString& computerName ) const
 {
-	LdapDirectory ldapDirectory;
-
-	const QString computerDn = ldapDirectory.computerObjectFromHost( computerName );
+	const QString computerDn = m_ldapDirectory->computerObjectFromHost( computerName );
 
 	if( computerDn.isEmpty() )
 	{
@@ -128,7 +135,7 @@ QStringList LdapPlugin::roomsOfComputer( const QString& computerName ) const
 		return QStringList();
 	}
 
-	return ldapDirectory.computerLabsOfComputer( computerDn );
+	return m_ldapDirectory->computerLabsOfComputer( computerDn );
 }
 
 
@@ -180,27 +187,25 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringList& arguments )
 {
-	LdapDirectory d;
-
 	QString objectType = arguments.value( 0 );
 	QString filter = arguments.value( 1 );
 	QStringList results;
 
 	if( objectType == "rooms" )
 	{
-		results = d.computerLabs( filter );
+		results = m_ldapDirectory->computerLabs( filter );
 	}
 	else if( objectType == "computers" )
 	{
-		results = d.computers( filter );
+		results = m_ldapDirectory->computers( filter );
 	}
 	else if( objectType == "groups" )
 	{
-		results = d.groups( filter );
+		results = m_ldapDirectory->groups( filter );
 	}
 	else if( objectType == "users" )
 	{
-		results = d.users( filter );
+		results = m_ldapDirectory->users( filter );
 	}
 	else
 	{

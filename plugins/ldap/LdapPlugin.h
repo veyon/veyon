@@ -1,5 +1,5 @@
 /*
- * LdapCommandLinePlugin.h - declaration of LdapCommandLinePlugin class
+ * LdapPlugin.h - declaration of LdapPlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -28,6 +28,8 @@
 #include "CommandLinePluginInterface.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 #include "AccessControlDataBackendInterface.h"
+
+class LdapDirectory;
 
 class LdapPlugin : public QObject,PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, AccessControlDataBackendInterface
 {
@@ -94,6 +96,8 @@ public:
 		return tr( "LDAP (load users/groups and computers/rooms from LDAP/AD)" );
 	}
 
+	void reloadConfiguration() override;
+
 	QStringList users() const override;
 	QStringList userGroups() const override;
 	QStringList groupsOfUser( const QString& userName ) const override;
@@ -107,6 +111,7 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
+	LdapDirectory* m_ldapDirectory;
 	QMap<QString, QString> m_subCommands;
 
 };

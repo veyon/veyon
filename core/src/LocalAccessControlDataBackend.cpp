@@ -45,6 +45,11 @@
 #endif
 
 
+void LocalAccessControlDataBackend::reloadConfiguration()
+{
+}
+
+
 QStringList LocalAccessControlDataBackend::users() const
 {
 	// TODO

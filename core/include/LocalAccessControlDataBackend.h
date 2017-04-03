@@ -36,9 +36,12 @@ public:
 		return tr( "Default (local users/groups and computers/rooms from configuration)" );
 	}
 
+	void reloadConfiguration() override;
+
 	QStringList users() const override;
 	QStringList userGroups() const override;
 	QStringList groupsOfUser( const QString& userName ) const override;
+
 	QStringList allRooms() const override;
 	QStringList roomsOfComputer( const QString& computerName ) const override;
 
