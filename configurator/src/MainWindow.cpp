@@ -35,10 +35,12 @@
 
 #include "AboutDialog.h"
 #include "FileSystemBrowser.h"
+#include "ConfigurationPagePluginInterface.h"
 #include "ConfiguratorCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "MainWindow.h"
+#include "PluginManager.h"
 
 #include "ui_MainWindow.h"
 
@@ -51,6 +53,8 @@ MainWindow::MainWindow() :
 	ui->setupUi( this );
 
 	setWindowTitle( tr( "%1 Configurator %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
+
+	loadConfigurationPagePlugins();
 
 	// reset all widget's values to current configuration
 	reset();
@@ -310,6 +314,24 @@ void MainWindow::generateBugReportArchive()
 void MainWindow::aboutItalc()
 {
 	AboutDialog( this ).exec();
+}
+
+
+
+void MainWindow::loadConfigurationPagePlugins()
+{
+	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
+	{
+		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
+		auto configurationPagePluginInterface = qobject_cast<ConfigurationPagePluginInterface *>( pluginObject );
+
+		if( pluginInterface && configurationPagePluginInterface )
+		{
+			auto page = configurationPagePluginInterface->createConfigurationPage();
+			ui->configPages->addWidget( page );
+			ui->pageSelector->addItem( new QListWidgetItem( page->windowIcon(), page->windowTitle() ) );
+		}
+	}
 }
 
 

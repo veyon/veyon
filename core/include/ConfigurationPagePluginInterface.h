@@ -1,7 +1,7 @@
 /*
- * MainWindow.h - main window of the iTALC Configurator
+ * ConfigurationPagePluginInterface.h - interface class for configuration pages
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,45 +22,24 @@
  *
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef CONFIGURATION_PAGE_PLUGIN_INTERFACE_H
+#define CONFIGURATION_PAGE_PLUGIN_INTERFACE_H
 
-#include <QMainWindow>
+#include "PluginInterface.h"
 
-class QAbstractButton;
+class ConfigurationPage;
 
-namespace Ui {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
+class ConfigurationPagePluginInterface
 {
-	Q_OBJECT
 public:
-	MainWindow();
-	virtual ~MainWindow();
+	virtual ConfigurationPage* createConfigurationPage() = 0;
 
-	void reset( bool onlyUI = false );
-	void apply();
+};
 
+typedef QList<ConfigurationPagePluginInterface> ConfigurationPagePluginInterfaceList;
 
-private slots:
-	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
-	void loadSettingsFromFile();
-	void saveSettingsToFile();
-	void generateBugReportArchive();
-	void aboutItalc();
+#define ConfigurationPagePluginInterface_iid "org.italc-solutions.iTALC.Plugins.ConfigurationPagePluginInterface"
 
+Q_DECLARE_INTERFACE(ConfigurationPagePluginInterface, ConfigurationPagePluginInterface_iid)
 
-private:
-	void loadConfigurationPagePlugins();
-
-	virtual void closeEvent( QCloseEvent *closeEvent );
-
-	Ui::MainWindow *ui;
-	bool m_configChanged;
-
-} ;
-
-#endif
+#endif // CONFIGURATION_PAGE_PLUGIN_INTERFACE_H
