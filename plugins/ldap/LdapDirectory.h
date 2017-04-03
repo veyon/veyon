@@ -30,7 +30,7 @@
 
 #include "ItalcCore.h"
 
-class ITALC_CORE_EXPORT LdapDirectory : public QObject
+class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:

@@ -30,7 +30,7 @@
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "Configuration/UiMapping.h"
-#include "Ldap/LdapDirectory.h"
+#include "LdapDirectory.h"
 
 #include "ui_LdapConfigurationPage.h"
 

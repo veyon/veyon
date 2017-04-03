@@ -27,7 +27,7 @@
 #include "LdapNetworkObjectDirectory.h"
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
-#include "Ldap/LdapDirectory.h"
+#include "LdapDirectory.h"
 
 
 LdapPlugin::LdapPlugin() :

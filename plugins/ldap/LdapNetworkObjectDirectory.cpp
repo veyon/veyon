@@ -24,7 +24,7 @@
 
 #include "ItalcConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
-#include "Ldap/LdapDirectory.h"
+#include "LdapDirectory.h"
 
 
 LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( QObject* parent ) :
