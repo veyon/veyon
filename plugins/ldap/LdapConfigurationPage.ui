@@ -734,6 +734,55 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>ldapServerHost</tabstop>
+  <tabstop>ldapServerPort</tabstop>
+  <tabstop>ldapAnonymousBind</tabstop>
+  <tabstop>ldapUseBindCredentials</tabstop>
+  <tabstop>testLdapBind</tabstop>
+  <tabstop>ldapBindDn</tabstop>
+  <tabstop>ldapBindPassword</tabstop>
+  <tabstop>ldapIsFixedBaseDn</tabstop>
+  <tabstop>ldapBaseDn</tabstop>
+  <tabstop>testLdapBaseDn</tabstop>
+  <tabstop>ldapQueryNamingContext</tabstop>
+  <tabstop>ldapNamingContextAttribute</tabstop>
+  <tabstop>testLdapNamingContext</tabstop>
+  <tabstop>ldapUserTree</tabstop>
+  <tabstop>ldapGroupTree</tabstop>
+  <tabstop>ldapComputerTree</tabstop>
+  <tabstop>testLdapUserTree</tabstop>
+  <tabstop>testLdapGroupTree</tabstop>
+  <tabstop>testLdapComputerTree</tabstop>
+  <tabstop>ldapRecursiveSearchOperations</tabstop>
+  <tabstop>ldapUserLoginAttribute</tabstop>
+  <tabstop>ldapGroupMemberAttribute</tabstop>
+  <tabstop>ldapComputerHostNameAttribute</tabstop>
+  <tabstop>testLdapUserLoginAttribute</tabstop>
+  <tabstop>testLdapGroupMemberAttribute</tabstop>
+  <tabstop>testLdapComputerHostNameAttribute</tabstop>
+  <tabstop>ldapComputerHostNameAsFQDN</tabstop>
+  <tabstop>ldapComputerMacAddressAttribute</tabstop>
+  <tabstop>testLdapComputerMacAddressAttribute</tabstop>
+  <tabstop>ldapUsersFilter</tabstop>
+  <tabstop>ldapUserGroupsFilter</tabstop>
+  <tabstop>ldapComputerGroupsFilter</tabstop>
+  <tabstop>testLdapUsersFilter</tabstop>
+  <tabstop>testLdapUserGroupsFilter</tabstop>
+  <tabstop>testLdapComputerGroupsFilter</tabstop>
+  <tabstop>ldapIdentifyGroupMembersByDN</tabstop>
+  <tabstop>ldapIdentifyGroupMembersByNameAttribute</tabstop>
+  <tabstop>ldapComputerLabMembersByGroups</tabstop>
+  <tabstop>ldapComputerLabMembersByAttribute</tabstop>
+  <tabstop>ldapComputerLabAttribute</tabstop>
+  <tabstop>testLdapComputerLabAttribute</tabstop>
+  <tabstop>testLdapGroupsOfUser</tabstop>
+  <tabstop>testLdapGroupsOfComputer</tabstop>
+  <tabstop>testLdapComputerObjectByIpAddress</tabstop>
+  <tabstop>testLdapComputerLabMembers</tabstop>
+  <tabstop>testLdapCommonAggregations</tabstop>
+ </tabstops>
  <resources>
   <include location="ldap.qrc"/>
  </resources>
