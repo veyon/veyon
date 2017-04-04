@@ -208,13 +208,6 @@ LdapDirectory::~LdapDirectory()
 
 
 
-bool LdapDirectory::isEnabled() const
-{
-	return ItalcCore::config().isLdapIntegrationEnabled();
-}
-
-
-
 bool LdapDirectory::isConnected() const
 {
 	return d->isConnected;
@@ -552,14 +545,6 @@ QStringList LdapDirectory::computerGroupsNames()
 bool LdapDirectory::reconnect( const QUrl &url )
 {
 	const ItalcConfiguration& c = ItalcCore::config();
-
-	if( c.isLdapIntegrationEnabled() == false )
-	{
-		d->isConnected = false;
-		d->isBound = false;
-
-		return false;
-	}
 
 	KLDAP::LdapServer server;
 
