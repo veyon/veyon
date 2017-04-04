@@ -57,8 +57,10 @@ INCLUDE_DIRECTORIES(${Ldap_INCLUDE_DIRS} ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR}
 
 TARGET_LINK_LIBRARIES(ldap ${Ldap_LIBRARIES})
 
+IF(SASL2_FOUND)
+TARGET_LINK_LIBRARIES(ldap ${Sasl2_LIBRARIES})
+ENDIF()
+
 # create target for building included MOC files from kldap before building LDAP plugin
 ADD_CUSTOM_TARGET(kldap_MOC ALL DEPENDS ${kldap_MOCINC_out})
 ADD_DEPENDENCIES(ldap kldap_MOC)
-
-
