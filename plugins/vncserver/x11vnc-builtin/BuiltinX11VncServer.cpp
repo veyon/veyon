@@ -60,7 +60,12 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 							"-rfbport", QString::number( serverPort ) // set port at which the VNC server should listen
 						  } ;
 
-	cmdline.append( m_configuration.extraArguments().split( " " ) );
+	const auto extraArguments = m_configuration.extraArguments();
+
+	if( extraArguments.isEmpty() == false )
+	{
+		cmdline.append( extraArguments.split( " " ) );
+	}
 
 	if( m_configuration.isXDamageDisabled() )
 	{
