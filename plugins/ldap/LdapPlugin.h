@@ -122,6 +122,8 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
+	LdapDirectory& ldapDirectory();
+
 	LdapDirectory* m_ldapDirectory;
 	QMap<QString, QString> m_subCommands;
 

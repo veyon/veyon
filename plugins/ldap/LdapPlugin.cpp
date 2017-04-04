@@ -38,7 +38,6 @@ LdapPlugin::LdapPlugin() :
 				   std::pair<QString, QString>( "help", "show help about subcommand" ),
 				   } )
 {
-	reloadConfiguration();
 }
 
 
@@ -88,23 +87,23 @@ void LdapPlugin::reloadConfiguration()
 
 
 
-QStringList LdapPlugin::users() const
+QStringList LdapPlugin::users()
 {
-	return m_ldapDirectory->users();
+	return ldapDirectory().users();
 }
 
 
 
-QStringList LdapPlugin::userGroups() const
+QStringList LdapPlugin::userGroups()
 {
-	return m_ldapDirectory->toRelativeDnList( m_ldapDirectory->userGroups() );
+	return ldapDirectory().toRelativeDnList( ldapDirectory().userGroups() );
 }
 
 
 
-QStringList LdapPlugin::groupsOfUser( const QString& userName ) const
+QStringList LdapPlugin::groupsOfUser( const QString& userName )
 {
-	const QString userDn = m_ldapDirectory->users( userName ).value( 0 );
+	const QString userDn = ldapDirectory().users( userName ).value( 0 );
 
 	if( userDn.isEmpty() )
 	{
@@ -112,23 +111,23 @@ QStringList LdapPlugin::groupsOfUser( const QString& userName ) const
 		return QStringList();
 	}
 
-	return m_ldapDirectory->toRelativeDnList( m_ldapDirectory->groupsOfUser( userDn ) );
+	return ldapDirectory().toRelativeDnList( ldapDirectory().groupsOfUser( userDn ) );
 }
 
 
 
-QStringList LdapPlugin::allRooms() const
+QStringList LdapPlugin::allRooms()
 {
-	QStringList roomList = m_ldapDirectory->computerLabs();
+	QStringList roomList = ldapDirectory().computerLabs();
 
 	return roomList;
 }
 
 
 
-QStringList LdapPlugin::roomsOfComputer( const QString& computerName ) const
+QStringList LdapPlugin::roomsOfComputer( const QString& computerName )
 {
-	const QString computerDn = m_ldapDirectory->computerObjectFromHost( computerName );
+	const QString computerDn = ldapDirectory().computerObjectFromHost( computerName );
 
 	if( computerDn.isEmpty() )
 	{
@@ -136,7 +135,7 @@ QStringList LdapPlugin::roomsOfComputer( const QString& computerName ) const
 		return QStringList();
 	}
 
-	return m_ldapDirectory->computerLabsOfComputer( computerDn );
+	return ldapDirectory().computerLabsOfComputer( computerDn );
 }
 
 
@@ -201,19 +200,19 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 
 	if( objectType == "rooms" )
 	{
-		results = m_ldapDirectory->computerLabs( filter );
+		results = ldapDirectory().computerLabs( filter );
 	}
 	else if( objectType == "computers" )
 	{
-		results = m_ldapDirectory->computers( filter );
+		results = ldapDirectory().computers( filter );
 	}
 	else if( objectType == "groups" )
 	{
-		results = m_ldapDirectory->groups( filter );
+		results = ldapDirectory().groups( filter );
 	}
 	else if( objectType == "users" )
 	{
-		results = m_ldapDirectory->users( filter );
+		results = ldapDirectory().users( filter );
 	}
 	else
 	{
@@ -260,4 +259,18 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 	}
 
 	return InvalidCommand;
+}
+
+
+
+LdapDirectory& LdapPlugin::ldapDirectory()
+{
+	if( m_ldapDirectory == nullptr )
+	{
+		m_ldapDirectory = new LdapDirectory;
+	}
+
+	// TODO: check whether still connected and reconnect if neccessary
+
+	return *m_ldapDirectory;
 }
