@@ -34,12 +34,12 @@ public:
 
 	virtual void reloadConfiguration() = 0;
 
-	virtual QStringList users() const = 0;
-	virtual QStringList userGroups() const = 0;
-	virtual QStringList groupsOfUser( const QString& userName ) const = 0;
+	virtual QStringList users() = 0;
+	virtual QStringList userGroups() = 0;
+	virtual QStringList groupsOfUser( const QString& userName ) = 0;
 
-	virtual QStringList allRooms() const = 0;
-	virtual QStringList roomsOfComputer( const QString& computerName ) const = 0;
+	virtual QStringList allRooms() = 0;
+	virtual QStringList roomsOfComputer( const QString& computerName ) = 0;
 
 };
 

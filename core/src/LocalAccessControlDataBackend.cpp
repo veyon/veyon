@@ -50,7 +50,7 @@ void LocalAccessControlDataBackend::reloadConfiguration()
 }
 
 
-QStringList LocalAccessControlDataBackend::users() const
+QStringList LocalAccessControlDataBackend::users()
 {
 	// TODO
 	return QStringList();
@@ -58,7 +58,7 @@ QStringList LocalAccessControlDataBackend::users() const
 
 
 
-QStringList LocalAccessControlDataBackend::userGroups() const
+QStringList LocalAccessControlDataBackend::userGroups()
 {
 	QStringList groupList;
 
@@ -179,7 +179,7 @@ QStringList LocalAccessControlDataBackend::userGroups() const
 
 
 
-QStringList LocalAccessControlDataBackend::groupsOfUser( const QString& userName ) const
+QStringList LocalAccessControlDataBackend::groupsOfUser( const QString& userName )
 {
 	QStringList groupList;
 
@@ -225,14 +225,14 @@ QStringList LocalAccessControlDataBackend::groupsOfUser( const QString& userName
 
 
 
-QStringList LocalAccessControlDataBackend::allRooms() const
+QStringList LocalAccessControlDataBackend::allRooms()
 {
 	return QStringList();
 }
 
 
 
-QStringList LocalAccessControlDataBackend::roomsOfComputer( const QString& computerName ) const
+QStringList LocalAccessControlDataBackend::roomsOfComputer( const QString& computerName )
 {
 	return QStringList();
 }

@@ -38,12 +38,12 @@ public:
 
 	void reloadConfiguration() override;
 
-	QStringList users() const override;
-	QStringList userGroups() const override;
-	QStringList groupsOfUser( const QString& userName ) const override;
+	QStringList users() override;
+	QStringList userGroups() override;
+	QStringList groupsOfUser( const QString& userName ) override;
 
-	QStringList allRooms() const override;
-	QStringList roomsOfComputer( const QString& computerName ) const override;
+	QStringList allRooms() override;
+	QStringList roomsOfComputer( const QString& computerName ) override;
 
 };
 
