@@ -44,7 +44,7 @@ public:
 					int listenPort,
 					VncProxyConnectionFactory* clientFactory,
 					QObject* parent = nullptr );
-	virtual ~VncProxyServer();
+	~VncProxyServer() override;
 
 	void start();
 

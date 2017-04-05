@@ -37,7 +37,7 @@ public:
 	ProgressWidget( const QString & _txt,
 			const QString & _anim, int _frames,
 			QWidget * _parent = 0 );
-	virtual ~ProgressWidget();
+	~ProgressWidget() override;
 
 
 private slots:
@@ -45,7 +45,7 @@ private slots:
 
 
 private:
-	virtual void paintEvent( QPaintEvent * );
+	void paintEvent( QPaintEvent * ) override;
 
 	QString m_txt;
 	QString m_anim;

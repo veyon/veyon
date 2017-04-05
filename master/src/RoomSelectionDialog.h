@@ -37,7 +37,7 @@ class RoomSelectionDialog : public QDialog
 	Q_OBJECT
 public:
 	RoomSelectionDialog( QAbstractItemModel* roomListModel, QWidget *parent = 0 );
-	~RoomSelectionDialog();
+	~RoomSelectionDialog() override;
 
 	const QString& selectedRoom() const
 	{

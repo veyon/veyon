@@ -39,7 +39,7 @@ class DemoServer : public QTcpServer
 	Q_OBJECT
 public:
 	DemoServer( const QString& vncServerToken, const QString& demoAccessToken, QObject *parent );
-	virtual ~DemoServer();
+	~DemoServer() override;
 
 	QPoint cursorPos()
 	{
@@ -68,7 +68,7 @@ private slots:
 
 
 private:
-	virtual void incomingConnection( qintptr sock );
+	void incomingConnection( qintptr sock ) override;
 
 	QString m_demoAccessToken;
 
@@ -90,7 +90,7 @@ class DemoServerClient : public QObject
 public:
 	DemoServerClient( const QString& demoAccessToken, qintptr sock, const ItalcVncConnection *vncConn,
 							DemoServer *parent );
-	virtual ~DemoServerClient();
+	~DemoServerClient() override;
 
 public slots:
 	void start();

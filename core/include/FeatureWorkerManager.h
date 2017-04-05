@@ -40,7 +40,7 @@ class ITALC_CORE_EXPORT FeatureWorkerManager : public QObject
 	Q_OBJECT
 public:
 	FeatureWorkerManager( FeatureManager& featureManager );
-	virtual ~FeatureWorkerManager();
+	~FeatureWorkerManager() override;
 
 	Q_INVOKABLE void startWorker( const Feature& feature );
 	Q_INVOKABLE void stopWorker( const Feature& feature );

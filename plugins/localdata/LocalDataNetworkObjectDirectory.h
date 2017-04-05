@@ -35,7 +35,7 @@ class ITALC_CORE_EXPORT LocalDataNetworkObjectDirectory : public NetworkObjectDi
 public:
 	LocalDataNetworkObjectDirectory( QObject* parent );
 
-	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
+	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
 	void update() override;
 

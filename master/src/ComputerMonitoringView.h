@@ -47,7 +47,7 @@ public:
 	};
 
 	ComputerMonitoringView( QWidget *parent = 0 );
-	~ComputerMonitoringView();
+	~ComputerMonitoringView() override;
 
 	void setMasterCore( MasterCore& masterCore );
 

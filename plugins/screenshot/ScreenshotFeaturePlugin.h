@@ -35,7 +35,7 @@ class ScreenshotFeaturePlugin : public QObject, FeaturePluginInterface, PluginIn
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	ScreenshotFeaturePlugin();
-	virtual ~ScreenshotFeaturePlugin() {}
+	~ScreenshotFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
 	{

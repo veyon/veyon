@@ -37,7 +37,7 @@ class MasterConfigurationPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	MasterConfigurationPage();
-	virtual ~MasterConfigurationPage();
+	~MasterConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

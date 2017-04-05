@@ -39,7 +39,7 @@ class X11VncConfigurationWidget : public QWidget
 
 public:
 	explicit X11VncConfigurationWidget( X11VncConfiguration& configuration );
-	~X11VncConfigurationWidget();
+	~X11VncConfigurationWidget() override;
 
 private:
 	Ui::X11VncConfigurationWidget *ui;

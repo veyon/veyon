@@ -35,12 +35,12 @@ class KeyFileAssistantModePage : public QWizardPage
 	Q_OBJECT
 public:
 	KeyFileAssistantModePage();
-	virtual ~KeyFileAssistantModePage()
+	~KeyFileAssistantModePage() override
 	{
 	}
 
 	void setUi( Ui::KeyFileAssistant *ui );
-	virtual bool isComplete() const;
+	bool isComplete() const override;
 
 
 private:

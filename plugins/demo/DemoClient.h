@@ -35,7 +35,7 @@ class DemoClient : public QObject
 	Q_OBJECT
 public:
 	DemoClient( const QString & _host, bool _fullscreen );
-	virtual ~DemoClient();
+	~DemoClient() override;
 
 
 private slots:

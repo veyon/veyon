@@ -35,7 +35,7 @@ class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, Plug
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ConfigCommandLinePlugin();
-	virtual ~ConfigCommandLinePlugin();
+	~ConfigCommandLinePlugin() override;
 
 	Plugin::Uid uid() const override
 	{

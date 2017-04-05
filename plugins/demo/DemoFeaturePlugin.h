@@ -37,7 +37,7 @@ class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterfac
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	DemoFeaturePlugin();
-	virtual ~DemoFeaturePlugin();
+	~DemoFeaturePlugin() override;
 
 	Plugin::Uid uid() const override
 	{

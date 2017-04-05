@@ -34,7 +34,7 @@ class GeneralConfigurationPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	GeneralConfigurationPage();
-	virtual ~GeneralConfigurationPage();
+	~GeneralConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

@@ -53,7 +53,7 @@ public:
 
 
 	SystemKeyTrapper( bool enable = true );
-	~SystemKeyTrapper();
+	~SystemKeyTrapper() override;
 
 	void setEnabled( bool on );
 	bool isEnabled() const

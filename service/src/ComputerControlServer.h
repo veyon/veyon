@@ -44,7 +44,7 @@ class ComputerControlServer : public QObject, VncProxyConnectionFactory
 	Q_OBJECT
 public:
 	ComputerControlServer();
-	virtual ~ComputerControlServer();
+	~ComputerControlServer() override;
 
 	void start();
 

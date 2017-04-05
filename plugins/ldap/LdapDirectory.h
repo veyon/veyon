@@ -35,7 +35,7 @@ class LdapDirectory : public QObject
 	Q_OBJECT
 public:
 	LdapDirectory( const QUrl& url = QUrl() );
-	virtual ~LdapDirectory();
+	~LdapDirectory() override;
 
 	bool isConnected() const;
 	bool isBound() const;

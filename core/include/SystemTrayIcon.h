@@ -35,7 +35,7 @@ class ITALC_CORE_EXPORT SystemTrayIcon : public QObject, public FeaturePluginInt
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
 	SystemTrayIcon();
-	virtual ~SystemTrayIcon() {}
+	~SystemTrayIcon() override {}
 
 	void setToolTip( const QString& toolTipText,
 					 FeatureWorkerManager& featureWorkerManager );

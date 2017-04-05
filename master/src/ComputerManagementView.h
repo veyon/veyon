@@ -38,7 +38,7 @@ class ComputerManagementView : public QWidget
 	Q_OBJECT
 public:
 	ComputerManagementView( ComputerManager& computerManager, QWidget *parent = 0 );
-	~ComputerManagementView();
+	~ComputerManagementView() override;
 
 private slots:
 	void addRoom();

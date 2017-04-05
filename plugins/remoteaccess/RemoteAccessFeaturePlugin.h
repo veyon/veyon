@@ -37,7 +37,7 @@ class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, Fe
 	Q_INTERFACES(PluginInterface FeaturePluginInterface CommandLinePluginInterface)
 public:
 	RemoteAccessFeaturePlugin();
-	virtual ~RemoteAccessFeaturePlugin();
+	~RemoteAccessFeaturePlugin() override;
 
 	Plugin::Uid uid() const override
 	{

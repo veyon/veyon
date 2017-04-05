@@ -38,7 +38,7 @@ class LdapConfigurationPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	LdapConfigurationPage();
-	~LdapConfigurationPage();
+	~LdapConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

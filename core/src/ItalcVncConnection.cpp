@@ -51,7 +51,7 @@ public:
 	{
 	}
 
-	virtual void fire( rfbClient *cl )
+	void fire( rfbClient *cl ) override
 	{
 		SendKeyEvent( cl, m_key, m_pressed );
 	}
@@ -73,7 +73,7 @@ public:
 	{
 	}
 
-	virtual void fire( rfbClient *cl )
+	void fire( rfbClient *cl ) override
 	{
 		SendPointerEvent( cl, m_x, m_y, m_buttonMask );
 	}
@@ -94,7 +94,7 @@ public:
 	{
 	}
 
-	virtual void fire( rfbClient *cl )
+	void fire( rfbClient *cl ) override
 	{
 		SendClientCutText( cl, m_text.data(), m_text.size() );
 	}

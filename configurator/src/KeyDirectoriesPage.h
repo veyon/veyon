@@ -34,12 +34,12 @@ class KeyDirectoriesPage : public QWizardPage
 	Q_OBJECT
 public:
 	KeyDirectoriesPage();
-	virtual ~KeyDirectoriesPage()
+	~KeyDirectoriesPage() override
 	{
 	}
 
 	void setUi( Ui::KeyFileAssistant *ui );
-	virtual bool isComplete() const;
+	bool isComplete() const override;
 
 
 private:

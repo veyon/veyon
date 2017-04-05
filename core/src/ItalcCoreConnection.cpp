@@ -41,7 +41,7 @@ public:
 	{
 	}
 
-	virtual void fire( rfbClient *client )
+	void fire( rfbClient *client ) override
 	{
 		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
 				 << "with arguments" << m_featureMessage.arguments();
