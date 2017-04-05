@@ -36,7 +36,7 @@
 DesktopAccessDialog::DesktopAccessDialog() :
 	m_desktopAccessDialogFeature( Feature( Feature::Dialog | Feature::Service | Feature::Worker | Feature::Builtin,
 										   Feature::Uid( "3dd8ec3e-7004-4936-8f2a-70699b9819be" ),
-										   QString(), QString(), QString() ) ),
+										   tr( "Desktop access dialog" ), QString(), QString() ) ),
 	m_features(),
 	m_result( DesktopAccessPermission::ChoiceNone )
 {

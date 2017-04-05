@@ -33,7 +33,7 @@
 UserSessionControl::UserSessionControl() :
 	m_userSessionInfoFeature( Feature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 									   Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
-									   QString(), QString(), QString() ) ),
+									   tr( "User session control" ), QString(), QString() ) ),
 	m_userLogoutFeature( Feature::Action | Feature::Master | Feature::Service,
 						 Feature::Uid( "7311d43d-ab53-439e-a03a-8cb25f7ed526" ),
 						 tr( "Logout user" ), QString(),
