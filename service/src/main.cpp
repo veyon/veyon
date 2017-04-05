@@ -66,54 +66,11 @@ public:
 
 
 
-static bool parseArguments( const QStringList &arguments )
-{
-	QStringListIterator argIt( arguments );
-	argIt.next();	// skip application file name
-	while( argIt.hasNext() )
-	{
-		const QString & a = argIt.next().toLower();
-#ifdef ITALC_BUILD_LINUX
-		// accept these options for x11vnc
-		if( a == "-nosel" || a == "-nosetclipboard" ||
-				a == "-noshm" || a == "-solid" ||
-				a == "-xrandr" || a == "-onetile" )
-		{
-		}
-		else if( a == "-h" || a == "--help" )
-		{
-			QProcess::execute( "man italc-service" );
-			return false;
-		}
-#endif
-		if( a == "-v" || a == "--version" )
-		{
-			printf( "%s\n", ITALC_VERSION );
-			return false;
-		}
-		else
-		{
-			qWarning() << "Unrecognized commandline argument" << a;
-			return false;
-		}
-	}
-
-	return true;
-}
-
-
-
-
 static int runCoreServer( int argc, char **argv )
 {
 	QCoreApplication app( argc, argv );
 
 	ItalcCore core( &app, "Service" );
-
-	if( !parseArguments( app.arguments() ) )
-	{
-		return -1;
-	}
 
 #ifdef ITALC_BUILD_WIN32
 	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,
@@ -188,5 +145,3 @@ int main( int argc, char **argv )
 
 	return runCoreServer( argc, argv );
 }
-
-
