@@ -168,7 +168,7 @@ void ServiceControl::graphicalFeedback( const QString &title, const QProcess& se
 	QProgressDialog pd( title, QString(), 0, 0, m_parent );
 	pd.setWindowTitle( ItalcCore::applicationName() );
 
-	QProgressBar *b = new QProgressBar( &pd );
+	auto b = new QProgressBar( &pd );
 	b->setMaximum( 100 );
 	b->setTextVisible( false );
 	pd.setBar( b );

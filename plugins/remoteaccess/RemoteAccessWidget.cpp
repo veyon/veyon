@@ -92,7 +92,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	connect( ss_btn, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
-	QHBoxLayout * layout = new QHBoxLayout( this );
+	auto layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );

@@ -199,7 +199,7 @@ int main( int argc, char **argv )
 	}
 
 	// now create the main window
-	MainWindow *mainWindow = new MainWindow;
+	auto mainWindow = new MainWindow;
 
 	mainWindow->show();
 

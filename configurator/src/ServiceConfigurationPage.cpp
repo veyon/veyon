@@ -53,7 +53,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	updateServiceControl();
 	populateVncServerPluginComboBox();
 
-	QTimer *serviceUpdateTimer = new QTimer( this );
+	auto serviceUpdateTimer = new QTimer( this );
 	serviceUpdateTimer->start( 2000 );
 
 	connect( serviceUpdateTimer, SIGNAL( timeout() ),

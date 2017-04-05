@@ -135,7 +135,7 @@ void ToolButton::enterEvent( QEvent * _e )
 		QRect screen = QApplication::desktop()->screenGeometry( screenNumber );
 #endif
 
-		ToolButtonTip * tbt = new ToolButtonTip( m_pixmap, m_label,
+		auto tbt = new ToolButtonTip( m_pixmap, m_label,
 							m_descr,
 				QApplication::desktop()->screen( screenNumber ), this );
 		connect( this, SIGNAL( mouseLeftButton() ),

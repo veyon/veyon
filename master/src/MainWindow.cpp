@@ -71,7 +71,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
-	QSplitter* splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
+	auto splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
 	splitter->setChildrenCollapsible( false );
 
 	ui->centralLayout->addWidget( splitter );

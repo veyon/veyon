@@ -62,7 +62,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 
 	m_vncView = new VncView( host, ItalcCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
 
-	QVBoxLayout * toplevelLayout = new QVBoxLayout;
+	auto toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setMargin( 0 );
 	toplevelLayout->setSpacing( 0 );
 	toplevelLayout->addWidget( m_vncView );

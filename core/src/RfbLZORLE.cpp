@@ -103,7 +103,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 	hdr.bytesLZO = rfbClientSwap32IfLE( hdr.bytesLZO );
 	hdr.bytesRLE = rfbClientSwap32IfLE( hdr.bytesRLE );
 
-	uint8_t *lzo_data = new uint8_t[hdr.bytesLZO];
+	auto lzo_data = new uint8_t[hdr.bytesLZO];
 
 	if( !ReadFromRFBServer( client, (char *) lzo_data, hdr.bytesLZO ) )
 	{
@@ -112,7 +112,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 		return false;
 	}
 
-	uint8_t *rle_data = new uint8_t[hdr.bytesRLE];
+	auto rle_data = new uint8_t[hdr.bytesRLE];
 
 	lzo_uint decomp_bytes = hdr.bytesRLE;
 	lzo1x_decompress_safe( (const unsigned char *) lzo_data,

@@ -46,7 +46,7 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 		qCritical( "FeatureWorkerManager: can't listen on localhost!" );
 	}
 
-	QTimer* pendingMessagesTimer = new QTimer( this );
+	auto pendingMessagesTimer = new QTimer( this );
 	connect( pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages );
 
 	pendingMessagesTimer->start( 100 );
@@ -116,7 +116,7 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 
 		if( worker.process )
 		{
-			QTimer* killTimer = new QTimer;
+			auto killTimer = new QTimer;
 			connect( killTimer, &QTimer::timeout, worker.process, &QProcess::terminate );
 			connect( killTimer, &QTimer::timeout, worker.process, &QProcess::kill );
 			connect( killTimer, &QTimer::timeout, killTimer, &QTimer::deleteLater );

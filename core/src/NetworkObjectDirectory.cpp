@@ -34,7 +34,7 @@ NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	if( ItalcCore::config().networkObjectDirectoryUpdateInterval() >= MinimumUpdateInterval )
 	{
 		// create and start directory update timer
-		QTimer*t = new QTimer( this );
+		auto t = new QTimer( this );
 		connect( t, &QTimer::timeout, this, &NetworkObjectDirectory::update );
 		t->start( ItalcCore::config().networkObjectDirectoryUpdateInterval() * 1000 );
 	}
