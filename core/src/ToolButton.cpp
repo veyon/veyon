@@ -313,7 +313,7 @@ ToolButtonTip::ToolButtonTip( const QPixmap& pixmap, const QString &title,
 
 
 
-QSize ToolButtonTip::sizeHint( void ) const
+QSize ToolButtonTip::sizeHint() const
 {
 	QFont f = font();
 	f.setBold( true );
@@ -401,7 +401,7 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 
 
 
-void ToolButtonTip::updateMask( void )
+void ToolButtonTip::updateMask()
 {
 	// as this widget has not a rectangular shape AND is a top
 	// level widget (which doesn't allow painting only particular
