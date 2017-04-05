@@ -67,6 +67,11 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
+	Plugin::Flags flags() const override
+	{
+		return Plugin::ProvidesDefaultImplementation;
+	}
+
 	QWidget* configurationWidget() override;
 
 	void run( int serverPort, const QString& password ) override;
