@@ -77,7 +77,7 @@ int main( int argc, char **argv )
 
 	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, featureUid );
 
-	qInfo( "Exec" );
+	qInfo() << "Running worker for feature" << workerFeature->displayName();
 
 	return app.exec();
 }
