@@ -726,18 +726,18 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 
 	if( _me->type() != QEvent::MouseMove )
 	{
-		for( uint8_t i = 0; i < sizeof(map)/sizeof(buttonXlate); ++i )
+		for( auto i : map )
 		{
-			if( _me->button() == map[i].qt )
+			if( _me->button() == i.qt )
 			{
 				if( _me->type() == QEvent::MouseButtonPress ||
 				_me->type() == QEvent::MouseButtonDblClick )
 				{
-					m_buttonMask |= map[i].rfb;
+					m_buttonMask |= i.rfb;
 				}
 				else
 				{
-					m_buttonMask &= ~map[i].rfb;
+					m_buttonMask &= ~i.rfb;
 				}
 			}
 		}
