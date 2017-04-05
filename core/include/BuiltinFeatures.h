@@ -27,7 +27,6 @@
 
 #include "ItalcCore.h"
 
-class PluginManager;
 class DesktopAccessDialog;
 class MonitoringMode;
 class SystemTrayIcon;
@@ -36,7 +35,7 @@ class UserSessionControl;
 class ITALC_CORE_EXPORT BuiltinFeatures
 {
 public:
-	BuiltinFeatures( PluginManager& pluginManager );
+	BuiltinFeatures();
 	~BuiltinFeatures();
 
 	SystemTrayIcon& systemTrayIcon()

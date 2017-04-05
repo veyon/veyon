@@ -33,7 +33,7 @@
 #include "VncServerPluginInterface.h"
 
 
-VncServer::VncServer( PluginManager& pluginManager, int serverPort ) :
+VncServer::VncServer( int serverPort ) :
 	QThread(),
 	m_password( CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) ),
 	m_serverPort( serverPort ),
@@ -41,10 +41,9 @@ VncServer::VncServer( PluginManager& pluginManager, int serverPort ) :
 {
 	ItalcCore::authenticationCredentials().setInternalVncServerPassword( m_password );
 
-
 	VncServerPluginInterfaceList availableVncServerPlugins;
 
-	for( auto pluginObject : pluginManager.pluginObjects() )
+	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );

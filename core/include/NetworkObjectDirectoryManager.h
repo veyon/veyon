@@ -31,20 +31,18 @@
 class NetworkObjectDirectory;
 class NetworkObjectDirectoryPluginInterface;
 class PluginInterface;
-class PluginManager;
 
 class ITALC_CORE_EXPORT NetworkObjectDirectoryManager : public QObject
 {
 	Q_OBJECT
 public:
-	NetworkObjectDirectoryManager( PluginManager& pluginManager );
+	NetworkObjectDirectoryManager();
 
 	QMap<Plugin::Uid, QString> availableDirectories();
 
 	NetworkObjectDirectory* createDirectory( QObject* parent );
 
 private:
-	PluginManager& m_pluginManager;
 	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces;
 	Plugin::Uid m_defaultDirectoryUid;
 	ConfigurationNetworkObjectDirectory m_defaultDirectory;

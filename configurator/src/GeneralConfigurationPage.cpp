@@ -186,10 +186,7 @@ void GeneralConfigurationPage::clearLogFiles()
 
 void GeneralConfigurationPage::populateNetworkObjectDirectories()
 {
-	PluginManager pluginManager;
-	NetworkObjectDirectoryManager networkObjectDirectoryManager( pluginManager );
-
-	auto directories = networkObjectDirectoryManager.availableDirectories();
+	auto directories = NetworkObjectDirectoryManager().availableDirectories();
 
 	for( auto directoryUid : directories.keys() )
 	{

@@ -33,9 +33,8 @@ Q_DECLARE_METATYPE(Feature)
 Q_DECLARE_METATYPE(FeatureMessage)
 
 
-FeatureManager::FeatureManager( PluginManager& pluginManager ) :
-	QObject( &pluginManager ),
-	m_pluginManager( pluginManager ),
+FeatureManager::FeatureManager() :
+	QObject(),
 	m_features(),
 	m_emptyFeatureList(),
 	m_pluginObjects(),
@@ -44,7 +43,7 @@ FeatureManager::FeatureManager( PluginManager& pluginManager ) :
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
 
-	for( auto pluginObject : m_pluginManager.pluginObjects() )
+	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
 	{
 		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
 

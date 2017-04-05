@@ -32,7 +32,6 @@
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "RfbItalcAuth.h"
-#include "PluginManager.h"
 #include "DesktopAccessPermission.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
@@ -80,7 +79,6 @@ private:
 
 	QStringList m_failedAuthHosts;
 
-	PluginManager m_pluginManager;
 	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;

@@ -35,7 +35,6 @@ class BuiltinFeatures;
 class FeatureManager;
 class ComputerManager;
 class UserConfig;
-class PluginManager;
 
 class MasterCore : public QObject
 {
@@ -43,11 +42,6 @@ class MasterCore : public QObject
 public:
 	MasterCore();
 	virtual ~MasterCore();
-
-	PluginManager& pluginManager()
-	{
-		return *m_pluginManager;
-	}
 
 	BuiltinFeatures& builtinFeatures()
 	{
@@ -91,7 +85,6 @@ public slots:
 private:
 	FeatureList featureList() const;
 
-	PluginManager* m_pluginManager;
 	BuiltinFeatures* m_builtinFeatures;
 	FeatureManager* m_featureManager;
 	const FeatureList m_features;

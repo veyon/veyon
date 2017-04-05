@@ -35,13 +35,12 @@
 class QWidget;
 
 class FeatureWorkerManager;
-class PluginManager;
 
 class ITALC_CORE_EXPORT FeatureManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureManager( PluginManager& pluginManager );
+	FeatureManager();
 
 	const FeatureList& features() const
 	{
@@ -69,7 +68,6 @@ public slots:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message );
 
 private:
-	PluginManager& m_pluginManager;
 	FeatureList m_features;
 	FeatureList m_emptyFeatureList;
 	QObjectList m_pluginObjects;

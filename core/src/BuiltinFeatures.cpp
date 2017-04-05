@@ -30,16 +30,16 @@
 #include "DesktopAccessDialog.h"
 
 
-BuiltinFeatures::BuiltinFeatures( PluginManager& pluginManager ) :
+BuiltinFeatures::BuiltinFeatures() :
 	m_systemTrayIcon( new SystemTrayIcon ),
 	m_monitoringMode( new MonitoringMode ),
 	m_desktopAccessDialog( new DesktopAccessDialog ),
 	m_userSessionControl( new UserSessionControl )
 {
-	pluginManager.registerExtraPluginInterface( m_systemTrayIcon );
-	pluginManager.registerExtraPluginInterface( m_monitoringMode );
-	pluginManager.registerExtraPluginInterface( m_desktopAccessDialog );
-	pluginManager.registerExtraPluginInterface( m_userSessionControl );
+	ItalcCore::pluginManager().registerExtraPluginInterface( m_systemTrayIcon );
+	ItalcCore::pluginManager().registerExtraPluginInterface( m_monitoringMode );
+	ItalcCore::pluginManager().registerExtraPluginInterface( m_desktopAccessDialog );
+	ItalcCore::pluginManager().registerExtraPluginInterface( m_userSessionControl );
 }
 
 

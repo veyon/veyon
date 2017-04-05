@@ -28,13 +28,12 @@
 
 #include <QThread>
 
-class PluginManager;
 class VncServerPluginInterface;
 
 class VncServer : public QThread
 {
 public:
-	VncServer( PluginManager& pluginManager, int serverPort );
+	VncServer( int serverPort );
 	virtual ~VncServer();
 
 	int serverPort() const

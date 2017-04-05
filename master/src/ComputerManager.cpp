@@ -42,7 +42,6 @@
 
 
 ComputerManager::ComputerManager( UserConfig& config,
-								  PluginManager& pluginManager,
 								  FeatureManager& featureManager,
 								  BuiltinFeatures& builtinFeatures,
 								  QObject* parent ) :
@@ -50,7 +49,7 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_config( config ),
 	m_featureManager( featureManager ),
 	m_builtinFeatures( builtinFeatures ),
-	m_networkObjectDirectoryManager( new NetworkObjectDirectoryManager( pluginManager ) ),
+	m_networkObjectDirectoryManager( new NetworkObjectDirectoryManager() ),
 	m_networkObjectDirectory( m_networkObjectDirectoryManager->createDirectory( this ) ),
 	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),

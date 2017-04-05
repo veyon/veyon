@@ -28,13 +28,12 @@
 #include "PluginManager.h"
 
 
-NetworkObjectDirectoryManager::NetworkObjectDirectoryManager( PluginManager& pluginManager ) :
-    m_pluginManager( pluginManager ),
+NetworkObjectDirectoryManager::NetworkObjectDirectoryManager() :
     m_directoryPluginInterfaces(),
 	m_defaultDirectoryUid( "0b386701-64d5-4a29-bffe-5e91d3962157" ),
 	m_defaultDirectory( this )
 {
-	for( auto pluginObject : m_pluginManager.pluginObjects() )
+	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto directoryPluginInterface = qobject_cast<NetworkObjectDirectoryPluginInterface *>( pluginObject );

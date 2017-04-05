@@ -36,8 +36,7 @@
 MasterConfigurationPage::MasterConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::MasterConfigurationPage),
-	m_pluginManager( this ),
-	m_featureManager( m_pluginManager )
+	m_featureManager()
 {
 	ui->setupUi(this);
 
@@ -131,10 +130,7 @@ void MasterConfigurationPage::disableFeature()
 
 void MasterConfigurationPage::populateFeatureComboBox()
 {
-	PluginManager pluginManager;
-	FeatureManager featureManager( pluginManager );
-
-	for( const auto& feature : featureManager.features() )
+	for( const auto& feature : m_featureManager.features() )
 	{
 		if( feature.testFlag( Feature::Master ) )
 		{

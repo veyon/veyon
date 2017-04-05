@@ -42,15 +42,24 @@ int main( int argc, char **argv )
 		qFatal( "Not enough arguments (feature)" );
 	}
 
-	PluginManager pluginManager;
-	BuiltinFeatures builtinFeatures( pluginManager );
-	FeatureManager featureManager( pluginManager );
+	const auto featureUid = app.arguments().last();
+	if( QUuid( featureUid ).isNull() )
+	{
+		qFatal( "Invalid feature UID given" );
+	}
+
+	auto featureUidNoBraces = featureUid;
+
+	ItalcCore core( &app, QStringLiteral( "FeatureWorker-" ) + featureUidNoBraces.replace( "{", "" ).replace( "}", "" ) );
+
+	BuiltinFeatures builtinFeatures;
+	FeatureManager featureManager;
 
 	const Feature* workerFeature = nullptr;
 
 	for( const auto& feature : featureManager.features() )
 	{
-		if( feature.uid() == app.arguments().last() )
+		if( feature.uid() == featureUid )
 		{
 			workerFeature = &feature;
 		}
@@ -61,17 +70,12 @@ int main( int argc, char **argv )
 		qFatal( "Could not find specified feature" );
 	}
 
-	QString pluginName = pluginManager.pluginName( featureManager.pluginUid( *workerFeature ) );
-	QString featureUid = workerFeature->uid().toString();
-
-	ItalcCore core( &app, "FeatureWorker" + pluginName + "-" + featureUid.replace( "{", "" ).replace( "}", "" ) );
-
 	if( core.config().disabledFeatures().contains( featureUid ) )
 	{
 		qFatal( "Specified feature is disabled by configuration!" );
 	}
 
-	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, workerFeature->uid() );
+	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, featureUid );
 
 	qInfo( "Exec" );
 

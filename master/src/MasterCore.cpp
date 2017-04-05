@@ -37,14 +37,13 @@
 
 
 MasterCore::MasterCore() :
-	m_pluginManager( new PluginManager ),
-	m_builtinFeatures( new BuiltinFeatures( *m_pluginManager ) ),
-	m_featureManager( new FeatureManager( *m_pluginManager ) ),
+	m_builtinFeatures( new BuiltinFeatures() ),
+	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
 	m_localComputer( NetworkObject::Uid::createUuid(), "localhost", QHostAddress( QHostAddress::LocalHost ).toString() ),
 	m_localComputerControlInterface( m_localComputer ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
-	m_computerManager( new ComputerManager( *m_userConfig, *m_pluginManager, *m_featureManager, *m_builtinFeatures, this ) ),
+	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
 	m_currentMode()
 {
 	m_localComputerControlInterface.start( QSize(), &m_builtinFeatures->userSessionControl() );
@@ -102,7 +101,7 @@ FeatureList MasterCore::featureList() const
 	FeatureList features;
 	auto disabledFeatures = ItalcCore::config().disabledFeatures();
 
-	for( auto pluginUid : m_pluginManager->pluginUids() )
+	for( auto pluginUid : ItalcCore::pluginManager().pluginUids() )
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
@@ -115,7 +114,7 @@ FeatureList MasterCore::featureList() const
 		}
 	}
 
-	for( auto pluginUid : m_pluginManager->pluginUids() )
+	for( auto pluginUid : ItalcCore::pluginManager().pluginUids() )
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
