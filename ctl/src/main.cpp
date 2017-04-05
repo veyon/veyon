@@ -54,6 +54,12 @@ int main( int argc, char **argv )
 		return -1;
 	}
 
+	if( app->arguments().last() == "-v" || app->arguments().last() == "--version" )
+	{
+		printf( "%s\n", ITALC_VERSION );
+		return 0;
+	}
+
 	ItalcCore* core = new ItalcCore( app, "Control" );
 
 	PluginManager pluginManager;
