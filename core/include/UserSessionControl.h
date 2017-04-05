@@ -54,7 +54,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "System tray icon" );
+		return tr( "User session control" );
 	}
 
 	QString vendor() const override
