@@ -24,15 +24,11 @@
 
 #include "ItalcCore.h"
 
-#include <QProcess>
-#include <QApplication>
+#include <QCoreApplication>
 #include <QAbstractNativeEventFilter>
 
 #include "WindowsService.h"
-#include "ItalcConfiguration.h"
 #include "ComputerControlServer.h"
-#include "VncServer.h"
-#include "Logger.h"
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -51,7 +47,7 @@ public:
 
 		if( winMsg == WM_QUERYENDSESSION )
 		{
-			ilog( Info, "Got WM_QUERYENDSESSION - initiating server shutdown" );
+			qInfo( "Got WM_QUERYENDSESSION - initiating server shutdown" );
 
 			// tell UltraVNC server to quit
 			SetEvent( hShutdownEvent );
@@ -65,67 +61,11 @@ public:
 #endif
 
 
-
-static int runCoreServer( int argc, char **argv )
-{
-	QCoreApplication app( argc, argv );
-
-	ItalcCore core( &app, "Service" );
-
-#ifdef ITALC_BUILD_WIN32
-	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,
-								"Global\\SessionEventUltra" );
-	if( !hShutdownEvent )
-	{
-		// no global event available already as we're not running under the
-		// control of the ICA service supervisor?
-		if( GetLastError() == ERROR_FILE_NOT_FOUND )
-		{
-			qWarning( "Creating session event" );
-			// then create our own event as otherwise the VNC server main loop
-			// will eat 100% CPU due to failing WaitForSingleObject() calls
-			hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
-											"Global\\SessionEventUltra" );
-		}
-		else
-		{
-			qCritical( "Could not open or create session event" );
-			return -1;
-		}
-	}
-
-	LogoffEventFilter eventFilter;
-
-	app.installNativeEventFilter( &eventFilter );
-#endif
-
-	ComputerControlServer coreServer;
-	coreServer.start();
-
-	ilog( Info, "Exec" );
-	int ret = app.exec();
-
-	ilog( Info, "Exec Done" );
-
-#ifdef ITALC_BUILD_WIN32
-	CloseHandle( hShutdownEvent );
-#endif
-
-	return ret;
-}
-
-
 int main( int argc, char **argv )
 {
-#ifdef DEBUG
-	extern int _Xdebug;
-//	_Xdebug = 1;
-#endif
-
 	// decide in what mode to run
 	if( argc >= 2 )
 	{
-		const QString arg1 = argv[1];
 #ifdef ITALC_BUILD_WIN32
 		for( int i = 1; i < argc; ++i )
 		{
@@ -143,5 +83,47 @@ int main( int argc, char **argv )
 #endif
 	}
 
-	return runCoreServer( argc, argv );
+	QCoreApplication app( argc, argv );
+
+	ItalcCore core( &app, "Service" );
+
+#ifdef ITALC_BUILD_WIN32
+	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, false, "Global\\SessionEventUltra" );
+	if( !hShutdownEvent )
+	{
+		// no global event available already as we're not running under the
+		// control of the ICA service supervisor?
+		if( GetLastError() == ERROR_FILE_NOT_FOUND )
+		{
+			qWarning( "Creating session event" );
+			// then create our own event as otherwise the VNC server main loop
+			// will eat 100% CPU due to failing WaitForSingleObject() calls
+			hShutdownEvent = CreateEvent( NULL, false, false, "Global\\SessionEventUltra" );
+		}
+		else
+		{
+			qCritical( "Could not open or create session event" );
+			return -1;
+		}
+	}
+
+	LogoffEventFilter eventFilter;
+
+	app.installNativeEventFilter( &eventFilter );
+#endif
+
+	ComputerControlServer computerControlServer;
+	computerControlServer.start();
+
+	qInfo( "Exec" );
+
+	int ret = app.exec();
+
+	qInfo( "Exec Done" );
+
+#ifdef ITALC_BUILD_WIN32
+	CloseHandle( hShutdownEvent );
+#endif
+
+	return ret;
 }
