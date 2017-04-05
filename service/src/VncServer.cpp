@@ -41,7 +41,7 @@ VncServer::VncServer( int serverPort ) :
 {
 	ItalcCore::authenticationCredentials().setInternalVncServerPassword( m_password );
 
-	VncServerPluginInterfaceList availableVncServerPlugins;
+	VncServerPluginInterfaceList defaultVncServerPlugins;
 
 	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
 	{
@@ -50,24 +50,26 @@ VncServer::VncServer( int serverPort ) :
 
 		if( pluginInterface && vncServerPluginInterface )
 		{
-			availableVncServerPlugins.append( vncServerPluginInterface );
-
 			if( pluginInterface->uid() == ItalcCore::config().vncServerPlugin() )
 			{
 				m_pluginInterface = vncServerPluginInterface;
+			}
+			else if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
+			{
+				defaultVncServerPlugins.append( vncServerPluginInterface );
 			}
 		}
 	}
 
 	if( m_pluginInterface == nullptr )
 	{
-		if( availableVncServerPlugins.isEmpty() )
+		if( defaultVncServerPlugins.isEmpty() )
 		{
 			qCritical( "VncServer::VncServer(): no VNC server plugins found!" );
 		}
 		else
 		{
-			m_pluginInterface = availableVncServerPlugins.first();
+			m_pluginInterface = defaultVncServerPlugins.first();
 		}
 	}
 }
