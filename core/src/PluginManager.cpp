@@ -77,7 +77,6 @@ PluginManager::PluginManager( QObject* parent ) :
 void PluginManager::registerExtraPluginInterface( QObject* pluginObject )
 {
 	auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-	qCritical() << pluginInterface << pluginObject;
 	if( pluginInterface )
 	{
 		m_pluginInterfaces += pluginInterface;
