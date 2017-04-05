@@ -41,6 +41,10 @@ public:
 	virtual QString description() const = 0;
 	virtual QString vendor() const = 0;
 	virtual QString copyright() const = 0;
+	virtual Plugin::Flags flags() const
+	{
+		return Plugin::NoFlags;
+	}
 
 };
 
