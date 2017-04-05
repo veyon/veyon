@@ -25,13 +25,24 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
+#include <QObject>
 #include <QList>
 #include <QUuid>
 
 class Plugin
 {
+	Q_GADGET
 public:
 	typedef QUuid Uid;
+
+	enum PluginFlags
+	{
+		NoFlags,
+		ProvidesDefaultImplementation = 0x0001,
+	} ;
+
+	Q_DECLARE_FLAGS(Flags, PluginFlags)
+	Q_FLAG(Flags)
 
 };
 
