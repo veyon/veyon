@@ -46,7 +46,7 @@ public:
 		DefaultComputerScreenSize = 160
 	};
 
-	ComputerMonitoringView( QWidget *parent = 0 );
+	ComputerMonitoringView( QWidget *parent = nullptr );
 	~ComputerMonitoringView() override;
 
 	void setMasterCore( MasterCore& masterCore );

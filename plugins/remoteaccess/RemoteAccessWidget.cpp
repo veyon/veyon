@@ -263,7 +263,7 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 
 RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computerControlInterface,
 											bool viewOnly ) :
-	QWidget( 0 ),
+	QWidget( nullptr ),
 	m_computerControlInterface( computerControlInterface ),
 	m_vncView( new VncView( computerControlInterface.computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
 	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),

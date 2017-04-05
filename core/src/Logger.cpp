@@ -39,7 +39,7 @@
 #endif
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
-Logger *Logger::instance = NULL;
+Logger *Logger::instance = nullptr;
 QMutex Logger::logMutex( QMutex::Recursive );
 Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
 QString Logger::lastMsg;
@@ -50,7 +50,7 @@ CXEventLog *Logger::winEventLog = NULL;
 
 Logger::Logger( const QString &appName, ItalcConfiguration* config ) :
 	m_appName( "Italc" + appName ),
-	m_logFile( NULL )
+	m_logFile( nullptr )
 {
 	instance = this;
 
@@ -87,9 +87,9 @@ Logger::~Logger()
 {
 	qDebug() << "Shutdown";
 
-	qInstallMessageHandler(0);
+	qInstallMessageHandler(nullptr);
 
-	instance = NULL;
+	instance = nullptr;
 
 	delete m_logFile;
 }
@@ -182,7 +182,7 @@ void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext& context,
 
 void Logger::log( LogLevel ll, const QString &msg )
 {
-	if( instance != NULL && logLevel >= ll )
+	if( instance != nullptr && logLevel >= ll )
 	{
 		QMutexLocker l( &logMutex );
 		if( msg == lastMsg && ll == lastMsgLevel )

@@ -36,7 +36,7 @@ class ComputerListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	ComputerListModel(ComputerManager& manager, QObject *parent = 0);
+	ComputerListModel(ComputerManager& manager, QObject *parent = nullptr);
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 

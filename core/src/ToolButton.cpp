@@ -60,7 +60,7 @@ ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
 
 	updateSize();
 
-	if( _receiver != NULL && _slot != NULL )
+	if( _receiver != nullptr && _slot != nullptr )
 	{
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );
 	}

@@ -76,7 +76,7 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 		qCritical() << msg.toUtf8().constData();
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
-			QMessageBox::critical( NULL, tr( "Snapshot" ), msg );
+			QMessageBox::critical( nullptr, tr( "Snapshot" ), msg );
 		}
 
 		return;

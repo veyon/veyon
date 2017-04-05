@@ -101,7 +101,7 @@ void DemoClient::viewDestroyed( QObject * _obj )
 {
 	if( m_toplevel == _obj )
 	{
-		m_toplevel = NULL;
+		m_toplevel = nullptr;
 	}
 	deleteLater();
 }

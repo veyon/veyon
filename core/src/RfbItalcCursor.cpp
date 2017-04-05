@@ -34,8 +34,8 @@
 static rfbBool handleEncodingItalcCursor( rfbClient *c,
 										rfbFramebufferUpdateRectHeader *r )
 {
-	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( c, 0 );
-	if( r->encoding != rfbEncodingItalcCursor || t == NULL )
+	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( c, nullptr );
+	if( r->encoding != rfbEncodingItalcCursor || t == nullptr )
 	{
 		return false;
 	}
@@ -52,19 +52,19 @@ static rfbBool handleEncodingItalcCursor( rfbClient *c,
 
 
 
-static rfbClientProtocolExtension * __italcCursorProtocolExt = NULL;
+static rfbClientProtocolExtension * __italcCursorProtocolExt = nullptr;
 
 
 RfbItalcCursor::RfbItalcCursor()
 {
-	if( __italcCursorProtocolExt == NULL )
+	if( __italcCursorProtocolExt == nullptr )
 	{
 		__italcCursorProtocolExt = new rfbClientProtocolExtension;
 		__italcCursorProtocolExt->encodings = new int[2];
 		__italcCursorProtocolExt->encodings[0] = rfbEncodingItalcCursor;
 		__italcCursorProtocolExt->encodings[1] = 0;
 		__italcCursorProtocolExt->handleEncoding = handleEncodingItalcCursor;
-		__italcCursorProtocolExt->handleMessage = NULL;
+		__italcCursorProtocolExt->handleMessage = nullptr;
 
 		rfbClientRegisterExtension( __italcCursorProtocolExt );
 	}

@@ -102,7 +102,7 @@ void SnapshotManagementWidget::snapshotDoubleClicked( const QModelIndex &idx )
 {
 	QLabel * imgLabel = new QLabel;
 	imgLabel->setPixmap( m_fsModel.filePath( idx ) );
-	if( imgLabel->pixmap() != NULL )
+	if( imgLabel->pixmap() != nullptr )
 	{
 		imgLabel->setFixedSize( imgLabel->pixmap()->width(),
 								imgLabel->pixmap()->height() );

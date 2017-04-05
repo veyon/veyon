@@ -109,7 +109,7 @@ private:
 
 rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0) ;
+	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr) ;
 
 	const uint64_t size = (uint64_t) cl->width * cl->height * ( cl->format.bitsPerPixel / 8 );
 
@@ -184,7 +184,7 @@ rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
 
 void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
 
 	if( t->quality() == DemoServerQuality )
 	{
@@ -208,7 +208,7 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 
 void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 {
-	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
 
 	if( t )
 	{
@@ -221,7 +221,7 @@ void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 
 rfbBool ItalcVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
 	if( t )
 	{
 		t->cursorPosChanged( x, y );
@@ -247,7 +247,7 @@ void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, 
 	QImage cursorShape = QImage( cl->rcSource, w, h, QImage::Format_RGB32 ).convertToFormat( QImage::Format_ARGB32 );
 	cursorShape.setAlphaChannel( alpha );
 
-	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
 	t->cursorShapeUpdated( cursorShape, xh, yh );
 }
 
@@ -260,7 +260,7 @@ void ItalcVncConnection::hookCutText( rfbClient *cl, const char *text,
 	if( !cutText.isEmpty() )
 	{
 		ItalcVncConnection *t = (ItalcVncConnection *)
-										rfbClientGetClientData( cl, 0 );
+										rfbClientGetClientData( cl, nullptr );
 		t->gotCut( cutText );
 	}
 }
@@ -324,7 +324,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_hostReachable( false ),
 	m_frameBufferInitialized( false ),
 	m_frameBufferValid( false ),
-	m_cl( NULL ),
+	m_cl( nullptr ),
 	m_italcAuthType( RfbItalcAuth::DSA ),
 	m_quality( DemoClientQuality ),
 	m_port( -1 ),
@@ -528,7 +528,7 @@ void ItalcVncConnection::doConnection()
 		m_cl->HandleCursorPos = hookHandleCursorPos;
 		m_cl->GotCursorShape = hookCursorShape;
 		m_cl->GotXCutText = hookCutText;
-		rfbClientSetClientData( m_cl, 0, this );
+		rfbClientSetClientData( m_cl, nullptr, this );
 
 		m_mutex.lock();
 
@@ -550,7 +550,7 @@ void ItalcVncConnection::doConnection()
 
 		m_hostReachable = false;
 
-		if( rfbInitClient( m_cl, NULL, NULL ) )
+		if( rfbInitClient( m_cl, nullptr, nullptr ) )
 		{
 			emit connected();
 
@@ -776,9 +776,9 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		// look whether the ItalcVncConnection recommends a specific
 		// authentication type (e.g. ItalcAuthHostBased when running as
 		// demo client)
-		ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( client, 0 );
+		ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( client, nullptr );
 
-		if( t != NULL )
+		if( t != nullptr )
 		{
 			for( auto authType : authTypes )
 			{
@@ -877,7 +877,7 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 void ItalcVncConnection::hookPrepareAuthentication(rfbClient *cl)
 {
-	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
 
 	// set our internal flag which indicates that we basically have communication with the client
 	// which means that the host is reachable

@@ -36,7 +36,7 @@ public:
 	NetworkObjectOverlayDataModel( int overlayDataColumn,
 								   int overlayDataRole,
 								   const QVariant& overlayDataColumnHeaderData,
-								   QObject *parent = 0 );
+								   QObject *parent = nullptr );
 
 	int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 

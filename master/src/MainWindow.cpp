@@ -179,7 +179,7 @@ bool MainWindow::initAuthentication()
 		return true;
 	}
 
-	QMessageBox::information( NULL,
+	QMessageBox::information( nullptr,
 			tr( "Authentication impossible" ),
 			tr(	"No authentication key files were found or your current ones "
 				"are outdated. Please create new key files using the %1 "

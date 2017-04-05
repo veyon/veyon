@@ -61,7 +61,7 @@ private:
 
 
 
-static rfbClientProtocolExtension * __italcProtocolExt = NULL;
+static rfbClientProtocolExtension * __italcProtocolExt = nullptr;
 static void * ItalcCoreConnectionTag = (void *) PortOffsetVncServer; // an unique ID
 
 
@@ -71,11 +71,11 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 	m_user(),
 	m_userHomeDir()
 {
-	if( __italcProtocolExt == NULL )
+	if( __italcProtocolExt == nullptr )
 	{
 		__italcProtocolExt = new rfbClientProtocolExtension;
-		__italcProtocolExt->encodings = NULL;
-		__italcProtocolExt->handleEncoding = NULL;
+		__italcProtocolExt->encodings = nullptr;
+		__italcProtocolExt->handleEncoding = nullptr;
 		__italcProtocolExt->handleMessage = handleItalcMessage;
 
 		rfbClientRegisterExtension( __italcProtocolExt );

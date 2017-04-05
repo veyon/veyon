@@ -33,7 +33,7 @@
 #include "Logger.h"
 
 
-QSplashScreen * splashScreen = NULL;
+QSplashScreen * splashScreen = nullptr;
 
 // good old main-function... initializes qt-app and starts iTALC
 int main( int argc, char * * argv )

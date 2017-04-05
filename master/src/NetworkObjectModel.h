@@ -33,7 +33,7 @@ class NetworkObjectModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectModel( QObject* parent = 0) :
+	NetworkObjectModel( QObject* parent = nullptr) :
 		QAbstractItemModel( parent )
 	{
 	}

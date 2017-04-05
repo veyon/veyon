@@ -303,7 +303,7 @@ User User::loggedOnUser()
 	char * envUser = getenv( "USER" );
 
 #ifdef ITALC_HAVE_PWD_H
-	struct passwd * pw_entry = NULL;
+	struct passwd * pw_entry = nullptr;
 	if( envUser )
 	{
 		pw_entry = getpwnam( envUser );
@@ -690,7 +690,7 @@ User *Process::getProcessOwner()
 
 	return user;
 #else
-	return NULL;
+	return nullptr;
 #endif
 }
 
@@ -830,7 +830,7 @@ void sleep( const int _ms )
 	Sleep( static_cast<unsigned int>( _ms ) );
 #else
 	struct timespec ts = { _ms / 1000, ( _ms % 1000 ) * 1000 * 1000 } ;
-	nanosleep( &ts, NULL );
+	nanosleep( &ts, nullptr );
 #endif
 }
 

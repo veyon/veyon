@@ -76,7 +76,7 @@ public:
 	} ;
 	typedef States State;
 
-	explicit ItalcVncConnection( QObject *parent = 0 );
+	explicit ItalcVncConnection( QObject *parent = nullptr );
 	~ItalcVncConnection() override;
 
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;

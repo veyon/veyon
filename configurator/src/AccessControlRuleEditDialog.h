@@ -37,7 +37,7 @@ class AccessControlRuleEditDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	AccessControlRuleEditDialog(AccessControlRule& rule, QWidget *parent = 0);
+	AccessControlRuleEditDialog(AccessControlRule& rule, QWidget *parent = nullptr);
 	~AccessControlRuleEditDialog() override;
 
 	void accept() override;

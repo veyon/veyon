@@ -165,9 +165,9 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
   ( sizeof( lzo_align_t ) - 1 ) ) /
   sizeof( lzo_align_t ) ) ] ),
 	m_rawBuf( new QRgb[RAW_MAX_PIXELS] ),
-	m_rleBuf( NULL ),
+	m_rleBuf( nullptr ),
 	m_currentRleBufSize( 0 ),
-	m_lzoOutBuf( NULL ),
+	m_lzoOutBuf( nullptr ),
 	m_currentLzoOutBufSize( 0 )
 {
 }

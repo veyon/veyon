@@ -118,7 +118,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 	lzo1x_decompress_safe( (const unsigned char *) lzo_data,
 				(lzo_uint) hdr.bytesLZO,
 				(unsigned char *) rle_data,
-				(lzo_uint *) &decomp_bytes, NULL );
+				(lzo_uint *) &decomp_bytes, nullptr );
 	if( decomp_bytes != hdr.bytesRLE )
 	{
 		delete[] rle_data;
@@ -174,19 +174,19 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 
 
 
-static rfbClientProtocolExtension * __lzoRleProtocolExt = NULL;
+static rfbClientProtocolExtension * __lzoRleProtocolExt = nullptr;
 
 
 RfbLZORLE::RfbLZORLE()
 {
-	if( __lzoRleProtocolExt == NULL )
+	if( __lzoRleProtocolExt == nullptr )
 	{
 		__lzoRleProtocolExt = new rfbClientProtocolExtension;
 		__lzoRleProtocolExt->encodings = new int[2];
 		__lzoRleProtocolExt->encodings[0] = rfbEncodingLZORLE;
 		__lzoRleProtocolExt->encodings[1] = 0;
 		__lzoRleProtocolExt->handleEncoding = handleEncodingLZORLE;
-		__lzoRleProtocolExt->handleMessage = NULL;
+		__lzoRleProtocolExt->handleMessage = nullptr;
 
 		rfbClientRegisterExtension( __lzoRleProtocolExt );
 	}

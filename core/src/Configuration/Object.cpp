@@ -35,7 +35,7 @@ namespace Configuration
 
 
 Object::Object( Store::Backend _backend, Store::Scope _scope ) :
-	m_store( NULL ),
+	m_store( nullptr ),
 	m_customStore( false )
 {
 	switch( _backend )
@@ -74,7 +74,7 @@ Object::Object( Store *store ) :
 
 
 Object::Object( const Object &obj ) :
-	m_store( NULL ),
+	m_store( nullptr ),
 	m_customStore( false )
 {
 	*this = obj;

@@ -52,7 +52,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	m_scaledView( true ),
 	m_initDone( false ),
 	m_buttonMask( 0 ),
-	m_establishingConnection( NULL ),
+	m_establishingConnection( nullptr ),
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
 {
 	m_vncConn->setHost( host );
@@ -95,7 +95,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 
 	// set up background color
-	if( parent == NULL )
+	if( parent == nullptr )
 	{
 		parent = this;
 	}

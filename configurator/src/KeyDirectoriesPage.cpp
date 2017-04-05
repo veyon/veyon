@@ -32,7 +32,7 @@
 
 KeyDirectoriesPage::KeyDirectoriesPage() :
 	QWizardPage(),
-	m_ui( NULL )
+	m_ui( nullptr )
 {
 }
 

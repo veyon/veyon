@@ -104,7 +104,7 @@ class ToolButtonTip : public QWidget
 public:
 	ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
-				QWidget * _parent, QWidget * _tool_btn = 0 );
+				QWidget * _parent, QWidget * _tool_btn = nullptr );
 
 	QSize sizeHint( void ) const override;
 

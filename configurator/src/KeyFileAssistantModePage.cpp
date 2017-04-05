@@ -31,7 +31,7 @@
 
 KeyFileAssistantModePage::KeyFileAssistantModePage() :
 	QWizardPage(),
-	m_modeButtonGroup( NULL )
+	m_modeButtonGroup( nullptr )
 {
 }
 
@@ -48,7 +48,7 @@ void KeyFileAssistantModePage::setUi( Ui::KeyFileAssistant *ui )
 
 bool KeyFileAssistantModePage::isComplete() const
 {
-	return m_modeButtonGroup && m_modeButtonGroup->checkedButton() != NULL;
+	return m_modeButtonGroup && m_modeButtonGroup->checkedButton() != nullptr;
 }
 
 

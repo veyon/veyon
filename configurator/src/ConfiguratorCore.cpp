@@ -40,7 +40,7 @@ namespace ConfiguratorCore
 {
 
 // static data initialization
-MainWindow *mainWindow = NULL;
+MainWindow *mainWindow = nullptr;
 bool silent = false;
 
 
@@ -175,7 +175,7 @@ void informationMessage( const QString &title, const QString &msg )
 	qInfo() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
 	{
-		QMessageBox::information( NULL, title, msg );
+		QMessageBox::information( nullptr, title, msg );
 	}
 }
 
@@ -186,7 +186,7 @@ void criticalMessage( const QString &title, const QString &msg )
 	qCritical() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
 	{
-		QMessageBox::critical( NULL, title, msg );
+		QMessageBox::critical( nullptr, title, msg );
 	}
 }
 

@@ -33,7 +33,7 @@ class AccessControlRuleListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	explicit AccessControlRuleListModel(QObject *parent = 0);
+	explicit AccessControlRuleListModel(QObject *parent = nullptr);
 
 	void reload();
 

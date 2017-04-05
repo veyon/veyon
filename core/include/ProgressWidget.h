@@ -36,7 +36,7 @@ class ProgressWidget : public QWidget
 public:
 	ProgressWidget( const QString & _txt,
 			const QString & _anim, int _frames,
-			QWidget * _parent = 0 );
+			QWidget * _parent = nullptr );
 	~ProgressWidget() override;
 
 
