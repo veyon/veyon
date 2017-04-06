@@ -32,7 +32,6 @@
 
 #include "WindowsService.h"
 #include "LocalSystem.h"
-#include "Logger.h"
 
 #ifdef ITALC_BUILD_WIN32
 
@@ -145,11 +144,11 @@ public:
 	{
 		if( m_subProcessHandle )
 		{
-			ilog( Info, "Waiting for core server to shutdown" );
+			qInfo( "Waiting for core server to shutdown" );
 			if( WaitForSingleObject( m_subProcessHandle, 10000 ) ==
 																WAIT_TIMEOUT )
 			{
-				ilog( Warning, "Terminating core server" );
+				qWarning( "Terminating core server" );
 				TerminateProcess( m_subProcessHandle, 0 );
 			}
 			CloseHandle( m_subProcessHandle ),
@@ -744,11 +743,11 @@ DWORD WINAPI WindowsService::serviceCtrl( DWORD _ctrlcode, DWORD dwEventType,
 			switch( dwEventType )
 			{
 				case WTS_SESSION_LOGOFF:
-					ilog( Info, "Session change event: WTS_SESSION_LOGOFF" );
+					qInfo( "Session change event: WTS_SESSION_LOGOFF" );
 					s_sessionChangeEvent = 1;
 					break;
 				case WTS_SESSION_LOGON:
-					ilog( Info, "Session change event: WTS_SESSION_LOGON" );
+					qInfo( "Session change event: WTS_SESSION_LOGON" );
 					s_sessionChangeEvent = 1;
 					break;
 			}
@@ -802,13 +801,12 @@ bool WindowsService::reportStatus( DWORD state, DWORD exitCode, DWORD waitHint )
 		s_status.dwCheckPoint = checkpoint++;
 	}
 
-	ilogf( Debug, "Reporting service status: %d", state );
+	qDebug( "Reporting service status: %d", (int) state );
 
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( s_statusHandle, &s_status ) ) )
 	{
-		qCritical( "WindowsService::reportStatus(...): "
-						"SetServiceStatus failed." );
+		qCritical( "WindowsService::reportStatus(...): SetServiceStatus failed." );
 	}
 
 	return result;
@@ -837,15 +835,14 @@ void WindowsService::monitorSessions()
 		const DWORD sessionId = WTSGetActiveConsoleSessionId();
 		if( oldSessionId != sessionId || sessionChanged )
 		{
-			ilogf( Info, "Session ID changed from %d to %d",
-									oldSessionId, sessionId );
+			qInfo( "Session ID changed from %d to %d", (int) oldSessionId, (int) sessionId );
 			// some logic for not reacting to desktop changes when the screen
 			// locker got active - we also don't update oldSessionId so when
 			// switching back to the original desktop, the above condition
 			// should not be met and nothing should happen
 			if( LocalSystem::Desktop::screenLockDesktop().isActive() )
 			{
-				ilog( Debug, "ScreenLockDesktop is active - ignoring" );
+				qDebug( "ScreenLockDesktop is active - ignoring" );
 				continue;
 			}
 
@@ -879,7 +876,7 @@ void WindowsService::monitorSessions()
 		}
 	}
 
-	ilog( Info, "Service shutdown" );
+	qInfo( "Service shutdown" );
 
 	SetEvent( hShutdownEvent );
 	italcProcess.stop();
