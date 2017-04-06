@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/ldap" >
-        <file>folder-publicshare.png</file>
         <file>user-group-properties.png</file>
         <file>computer.png</file>
         <file>configure.png</file>
         <file>distribute-vertical-margin.png</file>
         <file>dialog-ok-apply.png</file>
+        <file>application-x-kexi-connectiondata.png</file>
     </qresource>
 </RCC>

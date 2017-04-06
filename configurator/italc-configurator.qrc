@@ -13,11 +13,10 @@
         <file>resources/go-previous.png</file>
         <file>resources/tools-wizard.png</file>
         <file>resources/configure-shortcuts.png</file>
-        <file>resources/debug-step-into.png</file>
-        <file>resources/preferences-system-windows-effect-presentwindows.png</file>
-        <file>resources/preferences-system-login.png</file>
-        <file>resources/run-build.png</file>
-        <file>resources/preferences-desktop-screensaver.png</file>
+        <file>resources/tools-report-bug.png</file>
+        <file>resources/application-x-ms-dos-executable.png</file>
+        <file>resources/folder-publicshare.png</file>
+        <file>resources/application-x-sharedlib.png</file>
         <file>resources/list-add.png</file>
         <file>resources/list-remove.png</file>
         <file>resources/document-edit.png</file>
@@ -25,5 +24,6 @@
         <file>resources/vcs-normal.png</file>
         <file>resources/vcs-removed.png</file>
         <file>resources/access-rule-ask.png</file>
+        <file>resources/application-x-pem-key.png</file>
     </qresource>
 </RCC>

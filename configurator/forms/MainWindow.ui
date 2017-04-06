@@ -398,7 +398,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/run-build.png</normaloff>:/resources/run-build.png</iconset>
+         <normaloff>:/resources/application-x-sharedlib.png</normaloff>:/resources/application-x-sharedlib.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -410,7 +410,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/preferences-system-windows-effect-presentwindows.png</normaloff>:/resources/preferences-system-windows-effect-presentwindows.png</iconset>
+         <normaloff>:/resources/application-x-ms-dos-executable.png</normaloff>:/resources/application-x-ms-dos-executable.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -422,7 +422,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/preferences-system-login.png</normaloff>:/resources/preferences-system-login.png</iconset>
+         <normaloff>:/resources/folder-publicshare.png</normaloff>:/resources/folder-publicshare.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -434,7 +434,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/preferences-desktop-screensaver.png</normaloff>:/resources/preferences-desktop-screensaver.png</iconset>
+         <normaloff>:/resources/application-x-pem-key.png</normaloff>:/resources/application-x-pem-key.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -446,7 +446,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/debug-step-into.png</normaloff>:/resources/debug-step-into.png</iconset>
+         <normaloff>:/resources/tools-report-bug.png</normaloff>:/resources/tools-report-bug.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>

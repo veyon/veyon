@@ -2,12 +2,20 @@
 <ui version="4.0">
  <class>LdapConfigurationPage</class>
  <widget class="QWidget" name="LdapConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1016</width>
+    <height>704</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>LDAP</string>
   </property>
   <property name="windowIcon">
    <iconset resource="ldap.qrc">
-    <normaloff>:/ldap/folder-publicshare.png</normaloff>:/ldap/folder-publicshare.png</iconset>
+    <normaloff>:/ldap/application-x-kexi-connectiondata.png</normaloff>:/ldap/application-x-kexi-connectiondata.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
