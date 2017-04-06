@@ -262,6 +262,11 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
 
+	if( SystemConfigurationModifier::enableSoftwareSAS( ItalcCore::config().isSoftwareSASEnabled() ) == false )
+	{
+		return operationError( tr( "Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!" ) );
+	}
+
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
 	localStore.flush( &ItalcCore::config() );
