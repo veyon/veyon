@@ -62,10 +62,9 @@ int main( int argc, char **argv )
 
 	ItalcCore* core = new ItalcCore( app, "Control" );
 
-	PluginManager pluginManager;
 	QMap<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 
-	for( auto pluginObject : pluginManager.pluginObjects() )
+	for( auto pluginObject : core->pluginManager().pluginObjects() )
 	{
 		auto commandLinePluginInterface = qobject_cast<CommandLinePluginInterface *>( pluginObject );
 		if( commandLinePluginInterface )
