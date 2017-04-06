@@ -118,7 +118,7 @@ bool ServiceControl::isServiceRunning()
 
 void ServiceControl::startService()
 {
-	serviceControl( tr( "Starting %1 Service" ).arg( ItalcCore::applicationName() ), "-startservice" );
+	serviceControl( tr( "Starting %1 Service" ).arg( ItalcCore::applicationName() ), { "-startservice" } );
 }
 
 
@@ -126,29 +126,29 @@ void ServiceControl::startService()
 
 void ServiceControl::stopService()
 {
-	serviceControl( tr( "Stopping %1 Service" ).arg( ItalcCore::applicationName() ), "-stopservice" );
+	serviceControl( tr( "Stopping %1 Service" ).arg( ItalcCore::applicationName() ), { "-stopservice" } );
 }
 
 
 
 void ServiceControl::registerService()
 {
-	serviceControl( tr( "Registering %1 Service" ).arg( ItalcCore::applicationName() ), "-registerservice" );
+	serviceControl( tr( "Registering %1 Service" ).arg( ItalcCore::applicationName() ), { "-registerservice" } );
 }
 
 
 
 void ServiceControl::unregisterService()
 {
-	serviceControl( tr( "Unregistering %1 Service" ).arg( ItalcCore::applicationName() ), "-unregisterservice" );
+	serviceControl( tr( "Unregistering %1 Service" ).arg( ItalcCore::applicationName() ), { "-unregisterservice" } );
 }
 
 
 
-void ServiceControl::serviceControl( const QString& title, const QString& arg )
+void ServiceControl::serviceControl( const QString& title, const QStringList& arguments )
 {
 	QProcess serviceProcess;
-	serviceProcess.start( serviceFilePath(), QStringList() << arg );
+	serviceProcess.start( serviceFilePath(), arguments );
 	serviceProcess.waitForStarted();
 
 	if( m_parent )
