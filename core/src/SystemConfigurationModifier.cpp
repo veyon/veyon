@@ -599,3 +599,35 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 	return true;
 }
 
+
+
+bool SystemConfigurationModifier::enableSoftwareSAS( bool enabled )
+{
+#ifdef ITALC_BUILD_WIN32
+	HKEY hkLocal, hkLocalKey;
+	DWORD dw;
+	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
+						"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+						0, REG_NONE, REG_OPTION_NON_VOLATILE,
+						KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
+	{
+		return false;
+	}
+
+	if( RegOpenKeyEx( hkLocal,
+					  "System",
+					  0, KEY_WRITE | KEY_READ,
+					  &hkLocalKey ) != ERROR_SUCCESS )
+	{
+		RegCloseKey( hkLocal );
+		return false;
+	}
+
+	LONG pref = enabled ? 1 : 0;
+	RegSetValueEx( hkLocalKey, "SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref) );
+	RegCloseKey( hkLocalKey );
+	RegCloseKey( hkLocal );
+#endif
+
+	return true;
+}

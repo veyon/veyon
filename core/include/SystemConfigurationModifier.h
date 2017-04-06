@@ -35,6 +35,7 @@ public:
 	static bool setServiceArguments( const QString &serviceArgs );
 
 	static bool enableFirewallException( bool enabled );
+	static bool enableSoftwareSAS( bool enabled );
 
 } ;
 
