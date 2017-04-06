@@ -44,6 +44,15 @@ AccessControlPage::AccessControlPage() :
 {
 	ui->setupUi(this);
 
+	if( ItalcCore::accessControlDataBackendManager().configuredBackend() == nullptr )
+	{
+		QMessageBox::critical( this,
+							   tr( "Missing access control data backend" ),
+							   tr( "No default access control backend plugin was found. "
+								   "Please check your installation!" ) );
+		qFatal( "AccessControlPage: missing default access control data backend" );
+	}
+
 	auto backends = ItalcCore::accessControlDataBackendManager().availableBackends();
 	for( auto backend : backends.keys() )
 	{
