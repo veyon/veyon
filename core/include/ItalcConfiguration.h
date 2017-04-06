@@ -57,6 +57,7 @@ public slots:
 	void setTrayIconHidden( bool );
 	void setServiceAutostart( bool );
 	void setServiceArguments( const QString & );
+	void setSoftwareSASEnabled( bool );
 	void setLogLevel( int );
 	void setLogToStdErr( bool );
 	void setLogToWindowsEventLog( bool );

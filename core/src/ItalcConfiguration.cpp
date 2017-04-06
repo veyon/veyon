@@ -90,6 +90,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setFeatureWorkerManagerPort( PortOffsetFeatureManagerPort );
 	c.setDemoServerPort( PortOffsetDemoServer );
 	c.setFirewallExceptionEnabled( true );
+	c.setSoftwareSASEnabled( true );
 
 	c.setUserConfigurationDirectory( QDTNS( "$APPDATA/Config" ) );
 	c.setSnapshotDirectory( QDTNS( "$APPDATA/Snapshots" ) );

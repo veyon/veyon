@@ -35,6 +35,7 @@
 	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
 	OP( ItalcConfiguration, ItalcCore::config(), BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
 	OP( ItalcConfiguration, ItalcCore::config(), STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
+	OP( ItalcConfiguration, ItalcCore::config(), BOOL, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Service" );			\
 
 #define FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
 	OP( ItalcConfiguration, ItalcCore::config(), UUID, networkObjectDirectoryPlugin, setNetworkObjectDirectoryPlugin, "Plugin", "NetworkObjectDirectory" );			\
