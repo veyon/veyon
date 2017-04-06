@@ -187,6 +187,7 @@ File "contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\italc-ctl.exe" config set Network/FirewallExceptionEnabled 1'
+ExecWait '"$INSTDIR\italc-ctl.exe" config set Service/SoftwareSASEnabled 1'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -startservice'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
@@ -249,6 +250,7 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 
+ExecWait '"$INSTDIR\italc-ctl.exe" config set Service/SoftwareSASEnabled 0'
 ExecWait '"$INSTDIR\italc-ctl.exe" config set Network/FirewallExceptionEnabled 0'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
 ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
