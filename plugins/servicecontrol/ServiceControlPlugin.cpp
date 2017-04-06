@@ -58,7 +58,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( con
 {
 	m_serviceControl.registerService();
 
-	return m_serviceControl.isServiceRunning() ? Successful : Failed;
+	return m_serviceControl.isServiceRegistered() ? Successful : Failed;
 }
 
 
