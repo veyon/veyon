@@ -353,7 +353,7 @@ QString ComputerManager::findRoomOfComputer( const QString& hostName, const QLis
 			QString currentHost = model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString();
 			QHostAddress currentHostAddress;
 
-			if( hostName == currentHost ||
+			if( hostName.toLower() == currentHost.toLower() ||
 					( currentHostAddress.setAddress( currentHost ) && hostAddresses.contains( currentHostAddress ) ) )
 			{
 				return model->data( parent, NetworkObjectModel::NameRole ).toString();
