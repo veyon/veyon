@@ -70,6 +70,11 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
+	Plugin::Flags flags() const override
+	{
+		return Plugin::ProvidesDefaultImplementation;
+	}
+
 	QString accessControlDataBackendName() const override
 	{
 		return tr( "Default (local users/groups and computers/rooms from configuration)" );
