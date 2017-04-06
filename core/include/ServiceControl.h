@@ -51,7 +51,7 @@ public:
 
 
 private:
-	void serviceControl( const QString &title, const QStringList &arguments );
+	void serviceControl( const QString &title, QStringList arguments );
 	void graphicalFeedback( const QString &title, const QProcess& serviceProcess );
 	void textFeedback( const QString &title, const QProcess& serviceProcess );
 

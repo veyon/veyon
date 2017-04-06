@@ -145,8 +145,15 @@ void ServiceControl::unregisterService()
 
 
 
-void ServiceControl::serviceControl( const QString& title, const QStringList& arguments )
+void ServiceControl::serviceControl( const QString& title, QStringList arguments )
 {
+	// not running as graphical/interactive application?
+	if( m_parent == nullptr )
+	{
+		// then prevent service application from showing any message boxes
+		arguments.prepend( "-quiet" );
+	}
+
 	QProcess serviceProcess;
 	serviceProcess.start( serviceFilePath(), arguments );
 	serviceProcess.waitForStarted();
