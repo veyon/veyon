@@ -22,13 +22,14 @@
  *
  */
 
-#include "ItalcConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
+#include "LdapConfiguration.h"
 #include "LdapDirectory.h"
 
 
-LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( QObject* parent ) :
-	NetworkObjectDirectory( parent )
+LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent ) :
+	NetworkObjectDirectory( parent ),
+	m_configuration( configuration )
 {
 	update();
 }
@@ -56,7 +57,7 @@ void LdapNetworkObjectDirectory::update()
 {
 	const NetworkObject rootObject( NetworkObject::Root );
 
-	LdapDirectory ldapDirectory;
+	LdapDirectory ldapDirectory( m_configuration );
 
 	QStringList computerLabs = ldapDirectory.computerLabs();
 
@@ -100,7 +101,7 @@ void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory
 
 	QStringList computers = ldapDirectory.computerLabMembers( computerLab );
 
-	bool hasMacAddressAttribute = ( ItalcCore::config().ldapComputerMacAddressAttribute().count() > 0 );
+	bool hasMacAddressAttribute = ( m_configuration.ldapComputerMacAddressAttribute().count() > 0 );
 
 	for( auto computer : computers )
 	{

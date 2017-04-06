@@ -104,8 +104,6 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setPermissionRequiredWithLogonAuthentication( false );
 	c.setAuthorizedUserGroups( QStringList() );
 
-	c.setLdapServerPort( 389 );
-
 	return c;
 }
 

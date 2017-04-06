@@ -30,11 +30,13 @@
 
 #include "ItalcCore.h"
 
+class LdapConfiguration;
+
 class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	LdapDirectory( const QUrl& url = QUrl() );
+	LdapDirectory( const LdapConfiguration& configuration, const QUrl& url = QUrl() );
 	virtual ~LdapDirectory();
 
 	bool isConnected() const;
@@ -91,6 +93,7 @@ private:
 
 	class LdapDirectoryPrivate;
 
+	const LdapConfiguration& m_configuration;
 	QScopedPointer<LdapDirectoryPrivate> d;
 
 };

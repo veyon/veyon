@@ -26,17 +26,17 @@
 #include <QInputDialog>
 #include <QMessageBox>
 
+#include "LdapConfiguration.h"
 #include "LdapConfigurationPage.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
 #include "Configuration/UiMapping.h"
 #include "LdapDirectory.h"
 
 #include "ui_LdapConfigurationPage.h"
 
-LdapConfigurationPage::LdapConfigurationPage() :
+LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration ) :
 	ConfigurationPage(),
-	ui(new Ui::LdapConfigurationPage)
+	ui(new Ui::LdapConfigurationPage),
+	m_configuration( configuration )
 {
 	ui->setupUi(this);
 
@@ -79,14 +79,20 @@ LdapConfigurationPage::~LdapConfigurationPage()
 
 void LdapConfigurationPage::resetWidgets()
 {
-	FOREACH_ITALC_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	// sanitize configuration
+	if( m_configuration.ldapServerPort() <= 0 )
+	{
+		m_configuration.setLdapServerPort( 389 );
+	}
+
+	FOREACH_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
 
 void LdapConfigurationPage::connectWidgetsToProperties()
 {
-	FOREACH_ITALC_LDAP_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
+	FOREACH_LDAP_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
 }
 
 
@@ -101,7 +107,7 @@ bool LdapConfigurationPage::testLdapBind(bool reportSuccess )
 {
 	qDebug() << "[TEST][LDAP] Testing bind";
 
-	LdapDirectory ldapDirectory;
+	LdapDirectory ldapDirectory( m_configuration );
 
 	if( ldapDirectory.isConnected() == false )
 	{
@@ -138,7 +144,7 @@ void LdapConfigurationPage::testLdapBaseDn()
 	{
 		qDebug() << "[TEST][LDAP] Testing base DN";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		QStringList entries = ldapDirectory.queryBaseDn();
 
 		if( entries.isEmpty() )
@@ -166,7 +172,7 @@ void LdapConfigurationPage::testLdapNamingContext()
 	{
 		qDebug() << "[TEST][LDAP] Testing naming context";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		QString baseDn = ldapDirectory.queryNamingContext();
 
 		if( baseDn.isEmpty() )
@@ -194,7 +200,7 @@ void LdapConfigurationPage::testLdapUserTree()
 	{
 		qDebug() << "[TEST][LDAP] Testing user tree";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users().count();
@@ -211,7 +217,7 @@ void LdapConfigurationPage::testLdapGroupTree()
 	{
 		qDebug() << "[TEST][LDAP] Testing group tree";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groups().count();
@@ -228,7 +234,7 @@ void LdapConfigurationPage::testLdapComputerTree()
 	{
 		qDebug() << "[TEST][LDAP] Testing computer tree";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computers().count();
@@ -247,7 +253,7 @@ void LdapConfigurationPage::testLdapUserLoginAttribute()
 	{
 		qDebug() << "[TEST][LDAP] Testing user login attribute for" << userFilter;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
 
 		reportLdapObjectQueryResults( tr( "user objects" ), tr( "user login attribute" ),
@@ -265,7 +271,7 @@ void LdapConfigurationPage::testLdapGroupMemberAttribute()
 	{
 		qDebug() << "[TEST][LDAP] Testing group member attribute for" << groupFilter;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
 
 		QStringList groups = ldapDirectory.groups( groupFilter );
@@ -293,7 +299,7 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 										  tr( "Please enter a computer host name to query:") );
 	if( computerName.isEmpty() == false )
 	{
-		if( ItalcCore::config().ldapComputerHostNameAsFQDN() &&
+		if( m_configuration.ldapComputerHostNameAsFQDN() &&
 				computerName.contains( '.' ) == false )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
@@ -302,7 +308,7 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 									   "a host name without domain." ) );
 			return;
 		}
-		else if( ItalcCore::config().ldapComputerHostNameAsFQDN() == false &&
+		else if( m_configuration.ldapComputerHostNameAsFQDN() == false &&
 				 computerName.contains( '.') )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
@@ -314,7 +320,7 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 
 		qDebug() << "[TEST][LDAP] Testing computer host name attribute";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
 
 		reportLdapObjectQueryResults( tr( "computer objects" ), tr( "computer host name attribute" ),
@@ -332,7 +338,7 @@ void LdapConfigurationPage::testLdapComputerMacAddressAttribute()
 	{
 		qDebug() << "[TEST][LDAP] Testing computer MAC address attribute";
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
 
 		QString macAddress = ldapDirectory.computerMacAddress( computerDn );
@@ -349,7 +355,7 @@ void LdapConfigurationPage::testLdapUsersFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing users filter";
 
-	LdapDirectory ldapDirectory;
+	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.users().count();
 
 	reportLdapFilterTestResult( tr( "users" ), count, ldapDirectory.ldapErrorDescription() );
@@ -361,7 +367,7 @@ void LdapConfigurationPage::testLdapUserGroupsFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing user groups filter";
 
-	LdapDirectory ldapDirectory;
+	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.userGroups().count();
 
 	reportLdapFilterTestResult( tr( "user groups" ), count, ldapDirectory.ldapErrorDescription() );
@@ -373,7 +379,7 @@ void LdapConfigurationPage::testLdapComputerGroupsFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing computer groups filter";
 
-	LdapDirectory ldapDirectory;
+	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.computerGroups().count();
 
 	reportLdapFilterTestResult( tr( "computer groups" ), count, ldapDirectory.ldapErrorDescription() );
@@ -389,7 +395,7 @@ void LdapConfigurationPage::testLdapComputerLabAttribute()
 	{
 		qDebug() << "[TEST][LDAP] Testing computer lab attribute for" << computerLabName;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 
 		reportLdapObjectQueryResults( tr( "computer labs" ), tr( "computer lab attribute" ),
 									  ldapDirectory.computerLabs( computerLabName ), ldapDirectory );
@@ -406,7 +412,7 @@ void LdapConfigurationPage::testLdapGroupsOfUser()
 	{
 		qDebug() << "[TEST][LDAP] Testing groups of user" << userName;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 
 		QStringList userObjects = ldapDirectory.users(userName);
 
@@ -435,7 +441,7 @@ void LdapConfigurationPage::testLdapGroupsOfComputer()
 	{
 		qDebug() << "[TEST][LDAP] Testing groups of computer for" << computerHostName;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 
 		QStringList computerObjects = ldapDirectory.computers(computerHostName);
 
@@ -464,7 +470,7 @@ void LdapConfigurationPage::testLdapComputerObjectByIpAddress()
 	{
 		qDebug() << "[TEST][LDAP] Testing computer object resolve by IP address" << computerIpAddress;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 
 		QString computerName = ldapDirectory.hostToLdapFormat( computerIpAddress );
 
@@ -495,7 +501,7 @@ void LdapConfigurationPage::testLdapComputerLabMembers()
 	{
 		qDebug() << "[TEST][LDAP] Testing computer lab members for" << computerLabName;
 
-		LdapDirectory ldapDirectory;
+		LdapDirectory ldapDirectory( m_configuration );
 		reportLdapObjectQueryResults( tr( "computer lab members" ),
 									  tr( "computer group filter or computer lab member aggregation" ),
 									  ldapDirectory.computerLabMembers( computerLabName ), ldapDirectory );
@@ -522,7 +528,7 @@ void LdapConfigurationPage::testLdapCommonAggregations()
 
 	qDebug() << "[TEST][LDAP] Testing common aggregations of" << ( QStringList() << objectOne << objectTwo );
 
-	LdapDirectory ldapDirectory;
+	LdapDirectory ldapDirectory( m_configuration );
 
 	reportLdapObjectQueryResults( tr( "common aggregations" ),
 								  tr( "group membership or computer lab attribute" ),

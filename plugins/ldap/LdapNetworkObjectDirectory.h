@@ -29,13 +29,14 @@
 
 #include "NetworkObjectDirectory.h"
 
+class LdapConfiguration;
 class LdapDirectory;
 
 class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	LdapNetworkObjectDirectory( QObject* parent );
+	LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent );
 
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
@@ -44,6 +45,7 @@ private slots:
 	void updateComputerLab( LdapDirectory& ldapDirectory, const QString& computerLab );
 
 private:
+	const LdapConfiguration& m_configuration;
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 

@@ -28,6 +28,7 @@
 #include "AccessControlDataBackendInterface.h"
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
+#include "LdapConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
 class LdapDirectory;
@@ -124,6 +125,7 @@ public slots:
 private:
 	LdapDirectory& ldapDirectory();
 
+	LdapConfiguration m_configuration;
 	LdapDirectory* m_ldapDirectory;
 	QMap<QString, QString> m_subCommands;
 

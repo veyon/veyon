@@ -27,6 +27,7 @@
 
 #include "ConfigurationPage.h"
 
+class LdapConfiguration;
 class LdapDirectory;
 
 namespace Ui {
@@ -37,7 +38,7 @@ class LdapConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	LdapConfigurationPage();
+	LdapConfigurationPage( LdapConfiguration& configuration );
 	~LdapConfigurationPage();
 
 	void resetWidgets() override;
@@ -74,6 +75,9 @@ private:
 	static QString formatResultsString( const QStringList& results );
 
 	Ui::LdapConfigurationPage *ui;
+
+	LdapConfiguration& m_configuration;
+
 };
 
 #endif // LDAP_CONFIGURATION_PAGE_H

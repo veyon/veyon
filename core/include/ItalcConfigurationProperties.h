@@ -88,31 +88,6 @@
 	OP( ItalcConfiguration, ItalcCore::config(), STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
 	OP( ItalcConfiguration, ItalcCore::config(), JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
-#define FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP) \
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapNamingContextAttribute, setLdapNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapComputerHostNameAsFQDN, setLdapComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), BOOL, ldapComputerLabMembersByAttribute, setLdapComputerLabMembersByAttribute, "ComputerLabMembersByAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config(), STRING, ldapComputerLabAttribute, setLdapComputerLabAttribute, "ComputerLabAttribute", "LDAP" );	\
-
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)				\
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\
 	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(OP)			\
@@ -125,6 +100,5 @@
 	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(OP)	\
 	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(OP)	\
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(OP)	\
-	FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP)				\
 
 #endif

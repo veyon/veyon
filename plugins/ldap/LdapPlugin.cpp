@@ -31,6 +31,7 @@
 
 
 LdapPlugin::LdapPlugin() :
+	m_configuration(),
 	m_ldapDirectory( nullptr ),
 	m_subCommands( {
 				   std::pair<QString, QString>( "autoconfigurebasedn", "auto-configure the base DN via naming context" ),
@@ -74,7 +75,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::runCommand( const QStringList&
 
 NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* parent )
 {
-	return new LdapNetworkObjectDirectory( parent );
+	return new LdapNetworkObjectDirectory( m_configuration, parent );
 }
 
 
@@ -82,7 +83,7 @@ NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* paren
 void LdapPlugin::reloadConfiguration()
 {
 	delete m_ldapDirectory;
-	m_ldapDirectory = new LdapDirectory;
+	m_ldapDirectory = new LdapDirectory( m_configuration );
 }
 
 
@@ -142,7 +143,7 @@ QStringList LdapPlugin::roomsOfComputer( const QString& computerName )
 
 ConfigurationPage *LdapPlugin::createConfigurationPage()
 {
-	return new LdapConfigurationPage;
+	return new LdapConfigurationPage( m_configuration );
 }
 
 
@@ -166,10 +167,10 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 	}
 	else
 	{
-		ItalcCore::config().setLdapNamingContextAttribute( namingContextAttribute );
+		m_configuration.setLdapNamingContextAttribute( namingContextAttribute );
 	}
 
-	LdapDirectory ldapDirectory( ldapUrl );
+	LdapDirectory ldapDirectory( m_configuration, ldapUrl );
 	QString baseDn = ldapDirectory.queryNamingContext();
 
 	if( baseDn.isEmpty() )
@@ -180,8 +181,8 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 	qInfo() << "Configuring" << baseDn << "as base DN and disabling naming context queries.";
 
-	ItalcCore::config().setLdapBaseDn( baseDn );
-	ItalcCore::config().setLdapQueryNamingContext( false );
+	m_configuration.setLdapBaseDn( baseDn );
+	m_configuration.setLdapQueryNamingContext( false );
 
 	// write configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
@@ -267,7 +268,7 @@ LdapDirectory& LdapPlugin::ldapDirectory()
 {
 	if( m_ldapDirectory == nullptr )
 	{
-		m_ldapDirectory = new LdapDirectory;
+		m_ldapDirectory = new LdapDirectory( m_configuration );
 	}
 
 	// TODO: check whether still connected and reconnect if neccessary

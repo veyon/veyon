@@ -22,14 +22,11 @@
  *
  */
 
-#include <QDebug>
 #include <QHostAddress>
 #include <QHostInfo>
 
+#include "LdapConfiguration.h"
 #include "LdapDirectory.h"
-
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
 
 #include "ldapconnection.h"
 #include "ldapoperation.h"
@@ -194,7 +191,8 @@ public:
 
 
 
-LdapDirectory::LdapDirectory( const QUrl &url ) :
+LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl &url ) :
+	m_configuration( configuration ),
 	d( new LdapDirectoryPrivate )
 {
 	reconnect( url );
@@ -544,8 +542,6 @@ QStringList LdapDirectory::computerGroupsNames()
 
 bool LdapDirectory::reconnect( const QUrl &url )
 {
-	const ItalcConfiguration& c = ItalcCore::config();
-
 	KLDAP::LdapServer server;
 
 	if( url.isValid() )
@@ -554,13 +550,13 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	}
 	else
 	{
-		server.setHost( c.ldapServerHost() );
-		server.setPort( c.ldapServerPort() );
+		server.setHost( m_configuration.ldapServerHost() );
+		server.setPort( m_configuration.ldapServerPort() );
 
-		if( c.ldapUseBindCredentials() )
+		if( m_configuration.ldapUseBindCredentials() )
 		{
-			server.setBindDn( c.ldapBindDn() );
-			server.setPassword( c.ldapBindPassword() );
+			server.setBindDn( m_configuration.ldapBindDn() );
+			server.setPassword( m_configuration.ldapBindPassword() );
 			server.setAuth( KLDAP::LdapServer::Simple );
 		}
 		else
@@ -593,7 +589,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 
 	d->isBound = true;
 
-	d->namingContextAttribute = c.ldapNamingContextAttribute();
+	d->namingContextAttribute = m_configuration.ldapNamingContextAttribute();
 
 	if( d->namingContextAttribute.isEmpty() )
 	{
@@ -602,21 +598,21 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	}
 
 	// query base DN via naming context if configured
-	if( c.ldapQueryNamingContext() )
+	if( m_configuration.ldapQueryNamingContext() )
 	{
 		d->baseDn = queryNamingContext();
 	}
 	else
 	{
 		// use the configured base DN
-		d->baseDn = c.ldapBaseDn();
+		d->baseDn = m_configuration.ldapBaseDn();
 	}
 
-	d->usersDn = c.ldapUserTree() + "," + d->baseDn;
-	d->groupsDn = c.ldapGroupTree() + "," + d->baseDn;
-	d->computersDn = c.ldapComputerTree() + "," + d->baseDn;
+	d->usersDn = m_configuration.ldapUserTree() + "," + d->baseDn;
+	d->groupsDn = m_configuration.ldapGroupTree() + "," + d->baseDn;
+	d->computersDn = m_configuration.ldapComputerTree() + "," + d->baseDn;
 
-	if( c.ldapRecursiveSearchOperations() )
+	if( m_configuration.ldapRecursiveSearchOperations() )
 	{
 		d->defaultSearchScope = KLDAP::LdapUrl::Sub;
 	}
@@ -625,20 +621,20 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		d->defaultSearchScope = KLDAP::LdapUrl::One;
 	}
 
-	d->userLoginAttribute = c.ldapUserLoginAttribute();
-	d->groupMemberAttribute = c.ldapGroupMemberAttribute();
-	d->computerHostNameAttribute = c.ldapComputerHostNameAttribute();
-	d->computerHostNameAsFQDN = c.ldapComputerHostNameAsFQDN();
-	d->computerMacAddressAttribute = c.ldapComputerMacAddressAttribute();
+	d->userLoginAttribute = m_configuration.ldapUserLoginAttribute();
+	d->groupMemberAttribute = m_configuration.ldapGroupMemberAttribute();
+	d->computerHostNameAttribute = m_configuration.ldapComputerHostNameAttribute();
+	d->computerHostNameAsFQDN = m_configuration.ldapComputerHostNameAsFQDN();
+	d->computerMacAddressAttribute = m_configuration.ldapComputerMacAddressAttribute();
 
-	d->usersFilter = c.ldapUsersFilter();
-	d->userGroupsFilter = c.ldapUserGroupsFilter();
-	d->computerGroupsFilter = c.ldapComputerGroupsFilter();
+	d->usersFilter = m_configuration.ldapUsersFilter();
+	d->userGroupsFilter = m_configuration.ldapUserGroupsFilter();
+	d->computerGroupsFilter = m_configuration.ldapComputerGroupsFilter();
 
-	d->identifyGroupMembersByNameAttribute = c.ldapIdentifyGroupMembersByNameAttribute();
+	d->identifyGroupMembersByNameAttribute = m_configuration.ldapIdentifyGroupMembersByNameAttribute();
 
-	d->computerLabMembersByAttribute = c.ldapComputerLabMembersByAttribute();
-	d->computerLabAttribute = c.ldapComputerLabAttribute();
+	d->computerLabMembersByAttribute = m_configuration.ldapComputerLabMembersByAttribute();
+	d->computerLabAttribute = m_configuration.ldapComputerLabAttribute();
 
 	return true;
 }

@@ -91,29 +91,6 @@ public slots:
 	void setAccessControlRulesProcessingEnabled( bool );
 	void setAuthorizedUserGroups( const QStringList& );
 	void setAccessControlRules( const QJsonArray& );
-	void setLdapServerHost( const QString& );
-	void setLdapServerPort( int );
-	void setLdapUseBindCredentials( bool );
-	void setLdapBindDn( const QString& );
-	void setLdapBindPassword( const QString& );
-	void setLdapBaseDn( const QString& );
-	void setLdapQueryNamingContext( bool );
-	void setLdapNamingContextAttribute( const QString& );
-	void setLdapUserTree( const QString& );
-	void setLdapGroupTree( const QString& );
-	void setLdapComputerTree( const QString& );
-	void setLdapRecursiveSearchOperations( bool );
-	void setLdapUserLoginAttribute( const QString& );
-	void setLdapGroupMemberAttribute( const QString& );
-	void setLdapComputerHostNameAttribute( const QString& );
-	void setLdapComputerHostNameAsFQDN( bool );
-	void setLdapComputerMacAddressAttribute( const QString& );
-	void setLdapUsersFilter( const QString& );
-	void setLdapUserGroupsFilter( const QString& );
-	void setLdapIdentifyGroupMembersByNameAttribute( bool );
-	void setLdapComputerGroupsFilter( const QString& );
-	void setLdapComputerLabMembersByAttribute( bool );
-	void setLdapComputerLabAttribute( const QString& );
 
 } ;
 

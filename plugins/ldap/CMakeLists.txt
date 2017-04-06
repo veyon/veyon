@@ -36,6 +36,7 @@ QT5_WRAP_CPP(kldap_MOC_out ${kldap_INCLUDES})
 
 BUILD_PLUGIN(ldap
 	LdapPlugin.cpp
+	LdapConfiguration.cpp
 	LdapConfigurationPage.cpp
 	LdapDirectory.cpp
 	LdapNetworkObjectDirectory.cpp
@@ -44,6 +45,7 @@ BUILD_PLUGIN(ldap
 	${kldap_MOC_out}
 	MOCFILES
 	LdapPlugin.h
+	LdapConfiguration.h
 	LdapConfigurationPage.h
 	LdapDirectory.h
 	LdapNetworkObjectDirectory.h
