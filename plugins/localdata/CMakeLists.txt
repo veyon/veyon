@@ -1,6 +1,6 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(localbackends
+BUILD_PLUGIN(localdata
 	LocalDataPlugin.cpp
 	LocalDataConfigurationPage.cpp
 	LocalDataNetworkObjectDirectory.cpp
