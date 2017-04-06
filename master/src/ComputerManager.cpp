@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QFile>
 #include <QHostAddress>
 #include <QHostInfo>
@@ -56,6 +57,17 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) )
 {
+	if( m_networkObjectDirectory == nullptr )
+	{
+		QMessageBox::critical( nullptr,
+							   tr( "Missing network object directory plugin" ),
+							   tr( "No default network object directory plugin was found. "
+								   "Please check your installation or configure a different "
+								   "network object directory backend via %1 Configurator." ).
+							   arg( ItalcCore::applicationName() ) );
+		qFatal( "ComputerManager: missing network object directory plugin!" );
+	}
+
 	initNetworkObjectLayer();
 	initRooms();
 	initComputerTreeModel();
