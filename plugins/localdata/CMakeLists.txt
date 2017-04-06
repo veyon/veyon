@@ -8,6 +8,8 @@ BUILD_PLUGIN(localdata
 	LocalDataPlugin.h
 	LocalDataConfigurationPage.h
 	LocalDataNetworkObjectDirectory.h
+	RESOURCES
+	localdata.qrc
 	FORMS
 	LocalDataConfigurationPage.ui
 )

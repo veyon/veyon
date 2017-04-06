@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/localdata" >
+        <file>application-msonenote.png</file>
+    </qresource>
+</RCC>

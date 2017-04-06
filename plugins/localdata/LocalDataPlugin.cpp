@@ -33,6 +33,7 @@
 #include <lm.h>
 #endif
 
+#include "LocalDataConfigurationPage.h"
 #include "LocalDataNetworkObjectDirectory.h"
 #include "LocalDataPlugin.h"
 
@@ -257,4 +258,11 @@ QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
 NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* parent )
 {
 	return new LocalDataNetworkObjectDirectory( parent );
+}
+
+
+
+ConfigurationPage *LocalDataPlugin::createConfigurationPage()
+{
+	return new LocalDataConfigurationPage;
 }

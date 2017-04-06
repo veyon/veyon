@@ -26,16 +26,18 @@
 #define LOCAL_DATA_PLUGIN_H
 
 #include "AccessControlDataBackendInterface.h"
+#include "ConfigurationPagePluginInterface.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
 class LocalDataPlugin : public QObject,
 		PluginInterface,
 		AccessControlDataBackendInterface,
-		NetworkObjectDirectoryPluginInterface
+		NetworkObjectDirectoryPluginInterface,
+		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.LocalData")
-	Q_INTERFACES(PluginInterface AccessControlDataBackendInterface NetworkObjectDirectoryPluginInterface)
+	Q_INTERFACES(PluginInterface AccessControlDataBackendInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
 public:
 	LocalDataPlugin();
 	virtual ~LocalDataPlugin();
@@ -95,6 +97,8 @@ public:
 	}
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
+
+	ConfigurationPage* createConfigurationPage() override;
 
 };
 
