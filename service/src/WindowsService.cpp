@@ -26,6 +26,7 @@
 
 #include <QProcess>
 #include <QTime>
+#include <QThread>
 #include <QApplication>
 #include <QMessageBox>
 
@@ -34,6 +35,79 @@
 #include "Logger.h"
 
 #ifdef ITALC_BUILD_WIN32
+
+class SasEventListener : public QThread
+{
+public:
+	typedef void (WINAPI *SendSas)(BOOL asUser);
+
+	enum {
+		WaitPeriod = 1000
+	};
+
+	SasEventListener()
+	{
+		m_sasLibrary = LoadLibrary( "sas.dll" );
+		m_sendSas = (SendSas)GetProcAddress( m_sasLibrary, "SendSAS" );
+		if( m_sendSas == nullptr )
+		{
+			qWarning( "SendSAS is not supported by operating system!" );
+		}
+
+		m_sasEvent = CreateEvent( nullptr, false, false, "Global\\ItalcServiceSasEvent" );
+		m_stopEvent = CreateEvent( nullptr, false, false, "StopEvent" );
+	}
+
+	~SasEventListener() override
+	{
+		CloseHandle( m_stopEvent );
+		CloseHandle( m_sasEvent );
+
+		FreeLibrary( m_sasLibrary );
+
+	}
+
+	void stop()
+	{
+		SetEvent( m_stopEvent );
+	}
+
+	void run() override
+	{
+		HANDLE eventObjects[2] = { m_sasEvent, m_stopEvent };
+
+		while( isInterruptionRequested() == false )
+		{
+			int event = WaitForMultipleObjects( 2, eventObjects, false, WaitPeriod );
+
+			switch( event )
+			{
+			case WAIT_OBJECT_0 + 0:
+				ResetEvent( m_sasEvent );
+				if( m_sendSas )
+				{
+					m_sendSas( false );
+				}
+				break;
+
+			case WAIT_OBJECT_0 + 1:
+				requestInterruption();
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
+
+private:
+	HMODULE m_sasLibrary;
+	SendSas m_sendSas;
+	HANDLE m_sasEvent;
+	HANDLE m_stopEvent;
+
+};
 
 
 class ItalcServiceSubProcess
@@ -630,9 +704,15 @@ void WINAPI WindowsService::serviceMain( DWORD argc, char **argv )
 		return;
 	}
 
+	SasEventListener sasEventListener;
+	sasEventListener.start();
+
 	monitorSessions();
 
 	CloseHandle( s_stopServiceEvent );
+
+	sasEventListener.stop();
+	sasEventListener.wait( SasEventListener::WaitPeriod );
 
 	// Tell the service manager that we've stopped.
 	reportStatus( SERVICE_STOPPED, 0, 0 );
