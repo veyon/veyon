@@ -82,7 +82,6 @@ public:
 
 
 public slots:
-	void lockStudent( bool );
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool );
 	void takeSnapshot();

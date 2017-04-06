@@ -39,7 +39,7 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin() :
 							Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ),
 							tr( "Remote control" ), QString(),
 							tr( "Open a remote control window for a computer." ),
-							":/remoteaccess/remote_control.png" ),
+							":/remoteaccess/krdc.png" ),
 	m_features(),
 	m_customComputer(),
 	m_customComputerControlInterface( m_customComputer ),

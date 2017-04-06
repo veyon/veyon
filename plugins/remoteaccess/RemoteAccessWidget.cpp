@@ -34,6 +34,7 @@
 
 #include <math.h>
 
+#include <QMenu>
 #include <QtCore/QTimer>
 #include <QtGui/QBitmap>
 #include <QLayout>
@@ -65,9 +66,9 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	ToolButton * vo_btn = new ToolButton(
 				QPixmap( ":/remoteaccess/kmag.png" ),
 				tr( "View only" ), tr( "Remote control" ) );
-	ToolButton * ls_btn = new ToolButton(
-				QPixmap( ":/remoteaccess/kr_unselect.png" ),
-				tr( "Lock student" ), tr( "Unlock student" ) );
+	ToolButton * sendShortcutButton = new ToolButton(
+				QPixmap( ":/remoteaccess/preferences-desktop-keyboard.png" ),
+				tr( "Send shortcut" ) );
 	ToolButton * ss_btn = new ToolButton(
 				QPixmap( ":/remoteaccess/camera-photo.png" ),
 				tr( "Snapshot" ) );
@@ -78,26 +79,38 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 				QPixmap( ":/remoteaccess/application-exit.png" ),
 				tr( "Quit" ) );
 	vo_btn->setCheckable( true );
-	ls_btn->setCheckable( true );
 	fs_btn->setCheckable( true );
 	vo_btn->setChecked( viewOnly );
 	fs_btn->setChecked( false );
 
 	connect( vo_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleViewOnly( bool ) ) );
-	connect( ls_btn, SIGNAL( toggled( bool ) ),
-				_parent, SLOT( lockStudent( bool ) ) );
 	connect( fs_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleFullScreen( bool ) ) );
 	connect( ss_btn, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
+
+	auto vncView = _parent->m_vncView;
+
+	auto shortcutMenu = new QMenu();
+	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
+	shortcutMenu->addAction( tr( "Ctrl+Esc" ), [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
+	shortcutMenu->addAction( tr( "Alt+Tab" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
+	shortcutMenu->addAction( tr( "Alt+F4" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); }  );
+	shortcutMenu->addAction( tr( "Win+Tab" ), [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); }  );
+	shortcutMenu->addAction( tr( "Win" ), [=]() { vncView->sendShortcut( VncView::ShortcutWin ); }  );
+	shortcutMenu->addAction( tr( "Menu" ), [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
+	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
+
+	sendShortcutButton->setMenu( shortcutMenu );
+	sendShortcutButton->setPopupMode( QToolButton::InstantPopup );
 
 	auto layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
 	layout->addWidget( vo_btn );
-	layout->addWidget( ls_btn );
+	layout->addWidget( sendShortcutButton );
 	layout->addWidget( ss_btn );
 	layout->addWidget( fs_btn );
 	layout->addWidget( quit_btn );
@@ -374,15 +387,6 @@ void RemoteAccessWidget::updateSize()
 		resize( m_vncView->sizeHint() );
 	}
 }
-
-
-
-
-void RemoteAccessWidget::lockStudent( bool _on )
-{
-	//m_vncView->m_connection->disableLocalInputs( _on );
-}
-
 
 
 
