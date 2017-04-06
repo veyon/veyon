@@ -1,5 +1,5 @@
 /*
- * ConfigurationNetworkObjectDirectory.cpp - NetworkObjects from ItalcConfiguration
+ * LocalDataNetworkObjectDirectory.cpp - NetworkObjects from ItalcConfiguration
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,9 +22,9 @@
  *
  */
 
-#include "ConfigurationNetworkObjectDirectory.h"
+#include "LocalDataNetworkObjectDirectory.h"
 
-ConfigurationNetworkObjectDirectory::ConfigurationNetworkObjectDirectory(  QObject* parent ) :
+LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory(  QObject* parent ) :
 	NetworkObjectDirectory( parent )
 {
 	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
@@ -43,7 +43,7 @@ ConfigurationNetworkObjectDirectory::ConfigurationNetworkObjectDirectory(  QObje
 
 
 
-QList<NetworkObject> ConfigurationNetworkObjectDirectory::objects( const NetworkObject& parent )
+QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObject& parent )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
@@ -60,7 +60,7 @@ QList<NetworkObject> ConfigurationNetworkObjectDirectory::objects( const Network
 
 
 
-void ConfigurationNetworkObjectDirectory::update()
+void LocalDataNetworkObjectDirectory::update()
 {
 #if 0
 	NetworkObject lab1( NetworkObject::Group, "Lab 1" );

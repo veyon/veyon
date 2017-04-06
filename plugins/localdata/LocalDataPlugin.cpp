@@ -1,5 +1,5 @@
 /*
- * LocalUsersAndGroupsBuiltin.cpp - implementation of UsersAndGroupsPluginInterface
+ * ConfigCommandLinePlugin.cpp - implementation of ConfigCommandLinePlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,6 +22,7 @@
  *
  */
 
+
 #include <italcconfig.h>
 
 #ifdef ITALC_BUILD_WIN32
@@ -32,7 +33,8 @@
 #include <lm.h>
 #endif
 
-#include "LocalAccessControlDataBackend.h"
+#include "LocalDataNetworkObjectDirectory.h"
+#include "LocalDataPlugin.h"
 
 #include <QProcess>
 
@@ -45,12 +47,25 @@
 #endif
 
 
-void LocalAccessControlDataBackend::reloadConfiguration()
+
+LocalDataPlugin::LocalDataPlugin()
 {
 }
 
 
-QStringList LocalAccessControlDataBackend::users()
+
+LocalDataPlugin::~LocalDataPlugin()
+{
+}
+
+
+
+void LocalDataPlugin::reloadConfiguration()
+{
+}
+
+
+QStringList LocalDataPlugin::users()
 {
 	// TODO
 	return QStringList();
@@ -58,7 +73,7 @@ QStringList LocalAccessControlDataBackend::users()
 
 
 
-QStringList LocalAccessControlDataBackend::userGroups()
+QStringList LocalDataPlugin::userGroups()
 {
 	QStringList groupList;
 
@@ -179,7 +194,7 @@ QStringList LocalAccessControlDataBackend::userGroups()
 
 
 
-QStringList LocalAccessControlDataBackend::groupsOfUser( const QString& userName )
+QStringList LocalDataPlugin::groupsOfUser( const QString& userName )
 {
 	QStringList groupList;
 
@@ -225,14 +240,21 @@ QStringList LocalAccessControlDataBackend::groupsOfUser( const QString& userName
 
 
 
-QStringList LocalAccessControlDataBackend::allRooms()
+QStringList LocalDataPlugin::allRooms()
 {
 	return QStringList();
 }
 
 
 
-QStringList LocalAccessControlDataBackend::roomsOfComputer( const QString& computerName )
+QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
 {
 	return QStringList();
+}
+
+
+
+NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* parent )
+{
+	return new LocalDataNetworkObjectDirectory( parent );
 }

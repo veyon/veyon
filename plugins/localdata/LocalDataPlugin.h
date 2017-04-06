@@ -1,5 +1,5 @@
 /*
- * LocalAccessControlDataBackend.h - implementation of AccessControlDataPluginInterface
+ * LocalDataPlugin.h - declaration of LocalDataPlugin class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,15 +22,54 @@
  *
  */
 
-#ifndef LOCAL_ACCESS_CONTROL_DATA_BACKEND_H
-#define LOCAL_ACCESS_CONTROL_DATA_BACKEND_H
+#ifndef LOCAL_DATA_PLUGIN_H
+#define LOCAL_DATA_PLUGIN_H
 
 #include "AccessControlDataBackendInterface.h"
+#include "NetworkObjectDirectoryPluginInterface.h"
 
-class ITALC_CORE_EXPORT LocalAccessControlDataBackend : public QObject, public AccessControlDataBackendInterface
+class LocalDataPlugin : public QObject,
+		PluginInterface,
+		AccessControlDataBackendInterface,
+		NetworkObjectDirectoryPluginInterface
 {
 	Q_OBJECT
+	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.LocalData")
+	Q_INTERFACES(PluginInterface AccessControlDataBackendInterface NetworkObjectDirectoryPluginInterface)
 public:
+	LocalDataPlugin();
+	virtual ~LocalDataPlugin();
+
+	Plugin::Uid uid() const override
+	{
+		return "14bacaaa-ebe5-449c-b881-5b382f952571";
+	}
+
+	QString version() const override
+	{
+		return QStringLiteral( "1.0" );
+	}
+
+	QString name() const override
+	{
+		return QStringLiteral( "LocalData" );
+	}
+
+	QString description() const override
+	{
+		return tr( "Backends which use local data" );
+	}
+
+	QString vendor() const override
+	{
+		return QStringLiteral( "iTALC Community" );
+	}
+
+	QString copyright() const override
+	{
+		return QStringLiteral( "Tobias Doerffel" );
+	}
+
 	QString accessControlDataBackendName() const override
 	{
 		return tr( "Default (local users/groups and computers/rooms from configuration)" );
@@ -45,6 +84,13 @@ public:
 	QStringList allRooms() override;
 	QStringList roomsOfComputer( const QString& computerName ) override;
 
+	QString directoryName() const override
+	{
+		return tr( "Default (store objects in local configuration)" );
+	}
+
+	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
+
 };
 
-#endif
+#endif // LOCAL_DATA_PLUGIN_H

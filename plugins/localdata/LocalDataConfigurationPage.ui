@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LocalDataConfigurationPage</class>
+ <widget class="QWidget" name="LocalDataConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1016</width>
+    <height>704</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LDAP</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../ldap/ldap.qrc">
+    <normaloff>:/ldap/folder-publicshare.png</normaloff>:/ldap/folder-publicshare.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../ldap/ldap.qrc"/>
+ </resources>
+ <connections/>
+ <slots>
+  <slot>aboutItalc()</slot>
+ </slots>
+</ui>

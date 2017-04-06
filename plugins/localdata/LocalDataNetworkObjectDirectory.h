@@ -1,5 +1,5 @@
 /*
- * ConfigurationNetworkObjectDirectory.h - NetworkObjects from ItalcConfiguration
+ * LocalDataNetworkObjectDirectory.h - NetworkObjects from ItalcConfiguration
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
@@ -22,18 +22,18 @@
  *
  */
 
-#ifndef CONFIGURATION_NETWORK_OBJECT_DIRECTORY_H
-#define CONFIGURATION_NETWORK_OBJECT_DIRECTORY_H
+#ifndef LOCAL_DATA_NETWORK_OBJECT_DIRECTORY_H
+#define LOCAL_DATA_NETWORK_OBJECT_DIRECTORY_H
 
 #include <QHash>
 
 #include "NetworkObjectDirectory.h"
 
-class ITALC_CORE_EXPORT ConfigurationNetworkObjectDirectory : public NetworkObjectDirectory
+class ITALC_CORE_EXPORT LocalDataNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	ConfigurationNetworkObjectDirectory( QObject* parent );
+	LocalDataNetworkObjectDirectory( QObject* parent );
 
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
@@ -43,4 +43,4 @@ private:
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 
-#endif // CONFIGURATION_NETWORK_OBJECT_DIRECTORY_H
+#endif // LOCAL_DATA_NETWORK_OBJECT_DIRECTORY_H
