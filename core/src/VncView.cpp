@@ -215,6 +215,74 @@ void VncView::setScaledView( bool scaledView )
 
 
 
+void VncView::sendShortcut( VncView::Shortcut shortcut )
+{
+	if( isViewOnly() )
+	{
+		return;
+	}
+
+	unpressModifiers();
+
+
+	switch( shortcut )
+	{
+	case ShortcutCtrlAltDel:
+		pressKey( XK_Control_L );
+		pressKey( XK_Alt_L );
+		pressKey( XK_Delete );
+		unpressKey( XK_Delete );
+		unpressKey( XK_Alt_L );
+		unpressKey( XK_Control_L );
+		break;
+	case ShortcutCtrlEscape:
+		pressKey( XK_Control_L );
+		pressKey( XK_Escape );
+		unpressKey( XK_Escape );
+		unpressKey( XK_Control_L );
+		break;
+	case ShortcutAltTab:
+		pressKey( XK_Alt_L );
+		pressKey( XK_Tab );
+		unpressKey( XK_Tab );
+		unpressKey( XK_Alt_L );
+		break;
+	case ShortcutAltF4:
+		pressKey( XK_Alt_L );
+		pressKey( XK_F4 );
+		unpressKey( XK_F4 );
+		unpressKey( XK_Alt_L );
+		break;
+	case ShortcutWinTab:
+		pressKey( XK_Meta_L );
+		pressKey( XK_Tab );
+		unpressKey( XK_Tab );
+		unpressKey( XK_Meta_L );
+		break;
+	case ShortcutWin:
+		pressKey( XK_Meta_L );
+		unpressKey( XK_Meta_L );
+		break;
+	case ShortcutMenu:
+		pressKey( XK_Menu );
+		unpressKey( XK_Menu );
+		break;
+	case ShortcutAltCtrlF1:
+		pressKey( XK_Control_L );
+		pressKey( XK_Alt_L );
+		pressKey( XK_F1 );
+		unpressKey( XK_F1 );
+		unpressKey( XK_Alt_L );
+		unpressKey( XK_Control_L );
+		break;
+	default:
+		qWarning( "VncView::sendShortcut(): unknown shortcut %d", (int) shortcut );
+		break;
+	}
+}
+
+
+
 
 void VncView::checkKeyEvent( unsigned int key, bool pressed )
 {
@@ -561,6 +629,20 @@ void VncView::updateLocalCursor()
 	{
 		setCursor( Qt::ArrowCursor );
 	}
+}
+
+
+
+void VncView::pressKey( unsigned int key )
+{
+	m_vncConn->keyEvent( key, true );
+}
+
+
+
+void VncView::unpressKey( unsigned int key )
+{
+	m_vncConn->keyEvent( key, false );
 }
 
 

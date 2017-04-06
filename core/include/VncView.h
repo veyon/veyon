@@ -47,6 +47,19 @@ public:
 	} ;
 	typedef Modes Mode;
 
+	typedef enum Shortcut
+	{
+		ShortcutCtrlAltDel,
+		ShortcutCtrlEscape,
+		ShortcutAltTab,
+		ShortcutAltF4,
+		ShortcutWinTab,
+		ShortcutWin,
+		ShortcutMenu,
+		ShortcutAltCtrlF1,
+		ShortcutCount
+	} Shortcut;
+
 	VncView( const QString &host, int port, QWidget *parent, Mode mode );
 	~VncView() override;
 
@@ -76,6 +89,7 @@ public:
 public slots:
 	void setViewOnly( bool _vo );
 	void setScaledView( bool _sv );
+	void sendShortcut( Shortcut shortcut );
 
 
 signals:
@@ -111,7 +125,8 @@ private:
 	QRect mapFromFramebuffer( const QRect & _rect );
 
 	void updateLocalCursor();
-
+	void pressKey( unsigned int key );
+	void unpressKey( unsigned int key );
 
 	QPointer<ItalcVncConnection> m_vncConn;
 
