@@ -29,9 +29,7 @@
 
 
 NetworkObjectDirectoryManager::NetworkObjectDirectoryManager() :
-    m_directoryPluginInterfaces(),
-	m_defaultDirectoryUid( "0b386701-64d5-4a29-bffe-5e91d3962157" ),
-	m_defaultDirectory( this )
+	m_directoryPluginInterfaces()
 {
 	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
 	{
@@ -46,10 +44,10 @@ NetworkObjectDirectoryManager::NetworkObjectDirectoryManager() :
 }
 
 
+
 QMap<Plugin::Uid, QString> NetworkObjectDirectoryManager::availableDirectories()
 {
 	QMap<Plugin::Uid, QString> items;
-	items[m_defaultDirectoryUid] = tr( "Default (store objects in configuration)" );
 
 	for( auto pluginInterface : m_directoryPluginInterfaces.keys() )
 	{
@@ -64,6 +62,7 @@ QMap<Plugin::Uid, QString> NetworkObjectDirectoryManager::availableDirectories()
 NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory( QObject* parent )
 {
 	auto configuredPluginUuid = ItalcCore::config().networkObjectDirectoryPlugin();
+	NetworkObjectDirectoryPluginInterface* defaultPluginInterface = nullptr;
 
 	for( auto pluginInterface : m_directoryPluginInterfaces.keys() )
 	{
@@ -71,7 +70,17 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory( QObject*
 		{
 			return m_directoryPluginInterfaces[pluginInterface]->createNetworkObjectDirectory( parent );
 		}
+		else if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
+		{
+			defaultPluginInterface = m_directoryPluginInterfaces[pluginInterface];
+		}
 	}
 
-	return &m_defaultDirectory;
+	if( defaultPluginInterface == nullptr )
+	{
+		qCritical() << "NetworkObjectDirectoryManager: no default plugin available! configured plugin:" << configuredPluginUuid;
+		return nullptr;
+	}
+
+	return defaultPluginInterface->createNetworkObjectDirectory( parent );
 }

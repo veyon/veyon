@@ -25,7 +25,7 @@
 #ifndef NETWORK_OBJECT_DIRECTORY_MANAGER_H
 #define NETWORK_OBJECT_DIRECTORY_MANAGER_H
 
-#include "ConfigurationNetworkObjectDirectory.h"
+#include "ItalcCore.h"
 #include "Plugin.h"
 
 class NetworkObjectDirectory;
@@ -44,8 +44,6 @@ public:
 
 private:
 	QMap<PluginInterface *, NetworkObjectDirectoryPluginInterface *> m_directoryPluginInterfaces;
-	Plugin::Uid m_defaultDirectoryUid;
-	ConfigurationNetworkObjectDirectory m_defaultDirectory;
 
 };
 
