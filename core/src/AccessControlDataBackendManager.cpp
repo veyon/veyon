@@ -28,12 +28,10 @@
 
 
 AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager& pluginManager ) :
-	m_configuredBackend( nullptr ),
 	m_backends(),
-	m_defaultBackend()
+	m_defaultBackend( nullptr ),
+	m_configuredBackend( nullptr )
 {
-	m_backends[Plugin::Uid("4826d624-4a04-4429-9412-2df4af4df695")] = &m_defaultBackend;
-
 	for( auto pluginObject : pluginManager.pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
@@ -42,7 +40,17 @@ AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager&
 		if( pluginInterface && accessControlDataBackendInterface )
 		{
 			m_backends[pluginInterface->uid()] = accessControlDataBackendInterface;
+
+			if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
+			{
+				m_defaultBackend = accessControlDataBackendInterface;
+			}
 		}
+	}
+
+	if( m_defaultBackend == nullptr )
+	{
+		qCritical( "AccessControlDataBackendManager: no default plugin available!" );
 	}
 
 	reloadConfiguration();
@@ -70,6 +78,6 @@ void AccessControlDataBackendManager::reloadConfiguration()
 
 	if( m_configuredBackend == nullptr )
 	{
-		m_configuredBackend = &m_defaultBackend;
+		m_configuredBackend = m_defaultBackend;
 	}
 }

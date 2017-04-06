@@ -25,7 +25,7 @@
 #ifndef ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
 #define ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
 
-#include "LocalAccessControlDataBackend.h"
+#include "AccessControlDataBackendInterface.h"
 
 class ITALC_CORE_EXPORT AccessControlDataBackendManager : public QObject
 {
@@ -43,10 +43,9 @@ public:
 	void reloadConfiguration();
 
 private:	
-	AccessControlDataBackendInterface* m_configuredBackend;
-
 	QMap<Plugin::Uid, AccessControlDataBackendInterface *> m_backends;
-	LocalAccessControlDataBackend m_defaultBackend;
+	AccessControlDataBackendInterface* m_defaultBackend;
+	AccessControlDataBackendInterface* m_configuredBackend;
 
 };
 
