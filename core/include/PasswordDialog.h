@@ -36,7 +36,7 @@ class ITALC_CORE_EXPORT PasswordDialog : public QDialog
 	Q_OBJECT
 public:
 	PasswordDialog( QWidget *parent );
-	virtual ~PasswordDialog();
+	~PasswordDialog() override;
 
 	QString username() const;
 	QString password() const;

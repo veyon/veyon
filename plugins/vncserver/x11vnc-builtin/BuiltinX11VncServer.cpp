@@ -84,7 +84,7 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 	}
 
 	// build new C-style command line array based on cmdline-QStringList
-	char **argv = new char *[cmdline.size()+1];
+	auto argv = new char *[cmdline.size()+1];
 	argv[0] = qstrdup( QCoreApplication::arguments()[0].toUtf8().constData() );
 	int argc = 1;
 

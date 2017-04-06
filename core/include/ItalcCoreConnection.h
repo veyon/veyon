@@ -37,7 +37,7 @@ class ITALC_CORE_EXPORT ItalcCoreConnection : public QObject
 	Q_OBJECT
 public:
 	ItalcCoreConnection( ItalcVncConnection *vncConnection );
-	~ItalcCoreConnection();
+	~ItalcCoreConnection() override;
 
 	ItalcVncConnection *vncConnection()
 	{

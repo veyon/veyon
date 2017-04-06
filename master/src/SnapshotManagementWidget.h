@@ -39,7 +39,7 @@ class SnapshotManagementWidget : public QWidget
 	Q_OBJECT
 public:
 	SnapshotManagementWidget( QWidget *parent );
-	virtual ~SnapshotManagementWidget();
+	~SnapshotManagementWidget() override;
 
 
 protected:

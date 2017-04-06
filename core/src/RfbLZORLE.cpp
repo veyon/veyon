@@ -103,7 +103,7 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 	hdr.bytesLZO = rfbClientSwap32IfLE( hdr.bytesLZO );
 	hdr.bytesRLE = rfbClientSwap32IfLE( hdr.bytesRLE );
 
-	uint8_t *lzo_data = new uint8_t[hdr.bytesLZO];
+	auto lzo_data = new uint8_t[hdr.bytesLZO];
 
 	if( !ReadFromRFBServer( client, (char *) lzo_data, hdr.bytesLZO ) )
 	{
@@ -112,13 +112,13 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 		return false;
 	}
 
-	uint8_t *rle_data = new uint8_t[hdr.bytesRLE];
+	auto rle_data = new uint8_t[hdr.bytesRLE];
 
 	lzo_uint decomp_bytes = hdr.bytesRLE;
 	lzo1x_decompress_safe( (const unsigned char *) lzo_data,
 				(lzo_uint) hdr.bytesLZO,
 				(unsigned char *) rle_data,
-				(lzo_uint *) &decomp_bytes, NULL );
+				(lzo_uint *) &decomp_bytes, nullptr );
 	if( decomp_bytes != hdr.bytesRLE )
 	{
 		delete[] rle_data;
@@ -174,19 +174,19 @@ static rfbBool handleEncodingLZORLE( rfbClient *client,
 
 
 
-static rfbClientProtocolExtension * __lzoRleProtocolExt = NULL;
+static rfbClientProtocolExtension * __lzoRleProtocolExt = nullptr;
 
 
 RfbLZORLE::RfbLZORLE()
 {
-	if( __lzoRleProtocolExt == NULL )
+	if( __lzoRleProtocolExt == nullptr )
 	{
 		__lzoRleProtocolExt = new rfbClientProtocolExtension;
 		__lzoRleProtocolExt->encodings = new int[2];
 		__lzoRleProtocolExt->encodings[0] = rfbEncodingLZORLE;
 		__lzoRleProtocolExt->encodings[1] = 0;
 		__lzoRleProtocolExt->handleEncoding = handleEncodingLZORLE;
-		__lzoRleProtocolExt->handleMessage = NULL;
+		__lzoRleProtocolExt->handleMessage = nullptr;
 
 		rfbClientRegisterExtension( __lzoRleProtocolExt );
 	}

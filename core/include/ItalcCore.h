@@ -59,7 +59,7 @@ class ITALC_CORE_EXPORT ItalcCore : public QObject
 	Q_OBJECT
 public:
 	ItalcCore( QCoreApplication* application, const QString& appComponentName );
-	~ItalcCore();
+	~ItalcCore() override;
 
 	static ItalcCore* instance();
 

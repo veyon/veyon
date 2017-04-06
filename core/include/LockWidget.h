@@ -43,11 +43,11 @@ public:
 	} Mode;
 
 	LockWidget( Mode mode = Black );
-	virtual ~LockWidget();
+	~LockWidget() override;
 
 
 private:
-	virtual void paintEvent( QPaintEvent * );
+	void paintEvent( QPaintEvent * ) override;
 
 	QPixmap m_background;
 	Mode m_mode;

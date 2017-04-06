@@ -38,7 +38,7 @@ class AccessControlPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	AccessControlPage();
-	virtual ~AccessControlPage();
+	~AccessControlPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

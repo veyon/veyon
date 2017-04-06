@@ -92,7 +92,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	connect( ss_btn, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
-	QHBoxLayout * layout = new QHBoxLayout( this );
+	auto layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
@@ -263,7 +263,7 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 
 RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computerControlInterface,
 											bool viewOnly ) :
-	QWidget( 0 ),
+	QWidget( nullptr ),
 	m_computerControlInterface( computerControlInterface ),
 	m_vncView( new VncView( computerControlInterface.computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
 	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),

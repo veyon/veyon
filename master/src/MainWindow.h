@@ -43,7 +43,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 public:
 	MainWindow( MasterCore& masterCore );
-	virtual ~MainWindow();
+	~MainWindow() override;
 
 	static bool initAuthentication();
 

@@ -40,7 +40,7 @@ public:
 
 
 private slots:
-	virtual void accept();
+	void accept() override;
 
 
 private:

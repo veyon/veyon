@@ -46,7 +46,7 @@ QByteArray CryptoCore::generateChallenge()
 {
 	BIGNUM * challengeBigNum = BN_new();
 
-	if( challengeBigNum == NULL )
+	if( challengeBigNum == nullptr )
 	{
 		qCritical( "CryptoCore::generateChallenge(): BN_new() failed" );
 		return QByteArray();

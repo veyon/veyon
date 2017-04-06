@@ -32,7 +32,7 @@ class RunProgramDialog : public QDialog
 	Q_OBJECT
 public:
 	RunProgramDialog( QWidget *parent );
-	virtual ~RunProgramDialog();
+	~RunProgramDialog() override;
 
 	const QStringList& programs() const
 	{
@@ -40,7 +40,7 @@ public:
 	}
 
 private slots:
-	virtual void accept();
+	void accept() override;
 
 private:
 	Ui::RunProgramDialog* ui;

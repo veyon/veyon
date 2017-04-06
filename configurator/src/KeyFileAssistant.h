@@ -34,7 +34,7 @@ class KeyFileAssistant : public QWizard
 	Q_OBJECT
 public:
 	KeyFileAssistant();
-	virtual ~KeyFileAssistant();
+	~KeyFileAssistant() override;
 
 
 private slots:
@@ -43,7 +43,7 @@ private slots:
 
 
 private:
-	virtual void accept();
+	void accept() override;
 
 	Ui::KeyFileAssistant *m_ui;
 

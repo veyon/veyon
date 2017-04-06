@@ -41,7 +41,7 @@ class ServiceConfigurationPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	ServiceConfigurationPage();
-	virtual ~ServiceConfigurationPage();
+	~ServiceConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

@@ -35,7 +35,7 @@ class PowerControlFeaturePlugin : public QObject, FeaturePluginInterface, Plugin
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	PowerControlFeaturePlugin();
-	virtual ~PowerControlFeaturePlugin() {}
+	~PowerControlFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
 	{

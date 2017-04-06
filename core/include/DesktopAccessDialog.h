@@ -34,7 +34,7 @@ class ITALC_CORE_EXPORT DesktopAccessDialog : public QObject, public FeaturePlug
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
 	DesktopAccessDialog();
-	virtual ~DesktopAccessDialog() {}
+	~DesktopAccessDialog() override {}
 
 	DesktopAccessPermission::Choice exec( FeatureWorkerManager& featureWorkerManager,
 										  const QString& user,

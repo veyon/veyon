@@ -41,7 +41,7 @@ class MasterCore : public QObject
 	Q_OBJECT
 public:
 	MasterCore();
-	virtual ~MasterCore();
+	~MasterCore() override;
 
 	BuiltinFeatures& builtinFeatures()
 	{

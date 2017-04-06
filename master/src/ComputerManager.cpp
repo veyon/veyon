@@ -72,7 +72,7 @@ ComputerManager::ComputerManager( UserConfig& config,
 	initRooms();
 	initComputerTreeModel();
 
-	QTimer* computerScreenUpdateTimer = new QTimer( this );
+	auto computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
 	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
 }

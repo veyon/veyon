@@ -33,7 +33,7 @@ class MainToolBar : public QToolBar
 	Q_OBJECT
 public:
 	MainToolBar( QWidget* parent );
-	virtual ~MainToolBar();
+	~MainToolBar() override;
 
 
 private slots:

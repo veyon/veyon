@@ -33,7 +33,7 @@ class CheckableItemProxyModel : public QIdentityProxyModel
 {
 	Q_OBJECT
 public:
-	CheckableItemProxyModel( int uidRole, QObject *parent = 0 );
+	CheckableItemProxyModel( int uidRole, QObject *parent = nullptr );
 
 	Qt::ItemFlags flags(const QModelIndex &index) const override;
 

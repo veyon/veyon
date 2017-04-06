@@ -39,7 +39,7 @@ public:
 	{
 	}
 
-	~Proxy()
+	~Proxy() override
 	{
 	}
 

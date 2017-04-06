@@ -48,7 +48,7 @@ public:
 	typedef Modes Mode;
 
 	VncView( const QString &host, int port, QWidget *parent, Mode mode );
-	virtual ~VncView();
+	~VncView() override;
 
 	inline bool isViewOnly() const
 	{
@@ -70,7 +70,7 @@ public:
 	{
 		return m_framebufferSize;
 	}
-	QSize sizeHint() const;
+	QSize sizeHint() const override;
 
 
 public slots:
@@ -95,12 +95,12 @@ private slots:
 
 
 private:
-	virtual bool eventFilter( QObject * _obj, QEvent * _event );
-	virtual bool event( QEvent * _ev );
-	virtual void focusInEvent( QFocusEvent * );
-	virtual void focusOutEvent( QFocusEvent * );
-	virtual void paintEvent( QPaintEvent * );
-	virtual void resizeEvent( QResizeEvent * );
+	bool eventFilter( QObject * _obj, QEvent * _event ) override;
+	bool event( QEvent * _ev ) override;
+	void focusInEvent( QFocusEvent * ) override;
+	void focusOutEvent( QFocusEvent * ) override;
+	void paintEvent( QPaintEvent * ) override;
+	void resizeEvent( QResizeEvent * ) override;
 
 	void keyEventHandler( QKeyEvent * );
 	void mouseEventHandler( QMouseEvent * );

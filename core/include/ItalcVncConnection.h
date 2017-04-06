@@ -76,8 +76,8 @@ public:
 	} ;
 	typedef States State;
 
-	explicit ItalcVncConnection( QObject *parent = 0 );
-	virtual ~ItalcVncConnection();
+	explicit ItalcVncConnection( QObject *parent = nullptr );
+	~ItalcVncConnection() override;
 
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;
 	void stop( bool deleteAfterFinished = false );
@@ -197,7 +197,7 @@ public slots:
 
 
 protected:
-	virtual void run();
+	void run() override;
 	void doConnection();
 
 

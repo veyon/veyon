@@ -37,10 +37,10 @@ class AccessControlRuleEditDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	AccessControlRuleEditDialog(AccessControlRule& rule, QWidget *parent = 0);
-	virtual ~AccessControlRuleEditDialog();
+	AccessControlRuleEditDialog(AccessControlRule& rule, QWidget *parent = nullptr);
+	~AccessControlRuleEditDialog() override;
 
-	virtual void accept();
+	void accept() override;
 
 
 private:

@@ -36,7 +36,7 @@ class ScreenLockFeaturePlugin : public QObject, FeaturePluginInterface, PluginIn
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	ScreenLockFeaturePlugin();
-	virtual ~ScreenLockFeaturePlugin();
+	~ScreenLockFeaturePlugin() override;
 
 	Plugin::Uid uid() const override
 	{

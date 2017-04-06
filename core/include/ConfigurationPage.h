@@ -34,7 +34,7 @@ class ITALC_CORE_EXPORT ConfigurationPage : public QWidget
 	Q_OBJECT
 public:
 	ConfigurationPage();
-	virtual ~ConfigurationPage();
+	~ConfigurationPage() override;
 
 	virtual void resetWidgets() = 0;
 	virtual void connectWidgetsToProperties() = 0;

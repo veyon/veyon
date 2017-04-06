@@ -39,7 +39,7 @@ class RemoteAccessWidgetToolBar : public QWidget
 public:
 	RemoteAccessWidgetToolBar( RemoteAccessWidget * _parent,
 							bool _view_only );
-	virtual ~RemoteAccessWidgetToolBar();
+	~RemoteAccessWidgetToolBar() override;
 
 
 public slots:
@@ -48,8 +48,8 @@ public slots:
 
 
 protected:
-	virtual void leaveEvent( QEvent * _e );
-	virtual void paintEvent( QPaintEvent * _pe );
+	void leaveEvent( QEvent * _e ) override;
+	void paintEvent( QPaintEvent * _pe ) override;
 
 
 private slots:
@@ -78,7 +78,7 @@ class RemoteAccessWidget : public QWidget
 	Q_OBJECT
 public:
 	RemoteAccessWidget( const ComputerControlInterface& computerControlInterface, bool _view_only = false );
-	virtual ~RemoteAccessWidget();
+	~RemoteAccessWidget() override;
 
 
 public slots:
@@ -90,9 +90,9 @@ public slots:
 
 
 protected:
-	virtual void enterEvent( QEvent* event );
-	virtual void leaveEvent( QEvent* event );
-	virtual void resizeEvent( QResizeEvent* event );
+	void enterEvent( QEvent* event ) override;
+	void leaveEvent( QEvent* event ) override;
+	void resizeEvent( QResizeEvent* event ) override;
 
 
 private slots:

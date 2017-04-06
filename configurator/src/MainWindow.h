@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 public:
 	MainWindow();
-	virtual ~MainWindow();
+	~MainWindow() override;
 
 	void reset( bool onlyUI = false );
 	void apply();
@@ -56,7 +56,7 @@ private slots:
 private:
 	void loadConfigurationPagePlugins();
 
-	virtual void closeEvent( QCloseEvent *closeEvent );
+	void closeEvent( QCloseEvent *closeEvent ) override;
 
 	Ui::MainWindow *ui;
 	bool m_configChanged;

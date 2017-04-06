@@ -159,7 +159,7 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 
 	if( configuredLocale.language() != QLocale::English )
 	{
-		QTranslator *tr = new QTranslator;
+		auto tr = new QTranslator;
 		if( configuredLocale == QLocale::C ||
 				tr->load( QString( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
 		{
@@ -172,7 +172,7 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 		QCoreApplication::installTranslator( tr );
 	}
 
-	QTranslator *qtTr = new QTranslator;
+	auto qtTr = new QTranslator;
 #ifdef QT_TRANSLATIONS_DIR
 	qtTr->load( QString( "qt_%1.qm" ).arg( configuredLocale.name() ), QT_TRANSLATIONS_DIR );
 #else

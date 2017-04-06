@@ -100,15 +100,15 @@ void SnapshotManagementWidget::snapshotSelected( const QModelIndex &idx )
 
 void SnapshotManagementWidget::snapshotDoubleClicked( const QModelIndex &idx )
 {
-	QLabel * imgLabel = new QLabel;
+	auto imgLabel = new QLabel;
 	imgLabel->setPixmap( m_fsModel.filePath( idx ) );
-	if( imgLabel->pixmap() != NULL )
+	if( imgLabel->pixmap() != nullptr )
 	{
 		imgLabel->setFixedSize( imgLabel->pixmap()->width(),
 								imgLabel->pixmap()->height() );
 	}
 
-	QScrollArea * sa = new QScrollArea;
+	auto sa = new QScrollArea;
 	sa->setAttribute( Qt::WA_DeleteOnClose, true );
 	sa->move( 0, 0 );
 	sa->setWidget( imgLabel );

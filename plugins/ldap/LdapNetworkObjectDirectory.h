@@ -38,10 +38,10 @@ class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 public:
 	LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent );
 
-	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
+	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
 private slots:
-	void update();
+	void update() override;
 	void updateComputerLab( LdapDirectory& ldapDirectory, const QString& computerLab );
 
 private:

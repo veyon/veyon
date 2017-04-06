@@ -41,7 +41,7 @@ public:
 						   int vncServerPort,
 						   const QString& vncServerPassword,
 						   QObject* parent );
-	virtual ~ComputerControlClient();
+	~ComputerControlClient() override;
 
 	void readFromClient() override;
 	void readFromServer() override;

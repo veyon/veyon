@@ -35,7 +35,7 @@ class DesktopServicesFeaturePlugin : public QObject, FeaturePluginInterface, Plu
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	DesktopServicesFeaturePlugin();
-	virtual ~DesktopServicesFeaturePlugin() {}
+	~DesktopServicesFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
 	{

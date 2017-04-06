@@ -36,7 +36,7 @@ class AuthenticationConfigurationPage : public ConfigurationPage
 	Q_OBJECT
 public:
 	AuthenticationConfigurationPage();
-	virtual ~AuthenticationConfigurationPage();
+	~AuthenticationConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;

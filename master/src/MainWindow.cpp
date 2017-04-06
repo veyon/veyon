@@ -71,7 +71,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
-	QSplitter* splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
+	auto splitter = new QSplitter( Qt::Horizontal, ui->centralWidget );
 	splitter->setChildrenCollapsible( false );
 
 	ui->centralLayout->addWidget( splitter );
@@ -179,7 +179,7 @@ bool MainWindow::initAuthentication()
 		return true;
 	}
 
-	QMessageBox::information( NULL,
+	QMessageBox::information( nullptr,
 			tr( "Authentication impossible" ),
 			tr(	"No authentication key files were found or your current ones "
 				"are outdated. Please create new key files using the %1 "

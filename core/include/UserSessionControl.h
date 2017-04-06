@@ -33,7 +33,7 @@ class ITALC_CORE_EXPORT UserSessionControl : public QObject, public FeaturePlugi
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
 	UserSessionControl();
-	virtual ~UserSessionControl() {}
+	~UserSessionControl() override {}
 
 	bool getUserSessionInfo( const ComputerControlInterfaceList& computerControlInterfaces );
 

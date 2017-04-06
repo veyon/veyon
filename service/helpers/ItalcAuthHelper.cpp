@@ -12,7 +12,7 @@ static int pam_conv( int num_msg, const struct pam_message **msg,
 						struct pam_response **resp,
 						void *appdata_ptr )
 {
-	struct pam_response *reply = NULL;
+	struct pam_response *reply = nullptr;
 
 	reply = (pam_response *) malloc( sizeof(struct pam_response) * num_msg );
 	if( !reply )
@@ -35,7 +35,7 @@ static int pam_conv( int num_msg, const struct pam_message **msg,
 			case PAM_TEXT_INFO:
 			case PAM_ERROR_MSG:
 				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = NULL;
+				reply[replies].resp = nullptr;
 				break;
 			default:
 				free( reply );
@@ -56,9 +56,9 @@ int main()
 	ds >> username;
 	ds >> password;
 
-	struct pam_conv pconv = { &pam_conv, NULL };
+	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t *pamh;
-	int err = pam_start( "su", NULL, &pconv, &pamh );
+	int err = pam_start( "su", nullptr, &pconv, &pamh );
 
 	err = pam_authenticate( pamh, PAM_SILENT );
 	if( err == PAM_SUCCESS )

@@ -185,7 +185,7 @@ DesktopAccessPermission::Choice DesktopAccessDialog::getDesktopAccessPermission(
 				   tr( "The user %1 at host %2 wants to access your desktop. Do you want to grant access?" ).
 				   arg( user ).arg( host ), btns );
 
-	QPushButton *neverBtn = NULL, *alwaysBtn = NULL;
+	QPushButton *neverBtn = nullptr, *alwaysBtn = nullptr;
 	if( choiceFlags & DesktopAccessPermission::ChoiceNever )
 	{
 		neverBtn = m.addButton( tr( "Never for this session" ), QMessageBox::NoRole );

@@ -29,13 +29,13 @@
 
 #include "NetworkObjectDirectory.h"
 
-class ITALC_CORE_EXPORT LocalDataNetworkObjectDirectory : public NetworkObjectDirectory
+class LocalDataNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
 	LocalDataNetworkObjectDirectory( QObject* parent );
 
-	virtual QList<NetworkObject> objects( const NetworkObject& parent ) override;
+	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
 	void update() override;
 

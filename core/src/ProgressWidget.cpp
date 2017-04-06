@@ -52,7 +52,7 @@ ProgressWidget::ProgressWidget(  const QString & _txt,
 			fontMetrics().width( m_txt ),
 			m_pixmaps[0].height() * 5 / 4 );
 
-	QTimer * t = new QTimer( this );
+	auto t = new QTimer( this );
 	connect( t, SIGNAL( timeout() ), this, SLOT( nextAnim() ) );
 	t->start( 150 );
 }

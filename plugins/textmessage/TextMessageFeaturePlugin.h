@@ -35,7 +35,7 @@ class TextMessageFeaturePlugin : public QObject, FeaturePluginInterface, PluginI
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	TextMessageFeaturePlugin();
-	virtual ~TextMessageFeaturePlugin() {}
+	~TextMessageFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
 	{

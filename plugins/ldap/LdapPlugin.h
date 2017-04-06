@@ -48,7 +48,7 @@ class LdapPlugin : public QObject, PluginInterface,
 				 ConfigurationPagePluginInterface)
 public:
 	LdapPlugin();
-	virtual ~LdapPlugin();
+	~LdapPlugin() override;
 
 	Plugin::Uid uid() const override
 	{
@@ -99,7 +99,7 @@ public:
 		return tr( "LDAP (load objects from LDAP/AD)" );
 	}
 
-	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
+	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
 
 	QString accessControlDataBackendName() const override
 	{
@@ -112,7 +112,7 @@ public:
 	QStringList userGroups() override;
 	QStringList groupsOfUser( const QString& userName ) override;
 	QStringList allRooms() override;
-	QStringList roomsOfComputer( const QString& computerName );
+	QStringList roomsOfComputer( const QString& computerName ) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 

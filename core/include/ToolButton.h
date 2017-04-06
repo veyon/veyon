@@ -44,7 +44,7 @@ public:
 				const QString& label,
 				const QString & altLabel,
 				const QString & description );
-	virtual ~ToolButton();
+	~ToolButton() override;
 
 	static void setIconOnlyMode( bool enabled );
 
@@ -67,10 +67,10 @@ public:
 
 
 protected:
-	virtual void enterEvent( QEvent * _e );
-	virtual void leaveEvent( QEvent * _e );
-	virtual void mousePressEvent( QMouseEvent * _me );
-	virtual void paintEvent( QPaintEvent * _pe );
+	void enterEvent( QEvent * _e ) override;
+	void leaveEvent( QEvent * _e ) override;
+	void mousePressEvent( QMouseEvent * _me ) override;
+	void paintEvent( QPaintEvent * _pe ) override;
 
 
 signals:
@@ -104,14 +104,14 @@ class ToolButtonTip : public QWidget
 public:
 	ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
-				QWidget * _parent, QWidget * _tool_btn = 0 );
+				QWidget * _parent, QWidget * _tool_btn = nullptr );
 
-	virtual QSize sizeHint( void ) const;
+	QSize sizeHint( void ) const override;
 
 
 protected:
-	virtual void paintEvent( QPaintEvent * _pe );
-	virtual void resizeEvent( QResizeEvent * _re );
+	void paintEvent( QPaintEvent * _pe ) override;
+	void resizeEvent( QResizeEvent * _re ) override;
 
 
 private:

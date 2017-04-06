@@ -126,7 +126,7 @@ void DemoServer::updateInitialCursorShape( const QImage &img, int x, int y )
 
 void DemoServer::incomingConnection( qintptr sock )
 {
-	QThread* clientThead = new QThread( this );
+	auto clientThead = new QThread( this );
 	auto client = new DemoServerClient( m_demoAccessToken, sock, &m_vncConn, this );
 	client->moveToThread( clientThead );
 
@@ -165,9 +165,9 @@ DemoServerClient::DemoServerClient( const QString& demoAccessToken,
   ( sizeof( lzo_align_t ) - 1 ) ) /
   sizeof( lzo_align_t ) ) ] ),
 	m_rawBuf( new QRgb[RAW_MAX_PIXELS] ),
-	m_rleBuf( NULL ),
+	m_rleBuf( nullptr ),
 	m_currentRleBufSize( 0 ),
-	m_lzoOutBuf( NULL ),
+	m_lzoOutBuf( nullptr ),
 	m_currentLzoOutBufSize( 0 )
 {
 }
@@ -726,7 +726,7 @@ bool DemoServerClient::processMessage()
 			msg.cct.length = qFromBigEndian<uint32_t>( msg.cct.length );
 			if( msg.cct.length )
 			{
-				char *t = new char[msg.cct.length];
+				auto t = new char[msg.cct.length];
 				readExact( t, msg.cct.length );
 				delete[] t;
 			}

@@ -60,7 +60,7 @@ ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
 
 	updateSize();
 
-	if( _receiver != NULL && _slot != NULL )
+	if( _receiver != nullptr && _slot != nullptr )
 	{
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );
 	}
@@ -135,7 +135,7 @@ void ToolButton::enterEvent( QEvent * _e )
 		QRect screen = QApplication::desktop()->screenGeometry( screenNumber );
 #endif
 
-		ToolButtonTip * tbt = new ToolButtonTip( m_pixmap, m_label,
+		auto tbt = new ToolButtonTip( m_pixmap, m_label,
 							m_descr,
 				QApplication::desktop()->screen( screenNumber ), this );
 		connect( this, SIGNAL( mouseLeftButton() ),
@@ -313,7 +313,7 @@ ToolButtonTip::ToolButtonTip( const QPixmap& pixmap, const QString &title,
 
 
 
-QSize ToolButtonTip::sizeHint( void ) const
+QSize ToolButtonTip::sizeHint() const
 {
 	QFont f = font();
 	f.setBold( true );
@@ -401,7 +401,7 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 
 
 
-void ToolButtonTip::updateMask( void )
+void ToolButtonTip::updateMask()
 {
 	// as this widget has not a rectangular shape AND is a top
 	// level widget (which doesn't allow painting only particular

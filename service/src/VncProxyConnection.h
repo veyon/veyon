@@ -34,7 +34,7 @@ class VncProxyConnection : public QObject
 	Q_OBJECT
 public:
 	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
-	virtual ~VncProxyConnection();
+	~VncProxyConnection() override;
 
 protected:
 	QTcpSocket* proxyClientSocket()
