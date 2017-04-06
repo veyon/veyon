@@ -79,6 +79,13 @@ bool applyConfiguration( const ItalcConfiguration &c )
 									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
 
+	if( !SystemConfigurationModifier::enableSoftwareSAS( ItalcCore::config().isSoftwareSASEnabled() ) )
+	{
+		configApplyError(
+			MainWindow::tr( "Could not change the setting for SAS generation by software. "
+							"Sending Ctrl+Alt+Del via remote control will not work!" ) );
+	}
+
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
 	localStore.flush( &ItalcCore::config() );
