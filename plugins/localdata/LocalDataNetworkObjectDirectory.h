@@ -29,17 +29,22 @@
 
 #include "NetworkObjectDirectory.h"
 
+class LocalDataConfiguration;
+
 class LocalDataNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	LocalDataNetworkObjectDirectory( QObject* parent );
+	LocalDataNetworkObjectDirectory( const LocalDataConfiguration& configuration, QObject* parent );
 
 	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
 	void update() override;
 
 private:
+	void updateRoom( const NetworkObject& roomObject );
+
+	const LocalDataConfiguration& m_configuration;
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 

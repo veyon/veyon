@@ -22,23 +22,14 @@
  *
  */
 
+#include "LocalDataConfiguration.h"
 #include "LocalDataNetworkObjectDirectory.h"
 
-LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory(  QObject* parent ) :
-	NetworkObjectDirectory( parent )
+LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory( const LocalDataConfiguration& configuration, QObject* parent ) :
+	NetworkObjectDirectory( parent ),
+	m_configuration( configuration )
 {
-	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
-	NetworkObject lab2( NetworkObject::Group, "Lab 2" );
-	NetworkObject lab3( NetworkObject::Group, "Lab 3" );
-
-	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer B" );
-	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer C" );
-	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer D" );
-	m_objects[lab1] += NetworkObject( NetworkObject::Host, "Computer A", "localhost" );
-	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer X" );
-	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer Y" );
-	m_objects[lab2] += NetworkObject( NetworkObject::Host, "Computer Z" );
-	m_objects[lab3] = QList<NetworkObject>();
+	update();
 }
 
 
@@ -62,18 +53,85 @@ QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObje
 
 void LocalDataNetworkObjectDirectory::update()
 {
-#if 0
-	NetworkObject lab1( NetworkObject::Group, "Lab 1" );
+	const NetworkObject rootObject( NetworkObject::Root );
 
-	emit objectsAboutToBeInserted( lab1, m_objects[lab1].count(), 1 );
+	QList<NetworkObject::Uid> roomUids;
 
-	static int id = 0;
-	m_objects[lab1] += NetworkObject( NetworkObject::Host, QString( "Computer %1" ).arg( ++id ) );
+	for( auto networkObjectValue : m_configuration.networkObjects() )
+	{
+		const NetworkObject networkObject( networkObjectValue.toObject() );
 
-	emit objectsInserted();
+		if( networkObject.type() == NetworkObject::Group )
+		{
+			roomUids.append( networkObject.uid() );
 
-	emit objectsAboutToBeRemoved( lab1, 0, 1 );
-	m_objects[lab1].takeFirst();
-	emit objectsRemoved();
-#endif
+			if( m_objects.contains( networkObject ) == false )
+			{
+				emit objectsAboutToBeInserted( rootObject, m_objects.count(), 1 );
+				m_objects[networkObject] = QList<NetworkObject>();
+				emit objectsInserted();
+			}
+
+			updateRoom( networkObject );
+		}
+	}
+
+	int index = 0;
+	for( auto it = m_objects.begin(); it != m_objects.end(); )
+	{
+		if( it.key().type() == NetworkObject::Group &&
+				roomUids.contains( it.key().uid() ) == false )
+		{
+			emit objectsAboutToBeRemoved( rootObject, index, 1 );
+			it = m_objects.erase( it );
+			emit objectsRemoved();
+		}
+		else
+		{
+			++it;
+			++index;
+		}
+	}
+}
+
+
+
+void LocalDataNetworkObjectDirectory::updateRoom( const NetworkObject& roomObject )
+{
+	QList<NetworkObject>& computerObjects = m_objects[roomObject];
+
+	QList<NetworkObject::Uid> computerUids;
+
+	for( auto networkObjectValue : m_configuration.networkObjects() )
+	{
+		NetworkObject networkObject( networkObjectValue.toObject() );
+
+		if( networkObject.parentUid() == roomObject.uid() )
+		{
+			computerUids.append( networkObject.uid() );
+
+			if( computerObjects.contains( networkObject ) == false )
+			{
+				emit objectsAboutToBeInserted( roomObject, computerObjects.count(), 1 );
+				computerObjects += networkObject;
+				emit objectsInserted();
+			}
+		}
+	}
+
+	int index = 0;
+	for( auto it = computerObjects.begin(); it != computerObjects.end(); )
+	{
+		if( computerUids.contains( it->uid() ) == false )
+		{
+			emit objectsAboutToBeRemoved( roomObject, index, 1 );
+			it = computerObjects.erase( it );
+			emit objectsRemoved();
+		}
+		else
+		{
+			++it;
+			++index;
+		}
+	}
 }
