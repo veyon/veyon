@@ -46,7 +46,8 @@ public:
 		TypeRole,
 		HostAddressRole,
 		MacAddressRole,
-		DirectoryAddressRole
+		DirectoryAddressRole,
+		ParentUidRole
 	} Role;
 
 };
