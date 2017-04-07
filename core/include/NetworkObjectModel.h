@@ -29,7 +29,7 @@
 
 #include "NetworkObject.h"
 
-class NetworkObjectModel : public QAbstractItemModel
+class ITALC_CORE_EXPORT NetworkObjectModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
