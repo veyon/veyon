@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <italcconfig.h>
 
 #ifdef ITALC_BUILD_WIN32
@@ -49,7 +48,8 @@
 
 
 
-LocalDataPlugin::LocalDataPlugin()
+LocalDataPlugin::LocalDataPlugin() :
+	m_configuration()
 {
 }
 
@@ -264,5 +264,5 @@ NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* 
 
 ConfigurationPage *LocalDataPlugin::createConfigurationPage()
 {
-	return new LocalDataConfigurationPage;
+	return new LocalDataConfigurationPage( m_configuration );
 }

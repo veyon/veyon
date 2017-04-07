@@ -26,16 +26,19 @@
 #define LOCAL_DATA_CONFIGURATION_PAGE_H
 
 #include "ConfigurationPage.h"
+#include "NetworkObject.h"
 
 namespace Ui {
 class LocalDataConfigurationPage;
 }
 
+class LocalDataConfiguration;
+
 class LocalDataConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	LocalDataConfigurationPage();
+	LocalDataConfigurationPage( LocalDataConfiguration& configuration );
 	~LocalDataConfigurationPage();
 
 	void resetWidgets() override;
@@ -43,9 +46,24 @@ public:
 	void applyConfiguration() override;
 
 private slots:
+	void addRoom();
+	void updateRoom();
+	void removeRoom();
+	void addComputer();
+	void updateComputer();
+	void removeComputer();
 
 private:
+	void populateRooms();
+	void populateComputers();
+
+	NetworkObject currentRoomObject() const;
+	NetworkObject currentComputerObject() const;
+
 	Ui::LocalDataConfigurationPage *ui;
+
+	LocalDataConfiguration& m_configuration;
+
 };
 
-#endif // LDAP_CONFIGURATION_PAGE_H
+#endif // LOCAL_DATA_CONFIGURATION_PAGE_H

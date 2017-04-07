@@ -27,6 +27,7 @@
 
 #include "AccessControlDataBackendInterface.h"
 #include "ConfigurationPagePluginInterface.h"
+#include "LocalDataConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
 class LocalDataPlugin : public QObject,
@@ -99,6 +100,9 @@ public:
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
 
 	ConfigurationPage* createConfigurationPage() override;
+
+private:
+	LocalDataConfiguration m_configuration;
 
 };
 
