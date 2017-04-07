@@ -61,7 +61,8 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 		}
 
 		return m_computerExcludeList.contains(
-					sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ) ).toString() ) == false;
+					sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ) ).toString(),
+					Qt::CaseInsensitive ) == false;
 	}
 
 	if( m_groupList.isEmpty() )
