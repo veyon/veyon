@@ -243,13 +243,57 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& userName )
 
 QStringList LocalDataPlugin::allRooms()
 {
-	return QStringList();
+	QStringList rooms;
+
+	for( auto networkObjectValue : m_configuration.networkObjects() )
+	{
+		NetworkObject networkObject( networkObjectValue.toObject() );
+		if( networkObject.type() == NetworkObject::Group )
+		{
+			rooms.append( networkObject.name() );
+		}
+	}
+
+	return rooms;
 }
 
 
 
 QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
 {
+	auto networkObjects = m_configuration.networkObjects();
+
+	NetworkObject computerObject;
+
+	// search for computer object
+	for( auto networkObjectValue : networkObjects )
+	{
+		NetworkObject networkObject( networkObjectValue.toObject() );
+		if( networkObject.type() == NetworkObject::Host &&
+				networkObject.hostAddress().toLower() == computerName.toLower() )
+		{
+			computerObject = networkObject;
+			break;
+		}
+	}
+
+	// return empty list if computer not found
+	if( computerObject.type() != NetworkObject::Host )
+	{
+		return QStringList();
+	}
+
+	// search for corresponding group whose UID matches parent UID of computer object
+	for( auto networkObjectValue : networkObjects )
+	{
+		NetworkObject networkObject( networkObjectValue.toObject() );
+		if( networkObject.type() == NetworkObject::Group &&
+				networkObject.uid() == networkObject.parentUid() )
+		{
+			return QStringList( { networkObject.name() } );
+		}
+	}
+
 	return QStringList();
 }
 
@@ -257,7 +301,7 @@ QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
 
 NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* parent )
 {
-	return new LocalDataNetworkObjectDirectory( parent );
+	return new LocalDataNetworkObjectDirectory( m_configuration, parent );
 }
 
 
