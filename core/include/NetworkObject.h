@@ -45,17 +45,25 @@ public:
 	} Type;
 
 	NetworkObject( const NetworkObject& other );
-	explicit NetworkObject( Type type = None,
-							const QString& name = QString(),
-							const QString& hostAddress = QString(),
-							const QString& macAddress = QString(),
-							const QString& directoryAddress = QString() );
+	NetworkObject( Type type = None,
+				   const QString& name = QString(),
+				   const QString& hostAddress = QString(),
+				   const QString& macAddress = QString(),
+				   const QString& directoryAddress = QString(),
+				   const Uid& uid = Uid(),
+				   const Uid& parentUid = Uid() );
+	NetworkObject( const QJsonObject& jsonObject );
 
 	bool operator ==( const NetworkObject& other ) const;
 
 	const Uid& uid() const
 	{
 		return m_uid;
+	}
+
+	const Uid& parentUid() const
+	{
+		return m_parentUid;
 	}
 
 	Type type() const
@@ -66,6 +74,11 @@ public:
 	const QString& name() const
 	{
 		return m_name;
+	}
+
+	void setName( const QString& name )
+	{
+		m_name = name;
 	}
 
 	const QString& hostAddress() const
@@ -83,6 +96,8 @@ public:
 		return m_directoryAddress;
 	}
 
+	QJsonObject toJson() const;
+
 private:
 	Uid calculateUid() const;
 
@@ -92,6 +107,7 @@ private:
 	QString m_macAddress;
 	QString m_directoryAddress;
 	Uid m_uid;
+	Uid m_parentUid;
 
 	static const QUuid networkObjectNamespace;
 
