@@ -1,12 +1,12 @@
 [submodule "3rdparty/ultravnc"]
 	path = 3rdparty/ultravnc
-	url = https://github.com/iTALC/ultravnc.git
+	url = ../ultravnc.git
 [submodule "3rdparty/kldap"]
 	path = 3rdparty/kldap
 	url = https://github.com/KDE/kldap.git
 [submodule "3rdparty/libvncserver"]
 	path = 3rdparty/libvncserver
-	url = https://github.com/iTALC/libvncserver.git
+	url = ../libvncserver.git
 [submodule "3rdparty/x11vnc"]
 	path = 3rdparty/x11vnc
-	url = https://github.com/iTALC/x11vnc.git
+	url = ../x11vnc.git
