@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,17 +29,17 @@
 #include <QObject>
 #include <QSize>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 class QImage;
 
 class Computer;
 class FeatureMessage;
-class ItalcVncConnection;
-class ItalcCoreConnection;
+class VeyonVncConnection;
+class VeyonCoreConnection;
 class UserSessionControl;
 
-class ITALC_CORE_EXPORT ComputerControlInterface : public QObject
+class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:
@@ -118,8 +118,8 @@ private:
 
 	QSize m_scaledScreenSize;
 
-	ItalcVncConnection* m_vncConnection;
-	ItalcCoreConnection* m_coreConnection;
+	VeyonVncConnection* m_vncConnection;
+	VeyonCoreConnection* m_coreConnection;
 	UserSessionControl* m_userSessionControl;
 
 	bool m_screenUpdated;

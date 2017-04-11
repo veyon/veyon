@@ -1,6 +1,6 @@
 INCLUDE(BuildPlugin)
 
-ADD_DEFINITIONS(-DLIBVNCSERVER_PACKAGE_STRING="iTALC ${VERSION}")
+ADD_DEFINITIONS(-DLIBVNCSERVER_PACKAGE_STRING="Veyon ${VERSION}")
 ADD_DEFINITIONS(-DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=3)
 INCLUDE_DIRECTORIES(${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
 
@@ -37,7 +37,7 @@ BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfiguration.cpp
 	X11VncConfigurationWidget.cpp
-	x11vnc-italc.c
+	x11vnc-veyon.c
 	${x11vnc_DIR}/src/appshare.c
 	${libvncserver_SOURCES}
 	MOCFILES

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 #include "PluginManager.h"
@@ -31,7 +31,7 @@
 NetworkObjectDirectoryManager::NetworkObjectDirectoryManager() :
 	m_directoryPluginInterfaces()
 {
-	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto directoryPluginInterface = qobject_cast<NetworkObjectDirectoryPluginInterface *>( pluginObject );
@@ -61,7 +61,7 @@ QMap<Plugin::Uid, QString> NetworkObjectDirectoryManager::availableDirectories()
 
 NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory( QObject* parent )
 {
-	auto configuredPluginUuid = ItalcCore::config().networkObjectDirectoryPlugin();
+	auto configuredPluginUuid = VeyonCore::config().networkObjectDirectoryPlugin();
 	NetworkObjectDirectoryPluginInterface* defaultPluginInterface = nullptr;
 
 	for( auto pluginInterface : m_directoryPluginInterfaces.keys() )

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "AccessControlDataBackendManager.h"
 
@@ -74,7 +74,7 @@ QMap<Plugin::Uid, QString> AccessControlDataBackendManager::availableBackends()
 
 void AccessControlDataBackendManager::reloadConfiguration()
 {
-	m_configuredBackend = m_backends.value( ItalcCore::config().accessControlDataBackend() );
+	m_configuredBackend = m_backends.value( VeyonCore::config().accessControlDataBackend() );
 
 	if( m_configuredBackend == nullptr )
 	{

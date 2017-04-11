@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,9 +25,9 @@
 #ifndef INPUT_DEVICE_BLOCKER_H
 #define INPUT_DEVICE_BLOCKER_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <interception.h>
 #endif
 
@@ -35,7 +35,7 @@
 #include <QtCore/QMutex>
 
 
-class ITALC_CORE_EXPORT InputDeviceBlocker
+class VEYON_CORE_EXPORT InputDeviceBlocker
 {
 public:
 	InputDeviceBlocker( bool enable = true );
@@ -59,10 +59,10 @@ private:
 	static int s_refCnt;
 
 	bool m_enabled;
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	QByteArray m_origKeyTable;
 #endif
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	InterceptionContext m_interceptionContext;
 #endif
 

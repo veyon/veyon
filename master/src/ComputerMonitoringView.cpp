@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,7 +29,7 @@
 #include "ComputerMonitoringView.h"
 #include "MasterCore.h"
 #include "FeatureManager.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "UserConfig.h"
 
 #include "ui_ComputerMonitoringView.h"
@@ -118,7 +118,7 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 
 void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 {
-	const Feature& feature = m_masterCore->featureManager().feature( ItalcCore::config().computerDoubleClickFeature() );
+	const Feature& feature = m_masterCore->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
 
 	if( index.isValid() && feature.isValid() )
 	{

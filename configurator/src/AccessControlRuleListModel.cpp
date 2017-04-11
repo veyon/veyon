@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,8 +25,8 @@
 #include <QIcon>
 
 #include "AccessControlRuleListModel.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 
 
 AccessControlRuleListModel::AccessControlRuleListModel(QObject *parent)
@@ -43,7 +43,7 @@ void AccessControlRuleListModel::reload()
 
 	m_accessControlRules.clear();
 
-	for( auto accessControlRule : ItalcCore::config().accessControlRules() )
+	for( auto accessControlRule : VeyonCore::config().accessControlRules() )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}

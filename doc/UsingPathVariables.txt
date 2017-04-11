@@ -6,21 +6,21 @@ can be customized using Configurator. Path variables are helpful if you do not
 want to hardcode paths e.g. for configuration files but make them relative to a
 certain environment, e.g. the user's home/profile.
 
-The following path variables are known to iTALC and replaced automatically:
+The following path variables are known to Veyon and replaced automatically:
 
 * $HOME, %HOME%, $PROFILE, %PROFILE%
   - the home/profile directory of the user which started the application
-    (e.g. iTALC Master Application)
+    (e.g. Veyon Master Application)
 
 * $APPDATA, %APPDATA
-  - Linux: $HOME/.italc
-  - Windows XP: C:\Documents and Settings\<user>\Application Data\iTALC
-  - Windows Vista/7: C:\Users\<user>\AppData\Roaming\iTALC
+  - Linux: $HOME/.veyon
+  - Windows XP: C:\Documents and Settings\<user>\Application Data\Veyon
+  - Windows Vista/7: C:\Users\<user>\AppData\Roaming\Veyon
 
 * $GLOBALAPPDATA, %GLOBALAPPDATA%
-  - Linux: /etc/italc
-  - Windows XP: C:\Documents and Settings\All Users\Application Data\iTALC
-  - Windows Vista/7: C:\ProgramData\iTALC
+  - Linux: /etc/veyon
+  - Windows XP: C:\Documents and Settings\All Users\Application Data\Veyon
+  - Windows Vista/7: C:\ProgramData\Veyon
 
 * $TEMP, %TEMP%, $TMP, %TMP%:
   - Linux: /tmp

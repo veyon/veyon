@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,9 +22,9 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #define UNICODE
 #include <winsock2.h>
 #include <windef.h>
@@ -38,11 +38,11 @@
 
 #include <QProcess>
 
-#ifdef ITALC_HAVE_UNISTD_H
+#ifdef VEYON_HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
-#ifdef ITALC_HAVE_PWD_H
+#ifdef VEYON_HAVE_PWD_H
 #include <pwd.h>
 #endif
 
@@ -78,7 +78,7 @@ QStringList LocalDataPlugin::userGroups()
 {
 	QStringList groupList;
 
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	QProcess getentProcess;
 	getentProcess.start( "getent", QStringList( { "group" } ) );
 	getentProcess.waitForFinished();
@@ -169,7 +169,7 @@ QStringList LocalDataPlugin::userGroups()
 	}
 #endif
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	LPBYTE outBuffer = NULL;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
@@ -199,7 +199,7 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& userName )
 {
 	QStringList groupList;
 
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	QProcess getentProcess;
 	getentProcess.start( "getent", QStringList() << "group" );
 	getentProcess.waitForFinished();
@@ -215,7 +215,7 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& userName )
 	}
 #endif
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	LPBYTE outBuffer = NULL;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;

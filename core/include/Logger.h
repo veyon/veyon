@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,19 +22,19 @@
  *
  */
 
-#ifndef ITALCCORE_LOGGER_H
-#define ITALCCORE_LOGGER_H
+#ifndef VEYONCORE_LOGGER_H
+#define VEYONCORE_LOGGER_H
 
 #include <QtCore/QDebug>
 #include <QtCore/QTextStream>
 #include <QtCore/QMutex>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 class QFile;
 class CXEventLog;
 
-class ITALC_CORE_EXPORT Logger
+class VEYON_CORE_EXPORT Logger
 {
 public:
 	enum LogLevels
@@ -53,7 +53,7 @@ public:
 
 	typedef LogLevels LogLevel;
 
-	Logger( const QString &appName, ItalcConfiguration* config );
+	Logger( const QString &appName, VeyonConfiguration* config );
 	~Logger();
 
 	static void log( LogLevel ll, const QString &msg );
@@ -61,7 +61,7 @@ public:
 
 
 private:
-	void initLogFile( ItalcConfiguration* config );
+	void initLogFile( VeyonConfiguration* config );
 	void outputMessage( const QString &msg );
 
 	static QString formatMessage( LogLevel ll, const QString &msg );
@@ -77,7 +77,7 @@ private:
 
 	QString m_appName;
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	static CXEventLog *winEventLog;
 #endif
 

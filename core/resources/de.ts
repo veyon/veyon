@@ -4,8 +4,8 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About iTALC</source>
-        <translation>Über iTALC</translation>
+        <source>About veyon</source>
+        <translation>Über veyon</translation>
     </message>
     <message>
         <source>About</source>
@@ -18,7 +18,7 @@
     <message>
         <source>Current language not translated yet (or native English).
 
-If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
+If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
         <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
     </message>
     <message>
@@ -30,12 +30,12 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>Mitwirkende</translation>
     </message>
     <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
+        <source>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
+Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</source>
+        <translation>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
+Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
     </message>
 </context>
 <context>
@@ -69,8 +69,8 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
         <translation>Autorisierte Nutzergruppen für Computerzugriff</translation>
     </message>
     <message>
-        <source>Please add the groups whose members should be authorized to access computers in your iTALC network.</source>
-        <translation>Bitte fügen Sie die Gruppen hinzu, deren Mitgliedern der Zugriff auf Computer in Ihrem iTALC-Netzwerk erlaubt werden soll.</translation>
+        <source>Please add the groups whose members should be authorized to access computers in your veyon network.</source>
+        <translation>Bitte fügen Sie die Gruppen hinzu, deren Mitgliedern der Zugriff auf Computer in Ihrem veyon-Netzwerk erlaubt werden soll.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -334,8 +334,8 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
         <translation>Zugriffsbestätigung</translation>
     </message>
     <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Sie können iTALC so konfigurieren, dass der Benutzer bei bestimmten Authentifizierungsmethoden um Zugriffsbestätigung gebeten wird.</translation>
+        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Sie können veyon so konfigurieren, dass der Benutzer bei bestimmten Authentifizierungsmethoden um Zugriffsbestätigung gebeten wird.</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -525,8 +525,8 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
         <translation>High-DPI-Skalierung aktivieren</translation>
     </message>
     <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
+        <source>veyon</source>
+        <translation>veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -642,7 +642,7 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
     </message>
 </context>
 <context>
-    <name>ItalcVncConnection</name>
+    <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
         <translation>VNC-Authentifizierung aufgrund zu häufiger Versuche fehlgeschlagen.</translation>
@@ -659,28 +659,28 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</translation>
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>iTALC Access Key Assistant</source>
-        <translation>iTALC-Schlüsselassistent</translation>
+        <source>veyon Access Key Assistant</source>
+        <translation>veyon-Schlüsselassistent</translation>
     </message>
     <message>
-        <source>Create/import iTALC access keys</source>
-        <translation>iTALC-Schlüssel erzeugen/importieren</translation>
+        <source>Create/import veyon access keys</source>
+        <translation>veyon-Schlüssel erzeugen/importieren</translation>
     </message>
     <message>
-        <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation>Dieser Assistent wird Ihnen dabei helfen, iTALC-Schlüssel zu erstellen oder importieren.</translation>
+        <source>This assistant will help you to create or import veyon access keys.</source>
+        <translation>Dieser Assistent wird Ihnen dabei helfen, veyon-Schlüssel zu erstellen oder importieren.</translation>
     </message>
     <message>
         <source>How does it work?</source>
         <translation>Wie funktioniert&apos;s?</translation>
     </message>
     <message>
-        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
+        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
 
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>iTALC-Zugriffsschlüssel bestehen aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
+        <translation>veyon-Zugriffsschlüssel bestehen aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
 
 Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
 
@@ -795,8 +795,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Ungültiger öffentlicher Schlüssel</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentliche iTALC-Zugrifsschlüssel!</translation>
+        <source>The selected file does not contain a valid public veyon access key!</source>
+        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentliche veyon-Zugrifsschlüssel!</translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -1478,8 +1478,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Strg+O</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>Über iTALC</translation>
+        <source>About veyon</source>
+        <translation>Über veyon</translation>
     </message>
     <message>
         <source>About Qt</source>
@@ -1538,14 +1538,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Fehlersuche</translation>
     </message>
     <message>
-        <source>Debugging iTALC</source>
-        <translation>iTALC-Fehlersuche</translation>
+        <source>Debugging veyon</source>
+        <translation>veyon-Fehlersuche</translation>
     </message>
     <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Wenn sie auf Fehler oder andere Fehlverhalten in iTALC stoßen ist es wichtig, die Entwickler darüber zu informieren, so dass die Fehler in zukünftigen Releases korrigiert werden können. Diese Seite ermöglicht es Ihnen, mühelos einen hilfreichen Fehlerbericht zu verfassen.
+        <translation>Wenn sie auf Fehler oder andere Fehlverhalten in veyon stoßen ist es wichtig, die Entwickler darüber zu informieren, so dass die Fehler in zukünftigen Releases korrigiert werden können. Diese Seite ermöglicht es Ihnen, mühelos einen hilfreichen Fehlerbericht zu verfassen.
 
 Überspringen Sie die Schritte 1) - 3), wenn der Fehler nicht reproduzierbar ist.</translation>
     </message>
@@ -1598,15 +1598,15 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>Authentifizierung nicht möglich</translation>
     </message>
     <message>
-        <source>iTALC Configurator</source>
-        <translation>iTALC Configurator</translation>
+        <source>veyon Configurator</source>
+        <translation>veyon Configurator</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/iTALC/italc/issues&quot;&gt;iTALC issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+        <source>Go to the &lt;a href=&quot;https://github.com/veyon/veyon/issues&quot;&gt;veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Gehen Sie zur &lt;a href=&quot;https://github.com/iTALC/italc/issues&quot;&gt;iTALC-Fehlerdatenbank&lt;/a&gt;, verfassen einen neuen Fehler, beschreiben, was Sie in Schritt 3) getan haben und hängen die Datei an, die Sie in Schritt 4) erzeugt haben.&lt;/p&gt;
+        <translation>Gehen Sie zur &lt;a href=&quot;https://github.com/veyon/veyon/issues&quot;&gt;veyon-Fehlerdatenbank&lt;/a&gt;, verfassen einen neuen Fehler, beschreiben, was Sie in Schritt 3) getan haben und hängen die Datei an, die Sie in Schritt 4) erzeugt haben.&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie bitte ein Fehlerberichtsarchiv für beide Computer an.</translation>
@@ -1788,12 +1788,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Passwort</translation>
     </message>
     <message>
-        <source>iTALC Logon</source>
-        <translation>iTALC-Anmeldung</translation>
+        <source>veyon Logon</source>
+        <translation>veyon-Anmeldung</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access computers in your iTALC network.</source>
-        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer in Ihrem iTALC-Netzwerk zuzugreifen.</translation>
+        <source>Please enter your username and password in order to access computers in your veyon network.</source>
+        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer in Ihrem veyon-Netzwerk zuzugreifen.</translation>
     </message>
 </context>
 <context>

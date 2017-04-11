@@ -1,10 +1,10 @@
 /*
  * UserConfig.cpp - a Configuration object storing personal settings
- *                      for the iTALC Master Application
+ *                      for the Veyon Master Application
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,7 +25,7 @@
 
 #include <QMessageBox>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 #include "UserConfig.h"
 
 FOREACH_PERSONAL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
@@ -40,6 +40,6 @@ UserConfig::UserConfig(Configuration::Store::Backend backend) :
 								  tr( "No write access" ),
 								  tr( "Could not save your personal settings! "
 									  "Please check the user configuration "
-									  "file path using the %1 Configurator." ).arg( ItalcCore::applicationName() ) );
+									  "file path using the %1 Configurator." ).arg( VeyonCore::applicationName() ) );
 	}
 }

@@ -1,9 +1,9 @@
 /*
- * ItalcVncConnection.cpp - implementation of ItalcVncConnection class
+ * VeyonVncConnection.cpp - implementation of VeyonVncConnection class
  *
  * Copyright (c) 2008-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * code partly taken from KRDC / vncclientthread.cpp:
  * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
@@ -30,8 +30,8 @@
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
-#include "ItalcConfiguration.h"
-#include "ItalcVncConnection.h"
+#include "VeyonConfiguration.h"
+#include "VeyonVncConnection.h"
 #include "LocalSystem.h"
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
@@ -107,9 +107,9 @@ private:
 
 
 
-rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
+rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr) ;
+	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr) ;
 
 	const uint64_t size = (uint64_t) cl->width * cl->height * ( cl->format.bitsPerPixel / 8 );
 
@@ -182,9 +182,9 @@ rfbBool ItalcVncConnection::hookInitFrameBuffer( rfbClient *cl )
 
 
 
-void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h )
+void VeyonVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
+	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 
 	if( t->quality() == DemoServerQuality )
 	{
@@ -206,9 +206,9 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 
 
 
-void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
+void VeyonVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 {
-	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
+	VeyonVncConnection *t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 
 	if( t )
 	{
@@ -219,9 +219,9 @@ void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 
 
 
-rfbBool ItalcVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
+rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
 {
-	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
+	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 	if( t )
 	{
 		t->cursorPosChanged( x, y );
@@ -233,7 +233,7 @@ rfbBool ItalcVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
 
 
 
-void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp )
+void VeyonVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp )
 {
 	for( int i = 0; i < w*h;++i )
 	{
@@ -247,19 +247,19 @@ void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, 
 	QImage cursorShape = QImage( cl->rcSource, w, h, QImage::Format_RGB32 ).convertToFormat( QImage::Format_ARGB32 );
 	cursorShape.setAlphaChannel( alpha );
 
-	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
+	VeyonVncConnection* t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 	t->cursorShapeUpdated( cursorShape, xh, yh );
 }
 
 
 
-void ItalcVncConnection::hookCutText( rfbClient *cl, const char *text,
+void VeyonVncConnection::hookCutText( rfbClient *cl, const char *text,
 										int textlen )
 {
 	QString cutText = QString::fromUtf8( text, textlen );
 	if( !cutText.isEmpty() )
 	{
-		ItalcVncConnection *t = (ItalcVncConnection *)
+		VeyonVncConnection *t = (VeyonVncConnection *)
 										rfbClientGetClientData( cl, nullptr );
 		t->gotCut( cutText );
 	}
@@ -268,7 +268,7 @@ void ItalcVncConnection::hookCutText( rfbClient *cl, const char *text,
 
 
 
-void ItalcVncConnection::hookOutputHandler( const char *format, ... )
+void VeyonVncConnection::hookOutputHandler( const char *format, ... )
 {
 	va_list args;
 	va_start( args, format );
@@ -279,7 +279,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 	va_end(args);
 
 	message = message.trimmed();
-	qWarning() << "ItalcVncConnection: VNC message:" << message;
+	qWarning() << "VeyonVncConnection: VNC message:" << message;
 
 #if 0
 	if( ( message.contains( "Couldn't convert " ) ) ||
@@ -311,7 +311,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 
 
 
-void ItalcVncConnection::framebufferCleanup( void *framebuffer )
+void VeyonVncConnection::framebufferCleanup( void *framebuffer )
 {
 	delete[] (uchar *) framebuffer;
 }
@@ -319,13 +319,13 @@ void ItalcVncConnection::framebufferCleanup( void *framebuffer )
 
 
 
-ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
+VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
 	QThread( parent ),
 	m_hostReachable( false ),
 	m_frameBufferInitialized( false ),
 	m_frameBufferValid( false ),
 	m_cl( nullptr ),
-	m_italcAuthType( RfbItalcAuth::DSA ),
+	m_veyonAuthType( RfbVeyonAuth::DSA ),
 	m_quality( DemoClientQuality ),
 	m_port( -1 ),
 	m_terminateTimer( this ),
@@ -339,17 +339,17 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_terminateTimer.setSingleShot( true );
 	m_terminateTimer.setInterval( ThreadTerminationTimeout );
 
-	connect( &m_terminateTimer, &QTimer::timeout, this, &ItalcVncConnection::terminate );
+	connect( &m_terminateTimer, &QTimer::timeout, this, &VeyonVncConnection::terminate );
 
-	if( ItalcCore::config().isLogonAuthenticationEnabled() )
+	if( VeyonCore::config().isLogonAuthenticationEnabled() )
 	{
-		m_italcAuthType = RfbItalcAuth::Logon;
+		m_veyonAuthType = RfbVeyonAuth::Logon;
 	}
 }
 
 
 
-ItalcVncConnection::~ItalcVncConnection()
+VeyonVncConnection::~VeyonVncConnection()
 {
 	stop();
 
@@ -371,14 +371,14 @@ ItalcVncConnection::~ItalcVncConnection()
 
 
 
-void ItalcVncConnection::stop( bool deleteAfterFinished )
+void VeyonVncConnection::stop( bool deleteAfterFinished )
 {
 	if( isRunning() )
 	{
 		if( deleteAfterFinished )
 		{
-			connect( this, &ItalcVncConnection::finished,
-					 this, &ItalcVncConnection::deleteLater );
+			connect( this, &VeyonVncConnection::finished,
+					 this, &VeyonVncConnection::deleteLater );
 		}
 
 		m_scaledScreen = QImage();
@@ -391,7 +391,7 @@ void ItalcVncConnection::stop( bool deleteAfterFinished )
 		m_terminateTimer.start();
 
 		// stop timer if thread terminates properly before timeout
-		connect( this, &ItalcVncConnection::finished,
+		connect( this, &VeyonVncConnection::finished,
 				 &m_terminateTimer, &QTimer::stop );
 	}
 	else if( deleteAfterFinished )
@@ -403,7 +403,7 @@ void ItalcVncConnection::stop( bool deleteAfterFinished )
 
 
 
-void ItalcVncConnection::reset( const QString &host )
+void VeyonVncConnection::reset( const QString &host )
 {
 	if( m_state != Connected && isRunning() )
 	{
@@ -420,7 +420,7 @@ void ItalcVncConnection::reset( const QString &host )
 
 
 
-void ItalcVncConnection::setHost( const QString &host )
+void VeyonVncConnection::setHost( const QString &host )
 {
 	QMutexLocker locker( &m_mutex );
 	m_host = host;
@@ -442,7 +442,7 @@ void ItalcVncConnection::setHost( const QString &host )
 
 
 
-void ItalcVncConnection::setPort( int port )
+void VeyonVncConnection::setPort( int port )
 {
 	QMutexLocker locker( &m_mutex );
 	m_port = port;
@@ -450,7 +450,7 @@ void ItalcVncConnection::setPort( int port )
 
 
 
-const QImage ItalcVncConnection::image( int x, int y, int w, int h ) const
+const QImage VeyonVncConnection::image( int x, int y, int w, int h ) const
 {
 	QReadLocker locker( &m_imgLock );
 
@@ -464,7 +464,7 @@ const QImage ItalcVncConnection::image( int x, int y, int w, int h ) const
 
 
 
-void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
+void VeyonVncConnection::setFramebufferUpdateInterval( int interval )
 {
 	m_framebufferUpdateInterval = interval;
 }
@@ -472,7 +472,7 @@ void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
 
 
 
-void ItalcVncConnection::rescaleScreen()
+void VeyonVncConnection::rescaleScreen()
 {
 	if( m_image.size().isValid() == false ||
 			m_scaledSize.isNull() ||
@@ -491,7 +491,7 @@ void ItalcVncConnection::rescaleScreen()
 
 
 
-void ItalcVncConnection::run()
+void VeyonVncConnection::run()
 {
 	m_state = Disconnected;
 	emit stateChanged();
@@ -509,7 +509,7 @@ void ItalcVncConnection::run()
 
 
 
-void ItalcVncConnection::doConnection()
+void VeyonVncConnection::doConnection()
 {
 	QMutex sleeperMutex;
 
@@ -534,7 +534,7 @@ void ItalcVncConnection::doConnection()
 
 		if( m_port < 0 ) // use default port?
 		{
-			m_cl->serverPort = ItalcCore::config().computerControlServerPort();
+			m_cl->serverPort = VeyonCore::config().computerControlServerPort();
 		}
 		else
 		{
@@ -620,7 +620,7 @@ void ItalcVncConnection::doConnection()
 			}
 			else
 			{
-				qDebug( "ItalcVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
+				qDebug( "VeyonVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
 				// no so disconnect and try again
 				break;
 			}
@@ -698,7 +698,7 @@ void ItalcVncConnection::doConnection()
 
 
 
-void ItalcVncConnection::finishFrameBufferUpdate()
+void VeyonVncConnection::finishFrameBufferUpdate()
 {
 	if( m_frameBufferValid == false )
 	{
@@ -714,7 +714,7 @@ void ItalcVncConnection::finishFrameBufferUpdate()
 
 
 
-void ItalcVncConnection::enqueueEvent( MessageEvent *e )
+void VeyonVncConnection::enqueueEvent( MessageEvent *e )
 {
 	QMutexLocker lock( &m_mutex );
 	if( m_state != Connected )
@@ -728,7 +728,7 @@ void ItalcVncConnection::enqueueEvent( MessageEvent *e )
 
 
 
-void ItalcVncConnection::mouseEvent( int x, int y, int buttonMask )
+void VeyonVncConnection::mouseEvent( int x, int y, int buttonMask )
 {
 	enqueueEvent( new PointerClientEvent( x, y, buttonMask ) );
 }
@@ -736,7 +736,7 @@ void ItalcVncConnection::mouseEvent( int x, int y, int buttonMask )
 
 
 
-void ItalcVncConnection::keyEvent( unsigned int key, bool pressed )
+void VeyonVncConnection::keyEvent( unsigned int key, bool pressed )
 {
 	enqueueEvent( new KeyClientEvent( key, pressed ) );
 }
@@ -744,7 +744,7 @@ void ItalcVncConnection::keyEvent( unsigned int key, bool pressed )
 
 
 
-void ItalcVncConnection::clientCut( const QString &text )
+void VeyonVncConnection::clientCut( const QString &text )
 {
 	enqueueEvent( new ClientCutEvent( text ) );
 }
@@ -752,7 +752,7 @@ void ItalcVncConnection::clientCut( const QString &text )
 
 
 
-void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
+void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 {
 	SocketDevice socketDevice( libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
@@ -760,29 +760,29 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 	int authTypeCount = message.read().toInt();
 
-	QList<RfbItalcAuth::Type> authTypes;
+	QList<RfbVeyonAuth::Type> authTypes;
 	for( int i = 0; i < authTypeCount; ++i )
 	{
-		authTypes.append( message.read().value<RfbItalcAuth::Type>() );
+		authTypes.append( message.read().value<RfbVeyonAuth::Type>() );
 	}
 
-	qDebug() << "ItalcVncConnection::handleSecTypeItalc(): received authentication types:" << authTypes;
+	qDebug() << "VeyonVncConnection::handleSecTypeVeyon(): received authentication types:" << authTypes;
 
-	RfbItalcAuth::Type chosenAuthType = RfbItalcAuth::Token;
+	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
 	if( authTypes.count() > 0 )
 	{
 		chosenAuthType = authTypes.first();
 
-		// look whether the ItalcVncConnection recommends a specific
-		// authentication type (e.g. ItalcAuthHostBased when running as
+		// look whether the VeyonVncConnection recommends a specific
+		// authentication type (e.g. VeyonAuthHostBased when running as
 		// demo client)
-		ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( client, nullptr );
+		VeyonVncConnection *t = (VeyonVncConnection *) rfbClientGetClientData( client, nullptr );
 
 		if( t != nullptr )
 		{
 			for( auto authType : authTypes )
 			{
-				if( t->italcAuthType() == authType )
+				if( t->veyonAuthType() == authType )
 				{
 					chosenAuthType = authType;
 				}
@@ -790,15 +790,15 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		}
 	}
 
-	qDebug() << "ItalcVncConnection::handleSecTypeItalc(): chose authentication type" << chosenAuthType;
+	qDebug() << "VeyonVncConnection::handleSecTypeVeyon(): chose authentication type" << chosenAuthType;
 	VariantArrayMessage authReplyMessage( &socketDevice );
 
 	authReplyMessage.write( chosenAuthType );
 
 	// send username which is used when displaying an access confirm dialog
-	if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
 	{
-		authReplyMessage.write( ItalcCore::authenticationCredentials().logonUsername() );
+		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
 	}
 	else
 	{
@@ -812,27 +812,27 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 	switch( chosenAuthType )
 	{
-	case RfbItalcAuth::DSA:
-		if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::PrivateKey ) )
+	case RfbVeyonAuth::DSA:
+		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::PrivateKey ) )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
 			QByteArray challenge = challengeReceiveMessage.read().toByteArray();
-			QByteArray signature = ItalcCore::authenticationCredentials().
+			QByteArray signature = VeyonCore::authenticationCredentials().
 					privateKey().signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
-			challengeResponseMessage.write( ItalcCore::instance()->userRole() );
+			challengeResponseMessage.write( VeyonCore::instance()->userRole() );
 			challengeResponseMessage.write( signature );
 			challengeResponseMessage.send();
 		}
 		break;
 
-	case RfbItalcAuth::HostWhiteList:
+	case RfbVeyonAuth::HostWhiteList:
 		// nothing to do - we just get accepted because the host white list contains our IP
 		break;
 
-	case RfbItalcAuth::Logon:
+	case RfbVeyonAuth::Logon:
 	{
 		VariantArrayMessage publicKeyMessage( &socketDevice );
 		publicKeyMessage.receive();
@@ -841,15 +841,15 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 		if( publicKey.canEncrypt() == false )
 		{
-			qCritical( "ItalcVncConnection::handleSecTypeItalc(): can't encrypt with given public key!" );
+			qCritical( "VeyonVncConnection::handleSecTypeVeyon(): can't encrypt with given public key!" );
 			break;
 		}
 
-		CryptoCore::SecureArray plainTextPassword( ItalcCore::authenticationCredentials().logonPassword().toUtf8() );
+		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword().toUtf8() );
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
-			qCritical( "ItalcVncConnection::handleSecTypeItalc(): password encryption failed!" );
+			qCritical( "VeyonVncConnection::handleSecTypeVeyon(): password encryption failed!" );
 			break;
 		}
 
@@ -859,10 +859,10 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 		break;
 	}
 
-	case RfbItalcAuth::Token:
+	case RfbVeyonAuth::Token:
 	{
 		VariantArrayMessage tokenAuthMessage( &socketDevice );
-		tokenAuthMessage.write( ItalcCore::authenticationCredentials().token() );
+		tokenAuthMessage.write( VeyonCore::authenticationCredentials().token() );
 		tokenAuthMessage.send();
 		break;
 	}
@@ -875,9 +875,9 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 
 
-void ItalcVncConnection::hookPrepareAuthentication(rfbClient *cl)
+void VeyonVncConnection::hookPrepareAuthentication(rfbClient *cl)
 {
-	ItalcVncConnection* t = (ItalcVncConnection *) rfbClientGetClientData( cl, nullptr );
+	VeyonVncConnection* t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 
 	// set our internal flag which indicates that we basically have communication with the client
 	// which means that the host is reachable
@@ -886,7 +886,7 @@ void ItalcVncConnection::hookPrepareAuthentication(rfbClient *cl)
 
 
 
-qint64 ItalcVncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
+qint64 VeyonVncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
 												   SocketDevice::SocketOperation operation, void* user )
 {
 	rfbClient * cl = (rfbClient *) user;
@@ -904,8 +904,8 @@ qint64 ItalcVncConnection::libvncClientDispatcher( char* buffer, const qint64 by
 
 
 
-void handleSecTypeItalc( rfbClient *client )
+void handleSecTypeVeyon( rfbClient *client )
 {
-	ItalcVncConnection::hookPrepareAuthentication( client );
-	ItalcVncConnection::handleSecTypeItalc( client );
+	VeyonVncConnection::hookPrepareAuthentication( client );
+	VeyonVncConnection::handleSecTypeVeyon( client );
 }

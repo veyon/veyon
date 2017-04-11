@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -24,8 +24,8 @@
 
 #include "ComputerControlInterface.h"
 #include "Computer.h"
-#include "ItalcVncConnection.h"
-#include "ItalcCoreConnection.h"
+#include "VeyonVncConnection.h"
+#include "VeyonCoreConnection.h"
 #include "UserSessionControl.h"
 
 
@@ -58,20 +58,20 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSession
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
-		m_vncConnection = new ItalcVncConnection();
+		m_vncConnection = new VeyonVncConnection();
 		m_vncConnection->setHost( m_computer.hostAddress() );
-		m_vncConnection->setQuality( ItalcVncConnection::ThumbnailQuality );
+		m_vncConnection->setQuality( VeyonVncConnection::ThumbnailQuality );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 		m_vncConnection->setFramebufferUpdateInterval( 1000 );	// TODO: replace hard-coded value
 		m_vncConnection->start();
 
-		m_coreConnection = new ItalcCoreConnection( m_vncConnection );
+		m_coreConnection = new VeyonCoreConnection( m_vncConnection );
 
-		connect( m_vncConnection, &ItalcVncConnection::framebufferUpdateComplete,
+		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete,
 				 this, &ComputerControlInterface::setScreenUpdateFlag );
-		connect( m_vncConnection, &ItalcVncConnection::stateChanged,
+		connect( m_vncConnection, &VeyonVncConnection::stateChanged,
 				 this, &ComputerControlInterface::updateState );
-		connect( m_coreConnection, &ItalcCoreConnection::featureMessageReceived,
+		connect( m_coreConnection, &VeyonCoreConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
 	}
 	else
@@ -168,10 +168,10 @@ void ComputerControlInterface::updateState()
 	{
 		switch( m_vncConnection->state() )
 		{
-		case ItalcVncConnection::Disconnected: m_state = Disconnected; break;
-		case ItalcVncConnection::Connecting: m_state = Connecting; break;
-		case ItalcVncConnection::Connected: m_state = Connected; break;
-		case ItalcVncConnection::HostUnreachable: m_state = Unreachable; break;
+		case VeyonVncConnection::Disconnected: m_state = Disconnected; break;
+		case VeyonVncConnection::Connecting: m_state = Connecting; break;
+		case VeyonVncConnection::Connected: m_state = Connected; break;
+		case VeyonVncConnection::HostUnreachable: m_state = Unreachable; break;
 		default: m_state = Unknown; break;
 		}
 

@@ -2,24 +2,24 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About iTALC</source>
-        <translation>关于 iTALC</translation>
+        <source>About veyon</source>
+        <translation>关于 veyon</translation>
     </message>
     <message>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
+        <source>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
+Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
+        <translation>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
     </message>
     <message>
-        <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
+        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -32,10 +32,10 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
     <message>
         <source>Current language not translated yet (or native English).
 
-If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
+If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
         <translation>TeliuTe&lt;teliute@163.com&gt;, 2014, 2016.
 
-如果您想参与 iTALC 翻译，或是对当前翻译提出建议，请与 iTALC 开发者联系。</translation>
+如果您想参与 veyon 翻译，或是对当前翻译提出建议，请与 veyon 开发者联系。</translation>
     </message>
     <message>
         <source>License</source>
@@ -289,16 +289,16 @@ Do you want to create a new classrom now?</source>
         <translation>IP/主机名</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;输入一个 iTALC 可到达客户端的IP地址或主机名（用&apos;:&apos;指定可选的端口号）&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;输入一个 veyon 可到达客户端的IP地址或主机名（用&apos;:&apos;指定可选的端口号）&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; 这个主机在 iTALC 中显示的昵称。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; 这个主机在 veyon 中显示的昵称。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -536,30 +536,30 @@ p, li { white-space: pre-wrap; }
         <translation>全屏显示</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;请注意，某些改变不能立即生效，需要重启 iTALC 。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;请注意，某些改变不能立即生效，需要重启 veyon 。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>ConfigWidget</name>
     <message>
-        <source>Your iTALC-configuration</source>
-        <translation>您的 iTALC 配置</translation>
+        <source>Your veyon-configuration</source>
+        <translation>您的 veyon 配置</translation>
     </message>
     <message>
-        <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation>在这个面板中您根据所需定制 iTALC。</translation>
+        <source>In this workspace you can customize veyon to fit your needs.</source>
+        <translation>在这个面板中您根据所需定制 veyon。</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
-        <source>iTALC Demo</source>
-        <translation>iTALC 演示</translation>
+        <source>veyon Demo</source>
+        <translation>veyon 演示</translation>
     </message>
 </context>
 <context>
-    <name>ItalcCoreServer</name>
+    <name>VeyonCoreServer</name>
     <message>
         <source>Authentication error</source>
         <translation>验证错误</translation>
@@ -570,7 +570,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ItalcVncConnection</name>
+    <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
         <translation>VNC 验证失败，原因为验证次数过多。</translation>
@@ -587,28 +587,28 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>iTALC Access Key Assistant</source>
-        <translation>iTALC 密钥助手</translation>
+        <source>veyon Access Key Assistant</source>
+        <translation>veyon 密钥助手</translation>
     </message>
     <message>
-        <source>Create/import iTALC access keys</source>
-        <translation>创建/导入 iTALC 访问密钥</translation>
+        <source>Create/import veyon access keys</source>
+        <translation>创建/导入 veyon 访问密钥</translation>
     </message>
     <message>
-        <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation>助手工具将帮助您创建或导入 iTALC 访问密钥。</translation>
+        <source>This assistant will help you to create or import veyon access keys.</source>
+        <translation>助手工具将帮助您创建或导入 veyon 访问密钥。</translation>
     </message>
     <message>
         <source>How does it work?</source>
         <translation>密钥起什么作用？</translation>
     </message>
     <message>
-        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
+        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
 
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>iTALC 密钥包括两部分，私钥和公钥。
+        <translation>veyon 密钥包括两部分，私钥和公钥。
 
 教师端生成有私钥和公钥，把公钥复制到客户端，教师机通过私钥与学生机的公钥配对成功后，就可以访问并控制学生机。因此，私钥文件的权限，一定要设置为仅教师用户能读取。
 
@@ -723,8 +723,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>无效的公钥</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation>选中的文件不包含 iTALC 公钥！</translation>
+        <source>The selected file does not contain a valid public veyon access key!</source>
+        <translation>选中的文件不包含 veyon 公钥！</translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -777,8 +777,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>登录用户组管理器</translation>
     </message>
     <message>
-        <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation>请添加允许访问 iTALC 网络中计算机的用户组。</translation>
+        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
+        <translation>请添加允许访问 veyon 网络中计算机的用户组。</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -789,8 +789,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>...</translation>
     </message>
     <message>
-        <source>Groups with iTALC privileges</source>
-        <translation>有 iTALC 权限的群组</translation>
+        <source>Groups with veyon privileges</source>
+        <translation>有 veyon 权限的群组</translation>
     </message>
 </context>
 <context>
@@ -811,16 +811,16 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>工具栏</translation>
     </message>
     <message>
-        <source>iTALC Management Console</source>
-        <translation>iTALC 管理控制台</translation>
+        <source>veyon Management Console</source>
+        <translation>veyon 管理控制台</translation>
     </message>
     <message>
         <source>General</source>
         <translation>常规</translation>
     </message>
     <message>
-        <source>iTALC Server</source>
-        <translation>iTALC 服务器</translation>
+        <source>veyon Server</source>
+        <translation>veyon 服务器</translation>
     </message>
     <message>
         <source>Paths</source>
@@ -835,8 +835,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>调试</translation>
     </message>
     <message>
-        <source>iTALC Service</source>
-        <translation>iTALC 服务</translation>
+        <source>veyon Service</source>
+        <translation>veyon 服务</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -959,8 +959,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>VNC reflector</translation>
     </message>
     <message>
-        <source>iTALC 1 demo server</source>
-        <translation>iTALC 1 演示服务</translation>
+        <source>veyon 1 demo server</source>
+        <translation>veyon 1 演示服务</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1055,8 +1055,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>确认允许访问</translation>
     </message>
     <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>您可以配置 iTALC 在当前验证方式，是否显示确认访问的对话框。</translation>
+        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>您可以配置 veyon 在当前验证方式，是否显示确认访问的对话框。</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1067,14 +1067,14 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>允许同一用户不经提示访问桌面</translation>
     </message>
     <message>
-        <source>Debugging iTALC</source>
-        <translation>iTALC 调试</translation>
+        <source>Debugging veyon</source>
+        <translation>veyon 调试</translation>
     </message>
     <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>当使用 iTALC 遇到问题或其他异常时，反馈给开发者是非常重要的，这样在发布下一版本时问题得以修正。此页面可以帮助您轻松提交错误报告。
+        <translation>当使用 veyon 遇到问题或其他异常时，反馈给开发者是非常重要的，这样在发布下一版本时问题得以修正。此页面可以帮助您轻松提交错误报告。
 
 如果问题无法重现，请跳过步骤 1) - 3)。</translation>
     </message>
@@ -1119,11 +1119,11 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 缺陷跟踪器&lt;/a&gt;，新建一个反馈，描述您在第3）步的操作，然后附件上传您第4）保存的文件&lt;/p&gt;
+        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon 缺陷跟踪器&lt;/a&gt;，新建一个反馈，描述您在第3）步的操作，然后附件上传您第4）保存的文件&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 注意：如果教师端和学生端都出现这个问题，请上传两个电脑上的问题报告文件。</translation>
@@ -1165,24 +1165,24 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>关于 iTALC</translation>
+        <source>About veyon</source>
+        <translation>关于 veyon</translation>
     </message>
     <message>
         <source>About Qt</source>
         <translation>关于 Qt</translation>
     </message>
     <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
+        <source>veyon</source>
+        <translation>veyon</translation>
     </message>
     <message>
         <source>No write access</source>
         <translation>没有写入权限</translation>
     </message>
     <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>不能读/写或创建目录 %1 ！为了运行 iTALC ，请确认您有创建或写入该目录的权限。</translation>
+        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation>不能读/写或创建目录 %1 ！为了运行 veyon ，请确认您有创建或写入该目录的权限。</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1209,8 +1209,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>预览</translation>
     </message>
     <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>这是 iTALC 的默认模式，让您预览所有已连接的计算机。点击此按钮也会解锁客户机或退出演示模式。</translation>
+        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation>这是 veyon 的默认模式，让您预览所有已连接的计算机。点击此按钮也会解锁客户机或退出演示模式。</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
@@ -1329,24 +1329,24 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>点击此按钮重新排列和调整所有的窗口图标。</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>无法连接到 iTALC 服务</translation>
+        <source>Could not contact veyon service</source>
+        <translation>无法连接到 veyon 服务</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>无法连接到 iTALC 服务，可能是 ica 服务未启动，或者您的密钥文件错误，或是密钥安装不正确。请再次尝试，或者与管理员联系，运行 iTALC 管理控制台(imc)解决此问题。</translation>
+        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
+        <translation>无法连接到 veyon 服务，可能是 ica 服务未启动，或者您的密钥文件错误，或是密钥安装不正确。请再次尝试，或者与管理员联系，运行 veyon 管理控制台(imc)解决此问题。</translation>
     </message>
     <message>
-        <source>iTALC Master Control</source>
-        <translation>iTALC 主控台</translation>
+        <source>veyon Master Control</source>
+        <translation>veyon 主控台</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>无法认证</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>找不到配对密钥，或者您的密钥已过期。请使用 iTALC 管理控制台(imc)建立新的密钥对。此外，您也可以在 iTALC 管理控制台更改登录认证方式，此问题导致无法使用 iTALC 来访问电脑。</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
+        <translation>找不到配对密钥，或者您的密钥已过期。请使用 veyon 管理控制台(imc)建立新的密钥对。此外，您也可以在 veyon 管理控制台更改登录认证方式，此问题导致无法使用 veyon 来访问电脑。</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1357,24 +1357,24 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>退出</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the iTALC Service.</source>
-        <translation>不能设置 iTALC 服务的自启动属性。</translation>
+        <source>Could not modify the autostart property for the veyon Service.</source>
+        <translation>不能设置 veyon 服务的自启动属性。</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the iTALC Service.</source>
-        <translation>不能设置 iTALC 服务参数。</translation>
+        <source>Could not modify the service arguments for the veyon Service.</source>
+        <translation>不能设置 veyon 服务参数。</translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the iTALC Service.</source>
-        <translation>不能更改 iTALC 服务的防火墙配置。</translation>
+        <source>Could not change the firewall configuration for the veyon Service.</source>
+        <translation>不能更改 veyon 服务的防火墙配置。</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
         <translation>配置文件不可写</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>本地配置后台反馈配置不能写入，请以更高的权限(如管理员)来运行 iTALC 管理控制台。</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
+        <translation>本地配置后台反馈配置不能写入，请以更高的权限(如管理员)来运行 veyon 管理控制台。</translation>
     </message>
     <message>
         <source>All settings were applied successfully.</source>
@@ -1385,32 +1385,32 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>应用设置时出错！</translation>
     </message>
     <message>
-        <source>iTALC Management Console %1</source>
-        <translation>iTALC 管理控制台 %1</translation>
+        <source>veyon Management Console %1</source>
+        <translation>veyon 管理控制台 %1</translation>
     </message>
     <message>
-        <source>Restart iTALC Service</source>
-        <translation>重启 iTALC 服务</translation>
+        <source>Restart veyon Service</source>
+        <translation>重启 veyon 服务</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation>所有设置均已保存成功。需要重启 iTALC 服务才能生效，要立即重启服务吗？</translation>
+        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
+        <translation>所有设置均已保存成功。需要重启 veyon 服务才能生效，要立即重启服务吗？</translation>
     </message>
     <message>
-        <source>Starting iTALC service</source>
-        <translation>正在启动 iTALC 服务</translation>
+        <source>Starting veyon service</source>
+        <translation>正在启动 veyon 服务</translation>
     </message>
     <message>
-        <source>Stopping iTALC service</source>
-        <translation>正在停止 iTALC 服务</translation>
+        <source>Stopping veyon service</source>
+        <translation>正在停止 veyon 服务</translation>
     </message>
     <message>
         <source>Running</source>
         <translation>正在运行</translation>
     </message>
     <message>
-        <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>iTALC 服务需要暂时停止，以便删除日志文件，是否继续？</translation>
+        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>veyon 服务需要暂时停止，以便删除日志文件，是否继续？</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1457,16 +1457,16 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>保存错误报告文档</translation>
     </message>
     <message>
-        <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation>iTALC 错误报告文件(*.ibra.xml)</translation>
+        <source>veyon bug report archive (*.ibra.xml)</source>
+        <translation>veyon 错误报告文件(*.ibra.xml)</translation>
     </message>
     <message>
-        <source>iTALC bug report archive saved</source>
-        <translation>iTALC 错误报告文件已保存</translation>
+        <source>veyon bug report archive saved</source>
+        <translation>veyon 错误报告文件已保存</translation>
     </message>
     <message>
-        <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>iTALC 错误报告文件已保存到 %1，包括 iTALC 日志文件和您操作系统的信息。您可以把它附在错误报告中一同提交。</translation>
+        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation>veyon 错误报告文件已保存到 %1，包括 veyon 日志文件和您操作系统的信息。您可以把它附在错误报告中一同提交。</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1483,11 +1483,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;欢迎使用 iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;欢迎使用 veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
@@ -1502,12 +1502,12 @@ p, li { white-space: pre-wrap; }
         <translation>这个图标代表的是截图面板，它是一个非常有用的管理工具，能让您管理所拍的学生机屏幕快照。</translation>
     </message>
     <message>
-        <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation>当然您可以点击这个图标按钮来配置 iTALC，它是一个常用的配置面板。</translation>
+        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
+        <translation>当然您可以点击这个图标按钮来配置 veyon，它是一个常用的配置面板。</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>关于 iTALC</translation>
+        <source>About veyon</source>
+        <translation>关于 veyon</translation>
     </message>
 </context>
 <context>
@@ -1517,19 +1517,19 @@ p, li { white-space: pre-wrap; }
         <translation>简介</translation>
     </message>
     <message>
-        <source>Some basic information on iTALC and how to use it.</source>
-        <translation>一些基本的 iTALC 信息和使用方法。</translation>
+        <source>Some basic information on veyon and how to use it.</source>
+        <translation>一些基本的 veyon 信息和使用方法。</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>iTALC Logon</source>
-        <translation>iTALC 登录</translation>
+        <source>veyon Logon</source>
+        <translation>veyon 登录</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access iTALC clients.</source>
-        <translation>请输入您的用户名和密码，以便访问 iTALC 客户机。</translation>
+        <source>Please enter your username and password in order to access veyon clients.</source>
+        <translation>请输入您的用户名和密码，以便访问 veyon 客户机。</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1547,8 +1547,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QApplication</name>
     <message>
-        <source>iTALC Client %1 on %2:%3</source>
-        <translation>在 %2:%3 上的 iTALC 客户机 %1</translation>
+        <source>veyon Client %1 on %2:%3</source>
+        <translation>在 %2:%3 上的 veyon 客户机 %1</translation>
     </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>

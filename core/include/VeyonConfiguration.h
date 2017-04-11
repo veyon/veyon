@@ -1,10 +1,10 @@
 /*
- * ItalcConfiguration.h - a Configuration object storing system wide
+ * VeyonConfiguration.h - a Configuration object storing system wide
  *                        configuration values
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,30 +23,30 @@
  *
  */
 
-#ifndef ITALC_CONFIGURATION_H
-#define ITALC_CONFIGURATION_H
+#ifndef VEYON_CONFIGURATION_H
+#define VEYON_CONFIGURATION_H
 
 #include <QtCore/QStringList>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 #include "Configuration/Object.h"
 
-#include "ItalcConfigurationProperties.h"
+#include "VeyonConfigurationProperties.h"
 
-class ITALC_CORE_EXPORT ItalcConfiguration : public Configuration::Object
+class VEYON_CORE_EXPORT VeyonConfiguration : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	ItalcConfiguration( Configuration::Store::Backend backend =
+	VeyonConfiguration( Configuration::Store::Backend backend =
 										Configuration::Store::LocalBackend );
-	ItalcConfiguration( Configuration::Store *store );
-	ItalcConfiguration( const ItalcConfiguration &ref );
+	VeyonConfiguration( Configuration::Store *store );
+	VeyonConfiguration( const VeyonConfiguration &ref );
 
-	static ItalcConfiguration defaultConfiguration();
+	static VeyonConfiguration defaultConfiguration();
 
 	static QString expandPath( QString path );
 
-	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
+	FOREACH_VEYON_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
 	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
 	// macro expansion :-(

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -37,7 +37,7 @@
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "ToolButton.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "MasterCore.h"
 #include "UserConfig.h"
@@ -54,7 +54,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
+	setWindowTitle( QString( "%1 Master %2" ).arg( VeyonCore::applicationName() ).arg( VEYON_VERSION ) );
 
 	restoreState( QByteArray::fromBase64( m_masterCore.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_masterCore.userConfig().windowGeometry().toUtf8() ) );
@@ -138,14 +138,14 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	icon.addFile( ":/resources/icon32.png" );
 
 	m_systemTrayIcon.setIcon( icon );
-	m_systemTrayIcon.setToolTip( tr( "%1 Master Control" ).arg( ItalcCore::applicationName() ) );
+	m_systemTrayIcon.setToolTip( tr( "%1 Master Control" ).arg( VeyonCore::applicationName() ) );
 	m_systemTrayIcon.show();
 	connect( &m_systemTrayIcon, SIGNAL( activated(
 					QSystemTrayIcon::ActivationReason ) ),
 		this, SLOT( handleSystemTrayEvent(
 					QSystemTrayIcon::ActivationReason ) ) );
 
-	ItalcCore::enforceBranding( this );
+	VeyonCore::enforceBranding( this );
 }
 
 
@@ -161,19 +161,19 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initAuthentication()
 {
-	if( ItalcCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) )
+	if( VeyonCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) )
 	{
 		return true;
 	}
 
-	if( ItalcCore::instance()->userRole() != ItalcCore::RoleTeacher )
+	if( VeyonCore::instance()->userRole() != VeyonCore::RoleTeacher )
 	{
-		ItalcCore::instance()->setUserRole( ItalcCore::RoleTeacher );
+		VeyonCore::instance()->setUserRole( VeyonCore::RoleTeacher );
 		return initAuthentication();
 	}
 
 	// if we have logon credentials, assume they are fine and continue
-	if( ItalcCore::authenticationCredentials().hasCredentials(
+	if( VeyonCore::authenticationCredentials().hasCredentials(
 									AuthenticationCredentials::UserLogon ) )
 	{
 		return true;
@@ -185,7 +185,7 @@ bool MainWindow::initAuthentication()
 				"are outdated. Please create new key files using the %1 "
 				"Configurator. Alternatively set up logon authentication "
 				"using the %1 Configurator. Otherwise you won't be "
-				"able to access computers using %1." ).arg( ItalcCore::applicationName() ) );
+				"able to access computers using %1." ).arg( VeyonCore::applicationName() ) );
 
 	return false;
 }

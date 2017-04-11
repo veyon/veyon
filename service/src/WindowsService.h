@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,9 +25,9 @@
 #ifndef WINDOWS_SERVICE_H
 #define WINDOWS_SERVICE_H
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <windows.h>
 #include <wtsapi32.h>
 

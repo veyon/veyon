@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QDir>
 #include <QProcess>
@@ -37,7 +37,7 @@
 #include "FileSystemBrowser.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "ConfiguratorCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "MainWindow.h"
 #include "PluginManager.h"
@@ -52,7 +52,7 @@ MainWindow::MainWindow() :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "%1 Configurator %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
+	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName() ).arg( VEYON_VERSION ) );
 
 	loadConfigurationPagePlugins();
 
@@ -60,9 +60,9 @@ MainWindow::MainWindow() :
 	reset();
 
 	// if local configuration is incomplete, re-enable the apply button
-	if( ItalcConfiguration(
+	if( VeyonConfiguration(
 			Configuration::Store::LocalBackend ).data().size() <
-										ItalcCore::config().data().size() )
+										VeyonCore::config().data().size() )
 	{
 		configurationChanged();
 	}
@@ -81,9 +81,9 @@ MainWindow::MainWindow() :
 
 	connect( ui->actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt );
 
-	connect( &ItalcCore::config(), &ItalcConfiguration::configurationChanged, this, &MainWindow::configurationChanged );
+	connect( &VeyonCore::config(), &VeyonConfiguration::configurationChanged, this, &MainWindow::configurationChanged );
 
-	ItalcCore::enforceBranding( this );
+	VeyonCore::enforceBranding( this );
 }
 
 
@@ -99,9 +99,9 @@ void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )
 	{
-		ItalcCore::config().clear();
-		ItalcCore::config() += ItalcConfiguration::defaultConfiguration();
-		ItalcCore::config() += ItalcConfiguration( Configuration::Store::LocalBackend );
+		VeyonCore::config().clear();
+		VeyonCore::config() += VeyonConfiguration::defaultConfiguration();
+		VeyonCore::config() += VeyonConfiguration( Configuration::Store::LocalBackend );
 	}
 
 	for( auto page : findChildren<ConfigurationPage *>() )
@@ -118,7 +118,7 @@ void MainWindow::reset( bool onlyUI )
 
 void MainWindow::apply()
 {
-	if( ConfiguratorCore::applyConfiguration( ItalcCore::config() ) )
+	if( ConfiguratorCore::applyConfiguration( VeyonCore::config() ) )
 	{
 		for( auto page : findChildren<ConfigurationPage *>() )
 		{
@@ -163,7 +163,7 @@ void MainWindow::loadSettingsFromFile()
 	if( !fileName.isEmpty() )
 	{
 		// write current configuration to output file
-		Configuration::JsonStore( Configuration::JsonStore::System, fileName ).load( &ItalcCore::config() );
+		Configuration::JsonStore( Configuration::JsonStore::System, fileName ).load( &VeyonCore::config() );
 		reset( true );
 		configurationChanged();	// give user a chance to apply possible changes
 	}
@@ -186,7 +186,7 @@ void MainWindow::saveSettingsToFile()
 		bool configChangedPrevious = m_configChanged;
 
 		// write current configuration to output file
-		Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &ItalcCore::config() );
+		Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &VeyonCore::config() );
 
 		m_configChanged = configChangedPrevious;
 		ui->buttonBox->setEnabled( m_configChanged );
@@ -203,7 +203,7 @@ void MainWindow::generateBugReportArchive()
 	fsb.setExpandPath( false );
 	QString outfile = fsb.exec( QDir::homePath(),
 								tr( "Save bug report archive" ),
-								tr( "%1 bug report (*.json)" ).arg( ItalcCore::applicationName() ) );
+								tr( "%1 bug report (*.json)" ).arg( VeyonCore::applicationName() ) );
 	if( outfile.isEmpty() )
 	{
 		return;
@@ -220,7 +220,7 @@ void MainWindow::generateBugReportArchive()
 
 	// retrieve some basic system information
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 	OSVERSIONINFOEX ovi;
 	ovi.dwOSVersionInfoSize = sizeof( ovi );
@@ -248,7 +248,7 @@ void MainWindow::generateBugReportArchive()
 	const QString machineInfo =
 		QProcessEnvironment::systemEnvironment().value( "PROCESSOR_IDENTIFIER" );
 
-#elif defined( ITALC_BUILD_LINUX )
+#elif defined( VEYON_BUILD_LINUX )
 
 	QFile f( "/etc/lsb-release" );
 	f.open( QFile::ReadOnly );
@@ -262,9 +262,9 @@ void MainWindow::generateBugReportArchive()
 
 #endif
 
-#ifdef ITALC_HOST_X86
+#ifdef VEYON_HOST_X86
 	const QString buildType = "x86";
-#elif defined( ITALC_HOST_X86_64 )
+#elif defined( VEYON_HOST_X86_64 )
 	const QString buildType = "x86_64";
 #else
 	const QString buildType = "unknown";
@@ -272,17 +272,17 @@ void MainWindow::generateBugReportArchive()
 	obj.setValue( "OS", os, "General" );
 	obj.setValue( "MachineInfo", machineInfo, "General" );
 	obj.setValue( "BuildType", buildType, "General" );
-	obj.setValue( "Version", ITALC_VERSION, "General" );
+	obj.setValue( "Version", VEYON_VERSION, "General" );
 
 
-	// add current iTALC configuration
-	obj.addSubObject( &ItalcCore::config(), "Configuration" );
+	// add current Veyon configuration
+	obj.addSubObject( &VeyonCore::config(), "Configuration" );
 
 
 	// compress all log files and encode them as base64
 	QStringList paths;
-	paths << LocalSystem::Path::expand( ItalcCore::config().logFileDirectory() );
-#ifdef ITALC_BUILD_WIN32
+	paths << LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() );
+#ifdef VEYON_BUILD_WIN32
 	paths << "C:\\Windows\\Temp";
 #else
 	paths << "/tmp";
@@ -290,7 +290,7 @@ void MainWindow::generateBugReportArchive()
 	foreach( const QString &p, paths )
 	{
 		QDir d( p );
-		foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
+		foreach( const QString &f, d.entryList( QStringList() << "Veyon*.log" ) )
 		{
 			QFile logfile( d.absoluteFilePath( f ) );
 			logfile.open( QFile::ReadOnly );
@@ -302,16 +302,16 @@ void MainWindow::generateBugReportArchive()
 	// write the file
 	obj.flushStore();
 
-	QMessageBox::information( this, tr( "%1 bug report archive saved" ).arg( ItalcCore::applicationName() ),
+	QMessageBox::information( this, tr( "%1 bug report archive saved" ).arg( VeyonCore::applicationName() ),
 			tr( "An %1 bug report archive has been saved to %2. "
 				"It includes %3 log files and information about your "
-				"operating system. You can attach it to a bug report." ).arg( ItalcCore::applicationName() ).
-				arg( QDTNS( outfile ) ).arg( ItalcCore::applicationName() ) );
+				"operating system. You can attach it to a bug report." ).arg( VeyonCore::applicationName() ).
+				arg( QDTNS( outfile ) ).arg( VeyonCore::applicationName() ) );
 }
 
 
 
-void MainWindow::aboutItalc()
+void MainWindow::aboutVeyon()
 {
 	AboutDialog( this ).exec();
 }
@@ -320,7 +320,7 @@ void MainWindow::aboutItalc()
 
 void MainWindow::loadConfigurationPagePlugins()
 {
-	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto configurationPagePluginInterface = qobject_cast<ConfigurationPagePluginInterface *>( pluginObject );

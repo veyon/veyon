@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -33,7 +33,7 @@
 
 ConfigCommandLinePlugin::ConfigCommandLinePlugin() :
 	m_subCommands( {
-				   std::pair<QString, QString>( "clear", "clear system-wide iTALC configuration" ),
+				   std::pair<QString, QString>( "clear", "clear system-wide Veyon configuration" ),
 				   std::pair<QString, QString>( "list", "list all configuration keys and values" ),
 				   std::pair<QString, QString>( "import", "import configuration from given file" ),
 				   std::pair<QString, QString>( "export", "export configuration to given file" ),
@@ -87,7 +87,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( con
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( const QStringList& arguments )
 {
 	// clear global configuration
-	listConfiguration( ItalcCore::config().data(), QString() );
+	listConfiguration( VeyonCore::config().data(), QString() );
 
 	return Successful;
 }
@@ -106,7 +106,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( co
 	Configuration::JsonStore xs( Configuration::JsonStore::System, fileName );
 
 	// merge configuration
-	ItalcCore::config() += ItalcConfiguration( &xs );
+	VeyonCore::config() += VeyonConfiguration( &xs );
 
 	return applyConfiguration();
 }
@@ -123,7 +123,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_export( co
 	}
 
 	// write current configuration to output file
-	Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &ItalcCore::config() );
+	Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &VeyonCore::config() );
 
 	return Successful;
 }
@@ -148,12 +148,12 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
 	}
 
-	if( ItalcCore::config().hasValue( key, parentKey ) == false )
+	if( VeyonCore::config().hasValue( key, parentKey ) == false )
 	{
 		return operationError( tr( "Specified key does not exist in current configuration!" ) );
 	}
 
-	printf( "%s\n", qUtf8Printable( printableConfigurationValue( ItalcCore::config().value( key, parentKey ) ) ) );
+	printf( "%s\n", qUtf8Printable( printableConfigurationValue( VeyonCore::config().value( key, parentKey ) ) ) );
 
 	return NoResult;
 }
@@ -184,7 +184,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
 	}
 
-	ItalcCore::config().setValue( key, value, parentKey );
+	VeyonCore::config().setValue( key, value, parentKey );
 
 	return applyConfiguration();
 }
@@ -209,14 +209,14 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( con
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
 	}
 
-	ItalcCore::config().removeValue( key, parentKey );
+	VeyonCore::config().removeValue( key, parentKey );
 
 	return applyConfiguration();
 }
 
 
 
-void ConfigCommandLinePlugin::listConfiguration( const ItalcConfiguration::DataMap &map,
+void ConfigCommandLinePlugin::listConfiguration( const VeyonConfiguration::DataMap &map,
 												 const QString &parentKey )
 {
 	for( auto it = map.begin(); it != map.end(); ++it )
@@ -247,29 +247,29 @@ void ConfigCommandLinePlugin::listConfiguration( const ItalcConfiguration::DataM
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguration()
 {
 	// do necessary modifications of system configuration
-	if( SystemConfigurationModifier::setServiceAutostart( ItalcCore::config().autostartService() ) == false )
+	if( SystemConfigurationModifier::setServiceAutostart( VeyonCore::config().autostartService() ) == false )
 	{
-		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( SystemConfigurationModifier::setServiceArguments( ItalcCore::config().serviceArguments() ) == false )
+	if( SystemConfigurationModifier::setServiceArguments( VeyonCore::config().serviceArguments() ) == false )
 	{
-		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( SystemConfigurationModifier::enableFirewallException( ItalcCore::config().isFirewallExceptionEnabled() ) == false )
+	if( SystemConfigurationModifier::enableFirewallException( VeyonCore::config().isFirewallExceptionEnabled() ) == false )
 	{
-		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( SystemConfigurationModifier::enableSoftwareSAS( ItalcCore::config().isSoftwareSASEnabled() ) == false )
+	if( SystemConfigurationModifier::enableSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
 	{
 		return operationError( tr( "Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!" ) );
 	}
 
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &ItalcCore::config() );
+	localStore.flush( &VeyonCore::config() );
 
 	return Successful;
 }

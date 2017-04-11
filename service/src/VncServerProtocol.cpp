@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,9 +22,9 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <winsock2.h>
 #endif
 
@@ -139,7 +139,7 @@ bool VncServerProtocol::readProtocol()
 bool VncServerProtocol::sendSecurityTypes()
 {
 	// send list of supported security types
-	const char securityTypeList[2] = { 1, rfbSecTypeItalc };
+	const char securityTypeList[2] = { 1, rfbSecTypeVeyon };
 	m_socket->write( securityTypeList, sizeof( securityTypeList ) );
 
 	return true;
@@ -154,7 +154,7 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 		char chosenSecurityType = 0;
 
 		if( m_socket->read( &chosenSecurityType, sizeof(chosenSecurityType) ) != sizeof(chosenSecurityType) ||
-				chosenSecurityType != rfbSecTypeItalc )
+				chosenSecurityType != rfbSecTypeVeyon )
 		{
 			qCritical( "VncServerProtocol:::receiveSecurityTypeResponse(): protocol initialization failed" );
 			m_socket->close();
@@ -193,7 +193,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 	if( message.isReadyForReceive() && message.receive() )
 	{
-		auto chosenAuthType = message.read().value<RfbItalcAuth::Type>();
+		auto chosenAuthType = message.read().value<RfbVeyonAuth::Type>();
 
 		if( m_serverAuthenticationManager.supportedAuthTypes().contains( chosenAuthType ) == false )
 		{
@@ -203,7 +203,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 			return false;
 		}
 
-		if( chosenAuthType == RfbItalcAuth::None )
+		if( chosenAuthType == RfbVeyonAuth::None )
 		{
 			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): skipping authentication." );
 			m_client->setProtocolState( VncServerClient::AccessControl );

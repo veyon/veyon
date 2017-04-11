@@ -1,4 +1,4 @@
-italcconfiguratoricon ICON resources/italc-configurator.ico
+veyonmastericon ICON data/veyon-master.ico
 #include <windows.h>
 
 VS_VERSION_INFO	VERSIONINFO
@@ -13,13 +13,13 @@ BEGIN
     BLOCK "040904E4"
     //language ID = U.S. English, charset = Windows, Multilingual
     BEGIN
-      VALUE "Comments",		"Intelligent Teaching And Learning with Computers (http://italc.sf.net)\0"
-      VALUE "CompanyName",	"iTALC Solutions\0"
-      VALUE "FileDescription",	"iTALC Configurator\0"
+      VALUE "Comments",		"Virtual Eye On Networks (http://veyon.io)\0"
+      VALUE "CompanyName",	"Veyon Solutions\0"
+      VALUE "FileDescription",	"Veyon Master Application\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2010-2017 Tobias Doerffel\0"
-      VALUE "OriginalFilename",	"italc-configurator.exe\0"
-      VALUE "ProductName",	"iTALC\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2004-2017 Tobias Doerffel\0"
+      VALUE "OriginalFilename",	"veyon-master.exe\0"
+      VALUE "ProductName",	"Veyon\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
     END
   END

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QProcess>
 #include <QTime>
@@ -33,7 +33,7 @@
 #include "WindowsService.h"
 #include "LocalSystem.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 class SasEventListener : public QThread
 {
@@ -53,7 +53,7 @@ public:
 			qWarning( "SendSAS is not supported by operating system!" );
 		}
 
-		m_sasEvent = CreateEvent( nullptr, false, false, "Global\\ItalcServiceSasEvent" );
+		m_sasEvent = CreateEvent( nullptr, false, false, "Global\\VeyonServiceSasEvent" );
 		m_stopEvent = CreateEvent( nullptr, false, false, "StopEvent" );
 	}
 
@@ -109,15 +109,15 @@ private:
 };
 
 
-class ItalcServiceSubProcess
+class VeyonServiceSubProcess
 {
 public:
-	ItalcServiceSubProcess() :
+	VeyonServiceSubProcess() :
 		m_subProcessHandle( NULL )
 	{
 	}
 
-	~ItalcServiceSubProcess()
+	~VeyonServiceSubProcess()
 	{
 		stop();
 	}
@@ -211,13 +211,13 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 
 	if( argv[1] == m_arg )
 	{
-		ItalcCore core( nullptr, "ServiceMonitor" );
+		VeyonCore core( nullptr, "ServiceMonitor" );
 		return runAsService();
 	}
 
 	QApplication app( argc, argv );
 
-	ItalcCore core( &app, "ServiceControl" );
+	VeyonCore core( &app, "ServiceControl" );
 
 	QStringList args = app.arguments();
 	args.removeFirst();
@@ -817,7 +817,7 @@ bool WindowsService::reportStatus( DWORD state, DWORD exitCode, DWORD waitHint )
 
 void WindowsService::monitorSessions()
 {
-	ItalcServiceSubProcess italcProcess;
+	VeyonServiceSubProcess veyonProcess;
 
 	HANDLE hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
 									"Global\\SessionEventUltra" );
@@ -854,23 +854,23 @@ void WindowsService::monitorSessions()
 				{
 					SetEvent( hShutdownEvent );
 				}
-				while( lastServiceStart.elapsed() < 10000 && italcProcess.isRunning() );
+				while( lastServiceStart.elapsed() < 10000 && veyonProcess.isRunning() );
 
-				italcProcess.stop();
+				veyonProcess.stop();
 
 				Sleep( 5000 );
 			}
 			if( sessionId != SESSION_INVALID || sessionChanged )
 			{
-				italcProcess.start( sessionId );
+				veyonProcess.start( sessionId );
 				lastServiceStart.restart();
 			}
 
 			oldSessionId = sessionId;
 		}
-		else if( italcProcess.isRunning() == false )
+		else if( veyonProcess.isRunning() == false )
 		{
-			italcProcess.start( sessionId );
+			veyonProcess.start( sessionId );
 			oldSessionId = sessionId;
 			lastServiceStart.restart();
 		}
@@ -879,7 +879,7 @@ void WindowsService::monitorSessions()
 	qInfo( "Service shutdown" );
 
 	SetEvent( hShutdownEvent );
-	italcProcess.stop();
+	veyonProcess.stop();
 
 	CloseHandle( hShutdownEvent );
 }

@@ -1,9 +1,9 @@
 /*
- * ItalcVncConnection.h - declaration of ItalcVncConnection class
+ * VeyonVncConnection.h - declaration of VeyonVncConnection class
  *
  * Copyright (c) 2008-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * code partly taken from KRDC / vncclientthread.h:
  * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
@@ -25,10 +25,10 @@
  *
  */
 
-#ifndef ITALC_VNC_CONNECTION_H
-#define ITALC_VNC_CONNECTION_H
+#ifndef VEYON_VNC_CONNECTION_H
+#define VEYON_VNC_CONNECTION_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QMutex>
 #include <QQueue>
@@ -38,7 +38,7 @@
 #include <QWaitCondition>
 #include <QImage>
 
-#include "RfbItalcAuth.h"
+#include "RfbVeyonAuth.h"
 #include "SocketDevice.h"
 
 
@@ -51,7 +51,7 @@ public:
 } ;
 
 
-class ITALC_CORE_EXPORT ItalcVncConnection: public QThread
+class VEYON_CORE_EXPORT VeyonVncConnection: public QThread
 {
 	Q_OBJECT
 public:
@@ -76,8 +76,8 @@ public:
 	} ;
 	typedef States State;
 
-	explicit ItalcVncConnection( QObject *parent = nullptr );
-	~ItalcVncConnection() override;
+	explicit VeyonVncConnection( QObject *parent = nullptr );
+	~VeyonVncConnection() override;
 
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;
 	void stop( bool deleteAfterFinished = false );
@@ -100,14 +100,14 @@ public:
 		return m_host;
 	}
 
-	void setItalcAuthType( RfbItalcAuth::Type authType )
+	void setVeyonAuthType( RfbVeyonAuth::Type authType )
 	{
-		m_italcAuthType = authType;
+		m_veyonAuthType = authType;
 	}
 
-	RfbItalcAuth::Type italcAuthType() const
+	RfbVeyonAuth::Type veyonAuthType() const
 	{
-		return m_italcAuthType;
+		return m_veyonAuthType;
 	}
 
 	void setQuality( QualityLevels qualityLevel )
@@ -163,7 +163,7 @@ public:
 	void rescaleScreen();
 
 	// authentication
-	static void handleSecTypeItalc( rfbClient *client );
+	static void handleSecTypeVeyon( rfbClient *client );
 	static void handleMsLogonIIAuth( rfbClient *client );
 	static void hookPrepareAuthentication( rfbClient *cl );
 
@@ -217,7 +217,7 @@ private:
 	static void hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp );
 	static void hookCutText( rfbClient *cl, const char *text, int textlen );
 	static void hookOutputHandler( const char *format, ... );
-	static int8_t hookHandleItalcMessage( rfbClient *cl,
+	static int8_t hookHandleVeyonMessage( rfbClient *cl,
 						rfbServerToClientMsg *msg );
 	static void framebufferCleanup( void* framebuffer );
 
@@ -225,7 +225,7 @@ private:
 	bool m_frameBufferInitialized;
 	bool m_frameBufferValid;
 	rfbClient *m_cl;
-	RfbItalcAuth::Type m_italcAuthType;
+	RfbVeyonAuth::Type m_veyonAuthType;
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;

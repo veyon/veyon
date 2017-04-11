@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,7 +27,7 @@
 
 #include "PluginInterface.h"
 
-class ITALC_CORE_EXPORT CommandLinePluginInterface
+class VEYON_CORE_EXPORT CommandLinePluginInterface
 {
 	Q_GADGET
 public:
@@ -57,7 +57,7 @@ public:
 
 typedef QList<CommandLinePluginInterface *> CommandLinePluginInterfaceList;
 
-#define CommandLinePluginInterface_iid "org.italc-solutions.iTALC.Plugins.CommandLinePluginInterface"
+#define CommandLinePluginInterface_iid "org.veyon-solutions.veyon.Plugins.CommandLinePluginInterface"
 
 Q_DECLARE_INTERFACE(CommandLinePluginInterface, CommandLinePluginInterface_iid)
 

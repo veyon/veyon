@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,7 +27,7 @@
 
 #include <QByteArray>
 
-#include "RfbItalcAuth.h"
+#include "RfbVeyonAuth.h"
 
 class VncServerClient
 {
@@ -56,7 +56,7 @@ public:
 	VncServerClient() :
 		m_protocolState( Disconnected ),
 		m_authState( AuthInit ),
-		m_authType( RfbItalcAuth::Invalid ),
+		m_authType( RfbVeyonAuth::Invalid ),
 		m_username(),
 		m_hostAddress(),
 		m_challenge()
@@ -83,12 +83,12 @@ public:
 		m_authState = authState;
 	}
 
-	RfbItalcAuth::Type authType() const
+	RfbVeyonAuth::Type authType() const
 	{
 		return m_authType;
 	}
 
-	void setAuthType( RfbItalcAuth::Type authType )
+	void setAuthType( RfbVeyonAuth::Type authType )
 	{
 		m_authType = authType;
 	}
@@ -136,7 +136,7 @@ public:
 private:
 	ProtocolState m_protocolState;
 	AuthState m_authState;
-	RfbItalcAuth::Type m_authType;
+	RfbVeyonAuth::Type m_authType;
 	QString m_username;
 	QString m_hostAddress;
 	QByteArray m_challenge;

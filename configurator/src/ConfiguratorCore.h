@@ -1,9 +1,9 @@
 /*
- * ConfiguratorCore.h - global instances for the iTALC Configurator
+ * ConfiguratorCore.h - global instances for the Veyon Configurator
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,18 +29,18 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QString>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-class ItalcConfiguration;
+class VeyonConfiguration;
 class MainWindow;
 
 namespace ConfiguratorCore
 {
-	bool applyConfiguration( const ItalcConfiguration &config );
+	bool applyConfiguration( const VeyonConfiguration &config );
 	int clearConfiguration();
 
-	bool createKeyPair( ItalcCore::UserRole role, const QString &destDir );
-	bool importPublicKey( ItalcCore::UserRole role,
+	bool createKeyPair( VeyonCore::UserRole role, const QString &destDir );
+	bool importPublicKey( VeyonCore::UserRole role,
 							const QString &pubKey, const QString &destDir );
 
 	void informationMessage( const QString &title, const QString &msg );

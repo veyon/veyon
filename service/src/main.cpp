@@ -1,9 +1,9 @@
 /*
- * main.cpp - main file for iTALC Service Application
+ * main.cpp - main file for Veyon Service Application
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QCoreApplication>
 #include <QAbstractNativeEventFilter>
@@ -31,7 +31,7 @@
 #include "ComputerControlServer.h"
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 static HANDLE hShutdownEvent = NULL;
 
 // event filter which makes ICA recognize logoff events etc.
@@ -66,12 +66,12 @@ int main( int argc, char **argv )
 	// decide in what mode to run
 	if( argc >= 2 )
 	{
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 		for( int i = 1; i < argc; ++i )
 		{
 			if( QString( argv[i] ).toLower().contains( "service" ) )
 			{
-				WindowsService winService( "ItalcService", "-service", "iTALC Service",
+				WindowsService winService( "VeyonService", "-service", "Veyon Service",
 											QString(), argc, argv );
 				if( winService.evalArgs( argc, argv ) )
 				{
@@ -85,9 +85,9 @@ int main( int argc, char **argv )
 
 	QCoreApplication app( argc, argv );
 
-	ItalcCore core( &app, "Service" );
+	VeyonCore core( &app, "Service" );
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, false, "Global\\SessionEventUltra" );
 	if( !hShutdownEvent )
 	{
@@ -121,7 +121,7 @@ int main( int argc, char **argv )
 
 	qInfo( "Exec Done" );
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	CloseHandle( hShutdownEvent );
 #endif
 

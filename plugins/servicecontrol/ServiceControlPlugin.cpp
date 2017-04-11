@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,12 +27,12 @@
 
 ServiceControlPlugin::ServiceControlPlugin() :
 	m_subCommands( {
-				   std::pair<QString, QString>( "register", tr( "register iTALC Service" ) ),
-				   std::pair<QString, QString>( "unregister", tr( "unregister iTALC Service" ) ),
-				   std::pair<QString, QString>( "start", tr( "start iTALC Service" ) ),
-				   std::pair<QString, QString>( "stop", tr( "stop iTALC Service" ) ),
-				   std::pair<QString, QString>( "restart", tr( "restart iTALC Service" ) ),
-				   std::pair<QString, QString>( "status", tr( "query status of iTALC Service" ) ),
+				   std::pair<QString, QString>( "register", tr( "register Veyon Service" ) ),
+				   std::pair<QString, QString>( "unregister", tr( "unregister Veyon Service" ) ),
+				   std::pair<QString, QString>( "start", tr( "start Veyon Service" ) ),
+				   std::pair<QString, QString>( "stop", tr( "stop Veyon Service" ) ),
+				   std::pair<QString, QString>( "restart", tr( "restart Veyon Service" ) ),
+				   std::pair<QString, QString>( "status", tr( "query status of Veyon Service" ) ),
 				   } ),
 	m_serviceControl( nullptr )
 {

@@ -1,23 +1,23 @@
-INSTALLING AND SETTING UP iTALC FOR USE
+INSTALLING AND SETTING UP Veyon FOR USE
 =========================================
 
 
 Please note that all instructions in this file apply to the Linux version of
-iTALC. Users of the win32 version of iTALC should run the installer which will
-guide you through the installation. Afterwards the graphical iTALC Configurator
-helps to set up iTALC.
+Veyon. Users of the win32 version of Veyon should run the installer which will
+guide you through the installation. Afterwards the graphical Veyon Configurator
+helps to set up Veyon.
 
-For further information you can also take a look at iTALC-Wiki:
+For further information you can also take a look at Veyon-Wiki:
 
-	http://italc.sf.net/wiki/
+	http://veyon.io/wiki/
 
 
 
-Building iTALC
+Building Veyon
 ----------------
 
 If you have ready to use packages (RPMs, DEBs etc.), you can skip this section
-and continue with "Install iTALC".
+and continue with "Install Veyon".
 
 
 Requirements:
@@ -49,15 +49,15 @@ After CMake ran successfully you can run
 
 	make install
 
-Make sure you're issuing the "make install" as root! This will install iTALC
+Make sure you're issuing the "make install" as root! This will install Veyon
 directly on the computer.
 
 
-Read the next section on how to setup iTALC.
+Read the next section on how to setup Veyon.
 
 
 
-Installing iTALC
+Installing Veyon
 -------------------
 
 Requirements:
@@ -66,7 +66,7 @@ Of course you should have some computers, connected via TCP/IP network... :-)
 
 First you should download the necessary packages depending on your
 Linux distribution. If there're no packages for your distribution,
-try to build iTALC yourself. See previous section for details.
+try to build Veyon yourself. See previous section for details.
 
 If there're unfulfilled requirements, your package management system (dpkg,
 RPM etc.) will complain about it.
@@ -75,43 +75,43 @@ RPM etc.) will complain about it.
 Installing:
 
 First you have to install the necessary packages on your computer(s).
-On clients you only have to install the packages italc:
+On clients you only have to install the packages veyon:
 
 on DPKG-based systems:
 
 
-	apt-get install italc-client
+	apt-get install veyon-client
 
 
 on RPM-based systems:
 
-	rpm -i italc...rpm
+	rpm -i veyon...rpm
 
 
-On the master computer you additionally need italc-master.
+On the master computer you additionally need veyon-master.
 
-	apt-get install italc-master
+	apt-get install veyon-master
 
 or
 
-	rpm -i italc-master...rpm
+	rpm -i veyon-master...rpm
 
 
 
-Setup an iTALC client
+Setup an Veyon client
 ----------------------
 
-On clients you have to make sure that the iTALC Service is being started when
+On clients you have to make sure that the Veyon Service is being started when
 either X is started or a user logs on. There're several methods to achieve this
 (this is why it's not done automatically when installing the package):
 
-1. Add the appropriate command ("italc-service &") to /etc/X11/xinit/xinitrc or
+1. Add the appropriate command ("veyon-service &") to /etc/X11/xinit/xinitrc or
    add an according desktop file to /etc/xdg/autostart.
    This method isn't recommend, because ICA then runs with the user's
    privileges -> the user is able to kill ICA and get out of teacher's
    control.
 
-2. add "italc-service &" to /etc/X11/xdm/Xsetup. On some systems, this
+2. add "veyon-service &" to /etc/X11/xdm/Xsetup. On some systems, this
    doesn't take effect, so either edit /etc/kde4/kdm/Xsetup or
    /etc/X11/gdm/Xsetup
 
@@ -127,28 +127,28 @@ You should see something like "RFB 003.008".
 
 
 
-Setup iTALC authentication
+Setup Veyon authentication
 ----------------------------
 
-iTALC uses a sophisticated authentication concept to make sure only
-authorized persons are able to access computers using iTALC.
+Veyon uses a sophisticated authentication concept to make sure only
+authorized persons are able to access computers using Veyon.
 
 The security is achieved by data signing and -verification using a public and
 a private key. Thus you have to create a key pair by invoking
 
-	italc-configurator -role teacher -createkeypair
+	veyon-configurator -role teacher -createkeypair
 
-which will create a key pair in /etc/italc/keys.
+which will create a key pair in /etc/veyon/keys.
 
-Now copy the directory /etc/italc/keys/public to each client. Make sure the
+Now copy the directory /etc/veyon/keys/public to each client. Make sure the
 whole directory including subdirectories and files are readable but not
 writable to normal users. If you have network shares (AFS, NFS, Samba etc.) it's
 recommended to copy this directory to a network share, set the according
-permissions and link it on each client to /etc/italc/keys. This way it's no
+permissions and link it on each client to /etc/veyon/keys. This way it's no
 problem to generate a new key pair (e.g. if the private key was compromised)
 
 Then (the most important thing!) make sure only the users which should be
-allowed to use iTALC have (only!) read access to /etc/italc/keys/private
+allowed to use Veyon have (only!) read access to /etc/veyon/keys/private
 including subdirectories and files. In most cases you would have to create a
 group "teacher", add all teachers etc. to it and set permissions, so that only
 this group has read permissions.
@@ -158,14 +158,14 @@ this group has read permissions.
 Setup clients and classrooms (i.e. client groups)
 -------------------------------------------------
 
-Before using iTALC, you need tell iTALC which clients to access and how they're
-grouped. For doing so iTALC has an easy to use client manager. After starting
-iTALC, you can open it by clicking on the according button on iTALC's sidebar.
+Before using Veyon, you need tell Veyon which clients to access and how they're
+grouped. For doing so Veyon has an easy to use client manager. After starting
+Veyon, you can open it by clicking on the according button on Veyon's sidebar.
 
 Now you can add clients and client groups using the context menu.
 
 For installing the client configuration you made for other users, copy the
-XML files in $HOME/.italc/ into directory .italc in every iTALC user's home.
+XML files in $HOME/.veyon/ into directory .veyon in every Veyon user's home.
 You can also link the file 'GlobalConfig.xml' to one global client
 configuration in a public network directory, so that you can change every
 user's client config at once, if something in your network has changed (e.g. a

@@ -3,7 +3,7 @@
  *
  *  Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- *  This file is part of iTALC - http://italc.sourceforge.net
+ *  This file is part of veyon - http://veyon.io
  *
  *  This is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,11 +27,11 @@
 #include <QWidget>
 #include <QPixmap>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 #include "InputDeviceBlocker.h"
 
 
-class ITALC_CORE_EXPORT LockWidget : public QWidget
+class VEYON_CORE_EXPORT LockWidget : public QWidget
 {
 	Q_OBJECT
 public:

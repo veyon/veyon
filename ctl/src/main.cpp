@@ -1,9 +1,9 @@
 /*
- * main.cpp - main file for iTALC Control
+ * main.cpp - main file for Veyon Control
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -33,7 +33,7 @@ int main( int argc, char **argv )
 {
 	QCoreApplication* app = nullptr;
 
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	// do not create graphical application if DISPLAY is not available
 	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) == false )
 	{
@@ -56,11 +56,11 @@ int main( int argc, char **argv )
 
 	if( app->arguments().last() == "-v" || app->arguments().last() == "--version" )
 	{
-		printf( "%s\n", ITALC_VERSION );
+		printf( "%s\n", VEYON_VERSION );
 		return 0;
 	}
 
-	ItalcCore* core = new ItalcCore( app, "Control" );
+	VeyonCore* core = new VeyonCore( app, "Control" );
 
 	QMap<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 

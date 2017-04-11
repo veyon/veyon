@@ -1,11 +1,11 @@
-Automated setup with iTALC Configurator
+Automated setup with Veyon Configurator
 =======================================
 
-iTALC Configurator allows to configure an iTALC installation easily.
+Veyon Configurator allows to configure an Veyon installation easily.
 The program provides an easy to use graphical user interface with all
-iTALC-related settings.
+Veyon-related settings.
 
-This document describes how a computer can be setup for the use of iTALC
+This document describes how a computer can be setup for the use of Veyon
 automatically. All instructions refer to an automated setup on Windows but
 should be identical on Linux except platform-specific characteristics such
 as path delimiter, installation paths etc.
@@ -15,41 +15,41 @@ as path delimiter, installation paths etc.
    in the network. Alternatively, a directory on an USB drive works as well.
 
 
-2) Install iTALC on the master computer. Afterwards run Configurator and
+2) Install Veyon on the master computer. Afterwards run Configurator and
    alter the settings according to your needs and your environment.
 
-   In the "Authentication" area, launch the iTALC access key assistant and
+   In the "Authentication" area, launch the Veyon access key assistant and
    let it create an access key pair and export the public key to the directory
    prepared in step 1)
 
 
-3) Create an iTALC reference installation. Afterwards run Configurator and alter
+3) Create an Veyon reference installation. Afterwards run Configurator and alter
    the settings according to your needs and your environment. Then save the
    settings via "File" -> "Save settings into file" to the directory prepared
-   in step 1) and choose a filename, e.g. ItalcSettings.xml
+   in step 1) and choose a filename, e.g. VeyonSettings.xml
 
 
 4) Copy the content of the installation directory (e.g. all files in
-   C:\Program Files\iTALC\) to the directory prepared in step 1).
+   C:\Program Files\Veyon\) to the directory prepared in step 1).
 
 
 5) Write a batch file with the following commands and place it in the same
    directory as the files in the previous steps.
 
-     mkdir "C:\Program Files\iTALC"
-     copy "%~dp0\*.exe" "C:\Program Files\iTALC"
-     copy "%~dp0\*.dll" "C:\Program Files\iTALC"
-     copy "%~dp0\*.txt" "C:\Program Files\iTALC"
-     copy "%~dp0\*.xml" "C:\Program Files\iTALC"
-     italc-configurator -ApplySettings ItalcSettings.xml
-     italc-configurator -ImportPublicKey PublicKey.key.txt
-     italc-service -RegisterService
-     italc-service -StartService
+     mkdir "C:\Program Files\Veyon"
+     copy "%~dp0\*.exe" "C:\Program Files\Veyon"
+     copy "%~dp0\*.dll" "C:\Program Files\Veyon"
+     copy "%~dp0\*.txt" "C:\Program Files\Veyon"
+     copy "%~dp0\*.xml" "C:\Program Files\Veyon"
+     veyon-configurator -ApplySettings VeyonSettings.xml
+     veyon-configurator -ImportPublicKey PublicKey.key.txt
+     veyon-service -RegisterService
+     veyon-service -StartService
 
    When calling Configurator for applying settings and importing the public key
    you can also pass "-silent" or "-quiet" in order to suppress any message
    boxes.
 
    After running this batch file on a computer, the computer should be ready for
-   use with the iTALC network.
+   use with the Veyon network.
 

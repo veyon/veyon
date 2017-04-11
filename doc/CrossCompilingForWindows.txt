@@ -1,4 +1,4 @@
-Cross compiling iTALC for Windows on Linux
+Cross compiling Veyon for Windows on Linux
 ==========================================
 
 - Create an Ubuntu 16.04 installation, e.g. by using the netboot installer at
@@ -27,7 +27,7 @@ Cross compiling iTALC for Windows on Linux
   * openldap-mingw-w64
   * default-jdk
 
-- Change into the iTALC source directory and type
+- Change into the Veyon source directory and type
 
   mkdir b
   cd b
@@ -35,7 +35,7 @@ Cross compiling iTALC for Windows on Linux
   make win-nsi
 
 - This will build a ready-to-use Win32 installer like the ones you can download
-  from the iTALC website.
+  from the Veyon website.
 
 - If you want to build a Win64 installer, run the build_mingw64 script instead.
 

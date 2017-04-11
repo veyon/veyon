@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,9 +22,9 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <windows.h>
 #endif
 
@@ -35,7 +35,7 @@
 #include "ComputerControlServer.h"
 #include "ComputerControlClient.h"
 #include "FeatureMessage.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "SystemTrayIcon.h"
 #include "VariantStream.h"
@@ -50,21 +50,21 @@ ComputerControlServer::ComputerControlServer() :
 	m_featureWorkerManager( m_featureManager ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
-	m_vncServer( ItalcCore::config().vncServerPort() ),
+	m_vncServer( VeyonCore::config().vncServerPort() ),
 	m_vncProxyServer( m_vncServer.serverPort(),
 					  m_vncServer.password(),
-					  ItalcCore::config().localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?
+					  VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
-					  ItalcCore::config().computerControlServerPort(),
+					  VeyonCore::config().computerControlServerPort(),
 					  this,
 					  this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).
-				arg( ItalcCore::applicationName() ).
-				arg( ITALC_VERSION ).
+				arg( VeyonCore::applicationName() ).
+				arg( VEYON_VERSION ).
 				arg( QHostInfo::localHostName() ).
-				arg( QString::number( ItalcCore::config().computerControlServerPort() ) ),
+				arg( QString::number( VeyonCore::config().computerControlServerPort() ) ),
 				m_featureWorkerManager );
 
 	// make app terminate once the VNC server thread has finished
@@ -119,7 +119,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive();
 
-	if( ItalcCore::config().disabledFeatures().contains( featureMessage.featureUid().toString() ) )
+	if( VeyonCore::config().disabledFeatures().contains( featureMessage.featureUid().toString() ) )
 	{
 		qWarning() << "ComputerControlServer::handleFeatureMessage(): ignoring message as feature"
 				   << featureMessage.featureUid() << "is disabled by configuration!";

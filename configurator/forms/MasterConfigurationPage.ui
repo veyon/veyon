@@ -38,7 +38,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
         </property>
        </widget>
@@ -69,7 +69,7 @@
          <string>...</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
         </property>
        </widget>
@@ -168,7 +168,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
           </property>
          </widget>
@@ -179,7 +179,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
           </property>
          </widget>
@@ -222,7 +222,7 @@
   <tabstop>computerDoubleClickFeature</tabstop>
  </tabstops>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

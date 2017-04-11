@@ -7,15 +7,15 @@
    !define DLL_GCC "libgcc_s_sjlj-1.dll"
 !endif
 !define QT5_PLUGINS_PLATFORMS "/usr/@CMAKE_SYSTEM_PROCESSOR@-w64-mingw32/lib/qt5/plugins/platforms"
-!define APP_NAME "iTALC"
-!define COMP_NAME "iTALC Solutions Inc."
-!define WEB_SITE "http://italc.sf.net"
+!define APP_NAME "Veyon"
+!define COMP_NAME "Veyon Solutions Inc."
+!define WEB_SITE "http://veyon.io"
 !define VERSION "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@.@VERSION_BUILD@"
 !define COPYRIGHT "© Tobias Doerffel 2004-2017"
-!define DESCRIPTION "Intelligent Teaching and Learning with Computers"
+!define DESCRIPTION "Virtual Eye On Networks"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
-!define INSTALLER_NAME "italc-${VERSION}-@MINGW_PLATFORM@-setup.exe"
-!define MAIN_APP_EXE "italc-master.exe"
+!define INSTALLER_NAME "veyon-${VERSION}-@MINGW_PLATFORM@-setup.exe"
+!define MAIN_APP_EXE "veyon-master.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
 !define REG_APP_PATH "Software\Microsoft\Windows\CurrentVersion\App Paths\${MAIN_APP_EXE}"
@@ -39,7 +39,7 @@ OutFile "${INSTALLER_NAME}"
 BrandingText "${APP_NAME} ${VERSION}"
 XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
-InstallDir "$PROGRAMFILES64\iTALC"
+InstallDir "$PROGRAMFILES64\Veyon"
 ShowInstDetails show
 RequestExecutionLevel highest
 
@@ -71,7 +71,7 @@ RequestExecutionLevel highest
 !insertmacro MUI_PAGE_INSTFILES
 
 !define MUI_FINISHPAGE_RUN
-!define MUI_FINISHPAGE_RUN_TEXT "Run iTALC Configurator now"
+!define MUI_FINISHPAGE_RUN_TEXT "Run Veyon Configurator now"
 !define MUI_FINISHPAGE_RUN_FUNCTION "RunConfigurator"
 
 !insertmacro MUI_PAGE_FINISH
@@ -136,11 +136,11 @@ RequestExecutionLevel highest
 
 ######################################################################
 
-Section "iTALC Service"
+Section "Veyon Service"
 SectionIn RO
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
-ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
+ExecWait '"$INSTDIR\veyon-service.exe" -quiet -unregisterservice'
 SetOverwrite on
 SetOutPath "$INSTDIR"
 # DLLs
@@ -163,12 +163,12 @@ File "${DLLDIR_LIB}\libwinpthread-1.dll"
 File "${DLLDIR_GCC}\libstdc++-6.dll"
 File "${DLLDIR_GCC}\${DLL_GCC}"
 # core components
-File "italc-service.exe"
+File "veyon-service.exe"
 File "vnchooks.dll"
-File "italc-core.dll"
-File "italc-configurator.exe"
-File "italc-ctl.exe"
-File "italc-worker.exe"
+File "veyon-core.dll"
+File "veyon-configurator.exe"
+File "veyon-ctl.exe"
+File "veyon-worker.exe"
 File "LICENSE.TXT"
 File "README.TXT"
 File "install-interception.exe"
@@ -185,31 +185,31 @@ File "contrib\*"
 SetOutPath "$INSTDIR\contrib\en-US"
 File "contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
-ExecWait '"$INSTDIR\italc-service.exe" -quiet -registerservice'
-ExecWait '"$INSTDIR\italc-ctl.exe" config set Network/FirewallExceptionEnabled 1'
-ExecWait '"$INSTDIR\italc-ctl.exe" config set Service/SoftwareSASEnabled 1'
-ExecWait '"$INSTDIR\italc-service.exe" -quiet -startservice'
+ExecWait '"$INSTDIR\veyon-service.exe" -quiet -registerservice'
+ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 1'
+ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 1'
+ExecWait '"$INSTDIR\veyon-service.exe" -quiet -startservice'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
-  ExecWait '"$INSTDIR\italc-ctl.exe" config import $R1'
+  ExecWait '"$INSTDIR\veyon-ctl.exe" config import $R1'
 ${EndIf}
 SectionEnd
 
-Section "iTALC Master" SEC_MASTER
+Section "Veyon Master" SEC_MASTER
 ${INSTALL_TYPE}
 SetOutPath "$INSTDIR"
-File "italc-master.exe"
+File "veyon-master.exe"
 
-CreateDirectory "$SMPROGRAMS\iTALC"
-CreateShortCut "$SMPROGRAMS\iTALC\iTALC Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$DESKTOP\iTALC Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateDirectory "$SMPROGRAMS\Veyon"
+CreateShortCut "$SMPROGRAMS\Veyon\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$DESKTOP\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 SectionEnd
 
 Function RunConfigurator
-	Exec '"$INSTDIR\italc-configurator.exe"'
+	Exec '"$INSTDIR\veyon-configurator.exe"'
 FunctionEnd
 
 
@@ -230,14 +230,14 @@ Section -Icons_Reg
 SetOutPath "$INSTDIR"
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
-CreateDirectory "$SMPROGRAMS\iTALC"
-CreateShortCut "$SMPROGRAMS\iTALC\iTALC Configurator.lnk" "$INSTDIR\italc-configurator.exe"
-CreateShortCut "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
-WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
-CreateShortCut "$SMPROGRAMS\iTALC\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
+CreateDirectory "$SMPROGRAMS\Veyon"
+CreateShortCut "$SMPROGRAMS\Veyon\Veyon Configurator.lnk" "$INSTDIR\veyon-configurator.exe"
+CreateShortCut "$SMPROGRAMS\Veyon\Uninstall Veyon.lnk" "$INSTDIR\uninstall.exe"
+WriteIniStr "$INSTDIR\Veyon website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\Veyon\Veyon Website.lnk" "$INSTDIR\Veyon website.url"
 
 WriteRegStr ${REG_ROOT} "${REG_APP_PATH}" "" "$INSTDIR\${MAIN_APP_EXE}"
-WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "iTALC"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "Veyon"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "UninstallString" "$INSTDIR\uninstall.exe"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayIcon" "$INSTDIR\${MAIN_APP_EXE}"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayVersion" "${VERSION}"
@@ -250,9 +250,9 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 
-ExecWait '"$INSTDIR\italc-ctl.exe" config set Service/SoftwareSASEnabled 0'
-ExecWait '"$INSTDIR\italc-ctl.exe" config set Network/FirewallExceptionEnabled 0'
-ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
+ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 0'
+ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 0'
+ExecWait '"$INSTDIR\veyon-service.exe" -quiet -unregisterservice'
 ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
@@ -260,10 +260,10 @@ Sleep 2000
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ClearConfig" $R1
 ${IfNot} ${Errors}
-	ExecWait '"$INSTDIR\italc-ctl.exe" config clear'
+	ExecWait '"$INSTDIR\veyon-ctl.exe" config clear'
 ${EndIf}
 
-Delete "$INSTDIR\italc-service.exe"
+Delete "$INSTDIR\veyon-service.exe"
 Delete "$INSTDIR\libwinpthread-1.dll"
 Delete "$INSTDIR\libgcc_s_sjlj-1.dll"
 Delete "$INSTDIR\libgcc_s_seh-1.dll"
@@ -283,17 +283,17 @@ Delete "$INSTDIR\libssl32.dll"
 Delete "$INSTDIR\libqca-qt5.dll"
 Delete "$INSTDIR\LICENSE.TXT"
 Delete "$INSTDIR\vnchooks.dll"
-Delete "$INSTDIR\italc-configurator.exe"
-Delete "$INSTDIR\italc-ctl.exe"
-Delete "$INSTDIR\italc-worker.exe"
-Delete "$INSTDIR\italc-master.exe"
+Delete "$INSTDIR\veyon-configurator.exe"
+Delete "$INSTDIR\veyon-ctl.exe"
+Delete "$INSTDIR\veyon-worker.exe"
+Delete "$INSTDIR\veyon-master.exe"
 Delete "$INSTDIR\README.TXT"
-Delete "$INSTDIR\italc-core.dll"
+Delete "$INSTDIR\veyon-core.dll"
 Delete "$INSTDIR\Qt5Gui.dll"
 Delete "$INSTDIR\Qt5Widgets.dll"
 Delete "$INSTDIR\install-interception.exe"
 Delete "$INSTDIR\uninstall.exe"
-Delete "$INSTDIR\iTALC website.url"
+Delete "$INSTDIR\Veyon website.url"
 RmDir /r "$INSTDIR\crypto"
 RmDir /r "$INSTDIR\plugins"
 RmDir /r "$INSTDIR\platforms"
@@ -302,13 +302,13 @@ RmDir /r "$INSTDIR\contrib"
 
 RmDir "$INSTDIR"
 
-Delete "$SMPROGRAMS\iTALC\iTALC Master.lnk"
-Delete "$SMPROGRAMS\iTALC\iTALC Configurator.lnk"
-Delete "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk"
-Delete "$SMPROGRAMS\iTALC\iTALC Website.lnk"
-RmDir "$SMPROGRAMS\iTALC"
+Delete "$SMPROGRAMS\Veyon\Veyon Master.lnk"
+Delete "$SMPROGRAMS\Veyon\Veyon Configurator.lnk"
+Delete "$SMPROGRAMS\Veyon\Uninstall Veyon.lnk"
+Delete "$SMPROGRAMS\Veyon\Veyon Website.lnk"
+RmDir "$SMPROGRAMS\Veyon"
 
-Delete "$DESKTOP\iTALC Master.lnk"
+Delete "$DESKTOP\Veyon Master.lnk"
 
 DeleteRegKey ${REG_ROOT} "${REG_APP_PATH}"
 DeleteRegKey ${REG_ROOT} "${UNINSTALL_PATH}"

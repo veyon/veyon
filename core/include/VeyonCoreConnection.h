@@ -1,9 +1,9 @@
 /*
- * ItalcCoreConnection.h - declaration of class ItalcCoreConnection
+ * VeyonCoreConnection.h - declaration of class VeyonCoreConnection
  *
  * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,29 +22,29 @@
  *
  */
 
-#ifndef ITALC_CORE_CONNECTION_H
-#define ITALC_CORE_CONNECTION_H
+#ifndef VEYON_CORE_CONNECTION_H
+#define VEYON_CORE_CONNECTION_H
 
 #include <QPointer>
 
-#include "ItalcCore.h"
-#include "ItalcVncConnection.h"
+#include "VeyonCore.h"
+#include "VeyonVncConnection.h"
 
 class FeatureMessage;
 
-class ITALC_CORE_EXPORT ItalcCoreConnection : public QObject
+class VEYON_CORE_EXPORT VeyonCoreConnection : public QObject
 {
 	Q_OBJECT
 public:
-	ItalcCoreConnection( ItalcVncConnection *vncConnection );
-	~ItalcCoreConnection() override;
+	VeyonCoreConnection( VeyonVncConnection *vncConnection );
+	~VeyonCoreConnection() override;
 
-	ItalcVncConnection *vncConnection()
+	VeyonVncConnection *vncConnection()
 	{
 		return m_vncConn;
 	}
 
-	ItalcVncConnection::State state() const
+	VeyonVncConnection::State state() const
 	{
 		return m_vncConn->state();
 	}
@@ -73,12 +73,12 @@ private slots:
 	void initNewClient( rfbClient *client );
 
 private:
-	static rfbBool handleItalcMessage( rfbClient* client, rfbServerToClientMsg *msg );
+	static rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg *msg );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 
 
-	QPointer<ItalcVncConnection> m_vncConn;
+	QPointer<VeyonVncConnection> m_vncConn;
 
 	QString m_user;
 	QString m_userHomeDir;

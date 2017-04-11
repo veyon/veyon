@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,8 +28,8 @@
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 
 
 FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& featureManager, const Feature::Uid& featureUid ) :
@@ -47,7 +47,7 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& 
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
-	m_socket.connectToHost( QHostAddress::LocalHost, ItalcCore::config().featureWorkerManagerPort() );
+	m_socket.connectToHost( QHostAddress::LocalHost, VeyonCore::config().featureWorkerManagerPort() );
 }
 
 

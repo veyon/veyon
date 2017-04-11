@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -31,7 +31,7 @@
 class ServiceControlPlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.ServiceControl")
+	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.ServiceControl")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ServiceControlPlugin();
@@ -54,12 +54,12 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Configure and control iTALC service" );
+		return tr( "Configure and control Veyon service" );
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "iTALC Community" );
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override
@@ -74,7 +74,7 @@ public:
 
 	QString commandHelp() const override
 	{
-		return tr( "commands for configuring and controlling iTALC Service" );
+		return tr( "commands for configuring and controlling Veyon Service" );
 	}
 
 	QStringList subCommands() const override

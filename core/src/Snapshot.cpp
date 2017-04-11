@@ -3,7 +3,7 @@
  *
  *  Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- *  This file is part of iTALC - http://italc.sourceforge.net
+ *  This file is part of veyon - http://veyon.io
  *
  *  This is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #include <QPainter>
 
 #include "Snapshot.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "LocalSystem.h"
@@ -67,7 +67,7 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
 	const QString dir = LocalSystem::Path::expand(
-									ItalcCore::config().snapshotDirectory() );
+									VeyonCore::config().snapshotDirectory() );
 	if( !LocalSystem::Path::ensurePathExists( dir ) )
 	{
 		QString msg = tr( "Could not take a snapshot as directory %1 "

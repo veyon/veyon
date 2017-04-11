@@ -1,8 +1,8 @@
-Using iTALC Configurator at the commandline
+Using Veyon Configurator at the commandline
 ===========================================
 
-This document describes how the iTALC Configurator can be used
-to alter an iTALC installation at the command line.
+This document describes how the Veyon Configurator can be used
+to alter an Veyon installation at the command line.
 
 
 Listing current configuration
@@ -13,7 +13,7 @@ The current configuration with all keys and values can be listed via the
 
 Example:
 
-   italc-configurator -ListConfig
+   veyon-configurator -ListConfig
 
 
 This will give an output like
@@ -34,8 +34,8 @@ A the value of configuration property can be changed using the
 
 Examples:
 
-  italc-configurator -SetConfigValue Logging/LogFileDirectory C:\temp
-  italc-configurator -s Logging/LogLevel=4
+  veyon-configurator -SetConfigValue Logging/LogFileDirectory C:\temp
+  veyon-configurator -s Logging/LogLevel=4
 
 
 
@@ -47,7 +47,7 @@ You can apply the settings previously saved in a settings file using the
 
 Examples:
 
-  italc-configurator -ApplySettings MyCustomSettings.xml
+  veyon-configurator -ApplySettings MyCustomSettings.xml
 
 
 
@@ -55,17 +55,17 @@ Importing a public key
 ----------------------
 
 You can import a public key file which has been exported during the installation
-of the iTALC master computer using the "ImportPublicKey" command. It can be
+of the Veyon master computer using the "ImportPublicKey" command. It can be
 abbreviated with "-i".
 
 You can omit the the second parameter which specifies the public key file if it
-is located in the directory from which you launch iTALC Configurator. The
+is located in the directory from which you launch Veyon Configurator. The
 program will automatically search for a *.key.txt file. If it finds exactly one,
 it'll import this one.
 
 Examples:
 
-  italc-configurator -ImportPublicKey MyPublicKey.key.txt
-  italc-configurator -i
+  veyon-configurator -ImportPublicKey MyPublicKey.key.txt
+  veyon-configurator -i
 
 

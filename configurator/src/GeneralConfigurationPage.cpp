@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,8 +27,8 @@
 
 #include "GeneralConfigurationPage.h"
 #include "FileSystemBrowser.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PluginManager.h"
@@ -63,7 +63,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	ui->uiLanguage->addItems( languages );
 
-#ifndef ITALC_BUILD_WIN32
+#ifndef VEYON_BUILD_WIN32
 	ui->logToWindowsEventLog->hide();
 #endif
 
@@ -87,18 +87,18 @@ GeneralConfigurationPage::~GeneralConfigurationPage()
 
 void GeneralConfigurationPage::resetWidgets()
 {
-	FOREACH_ITALC_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
 
 void GeneralConfigurationPage::connectWidgetsToProperties()
 {
-	FOREACH_ITALC_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
@@ -126,10 +126,10 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	if( serviceControl.isServiceRunning() )
 	{
-		if( QMessageBox::question( this, tr( "%1 service" ).arg( ItalcCore::applicationName() ),
+		if( QMessageBox::question( this, tr( "%1 service" ).arg( VeyonCore::applicationName() ),
 				tr( "The %1 service needs to be stopped temporarily "
 					"in order to remove the log files. Continue?"
-					).arg( ItalcCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,
+					).arg( VeyonCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,
 				QMessageBox::Yes ) == QMessageBox::Yes )
 		{
 			serviceControl.stopService();
@@ -142,24 +142,24 @@ void GeneralConfigurationPage::clearLogFiles()
 	}
 
 	bool success = true;
-	QDir d( LocalSystem::Path::expand( ItalcCore::config().logFileDirectory() ) );
-	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
+	QDir d( LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() ) );
+	foreach( const QString &f, d.entryList( QStringList() << "Veyon*.log" ) )
 	{
-		if( f != "ItalcConfigurator.log" )
+		if( f != "VeyonConfigurator.log" )
 		{
 			success &= d.remove( f );
 		}
 	}
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	d = QDir( "C:\\Windows\\Temp" );
 #else
 	d = QDir( "/tmp" );
 #endif
 
-	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
+	foreach( const QString &f, d.entryList( QStringList() << "Veyon*.log" ) )
 	{
-		if( f != "ItalcConfigurator.log" )
+		if( f != "VeyonConfigurator.log" )
 		{
 			success &= d.remove( f );
 		}

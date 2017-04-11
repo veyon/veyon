@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
 #include "InputDeviceBlocker.h"
 
@@ -87,7 +87,7 @@ void InputDeviceBlocker::setEnabled( bool on )
 
 void InputDeviceBlocker::enableInterception()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	m_interceptionContext = interception_create_context();
 
 	interception_set_filter( m_interceptionContext,
@@ -100,7 +100,7 @@ void InputDeviceBlocker::enableInterception()
 
 void InputDeviceBlocker::disableInterception()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	interception_destroy_context( &m_interceptionContext );
 #endif
 }
@@ -109,7 +109,7 @@ void InputDeviceBlocker::disableInterception()
 
 void InputDeviceBlocker::saveKeyMapTable()
 {
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	// read original keymap
 	QProcess p;
 	p.start( "xmodmap", QStringList() << "-pke" );	// print keymap
@@ -122,7 +122,7 @@ void InputDeviceBlocker::saveKeyMapTable()
 
 void InputDeviceBlocker::setEmptyKeyMapTable()
 {
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	// create empty key map table
 	QStringList emptyKeyMapTable;
 	for( int i = 8; i < 256; ++i )
@@ -144,7 +144,7 @@ void InputDeviceBlocker::setEmptyKeyMapTable()
 
 void InputDeviceBlocker::restoreKeyMapTable()
 {
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	// start xmodmap process and dump our original keytable from stdin
 	QProcess p;
 	p.start( "xmodmap", QStringList() << "-" );

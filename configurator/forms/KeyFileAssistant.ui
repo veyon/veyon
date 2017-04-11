@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>iTALC Access Key Assistant</string>
+   <string>Veyon Access Key Assistant</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../italc-configurator.qrc">
+   <iconset resource="../veyon-configurator.qrc">
     <normaloff>:/resources/Authentication.png</normaloff>:/resources/Authentication.png</iconset>
   </property>
   <property name="sizeGripEnabled">
@@ -25,7 +25,7 @@
   </property>
   <widget class="QWizardPage" name="welcomePage">
    <property name="title">
-    <string>Create/import iTALC access keys</string>
+    <string>Create/import Veyon access keys</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="leftMargin">
@@ -40,7 +40,7 @@
     <item>
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>This assistant will help you to create or import iTALC access keys.</string>
+       <string>This assistant will help you to create or import Veyon access keys.</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -82,7 +82,7 @@
     <item>
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>iTALC access keys consist of two parts belonging together, a private and a public key part.
+       <string>Veyon access keys consist of two parts belonging together, a private and a public key part.
 
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
@@ -288,7 +288,7 @@ The public key part is used on the client computers to verify that any incoming 
        </size>
       </property>
       <property name="pixmap">
-       <pixmap resource="../italc-configurator.qrc">:/resources/help-about.png</pixmap>
+       <pixmap resource="../veyon-configurator.qrc">:/resources/help-about.png</pixmap>
       </property>
      </widget>
     </item>
@@ -359,7 +359,7 @@ The public key part is used on the client computers to verify that any incoming 
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../italc-configurator.qrc">
+       <iconset resource="../veyon-configurator.qrc">
         <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
       </property>
      </widget>
@@ -419,7 +419,7 @@ The public key part is used on the client computers to verify that any incoming 
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../italc-configurator.qrc">
+       <iconset resource="../veyon-configurator.qrc">
         <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
       </property>
      </widget>
@@ -645,8 +645,8 @@ The public key part is used on the client computers to verify that any incoming 
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../italc-configurator.qrc"/>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

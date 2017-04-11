@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,10 +27,10 @@
 
 #include <QObject>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 #include "Plugin.h"
 
-class ITALC_CORE_EXPORT PluginInterface
+class VEYON_CORE_EXPORT PluginInterface
 {
 public:
 	virtual ~PluginInterface() {}
@@ -50,7 +50,7 @@ public:
 
 typedef QList<PluginInterface *> PluginInterfaceList;
 
-#define PluginInterface_iid "org.italc-solutions.iTALC.Plugins.PluginInterface"
+#define PluginInterface_iid "org.veyon-solutions.veyon.Plugins.PluginInterface"
 
 Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)
 

@@ -1,9 +1,9 @@
 /*
- * main.cpp - main file for iTALC Feature Worker
+ * main.cpp - main file for Veyon Feature Worker
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -24,8 +24,8 @@
 
 #include <QApplication>
 
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "Logger.h"
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
@@ -50,7 +50,7 @@ int main( int argc, char **argv )
 
 	auto featureUidNoBraces = featureUid;
 
-	ItalcCore core( &app, QStringLiteral( "FeatureWorker-" ) + featureUidNoBraces.replace( "{", "" ).replace( "}", "" ) );
+	VeyonCore core( &app, QStringLiteral( "FeatureWorker-" ) + featureUidNoBraces.replace( "{", "" ).replace( "}", "" ) );
 
 	BuiltinFeatures builtinFeatures;
 	FeatureManager featureManager;

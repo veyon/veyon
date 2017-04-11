@@ -1,9 +1,9 @@
 /*
- * ItalcCoreConnection.cpp - implementation of ItalcCoreConnection
+ * VeyonCoreConnection.cpp - implementation of VeyonCoreConnection
  *
  * Copyright (c) 2008-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,7 +23,7 @@
  */
 
 #include "FeatureMessage.h"
-#include "ItalcCoreConnection.h"
+#include "VeyonCoreConnection.h"
 #include "Logger.h"
 #include "SocketDevice.h"
 
@@ -46,8 +46,8 @@ public:
 		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
 				 << "with arguments" << m_featureMessage.arguments();
 
-		SocketDevice socketDevice( ItalcVncConnection::libvncClientDispatcher, client );
-		char messageType = rfbItalcFeatureMessage;
+		SocketDevice socketDevice( VeyonVncConnection::libvncClientDispatcher, client );
+		char messageType = rfbVeyonFeatureMessage;
 		socketDevice.write( &messageType, sizeof(messageType) );
 
 		m_featureMessage.send( &socketDevice );
@@ -61,24 +61,24 @@ private:
 
 
 
-static rfbClientProtocolExtension * __italcProtocolExt = nullptr;
-static void * ItalcCoreConnectionTag = (void *) PortOffsetVncServer; // an unique ID
+static rfbClientProtocolExtension * __veyonProtocolExt = nullptr;
+static void * VeyonCoreConnectionTag = (void *) PortOffsetVncServer; // an unique ID
 
 
 
-ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
+VeyonCoreConnection::VeyonCoreConnection( VeyonVncConnection *vncConn ):
 	m_vncConn( vncConn ),
 	m_user(),
 	m_userHomeDir()
 {
-	if( __italcProtocolExt == nullptr )
+	if( __veyonProtocolExt == nullptr )
 	{
-		__italcProtocolExt = new rfbClientProtocolExtension;
-		__italcProtocolExt->encodings = nullptr;
-		__italcProtocolExt->handleEncoding = nullptr;
-		__italcProtocolExt->handleMessage = handleItalcMessage;
+		__veyonProtocolExt = new rfbClientProtocolExtension;
+		__veyonProtocolExt->encodings = nullptr;
+		__veyonProtocolExt->handleEncoding = nullptr;
+		__veyonProtocolExt->handleMessage = handleVeyonMessage;
 
-		rfbClientRegisterExtension( __italcProtocolExt );
+		rfbClientRegisterExtension( __veyonProtocolExt );
 	}
 
 	if (m_vncConn) {
@@ -91,17 +91,17 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 
 
 
-ItalcCoreConnection::~ItalcCoreConnection()
+VeyonCoreConnection::~VeyonCoreConnection()
 {
 }
 
 
 
-void ItalcCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
+void VeyonCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( !m_vncConn )
 	{
-		ilog( Error, "ItalcCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
+		ilog( Error, "VeyonCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
 		return;
 	}
 
@@ -110,17 +110,17 @@ void ItalcCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessa
 
 
 
-void ItalcCoreConnection::initNewClient( rfbClient *cl )
+void VeyonCoreConnection::initNewClient( rfbClient *cl )
 {
-	rfbClientSetClientData( cl, ItalcCoreConnectionTag, this );
+	rfbClientSetClientData( cl, VeyonCoreConnectionTag, this );
 }
 
 
 
 
-rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient* client, rfbServerToClientMsg* msg )
+rfbBool VeyonCoreConnection::handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 {
-	auto coreConnection = (ItalcCoreConnection *) rfbClientGetClientData( client, ItalcCoreConnectionTag );
+	auto coreConnection = (VeyonCoreConnection *) rfbClientGetClientData( client, VeyonCoreConnectionTag );
 	if( coreConnection )
 	{
 		return coreConnection->handleServerMessage( client, msg->type );
@@ -132,15 +132,15 @@ rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient* client, rfbServerToC
 
 
 
-bool ItalcCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
+bool VeyonCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 {
-	if( msg == rfbItalcFeatureMessage )
+	if( msg == rfbVeyonFeatureMessage )
 	{
-		SocketDevice socketDev( ItalcVncConnection::libvncClientDispatcher, client );
+		SocketDevice socketDev( VeyonVncConnection::libvncClientDispatcher, client );
 		FeatureMessage featureMessage( &socketDev );
 		featureMessage.receive();
 
-		qDebug() << "ItalcCoreConnection: received feature message"
+		qDebug() << "VeyonCoreConnection: received feature message"
 				 << featureMessage.command()
 				 << "with arguments" << featureMessage.arguments();
 
@@ -150,7 +150,7 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 	}
 	else
 	{
-		qCritical( "ItalcCoreConnection::handleServerMessage(): "
+		qCritical( "VeyonCoreConnection::handleServerMessage(): "
 				"unknown message type %d from server. Closing "
 				"connection. Will re-open it later.", (int) msg );
 		return false;

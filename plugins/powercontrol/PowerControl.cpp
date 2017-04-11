@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,9 +22,9 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 #define UNICODE
 #include <winsock2.h>
@@ -40,27 +40,27 @@
 #include "PowerControl.h"
 #include "LocalSystem.h"
 
-#ifdef ITALC_HAVE_UNISTD_H
+#ifdef VEYON_HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
-#ifdef ITALC_HAVE_SYS_SOCKET_H
+#ifdef VEYON_HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
 
-#ifdef ITALC_HAVE_ARPA_INET_H
+#ifdef VEYON_HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
 
-#ifdef ITALC_HAVE_NETINET_IN_H
+#ifdef VEYON_HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
 
-#ifdef ITALC_HAVE_ERRNO_H
+#ifdef VEYON_HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "PowerControl.h"
 #include "Logger.h"
 
@@ -102,7 +102,7 @@ void broadcastWOLPacket( const QString& macAddress )
 		}
 	}
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	WSADATA info;
 	if( WSAStartup( MAKEWORD( 2, 0 ), &info ) != 0 )
 	{
@@ -129,7 +129,7 @@ void broadcastWOLPacket( const QString& macAddress )
 
 	sendto( sock, out_buf, sizeof( out_buf ), 0,
 			(struct sockaddr*) &my_addr, sizeof( my_addr ) );
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	closesocket( sock );
 	WSACleanup();
 #else
@@ -138,7 +138,7 @@ void broadcastWOLPacket( const QString& macAddress )
 
 
 #if 0
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	QProcess::startDetached( "etherwake " + _mac );
 #endif
 #endif
@@ -148,7 +148,7 @@ void broadcastWOLPacket( const QString& macAddress )
 
 void powerDown()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
@@ -177,7 +177,7 @@ void powerDown()
 
 void reboot()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );

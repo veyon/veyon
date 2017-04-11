@@ -1,9 +1,9 @@
 /*
- * RfbItalcCursor.cpp - iTALC cursor rectangle encoding
+ * RfbVeyonCursor.cpp - veyon cursor rectangle encoding
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,8 +22,8 @@
  *
  */
 
-#include "ItalcVncConnection.h"
-#include "RfbItalcCursor.h"
+#include "VeyonVncConnection.h"
+#include "RfbVeyonCursor.h"
 #include "SocketDevice.h"
 #include "VariantStream.h"
 
@@ -31,16 +31,16 @@
 #include <rfb/rfbclient.h>
 
 
-static rfbBool handleEncodingItalcCursor( rfbClient *c,
+static rfbBool handleEncodingVeyonCursor( rfbClient *c,
 										rfbFramebufferUpdateRectHeader *r )
 {
-	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( c, nullptr );
-	if( r->encoding != rfbEncodingItalcCursor || t == nullptr )
+	VeyonVncConnection *t = (VeyonVncConnection *) rfbClientGetClientData( c, nullptr );
+	if( r->encoding != rfbEncodingVeyonCursor || t == nullptr )
 	{
 		return false;
 	}
 
-	SocketDevice socketDevice( ItalcVncConnection::libvncClientDispatcher, c );
+	SocketDevice socketDevice( VeyonVncConnection::libvncClientDispatcher, c );
 
 	QImage cursorShape( VariantStream( &socketDevice ).read().value<QImage>() );
 
@@ -52,21 +52,21 @@ static rfbBool handleEncodingItalcCursor( rfbClient *c,
 
 
 
-static rfbClientProtocolExtension * __italcCursorProtocolExt = nullptr;
+static rfbClientProtocolExtension * __veyonCursorProtocolExt = nullptr;
 
 
-RfbItalcCursor::RfbItalcCursor()
+RfbVeyonCursor::RfbVeyonCursor()
 {
-	if( __italcCursorProtocolExt == nullptr )
+	if( __veyonCursorProtocolExt == nullptr )
 	{
-		__italcCursorProtocolExt = new rfbClientProtocolExtension;
-		__italcCursorProtocolExt->encodings = new int[2];
-		__italcCursorProtocolExt->encodings[0] = rfbEncodingItalcCursor;
-		__italcCursorProtocolExt->encodings[1] = 0;
-		__italcCursorProtocolExt->handleEncoding = handleEncodingItalcCursor;
-		__italcCursorProtocolExt->handleMessage = nullptr;
+		__veyonCursorProtocolExt = new rfbClientProtocolExtension;
+		__veyonCursorProtocolExt->encodings = new int[2];
+		__veyonCursorProtocolExt->encodings[0] = rfbEncodingVeyonCursor;
+		__veyonCursorProtocolExt->encodings[1] = 0;
+		__veyonCursorProtocolExt->handleEncoding = handleEncodingVeyonCursor;
+		__veyonCursorProtocolExt->handleMessage = nullptr;
 
-		rfbClientRegisterExtension( __italcCursorProtocolExt );
+		rfbClientRegisterExtension( __veyonCursorProtocolExt );
 	}
 }
 

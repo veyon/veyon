@@ -1,0 +1,7 @@
+?package(veyon-master):\
+	needs="X11"\
+	section="Applications/Education"\
+	title="Veyon Master"\
+	command="@prefix@/bin/veyon-master" \
+	icon32x32="@prefix@/share/pixmaps/veyon-master.png"\
+	hints="KDE"

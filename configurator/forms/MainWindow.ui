@@ -3,11 +3,11 @@
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="windowTitle">
-   <string>iTALC Configurator</string>
+   <string>Veyon Configurator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../italc-configurator.qrc">
-    <normaloff>:/resources/italc-configurator.png</normaloff>:/resources/italc-configurator.png</iconset>
+   <iconset resource="../veyon-configurator.qrc">
+    <normaloff>:/resources/veyon-configurator.png</normaloff>:/resources/veyon-configurator.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
@@ -32,7 +32,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox_10">
           <property name="title">
-           <string>Debugging iTALC</string>
+           <string>Debugging Veyon</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12" stretch="0,0,0,0,0,0,0">
            <property name="spacing">
@@ -47,7 +47,7 @@
               </sizepolicy>
              </property>
              <property name="text">
-              <string>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+              <string>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</string>
              </property>
@@ -285,7 +285,7 @@ If the bug is not reproducible, skip step 1) - 3).</string>
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Go to the &lt;a href=&quot;https://github.com/iTALC/italc/issues&quot;&gt;iTALC issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+                <string>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</string>
@@ -385,7 +385,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>General</string>
        </property>
        <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
+        <iconset resource="../veyon-configurator.qrc">
          <normaloff>:/resources/configure-shortcuts.png</normaloff>:/resources/configure-shortcuts.png</iconset>
        </property>
        <property name="flags">
@@ -397,7 +397,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>Service</string>
        </property>
        <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
+        <iconset resource="../veyon-configurator.qrc">
          <normaloff>:/resources/application-x-sharedlib.png</normaloff>:/resources/application-x-sharedlib.png</iconset>
        </property>
        <property name="flags">
@@ -409,7 +409,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>Master</string>
        </property>
        <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
+        <iconset resource="../veyon-configurator.qrc">
          <normaloff>:/resources/application-x-ms-dos-executable.png</normaloff>:/resources/application-x-ms-dos-executable.png</iconset>
        </property>
        <property name="flags">
@@ -421,7 +421,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>Authentication</string>
        </property>
        <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
+        <iconset resource="../veyon-configurator.qrc">
          <normaloff>:/resources/folder-publicshare.png</normaloff>:/resources/folder-publicshare.png</iconset>
        </property>
        <property name="flags">
@@ -433,7 +433,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>Access control</string>
        </property>
        <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
+        <iconset resource="../veyon-configurator.qrc">
          <normaloff>:/resources/application-x-pem-key.png</normaloff>:/resources/application-x-pem-key.png</iconset>
        </property>
        <property name="flags">
@@ -445,7 +445,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>Debugging</string>
        </property>
        <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
+        <iconset resource="../veyon-configurator.qrc">
          <normaloff>:/resources/tools-report-bug.png</normaloff>:/resources/tools-report-bug.png</iconset>
        </property>
        <property name="flags">
@@ -495,7 +495,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionAboutItalc"/>
+    <addaction name="actionAboutVeyon"/>
     <addaction name="actionAboutQt"/>
    </widget>
    <addaction name="menu_File"/>
@@ -511,7 +511,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
   <action name="actionSaveSettings">
    <property name="icon">
-    <iconset resource="../italc-configurator.qrc">
+    <iconset resource="../veyon-configurator.qrc">
      <normaloff>:/resources/document-save.png</normaloff>:/resources/document-save.png</iconset>
    </property>
    <property name="text">
@@ -526,7 +526,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
   <action name="actionLoadSettings">
    <property name="icon">
-    <iconset resource="../italc-configurator.qrc">
+    <iconset resource="../veyon-configurator.qrc">
      <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
    </property>
    <property name="text">
@@ -536,13 +536,13 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionAboutItalc">
+  <action name="actionAboutVeyon">
    <property name="icon">
     <iconset resource="../../core/core.qrc">
      <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
    </property>
    <property name="text">
-    <string>About iTALC</string>
+    <string>About Veyon</string>
    </property>
   </action>
   <action name="actionAboutQt">
@@ -584,7 +584,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
   <include location="../../core/core.qrc"/>
  </resources>
  <connections>
@@ -605,10 +605,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
    </hints>
   </connection>
   <connection>
-   <sender>actionAboutItalc</sender>
+   <sender>actionAboutVeyon</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>aboutItalc()</slot>
+   <slot>aboutVeyon()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -638,6 +638,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </connection>
  </connections>
  <slots>
-  <slot>aboutItalc()</slot>
+  <slot>aboutVeyon()</slot>
  </slots>
 </ui>

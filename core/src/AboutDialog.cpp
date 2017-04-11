@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2011-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,7 +25,7 @@
 #include <QFile>
 
 #include "AboutDialog.h"
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include "ui_AboutDialog.h"
 
@@ -44,5 +44,5 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 	license.open( QFile::ReadOnly );
 	ui->license->setPlainText( license.readAll() );
 
-	ItalcCore::enforceBranding( this );
+	VeyonCore::enforceBranding( this );
 }

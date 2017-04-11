@@ -1,9 +1,9 @@
 /*
- * ItalcCore.cpp - implementation of iTALC Core
+ * VeyonCore.cpp - implementation of veyon Core
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,8 +22,8 @@
  *
  */
 
-#include "ItalcCore.h"
-#ifdef ITALC_BUILD_WIN32
+#include "VeyonCore.h"
+#ifdef VEYON_BUILD_WIN32
 #include <windows.h>
 #endif
 
@@ -38,8 +38,8 @@
 #include <QLabel>
 
 #include "AccessControlDataBackendManager.h"
-#include "ItalcConfiguration.h"
-#include "ItalcRfbExt.h"
+#include "VeyonConfiguration.h"
+#include "VeyonRfbExt.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
@@ -51,7 +51,7 @@
 #include <lzo/lzo1x.h>
 
 
-ItalcCore *ItalcCore::s_instance = nullptr;
+VeyonCore *VeyonCore::s_instance = nullptr;
 
 
 void initResources()
@@ -68,7 +68,7 @@ void initResources()
 
 static void killWisPtis()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	int pid = -1;
 	while( ( pid = LocalSystem::Process::findProcessId( "wisptis.exe" ) ) >= 0 )
 	{
@@ -106,13 +106,13 @@ static void killWisPtis()
 
 
 
-void ItalcCore::setupApplicationParameters()
+void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( "iTALC Solutions" );
-	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
-	QCoreApplication::setApplicationName( "iTALC" );
+	QCoreApplication::setOrganizationName( "veyon Solutions" );
+	QCoreApplication::setOrganizationDomain( "veyonsolutions.org" );
+	QCoreApplication::setApplicationName( "veyon" );
 
-	if( ItalcConfiguration().isHighDPIScalingEnabled() )
+	if( VeyonConfiguration().isHighDPIScalingEnabled() )
 	{
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
@@ -123,7 +123,7 @@ void ItalcCore::setupApplicationParameters()
 
 
 
-ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponentName ) :
+VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
 	QObject( application ),
 	m_config( nullptr ),
 	m_logger( nullptr ),
@@ -131,7 +131,7 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 	m_cryptoCore( nullptr ),
 	m_pluginManager( nullptr ),
 	m_accessControlDataBackendManager( nullptr ),
-	m_applicationName( "iTALC" ),
+	m_applicationName( "veyon" ),
 	m_userRole( RoleTeacher )
 {
 	killWisPtis();
@@ -144,8 +144,8 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 
 	s_instance = this;
 
-	m_config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
-	*m_config += ItalcConfiguration( Configuration::Store::LocalBackend );
+	m_config = new VeyonConfiguration( VeyonConfiguration::defaultConfiguration() );
+	*m_config += VeyonConfiguration( Configuration::Store::LocalBackend );
 
 	m_logger = new Logger( appComponentName, m_config );
 
@@ -202,7 +202,7 @@ ItalcCore::ItalcCore( QCoreApplication* application, const QString& appComponent
 
 
 
-ItalcCore::~ItalcCore()
+VeyonCore::~VeyonCore()
 {
 	delete m_accessControlDataBackendManager;
 	m_accessControlDataBackendManager = nullptr;
@@ -227,7 +227,7 @@ ItalcCore::~ItalcCore()
 
 
 
-ItalcCore* ItalcCore::instance()
+VeyonCore* VeyonCore::instance()
 {
 	Q_ASSERT(s_instance != nullptr);
 
@@ -237,7 +237,7 @@ ItalcCore* ItalcCore::instance()
 
 
 
-bool ItalcCore::initAuthentication( int credentialTypes )
+bool VeyonCore::initAuthentication( int credentialTypes )
 {
 	if( m_authenticationCredentials )
 	{
@@ -294,46 +294,46 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 
 
 
-QString ItalcCore::applicationName()
+QString VeyonCore::applicationName()
 {
 	return instance()->m_applicationName;
 }
 
 
 
-void ItalcCore::enforceBranding( QWidget *topLevelWidget )
+void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 {
 	for( auto label : topLevelWidget->findChildren<QLabel *>() )
 	{
-		label->setText( label->text().replace( "iTALC", ItalcCore::applicationName() ) );
+		label->setText( label->text().replace( "veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto button : topLevelWidget->findChildren<QAbstractButton *>() )
 	{
-		button->setText( button->text().replace( "iTALC", ItalcCore::applicationName() ) );
+		button->setText( button->text().replace( "veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto groupBox : topLevelWidget->findChildren<QGroupBox *>() )
 	{
-		groupBox->setTitle( groupBox->title().replace( "iTALC", ItalcCore::applicationName() ) );
+		groupBox->setTitle( groupBox->title().replace( "veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto action : topLevelWidget->findChildren<QAction *>() )
 	{
-		action->setText( action->text().replace( "iTALC", ItalcCore::applicationName() ) );
+		action->setText( action->text().replace( "veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto widget : topLevelWidget->findChildren<QWidget *>() )
 	{
-		widget->setWindowTitle( widget->windowTitle().replace( "iTALC", ItalcCore::applicationName() ) );
+		widget->setWindowTitle( widget->windowTitle().replace( "veyon", VeyonCore::applicationName() ) );
 	}
 
-	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "iTALC", ItalcCore::applicationName() ) );
+	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "veyon", VeyonCore::applicationName() ) );
 }
 
 
 
-QString ItalcCore::userRoleName( ItalcCore::UserRole role )
+QString VeyonCore::userRoleName( VeyonCore::UserRole role )
 {
 	static const char *userRoleNames[] =
 	{

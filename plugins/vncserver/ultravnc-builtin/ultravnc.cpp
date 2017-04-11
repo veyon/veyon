@@ -1,7 +1,7 @@
 #include <algorithm>
 
 #include "stdhdrs.h"
-#include "ItalcRfbExt.h"
+#include "VeyonRfbExt.h"
 #include "vsocket.cpp"
 
 // adzm 2010-09

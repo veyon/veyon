@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,20 +23,20 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #define UNICODE
 #endif
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QDir>
 #include <QProcess>
 #include <QWidget>
 #include <QHostInfo>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 #include <QLibrary>
 #include <QGuiApplication>
@@ -76,15 +76,15 @@ QString windowsConfigPath( int type )
 #endif
 
 
-#ifdef ITALC_HAVE_UNISTD_H
+#ifdef VEYON_HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
-#ifdef ITALC_HAVE_PWD_H
+#ifdef VEYON_HAVE_PWD_H
 #include <pwd.h>
 #endif
 
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
@@ -98,7 +98,7 @@ namespace LocalSystem
 Desktop::Desktop( const QString &name ) :
 	m_name( name )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	if( m_name.isEmpty() )
 	{
 		m_name = "winsta0\\default";
@@ -119,7 +119,7 @@ Desktop Desktop::activeDesktop()
 {
 	QString deskName;
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	HDESK desktopHandle = OpenInputDesktop( 0, TRUE, DESKTOP_READOBJECTS );
 
 	wchar_t dname[256];
@@ -151,7 +151,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 	m_domain( dom ),
 	m_fullName( fullname )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	// try to look up the user -> domain
 	DWORD sidLen = 256;
 	wchar_t domainName[MAX_PATH];
@@ -192,7 +192,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 }
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 static void copySid( const PSID &src, PSID &dst )
 {
 	if( src )
@@ -214,7 +214,7 @@ User::User( Token userToken ) :
 	m_domain(),
 	m_fullName()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	copySid( userToken, m_userToken );
 #endif
 
@@ -229,7 +229,7 @@ User::User( const User &user ) :
 	m_domain( user.domain() ),
 	m_fullName( user.m_fullName )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	copySid( user.userToken(), m_userToken );
 #endif
 }
@@ -238,7 +238,7 @@ User::User( const User &user ) :
 
 User::~User()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	if( m_userToken )
 	{
 		delete[] (char *) m_userToken;
@@ -247,7 +247,7 @@ User::~User()
 }
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 static QString querySessionInformation( DWORD sessionId,
 										WTS_INFO_CLASS infoClass )
 {
@@ -276,7 +276,7 @@ User User::loggedOnUser()
 	QString userName = "unknown";
 	QString domainName = QHostInfo::localDomainName();
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 	DWORD sessionId = WTSGetActiveConsoleSessionId();
 
@@ -302,7 +302,7 @@ User User::loggedOnUser()
 
 	char * envUser = getenv( "USER" );
 
-#ifdef ITALC_HAVE_PWD_H
+#ifdef VEYON_HAVE_PWD_H
 	struct passwd * pw_entry = nullptr;
 	if( envUser )
 	{
@@ -325,7 +325,7 @@ User User::loggedOnUser()
 			userName = QString::fromUtf8( pw_entry->pw_name );
 		}
 	}
-#endif	/* ITALC_HAVE_PWD_H */
+#endif	/* VEYON_HAVE_PWD_H */
 
 	if( userName.isEmpty() )
 	{
@@ -344,7 +344,7 @@ QString User::homePath() const
 {
 	QString homePath = QDir::homePath();
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	LocalSystem::Process userProcess(
 				LocalSystem::Process::findProcessId( QString(), -1, this ) );
 	HANDLE hToken;
@@ -382,7 +382,7 @@ void User::lookupNameAndDomain()
 		return;
 	}
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	DWORD accNameLen = 0;
 	DWORD domainNameLen = 0;
 	SID_NAME_USE snu;
@@ -419,7 +419,7 @@ void User::lookupNameAndDomain()
 	delete[] accName;
 	delete[] domainName;
 
-#else	/* ITALC_BUILD_WIN32 */
+#else	/* VEYON_BUILD_WIN32 */
 
 	struct passwd * pw_entry = getpwuid( m_userToken );
 	if( pw_entry )
@@ -447,7 +447,7 @@ void User::lookupFullName()
 {
 	lookupNameAndDomain();
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	// try to retrieve user's full name from domain
 
 	PBYTE dc = NULL;	// domain controller
@@ -474,7 +474,7 @@ void User::lookupFullName()
 	}
 #else
 
-#ifdef ITALC_HAVE_PWD_H
+#ifdef VEYON_HAVE_PWD_H
 	struct passwd * pw_entry = getpwnam( m_name.toUtf8().constData() );
 	if( !pw_entry )
 	{
@@ -505,7 +505,7 @@ void User::lookupFullName()
 Process::Process( int pid ) :
 	m_processHandle( 0 )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	if( pid >= 0 )
 	{
 		m_processHandle = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pid );
@@ -517,7 +517,7 @@ Process::Process( int pid ) :
 
 Process::~Process()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	if( m_processHandle )
 	{
 		CloseHandle( m_processHandle );
@@ -527,7 +527,7 @@ Process::~Process()
 
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 static DWORD findProcessId_WTS( const QString &processName, DWORD sessionId,
 													const User *processOwner )
 {
@@ -637,7 +637,7 @@ int Process::findProcessId( const QString &processName,
 	//qDebug() << "Process::findProcessId(" << processName << sessionId << processOwner << ")";
 
 	int pid = -1;
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	pid = findProcessId_WTS( processName, sessionId, processOwner );
 	//ilogf( Debug, "findProcessId_WTS(): %d", pid );
 	if( pid < 0 )
@@ -654,7 +654,7 @@ int Process::findProcessId( const QString &processName,
 
 User *Process::getProcessOwner()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	HANDLE hToken;
 	OpenProcessToken( m_processHandle, TOKEN_READ, &hToken );
 
@@ -700,7 +700,7 @@ User *Process::getProcessOwner()
 Process::Handle Process::runAsUser( const QString &proc,
 									const QString &desktop )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	enablePrivilege( QString::fromWCharArray( SE_ASSIGNPRIMARYTOKEN_NAME ), true );
 	enablePrivilege( QString::fromWCharArray( SE_INCREASE_QUOTA_NAME ), true );
 	HANDLE hToken = NULL;
@@ -764,7 +764,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 
 bool Process::isRunningAsAdmin()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	BOOL runningAsAdmin = false;
 	PSID adminGroupSid = NULL;
 
@@ -799,7 +799,7 @@ bool Process::isRunningAsAdmin()
 
 bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
 	sei.lpVerb = L"runas";
 	sei.lpFile = (LPWSTR) appPath.utf16();
@@ -826,7 +826,7 @@ bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 
 void sleep( const int _ms )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	Sleep( static_cast<unsigned int>( _ms ) );
 #else
 	struct timespec ts = { _ms / 1000, ( _ms % 1000 ) * 1000 * 1000 } ;
@@ -846,7 +846,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 
 void logoutUser()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
 #else
 	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
@@ -901,7 +901,7 @@ QString Path::shrink( QString path )
 		path += QDir::separator();
 	}
 	path = QDTNS( path );
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	const Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	const QString envVar = "%%1%\\";
 #else
@@ -973,10 +973,10 @@ bool Path::ensurePathExists( const QString &path )
 QString Path::personalConfigDataPath()
 {
 	const QString appData = 
-#ifdef ITALC_BUILD_WIN32
-		LocalSystem::windowsConfigPath( CSIDL_APPDATA ) + QDir::separator() + "iTALC";
+#ifdef VEYON_BUILD_WIN32
+		LocalSystem::windowsConfigPath( CSIDL_APPDATA ) + QDir::separator() + "veyon";
 #else
-		QDir::homePath() + QDir::separator() + ".italc";
+		QDir::homePath() + QDir::separator() + ".veyon";
 #endif
 
 	return QDTNS( appData + QDir::separator() );
@@ -984,34 +984,34 @@ QString Path::personalConfigDataPath()
 
 
 
-QString Path::privateKeyPath( ItalcCore::UserRoles role, QString baseDir )
+QString Path::privateKeyPath( VeyonCore::UserRoles role, QString baseDir )
 {
 	if( baseDir.isEmpty() )
 	{
-		baseDir = expand( ItalcCore::config().privateKeyBaseDir() );
+		baseDir = expand( VeyonCore::config().privateKeyBaseDir() );
 	}
 	else
 	{
 		baseDir += "/private";
 	}
-	QString d = baseDir + QDir::separator() + ItalcCore::userRoleName( role ) +
+	QString d = baseDir + QDir::separator() + VeyonCore::userRoleName( role ) +
 					QDir::separator() + "key";
 	return QDTNS( d );
 }
 
 
 
-QString Path::publicKeyPath( ItalcCore::UserRoles role, QString baseDir )
+QString Path::publicKeyPath( VeyonCore::UserRoles role, QString baseDir )
 {
 	if( baseDir.isEmpty() )
 	{
-		baseDir = expand( ItalcCore::config().publicKeyBaseDir() );
+		baseDir = expand( VeyonCore::config().publicKeyBaseDir() );
 	}
 	else
 	{
 		baseDir += "/public";
 	}
-	QString d = baseDir + QDir::separator() + ItalcCore::userRoleName( role ) +
+	QString d = baseDir + QDir::separator() + VeyonCore::userRoleName( role ) +
 					QDir::separator() + "key";
 	return QDTNS( d );
 }
@@ -1021,10 +1021,10 @@ QString Path::publicKeyPath( ItalcCore::UserRoles role, QString baseDir )
 
 QString Path::systemConfigDataPath()
 {
-#ifdef ITALC_BUILD_WIN32
-	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "iTALC/" );
+#ifdef VEYON_BUILD_WIN32
+	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "veyon/" );
 #else
-	return "/etc/italc/";
+	return "/etc/veyon/";
 #endif
 }
 
@@ -1032,7 +1032,7 @@ QString Path::systemConfigDataPath()
 
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 BOOL enablePrivilege( const QString& privilegeName, bool enable )
 {
 	HANDLE			hToken;
@@ -1064,7 +1064,7 @@ BOOL enablePrivilege( const QString& privilegeName, bool enable )
 #endif
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 static QWindow* windowForWidget( const QWidget* widget )
 {
 	QWindow* window = widget->windowHandle();
@@ -1100,7 +1100,7 @@ void activateWindow( QWidget* w )
 {
 	w->activateWindow();
 	w->raise();
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	SetWindowPos( getHWNDForWidget(w), HWND_TOPMOST, 0, 0, 0, 0,
 						SWP_NOMOVE | SWP_NOSIZE );
 	SetWindowPos( getHWNDForWidget(w), HWND_NOTOPMOST, 0, 0, 0, 0,

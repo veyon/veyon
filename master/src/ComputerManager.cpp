@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -32,7 +32,7 @@
 #include "BuiltinFeatures.h"
 #include "ComputerManager.h"
 #include "FeatureManager.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "NetworkObjectFilterProxyModel.h"
@@ -64,7 +64,7 @@ ComputerManager::ComputerManager( UserConfig& config,
 							   tr( "No default network object directory plugin was found. "
 								   "Please check your installation or configure a different "
 								   "network object directory backend via %1 Configurator." ).
-							   arg( ItalcCore::applicationName() ) );
+							   arg( VeyonCore::applicationName() ) );
 		qFatal( "ComputerManager: missing network object directory plugin!" );
 	}
 
@@ -250,7 +250,7 @@ void ComputerManager::initRooms()
 
 	qDebug() << "ComputerManager::initRooms(): found local rooms" << m_currentRooms;
 
-	if( ItalcCore::config().onlyCurrentRoomVisible() )
+	if( VeyonCore::config().onlyCurrentRoomVisible() )
 	{
 		if( m_currentRooms.isEmpty() )
 		{
@@ -275,7 +275,7 @@ void ComputerManager::initNetworkObjectLayer()
 	m_networkObjectFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
 	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
 
-	if( ItalcCore::config().localComputerHidden() )
+	if( VeyonCore::config().localComputerHidden() )
 	{
 		m_networkObjectFilterProxyModel->setComputerExcludeFilter( QStringList( QHostInfo::localHostName() ) );
 	}
@@ -286,7 +286,7 @@ void ComputerManager::initNetworkObjectLayer()
 void ComputerManager::initComputerTreeModel()
 {
 	QJsonArray checkedNetworkObjects;
-	if( ItalcCore::config().autoSwitchToCurrentRoom() )
+	if( VeyonCore::config().autoSwitchToCurrentRoom() )
 	{
 		for( auto room : m_currentRooms )
 		{
@@ -320,7 +320,7 @@ void ComputerManager::initComputerTreeModel()
 
 void ComputerManager::updateRoomFilterList()
 {
-	if( ItalcCore::config().onlyCurrentRoomVisible() )
+	if( VeyonCore::config().onlyCurrentRoomVisible() )
 	{
 		m_networkObjectFilterProxyModel->setGroupFilter( m_roomFilterList );
 	}

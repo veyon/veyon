@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,11 +23,11 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "VncServer.h"
 #include "VncServerPluginInterface.h"
@@ -39,18 +39,18 @@ VncServer::VncServer( int serverPort ) :
 	m_serverPort( serverPort ),
 	m_pluginInterface( nullptr )
 {
-	ItalcCore::authenticationCredentials().setInternalVncServerPassword( m_password );
+	VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_password );
 
 	VncServerPluginInterfaceList defaultVncServerPlugins;
 
-	for( auto pluginObject : ItalcCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
 
 		if( pluginInterface && vncServerPluginInterface )
 		{
-			if( pluginInterface->uid() == ItalcCore::config().vncServerPlugin() )
+			if( pluginInterface->uid() == VeyonCore::config().vncServerPlugin() )
 			{
 				m_pluginInterface = vncServerPluginInterface;
 			}

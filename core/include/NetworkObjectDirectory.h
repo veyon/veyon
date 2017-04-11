@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,7 +29,7 @@
 
 #include "NetworkObject.h"
 
-class ITALC_CORE_EXPORT NetworkObjectDirectory : public QObject
+class VEYON_CORE_EXPORT NetworkObjectDirectory : public QObject
 {
 	Q_OBJECT
 public:

@@ -12,7 +12,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>About iTALC</string>
+   <string>About veyon</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../core.qrc">
@@ -80,7 +80,7 @@
         </font>
        </property>
        <property name="text">
-        <string>About iTALC</string>
+        <string>About veyon</string>
        </property>
       </widget>
      </item>
@@ -118,16 +118,16 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>iTALC - Intelligent Teaching And Learning with Computers
+          <string>Veyon - virtual eye on networks
 
-Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</string>
+Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string notr="true">&lt;a href=&quot;http://github.com/italc/italc&quot;&gt;http://github.com/italc/italc&lt;/a&gt;</string>
+          <string notr="true">&lt;a href=&quot;http://github.com/veyon/veyon&quot;&gt;http://github.com/veyon/veyon&lt;/a&gt;</string>
          </property>
          <property name="openExternalLinks">
           <bool>true</bool>
@@ -214,7 +214,7 @@ Copyright © 2004-2017 Tobias Doerffel / iTALC Solutions</string>
          <property name="text">
           <string>Current language not translated yet (or native English).
 
-If you're interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</string>
+If you're interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

@@ -1,9 +1,9 @@
 /*
- * main.cpp - main file for iTALC Configurator
+ * main.cpp - main file for Veyon Configurator
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -26,8 +26,8 @@
 
 #include "ConfigurationTestController.h"
 #include "ConfiguratorCore.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "MainWindow.h"
 #include "LocalSystem.h"
 #include "Logger.h"
@@ -54,13 +54,13 @@ bool checkPrivileges( int argc, char **argv )
 
 bool checkWritableConfiguration()
 {
-	if( !ItalcConfiguration().isStoreWritable() &&
-			ItalcCore::config().logLevel() < Logger::LogLevelDebug )
+	if( !VeyonConfiguration().isStoreWritable() &&
+			VeyonCore::config().logLevel() < Logger::LogLevelDebug )
 	{
 		ConfiguratorCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
 			MainWindow::tr( "The local configuration backend reported that the "
 							"configuration is not writable! Please run the %1 "
-							"Configurator with higher privileges." ).arg( ItalcCore::applicationName() ) );
+							"Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
 		return false;
 	}
 
@@ -72,7 +72,7 @@ bool checkWritableConfiguration()
 int createKeyPair( QStringListIterator& argIt )
 {
 	const QString destDir = argIt.hasNext() ? argIt.next() : QString();
-	ConfiguratorCore::createKeyPair( ItalcCore::instance()->userRole(), destDir );
+	ConfiguratorCore::createKeyPair( VeyonCore::instance()->userRole(), destDir );
 	return 0;
 }
 
@@ -102,7 +102,7 @@ int importPublicKey( QStringListIterator& argIt )
 		pubKeyFile = argIt.next();
 	}
 
-	if( ConfiguratorCore::importPublicKey( ItalcCore::instance()->userRole(),
+	if( ConfiguratorCore::importPublicKey( VeyonCore::instance()->userRole(),
 										   pubKeyFile,
 										   QString() ) == false )
 	{
@@ -124,15 +124,15 @@ bool parseRole( QStringListIterator& argIt )
 		const QString role = argIt.next();
 		if( role == "teacher" )
 		{
-			ItalcCore::instance()->setUserRole( ItalcCore::RoleTeacher );
+			VeyonCore::instance()->setUserRole( VeyonCore::RoleTeacher );
 		}
 		else if( role == "admin" )
 		{
-			ItalcCore::instance()->setUserRole( ItalcCore::RoleAdmin );
+			VeyonCore::instance()->setUserRole( VeyonCore::RoleAdmin );
 		}
 		else if( role == "supporter" )
 		{
-			ItalcCore::instance()->setUserRole( ItalcCore::RoleSupporter );
+			VeyonCore::instance()->setUserRole( VeyonCore::RoleSupporter );
 		}
 	}
 	else
@@ -158,7 +158,7 @@ int main( int argc, char **argv )
 
 	QApplication app( argc, argv );
 
-	ItalcCore core( &app, "Configurator" );
+	VeyonCore core( &app, "Configurator" );
 
 	ConfiguratorCore::silent = app.arguments().contains( "-quiet" ) ||
 						app.arguments().contains( "-silent" ) ||

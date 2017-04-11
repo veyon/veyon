@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,13 +29,13 @@
 #include <QPointer>
 #include <QWidget>
 
-#include "ItalcVncConnection.h"
+#include "VeyonVncConnection.h"
 
 class ProgressWidget;
 class RemoteControlWidget;
 class SystemKeyTrapper;
 
-class ITALC_CORE_EXPORT VncView : public QWidget
+class VEYON_CORE_EXPORT VncView : public QWidget
 {
 	Q_OBJECT
 public:
@@ -73,7 +73,7 @@ public:
 		return m_scaledView;
 	}
 
-	ItalcVncConnection* vncConnection()
+	VeyonVncConnection* vncConnection()
 	{
 		return m_vncConn;
 	}
@@ -128,7 +128,7 @@ private:
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
 
-	QPointer<ItalcVncConnection> m_vncConn;
+	QPointer<VeyonVncConnection> m_vncConn;
 
 	Mode m_mode;
 	int m_x, m_y, m_w, m_h;

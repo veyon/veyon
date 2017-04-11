@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,18 +22,18 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "Logger.h"
 #include "LocalSystem.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include "3rdparty/XEventLog.h"
 #include "3rdparty/XEventLog.cpp"
 #endif
@@ -44,12 +44,12 @@ QMutex Logger::logMutex( QMutex::Recursive );
 Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
 QString Logger::lastMsg;
 int Logger::lastMsgCount = 0;
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 CXEventLog *Logger::winEventLog = NULL;
 #endif
 
-Logger::Logger( const QString &appName, ItalcConfiguration* config ) :
-	m_appName( "Italc" + appName ),
+Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
+	m_appName( "Veyon" + appName ),
 	m_logFile( nullptr )
 {
 	instance = this;
@@ -60,7 +60,7 @@ Logger::Logger( const QString &appName, ItalcConfiguration* config ) :
 
 	qInstallMessageHandler( qtMsgHandler );
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	if( config->logToWindowsEventLog() )
 	{
 		winEventLog = new CXEventLog( appName.toUtf8().constData() );
@@ -97,7 +97,7 @@ Logger::~Logger()
 
 
 
-void Logger::initLogFile( ItalcConfiguration* config )
+void Logger::initLogFile( VeyonConfiguration* config )
 {
 	QString logPath = LocalSystem::Path::expand( config->logFileDirectory() );
 
@@ -124,7 +124,7 @@ void Logger::initLogFile( ItalcConfiguration* config )
 
 QString Logger::formatMessage( LogLevel ll, const QString &msg )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	static const char *linebreak = "\r\n";
 #else
 	static const char *linebreak = "\n";
@@ -201,7 +201,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 				lastMsgCount = 0;
 			}
 			instance->outputMessage( formatMessage( ll, msg ) );
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 			WORD wtype = -1;
 			switch( ll )
 			{
@@ -252,7 +252,7 @@ void Logger::outputMessage( const QString &msg )
 		m_logFile->flush();
 	}
 
-	if( ItalcCore::config().logToStdErr() )
+	if( VeyonCore::config().logToStdErr() )
 	{
 		fprintf( stderr, "%s", msg.toUtf8().constData() );
 		fflush( stderr );

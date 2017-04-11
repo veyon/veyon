@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,7 +27,7 @@
 #include "ServerAuthenticationManager.h"
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "LogonAuthentication.h"
 #include "VariantArrayMessage.h"
@@ -44,25 +44,25 @@ ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 
 
 
-QVector<RfbItalcAuth::Type> ServerAuthenticationManager::supportedAuthTypes() const
+QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() const
 {
-	QVector<RfbItalcAuth::Type> authTypes;
+	QVector<RfbVeyonAuth::Type> authTypes;
 
-	authTypes.append( RfbItalcAuth::HostWhiteList );
+	authTypes.append( RfbVeyonAuth::HostWhiteList );
 
-	if( ItalcCore::config().isKeyAuthenticationEnabled() )
+	if( VeyonCore::config().isKeyAuthenticationEnabled() )
 	{
-		authTypes.append( RfbItalcAuth::DSA );
+		authTypes.append( RfbVeyonAuth::DSA );
 	}
 
-	if( ItalcCore::config().isLogonAuthenticationEnabled() )
+	if( VeyonCore::config().isLogonAuthenticationEnabled() )
 	{
-		authTypes.append( RfbItalcAuth::Logon );
+		authTypes.append( RfbVeyonAuth::Logon );
 	}
 
-	if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) )
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) )
 	{
-		authTypes.append( RfbItalcAuth::Token );
+		authTypes.append( RfbVeyonAuth::Token );
 	}
 
 	return authTypes;
@@ -82,25 +82,25 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 	switch( client->authType() )
 	{
 	// no authentication
-	case RfbItalcAuth::None:
+	case RfbVeyonAuth::None:
 		client->setAuthState( VncServerClient::AuthFinishedSuccess );
 		break;
 
 		// host has to be in list of allowed hosts
-	case RfbItalcAuth::HostWhiteList:
+	case RfbVeyonAuth::HostWhiteList:
 		client->setAuthState( performHostWhitelistAuth( client, message ) );
 		break;
 
 		// authentication via DSA-challenge/-response
-	case RfbItalcAuth::DSA:
+	case RfbVeyonAuth::DSA:
 		client->setAuthState( performKeyAuthentication( client, message ) );
 		break;
 
-	case RfbItalcAuth::Logon:
+	case RfbVeyonAuth::Logon:
 		client->setAuthState( performLogonAuthentication( client, message ) );
 		break;
 
-	case RfbItalcAuth::Token:
+	case RfbVeyonAuth::Token:
 		client->setAuthState( performTokenAuthentication( client, message ) );
 		break;
 
@@ -145,7 +145,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 	case VncServerClient::AuthChallenge:
 	{
 		// get user role
-		const ItalcCore::UserRoles urole = static_cast<ItalcCore::UserRoles>( message.read().toInt() );
+		const VeyonCore::UserRoles urole = static_cast<VeyonCore::UserRoles>( message.read().toInt() );
 
 		// now try to verify received signed data using public key of the user
 		// under which the client claims to run
@@ -273,8 +273,8 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 		return VncServerClient::AuthToken;
 
 	case VncServerClient::AuthToken:
-		if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) &&
-				message.read().toString() == ItalcCore::authenticationCredentials().token() )
+		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) &&
+				message.read().toString() == VeyonCore::authenticationCredentials().token() )
 		{
 			qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;

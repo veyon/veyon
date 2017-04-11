@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,8 +25,8 @@
 #include "PluginManager.h"
 #include "FeatureManager.h"
 #include "FileSystemBrowser.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 #include "MasterConfigurationPage.h"
 #include "Configuration/UiMapping.h"
 
@@ -60,10 +60,10 @@ MasterConfigurationPage::~MasterConfigurationPage()
 
 void MasterConfigurationPage::resetWidgets()
 {
-	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_MASTER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
-	m_disabledFeatures = ItalcCore::config().disabledFeatures();
+	m_disabledFeatures = VeyonCore::config().disabledFeatures();
 
 	updateFeatureLists();
 }
@@ -72,8 +72,8 @@ void MasterConfigurationPage::resetWidgets()
 
 void MasterConfigurationPage::connectWidgetsToProperties()
 {
-	FOREACH_ITALC_DIRECTORIES_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_MASTER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_MASTER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
@@ -105,7 +105,7 @@ void MasterConfigurationPage::enableFeature()
 		m_disabledFeatures.removeAll( item->data( Qt::UserRole ).toString() );
 	}
 
-	ItalcCore::config().setDisabledFeatures( m_disabledFeatures );
+	VeyonCore::config().setDisabledFeatures( m_disabledFeatures );
 
 	updateFeatureLists();
 }
@@ -121,7 +121,7 @@ void MasterConfigurationPage::disableFeature()
 		m_disabledFeatures.append( featureUid );
 	}
 
-	ItalcCore::config().setDisabledFeatures( m_disabledFeatures );
+	VeyonCore::config().setDisabledFeatures( m_disabledFeatures );
 
 	updateFeatureLists();
 }

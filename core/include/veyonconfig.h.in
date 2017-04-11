@@ -1,0 +1,131 @@
+#ifndef VEYON_CONFIG_H
+#define VEYON_CONFIG_H
+
+#define VEYON_VERSION "@VERSION_STRING@"
+
+#cmakedefine VEYON_BUILD_LINUX 1
+#cmakedefine VEYON_BUILD_WIN32 1
+#cmakedefine VEYON_BUILD_APPLE 1
+
+#cmakedefine VEYON_HOST_X86 1
+#cmakedefine VEYON_HOST_X86_64 1
+
+#cmakedefine VEYON_HAVE_ARPA_INET_H 1
+#cmakedefine VEYON_HAVE_FCNTL_H 1
+#cmakedefine VEYON_HAVE_FCNTL_H 1
+#cmakedefine VEYON_HAVE_LIMITS_H 1
+#cmakedefine VEYON_HAVE_MEMORY_H 1
+#cmakedefine VEYON_HAVE_NETDB_H 1
+#cmakedefine VEYON_HAVE_NETINET_IN_H 1
+#cmakedefine VEYON_HAVE_STDINT_H 1
+#cmakedefine VEYON_HAVE_STDLIB_H 1
+#cmakedefine VEYON_HAVE_STDBOOL_H 1
+#cmakedefine VEYON_HAVE_STRING_H 1
+#cmakedefine VEYON_HAVE_STRINGS_H 1
+#cmakedefine VEYON_HAVE_SYS_IOCTL_H 1
+#cmakedefine VEYON_HAVE_SYS_SOCKET_H 1
+#cmakedefine VEYON_HAVE_SYS_TIME_H 1
+#cmakedefine VEYON_HAVE_SYS_TIMEB_H 1
+#cmakedefine VEYON_HAVE_SYS_STAT_H 1
+#cmakedefine VEYON_HAVE_SYSLOG_H 1
+#cmakedefine VEYON_HAVE_UNISTD_H 1
+#cmakedefine VEYON_HAVE_PWD_H 1
+#cmakedefine VEYON_HAVE_SYS_TYPES_H 1
+#cmakedefine VEYON_HAVE_UTMPX_H 1
+#cmakedefine VEYON_HAVE_SYS_WAIT_H 1
+#cmakedefine VEYON_HAVE_TIME_H 1
+#cmakedefine VEYON_HAVE_ERRNO_H 1
+#cmakedefine VEYON_HAVE_PTHREAD_H 1
+#cmakedefine VEYON_HAVE_SYS_IPC_H 1
+#cmakedefine VEYON_HAVE_SYS_SHM_H 1
+#cmakedefine VEYON_HAVE_STDARG_H 1
+#cmakedefine VEYON_HAVE_SIGNAL_H 1
+#cmakedefine VEYON_HAVE_CTYPE_H 1
+#cmakedefine VEYON_HAVE_PROCESS_H 1
+#cmakedefine VEYON_HAVE_DLFCN_H 1
+#cmakedefine VEYON_HAVE_INTTYPES_H 1
+#cmakedefine VEYON_HAVE_VFORK_H 1
+#cmakedefine VEYON_HAVE_LINUX_FB_H 1
+#cmakedefine VEYON_HAVE_LINUX_INPUT_H 1
+#cmakedefine VEYON_HAVE_LINUX_UINPUT_H 1
+#cmakedefine VEYON_HAVE_LINUX_VIDEODEV_H 1
+
+
+#cmakedefine VEYON_HAVE_FTIME 1
+#cmakedefine VEYON_HAVE_MKFIFO 1
+#cmakedefine VEYON_HAVE_DUP2 1
+#cmakedefine VEYON_HAVE_FLOOR 1
+#cmakedefine VEYON_HAVE_GETHOSTBYNAME 1
+#cmakedefine VEYON_HAVE_GETHOSTNAME 1
+#cmakedefine VEYON_HAVE_GETTIMEOFDAY 1
+#cmakedefine VEYON_HAVE_INET_NTOA 1
+#cmakedefine VEYON_HAVE_MEMCMP 1
+#cmakedefine VEYON_HAVE_MEMMOVE 1
+#cmakedefine VEYON_HAVE_MEMCPY 1
+#cmakedefine VEYON_HAVE_MEMSET 1
+#cmakedefine VEYON_HAVE_MMAP 1
+#cmakedefine VEYON_HAVE_POW 1
+#cmakedefine VEYON_HAVE_PUTENV 1
+#cmakedefine VEYON_HAVE_SELECT 1
+#cmakedefine VEYON_HAVE_SOCKET 1
+#cmakedefine VEYON_HAVE_STRCHR 1
+#cmakedefine VEYON_HAVE_STRDUP 1
+#cmakedefine VEYON_HAVE_STRERROR 1
+#cmakedefine VEYON_HAVE_STRPBRK 1
+#cmakedefine VEYON_HAVE_STRRCHR 1
+#cmakedefine VEYON_HAVE_STRSTR 1
+#cmakedefine VEYON_HAVE_UNAME 1
+#cmakedefine VEYON_HAVE_SETSID 1
+#cmakedefine VEYON_HAVE_GETPWUID 1
+#cmakedefine VEYON_HAVE_GETPWNAM 1
+#cmakedefine VEYON_HAVE_GETUID 1
+#cmakedefine VEYON_HAVE_GETEUID 1
+#cmakedefine VEYON_HAVE_WAITPID 1
+#cmakedefine VEYON_HAVE_SETUTXENT 1
+#cmakedefine VEYON_HAVE_SETPGRP 1
+#cmakedefine VEYON_HAVE_SETEUID 1
+#cmakedefine VEYON_HAVE_GRANTPT 1
+#cmakedefine VEYON_HAVE_GETSPNAM 1
+#cmakedefine VEYON_HAVE_INITGROUPS 1
+
+
+/* x11vnc configuration */
+#define VEYON_IPv6 1
+#cmakedefine VEYON_ALLOW24BPP
+#cmakedefine VEYON_BACKCHANNEL
+#cmakedefine VEYON_HAVE_X11 1
+#cmakedefine VEYON_HAVE_X509_PRINT_EX_FP 1
+#cmakedefine VEYON_HAVE_XI2
+#cmakedefine VEYON_HAVE_XKEYBOARD 1
+#cmakedefine VEYON_HAVE_XSHM 1
+#cmakedefine VEYON_HAVE_XTEST 1
+#cmakedefine VEYON_HAVE_XTESTGRABCONTROL 1
+#cmakedefine VEYON_HAVE_LIBXINERAMA 1
+#cmakedefine VEYON_HAVE_LIBXRANDR 1
+#cmakedefine VEYON_HAVE_LIBXFIXES 1
+#cmakedefine VEYON_HAVE_LIBXDAMAGE 1
+#cmakedefine VEYON_HAVE_SOLARIS_XREADSCREEN 1
+#cmakedefine VEYON_HAVE_FBPM 1
+#cmakedefine VEYON_HAVE_DPMS 1
+#cmakedefine VEYON_HAVE_RECORD 1
+#cmakedefine VEYON_HAVE_IRIX_XREADDISPLAY 1
+#cmakedefine VEYON_HAVE_XKBLIB_H 1
+#cmakedefine VEYON_HAVE_LIBCRYPT 1
+#cmakedefine VEYON_HAVE_LIBPTHREAD 1
+#cmakedefine VEYON_HAVE_TLS 1
+
+#cmakedefine VEYON_HAVE_WS2TCPIP_H  1
+
+#define LDAP_FOUND
+#cmakedefine SASL2_FOUND
+#cmakedefine HAVE_LDAP_H
+#cmakedefine HAVE_LDAP_START_TLS_S
+#cmakedefine HAVE_LDAP_INITIALIZE
+#cmakedefine HAVE_BER_MEMFREE
+#cmakedefine HAVE_LDAP_UNBIND_EXT
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION_S
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION_PROTOTYPE
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION_S_PROTOTYPE
+
+#endif

@@ -1,9 +1,9 @@
 /*
- * MainWindow.h - main window of the iTALC Configurator
+ * MainWindow.h - main window of the Veyon Configurator
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -50,7 +50,7 @@ private slots:
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
 	void generateBugReportArchive();
-	void aboutItalc();
+	void aboutVeyon();
 
 
 private:

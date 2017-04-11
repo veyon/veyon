@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
@@ -42,7 +42,7 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 
 	const LocalSystem::User loggedOnUser = LocalSystem::User::loggedOnUser();
 	QString userName = loggedOnUser.name();
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	if( !userName.isEmpty() && !loggedOnUser.domain().isEmpty() )
 	{
 		userName = loggedOnUser.domain() + "\\" + userName;
@@ -58,7 +58,7 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 
 	updateOkButton();
 
-	ItalcCore::enforceBranding( this );
+	VeyonCore::enforceBranding( this );
 }
 
 

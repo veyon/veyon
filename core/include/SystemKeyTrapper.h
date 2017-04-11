@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -26,9 +26,9 @@
 #ifndef SYSTEM_KEY_TRAPPER_H
 #define SYSTEM_KEY_TRAPPER_H
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#include "ItalcRfbExt.h"
+#include "VeyonRfbExt.h"
 
 #include <QtCore/QMutex>
 #include <QtCore/QObject>

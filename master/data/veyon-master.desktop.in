@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=iTALC Master
+Name=Veyon Master
 GenericName=View and remote-control student computers
 GenericName[de]=Schülercomputer überwachen und fernsteuern
-Comment=Intelligent Teaching And Learning with Computers
-Icon=italc-master
-Exec=@CMAKE_INSTALL_PREFIX@/bin/italc-master
+Comment=Virtual Eye On Networkss
+Icon=veyon-master
+Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-master
 Type=Application
 Terminal=false
 Categories=Qt;KDE;Education;X-KDE-Edu-Teaching;RemoteAccess;

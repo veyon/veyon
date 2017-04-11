@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2011-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,10 +26,10 @@
 #include <QProcess>
 
 #include "LogonAuthentication.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include "authSSP.h"
 #endif
 
@@ -39,7 +39,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 	qDebug() << "Authenticating user" << cred.logonUsername();
 
 	bool result = false;
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #ifdef UNICODE
 	return CUPSD2( (const char *) cred.logonUsername().unicode(), (const char *) cred.logonPassword().unicode() );
 #else
@@ -47,9 +47,9 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 #endif
 #endif
 
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	QProcess p;
-	p.start( "italc-auth-helper" );
+	p.start( "veyon-auth-helper" );
 	p.waitForStarted();
 
 	QDataStream ds( &p );
@@ -66,7 +66,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 	}
 	else
 	{
-		qCritical() << "ItalcAuthHelper failed:" << p.readAll().trimmed();
+		qCritical() << "VeyonAuthHelper failed:" << p.readAll().trimmed();
 	}
 #endif
 

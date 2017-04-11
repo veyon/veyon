@@ -1,10 +1,10 @@
 /*
- * ItalcRfbExt.h - an extension of the RFB-protocol, used for communication
+ * VeyonRfbExt.h - an extension of the RFB-protocol, used for communication
  *                 between master and clients
  *
  * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,16 +23,16 @@
  *
  */
 
-#ifndef ITALC_RFB_EXT_H
-#define ITALC_RFB_EXT_H
+#ifndef VEYON_RFB_EXT_H
+#define VEYON_RFB_EXT_H
 
 typedef struct _rfbClient rfbClient;
 
-// new rfb command which tells server or client that an italc feature message is following
-#define rfbItalcFeatureMessage		41
+// new rfb command which tells server or client that an veyon feature message is following
+#define rfbVeyonFeatureMessage		41
 
 
-#define rfbSecTypeItalc 40
+#define rfbSecTypeVeyon 40
 
 enum PortOffsets
 {
@@ -46,7 +46,7 @@ enum PortOffsets
 extern "C"
 {
 #endif
-void handleSecTypeItalc( rfbClient *client );
+void handleSecTypeVeyon( rfbClient *client );
 #ifdef __cplusplus
 }
 #endif

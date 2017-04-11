@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,7 +29,7 @@
 #include "DemoFeaturePlugin.h"
 #include "DemoServer.h"
 #include "FeatureWorkerManager.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "Logger.h"
 
 
@@ -160,9 +160,9 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			featureWorkerManager.startWorker( m_demoServerFeature );
 		}
 
-		if( ItalcCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) == false )
+		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) == false )
 		{
-			ItalcCore::authenticationCredentials().setToken( message.argument( VncServerToken ).toString() );
+			VeyonCore::authenticationCredentials().setToken( message.argument( VncServerToken ).toString() );
 		}
 
 		// forward message to worker
@@ -176,7 +176,7 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 		// started on master computer as well therefore we deny starting a demo on
 		// hosts on which a demo server is running - exception: debug mode
 		if( featureWorkerManager.isWorkerRunning( m_demoServerFeature ) &&
-				ItalcCore::config().logLevel() < Logger::LogLevelDebug )
+				VeyonCore::config().logLevel() < Logger::LogLevelDebug )
 		{
 			return false;
 		}
@@ -245,7 +245,7 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 		switch( message.command() )
 		{
 		case StartDemoClient:
-			ItalcCore::authenticationCredentials().setToken( message.argument( DemoAccessToken ).toString() );
+			VeyonCore::authenticationCredentials().setToken( message.argument( DemoAccessToken ).toString() );
 
 			if( m_demoClient == nullptr )
 			{

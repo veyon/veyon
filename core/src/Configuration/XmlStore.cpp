@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2009-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,7 +28,7 @@
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/Object.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
@@ -118,7 +118,7 @@ static void saveXmlTree( const Object::DataMap & _dataMap,
 
 void XmlStore::flush( Object * _obj )
 {
-	QDomDocument doc( "ItalcXmlStore" );
+	QDomDocument doc( "VeyonXmlStore" );
 	const Object::DataMap & data = _obj->data();
 
 	QDomElement root = doc.createElement( configurationNameFromScope() );
@@ -162,7 +162,7 @@ QString XmlStore::configurationFilePath() const
 	switch( scope() )
 	{
 		case User:
-			base = ItalcConfiguration::defaultConfiguration().userConfigurationDirectory();
+			base = VeyonConfiguration::defaultConfiguration().userConfigurationDirectory();
 			break;
 		case System:
 			base = LocalSystem::Path::systemConfigDataPath();

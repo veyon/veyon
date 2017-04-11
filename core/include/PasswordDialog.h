@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -31,7 +31,7 @@
 
 namespace Ui { class PasswordDialog; }
 
-class ITALC_CORE_EXPORT PasswordDialog : public QDialog
+class VEYON_CORE_EXPORT PasswordDialog : public QDialog
 {
 	Q_OBJECT
 public:

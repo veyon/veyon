@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -38,7 +38,7 @@
 
 VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
-	m_vncConn( new ItalcVncConnection( QCoreApplication::instance() ) ),
+	m_vncConn( new VeyonVncConnection( QCoreApplication::instance() ) ),
 	m_mode( mode ),
 	m_frame(),
 	m_cursorShape(),
@@ -60,8 +60,8 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 	if( m_mode == DemoMode )
 	{
-		m_vncConn->setQuality( ItalcVncConnection::DemoClientQuality );
-		m_vncConn->setItalcAuthType( RfbItalcAuth::HostWhiteList );
+		m_vncConn->setQuality( VeyonVncConnection::DemoClientQuality );
+		m_vncConn->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
 		m_establishingConnection = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
 					":/resources/watch%1.png", 16, this );
@@ -71,7 +71,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	}
 	else if( m_mode == RemoteControlMode )
 	{
-		m_vncConn->setQuality( ItalcVncConnection::RemoteControlQuality );
+		m_vncConn->setQuality( VeyonVncConnection::RemoteControlQuality );
 	}
 
 	connect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
@@ -378,7 +378,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 {
 	bool pressed = _ke->type() == QEvent::KeyPress;
 
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 	// Starting with Qt 4.2 there's a nice function returning the key-code
 	// of the key-event (platform-dependent) so when operating under Linux/X11,
 	// key-codes are equal to the ones used by RFB protocol

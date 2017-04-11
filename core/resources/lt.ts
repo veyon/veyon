@@ -2,24 +2,24 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About iTALC</source>
-        <translation>Apie iTALC</translation>
+        <source>About veyon</source>
+        <translation>Apie veyon</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Apie programą</translation>
     </message>
     <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
+        <source>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
-        <translation>ITALC-Sumanus Mokymas Ir Mokymasis su Kompiuteriu.
+Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
+        <translation>VEYON-Sumanus Mokymas Ir Mokymasis su Kompiuteriu.
 
-Sukurta © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+Sukurta © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
     </message>
     <message>
-        <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;italc.sourceforge.net&lt;/a&gt;</translation>
+        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;veyon.io&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -32,10 +32,10 @@ Sukurta © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
     <message>
         <source>Current language not translated yet (or native English).
 
-If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
+If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
         <translation>Vertimo dabartiniai kalbai nėra arba jį gimtoji anglų.
 
-Jeigu norėtumėte padėti su programos iTALC vertimų į naują kalbą arba pataisyti jau esama vertimą susiekite su  iTALC! kurėjų komanda</translation>
+Jeigu norėtumėte padėti su programos veyon vertimų į naują kalbą arba pataisyti jau esama vertimą susiekite su  veyon! kurėjų komanda</translation>
     </message>
     <message>
         <source>License</source>
@@ -287,16 +287,16 @@ Do you want to create a new classrom now?</source>
         <translation>IP/Kompiuterio vardas</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Įveskite ip adresą arba kompiuterio vardą, kurio pagalba  iTALC galės nustatyti klientą (Naudokite &apos;:&apos;, kad įvesti šliuzo adresą - Pvz.: 192.168.0.10:3567 )&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Įveskite ip adresą arba kompiuterio vardą, kurio pagalba  veyon galės nustatyti klientą (Naudokite &apos;:&apos;, kad įvesti šliuzo adresą - Pvz.: 192.168.0.10:3567 )&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
         <translation>Vardas</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Numatytasis kompiuterio vardas kuris bus rodomas programoje iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Numatytasis kompiuterio vardas kuris bus rodomas programoje veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -534,30 +534,30 @@ p, li { white-space: pre-wrap; }
         <translation>Rodyti pilno ekrano demonstraciją</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Įsidemėkite kad kaikurie nustatymai nepasikeis tol kol neperkrausite programos iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Įsidemėkite kad kaikurie nustatymai nepasikeis tol kol neperkrausite programos veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>ConfigWidget</name>
     <message>
-        <source>Your iTALC-configuration</source>
-        <translation>Jūsų iTALC konfiguracija</translation>
+        <source>Your veyon-configuration</source>
+        <translation>Jūsų veyon konfiguracija</translation>
     </message>
     <message>
-        <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation>Šioje tvarkyklėje galite iTALC pritaikyti savo poreikiams.</translation>
+        <source>In this workspace you can customize veyon to fit your needs.</source>
+        <translation>Šioje tvarkyklėje galite veyon pritaikyti savo poreikiams.</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
-        <source>iTALC Demo</source>
-        <translation>iTALC demonstracija</translation>
+        <source>veyon Demo</source>
+        <translation>veyon demonstracija</translation>
     </message>
 </context>
 <context>
-    <name>ItalcCoreServer</name>
+    <name>VeyonCoreServer</name>
     <message>
         <source>Authentication error</source>
         <translation>Autorizacijos klaida</translation>
@@ -568,7 +568,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ItalcVncConnection</name>
+    <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
         <translation>VNC autorizacija nepavyko ,nes bandėte per daug kartų.</translation>
@@ -585,28 +585,28 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>iTALC Access Key Assistant</source>
-        <translation>iTALC pasiekiamojo rakto veldys </translation>
+        <source>veyon Access Key Assistant</source>
+        <translation>veyon pasiekiamojo rakto veldys </translation>
     </message>
     <message>
-        <source>Create/import iTALC access keys</source>
+        <source>Create/import veyon access keys</source>
         <translation>Sukurti/Importuoti pasiekiamumo raktą</translation>
     </message>
     <message>
-        <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation>Šis vedlys padės jums susikurti arba importuoti iTALC pasiekiamumo raktus</translation>
+        <source>This assistant will help you to create or import veyon access keys.</source>
+        <translation>Šis vedlys padės jums susikurti arba importuoti veyon pasiekiamumo raktus</translation>
     </message>
     <message>
         <source>How does it work?</source>
         <translation>Kaip tai veikia?</translation>
     </message>
     <message>
-        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
+        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
 
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>iTALC pasiekiamumo raktas turi dvi dalis privačia ir vieša.Naudojant privatų pasiekiamumo raktą vartotojas valdantis mokytojo kompiuterį galės pasiekti ir valdyti mokinių kompiuterius.Labai svarbu kad tik autorizuoti vartotojai turėtų prieėjimą prie privataus rakto
+        <translation>veyon pasiekiamumo raktas turi dvi dalis privačia ir vieša.Naudojant privatų pasiekiamumo raktą vartotojas valdantis mokytojo kompiuterį galės pasiekti ir valdyti mokinių kompiuterius.Labai svarbu kad tik autorizuoti vartotojai turėtų prieėjimą prie privataus rakto
 	Viešas pasiekiamumo raktas naudojamas vartotojo mokinio kompiuteryje kad patvirtinti įeinančių susijungimų paraiška yra autorizuota.	
 		</translation>
     </message>
@@ -719,8 +719,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Neteisingas viešas raktas</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation>Pasirinktas failas neturi reikiamos viešo rakto informacijos darbui su iTALC</translation>
+        <source>The selected file does not contain a valid public veyon access key!</source>
+        <translation>Pasirinktas failas neturi reikiamos viešo rakto informacijos darbui su veyon</translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -773,8 +773,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Prisijungimų grupės redagavimas</translation>
     </message>
     <message>
-        <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation>Prašome pridėti grupes kurių nariai gali turėti prieigą prie iTALC kompiuterių tinklo.</translation>
+        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
+        <translation>Prašome pridėti grupes kurių nariai gali turėti prieigą prie veyon kompiuterių tinklo.</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -785,8 +785,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>...</translation>
     </message>
     <message>
-        <source>Groups with iTALC privileges</source>
-        <translation>Grupės su iTALC privilegijomis</translation>
+        <source>Groups with veyon privileges</source>
+        <translation>Grupės su veyon privilegijomis</translation>
     </message>
 </context>
 <context>
@@ -807,16 +807,16 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Įrankių juosta</translation>
     </message>
     <message>
-        <source>iTALC Management Console</source>
-        <translation>iTALC nustatymų konsolė</translation>
+        <source>veyon Management Console</source>
+        <translation>veyon nustatymų konsolė</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Pagrindinis</translation>
     </message>
     <message>
-        <source>iTALC Server</source>
-        <translation>iTALC serveris</translation>
+        <source>veyon Server</source>
+        <translation>veyon serveris</translation>
     </message>
     <message>
         <source>Paths</source>
@@ -831,8 +831,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Derinimas</translation>
     </message>
     <message>
-        <source>iTALC Service</source>
-        <translation>iTALC tarnyba</translation>
+        <source>veyon Service</source>
+        <translation>veyon tarnyba</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -955,8 +955,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>VNC reflektorius</translation>
     </message>
     <message>
-        <source>iTALC 1 demo server</source>
-        <translation>iTALC 1 - demonstracinis serveris</translation>
+        <source>veyon 1 demo server</source>
+        <translation>veyon 1 - demonstracinis serveris</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1051,8 +1051,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Priėjimo patvirtinimas</translation>
     </message>
     <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Jūs galite nusistatyti iTALC taip kad būtu būtina prašyti vartotojo leidimo prisijungti prie jo naudojant tam tikrus metodus</translation>
+        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Jūs galite nusistatyti veyon taip kad būtu būtina prašyti vartotojo leidimo prisijungti prie jo naudojant tam tikrus metodus</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1063,14 +1063,14 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Leisti tam pačiam vartotojui pasiekti ir darbalaukį be autorizacijos</translation>
     </message>
     <message>
-        <source>Debugging iTALC</source>
-        <translation>iTALC derinimas</translation>
+        <source>Debugging veyon</source>
+        <translation>veyon derinimas</translation>
     </message>
     <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Kada pastebite klaidas ar kitus negerus dalykus iTALC programoje svarbu informuoti kurėjus apie tai tam kad klaidos būtų kuo greičiau ištaisytos. Ši skiltis leidžia jums pranešti apie klaidas paprastai. Jeigu klaida nėra linkusi plisti ir kartotis tada praleiskite 1)-3) žingsnius</translation>
+        <translation>Kada pastebite klaidas ar kitus negerus dalykus veyon programoje svarbu informuoti kurėjus apie tai tam kad klaidos būtų kuo greičiau ištaisytos. Ši skiltis leidžia jums pranešti apie klaidas paprastai. Jeigu klaida nėra linkusi plisti ir kartotis tada praleiskite 1)-3) žingsnius</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1113,11 +1113,11 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Nueikite į &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt; klaidų seklys iTALC&lt;/a&gt;, atsidarykite nauja klaida ir aprašykite ką darėte 3 žingsnyje ir prisekite failą kurį gavote 4 žingsnyje.&lt;/p&gt;
+        <translation>Nueikite į &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt; klaidų seklys veyon&lt;/a&gt;, atsidarykite nauja klaida ir aprašykite ką darėte 3 žingsnyje ir prisekite failą kurį gavote 4 žingsnyje.&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikalinga informacija iš abiejų kompiuterių.</translation>
@@ -1159,24 +1159,24 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>CTRL+O</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>Apie programą iTALC</translation>
+        <source>About veyon</source>
+        <translation>Apie programą veyon</translation>
     </message>
     <message>
         <source>About Qt</source>
         <translation>Apie Qt</translation>
     </message>
     <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
+        <source>veyon</source>
+        <translation>veyon</translation>
     </message>
     <message>
         <source>No write access</source>
         <translation>Neturite leidimo įrašyti</translation>
     </message>
     <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Neįmanoma skaityti ir rašyti į direktoriją %1!  iTALC paleidimui. Įsitikinkite kad jums leidžiama sukurti naujas direktorijas ir į jas rašyti.</translation>
+        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation>Neįmanoma skaityti ir rašyti į direktoriją %1!  veyon paleidimui. Įsitikinkite kad jums leidžiama sukurti naujas direktorijas ir į jas rašyti.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1203,8 +1203,8 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>Peržiūra</translation>
     </message>
     <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Tai yra numatytasis iTALC režimas . Jame jūs galite peržiūrėti visus kompiuterius.Taip pat galite nuspausti šį mygtuką kad atrakintumėte užrakintus darbalaukius arba baigtumėte prezentaciją</translation>
+        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation>Tai yra numatytasis veyon režimas . Jame jūs galite peržiūrėti visus kompiuterius.Taip pat galite nuspausti šį mygtuką kad atrakintumėte užrakintus darbalaukius arba baigtumėte prezentaciją</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
@@ -1323,24 +1323,24 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>Paspaudus šį mygtuką visi matomi langai yra surikiuojami ir pakeičiamas jų dydis.</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>Nepavyko susisiekti su iTALC tarnyba</translation>
+        <source>Could not contact veyon service</source>
+        <translation>Nepavyko susisiekti su veyon tarnyba</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Neįmanoma susisiekti su vietinia iTALC tarnybą. Greičiausiai įvedėte neteisingą informaciją arba pasiekiamumo raktas nenustatytas teisingai.Pabandykite vėl arba susisiekite su savo sistemos administratoriumi kad išsprestu bėdą naudodamasis iTALC konsole  </translation>
+        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
+        <translation>Neįmanoma susisiekti su vietinia veyon tarnybą. Greičiausiai įvedėte neteisingą informaciją arba pasiekiamumo raktas nenustatytas teisingai.Pabandykite vėl arba susisiekite su savo sistemos administratoriumi kad išsprestu bėdą naudodamasis veyon konsole  </translation>
     </message>
     <message>
-        <source>iTALC Master Control</source>
-        <translation>iTALC pagrindinis valdymas</translation>
+        <source>veyon Master Control</source>
+        <translation>veyon pagrindinis valdymas</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Autorizavimas neįmanomas</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Jokie autorizacijos raktai nerasti. Arba turimi yra per seni. Prašome sukurti naujus pasiekiamumo raktus naudojantis iTALC tvarkymo konsole.Alternatyvai galite nustatyti prisijungimo autorizavimą naudojantis iTALC konsole. Kitaip jūs negalėsite valdyti kompiuterių naudodamiesi iTALC</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
+        <translation>Jokie autorizacijos raktai nerasti. Arba turimi yra per seni. Prašome sukurti naujus pasiekiamumo raktus naudojantis veyon tvarkymo konsole.Alternatyvai galite nustatyti prisijungimo autorizavimą naudojantis veyon konsole. Kitaip jūs negalėsite valdyti kompiuterių naudodamiesi veyon</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1351,24 +1351,24 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>Išeiti</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the iTALC Service.</source>
-        <translation>Nepavyko pakeisti auto paleisties nusstatymų iTALC tarnybai.</translation>
+        <source>Could not modify the autostart property for the veyon Service.</source>
+        <translation>Nepavyko pakeisti auto paleisties nusstatymų veyon tarnybai.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the iTALC Service.</source>
-        <translation>Nepavyko pakeisti iTALC tarnybos parametrų.</translation>
+        <source>Could not modify the service arguments for the veyon Service.</source>
+        <translation>Nepavyko pakeisti veyon tarnybos parametrų.</translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the iTALC Service.</source>
-        <translation>Nepavyko pakeisti ugiasienės nustatymų  iTALC tarnybai.</translation>
+        <source>Could not change the firewall configuration for the veyon Service.</source>
+        <translation>Nepavyko pakeisti ugiasienės nustatymų  veyon tarnybai.</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
         <translation>Konfiguracinis failas negali būti įrašytas</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Vietinis konfiguracijos veldys pranešė, kad konfiguracija negali būti įrašyta. Prašome paleisti iTALC konsolę su aukštesnėmis privilegijomis.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
+        <translation>Vietinis konfiguracijos veldys pranešė, kad konfiguracija negali būti įrašyta. Prašome paleisti veyon konsolę su aukštesnėmis privilegijomis.</translation>
     </message>
     <message>
         <source>All settings were applied successfully.</source>
@@ -1379,32 +1379,32 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>Pritaikaint nustatymus įvyko klaida!</translation>
     </message>
     <message>
-        <source>iTALC Management Console %1</source>
-        <translation>iTALC valdymo komnsolė %1</translation>
+        <source>veyon Management Console %1</source>
+        <translation>veyon valdymo komnsolė %1</translation>
     </message>
     <message>
-        <source>Restart iTALC Service</source>
-        <translation>Perkrauti iTALC tarnybą</translation>
+        <source>Restart veyon Service</source>
+        <translation>Perkrauti veyon tarnybą</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation>Visi nustatymai išsaugoti sėkmingai. Tam kad pakeitimai taptu aktyvūs reikia perkrauti iTALC. Perkrauti dabar?</translation>
+        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
+        <translation>Visi nustatymai išsaugoti sėkmingai. Tam kad pakeitimai taptu aktyvūs reikia perkrauti veyon. Perkrauti dabar?</translation>
     </message>
     <message>
-        <source>Starting iTALC service</source>
-        <translation>Paleidžiama iTALC tarnyba</translation>
+        <source>Starting veyon service</source>
+        <translation>Paleidžiama veyon tarnyba</translation>
     </message>
     <message>
-        <source>Stopping iTALC service</source>
-        <translation>Sustabdoma iTALC tarnyba</translation>
+        <source>Stopping veyon service</source>
+        <translation>Sustabdoma veyon tarnyba</translation>
     </message>
     <message>
         <source>Running</source>
         <translation>Veikia</translation>
     </message>
     <message>
-        <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>iTALC tarnyba turi būti laikinai sustabdyta kad ištrinti įvykių žurnalo failus. Tęsti?</translation>
+        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>veyon tarnyba turi būti laikinai sustabdyta kad ištrinti įvykių žurnalo failus. Tęsti?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1451,16 +1451,16 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>Išsaugoti klaidų archyvą</translation>
     </message>
     <message>
-        <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation>iTALC klaidos archyvas (*.ibra.xml)</translation>
+        <source>veyon bug report archive (*.ibra.xml)</source>
+        <translation>veyon klaidos archyvas (*.ibra.xml)</translation>
     </message>
     <message>
-        <source>iTALC bug report archive saved</source>
-        <translation>iTALC klaidos archyvas išsaugotas</translation>
+        <source>veyon bug report archive saved</source>
+        <translation>veyon klaidos archyvas išsaugotas</translation>
     </message>
     <message>
-        <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>iTALC klaidos archyvas išsaugotas į %1 . Jame yra iTALC ivykių žurnalai ir informacija apie jūsų operacinę sistemą. Galita šį archyvą prisegti prie klaidos pranešimo </translation>
+        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation>veyon klaidos archyvas išsaugotas į %1 . Jame yra veyon ivykių žurnalai ir informacija apie jūsų operacinę sistemą. Galita šį archyvą prisegti prie klaidos pranešimo </translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1477,11 +1477,11 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Sveiki atvykę į iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Sveiki atvykę į veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
@@ -1496,12 +1496,12 @@ p, li { white-space: pre-wrap; }
         <translation>Darbalaukio fotografavvimo tvarkyklė labai naudingas dalykas.Ji leidžia tvarkyti jums ekrano nuotraukas kurias padarėte</translation>
     </message>
     <message>
-        <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation>Aišku jūs taip pat galite keisti iTALC nustatymus. Paprastai tai darosi naudojant Nustaymų tvarkyklę.</translation>
+        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
+        <translation>Aišku jūs taip pat galite keisti veyon nustatymus. Paprastai tai darosi naudojant Nustaymų tvarkyklę.</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>Apie programą iTALC</translation>
+        <source>About veyon</source>
+        <translation>Apie programą veyon</translation>
     </message>
 </context>
 <context>
@@ -1511,19 +1511,19 @@ p, li { white-space: pre-wrap; }
         <translation>Peržiūra</translation>
     </message>
     <message>
-        <source>Some basic information on iTALC and how to use it.</source>
-        <translation>Truputis pagrindinės informacijos apie iTALC ir kaip ja naudotis.</translation>
+        <source>Some basic information on veyon and how to use it.</source>
+        <translation>Truputis pagrindinės informacijos apie veyon ir kaip ja naudotis.</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>iTALC Logon</source>
-        <translation>Prisijungimas prie iTALC</translation>
+        <source>veyon Logon</source>
+        <translation>Prisijungimas prie veyon</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access iTALC clients.</source>
-        <translation>Prašome įvesti vartotojo vardą ir slaptažodį kad prisijungtumėte prie iTALC.</translation>
+        <source>Please enter your username and password in order to access veyon clients.</source>
+        <translation>Prašome įvesti vartotojo vardą ir slaptažodį kad prisijungtumėte prie veyon.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1541,8 +1541,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QApplication</name>
     <message>
-        <source>iTALC Client %1 on %2:%3</source>
-        <translation>iTALC klienras %1 yra %2:%3</translation>
+        <source>veyon Client %1 on %2:%3</source>
+        <translation>veyon klienras %1 yra %2:%3</translation>
     </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>

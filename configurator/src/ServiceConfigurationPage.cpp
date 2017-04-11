@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,7 +27,7 @@
 
 #include "ConfiguratorCore.h"
 #include "FileSystemBrowser.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "ServiceConfigurationPage.h"
 #include "ServiceControl.h"
@@ -71,18 +71,18 @@ ServiceConfigurationPage::~ServiceConfigurationPage()
 
 void ServiceConfigurationPage::resetWidgets()
 {
-	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
 
 void ServiceConfigurationPage::connectWidgetsToProperties()
 {
-	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
@@ -91,10 +91,10 @@ void ServiceConfigurationPage::applyConfiguration()
 	ServiceControl serviceControl( this );
 
 	if( serviceControl.isServiceRunning() &&
-		QMessageBox::question( this, tr( "Restart %1 Service" ).arg( ItalcCore::applicationName() ),
+		QMessageBox::question( this, tr( "Restart %1 Service" ).arg( VeyonCore::applicationName() ),
 			tr( "All settings were saved successfully. In order to take "
 				"effect the %1 service needs to be restarted. "
-				"Restart it now?" ).arg( ItalcCore::applicationName() ),
+				"Restart it now?" ).arg( VeyonCore::applicationName() ),
 			QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
 	{
 		serviceControl.stopService();
@@ -126,7 +126,7 @@ void ServiceConfigurationPage::updateServiceControl()
 {
 	bool running = ServiceControl( this ).isServiceRunning();
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	ui->startService->setEnabled( !running );
 	ui->stopService->setEnabled( running );
 #else

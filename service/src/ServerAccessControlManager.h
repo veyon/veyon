@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,7 +25,7 @@
 #ifndef SERVER_ACCESS_CONTROL_MANAGER_H
 #define SERVER_ACCESS_CONTROL_MANAGER_H
 
-#include "RfbItalcAuth.h"
+#include "RfbVeyonAuth.h"
 #include "DesktopAccessPermission.h"
 #include "VncServerClient.h"
 

@@ -1,9 +1,9 @@
 /*
- * main.cpp - startup routine for iTALC Master Application
+ * main.cpp - startup routine for Veyon Master Application
  *
  * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,23 +27,23 @@
 
 #include "MasterCore.h"
 #include "MainWindow.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCoreConnection.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCoreConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
 
 QSplashScreen * splashScreen = nullptr;
 
-// good old main-function... initializes qt-app and starts iTALC
+// good old main-function... initializes qt-app and starts Veyon
 int main( int argc, char * * argv )
 {
-	ItalcCore::setupApplicationParameters();
+	VeyonCore::setupApplicationParameters();
 
 	QApplication app( argc, argv );
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-	ItalcCore core( &app, "Master" );
+	VeyonCore core( &app, "Master" );
 
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
@@ -59,15 +59,15 @@ int main( int argc, char * * argv )
 				const QString role = arg_it.next();
 				if( role == "teacher" )
 				{
-					core.setUserRole( ItalcCore::RoleTeacher );
+					core.setUserRole( VeyonCore::RoleTeacher );
 				}
 				else if( role == "admin" )
 				{
-					core.setUserRole( ItalcCore::RoleAdmin );
+					core.setUserRole( VeyonCore::RoleAdmin );
 				}
 				else if( role == "supporter" )
 				{
-					core.setUserRole( ItalcCore::RoleSupporter );
+					core.setUserRole( VeyonCore::RoleSupporter );
 				}
 			}
 			else
@@ -82,7 +82,7 @@ int main( int argc, char * * argv )
 	}
 
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
-	if( ItalcCore::config().applicationName().isEmpty() )
+	if( VeyonCore::config().applicationName().isEmpty() )
 	{
 		splashScreen.show();
 	}
@@ -102,7 +102,7 @@ int main( int argc, char * * argv )
 		!mainWindow.localICA()->isConnected() )
 	{
 		qCritical( "No connection to local ICA - terminating now" );
-		if( ItalcCore::config().logLevel() < Logger::LogLevelDebug )
+		if( VeyonCore::config().logLevel() < Logger::LogLevelDebug )
 		{
 			return -1;
 		}

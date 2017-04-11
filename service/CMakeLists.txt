@@ -2,39 +2,39 @@ FILE(GLOB service_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB service_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 QT5_WRAP_CPP(service_MOC_out ${service_INCLUDES})
 
-IF(ITALC_BUILD_LINUX)
+IF(VEYON_BUILD_LINUX)
 
 	ADD_SUBDIRECTORY(helpers)
 
-ENDIF(ITALC_BUILD_LINUX)
+ENDIF(VEYON_BUILD_LINUX)
 
-IF(ITALC_BUILD_WIN32)
+IF(VEYON_BUILD_WIN32)
 
 	ADD_SUBDIRECTORY(win32)
 	INCLUDE_DIRECTORIES(${ultravnc_DIR}/winvnc/winvnc)
 
-	SET(WINRC "${CMAKE_CURRENT_BINARY_DIR}/italc-service-rc.obj")
+	SET(WINRC "${CMAKE_CURRENT_BINARY_DIR}/veyon-service-rc.obj")
 	ADD_CUSTOM_COMMAND(OUTPUT ${WINRC}
 						COMMAND ${WINDRES}
 							-I${CMAKE_CURRENT_SOURCE_DIR}
 							-o${WINRC}
-							-i${CMAKE_CURRENT_BINARY_DIR}/italc-service.rc
-						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/italc-service.rc)
+							-i${CMAKE_CURRENT_BINARY_DIR}/veyon-service.rc
+						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/veyon-service.rc)
 
-ENDIF(ITALC_BUILD_WIN32)
+ENDIF(VEYON_BUILD_WIN32)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-ADD_EXECUTABLE(italc-service ${service_SOURCES} ${service_INCLUDES} ${service_MOC_out} ${libvncserver_DIR}/common/d3des.c ${WINRC})
-TARGET_LINK_LIBRARIES(italc-service italc-core)
+ADD_EXECUTABLE(veyon-service ${service_SOURCES} ${service_INCLUDES} ${service_MOC_out} ${libvncserver_DIR}/common/d3des.c ${WINRC})
+TARGET_LINK_LIBRARIES(veyon-service veyon-core)
 
-INSTALL(TARGETS italc-service RUNTIME DESTINATION bin)
+INSTALL(TARGETS veyon-service RUNTIME DESTINATION bin)
 
-IF(ITALC_BUILD_WIN32)
-	SET_TARGET_PROPERTIES(italc-service PROPERTIES LINK_FLAGS -mwindows)
-ENDIF(ITALC_BUILD_WIN32)
+IF(VEYON_BUILD_WIN32)
+	SET_TARGET_PROPERTIES(veyon-service PROPERTIES LINK_FLAGS -mwindows)
+ENDIF(VEYON_BUILD_WIN32)
 
-TARGET_LINK_LIBRARIES(italc-service
+TARGET_LINK_LIBRARIES(veyon-service
         Qt5::Gui
         Qt5::Network
         Qt5::Widgets

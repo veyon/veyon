@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -40,7 +40,7 @@ public:
 
 typedef QList<NetworkObjectDirectoryPluginInterface> NetworkObjectDirectoryPluginInterfaceList;
 
-#define NetworkObjectDirectoryPluginInterface_iid "org.italc-solutions.iTALC.Plugins.NetworkObjectPluginInterface"
+#define NetworkObjectDirectoryPluginInterface_iid "org.veyon-solutions.veyon.Plugins.NetworkObjectPluginInterface"
 
 Q_DECLARE_INTERFACE(NetworkObjectDirectoryPluginInterface, NetworkObjectDirectoryPluginInterface_iid)
 

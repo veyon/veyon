@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,7 +23,7 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QtCore/QDateTime>
 #include <QtNetwork/QTcpSocket>
@@ -32,10 +32,10 @@
 
 #include "AuthenticationCredentials.h"
 #include "DemoServer.h"
-#include "ItalcConfiguration.h"
-#include "ItalcVncConnection.h"
+#include "VeyonConfiguration.h"
+#include "VeyonVncConnection.h"
 #include "RfbLZORLE.h"
-#include "RfbItalcCursor.h"
+#include "RfbVeyonCursor.h"
 #include "SocketDevice.h"
 #include "VariantStream.h"
 #include "VariantArrayMessage.h"
@@ -63,17 +63,17 @@ DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccess
 	m_demoAccessToken( demoAccessToken ),
 	m_vncConn()
 {
-	if( listen( QHostAddress::Any, ItalcCore::config().demoServerPort() ) == false )
+	if( listen( QHostAddress::Any, VeyonCore::config().demoServerPort() ) == false )
 	{
 		qCritical( "DemoServer::DemoServer(): could not start demo server!" );
 		return;
 	}
 
-	ItalcCore::authenticationCredentials().setToken( vncServerToken );
+	VeyonCore::authenticationCredentials().setToken( vncServerToken );
 	m_vncConn.setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	m_vncConn.setPort( ItalcCore::config().computerControlServerPort() );
-	m_vncConn.setItalcAuthType( RfbItalcAuth::Token );
-	m_vncConn.setQuality( ItalcVncConnection::DemoServerQuality );
+	m_vncConn.setPort( VeyonCore::config().computerControlServerPort() );
+	m_vncConn.setVeyonAuthType( RfbVeyonAuth::Token );
+	m_vncConn.setQuality( VeyonVncConnection::DemoServerQuality );
 	m_vncConn.setFramebufferUpdateInterval( 100 );
 	m_vncConn.start();
 
@@ -143,7 +143,7 @@ void DemoServer::incomingConnection( qintptr sock )
 
 DemoServerClient::DemoServerClient( const QString& demoAccessToken,
 									qintptr sock,
-									const ItalcVncConnection *vncConn,
+									const VeyonVncConnection *vncConn,
 									DemoServer *parent ) :
 	QObject(),
 	m_protocolState( ProtocolInvalid ),
@@ -489,7 +489,7 @@ void DemoServerClient::sendUpdates()
 		const rfbFramebufferUpdateRectHeader rh =
 		{
 			rr,
-			qToBigEndian<uint32_t>( rfbEncodingItalcCursor )
+			qToBigEndian<uint32_t>( rfbEncodingVeyonCursor )
 		} ;
 
 		m_socket->write( (const char *) &rh, sizeof( rh ) );
@@ -532,7 +532,7 @@ bool DemoServerClient::processProtocol()
 		{
 			m_socket->read( sz_rfbProtocolVersionMsg );
 
-			const uint8_t secTypeList[2] = { 1, rfbSecTypeItalc } ;
+			const uint8_t secTypeList[2] = { 1, rfbSecTypeVeyon } ;
 			m_socket->write( (const char *) secTypeList, sizeof( secTypeList ) );
 			m_protocolState = ProtocolSecurityType;
 
@@ -546,7 +546,7 @@ bool DemoServerClient::processProtocol()
 			uint8_t chosen = 0;
 			m_socket->read( (char *) &chosen, sizeof( chosen ) );
 
-			if( chosen != rfbSecTypeItalc )
+			if( chosen != rfbSecTypeVeyon )
 			{
 				qCritical( "DemoServerClient:::run(): protocol initialization failed" );
 				deleteLater();
@@ -556,7 +556,7 @@ bool DemoServerClient::processProtocol()
 			// send list of supported authentication types
 			VariantArrayMessage supportedAuthTypesMessage( m_socket );
 			supportedAuthTypesMessage.write( 1 );
-			supportedAuthTypesMessage.write( RfbItalcAuth::Token );
+			supportedAuthTypesMessage.write( RfbVeyonAuth::Token );
 			supportedAuthTypesMessage.send();
 
 			m_protocolState = ProtocolAuthTypes;
@@ -570,9 +570,9 @@ bool DemoServerClient::processProtocol()
 		VariantArrayMessage authTypeMessageResponse( m_socket );
 		if( authTypeMessageResponse.isReadyForReceive() && authTypeMessageResponse.receive() )
 		{
-			auto chosenItalcAuthType = authTypeMessageResponse.read().value<RfbItalcAuth::Type>();
+			auto chosenVeyonAuthType = authTypeMessageResponse.read().value<RfbVeyonAuth::Type>();
 
-			if( chosenItalcAuthType != RfbItalcAuth::Token )
+			if( chosenVeyonAuthType != RfbVeyonAuth::Token )
 			{
 				qWarning("DemoServerClient::run(): client did not chose token authentication\n");
 				deleteLater();
@@ -648,10 +648,10 @@ bool DemoServerClient::processProtocol()
 				return false;
 			}
 
-			connect( m_vncConn, &ItalcVncConnection::cursorShapeUpdated,
+			connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated,
 					 this, &DemoServerClient::updateCursorShape, Qt::QueuedConnection );
 
-			connect( m_vncConn, &ItalcVncConnection::imageUpdated,
+			connect( m_vncConn, &VeyonVncConnection::imageUpdated,
 					 this, &DemoServerClient::updateRect, Qt::QueuedConnection );
 
 			// TODO

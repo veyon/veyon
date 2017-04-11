@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,16 +27,16 @@
 
 #include "AccessControlDataBackendManager.h"
 #include "AccessControlProvider.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "LocalSystem.h"
 
 
 AccessControlProvider::AccessControlProvider() :
 	m_accessControlRules(),
-	m_dataBackend( ItalcCore::accessControlDataBackendManager().configuredBackend() )
+	m_dataBackend( VeyonCore::accessControlDataBackendManager().configuredBackend() )
 {
-	for( auto accessControlRule : ItalcCore::config().accessControlRules() )
+	for( auto accessControlRule : VeyonCore::config().accessControlRules() )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}
@@ -77,14 +77,14 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 		accessingUser = accessingUser.mid( domainSeparator + 1 );
 	}
 
-	if( ItalcCore::config().isAccessRestrictedToUserGroups() )
+	if( VeyonCore::config().isAccessRestrictedToUserGroups() )
 	{
 		if( processAuthorizedGroups( accessingUser ) )
 		{
 			return AccessAllow;
 		}
 	}
-	else if( ItalcCore::config().isAccessControlRulesProcessingEnabled() )
+	else if( VeyonCore::config().isAccessControlRulesProcessingEnabled() )
 	{
 		auto action = processAccessControlRules( accessingUser,
 												 accessingComputer,
@@ -122,7 +122,7 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 {
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
-	return m_dataBackend->groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config().authorizedUserGroups().toSet() );
+	return m_dataBackend->groupsOfUser( accessingUser ).toSet().intersects( VeyonCore::config().authorizedUserGroups().toSet() );
 }
 
 
@@ -164,7 +164,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
  */
 bool AccessControlProvider::isAccessDeniedByLocalState()
 {
-	if( ItalcCore::config().isAccessControlRulesProcessingEnabled() == false )
+	if( VeyonCore::config().isAccessControlRulesProcessingEnabled() == false )
 	{
 		return false;
 	}

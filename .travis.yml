@@ -20,10 +20,10 @@ deploy:
     provider: releases
     api_key:
         secure: J1BqH4gUyCfgrE/H/Z3JZk6rEcOFJSrLCNEjsyVpVWlFJXnlIeMD4L0Qz8rCyztWXMVAIbWnRUZDmOvoS5SV/anyEhcNZrWQ/p0LERctb2CxeCD3GiNqjg5IbxZOh5wGSJG3HuAMz6JiwTH/WX0cc07GWFuhK98z/BBSDqdkKo6Nz5opNzOQ46juKIIeDzr/zmUpH5086uwx2ogb4LxokpJiYra1g3elLc+RiHeSOnNQbt+nB3RUWck4YyZV/vyOMg1XzKyG4f8UAYRDntsRH/cK+bjO0eL0LcYi/HY4IRh+4qvEXIiRnHenOju2P6nqLyjBHwm5ZfyJQjTrGDRJxnexyjK08AugEPeXtHyoSsz297EiV4gknYP4Tf06XZD6br/zS3GeVF0vPMXLakDf3l8nkhPxk7BqfVtcGUPiJZbS4j4VoijTtZQVpHfKx8vKoYd4oVs6I3zFnGDHMSZfNoYjzLWXzeCwkbXlAfWN8PEYL90O5IIj4YF5+gcJg/QxXwwChkAFh9K2xYRZx1B022O+SYDQTalKcDFSHZn5HHV1oxh/dhU9MhV3WB2fruOpij65FTuJ4WHi7hfpSiXJj6ODpPea2RKMPUV2NsR+RVVKEEX53qH6E+LlZMm9tKOfUNgmsJe1EAqvkBvXWPoFzygpUG2h2NMndpWBqPZE7ts=
-    repo: iTALC/italc-mso
+    repo: veyon/veyon
     skip_cleanup: true
     file_glob: true
-    file: "italc-*-$TARGET_OS-setup.exe"
+    file: "veyon-*-$TARGET_OS-setup.exe"
     on:
         tags: true
         all_branches: true

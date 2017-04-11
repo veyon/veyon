@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -24,9 +24,9 @@
  */
 
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 #include <windows.h>
 
@@ -48,7 +48,7 @@ QMutex SystemKeyTrapper::s_refCntMutex;
 int SystemKeyTrapper::s_refCnt = 0;
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 
 // some code for trapping system's hotkeys such as Alt+Ctrl+Del, Alt+Tab,
@@ -158,7 +158,7 @@ void SystemKeyTrapper::setEnabled( bool on )
 	m_enabled = on;
 	if( on )
 	{
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 		if( !s_refCnt )
 		{
 			if( !g_hHookKbdLL )
@@ -184,7 +184,7 @@ void SystemKeyTrapper::setEnabled( bool on )
 	else
 	{
 		--s_refCnt;
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 		if( !s_refCnt )
 		{
 			UnhookWindowsHookEx( g_hHookKbdLL );

@@ -111,7 +111,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
           </property>
          </widget>
@@ -122,7 +122,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
           </property>
          </widget>
@@ -135,7 +135,7 @@
          <string>Launch key file assistant</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/tools-wizard.png</normaloff>:/resources/tools-wizard.png</iconset>
         </property>
        </widget>
@@ -187,7 +187,7 @@
          <string>Test</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
         </property>
        </widget>
@@ -210,7 +210,7 @@
          </size>
         </property>
         <property name="text">
-         <string>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</string>
+         <string>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -250,7 +250,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

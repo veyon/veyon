@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/italc-configurator.png</file>
+        <file>resources/veyon-configurator.png</file>
         <file>resources/help-about.png</file>
         <file>resources/media-playback-start.png</file>
         <file>resources/media-playback-stop.png</file>

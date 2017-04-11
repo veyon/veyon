@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -46,7 +46,7 @@ public:
 
 typedef QList<VncServerPluginInterface *> VncServerPluginInterfaceList;
 
-#define VncServerPluginInterface_iid "org.italc-solutions.iTALC.Plugins.VncServerPluginInterface"
+#define VncServerPluginInterface_iid "org.veyon-solutions.veyon.Plugins.VncServerPluginInterface"
 
 Q_DECLARE_INTERFACE(VncServerPluginInterface, VncServerPluginInterface_iid)
 

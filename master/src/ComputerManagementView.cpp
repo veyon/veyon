@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,7 +27,7 @@
 
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "RoomSelectionDialog.h"
 
 #include "ui_ComputerManagementView.h"
@@ -43,8 +43,8 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 	ui->treeView->setModel( computerManager.computerTreeModel() );
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 
-	ui->addRoomButton->setVisible( ItalcCore::config().onlyCurrentRoomVisible() &&
-										ItalcCore::config().manualRoomAdditionAllowed() );
+	ui->addRoomButton->setVisible( VeyonCore::config().onlyCurrentRoomVisible() &&
+										VeyonCore::config().manualRoomAdditionAllowed() );
 }
 
 

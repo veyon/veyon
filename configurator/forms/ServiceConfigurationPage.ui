@@ -46,7 +46,7 @@
          <string>Start service</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/media-playback-start.png</normaloff>:/resources/media-playback-start.png</iconset>
         </property>
        </widget>
@@ -113,7 +113,7 @@
          <string>Stop service</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/media-playback-stop.png</normaloff>:/resources/media-playback-stop.png</iconset>
         </property>
        </widget>
@@ -285,7 +285,7 @@
   <tabstop>localConnectOnly</tabstop>
  </tabstops>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

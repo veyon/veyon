@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -36,7 +36,7 @@ class QWidget;
 
 class FeatureWorkerManager;
 
-class ITALC_CORE_EXPORT FeatureManager : public QObject
+class VEYON_CORE_EXPORT FeatureManager : public QObject
 {
 	Q_OBJECT
 public:

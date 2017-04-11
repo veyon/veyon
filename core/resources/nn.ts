@@ -4,15 +4,15 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About iTALC</source>
-        <translation type="unfinished">Om iTALC</translation>
+        <source>About veyon</source>
+        <translation type="unfinished">Om veyon</translation>
     </message>
     <message>
         <source>About</source>
         <translation type="unfinished">Om</translation>
     </message>
     <message>
-        <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
+        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -26,7 +26,7 @@
     <message>
         <source>Current language not translated yet (or native English).
 
-If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
+If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -34,9 +34,9 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation type="unfinished">Lisens</translation>
     </message>
     <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
+        <source>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2013 Tobias Doerffel / veyon Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -297,7 +297,7 @@ Vil du lage eit klasserom no?</translation>
         <translation type="unfinished">IP / Vertnamn</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -305,7 +305,7 @@ Vil du lage eit klasserom no?</translation>
         <translation type="unfinished">Namn</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -438,8 +438,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Vis sanntidsbilete i fullskjerm</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Nokre endringar trer ikkje i kraft før du startar iTALC om att.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Nokre endringar trer ikkje i kraft før du startar veyon om att.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -545,12 +545,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConfigWidget</name>
     <message>
-        <source>Your iTALC-configuration</source>
-        <translation type="unfinished">iTALC oppsett</translation>
+        <source>Your veyon-configuration</source>
+        <translation type="unfinished">veyon oppsett</translation>
     </message>
     <message>
-        <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation type="unfinished">I dette arbeidsområdet endrar du iTALC etter eige behov.</translation>
+        <source>In this workspace you can customize veyon to fit your needs.</source>
+        <translation type="unfinished">I dette arbeidsområdet endrar du veyon etter eige behov.</translation>
     </message>
 </context>
 <context>
@@ -563,12 +563,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DemoClient</name>
     <message>
-        <source>iTALC Demo</source>
-        <translation type="unfinished">iTALC Demo</translation>
+        <source>veyon Demo</source>
+        <translation type="unfinished">veyon Demo</translation>
     </message>
 </context>
 <context>
-    <name>ItalcCoreServer</name>
+    <name>VeyonCoreServer</name>
     <message>
         <source>Authentication error</source>
         <translation type="unfinished">Autentiseringsfeil</translation>
@@ -579,7 +579,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ItalcVncConnection</name>
+    <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
         <translation type="unfinished"></translation>
@@ -596,15 +596,15 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>iTALC Access Key Assistant</source>
+        <source>veyon Access Key Assistant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Create/import iTALC access keys</source>
+        <source>Create/import veyon access keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This assistant will help you to create or import iTALC access keys.</source>
+        <source>This assistant will help you to create or import veyon access keys.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -612,7 +612,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
+        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
 
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
@@ -732,7 +732,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public iTALC access key!</source>
+        <source>The selected file does not contain a valid public veyon access key!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -786,7 +786,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
+        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -798,7 +798,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Groups with iTALC privileges</source>
+        <source>Groups with veyon privileges</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -820,11 +820,11 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished">Avslutt</translation>
     </message>
     <message>
-        <source>iTALC Management Console</source>
+        <source>veyon Management Console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC Server</source>
+        <source>veyon Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -836,7 +836,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC Service</source>
+        <source>veyon Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1020,8 +1020,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation type="unfinished">Om iTALC</translation>
+        <source>About veyon</source>
+        <translation type="unfinished">Om veyon</translation>
     </message>
     <message>
         <source>About Qt</source>
@@ -1036,7 +1036,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC Management Console %1</source>
+        <source>veyon Management Console %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1068,7 +1068,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1080,16 +1080,16 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC</source>
-        <translation type="unfinished">iTALC</translation>
+        <source>veyon</source>
+        <translation type="unfinished">veyon</translation>
     </message>
     <message>
         <source>No write access</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation type="unfinished">Klarte ikkje lesa/skriva eller lage katalog %1! Kontroller at du har nødvendig tilgang for å lage eller skrive til denne katalogen før du køyrer iTALC.</translation>
+        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Klarte ikkje lesa/skriva eller lage katalog %1! Kontroller at du har nødvendig tilgang for å lage eller skrive til denne katalogen før du køyrer veyon.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1116,7 +1116,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished">Oversikt</translation>
     </message>
     <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1236,7 +1236,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC Master Control</source>
+        <source>veyon Master Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1244,15 +1244,15 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished">Fjernkontroll</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the iTALC Service.</source>
+        <source>Could not modify the autostart property for the veyon Service.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the iTALC Service.</source>
+        <source>Could not modify the service arguments for the veyon Service.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the iTALC Service.</source>
+        <source>Could not change the firewall configuration for the veyon Service.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1280,7 +1280,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC 1 demo server</source>
+        <source>veyon 1 demo server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1332,7 +1332,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1344,11 +1344,11 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Debugging iTALC</source>
+        <source>Debugging veyon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
         <translation type="unfinished"></translation>
@@ -1394,30 +1394,30 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Restart iTALC Service</source>
+        <source>Restart veyon Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
+        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Starting iTALC service</source>
+        <source>Starting veyon service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Stopping iTALC service</source>
+        <source>Stopping veyon service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1453,23 +1453,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC bug report archive (*.ibra.xml)</source>
+        <source>veyon bug report archive (*.ibra.xml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>iTALC bug report archive saved</source>
+        <source>veyon bug report archive saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
+        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
+        <source>Could not contact veyon service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1477,7 +1477,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1498,8 +1498,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Velkommen til iTALC &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Velkommen til veyon &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
@@ -1514,12 +1514,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Skjermskot arbeidsområdet lar deg behandle og sjå skjermskot du har laga.</translation>
     </message>
     <message>
-        <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation type="unfinished">Endringar i oppsettet til iTALC blir for det meste gjort i arbeidsområdet for oppsett.</translation>
+        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
+        <translation type="unfinished">Endringar i oppsettet til veyon blir for det meste gjort i arbeidsområdet for oppsett.</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation type="unfinished">Om iTALC</translation>
+        <source>About veyon</source>
+        <translation type="unfinished">Om veyon</translation>
     </message>
 </context>
 <context>
@@ -1529,14 +1529,14 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Oversikt</translation>
     </message>
     <message>
-        <source>Some basic information on iTALC and how to use it.</source>
-        <translation type="unfinished">Grunnleggjande informasjon om iTALC og korleis det kan brukast.</translation>
+        <source>Some basic information on veyon and how to use it.</source>
+        <translation type="unfinished">Grunnleggjande informasjon om veyon og korleis det kan brukast.</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>Please enter your username and password in order to access iTALC clients.</source>
+        <source>Please enter your username and password in order to access veyon clients.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1548,7 +1548,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Passord</translation>
     </message>
     <message>
-        <source>iTALC Logon</source>
+        <source>veyon Logon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1607,7 +1607,7 @@ p, li { white-space: pre-wrap; }
         <translation>Klarte ikkje å kontakte tenestebehandlaren (har du dei nødvendige rettighetene ?) - Tenesta &apos;%1&apos; blei ikkje stoppa.</translation>
     </message>
     <message>
-        <source>iTALC Client %1 on %2:%3</source>
+        <source>veyon Client %1 on %2:%3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

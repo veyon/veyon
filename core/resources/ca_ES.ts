@@ -2,24 +2,24 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About iTALC</source>
-        <translation>Quant a iTALC</translation>
+        <source>About veyon</source>
+        <translation>Quant a veyon</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Quant a</translation>
     </message>
     <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
+        <source>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
+Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
+        <translation>veyon - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
     </message>
     <message>
-        <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
+        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -32,12 +32,12 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
     <message>
         <source>Current language not translated yet (or native English).
 
-If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
+If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
         <translation>Traduït per
 
 Alexis Roda Villalonga &lt;alexis.roda.villalonga at gmail dot com&gt;
 
-Si voleu millorar una traducció existent, contacteu amb un desenvolupador d&apos;iTALC!</translation>
+Si voleu millorar una traducció existent, contacteu amb un desenvolupador d&apos;veyon!</translation>
     </message>
     <message>
         <source>License</source>
@@ -291,16 +291,16 @@ Voleu crear una aula?</translation>
         <translation>IP/nom d&apos;equip</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;introduïu una adreça IP o un nom d&apos;equip per a que iTALC es connecti amb l&apos;equip (utilitzeu &apos;:&apos; per especificar un número de port)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;introduïu una adreça IP o un nom d&apos;equip per a que veyon es connecti amb l&apos;equip (utilitzeu &apos;:&apos; per especificar un número de port)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Àlies opcional de l&apos;equip que es mostrarà a l&apos;iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Àlies opcional de l&apos;equip que es mostrarà a l&apos;veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -538,30 +538,30 @@ p, li { white-space: pre-wrap; }
         <translation>Veure en viu a pantalla completa</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Si us plau, tingueu en compte que alguns canvis no tindran efecte fins que reinicieu iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Si us plau, tingueu en compte que alguns canvis no tindran efecte fins que reinicieu veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>ConfigWidget</name>
     <message>
-        <source>Your iTALC-configuration</source>
-        <translation>Configuració d&apos;iTALC</translation>
+        <source>Your veyon-configuration</source>
+        <translation>Configuració d&apos;veyon</translation>
     </message>
     <message>
-        <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation>En aquest espai podeu configurar iTALC segons les vostres necessitats.</translation>
+        <source>In this workspace you can customize veyon to fit your needs.</source>
+        <translation>En aquest espai podeu configurar veyon segons les vostres necessitats.</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
-        <source>iTALC Demo</source>
-        <translation>iTALC Demo</translation>
+        <source>veyon Demo</source>
+        <translation>veyon Demo</translation>
     </message>
 </context>
 <context>
-    <name>ItalcCoreServer</name>
+    <name>VeyonCoreServer</name>
     <message>
         <source>Authentication error</source>
         <translation>Error d&apos;autentificació</translation>
@@ -572,7 +572,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ItalcVncConnection</name>
+    <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
         <translation>L&apos;autentificació VNC ha fallat degut a un excés d&apos;intents d&apos;autentificació.</translation>
@@ -589,28 +589,28 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>iTALC Access Key Assistant</source>
-        <translation>Gestor de claus d&apos;accés de iTALC</translation>
+        <source>veyon Access Key Assistant</source>
+        <translation>Gestor de claus d&apos;accés de veyon</translation>
     </message>
     <message>
-        <source>Create/import iTALC access keys</source>
-        <translation>Crear/importar claus d&apos;accés iTALC</translation>
+        <source>Create/import veyon access keys</source>
+        <translation>Crear/importar claus d&apos;accés veyon</translation>
     </message>
     <message>
-        <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation>Aquest assistent us ajudarà a crear o importar les claus d&apos;accés iTALC.</translation>
+        <source>This assistant will help you to create or import veyon access keys.</source>
+        <translation>Aquest assistent us ajudarà a crear o importar les claus d&apos;accés veyon.</translation>
     </message>
     <message>
         <source>How does it work?</source>
         <translation>Com funciona?</translation>
     </message>
     <message>
-        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
+        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
 
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Les claus d&apos;accés iTALC estan formades per dos parts que treballen juntes, una part pública i una part privada.
+        <translation>Les claus d&apos;accés veyon estan formades per dos parts que treballen juntes, una part pública i una part privada.
 
 Utilitzant la part privada de la clau, els usuaris de l&apos;ordinador meste podran accedir als ordinadors client. És important que només els usuaris autoritzat tinguin accés de lectura a l&apos;arxiu de la clau privada.
 
@@ -725,8 +725,8 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Clau pública no vàlida</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation>L&apos;arxiu seleccionat no conté una clau pública iTALC vàlida!</translation>
+        <source>The selected file does not contain a valid public veyon access key!</source>
+        <translation>L&apos;arxiu seleccionat no conté una clau pública veyon vàlida!</translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -779,8 +779,8 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Editor de grups d&apos;inici de sessió</translation>
     </message>
     <message>
-        <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation>Si us plau, afegiu els grups els membres tindran accés als ordinadors en la vostra xarxa iTALC.</translation>
+        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
+        <translation>Si us plau, afegiu els grups els membres tindran accés als ordinadors en la vostra xarxa veyon.</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -791,8 +791,8 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>...</translation>
     </message>
     <message>
-        <source>Groups with iTALC privileges</source>
-        <translation>Grups amb privilegis iTALC</translation>
+        <source>Groups with veyon privileges</source>
+        <translation>Grups amb privilegis veyon</translation>
     </message>
 </context>
 <context>
@@ -813,16 +813,16 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Barra d&apos;eines</translation>
     </message>
     <message>
-        <source>iTALC Management Console</source>
-        <translation>Consola d&apos;administració iTALC</translation>
+        <source>veyon Management Console</source>
+        <translation>Consola d&apos;administració veyon</translation>
     </message>
     <message>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
-        <source>iTALC Server</source>
-        <translation>Servidor iTALC</translation>
+        <source>veyon Server</source>
+        <translation>Servidor veyon</translation>
     </message>
     <message>
         <source>Paths</source>
@@ -837,8 +837,8 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Depuració</translation>
     </message>
     <message>
-        <source>iTALC Service</source>
-        <translation>Servei iTALC</translation>
+        <source>veyon Service</source>
+        <translation>Servei veyon</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -961,8 +961,8 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Reflector VNC</translation>
     </message>
     <message>
-        <source>iTALC 1 demo server</source>
-        <translation>Servidor demo iTALC 1</translation>
+        <source>veyon 1 demo server</source>
+        <translation>Servidor demo veyon 1</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1057,8 +1057,8 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Confirmació d&apos;accés</translation>
     </message>
     <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Podeu configurar iTALC per demanar a l&apos;usuari el permís per accedir a l&apos;escriptori quan s&apos;utilitzen certs métodes d&apos;autentificació.</translation>
+        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Podeu configurar veyon per demanar a l&apos;usuari el permís per accedir a l&apos;escriptori quan s&apos;utilitzen certs métodes d&apos;autentificació.</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1069,14 +1069,14 @@ La part pública s&apos;utilitza en els ordinadors client per verificar que una 
         <translation>Permetre al mateix usuari accedir a l&apos;escriptori sense confirmació</translation>
     </message>
     <message>
-        <source>Debugging iTALC</source>
-        <translation>Depurant iTALC</translation>
+        <source>Debugging veyon</source>
+        <translation>Depurant veyon</translation>
     </message>
     <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Quan troveu un error o un mal funcionament en iTALC és important informar als desenvolupadors, de forma que els errors poden ser corregits en versions futures. Aquesta pàgina us permet enviar fàcilment un informe d&apos;error.
+        <translation>Quan troveu un error o un mal funcionament en veyon és important informar als desenvolupadors, de forma que els errors poden ser corregits en versions futures. Aquesta pàgina us permet enviar fàcilment un informe d&apos;error.
 
 Si l&apos;error no es pot reproduir, ometeu els passos 1) - 3).</translation>
     </message>
@@ -1121,11 +1121,11 @@ Si l&apos;error no es pot reproduir, ometeu els passos 1) - 3).</translation>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Aneu a la &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;gestió d&apos;erros de iTALC&lt;/a&gt;, obriu un nou ticket, describiu que heu fet en el pas 3) i adjunteu l&apos;arxiu que heu guardat en el pas 4).&lt;/p&gt;
+        <translation>Aneu a la &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;gestió d&apos;erros de veyon&lt;/a&gt;, obriu un nou ticket, describiu que heu fet en el pas 3) i adjunteu l&apos;arxiu que heu guardat en el pas 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos;informe d&apos;error dels dos ordinadors.</translation>
@@ -1167,24 +1167,24 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>Quant a iTALC</translation>
+        <source>About veyon</source>
+        <translation>Quant a veyon</translation>
     </message>
     <message>
         <source>About Qt</source>
         <translation>Quant a Qt</translation>
     </message>
     <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
+        <source>veyon</source>
+        <translation>veyon</translation>
     </message>
     <message>
         <source>No write access</source>
         <translation>Sense permís d&apos;escriptura</translation>
     </message>
     <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>No es pot llegir/escriure o crear la carpeta %1!. Per poder executar iTALC, assegureu-vos que podeu crer o escriure aquesta carpeta.</translation>
+        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation>No es pot llegir/escriure o crear la carpeta %1!. Per poder executar veyon, assegureu-vos que podeu crer o escriure aquesta carpeta.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1211,8 +1211,8 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <translation>Ajuda</translation>
     </message>
     <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Aquest és el mode per defecte en iTALC i us permet tindre una vista general dels ordinadors visibles. També podeu fer clic en aquest botó per desblocar equips blocats o per sortir del mode demo.</translation>
+        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation>Aquest és el mode per defecte en veyon i us permet tindre una vista general dels ordinadors visibles. També podeu fer clic en aquest botó per desblocar equips blocats o per sortir del mode demo.</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
@@ -1331,24 +1331,24 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <translation>Fent clic en aquest botó les finiestres visibles son reditribuides i ajustades.</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>No es pot connectar amb el servei iTALC</translation>
+        <source>Could not contact veyon service</source>
+        <translation>No es pot connectar amb el servei veyon</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>No es pot connectar amb el servei iTALC. És probable que hagueu introduït unes credencials incorrectes o que els arxius de claus no estiguin ben configurats. Torneu a provar-ho o contacteu amb l&apos;administrador per resoldre el problema emprant la Consola d&apos;Administracio de iTALC.</translation>
+        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
+        <translation>No es pot connectar amb el servei veyon. És probable que hagueu introduït unes credencials incorrectes o que els arxius de claus no estiguin ben configurats. Torneu a provar-ho o contacteu amb l&apos;administrador per resoldre el problema emprant la Consola d&apos;Administracio de veyon.</translation>
     </message>
     <message>
-        <source>iTALC Master Control</source>
-        <translation>Control mestre de iTALC</translation>
+        <source>veyon Master Control</source>
+        <translation>Control mestre de veyon</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Autentificació impossible</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>No s&apos;han trobat els arxius de claus o estan caducats. Si us plau, creeu nous arxius de claus emprant la Consola de Gestió de iTALC. Alternativament activeu l&apos;autentificació d&apos;inici de sessió emprant la Consola de Gestió de iTALC. En altre cas no podreu accedir als ordinadors des de iTALC.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
+        <translation>No s&apos;han trobat els arxius de claus o estan caducats. Si us plau, creeu nous arxius de claus emprant la Consola de Gestió de veyon. Alternativament activeu l&apos;autentificació d&apos;inici de sessió emprant la Consola de Gestió de veyon. En altre cas no podreu accedir als ordinadors des de veyon.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1359,24 +1359,24 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <translation>Sortir</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the iTALC Service.</source>
-        <translation>No es pot modificar la propietat de inici automàtic del servei iTALC.</translation>
+        <source>Could not modify the autostart property for the veyon Service.</source>
+        <translation>No es pot modificar la propietat de inici automàtic del servei veyon.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the iTALC Service.</source>
-        <translation>No es poden modificar els paràmetres del servei iTALC.</translation>
+        <source>Could not modify the service arguments for the veyon Service.</source>
+        <translation>No es poden modificar els paràmetres del servei veyon.</translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the iTALC Service.</source>
-        <translation>No es pot canviar la configuració del tallafocs pel servei iTALC.</translation>
+        <source>Could not change the firewall configuration for the veyon Service.</source>
+        <translation>No es pot canviar la configuració del tallafocs pel servei veyon.</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
         <translation>La configuració no es pot escriure</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>El gestor de configuració local informa que la configuració no es pot escriure!. Si us plau, executeu la Consola de Gestió iTALC amb privilegis elevats.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
+        <translation>El gestor de configuració local informa que la configuració no es pot escriure!. Si us plau, executeu la Consola de Gestió veyon amb privilegis elevats.</translation>
     </message>
     <message>
         <source>All settings were applied successfully.</source>
@@ -1387,32 +1387,32 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <translation>S&apos;ha produït un error al aplicar els ajustaments!</translation>
     </message>
     <message>
-        <source>iTALC Management Console %1</source>
-        <translation>Consola de Gestió iTALC %1</translation>
+        <source>veyon Management Console %1</source>
+        <translation>Consola de Gestió veyon %1</translation>
     </message>
     <message>
-        <source>Restart iTALC Service</source>
-        <translation>Reiniciar el servei iTALC</translation>
+        <source>Restart veyon Service</source>
+        <translation>Reiniciar el servei veyon</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation>Els ajustaments s&apos;han aplicat amb èxit. Per activar-los cal reiniciar el servei iTALC. Voleu reiniciar-lo ara?</translation>
+        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
+        <translation>Els ajustaments s&apos;han aplicat amb èxit. Per activar-los cal reiniciar el servei veyon. Voleu reiniciar-lo ara?</translation>
     </message>
     <message>
-        <source>Starting iTALC service</source>
-        <translation>Iniciant servei iTALC</translation>
+        <source>Starting veyon service</source>
+        <translation>Iniciant servei veyon</translation>
     </message>
     <message>
-        <source>Stopping iTALC service</source>
-        <translation>Aturant servei iTALC</translation>
+        <source>Stopping veyon service</source>
+        <translation>Aturant servei veyon</translation>
     </message>
     <message>
         <source>Running</source>
         <translation>Funcionant</translation>
     </message>
     <message>
-        <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Cal aturar el servei iTALC momentàniament per poder buidar els arxius de registre. Continuar?</translation>
+        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>Cal aturar el servei veyon momentàniament per poder buidar els arxius de registre. Continuar?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1459,16 +1459,16 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <translation>Guardar arxiu d&apos;informe d&apos;error</translation>
     </message>
     <message>
-        <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation>Arxiu d&apos;informe d&apos;error iTALC (*.ibra.xml)</translation>
+        <source>veyon bug report archive (*.ibra.xml)</source>
+        <translation>Arxiu d&apos;informe d&apos;error veyon (*.ibra.xml)</translation>
     </message>
     <message>
-        <source>iTALC bug report archive saved</source>
-        <translation>Arxiu d&apos;informe d&apos;error iTALC guardat</translation>
+        <source>veyon bug report archive saved</source>
+        <translation>Arxiu d&apos;informe d&apos;error veyon guardat</translation>
     </message>
     <message>
-        <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Un arxiu d&apos;informe d&apos;error iTALC s&apos;ha guardat en %1. Inclou arxius de registre de iTALC i informació sobre el vostre sistema operatiu. Podeu adjuntar-lo a un informe d&apos;error.</translation>
+        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation>Un arxiu d&apos;informe d&apos;error veyon s&apos;ha guardat en %1. Inclou arxius de registre de veyon i informació sobre el vostre sistema operatiu. Podeu adjuntar-lo a un informe d&apos;error.</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1485,11 +1485,11 @@ Nota: si l&apos;error involucra un ordinador mestre i un client, adjunteu l&apos
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Benvingut a iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Benvingut a veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
@@ -1504,12 +1504,12 @@ p, li { white-space: pre-wrap; }
         <translation>L&apos;espai de captures és una eina molt útil. Us permet gestionar les captures de pantalla que heu fet.</translation>
     </message>
     <message>
-        <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation>Per supost podeu configurar iTALC. Açò es fa habitualment utilitzant l&apos;espai de configuració.</translation>
+        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
+        <translation>Per supost podeu configurar veyon. Açò es fa habitualment utilitzant l&apos;espai de configuració.</translation>
     </message>
     <message>
-        <source>About iTALC</source>
-        <translation>Quant a iTALC</translation>
+        <source>About veyon</source>
+        <translation>Quant a veyon</translation>
     </message>
 </context>
 <context>
@@ -1519,19 +1519,19 @@ p, li { white-space: pre-wrap; }
         <translation>Ajuda</translation>
     </message>
     <message>
-        <source>Some basic information on iTALC and how to use it.</source>
-        <translation>Informació bàsica sobre iTALC i com utilitzar-lo.</translation>
+        <source>Some basic information on veyon and how to use it.</source>
+        <translation>Informació bàsica sobre veyon i com utilitzar-lo.</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>iTALC Logon</source>
-        <translation>Inici de sessió iTALC</translation>
+        <source>veyon Logon</source>
+        <translation>Inici de sessió veyon</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access iTALC clients.</source>
-        <translation>Si us plau, introduïu el vostre nom d&apos;usuari i clau d&apos;accés per accedir als clients iTALC.</translation>
+        <source>Please enter your username and password in order to access veyon clients.</source>
+        <translation>Si us plau, introduïu el vostre nom d&apos;usuari i clau d&apos;accés per accedir als clients veyon.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1549,8 +1549,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QApplication</name>
     <message>
-        <source>iTALC Client %1 on %2:%3</source>
-        <translation>Client iTALC %1 a %2:%3</translation>
+        <source>veyon Client %1 on %2:%3</source>
+        <translation>Client veyon %1 a %2:%3</translation>
     </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>

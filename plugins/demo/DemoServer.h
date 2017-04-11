@@ -4,7 +4,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -30,10 +30,10 @@
 #include <QtCore/QReadWriteLock>
 #include <QtNetwork/QTcpServer>
 
-#include "ItalcVncConnection.h"
+#include "VeyonVncConnection.h"
 
 
-// there's one instance of a DemoServer on the iTALC master
+// there's one instance of a DemoServer on the Veyon master
 class DemoServer : public QTcpServer
 {
 	Q_OBJECT
@@ -72,7 +72,7 @@ private:
 
 	QString m_demoAccessToken;
 
-	ItalcVncConnection m_vncConn;
+	VeyonVncConnection m_vncConn;
 	QReadWriteLock m_cursorLock;
 	QImage m_initialCursorShape;
 	QPoint m_cursorPos;
@@ -88,7 +88,7 @@ class DemoServerClient : public QObject
 {
 	Q_OBJECT
 public:
-	DemoServerClient( const QString& demoAccessToken, qintptr sock, const ItalcVncConnection *vncConn,
+	DemoServerClient( const QString& demoAccessToken, qintptr sock, const VeyonVncConnection *vncConn,
 							DemoServer *parent );
 	~DemoServerClient() override;
 
@@ -102,7 +102,7 @@ private slots:
 	// updating as less as possible of screen
 	void updateRect( int x, int y, int w, int h );
 
-	// called whenever ItalcVncConnection::cursorShapeUpdated() is emitted
+	// called whenever VeyonVncConnection::cursorShapeUpdated() is emitted
 	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
 
 	// called regularly for sending pointer-movement-events detected by
@@ -157,7 +157,7 @@ private:
 
 	qintptr m_socketDescriptor;
 	QTcpSocket *m_socket;
-	const ItalcVncConnection *m_vncConn;
+	const VeyonVncConnection *m_vncConn;
 	bool m_otherEndianess;
 	char *m_lzoWorkMem;
 	QRgb *m_rawBuf;

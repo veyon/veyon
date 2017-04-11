@@ -1,9 +1,9 @@
 /*
- * ItalcCore.h - definitions for iTALC Core
+ * VeyonCore.h - definitions for veyon Core
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,12 +22,12 @@
  *
  */
 
-#ifndef ITALC_CORE_H
-#define ITALC_CORE_H
+#ifndef VEYON_CORE_H
+#define VEYON_CORE_H
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <winsock2.h>
 #include <windows.h>
 #endif
@@ -38,10 +38,10 @@
 #include <QString>
 #include <QDebug>
 
-#if defined(BUILD_ITALC_CORE_LIBRARY)
-#  define ITALC_CORE_EXPORT Q_DECL_EXPORT
+#if defined(BUILD_VEYON_CORE_LIBRARY)
+#  define VEYON_CORE_EXPORT Q_DECL_EXPORT
 #else
-#  define ITALC_CORE_EXPORT Q_DECL_IMPORT
+#  define VEYON_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
 class QCoreApplication;
@@ -50,20 +50,20 @@ class QWidget;
 class AccessControlDataBackendManager;
 class AuthenticationCredentials;
 class CryptoCore;
-class ItalcConfiguration;
+class VeyonConfiguration;
 class Logger;
 class PluginManager;
 
-class ITALC_CORE_EXPORT ItalcCore : public QObject
+class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
 	Q_OBJECT
 public:
-	ItalcCore( QCoreApplication* application, const QString& appComponentName );
-	~ItalcCore() override;
+	VeyonCore( QCoreApplication* application, const QString& appComponentName );
+	~VeyonCore() override;
 
-	static ItalcCore* instance();
+	static VeyonCore* instance();
 
-	static ItalcConfiguration& config()
+	static VeyonConfiguration& config()
 	{
 		return *( instance()->m_config );
 	}
@@ -114,9 +114,9 @@ public:
 	}
 
 private:
-	static ItalcCore* s_instance;
+	static VeyonCore* s_instance;
 
-	ItalcConfiguration* m_config;
+	VeyonConfiguration* m_config;
 	Logger* m_logger;
 	AuthenticationCredentials* m_authenticationCredentials;
 	CryptoCore* m_cryptoCore;

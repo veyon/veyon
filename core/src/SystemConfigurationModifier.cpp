@@ -1,10 +1,10 @@
 /*
- * SystemConfigurationModifier.cpp - class for easy modification of iTALC-related
+ * SystemConfigurationModifier.cpp - class for easy modification of veyon-related
  *                                   settings in the operating system
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,9 +23,9 @@
  *
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #define INITGUID
 #include <winsock2.h>
 #include <windows.h>
@@ -39,7 +39,7 @@
 
 bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
 	if( !hsrvmanager )
 	{
@@ -47,7 +47,7 @@ bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
 		return false;
 	}
 
-	SC_HANDLE hservice = OpenService( hsrvmanager, "ItalcService", SERVICE_ALL_ACCESS );
+	SC_HANDLE hservice = OpenService( hsrvmanager, "VeyonService", SERVICE_ALL_ACCESS );
 	if( !hservice )
 	{
 		ilog_failed( "OpenService()" );
@@ -88,7 +88,7 @@ bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
 bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArgs )
 {
 	bool err = false;
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
 	if( !hsrvmanager )
 	{
@@ -96,7 +96,7 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 		return false;
 	}
 
-	SC_HANDLE hservice = OpenService( hsrvmanager, "ItalcService", SERVICE_ALL_ACCESS );
+	SC_HANDLE hservice = OpenService( hsrvmanager, "VeyonService", SERVICE_ALL_ACCESS );
 	if( !hservice )
 	{
 		ilog_failed( "OpenService()" );
@@ -134,7 +134,7 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 HRESULT WindowsFirewallInitialize( INetFwProfile **fwProfile )
 {
 	HRESULT hr = S_OK;
@@ -480,7 +480,7 @@ cleanup:
 
 bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	HRESULT hr = S_OK;
 
 	// initialize COM
@@ -499,7 +499,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		}
 	}
 
-	static const wchar_t *fwRuleName = L"iTALC Client Application";
+	static const wchar_t *fwRuleName = L"veyon Client Application";
 
 	const QString p = ServiceControl::serviceFilePath().replace( '/', '\\' );
 
@@ -603,7 +603,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 
 bool SystemConfigurationModifier::enableSoftwareSAS( bool enabled )
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	HKEY hkLocal, hkLocalKey;
 	DWORD dw;
 	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,

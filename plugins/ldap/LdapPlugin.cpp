@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,7 +23,7 @@
  */
 
 #include "Configuration/LocalStore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
@@ -186,7 +186,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 	// write configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &ItalcCore::config() );
+	localStore.flush( &VeyonCore::config() );
 
 	return Successful;
 }

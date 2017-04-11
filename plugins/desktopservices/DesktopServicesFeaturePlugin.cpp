@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,9 +22,9 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <windows.h>
 #endif
 
@@ -173,7 +173,7 @@ void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& program )
 	LocalSystem::Process proc( LocalSystem::Process::findProcessId( QString(), -1, &user ) );
 	QString desktop = LocalSystem::Desktop::activeDesktop().name();
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	LocalSystem::Process::Handle hProcess = proc.runAsUser( program, desktop );
 	if( hProcess )
 	{
@@ -193,9 +193,9 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 		qWarning() << "DesktopServicesFeaturePlugin: could not open URL" << url
 				   << "via QDesktopServices - trying native approach";
 		QString launcher;
-#ifdef ITALC_BUILD_LINUX
+#ifdef VEYON_BUILD_LINUX
 		launcher = "xdg-open ";
-#elif defined(ITALC_BUILD_WIN32)
+#elif defined(VEYON_BUILD_WIN32)
 		launcher = "cmd /c start ";
 #else
 #warning unsupported platform

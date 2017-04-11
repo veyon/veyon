@@ -1,10 +1,10 @@
 /*
- * RfbItalcAuth.h - types and names related to iTALC-specific RFB
+ * RfbVeyonAuth.h - types and names related to veyon-specific RFB
  *                  authentication type
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,15 +23,15 @@
  *
  */
 
-#ifndef RFB_ITALC_AUTH_H
-#define RFB_ITALC_AUTH_H
+#ifndef RFB_VEYON_AUTH_H
+#define RFB_VEYON_AUTH_H
 
 #include <QObject>
 
-#include "ItalcCore.h"
-#include "ItalcRfbExt.h"
+#include "VeyonCore.h"
+#include "VeyonRfbExt.h"
 
-class ITALC_CORE_EXPORT RfbItalcAuth
+class VEYON_CORE_EXPORT RfbVeyonAuth
 {
 	Q_GADGET
 public:

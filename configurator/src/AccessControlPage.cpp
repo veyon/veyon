@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,8 +27,8 @@
 
 #include "AccessControlPage.h"
 #include "AccessControlRule.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 #include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
@@ -44,7 +44,7 @@ AccessControlPage::AccessControlPage() :
 {
 	ui->setupUi(this);
 
-	if( ItalcCore::accessControlDataBackendManager().configuredBackend() == nullptr )
+	if( VeyonCore::accessControlDataBackendManager().configuredBackend() == nullptr )
 	{
 		QMessageBox::critical( this,
 							   tr( "Missing access control data backend" ),
@@ -53,7 +53,7 @@ AccessControlPage::AccessControlPage() :
 		qFatal( "AccessControlPage: missing default access control data backend" );
 	}
 
-	auto backends = ItalcCore::accessControlDataBackendManager().availableBackends();
+	auto backends = VeyonCore::accessControlDataBackendManager().availableBackends();
 	for( auto backend : backends.keys() )
 	{
 		ui->accessControlDataBackend->addItem( backends[backend], backend );
@@ -76,9 +76,9 @@ AccessControlPage::~AccessControlPage()
 
 void AccessControlPage::resetWidgets()
 {
-	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
-	m_accessGroups = ItalcCore::config().authorizedUserGroups();
+	m_accessGroups = VeyonCore::config().authorizedUserGroups();
 
 	updateAccessGroupsLists();
 	updateAccessControlRules();
@@ -88,14 +88,14 @@ void AccessControlPage::resetWidgets()
 
 void AccessControlPage::connectWidgetsToProperties()
 {
-	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
+	FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
 }
 
 
 
 void AccessControlPage::applyConfiguration()
 {
-	ItalcCore::accessControlDataBackendManager().reloadConfiguration();
+	VeyonCore::accessControlDataBackendManager().reloadConfiguration();
 }
 
 
@@ -108,7 +108,7 @@ void AccessControlPage::addAccessGroup()
 		m_accessGroups += item->text();
 	}
 
-	ItalcCore::config().setAuthorizedUserGroups( m_accessGroups );
+	VeyonCore::config().setAuthorizedUserGroups( m_accessGroups );
 
 	updateAccessGroupsLists();
 }
@@ -122,7 +122,7 @@ void AccessControlPage::removeAccessGroup()
 		m_accessGroups.removeAll( item->text() );
 	}
 
-	ItalcCore::config().setAuthorizedUserGroups( m_accessGroups );
+	VeyonCore::config().setAuthorizedUserGroups( m_accessGroups );
 
 	updateAccessGroupsLists();
 }
@@ -136,7 +136,7 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	auto groups = ItalcCore::accessControlDataBackendManager().configuredBackend()->userGroups();
+	auto groups = VeyonCore::accessControlDataBackendManager().configuredBackend()->userGroups();
 
 	for( auto group : groups )
 	{
@@ -161,7 +161,7 @@ void AccessControlPage::addAccessControlRule()
 
 	if( AccessControlRuleEditDialog( newRule, this ).exec() )
 	{
-		ItalcCore::config().setAccessControlRules( ItalcCore::config().accessControlRules() << newRule.toJson() );
+		VeyonCore::config().setAccessControlRules( VeyonCore::config().accessControlRules() << newRule.toJson() );
 
 		updateAccessControlRules();
 	}
@@ -171,11 +171,11 @@ void AccessControlPage::addAccessControlRule()
 
 void AccessControlPage::removeAccessControlRule()
 {
-	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
+	QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
 	accessControlRules.removeAt( ui->accessControlRulesView->currentIndex().row() );
 
-	ItalcCore::config().setAccessControlRules( accessControlRules );
+	VeyonCore::config().setAccessControlRules( accessControlRules );
 
 	updateAccessControlRules();
 }
@@ -184,7 +184,7 @@ void AccessControlPage::removeAccessControlRule()
 
 void AccessControlPage::editAccessControlRule()
 {
-	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
+	QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 
@@ -207,7 +207,7 @@ void AccessControlPage::editAccessControlRule()
 
 void AccessControlPage::moveAccessControlRuleDown()
 {
-	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
+	QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row + 1;
@@ -226,7 +226,7 @@ void AccessControlPage::moveAccessControlRuleDown()
 
 void AccessControlPage::moveAccessControlRuleUp()
 {
-	QJsonArray accessControlRules = ItalcCore::config().accessControlRules();
+	QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row - 1;
@@ -271,7 +271,7 @@ void AccessControlPage::testAccessControlRules()
 
 void AccessControlPage::modifyAccessControlRules(const QJsonArray &accessControlRules, int selectedRow)
 {
-	ItalcCore::config().setAccessControlRules( accessControlRules );
+	VeyonCore::config().setAccessControlRules( accessControlRules );
 
 	updateAccessControlRules();
 

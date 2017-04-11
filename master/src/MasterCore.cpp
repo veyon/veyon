@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,9 +27,9 @@
 #include "MasterCore.h"
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
-#include "ItalcVncConnection.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCoreConnection.h"
+#include "VeyonVncConnection.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCoreConnection.h"
 #include "ComputerManager.h"
 #include "MonitoringMode.h"
 #include "UserConfig.h"
@@ -99,9 +99,9 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 FeatureList MasterCore::featureList() const
 {
 	FeatureList features;
-	auto disabledFeatures = ItalcCore::config().disabledFeatures();
+	auto disabledFeatures = VeyonCore::config().disabledFeatures();
 
-	for( auto pluginUid : ItalcCore::pluginManager().pluginUids() )
+	for( auto pluginUid : VeyonCore::pluginManager().pluginUids() )
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{
@@ -114,7 +114,7 @@ FeatureList MasterCore::featureList() const
 		}
 	}
 
-	for( auto pluginUid : ItalcCore::pluginManager().pluginUids() )
+	for( auto pluginUid : VeyonCore::pluginManager().pluginUids() )
 	{
 		for( auto feature : m_featureManager->features( pluginUid ) )
 		{

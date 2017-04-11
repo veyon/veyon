@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QtCrypto>
 #include <QHostAddress>
@@ -30,7 +30,7 @@
 #include "ServerAccessControlManager.h"
 #include "AccessControlProvider.h"
 #include "DesktopAccessPermission.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "VariantArrayMessage.h"
 
@@ -52,17 +52,17 @@ bool ServerAccessControlManager::addClient( VncServerClient* client )
 
 	switch( client->authType() )
 	{
-	case RfbItalcAuth::DSA:
+	case RfbVeyonAuth::DSA:
 		result = performAccessControl( client, DesktopAccessPermission::KeyAuthentication );
 		break;
 
-	case RfbItalcAuth::Logon:
+	case RfbVeyonAuth::Logon:
 		result = performAccessControl( client, DesktopAccessPermission::LogonAuthentication );
 		break;
 
-	case RfbItalcAuth::None:
-	case RfbItalcAuth::HostWhiteList:
-	case RfbItalcAuth::Token:
+	case RfbVeyonAuth::None:
+	case RfbVeyonAuth::HostWhiteList:
+	case RfbVeyonAuth::Token:
 		result = true;
 		break;
 

@@ -40,7 +40,7 @@
          <string>Test</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
         </property>
        </widget>
@@ -74,7 +74,7 @@
          <string>Test</string>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
         </property>
        </widget>
@@ -118,7 +118,7 @@
       <item row="0" column="0" colspan="3">
        <widget class="QLabel" name="label_40">
         <property name="text">
-         <string>Please add the groups whose members should be authorized to access computers in your iTALC network.</string>
+         <string>Please add the groups whose members should be authorized to access computers in your Veyon network.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -170,7 +170,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
           </property>
          </widget>
@@ -181,7 +181,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
           </property>
          </widget>
@@ -222,7 +222,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
         </property>
        </widget>
@@ -236,7 +236,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/list-remove.png</normaloff>:/resources/list-remove.png</iconset>
         </property>
        </widget>
@@ -250,7 +250,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/go-down.png</normaloff>:/resources/go-down.png</iconset>
         </property>
        </widget>
@@ -287,7 +287,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/go-up.png</normaloff>:/resources/go-up.png</iconset>
         </property>
        </widget>
@@ -301,7 +301,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
+         <iconset resource="../veyon-configurator.qrc">
           <normaloff>:/resources/document-edit.png</normaloff>:/resources/document-edit.png</iconset>
         </property>
        </widget>
@@ -329,7 +329,7 @@
   <tabstop>moveAccessControlRuleDownButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

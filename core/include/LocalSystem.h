@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,9 +25,9 @@
 #ifndef LOCAL_SYSTEM_H
 #define LOCAL_SYSTEM_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 #include <windef.h>
 #endif
 
@@ -39,7 +39,7 @@ class QWidget;
 namespace LocalSystem
 {
 
-	class ITALC_CORE_EXPORT Desktop
+	class VEYON_CORE_EXPORT Desktop
 	{
 	public:
 		Desktop( const QString &name = QString() );
@@ -63,10 +63,10 @@ namespace LocalSystem
 		QString m_name;
 	} ;
 
-	class ITALC_CORE_EXPORT User
+	class VEYON_CORE_EXPORT User
 	{
 	public:
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 		typedef PSID Token;
 #else
 		typedef int Token;
@@ -128,10 +128,10 @@ namespace LocalSystem
 
 	} ;
 
-	class ITALC_CORE_EXPORT Process
+	class VEYON_CORE_EXPORT Process
 	{
 	public:
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 		typedef HANDLE Handle;
 #else
 		typedef int Handle;
@@ -161,7 +161,7 @@ namespace LocalSystem
 	} ;
 
 
-	class ITALC_CORE_EXPORT Path
+	class VEYON_CORE_EXPORT Path
 	{
 	public:
 		static QString expand( QString path );
@@ -171,25 +171,25 @@ namespace LocalSystem
 		static QString personalConfigDataPath();
 		static QString systemConfigDataPath();
 
-		static QString privateKeyPath( ItalcCore::UserRoles role,
+		static QString privateKeyPath( VeyonCore::UserRoles role,
 												QString baseDir = QString() );
-		static QString publicKeyPath( ItalcCore::UserRoles role,
+		static QString publicKeyPath( VeyonCore::UserRoles role,
 												QString baseDir = QString() );
 	} ;
 
 
 	void sleep( const int _ms );
 
-	void ITALC_CORE_EXPORT logonUser( const QString & _uname, const QString & _pw,
+	void VEYON_CORE_EXPORT logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
-	void ITALC_CORE_EXPORT logoutUser();
+	void VEYON_CORE_EXPORT logoutUser();
 
-#ifdef ITALC_BUILD_WIN32
-	BOOL ITALC_CORE_EXPORT enablePrivilege( const QString& privilegeName, bool enable );
-	HWND ITALC_CORE_EXPORT getHWNDForWidget( const QWidget* widget );
+#ifdef VEYON_BUILD_WIN32
+	BOOL VEYON_CORE_EXPORT enablePrivilege( const QString& privilegeName, bool enable );
+	HWND VEYON_CORE_EXPORT getHWNDForWidget( const QWidget* widget );
 #endif
 
-	void ITALC_CORE_EXPORT activateWindow( QWidget * _window );
+	void VEYON_CORE_EXPORT activateWindow( QWidget * _window );
 
 }
 

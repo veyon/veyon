@@ -58,7 +58,7 @@
       <item row="0" column="0" colspan="2">
        <widget class="QLineEdit" name="applicationName">
         <property name="text">
-         <string>iTALC</string>
+         <string>Veyon</string>
         </property>
        </widget>
       </item>
@@ -89,7 +89,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
           </property>
          </widget>
@@ -201,7 +201,7 @@
            <string>Clear all log files</string>
           </property>
           <property name="icon">
-           <iconset resource="../italc-configurator.qrc">
+           <iconset resource="../veyon-configurator.qrc">
             <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
           </property>
          </widget>
@@ -283,7 +283,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../italc-configurator.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

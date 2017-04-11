@@ -3,7 +3,7 @@
  *
  *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- *  This file is part of iTALC - http://italc.sourceforge.net
+ *  This file is part of Veyon - http://veyon.io
  *
  *  This is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 
 #include "RemoteAccessWidget.h"
 #include "VncView.h"
-#include "ItalcCoreConnection.h"
+#include "VeyonCoreConnection.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "LocalSystem.h"
@@ -279,7 +279,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 	QWidget( nullptr ),
 	m_computerControlInterface( computerControlInterface ),
 	m_vncView( new VncView( computerControlInterface.computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
-	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
+	m_coreConnection( new VeyonCoreConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, viewOnly ) )
 {
 	setWindowIcon( QPixmap( ":/remoteaccess/kmag.png" ) );

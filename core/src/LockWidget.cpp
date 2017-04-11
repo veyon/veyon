@@ -3,7 +3,7 @@
  *
  *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- *  This file is part of iTALC - http://italc.sourceforge.net
+ *  This file is part of veyon - http://veyon.io
  *
  *  This is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  *  USA.
  */
 
-#include <italcconfig.h>
+#include <veyonconfig.h>
 
 #include "LockWidget.h"
 #include "LocalSystem.h"
@@ -31,7 +31,7 @@
 #include <QPainter>
 
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 
 #include <windows.h>
 
@@ -76,7 +76,7 @@ LockWidget::LockWidget( Mode mode ) :
 	grabKeyboard();
 	setCursor( Qt::BlankCursor );
 
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	// disable screensaver
 	for( int x = 0; x < 3; ++x )
 	{
@@ -91,7 +91,7 @@ LockWidget::LockWidget( Mode mode ) :
 
 LockWidget::~LockWidget()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	// revert screensaver-settings
 	for( int x = 0; x < 3; ++x )
 	{

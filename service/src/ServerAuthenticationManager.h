@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,7 +28,7 @@
 #include <QMutex>
 #include <QStringList>
 
-#include "RfbItalcAuth.h"
+#include "RfbVeyonAuth.h"
 #include "VncServerClient.h"
 
 class VariantArrayMessage;
@@ -39,7 +39,7 @@ class ServerAuthenticationManager : public QObject
 public:
 	ServerAuthenticationManager( QObject* parent );
 
-	QVector<RfbItalcAuth::Type> supportedAuthTypes() const;
+	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const;
 
 	void processAuthenticationMessage( VncServerClient* client,
 									   VariantArrayMessage& message );

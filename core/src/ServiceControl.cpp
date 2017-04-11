@@ -1,9 +1,9 @@
 /*
- * ServiceControl.cpp - class for controlling iTALC service
+ * ServiceControl.cpp - class for controlling veyon service
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -22,7 +22,7 @@
  *
  */
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -31,8 +31,8 @@
 #include <QProgressDialog>
 #include <QThread>
 
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "ServiceControl.h"
@@ -48,8 +48,8 @@ ServiceControl::ServiceControl(QWidget *parent) :
 
 QString ServiceControl::serviceFilePath()
 {
-	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "italc-service";
-#ifdef ITALC_BUILD_WIN32
+	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "veyon-service";
+#ifdef VEYON_BUILD_WIN32
 	path += ".exe";
 #endif
 	return QDTNS( path );
@@ -59,14 +59,14 @@ QString ServiceControl::serviceFilePath()
 
 bool ServiceControl::isServiceRegistered()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	SC_HANDLE serviceManager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
 	if( !serviceManager )
 	{
 		return false;
 	}
 
-	SC_HANDLE serviceHandle = OpenService( serviceManager, "ItalcService", SERVICE_QUERY_STATUS );
+	SC_HANDLE serviceHandle = OpenService( serviceManager, "VeyonService", SERVICE_QUERY_STATUS );
 	if( !serviceHandle )
 	{
 		CloseServiceHandle( serviceManager );
@@ -86,7 +86,7 @@ bool ServiceControl::isServiceRegistered()
 
 bool ServiceControl::isServiceRunning()
 {
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
 	if( !hsrvmanager )
 	{
@@ -94,7 +94,7 @@ bool ServiceControl::isServiceRunning()
 		return false;
 	}
 
-	SC_HANDLE hservice = OpenService( hsrvmanager, "ItalcService", SERVICE_QUERY_STATUS );
+	SC_HANDLE hservice = OpenService( hsrvmanager, "VeyonService", SERVICE_QUERY_STATUS );
 	if( !hservice )
 	{
 		ilog_failed( "OpenService()" );
@@ -118,7 +118,7 @@ bool ServiceControl::isServiceRunning()
 
 void ServiceControl::startService()
 {
-	serviceControl( tr( "Starting %1 Service" ).arg( ItalcCore::applicationName() ), { "-startservice" } );
+	serviceControl( tr( "Starting %1 Service" ).arg( VeyonCore::applicationName() ), { "-startservice" } );
 }
 
 
@@ -126,21 +126,21 @@ void ServiceControl::startService()
 
 void ServiceControl::stopService()
 {
-	serviceControl( tr( "Stopping %1 Service" ).arg( ItalcCore::applicationName() ), { "-stopservice" } );
+	serviceControl( tr( "Stopping %1 Service" ).arg( VeyonCore::applicationName() ), { "-stopservice" } );
 }
 
 
 
 void ServiceControl::registerService()
 {
-	serviceControl( tr( "Registering %1 Service" ).arg( ItalcCore::applicationName() ), { "-registerservice" } );
+	serviceControl( tr( "Registering %1 Service" ).arg( VeyonCore::applicationName() ), { "-registerservice" } );
 }
 
 
 
 void ServiceControl::unregisterService()
 {
-	serviceControl( tr( "Unregistering %1 Service" ).arg( ItalcCore::applicationName() ), { "-unregisterservice" } );
+	serviceControl( tr( "Unregistering %1 Service" ).arg( VeyonCore::applicationName() ), { "-unregisterservice" } );
 }
 
 
@@ -173,7 +173,7 @@ void ServiceControl::serviceControl( const QString& title, QStringList arguments
 void ServiceControl::graphicalFeedback( const QString &title, const QProcess& serviceProcess )
 {
 	QProgressDialog pd( title, QString(), 0, 0, m_parent );
-	pd.setWindowTitle( ItalcCore::applicationName() );
+	pd.setWindowTitle( VeyonCore::applicationName() );
 
 	auto b = new QProgressBar( &pd );
 	b->setMaximum( 100 );

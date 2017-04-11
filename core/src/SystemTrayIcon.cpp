@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,8 +27,8 @@
 
 #include "SystemTrayIcon.h"
 #include "FeatureWorkerManager.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 
 
 SystemTrayIcon::SystemTrayIcon() :
@@ -146,7 +146,7 @@ bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
 		return false;
 	}
 
-	if( m_systemTrayIcon == nullptr && ItalcCore::config().isTrayIconHidden() == false )
+	if( m_systemTrayIcon == nullptr && VeyonCore::config().isTrayIconHidden() == false )
 	{
 		m_systemTrayIcon = new QSystemTrayIcon;
 

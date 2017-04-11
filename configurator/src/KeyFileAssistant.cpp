@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -29,8 +29,8 @@
 #include "CryptoCore.h"
 #include "FileSystemBrowser.h"
 #include "ConfiguratorCore.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "ui_KeyFileAssistant.h"
@@ -46,7 +46,7 @@ KeyFileAssistant::KeyFileAssistant() :
 	m_ui->directoriesPage->setUi( m_ui );
 
 	// init destination directory line edit
-	QDir d( LocalSystem::Path::expand( ItalcCore::config().privateKeyBaseDir() ) );
+	QDir d( LocalSystem::Path::expand( VeyonCore::config().privateKeyBaseDir() ) );
 	d.cdUp();
 	m_ui->destDirEdit->setText( QDTNS( d.absolutePath() ) );
 
@@ -90,7 +90,7 @@ void KeyFileAssistant::openPubKeyDir()
 			m_ui->publicKeyDir->setText( origPath );
 			QMessageBox::critical( this, tr( "Invalid public key" ),
 					tr( "The selected file does not contain a valid public "
-						"iTALC access key!" ) );
+						"Veyon access key!" ) );
 		}
 	}
 }
@@ -110,9 +110,9 @@ void KeyFileAssistant::openDestDir()
 
 void KeyFileAssistant::accept()
 {
-	ItalcCore::UserRole role =
-			static_cast<ItalcCore::UserRole>(
-					m_ui->userRole->currentIndex() + ItalcCore::RoleTeacher );
+	VeyonCore::UserRole role =
+			static_cast<VeyonCore::UserRole>(
+					m_ui->userRole->currentIndex() + VeyonCore::RoleTeacher );
 
 	QString destDir;
 	if( m_ui->useCustomDestDir->isChecked() ||
@@ -131,7 +131,7 @@ void KeyFileAssistant::accept()
 			{
 				QFile src( LocalSystem::Path::publicKeyPath( role, destDir ) );
 				QFile dst( QDTNS( m_ui->publicKeyDir->text() +
-										"/italc_public_key.key.txt" ) );
+										"/veyon_public_key.key.txt" ) );
 				if( dst.exists() )
 				{
 					dst.setPermissions( QFile::WriteOwner );

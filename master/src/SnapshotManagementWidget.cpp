@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,8 +28,8 @@
 #include <QScrollArea>
 
 #include "SnapshotManagementWidget.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "LocalSystem.h"
 #include "Snapshot.h"
 
@@ -43,12 +43,12 @@ SnapshotManagementWidget::SnapshotManagementWidget( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	LocalSystem::Path::ensurePathExists( ItalcCore::config().snapshotDirectory() );
+	LocalSystem::Path::ensurePathExists( VeyonCore::config().snapshotDirectory() );
 
 	m_fsModel.setNameFilters( QStringList() << "*.png" );
 	m_fsModel.setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
 	m_fsModel.setRootPath( LocalSystem::Path::expand(
-									ItalcCore::config().snapshotDirectory() ) );
+									VeyonCore::config().snapshotDirectory() ) );
 
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );

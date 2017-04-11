@@ -1,9 +1,9 @@
 /*
- * RfbItalcCursor.h - iTALC cursor rectangle encoding
+ * RfbVeyonCursor.h - veyon cursor rectangle encoding
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * code partly taken from KRDC / vncclientthread.h:
  * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
@@ -25,17 +25,17 @@
  *
  */
 
-#ifndef RFB_ITALC_CURSOR_H
-#define RFB_ITALC_CURSOR_H
+#ifndef RFB_VEYON_CURSOR_H
+#define RFB_VEYON_CURSOR_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-#define rfbEncodingItalcCursor 31
+#define rfbEncodingVeyonCursor 31
 
-class ITALC_CORE_EXPORT RfbItalcCursor
+class VEYON_CORE_EXPORT RfbVeyonCursor
 {
 public:
-	RfbItalcCursor();
+	RfbVeyonCursor();
 
 } ;
 

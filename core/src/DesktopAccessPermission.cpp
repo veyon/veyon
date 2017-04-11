@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -24,8 +24,8 @@
 
 #include "DesktopAccessPermission.h"
 #include "DesktopAccessDialog.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 
 
 DesktopAccessPermission::DesktopAccessPermission( AuthenticationMethod authMethod ) :
@@ -40,13 +40,13 @@ bool DesktopAccessPermission::authenticationMethodRequiresConfirmation()
 	switch( m_authenticationMethod )
 	{
 	case KeyAuthentication:
-		if( ItalcCore::config().isPermissionRequiredWithKeyAuthentication() )
+		if( VeyonCore::config().isPermissionRequiredWithKeyAuthentication() )
 		{
 			return true;
 		}
 		break;
 	case LogonAuthentication:
-		if( ItalcCore::config().isPermissionRequiredWithLogonAuthentication() )
+		if( VeyonCore::config().isPermissionRequiredWithLogonAuthentication() )
 		{
 			return true;
 		}

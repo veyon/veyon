@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,13 +25,13 @@
 #ifndef RFB_LZO_RLE_H
 #define RFB_LZO_RLE_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <stdint.h>
 
 #define rfbEncodingLZORLE 30
 
-class ITALC_CORE_EXPORT RfbLZORLE
+class VEYON_CORE_EXPORT RfbLZORLE
 {
 public:
 	RfbLZORLE();

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -31,7 +31,7 @@
 class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.BuiltinUltraVncServer")
+	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.BuiltinUltraVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
 	BuiltinUltraVncServer();
@@ -59,7 +59,7 @@ public:
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "iTALC Community" );
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override

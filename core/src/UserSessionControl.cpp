@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -24,10 +24,10 @@
 
 #include "UserSessionControl.h"
 #include "FeatureWorkerManager.h"
-#include "ItalcCore.h"
-#include "ItalcConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
-#include "ItalcRfbExt.h"
+#include "VeyonRfbExt.h"
 
 
 UserSessionControl::UserSessionControl() :
@@ -117,7 +117,7 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( user.name() ).arg( user.fullName() ) );
 		reply.addArgument( HomeDir, user.homePath() );
 
-		uint8_t rfbMessageType = rfbItalcFeatureMessage;
+		uint8_t rfbMessageType = rfbVeyonFeatureMessage;
 		message.ioDevice()->write( (const char *) &rfbMessageType, sizeof(rfbMessageType) );
 
 		reply.send( message.ioDevice() );

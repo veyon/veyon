@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -24,18 +24,18 @@
 
 #include <QTimer>
 
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "NetworkObjectDirectory.h"
 
 NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	QObject( parent )
 {
-	if( ItalcCore::config().networkObjectDirectoryUpdateInterval() >= MinimumUpdateInterval )
+	if( VeyonCore::config().networkObjectDirectoryUpdateInterval() >= MinimumUpdateInterval )
 	{
 		// create and start directory update timer
 		auto t = new QTimer( this );
 		connect( t, &QTimer::timeout, this, &NetworkObjectDirectory::update );
-		t->start( ItalcCore::config().networkObjectDirectoryUpdateInterval() * 1000 );
+		t->start( VeyonCore::config().networkObjectDirectoryUpdateInterval() * 1000 );
 	}
 }

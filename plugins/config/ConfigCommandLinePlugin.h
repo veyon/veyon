@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -26,12 +26,12 @@
 #define CONFIG_COMMAND_LINE_PLUGIN_H
 
 #include "CommandLinePluginInterface.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 
 class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.ConfigCommandLineInterface")
+	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.ConfigCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ConfigCommandLinePlugin();
@@ -54,12 +54,12 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Configure iTALC at command line" );
+		return tr( "Configure Veyon at command line" );
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "iTALC Community" );
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override
@@ -74,7 +74,7 @@ public:
 
 	QString commandHelp() const override
 	{
-		return QStringLiteral( "operations for changing the configuration of iTALC" );
+		return QStringLiteral( "operations for changing the configuration of Veyon" );
 	}
 
 	QStringList subCommands() const override;
@@ -91,7 +91,7 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_unset( const QStringList& arguments );
 
 private:
-	void listConfiguration( const ItalcConfiguration::DataMap &map,
+	void listConfiguration( const VeyonConfiguration::DataMap &map,
 							const QString &parentKey );
 	CommandLinePluginInterface::RunResult applyConfiguration();
 

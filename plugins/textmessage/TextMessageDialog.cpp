@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,7 +25,7 @@
 #include <QMessageBox>
 
 #include "TextMessageDialog.h"
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include "ui_TextMessageDialog.h"
 
@@ -37,7 +37,7 @@ TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	ItalcCore::enforceBranding( this );
+	VeyonCore::enforceBranding( this );
 }
 
 

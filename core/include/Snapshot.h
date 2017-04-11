@@ -3,7 +3,7 @@
  *
  *  Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- *  This file is part of iTALC - http://italc.sourceforge.net
+ *  This file is part of veyon - http://veyon.io
  *
  *  This is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,14 +24,14 @@
 #ifndef SNAPSHOT_H
 #define SNAPSHOT_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QImage>
 #include <QPixmap>
 
 class ComputerControlInterface;
 
-class ITALC_CORE_EXPORT Snapshot : public QObject
+class VEYON_CORE_EXPORT Snapshot : public QObject
 {
 	Q_OBJECT
 public:

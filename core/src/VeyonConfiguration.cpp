@@ -1,10 +1,10 @@
 /*
- * ItalcConfiguration.cpp - a Configuration object storing system wide
+ * VeyonConfiguration.cpp - a Configuration object storing system wide
  *                          configuration values
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,15 +25,15 @@
 
 #include <QDir>
 
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
-#include "ItalcRfbExt.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonRfbExt.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "NetworkObjectDirectory.h"
 
 
-ItalcConfiguration::ItalcConfiguration(
+VeyonConfiguration::VeyonConfiguration(
 									Configuration::Store::Backend backend ) :
 	Configuration::Object( backend, Configuration::Store::System )
 {
@@ -41,14 +41,14 @@ ItalcConfiguration::ItalcConfiguration(
 
 
 
-ItalcConfiguration::ItalcConfiguration( Configuration::Store *store ) :
+VeyonConfiguration::VeyonConfiguration( Configuration::Store *store ) :
 	Configuration::Object( store )
 {
 }
 
 
 
-ItalcConfiguration::ItalcConfiguration( const ItalcConfiguration &ref ) :
+VeyonConfiguration::VeyonConfiguration( const VeyonConfiguration &ref ) :
 	Configuration::Object( Configuration::Store::NoBackend,
 							Configuration::Store::System )
 {
@@ -58,9 +58,9 @@ ItalcConfiguration::ItalcConfiguration( const ItalcConfiguration &ref ) :
 
 
 
-ItalcConfiguration ItalcConfiguration::defaultConfiguration()
+VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 {
-	ItalcConfiguration c( Configuration::Store::NoBackend );
+	VeyonConfiguration c( Configuration::Store::NoBackend );
 
 	c.setApplicationName( QString() );
 	c.setHighDPIScalingEnabled( false );
@@ -78,7 +78,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setLogToWindowsEventLog( false );
 	c.setLogFileSizeLimit( -1 );
 	c.setLogFileDirectory(
-#ifdef ITALC_BUILD_WIN32
+#ifdef VEYON_BUILD_WIN32
 		"%TEMP%"
 #else
 		"$TEMP"
@@ -110,5 +110,5 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 
 
 
-FOREACH_ITALC_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
+FOREACH_VEYON_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
 

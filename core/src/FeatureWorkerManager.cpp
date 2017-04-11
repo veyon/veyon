@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,8 +28,8 @@
 #include <QTimer>
 
 #include "FeatureWorkerManager.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "FeatureManager.h"
 
 
@@ -41,7 +41,7 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );
 
-	if( !m_tcpServer.listen( QHostAddress::LocalHost, ItalcCore::config().featureWorkerManagerPort() ) )
+	if( !m_tcpServer.listen( QHostAddress::LocalHost, VeyonCore::config().featureWorkerManagerPort() ) )
 	{
 		qCritical( "FeatureWorkerManager: can't listen on localhost!" );
 	}
@@ -254,5 +254,5 @@ void FeatureWorkerManager::sendPendingMessages()
 
 QString FeatureWorkerManager::workerProcessFilePath()
 {
-	return QCoreApplication::applicationDirPath() + QDir::separator() + "italc-worker";
+	return QCoreApplication::applicationDirPath() + QDir::separator() + "veyon-worker";
 }

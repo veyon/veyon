@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -40,7 +40,7 @@ class LdapPlugin : public QObject, PluginInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.italc-solutions.iTALC.Plugins.Ldap")
+	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.Ldap")
 	Q_INTERFACES(PluginInterface
 				 CommandLinePluginInterface
 				 NetworkObjectDirectoryPluginInterface
@@ -67,12 +67,12 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Configure LDAP/AD integration of iTALC at command line" );
+		return tr( "Configure LDAP/AD integration of Veyon at command line" );
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "iTALC Community" );
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override
@@ -87,7 +87,7 @@ public:
 
 	QString commandHelp() const override
 	{
-		return QStringLiteral( "operations for configuring LDAP/AD integration of iTALC" );
+		return QStringLiteral( "operations for configuring LDAP/AD integration of Veyon" );
 	}
 
 	QStringList subCommands() const override;

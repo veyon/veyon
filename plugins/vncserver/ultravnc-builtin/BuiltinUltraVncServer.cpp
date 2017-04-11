@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -35,7 +35,7 @@ extern HINSTANCE	hAppInstance;
 extern DWORD		mainthreadId;
 
 
-void ultravnc_italc_load_password( char* out, int size )
+void ultravnc_veyon_load_password( char* out, int size )
 {
 	QByteArray password = vncServerInstance->password().toLatin1();
 	memcpy( out, password.constData(), std::min<int>( size, password.length() ) );
@@ -43,7 +43,7 @@ void ultravnc_italc_load_password( char* out, int size )
 
 
 
-BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
+BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 {
 	if( strcmp( valname, "LoopbackOnly" ) == 0 )
 	{

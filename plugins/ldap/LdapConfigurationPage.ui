@@ -941,7 +941,7 @@
   </connection>
  </connections>
  <slots>
-  <slot>aboutItalc()</slot>
+  <slot>aboutVeyon()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="groupMemberMatchingGroup"/>

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,11 +27,11 @@
 
 #include <QToolButton>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 class QToolBar;
 
-class ITALC_CORE_EXPORT ToolButton : public QToolButton
+class VEYON_CORE_EXPORT ToolButton : public QToolButton
 {
 	Q_OBJECT
 public:

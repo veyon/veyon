@@ -1,9 +1,9 @@
 /*
- * ToolButton.cpp - implementation of iTALC-tool-button
+ * ToolButton.cpp - implementation of veyon-tool-button
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -95,7 +95,7 @@ ToolButton::~ToolButton()
 
 
 
-#ifndef ITALC3
+#ifndef VEYON3
 void ToolButton::setIconOnlyMode( bool _enabled )
 {
         s_iconOnlyMode = _enabled;

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,11 +28,11 @@
 #include <QDesktopWidget>
 
 #include "DemoClient.h"
-#include "ItalcConfiguration.h"
+#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "LockWidget.h"
 #include "RfbLZORLE.h"
-#include "RfbItalcCursor.h"
+#include "RfbVeyonCursor.h"
 #include "VncView.h"
 
 
@@ -41,7 +41,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	m_toplevel( fullscreen ? new LockWidget( LockWidget::NoBackground )
 							: new QWidget() )
 {
-	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( ItalcCore::applicationName() ) );
+	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( VeyonCore::applicationName() ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 
@@ -58,9 +58,9 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 
 	// initialize extended protocol handlers
 	RfbLZORLE();
-	RfbItalcCursor();
+	RfbVeyonCursor();
 
-	m_vncView = new VncView( host, ItalcCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
+	m_vncView = new VncView( host, VeyonCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
 
 	auto toplevelLayout = new QVBoxLayout;
 	toplevelLayout->setMargin( 0 );

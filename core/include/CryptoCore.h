@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,7 +25,7 @@
 #ifndef CRYPTO_CORE_H
 #define CRYPTO_CORE_H
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
 #include <QtCrypto>
 
@@ -48,7 +48,7 @@ public:
 	CryptoCore();
 	~CryptoCore();
 
-	static QByteArray ITALC_CORE_EXPORT generateChallenge();
+	static QByteArray VEYON_CORE_EXPORT generateChallenge();
 
 private:
 	QCA::Initializer m_qcaInitializer;

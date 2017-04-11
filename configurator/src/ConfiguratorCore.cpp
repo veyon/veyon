@@ -1,9 +1,9 @@
 /*
- * ConfiguratorCore.cpp - global instances for the iTALC Configurator
+ * ConfiguratorCore.cpp - global instances for the Veyon Configurator
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,8 +28,8 @@
 #include "Configuration/LocalStore.h"
 #include "ConfiguratorCore.h"
 #include "CryptoCore.h"
-#include "ItalcConfiguration.h"
-#include "ItalcCore.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "MainWindow.h"
@@ -46,40 +46,40 @@ bool silent = false;
 
 static void configApplyError( const QString &msg )
 {
-	criticalMessage( MainWindow::tr( "%1 Configurator" ).arg( ItalcCore::applicationName() ), msg );
+	criticalMessage( MainWindow::tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ), msg );
 }
 
 
-bool applyConfiguration( const ItalcConfiguration &c )
+bool applyConfiguration( const VeyonConfiguration &c )
 {
 	// merge configuration
-	ItalcCore::config() += c;
+	VeyonCore::config() += c;
 
 	// do necessary modifications of system configuration
 	if( !SystemConfigurationModifier::setServiceAutostart(
-									ItalcCore::config().autostartService() ) )
+									VeyonCore::config().autostartService() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not modify the autostart property "
-										"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+										"for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
 	if( !SystemConfigurationModifier::setServiceArguments(
-									ItalcCore::config().serviceArguments() ) )
+									VeyonCore::config().serviceArguments() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not modify the service arguments "
-									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+									"for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 	if( !SystemConfigurationModifier::enableFirewallException(
-							ItalcCore::config().isFirewallExceptionEnabled() ) )
+							VeyonCore::config().isFirewallExceptionEnabled() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not change the firewall configuration "
-									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
+									"for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( !SystemConfigurationModifier::enableSoftwareSAS( ItalcCore::config().isSoftwareSASEnabled() ) )
+	if( !SystemConfigurationModifier::enableSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not change the setting for SAS generation by software. "
@@ -88,14 +88,14 @@ bool applyConfiguration( const ItalcConfiguration &c )
 
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &ItalcCore::config() );
+	localStore.flush( &VeyonCore::config() );
 
 	return true;
 }
 
 
 
-bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
+bool createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 {
 	QString privateKeyFile = LocalSystem::Path::privateKeyPath( role, destDir );
 	QString publicKeyFile = LocalSystem::Path::publicKeyPath( role, destDir );
@@ -139,14 +139,14 @@ bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 				"private key so that the file is\nreadable "
 				"by all members of a special group to which "
 				"all users belong who are\nallowed to use "
-				"iTALC.\n\n\n" );
+				"Veyon.\n\n\n" );
 	return true;
 }
 
 
 
 
-bool importPublicKey( ItalcCore::UserRole role,
+bool importPublicKey( VeyonCore::UserRole role,
 							const QString& publicKeyFile, const QString &destDir )
 {
 	// look whether the public key file is valid

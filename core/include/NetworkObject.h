@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
- * This file is part of iTALC - http://italc.sourceforge.net
+ * This file is part of veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -28,9 +28,9 @@
 #include <QUuid>
 #include <QString>
 
-#include "ItalcCore.h"
+#include "VeyonCore.h"
 
-class ITALC_CORE_EXPORT NetworkObject
+class VEYON_CORE_EXPORT NetworkObject
 {
 public:
 	typedef QUuid Uid;
