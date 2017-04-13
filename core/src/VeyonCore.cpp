@@ -108,9 +108,9 @@ static void killWisPtis()
 
 void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( "veyon Solutions" );
-	QCoreApplication::setOrganizationDomain( "veyonsolutions.org" );
-	QCoreApplication::setApplicationName( "veyon" );
+	QCoreApplication::setOrganizationName( "Veyon Solutions" );
+	QCoreApplication::setOrganizationDomain( "veyon.org" );
+	QCoreApplication::setApplicationName( "Veyon" );
 
 	if( VeyonConfiguration().isHighDPIScalingEnabled() )
 	{
@@ -131,7 +131,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_cryptoCore( nullptr ),
 	m_pluginManager( nullptr ),
 	m_accessControlDataBackendManager( nullptr ),
-	m_applicationName( "veyon" ),
+	m_applicationName( "Veyon" ),
 	m_userRole( RoleTeacher )
 {
 	killWisPtis();
