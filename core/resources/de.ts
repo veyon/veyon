@@ -30,12 +30,16 @@ If you&apos;re interested in translating veyon into your local or another langua
         <translation>Mitwirkende</translation>
     </message>
     <message>
-        <source>veyon - Intelligent Teaching And Learning with Computers
+        <source>About Veyon</source>
+        <translation>Über Veyon</translation>
+    </message>
+    <message>
+        <source>Veyon - Virtual Eye On Networks
 
-Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</source>
-        <translation>veyon - Intelligent Teaching And Learning with Computers
+Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation>Veyon - Virtual Eye On Networks
 
-Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
+Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     </message>
 </context>
 <context>
@@ -67,10 +71,6 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
     <message>
         <source>User groups authorized for computer access</source>
         <translation>Autorisierte Nutzergruppen für Computerzugriff</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be authorized to access computers in your veyon network.</source>
-        <translation>Bitte fügen Sie die Gruppen hinzu, deren Mitgliedern der Zugriff auf Computer in Ihrem veyon-Netzwerk erlaubt werden soll.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -132,6 +132,22 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Der angegebene Benutzer darf mit dieser Konfiguration nicht auf Computer zugreifen.</translation>
     </message>
+    <message>
+        <source>Data backend:</source>
+        <translation>Datenbackend:</translation>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation>Bitte geben Sie die Gruppen an, deren Mitgliedern es erlaubt sein soll, auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
+    </message>
+    <message>
+        <source>Missing access control data backend</source>
+        <translation>Fehlendes Backend für Zugriffskontrolldaten</translation>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation>Es wurde kein Standard-Backendplugin für Zugriffskontrolldaten gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -180,14 +196,6 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <translation>hat eine oder mehrere Gruppen gemeinsam mit</translation>
     </message>
     <message>
-        <source>is located in computer lab</source>
-        <translation>ist aufgestellt im Computerraum</translation>
-    </message>
-    <message>
-        <source>is located in the same computer lab as</source>
-        <translation>ist im gleichen Computerraum aufgestellt wie</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>Zugreifender Computer ist localhost</translation>
     </message>
@@ -234,6 +242,14 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
     <message>
         <source>Local computer</source>
         <translation>Lokaler Computer</translation>
+    </message>
+    <message>
+        <source>is located in room</source>
+        <translation>befindet sich im Raum</translation>
+    </message>
+    <message>
+        <source>is located in the same room as</source>
+        <translation>befindet sich im selben Raum wie</translation>
     </message>
 </context>
 <context>
@@ -334,10 +350,6 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <translation>Zugriffsbestätigung</translation>
     </message>
     <message>
-        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Sie können veyon so konfigurieren, dass der Benutzer bei bestimmten Authentifizierungsmethoden um Zugriffsbestätigung gebeten wird.</translation>
-    </message>
-    <message>
         <source>Logon authentication test</source>
         <translation>Test der Anmelde-Authentifizierung</translation>
     </message>
@@ -348,6 +360,24 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
     <message>
         <source>Authentication with provided credentials failed!</source>
         <translation>Die Authentifizierung mit den angegebenen Anmeldedaten ist fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Sie können Veyon so konfigurieren, dass der Benutzer bei bestimmten Authentifizierungsmethoden um Zugriffsbestätigung gebeten wird.</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>Builtin VNC server (UltraVNC)</source>
+        <translation>Eingebauter VNC-Server (UltraVNC)</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinX11VncServer</name>
+    <message>
+        <source>Builtin VNC server (x11vnc)</source>
+        <translation>Eingebauter VNC-Server (x11vnc)</translation>
     </message>
 </context>
 <context>
@@ -414,12 +444,63 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <source>Computer name;Host name;User</source>
         <translation>Computername;Rechnername;Benutzer</translation>
     </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Fehlendes Netzwerkobjektverzeichnis-Plugin</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Es wurde kein Standard-Netzwerkobjektverzeichnis-Plugin gefunden. Bitte überprüfen Sie Ihre Installation oder stellen ein anderes Netzwerkobjektverzeichnis-Backend mit Hilfe des %1 Configurators ein.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoringView</name>
     <message>
         <source>Form</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Bitte geben Sie eine existierende Konfigurationsdatei für den Import an.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Bitte geben Sie einen gültigen Dateinamen für den Konfigurationsexport an.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Bitte geben Sie einen gültigen Schlüssel ein.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Der angegebene Schlüssel existiert in der derzeitigen Konfiguration nicht!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Bitte geben Sie einen gültigen Wert ein.</translation>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>Das Serviceargument für den %1-Dienst konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>Die Firewallkonfiguration für den %1-Dienst konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Veyon auf der Kommandozeile konfigurieren</translation>
     </message>
 </context>
 <context>
@@ -525,10 +606,6 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <translation>High-DPI-Skalierung aktivieren</translation>
     </message>
     <message>
-        <source>veyon</source>
-        <translation>veyon</translation>
-    </message>
-    <message>
         <source>Logging</source>
         <translation>Logaufzeichnung</translation>
     </message>
@@ -605,18 +682,6 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <translation> s</translation>
     </message>
     <message>
-        <source>Local configuration</source>
-        <translation>Lokale Konfiguration</translation>
-    </message>
-    <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testen</translation>
-    </message>
-    <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
         <translation>Der %1-Dienst muss temporär beendet werden, um die Logdateien zu löschen. Fortfahren?</translation>
     </message>
@@ -640,51 +705,16 @@ Copyright © 2004-2017 Tobias Doerffel / veyon Solutions</translation>
         <source>%1 service</source>
         <translation>%1-Dienst</translation>
     </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
     <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC-Authentifizierung aufgrund zu häufiger Versuche fehlgeschlagen.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC-Authentifizierung fehlgeschlagen.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC-Server hat die Verbindung geschlossen.</translation>
+        <source>Veyon</source>
+        <translation>Veyon</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>veyon Access Key Assistant</source>
-        <translation>veyon-Schlüsselassistent</translation>
-    </message>
-    <message>
-        <source>Create/import veyon access keys</source>
-        <translation>veyon-Schlüssel erzeugen/importieren</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import veyon access keys.</source>
-        <translation>Dieser Assistent wird Ihnen dabei helfen, veyon-Schlüssel zu erstellen oder importieren.</translation>
-    </message>
-    <message>
         <source>How does it work?</source>
         <translation>Wie funktioniert&apos;s?</translation>
-    </message>
-    <message>
-        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>veyon-Zugriffsschlüssel bestehen aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
-
-Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
-
-Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -795,10 +825,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Ungültiger öffentlicher Schlüssel</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public veyon access key!</source>
-        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentliche veyon-Zugrifsschlüssel!</translation>
-    </message>
-    <message>
         <source>Select destination directory</source>
         <translation>Zielverzeichnis auswählen</translation>
     </message>
@@ -834,13 +860,37 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>The public key was successfully imported to %1.</source>
         <translation>Der öffentliche Schlüssel wurde erfolgreich nach %1 importiert.</translation>
     </message>
+    <message>
+        <source>Veyon Access Key Assistant</source>
+        <translation>Veyon-Zugriffsschlüssel-Assistent</translation>
+    </message>
+    <message>
+        <source>Create/import Veyon access keys</source>
+        <translation>Veyon-Zugriffschlüssel erzeugen/importieren</translation>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import Veyon access keys.</source>
+        <translation>Dieser Assistent wird Ihnen helfen, Veyon-Zugriffsschlüssel zu erzeugen oder importieren.</translation>
+    </message>
+    <message>
+        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation>Veyon-Zugriffsschlüssel bestehen aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
+
+Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
+
+Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public Veyon access key!</source>
+        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentlichen Veyon-Zugrifsschlüssel!</translation>
+    </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
-    <message>
-        <source>LDAP/AD integration</source>
-        <translation>LDAP/AD-Integration</translation>
-    </message>
     <message>
         <source>LDAP server and port</source>
         <translation>LDAP-Server und Port</translation>
@@ -864,10 +914,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Test</source>
         <translation>Testen</translation>
-    </message>
-    <message>
-        <source>LDAP environment settings</source>
-        <translation>LDAP-Umgebungseinstellungen</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -960,10 +1006,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Computernamen sind als vollqualifizierte Domainnamen gespeichert (FQDN, z.B. myhost.example.org)</translation>
-    </message>
-    <message>
-        <source>Advanced LDAP settings</source>
-        <translation>Erweiterte LDAP-Einstellungen</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -1393,12 +1435,117 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
         <translation>Es wurde kein Computer mit dem Name &quot;%1&quot; gefunden. Bitte überprüfen Sie den Computername oder den Computerbaum-Parameter.</translation>
     </message>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Grundeinstellungen</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
+    </message>
+    <message>
+        <source>Environment settings</source>
+        <translation>Umgebungseinstellungen</translation>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation>Erweiterte Einstellungen</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
     <message>
         <source>LDAP error description: %1</source>
         <translation>LDAP-Fehlerbeschreibung: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapPlugin</name>
+    <message>
+        <source>Configure LDAP/AD integration of Veyon at command line</source>
+        <translation>LDAP/AD-Integration von Veyon auf der Kommandozeile konfigurieren</translation>
+    </message>
+    <message>
+        <source>LDAP (load objects from LDAP/AD)</source>
+        <translation>LDAP (Objekte aus LDAP/AD laden)</translation>
+    </message>
+    <message>
+        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation>LDAP (Benutzer/Gruppen und Computer/Räume aus LDAP/AD laden)</translation>
+    </message>
+</context>
+<context>
+    <name>LocalDataConfigurationPage</name>
+    <message>
+        <source>Local data</source>
+        <translation>Lokale Daten</translation>
+    </message>
+    <message>
+        <source>Network objects</source>
+        <translation>Netzwerkobjekte</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Räume</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Computer</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Rechneradresse/IP</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-Adresse</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Neuen Raum hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Gewählten Raum entfernen</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Neuen Computer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Gewählten Computer entfernen</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Neuer Raum</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Neuer Computer</translation>
+    </message>
+</context>
+<context>
+    <name>LocalDataPlugin</name>
+    <message>
+        <source>Backends which use local data</source>
+        <translation>Backends zur Verwendung lokaler Daten</translation>
+    </message>
+    <message>
+        <source>Default (local users/groups and computers/rooms from configuration)</source>
+        <translation>Standard (lokale Benutzer/Gruppen und Computer/Räume aus Konfiguration)</translation>
+    </message>
+    <message>
+        <source>Default (store objects in local configuration)</source>
+        <translation>Standard (Objekte in lokaler Konfiguration speichern)</translation>
     </message>
 </context>
 <context>
@@ -1478,10 +1625,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Strg+O</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Über veyon</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
@@ -1514,14 +1657,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Konfiguration nicht schreibbar</translation>
     </message>
     <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Alle Einstellungen wurden erfolgreich angewendet.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Beim Anwenden der Einstellungen ist ein Fehler aufgetreten!</translation>
-    </message>
-    <message>
         <source>Classroom</source>
         <translation>Klassenraum</translation>
     </message>
@@ -1536,18 +1671,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Debugging</source>
         <translation>Fehlersuche</translation>
-    </message>
-    <message>
-        <source>Debugging veyon</source>
-        <translation>veyon-Fehlersuche</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Wenn sie auf Fehler oder andere Fehlverhalten in veyon stoßen ist es wichtig, die Entwickler darüber zu informieren, so dass die Fehler in zukünftigen Releases korrigiert werden können. Diese Seite ermöglicht es Ihnen, mühelos einen hilfreichen Fehlerbericht zu verfassen.
-
-Überspringen Sie die Schritte 1) - 3), wenn der Fehler nicht reproduzierbar ist.</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1598,20 +1721,6 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>Authentifizierung nicht möglich</translation>
     </message>
     <message>
-        <source>veyon Configurator</source>
-        <translation>veyon Configurator</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/veyon/veyon/issues&quot;&gt;veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Gehen Sie zur &lt;a href=&quot;https://github.com/veyon/veyon/issues&quot;&gt;veyon-Fehlerdatenbank&lt;/a&gt;, verfassen einen neuen Fehler, beschreiben, was Sie in Schritt 3) getan haben und hängen die Datei an, die Sie in Schritt 4) erzeugt haben.&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie bitte ein Fehlerberichtsarchiv für beide Computer an.</translation>
-    </message>
-    <message>
         <source>Service</source>
         <translation>Dienst</translation>
     </message>
@@ -1622,10 +1731,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Access control</source>
         <translation>Zugriffskontrolle</translation>
-    </message>
-    <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1642,14 +1747,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>%1 Configurator %2</source>
         <translation>%1 Configurator %2</translation>
-    </message>
-    <message>
-        <source>Restart %1 Service</source>
-        <translation>%1 Dienst neustarten</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
     </message>
     <message>
         <source>%1 bug report archive saved</source>
@@ -1707,6 +1804,40 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>The local configuration has been cleared successfully.</source>
         <translation>Die lokale Konfiguration wurde erfolgreich gelöscht.</translation>
     </message>
+    <message>
+        <source>Veyon Configurator</source>
+        <translation>Veyon Configurator</translation>
+    </message>
+    <message>
+        <source>Debugging Veyon</source>
+        <translation>Veyon-Fehlersuche</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Wenn Sie auf Fehler oder andere Fehlverhalten in Veyon stoßen ist es wichtig, die Entwickler darüber zu informieren, so dass die Fehler in zukünftigen Releases korrigiert werden können. Diese Seite ermöglicht es Ihnen, mühelos einen hilfreichen Fehlerbericht zu verfassen.
+
+Überspringen Sie die Schritte 1) - 3), wenn der Fehler nicht reproduzierbar ist.</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Gehen Sie zur&lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon-Fehlerdatenbank&lt;/a&gt;, verfassen einen neuen Fehler, beschreiben, was Sie in Schritt 3) getan haben und hängen die Datei an, die Sie in Schritt 4) erzeugt haben.&amp;lt;/p&amp;gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie bitte ein Fehlerberichtsarchiv für beide Computer an.</translation>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>Über Veyon</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -1754,6 +1885,18 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Automatically switch to current room at start</source>
         <translation>Beim Start automatisch zu aktuellem Klassenraum wechseln</translation>
     </message>
+    <message>
+        <source>Features</source>
+        <translation>Funktionen</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Alle Funktionen</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Deaktivierte Funktionen</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1792,8 +1935,8 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>veyon-Anmeldung</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access computers in your veyon network.</source>
-        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer in Ihrem veyon-Netzwerk zuzugreifen.</translation>
+        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
+        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
     </message>
 </context>
 <context>
@@ -1935,14 +2078,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Fernsteuern</translation>
     </message>
     <message>
-        <source>Lock student</source>
-        <translation>Schüler sperren</translation>
-    </message>
-    <message>
-        <source>Unlock student</source>
-        <translation>Schüler freigeben</translation>
-    </message>
-    <message>
         <source>Snapshot</source>
         <translation>Schnappschuss</translation>
     </message>
@@ -1966,6 +2101,42 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Connected.</source>
         <translation>Verbindung hergestellt.</translation>
     </message>
+    <message>
+        <source>Send shortcut</source>
+        <translation>Tastaturkürzel senden</translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+Del</source>
+        <translation>Strg+Alt+Entf</translation>
+    </message>
+    <message>
+        <source>Ctrl+Esc</source>
+        <translation>Strg+Esc</translation>
+    </message>
+    <message>
+        <source>Alt+Tab</source>
+        <translation>Alt+Tab</translation>
+    </message>
+    <message>
+        <source>Alt+F4</source>
+        <translation>Alt+F4</translation>
+    </message>
+    <message>
+        <source>Win+Tab</source>
+        <translation>Win+Tab</translation>
+    </message>
+    <message>
+        <source>Win</source>
+        <translation>Win</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menü</translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+F1</source>
+        <translation>Alt+Strg+F1</translation>
+    </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
@@ -1976,17 +2147,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>enter search filter...</source>
         <translation>Suchtfilter eingeben...</translation>
-    </message>
-</context>
-<context>
-    <name>RunCommandsDialog</name>
-    <message>
-        <source>Run commands</source>
-        <translation>Befehle ausführen</translation>
-    </message>
-    <message>
-        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>Bitte geben Sie die Befehle ein, die auf den gewählten Clients ausgeführt werden sollen. Sie können mehre Befehle zeilenweise trennen.</translation>
     </message>
 </context>
 <context>
@@ -2113,35 +2273,90 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Port des internen VNC-Servers</translation>
     </message>
     <message>
-        <source>Desktop capturing</source>
-        <translation>Bildschirmaufzeichnung</translation>
-    </message>
-    <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Halbdurchsichtige Fenster (layered windows) aufzeichnen</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Vollen Bildschirm abfragen (standardmäßig aktiviert lassen)</translation>
-    </message>
-    <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>Niedrige Genauigkeit (Turbomodus)</translation>
-    </message>
-    <message>
         <source>Running</source>
         <translation>Läuft</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>SAS-Generierung in Software aktivieren (Strg+Alt+Entf)</translation>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation>VNC-Server</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>Plugin:</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>%1 Dienst neustarten</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting %1 service</source>
+        <source>Starting %1 Service</source>
         <translation>Starte %1-Dienst</translation>
     </message>
     <message>
-        <source>Stopping %1 service</source>
+        <source>Stopping %1 Service</source>
         <translation>Beende %1-Dienst</translation>
+    </message>
+    <message>
+        <source>Registering %1 Service</source>
+        <translation>Registriere %1-Dienst</translation>
+    </message>
+    <message>
+        <source>Unregistering %1 Service</source>
+        <translation>Deregistriere %1-Dienst</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceControlPlugin</name>
+    <message>
+        <source>register Veyon Service</source>
+        <translation>Veyon-Dienst registrieren</translation>
+    </message>
+    <message>
+        <source>unregister Veyon Service</source>
+        <translation>Veyon-Dienst deregistrieren</translation>
+    </message>
+    <message>
+        <source>start Veyon Service</source>
+        <translation>Veyon-Dienst starten</translation>
+    </message>
+    <message>
+        <source>stop Veyon Service</source>
+        <translation>Veyon-Dienst beenden</translation>
+    </message>
+    <message>
+        <source>restart Veyon Service</source>
+        <translation>Veyon-Dienst neustarten</translation>
+    </message>
+    <message>
+        <source>query status of Veyon Service</source>
+        <translation>Status des Veyon-Diensts abfragen</translation>
+    </message>
+    <message>
+        <source>Service is running</source>
+        <translation>Dienst läuft</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Dienst läuft nicht</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyon-Dienst konfigurieren und steuern</translation>
+    </message>
+    <message>
+        <source>commands for configuring and controlling Veyon Service</source>
+        <translation>Befehle zur Konfiguration und Steuerung des Veyon-Diensts</translation>
     </message>
 </context>
 <context>
@@ -2231,6 +2446,29 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>UltraVncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation>Konfiguration des eingebauten x11vnc-Servers</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Halbdurchsichtige Fenster (layered windows) aufzeichnen</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Vollen Bildschirm abfragen (standardmäßig aktiviert lassen)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>Niedrige Genauigkeit (Turbomodus)</translation>
+    </message>
+    <message>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Konfiguration des eingebauten UltraVNC-Servers</translation>
+    </message>
+</context>
+<context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
@@ -2244,10 +2482,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>UserSessionControl</name>
     <message>
-        <source>System tray icon</source>
-        <translation>Icon im Infobereich</translation>
-    </message>
-    <message>
         <source>Logout user</source>
         <translation>Benutzer abmelden</translation>
     </message>
@@ -2255,12 +2489,46 @@ p, li { white-space: pre-wrap; }
         <source>Click this button to logout users from all computers.</source>
         <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
     </message>
+    <message>
+        <source>User session control</source>
+        <translation>Benutzersitzungssteuerung</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonVncConnection</name>
+    <message>
+        <source>VNC authentication failed because of too many authentication tries.</source>
+        <translation>VNC-Authentifizierung aufgrund zu häufiger Versuche fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>VNC authentication failed.</source>
+        <translation>VNC-Authentifizierung fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>VNC server closed connection.</source>
+        <translation>VNC-Server hat die Verbindung geschlossen.</translation>
+    </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Verbindung zu %1 wird hergestellt ...</translation>
+    </message>
+</context>
+<context>
+    <name>X11VncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation>Konfiguration des eingebauten x11vnc-Servers</translation>
+    </message>
+    <message>
+        <source>Custom x11vnc parameters:</source>
+        <translation>Benutzerdefinierte x11vnc-Parameter:</translation>
+    </message>
+    <message>
+        <source>Do not use X Damage extension</source>
+        <translation>X-Damage-Erweiterung nicht nutzen</translation>
     </message>
 </context>
 </TS>
