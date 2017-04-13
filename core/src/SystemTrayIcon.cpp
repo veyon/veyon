@@ -153,6 +153,7 @@ bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
 		QIcon icon( ":/resources/icon16.png" );
 		icon.addFile( ":/resources/icon22.png" );
 		icon.addFile( ":/resources/icon32.png" );
+		icon.addFile( ":/resources/icon64.png" );
 
 		m_systemTrayIcon->setIcon( icon );
 		m_systemTrayIcon->show();

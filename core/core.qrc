@@ -2,12 +2,11 @@
   <qresource>
     <file>../COPYING</file>
     <file>resources/icon64.png</file>
-    <file>resources/dialog-password.png</file>
+    <file>resources/application-x-pem-key.png</file>
     <file>resources/license.png</file>
     <file>resources/authors.png</file>
     <file>resources/locale.png</file>
     <file>resources/info.png</file>
-    <file>resources/message.png</file>
     <file>resources/ok.png</file>
     <file>resources/presentation-none.png</file>
     <file>resources/system-suspend-hibernate.png</file>
