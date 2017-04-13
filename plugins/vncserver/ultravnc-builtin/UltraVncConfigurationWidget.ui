@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Builtin x11vnc server configuration</string>
+   <string>Builtin UltraVNC server configuration</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
