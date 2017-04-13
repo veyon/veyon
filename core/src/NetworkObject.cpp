@@ -60,7 +60,7 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 {
 	if( m_uid.isNull() )
 	{
-		calculateUid();
+		m_uid = calculateUid();
 	}
 }
 
