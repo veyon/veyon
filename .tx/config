@@ -5,6 +5,6 @@ minimum_perc = 51
 
 [veyon.veyon]
 file_filter = core/resources/<lang>.ts
-source_file = core/resources/en.ts
+source_file = core/resources/veyon.ts
 source_lang = en
 type = QT
