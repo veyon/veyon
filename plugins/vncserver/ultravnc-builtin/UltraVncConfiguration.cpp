@@ -29,16 +29,16 @@
 UltraVncConfiguration::UltraVncConfiguration() :
     Configuration::Proxy( &VeyonCore::config() )
 {
-	/*
-	if( hasValue( "Configured", "UltraVNC" ) == false )
+	if( isUltraVncConfigured() == false )
 	{
-		setVncCaptureLayeredWindows( true );
-		setVncPollFullScreen( true );
-		setVncLowAccuracy( true );
+		setUltraVncCaptureLayeredWindows( true );
+		setUltraVncPollFullScreen( true );
+		setUltraVncLowAccuracy( true );
 
-		setValue( "Configured", true, "UltraVNC" );
-	}*/
+		setUltraVncConfigured( true );
+	}
 }
 
 
+FOREACH_ULTRAVNC_CONFIG_INIT_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
 FOREACH_ULTRAVNC_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)

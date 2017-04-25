@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef BUILTIN_UltraVNC_SERVER_H
-#define BUILTIN_UltraVNC_SERVER_H
+#ifndef BUILTIN_ULTRAVNC_SERVER_H
+#define BUILTIN_ULTRAVNC_SERVER_H
 
 #include "UltraVncConfiguration.h"
 #include "VncServerPluginInterface.h"
@@ -99,4 +99,4 @@ private:
 
 };
 
-#endif // BUILTIN_UltraVNC_SERVER_H
+#endif // BUILTIN_ULTRAVNC_SERVER_H

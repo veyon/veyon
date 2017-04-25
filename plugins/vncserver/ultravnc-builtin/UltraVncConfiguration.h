@@ -27,10 +27,13 @@
 
 #include "Configuration/Proxy.h"
 
+#define FOREACH_ULTRAVNC_CONFIG_INIT_PROPERTY(OP) \
+	OP( UltraVncConfiguration, m_configuration, BOOL, isUltraVncConfigured, setUltraVncConfigured, "Configured", "UltraVNC" );
+
 #define FOREACH_ULTRAVNC_CONFIG_PROPERTY(OP) \
-	OP( UltraVncConfiguration, m_configuration, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC" );	\
-	OP( UltraVncConfiguration, m_configuration, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "UltraVNC" );			\
-	OP( UltraVncConfiguration, m_configuration, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "UltraVNC" );					\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC" );	\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC" );			\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC" );					\
 
 class UltraVncConfiguration : public Configuration::Proxy
 {
@@ -38,12 +41,14 @@ class UltraVncConfiguration : public Configuration::Proxy
 public:
 	UltraVncConfiguration();
 
+	FOREACH_ULTRAVNC_CONFIG_INIT_PROPERTY(DECLARE_CONFIG_PROPERTY)
 	FOREACH_ULTRAVNC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
 public slots:
-	void setVncCaptureLayeredWindows( bool );
-	void setVncPollFullScreen( bool );
-	void setVncLowAccuracy( bool );
+	void setUltraVncConfigured( bool );
+	void setUltraVncCaptureLayeredWindows( bool );
+	void setUltraVncPollFullScreen( bool );
+	void setUltraVncLowAccuracy( bool );
 
 } ;
 

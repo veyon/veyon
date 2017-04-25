@@ -62,17 +62,17 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 	}
 	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
 	{
-		*out = vncServerInstance->configuration().vncCaptureLayeredWindows() ? 1 : 0;
+		*out = vncServerInstance->configuration().ultraVncCaptureLayeredWindows() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "PollFullScreen" ) == 0 )
 	{
-		*out = vncServerInstance->configuration().vncPollFullScreen() ? 1 : 0;
+		*out = vncServerInstance->configuration().ultraVncPollFullScreen() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "TurboMode" ) == 0 )
 	{
-		*out = vncServerInstance->configuration().vncLowAccuracy() ? 1 : 0;
+		*out = vncServerInstance->configuration().ultraVncLowAccuracy() ? 1 : 0;
 		return true;
 	}
 	if( strcmp( valname, "NewMSLogon" ) == 0 )

@@ -27,21 +27,21 @@
     <number>0</number>
    </property>
    <item row="0" column="0">
-    <widget class="QCheckBox" name="vncCaptureLayeredWindows">
+    <widget class="QCheckBox" name="ultraVncCaptureLayeredWindows">
      <property name="text">
       <string>Enable capturing of layered (semi-transparent) windows</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QCheckBox" name="vncPollFullScreen">
+    <widget class="QCheckBox" name="ultraVncPollFullScreen">
      <property name="text">
       <string>Poll full screen (leave this enabled per default)</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QCheckBox" name="vncLowAccuracy">
+    <widget class="QCheckBox" name="ultraVncLowAccuracy">
      <property name="text">
       <string>Low accuracy (turbo mode)</string>
      </property>
