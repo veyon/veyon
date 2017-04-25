@@ -42,7 +42,6 @@ public:
 	enum Backends
 	{
 		LocalBackend,	// registry or similiar
-		XmlFile,
 		JsonFile,
 		NoBackend
 	} ;

@@ -25,7 +25,6 @@
 #include "Configuration/Object.h"
 #include "Configuration/LocalStore.h"
 #include "Configuration/JsonStore.h"
-#include "Configuration/XmlStore.h"
 
 #include "Logger.h"
 
@@ -42,9 +41,6 @@ Object::Object( Store::Backend _backend, Store::Scope _scope ) :
 	{
 	case Store::LocalBackend:
 		m_store = new LocalStore( _scope );
-		break;
-	case Store::XmlFile:
-		m_store = new XmlStore( _scope );
 		break;
 	case Store::JsonFile:
 		m_store = new JsonStore( _scope );
@@ -104,9 +100,6 @@ Object &Object::operator=( const Object &ref )
 		{
 		case Store::LocalBackend:
 			m_store = new LocalStore( ref.m_store->scope() );
-			break;
-		case Store::XmlFile:
-			m_store = new XmlStore( ref.m_store->scope() );
 			break;
 		case Store::JsonFile:
 			m_store = new JsonStore( ref.m_store->scope() );

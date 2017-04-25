@@ -56,7 +56,6 @@ TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Gui
 	Qt5::Network
 	Qt5::Widgets
-	Qt5::Xml
 	${LZO_LIBRARIES}
 	)
 

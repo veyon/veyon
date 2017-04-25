@@ -139,7 +139,6 @@ RequestExecutionLevel highest
 Section "Veyon Service"
 SectionIn RO
 ${INSTALL_TYPE}
-ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 ExecWait '"$INSTDIR\veyon-service.exe" -quiet -unregisterservice'
 SetOverwrite on
 SetOutPath "$INSTDIR"
@@ -147,7 +146,6 @@ SetOutPath "$INSTDIR"
 File "${DLLDIR}\Qt5Core.dll"
 File "${DLLDIR}\Qt5Gui.dll"
 File "${DLLDIR}\Qt5Widgets.dll"
-File "${DLLDIR}\Qt5Xml.dll"
 File "${DLLDIR}\Qt5Network.dll"
 File "${DLLDIR}\libjpeg-62.dll"
 File "${DLLDIR}\libeay32.dll"
@@ -271,7 +269,6 @@ Delete "$INSTDIR\libstdc++-6.dll"
 Delete "$INSTDIR\zlib1.dll"
 Delete "$INSTDIR\liblzo2-2.dll"
 Delete "$INSTDIR\libjpeg-62.dll"
-Delete "$INSTDIR\Qt5Xml.dll"
 Delete "$INSTDIR\libeay32.dll"
 Delete "$INSTDIR\libpng16-16.dll"
 Delete "$INSTDIR\liblber.dll"
