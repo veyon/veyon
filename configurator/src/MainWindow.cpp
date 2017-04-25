@@ -57,7 +57,7 @@ MainWindow::MainWindow() :
 	loadConfigurationPagePlugins();
 
 	// reset all widget's values to current configuration
-	reset();
+	reset( true );
 
 	// if local configuration is incomplete, re-enable the apply button
 	if( VeyonConfiguration(
