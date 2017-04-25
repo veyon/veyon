@@ -1,10 +1,10 @@
 /*
- * SystemConfigurationModifier.h - class for easy modification of veyon-related
+ * SystemConfigurationModifier.h - class for easy modification of Veyon-related
  *                                 settings in the operating system
  *
  * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of veyon - http://veyon.io
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public

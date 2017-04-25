@@ -31,7 +31,7 @@
 class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.BuiltinUltraVncServer")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinUltraVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
 	BuiltinUltraVncServer();

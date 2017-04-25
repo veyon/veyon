@@ -37,7 +37,7 @@ class LocalDataPlugin : public QObject,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.LocalData")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.LocalData")
 	Q_INTERFACES(PluginInterface AccessControlDataBackendInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
 public:
 	LocalDataPlugin();

@@ -1,9 +1,9 @@
 /*
- * VeyonCore.cpp - implementation of veyon Core
+ * VeyonCore.cpp - implementation of Veyon Core
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of veyon - http://veyon.io
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -305,30 +305,30 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 {
 	for( auto label : topLevelWidget->findChildren<QLabel *>() )
 	{
-		label->setText( label->text().replace( "veyon", VeyonCore::applicationName() ) );
+		label->setText( label->text().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto button : topLevelWidget->findChildren<QAbstractButton *>() )
 	{
-		button->setText( button->text().replace( "veyon", VeyonCore::applicationName() ) );
+		button->setText( button->text().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto groupBox : topLevelWidget->findChildren<QGroupBox *>() )
 	{
-		groupBox->setTitle( groupBox->title().replace( "veyon", VeyonCore::applicationName() ) );
+		groupBox->setTitle( groupBox->title().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto action : topLevelWidget->findChildren<QAction *>() )
 	{
-		action->setText( action->text().replace( "veyon", VeyonCore::applicationName() ) );
+		action->setText( action->text().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
 	for( auto widget : topLevelWidget->findChildren<QWidget *>() )
 	{
-		widget->setWindowTitle( widget->windowTitle().replace( "veyon", VeyonCore::applicationName() ) );
+		widget->setWindowTitle( widget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
-	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "veyon", VeyonCore::applicationName() ) );
+	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
 }
 
 

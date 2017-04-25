@@ -31,7 +31,7 @@
 class ServiceControlPlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.ServiceControl")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ServiceControl")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ServiceControlPlugin();

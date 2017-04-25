@@ -3,7 +3,7 @@
  *
  *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- *  This file is part of veyon - http://veyon.io
+ *  This file is part of Veyon - http://veyon.io
  *
  *  This is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

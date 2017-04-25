@@ -31,7 +31,7 @@
 class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.ConfigCommandLineInterface")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ConfigCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ConfigCommandLinePlugin();

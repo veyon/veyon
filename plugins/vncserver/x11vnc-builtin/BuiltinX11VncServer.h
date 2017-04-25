@@ -32,7 +32,7 @@
 class BuiltinX11VncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.BuiltinX11VncServer")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinX11VncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
 	BuiltinX11VncServer();

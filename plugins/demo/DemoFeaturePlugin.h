@@ -33,7 +33,7 @@ class DemoClient;
 class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.PluginFeatureInterface")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.PluginFeatureInterface")
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	DemoFeaturePlugin();

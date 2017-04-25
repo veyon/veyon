@@ -31,7 +31,7 @@
 class TextMessageFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.FeaturePluginInterface")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeaturePluginInterface")
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
 	TextMessageFeaturePlugin();

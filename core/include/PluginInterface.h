@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
- * This file is part of veyon - http://veyon.io
+ * This file is part of Veyon - http://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -50,7 +50,7 @@ public:
 
 typedef QList<PluginInterface *> PluginInterfaceList;
 
-#define PluginInterface_iid "org.veyon-solutions.veyon.Plugins.PluginInterface"
+#define PluginInterface_iid "org.veyon.Veyon.Plugins.PluginInterface"
 
 Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)
 

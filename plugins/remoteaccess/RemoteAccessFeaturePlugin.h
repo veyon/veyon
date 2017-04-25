@@ -33,7 +33,7 @@
 class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, FeaturePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon-solutions.Veyon.Plugins.RemoteAccess")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.RemoteAccess")
 	Q_INTERFACES(PluginInterface FeaturePluginInterface CommandLinePluginInterface)
 public:
 	RemoteAccessFeaturePlugin();
