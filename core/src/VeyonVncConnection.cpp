@@ -200,7 +200,7 @@ void VeyonVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		}
 	}
 
-	t->imageUpdated( x, y, w, h );
+	emit t->imageUpdated( x, y, w, h );
 }
 
 
@@ -224,7 +224,7 @@ rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
 	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 	if( t )
 	{
-		t->cursorPosChanged( x, y );
+		emit t->cursorPosChanged( x, y );
 	}
 
 	return true;
@@ -248,7 +248,7 @@ void VeyonVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, 
 	cursorShape.setAlphaChannel( alpha );
 
 	VeyonVncConnection* t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
-	t->cursorShapeUpdated( cursorShape, xh, yh );
+	emit t->cursorShapeUpdated( cursorShape, xh, yh );
 }
 
 
@@ -261,7 +261,7 @@ void VeyonVncConnection::hookCutText( rfbClient *cl, const char *text,
 	{
 		VeyonVncConnection *t = (VeyonVncConnection *)
 										rfbClientGetClientData( cl, nullptr );
-		t->gotCut( cutText );
+		emit t->gotCut( cutText );
 	}
 }
 

@@ -172,7 +172,7 @@ public:
 
 	void cursorShapeUpdatedExternal( const QImage &cursorShape, int xh, int yh )
 	{
-		cursorShapeUpdated( cursorShape, xh, yh );
+		emit cursorShapeUpdated( cursorShape, xh, yh );
 	}
 
 
