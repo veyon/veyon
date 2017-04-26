@@ -94,19 +94,15 @@ ToolButton::~ToolButton()
 
 
 
-
-#ifndef VEYON3
 void ToolButton::setIconOnlyMode( bool _enabled )
 {
-        s_iconOnlyMode = _enabled;
-        QList<ToolButton *> tbl = QApplication::activeWindow()->findChildren<ToolButton *>();
-        foreach( ToolButton * tb, tbl )
-        {
-                tb->updateSize();
-        }
+	s_iconOnlyMode = _enabled;
+	const auto toolButtons = QApplication::activeWindow()->findChildren<ToolButton *>();
+	for( auto toolButton : toolButtons )
+	{
+		toolButton->updateSize();
+	}
 }
-#endif
-
 
 
 
