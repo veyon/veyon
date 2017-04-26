@@ -101,6 +101,7 @@ private:
 
 class ToolButtonTip : public QWidget
 {
+	Q_OBJECT
 public:
 	ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,

@@ -29,9 +29,9 @@
 
 #include "VeyonCore.h"
 
-
 class SocketDevice : public QIODevice
 {
+	Q_OBJECT
 public:
 	typedef enum SocketOperations
 	{

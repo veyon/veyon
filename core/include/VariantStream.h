@@ -34,6 +34,7 @@ class QTcpSocket;
 
 class VEYON_CORE_EXPORT VariantStream : public QIODevice
 {
+	Q_OBJECT
 public:
 	VariantStream( QIODevice* ioDevice );
 
