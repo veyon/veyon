@@ -49,7 +49,7 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 
 
 
-AccessControlRule::AccessControlRule(const QJsonValueRef &jsonValue) :
+AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 	m_name(),
 	m_description(),
 	m_action( ActionNone ),
