@@ -32,6 +32,7 @@ class VncServerPluginInterface;
 
 class VncServer : public QThread
 {
+	Q_OBJECT
 public:
 	VncServer( int serverPort );
 	virtual ~VncServer();
