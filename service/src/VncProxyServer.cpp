@@ -25,6 +25,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
+#include "VeyonCore.h"
 #include "VncProxyServer.h"
 #include "VncProxyConnection.h"
 #include "VncProxyConnectionFactory.h"
