@@ -43,7 +43,9 @@ LocalStore::LocalStore( Scope scope ) :
 static void loadSettingsTree( Object *obj, QSettings *s,
 								const QString &parentKey )
 {
-	foreach( const QString &g, s->childGroups() )
+	const auto childGroups = s->childGroups();
+
+	for( const auto& g : childGroups )
 	{
 		const QString subParentKey = parentKey +
 									( parentKey.isEmpty() ? "" : "/" ) + g;
@@ -52,7 +54,9 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 		s->endGroup();
 	}
 
-	foreach( const QString &k, s->childKeys() )
+	const auto childKeys = s->childKeys();
+
+	for( const auto& k : childKeys )
 	{
 		QString stringValue = s->value( k ).toString();
 		QRegExp jsonValueRX( "@JsonValue(\\(.*\\))" );
