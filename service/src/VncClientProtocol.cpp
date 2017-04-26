@@ -144,7 +144,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 		m_socket->read( &securityTypeCount, sizeof(securityTypeCount) );
 
-		if( securityTypeCount < 1 || securityTypeCount > MaxSecurityTypes )
+		if( securityTypeCount == 0 )
 		{
 			qCritical( "VncClientProtocol::receiveSecurityTypes(): invalid number of security types received!" );
 			m_socket->close();

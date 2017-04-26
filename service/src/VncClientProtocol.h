@@ -54,10 +54,6 @@ public:
 	bool read();
 
 private:
-	enum {
-		MaxSecurityTypes = 254
-	};
-
 	bool readProtocol();
 	bool receiveSecurityTypes();
 	bool receiveSecurityChallenge();
