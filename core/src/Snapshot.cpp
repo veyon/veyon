@@ -58,7 +58,7 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 	}
 	if( !u.contains( '(' ) )
 	{
-		u = QString( "%1 (%2)" ).arg( u ).arg( u );
+		u = QString( "%1 (%2)" ).arg( u, u );
 	}
 
 	// construct text
@@ -83,10 +83,9 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 	}
 
 	// construct filename
-	m_fileName =  QString( "_%1_%2_%3.png" ).
-						arg( computerControlInterface.computer().hostAddress() ).
-						arg( QDate( QDate::currentDate() ).toString( Qt::ISODate ) ).
-						arg( QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
+	m_fileName =  QString( "_%1_%2_%3.png" ).arg( computerControlInterface.computer().hostAddress(),
+						QDate( QDate::currentDate() ).toString( Qt::ISODate ),
+						QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
 					replace( ':', '-' );
 
 	m_fileName = dir + QDir::separator() +

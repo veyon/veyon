@@ -114,7 +114,7 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		LocalSystem::User user = LocalSystem::User::loggedOnUser();
 
 		FeatureMessage reply( message.featureUid(), message.command() );
-		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( user.name() ).arg( user.fullName() ) );
+		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( user.name(), user.fullName() ) );
 		reply.addArgument( HomeDir, user.homePath() );
 
 		uint8_t rfbMessageType = rfbVeyonFeatureMessage;
