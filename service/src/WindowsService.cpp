@@ -241,7 +241,6 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 
 	for( const auto& arg : qAsConst( args ) )
 	{
-		arg = arg.toLower();
 		for( size_t i = 0; i < sizeof( serviceOps ); ++i )
 		{
 			if( arg == serviceOps[i].arg )
