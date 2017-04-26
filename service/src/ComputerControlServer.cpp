@@ -60,11 +60,9 @@ ComputerControlServer::ComputerControlServer() :
 					  this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
-				tr( "%1 Service %2 at %3:%4" ).
-				arg( VeyonCore::applicationName() ).
-				arg( VEYON_VERSION ).
-				arg( QHostInfo::localHostName() ).
-				arg( QString::number( VeyonCore::config().computerControlServerPort() ) ),
+				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VEYON_VERSION,
+					QHostInfo::localHostName(),
+					QString::number( VeyonCore::config().computerControlServerPort() ) ),
 				m_featureWorkerManager );
 
 	// make app terminate once the VNC server thread has finished
@@ -148,7 +146,7 @@ void ComputerControlServer::showAuthenticationErrorMessage( QString host, QStrin
 		m_builtinFeatures.systemTrayIcon().showMessage(
 					tr( "Authentication error" ),
 					tr( "User %1 (IP: %2) tried to access this computer "
-						"but could not authenticate successfully!" ).arg( user ).arg( host ),
+						"but could not authenticate successfully!" ).arg( user, host ),
 					m_featureWorkerManager );
 	}
 }
