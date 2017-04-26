@@ -144,7 +144,8 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	bool success = true;
 	QDir d( LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() ) );
-	foreach( const QString &f, d.entryList( QStringList() << "Veyon*.log" ) )
+	const auto localLogFiles = d.entryList( QStringList() << "Veyon*.log" );
+	for( const auto& f : localLogFiles )
 	{
 		if( f != "VeyonConfigurator.log" )
 		{
@@ -158,7 +159,8 @@ void GeneralConfigurationPage::clearLogFiles()
 	d = QDir( "/tmp" );
 #endif
 
-	foreach( const QString &f, d.entryList( QStringList() << "Veyon*.log" ) )
+	const auto globalLogFiles = d.entryList( QStringList() << "Veyon*.log" );
+	for( const auto& f : globalLogFiles )
 	{
 		if( f != "VeyonConfigurator.log" )
 		{

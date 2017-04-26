@@ -104,7 +104,9 @@ void AccessControlPage::applyConfiguration()
 
 void AccessControlPage::addAccessGroup()
 {
-	foreach( QListWidgetItem *item, ui->allGroupsList->selectedItems() )
+	const auto items = ui->allGroupsList->selectedItems();
+
+	for( auto item : items )
 	{
 		m_accessGroups.removeAll( item->text() );
 		m_accessGroups += item->text();
@@ -119,7 +121,9 @@ void AccessControlPage::addAccessGroup()
 
 void AccessControlPage::removeAccessGroup()
 {
-	foreach( QListWidgetItem *item, ui->accessGroupsList->selectedItems() )
+	const auto items = ui->accessGroupsList->selectedItems();
+
+	for( auto item : items )
 	{
 		m_accessGroups.removeAll( item->text() );
 	}
