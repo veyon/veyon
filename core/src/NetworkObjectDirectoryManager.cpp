@@ -31,7 +31,7 @@
 NetworkObjectDirectoryManager::NetworkObjectDirectoryManager() :
 	m_directoryPluginInterfaces()
 {
-	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto directoryPluginInterface = qobject_cast<NetworkObjectDirectoryPluginInterface *>( pluginObject );
@@ -49,8 +49,9 @@ QMap<Plugin::Uid, QString> NetworkObjectDirectoryManager::availableDirectories()
 {
 	QMap<Plugin::Uid, QString> items;
 
-	for( auto pluginInterface : m_directoryPluginInterfaces.keys() )
+	for( auto it = m_directoryPluginInterfaces.keyBegin(), end = m_directoryPluginInterfaces.keyEnd(); it != end; ++it )
 	{
+		const auto pluginInterface = *it;
 		items[pluginInterface->uid()] = m_directoryPluginInterfaces[pluginInterface]->directoryName();
 	}
 
@@ -61,11 +62,13 @@ QMap<Plugin::Uid, QString> NetworkObjectDirectoryManager::availableDirectories()
 
 NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory( QObject* parent )
 {
-	auto configuredPluginUuid = VeyonCore::config().networkObjectDirectoryPlugin();
+	const auto configuredPluginUuid = VeyonCore::config().networkObjectDirectoryPlugin();
 	NetworkObjectDirectoryPluginInterface* defaultPluginInterface = nullptr;
 
-	for( auto pluginInterface : m_directoryPluginInterfaces.keys() )
+	for( auto it = m_directoryPluginInterfaces.keyBegin(), end = m_directoryPluginInterfaces.keyEnd(); it != end; ++it )
 	{
+		const auto pluginInterface = *it;
+
 		if( pluginInterface->uid() == configuredPluginUuid )
 		{
 			return m_directoryPluginInterfaces[pluginInterface]->createNetworkObjectDirectory( parent );

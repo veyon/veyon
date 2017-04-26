@@ -36,7 +36,9 @@ AccessControlProvider::AccessControlProvider() :
 	m_accessControlRules(),
 	m_dataBackend( VeyonCore::accessControlDataBackendManager().configuredBackend() )
 {
-	for( auto accessControlRule : VeyonCore::config().accessControlRules() )
+	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
+
+	for( const auto& accessControlRule : accessControlRules )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}
@@ -136,7 +138,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 	qDebug() << "AccessControlProvider::processAccessControlRules(): processing rules for"
 			 << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
 
-	for( auto rule : m_accessControlRules )
+	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
 		// rule disabled?
 		if( rule.action() == AccessControlRule::ActionNone )

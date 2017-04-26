@@ -303,27 +303,32 @@ QString VeyonCore::applicationName()
 
 void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 {
-	for( auto label : topLevelWidget->findChildren<QLabel *>() )
+	auto labels = topLevelWidget->findChildren<QLabel *>();
+	for( auto label : labels )
 	{
 		label->setText( label->text().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
-	for( auto button : topLevelWidget->findChildren<QAbstractButton *>() )
+	auto buttons = topLevelWidget->findChildren<QAbstractButton *>();
+	for( auto button : buttons )
 	{
 		button->setText( button->text().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
-	for( auto groupBox : topLevelWidget->findChildren<QGroupBox *>() )
+	auto groupBoxes = topLevelWidget->findChildren<QGroupBox *>();
+	for( auto groupBox : groupBoxes )
 	{
 		groupBox->setTitle( groupBox->title().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
-	for( auto action : topLevelWidget->findChildren<QAction *>() )
+	auto actions = topLevelWidget->findChildren<QAction *>();
+	for( auto action : actions )
 	{
 		action->setText( action->text().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
-	for( auto widget : topLevelWidget->findChildren<QWidget *>() )
+	auto widgets = topLevelWidget->findChildren<QWidget *>();
+	for( auto widget : widgets )
 	{
 		widget->setWindowTitle( widget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
 	}

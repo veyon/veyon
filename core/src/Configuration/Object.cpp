@@ -164,7 +164,7 @@ bool Object::hasValue(const QString &key, const QString &parentKey) const
 	const QStringList subLevels = parentKey.split( '/' );
 	DataMap currentMap = m_data;
 
-	for( auto level : subLevels )
+	for( const auto& level : subLevels )
 	{
 		if( currentMap.contains( level ) &&
 			currentMap[level].type() == QVariant::Map )
@@ -201,7 +201,7 @@ QVariant Object::value( const QString & key, const QString & parentKey ) const
 	// all levels of the parentKey are processed
 	const QStringList subLevels = parentKey.split( '/' );
 	DataMap currentMap = m_data;
-	for( auto level : subLevels )
+	for( const auto& level : subLevels )
 	{
 		if( currentMap.contains( level ) &&
 			currentMap[level].type() == QVariant::Map )

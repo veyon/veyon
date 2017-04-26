@@ -32,7 +32,7 @@ AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager&
 	m_defaultBackend( nullptr ),
 	m_configuredBackend( nullptr )
 {
-	for( auto pluginObject : pluginManager.pluginObjects() )
+	for( auto pluginObject : qAsConst( pluginManager.pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto accessControlDataBackendInterface = qobject_cast<AccessControlDataBackendInterface *>( pluginObject );
@@ -62,9 +62,9 @@ QMap<Plugin::Uid, QString> AccessControlDataBackendManager::availableBackends()
 {
 	QMap<Plugin::Uid, QString> items;
 
-	for( auto pluginUid : m_backends.keys() )
+	for( auto it = m_backends.keyBegin(), end = m_backends.keyEnd(); it != end; ++it )
 	{
-		items[pluginUid] = m_backends[pluginUid]->accessControlDataBackendName();
+		items[*it] = m_backends[*it]->accessControlDataBackendName();
 	}
 
 	return items;

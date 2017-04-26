@@ -43,7 +43,7 @@ FeatureManager::FeatureManager() :
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
 
-	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
 
@@ -122,7 +122,7 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 {
 	qDebug() << "Run master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
-	for( auto featureInterface : m_featurePluginInterfaces )
+	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		featureInterface->startMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
 	}
@@ -137,7 +137,7 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 {
 	qDebug() << "Stop master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
-	for( auto featureInterface : m_featurePluginInterfaces )
+	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		featureInterface->stopMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
 	}
@@ -155,7 +155,7 @@ bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
 
 	bool handled = false;
 
-	for( auto featureInterface : m_featurePluginInterfaces )
+	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		if( featureInterface->handleMasterFeatureMessage( message, computerControlInterface ) )
 		{
@@ -178,7 +178,7 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 
 	bool handled = false;
 
-	for( auto featureInterface : m_featurePluginInterfaces )
+	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		if( featureInterface->handleServiceFeatureMessage( message, featureWorkerManager ) )
 		{
@@ -197,7 +197,7 @@ bool FeatureManager::handleWorkerFeatureMessage( const FeatureMessage& message )
 
 	bool handled = false;
 
-	for( auto featureInterface : m_featurePluginInterfaces )
+	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		if( featureInterface->handleWorkerFeatureMessage( message ) )
 		{

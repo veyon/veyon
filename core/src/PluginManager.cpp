@@ -58,7 +58,8 @@ PluginManager::PluginManager( QObject* parent ) :
 	addRelativeIfExists( "plugins" );
 #endif
 
-	for( auto fileInfo : QDir( "plugins:" ).entryInfoList( nameFilters ) )
+	auto plugins = QDir( "plugins:" ).entryInfoList( nameFilters );
+	for( const auto& fileInfo : plugins )
 	{
 		auto pluginObject = QPluginLoader( fileInfo.filePath() ).instance();
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
@@ -104,7 +105,7 @@ PluginUidList PluginManager::pluginUids() const
 
 PluginInterface* PluginManager::pluginInterface( const Plugin::Uid& pluginUid )
 {
-	for( auto pluginInterface : m_pluginInterfaces )
+	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
 	{
 		if( pluginInterface->uid() == pluginUid )
 		{
