@@ -42,7 +42,7 @@ public:
 	AccessControlProvider();
 
 	QStringList userGroups() const;
-	QStringList rooms();
+	QStringList rooms() const;
 
 	AccessResult checkAccess( QString accessingUser, QString accessingComputer,
 							  const QStringList& connectedUsers );
@@ -55,25 +55,25 @@ public:
 														 const QString& localComputer,
 														 const QStringList& connectedUsers );
 
-	bool isAccessDeniedByLocalState();
+	bool isAccessDeniedByLocalState() const;
 
 
 private:
-	bool isMemberOfUserGroup( const QString& user, const QString& groupName );
-	bool isLocatedInRoom( const QString& computer, const QString& roomName );
-	bool hasGroupsInCommon( const QString& userOne, const QString& userTwo );
-	bool isLocatedInSameRoom( const QString& computerOne, const QString& computerTwo );
+	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;
+	bool isLocatedInRoom( const QString& computer, const QString& roomName ) const;
+	bool hasGroupsInCommon( const QString& userOne, const QString& userTwo ) const;
+	bool isLocatedInSameRoom( const QString& computerOne, const QString& computerTwo ) const;
 	bool isLocalHost( const QString& accessingComputer ) const;
 	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
 
 	QString lookupSubject( AccessControlRule::Subject subject,
 						   const QString& accessingUser, const QString& accessingComputer,
-						   const QString& localUser, const QString& localComputer );
+						   const QString& localUser, const QString& localComputer ) const;
 
 	bool matchConditions( const AccessControlRule& rule,
 						  const QString& accessingUser, const QString& accessingComputer,
 						  const QString& localUser, const QString& localComputer,
-						  const QStringList& connectedUsers );
+						  const QStringList& connectedUsers ) const;
 
 	QList<AccessControlRule> m_accessControlRules;
 	AccessControlDataBackendInterface* m_dataBackend;

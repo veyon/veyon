@@ -55,7 +55,7 @@ QStringList AccessControlProvider::userGroups() const
 
 
 
-QStringList AccessControlProvider::rooms()
+QStringList AccessControlProvider::rooms() const
 {
 	auto roomList = m_dataBackend->allRooms();
 
@@ -162,14 +162,14 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 /*!
  * \brief Returns whether any incoming access requests would be denied due to a deny rule matching the local state (e.g. teacher logged on)
  */
-bool AccessControlProvider::isAccessDeniedByLocalState()
+bool AccessControlProvider::isAccessDeniedByLocalState() const
 {
 	if( VeyonCore::config().isAccessControlRulesProcessingEnabled() == false )
 	{
 		return false;
 	}
 
-	for( auto rule : m_accessControlRules )
+	for( const auto& rule : qAsConst( m_accessControlRules ) )
 	{
 		if( rule.action() == AccessControlRule::ActionDeny &&
 				matchConditions( rule, QString(), QString(),
@@ -187,7 +187,7 @@ bool AccessControlProvider::isAccessDeniedByLocalState()
 
 
 bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
-												 const QString &groupName )
+												 const QString &groupName ) const
 {
 	QRegExp groupNameRX( groupName );
 
@@ -201,14 +201,14 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 
 
-bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QString &roomName )
+bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QString &roomName ) const
 {
 	return m_dataBackend->roomsOfComputer( computer ).contains( roomName );
 }
 
 
 
-bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo )
+bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo ) const
 {
 	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne );
 	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne );
@@ -218,7 +218,7 @@ bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QSt
 
 
 
-bool AccessControlProvider::isLocatedInSameRoom( const QString &computerOne, const QString &computerTwo )
+bool AccessControlProvider::isLocatedInSameRoom( const QString &computerOne, const QString &computerTwo ) const
 {
 	const auto computerOneRooms = m_dataBackend->roomsOfComputer( computerOne );
 	const auto computerTwoRooms = m_dataBackend->roomsOfComputer( computerTwo );
@@ -244,7 +244,7 @@ bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QSt
 
 QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject,
 											  const QString &accessingUser, const QString &accessingComputer,
-											  const QString &localUser, const QString &localComputer )
+											  const QString &localUser, const QString &localComputer ) const
 {
 	switch( subject )
 	{
@@ -263,7 +263,7 @@ QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject
 bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 											 const QString& accessingUser, const QString& accessingComputer,
 											 const QString& localUser, const QString& localComputer,
-											 const QStringList& connectedUsers )
+											 const QStringList& connectedUsers ) const
 {
 	bool hasConditions = false;
 
