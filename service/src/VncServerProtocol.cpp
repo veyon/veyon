@@ -177,7 +177,9 @@ bool VncServerProtocol::sendAuthenticationTypes()
 	VariantArrayMessage message( m_socket );
 	message.write( m_serverAuthenticationManager.supportedAuthTypes().count() );
 
-	for( auto authType : m_serverAuthenticationManager.supportedAuthTypes() )
+	const auto supportedAuthTypes = m_serverAuthenticationManager.supportedAuthTypes();
+
+	for( auto authType : supportedAuthTypes )
 	{
 		message.write( authType );
 	}

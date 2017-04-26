@@ -51,7 +51,7 @@ VncProxyServer::VncProxyServer( int vncServerPort,
 
 VncProxyServer::~VncProxyServer()
 {
-	for( auto connection : m_connections )
+	for( auto connection : qAsConst( m_connections ) )
 	{
 		delete connection;
 	}

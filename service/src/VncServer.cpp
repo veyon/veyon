@@ -43,7 +43,7 @@ VncServer::VncServer( int serverPort ) :
 
 	VncServerPluginInterfaceList defaultVncServerPlugins;
 
-	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
