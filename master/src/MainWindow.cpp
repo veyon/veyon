@@ -228,9 +228,9 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 		{
 			QMenu m( this );
 			m.addAction( m_systemTrayIcon.toolTip() )->setEnabled( false );
-			foreach( QAction * a, m_sysTrayActions )
+			for( auto action : m_sysTrayActions )
 			{
-				m.addAction( a );
+				m.addAction( action );
 			}
 
 			m.addSeparator();
