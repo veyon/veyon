@@ -53,10 +53,10 @@ AccessControlPage::AccessControlPage() :
 		qFatal( "AccessControlPage: missing default access control data backend" );
 	}
 
-	auto backends = VeyonCore::accessControlDataBackendManager().availableBackends();
-	for( auto backend : backends.keys() )
+	const auto backends = VeyonCore::accessControlDataBackendManager().availableBackends();
+	for( auto it = backends.keyBegin(), end = backends.keyEnd(); it != end; ++it )
 	{
-		ui->accessControlDataBackend->addItem( backends[backend], backend );
+		ui->accessControlDataBackend->addItem( backends[*it], *it );
 	}
 
 	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
@@ -138,9 +138,9 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	auto groups = VeyonCore::accessControlDataBackendManager().configuredBackend()->userGroups();
+	const auto groups = VeyonCore::accessControlDataBackendManager().configuredBackend()->userGroups();
 
-	for( auto group : groups )
+	for( const auto& group : groups )
 	{
 		if( m_accessGroups.contains( group ) )
 		{

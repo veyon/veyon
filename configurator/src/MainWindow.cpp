@@ -52,7 +52,7 @@ MainWindow::MainWindow() :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName() ).arg( VEYON_VERSION ) );
+	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), VEYON_VERSION ) );
 
 	loadConfigurationPagePlugins();
 
@@ -67,7 +67,8 @@ MainWindow::MainWindow() :
 		configurationChanged();
 	}
 
-	for( auto page : findChildren<ConfigurationPage *>() )
+	const auto pages = findChildren<ConfigurationPage *>();
+	for( auto page : pages )
 	{
 		page->connectWidgetsToProperties();
 	}
@@ -104,7 +105,8 @@ void MainWindow::reset( bool onlyUI )
 		VeyonCore::config() += VeyonConfiguration( Configuration::Store::LocalBackend );
 	}
 
-	for( auto page : findChildren<ConfigurationPage *>() )
+	const auto pages = findChildren<ConfigurationPage *>();
+	for( auto page : pages )
 	{
 		page->resetWidgets();
 	}
@@ -120,7 +122,8 @@ void MainWindow::apply()
 {
 	if( ConfiguratorCore::applyConfiguration( VeyonCore::config() ) )
 	{
-		for( auto page : findChildren<ConfigurationPage *>() )
+		const auto pages = findChildren<ConfigurationPage *>();
+		for( auto page : pages )
 		{
 			page->applyConfiguration();
 		}
@@ -280,17 +283,19 @@ void MainWindow::generateBugReportArchive()
 
 
 	// compress all log files and encode them as base64
-	QStringList paths;
-	paths << LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() );
+	const QStringList paths( { LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() ),
 #ifdef VEYON_BUILD_WIN32
-	paths << "C:\\Windows\\Temp";
+	"C:\\Windows\\Temp"
 #else
-	paths << "/tmp";
+	"/tmp"
 #endif
-	foreach( const QString &p, paths )
+		} );
+
+	for( const QString &p : paths )
 	{
 		QDir d( p );
-		foreach( const QString &f, d.entryList( QStringList() << "Veyon*.log" ) )
+		const auto entries = d.entryList( QStringList() << "Veyon*.log" );
+		for( const auto& f : entries )
 		{
 			QFile logfile( d.absoluteFilePath( f ) );
 			logfile.open( QFile::ReadOnly );
@@ -305,8 +310,8 @@ void MainWindow::generateBugReportArchive()
 	QMessageBox::information( this, tr( "%1 bug report archive saved" ).arg( VeyonCore::applicationName() ),
 			tr( "An %1 bug report archive has been saved to %2. "
 				"It includes %3 log files and information about your "
-				"operating system. You can attach it to a bug report." ).arg( VeyonCore::applicationName() ).
-				arg( QDTNS( outfile ) ).arg( VeyonCore::applicationName() ) );
+				"operating system. You can attach it to a bug report." ).arg(
+				VeyonCore::applicationName(), QDTNS( outfile ), VeyonCore::applicationName() ) );
 }
 
 
@@ -320,7 +325,7 @@ void MainWindow::aboutVeyon()
 
 void MainWindow::loadConfigurationPagePlugins()
 {
-	for( auto pluginObject : VeyonCore::pluginManager().pluginObjects() )
+	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto configurationPagePluginInterface = qobject_cast<ConfigurationPagePluginInterface *>( pluginObject );

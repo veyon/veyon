@@ -147,14 +147,14 @@ void KeyFileAssistant::accept()
 				{
 					QMessageBox::critical( this, tr( "Access key creation" ),
 							tr( "Failed exporting public access key from %1 to %2." ).
-								arg( src.fileName() ).arg( dst.fileName() ) );
+								arg( src.fileName(), dst.fileName() ) );
 					return;
 				}
 			}
 			QMessageBox::information( this, tr( "Access key creation" ),
 				tr( "Access keys were created and written successfully to %1 and %2." ).
-					arg( LocalSystem::Path::privateKeyPath( role, destDir ) ).
-					arg( LocalSystem::Path::publicKeyPath( role, destDir ) ) );
+					arg( LocalSystem::Path::privateKeyPath( role, destDir ),
+						 LocalSystem::Path::publicKeyPath( role, destDir ) ) );
 		}
 		else
 		{

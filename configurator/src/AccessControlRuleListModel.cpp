@@ -29,8 +29,8 @@
 #include "VeyonCore.h"
 
 
-AccessControlRuleListModel::AccessControlRuleListModel(QObject *parent)
-    : QAbstractListModel(parent)
+AccessControlRuleListModel::AccessControlRuleListModel(QObject *parent) :
+	QAbstractListModel(parent)
 {
 	reload();
 }
@@ -43,7 +43,9 @@ void AccessControlRuleListModel::reload()
 
 	m_accessControlRules.clear();
 
-	for( auto accessControlRule : VeyonCore::config().accessControlRules() )
+	const auto accessControlRules = VeyonCore::config().accessControlRules();
+
+	for( const auto& accessControlRule : accessControlRules )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}

@@ -164,7 +164,7 @@ void ServiceConfigurationPage::populateVncServerPluginComboBox()
 {
 	PluginManager pluginManager;
 
-	for( auto pluginObject : pluginManager.pluginObjects() )
+	for( auto pluginObject : qAsConst( pluginManager.pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );

@@ -100,7 +100,9 @@ void MasterConfigurationPage::openSnapshotDirectory()
 
 void MasterConfigurationPage::enableFeature()
 {
-	for( auto item : ui->disabledFeaturesListWidget->selectedItems() )
+	const auto items = ui->disabledFeaturesListWidget->selectedItems();
+
+	for( auto item : items )
 	{
 		m_disabledFeatures.removeAll( item->data( Qt::UserRole ).toString() );
 	}
@@ -114,7 +116,9 @@ void MasterConfigurationPage::enableFeature()
 
 void MasterConfigurationPage::disableFeature()
 {
-	for( auto item : ui->allFeaturesListWidget->selectedItems() )
+	const auto items = ui->allFeaturesListWidget->selectedItems();
+
+	for( auto item : items )
 	{
 		QString featureUid = item->data( Qt::UserRole ).toString();
 		m_disabledFeatures.removeAll( featureUid );
@@ -151,7 +155,7 @@ void MasterConfigurationPage::updateFeatureLists()
 	ui->allFeaturesListWidget->clear();
 	ui->disabledFeaturesListWidget->clear();
 
-	for( auto feature : m_featureManager.features() )
+	for( const auto& feature : qAsConst( m_featureManager.features() ) )
 	{
 		if( feature.testFlag( Feature::Builtin ) )
 		{

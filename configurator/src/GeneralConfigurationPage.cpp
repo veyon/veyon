@@ -47,9 +47,10 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
-	for( auto language : QDir(":/resources/").entryList( QStringList("*.qm") ) )
+	const auto qmFiles = QDir(":/resources/").entryList( QStringList("*.qm") );
+	for( const auto& qmFile : qmFiles )
 	{
-		QLocale loc(language);
+		QLocale loc( qmFile );
 		if( loc.language() == QLocale::C )
 		{
 			loc = QLocale( QLocale::English );
@@ -186,10 +187,10 @@ void GeneralConfigurationPage::clearLogFiles()
 
 void GeneralConfigurationPage::populateNetworkObjectDirectories()
 {
-	auto directories = NetworkObjectDirectoryManager().availableDirectories();
+	const auto directories = NetworkObjectDirectoryManager().availableDirectories();
 
-	for( auto directoryUid : directories.keys() )
+	for( auto it = directories.keyBegin(), end = directories.keyEnd(); it != end; ++it )
 	{
-		ui->networkObjectDirectoryPlugin->addItem( directories[directoryUid], directoryUid );
+		ui->networkObjectDirectoryPlugin->addItem( directories[*it], *it );
 	}
 }
