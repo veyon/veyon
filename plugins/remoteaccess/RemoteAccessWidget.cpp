@@ -44,15 +44,18 @@
 
 
 // toolbar for remote-control-widget
-RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
-			RemoteAccessWidget * _parent, bool viewOnly ) :
-	QWidget( _parent ),
-	m_parent( _parent ),
+RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parrent, bool viewOnly ) :
+	QWidget( parrent ),
+	m_parent( parrent ),
 	m_showHideTimeLine(),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
-	m_icon( QPixmap( ":/resources/icon128.png" ).scaled( QSize( 48, 48 ),
-					Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) )
+	m_icon( QPixmap( ":/resources/icon128.png" ).scaled( QSize( 48, 48 ), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
+	m_viewOnlyButton( new ToolButton( QPixmap( ":/remoteaccess/kmag.png" ), tr( "View only" ), tr( "Remote control" ) ) ),
+	m_sendShortcutButton( new ToolButton( QPixmap( ":/remoteaccess/preferences-desktop-keyboard.png" ), tr( "Send shortcut" ) ) ),
+	m_snapshotButton( new ToolButton( QPixmap( ":/remoteaccess/camera-photo.png" ), tr( "Snapshot" ) ) ),
+	m_fullScreenButton( new ToolButton( QPixmap( ":/remoteaccess/view-fullscreen.png" ), tr( "Fullscreen" ), tr( "Window" ) ) ),
+	m_quitButton( new ToolButton( QPixmap( ":/remoteaccess/application-exit.png" ), tr( "Quit" ) ) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
@@ -63,34 +66,18 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	show();
 	startConnection();
 
-	ToolButton * viewOnlyButton = new ToolButton(
-				QPixmap( ":/remoteaccess/kmag.png" ),
-				tr( "View only" ), tr( "Remote control" ) );
-	ToolButton * sendShortcutButton = new ToolButton(
-				QPixmap( ":/remoteaccess/preferences-desktop-keyboard.png" ),
-				tr( "Send shortcut" ) );
-	ToolButton * snapshotButton = new ToolButton(
-				QPixmap( ":/remoteaccess/camera-photo.png" ),
-				tr( "Snapshot" ) );
-	ToolButton * fullScreenButton = new ToolButton(
-				QPixmap( ":/remoteaccess/view-fullscreen.png" ),
-				tr( "Fullscreen" ), tr( "Window" ) );
-	ToolButton * quitButton = new ToolButton(
-				QPixmap( ":/remoteaccess/application-exit.png" ),
-				tr( "Quit" ) );
-	viewOnlyButton->setCheckable( true );
-	fullScreenButton->setCheckable( true );
-	viewOnlyButton->setChecked( viewOnly );
-	fullScreenButton->setChecked( false );
+	m_viewOnlyButton->setCheckable( true );
+	m_fullScreenButton->setCheckable( true );
+	m_viewOnlyButton->setChecked( viewOnly );
+	m_fullScreenButton->setChecked( false );
 
-	connect( viewOnlyButton, SIGNAL( toggled( bool ) ),
-				_parent, SLOT( toggleViewOnly( bool ) ) );
-	connect( fullScreenButton, SIGNAL( toggled( bool ) ),
-				_parent, SLOT( toggleFullScreen( bool ) ) );
-	connect( snapshotButton, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
-	connect( quitButton, SIGNAL( clicked() ), _parent, SLOT( close() ) );
+	connect( m_viewOnlyButton, &ToolButton::toggled, this, &RemoteAccessWidgetToolBar::updateControls );
+	connect( m_viewOnlyButton, &QAbstractButton::toggled, parrent, &RemoteAccessWidget::toggleViewOnly );
+	connect( m_fullScreenButton, &QAbstractButton::toggled, parrent, &RemoteAccessWidget::toggleFullScreen );
+	connect( m_snapshotButton, &QAbstractButton::clicked, parrent, &RemoteAccessWidget::takeSnapshot );
+	connect( m_quitButton, &QAbstractButton::clicked, parrent, &QWidget::close );
 
-	auto vncView = _parent->m_vncView;
+	auto vncView = parrent->m_vncView;
 
 	auto shortcutMenu = new QMenu();
 	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
@@ -102,40 +89,35 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	shortcutMenu->addAction( tr( "Menu" ), [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
 	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
 
-	sendShortcutButton->setMenu( shortcutMenu );
-	sendShortcutButton->setPopupMode( QToolButton::InstantPopup );
+	m_sendShortcutButton->setMenu( shortcutMenu );
+	m_sendShortcutButton->setPopupMode( QToolButton::InstantPopup );
 
 	auto layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
-	layout->addWidget( viewOnlyButton );
-	layout->addWidget( sendShortcutButton );
-	layout->addWidget( snapshotButton );
-	layout->addWidget( fullScreenButton );
-	layout->addWidget( quitButton );
+	layout->addWidget( m_sendShortcutButton );
+	layout->addWidget( m_viewOnlyButton );
+	layout->addWidget( m_snapshotButton );
+	layout->addWidget( m_fullScreenButton );
+	layout->addWidget( m_quitButton );
 	layout->addSpacing( 5 );
-	connect( m_parent->m_vncView, SIGNAL( startConnection() ),
-					this, SLOT( startConnection() ) );
-	connect( m_parent->m_vncView, SIGNAL( connectionEstablished() ),
-					this, SLOT( connectionEstablished() ) );
+	connect( m_parent->m_vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
+	connect( m_parent->m_vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
 	setFixedHeight( 52 );
 
 	m_showHideTimeLine.setFrameRange( 0, height() );
 	m_showHideTimeLine.setDuration( 800 );
 	m_showHideTimeLine.setCurveShape( QTimeLine::EaseInCurve );
-	connect( &m_showHideTimeLine, SIGNAL( valueChanged( qreal ) ),
-				this, SLOT( updatePosition() ) );
+	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
 
 	m_iconStateTimeLine.setFrameRange( 0, 100 );
 	m_iconStateTimeLine.setDuration( 1500 );
 	m_iconStateTimeLine.setUpdateInterval( 60 );
 	m_iconStateTimeLine.setCurveShape( QTimeLine::SineCurve );
-	connect( &m_iconStateTimeLine, SIGNAL( valueChanged( qreal ) ),
-				this, SLOT( updateConnectionAnimation() ) );
-	connect( &m_iconStateTimeLine, SIGNAL( finished() ),
-				&m_iconStateTimeLine, SLOT( start() ) );
+	connect( &m_iconStateTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updateConnectionAnimation );
+	connect( &m_iconStateTimeLine, &QTimeLine::finished, &m_iconStateTimeLine, &QTimeLine::start );
 }
 
 
@@ -267,7 +249,10 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 
 
 
-
+void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
+{
+	m_sendShortcutButton->setVisible( viewOnly == false );
+}
 
 
 

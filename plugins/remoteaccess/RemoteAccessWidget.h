@@ -31,7 +31,7 @@ class VncView;
 class ComputerControlInterface;
 class VeyonCoreConnection;
 class RemoteAccessWidget;
-
+class ToolButton;
 
 class RemoteAccessWidgetToolBar : public QWidget
 {
@@ -57,7 +57,7 @@ private slots:
 	void updatePosition();
 	void startConnection();
 	void connectionEstablished();
-
+	void updateControls( bool viewOnly );
 
 private:
 	RemoteAccessWidget * m_parent;
@@ -66,6 +66,12 @@ private:
 
 	bool m_connecting;
 	QPixmap m_icon;
+
+	ToolButton* m_viewOnlyButton;
+	ToolButton* m_sendShortcutButton;
+	ToolButton* m_snapshotButton;
+	ToolButton* m_fullScreenButton;
+	ToolButton* m_quitButton;
 
 } ;
 
