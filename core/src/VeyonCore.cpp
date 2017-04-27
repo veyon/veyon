@@ -247,7 +247,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 
 	m_authenticationCredentials = new AuthenticationCredentials;
 
-	bool success = true;
+	bool success = false;
 
 	if( credentialTypes & AuthenticationCredentials::UserLogon &&
 			config().isLogonAuthenticationEnabled() )
@@ -261,7 +261,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 				m_authenticationCredentials->setLogonUsername( dlg.username() );
 				m_authenticationCredentials->setLogonPassword( dlg.password() );
 
-				success &= true;
+				success = true;
 			}
 			else
 			{
@@ -281,7 +281,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 		qDebug() << "Loading private key" << privKeyFile << "for role" << userRole();
 		if( m_authenticationCredentials->loadPrivateKey( privKeyFile ) )
 		{
-			success &= true;
+			success = true;
 		}
 		else
 		{
