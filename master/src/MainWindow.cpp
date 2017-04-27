@@ -28,6 +28,7 @@
 #include <QSplitter>
 
 #include "AboutDialog.h"
+#include "AccessControlProvider.h"
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
@@ -189,6 +190,28 @@ bool MainWindow::initAuthentication()
 				"able to access computers using %1." ).arg( VeyonCore::applicationName() ) );
 
 	return false;
+}
+
+
+
+bool MainWindow::initAccessControl()
+{
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
+	{
+		if( AccessControlProvider().isAccessFromLocalComputerDenied( VeyonCore::authenticationCredentials().logonUsername() ) )
+		{
+			qWarning() << "MainWindow::initAccessControl(): user"
+					   << VeyonCore::authenticationCredentials().logonUsername()
+					   << "is not allowed to access computers";
+			QMessageBox::critical( nullptr, tr( "Access denied" ),
+								   tr( "According to the local configuration you're not allowed "
+									   "to access computers in the network. Please log in with a different "
+									   "account or let your system administrator check the local configuration." ) );
+			return false;
+		}
+	}
+
+	return true;
 }
 
 

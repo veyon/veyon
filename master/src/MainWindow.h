@@ -46,6 +46,7 @@ public:
 	~MainWindow() override;
 
 	static bool initAuthentication();
+	static bool initAccessControl();
 
 	MasterCore& masterCore()
 	{
