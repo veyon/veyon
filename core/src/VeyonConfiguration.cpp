@@ -73,7 +73,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setServiceArguments( QString() );
 
 	c.setLogLevel( Logger::LogLevelDefault );
-	c.setLimittedLogFileSize( false );
+	c.setLogFileSizeLimitEnabled( false );
 	c.setLogToStdErr( true );
 	c.setLogToWindowsEventLog( false );
 	c.setLogFileSizeLimit( -1 );

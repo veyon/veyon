@@ -46,7 +46,7 @@
 
 #define FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
-	OP( VeyonConfiguration, VeyonCore::config(), BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logFileSizeLimitEnabled, setLogFileSizeLimitEnabled, "LogFileSizeLimitEnabled", "Logging" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\

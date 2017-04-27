@@ -61,7 +61,7 @@ public slots:
 	void setLogLevel( int );
 	void setLogToStdErr( bool );
 	void setLogToWindowsEventLog( bool );
-	void setLimittedLogFileSize( bool );
+	void setLogFileSizeLimitEnabled( bool );
 	void setLogFileSizeLimit( int );
 	void setLogFileDirectory( const QString & );
 	void setNetworkObjectDirectoryPlugin( const QUuid& );
