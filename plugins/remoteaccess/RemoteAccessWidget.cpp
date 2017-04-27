@@ -181,8 +181,8 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 	f.setBold( true );
 	p.setFont( f );
 
-	p.setPen( Qt::white );
-	p.drawText( 64, 22, m_parent->windowTitle() );
+	//p.setPen( Qt::white );
+	//p.drawText( 64, 22, m_parent->windowTitle() );
 
 	p.setPen( QColor( 192, 192, 192 ) );
 	f.setPointSize( 10 );
