@@ -62,6 +62,10 @@ public:
 
 private:
 	void initLogFile( VeyonConfiguration* config );
+	void openLogFile();
+	void closeLogFile();
+	void clearLogFile();
+	void rotateLogFile();
 	void outputMessage( const QString &msg );
 
 	static QString formatMessage( LogLevel ll, const QString &msg );
@@ -82,6 +86,8 @@ private:
 #endif
 
 	QFile *m_logFile;
+	int m_logFileSizeLimit;
+	int m_logFileRotationCount;
 
 } ;
 

@@ -142,6 +142,9 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>32</number>
+        </property>
         <item>
          <widget class="QCheckBox" name="logFileSizeLimitEnabled">
           <property name="text">
@@ -150,25 +153,67 @@
          </widget>
         </item>
         <item>
+         <widget class="QSpinBox" name="logFileSizeLimit">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="suffix">
+           <string> MB</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>999</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer_6">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>20</width>
-            <height>10</height>
+            <width>40</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
         </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <property name="spacing">
+         <number>32</number>
+        </property>
         <item>
-         <widget class="QSpinBox" name="logFileSizeLimit">
+         <widget class="QCheckBox" name="logFileRotationEnabled">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Rotate log files</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="logFileRotationCount">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="suffix">
+           <string>x</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
           </property>
           <property name="value">
            <number>10</number>
@@ -176,14 +221,38 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>MB</string>
+         <spacer name="horizontalSpacer_8">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-         </widget>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="logToStdErr">
+        <property name="text">
+         <string>Log to standard error output</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="logToWindowsEventLog">
+        <property name="text">
+         <string>Log to Windows event log</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <spacer name="horizontalSpacer_5">
+         <spacer name="horizontalSpacer_10">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -207,20 +276,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="logToStdErr">
-        <property name="text">
-         <string>Log to standard error output</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="logToWindowsEventLog">
-        <property name="text">
-         <string>Log to Windows event log</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </widget>
@@ -302,9 +357,37 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>logFileSizeLimitEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>logFileRotationEnabled</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>138</x>
+     <y>381</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>129</x>
+     <y>436</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>logFileRotationEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>logFileRotationCount</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>129</x>
+     <y>436</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>658</x>
+     <y>437</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
- <slots>
-  <slot>enableFeature()</slot>
-  <slot>disableFeature()</slot>
- </slots>
 </ui>

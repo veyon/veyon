@@ -74,9 +74,11 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 
 	c.setLogLevel( Logger::LogLevelDefault );
 	c.setLogFileSizeLimitEnabled( false );
+	c.setLogFileRotationEnabled( false );
 	c.setLogToStdErr( true );
 	c.setLogToWindowsEventLog( false );
-	c.setLogFileSizeLimit( -1 );
+	c.setLogFileSizeLimit( 100 );
+	c.setLogFileRotationCount( 10 );
 	c.setLogFileDirectory(
 #ifdef VEYON_BUILD_WIN32
 		"%TEMP%"

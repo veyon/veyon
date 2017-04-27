@@ -50,7 +50,9 @@ CXEventLog *Logger::winEventLog = NULL;
 
 Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 	m_appName( "Veyon" + appName ),
-	m_logFile( nullptr )
+	m_logFile( nullptr ),
+	m_logFileSizeLimit( -1 ),
+	m_logFileRotationCount( -1 )
 {
 	instance = this;
 
@@ -115,8 +117,82 @@ void Logger::initLogFile( VeyonConfiguration* config )
 
 	logPath = logPath + QDir::separator();
 	m_logFile = new QFile( logPath + QString( "%1.log" ).arg( m_appName ) );
+
+	openLogFile();
+
+	if( config->logFileSizeLimitEnabled() )
+	{
+		m_logFileSizeLimit = config->logFileSizeLimit() * 1024 * 1024;
+	}
+
+	if( config->logFileRotationEnabled() )
+	{
+		m_logFileRotationCount = config->logFileRotationCount();
+	}
+}
+
+
+
+void Logger::openLogFile()
+{
 	m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered );
 	m_logFile->setPermissions( QFile::ReadOwner | QFile::WriteOwner );
+}
+
+
+
+void Logger::closeLogFile()
+{
+	m_logFile->close();
+}
+
+
+
+void Logger::clearLogFile()
+{
+	closeLogFile();
+	m_logFile->remove();
+	openLogFile();
+}
+
+
+
+void Logger::rotateLogFile()
+{
+	if( m_logFileRotationCount < 1 )
+	{
+		return;
+	}
+
+	closeLogFile();
+
+	const QFileInfo logFileInfo( *m_logFile );
+	const QStringList logFileFilter( { logFileInfo.fileName() + ".*" } );
+
+	const auto rotatedLogFiles = logFileInfo.dir().entryList( logFileFilter, QDir::NoFilter, QDir::Name );
+
+	if( rotatedLogFiles.count() >= m_logFileRotationCount )
+	{
+		QFile::remove( rotatedLogFiles.last() );
+	}
+
+	qDebug() << rotatedLogFiles;
+
+	for( auto it = rotatedLogFiles.crbegin(), end = rotatedLogFiles.crend(); it != end; ++it )
+	{
+		QString currentLogFile( *it );
+		bool numberOk = false;
+		int logFileIndex = currentLogFile.section( '.', -1 ).toInt( &numberOk );
+		if( numberOk && logFileIndex < m_logFileRotationCount )
+		{
+			QString newFileName = QString( "%1.%2" ).arg( logFileInfo.fileName(), logFileIndex + 1 );
+			QFile( currentLogFile ).rename( newFileName );
+		}
+	}
+
+	QFile( m_logFile->fileName() ).rename( m_logFile->fileName() + ".0" );
+
+	openLogFile();
 }
 
 
@@ -250,6 +326,19 @@ void Logger::outputMessage( const QString &msg )
 	{
 		m_logFile->write( msg.toUtf8() );
 		m_logFile->flush();
+
+		if( m_logFileSizeLimit > 0 &&
+				m_logFile->size() > m_logFileSizeLimit )
+		{
+			if( m_logFileRotationCount > 0 )
+			{
+				rotateLogFile();
+			}
+			else
+			{
+				clearLogFile();
+			}
+		}
 	}
 
 	if( VeyonCore::config().logToStdErr() )
