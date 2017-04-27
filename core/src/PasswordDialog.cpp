@@ -24,12 +24,12 @@
 
 #include <veyonconfig.h>
 
-#include <QtCore/QDir>
-#include <QtCore/QProcess>
+#include <QMessageBox>
 #include <QPushButton>
 
 #include "PasswordDialog.h"
 #include "LocalSystem.h"
+#include "LogonAuthentication.h"
 
 #include "ui_PasswordDialog.h"
 
@@ -92,6 +92,22 @@ AuthenticationCredentials PasswordDialog::credentials() const
 	cred.setLogonPassword( password() );
 
 	return cred;
+}
+
+
+
+void PasswordDialog::accept()
+{
+	if( LogonAuthentication::authenticateUser( credentials() ) == false )
+	{
+		QMessageBox::critical( window(),
+							   tr( "Authentication error" ),
+							   tr( "Authentication failed with given username and password. Please try again!" ) );
+	}
+	else
+	{
+		QDialog::accept();
+	}
 }
 
 

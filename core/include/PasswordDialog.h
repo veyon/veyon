@@ -43,6 +43,7 @@ public:
 
 	AuthenticationCredentials credentials() const;
 
+	void accept() override;
 
 private slots:
 	void updateOkButton();
