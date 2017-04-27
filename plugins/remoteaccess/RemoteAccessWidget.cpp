@@ -282,6 +282,7 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 	m_coreConnection( new VeyonCoreConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, viewOnly ) )
 {
+	setWindowTitle( QString( "%1 Remote Access" ).arg( VeyonCore::applicationName() ) );
 	setWindowIcon( QPixmap( ":/remoteaccess/kmag.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
@@ -292,10 +293,6 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 				this, SLOT( checkKeyEvent( int, bool ) ) );
 	connect( m_vncView, SIGNAL( sizeHintChanged() ),
 					this, SLOT( updateSize() ) );
-
-	// TODO: read from ComputerControlInterface after making VncView use existing connection
-	connect( m_coreConnection, SIGNAL( receivedUserInfo( QString, QString ) ),
-			 this, SLOT( updateWindowTitle() ) );
 
 	show();
 	LocalSystem::activateWindow( this );
@@ -311,32 +308,6 @@ RemoteAccessWidget::~RemoteAccessWidget()
 	delete m_coreConnection;
 	delete m_vncView;
 }
-
-
-
-
-void RemoteAccessWidget::updateWindowTitle()
-{
-	const QString s = m_vncView->isViewOnly() ?
-			tr( "View live (%1 @ %2)" )
-		:
-			tr( "Remote control (%1 @ %2)" );
-	QString u = m_computerControlInterface.user();
-	if( u.isEmpty() )
-	{
-		u = tr( "unknown user" );
-	}
-	else
-	{
-		if( u.contains( '(' ) && u.contains( ')' ) )
-		{
-			u = u.section( '(', 1 ).section( ')', 0, 0 );
-		}
-	}
-
-	setWindowTitle( s.arg( u ).arg( m_computerControlInterface.computer().hostAddress() ) );
-}
-
 
 
 

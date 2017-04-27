@@ -85,7 +85,6 @@ public slots:
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool );
 	void takeSnapshot();
-	void updateWindowTitle();
 
 
 protected:
@@ -109,6 +108,4 @@ private:
 
 } ;
 
-
 #endif
-
