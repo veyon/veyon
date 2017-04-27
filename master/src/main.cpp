@@ -97,18 +97,6 @@ int main( int argc, char * * argv )
 	// now create the main-window
 	MainWindow mainWindow( masterCore );
 
-#if 0
-	if( !mainWindow.localICA() ||
-		!mainWindow.localICA()->isConnected() )
-	{
-		qCritical( "No connection to local ICA - terminating now" );
-		if( VeyonCore::config().logLevel() < Logger::LogLevelDebug )
-		{
-			return -1;
-		}
-	}
-#endif
-
 	// hide splash-screen as soon as main-window is shown
 	splashScreen.finish( &mainWindow );
 
