@@ -53,7 +53,7 @@ ComputerControlServer::ComputerControlServer() :
 	m_vncServer( VeyonCore::config().vncServerPort() ),
 	m_vncProxyServer( m_vncServer.serverPort(),
 					  m_vncServer.password(),
-					  VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessDeniedByLocalState() ?
+					  VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
 					  VeyonCore::config().computerControlServerPort(),
 					  this,

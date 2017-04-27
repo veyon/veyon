@@ -164,7 +164,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 /*!
  * \brief Returns whether any incoming access requests would be denied due to a deny rule matching the local state (e.g. teacher logged on)
  */
-bool AccessControlProvider::isAccessDeniedByLocalState() const
+bool AccessControlProvider::isAccessToLocalComputerDenied() const
 {
 	if( VeyonCore::config().isAccessControlRulesProcessingEnabled() == false )
 	{
@@ -178,6 +178,30 @@ bool AccessControlProvider::isAccessDeniedByLocalState() const
 								 LocalSystem::User::loggedOnUser().name(),
 								 QHostInfo::localHostName(),
 								 QStringList() ) )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+/*!
+ * \brief Returns whether access for given accessing user from local computer will be denied regardless of other parameters
+ */
+bool AccessControlProvider::isAccessFromLocalComputerDenied( QString accessingUser ) const
+{
+	if( VeyonCore::config().isAccessControlRulesProcessingEnabled() == false )
+	{
+		return false;
+	}
+
+	for( const auto& rule : qAsConst( m_accessControlRules ) )
+	{
+		if( rule.action() == AccessControlRule::ActionDeny &&
+				matchConditions( rule, accessingUser, QHostInfo::localHostName(),
+								 QString(), QString(), QStringList() ) )
 		{
 			return true;
 		}

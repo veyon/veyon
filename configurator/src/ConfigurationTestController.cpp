@@ -74,7 +74,7 @@ int ConfigurationTestController::run()
 	}
 	else if( command == "isaccessdeniedbylocalstate" )
 	{
-		if( AccessControlProvider().isAccessDeniedByLocalState() )
+		if( AccessControlProvider().isAccessToLocalComputerDenied() )
 		{
 			printf( "[TEST]: IsAccessDeniedByLocalState: YES (service will listen on localhost only)\n" );
 		}

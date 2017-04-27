@@ -55,8 +55,8 @@ public:
 														 const QString& localComputer,
 														 const QStringList& connectedUsers );
 
-	bool isAccessDeniedByLocalState() const;
-
+	bool isAccessToLocalComputerDenied() const;
+	bool isAccessFromLocalComputerDenied( QString accessingUser ) const;
 
 private:
 	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;
