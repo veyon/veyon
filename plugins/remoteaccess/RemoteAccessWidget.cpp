@@ -208,7 +208,7 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 
 void RemoteAccessWidgetToolBar::updateConnectionAnimation()
 {
-	update( 0, 0, 200, 63 );
+	repaint();
 }
 
 
