@@ -83,7 +83,7 @@ public:
 
 public slots:
 	void toggleFullScreen( bool );
-	void toggleViewOnly( bool );
+	void toggleViewOnly( bool viewOnly );
 	void takeSnapshot();
 
 

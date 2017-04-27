@@ -63,32 +63,32 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	show();
 	startConnection();
 
-	ToolButton * vo_btn = new ToolButton(
+	ToolButton * viewOnlyButton = new ToolButton(
 				QPixmap( ":/remoteaccess/kmag.png" ),
 				tr( "View only" ), tr( "Remote control" ) );
 	ToolButton * sendShortcutButton = new ToolButton(
 				QPixmap( ":/remoteaccess/preferences-desktop-keyboard.png" ),
 				tr( "Send shortcut" ) );
-	ToolButton * ss_btn = new ToolButton(
+	ToolButton * snapshotButton = new ToolButton(
 				QPixmap( ":/remoteaccess/camera-photo.png" ),
 				tr( "Snapshot" ) );
-	ToolButton * fs_btn = new ToolButton(
+	ToolButton * fullScreenButton = new ToolButton(
 				QPixmap( ":/remoteaccess/view-fullscreen.png" ),
 				tr( "Fullscreen" ), tr( "Window" ) );
-	ToolButton * quit_btn = new ToolButton(
+	ToolButton * quitButton = new ToolButton(
 				QPixmap( ":/remoteaccess/application-exit.png" ),
 				tr( "Quit" ) );
-	vo_btn->setCheckable( true );
-	fs_btn->setCheckable( true );
-	vo_btn->setChecked( viewOnly );
-	fs_btn->setChecked( false );
+	viewOnlyButton->setCheckable( true );
+	fullScreenButton->setCheckable( true );
+	viewOnlyButton->setChecked( viewOnly );
+	fullScreenButton->setChecked( false );
 
-	connect( vo_btn, SIGNAL( toggled( bool ) ),
+	connect( viewOnlyButton, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleViewOnly( bool ) ) );
-	connect( fs_btn, SIGNAL( toggled( bool ) ),
+	connect( fullScreenButton, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleFullScreen( bool ) ) );
-	connect( ss_btn, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
-	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
+	connect( snapshotButton, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
+	connect( quitButton, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
 	auto vncView = _parent->m_vncView;
 
@@ -109,11 +109,11 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar(
 	layout->setMargin( 1 );
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
-	layout->addWidget( vo_btn );
+	layout->addWidget( viewOnlyButton );
 	layout->addWidget( sendShortcutButton );
-	layout->addWidget( ss_btn );
-	layout->addWidget( fs_btn );
-	layout->addWidget( quit_btn );
+	layout->addWidget( snapshotButton );
+	layout->addWidget( fullScreenButton );
+	layout->addWidget( quitButton );
 	layout->addSpacing( 5 );
 	connect( m_parent->m_vncView, SIGNAL( startConnection() ),
 					this, SLOT( startConnection() ) );
@@ -376,9 +376,9 @@ void RemoteAccessWidget::toggleFullScreen( bool _on )
 
 
 
-void RemoteAccessWidget::toggleViewOnly( bool _on )
+void RemoteAccessWidget::toggleViewOnly( bool viewOnly )
 {
-	m_vncView->setViewOnly( _on );
+	m_vncView->setViewOnly( viewOnly );
 	m_toolBar->update();
 }
 
