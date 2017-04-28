@@ -169,28 +169,32 @@ void Logger::rotateLogFile()
 	const QFileInfo logFileInfo( *m_logFile );
 	const QStringList logFileFilter( { logFileInfo.fileName() + ".*" } );
 
-	const auto rotatedLogFiles = logFileInfo.dir().entryList( logFileFilter, QDir::NoFilter, QDir::Name );
+	auto rotatedLogFiles = logFileInfo.dir().entryList( logFileFilter, QDir::NoFilter, QDir::Name );
 
-	if( rotatedLogFiles.count() >= m_logFileRotationCount )
+	while( rotatedLogFiles.isEmpty() == false &&
+		   rotatedLogFiles.count() >= m_logFileRotationCount )
 	{
-		QFile::remove( rotatedLogFiles.last() );
+		logFileInfo.dir().remove( rotatedLogFiles.takeLast() );
 	}
-
-	qDebug() << rotatedLogFiles;
 
 	for( auto it = rotatedLogFiles.crbegin(), end = rotatedLogFiles.crend(); it != end; ++it )
 	{
-		QString currentLogFile( *it );
 		bool numberOk = false;
-		int logFileIndex = currentLogFile.section( '.', -1 ).toInt( &numberOk );
-		if( numberOk && logFileIndex < m_logFileRotationCount )
+		int logFileIndex = it->section( '.', -1 ).toInt( &numberOk );
+		if( numberOk )
 		{
-			QString newFileName = QString( "%1.%2" ).arg( logFileInfo.fileName(), logFileIndex + 1 );
-			QFile( currentLogFile ).rename( newFileName );
+			const auto oldFileName = QString( "%1.%2" ).arg( m_logFile->fileName() ).arg( logFileIndex );
+			const auto newFileName = QString( "%1.%2" ).arg( m_logFile->fileName() ).arg( logFileIndex + 1 );
+			QFile::rename( oldFileName, newFileName );
+		}
+		else
+		{
+			// remove stale log file
+			logFileInfo.dir().remove( *it );
 		}
 	}
 
-	QFile( m_logFile->fileName() ).rename( m_logFile->fileName() + ".0" );
+	QFile::rename( m_logFile->fileName(), m_logFile->fileName() + ".0" );
 
 	openLogFile();
 }
