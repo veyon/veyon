@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/" >
+    <qresource prefix="/textmessage" >
         <file>dialog-information.png</file>
     </qresource>
 </RCC>
