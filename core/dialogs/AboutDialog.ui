@@ -214,7 +214,7 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</string>
          <property name="text">
           <string>Current language not translated yet (or native English).
 
-If you're interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</string>
+If you're interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
