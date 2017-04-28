@@ -54,18 +54,6 @@
 VeyonCore *VeyonCore::s_instance = nullptr;
 
 
-void initResources()
-{
-	Q_INIT_RESOURCE(core);
-#ifndef QT_TRANSLATIONS_DIR
-#if QT_VERSION < 0x050000
-	Q_INIT_RESOURCE(qt_qm);
-#endif
-#endif
-}
-
-
-
 static void killWisPtis()
 {
 #ifdef VEYON_BUILD_WIN32
@@ -139,8 +127,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	lzo_init();
 
 	setupApplicationParameters();
-
-	initResources();
 
 	s_instance = this;
 
