@@ -499,7 +499,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		}
 	}
 
-	static const wchar_t *fwRuleName = L"veyon Client Application";
+	static const wchar_t *fwRuleName = L"Veyon Service";
 
 	const QString p = ServiceControl::serviceFilePath().replace( '/', '\\' );
 
