@@ -1,7 +1,7 @@
 /*
  * Logger.cpp - a global clas for easily logging messages to log files
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,18 +22,16 @@
  *
  */
 
-#include <veyonconfig.h>
-
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDateTime>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
 
 #include "VeyonConfiguration.h"
 #include "Logger.h"
 #include "LocalSystem.h"
 
-#ifdef VEYON_BUILD_WIN32
+#ifdef Q_OS_WIN
 #include "3rdparty/XEventLog.h"
 #include "3rdparty/XEventLog.cpp"
 #endif
@@ -44,7 +42,7 @@ QMutex Logger::logMutex( QMutex::Recursive );
 Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
 QString Logger::lastMsg;
 int Logger::lastMsgCount = 0;
-#ifdef VEYON_BUILD_WIN32
+#ifdef Q_OS_WIN
 CXEventLog *Logger::winEventLog = NULL;
 #endif
 
@@ -62,7 +60,7 @@ Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 
 	qInstallMessageHandler( qtMsgHandler );
 
-#ifdef VEYON_BUILD_WIN32
+#ifdef Q_OS_WIN
 	if( config->logToWindowsEventLog() )
 	{
 		winEventLog = new CXEventLog( appName.toUtf8().constData() );
@@ -204,7 +202,7 @@ void Logger::rotateLogFile()
 
 QString Logger::formatMessage( LogLevel ll, const QString &msg )
 {
-#ifdef VEYON_BUILD_WIN32
+#ifdef Q_OS_WIN
 	static const char *linebreak = "\r\n";
 #else
 	static const char *linebreak = "\n";
@@ -281,7 +279,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 				lastMsgCount = 0;
 			}
 			instance->outputMessage( formatMessage( ll, msg ) );
-#ifdef VEYON_BUILD_WIN32
+#ifdef Q_OS_WIN
 			WORD wtype = -1;
 			switch( ll )
 			{
@@ -351,5 +349,3 @@ void Logger::outputMessage( const QString &msg )
 		fflush( stderr );
 	}
 }
-
-
