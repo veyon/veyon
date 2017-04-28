@@ -102,7 +102,7 @@ void PasswordDialog::accept()
 	{
 		QMessageBox::critical( window(),
 							   tr( "Authentication error" ),
-							   tr( "Authentication failed with given username and password. Please try again!" ) );
+							   tr( "Logon failed with given username and password. Please try again!" ) );
 	}
 	else
 	{
