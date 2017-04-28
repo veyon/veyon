@@ -70,7 +70,7 @@ NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
 	m_type( static_cast<Type>( jsonObject.value( "Type" ).toInt() ) ),
 	m_name( jsonObject.value( "Name" ).toString() ),
 	m_hostAddress( jsonObject.value( "HostAddress" ).toString() ),
-	m_macAddress( jsonObject.value( "MacAdress" ).toString() ),
+	m_macAddress( jsonObject.value( "MacAddress" ).toString() ),
 	m_directoryAddress( jsonObject.value( "DirectoryAddress" ).toString() ),
 	m_uid( jsonObject.value( "Uid" ).toString() ),
 	m_parentUid( jsonObject.value( "ParentUid" ).toString() )
