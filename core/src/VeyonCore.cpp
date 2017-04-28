@@ -170,15 +170,15 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 		QLocale::setDefault( configuredLocale );
 
 		QCoreApplication::installTranslator( tr );
-	}
 
-	auto qtTr = new QTranslator;
+		auto qtTr = new QTranslator;
 #ifdef QT_TRANSLATIONS_DIR
-	qtTr->load( QString( "qt_%1.qm" ).arg( configuredLocale.name() ), QT_TRANSLATIONS_DIR );
+		qtTr->load( QString( "qt_%1.qm" ).arg( configuredLocale.name() ), QT_TRANSLATIONS_DIR );
 #else
-	qtTr->load( QString( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
+		qtTr->load( QString( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
 #endif
-	QCoreApplication::installTranslator( qtTr );
+		QCoreApplication::installTranslator( qtTr );
+	}
 
 	if( configuredLocale.language() == QLocale::Hebrew ||
 		configuredLocale.language() == QLocale::Arabic )
