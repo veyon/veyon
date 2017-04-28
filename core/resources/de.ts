@@ -4,10 +4,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation>Über veyon</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Über</translation>
     </message>
@@ -40,6 +36,12 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
         <translation>Veyon - Virtual Eye On Networks
 
 Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
+    </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
     </message>
 </context>
 <context>
@@ -708,6 +710,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Rotate log files</source>
+        <translation>Logdateien rotieren</translation>
+    </message>
+    <message>
+        <source>x</source>
+        <translation>x</translation>
     </message>
 </context>
 <context>
@@ -1838,6 +1852,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
         <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
     </message>
+    <message>
+        <source>Access denied</source>
+        <translation>Zugriff verweigert</translation>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation>Gemäß der lokalen Konfiguration sind Sie nicht berechtigt, auf Computer im Netzwerk zuzugreifen. Bitte melden Sie sich mit einem anderen Konto an oder lassen Ihren Systemadministrator die lokale Konfiguration überprüfen.</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -1936,7 +1958,19 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>Please enter your username and password in order to access computers in your Veyon network.</source>
-        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
+        <translation>Bitte geben Sie Ihren Benutzernamen und Passwort ein, um auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authentifizierungsfehler</translation>
+    </message>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon-Anmeldung</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Die Anmeldung mit dem angegebenen Benutzername und Passwort ist fehlgeschlagen. Bitte versuchen Sie es erneut!</translation>
     </message>
 </context>
 <context>
@@ -2050,21 +2084,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Please enter a hostname or IP address of the host to access:</source>
         <translation>Bitte geben Sie den Rechnername oder IP-Adresse des Rechners ein, auf den zugegriffen werden soll:</translation>
-    </message>
-</context>
-<context>
-    <name>RemoteAccessWidget</name>
-    <message>
-        <source>View live (%1 @ %2)</source>
-        <translation>Live anschauen (%1 @ %2)</translation>
-    </message>
-    <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation>Fernsteuerung (%1 @ %2)</translation>
-    </message>
-    <message>
-        <source>unknown user</source>
-        <translation>unbekannter Nutzer</translation>
     </message>
 </context>
 <context>
@@ -2447,10 +2466,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
-    <message>
-        <source>Builtin x11vnc server configuration</source>
-        <translation>Konfiguration des eingebauten x11vnc-Servers</translation>
-    </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
         <translation>Halbdurchsichtige Fenster (layered windows) aufzeichnen</translation>
