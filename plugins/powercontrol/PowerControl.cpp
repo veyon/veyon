@@ -68,7 +68,7 @@
 namespace PowerControl
 {
 
-void broadcastWOLPacket( const QString& macAddress )
+void broadcastWOLPacket( QString macAddress )
 {
 	const int PORT_NUM = 65535;
 	const int MAC_SIZE = 6;
@@ -76,8 +76,13 @@ void broadcastWOLPacket( const QString& macAddress )
 	unsigned char mac[MAC_SIZE];
 	char out_buf[OUTBUF_SIZE];
 
+	// remove all possible delimiters
+	macAddress.replace( ':', "" );
+	macAddress.replace( '-', "" );
+	macAddress.replace( '.', "" );
+
 	if( sscanf( macAddress.toLatin1().constData(),
-				"%2x:%2x:%2x:%2x:%2x:%2x",
+				"%2x%2x%2x%2x%2x%2x",
 				(unsigned int *) &mac[0],
 				(unsigned int *) &mac[1],
 				(unsigned int *) &mac[2],

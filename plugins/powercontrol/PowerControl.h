@@ -29,7 +29,7 @@
 
 namespace PowerControl
 {
-	void broadcastWOLPacket( const QString& macAddress );
+	void broadcastWOLPacket( QString macAddress );
 	void powerDown();
 	void reboot();
 }
