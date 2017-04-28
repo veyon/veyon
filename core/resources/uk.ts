@@ -3,27 +3,11 @@
     <name>AboutDialog</name>
     <message>
         <source>About veyon</source>
-        <translation>Про програму veyon</translation>
+        <translation>Про veyon</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Про програму</translation>
-    </message>
-    <message>
-        <source>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
-        <translation>veyon — інтелектуальна система викладання та навчання за допомогою комп’ютерів,
-
-© Tobias Doerffel / veyon Solutions, 2004-2016</translation>
-    </message>
-    <message>
-        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation>Автори</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -41,9 +25,524 @@ If you&apos;re interested in translating veyon into your local or another langua
         <source>License</source>
         <translation>Ліцензування</translation>
     </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>Про Veyon</translation>
+    </message>
+    <message>
+        <source>Veyon - Virtual Eye On Networks
+
+Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation>Veyon — віртуальний нагляд за мережами
+
+© Tobias Doerffel / Veyon Solutions, 2004–2017</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Учасники розробки</translation>
+    </message>
 </context>
 <context>
-    <name>AccessDialogSlave</name>
+    <name>AccessControlPage</name>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <source>Computer access control</source>
+        <translation>Керування доступом до комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>Надавати доступу усім розпізнаним користувачам (типовий варіант)</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of certain user groups</source>
+        <translation>Обмежити доступ учасниками певних груп користувачів</translation>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation>Обробка правил керування доступом</translation>
+    </message>
+    <message>
+        <source>Data backend:</source>
+        <translation>Модуль обробки даних:</translation>
+    </message>
+    <message>
+        <source>User groups authorized for computer access</source>
+        <translation>Групи користувачів, які уповноважено для доступу до комп’ютера</translation>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation>Будь ласка, додайте групи, учасники яких повинні будуть проходити розпізнавання, щоб отримати доступу до комп’ютерів у вашій мережі Veyon.</translation>
+    </message>
+    <message>
+        <source>Authorized user groups</source>
+        <translation>Уповноважені групи користувачів</translation>
+    </message>
+    <message>
+        <source>All groups</source>
+        <translation>Всі групи</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Access control rules</source>
+        <translation>Правила керування доступом</translation>
+    </message>
+    <message>
+        <source>Add access control rule</source>
+        <translation>Додати правило керування доступом</translation>
+    </message>
+    <message>
+        <source>Remove access control rule</source>
+        <translation>Вилучити правило керування доступом</translation>
+    </message>
+    <message>
+        <source>Move selected rule down</source>
+        <translation>Пересунути позначене правило нижче</translation>
+    </message>
+    <message>
+        <source>Move selected rule up</source>
+        <translation>Пересунути позначене правило вище</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>Змінити позначене правило</translation>
+    </message>
+    <message>
+        <source>Missing access control data backend</source>
+        <translation>Не вистачає модуля обробки даних керування доступом</translation>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation>Не знайдено типового додатка модуля керування доступом. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation>Введіть ім’я користувача</translation>
+    </message>
+    <message>
+        <source>Please enter a user login name whose access permissions to test:</source>
+        <translation>Будь ласка, вкажіть назву облікового запису користувача, чиї права доступу слід перевірити:</translation>
+    </message>
+    <message>
+        <source>Access allowed</source>
+        <translation>Доступ дозволено</translation>
+    </message>
+    <message>
+        <source>The specified user is allowed to access computers with this configuration.</source>
+        <translation>Вказаному користувачеві дозволено доступ до комп’ютерів з цими налаштуваннями.</translation>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation>Доступ заборонено</translation>
+    </message>
+    <message>
+        <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation>Вказаному користувачеві заборонено доступ до комп’ютерів з цими налаштуваннями.</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlRuleEditDialog</name>
+    <message>
+        <source>Edit access control rule</source>
+        <translation>Змінити правило керування доступом</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
+    </message>
+    <message>
+        <source>enter a short name for the rule here</source>
+        <translation>тут можна вказати скорочену назву правила</translation>
+    </message>
+    <message>
+        <source>Rule name:</source>
+        <translation>Назва правила:</translation>
+    </message>
+    <message>
+        <source>enter a description for the rule here</source>
+        <translation>тут можна вказати опис правила</translation>
+    </message>
+    <message>
+        <source>Rule description:</source>
+        <translation>Опис правила:</translation>
+    </message>
+    <message>
+        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
+        <translation>Інверсія усіх умов («є або має» буде вважатися записом «не є або не має»)</translation>
+    </message>
+    <message>
+        <source>Conditions</source>
+        <translation>Умови</translation>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation>є учасником групи</translation>
+    </message>
+    <message>
+        <source>has one or more groups in common with</source>
+        <translation>має одну або декілька спільних груп з</translation>
+    </message>
+    <message>
+        <source>is located in room</source>
+        <translation>розташовано у класі</translation>
+    </message>
+    <message>
+        <source>is located in the same room as</source>
+        <translation>розташовано у тому самому класі, що і</translation>
+    </message>
+    <message>
+        <source>Accessing computer is localhost</source>
+        <translation>Комп’ютер для доступу є локальним</translation>
+    </message>
+    <message>
+        <source>Accessing user is logged on user</source>
+        <translation>Користувач для доступу є розпізнаним користувачем системи</translation>
+    </message>
+    <message>
+        <source>Accessing user is already connected</source>
+        <translation>Користувача для доступу вже з’єднано</translation>
+    </message>
+    <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Якщо вказано декілька умов, для застосування правила має бути виконано усі ці умови (логічне «І»). Якщо має бути виконано хоч одну з декількох умов (логічне «АБО»), вам слід створити декілька відповідних правил керування доступом.</translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation>Дія</translation>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation>Дозволити доступ</translation>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation>Заборонити доступ</translation>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation>Запитувати розпізнаного користувача системи щодо доступу</translation>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation>Немає (правило вимкнено)</translation>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation>Користувач для доступу</translation>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation>Комп’ютер для доступу</translation>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation>Локальний користувач (у системі)</translation>
+    </message>
+    <message>
+        <source>Local computer</source>
+        <translation>Локальний комп’ютер</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlRulesTestDialog</name>
+    <message>
+        <source>Access control rules test</source>
+        <translation>Перевірка правил керування доступом</translation>
+    </message>
+    <message>
+        <source>Accessing user:</source>
+        <translation>Користувач для доступу:</translation>
+    </message>
+    <message>
+        <source>Local computer:</source>
+        <translation>Локальний комп’ютер:</translation>
+    </message>
+    <message>
+        <source>Accessing computer:</source>
+        <translation>Комп’ютер для доступу:</translation>
+    </message>
+    <message>
+        <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
+        <translation>Будь ласка, вкажіть нижче дані щодо користувача і комп’ютера, щоб перевірити налаштований набір правил.</translation>
+    </message>
+    <message>
+        <source>Local user:</source>
+        <translation>Локальний користувач:</translation>
+    </message>
+    <message>
+        <source>Connected users:</source>
+        <translation>З’єднані користувачі:</translation>
+    </message>
+    <message>
+        <source>The access in the given scenario is allowed.</source>
+        <translation>Доступ за вказаним сценарієм дозволено.</translation>
+    </message>
+    <message>
+        <source>The access in the given scenario is denied.</source>
+        <translation>Доступ за вказаним сценарієм заборонено.</translation>
+    </message>
+    <message>
+        <source>The access in the given scenario needs permission of the logged on user.</source>
+        <translation>Доступ за вказаним сценарієм потребує дозволу від користувача, який увійшов до системи.</translation>
+    </message>
+    <message>
+        <source>ERROR: Unknown action</source>
+        <translation>ПОМИЛКА: невідома дія</translation>
+    </message>
+    <message>
+        <source>Test result</source>
+        <translation>Результат тестування</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationConfigurationPage</name>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Способи розпізнавання</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Розпізнавання під час входу</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Розпізнавання за файлами ключів</translation>
+    </message>
+    <message>
+        <source>Access key management</source>
+        <translation>Керування ключами доступу</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Основний каталог файлів відкритих ключів</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Основний каталог файлів закритих ключів</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Запустити помічника файлів ключів</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Підтвердження доступу</translation>
+    </message>
+    <message>
+        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Ви можете налаштувати Veyon так, щоб програма запитувала користувача про права доступу до стільниці у разі використання певних способів розпізнавання.</translation>
+    </message>
+    <message>
+        <source>Logon authentication test</source>
+        <translation>Перевірка розпізнавання під час входу</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials was successful.</source>
+        <translation>Розпізнавання за вказаними реєстраційними даними пройдено.</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials failed!</source>
+        <translation>Не вдалося пройти розпізнавання за вказаними реєстраційними даними!</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>Builtin VNC server (UltraVNC)</source>
+        <translation>Вбудований сервер VNC (UltraVNC)</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinX11VncServer</name>
+    <message>
+        <source>Builtin VNC server (x11vnc)</source>
+        <translation>Вбудований сервер VNC (x11vnc)</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>Служба %1 %2 о %3:%4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Помилка розпізнавання</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Користувач (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти розпізнавання!</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerManagementView</name>
+    <message>
+        <source>Computer management</source>
+        <translation>Керування комп’ютерами</translation>
+    </message>
+    <message>
+        <source>Add room</source>
+        <translation>Додавання кімнати</translation>
+    </message>
+    <message>
+        <source>Save computer/user list</source>
+        <translation>Зберегти список комп’ютерів/користувачів</translation>
+    </message>
+    <message>
+        <source>Select output filename</source>
+        <translation>Виберіть назву файла для виведених даних</translation>
+    </message>
+    <message>
+        <source>CSV files (*.csv)</source>
+        <translation>файли CSV (*.csv)</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Помилка під час роботи з файлами</translation>
+    </message>
+    <message>
+        <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation>Не вдалося записати список комп’ютерів і користувачів до %1! Будь ласка, перевірте, чи є у вас належні права для доступу до цього файла.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>Користувач</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>Не вистачає додатка каталогу мережевих об’єктів</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>Не знайдено типового додатка каталогу мережевих об’єктів. Будь ласка, перевірте, чи правильно встановлено програму, або налаштуйте інший модуль каталогу мережевих об’єктів за допомогою засобу налаштовування %1.</translation>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation>Назва комп’ютера;Назва вузла;Користувач</translation>
+    </message>
+    <message>
+        <source>Room detection failed</source>
+        <translation>Не вдалося визначити клас</translation>
+    </message>
+    <message>
+        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
+        <translation>Не вдалося визначити клас, до якого належить цей комп’ютер. Це означає, що у налаштуваннях системи є проблеми. На панелі керування комп’ютерами буде показано усі класи.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoringView</name>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>Будь ласка, вкажіть файл наявних налаштувань для імпортування.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>Будь ласка, вкажіть коректну назву файла для експортування налаштувань.</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>Будь ласка, вкажіть коректний ключ.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>Вказаного ключа не існує у поточних налаштуваннях!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>Будь ласка, вкажіть коректне значення.</translation>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>Не вдалося змінити параметри служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>Не вдалося змінити налаштування брандмауера для служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Налаштувати Veyon з командного рядка</translation>
+    </message>
+</context>
+<context>
+    <name>DemoClient</name>
+    <message>
+        <source>%1 Demo</source>
+        <translation>Демонстрація %1</translation>
+    </message>
+</context>
+<context>
+    <name>DemoFeaturePlugin</name>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation>Повноекранне демо</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>Припинити демонстрацію</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation>У цьому режимі зображення з вашого екрана буде показано на всіх комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Демо у вікні</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
+    </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>Виконати демонстрацію трансляцією зображення на екрані</translation>
+    </message>
+</context>
+<context>
+    <name>DesktopAccessDialog</name>
+    <message>
+        <source>Desktop access dialog</source>
+        <translation>Вікно доступу до стільниці</translation>
+    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Підтвердження доступу</translation>
@@ -62,557 +561,160 @@ If you&apos;re interested in translating veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>ClassroomManager</name>
+    <name>DesktopServicesFeaturePlugin</name>
     <message>
-        <source>Classroom-Manager</source>
-        <translation>Керування класами</translation>
+        <source>Run program</source>
+        <translation>Виконати програму</translation>
     </message>
     <message>
-        <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>Використовуйте цей робочий простір для того, щоб керувати вашими комп’ютерами та класами з легкістю.</translation>
+        <source>Click this button to run a program on each computer.</source>
+        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
     </message>
     <message>
-        <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>Тут можна керувати комп’ютерами і класами. Ви можете додавати комп’ютери або класи за допомогою клацання правою кнопкою миші у списку.</translation>
+        <source>Open website</source>
+        <translation>Відкрити сайт</translation>
     </message>
     <message>
-        <source>Classrooms/computers</source>
-        <translation>Класи/Комп’ютери</translation>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Натисніть цю кнопку, щоб відкрити сайт на усіх комп’ютерах.</translation>
     </message>
     <message>
-        <source>IP-address</source>
-        <translation>IP-адреса</translation>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>Будь ласка, вкажіть адресу сайта, який слід відкрити:</translation>
     </message>
     <message>
-        <source>Usernames</source>
-        <translation>Імена користувачів</translation>
-    </message>
-    <message>
-        <source>Show usernames</source>
-        <translation>Показати імена користувачів</translation>
-    </message>
-    <message>
-        <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation>Щоб додати або вилучити комп’ютери і/або класи, скористайтеся контекстним меню (клацання правою кнопкою).</translation>
-    </message>
-    <message>
-        <source>Export to text file</source>
-        <translation>Експортувати до текстового файла</translation>
-    </message>
-    <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Скористайтеся цієї кнопкою, щоб експортувати список комп’ютерів і імен користувачів до текстового файла. Пізніше ви можете використати цей файл для збирання файлів після завершення контрольної. Іноді це просто необхідно, оскільки деякі користувачі можуть завершити роботу і вийти з системи раніше за інших, і ви не зможете зібрати їх роботи після завершення контрольної.</translation>
-    </message>
-    <message>
-        <source>Hide teacher computers</source>
-        <translation>Ховати комп’ютери вчителів</translation>
-    </message>
-    <message>
-        <source>Show/hide</source>
-        <translation>Показати/Сховати</translation>
-    </message>
-    <message>
-        <source>Edit settings</source>
-        <translation>Змінити параметри</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation>Вилучити</translation>
-    </message>
-    <message>
-        <source>Show all computers in classroom</source>
-        <translation>Показати всі комп’ютери у класі</translation>
-    </message>
-    <message>
-        <source>Hide all computers in classroom</source>
-        <translation>Сховати всі комп’ютери у класі</translation>
-    </message>
-    <message>
-        <source>Edit name</source>
-        <translation>Змінити назву</translation>
-    </message>
-    <message>
-        <source>Remove classroom</source>
-        <translation>Вилучити клас</translation>
-    </message>
-    <message>
-        <source>Add computer</source>
-        <translation>Додати комп’ютер</translation>
-    </message>
-    <message>
-        <source>Add classroom</source>
-        <translation>Додати клас</translation>
-    </message>
-    <message>
-        <source>No configuration file found</source>
-        <translation>Файла налаштувань не знайдено</translation>
-    </message>
-    <message>
-        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Не вдалося відкрити файл налаштувань %1. Вам слід додати принаймні одну класну кімнату та комп’ютери за допомогою засобу керування класними кімнатами, доступ до якого можна отримати за допомогою лівої бічної панелі основного вікна програми.</translation>
-    </message>
-    <message>
-        <source>Error in configuration file</source>
-        <translation>Помилка у файлі налаштувань</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>Помилка під час спроби обробити файл налаштувань %1. Будь ласка, виправте її вручну. Якщо ви цього не зробите, вам доведеться вилучити файл і додати усі класні кімнати та комп’ютери знову.</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>Помилка під час спроби обробити файл налаштувань %1. Будь ласка, виправте її вручну. Якщо ви цього не зробите, вам доведеться вилучити файл.</translation>
-    </message>
-    <message>
-        <source>Select output-file</source>
-        <translation>Вибір файла виводу</translation>
-    </message>
-    <message>
-        <source>Text files (*.txt)</source>
-        <translation>Текстові файли (*.txt)</translation>
-    </message>
-    <message>
-        <source>Actions for selected</source>
-        <translation>Дії для позначеного</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Дії</translation>
-    </message>
-    <message>
-        <source>Actions for %1</source>
-        <translation>Дії для %1</translation>
-    </message>
-    <message>
-        <source>New name for classroom</source>
-        <translation>Нова назва класу</translation>
-    </message>
-    <message>
-        <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>Будь ласка, введіть нову назву для класу &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Are you sure want to remove classroom &quot;%1&quot;?
-All computers in it will be removed as well!</source>
-        <translation>Ви справді бажаєте вилучити клас &quot;%1&quot;?
-Якщо ви це зробите, буде також вилучено всі комп’ютери класу!</translation>
-    </message>
-    <message>
-        <source>Missing classroom</source>
-        <translation>Немає класу</translation>
-    </message>
-    <message>
-        <source>Before adding computers you have to create at least one classroom.
-Do you want to create a new classrom now?</source>
-        <translation>Перш ніж додавати комп’ютери, ви маєте створити хоча б один клас.
-Чи бажаєте ви створити новий клас зараз?</translation>
-    </message>
-    <message>
-        <source>New classroom</source>
-        <translation>Новий клас</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Будь ласка, введіть назву класу, який ви бажаєте створити.</translation>
+        <source>Start programs and services in user desktop</source>
+        <translation>Запустити програми і служби на робочій станції користувача</translation>
     </message>
 </context>
 <context>
-    <name>Client</name>
-    <message>
-        <source>Unknown state</source>
-        <translation>Стан невідомий</translation>
-    </message>
-    <message>
-        <source>No user logged in</source>
-        <translation>Жоден користувач не почав роботу</translation>
-    </message>
-    <message>
-        <source>Host unreachable</source>
-        <translation>Комп’ютер недоступний</translation>
-    </message>
-    <message>
-        <source>Demo running</source>
-        <translation>Виконання демо</translation>
-    </message>
-    <message>
-        <source>Desktop locked</source>
-        <translation>Стільницю заблоковано</translation>
-    </message>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Повідомлення від вчителя</translation>
-    </message>
-</context>
-<context>
-    <name>ClientAction</name>
-    <message>
-        <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Ви справді бажаєте завершити роботу всіх користувачів на всіх видимих комп’ютерах?</translation>
-    </message>
-    <message>
-        <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>Ви справді бажаєте завершити роботу всіх користувачів на всіх позначених комп’ютерах?</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>Завершити роботу</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Ви справді бажаєте перезавантажити всі видимі комп’ютери?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all selected computers?</source>
-        <translation>Ви справді бажаєте перезавантажити всі позначені комп’ютери?</translation>
-    </message>
-    <message>
-        <source>Reboot computers</source>
-        <translation>Перезавантажити комп’ютери</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all visible computers?</source>
-        <translation>Ви справді бажаєте вимкнути всі видимі комп’ютери?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all selected computers?</source>
-        <translation>Ви справді бажаєте вимкнути всі позначені комп’ютери?</translation>
-    </message>
-</context>
-<context>
-    <name>ClientSettingsDialog</name>
-    <message>
-        <source>Client settings</source>
-        <translation>Параметри клієнта</translation>
-    </message>
-    <message>
-        <source>IP/hostname</source>
-        <translation>IP/Назва вузла</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Введіть IP-адресу або ім’я комп’ютера, за яким veyon зможе отримати доступ до клієнта (використовуйте &apos;:&apos;, щоб додатково задати номер порту)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Додатковий псевдонім вузла, який показуватиме veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC-адреса</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Апаратна/MAC-адреса клієнта - використовується лише для вмикання клієнта&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Клас</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <source>Student computer</source>
-        <translation>Комп’ютер учня</translation>
-    </message>
-    <message>
-        <source>Teacher computer</source>
-        <translation>Комп’ютер вчителя</translation>
-    </message>
-    <message>
-        <source>Other/undefined computer</source>
-        <translation>Інший/Невизначений комп’ютер</translation>
-    </message>
-    <message>
-        <source>Missing IP address/hostname</source>
-        <translation>Не вказано IP-адреси або назви вузла</translation>
-    </message>
-    <message>
-        <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>Вами не вказано IP-адреси або назви вузла комп’ютера!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address</source>
-        <translation>Некоректна MAC-адреса</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation>Вами вказано некоректну MAC-адресу. Або не заповнюйте відповідне поле, або вкажіть коректну MAC-адресу (використовуйте роздільник «:»!).</translation>
-    </message>
-</context>
-<context>
-    <name>Config</name>
-    <message>
-        <source>Interval between updates</source>
-        <translation>Період між оновленнями</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут Ви можете встановити період між оновленнями зображень з клієнтів. Вищі значення знизять навантаження на мережу та використання процесора цього комп’ютера.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation> секунд</translation>
-    </message>
+    <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
         <translation>Інтерфейс користувача</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Не показувати контекстні підказки для кнопок панелі інструментів&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Позначте цей пункт, якщо вас дратують контекстні підказки, що з’являються, коли ви пересуваєте вказівник миші над кнопками панелі інструментів.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No balloon-tooltips</source>
-        <translation>Без контекстних підказок</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Не показувати текст на кнопках панелі інструментів&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No texts on toolbar-buttons</source>
-        <translation>Без тексту на кнопках інструментів</translation>
     </message>
     <message>
         <source>Language:</source>
         <translation>Мова:</translation>
     </message>
     <message>
-        <source>System default</source>
-        <translation>Типова для системи</translation>
+        <source>Use system language setting</source>
+        <translation>Параметри мови системи</translation>
     </message>
     <message>
-        <source>ar - العربية</source>
-        <translation>арабська</translation>
+        <source>Enable high DPI scaling</source>
+        <translation>Увімкнути масштабування високої роздільності</translation>
     </message>
     <message>
-        <source>cs - Česky</source>
-        <translation>чеська</translation>
+        <source>Veyon</source>
+        <translation>Veyon</translation>
     </message>
     <message>
-        <source>de - Deutsch</source>
-        <translation>німецька</translation>
+        <source>Logging</source>
+        <translation>Ведення журналу</translation>
     </message>
     <message>
-        <source>el - Ελληνικά</source>
-        <translation>грецька</translation>
+        <source>Log file directory</source>
+        <translation>Каталог файла журналу</translation>
     </message>
     <message>
-        <source>es - Español</source>
-        <translation>іспанська</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>fi - Suomi</source>
-        <translation>фінська</translation>
+        <source>Log level</source>
+        <translation>Рівень журналювання</translation>
     </message>
     <message>
-        <source>fr - Français</source>
-        <translation>французька</translation>
+        <source>Nothing</source>
+        <translation>Нічого не записувати</translation>
     </message>
     <message>
-        <source>he - עִבְרִית</source>
-        <translation>іврит</translation>
+        <source>Only critical messages</source>
+        <translation>Лише критичні повідомлення</translation>
     </message>
     <message>
-        <source>hu - Magyar</source>
-        <translation>угорська</translation>
+        <source>Errors and critical messages</source>
+        <translation>Помилки і критичні повідомлення</translation>
     </message>
     <message>
-        <source>it - Italiano</source>
-        <translation>італійська</translation>
+        <source>Warnings and errors</source>
+        <translation>Попередження і помилки</translation>
     </message>
     <message>
-        <source>nl - Nederlands</source>
-        <translation>голландська</translation>
+        <source>Information, warnings and errors</source>
+        <translation>Сповіщення, попередження і помилки</translation>
     </message>
     <message>
-        <source>nn - Norsk</source>
-        <translation>норвезька</translation>
+        <source>Debug messages and everything else</source>
+        <translation>Діагностичні повідомлення та все інше</translation>
     </message>
     <message>
-        <source>pl - Polski</source>
-        <translation>польська</translation>
+        <source>Limit log file size</source>
+        <translation>Обмежити розмір файла журналу</translation>
     </message>
     <message>
-        <source>pt_br - Brasileiro</source>
-        <translation>бразильська португальська</translation>
+        <source>MB</source>
+        <translation>МБ</translation>
     </message>
     <message>
-        <source>pt_pt - Português</source>
-        <translation>португальська</translation>
+        <source>Clear all log files</source>
+        <translation>Спорожнити всі файли журналу</translation>
     </message>
     <message>
-        <source>ru - Русский</source>
-        <translation>російська</translation>
+        <source>Log to standard error output</source>
+        <translation>Виводити повідомлення до стандартного виводу помилок</translation>
     </message>
     <message>
-        <source>sk - Slovenský</source>
-        <translation>словацька</translation>
+        <source>Log to Windows event log</source>
+        <translation>Вести журнал у журналі подій Windows</translation>
     </message>
     <message>
-        <source>sl - Slovenčina</source>
-        <translation>словенська</translation>
+        <source>Network object directory</source>
+        <translation>Каталог мережевих об’єктів</translation>
     </message>
     <message>
-        <source>sv - Svenska</source>
-        <translation>шведська</translation>
+        <source>Backend:</source>
+        <translation>Модуль:</translation>
     </message>
     <message>
-        <source>tr - Türkçe</source>
-        <translation>турецька</translation>
+        <source>Update interval:</source>
+        <translation>Інтервал оновлення:</translation>
     </message>
     <message>
-        <source>uk - Українська</source>
-        <translation>українська</translation>
+        <source> s</source>
+        <translation> с</translation>
     </message>
     <message>
-        <source>zh_cn - 简体字</source>
-        <translation>китайська (спрощена)</translation>
+        <source>%1 service</source>
+        <translation>Служба %1</translation>
     </message>
     <message>
-        <source>zh_tw - 簡體字</source>
-        <translation>китайська (традиційна)</translation>
+        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>Щоб вилучити файли журналів, роботу служби %1 доведеться тимчасово призупинити. Продовжити виконання цього завдання?</translation>
     </message>
     <message>
-        <source>Your role (needs according keys!)</source>
-        <translation>Ваша роль (потрібні відповідні ключі!)</translation>
+        <source>Log files cleared</source>
+        <translation>Файли журналу вилучено</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут ви можете вибрати вашу роль. Змінюйте цей параметр, лише якщо ви розумієте, що робите. У разі неправильного вибору ви не зможете отримати доступ до будь-яких клієнтів до того часу, коли ви повернетеся до вашої попередньої ролі.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>All log files were cleared successfully.</source>
+        <translation>Всі файли журналу було успішно вилучено.</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Вчитель</translation>
+        <source>Error</source>
+        <translation>Помилка</translation>
     </message>
     <message>
-        <source>Administrator</source>
-        <translation>Адміністратор</translation>
-    </message>
-    <message>
-        <source>Supporter</source>
-        <translation>Супровідник</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Інша</translation>
-    </message>
-    <message>
-        <source>Double click action for client window</source>
-        <translation>Дія у відповідь на подвійне клацання у клієнтському вікні</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут ви можете визначити дію, яку буде виконано, якщо ви двічі клацнете на віконечку клієнта.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Віддалене керування</translation>
-    </message>
-    <message>
-        <source>View live in fullscreen</source>
-        <translation>Перегляд наживо на весь екран</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Будь ласка, зауважте, що деякі зміни не набудуть чинності, доки ви не перезапустите veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigWidget</name>
-    <message>
-        <source>Your veyon-configuration</source>
-        <translation>Ваші налаштування veyon</translation>
-    </message>
-    <message>
-        <source>In this workspace you can customize veyon to fit your needs.</source>
-        <translation>У цьому робочому просторі ви можете налаштувати veyon для ваших потреб.</translation>
-    </message>
-</context>
-<context>
-    <name>DemoClient</name>
-    <message>
-        <source>veyon Demo</source>
-        <translation>Демо veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonCoreServer</name>
-    <message>
-        <source>Authentication error</source>
-        <translation>Помилка розпізнавання</translation>
-    </message>
-    <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Хтось (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти розпізнавання!</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>Перевищення граничної кількості спроб під час розпізнавання у VNC.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>Помилка під час спроби розпізнавання у VNC.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>З’єднання розірвано сервером VNC.</translation>
+        <source>Could not remove all log files.</source>
+        <translation>Не вдалося вилучити всі файли журналу.</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>veyon Access Key Assistant</source>
-        <translation>Помічник обробки ключів доступу veyon</translation>
-    </message>
-    <message>
-        <source>Create/import veyon access keys</source>
-        <translation>Створення/Імпортування ключів доступу veyon</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import veyon access keys.</source>
-        <translation>Ця допоміжна програма полегшує створення та імпортування ключів доступу veyon.</translation>
-    </message>
-    <message>
         <source>How does it work?</source>
         <translation>Як це працює?</translation>
-    </message>
-    <message>
-        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Ключі доступу veyon складаються з двох пов’язаних між собою частин: закритого і відкритого ключа.
-
-За допомогою закритого ключа користувачі головного комп’ютера зможуть отримувати доступ до клієнтських комп’ютерів. Важливо забезпечити доступність файла закритого ключа лише для уповноважених користувачів.
-
-Відкритий ключ використовується на клієнтських комп’ютерах для перевірки того, чи є уповноваженим на виконання певних дій будь-яке вхідне з’єднання.</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -723,10 +825,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Некоректний відкритий ключ</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public veyon access key!</source>
-        <translation>Вказаний файл не містить коректного відкритого ключа доступу veyon!</translation>
-    </message>
-    <message>
         <source>Select destination directory</source>
         <translation>Виберіть каталог призначення</translation>
     </message>
@@ -762,6 +860,693 @@ The public key part is used on the client computers to verify that any incoming 
         <source>The public key was successfully imported to %1.</source>
         <translation>Відкритий ключ було успішно імпортовано до %1.</translation>
     </message>
+    <message>
+        <source>Veyon Access Key Assistant</source>
+        <translation>Помічник ключів доступу Veyon</translation>
+    </message>
+    <message>
+        <source>Create/import Veyon access keys</source>
+        <translation>Створення або імпортування ключів доступу Veyon</translation>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import Veyon access keys.</source>
+        <translation>За допомогою цієї допоміжної програми ви зможете створити або імпортувати ключі доступу Veyon.</translation>
+    </message>
+    <message>
+        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation>Ключі доступу Veyon складаються з двох пов’язаних між собою частин: закритого і відкритого ключа.
+
+За допомогою закритого ключа користувачі головного комп’ютера зможуть отримувати доступ до клієнтських комп’ютерів. Важливо забезпечити доступність файла закритого ключа лише для уповноважених користувачів.
+
+Відкритий ключ використовується на клієнтських комп’ютерах для перевірки того, чи є уповноваженим на виконання певних дій будь-яке вхідне з’єднання.</translation>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public Veyon access key!</source>
+        <translation>Вказаний файл не містить коректного відкритого ключа доступу Veyon!</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Основні параметри</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>Сервер і порт LDAP</translation>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>DN для прив&apos;язки</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Пароль прив’язки</translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation>Анонімна прив’язка</translation>
+    </message>
+    <message>
+        <source>Use bind credentials</source>
+        <translation>Реєстраційні дані прив’язки</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation>Кореневий DN</translation>
+    </message>
+    <message>
+        <source>Fixed base DN</source>
+        <translation>Фіксований кореневий DN</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>наприклад, dc=example,dc=org</translation>
+    </message>
+    <message>
+        <source>Discover base DN by naming context</source>
+        <translation>Визначити кореневий DN за контекстом назв</translation>
+    </message>
+    <message>
+        <source>e.g. namingContexts or defaultNamingContext</source>
+        <translation>наприклад, namingContexts або defaultNamingContext</translation>
+    </message>
+    <message>
+        <source>Environment settings</source>
+        <translation>Налаштування середовища</translation>
+    </message>
+    <message>
+        <source>Object trees</source>
+        <translation>Ієрархії об’єктів</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Ієрархія комп’ютерів</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>наприклад, OU=Groups</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Ієрархія користувачів</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>наприклад, OU=Users</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Computers</source>
+        <translation>наприклад, OU=Computers</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Ієрархія груп</translation>
+    </message>
+    <message>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>Виконати рекурсивні дії з пошуку у ієрархіях об’єктів</translation>
+    </message>
+    <message>
+        <source>Object attributes</source>
+        <translation>Атрибути об’єкта</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>наприклад, hwAddress</translation>
+    </message>
+    <message>
+        <source>Computer host name attribute</source>
+        <translation>Атрибут назви вузла комп’ютера</translation>
+    </message>
+    <message>
+        <source>e.g. member or memberUid</source>
+        <translation>наприклад, member або memberUid</translation>
+    </message>
+    <message>
+        <source>User login attribute</source>
+        <translation>Атрибут імені користувача</translation>
+    </message>
+    <message>
+        <source>e.g. dNSHostName</source>
+        <translation>наприклад, dNSHostName</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Атрибут MAC-адреси комп’ютера</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Атрибут членства у групі</translation>
+    </message>
+    <message>
+        <source>e.g. uid or sAMAccountName</source>
+        <translation>наприклад, uid або sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Назви вузлів збережено як повні доменні назви (FQDN, наприклад myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation>Додаткові параметри</translation>
+    </message>
+    <message>
+        <source>Optional object filters</source>
+        <translation>Додаткові фільтри об’єктів</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=group</source>
+        <translation>наприклад, objectClass=group</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>Фільтрування за групами користувачів</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=person</source>
+        <translation>наприклад, objectClass=person</translation>
+    </message>
+    <message>
+        <source>Filter for users</source>
+        <translation>Фільтрування за користувачами</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>Фільтрування за групами комп’ютерів</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=computerLab or objectClass=room</source>
+        <translation>наприклад, objectClass=computerLab або objectClass=room</translation>
+    </message>
+    <message>
+        <source>Group member identification</source>
+        <translation>Ідентифікація учасників групи</translation>
+    </message>
+    <message>
+        <source>Distinguished name (Samba/AD)</source>
+        <translation>Унікальна назва (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
+        <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
+    </message>
+    <message>
+        <source>Computer labs</source>
+        <translation>Комп’ютерні лабораторії</translation>
+    </message>
+    <message>
+        <source>Dedicated computer groups</source>
+        <translation>Спеціалізовані групи комп’ютерів</translation>
+    </message>
+    <message>
+        <source>e.g. computerLab or room</source>
+        <translation>наприклад, computerLab або room</translation>
+    </message>
+    <message>
+        <source>Common attribute</source>
+        <translation>Загальний атрибут</translation>
+    </message>
+    <message>
+        <source>Aggregate computer lab members using:</source>
+        <translation>Збирати учасників комп’ютерної лабораторії за допомогою:</translation>
+    </message>
+    <message>
+        <source>Functionality tests</source>
+        <translation>Функціональні тести</translation>
+    </message>
+    <message>
+        <source>Get common aggregations of two objects</source>
+        <translation>Отримати загальні збирання двох об’єктів</translation>
+    </message>
+    <message>
+        <source>List all groups of a user</source>
+        <translation>Список усіх груп користувача</translation>
+    </message>
+    <message>
+        <source>List all members of a computer lab</source>
+        <translation>Список усіх учасників комп’ютерної лабораторії</translation>
+    </message>
+    <message>
+        <source>List all groups of a computer</source>
+        <translation>Список усіх груп комп’ютера</translation>
+    </message>
+    <message>
+        <source>Get computer object by IP address</source>
+        <translation>Отримати об’єкт комп’ютера за IP-адресою</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>Невдала спроба встановити LDAP-з’єднання</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
+        <translation>Не вдалося встановити з’єднання із сервером LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера. %1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Помилка прив’язування до LDAP</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
+        <translation>Не вдалося прив’язатися до сервера LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера і реєстраційні дані прив’язки. %1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Успішне прив’язування до LDAP</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Виконано успішне з’єднання із сервером LDAP і прив’язування LDAP. Належним чином налаштовано основні параметри LDAP.</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>Не вдалося пройти перевірку кореневого DN LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+%1</source>
+        <translation>Не вдалося отримати за запитом налаштований кореневий DN. Будь ласка, перевірте, чи правильно вказано параметр кореневого DN.
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>Успішна перевірка кореневого DN LDAP</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+%1</source>
+        <translation>Успішно визначено кореневий DN LDAP. Виявлено такі записи:
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>Не вдалося пройти перевірку контексту іменування LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+%1</source>
+        <translation>Не вдалося визначити кореневий DN за допомогою контекстів іменування. Будь ласка, перевірте, чи правильно вказано атрибут контексту іменування.
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>Успішно пройдено перевірку контексту іменування LDAP</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>Успішно виконано опитування контексту іменування LDAP. Виявлено такий кореневий DN:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>ієрархія користувачів</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>ієрархія груп</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>ієрархія комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation>Введіть ім’я користувача</translation>
+    </message>
+    <message>
+        <source>Please enter a user login name (wildcards allowed) which to query:</source>
+        <translation>Вкажіть запис користувача (можна використовувати символи-замінники), дані якого слід отримати:</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>об’єкти користувачів</translation>
+    </message>
+    <message>
+        <source>user login attribute</source>
+        <translation>атрибут імені користувача</translation>
+    </message>
+    <message>
+        <source>Enter group name</source>
+        <translation>Введіть назву групи</translation>
+    </message>
+    <message>
+        <source>Please enter a group name whose members to query:</source>
+        <translation>Будь ласка, вкажіть назву групи, учасників якої слід визначити:</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>учасники групи</translation>
+    </message>
+    <message>
+        <source>group member attribute</source>
+        <translation>атрибут членства у групі</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>Групи не знайдено</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>Не вдалося знайти групу із назвою «%1». Будь ласка, перевірте, чи правильно вказано назву групи або параметр ієрархії груп.</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>Вкажіть назву комп’ютера</translation>
+    </message>
+    <message>
+        <source>Please enter a computer host name to query:</source>
+        <translation>Будь ласка, вкажіть назву вузла комп’ютера для запиту:</translation>
+    </message>
+    <message>
+        <source>Invalid host name</source>
+        <translation>Некоректна назва вузла</translation>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
+        <translation>Ви налаштували програму на зберігання повних доменних назв вузлів комп’ютерів (FQDN), але вказали назву вузла без домену.</translation>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
+        <translation>Ви налаштували програму на зберігання простих назв вузлів комп’ютерів, але вказали назву вузла разом із назвою домену.</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>об’єкти комп’ютерів</translation>
+    </message>
+    <message>
+        <source>computer host name attribute</source>
+        <translation>атрибут назви вузла комп’ютера</translation>
+    </message>
+    <message>
+        <source>Enter computer DN</source>
+        <translation>Вкажіть DN комп’ютера</translation>
+    </message>
+    <message>
+        <source>Please enter the DN of a computer whose MAC address to query:</source>
+        <translation>Будь ласка, вкажіть DN комп’ютера, запит щодо MAC-адреси якого слід надіслати:</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>MAC-адреси комп’ютерів</translation>
+    </message>
+    <message>
+        <source>computer MAC address attribute</source>
+        <translation>атрибут MAC-адреси комп’ютера</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>користувачі</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>групи користувачів</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>групи комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Enter computer lab name</source>
+        <translation>Вкажіть назву комп’ютерної лабораторії</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer lab (wildcards allowed):</source>
+        <translation>Вкажіть назву комп’ютерної лабораторії (можна використовувати символи-замінники):</translation>
+    </message>
+    <message>
+        <source>computer labs</source>
+        <translation>комп’ютерні лабораторії</translation>
+    </message>
+    <message>
+        <source>computer lab attribute</source>
+        <translation>атрибут комп’ютерної лабораторії</translation>
+    </message>
+    <message>
+        <source>Please enter a user login name whose group memberships to query:</source>
+        <translation>Будь ласка, вкажіть назву запису користувача, для кого слід отримати дані щодо участі у групах:</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>групи користувача</translation>
+    </message>
+    <message>
+        <source>user login attribute or group membership attribute</source>
+        <translation>атрибут імені користувача або атрибут участі у групах</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>Користувача не знайдено</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
+        <translation>Не вдалося знайти користувача із іменем «%1». Будь ласка, перевірте, чи правильно вказано ім’я користувача або параметр ієрархії користувачів.</translation>
+    </message>
+    <message>
+        <source>Enter host name</source>
+        <translation>Вкажіть назву вузла</translation>
+    </message>
+    <message>
+        <source>Please enter a computer host name whose group memberships to query:</source>
+        <translation>Будь ласка, вкажіть назву вузла комп’ютера, для кого слід отримати дані щодо участі у групах:</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>групи комп’ютера</translation>
+    </message>
+    <message>
+        <source>computer host name attribute or group membership attribute</source>
+        <translation>атрибут назви вузла комп’ютера або атрибут участі у групах</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>Комп’ютер не знайдено</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
+        <translation>Не вдалося знайти комп’ютер із назвою вузла «%1». Будь ласка, перевірте, чи правильно вказано назву вузла або параметр ієрархії комп’ютерів.</translation>
+    </message>
+    <message>
+        <source>Enter computer IP address</source>
+        <translation>Вкажіть IP-адресу комп’ютера</translation>
+    </message>
+    <message>
+        <source>Please enter a computer IP address which to resolve to an computer object:</source>
+        <translation>Будь ласка, вкажіть IP-адресу комп’ютера, за якою слід визначити об’єкт комп’ютера:</translation>
+    </message>
+    <message>
+        <source>Host name lookup failed</source>
+        <translation>Помилка пошуку вузла за назвою</translation>
+    </message>
+    <message>
+        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
+        <translation>Не вдалося виконати пошук назви вузла для IP-адреси %1. Будь ласка, перевірте, чи правильно вказано параметри вашого сервера DNS.</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer lab whose members to query:</source>
+        <translation>Будь ласка, вкажіть назву комп’ютерної лабораторії, учасників якої слід опитати:</translation>
+    </message>
+    <message>
+        <source>computer lab members</source>
+        <translation>учасники комп’ютерної лабораторії</translation>
+    </message>
+    <message>
+        <source>computer group filter or computer lab member aggregation</source>
+        <translation>фільтр групування комп’ютерів або збирання учасників до комп’ютерної лабораторії</translation>
+    </message>
+    <message>
+        <source>Enter first object</source>
+        <translation>Введіть перший об’єкт</translation>
+    </message>
+    <message>
+        <source>Please enter the distinguished name of the first object:</source>
+        <translation>Будь ласка, вкажіть власну назву першого об’єкта:</translation>
+    </message>
+    <message>
+        <source>Enter second object</source>
+        <translation>Введіть другий об’єкт</translation>
+    </message>
+    <message>
+        <source>Please enter the distinguished name of the second object:</source>
+        <translation>Будь ласка, вкажіть власну назву другого об’єкта:</translation>
+    </message>
+    <message>
+        <source>common aggregations</source>
+        <translation>загальні збирання</translation>
+    </message>
+    <message>
+        <source>group membership or computer lab attribute</source>
+        <translation>участь у групах або атрибут комп’ютерної лабораторії</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>Помилка тестування LDAP %1</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the %1 parameter.
+
+%2</source>
+        <translation>Не вдалося опитати жодний із записів у налаштованій %1. Будь ласка, перевірте, чи правильно вказано параметр %1.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>Успішне тестування LDAP %1</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>Успішно опитано %1, виявлено %2 записів.</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
+
+%3</source>
+        <translation>Не вдалося виконати опитування для жодного %1. Будь ласка, перевірте, чи правильно вказано параметр %2, або вкажіть назву наявного об’єкта.
+
+%3</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 успішно опитано:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>Помилка тестування фільтрування LDAP</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>Не вдалося виконати опитування для жодного %1 з використанням налаштованого фільтрування. Будь ласка, перевірте, чи правильно вказано фільтр LDAP для %1.
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>Успішна перевірка фільтрування LDAP</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2 було успішно опитано за допомогою налаштованого фільтра.</translation>
+    </message>
+</context>
+<context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Опис помилки LDAP: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapPlugin</name>
+    <message>
+        <source>Configure LDAP/AD integration of Veyon at command line</source>
+        <translation>Налаштовування інтеграції з LDAP/AD Veyon з командного рядка</translation>
+    </message>
+    <message>
+        <source>LDAP (load objects from LDAP/AD)</source>
+        <translation>LDAP (завантажувати об’єкти з LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation>LDAP (завантажувати локальні користувачі або групи і комп’ютери або класи з LDAP/AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LocalDataConfigurationPage</name>
+    <message>
+        <source>Local data</source>
+        <translation>Локальні дані</translation>
+    </message>
+    <message>
+        <source>Network objects</source>
+        <translation>Мережеві об’єкти</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Класи</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Адреса/IP вузла</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-адреса</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Додати новий клас</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Вилучити позначений клас</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Додати новий комп’ютер</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Вилучити позначений комп’ютер</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Новий клас</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Новий комп’ютер</translation>
+    </message>
+</context>
+<context>
+    <name>LocalDataPlugin</name>
+    <message>
+        <source>Backends which use local data</source>
+        <translation>Модулі, які використовують локальні дані</translation>
+    </message>
+    <message>
+        <source>Default (local users/groups and computers/rooms from configuration)</source>
+        <translation>Типове (локальні користувачі або групи і комп’ютери або класи з налаштувань)</translation>
+    </message>
+    <message>
+        <source>Default (store objects in local configuration)</source>
+        <translation>Типове (зберігати об’єкти у локальних налаштуваннях)</translation>
+    </message>
 </context>
 <context>
     <name>LockWidget</name>
@@ -771,33 +1556,18 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
 </context>
 <context>
-    <name>LogonGroupEditor</name>
-    <message>
-        <source>Logon group editor</source>
-        <translation>Редактор групового входу</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
-        <translation>Будь ласка, додайте групи, учасникам яких буде дозволено доступ до комп’ютерів у вашій мережі veyon.</translation>
-    </message>
-    <message>
-        <source>All groups</source>
-        <translation>Всі групи</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Groups with veyon privileges</source>
-        <translation>Групи з правами доступу до veyon</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
-        <source>Actions</source>
-        <translation>Дії</translation>
+        <source>Configuration</source>
+        <translation>Налаштування</translation>
+    </message>
+    <message>
+        <source>Disable balloon tooltips</source>
+        <translation>Вимкнути панелі підказок</translation>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>Показати лише піктограми</translation>
     </message>
 </context>
 <context>
@@ -811,20 +1581,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Панель інструментів</translation>
     </message>
     <message>
-        <source>veyon Management Console</source>
-        <translation>Консоль керування veyon</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Загальні</translation>
-    </message>
-    <message>
-        <source>veyon Server</source>
-        <translation>Сервер veyon</translation>
-    </message>
-    <message>
-        <source>Paths</source>
-        <translation>Шляхи</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -835,248 +1593,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Діагностика</translation>
     </message>
     <message>
-        <source>veyon Service</source>
-        <translation>Служба veyon</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>Сховати піктограму у лотку</translation>
-    </message>
-    <message>
-        <source>Autostart</source>
-        <translation>Автозапуск</translation>
-    </message>
-    <message>
-        <source>Additional arguments</source>
-        <translation>Додаткові параметри</translation>
-    </message>
-    <message>
-        <source>Start service</source>
-        <translation>Запустити службу</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Зупинити службу</translation>
-    </message>
-    <message>
-        <source>State:</source>
-        <translation>Стан:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Зупинено</translation>
-    </message>
-    <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Увімкнути перемикання стільниць для блокування екрана (експериментальне)</translation>
-    </message>
-    <message>
-        <source>Logging</source>
-        <translation>Ведення журналу</translation>
-    </message>
-    <message>
-        <source>Log file directory</source>
-        <translation>Каталог файла журналу</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Log level</source>
-        <translation>Рівень журналювання</translation>
-    </message>
-    <message>
-        <source>Nothing</source>
-        <translation>Нічого не записувати</translation>
-    </message>
-    <message>
-        <source>Only critical messages</source>
-        <translation>Лише критичні повідомлення</translation>
-    </message>
-    <message>
-        <source>Errors and critical messages</source>
-        <translation>Помилки і критичні повідомлення</translation>
-    </message>
-    <message>
-        <source>Warnings and errors</source>
-        <translation>Попередження і помилки</translation>
-    </message>
-    <message>
-        <source>Information, warnings and errors</source>
-        <translation>Сповіщення, попередження і помилки</translation>
-    </message>
-    <message>
-        <source>Debug messages and everything else</source>
-        <translation>Діагностичні повідомлення та все інше</translation>
-    </message>
-    <message>
-        <source>Limit log file size</source>
-        <translation>Обмежити розмір файла журналу</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>МБ</translation>
-    </message>
-    <message>
-        <source>Log to standard error output</source>
-        <translation>Виводити повідомлення до стандартного виводу помилок</translation>
-    </message>
-    <message>
-        <source>Log to Windows event log</source>
-        <translation>Вести журнал у журналі подій Windows</translation>
-    </message>
-    <message>
-        <source>Clear all log files</source>
-        <translation>Спорожнити всі файли журналу</translation>
-    </message>
-    <message>
-        <source>Desktop capturing</source>
-        <translation>Захоплення стільниці</translation>
-    </message>
-    <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Увімкнути захоплення шарів (напівпрозорих) вікон</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Повноекранний режим (залиште це типово увімкненим)</translation>
-    </message>
-    <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>Низька точність (турбо-режим)</translation>
-    </message>
-    <message>
-        <source>Demo server</source>
-        <translation>Демосервер</translation>
-    </message>
-    <message>
-        <source>Backend</source>
-        <translation>Сервер</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector</translation>
-    </message>
-    <message>
-        <source>veyon 1 demo server</source>
-        <translation>Демосервер veyon 1</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>Мережа</translation>
-    </message>
-    <message>
-        <source>Core server port</source>
-        <translation>Основний порт сервера</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Порт демосервера</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation>Увімкнути виключення брандмауера</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Увімкнути HTTP-сервер, який надає доступ до аплету JavaViewer</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>Порт HTTP-сервера</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Дозволити з’єднання лише з локального вузла</translation>
-    </message>
-    <message>
-        <source>Configuration files</source>
-        <translation>Файли налаштувань</translation>
-    </message>
-    <message>
-        <source>Global configuration</source>
-        <translation>Загальне налаштування</translation>
-    </message>
-    <message>
-        <source>Personal configuration</source>
-        <translation>Особисте налаштування</translation>
-    </message>
-    <message>
-        <source>Data directories</source>
-        <translation>Каталоги даних</translation>
-    </message>
-    <message>
         <source>Snapshots</source>
         <translation>Знімки екрана</translation>
-    </message>
-    <message>
-        <source>Authentication methods</source>
-        <translation>Способи розпізнавання</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Розпізнавання за файлами ключів</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>Розпізнавання під час входу на основі ACL</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Керування ключами доступу</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Основний каталог файлів відкритих ключів</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Основний каталог файлів закритих ключів</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Запустити помічника файлів ключів</translation>
-    </message>
-    <message>
-        <source>Logon settings</source>
-        <translation>Параметри входу</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Керування правами доступу</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Перевірити</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Підтвердження доступу</translation>
-    </message>
-    <message>
-        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Ви можете налаштувати veyon так, щоб програма запитувала користувача про права доступу до стільниці у разі використання певних способів розпізнавання.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Розпізнавання під час входу</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Дозволити користувачеві доступ до стільниці без підтвердження</translation>
-    </message>
-    <message>
-        <source>Debugging veyon</source>
-        <translation>Діагностика veyon</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Якщо у вас виникли проблеми або якісь інші негаразди з veyon, важливо повідомити про них розробникам, щоб ці проблеми було вирішено у наступних випусках. За допомогою цієї сторінки ви зможете без проблем створити якісний звіт щодо вади.
-
-Якщо ваду не вдається відтворити, пропустіть кроки 1) — 3).</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1119,16 +1637,6 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Перейдіть на сторінку &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;atid=724375&quot;&gt;стеження за вадами у veyon&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Зауваження: якщо ваду виявлено на головному і клієнтському комп’ютерах одночасно, долучіть архіви звітів щодо вади для обох комп’ютерів.</translation>
-    </message>
-    <message>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
@@ -1165,188 +1673,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Про програму veyon</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>Про Qt</translation>
-    </message>
-    <message>
-        <source>veyon</source>
-        <translation>veyon</translation>
-    </message>
-    <message>
-        <source>No write access</source>
-        <translation>Немає доступу на запис</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Не вдалося виконати читання/запис або створити теку %1! Щоб запустити veyon, переконайтеся, що ви можете створити теку або виконати запис до цієї теки.</translation>
     </message>
     <message>
         <source>Classroom</source>
         <translation>Клас</translation>
     </message>
     <message>
-        <source>Switch classroom</source>
-        <translation>Перемкнути клас</translation>
-    </message>
-    <message>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation>Натисніть на цю кнопку, щоб відкрити меню, у якому ви зможете вибрати активний клас.</translation>
     </message>
     <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Натисніть цю кнопку, щоб перемикатися між класами.</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Режим огляду</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Огляд</translation>
-    </message>
-    <message>
-        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Це типовий режим veyon, від надає вам змогу вести спостереження за всіма видимими комп’ютерами. Також цю кнопку можна використовувати для розблокування заблокованих робочих станцій або для виходу з режиму демо.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Повноекранне демо</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Повноекранне демо</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Завершити демонстрацію</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано на всіх видимих комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Демо у вікні</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Демо у вікні</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх видимих комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Заблокувати/Розблокувати стільниці</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Заблокувати всі</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Розблокувати всі</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні стільниці за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Надіслати текстове повідомлення</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Текстове повідомлення</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Використовуйте цю кнопку, щоб надіслати текстове повідомлення для всіх користувачів, наприклад, щоб повідомити їм про нове завдання та інше.</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Увімкнути комп’ютери</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Увімкнути</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Натисніть цю кнопку, щоб увімкнути всі видимі комп’ютери. Таким чином, вам не потрібно буде вмикати кожен комп’ютер вручну.</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Вимкнути комп’ютери</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Вимкнути</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Щоб вимкнути комп’ютери (наприклад, по завершенню уроку), ви можете натиснути цю кнопку.</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Супровід</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Прямий супровід</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Якщо вам потрібно супроводжувати чиїсь дії на одному з комп’ютерів, ви можете натиснути цю кнопку і ввести назву вузла або IP-адресу відповідного комп’ютера.</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Підібрати/Вирівняти</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Підібрати розмір вікон та їх розташування</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Якщо ви натиснете цю кнопку, буде вибрано найбільший можливий розмір вікна клієнта. Крім того, всі вікна буде вирівняно.</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Автовигляд</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Автоматично перевпорядкувати вікна та підібрати їх розмір</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Якщо ви натиснете цю кнопку, всі видимі вікна буде перевпорядковано з підбиранням розміру.</translation>
-    </message>
-    <message>
-        <source>Could not contact veyon service</source>
-        <translation>Не вдалося встановити зв’язок зі службою veyon</translation>
-    </message>
-    <message>
-        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
-        <translation>Не вдалося встановити зв’язок з локальною службою veyon. Ймовірно, вами було вказано помилкові реєстраційні дані або файли ключів встановлено з помилками. Повторіть спробу або повідомте адміністратору вашої системи про те, що слід вирішити проблему з використанням консолі керування veyon.</translation>
-    </message>
-    <message>
-        <source>veyon Master Control</source>
-        <translation>Головне керування veyon</translation>
-    </message>
-    <message>
         <source>Authentication impossible</source>
         <translation>Розпізнавання неможливе</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
-        <translation>Не було знайдено файлів ключів розпізнавання або поточні файли є застарілими. Будь ласка, створіть нові файли ключів за допомогою консолі керування veyon. Крім того, ви можете налаштувати розпізнавання під час входу до системи за допомогою консолі керування veyon. Якщо ви не налаштуйте розпізнавання, ви не зможете отримати доступ до комп’ютерів за допомогою veyon.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1357,116 +1697,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Вийти</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the veyon Service.</source>
-        <translation>Не вдалося змінити параметр автоматичного запуску служби veyon.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the veyon Service.</source>
-        <translation>Не вдалося змінити параметри служби veyon.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the veyon Service.</source>
-        <translation>Не вдалося змінити налаштування брандмауера для служби veyon.</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Не вдалося записати налаштування</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
-        <translation>Локальним модулем налаштувань було повідомлено про неможливість запису налаштувань! Будь ласка, запустіть консоль керування veyon з розширеними правами доступу.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Всі значення параметрів успішно застосовано.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Під час спроби застосування параметрів сталася помилка!</translation>
-    </message>
-    <message>
-        <source>veyon Management Console %1</source>
-        <translation>Консоль керування veyon %1</translation>
-    </message>
-    <message>
-        <source>Restart veyon Service</source>
-        <translation>Перезапуск служби veyon</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
-        <translation>Всі параметри було збережено. З метою набуття чинності нових параметрів слід перезапустити службу veyon. Перезапусти службу зараз?</translation>
-    </message>
-    <message>
-        <source>Starting veyon service</source>
-        <translation>Запуск служби veyon</translation>
-    </message>
-    <message>
-        <source>Stopping veyon service</source>
-        <translation>Зупиняється служба veyon</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Запущено</translation>
-    </message>
-    <message>
-        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>З метою вилучення файлів журналу роботу служби veyon слід тимчасово зупинити. Зробити це?</translation>
-    </message>
-    <message>
-        <source>Log files cleared</source>
-        <translation>Файли журналу вилучено</translation>
-    </message>
-    <message>
-        <source>All log files were cleared successfully.</source>
-        <translation>Всі файли журналу було успішно вилучено.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Помилка</translation>
-    </message>
-    <message>
-        <source>Could not remove all log files.</source>
-        <translation>Не вдалося вилучити всі файли журналу.</translation>
     </message>
     <message>
         <source>Load settings from file</source>
         <translation>Завантажити параметри з файла</translation>
     </message>
     <message>
-        <source>XML files (*.xml)</source>
-        <translation>Файли XML (*.xml)</translation>
-    </message>
-    <message>
         <source>Save settings to file</source>
         <translation>Зберегти параметри до файла</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Перевірка розпізнавання під час входу</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Розпізнавання за вказаними реєстраційними даними пройдено.</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>Не вдалося пройти розпізнавання за вказаними реєстраційними даними!</translation>
-    </message>
-    <message>
         <source>Save bug report archive</source>
         <translation>Зберегти архів звіту щодо вади</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive (*.ibra.xml)</source>
-        <translation>Архів звіту щодо вади veyon (*.ibra.xml)</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive saved</source>
-        <translation>Архів звіту щодо вади veyon збережено</translation>
-    </message>
-    <message>
-        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Архів звіту щодо вади veyon було збережено до %1. До архіву включено файли журналу veyon та дані щодо вашої операційної системи. Ви можете долучити архів до вашого звіту щодо вади.</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1476,49 +1720,204 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>Деякі з параметрів не збережено. Завершити роботу попри це?</translation>
     </message>
+    <message>
+        <source>Veyon Configurator</source>
+        <translation>Засіб налаштовування Veyon</translation>
+    </message>
+    <message>
+        <source>Debugging Veyon</source>
+        <translation>Діагностика Veyon</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Якщо у вас виникли проблеми або якісь інші негаразди з Veyon, важливо повідомити про них розробникам, щоб ці проблеми було вирішено у наступних випусках. За допомогою цієї сторінки ви зможете без проблем створити якісний звіт щодо вади.
+
+Якщо ваду не вдається відтворити, пропустіть кроки 1) — 3).</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Перейдіть на сторінку &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;стеження за вадами у Veyon&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Зауваження: якщо ваду виявлено на головному і клієнтському комп’ютерах одночасно, долучіть архіви звітів щодо вади для обох комп’ютерів.</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Служба</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Основний</translation>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation>Керування доступом</translation>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>Про Veyon</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Комп’ютерні класи</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Про програму</translation>
+    </message>
+    <message>
+        <source>%1 Configurator %2</source>
+        <translation>Засіб налаштовування %1 %2</translation>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation>файли JSON (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation>звіт щодо вади %1 (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report archive saved</source>
+        <translation>Архів звіту щодо вади у %1 збережено</translation>
+    </message>
+    <message>
+        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation>Архів звіту щодо вади %1 було збережено до %2. До архіву включено файли журналу %3 та дані щодо вашої операційної системи. Ви можете долучити архів до вашого звіту щодо вади.</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Засіб налаштовування %1</translation>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>Не вдалося змінити параметри служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>Не вдалося змінити налаштування брандмауера для служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Налаштування скинуто</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>Локальні налаштування було успішно вилучено.</translation>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування %1 із ширшими правами доступу.</translation>
+    </message>
+    <message>
+        <source>Click this button to switch between classrooms.</source>
+        <translation>Натисніть цю кнопку для перемикання між класами.</translation>
+    </message>
+    <message>
+        <source>%1 Master Control</source>
+        <translation>Основне керування %1</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation>Не знайдено файлів ключів розпізнавання або строк дії знайдених ключів вичерпано. Будь ласка, створіть нові файли ключів за допомогою засобу налаштовування %1. Крім того, ви можете налаштувати розпізнавання за іменем користувача під час входу до системи, скориставшись для цього засобом налаштовування %1. Якщо ви не створите ключів і не налаштуєте розпізнавання, ви не зможете отримувати доступ до комп’ютерів за допомогою %1.</translation>
+    </message>
 </context>
 <context>
-    <name>Overview</name>
+    <name>MasterConfigurationPage</name>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Ласкаво просимо до veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Form</source>
+        <translation>Форма</translation>
     </message>
     <message>
-        <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Тут ви бачите робочу панель, що містить декілька кнопок. Кожну кнопку з’єднано з робочим простором. Просто понатискайте кнопки, щоб побачити всі доступні робочі простори.</translation>
+        <source>Directories</source>
+        <translation>Каталоги</translation>
     </message>
     <message>
-        <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>За допомогою керування класом ви можете керувати комп’ютерами і класами. Також ви можете переглядати список користувачів, що працюють у системі.</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Робочий простір знімків екрана є дуже корисним інструментом. Він надає змогу керувати зробленими вами знімками екрана.</translation>
+        <source>User configuration</source>
+        <translation>Налаштування користувачів</translation>
     </message>
     <message>
-        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
-        <translation>Звичайно, ви можете налаштувати veyon. Це можна зробити за допомогою робочого простору налаштування.</translation>
+        <source>Snapshots</source>
+        <translation>Знімки екрана</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Про програму veyon</translation>
+        <source>User interface &amp;&amp; behaviour</source>
+        <translation>Поведінка та інтерфейс користувача</translation>
+    </message>
+    <message>
+        <source>Hide local computer in computer management</source>
+        <translation>Приховати локальний комп’ютер на панелі керування комп’ютерами</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer management manually</source>
+        <translation>Дозволити додавання класів на панелі керування комп’ютерами вручну</translation>
+    </message>
+    <message>
+        <source>Only show current room in computer management</source>
+        <translation>Показувати лише поточний клас на панелі керування комп’ютерами</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>Дія у відповідь на подвійне клацання на комп’ютері:</translation>
+    </message>
+    <message>
+        <source>Automatically switch to current room at start</source>
+        <translation>Автоматично перемикатися на поточний клас після запуску</translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>Можливості</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Усі можливості</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Вимкнені можливості</translation>
     </message>
 </context>
 <context>
-    <name>OverviewWidget</name>
+    <name>MonitoringMode</name>
     <message>
-        <source>Overview</source>
-        <translation>Огляд</translation>
+        <source>Monitoring</source>
+        <translation>Спостереження</translation>
     </message>
     <message>
-        <source>Some basic information on veyon and how to use it.</source>
-        <translation>Деякі основна відомості про veyon і його використання.</translation>
+        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
+        <translation>Це типовий режим. Він надає вам змогу стежити за усіма комп’ютерами у класі.</translation>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>Вбудований режим стеження</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectTreeModel</name>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
     </message>
 </context>
 <context>
@@ -1526,10 +1925,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>veyon Logon</source>
         <translation>Вхід до veyon</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access veyon clients.</source>
-        <translation>Будь ласка, вкажіть ваше ім’я користувача та пароль, щоб отримати доступ до клієнтів veyon.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1540,16 +1935,43 @@ p, li { white-space: pre-wrap; }
         <translation>Пароль</translation>
     </message>
     <message>
-        <source>Manage</source>
-        <translation>Керування</translation>
+        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
+        <translation>Будь ласка, введіть ім’я користувача і пароль для доступу до комп’ютерів у вашій мережі Veyon.</translation>
+    </message>
+</context>
+<context>
+    <name>PowerControlFeaturePlugin</name>
+    <message>
+        <source>Power on</source>
+        <translation>Увімкнути</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
+        <translation>Натисніть цю кнопку, щоб увімкнути усі комп’ютери. Якщо ви нею скористаєтеся, вам не доведеться вмикати кожен комп’ютер вручну.</translation>
+    </message>
+    <message>
+        <source>Reboot</source>
+        <translation>Перезавантажити</translation>
+    </message>
+    <message>
+        <source>Click this button to reboot all computers.</source>
+        <translation>Натисніть цю кнопку, щоб перезавантажити усі комп’ютери.</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation>Вимкнути</translation>
+    </message>
+    <message>
+        <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
+        <translation>Натисніть цю кнопку, щоб вимкнути усі комп’ютери. Якщо ви нею скористаєтеся, вам не доведеться вимикати кожен комп’ютер вручну.</translation>
+    </message>
+    <message>
+        <source>Power on/down or reboot a computer</source>
+        <translation>Увімкнути/Вимкнути або перезавантажити комп’ютер</translation>
     </message>
 </context>
 <context>
     <name>QApplication</name>
-    <message>
-        <source>veyon Client %1 on %2:%3</source>
-        <translation>Клієнт veyon %1 на %2:%3</translation>
-    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Не вдалося зареєструвати службу &apos;%1&apos;.</translation>
@@ -1595,12 +2017,43 @@ p, li { white-space: pre-wrap; }
         <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) — реєстрацію служби «%1» не було скасовано.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) — службу «%1» не було зупинено.</translation>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
+        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?) — роботу служби «%1» не було зупинено.</translation>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidget</name>
+    <name>RemoteAccessFeaturePlugin</name>
+    <message>
+        <source>Remote view</source>
+        <translation>Віддалений перегляд</translation>
+    </message>
+    <message>
+        <source>Open a remote view for a computer without interaction.</source>
+        <translation>Відкрити панель віддаленого перегляду комп’ютера без втручання.</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation>Віддалене керування</translation>
+    </message>
+    <message>
+        <source>Open a remote control window for a computer.</source>
+        <translation>Відкрити вікно віддаленого керування комп’ютером.</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Віддалений доступ</translation>
+    </message>
+    <message>
+        <source>Please enter a hostname or IP address of the host to access:</source>
+        <translation>Будь ласка, вкажіть назву вузла або IP-адресу вузла, доступ до якого слід отримати:</translation>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Віддалений перегляд або керування комп’ютером</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidget</name>
     <message>
         <source>View live (%1 @ %2)</source>
         <translation>Перегляд наживо (%1 @ %2)</translation>
@@ -1615,7 +2068,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RemoteControlWidgetToolBar</name>
+    <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
         <translation>Лише перегляд</translation>
@@ -1625,12 +2078,8 @@ p, li { white-space: pre-wrap; }
         <translation>Віддалене керування</translation>
     </message>
     <message>
-        <source>Lock student</source>
-        <translation>Блокувати учня</translation>
-    </message>
-    <message>
-        <source>Unlock student</source>
-        <translation>Розблокувати учня</translation>
+        <source>Send shortcut</source>
+        <translation>Надіслати скорочення</translation>
     </message>
     <message>
         <source>Snapshot</source>
@@ -1649,6 +2098,38 @@ p, li { white-space: pre-wrap; }
         <translation>Вийти</translation>
     </message>
     <message>
+        <source>Ctrl+Alt+Del</source>
+        <translation>Ctrl+Alt+Del</translation>
+    </message>
+    <message>
+        <source>Ctrl+Esc</source>
+        <translation>Ctrl+Esc</translation>
+    </message>
+    <message>
+        <source>Alt+Tab</source>
+        <translation>Alt+Tab</translation>
+    </message>
+    <message>
+        <source>Alt+F4</source>
+        <translation>Alt+F4</translation>
+    </message>
+    <message>
+        <source>Win+Tab</source>
+        <translation>Win+Tab</translation>
+    </message>
+    <message>
+        <source>Win</source>
+        <translation>Win</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+F1</source>
+        <translation>Alt+Ctrl+F1</translation>
+    </message>
+    <message>
         <source>Connecting %1</source>
         <translation>З’єднання з %1</translation>
     </message>
@@ -1658,37 +2139,224 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RemoteLogonDialog</name>
+    <name>RoomSelectionDialog</name>
     <message>
-        <source>Remote logon</source>
-        <translation>Віддалений вхід</translation>
+        <source>Room selection</source>
+        <translation>Вибір класу</translation>
     </message>
     <message>
-        <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>Скористайтеся наведеними нижче полями для визначення імені користувача, пароля та назви домену (необов’язково). Ці дані буде використано для входу до систем комп’ютерів.</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Ім’я користувача</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Пароль</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Домен</translation>
+        <source>enter search filter...</source>
+        <translation>введіть фільтр пошуку…</translation>
     </message>
 </context>
 <context>
-    <name>RunCommandsDialog</name>
+    <name>RunProgramDialog</name>
     <message>
         <source>Run commands</source>
         <translation>Виконання команд</translation>
     </message>
     <message>
-        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>Будь ласка, вкажіть команди, які слід виконати на вказаних клієнтах. Для кожної з команд слід використовувати окремий рядок.</translation>
+        <source>Run program</source>
+        <translation>Виконати програму</translation>
+    </message>
+    <message>
+        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation>Будь ласка, вкажіть програми або команди, які слід виконати на позначених комп’ютерах. Ви можете вказати декілька програм або команд, записавши їх в окремих рядках.</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenLockFeaturePlugin</name>
+    <message>
+        <source>Lock</source>
+        <translation>Заблокувати</translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation>Розблокувати</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп’ютери за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>Заблокувати екран і пристрої введення на комп’ютері</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenshotFeaturePlugin</name>
+    <message>
+        <source>Screenshot</source>
+        <translation>Знімок вікна</translation>
+    </message>
+    <message>
+        <source>Use this function to take a screenshot of selected computers.</source>
+        <translation>Скористайтеся цією можливістю для створення знімків екранів позначених комп’ютерів.</translation>
+    </message>
+    <message>
+        <source>Screenshots taken</source>
+        <translation>Створені знімки</translation>
+    </message>
+    <message>
+        <source>Screenshot of %1 computer have been taken successfully.</source>
+        <translation>Знімок екрана комп’ютера %1 успішно створено.</translation>
+    </message>
+    <message>
+        <source>Take screenshots of computers and save them locally.</source>
+        <translation>Створення знімків екранів комп’ютерів і їхнє локальне зберігання.</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
+    </message>
+    <message>
+        <source>Autostart</source>
+        <translation>Автозапуск</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Сховати піктограму у лотку</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>Запустити службу</translation>
+    </message>
+    <message>
+        <source>Additional arguments</source>
+        <translation>Додаткові параметри</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Зупинено</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>Зупинити службу</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>Стан:</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>Увімкнути програмне створення SAS (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Мережа</translation>
+    </message>
+    <message>
+        <source>Demo server port</source>
+        <translation>Порт демосервера</translation>
+    </message>
+    <message>
+        <source>Feature worker manager port</source>
+        <translation>Порт засобу керування можливостями</translation>
+    </message>
+    <message>
+        <source>Computer control server port</source>
+        <translation>Порт сервера керування комп’ютерами</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>Увімкнути виключення брандмауера</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Дозволити з’єднання лише з локального вузла</translation>
+    </message>
+    <message>
+        <source>Internal VNC server port</source>
+        <translation>Порт внутрішнього сервера VNC</translation>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation>Сервер VNC</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>Додаток:</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>Перезапустити службу %1</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>Всі параметри було збережено. З метою набуття чинності нових параметрів слід перезапустити службу %1. Перезапусти службу зараз?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Запущено</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceControl</name>
+    <message>
+        <source>Starting %1 Service</source>
+        <translation>Запускаємо службу %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1 Service</source>
+        <translation>Зупиняємо службу %1</translation>
+    </message>
+    <message>
+        <source>Registering %1 Service</source>
+        <translation>Реєструємо службу %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1 Service</source>
+        <translation>Скасовуємо реєстрацію служби %1</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceControlPlugin</name>
+    <message>
+        <source>register Veyon Service</source>
+        <translation>зареєструвати службу Veyon</translation>
+    </message>
+    <message>
+        <source>unregister Veyon Service</source>
+        <translation>скасувати реєстрацію служби Veyon</translation>
+    </message>
+    <message>
+        <source>start Veyon Service</source>
+        <translation>запустити службу Veyon</translation>
+    </message>
+    <message>
+        <source>stop Veyon Service</source>
+        <translation>зупинити службу Veyon</translation>
+    </message>
+    <message>
+        <source>restart Veyon Service</source>
+        <translation>перезапустити службу Veyon</translation>
+    </message>
+    <message>
+        <source>query status of Veyon Service</source>
+        <translation>визначити стан служби Veyon</translation>
+    </message>
+    <message>
+        <source>Service is running</source>
+        <translation>Службу запущено</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Службу не запущено</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Налаштовування і керування службою Veyon</translation>
+    </message>
+    <message>
+        <source>commands for configuring and controlling Veyon Service</source>
+        <translation>команди для налаштовування і керування службою Veyon</translation>
     </message>
 </context>
 <context>
@@ -1707,18 +2375,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>SnapshotList</name>
-    <message>
-        <source>Snapshots</source>
-        <translation>Знімки екрана</translation>
-    </message>
-    <message>
-        <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Ви можете легко керувати зробленими вами знімками екрана за допомогою цього робочого простору.</translation>
-    </message>
-</context>
-<context>
-    <name>Snapshots</name>
+    <name>SnapshotManagementWidget</name>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1755,14 +2412,10 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>SupportDialog</name>
+    <name>SystemTrayIcon</name>
     <message>
-        <source>Support</source>
-        <translation>Супровід</translation>
-    </message>
-    <message>
-        <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>Будь ласка, вкажіть IP-адресу або назву вузла комп’ютера, з яким слід встановити з’єднання.</translation>
+        <source>System tray icon</source>
+        <translation>Піктограма у системному лотку</translation>
     </message>
 </context>
 <context>
@@ -1777,6 +2430,89 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TextMessageFeaturePlugin</name>
+    <message>
+        <source>Text message</source>
+        <translation>Текстове повідомлення</translation>
+    </message>
+    <message>
+        <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
+        <translation>Скористайтеся цією можливістю для надсилання текстового повідомлення усіх користувачам, наприклад, для визначення нового завдання для користувачів.</translation>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Повідомлення від вчителя</translation>
+    </message>
+    <message>
+        <source>Send a message to a user</source>
+        <translation>Надіслати користувачу повідомлення</translation>
+    </message>
+</context>
+<context>
+    <name>UltraVncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation>Налаштування вбудованого сервера x11vnc</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Увімкнути захоплення шарів (напівпрозорих) вікон</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Повноекранний режим (залиште це типово увімкненим)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>Низька точність (турбо-режим)</translation>
+    </message>
+    <message>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Налаштування вбудованого сервера UltraVNC</translation>
+    </message>
+</context>
+<context>
+    <name>UserConfig</name>
+    <message>
+        <source>No write access</source>
+        <translation>Немає доступу на запис</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування %1.</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControl</name>
+    <message>
+        <source>User session control</source>
+        <translation>Керування сеансами користувачів</translation>
+    </message>
+    <message>
+        <source>Logout user</source>
+        <translation>Завершити роботу</translation>
+    </message>
+    <message>
+        <source>Click this button to logout users from all computers.</source>
+        <translation>Натисніть цю кнопку, щоб примусово виконати вихід користувачів на усіх комп’ютерах.</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonVncConnection</name>
+    <message>
+        <source>VNC authentication failed because of too many authentication tries.</source>
+        <translation>Перевищення граничної кількості спроб під час розпізнавання у VNC.</translation>
+    </message>
+    <message>
+        <source>VNC authentication failed.</source>
+        <translation>Помилка під час спроби розпізнавання у VNC.</translation>
+    </message>
+    <message>
+        <source>VNC server closed connection.</source>
+        <translation>З’єднання розірвано сервером VNC.</translation>
+    </message>
+</context>
+<context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
@@ -1784,62 +2520,18 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>clientMenu</name>
+    <name>X11VncConfigurationWidget</name>
     <message>
-        <source>Overview</source>
-        <translation>Огляд</translation>
+        <source>Builtin x11vnc server configuration</source>
+        <translation>Налаштування вбудованого сервера x11vnc</translation>
     </message>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Повноекранне демо</translation>
+        <source>Custom x11vnc parameters:</source>
+        <translation>Нетипові параметри x11vnc:</translation>
     </message>
     <message>
-        <source>Window demo</source>
-        <translation>Демо у вікні</translation>
-    </message>
-    <message>
-        <source>Locked display</source>
-        <translation>Заблокований дисплей</translation>
-    </message>
-    <message>
-        <source>View live</source>
-        <translation>Перегляд наживо</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Віддалене керування</translation>
-    </message>
-    <message>
-        <source>Let student show demo</source>
-        <translation>Дозволити учню показати демо</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Надіслати текстове повідомлення</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>Завершити роботу</translation>
-    </message>
-    <message>
-        <source>Take a snapshot</source>
-        <translation>Зробити знімок екрана</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Увімкнути</translation>
-    </message>
-    <message>
-        <source>Reboot</source>
-        <translation>Перезавантажити</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Вимкнути</translation>
-    </message>
-    <message>
-        <source>Execute commands</source>
-        <translation>Виконати команди</translation>
+        <source>Do not use X Damage extension</source>
+        <translation>Не використовувати розширення X Damage</translation>
     </message>
 </context>
 </TS>

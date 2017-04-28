@@ -10,22 +10,6 @@
         <translation>关于</translation>
     </message>
     <message>
-        <source>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
-        <translation>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
-    </message>
-    <message>
-        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation>作者</translation>
-    </message>
-    <message>
         <source>Translation</source>
         <translation>翻译</translation>
     </message>
@@ -33,17 +17,528 @@ Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>TeliuTe&lt;teliute@163.com&gt;, 2014, 2016.
-
-如果您想参与 veyon 翻译，或是对当前翻译提出建议，请与 veyon 开发者联系。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>License</source>
         <translation>许可</translation>
     </message>
+    <message>
+        <source>About Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon - Virtual Eye On Networks
+
+Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>AccessDialogSlave</name>
+    <name>AccessControlPage</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of certain user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Data backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups authorized for computer access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authorized user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All groups</source>
+        <translation>所有群组</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Access control rules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected rule down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected rule up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing access control data backend</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name whose access permissions to test:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified user is allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AccessControlRuleEditDialog</name>
+    <message>
+        <source>Edit access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>常规</translation>
+    </message>
+    <message>
+        <source>enter a short name for the rule here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rule name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter a description for the rule here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rule description:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>has one or more groups in common with</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located in room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located in the same room as</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer is localhost</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user is logged on user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AccessControlRulesTestDialog</name>
+    <message>
+        <source>Access control rules test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local user:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected users:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario is allowed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario is denied.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario needs permission of the logged on user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR: Unknown action</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test result</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationConfigurationPage</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication methods</source>
+        <translation>验证模式</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>登录验证</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>密钥验证</translation>
+    </message>
+    <message>
+        <source>Access key management</source>
+        <translation>密钥管理</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>公钥文件主目录</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>私钥文件主目录</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>运行密钥文件助手</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>确认允许访问</translation>
+    </message>
+    <message>
+        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication test</source>
+        <translation>登录验证测试</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials was successful.</source>
+        <translation>使用提供的证书验证成功。</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials failed!</source>
+        <translation>使用提供的证书验证失败！</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>Builtin VNC server (UltraVNC)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>BuiltinX11VncServer</name>
+    <message>
+        <source>Builtin VNC server (x11vnc)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>验证错误</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerManagementView</name>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer/user list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select output filename</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CSV files (*.csv)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoringView</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoClient</name>
+    <message>
+        <source>%1 Demo</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoFeaturePlugin</name>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation>全屏演示</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>窗口演示</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DesktopAccessDialog</name>
+    <message>
+        <source>Desktop access dialog</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>确认访问桌面</translation>
@@ -62,557 +557,160 @@ If you&apos;re interested in translating veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>ClassroomManager</name>
+    <name>DesktopServicesFeaturePlugin</name>
     <message>
-        <source>Classroom-Manager</source>
-        <translation>班级管理</translation>
+        <source>Run program</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>在这个面板管理计算机和班级。</translation>
+        <source>Click this button to run a program on each computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>这是管理计算机和班级的地方，您可以通过点击鼠标右键在列表中添加计算机或班级。</translation>
+        <source>Open website</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Classrooms/computers</source>
-        <translation>班级/计算机</translation>
+        <source>Click this button to open a website on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>IP-address</source>
-        <translation>IP地址</translation>
+        <source>Please enter the URL of the website to open:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Usernames</source>
-        <translation>用户名</translation>
-    </message>
-    <message>
-        <source>Show usernames</source>
-        <translation>显示用户名</translation>
-    </message>
-    <message>
-        <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation>使用上下文关联菜单(鼠标右键)，来添加/删除计算机和班级。</translation>
-    </message>
-    <message>
-        <source>Export to text file</source>
-        <translation>导出为文本文件</translation>
-    </message>
-    <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>使用此按钮将列表中的计算机和用户名导出为文本文件。例如，您可以在一场考试结束后使用此文件统计考生信息。这在某些时候是很有必要的，因为有些考生可能会提前完成并退出，那样考试结束后您就不能收集到所有参加考试的考生信息。</translation>
-    </message>
-    <message>
-        <source>Hide teacher computers</source>
-        <translation>隐藏教师计算机</translation>
-    </message>
-    <message>
-        <source>Show/hide</source>
-        <translation>显示/隐藏</translation>
-    </message>
-    <message>
-        <source>Edit settings</source>
-        <translation>编辑设置</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation>删除</translation>
-    </message>
-    <message>
-        <source>Show all computers in classroom</source>
-        <translation>显示班级中的全部计算机</translation>
-    </message>
-    <message>
-        <source>Hide all computers in classroom</source>
-        <translation>隐藏班级中的全部计算机</translation>
-    </message>
-    <message>
-        <source>Edit name</source>
-        <translation>编辑名称</translation>
-    </message>
-    <message>
-        <source>Remove classroom</source>
-        <translation>删除班级</translation>
-    </message>
-    <message>
-        <source>Add computer</source>
-        <translation>添加计算机</translation>
-    </message>
-    <message>
-        <source>Add classroom</source>
-        <translation>添加班级</translation>
-    </message>
-    <message>
-        <source>No configuration file found</source>
-        <translation>找不到配置文件</translation>
-    </message>
-    <message>
-        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>无法打开配置文件 %1 ，您必须在班级管理中至少添加一个班级和计算机。班级管理在程序的左侧栏中。</translation>
-    </message>
-    <message>
-        <source>Error in configuration file</source>
-        <translation>配置文件中有错误</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>分析配置文件 %1 时出错。请手动改正它。否则，您将不得不删除该配置文件并重新添加所有的班级和计算机。</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>分析配置文件 %1 时出错。请手动改正它。否则，您将不得不删除该配置文件。</translation>
-    </message>
-    <message>
-        <source>Select output-file</source>
-        <translation>选择输出文件</translation>
-    </message>
-    <message>
-        <source>Text files (*.txt)</source>
-        <translation>文本文件(*.txt)</translation>
-    </message>
-    <message>
-        <source>Actions for selected</source>
-        <translation>选择一项操作</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>操作</translation>
-    </message>
-    <message>
-        <source>Actions for %1</source>
-        <translation>%1 操作</translation>
-    </message>
-    <message>
-        <source>New name for classroom</source>
-        <translation>班级新名称</translation>
-    </message>
-    <message>
-        <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>请为班级“%1” 输入一个新名称。</translation>
-    </message>
-    <message>
-        <source>Are you sure want to remove classroom &quot;%1&quot;?
-All computers in it will be removed as well!</source>
-        <translation>您确定要删除班级“%1”吗?
-该班级中的所有计算机也将被删除!</translation>
-    </message>
-    <message>
-        <source>Missing classroom</source>
-        <translation>缺少班级</translation>
-    </message>
-    <message>
-        <source>Before adding computers you have to create at least one classroom.
-Do you want to create a new classrom now?</source>
-        <translation>在添加计算机之前您必须至少创建一个班级。
-您现在要创建新班级吗?</translation>
-    </message>
-    <message>
-        <source>New classroom</source>
-        <translation>新建班级</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the classroom you want to create.</source>
-        <translation>请输入要创建班级的名称。</translation>
+        <source>Start programs and services in user desktop</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Client</name>
-    <message>
-        <source>Unknown state</source>
-        <translation>未知状态</translation>
-    </message>
-    <message>
-        <source>No user logged in</source>
-        <translation>无用户登录</translation>
-    </message>
-    <message>
-        <source>Host unreachable</source>
-        <translation>连接已断开</translation>
-    </message>
-    <message>
-        <source>Demo running</source>
-        <translation>正在演示</translation>
-    </message>
-    <message>
-        <source>Desktop locked</source>
-        <translation>锁定桌面</translation>
-    </message>
-    <message>
-        <source>Message from teacher</source>
-        <translation>来自教师的消息</translation>
-    </message>
-</context>
-<context>
-    <name>ClientAction</name>
-    <message>
-        <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>您确定要注销所有计算机上的用户吗?</translation>
-    </message>
-    <message>
-        <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>您确定要注销所有选中计算机上的用户吗?</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>注销用户</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all visible computers?</source>
-        <translation>您确定要重启所有连接的计算机吗?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all selected computers?</source>
-        <translation>您确定要重启所有选中的计算机吗?</translation>
-    </message>
-    <message>
-        <source>Reboot computers</source>
-        <translation>重新启动计算机</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all visible computers?</source>
-        <translation>您确定要关闭所有连接的计算机吗?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all selected computers?</source>
-        <translation>您确定要关闭所有选中的计算机吗?</translation>
-    </message>
-</context>
-<context>
-    <name>ClientSettingsDialog</name>
-    <message>
-        <source>Client settings</source>
-        <translation>客户端设置</translation>
-    </message>
-    <message>
-        <source>IP/hostname</source>
-        <translation>IP/主机名</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;输入一个 veyon 可到达客户端的IP地址或主机名（用&apos;:&apos;指定可选的端口号）&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>名称</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; 这个主机在 veyon 中显示的昵称。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC 地址</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;客户端的硬件/MAC地址 － 只有在需要远程开机的客户端上使用&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>班级</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>类型</translation>
-    </message>
-    <message>
-        <source>Student computer</source>
-        <translation>学生计算机</translation>
-    </message>
-    <message>
-        <source>Teacher computer</source>
-        <translation>教师计算机</translation>
-    </message>
-    <message>
-        <source>Other/undefined computer</source>
-        <translation>其他/未定义计算机</translation>
-    </message>
-    <message>
-        <source>Missing IP address/hostname</source>
-        <translation>错误的 IP 地址/主机名</translation>
-    </message>
-    <message>
-        <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>您还没有为此计算机指定 IP 地址或主机名！</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address</source>
-        <translation>无效的 MAC 地址</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation>您设定的 MAC地址无效。该项请留空或者输入有效的MAC地址（用英文冒号“:”做分隔符!）。</translation>
-    </message>
-</context>
-<context>
-    <name>Config</name>
-    <message>
-        <source>Interval between updates</source>
-        <translation>更新间隔时间</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这您可以设置客户端的更新间隔时间。数值越大占用网络传输越少，这台计算机的 CPU 占用也越低。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation> 秒</translation>
-    </message>
+    <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
         <translation>用户界面</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;工具栏按钮不显示冒泡提示&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;如果您希望鼠标移到工具栏按钮上时，不显示浮动帮助提示，那么请选择该项。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No balloon-tooltips</source>
-        <translation>禁用冒泡提示</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在工具栏按钮上不显示文字说明&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No texts on toolbar-buttons</source>
-        <translation>按钮上不显示文字</translation>
     </message>
     <message>
         <source>Language:</source>
         <translation>语言：</translation>
     </message>
     <message>
-        <source>System default</source>
-        <translation>系统默认</translation>
+        <source>Use system language setting</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>ar - العربية</source>
-        <translation>ar - العربية</translation>
+        <source>Enable high DPI scaling</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>cs - Česky</source>
-        <translation>cs - Česky</translation>
+        <source>Veyon</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>de - Deutsch</source>
-        <translation>de - Deutsch</translation>
+        <source>Logging</source>
+        <translation>正在登录</translation>
     </message>
     <message>
-        <source>el - Ελληνικά</source>
-        <translation>el - Ελληνικά</translation>
+        <source>Log file directory</source>
+        <translation>日志文件存放目录</translation>
     </message>
     <message>
-        <source>es - Español</source>
-        <translation>es - Español</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>fi - Suomi</source>
-        <translation>fi - Suomi</translation>
+        <source>Log level</source>
+        <translation>日志级别</translation>
     </message>
     <message>
-        <source>fr - Français</source>
-        <translation>fr - Français</translation>
+        <source>Nothing</source>
+        <translation>无</translation>
     </message>
     <message>
-        <source>he - עִבְרִית</source>
-        <translation>he - עִבְרִית</translation>
+        <source>Only critical messages</source>
+        <translation>只记录严重错误信息</translation>
     </message>
     <message>
-        <source>hu - Magyar</source>
-        <translation>hu - Magyar</translation>
+        <source>Errors and critical messages</source>
+        <translation>错误和严重错误信息</translation>
     </message>
     <message>
-        <source>it - Italiano</source>
-        <translation>it - Italiano</translation>
+        <source>Warnings and errors</source>
+        <translation>警告和错误</translation>
     </message>
     <message>
-        <source>nl - Nederlands</source>
-        <translation>nl - Nederlands</translation>
+        <source>Information, warnings and errors</source>
+        <translation>信息、警告和错误</translation>
     </message>
     <message>
-        <source>nn - Norsk</source>
-        <translation>nn - Norsk</translation>
+        <source>Debug messages and everything else</source>
+        <translation>调试信息和其他所有信息</translation>
     </message>
     <message>
-        <source>pl - Polski</source>
-        <translation>pl - Polski</translation>
+        <source>Limit log file size</source>
+        <translation>日志文件限制大小</translation>
     </message>
     <message>
-        <source>pt_br - Brasileiro</source>
-        <translation>pt_br - Brasileiro</translation>
+        <source>MB</source>
+        <translation>MB</translation>
     </message>
     <message>
-        <source>pt_pt - Português</source>
-        <translation>pt_pt - Português</translation>
+        <source>Clear all log files</source>
+        <translation>清空所有日志文件</translation>
     </message>
     <message>
-        <source>ru - Русский</source>
-        <translation>ru - Русский</translation>
+        <source>Log to standard error output</source>
+        <translation>日志显示于标准输出设备(显示器)</translation>
     </message>
     <message>
-        <source>sk - Slovenský</source>
-        <translation>sk - Slovenský</translation>
+        <source>Log to Windows event log</source>
+        <translation>日志记录到 Windows 事件日志(Windows event log)</translation>
     </message>
     <message>
-        <source>sl - Slovenčina</source>
-        <translation>sl - Slovenčina</translation>
+        <source>Network object directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>sv - Svenska</source>
-        <translation>sv - Svenska</translation>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>tr - Türkçe</source>
-        <translation>tr - Türkçe</translation>
+        <source>Update interval:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>uk - Українська</source>
-        <translation>uk - Українська</translation>
+        <source> s</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>zh_cn - 简体字</source>
-        <translation>zh_cn - 简体中文</translation>
+        <source>%1 service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>zh_tw - 簡體字</source>
-        <translation>zh_tw - 繁體中文</translation>
+        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Your role (needs according keys!)</source>
-        <translation>您的角色</translation>
+        <source>Log files cleared</source>
+        <translation>日志文件已删除</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这您可以选择自己的角色。只有在您知道您要做什么时才能改变，否则您将有可能无法访问客户端，此时您可以恢复原来的角色。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>All log files were cleared successfully.</source>
+        <translation>所有日志文件均已删除成功。</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>教师</translation>
+        <source>Error</source>
+        <translation>错误</translation>
     </message>
     <message>
-        <source>Administrator</source>
-        <translation>管理员</translation>
-    </message>
-    <message>
-        <source>Supporter</source>
-        <translation>技术人员</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>其他</translation>
-    </message>
-    <message>
-        <source>Double click action for client window</source>
-        <translation>客户端图标上的双击动作</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这您可以设置双击客户端窗口时要发生的动作。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>远程控制</translation>
-    </message>
-    <message>
-        <source>View live in fullscreen</source>
-        <translation>全屏显示</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;请注意，某些改变不能立即生效，需要重启 veyon 。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigWidget</name>
-    <message>
-        <source>Your veyon-configuration</source>
-        <translation>您的 veyon 配置</translation>
-    </message>
-    <message>
-        <source>In this workspace you can customize veyon to fit your needs.</source>
-        <translation>在这个面板中您根据所需定制 veyon。</translation>
-    </message>
-</context>
-<context>
-    <name>DemoClient</name>
-    <message>
-        <source>veyon Demo</source>
-        <translation>veyon 演示</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonCoreServer</name>
-    <message>
-        <source>Authentication error</source>
-        <translation>验证错误</translation>
-    </message>
-    <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
-        <translation>有人（IP: %1 ）试图访问本机但未能通过验证!</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC 验证失败，原因为验证次数过多。</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC 验证失败</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC 服务器已关闭连接。</translation>
+        <source>Could not remove all log files.</source>
+        <translation>不能删除所有日志文件。</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>veyon Access Key Assistant</source>
-        <translation>veyon 密钥助手</translation>
-    </message>
-    <message>
-        <source>Create/import veyon access keys</source>
-        <translation>创建/导入 veyon 访问密钥</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import veyon access keys.</source>
-        <translation>助手工具将帮助您创建或导入 veyon 访问密钥。</translation>
-    </message>
-    <message>
         <source>How does it work?</source>
         <translation>密钥起什么作用？</translation>
-    </message>
-    <message>
-        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>veyon 密钥包括两部分，私钥和公钥。
-
-教师端生成有私钥和公钥，把公钥复制到客户端，教师机通过私钥与学生机的公钥配对成功后，就可以访问并控制学生机。因此，私钥文件的权限，一定要设置为仅教师用户能读取。
-
-公钥存放于客户端学生机电脑，用以验证前来访问该电脑的请求。</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -723,10 +821,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>无效的公钥</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public veyon access key!</source>
-        <translation>选中的文件不包含 veyon 公钥！</translation>
-    </message>
-    <message>
         <source>Select destination directory</source>
         <translation>选择目标文件夹</translation>
     </message>
@@ -762,6 +856,677 @@ The public key part is used on the client computers to verify that any incoming 
         <source>The public key was successfully imported to %1.</source>
         <translation>公钥成功导入到 %1</translation>
     </message>
+    <message>
+        <source>Veyon Access Key Assistant</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create/import Veyon access keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import Veyon access keys.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public Veyon access key!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>常规</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use bind credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fixed base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Discover base DN by naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. namingContexts or defaultNamingContext</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object trees</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform recursive search operations in object trees</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer host name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. member or memberUid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. dNSHostName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. uid or sAMAccountName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional object filters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=person</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=computerLab or objectClass=room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group member identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Distinguished name (Samba/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer labs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dedicated computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. computerLab or room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Common attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aggregate computer lab members using:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Functionality tests</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get common aggregations of two objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all groups of a user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all members of a computer lab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all groups of a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get computer object by IP address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name (wildcards allowed) which to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user login attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter group name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a group name whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer host name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer host name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the DN of a computer whose MAC address to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC address attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer lab name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer lab (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer labs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer lab attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user login attribute or group membership attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer host name whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer host name attribute or group membership attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer IP address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer IP address which to resolve to an computer object:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host name lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer lab whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer lab members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group filter or computer lab member aggregation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter first object</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the distinguished name of the first object:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter second object</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the distinguished name of the second object:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>common aggregations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group membership or computer lab attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the %1 parameter.
+
+%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapPlugin</name>
+    <message>
+        <source>Configure LDAP/AD integration of Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load objects from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LocalDataConfigurationPage</name>
+    <message>
+        <source>Local data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC 地址</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LocalDataPlugin</name>
+    <message>
+        <source>Backends which use local data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (local users/groups and computers/rooms from configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (store objects in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LockWidget</name>
@@ -771,33 +1536,18 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
 </context>
 <context>
-    <name>LogonGroupEditor</name>
-    <message>
-        <source>Logon group editor</source>
-        <translation>登录用户组管理器</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
-        <translation>请添加允许访问 veyon 网络中计算机的用户组。</translation>
-    </message>
-    <message>
-        <source>All groups</source>
-        <translation>所有群组</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Groups with veyon privileges</source>
-        <translation>有 veyon 权限的群组</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
-        <source>Actions</source>
-        <translation>操作</translation>
+        <source>Configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable balloon tooltips</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -811,20 +1561,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>工具栏</translation>
     </message>
     <message>
-        <source>veyon Management Console</source>
-        <translation>veyon 管理控制台</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>常规</translation>
-    </message>
-    <message>
-        <source>veyon Server</source>
-        <translation>veyon 服务器</translation>
-    </message>
-    <message>
-        <source>Paths</source>
-        <translation>路径</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -835,248 +1573,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>调试</translation>
     </message>
     <message>
-        <source>veyon Service</source>
-        <translation>veyon 服务</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>隐藏托盘图标</translation>
-    </message>
-    <message>
-        <source>Autostart</source>
-        <translation>自动启动</translation>
-    </message>
-    <message>
-        <source>Additional arguments</source>
-        <translation>额外的参数</translation>
-    </message>
-    <message>
-        <source>Start service</source>
-        <translation>开启服务</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>停止服务</translation>
-    </message>
-    <message>
-        <source>State:</source>
-        <translation>状态：</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>已停止</translation>
-    </message>
-    <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>开启屏幕锁定时的桌面切换(实验性功能)</translation>
-    </message>
-    <message>
-        <source>Logging</source>
-        <translation>正在登录</translation>
-    </message>
-    <message>
-        <source>Log file directory</source>
-        <translation>日志文件存放目录</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Log level</source>
-        <translation>日志级别</translation>
-    </message>
-    <message>
-        <source>Nothing</source>
-        <translation>无</translation>
-    </message>
-    <message>
-        <source>Only critical messages</source>
-        <translation>只记录严重错误信息</translation>
-    </message>
-    <message>
-        <source>Errors and critical messages</source>
-        <translation>错误和严重错误信息</translation>
-    </message>
-    <message>
-        <source>Warnings and errors</source>
-        <translation>警告和错误</translation>
-    </message>
-    <message>
-        <source>Information, warnings and errors</source>
-        <translation>信息、警告和错误</translation>
-    </message>
-    <message>
-        <source>Debug messages and everything else</source>
-        <translation>调试信息和其他所有信息</translation>
-    </message>
-    <message>
-        <source>Limit log file size</source>
-        <translation>日志文件限制大小</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Log to standard error output</source>
-        <translation>日志显示于标准输出设备(显示器)</translation>
-    </message>
-    <message>
-        <source>Log to Windows event log</source>
-        <translation>日志记录到 Windows 事件日志(Windows event log)</translation>
-    </message>
-    <message>
-        <source>Clear all log files</source>
-        <translation>清空所有日志文件</translation>
-    </message>
-    <message>
-        <source>Desktop capturing</source>
-        <translation>抓取桌面</translation>
-    </message>
-    <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>开启多层次(半透明)窗口抓取</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>抓取全屏幕(默认每次开启)</translation>
-    </message>
-    <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>低分辨率(快速模式)</translation>
-    </message>
-    <message>
-        <source>Demo server</source>
-        <translation>演示服务</translation>
-    </message>
-    <message>
-        <source>Backend</source>
-        <translation>后台</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector</translation>
-    </message>
-    <message>
-        <source>veyon 1 demo server</source>
-        <translation>veyon 1 演示服务</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>网络</translation>
-    </message>
-    <message>
-        <source>Core server port</source>
-        <translation>核心服务端口</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>演示服务端口</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation>开启防火墙例外设定</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>开启一个提供 JavaViewer 的 HTTP 服务。</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>HTTP 服务端口</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>只允许本地连接</translation>
-    </message>
-    <message>
-        <source>Configuration files</source>
-        <translation>配置文件</translation>
-    </message>
-    <message>
-        <source>Global configuration</source>
-        <translation>全局配置</translation>
-    </message>
-    <message>
-        <source>Personal configuration</source>
-        <translation>个人配置</translation>
-    </message>
-    <message>
-        <source>Data directories</source>
-        <translation>数据文件夹</translation>
-    </message>
-    <message>
         <source>Snapshots</source>
         <translation>截屏</translation>
-    </message>
-    <message>
-        <source>Authentication methods</source>
-        <translation>验证模式</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>密钥验证</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL 登录验证</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>密钥管理</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>公钥文件主目录</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>私钥文件主目录</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>运行密钥文件助手</translation>
-    </message>
-    <message>
-        <source>Logon settings</source>
-        <translation>登录设置</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>许可管理</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>测试</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>确认允许访问</translation>
-    </message>
-    <message>
-        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>您可以配置 veyon 在当前验证方式，是否显示确认访问的对话框。</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>登录验证</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>允许同一用户不经提示访问桌面</translation>
-    </message>
-    <message>
-        <source>Debugging veyon</source>
-        <translation>veyon 调试</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>当使用 veyon 遇到问题或其他异常时，反馈给开发者是非常重要的，这样在发布下一版本时问题得以修正。此页面可以帮助您轻松提交错误报告。
-
-如果问题无法重现，请跳过步骤 1) - 3)。</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1119,16 +1617,6 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon 缺陷跟踪器&lt;/a&gt;，新建一个反馈，描述您在第3）步的操作，然后附件上传您第4）保存的文件&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-注意：如果教师端和学生端都出现这个问题，请上传两个电脑上的问题报告文件。</translation>
-    </message>
-    <message>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
@@ -1165,188 +1653,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>关于 veyon</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>关于 Qt</translation>
-    </message>
-    <message>
-        <source>veyon</source>
-        <translation>veyon</translation>
-    </message>
-    <message>
-        <source>No write access</source>
-        <translation>没有写入权限</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>不能读/写或创建目录 %1 ！为了运行 veyon ，请确认您有创建或写入该目录的权限。</translation>
     </message>
     <message>
         <source>Classroom</source>
         <translation>班级</translation>
     </message>
     <message>
-        <source>Switch classroom</source>
-        <translation>切换班级</translation>
-    </message>
-    <message>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation>点击此按钮在菜单中选择一个班级。</translation>
     </message>
     <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>点击按钮，切换班级。</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>预览模式</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>预览</translation>
-    </message>
-    <message>
-        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>这是 veyon 的默认模式，让您预览所有已连接的计算机。点击此按钮也会解锁客户机或退出演示模式。</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>全屏演示</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>全屏演示</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>停止演示</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>在此模式下您的屏幕将在所有已连接的客户端计算机中显示，而且在该模式下客户端的所有输入设备将会锁定，客户端用户不能做任何事。</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>窗口演示</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>窗口演示</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>在此模式下您的屏幕将在所有已连接的客户端计算机的一个窗口中显示。客户端用户可以切换到其他窗口，因此可以继续工作。</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>锁定/解锁桌面</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>全部锁定</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>全部解锁</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>为了聚拢用户的注意力，您可以用这个按钮锁定他们的桌面。在该模式下客户端所有的输入设备将被锁定同时屏幕黑屏。</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>发送文字消息</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>文字消息</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>使用这个按钮发送文字消息给全部用户。例如，告诉他们新的任务等等。</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>开启计算机</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>开机</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>点击此按钮开启全部可见的计算机。这样您就不必手动去开启每一台计算机。</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>关闭计算机</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>关机</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>您可以点击此按钮关闭全部已连接的计算机（例如，下课时）。</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>协助</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>直接协助</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>如果您需要协助某台电脑的使用者，可以按下这个按鈕，然后输入对方的主机名称或 IP 地址。</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>调整/对齐</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>调整图标大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>点击此按钮将以最大可能尺寸显示客户端窗口，同时对齐全部窗口图标。</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>自动视图</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>自动重新排列窗口图标和调整大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>点击此按钮重新排列和调整所有的窗口图标。</translation>
-    </message>
-    <message>
-        <source>Could not contact veyon service</source>
-        <translation>无法连接到 veyon 服务</translation>
-    </message>
-    <message>
-        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
-        <translation>无法连接到 veyon 服务，可能是 ica 服务未启动，或者您的密钥文件错误，或是密钥安装不正确。请再次尝试，或者与管理员联系，运行 veyon 管理控制台(imc)解决此问题。</translation>
-    </message>
-    <message>
-        <source>veyon Master Control</source>
-        <translation>veyon 主控台</translation>
-    </message>
-    <message>
         <source>Authentication impossible</source>
         <translation>无法认证</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
-        <translation>找不到配对密钥，或者您的密钥已过期。请使用 veyon 管理控制台(imc)建立新的密钥对。此外，您也可以在 veyon 管理控制台更改登录认证方式，此问题导致无法使用 veyon 来访问电脑。</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1357,116 +1677,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>退出</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the veyon Service.</source>
-        <translation>不能设置 veyon 服务的自启动属性。</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the veyon Service.</source>
-        <translation>不能设置 veyon 服务参数。</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the veyon Service.</source>
-        <translation>不能更改 veyon 服务的防火墙配置。</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>配置文件不可写</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
-        <translation>本地配置后台反馈配置不能写入，请以更高的权限(如管理员)来运行 veyon 管理控制台。</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>所有设置应用成功。</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>应用设置时出错！</translation>
-    </message>
-    <message>
-        <source>veyon Management Console %1</source>
-        <translation>veyon 管理控制台 %1</translation>
-    </message>
-    <message>
-        <source>Restart veyon Service</source>
-        <translation>重启 veyon 服务</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
-        <translation>所有设置均已保存成功。需要重启 veyon 服务才能生效，要立即重启服务吗？</translation>
-    </message>
-    <message>
-        <source>Starting veyon service</source>
-        <translation>正在启动 veyon 服务</translation>
-    </message>
-    <message>
-        <source>Stopping veyon service</source>
-        <translation>正在停止 veyon 服务</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>正在运行</translation>
-    </message>
-    <message>
-        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>veyon 服务需要暂时停止，以便删除日志文件，是否继续？</translation>
-    </message>
-    <message>
-        <source>Log files cleared</source>
-        <translation>日志文件已删除</translation>
-    </message>
-    <message>
-        <source>All log files were cleared successfully.</source>
-        <translation>所有日志文件均已删除成功。</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <source>Could not remove all log files.</source>
-        <translation>不能删除所有日志文件。</translation>
     </message>
     <message>
         <source>Load settings from file</source>
         <translation>打开配置文件</translation>
     </message>
     <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML 文件(*.xml)</translation>
-    </message>
-    <message>
         <source>Save settings to file</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>登录验证测试</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>使用提供的证书验证成功。</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>使用提供的证书验证失败！</translation>
-    </message>
-    <message>
         <source>Save bug report archive</source>
         <translation>保存错误报告文档</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive (*.ibra.xml)</source>
-        <translation>veyon 错误报告文件(*.ibra.xml)</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive saved</source>
-        <translation>veyon 错误报告文件已保存</translation>
-    </message>
-    <message>
-        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>veyon 错误报告文件已保存到 %1，包括 veyon 日志文件和您操作系统的信息。您可以把它附在错误报告中一同提交。</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1476,60 +1700,206 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>设置还未保存，确定要退出吗？</translation>
     </message>
+    <message>
+        <source>Veyon Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Debugging Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <source>%1 Configurator %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 bug report archive saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to switch between classrooms.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master Control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>Overview</name>
+    <name>MasterConfigurationPage</name>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;欢迎使用 veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Form</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>请注意窗口的左侧边，您会看到一列包含小图标按钮的纵向工具栏。每个图标对应一个面板，要使用哪个面板，只需点击相应的图标即可。</translation>
+        <source>Directories</source>
+        <translation>文件夹</translation>
     </message>
     <message>
-        <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>点击这个班级管理图标，您可以管理班级和计算机，也可以查看已登录的用户。</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>这个图标代表的是截图面板，它是一个非常有用的管理工具，能让您管理所拍的学生机屏幕快照。</translation>
+        <source>User configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
-        <translation>当然您可以点击这个图标按钮来配置 veyon，它是一个常用的配置面板。</translation>
+        <source>Snapshots</source>
+        <translation>屏幕截图</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>关于 veyon</translation>
+        <source>User interface &amp;&amp; behaviour</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer in computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer management manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show current room in computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically switch to current room at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>OverviewWidget</name>
+    <name>MonitoringMode</name>
     <message>
-        <source>Overview</source>
-        <translation>简介</translation>
+        <source>Monitoring</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Some basic information on veyon and how to use it.</source>
-        <translation>一些基本的 veyon 信息和使用方法。</translation>
+        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectTreeModel</name>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>veyon Logon</source>
-        <translation>veyon 登录</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access veyon clients.</source>
-        <translation>请输入您的用户名和密码，以便访问 veyon 客户机。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
@@ -1540,16 +1910,43 @@ p, li { white-space: pre-wrap; }
         <translation>密码</translation>
     </message>
     <message>
-        <source>Manage</source>
-        <translation>管理</translation>
+        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PowerControlFeaturePlugin</name>
+    <message>
+        <source>Power on</source>
+        <translation>开机</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reboot</source>
+        <translation>重启</translation>
+    </message>
+    <message>
+        <source>Click this button to reboot all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation>关机</translation>
+    </message>
+    <message>
+        <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power on/down or reboot a computer</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QApplication</name>
-    <message>
-        <source>veyon Client %1 on %2:%3</source>
-        <translation>在 %2:%3 上的 veyon 客户机 %1</translation>
-    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>不能注册服务 &apos;%1&apos;。</translation>
@@ -1595,12 +1992,43 @@ p, li { white-space: pre-wrap; }
         <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务&apos;%1&apos; 未能注销。</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务&apos;%1&apos; 未能停止。</translation>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidget</name>
+    <name>RemoteAccessFeaturePlugin</name>
+    <message>
+        <source>Remote view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open a remote view for a computer without interaction.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation>远程控制</translation>
+    </message>
+    <message>
+        <source>Open a remote control window for a computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a hostname or IP address of the host to access:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidget</name>
     <message>
         <source>View live (%1 @ %2)</source>
         <translation>查看桌面(%1 @ %2)</translation>
@@ -1615,7 +2043,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RemoteControlWidgetToolBar</name>
+    <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
         <translation>仅可视</translation>
@@ -1625,16 +2053,12 @@ p, li { white-space: pre-wrap; }
         <translation>远程控制</translation>
     </message>
     <message>
-        <source>Lock student</source>
-        <translation>锁定学生</translation>
-    </message>
-    <message>
-        <source>Unlock student</source>
-        <translation>解锁学生</translation>
+        <source>Send shortcut</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Snapshot</source>
-        <translation>截屏</translation>
+        <translation>屏幕截图</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -1649,6 +2073,38 @@ p, li { white-space: pre-wrap; }
         <translation>退出</translation>
     </message>
     <message>
+        <source>Ctrl+Alt+Del</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Esc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+F4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Win+Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Win</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+Ctrl+F1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Connecting %1</source>
         <translation>正在连接 %1</translation>
     </message>
@@ -1658,37 +2114,224 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RemoteLogonDialog</name>
+    <name>RoomSelectionDialog</name>
     <message>
-        <source>Remote logon</source>
-        <translation>远程登录</translation>
+        <source>Room selection</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>在下面的文本框中输入用户名、密码和域名(可选)。这些信息将用于登录计算机。</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>用户名</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密码</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>域</translation>
+        <source>enter search filter...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RunCommandsDialog</name>
+    <name>RunProgramDialog</name>
     <message>
         <source>Run commands</source>
         <translation>运行命令</translation>
     </message>
     <message>
-        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>请输入要在所选客户机上运行的命令，可以在多行输入不同命令。</translation>
+        <source>Run program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ScreenLockFeaturePlugin</name>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ScreenshotFeaturePlugin</name>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use this function to take a screenshot of selected computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots taken</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshot of %1 computer have been taken successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Take screenshots of computers and save them locally.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>常规</translation>
+    </message>
+    <message>
+        <source>Autostart</source>
+        <translation>自动启动</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>隐藏托盘图标</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>开启服务</translation>
+    </message>
+    <message>
+        <source>Additional arguments</source>
+        <translation>额外的参数</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>已停止</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>停止服务</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>状态：</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>网络</translation>
+    </message>
+    <message>
+        <source>Demo server port</source>
+        <translation>演示服务端口</translation>
+    </message>
+    <message>
+        <source>Feature worker manager port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer control server port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>开启防火墙例外设定</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>只允许本地连接</translation>
+    </message>
+    <message>
+        <source>Internal VNC server port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>正在运行</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceControl</name>
+    <message>
+        <source>Starting %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceControlPlugin</name>
+    <message>
+        <source>register Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>unregister Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>start Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>stop Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>restart Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>query status of Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service is running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>commands for configuring and controlling Veyon Service</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1707,18 +2350,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>SnapshotList</name>
-    <message>
-        <source>Snapshots</source>
-        <translation>屏幕截图</translation>
-    </message>
-    <message>
-        <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>使用这个面板可以方便地管理您的所有屏幕截图。</translation>
-    </message>
-</context>
-<context>
-    <name>Snapshots</name>
+    <name>SnapshotManagementWidget</name>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1755,14 +2387,10 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>SupportDialog</name>
+    <name>SystemTrayIcon</name>
     <message>
-        <source>Support</source>
-        <translation>协助</translation>
-    </message>
-    <message>
-        <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>请输入您要连接电脑的 IP 地址或主机名称。</translation>
+        <source>System tray icon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1777,6 +2405,89 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TextMessageFeaturePlugin</name>
+    <message>
+        <source>Text message</source>
+        <translation>文字消息</translation>
+    </message>
+    <message>
+        <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>来自教师的消息</translation>
+    </message>
+    <message>
+        <source>Send a message to a user</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UltraVncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>开启多层次(半透明)窗口抓取</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>抓取全屏幕(默认每次开启)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>低分辨率(快速模式)</translation>
+    </message>
+    <message>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserConfig</name>
+    <message>
+        <source>No write access</source>
+        <translation>没有写入权限</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserSessionControl</name>
+    <message>
+        <source>User session control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logout user</source>
+        <translation>注销用户</translation>
+    </message>
+    <message>
+        <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonVncConnection</name>
+    <message>
+        <source>VNC authentication failed because of too many authentication tries.</source>
+        <translation>VNC 验证失败，原因为验证次数过多。</translation>
+    </message>
+    <message>
+        <source>VNC authentication failed.</source>
+        <translation>VNC 验证失败</translation>
+    </message>
+    <message>
+        <source>VNC server closed connection.</source>
+        <translation>VNC 服务器已关闭连接。</translation>
+    </message>
+</context>
+<context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
@@ -1784,62 +2495,18 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>clientMenu</name>
+    <name>X11VncConfigurationWidget</name>
     <message>
-        <source>Overview</source>
-        <translation>预览模式</translation>
+        <source>Builtin x11vnc server configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>全屏演示</translation>
+        <source>Custom x11vnc parameters:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Window demo</source>
-        <translation>窗口演示</translation>
-    </message>
-    <message>
-        <source>Locked display</source>
-        <translation>锁定屏幕</translation>
-    </message>
-    <message>
-        <source>View live</source>
-        <translation>屏幕监控</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>远程控制</translation>
-    </message>
-    <message>
-        <source>Let student show demo</source>
-        <translation>学生演示</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>发送消息</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>注销用户</translation>
-    </message>
-    <message>
-        <source>Take a snapshot</source>
-        <translation>屏幕截图</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>开机</translation>
-    </message>
-    <message>
-        <source>Reboot</source>
-        <translation>重启</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>关机</translation>
-    </message>
-    <message>
-        <source>Execute commands</source>
-        <translation>执行命令</translation>
+        <source>Do not use X Damage extension</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
