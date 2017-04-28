@@ -334,7 +334,10 @@ void MainWindow::loadConfigurationPagePlugins()
 		{
 			auto page = configurationPagePluginInterface->createConfigurationPage();
 			ui->configPages->addWidget( page );
-			ui->pageSelector->addItem( new QListWidgetItem( page->windowIcon(), page->windowTitle() ) );
+
+			auto item = new QListWidgetItem( page->windowIcon(), page->windowTitle() );
+			item->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+			ui->pageSelector->addItem( item );
 		}
 	}
 }
