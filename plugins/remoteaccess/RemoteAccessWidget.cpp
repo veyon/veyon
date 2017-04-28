@@ -156,6 +156,12 @@ void RemoteAccessWidgetToolBar::disappear()
 
 
 
+void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
+{
+	m_sendShortcutButton->setVisible( viewOnly == false );
+}
+
+
 
 void RemoteAccessWidgetToolBar::leaveEvent( QEvent *event )
 {
@@ -246,14 +252,6 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 	// we update
 	QTimer::singleShot( 1000, this, SLOT( update() ) );
 }
-
-
-
-void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
-{
-	m_sendShortcutButton->setVisible( viewOnly == false );
-}
-
 
 
 
@@ -364,6 +362,7 @@ void RemoteAccessWidget::toggleFullScreen( bool _on )
 void RemoteAccessWidget::toggleViewOnly( bool viewOnly )
 {
 	m_vncView->setViewOnly( viewOnly );
+	m_toolBar->updateControls( viewOnly );
 	m_toolBar->update();
 }
 

@@ -45,6 +45,7 @@ public:
 public slots:
 	void appear();
 	void disappear();
+	void updateControls( bool viewOnly );
 
 
 protected:
@@ -57,7 +58,6 @@ private slots:
 	void updatePosition();
 	void startConnection();
 	void connectionEstablished();
-	void updateControls( bool viewOnly );
 
 private:
 	RemoteAccessWidget * m_parent;
