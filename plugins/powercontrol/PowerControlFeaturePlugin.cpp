@@ -34,18 +34,18 @@ PowerControlFeaturePlugin::PowerControlFeaturePlugin() :
 					  tr( "Power on" ), QString(),
 					  tr( "Click this button to power on all computers. "
 						  "This way you do not have to power on each computer by hand." ),
-					  ":/preferences-system-power-management.png" ),
+					  ":/powercontrol/preferences-system-power-management.png" ),
 	m_rebootFeature( Feature::Action | Feature::AllComponents,
 					 Feature::Uid( "4f7d98f0-395a-4fff-b968-e49b8d0f748c" ),
 					 tr( "Reboot" ), QString(),
 					 tr( "Click this button to reboot all computers." ),
-					 ":/system-reboot.png" ),
+					 ":/powercontrol/system-reboot.png" ),
 	m_powerDownFeature( Feature::Action | Feature::AllComponents,
 						Feature::Uid( "6f5a27a0-0e2f-496e-afcc-7aae62eede10" ),
 						tr( "Power down" ), QString(),
 						tr( "Click this button to power down all computers. "
 							"This way you do not have to power down each computer by hand." ),
-						":/system-shutdown.png" ),
+						":/powercontrol/system-shutdown.png" ),
 	m_features()
 {
 	m_features += m_powerOnFeature;
