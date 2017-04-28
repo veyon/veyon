@@ -76,6 +76,13 @@ void broadcastWOLPacket( QString macAddress )
 	unsigned char mac[MAC_SIZE];
 	char out_buf[OUTBUF_SIZE];
 
+	if( macAddress.isEmpty() )
+	{
+		return;
+	}
+
+	const auto originalMacAddress = macAddress;
+
 	// remove all possible delimiters
 	macAddress.replace( ':', "" );
 	macAddress.replace( '-', "" );
@@ -90,7 +97,7 @@ void broadcastWOLPacket( QString macAddress )
 				(unsigned int *) &mac[4],
 				(unsigned int *) &mac[5] ) != MAC_SIZE )
 	{
-		qWarning( "PowerControl::broadcastWOLPacket(): invalid MAC address" );
+		qWarning() << "PowerControl::broadcastWOLPacket(): invalid MAC address" << originalMacAddress;
 		return;
 	}
 
