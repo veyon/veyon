@@ -176,7 +176,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 #ifdef QT_TRANSLATIONS_DIR
 	qtTr->load( QString( "qt_%1.qm" ).arg( configuredLocale.name() ), QT_TRANSLATIONS_DIR );
 #else
-	qtTr->load( QString( ":/qt_%1.qm" ).arg( configuredLocale.name() ) );
+	qtTr->load( QString( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
 #endif
 	QCoreApplication::installTranslator( qtTr );
 
