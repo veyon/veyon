@@ -24,6 +24,5 @@
         <file>resources/vcs-normal.png</file>
         <file>resources/vcs-removed.png</file>
         <file>resources/access-rule-ask.png</file>
-        <file>resources/application-x-pem-key.png</file>
     </qresource>
 </RCC>
