@@ -132,8 +132,12 @@ void broadcastWOLPacket( QString macAddress )
 		return;
 	}
 
-	sendto( sock, out_buf, sizeof( out_buf ), 0,
-			(struct sockaddr*) &my_addr, sizeof( my_addr ) );
+	if( sendto( sock, out_buf, sizeof( out_buf ), 0,
+			(struct sockaddr*) &my_addr, sizeof( my_addr ) ) != sizeof( out_buf ) )
+	{
+		qCritical( "PowerControl::broadcastWOLPacket(): error while sending WOL packet (%d)", errno );
+	}
+
 #ifdef VEYON_BUILD_WIN32
 	closesocket( sock );
 	WSACleanup();
