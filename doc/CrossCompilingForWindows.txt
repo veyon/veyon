@@ -17,21 +17,24 @@ Cross compiling Veyon for Windows on Linux
   * cmake
   * nsis
   * tofrodos
+  * default-jdk
   * g++-mingw-w64
   * qt5base-mingw-w64
   * qt5tools-mingw-w64
   * libz-mingw-w64-dev
-  * libjpeg-mingw-w64
+  * libjpeg-turbo-mingw-w64
   * libpng-mingw-w64
   * openssl-mingw-w64
   * openldap-mingw-w64
-  * default-jdk
+  * lzo2-mingw-w64 
+  * qca-mingw-w64
+
 
 - Change into the Veyon source directory and type
 
   mkdir b
   cd b
-  ../build_mingw32
+  ../cmake/build_mingw32
   make win-nsi
 
 - This will build a ready-to-use Win32 installer like the ones you can download
