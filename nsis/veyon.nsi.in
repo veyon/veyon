@@ -45,7 +45,7 @@ RequestExecutionLevel highest
 
 ######################################################################
 
-!include "MUI.nsh"
+!include "MUI2.nsh"
 !include "FileFunc.nsh"
 
 !define MUI_ABORTWARNING
@@ -53,9 +53,11 @@ RequestExecutionLevel highest
 
 !define MUI_WELCOMEFINISHPAGE_BITMAP "@CMAKE_SOURCE_DIR@/nsis/welcome-page.bmp"
 
+!define MUI_ICON "@CMAKE_SOURCE_DIR@/nsis/installer.ico"
+!define MUI_UNICON "@CMAKE_SOURCE_DIR@/nsis/uninstaller.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "@CMAKE_SOURCE_DIR@/nsis/header.bmp"
-
+!define MUI_HEADERIMAGE_RIGHT
 !define MUI_LANGDLL_REGISTRY_ROOT "${REG_ROOT}"
 !define MUI_LANGDLL_REGISTRY_KEY "${UNINSTALL_PATH}"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
