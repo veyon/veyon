@@ -91,9 +91,15 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 
 		previousPluginUid = pluginUid;
 
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), feature.displayName() );
+		connect( action, &QAction::triggered, [=] () { runFeature( feature ); } );
+#else
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  feature.displayName(),
 								  [=] () { runFeature( feature ); } );
+#endif
 	}
 }
 
