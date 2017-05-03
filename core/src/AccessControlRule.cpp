@@ -92,15 +92,15 @@ QJsonObject AccessControlRule::toJson() const
 
 	QJsonArray parameters;
 
-	for( auto it = m_parameters.keyBegin(), end = m_parameters.keyEnd(); it != end; ++it )
+	for( auto it = m_parameters.constBegin(), end = m_parameters.constEnd(); it != end; ++it )
 	{
-		if( isConditionEnabled( *it ) )
+		if( isConditionEnabled( it.key() ) )
 		{
 			QJsonObject parametersObject;
-			parametersObject["Condition"] = *it;
+			parametersObject["Condition"] = it.key();
 			parametersObject["Enabled"] = true;
-			parametersObject["Subject"] = subject( *it );
-			parametersObject["Argument"] = QJsonValue::fromVariant( argument( *it ) );
+			parametersObject["Subject"] = subject( it.key() );
+			parametersObject["Argument"] = QJsonValue::fromVariant( argument( it.key() ) );
 			parameters.append( parametersObject );
 		}
 	}

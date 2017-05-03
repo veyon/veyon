@@ -54,9 +54,9 @@ AccessControlPage::AccessControlPage() :
 	}
 
 	const auto backends = VeyonCore::accessControlDataBackendManager().availableBackends();
-	for( auto it = backends.keyBegin(), end = backends.keyEnd(); it != end; ++it )
+	for( auto it = backends.constBegin(), end = backends.constEnd(); it != end; ++it )
 	{
-		ui->accessControlDataBackend->addItem( backends[*it], *it );
+		ui->accessControlDataBackend->addItem( it.value(), it.key() );
 	}
 
 	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );

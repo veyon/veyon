@@ -191,8 +191,8 @@ void GeneralConfigurationPage::populateNetworkObjectDirectories()
 {
 	const auto directories = NetworkObjectDirectoryManager().availableDirectories();
 
-	for( auto it = directories.keyBegin(), end = directories.keyEnd(); it != end; ++it )
+	for( auto it = directories.constBegin(), end = directories.constEnd(); it != end; ++it )
 	{
-		ui->networkObjectDirectoryPlugin->addItem( directories[*it], *it );
+		ui->networkObjectDirectoryPlugin->addItem( it.value(), it.key() );
 	}
 }

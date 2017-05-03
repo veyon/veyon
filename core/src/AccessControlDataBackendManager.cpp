@@ -62,9 +62,9 @@ QMap<Plugin::Uid, QString> AccessControlDataBackendManager::availableBackends()
 {
 	QMap<Plugin::Uid, QString> items;
 
-	for( auto it = m_backends.keyBegin(), end = m_backends.keyEnd(); it != end; ++it )
+	for( auto it = m_backends.constBegin(), end = m_backends.constEnd(); it != end; ++it )
 	{
-		items[*it] = m_backends[*it]->accessControlDataBackendName();
+		items[it.key()] = it.value()->accessControlDataBackendName();
 	}
 
 	return items;
