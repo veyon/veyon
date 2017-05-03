@@ -124,7 +124,8 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 {
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
-	return m_dataBackend->groupsOfUser( accessingUser ).toSet().intersects( VeyonCore::config().authorizedUserGroups().toSet() );
+	return intersects( m_dataBackend->groupsOfUser( accessingUser ).toSet(),
+						VeyonCore::config().authorizedUserGroups().toSet() );
 }
 
 
@@ -239,7 +240,7 @@ bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QSt
 	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne );
 	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne );
 
-	return userOneGroups.toSet().intersects( userTwoGroups.toSet() );
+	return intersects( userOneGroups.toSet(), userTwoGroups.toSet() );
 }
 
 
@@ -249,7 +250,7 @@ bool AccessControlProvider::isLocatedInSameRoom( const QString &computerOne, con
 	const auto computerOneRooms = m_dataBackend->roomsOfComputer( computerOne );
 	const auto computerTwoRooms = m_dataBackend->roomsOfComputer( computerTwo );
 
-	return computerOneRooms.toSet().intersects( computerTwoRooms.toSet() );
+	return intersects( computerOneRooms.toSet(), computerTwoRooms.toSet() );
 }
 
 

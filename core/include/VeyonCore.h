@@ -44,6 +44,16 @@
 #  define VEYON_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
+template<class A, class B>
+static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
+{
+#if QT_VERSION < 0x050600
+	return QSet<A>( a ).intersect( b ).isEmpty() == false;
+#else
+	return a.intersects( b );
+#endif
+}
+
 #if QT_VERSION < 0x050700
 template <typename T> struct QAddConst { typedef const T Type; };
 template <typename T> constexpr typename QAddConst<T>::Type &qAsConst(T &t) { return t; }
