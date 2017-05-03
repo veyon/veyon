@@ -31,7 +31,7 @@ VariantStream::VariantStream( QIODevice* ioDevice ) :
 	m_ioDevice( ioDevice ),
 	m_socket( nullptr )
 {
-	m_dataStream.setVersion( QDataStream::Qt_5_6 );
+	m_dataStream.setVersion( QDataStream::Qt_5_5 );
 
 	open( QIODevice::ReadWrite | QIODevice::Unbuffered );
 }
@@ -43,7 +43,7 @@ VariantStream::VariantStream( QTcpSocket* socket ) :
 	m_ioDevice( socket ),
 	m_socket( socket )
 {
-	m_dataStream.setVersion( QDataStream::Qt_5_6 );
+	m_dataStream.setVersion( QDataStream::Qt_5_5 );
 
 	open( QIODevice::ReadWrite | QIODevice::Unbuffered );
 }
