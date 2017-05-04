@@ -523,24 +523,6 @@ QStringList LdapDirectory::computerLabMembers(const QString &computerLabName)
 
 
 
-QStringList LdapDirectory::userGroupsNames()
-{
-	return d->queryCommonNames( d->groupsDn,
-								d->userGroupsFilter,
-								d->defaultSearchScope );
-}
-
-
-
-QStringList LdapDirectory::computerGroupsNames()
-{
-	return d->queryCommonNames( d->groupsDn,
-								d->computerGroupsFilter,
-								d->defaultSearchScope );
-}
-
-
-
 bool LdapDirectory::reconnect( const QUrl &url )
 {
 	KLDAP::LdapServer server;

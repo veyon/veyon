@@ -77,8 +77,6 @@ public:
 	QString groupMemberComputerIdentification( const QString& computerDn );
 
 	QStringList computerLabMembers( const QString& computerLabName );
-	QStringList userGroupsNames();
-	QStringList computerGroupsNames();
 
 	QString hostToLdapFormat( const QString& host );
 	QString computerObjectFromHost( const QString& host );
