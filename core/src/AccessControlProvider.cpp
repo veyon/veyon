@@ -188,30 +188,6 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 }
 
 
-/*!
- * \brief Returns whether access for given accessing user from local computer will be denied regardless of other parameters
- */
-bool AccessControlProvider::isAccessFromLocalComputerDenied( QString accessingUser ) const
-{
-	if( VeyonCore::config().isAccessControlRulesProcessingEnabled() == false )
-	{
-		return false;
-	}
-
-	for( const auto& rule : qAsConst( m_accessControlRules ) )
-	{
-		if( rule.action() == AccessControlRule::ActionDeny &&
-				matchConditions( rule, accessingUser, QHostInfo::localHostName(),
-								 QString(), QString(), QStringList() ) )
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
-
 
 bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 												 const QString &groupName ) const
