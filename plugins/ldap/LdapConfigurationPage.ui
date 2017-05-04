@@ -130,7 +130,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="testBind">
+             <widget class="QPushButton" name="testBindInteractively">
               <property name="text">
                <string>Test</string>
               </property>
@@ -773,7 +773,7 @@
   <tabstop>ldapServerPort</tabstop>
   <tabstop>ldapAnonymousBind</tabstop>
   <tabstop>ldapUseBindCredentials</tabstop>
-  <tabstop>testBind</tabstop>
+  <tabstop>testBindInteractively</tabstop>
   <tabstop>ldapBindDn</tabstop>
   <tabstop>ldapBindPassword</tabstop>
   <tabstop>ldapIsFixedBaseDn</tabstop>

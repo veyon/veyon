@@ -46,7 +46,7 @@ public:
 	void applyConfiguration() override;
 
 private slots:
-	bool testBind(bool reportSuccess = true);
+	void testBindInteractively();
 	void testBaseDn();
 	void testNamingContext();
 	void testUserTree();
@@ -68,6 +68,12 @@ private slots:
 	void testCommonAggregations();
 
 private:
+	bool testBindQuietly()
+	{
+		return testBind( true );
+	}
+
+	bool testBind( bool quiet );
 	void reportLdapTreeQueryResult( const QString& name, int count, const QString& errorDescription );
 	void reportLdapObjectQueryResults( const QString &objectsName, const QString& parameterName,
 									   const QStringList &results, const LdapDirectory& directory );

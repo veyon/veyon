@@ -42,7 +42,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration )
 
 #define CONNECT_BUTTON_SLOT(name)	connect( ui->name, &QAbstractButton::clicked, this, &LdapConfigurationPage::name );
 
-	CONNECT_BUTTON_SLOT( testBind );
+	CONNECT_BUTTON_SLOT( testBindInteractively );
 	CONNECT_BUTTON_SLOT( testBaseDn );
 	CONNECT_BUTTON_SLOT( testNamingContext );
 	CONNECT_BUTTON_SLOT( testUserTree );
@@ -103,44 +103,16 @@ void LdapConfigurationPage::applyConfiguration()
 
 
 
-bool LdapConfigurationPage::testBind(bool reportSuccess )
+void LdapConfigurationPage::testBindInteractively()
 {
-	qDebug() << "[TEST][LDAP] Testing bind";
-
-	LdapDirectory ldapDirectory( m_configuration );
-
-	if( ldapDirectory.isConnected() == false )
-	{
-		QMessageBox::critical( this, tr( "LDAP connection failed"),
-							   tr( "Could not connect to the LDAP server. "
-								   "Please check the server parameters. "
-								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
-	}
-	else if( ldapDirectory.isBound() == false )
-	{
-		QMessageBox::critical( this, tr( "LDAP bind failed"),
-							   tr( "Could not bind to the LDAP server. "
-								   "Please check the server parameters "
-								   "and bind credentials. "
-								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
-	}
-	else if( reportSuccess )
-	{
-		QMessageBox::information( this, tr( "LDAP bind successful"),
-								  tr( "Successfully connected to the LDAP "
-									  "server and performed an LDAP bind. "
-									  "The basic LDAP settings are "
-									  "configured correctly." ) );
-	}
-
-	return ldapDirectory.isConnected() && ldapDirectory.isBound();
+	testBind( false );
 }
 
 
 
 void LdapConfigurationPage::testBaseDn()
 {
-	if( testBind( false ) )
+	if( testBindQuietly() )
 	{
 		qDebug() << "[TEST][LDAP] Testing base DN";
 
@@ -168,7 +140,7 @@ void LdapConfigurationPage::testBaseDn()
 
 void LdapConfigurationPage::testNamingContext()
 {
-	if( testBind( false ) )
+	if( testBindQuietly() )
 	{
 		qDebug() << "[TEST][LDAP] Testing naming context";
 
@@ -196,7 +168,7 @@ void LdapConfigurationPage::testNamingContext()
 
 void LdapConfigurationPage::testUserTree()
 {
-	if( testBind( false ) )
+	if( testBindQuietly() )
 	{
 		qDebug() << "[TEST][LDAP] Testing user tree";
 
@@ -213,7 +185,7 @@ void LdapConfigurationPage::testUserTree()
 
 void LdapConfigurationPage::testGroupTree()
 {
-	if( testBind( false ) )
+	if( testBindQuietly() )
 	{
 		qDebug() << "[TEST][LDAP] Testing group tree";
 
@@ -230,7 +202,7 @@ void LdapConfigurationPage::testGroupTree()
 
 void LdapConfigurationPage::testComputerTree()
 {
-	if( testBind( false ) )
+	if( testBindQuietly() )
 	{
 		qDebug() << "[TEST][LDAP] Testing computer tree";
 
@@ -247,7 +219,7 @@ void LdapConfigurationPage::testComputerTree()
 
 void LdapConfigurationPage::testComputerGroupTree()
 {
-	if( testBind( false ) )
+	if( testBindQuietly() )
 	{
 		qDebug() << "[TEST][LDAP] Testing computer group tree";
 
@@ -551,6 +523,42 @@ void LdapConfigurationPage::testCommonAggregations()
 								  tr( "group membership or computer lab attribute" ),
 								  ldapDirectory.commonAggregations( objectOne, objectTwo ), ldapDirectory );
 }
+
+
+
+bool LdapConfigurationPage::testBind( bool quiet )
+{
+	qDebug() << "[TEST][LDAP] Testing bind";
+
+	LdapDirectory ldapDirectory( m_configuration );
+
+	if( ldapDirectory.isConnected() == false )
+	{
+		QMessageBox::critical( this, tr( "LDAP connection failed"),
+							   tr( "Could not connect to the LDAP server. "
+								   "Please check the server parameters. "
+								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+	}
+	else if( ldapDirectory.isBound() == false )
+	{
+		QMessageBox::critical( this, tr( "LDAP bind failed"),
+							   tr( "Could not bind to the LDAP server. "
+								   "Please check the server parameters "
+								   "and bind credentials. "
+								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+	}
+	else if( quiet == false )
+	{
+		QMessageBox::information( this, tr( "LDAP bind successful"),
+								  tr( "Successfully connected to the LDAP "
+									  "server and performed an LDAP bind. "
+									  "The basic LDAP settings are "
+									  "configured correctly." ) );
+	}
+
+	return ldapDirectory.isConnected() && ldapDirectory.isBound();
+}
+
 
 
 
