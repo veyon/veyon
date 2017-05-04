@@ -55,7 +55,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( QString( "%1 Master %2" ).arg( VeyonCore::applicationName() ).arg( VEYON_VERSION ) );
+	setWindowTitle( QString( "%1 Master" ).arg( VeyonCore::applicationName() ) );
 
 	restoreState( QByteArray::fromBase64( m_masterCore.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_masterCore.userConfig().windowGeometry().toUtf8() ) );
