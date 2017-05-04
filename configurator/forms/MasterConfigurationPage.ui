@@ -83,13 +83,20 @@
       <string>User interface &amp;&amp; behaviour</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="onlyCurrentRoomVisible">
+        <property name="text">
+         <string>Only show current room in computer management</string>
+        </property>
+       </widget>
+      </item>
       <item row="5" column="1">
        <widget class="QComboBox" name="computerDoubleClickFeature"/>
       </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QCheckBox" name="localComputerHidden">
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
         <property name="text">
-         <string>Hide local computer in computer management</string>
+         <string>Automatically switch to current room at start</string>
         </property>
        </widget>
       </item>
@@ -103,10 +110,10 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QCheckBox" name="onlyCurrentRoomVisible">
+      <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="localComputerHidden">
         <property name="text">
-         <string>Only show current room in computer management</string>
+         <string>Hide local computer in computer management</string>
         </property>
        </widget>
       </item>
@@ -117,10 +124,10 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
+      <item row="4" column="0" colspan="2">
+       <widget class="QCheckBox" name="emptyRoomsHidden">
         <property name="text">
-         <string>Automatically switch to current room at start</string>
+         <string>Hide empty rooms from computer room management</string>
         </property>
        </widget>
       </item>
@@ -219,7 +226,12 @@
   <tabstop>onlyCurrentRoomVisible</tabstop>
   <tabstop>manualRoomAdditionAllowed</tabstop>
   <tabstop>localComputerHidden</tabstop>
+  <tabstop>emptyRoomsHidden</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
+  <tabstop>allFeaturesListWidget</tabstop>
+  <tabstop>disabledFeaturesListWidget</tabstop>
+  <tabstop>disableFeatureButton</tabstop>
+  <tabstop>enableFeatureButton</tabstop>
  </tabstops>
  <resources>
   <include location="../veyon-configurator.qrc"/>
@@ -232,12 +244,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>347</x>
-     <y>233</y>
+     <x>380</x>
+     <y>343</y>
     </hint>
     <hint type="destinationlabel">
-     <x>347</x>
-     <y>279</y>
+     <x>380</x>
+     <y>389</y>
     </hint>
    </hints>
   </connection>
@@ -280,8 +292,8 @@
    <slot>disableFeature()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>444</x>
-     <y>661</y>
+     <x>461</x>
+     <y>723</y>
     </hint>
     <hint type="destinationlabel">
      <x>444</x>
@@ -296,8 +308,8 @@
    <slot>enableFeature()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>444</x>
-     <y>704</y>
+     <x>461</x>
+     <y>766</y>
     </hint>
     <hint type="destinationlabel">
      <x>444</x>
