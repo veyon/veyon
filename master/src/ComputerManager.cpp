@@ -279,6 +279,8 @@ void ComputerManager::initNetworkObjectLayer()
 	{
 		m_networkObjectFilterProxyModel->setComputerExcludeFilter( QStringList( QHostInfo::localHostName() ) );
 	}
+
+	m_networkObjectFilterProxyModel->setEmptyGroupsExcluded( VeyonCore::config().emptyRoomsHidden() );
 }
 
 
