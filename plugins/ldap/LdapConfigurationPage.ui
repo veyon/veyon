@@ -130,7 +130,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="testLdapBind">
+             <widget class="QPushButton" name="testBind">
               <property name="text">
                <string>Test</string>
               </property>
@@ -152,7 +152,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_20">
           <item row="0" column="2">
-           <widget class="QPushButton" name="testLdapBaseDn">
+           <widget class="QPushButton" name="testBaseDn">
             <property name="text">
              <string>Test</string>
             </property>
@@ -203,7 +203,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="testLdapNamingContext">
+           <widget class="QPushButton" name="testNamingContext">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -253,7 +253,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="testLdapGroupTree">
+           <widget class="QPushButton" name="testGroupTree">
             <property name="text">
              <string>Test</string>
             </property>
@@ -285,7 +285,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="testLdapUserTree">
+           <widget class="QPushButton" name="testUserTree">
             <property name="text">
              <string>Test</string>
             </property>
@@ -317,7 +317,7 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QPushButton" name="testLdapComputerTree">
+           <widget class="QPushButton" name="testComputerTree">
             <property name="text">
              <string>Test</string>
             </property>
@@ -362,7 +362,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_22">
           <item row="2" column="2">
-           <widget class="QPushButton" name="testLdapComputerHostNameAttribute">
+           <widget class="QPushButton" name="testComputerHostNameAttribute">
             <property name="text">
              <string>Test</string>
             </property>
@@ -380,7 +380,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="testLdapUserLoginAttribute">
+           <widget class="QPushButton" name="testUserLoginAttribute">
             <property name="text">
              <string>Test</string>
             </property>
@@ -433,7 +433,7 @@
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QPushButton" name="testLdapComputerMacAddressAttribute">
+           <widget class="QPushButton" name="testComputerMacAddressAttribute">
             <property name="text">
              <string>Test</string>
             </property>
@@ -444,7 +444,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="testLdapGroupMemberAttribute">
+           <widget class="QPushButton" name="testGroupMemberAttribute">
             <property name="text">
              <string>Test</string>
             </property>
@@ -519,7 +519,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="testLdapUserGroupsFilter">
+           <widget class="QPushButton" name="testUserGroupsFilter">
             <property name="text">
              <string>Test</string>
             </property>
@@ -530,7 +530,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="testLdapUsersFilter">
+           <widget class="QPushButton" name="testUsersFilter">
             <property name="text">
              <string>Test</string>
             </property>
@@ -562,7 +562,7 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QPushButton" name="testLdapComputerGroupsFilter">
+           <widget class="QPushButton" name="testComputerGroupsFilter">
             <property name="text">
              <string>Test</string>
             </property>
@@ -634,7 +634,7 @@
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="QPushButton" name="testLdapComputerLabAttribute">
+           <widget class="QPushButton" name="testComputerLabAttribute">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -694,7 +694,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_19">
        <item row="4" column="0">
-        <widget class="QPushButton" name="testLdapCommonAggregations">
+        <widget class="QPushButton" name="testCommonAggregations">
          <property name="text">
           <string>Get common aggregations of two objects</string>
          </property>
@@ -705,7 +705,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="testLdapGroupsOfUser">
+        <widget class="QPushButton" name="testGroupsOfUser">
          <property name="text">
           <string>List all groups of a user</string>
          </property>
@@ -716,7 +716,7 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QPushButton" name="testLdapComputerLabMembers">
+        <widget class="QPushButton" name="testComputerLabMembers">
          <property name="text">
           <string>List all members of a computer lab</string>
          </property>
@@ -740,7 +740,7 @@
         </spacer>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="testLdapGroupsOfComputer">
+        <widget class="QPushButton" name="testGroupsOfComputer">
          <property name="text">
           <string>List all groups of a computer</string>
          </property>
@@ -751,7 +751,7 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="testLdapComputerObjectByIpAddress">
+        <widget class="QPushButton" name="testComputerObjectByIpAddress">
          <property name="text">
           <string>Get computer object by IP address</string>
          </property>
@@ -773,22 +773,22 @@
   <tabstop>ldapServerPort</tabstop>
   <tabstop>ldapAnonymousBind</tabstop>
   <tabstop>ldapUseBindCredentials</tabstop>
-  <tabstop>testLdapBind</tabstop>
+  <tabstop>testBind</tabstop>
   <tabstop>ldapBindDn</tabstop>
   <tabstop>ldapBindPassword</tabstop>
   <tabstop>ldapIsFixedBaseDn</tabstop>
   <tabstop>ldapBaseDn</tabstop>
-  <tabstop>testLdapBaseDn</tabstop>
+  <tabstop>testBaseDn</tabstop>
   <tabstop>ldapQueryNamingContext</tabstop>
   <tabstop>ldapNamingContextAttribute</tabstop>
-  <tabstop>testLdapNamingContext</tabstop>
+  <tabstop>testNamingContext</tabstop>
   <tabstop>ldapUserTree</tabstop>
   <tabstop>ldapGroupTree</tabstop>
   <tabstop>ldapComputerTree</tabstop>
   <tabstop>ldapComputerGroupTree</tabstop>
-  <tabstop>testLdapUserTree</tabstop>
-  <tabstop>testLdapGroupTree</tabstop>
-  <tabstop>testLdapComputerTree</tabstop>
+  <tabstop>testUserTree</tabstop>
+  <tabstop>testGroupTree</tabstop>
+  <tabstop>testComputerTree</tabstop>
   <tabstop>testComputerGroupTree</tabstop>
   <tabstop>ldapRecursiveSearchOperations</tabstop>
   <tabstop>ldapUserLoginAttribute</tabstop>
@@ -796,27 +796,27 @@
   <tabstop>ldapComputerHostNameAttribute</tabstop>
   <tabstop>ldapComputerHostNameAsFQDN</tabstop>
   <tabstop>ldapComputerMacAddressAttribute</tabstop>
-  <tabstop>testLdapUserLoginAttribute</tabstop>
-  <tabstop>testLdapGroupMemberAttribute</tabstop>
-  <tabstop>testLdapComputerHostNameAttribute</tabstop>
-  <tabstop>testLdapComputerMacAddressAttribute</tabstop>
+  <tabstop>testUserLoginAttribute</tabstop>
+  <tabstop>testGroupMemberAttribute</tabstop>
+  <tabstop>testComputerHostNameAttribute</tabstop>
+  <tabstop>testComputerMacAddressAttribute</tabstop>
   <tabstop>ldapUsersFilter</tabstop>
   <tabstop>ldapUserGroupsFilter</tabstop>
   <tabstop>ldapComputerGroupsFilter</tabstop>
-  <tabstop>testLdapUsersFilter</tabstop>
-  <tabstop>testLdapUserGroupsFilter</tabstop>
-  <tabstop>testLdapComputerGroupsFilter</tabstop>
+  <tabstop>testUsersFilter</tabstop>
+  <tabstop>testUserGroupsFilter</tabstop>
+  <tabstop>testComputerGroupsFilter</tabstop>
   <tabstop>ldapIdentifyGroupMembersByDN</tabstop>
   <tabstop>ldapIdentifyGroupMembersByNameAttribute</tabstop>
   <tabstop>ldapComputerLabMembersByGroups</tabstop>
   <tabstop>ldapComputerLabMembersByAttribute</tabstop>
   <tabstop>ldapComputerLabAttribute</tabstop>
-  <tabstop>testLdapComputerLabAttribute</tabstop>
-  <tabstop>testLdapGroupsOfUser</tabstop>
-  <tabstop>testLdapGroupsOfComputer</tabstop>
-  <tabstop>testLdapComputerObjectByIpAddress</tabstop>
-  <tabstop>testLdapComputerLabMembers</tabstop>
-  <tabstop>testLdapCommonAggregations</tabstop>
+  <tabstop>testComputerLabAttribute</tabstop>
+  <tabstop>testGroupsOfUser</tabstop>
+  <tabstop>testGroupsOfComputer</tabstop>
+  <tabstop>testComputerObjectByIpAddress</tabstop>
+  <tabstop>testComputerLabMembers</tabstop>
+  <tabstop>testCommonAggregations</tabstop>
  </tabstops>
  <resources>
   <include location="ldap.qrc"/>
@@ -857,7 +857,7 @@
   <connection>
    <sender>ldapIsFixedBaseDn</sender>
    <signal>toggled(bool)</signal>
-   <receiver>testLdapBaseDn</receiver>
+   <receiver>testBaseDn</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -889,7 +889,7 @@
   <connection>
    <sender>ldapComputerLabMembersByAttribute</sender>
    <signal>toggled(bool)</signal>
-   <receiver>testLdapComputerLabAttribute</receiver>
+   <receiver>testComputerLabAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -937,7 +937,7 @@
   <connection>
    <sender>ldapQueryNamingContext</sender>
    <signal>toggled(bool)</signal>
-   <receiver>testLdapNamingContext</receiver>
+   <receiver>testNamingContext</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

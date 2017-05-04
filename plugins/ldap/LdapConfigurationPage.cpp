@@ -43,30 +43,30 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration )
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
-	CONNECT_BUTTON_SLOT( testLdapBind );
-	CONNECT_BUTTON_SLOT( testLdapBaseDn );
-	CONNECT_BUTTON_SLOT( testLdapNamingContext );
-	CONNECT_BUTTON_SLOT( testLdapUserTree );
-	CONNECT_BUTTON_SLOT( testLdapGroupTree );
-	CONNECT_BUTTON_SLOT( testLdapComputerTree );
+	CONNECT_BUTTON_SLOT( testBind );
+	CONNECT_BUTTON_SLOT( testBaseDn );
+	CONNECT_BUTTON_SLOT( testNamingContext );
+	CONNECT_BUTTON_SLOT( testUserTree );
+	CONNECT_BUTTON_SLOT( testGroupTree );
+	CONNECT_BUTTON_SLOT( testComputerTree );
 	CONNECT_BUTTON_SLOT( testComputerGroupTree );
 
-	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
-	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
-	CONNECT_BUTTON_SLOT( testLdapComputerHostNameAttribute );
-	CONNECT_BUTTON_SLOT( testLdapComputerMacAddressAttribute );
+	CONNECT_BUTTON_SLOT( testUserLoginAttribute );
+	CONNECT_BUTTON_SLOT( testGroupMemberAttribute );
+	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute );
+	CONNECT_BUTTON_SLOT( testComputerMacAddressAttribute );
 
-	CONNECT_BUTTON_SLOT( testLdapUsersFilter );
-	CONNECT_BUTTON_SLOT( testLdapUserGroupsFilter );
-	CONNECT_BUTTON_SLOT( testLdapComputerGroupsFilter );
+	CONNECT_BUTTON_SLOT( testUsersFilter );
+	CONNECT_BUTTON_SLOT( testUserGroupsFilter );
+	CONNECT_BUTTON_SLOT( testComputerGroupsFilter );
 
-	CONNECT_BUTTON_SLOT( testLdapComputerLabAttribute );
+	CONNECT_BUTTON_SLOT( testComputerLabAttribute );
 
-	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
-	CONNECT_BUTTON_SLOT( testLdapGroupsOfComputer );
-	CONNECT_BUTTON_SLOT( testLdapComputerObjectByIpAddress );
-	CONNECT_BUTTON_SLOT( testLdapComputerLabMembers );
-	CONNECT_BUTTON_SLOT( testLdapCommonAggregations );
+	CONNECT_BUTTON_SLOT( testGroupsOfUser );
+	CONNECT_BUTTON_SLOT( testGroupsOfComputer );
+	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress );
+	CONNECT_BUTTON_SLOT( testComputerLabMembers );
+	CONNECT_BUTTON_SLOT( testCommonAggregations );
 }
 
 
@@ -104,7 +104,7 @@ void LdapConfigurationPage::applyConfiguration()
 
 
 
-bool LdapConfigurationPage::testLdapBind(bool reportSuccess )
+bool LdapConfigurationPage::testBind(bool reportSuccess )
 {
 	qDebug() << "[TEST][LDAP] Testing bind";
 
@@ -139,9 +139,9 @@ bool LdapConfigurationPage::testLdapBind(bool reportSuccess )
 
 
 
-void LdapConfigurationPage::testLdapBaseDn()
+void LdapConfigurationPage::testBaseDn()
 {
-	if( testLdapBind( false ) )
+	if( testBind( false ) )
 	{
 		qDebug() << "[TEST][LDAP] Testing base DN";
 
@@ -167,9 +167,9 @@ void LdapConfigurationPage::testLdapBaseDn()
 
 
 
-void LdapConfigurationPage::testLdapNamingContext()
+void LdapConfigurationPage::testNamingContext()
 {
-	if( testLdapBind( false ) )
+	if( testBind( false ) )
 	{
 		qDebug() << "[TEST][LDAP] Testing naming context";
 
@@ -195,9 +195,9 @@ void LdapConfigurationPage::testLdapNamingContext()
 
 
 
-void LdapConfigurationPage::testLdapUserTree()
+void LdapConfigurationPage::testUserTree()
 {
-	if( testLdapBind( false ) )
+	if( testBind( false ) )
 	{
 		qDebug() << "[TEST][LDAP] Testing user tree";
 
@@ -212,9 +212,9 @@ void LdapConfigurationPage::testLdapUserTree()
 
 
 
-void LdapConfigurationPage::testLdapGroupTree()
+void LdapConfigurationPage::testGroupTree()
 {
-	if( testLdapBind( false ) )
+	if( testBind( false ) )
 	{
 		qDebug() << "[TEST][LDAP] Testing group tree";
 
@@ -229,9 +229,9 @@ void LdapConfigurationPage::testLdapGroupTree()
 
 
 
-void LdapConfigurationPage::testLdapComputerTree()
+void LdapConfigurationPage::testComputerTree()
 {
-	if( testLdapBind( false ) )
+	if( testBind( false ) )
 	{
 		qDebug() << "[TEST][LDAP] Testing computer tree";
 
@@ -248,7 +248,7 @@ void LdapConfigurationPage::testLdapComputerTree()
 
 void LdapConfigurationPage::testComputerGroupTree()
 {
-	if( testLdapBind( false ) )
+	if( testBind( false ) )
 	{
 		qDebug() << "[TEST][LDAP] Testing computer group tree";
 
@@ -263,7 +263,7 @@ void LdapConfigurationPage::testComputerGroupTree()
 
 
 
-void LdapConfigurationPage::testLdapUserLoginAttribute()
+void LdapConfigurationPage::testUserLoginAttribute()
 {
 	QString userFilter = QInputDialog::getText( this, tr( "Enter username" ),
 										  tr( "Please enter a user login name (wildcards allowed) which to query:") );
@@ -281,7 +281,7 @@ void LdapConfigurationPage::testLdapUserLoginAttribute()
 
 
 
-void LdapConfigurationPage::testLdapGroupMemberAttribute()
+void LdapConfigurationPage::testGroupMemberAttribute()
 {
 	QString groupFilter = QInputDialog::getText( this, tr( "Enter group name" ),
 										  tr( "Please enter a group name whose members to query:") );
@@ -311,7 +311,7 @@ void LdapConfigurationPage::testLdapGroupMemberAttribute()
 
 
 
-void LdapConfigurationPage::testLdapComputerHostNameAttribute()
+void LdapConfigurationPage::testComputerHostNameAttribute()
 {
 	QString computerName = QInputDialog::getText( this, tr( "Enter computer name" ),
 										  tr( "Please enter a computer host name to query:") );
@@ -348,7 +348,7 @@ void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 
 
 
-void LdapConfigurationPage::testLdapComputerMacAddressAttribute()
+void LdapConfigurationPage::testComputerMacAddressAttribute()
 {
 	QString computerDn = QInputDialog::getText( this, tr( "Enter computer DN" ),
 										  tr( "Please enter the DN of a computer whose MAC address to query:") );
@@ -369,7 +369,7 @@ void LdapConfigurationPage::testLdapComputerMacAddressAttribute()
 
 
 
-void LdapConfigurationPage::testLdapUsersFilter()
+void LdapConfigurationPage::testUsersFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing users filter";
 
@@ -381,7 +381,7 @@ void LdapConfigurationPage::testLdapUsersFilter()
 
 
 
-void LdapConfigurationPage::testLdapUserGroupsFilter()
+void LdapConfigurationPage::testUserGroupsFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing user groups filter";
 
@@ -393,7 +393,7 @@ void LdapConfigurationPage::testLdapUserGroupsFilter()
 
 
 
-void LdapConfigurationPage::testLdapComputerGroupsFilter()
+void LdapConfigurationPage::testComputerGroupsFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing computer groups filter";
 
@@ -405,7 +405,7 @@ void LdapConfigurationPage::testLdapComputerGroupsFilter()
 
 
 
-void LdapConfigurationPage::testLdapComputerLabAttribute()
+void LdapConfigurationPage::testComputerLabAttribute()
 {
 	QString computerLabName = QInputDialog::getText( this, tr( "Enter computer lab name" ),
 										  tr( "Please enter the name of a computer lab (wildcards allowed):") );
@@ -422,7 +422,7 @@ void LdapConfigurationPage::testLdapComputerLabAttribute()
 
 
 
-void LdapConfigurationPage::testLdapGroupsOfUser()
+void LdapConfigurationPage::testGroupsOfUser()
 {
 	QString userName = QInputDialog::getText( this, tr( "Enter username" ),
 										  tr( "Please enter a user login name whose group memberships to query:") );
@@ -451,7 +451,7 @@ void LdapConfigurationPage::testLdapGroupsOfUser()
 
 
 
-void LdapConfigurationPage::testLdapGroupsOfComputer()
+void LdapConfigurationPage::testGroupsOfComputer()
 {
 	QString computerHostName = QInputDialog::getText( this, tr( "Enter host name" ),
 										  tr( "Please enter a computer host name whose group memberships to query:") );
@@ -480,7 +480,7 @@ void LdapConfigurationPage::testLdapGroupsOfComputer()
 
 
 
-void LdapConfigurationPage::testLdapComputerObjectByIpAddress()
+void LdapConfigurationPage::testComputerObjectByIpAddress()
 {
 	QString computerIpAddress = QInputDialog::getText( this, tr( "Enter computer IP address" ),
 										  tr( "Please enter a computer IP address which to resolve to an computer object:") );
@@ -511,7 +511,7 @@ void LdapConfigurationPage::testLdapComputerObjectByIpAddress()
 
 
 
-void LdapConfigurationPage::testLdapComputerLabMembers()
+void LdapConfigurationPage::testComputerLabMembers()
 {
 	QString computerLabName = QInputDialog::getText( this, tr( "Enter computer lab name" ),
 													  tr( "Please enter the name of a computer lab whose members to query:") );
@@ -528,7 +528,7 @@ void LdapConfigurationPage::testLdapComputerLabMembers()
 
 
 
-void LdapConfigurationPage::testLdapCommonAggregations()
+void LdapConfigurationPage::testCommonAggregations()
 {
 	QString objectOne = QInputDialog::getText( this, tr( "Enter first object" ),
 										  tr( "Please enter the distinguished name of the first object:" ) );

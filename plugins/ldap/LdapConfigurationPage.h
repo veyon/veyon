@@ -46,26 +46,26 @@ public:
 	void applyConfiguration() override;
 
 private slots:
-	bool testLdapBind(bool reportSuccess = true);
-	void testLdapBaseDn();
-	void testLdapNamingContext();
-	void testLdapUserTree();
-	void testLdapGroupTree();
-	void testLdapComputerTree();
+	bool testBind(bool reportSuccess = true);
+	void testBaseDn();
+	void testNamingContext();
+	void testUserTree();
+	void testGroupTree();
+	void testComputerTree();
 	void testComputerGroupTree();
-	void testLdapUserLoginAttribute();
-	void testLdapGroupMemberAttribute();
-	void testLdapComputerHostNameAttribute();
-	void testLdapComputerMacAddressAttribute();
-	void testLdapUsersFilter();
-	void testLdapUserGroupsFilter();
-	void testLdapComputerGroupsFilter();
-	void testLdapComputerLabAttribute();
-	void testLdapGroupsOfUser();
-	void testLdapGroupsOfComputer();
-	void testLdapComputerObjectByIpAddress();
-	void testLdapComputerLabMembers();
-	void testLdapCommonAggregations();
+	void testUserLoginAttribute();
+	void testGroupMemberAttribute();
+	void testComputerHostNameAttribute();
+	void testComputerMacAddressAttribute();
+	void testUsersFilter();
+	void testUserGroupsFilter();
+	void testComputerGroupsFilter();
+	void testComputerLabAttribute();
+	void testGroupsOfUser();
+	void testGroupsOfComputer();
+	void testComputerObjectByIpAddress();
+	void testComputerLabMembers();
+	void testCommonAggregations();
 
 private:
 	void reportLdapTreeQueryResult( const QString& name, int count, const QString& errorDescription );
