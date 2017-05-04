@@ -190,7 +190,6 @@ ExecWait '"$INSTDIR\install-interception.exe" /install'
 ExecWait '"$INSTDIR\veyon-service.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 1'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 1'
-ExecWait '"$INSTDIR\veyon-service.exe" -quiet -startservice'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 ${GetParameters} $R0
@@ -198,6 +197,7 @@ ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
   ExecWait '"$INSTDIR\veyon-ctl.exe" config import $R1'
 ${EndIf}
+ExecWait '"$INSTDIR\veyon-service.exe" -quiet -startservice'
 SectionEnd
 
 Section "Veyon Master" SEC_MASTER
