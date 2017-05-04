@@ -86,7 +86,7 @@
       <item row="2" column="0" colspan="2">
        <widget class="QCheckBox" name="onlyCurrentRoomVisible">
         <property name="text">
-         <string>Only show current room in computer management</string>
+         <string>Only show current room in computer room management</string>
         </property>
        </widget>
       </item>
@@ -113,14 +113,14 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Allow adding rooms to computer management manually</string>
+         <string>Allow adding rooms to computer room management manually</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0" colspan="2">
        <widget class="QCheckBox" name="localComputerHidden">
         <property name="text">
-         <string>Hide local computer in computer management</string>
+         <string>Hide local computer in computer room management</string>
         </property>
        </widget>
       </item>
