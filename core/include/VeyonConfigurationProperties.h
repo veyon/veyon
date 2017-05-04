@@ -70,6 +70,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, snapshotDirectory, setSnapshotDirectory, "Snapshots", "Directories" );	\
 
 #define FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, accessControlForMasterEnabled, setAccessControlForMasterEnabled, "AccessControlForMasterEnabled", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, autoSwitchToCurrentRoom, setAutoSwitchToCurrentRoom, "AutoSwitchToCurrentRoom", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, onlyCurrentRoomVisible, setOnlyCurrentRoomVisible, "OnlyCurrentRoomVisible", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, manualRoomAdditionAllowed, setManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master" );	\
