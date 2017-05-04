@@ -12,12 +12,6 @@
         <translation>Übersetzung</translation>
     </message>
     <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
@@ -42,6 +36,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation>Version:</translation>
+    </message>
+    <message>
+        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation>Website:</translation>
     </message>
 </context>
 <context>
@@ -650,10 +656,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Limit log file size</source>
         <translation>Logdateigröße begrenzen</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -1469,6 +1471,30 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Advanced settings</source>
         <translation>Erweiterte Einstellungen</translation>
     </message>
+    <message>
+        <source>(optional if different from group tree)</source>
+        <translation>(optional, wenn anders als Gruppenbaum)</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Computergruppenbaum</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Räume</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room using:</source>
+        <translation>Computer in einem Raum gruppieren über:</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>Computergruppenbaum</translation>
+    </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation>(nur wenn anders als Gruppenbaum)</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1919,6 +1945,26 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Disabled features</source>
         <translation>Deaktivierte Funktionen</translation>
     </message>
+    <message>
+        <source>Only show current room in computer room management</source>
+        <translation>Nur aktuellen Raum in Computerraumverwaltung anzeigen</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms from computer room management</source>
+        <translation>Leere Räume in Computerraumverwaltung ausblenden</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer room management manually</source>
+        <translation>Manuelles Hinzufügen von Räumen zur Computerraumverwaltung erlauben</translation>
+    </message>
+    <message>
+        <source>Hide local computer in computer room management</source>
+        <translation>Lokalen Computer in Computerraumverwaltung ausblenden</translation>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation>Zugriffskontrolle beim Programmstart durchführen</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1951,10 +1997,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Password</source>
         <translation>Passwort</translation>
-    </message>
-    <message>
-        <source>veyon Logon</source>
-        <translation>veyon-Anmeldung</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers in your Veyon network.</source>
