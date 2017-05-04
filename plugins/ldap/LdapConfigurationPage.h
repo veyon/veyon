@@ -52,6 +52,7 @@ private slots:
 	void testLdapUserTree();
 	void testLdapGroupTree();
 	void testLdapComputerTree();
+	void testComputerGroupTree();
 	void testLdapUserLoginAttribute();
 	void testLdapGroupMemberAttribute();
 	void testLdapComputerHostNameAttribute();

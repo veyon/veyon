@@ -245,42 +245,10 @@
           <string>Object trees</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_21">
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_29">
-            <property name="text">
-             <string>Computer tree</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="ldapGroupTree">
-            <property name="placeholderText">
-             <string>e.g. OU=Groups</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>User tree</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="ldapUserTree">
             <property name="placeholderText">
              <string>e.g. OU=Users</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="testLdapComputerTree">
-            <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -295,6 +263,27 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Computer tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="ldapComputerTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Computers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ldapGroupTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Groups</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="2">
            <widget class="QPushButton" name="testLdapUserTree">
             <property name="text">
@@ -306,13 +295,6 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="ldapComputerTree">
-            <property name="placeholderText">
-             <string>e.g. OU=Computers</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_28">
             <property name="text">
@@ -320,10 +302,53 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3">
+          <item row="4" column="0" colspan="3">
            <widget class="QCheckBox" name="ldapRecursiveSearchOperations">
             <property name="text">
              <string>Perform recursive search operations in object trees</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>User tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="testLdapComputerTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="ldapComputerGroupTree">
+            <property name="placeholderText">
+             <string>(optional if different from group tree)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="testComputerGroupTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_40">
+            <property name="text">
+             <string>Computer group tree</string>
             </property>
            </widget>
           </item>
@@ -585,20 +610,13 @@
        <item>
         <widget class="QGroupBox" name="groupBox_13">
          <property name="title">
-          <string>Computer labs</string>
+          <string>Rooms</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_16">
-          <item row="3" column="2">
-           <widget class="QPushButton" name="testLdapComputerLabAttribute">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label_32">
             <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <string>Aggregate computers in a room using:</string>
             </property>
            </widget>
           </item>
@@ -613,6 +631,20 @@
             <attribute name="buttonGroup">
              <string notr="true">computerGroupingGroup</string>
             </attribute>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="testLdapComputerLabAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+            </property>
            </widget>
           </item>
           <item row="3" column="1">
@@ -633,13 +665,6 @@
             <attribute name="buttonGroup">
              <string notr="true">computerGroupingGroup</string>
             </attribute>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="3">
-           <widget class="QLabel" name="label_32">
-            <property name="text">
-             <string>Aggregate computer lab members using:</string>
-            </property>
            </widget>
           </item>
          </layout>
@@ -760,18 +785,20 @@
   <tabstop>ldapUserTree</tabstop>
   <tabstop>ldapGroupTree</tabstop>
   <tabstop>ldapComputerTree</tabstop>
+  <tabstop>ldapComputerGroupTree</tabstop>
   <tabstop>testLdapUserTree</tabstop>
   <tabstop>testLdapGroupTree</tabstop>
   <tabstop>testLdapComputerTree</tabstop>
+  <tabstop>testComputerGroupTree</tabstop>
   <tabstop>ldapRecursiveSearchOperations</tabstop>
   <tabstop>ldapUserLoginAttribute</tabstop>
   <tabstop>ldapGroupMemberAttribute</tabstop>
   <tabstop>ldapComputerHostNameAttribute</tabstop>
+  <tabstop>ldapComputerHostNameAsFQDN</tabstop>
+  <tabstop>ldapComputerMacAddressAttribute</tabstop>
   <tabstop>testLdapUserLoginAttribute</tabstop>
   <tabstop>testLdapGroupMemberAttribute</tabstop>
   <tabstop>testLdapComputerHostNameAttribute</tabstop>
-  <tabstop>ldapComputerHostNameAsFQDN</tabstop>
-  <tabstop>ldapComputerMacAddressAttribute</tabstop>
   <tabstop>testLdapComputerMacAddressAttribute</tabstop>
   <tabstop>ldapUsersFilter</tabstop>
   <tabstop>ldapUserGroupsFilter</tabstop>

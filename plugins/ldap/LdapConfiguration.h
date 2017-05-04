@@ -39,6 +39,7 @@
 	OP( LdapConfiguration, m_configuration, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, ldapComputerGroupTree, setLdapComputerGroupTree, "ComputerGroupTree", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
@@ -73,6 +74,7 @@ public slots:
 	void setLdapUserTree( const QString& );
 	void setLdapGroupTree( const QString& );
 	void setLdapComputerTree( const QString& );
+	void setLdapComputerGroupTree( const QString& );
 	void setLdapRecursiveSearchOperations( bool );
 	void setLdapUserLoginAttribute( const QString& );
 	void setLdapGroupMemberAttribute( const QString& );

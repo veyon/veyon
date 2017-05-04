@@ -168,6 +168,7 @@ public:
 	QString usersDn;
 	QString groupsDn;
 	QString computersDn;
+	QString computerGroupsDn;
 
 	KLDAP::LdapUrl::Scope defaultSearchScope;
 
@@ -340,7 +341,7 @@ QStringList LdapDirectory::computers(const QString &filterValue)
 
 QStringList LdapDirectory::computerGroups(const QString &filterValue)
 {
-	return d->queryDistinguishedNames( d->groupsDn,
+	return d->queryDistinguishedNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 									   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
 									   d->defaultSearchScope );
 }
@@ -360,7 +361,7 @@ QStringList LdapDirectory::computerLabs(const QString &filterValue)
 	}
 	else
 	{
-		computerLabs = d->queryAttributes( d->groupsDn, "cn",
+		computerLabs = d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn, "cn",
 											constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
 											d->defaultSearchScope );
 	}
@@ -396,7 +397,7 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 {
 	QString computerId = groupMemberComputerIdentification( computerDn );
 
-	return d->queryDistinguishedNames( d->groupsDn,
+	return d->queryDistinguishedNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 									   constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
 									   d->defaultSearchScope );
 }
@@ -412,7 +413,7 @@ QStringList LdapDirectory::computerLabsOfComputer(const QString &computerDn)
 
 	QString computerId = groupMemberComputerIdentification( computerDn );
 
-	return d->queryCommonNames( d->groupsDn,
+	return d->queryCommonNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 								constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
 								d->defaultSearchScope );
 }
@@ -611,6 +612,14 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->usersDn = m_configuration.ldapUserTree() + "," + d->baseDn;
 	d->groupsDn = m_configuration.ldapGroupTree() + "," + d->baseDn;
 	d->computersDn = m_configuration.ldapComputerTree() + "," + d->baseDn;
+	if( m_configuration.ldapComputerGroupTree().isEmpty() == false )
+	{
+		d->computerGroupsDn = m_configuration.ldapComputerGroupTree() + "," + d->baseDn;
+	}
+	else
+	{
+		d->computerGroupsDn.clear();
+	}
 
 	if( m_configuration.ldapRecursiveSearchOperations() )
 	{

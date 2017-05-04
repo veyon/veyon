@@ -49,6 +49,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration )
 	CONNECT_BUTTON_SLOT( testLdapUserTree );
 	CONNECT_BUTTON_SLOT( testLdapGroupTree );
 	CONNECT_BUTTON_SLOT( testLdapComputerTree );
+	CONNECT_BUTTON_SLOT( testComputerGroupTree );
 
 	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
 	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
@@ -240,6 +241,23 @@ void LdapConfigurationPage::testLdapComputerTree()
 		int count = ldapDirectory.computers().count();
 
 		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
+
+
+
+void LdapConfigurationPage::testComputerGroupTree()
+{
+	if( testLdapBind( false ) )
+	{
+		qDebug() << "[TEST][LDAP] Testing computer group tree";
+
+		LdapDirectory ldapDirectory( m_configuration );
+		ldapDirectory.disableAttributes();
+		ldapDirectory.disableFilters();
+		int count = ldapDirectory.computerGroups().count();
+
+		reportLdapTreeQueryResult( tr( "computer group tree" ), count, ldapDirectory.ldapErrorDescription() );
 	}
 }
 
