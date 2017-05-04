@@ -99,7 +99,7 @@
       <attribute name="title">
        <string>About</string>
       </attribute>
-      <layout class="QGridLayout">
+      <layout class="QGridLayout" columnstretch="0,1">
        <property name="leftMargin">
         <number>24</number>
        </property>
@@ -115,26 +115,21 @@
        <property name="verticalSpacing">
         <number>16</number>
        </property>
-       <item row="0" column="0">
+       <item row="2" column="1">
+        <widget class="QLabel" name="versionLabel">
+         <property name="text">
+          <string notr="true">0.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Veyon - Virtual Eye On Networks
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</string>
+          <string notr="true">Veyon - Virtual Eye On Networks</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string notr="true">&lt;a href=&quot;http://github.com/veyon/veyon&quot;&gt;http://veyon.io&lt;/a&gt;</string>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
+       <item row="6" column="0" colspan="2">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -146,6 +141,37 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</string>
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Version:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Website:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string notr="true">&lt;a href=&quot;http://github.com/veyon/veyon&quot;&gt;http://veyon.io&lt;/a&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

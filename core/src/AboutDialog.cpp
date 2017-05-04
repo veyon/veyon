@@ -36,6 +36,10 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
+	setWindowTitle( QString( "About %1 %2" ).arg( VeyonCore::applicationName(), VEYON_VERSION ) );
+
+	ui->versionLabel->setText( VEYON_VERSION );
+
 	QFile authors( ":/CONTRIBUTORS" );
 	authors.open( QFile::ReadOnly );
 	ui->authors->setPlainText( authors.readAll() );
