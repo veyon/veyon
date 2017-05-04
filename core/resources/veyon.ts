@@ -4,21 +4,11 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -37,6 +27,24 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
     </message>
     <message>
         <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -652,10 +660,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Clear all log files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -705,6 +709,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
     </message>
     <message>
         <source>Could not remove all log files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate log files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>x</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1437,6 +1453,30 @@ The public key part is used on the client computers to verify that any incoming 
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room using:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(optional if different from group tree)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1815,6 +1855,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -1874,6 +1922,26 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Disabled features</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Only show current room in computer room management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide empty rooms from computer room management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer room management manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local computer in computer room management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1900,10 +1968,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>veyon Logon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1913,6 +1977,18 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Please enter your username and password in order to access computers in your Veyon network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2026,21 +2102,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RemoteAccessWidget</name>
-    <message>
-        <source>View live (%1 @ %2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>unknown user</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2424,10 +2485,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
-    <message>
-        <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
         <translation type="unfinished"></translation>
