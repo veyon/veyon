@@ -23,6 +23,7 @@
  */
 
 #include <QKeyEvent>
+#include <QHostAddress>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSplitter>
@@ -196,9 +197,14 @@ bool MainWindow::initAuthentication()
 
 bool MainWindow::initAccessControl()
 {
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
+	if( VeyonCore::config().accessControlForMasterEnabled() &&
+			VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
 	{
-		if( AccessControlProvider().isAccessFromLocalComputerDenied( VeyonCore::authenticationCredentials().logonUsername() ) )
+		const auto accessControlResult =
+				AccessControlProvider().checkAccess( VeyonCore::authenticationCredentials().logonUsername(),
+													 QHostAddress( QHostAddress::LocalHost ).toString(),
+													 QStringList() );
+		if( accessControlResult == AccessControlProvider::AccessDeny )
 		{
 			qWarning() << "MainWindow::initAccessControl(): user"
 					   << VeyonCore::authenticationCredentials().logonUsername()
