@@ -82,6 +82,7 @@ public slots:
 	void setOnlyCurrentRoomVisible( bool );
 	void setManualRoomAdditionAllowed( bool );
 	void setLocalComputerHidden( bool );
+	void setEmptyRoomsHidden( bool );
 	void setComputerDoubleClickFeature( const QUuid& );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
