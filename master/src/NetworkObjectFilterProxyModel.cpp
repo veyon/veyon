@@ -27,7 +27,8 @@
 NetworkObjectFilterProxyModel::NetworkObjectFilterProxyModel( QObject* parent ) :
 	QSortFilterProxyModel( parent ),
 	m_groupList(),
-	m_computerExcludeList()
+	m_computerExcludeList(),
+	m_excludeEmptyGroups( false )
 {
 }
 
@@ -63,6 +64,11 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 		return m_computerExcludeList.contains(
 					sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ) ).toString(),
 					Qt::CaseInsensitive ) == false;
+	}
+
+	if( m_excludeEmptyGroups && sourceModel()->rowCount( sourceModel()->index( sourceRow, 0 ) ) == 0 )
+	{
+		return false;
 	}
 
 	if( m_groupList.isEmpty() )

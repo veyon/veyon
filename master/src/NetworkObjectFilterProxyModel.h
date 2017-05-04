@@ -34,6 +34,10 @@ public:
 
 	void setGroupFilter( const QStringList& groupList );
 	void setComputerExcludeFilter( const QStringList& computerExcludeList );
+	void setEmptyGroupsExcluded( bool enabled )
+	{
+		m_excludeEmptyGroups = enabled;
+	}
 
 protected:
 	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
@@ -41,6 +45,7 @@ protected:
 private:
 	QStringList m_groupList;
 	QStringList m_computerExcludeList;
+	bool m_excludeEmptyGroups;
 
 };
 
