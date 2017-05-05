@@ -195,7 +195,11 @@ WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
-  ExecWait '"$INSTDIR\veyon-ctl.exe" config import $R1'
+  ClearErrors
+  ExecWait '"$INSTDIR\veyon-ctl.exe" config import $R1' $0
+  ${If} $0 != 0
+	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
+  ${EndIf}
 ${EndIf}
 ExecWait '"$INSTDIR\veyon-service.exe" -quiet -startservice'
 SectionEnd
