@@ -598,8 +598,7 @@ void LdapConfigurationPage::reportLdapObjectQueryResults( const QString &objects
 		QMessageBox::information( this, tr( "LDAP %1 test successful" ).arg( parameterName ),
 						tr( "%1 %2 have been queried successfully:\n\n%3" ).
 								  arg( results.count() ).
-								  arg( objectsName ).
-								  arg( formatResultsString( results ) ) );
+								  arg( objectsName, formatResultsString( results ) ) );
 	}
 }
 

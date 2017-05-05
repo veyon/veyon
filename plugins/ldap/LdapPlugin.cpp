@@ -220,7 +220,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 		return InvalidArguments;
 	}
 
-	for( auto result : results )
+	for( const auto& result : qAsConst( results ) )
 	{
 		printf( "%s\n", qUtf8Printable( result ) );
 	}

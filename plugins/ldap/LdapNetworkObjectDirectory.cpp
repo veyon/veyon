@@ -55,13 +55,12 @@ QList<NetworkObject> LdapNetworkObjectDirectory::objects(const NetworkObject &pa
 
 void LdapNetworkObjectDirectory::update()
 {
-	const NetworkObject rootObject( NetworkObject::Root );
-
 	LdapDirectory ldapDirectory( m_configuration );
 
-	QStringList computerLabs = ldapDirectory.computerLabs();
+	const auto computerLabs = ldapDirectory.computerLabs();
+	const NetworkObject rootObject( NetworkObject::Root );
 
-	for( auto computerLab : computerLabs )
+	for( const auto& computerLab : qAsConst( computerLabs ) )
 	{
 		NetworkObject computerLabObject( NetworkObject::Group, computerLab );
 
@@ -103,7 +102,7 @@ void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory
 
 	bool hasMacAddressAttribute = ( m_configuration.ldapComputerMacAddressAttribute().count() > 0 );
 
-	for( auto computer : computers )
+	for( const auto& computer : qAsConst( computers ) )
 	{
 		QString computerHostName = ldapDirectory.computerHostName( computer );
 		if( computerHostName.isEmpty() )

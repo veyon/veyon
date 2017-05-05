@@ -77,18 +77,20 @@ public:
 
 					// match attribute name from result with requested attribute name in order
 					// to keep result aggregation below case-insensitive
-					for( auto a : operation.object().attributes().keys() )
+					const auto attributes = operation.object().attributes();
+					for( auto it = attributes.constBegin(), end = attributes.constEnd(); it != end; ++it )
 					{
-						if( a.toLower() == realAttributeName )
+						if( it.key().toLower() == realAttributeName )
 						{
-							realAttributeName = a;
+							realAttributeName = it.key();
 							break;
 						}
 					}
 				}
 
 				// convert result list from type QList<QByteArray> to QStringList
-				for( auto value : operation.object().values( realAttributeName ) )
+				const auto values = operation.object().values( realAttributeName );
+				for( const auto& value : values )
 				{
 					entries += value;
 				}
@@ -267,7 +269,10 @@ QString LdapDirectory::queryNamingContext()
 
 QString LdapDirectory::toRelativeDn( QString fullDn )
 {
-	if( fullDn.toLower().endsWith( QLatin1Char( ',' ) + d->baseDn.toLower() ) &&
+	const auto fullDnLower = fullDn.toLower();
+	const auto baseDnLower = d->baseDn.toLower();
+
+	if( fullDnLower.endsWith( QLatin1Char( ',' ) + baseDnLower ) &&
 			fullDn.length() > d->baseDn.length()+1 )
 	{
 		// cut off comma and base DN
@@ -289,7 +294,7 @@ QStringList LdapDirectory::toRelativeDnList( const QStringList &fullDnList )
 {
 	QStringList relativeDnList;
 
-	for( auto fullDn : fullDnList )
+	for( const auto& fullDn : fullDnList )
 	{
 		relativeDnList += toRelativeDn( fullDn );
 	}
@@ -427,19 +432,18 @@ QStringList LdapDirectory::computerLabsOfComputer(const QString &computerDn)
  */
 QStringList LdapDirectory::commonAggregations(const QString &objectOne, const QString &objectTwo)
 {
-	QStringList commoncomputerLabs;
+	QStringList commonComputerLabs;
 
 	if( d->computerLabMembersByAttribute )
 	{
-		QStringList computerLabsOfObjectOne = d->queryAttributes( objectOne, d->computerLabAttribute );
-		QStringList computerLabsOfObjectTwo = d->queryAttributes( objectTwo, d->computerLabAttribute );
+		auto computerLabsOfObjectOne = d->queryAttributes( objectOne, d->computerLabAttribute ).toSet();
+		const auto computerLabsOfObjectTwo = d->queryAttributes( objectTwo, d->computerLabAttribute ).toSet();
 
 		// get intersection of computer lab list of both objects
-		commoncomputerLabs = computerLabsOfObjectOne.toSet().intersect(
-					computerLabsOfObjectTwo.toSet() ).toList();
+		commonComputerLabs = computerLabsOfObjectOne.intersect( computerLabsOfObjectTwo ).toList();
 	}
 
-	return commoncomputerLabs +
+	return commonComputerLabs +
 			d->queryDistinguishedNames( d->groupsDn,
 										QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ),
 										d->defaultSearchScope );
@@ -646,7 +650,7 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 		}
 		else
 		{
-			queryFilter = QString( "(%1=%2)" ).arg( filterAttribute ).arg( filterValue );
+			queryFilter = QString( "(%1=%2)" ).arg( filterAttribute, filterValue );
 		}
 	}
 
@@ -658,7 +662,7 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 		}
 		else
 		{
-			queryFilter = QString( "(&(%1)%2)" ).arg( extraFilter ).arg( queryFilter );
+			queryFilter = QString( "(&(%1)%2)" ).arg( extraFilter, queryFilter );
 		}
 	}
 
@@ -683,7 +687,11 @@ QString LdapDirectory::hostToLdapFormat(const QString &host)
 			return QString();
 		}
 
-		hostAddress = hostInfo.addresses().first();
+#if QT_VERSION < 0x050600
+		hostAddress = hostInfo.addresses().value( 0 );
+#else
+		hostAddress = hostInfo.addresses().constFirst();
+#endif
 		qDebug() << "LdapDirectory::hostToLdapFormat(): no valid IP address given, resolved IP address of host"
 				 << host << "to" << hostAddress.toString();
 	}
