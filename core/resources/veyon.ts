@@ -20,12 +20,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Veyon - Virtual Eye On Networks
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contributors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -50,10 +44,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AccessControlPage</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Computer access control</source>
         <translation type="unfinished"></translation>
@@ -312,10 +302,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Authentication methods</source>
         <translation type="unfinished"></translation>
     </message>
@@ -460,13 +446,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>ComputerMonitoringView</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
@@ -506,6 +485,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Configure Veyon at command line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -554,15 +545,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Never for this session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always for this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1078,10 +1069,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer labs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Dedicated computer groups</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1091,10 +1078,6 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Common attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Aggregate computer lab members using:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1611,10 +1594,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Snapshots</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1859,13 +1838,13 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Directories</source>
         <translation type="unfinished"></translation>
@@ -1879,23 +1858,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Snapshots</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>User interface &amp;&amp; behaviour</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer management manually</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Only show current room in computer management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1936,6 +1899,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Perform access control at program start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2093,11 +2060,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter a hostname or IP address of the host to access:</source>
+        <source>Remote view or control a computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Remote view or control a computer</source>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2113,10 +2080,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2171,6 +2134,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Connected.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
@@ -2218,6 +2185,21 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
+    <name>Screenshot</name>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
@@ -2241,11 +2223,38 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
-    <name>ServiceConfigurationPage</name>
+    <name>ScreenshotManagementView</name>
     <message>
-        <source>Form</source>
+        <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
         <translation type="unfinished"></translation>
@@ -2390,55 +2399,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>commands for configuring and controlling Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Snapshot</name>
-    <message>
-        <source>unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SnapshotManagementWidget</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
