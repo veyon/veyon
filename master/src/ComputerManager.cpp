@@ -389,7 +389,7 @@ ComputerList ComputerManager::getComputersInRoom( const QString& roomName, const
 			computers += getComputersInRoom( roomName, entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
+			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
 								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
@@ -428,7 +428,7 @@ ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 			computers += getCheckedComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
-			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>(),
+			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
 								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
@@ -501,7 +501,7 @@ QModelIndex ComputerManager::findNetworkObject( const NetworkObject::Uid& networ
 		}
 		else if( objectType == NetworkObject::Host )
 		{
-			if( model->data( entryIndex, NetworkObjectModel::UidRole ).value<NetworkObject::Uid>() == networkObjectUid )
+			if( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid() == networkObjectUid )
 			{
 				return entryIndex;
 			}
