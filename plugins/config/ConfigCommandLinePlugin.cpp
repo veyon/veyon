@@ -23,6 +23,7 @@
  */
 
 #include <QFile>
+#include <QFileInfo>
 #include <QJsonDocument>
 
 #include "Configuration/JsonStore.h"
@@ -101,6 +102,11 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( co
 	if( fileName.isEmpty() || QFile( fileName ).exists() == false )
 	{
 		return operationError( tr( "Please specify an existing configuration file to import." ) );
+	}
+
+	if( QFileInfo( fileName ).isReadable() == false )
+	{
+		return operationError( tr( "Configuration file is not readable." ) );
 	}
 
 	Configuration::JsonStore xs( Configuration::JsonStore::System, fileName );
