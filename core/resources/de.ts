@@ -24,14 +24,6 @@
         <translation>Über Veyon</translation>
     </message>
     <message>
-        <source>Veyon - Virtual Eye On Networks
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Veyon - Virtual Eye On Networks
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -52,10 +44,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 </context>
 <context>
     <name>AccessControlPage</name>
-    <message>
-        <source>Form</source>
-        <translation></translation>
-    </message>
     <message>
         <source>Computer access control</source>
         <translation>Computerzugriffskontrolle</translation>
@@ -314,10 +302,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Authentication methods</source>
         <translation>Authentifizierungsmethoden</translation>
     </message>
@@ -450,7 +434,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation>Computername;Rechnername;Benutzer</translation>
+        <translation>Computername;Hostname;Benutzer</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -459,13 +443,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
         <translation>Es wurde kein Standard-Netzwerkobjektverzeichnis-Plugin gefunden. Bitte überprüfen Sie Ihre Installation oder stellen ein anderes Netzwerkobjektverzeichnis-Backend mit Hilfe des %1 Configurators ein.</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerMonitoringView</name>
-    <message>
-        <source>Form</source>
-        <translation></translation>
     </message>
 </context>
 <context>
@@ -510,6 +487,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Configure Veyon at command line</source>
         <translation>Veyon auf der Kommandozeile konfigurieren</translation>
     </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Ausgabedatei ist nicht schreibbar!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Ausgabeverzeichnis ist nicht schreibbar!</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Konfigurationsdatei ist nicht lesbar!</translation>
+    </message>
 </context>
 <context>
     <name>DemoClient</name>
@@ -552,10 +541,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Arbeitsflächenzugriff bestätigen</translation>
     </message>
     <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Der Nutzer %1 am Rechner %2 möchte auf Ihre Arbeitsfläche zugreifen. Wollen Sie ihm Zugriff gewähren?</translation>
-    </message>
-    <message>
         <source>Never for this session</source>
         <translation>Nie für diese Sitzung</translation>
     </message>
@@ -566,6 +551,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Desktop access dialog</source>
         <translation>Desktopzugriffsdialog</translation>
+    </message>
+    <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>Der Benutzer %1 am Computer %2 möchte auf Ihre Arbeitsfläche zugreifen. Möchten Sie den Zugriff erlauben?</translation>
     </message>
 </context>
 <context>
@@ -1064,10 +1053,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Konfiguriertes Attribut für Benutzer-Login oder Computername (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Computer labs</source>
-        <translation>Computerräume</translation>
-    </message>
-    <message>
         <source>Dedicated computer groups</source>
         <translation>Dedizierte Computergruppen</translation>
     </message>
@@ -1078,10 +1063,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Common attribute</source>
         <translation>Gemeinsames Attribut</translation>
-    </message>
-    <message>
-        <source>Aggregate computer lab members using:</source>
-        <translation>Computerraummitglieder gruppieren über:</translation>
     </message>
     <message>
         <source>Functionality tests</source>
@@ -1241,7 +1222,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Sie haben eingestellt, dass Computernamen als einfache Rechnernamen gespeichert sind, haben aber einen Computername mit Domain eingegeben.</translation>
+        <translation>Sie haben eingestellt, dass Computerhostnamen als einfache Hostnamen gespeichert sind, haben aber einen Computername mit Domain eingegeben.</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -1345,7 +1326,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Host name lookup failed</source>
-        <translation>Auflösung des Rechnernamens fehlgeschlagen</translation>
+        <translation>Auflösung des Hostnamens fehlgeschlagen</translation>
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
@@ -1472,10 +1453,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Erweiterte Einstellungen</translation>
     </message>
     <message>
-        <source>(optional if different from group tree)</source>
-        <translation>(optional, wenn anders als Gruppenbaum)</translation>
-    </message>
-    <message>
         <source>Computer group tree</source>
         <translation>Computergruppenbaum</translation>
     </message>
@@ -1542,7 +1519,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Rechneradresse/IP</translation>
+        <translation>Hostadresse/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -1623,10 +1600,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Authentication</source>
         <translation>Authentifizierung</translation>
-    </message>
-    <message>
-        <source>Snapshots</source>
-        <translation>Schnappschüsse</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1886,13 +1859,13 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
         <translation>Gemäß der lokalen Konfiguration sind Sie nicht berechtigt, auf Computer im Netzwerk zuzugreifen. Bitte melden Sie sich mit einem anderen Konto an oder lassen Ihren Systemadministrator die lokale Konfiguration überprüfen.</translation>
     </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Bildschirmfotos</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
-    <message>
-        <source>Form</source>
-        <translation></translation>
-    </message>
     <message>
         <source>Directories</source>
         <translation>Verzeichnisse</translation>
@@ -1906,28 +1879,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Benutzerkonfiguration</translation>
     </message>
     <message>
-        <source>Snapshots</source>
-        <translation>Schnappschüsse</translation>
-    </message>
-    <message>
         <source>User interface &amp;&amp; behaviour</source>
         <translation>Benutzeroberfläche &amp;&amp; Verhalten</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
         <translation>Funktion bei Doppelklick:</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer management manually</source>
-        <translation>Manuelles Hinzufügen von Räumen zur Computerverwaltung erlauben</translation>
-    </message>
-    <message>
-        <source>Only show current room in computer management</source>
-        <translation>Nur aktuellen Raum in Computerverwaltung anzeigen</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer management</source>
-        <translation>Lokalen Computer in Computerverwaltung ausblenden</translation>
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
@@ -1964,6 +1921,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Perform access control at program start</source>
         <translation>Zugriffskontrolle beim Programmstart durchführen</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Bildschirmfotos</translation>
     </message>
 </context>
 <context>
@@ -2043,7 +2004,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Rechner ein-/ausschalten oder neustarten</translation>
+        <translation>Computer ein-/ausschalten oder neustarten</translation>
     </message>
 </context>
 <context>
@@ -2124,8 +2085,8 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Fernzugriff</translation>
     </message>
     <message>
-        <source>Please enter a hostname or IP address of the host to access:</source>
-        <translation>Bitte geben Sie den Rechnername oder IP-Adresse des Rechners ein, auf den zugegriffen werden soll:</translation>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation>Bitte geben Sie den Hostnamen oder IP-Adresse des Computers ein, auf den Sie zugreifen möchten:</translation>
     </message>
 </context>
 <context>
@@ -2137,10 +2098,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Remote control</source>
         <translation>Fernsteuern</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Schnappschuss</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2198,6 +2155,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Alt+Ctrl+F1</source>
         <translation>Alt+Strg+F1</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Bildschirmfoto</translation>
+    </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
@@ -2245,6 +2206,21 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
 </context>
 <context>
+    <name>Screenshot</name>
+    <message>
+        <source>unknown</source>
+        <translation>unbekannt</translation>
+    </message>
+    <message>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation>Es konnte kein Bildschirmfoto erstellt werden, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Bildschirmfoto</translation>
+    </message>
+</context>
+<context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
@@ -2268,11 +2244,38 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
 </context>
 <context>
-    <name>ServiceConfigurationPage</name>
+    <name>ScreenshotManagementView</name>
     <message>
-        <source>Form</source>
-        <translation></translation>
+        <source>User:</source>
+        <translation>Benutzer:</translation>
     </message>
+    <message>
+        <source>Date:</source>
+        <translation>Datum:</translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation>Zeit:</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Anzeigen</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Hier sind alle Bildschirmfotos aufgelistet, die Sie erstellt haben. Sie können Bildschirmfotos erstellen, indem Sie den Eintrag &quot;Bildschirmfoto&quot; im Kontextmenü eines Computers anklicken. Die Bildschirmfotos können mit Hilfe der unterhalb befindlichen Schaltflächen verwaltet werden.</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Computer:</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
         <translation>Allgemein</translation>
@@ -2327,7 +2330,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Nur Verbindungen vom lokalen Rechner erlauben</translation>
+        <translation>Nur Verbindungen vom lokalen Computer erlauben</translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
@@ -2418,55 +2421,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>commands for configuring and controlling Veyon Service</source>
         <translation>Befehle zur Konfiguration und Steuerung des Veyon-Diensts</translation>
-    </message>
-</context>
-<context>
-    <name>Snapshot</name>
-    <message>
-        <source>unknown</source>
-        <translation>unbekannt</translation>
-    </message>
-    <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Konnte keinen Schnappschuss erstellen, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Schnappschuss</translation>
-    </message>
-</context>
-<context>
-    <name>SnapshotManagementWidget</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier sind alle Schnappschüsse aufgelistet, die Sie erstellt haben. Sie können Schnappschüsse erstellen, indem Sie den entsprechenden Eintrag im Kontextmenü eines Client-Fenster anklicken. Diese Schnappschüsse können mit Hilfe der unterhalb befindlichen Buttons verwaltet werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation>Benutzer:</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>Rechner:</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation>Datum:</translation>
-    </message>
-    <message>
-        <source>Time:</source>
-        <translation>Zeit:</translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation>Anzeigen</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Löschen</translation>
     </message>
 </context>
 <context>
