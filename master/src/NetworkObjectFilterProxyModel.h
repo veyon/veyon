@@ -29,6 +29,7 @@
 
 class NetworkObjectFilterProxyModel : public QSortFilterProxyModel
 {
+	Q_OBJECT
 public:
 	NetworkObjectFilterProxyModel( QObject* parent );
 
