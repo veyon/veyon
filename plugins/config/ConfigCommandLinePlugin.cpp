@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QJsonDocument>
@@ -126,6 +127,17 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_export( co
 	if( fileName.isEmpty() )
 	{
 		return operationError( tr( "Please specify a valid filename for the configuration export." ) );
+	}
+
+	QFileInfo fileInfo( fileName );
+	if( fileInfo.exists() && fileInfo.isWritable() == false )
+	{
+		return operationError( tr( "Output file is not writable!" ) );
+	}
+
+	if( fileInfo.exists() == false && QFileInfo( fileInfo.dir().path() ).isWritable() == false )
+	{
+		return operationError( tr( "Output directory is not writable!" ) );
 	}
 
 	// write current configuration to output file
