@@ -84,7 +84,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 			computerControlInterfaces.count() != 1 )
 	{
 		QString hostName = QInputDialog::getText( parent, tr( "Remote access" ),
-												  tr( "Please enter a hostname or IP address of the host to access:" ) );
+												  tr( "Please enter the hostname or IP address of the computer to access:" ) );
 		if( hostName.isEmpty() )
 		{
 			return false;
