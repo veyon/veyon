@@ -64,6 +64,7 @@
 #cmakedefine VEYON_HAVE_MEMCPY 1
 #cmakedefine VEYON_HAVE_MEMSET 1
 #cmakedefine VEYON_HAVE_MMAP 1
+#cmakedefine VEYON_HAVE_FORK 1
 #cmakedefine VEYON_HAVE_POW 1
 #cmakedefine VEYON_HAVE_PUTENV 1
 #cmakedefine VEYON_HAVE_SELECT 1

@@ -132,7 +132,7 @@ ENDIF()
 
 SET(CMAKE_REQUIRED_LIBRARIES "-lm")
 
-SET(FUNCS dup2 floor ftime geteuid gethostbyname gethostname getpwnam getpwuid getspnam gettimeofday getuid grantpt inet_ntoa initgroups memcmp memcpy memmove memset mkfifo mmap pow putenv select seteuid setpgrp setsid setutxent socket strchr strdup strerror strpbrk strrchr strstr uname waitpid)
+SET(FUNCS dup2 floor ftime geteuid gethostbyname gethostname getpwnam getpwuid getspnam gettimeofday getuid grantpt inet_ntoa initgroups memcmp memcpy memmove memset mkfifo mmap fork pow putenv select seteuid setpgrp setsid setutxent socket strchr strdup strerror strpbrk strrchr strstr uname waitpid)
 FOREACH(_func ${FUNCS})
 	STRING(TOUPPER "${_func}" fuc)
 	CHECK_FUNCTION_EXISTS(${_func} VEYON_HAVE_${fuc})
@@ -257,6 +257,7 @@ ENDIF(VEYON_BUILD_WIN32)
 
 ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBZ)
 ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBJPEG)
+ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBSSL)
 IF(PNG_FOUND)
 	ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBPNG)
 ENDIF(PNG_FOUND)
