@@ -174,7 +174,7 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 {
 	m_checkStates.clear();
 
-	for( auto item : data )
+	for( const auto& item : data )
 	{
 		const QUuid uid = QUuid( item.toString() );
 		const auto indexList = match( index( 0, 0 ), m_uidRole, uid, 1,

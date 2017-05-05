@@ -111,7 +111,8 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 
 	if( m_computerListModel )
 	{
-		for( auto index : ui->listView->selectionModel()->selectedIndexes() )
+		const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
+		for( const auto& index : selectedIndices )
 		{
 			computerControlInterfaces += &( m_computerListModel->computerControlInterface( index ) );
 		}

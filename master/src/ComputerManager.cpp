@@ -239,12 +239,12 @@ void ComputerManager::updateComputerScreens()
 void ComputerManager::initRooms()
 {
 	QString localHostName = QHostInfo::localHostName();
-	auto localHostAddresses = QHostInfo::fromName( localHostName ).addresses();
+	const auto localHostAddresses = QHostInfo::fromName( localHostName ).addresses();
 
-	for( auto address : localHostAddresses )
+	for( const auto& address : localHostAddresses )
 	{
 		qDebug() << "ComputerManager::initRooms(): initializing rooms for"
-				 << QString( "%1 (%2)" ).arg( localHostName ).arg( address.toString() );
+				 << QString( "%1 (%2)" ).arg( localHostName, address.toString() );
 	}
 	m_currentRooms.append( findRoomOfComputer( localHostName, localHostAddresses, QModelIndex() ) );
 
@@ -290,9 +290,10 @@ void ComputerManager::initComputerTreeModel()
 	QJsonArray checkedNetworkObjects;
 	if( VeyonCore::config().autoSwitchToCurrentRoom() )
 	{
-		for( auto room : m_currentRooms )
+		for( const auto& room : qAsConst( m_currentRooms ) )
 		{
-			for( const auto& computer : getComputersInRoom( room ) )
+			const auto computersInRoom = getComputersInRoom( room );
+			for( const auto& computer : computersInRoom )
 			{
 				checkedNetworkObjects += computer.networkObjectUid().toString();
 			}

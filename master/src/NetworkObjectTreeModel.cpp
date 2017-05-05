@@ -84,7 +84,9 @@ int NetworkObjectTreeModel::rowCount(const QModelIndex &parent) const
 
 	if( parent.internalId() == 0 )
 	{
-		const NetworkObject groupObject = m_directory->objects( NetworkObject( NetworkObject::Root ) )[parent.row()];
+		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
+		const NetworkObject groupObject = rootObjects[parent.row()];
+
 		return m_directory->objects( groupObject ).count();
 	}
 
@@ -121,15 +123,18 @@ QVariant NetworkObjectTreeModel::data(const QModelIndex &index, int role) const
 
 	NetworkObject networkObject;
 
+	const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
+
 	if( index.internalId() > 0 )
 	{
-		NetworkObject groupObject = m_directory->objects( NetworkObject( NetworkObject::Root ) )[index.internalId()-1];
+		const auto& groupObject = rootObjects[index.internalId()-1];
+		const auto groupObjects = m_directory->objects( groupObject );
 
-		networkObject = m_directory->objects( groupObject )[index.row()];
+		networkObject = groupObjects[index.row()];
 	}
 	else
 	{
-		networkObject = m_directory->objects( NetworkObject( NetworkObject::Root ) )[index.row()];
+		networkObject = rootObjects[index.row()];
 	}
 
 	switch( role )
@@ -157,7 +162,8 @@ void NetworkObjectTreeModel::beginInsertObjects( const NetworkObject &parent, in
 	else if( parent.type() == NetworkObject::Group )
 	{
 		int groupIndex = 0;
-		for( auto groupObject : m_directory->objects( NetworkObject( NetworkObject::Root ) ) )
+		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
+		for( const auto& groupObject : rootObjects )
 		{
 			if( groupObject == parent )
 			{
@@ -187,7 +193,8 @@ void NetworkObjectTreeModel::beginRemoveObjects(const NetworkObject &parent, int
 	else if( parent.type() == NetworkObject::Group )
 	{
 		int groupIndex = 0;
-		for( auto groupObject : m_directory->objects( NetworkObject( NetworkObject::Root ) ) )
+		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
+		for( const auto& groupObject : rootObjects )
 		{
 			if( groupObject == parent )
 			{

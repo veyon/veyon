@@ -99,11 +99,13 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 FeatureList MasterCore::featureList() const
 {
 	FeatureList features;
-	auto disabledFeatures = VeyonCore::config().disabledFeatures();
 
-	for( auto pluginUid : VeyonCore::pluginManager().pluginUids() )
+	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
+	const auto pluginUids = VeyonCore::pluginManager().pluginUids();
+
+	for( const auto& pluginUid : pluginUids )
 	{
-		for( auto feature : m_featureManager->features( pluginUid ) )
+		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
 					feature.testFlag( Feature::Mode ) &&
@@ -114,9 +116,9 @@ FeatureList MasterCore::featureList() const
 		}
 	}
 
-	for( auto pluginUid : VeyonCore::pluginManager().pluginUids() )
+	for( const auto& pluginUid : pluginUids )
 	{
-		for( auto feature : m_featureManager->features( pluginUid ) )
+		for( const auto& feature : m_featureManager->features( pluginUid ) )
 		{
 			if( feature.testFlag( Feature::Master ) &&
 					feature.testFlag( Feature::Mode ) == false &&

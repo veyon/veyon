@@ -257,7 +257,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 		{
 			QMenu m( this );
 			m.addAction( m_systemTrayIcon.toolTip() )->setEnabled( false );
-			for( auto action : m_sysTrayActions )
+			for( auto action : qAsConst( m_sysTrayActions ) )
 			{
 				m.addAction( action );
 			}
@@ -267,7 +267,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 			QMenu rcm( this );
 			QAction * rc = m.addAction( tr( "Remote control" ) );
 			rc->setMenu( &rcm );
-			for( const auto& computer : m_masterCore.computerManager().computerList() )
+			for( const auto& computer : qAsConst( m_masterCore.computerManager().computerList() ) )
 			{
 				rcm.addAction( computer.name() )->setData( computer.hostAddress() );
 			}
@@ -341,7 +341,7 @@ void MainWindow::remoteControlDisplay( const QString& hostname,
 
 void MainWindow::addFeaturesToToolBar()
 {
-	for( auto feature : m_masterCore.features() )
+	for( const auto& feature : m_masterCore.features() )
 	{
 		ToolButton* btn = new ToolButton( feature.iconUrl(),
 										  feature.displayName(),
