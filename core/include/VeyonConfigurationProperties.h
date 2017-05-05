@@ -67,7 +67,7 @@
 
 #define FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories" );	\
-	OP( VeyonConfiguration, VeyonCore::config(), STRING, snapshotDirectory, setSnapshotDirectory, "Snapshots", "Directories" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), STRING, screenshotDirectory, setScreenshotDirectory, "Screenshots", "Directories" );	\
 
 #define FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, accessControlForMasterEnabled, setAccessControlForMasterEnabled, "AccessControlForMasterEnabled", "Master" );	\

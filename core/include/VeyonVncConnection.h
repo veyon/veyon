@@ -58,7 +58,7 @@ public:
 	enum QualityLevels
 	{
 		ThumbnailQuality,
-		SnapshotQuality,
+		ScreenshotQuality,
 		RemoteControlQuality,
 		DemoServerQuality,
 		DemoClientQuality,

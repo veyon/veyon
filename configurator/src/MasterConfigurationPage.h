@@ -45,7 +45,7 @@ public:
 
 private slots:
 	void openUserConfigurationDirectory();
-	void openSnapshotDirectory();
+	void openScreenshotDirectory();
 	void enableFeature();
 	void disableFeature();
 

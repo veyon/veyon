@@ -141,7 +141,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 
 	switch( t->quality() )
 	{
-		case SnapshotQuality:
+		case ScreenshotQuality:
 			cl->appData.encodingsString = "raw";
 			break;
 		case RemoteControlQuality:

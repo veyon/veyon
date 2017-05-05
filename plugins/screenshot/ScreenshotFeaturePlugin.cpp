@@ -26,7 +26,7 @@
 
 #include "ScreenshotFeaturePlugin.h"
 #include "ComputerControlInterface.h"
-#include "Snapshot.h"
+#include "Screenshot.h"
 
 
 ScreenshotFeaturePlugin::ScreenshotFeaturePlugin() :
@@ -60,7 +60,7 @@ bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
-			Snapshot().take( *controlInterface );
+			Screenshot().take( *controlInterface );
 
 		}
 

@@ -1,5 +1,5 @@
 /*
- * SnapshotManagementWidget.h - declaration of snapshot management view
+ * ScreenshotManagementView.h - declaration of screenshot management view
  *
  * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef SNAPSHOT_MANAGEMENT_WIDGET_H
-#define SNAPSHOT_MANAGEMENT_WIDGET_H
+#ifndef SCREENSHOT_MANAGEMENT_VIEW_H
+#define SCREENSHOT_MANAGEMENT_VIEW_H
 
 #include <QFileSystemModel>
 #include <QWidget>
@@ -31,30 +31,30 @@
 class QModelIndex;
 
 namespace Ui {
-class SnapshotManagementWidget;
+class ScreenshotManagementView;
 }
 
-class SnapshotManagementWidget : public QWidget
+class ScreenshotManagementView : public QWidget
 {
 	Q_OBJECT
 public:
-	SnapshotManagementWidget( QWidget *parent );
-	~SnapshotManagementWidget() override;
+	ScreenshotManagementView( QWidget *parent );
+	~ScreenshotManagementView() override;
 
 
 protected:
 	void resizeEvent( QResizeEvent* event ) override;
 
 private slots:
-	void snapshotSelected( const QModelIndex &idx );
-	void snapshotDoubleClicked( const QModelIndex &idx );
+	void screenshotSelected( const QModelIndex &idx );
+	void screenshotDoubleClicked( const QModelIndex &idx );
 
-	void showSnapshot();
-	void deleteSnapshot();
+	void showScreenshot();
+	void deleteScreenshot();
 
 
 private:
-	Ui::SnapshotManagementWidget* ui;
+	Ui::ScreenshotManagementView* ui;
 	QFileSystemModel m_fsModel;
 
 } ;

@@ -56,15 +56,15 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Snapshots</string>
+         <string>Screenshots</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="snapshotDirectory"/>
+       <widget class="QLineEdit" name="screenshotDirectory"/>
       </item>
       <item row="1" column="2">
-       <widget class="QToolButton" name="openSnapshotDirectory">
+       <widget class="QToolButton" name="openScreenshotDirectory">
         <property name="text">
          <string>...</string>
         </property>
@@ -227,8 +227,8 @@
  <tabstops>
   <tabstop>userConfigurationDirectory</tabstop>
   <tabstop>openUserConfigurationDirectory</tabstop>
-  <tabstop>snapshotDirectory</tabstop>
-  <tabstop>openSnapshotDirectory</tabstop>
+  <tabstop>screenshotDirectory</tabstop>
+  <tabstop>openScreenshotDirectory</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSwitchToCurrentRoom</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>

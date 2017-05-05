@@ -44,7 +44,7 @@ MasterConfigurationPage::MasterConfigurationPage() :
 	connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
 	CONNECT_BUTTON_SLOT( openUserConfigurationDirectory );
-	CONNECT_BUTTON_SLOT( openSnapshotDirectory );
+	CONNECT_BUTTON_SLOT( openScreenshotDirectory );
 
 	populateFeatureComboBox();
 }
@@ -91,9 +91,9 @@ void MasterConfigurationPage::openUserConfigurationDirectory()
 
 
 
-void MasterConfigurationPage::openSnapshotDirectory()
+void MasterConfigurationPage::openScreenshotDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->snapshotDirectory );
+	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->screenshotDirectory );
 }
 
 

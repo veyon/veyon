@@ -95,7 +95,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setSoftwareSASEnabled( true );
 
 	c.setUserConfigurationDirectory( QDTNS( "$APPDATA/Config" ) );
-	c.setSnapshotDirectory( QDTNS( "$APPDATA/Snapshots" ) );
+	c.setScreenshotDirectory( QDTNS( "$APPDATA/Screenshots" ) );
 
 	c.setKeyAuthenticationEnabled( true );
 	c.setLogonAuthenticationEnabled( true );

@@ -1,5 +1,5 @@
 /*
- *  Snapshot.cpp - class representing a screen snapshot
+ *  Screenshot.cpp - class representing a screenshot
  *
  *  Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -28,7 +28,7 @@
 #include <QMessageBox>
 #include <QPainter>
 
-#include "Snapshot.h"
+#include "Screenshot.h"
 #include "VeyonConfiguration.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
@@ -36,7 +36,7 @@
 #include "Logger.h"
 
 
-Snapshot::Snapshot( const QString &fileName ) :
+Screenshot::Screenshot( const QString &fileName ) :
 	m_fileName( fileName ),
 	m_image()
 {
@@ -49,7 +49,7 @@ Snapshot::Snapshot( const QString &fileName ) :
 
 
 
-void Snapshot::take( const ComputerControlInterface& computerControlInterface )
+void Screenshot::take( const ComputerControlInterface& computerControlInterface )
 {
 	QString u = computerControlInterface.user();
 	if( u.isEmpty() )
@@ -67,16 +67,16 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
 	const QString dir = LocalSystem::Path::expand(
-									VeyonCore::config().snapshotDirectory() );
+									VeyonCore::config().screenshotDirectory() );
 	if( !LocalSystem::Path::ensurePathExists( dir ) )
 	{
-		QString msg = tr( "Could not take a snapshot as directory %1 "
+		QString msg = tr( "Could not take a screenshot as directory %1 "
 								"doesn't exist and couldn't be "
 								"created." ).arg( dir );
 		qCritical() << msg.toUtf8().constData();
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
-			QMessageBox::critical( nullptr, tr( "Snapshot" ), msg );
+			QMessageBox::critical( nullptr, tr( "Screenshot" ), msg );
 		}
 
 		return;
@@ -127,7 +127,7 @@ void Snapshot::take( const ComputerControlInterface& computerControlInterface )
 
 
 
-QString Snapshot::user() const
+QString Screenshot::user() const
 {
 	return QFileInfo( fileName() ).fileName().section( '_', 0, 0 );
 }
@@ -135,7 +135,7 @@ QString Snapshot::user() const
 
 
 
-QString Snapshot::host() const
+QString Screenshot::host() const
 {
 	return fileName().section( '_', 1, 1 );
 }
@@ -143,7 +143,7 @@ QString Snapshot::host() const
 
 
 
-QString Snapshot::date() const
+QString Screenshot::date() const
 {
 	return QDate::fromString( fileName().section( '_', 2, 2 ),
 										Qt::ISODate ).toString( Qt::LocalDate );
@@ -152,7 +152,7 @@ QString Snapshot::date() const
 
 
 
-QString Snapshot::time() const
+QString Screenshot::time() const
 {
 	return fileName().section( '_', 3, 3 ).section( '.', 0, 0 ).replace( '-', ':' );
 }

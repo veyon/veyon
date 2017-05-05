@@ -1,7 +1,7 @@
 /*
- * SnapshotList.cpp - implementation of snapshot-list for side-bar
+ * ScreenshotManagementView.cpp - implementation of screenshot management view
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,55 +22,55 @@
  *
  */
 
-#include <QtCore/QDir>
-#include <QtCore/QDate>
+#include <QDir>
+#include <QDate>
 #include <QFileSystemModel>
 #include <QScrollArea>
 
-#include "SnapshotManagementWidget.h"
+#include "ScreenshotManagementView.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "LocalSystem.h"
-#include "Snapshot.h"
+#include "Screenshot.h"
 
-#include "ui_SnapshotManagementWidget.h"
+#include "ui_ScreenshotManagementView.h"
 
 
-SnapshotManagementWidget::SnapshotManagementWidget( QWidget *parent ) :
+ScreenshotManagementView::ScreenshotManagementView( QWidget *parent ) :
 	QWidget( parent ),
-	ui( new Ui::SnapshotManagementWidget ),
+	ui( new Ui::ScreenshotManagementView ),
 	m_fsModel( this )
 {
 	ui->setupUi( this );
 
-	LocalSystem::Path::ensurePathExists( VeyonCore::config().snapshotDirectory() );
+	LocalSystem::Path::ensurePathExists( VeyonCore::config().screenshotDirectory() );
 
 	m_fsModel.setNameFilters( QStringList() << "*.png" );
 	m_fsModel.setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
 	m_fsModel.setRootPath( LocalSystem::Path::expand(
-									VeyonCore::config().snapshotDirectory() ) );
+									VeyonCore::config().screenshotDirectory() ) );
 
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );
 
-	connect( ui->list, &QListView::clicked, this, &SnapshotManagementWidget::snapshotSelected );
-	connect( ui->list, &QListView::doubleClicked, this, &SnapshotManagementWidget::showSnapshot );
+	connect( ui->list, &QListView::clicked, this, &ScreenshotManagementView::screenshotSelected );
+	connect( ui->list, &QListView::doubleClicked, this, &ScreenshotManagementView::showScreenshot );
 
-	connect( ui->showBtn, &QPushButton::clicked, this, &SnapshotManagementWidget::showSnapshot );
-	connect( ui->deleteBtn, &QPushButton::clicked, this, &SnapshotManagementWidget::deleteSnapshot );
+	connect( ui->showBtn, &QPushButton::clicked, this, &ScreenshotManagementView::showScreenshot );
+	connect( ui->deleteBtn, &QPushButton::clicked, this, &ScreenshotManagementView::deleteScreenshot );
 }
 
 
 
 
-SnapshotManagementWidget::~SnapshotManagementWidget()
+ScreenshotManagementView::~ScreenshotManagementView()
 {
 	delete ui;
 }
 
 
 
-void SnapshotManagementWidget::resizeEvent( QResizeEvent* event )
+void ScreenshotManagementView::resizeEvent( QResizeEvent* event )
 {
 	int maxWidth = contentsRect().width();
 	int maxHeight = maxWidth * 9 / 16;
@@ -83,9 +83,9 @@ void SnapshotManagementWidget::resizeEvent( QResizeEvent* event )
 
 
 
-void SnapshotManagementWidget::snapshotSelected( const QModelIndex &idx )
+void ScreenshotManagementView::screenshotSelected( const QModelIndex &idx )
 {
-	Snapshot s( m_fsModel.filePath( idx ) );
+	Screenshot s( m_fsModel.filePath( idx ) );
 
 	ui->previewLbl->setPixmap( s.pixmap() );
 
@@ -98,7 +98,7 @@ void SnapshotManagementWidget::snapshotSelected( const QModelIndex &idx )
 
 
 
-void SnapshotManagementWidget::snapshotDoubleClicked( const QModelIndex &idx )
+void ScreenshotManagementView::screenshotDoubleClicked( const QModelIndex &idx )
 {
 	auto imgLabel = new QLabel;
 	imgLabel->setPixmap( m_fsModel.filePath( idx ) );
@@ -119,18 +119,18 @@ void SnapshotManagementWidget::snapshotDoubleClicked( const QModelIndex &idx )
 
 
 
-void SnapshotManagementWidget::showSnapshot()
+void ScreenshotManagementView::showScreenshot()
 {
 	if( ui->list->currentIndex().isValid() )
 	{
-		snapshotDoubleClicked( ui->list->currentIndex() );
+		screenshotDoubleClicked( ui->list->currentIndex() );
 	}
 }
 
 
 
 
-void SnapshotManagementWidget::deleteSnapshot()
+void ScreenshotManagementView::deleteScreenshot()
 {
 	if( ui->list->currentIndex().isValid() )
 	{

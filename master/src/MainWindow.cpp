@@ -35,7 +35,7 @@
 #include "AuthenticationCredentials.h"
 #include "ComputerManager.h"
 #include "ComputerManagementView.h"
-#include "SnapshotManagementWidget.h"
+#include "ScreenshotManagementView.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
 #include "ToolButton.h"
@@ -65,7 +65,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 
 	// add widgets to status bar
 	ui->statusBar->addWidget( ui->computerManagementButton );
-	ui->statusBar->addWidget( ui->snapshotManagementButton );
+	ui->statusBar->addWidget( ui->screenshotManagementButton );
 	ui->statusBar->addWidget( ui->spacerLabel, 1 );
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
@@ -79,20 +79,20 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	ui->centralLayout->addWidget( splitter );
 
 	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), splitter );
-	m_snapshotManagementWidget = new SnapshotManagementWidget( splitter );
+	m_screenshotManagementView = new ScreenshotManagementView( splitter );
 
 	splitter->addWidget( m_computerManagementView );
-	splitter->addWidget( m_snapshotManagementWidget );
+	splitter->addWidget( m_screenshotManagementView );
 	splitter->addWidget( ui->computerMonitoringView );
 
 	// hide views per default and connect related button
 	m_computerManagementView->hide();
-	m_snapshotManagementWidget->hide();
+	m_screenshotManagementView->hide();
 
 	connect( ui->computerManagementButton, &QAbstractButton::toggled,
 			 m_computerManagementView, &QWidget::setVisible );
-	connect( ui->snapshotManagementButton, &QAbstractButton::toggled,
-			 m_snapshotManagementWidget, &QWidget::setVisible );
+	connect( ui->screenshotManagementButton, &QAbstractButton::toggled,
+			 m_screenshotManagementView, &QWidget::setVisible );
 
 
 	// initialize monitoring screen size slider

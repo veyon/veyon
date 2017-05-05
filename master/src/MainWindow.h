@@ -31,7 +31,7 @@
 class QButtonGroup;
 class MasterCore;
 class ComputerManagementView;
-class SnapshotManagementWidget;
+class ScreenshotManagementView;
 
 namespace Ui {
 class MainWindow;
@@ -79,7 +79,7 @@ private:
 	QList<QAction *> m_sysTrayActions;
 
 	ComputerManagementView* m_computerManagementView;
-	SnapshotManagementWidget* m_snapshotManagementWidget;
+	ScreenshotManagementView* m_screenshotManagementView;
 
 } ;
 

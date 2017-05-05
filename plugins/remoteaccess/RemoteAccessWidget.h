@@ -69,7 +69,7 @@ private:
 
 	ToolButton* m_viewOnlyButton;
 	ToolButton* m_sendShortcutButton;
-	ToolButton* m_snapshotButton;
+	ToolButton* m_screenshotButton;
 	ToolButton* m_fullScreenButton;
 	ToolButton* m_quitButton;
 
@@ -90,7 +90,7 @@ public:
 public slots:
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool viewOnly );
-	void takeSnapshot();
+	void takeScreenshot();
 
 
 protected:

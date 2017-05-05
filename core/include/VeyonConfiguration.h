@@ -77,7 +77,7 @@ public slots:
 	void setFirewallExceptionEnabled( bool );
 	void setLocalConnectOnly( bool );
 	void setUserConfigurationDirectory( const QString & );
-	void setSnapshotDirectory( const QString & );
+	void setScreenshotDirectory( const QString & );
 	void setAccessControlForMasterEnabled( bool );
 	void setAutoSwitchToCurrentRoom( bool );
 	void setOnlyCurrentRoomVisible( bool );

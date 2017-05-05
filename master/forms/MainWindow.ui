@@ -103,7 +103,7 @@
         <string notr="true">buttonGroup</string>
        </attribute>
       </widget>
-      <widget class="QToolButton" name="snapshotManagementButton">
+      <widget class="QToolButton" name="screenshotManagementButton">
        <property name="geometry">
         <rect>
          <x>270</x>
@@ -113,7 +113,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Snapshots</string>
+        <string>Screenshots</string>
        </property>
        <property name="icon">
         <iconset resource="../../plugins/screenshot/screenshot.qrc">

@@ -28,7 +28,7 @@
 #include "ComputerControlInterface.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"
-#include "Snapshot.h"
+#include "Screenshot.h"
 
 #include "rfb/rfbclient.h"
 
@@ -53,7 +53,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parren
 	m_icon( QPixmap( ":/resources/icon128.png" ).scaled( QSize( 48, 48 ), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
 	m_viewOnlyButton( new ToolButton( QPixmap( ":/remoteaccess/kmag.png" ), tr( "View only" ), tr( "Remote control" ) ) ),
 	m_sendShortcutButton( new ToolButton( QPixmap( ":/remoteaccess/preferences-desktop-keyboard.png" ), tr( "Send shortcut" ) ) ),
-	m_snapshotButton( new ToolButton( QPixmap( ":/remoteaccess/camera-photo.png" ), tr( "Snapshot" ) ) ),
+	m_screenshotButton( new ToolButton( QPixmap( ":/remoteaccess/camera-photo.png" ), tr( "Screenshot" ) ) ),
 	m_fullScreenButton( new ToolButton( QPixmap( ":/remoteaccess/view-fullscreen.png" ), tr( "Fullscreen" ), tr( "Window" ) ) ),
 	m_quitButton( new ToolButton( QPixmap( ":/remoteaccess/application-exit.png" ), tr( "Quit" ) ) )
 {
@@ -74,7 +74,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parren
 	connect( m_viewOnlyButton, &ToolButton::toggled, this, &RemoteAccessWidgetToolBar::updateControls );
 	connect( m_viewOnlyButton, &QAbstractButton::toggled, parrent, &RemoteAccessWidget::toggleViewOnly );
 	connect( m_fullScreenButton, &QAbstractButton::toggled, parrent, &RemoteAccessWidget::toggleFullScreen );
-	connect( m_snapshotButton, &QAbstractButton::clicked, parrent, &RemoteAccessWidget::takeSnapshot );
+	connect( m_screenshotButton, &QAbstractButton::clicked, parrent, &RemoteAccessWidget::takeScreenshot );
 	connect( m_quitButton, &QAbstractButton::clicked, parrent, &QWidget::close );
 
 	auto vncView = parrent->m_vncView;
@@ -118,7 +118,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parren
 	layout->addStretch( 0 );
 	layout->addWidget( m_sendShortcutButton );
 	layout->addWidget( m_viewOnlyButton );
-	layout->addWidget( m_snapshotButton );
+	layout->addWidget( m_screenshotButton );
 	layout->addWidget( m_fullScreenButton );
 	layout->addWidget( m_quitButton );
 	layout->addSpacing( 5 );
@@ -389,9 +389,9 @@ void RemoteAccessWidget::toggleViewOnly( bool viewOnly )
 
 
 
-void RemoteAccessWidget::takeSnapshot()
+void RemoteAccessWidget::takeScreenshot()
 {
-	Snapshot().take( m_computerControlInterface );
+	Screenshot().take( m_computerControlInterface );
 }
 
 

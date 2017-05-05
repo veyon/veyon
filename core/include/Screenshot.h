@@ -1,5 +1,5 @@
 /*
- *  Snapshot.h - class representing a screen snapshot
+ *  Screenshot.h - class representing a screenshot
  *
  *  Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -21,8 +21,8 @@
  *  USA.
  */
 
-#ifndef SNAPSHOT_H
-#define SNAPSHOT_H
+#ifndef SCREENSHOT_H
+#define SCREENSHOT_H
 
 #include "VeyonCore.h"
 
@@ -31,11 +31,11 @@
 
 class ComputerControlInterface;
 
-class VEYON_CORE_EXPORT Snapshot : public QObject
+class VEYON_CORE_EXPORT Screenshot : public QObject
 {
 	Q_OBJECT
 public:
-	Snapshot( const QString &fileName = QString() );
+	Screenshot( const QString &fileName = QString() );
 
 	void take( const ComputerControlInterface& computerControlInterface );
 
