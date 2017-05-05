@@ -107,7 +107,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_import( co
 
 	if( QFileInfo( fileName ).isReadable() == false )
 	{
-		return operationError( tr( "Configuration file is not readable." ) );
+		return operationError( tr( "Configuration file is not readable!" ) );
 	}
 
 	Configuration::JsonStore xs( Configuration::JsonStore::System, fileName );
