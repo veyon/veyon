@@ -1473,10 +1473,6 @@ The public key part is used on the client computers to verify that any incoming 
         <source>computer group tree</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>(optional if different from group tree)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
