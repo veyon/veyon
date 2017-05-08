@@ -1980,7 +1980,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Anschalten</translation>
+        <translation>Einschalten</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
