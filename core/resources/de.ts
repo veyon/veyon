@@ -54,11 +54,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation>Zugriff auf Mitglieder bestimmter Nutzergruppen einschränken</translation>
+        <translation>Zugriff auf Mitglieder bestimmter Benutzergruppen einschränken</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Jedem authentifizierten Nutzer Zugriff erlauben (Standard)</translation>
+        <translation>Jedem authentifizierten Benutzer Zugriff erlauben (Standard)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -66,11 +66,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Autorisierte Nutzergruppen für Computerzugriff</translation>
+        <translation>Autorisierte Benutzergruppen für Computerzugriff</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Autorisierte Nutzergruppen</translation>
+        <translation>Autorisierte Benutzergruppen</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -106,11 +106,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Nutzername eingeben</translation>
+        <translation>Benutzername eingeben</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Bitte geben Sie ein Nutzerlogin-Name ein, dessen Zugriffsberechtigungen getestet werden sollen:</translation>
+        <translation>Bitte geben Sie einen Benutzername ein, dessen Zugriffsberechtigungen getestet werden sollen:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -181,7 +181,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Zugreifender Nutzer ist angemeldeter Nutzer</translation>
+        <translation>Zugreifender Benutzer ist angemeldeter Benutzer</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -201,7 +201,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Zugreifender Nutzer ist bereits verbunden</translation>
+        <translation>Zugreifender Benutzer ist bereits verbunden</translation>
     </message>
     <message>
         <source>Action</source>
@@ -217,7 +217,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Angemeldeten Nutzer um Erlaubnis fragen</translation>
+        <translation>Angemeldeten Benutzer um Erlaubnis fragen</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -225,7 +225,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Zugreifender Nutzer</translation>
+        <translation>Zugreifender Benutzer</translation>
     </message>
     <message>
         <source>Accessing computer</source>
@@ -233,7 +233,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Lokaler (angemeldeter) Nutzer</translation>
+        <translation>Lokaler (angemeldeter) Benutzer</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -268,7 +268,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Bitte geben Sie die folgenden Nutzer- und Computerinformationen ein, um das konfigurierte Regelwerk zu testen.</translation>
+        <translation>Bitte geben Sie die folgenden Benutzer- und Computerinformationen ein, um das konfigurierte Regelwerk zu testen.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -739,11 +739,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Select user role</source>
-        <translation>Nutzerrolle auswählen</translation>
+        <translation>Benutzerrolle auswählen</translation>
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Bitte wählen Sie eine Nutzerrolle, für die die Schlüssel erzeugt oder importiert werden sollen:</translation>
+        <translation>Bitte wählen Sie eine Benutzerrolle, für die die Schlüssel erzeugt oder importiert werden sollen:</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -763,7 +763,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Nutzerrollen erlauben die gleichzeitige Verwendung von mehreren Zugriffsschlüsseln. Beispielsweise können verschiedene Lehrerschlüssel für jeden Klassenraum eingerichtet werden, während die Zugriffsschlüssel für den Support schulweit einmalig sind.</translation>
+        <translation>Benutzerrollen erlauben die gleichzeitige Verwendung von mehreren Zugriffsschlüsseln. Beispielsweise können verschiedene Lehrerschlüssel für jeden Klassenraum eingerichtet werden, während die Zugriffsschlüssel für den Support schulweit einmalig sind.</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -815,7 +815,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>• Configure for user role</source>
-        <translation>• Konfigurieren für Nutzerrolle</translation>
+        <translation>• Konfigurieren für Benutzerrolle</translation>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
@@ -885,7 +885,7 @@ Using the private key part, users on the master computer will be able to access 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
         <translation>Veyon-Zugriffsschlüssel bestehen aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
 
-Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
+Mit Hilfe des privaten Schlüssels können Benutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Benutzer Lesezugriff auf die private Schlüsseldatei besitzen.
 
 Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
     </message>
@@ -1166,11 +1166,11 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Nutzername eingeben</translation>
+        <translation>Benutzername eingeben</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Bitte geben Sie den abzufragenden Nutzerlogin-Name ein (Platzhalter erlaubt):</translation>
+        <translation>Bitte geben Sie den abzufragenden Benutzername ein (Platzhalter erlaubt):</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -1953,7 +1953,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Nutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Password</source>
@@ -2087,6 +2087,13 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>Bitte geben Sie den Hostnamen oder IP-Adresse des Computers ein, auf den Sie zugreifen möchten:</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidget</name>
+    <message>
+        <source>%1 Remote Access</source>
+        <translation>%1 Fernzugriff</translation>
     </message>
 </context>
 <context>
@@ -2434,11 +2441,11 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Text-Nachricht schicken</translation>
+        <translation>Textnachricht übermitteln</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Nutzen Sie das Feld unterhalb, um Ihre Nachricht zu tippen, die an alle Nutzer geschickt wird.</translation>
+        <translation>Nutzen Sie das Feld unterhalb, um Ihre Nachricht zu tippen, die an alle Benutzer übermittelt wird.</translation>
     </message>
 </context>
 <context>
@@ -2449,7 +2456,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Nutzen Sie diese Funktion, um eine Textnachricht an alle Nutzer zu schicken, z.B. um ihnen neue Aufgaben zuzuweisen.</translation>
+        <translation>Nutzen Sie diese Funktion, um eine Textnachricht an alle Benutzer zu übermitteln, z. B. um ihnen neue Aufgaben zuzuweisen.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -2457,7 +2464,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Eine Nachricht an einen Nutzer senden</translation>
+        <translation>Eine Nachricht an einen Benutzer senden</translation>
     </message>
 </context>
 <context>

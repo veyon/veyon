@@ -2069,6 +2069,13 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
+    <name>RemoteAccessWidget</name>
+    <message>
+        <source>%1 Remote Access</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
