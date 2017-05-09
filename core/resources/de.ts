@@ -1960,10 +1960,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Passwort</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
-        <translation>Bitte geben Sie Ihren Benutzernamen und Passwort ein, um auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Authentifizierungsfehler</translation>
     </message>
@@ -1974,6 +1970,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Die Anmeldung mit dem angegebenen Benutzername und Passwort ist fehlgeschlagen. Bitte versuchen Sie es erneut!</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Bitte geben Sie Ihren Benutzername und Passwort ein, um auf Computer zuzugreifen.</translation>
     </message>
 </context>
 <context>
@@ -2181,16 +2181,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
 <context>
     <name>RunProgramDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation>Befehle ausführen</translation>
-    </message>
-    <message>
-        <source>Run program</source>
-        <translation>Programm starten</translation>
-    </message>
-    <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>Bitte geben Sie das Programm oder die Befehle ein, die auf den gewählten Computern gestartet werden sollen. Sie können mehrere Programme/Befehle über einzelne Zeilen angeben.</translation>
+        <translation>Bitte geben Sie die Programme oder die Befehle ein, die auf den gewählten Computern gestartet werden sollen. Sie können mehrere Programme/Befehle über einzelne Zeilen angeben.</translation>
+    </message>
+    <message>
+        <source>Run programs</source>
+        <translation>Programme starten</translation>
     </message>
 </context>
 <context>

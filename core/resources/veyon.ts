@@ -1939,10 +1939,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Veyon Logon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1952,6 +1948,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2160,15 +2160,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>RunProgramDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Run program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run programs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
