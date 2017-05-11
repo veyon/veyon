@@ -77,6 +77,7 @@ namespace LocalSystem
 		User( const User &user );
 		~User();
 
+		static QString stripDomain( QString userName );
 		static User loggedOnUser();
 
 		const Token &userToken() const

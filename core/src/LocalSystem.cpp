@@ -247,6 +247,21 @@ User::~User()
 }
 
 
+
+QString User::stripDomain( QString userName )
+{
+	// remove the domain part of user (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
+	int domainSeparator = userName.indexOf( '\\' );
+	if( domainSeparator >= 0 )
+	{
+		return userName.mid( domainSeparator + 1 );
+	}
+
+	return userName;
+}
+
+
+
 #ifdef VEYON_BUILD_WIN32
 static QString querySessionInformation( DWORD sessionId,
 										WTS_INFO_CLASS infoClass )
