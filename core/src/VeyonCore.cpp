@@ -36,6 +36,7 @@
 #include <QApplication>
 #include <QGroupBox>
 #include <QLabel>
+#include <QWizardPage>
 
 #include "AccessControlDataBackendManager.h"
 #include "VeyonConfiguration.h"
@@ -317,6 +318,12 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 	for( auto widget : widgets )
 	{
 		widget->setWindowTitle( widget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
+	}
+
+	auto wizardPages = topLevelWidget->findChildren<QWizardPage *>();
+	for( auto wizardPage : wizardPages )
+	{
+		wizardPage->setTitle( wizardPage->title().replace( "Veyon", VeyonCore::applicationName() ) );
 	}
 
 	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
