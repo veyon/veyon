@@ -38,35 +38,31 @@ DesktopAccessDialog::DesktopAccessDialog() :
 										   Feature::Uid( "3dd8ec3e-7004-4936-8f2a-70699b9819be" ),
 										   tr( "Desktop access dialog" ), QString(), QString() ) ),
 	m_features(),
-	m_result( DesktopAccessPermission::ChoiceNone )
+	m_result( ChoiceNone )
 {
 	m_features += m_desktopAccessDialogFeature;
 }
 
 
 
-DesktopAccessPermission::Choice DesktopAccessDialog::exec( FeatureWorkerManager& featureWorkerManager,
-														   const QString& user,
-														   const QString& host,
-														   int choiceFlags )
+DesktopAccessDialog::Choice DesktopAccessDialog::exec( FeatureWorkerManager& featureWorkerManager, QString user, QString host )
 {
 	if( featureWorkerManager.isWorkerRunning( m_desktopAccessDialogFeature ) == false )
 	{
 		featureWorkerManager.startWorker( m_desktopAccessDialogFeature );
 	}
 
-	m_result = DesktopAccessPermission::ChoiceNone;
+	m_result = ChoiceNone;
 
-	featureWorkerManager.sendMessage( FeatureMessage( m_desktopAccessDialogFeature.uid(), GetDesktopAccessPermission ).
+	featureWorkerManager.sendMessage( FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess ).
 									  addArgument( UserArgument, user ).
-									  addArgument( HostArgument, host ).
-									  addArgument( ChoiceFlagsArgument, choiceFlags ) );
+									  addArgument( HostArgument, host ) );
 
 	// wait for answer
 	QTime t;
 	t.start();
 
-	while( m_result == DesktopAccessPermission::ChoiceNone &&
+	while( m_result == ChoiceNone &&
 		   featureWorkerManager.isWorkerRunning( m_desktopAccessDialogFeature ) )
 	{
 		QCoreApplication::processEvents();
@@ -79,12 +75,7 @@ DesktopAccessPermission::Choice DesktopAccessDialog::exec( FeatureWorkerManager&
 		QThread::msleep( SleepTime );
 	}
 
-	if( m_result != DesktopAccessPermission::ChoiceYes )
-	{
-		return DesktopAccessPermission::ChoiceNo;
-	}
-
-	return DesktopAccessPermission::ChoiceYes;
+	return m_result;
 }
 
 
@@ -134,9 +125,9 @@ bool DesktopAccessDialog::handleServiceFeatureMessage( const FeatureMessage& mes
 													   FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
-			message.command() == ReportDesktopAccessPermission )
+			message.command() == ReportDesktopAccessChoice )
 	{
-		m_result = static_cast<DesktopAccessPermission::Choice>( message.argument( ResultArgument ).toInt() );
+		m_result = static_cast<Choice>( message.argument( ChoiceArgument ).toInt() );
 
 		return true;
 	}
@@ -149,70 +140,50 @@ bool DesktopAccessDialog::handleServiceFeatureMessage( const FeatureMessage& mes
 bool DesktopAccessDialog::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	if( message.featureUid() != m_desktopAccessDialogFeature.uid() ||
-			message.command() != GetDesktopAccessPermission )
+			message.command() != RequestDesktopAccess )
 	{
 		return false;
 	}
 
-	int result = getDesktopAccessPermission( message.argument( UserArgument ).toString(),
-											 message.argument( HostArgument ).toString(),
-											 message.argument( ChoiceFlagsArgument ).toInt() );
+	int result = requestDesktopAccess( message.argument( UserArgument ).toString(),
+									   message.argument( HostArgument ).toString() );
 
-	return FeatureMessage( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessPermission ).
-			addArgument( ResultArgument, result ).
+	return FeatureMessage( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessChoice ).
+			addArgument( ChoiceArgument, result ).
 			send( message.ioDevice() );
 }
 
 
 
-DesktopAccessPermission::Choice DesktopAccessDialog::getDesktopAccessPermission( const QString &user,
-																				 const QString &host,
-																				 int choiceFlags )
+DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( QString user, QString host )
 {
-	QMessageBox::StandardButtons btns = QMessageBox::NoButton;
-
-	if( choiceFlags & DesktopAccessPermission::ChoiceYes )
-	{
-		btns |= QMessageBox::Yes;
-	}
-	if( choiceFlags & DesktopAccessPermission::ChoiceNo )
-	{
-		btns |= QMessageBox::No;
-	}
-
 	QMessageBox m( QMessageBox::Question,
 				   tr( "Confirm desktop access" ),
 				   tr( "The user %1 at computer %2 wants to access your desktop. Do you want to grant access?" ).
-				   arg( user, host ), btns );
+				   arg( user, host ), QMessageBox::Yes | QMessageBox::No );
 
-	QPushButton *neverBtn = nullptr, *alwaysBtn = nullptr;
-	if( choiceFlags & DesktopAccessPermission::ChoiceNever )
-	{
-		neverBtn = m.addButton( tr( "Never for this session" ), QMessageBox::NoRole );
-		m.setDefaultButton( neverBtn );
-	}
-	if( choiceFlags & DesktopAccessPermission::ChoiceAlways )
-	{
-		alwaysBtn = m.addButton( tr( "Always for this session" ), QMessageBox::YesRole );
-	}
+	auto neverBtn = m.addButton( tr( "Never for this session" ), QMessageBox::NoRole );
+	auto alwaysBtn = m.addButton( tr( "Always for this session" ), QMessageBox::YesRole );
 
 	m.setEscapeButton( m.button( QMessageBox::No ) );
+	m.setDefaultButton( neverBtn );
 
 	LocalSystem::activateWindow( &m );
 
-	const int res = m.exec();
+	const auto result = m.exec();
+
 	if( m.clickedButton() == neverBtn )
 	{
-		return DesktopAccessPermission::ChoiceNever;
+		return ChoiceNever;
 	}
 	else if( m.clickedButton() == alwaysBtn )
 	{
-		return DesktopAccessPermission::ChoiceAlways;
+		return ChoiceAlways;
 	}
-	else if( res == QMessageBox::Yes )
+	else if( result == QMessageBox::Yes )
 	{
-		return DesktopAccessPermission::ChoiceYes;
+		return ChoiceYes;
 	}
 
-	return DesktopAccessPermission::ChoiceNo;
+	return ChoiceNo;
 }

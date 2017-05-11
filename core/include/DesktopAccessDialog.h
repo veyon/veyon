@@ -25,7 +25,6 @@
 #ifndef DESKTOP_ACCESS_DIALOG_H
 #define DESKTOP_ACCESS_DIALOG_H
 
-#include "DesktopAccessPermission.h"
 #include "FeaturePluginInterface.h"
 
 class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeaturePluginInterface, public PluginInterface
@@ -33,13 +32,20 @@ class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeaturePlug
 	Q_OBJECT
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
+	typedef enum Choices
+	{
+		ChoiceNone,
+		ChoiceYes,
+		ChoiceNo,
+		ChoiceAlways,
+		ChoiceNever,
+		ChoiceCount
+	} Choice;
+
 	DesktopAccessDialog();
 	~DesktopAccessDialog() override {}
 
-	DesktopAccessPermission::Choice exec( FeatureWorkerManager& featureWorkerManager,
-										  const QString& user,
-										  const QString& host,
-										  int choiceFlags );
+	Choice exec( FeatureWorkerManager& featureWorkerManager, QString user, QString host );
 
 	Plugin::Uid uid() const override
 	{
@@ -95,7 +101,7 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
 private:
-	static DesktopAccessPermission::Choice getDesktopAccessPermission( const QString& user, const QString& host, int choiceFlags );
+	static Choice requestDesktopAccess( QString user, QString host );
 
 	enum
 	{
@@ -105,22 +111,21 @@ private:
 
 	enum Commands
 	{
-		GetDesktopAccessPermission,
-		ReportDesktopAccessPermission
+		RequestDesktopAccess,
+		ReportDesktopAccessChoice
 	};
 
 	enum Arguments
 	{
 		UserArgument,
 		HostArgument,
-		ChoiceFlagsArgument,
-		ResultArgument
+		ChoiceArgument
 	};
 
 	Feature m_desktopAccessDialogFeature;
 	FeatureList m_features;
 
-	DesktopAccessPermission::Choice m_result;
+	Choice m_result;
 
 };
 

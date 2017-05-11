@@ -24,12 +24,9 @@
 
 #include "VeyonCore.h"
 
-#include <QtCrypto>
-#include <QHostAddress>
-
 #include "ServerAccessControlManager.h"
 #include "AccessControlProvider.h"
-#include "DesktopAccessPermission.h"
+#include "DesktopAccessDialog.h"
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "VariantArrayMessage.h"
@@ -40,7 +37,9 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 														QObject* parent ) :
 	QObject( parent ),
 	m_featureWorkerManager( featureWorkerManager ),
-	m_desktopAccessDialog( desktopAccessDialog )
+	m_desktopAccessDialog( desktopAccessDialog ),
+	m_clients(),
+	m_desktopAccessChoices()
 {
 }
 
@@ -53,11 +52,11 @@ bool ServerAccessControlManager::addClient( VncServerClient* client )
 	switch( client->authType() )
 	{
 	case RfbVeyonAuth::DSA:
-		result = performAccessControl( client, DesktopAccessPermission::KeyAuthentication );
+		result = performAccessControl( client );
 		break;
 
 	case RfbVeyonAuth::Logon:
-		result = performAccessControl( client, DesktopAccessPermission::LogonAuthentication );
+		result = performAccessControl( client );
 		break;
 
 	case RfbVeyonAuth::None:
@@ -102,34 +101,50 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 
 
 
-bool ServerAccessControlManager::performAccessControl( VncServerClient* client,
-													   DesktopAccessPermission::AuthenticationMethod authenticationMethod )
+bool ServerAccessControlManager::performAccessControl( VncServerClient* client )
 {
 	auto accessResult = AccessControlProvider().checkAccess( client->username(),
 															 client->hostAddress(),
 															 connectedUsers() );
 
-	DesktopAccessPermission desktopAccessPermission( authenticationMethod );
-
 	switch( accessResult )
 	{
-	case AccessControlProvider::AccessToBeConfirmed:
-		return desktopAccessPermission.ask( m_featureWorkerManager, m_desktopAccessDialog,
-											client->username(), client->hostAddress() );
-
 	case AccessControlProvider::AccessAllow:
-		if( desktopAccessPermission.authenticationMethodRequiresConfirmation() )
-		{
-			return desktopAccessPermission.ask( m_featureWorkerManager, m_desktopAccessDialog,
-												client->username(), client->hostAddress() );
-		}
 		return true;
-
+	case AccessControlProvider::AccessToBeConfirmed:
+		return confirmDesktopAccess( client );
 	default:
 		break;
 	}
 
 	return false;
+
+
+}
+
+
+
+bool ServerAccessControlManager::confirmDesktopAccess(VncServerClient *client)
+{
+	const HostUserPair hostUserPair( client->username(), client->hostAddress() );
+
+	// did we save a previous choice because user chose "always" or "never"?
+	if( m_desktopAccessChoices.contains( hostUserPair ) )
+	{
+		return m_desktopAccessChoices[hostUserPair] == DesktopAccessDialog::ChoiceAlways;
+	}
+
+	const auto result = m_desktopAccessDialog.exec( m_featureWorkerManager,
+													client->username(), client->hostAddress() );
+
+	if( result == DesktopAccessDialog::ChoiceAlways ||
+			result == DesktopAccessDialog::ChoiceNever )
+	{
+		m_desktopAccessChoices[hostUserPair] = result;
+	}
+
+	return result == DesktopAccessDialog::ChoiceYes ||
+			result == DesktopAccessDialog::ChoiceAlways;
 }
 
 

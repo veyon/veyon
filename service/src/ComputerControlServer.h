@@ -32,7 +32,6 @@
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "RfbVeyonAuth.h"
-#include "DesktopAccessPermission.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
 #include "VncProxyServer.h"
@@ -66,9 +65,6 @@ public:
 	bool handleFeatureMessage( QTcpSocket* socket );
 
 	void setAllowedIPs( const QStringList &allowedIPs );
-
-	bool performAccessControl( const QString& username, const QString& host,
-							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
 
 
 private:

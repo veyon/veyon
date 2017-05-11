@@ -25,8 +25,8 @@
 #ifndef SERVER_ACCESS_CONTROL_MANAGER_H
 #define SERVER_ACCESS_CONTROL_MANAGER_H
 
+#include "DesktopAccessDialog.h"
 #include "RfbVeyonAuth.h"
-#include "DesktopAccessPermission.h"
 #include "VncServerClient.h"
 
 class VariantArrayMessage;
@@ -47,14 +47,20 @@ signals:
 	void accessControlError( QString host, QString user );
 
 private:
-	bool performAccessControl( VncServerClient* client,
-							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
+	bool performAccessControl( VncServerClient* client );
+	bool confirmDesktopAccess( VncServerClient* client );
+
 	QStringList connectedUsers() const;
 
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;
 
 	VncServerClientList m_clients;
+
+	typedef QPair<QString, QString> HostUserPair;
+	typedef QMap<HostUserPair, DesktopAccessDialog::Choice> DesktopAccessChoiceMap;
+
+	DesktopAccessChoiceMap m_desktopAccessChoices;
 
 } ;
 
