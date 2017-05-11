@@ -989,7 +989,7 @@ QString Path::personalConfigDataPath()
 {
 	const QString appData = 
 #ifdef VEYON_BUILD_WIN32
-		LocalSystem::windowsConfigPath( CSIDL_APPDATA ) + QDir::separator() + "veyon";
+		LocalSystem::windowsConfigPath( CSIDL_APPDATA ) + QDir::separator() + "Veyon";
 #else
 		QDir::homePath() + QDir::separator() + ".veyon";
 #endif
@@ -1037,7 +1037,7 @@ QString Path::publicKeyPath( VeyonCore::UserRoles role, QString baseDir )
 QString Path::systemConfigDataPath()
 {
 #ifdef VEYON_BUILD_WIN32
-	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "veyon/" );
+	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "Veyon/" );
 #else
 	return "/etc/veyon/";
 #endif
