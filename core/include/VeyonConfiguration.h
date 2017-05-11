@@ -87,10 +87,8 @@ public slots:
 	void setComputerDoubleClickFeature( const QUuid& );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
-	void setPermissionRequiredWithKeyAuthentication( bool );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
-	void setPermissionRequiredWithLogonAuthentication( bool );
 	void setAccessControlDataBackend( const QUuid& );
 	void setAccessRestrictedToUserGroups( bool );
 	void setAccessControlRulesProcessingEnabled( bool );
