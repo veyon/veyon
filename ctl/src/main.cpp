@@ -47,14 +47,16 @@ int main( int argc, char **argv )
 	app = new QApplication( argc, argv );
 #endif
 
-	if( app->arguments().count() < 2 )
+	const auto arguments = app->arguments();
+
+	if( arguments.count() < 2 )
 	{
 		qCritical( "ERROR: not enough arguments - please specify a command" );
 
 		return -1;
 	}
 
-	if( app->arguments().last() == "-v" || app->arguments().last() == "--version" )
+	if( arguments.last() == "-v" || arguments.last() == "--version" )
 	{
 		printf( "%s\n", VEYON_VERSION );
 		return 0;
@@ -62,9 +64,9 @@ int main( int argc, char **argv )
 
 	VeyonCore* core = new VeyonCore( app, "Control" );
 
-	QMap<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
-
-	for( auto pluginObject : core->pluginManager().pluginObjects() )
+	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
+	const auto pluginObjects = core->pluginManager().pluginObjects();
+	for( auto pluginObject : pluginObjects )
 	{
 		auto commandLinePluginInterface = qobject_cast<CommandLinePluginInterface *>( pluginObject );
 		if( commandLinePluginInterface )
@@ -73,30 +75,32 @@ int main( int argc, char **argv )
 		}
 	}
 
-	QString command = app->arguments()[1];
+	const auto command = arguments[1];
 
-	for( auto commandLinePluginInterface : commandLinePluginInterfaces.keys() )
+	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
 	{
-		if( commandLinePluginInterface->commandName() == command )
+		const auto subCommands = it.key()->subCommands();
+
+		if( it.key()->commandName() == command )
 		{
 			CommandLinePluginInterface::RunResult runResult = CommandLinePluginInterface::Unknown;
 
-			if( app->arguments().count() > 2 )
+			if( arguments.count() > 2 )
 			{
-				QString subCommand = app->arguments()[2];
+				QString subCommand = arguments[2];
 
-				if( commandLinePluginInterface->subCommands().contains( subCommand ) &&
-						QMetaObject::invokeMethod( commandLinePluginInterfaces[commandLinePluginInterface],
+				if( subCommands.contains( subCommand ) &&
+						QMetaObject::invokeMethod( it.value(),
 												   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
 												   Qt::DirectConnection,
 												   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
-												   Q_ARG( QStringList, app->arguments().mid( 3 ) ) ) )
+												   Q_ARG( QStringList, arguments.mid( 3 ) ) ) )
 				{
 					// runResult contains result
 				}
 				else
 				{
-					runResult = commandLinePluginInterface->runCommand( app->arguments().mid( 2 ) );
+					runResult = it.key()->runCommand( arguments.mid( 2 ) );
 				}
 			}
 			else
@@ -115,15 +119,15 @@ int main( int argc, char **argv )
 				qInfo( "[FAIL]" );
 				return -1;
 			case CommandLinePluginInterface::InvalidCommand:
-				if( app->arguments().contains( "help" ) == false )
+				if( arguments.contains( "help" ) == false )
 				{
 					qCritical( "Invalid subcommand!" );
 				}
 				qCritical( "Available subcommands:" );
-				for( auto subCommand : commandLinePluginInterface->subCommands() )
+				for( const auto& subCommand : subCommands )
 				{
 					qCritical( "    %s - %s", subCommand.toUtf8().constData(),
-							   commandLinePluginInterface->subCommandHelp( subCommand ).toUtf8().constData() );
+							   it.key()->subCommandHelp( subCommand ).toUtf8().constData() );
 				}
 				return -1;
 			case CommandLinePluginInterface::InvalidArguments:
@@ -153,11 +157,11 @@ int main( int argc, char **argv )
 		qCritical( "command not found - available commands are:" );
 	}
 
-	for( auto commandLinePluginInterface : commandLinePluginInterfaces.keys() )
+	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
 	{
 		qCritical( "    %s - %s",
-				   commandLinePluginInterface->commandName().toUtf8().constData(),
-				   commandLinePluginInterface->commandHelp().toUtf8().constData() );
+				   it.key()->commandName().toUtf8().constData(),
+				   it.key()->commandHelp().toUtf8().constData() );
 	}
 
 	delete app;
