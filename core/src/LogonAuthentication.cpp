@@ -36,7 +36,7 @@
 
 bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cred )
 {
-	qDebug() << "Authenticating user" << cred.logonUsername();
+	qInfo() << "Authenticating user" << cred.logonUsername();
 
 	bool result = false;
 #ifdef VEYON_BUILD_WIN32
