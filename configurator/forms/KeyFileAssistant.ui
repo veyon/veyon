@@ -2,19 +2,11 @@
 <ui version="4.0">
  <class>KeyFileAssistant</class>
  <widget class="QWizard" name="KeyFileAssistant">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>520</width>
-    <height>345</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Veyon Access Key Assistant</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../veyon-configurator.qrc">
+   <iconset>
     <normaloff>:/resources/Authentication.png</normaloff>:/resources/Authentication.png</iconset>
   </property>
   <property name="sizeGripEnabled">
@@ -140,6 +132,9 @@ The public key part is used on the client computers to verify that any incoming 
       <property name="text">
        <string>Create new access keys (master computer)</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
       <attribute name="buttonGroup">
        <string notr="true">assistantModeButtonGroup</string>
       </attribute>
@@ -149,9 +144,6 @@ The public key part is used on the client computers to verify that any incoming 
      <widget class="QRadioButton" name="modeImportPublicKey">
       <property name="text">
        <string>Import public key (client computer)</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
       </property>
       <attribute name="buttonGroup">
        <string notr="true">assistantModeButtonGroup</string>
@@ -192,21 +184,6 @@ The public key part is used on the client computers to verify that any incoming 
       <item>
        <property name="text">
         <string>Teacher</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Administrator</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Support team member</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Other</string>
        </property>
       </item>
      </widget>
@@ -281,12 +258,6 @@ The public key part is used on the client computers to verify that any incoming 
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="label_6">
-      <property name="maximumSize">
-       <size>
-        <width>48</width>
-        <height>48</height>
-       </size>
-      </property>
       <property name="pixmap">
        <pixmap resource="../veyon-configurator.qrc">:/resources/help-about.png</pixmap>
       </property>
@@ -447,32 +418,6 @@ The public key part is used on the client computers to verify that any incoming 
     <property name="verticalSpacing">
      <number>10</number>
     </property>
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>The following actions will be taken:</string>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <spacer name="verticalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>10</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="2" column="0">
      <spacer name="horizontalSpacer_5">
       <property name="orientation">
@@ -627,6 +572,32 @@ The public key part is used on the client computers to verify that any incoming 
       </property>
      </spacer>
     </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>The following actions will be taken:</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>10</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
  </widget>
@@ -645,7 +616,6 @@ The public key part is used on the client computers to verify that any incoming 
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../veyon-configurator.qrc"/>
   <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>

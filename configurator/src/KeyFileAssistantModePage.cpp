@@ -1,7 +1,7 @@
 /*
  * KeyFileAssistantModePage.cpp - QWizardPage for assistant mode selection
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -26,6 +26,8 @@
 
 #include "KeyFileAssistant.h"
 #include "KeyFileAssistantModePage.h"
+#include "VeyonCore.h"
+
 #include "ui_KeyFileAssistant.h"
 
 
@@ -36,12 +38,12 @@ KeyFileAssistantModePage::KeyFileAssistantModePage() :
 }
 
 
-
 void KeyFileAssistantModePage::setUi( Ui::KeyFileAssistant *ui )
 {
+	ui->modeImportPublicKey->setChecked( true );
+
 	m_modeButtonGroup = ui->assistantModeButtonGroup;
-	connect( m_modeButtonGroup, SIGNAL( buttonClicked( int ) ),
-					this, SIGNAL( completeChanged() ) );
+	connect( m_modeButtonGroup, QOverload<int>::of( &QButtonGroup::buttonClicked ), this, &QWizardPage::completeChanged );
 }
 
 
@@ -50,5 +52,3 @@ bool KeyFileAssistantModePage::isComplete() const
 {
 	return m_modeButtonGroup && m_modeButtonGroup->checkedButton() != nullptr;
 }
-
-

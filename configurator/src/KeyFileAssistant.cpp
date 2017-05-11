@@ -1,7 +1,7 @@
 /*
  * KeyFileAssistant.cpp - a wizard assisting in managing key files
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -50,11 +50,10 @@ KeyFileAssistant::KeyFileAssistant() :
 	d.cdUp();
 	m_ui->destDirEdit->setText( QDTNS( d.absolutePath() ) );
 
-	connect( m_ui->openDestDir, SIGNAL( clicked() ),
-				this, SLOT( openDestDir() ) );
+	connect( m_ui->openDestDir, &QAbstractButton::clicked, this, &KeyFileAssistant::openDestDir );
+	connect( m_ui->openPubKeyDir, &QAbstractButton::clicked, this, &KeyFileAssistant::openPubKeyDir );
 
-	connect( m_ui->openPubKeyDir, SIGNAL( clicked() ),
-				this, SLOT( openPubKeyDir() ) );
+	VeyonCore::enforceBranding( this );
 }
 
 
@@ -111,8 +110,7 @@ void KeyFileAssistant::openDestDir()
 void KeyFileAssistant::accept()
 {
 	VeyonCore::UserRole role =
-			static_cast<VeyonCore::UserRole>(
-					m_ui->userRole->currentIndex() + VeyonCore::RoleTeacher );
+			static_cast<VeyonCore::UserRole>( m_ui->userRole->currentIndex() + VeyonCore::RoleTeacher );
 
 	QString destDir;
 	if( m_ui->useCustomDestDir->isChecked() ||
@@ -183,4 +181,3 @@ void KeyFileAssistant::accept()
 
 	QWizard::accept();
 }
-

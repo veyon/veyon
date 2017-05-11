@@ -1,7 +1,7 @@
 /*
  * KeyDirectoriesPage.cpp - QWizardPage for key directory selection
  *
- * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -42,14 +42,10 @@ void KeyDirectoriesPage::setUi( Ui::KeyFileAssistant *ui )
 {
 	m_ui = ui;
 
-	connect( m_ui->exportPublicKey, SIGNAL( clicked( bool ) ),
-				this, SIGNAL( completeChanged() ) );
-	connect( m_ui->publicKeyDir, SIGNAL( textChanged( const QString & ) ),
-				this, SIGNAL( completeChanged() ) );
-	connect( m_ui->useCustomDestDir, SIGNAL( clicked( bool ) ),
-				this, SIGNAL( completeChanged() ) );
-	connect( m_ui->destDirEdit, SIGNAL( textChanged( const QString & ) ),
-				this, SIGNAL( completeChanged() ) );
+	connect( m_ui->exportPublicKey, &QAbstractButton::clicked, this, &QWizardPage::completeChanged );
+	connect( m_ui->publicKeyDir, &QLineEdit::textChanged, this, &QWizardPage::completeChanged );
+	connect( m_ui->useCustomDestDir, &QAbstractButton::clicked, this, &QWizardPage::completeChanged );
+	connect( m_ui->destDirEdit, &QLineEdit::textChanged, this, &QWizardPage::completeChanged );
 }
 
 
@@ -64,8 +60,7 @@ bool KeyDirectoriesPage::isComplete() const
 			m_ui->exportPublicKey->isChecked() )
 	{
 		if( m_ui->publicKeyDir->text().isEmpty() ||
-				!QFileInfo( LocalSystem::Path::expand(
-									m_ui->publicKeyDir->text() ) ).isDir() )
+				!QFileInfo( LocalSystem::Path::expand( m_ui->publicKeyDir->text() ) ).isDir() )
 		{
 			return false;
 		}
@@ -73,8 +68,7 @@ bool KeyDirectoriesPage::isComplete() const
 	else if( m_ui->modeImportPublicKey->isChecked() )
 	{
 		if( m_ui->publicKeyDir->text().isEmpty() ||
-				!QFileInfo( LocalSystem::Path::expand(
-									m_ui->publicKeyDir->text() ) ).isFile() )
+				!QFileInfo( LocalSystem::Path::expand( m_ui->publicKeyDir->text() ) ).isFile() )
 		{
 			return false;
 		}
@@ -83,8 +77,7 @@ bool KeyDirectoriesPage::isComplete() const
 	if( m_ui->useCustomDestDir->isChecked() )
 	{
 		if( m_ui->destDirEdit->text().isEmpty() ||
-				!QFileInfo( LocalSystem::Path::expand(
-									m_ui->destDirEdit->text() ) ).isDir() )
+				!QFileInfo( LocalSystem::Path::expand( m_ui->destDirEdit->text() ) ).isDir() )
 		{
 			return false;
 		}
@@ -92,5 +85,3 @@ bool KeyDirectoriesPage::isComplete() const
 
 	return true;
 }
-
-
