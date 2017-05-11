@@ -141,7 +141,8 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 			continue;
 		}
 
-		if( matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers ) )
+		if( rule.areConditionsIgnored() ||
+				matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers ) )
 		{
 			qDebug() << "AccessControlProvider::processAccessControlRules(): rule"
 					 << rule.name() << "matched with action" << rule.action();
