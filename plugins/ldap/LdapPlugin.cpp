@@ -28,6 +28,7 @@
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
 #include "LdapDirectory.h"
+#include "LocalSystem.h"
 
 
 LdapPlugin::LdapPlugin() :
@@ -104,6 +105,8 @@ QStringList LdapPlugin::userGroups()
 
 QStringList LdapPlugin::groupsOfUser( QString username )
 {
+	username = LocalSystem::User::stripDomain( username );
+
 	const QString userDn = ldapDirectory().users( username ).value( 0 );
 
 	if( userDn.isEmpty() )

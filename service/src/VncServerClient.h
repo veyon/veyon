@@ -100,16 +100,7 @@ public:
 
 	void setUsername( const QString& username )
 	{
-		// remove the domain part of the accessing user (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-		int domainSeparator = username.indexOf( '\\' );
-		if( domainSeparator >= 0 )
-		{
-			m_username = username.mid( domainSeparator + 1 );
-		}
-		else
-		{
-			m_username = username;
-		}
+		m_username = username;
 	}
 
 	const QString& hostAddress() const

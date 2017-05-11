@@ -35,6 +35,7 @@
 #include "LocalDataConfigurationPage.h"
 #include "LocalDataNetworkObjectDirectory.h"
 #include "LocalDataPlugin.h"
+#include "LocalSystem.h"
 
 #include <QProcess>
 
@@ -200,6 +201,8 @@ QStringList LocalDataPlugin::groupsOfUser( QString username )
 	QStringList groupList;
 
 #ifdef VEYON_BUILD_LINUX
+	username = LocalSystem::User::stripDomain( username );
+
 	QProcess getentProcess;
 	getentProcess.start( "getent", QStringList() << "group" );
 	getentProcess.waitForFinished();

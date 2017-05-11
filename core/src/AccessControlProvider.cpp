@@ -72,13 +72,6 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 																		QString accessingComputer,
 																		const QStringList& connectedUsers )
 {
-	// remove the domain part of the accessing user (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-	int domainSeparator = accessingUser.indexOf( '\\' );
-	if( domainSeparator >= 0 )
-	{
-		accessingUser = accessingUser.mid( domainSeparator + 1 );
-	}
-
 	if( VeyonCore::config().isAccessRestrictedToUserGroups() )
 	{
 		if( processAuthorizedGroups( accessingUser ) )
