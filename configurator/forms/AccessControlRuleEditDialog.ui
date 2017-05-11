@@ -40,10 +40,17 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0" colspan="2">
+      <item row="3" column="0" colspan="2">
        <widget class="QCheckBox" name="invertConditionsCheckBox">
         <property name="text">
          <string>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="ignoreConditionsCheckBox">
+        <property name="text">
+         <string>Always process rule and ignore conditions</string>
         </property>
        </widget>
       </item>
@@ -51,7 +58,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="conditionsGroupBox">
      <property name="title">
       <string>Conditions</string>
      </property>
@@ -225,7 +232,7 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0" colspan="4">
+      <item row="8" column="0" colspan="4">
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -313,13 +320,23 @@
  <tabstops>
   <tabstop>ruleNameLineEdit</tabstop>
   <tabstop>ruleDescriptionLineEdit</tabstop>
+  <tabstop>ignoreConditionsCheckBox</tabstop>
   <tabstop>invertConditionsCheckBox</tabstop>
+  <tabstop>isMemberOfGroupCheckBox</tabstop>
+  <tabstop>isMemberOfGroupSubjectComboBox</tabstop>
   <tabstop>groupsComboBox</tabstop>
+  <tabstop>hasCommonGroupsCheckBox</tabstop>
+  <tabstop>hasCommonGroupsSubjectComboBox</tabstop>
   <tabstop>commonGroupComboBox</tabstop>
+  <tabstop>isLocatedInRoomCheckBox</tabstop>
+  <tabstop>isLocatedInRoomSubjectComboBox</tabstop>
   <tabstop>roomsComboBox</tabstop>
+  <tabstop>isLocatedInSameRoomCheckBox</tabstop>
+  <tabstop>isLocatedInSameRoomSubjectComboBox</tabstop>
   <tabstop>commonComputerLabComboBox</tabstop>
   <tabstop>isLocalHostAccessCheckBox</tabstop>
   <tabstop>isLocalUserAccessCheckBox</tabstop>
+  <tabstop>isSameUserAccessCheckBox</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
   <tabstop>actionAskForPermissionRadioButton</tabstop>
@@ -484,6 +501,38 @@
     <hint type="destinationlabel">
      <x>236</x>
      <y>343</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ignoreConditionsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>conditionsGroupBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>548</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>548</x>
+     <y>516</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ignoreConditionsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertConditionsCheckBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>548</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>548</x>
+     <y>225</y>
     </hint>
    </hints>
   </connection>

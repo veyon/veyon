@@ -64,7 +64,8 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->ruleNameLineEdit->setText( rule.name() );
 	ui->ruleDescriptionLineEdit->setText( rule.description() );
 
-	// load condition invertion setting
+	// load general condition processing settings
+	ui->ignoreConditionsCheckBox->setChecked( rule.areConditionsIgnored() );
 	ui->invertConditionsCheckBox->setChecked( rule.areConditionsInverted() );
 
 	// load condition states
@@ -117,7 +118,8 @@ void AccessControlRuleEditDialog::accept()
 	m_rule.setName( ui->ruleNameLineEdit->text() );
 	m_rule.setDescription( ui->ruleDescriptionLineEdit->text() );
 
-	// save condition invertion setting
+	// save general condition processing settings
+	m_rule.setConditionsIgnored( ui->ignoreConditionsCheckBox->isChecked() );
 	m_rule.setConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
 
 	// save conditions
