@@ -134,6 +134,16 @@ public:
 		m_parameters[condition].subject = subject;
 	}
 
+	bool areConditionsIgnored() const
+	{
+		return m_ignoreConditions;
+	}
+
+	void setConditionsIgnored( bool ignored )
+	{
+		m_ignoreConditions = ignored;
+	}
+
 	bool areConditionsInverted() const
 	{
 		return m_invertConditions;
@@ -183,6 +193,7 @@ private:
 	Action m_action;
 	ConditionParameterMap m_parameters;
 	bool m_invertConditions;
+	bool m_ignoreConditions;
 
 } ;
 

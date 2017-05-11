@@ -32,7 +32,8 @@ AccessControlRule::AccessControlRule() :
 	m_description(),
 	m_action( ActionNone ),
 	m_parameters(),
-	m_invertConditions( false )
+	m_invertConditions( false ),
+	m_ignoreConditions( false )
 {
 }
 
@@ -43,7 +44,8 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 	m_description( other.description() ),
 	m_action( other.action() ),
 	m_parameters( other.parameters() ),
-	m_invertConditions( other.areConditionsInverted() )
+	m_invertConditions( other.areConditionsInverted() ),
+	m_ignoreConditions( other.areConditionsIgnored() )
 {
 }
 
@@ -54,7 +56,8 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 	m_description(),
 	m_action( ActionNone ),
 	m_parameters(),
-	m_invertConditions( false )
+	m_invertConditions( false ),
+	m_ignoreConditions( false )
 {
 	if( jsonValue.isObject() )
 	{
@@ -64,6 +67,7 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 		m_description = json["Description"].toString();
 		m_action = static_cast<Action>( json["Action"].toInt() );
 		m_invertConditions = json["InvertConditions"].toBool();
+		m_ignoreConditions = json["IgnoreConditions"].toBool();
 
 		auto parameters = json["Parameters"].toArray();
 
@@ -89,6 +93,7 @@ QJsonObject AccessControlRule::toJson() const
 	json["Description"] = m_description;
 	json["Action"] = m_action;
 	json["InvertConditions"] = m_invertConditions;
+	json["IgnoreConditions"] = m_ignoreConditions;
 
 	QJsonArray parameters;
 
