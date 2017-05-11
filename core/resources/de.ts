@@ -843,15 +843,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Der Export des öffentlichen Zugrifsschlüssels von %1 nach %2 ist fehlgeschlagen.</translation>
+        <translation>Der Export des öffentlichen Zugriffsschlüssels von %1 nach %2 ist fehlgeschlagen.</translation>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Zugrifsschlüssel wurden erfolgreich erstellt und nach %1 und %2 geschrieben.</translation>
+        <translation>Zugriffsschlüssel wurden erfolgreich erstellt und nach %1 und %2 geschrieben.</translation>
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Beim erstellen der Zugrifsschlüssel ist ein Fehler aufgetreten. Sie sind wahrscheinlich nicht berechtigt, in die gewählten Verzeichnisse zu schreiben.</translation>
+        <translation>Beim erstellen der Zugriffsschlüssel ist ein Fehler aufgetreten. Sie sind wahrscheinlich nicht berechtigt, in die gewählten Verzeichnisse zu schreiben.</translation>
     </message>
     <message>
         <source>Public key import</source>
@@ -859,7 +859,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Beim importieren des öffentlichen Zugrifsschlüssels ist ein Fehler aufgetreten. Sie sind wahrscheinlich nicht berechtigt, den Quellschlüssel zu lesen oder die Zieldatei zu schreiben.</translation>
+        <translation>Beim importieren des öffentlichen Zugriffsschlüssels ist ein Fehler aufgetreten. Sie sind wahrscheinlich nicht berechtigt, den Quellschlüssel zu lesen oder die Zieldatei zu schreiben.</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
@@ -891,7 +891,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentlichen Veyon-Zugrifsschlüssel!</translation>
+        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentlichen Veyon-Zugriffsschlüssel!</translation>
     </message>
 </context>
 <context>
