@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>AuthenticationConfigurationPage</class>
  <widget class="QWidget" name="AuthenticationConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>636</width>
-    <height>781</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
@@ -187,47 +179,8 @@
          <string>Test</string>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
+         <iconset>
           <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_4">
-     <property name="title">
-      <string>Access confirmation</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>36</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="isPermissionRequiredWithKeyAuthentication">
-        <property name="text">
-         <string>Key file authentication</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="isPermissionRequiredWithLogonAuthentication">
-        <property name="text">
-         <string>Logon authentication</string>
         </property>
        </widget>
       </item>
