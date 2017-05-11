@@ -103,9 +103,10 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 
 bool ServerAccessControlManager::performAccessControl( VncServerClient* client )
 {
-	auto accessResult = AccessControlProvider().checkAccess( client->username(),
-															 client->hostAddress(),
-															 connectedUsers() );
+	const auto accessResult =
+			AccessControlProvider().checkAccess( client->username(),
+												 client->hostAddress(),
+												 connectedUsers() );
 
 	switch( accessResult )
 	{
@@ -118,8 +119,6 @@ bool ServerAccessControlManager::performAccessControl( VncServerClient* client )
 	}
 
 	return false;
-
-
 }
 
 
@@ -137,6 +136,7 @@ bool ServerAccessControlManager::confirmDesktopAccess(VncServerClient *client)
 	const auto result = m_desktopAccessDialog.exec( m_featureWorkerManager,
 													client->username(), client->hostAddress() );
 
+	// remember choices "always" and "never"
 	if( result == DesktopAccessDialog::ChoiceAlways ||
 			result == DesktopAccessDialog::ChoiceNever )
 	{
