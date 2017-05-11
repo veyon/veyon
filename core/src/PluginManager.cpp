@@ -29,12 +29,6 @@
 
 #include "PluginManager.h"
 
-#ifdef VEYON_BUILD_WIN32
-static const QStringList nameFilters("*.dll");
-#else
-static const QStringList nameFilters("*.so");
-#endif
-
 
 PluginManager::PluginManager( QObject* parent ) :
 	QObject( parent ),
@@ -52,10 +46,12 @@ PluginManager::PluginManager( QObject* parent ) :
 
 	};
 
-#ifdef Q_OS_LINUX
-	addRelativeIfExists( "../plugins" );
-#else
+#ifdef Q_OS_WIN
 	addRelativeIfExists( "plugins" );
+	const QStringList nameFilters("*.dll");
+#else
+	addRelativeIfExists( "../plugins" );
+	const QStringList nameFilters("*.so");
 #endif
 
 	auto plugins = QDir( "plugins:" ).entryInfoList( nameFilters );
