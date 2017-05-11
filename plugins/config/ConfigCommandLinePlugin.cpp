@@ -180,8 +180,9 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const QStringList& arguments )
 {
-	QString key = arguments.value( 0 );
-	QString value = arguments.value( 1 );
+	auto key = arguments.value( 0 );
+	auto value = arguments.value( 1 );
+	auto type = arguments.value( 2 );
 
 	if( key.isEmpty() )
 	{
@@ -193,7 +194,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		return operationError( tr( "Please specify a valid value." ) );
 	}
 
-	QStringList keyParts = key.split( '/' );
+	const auto keyParts = key.split( '/' );
 	key = keyParts.last();
 	QString parentKey;
 
@@ -202,7 +203,15 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
 	}
 
-	VeyonCore::config().setValue( key, value, parentKey );
+	if( type == "json" ||
+			VeyonCore::config().value( key, parentKey ).userType() == QMetaType::type( "QJsonArray" ) )
+	{
+		VeyonCore::config().setValue( key, QJsonDocument::fromJson( value.toUtf8() ).array(), parentKey );
+	}
+	else
+	{
+		VeyonCore::config().setValue( key, value, parentKey );
+	}
 
 	return applyConfiguration();
 }
