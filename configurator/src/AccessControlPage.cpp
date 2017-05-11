@@ -251,10 +251,10 @@ void AccessControlPage::moveAccessControlRuleUp()
 
 void AccessControlPage::testUserGroupsAccessControl()
 {
-	QString userName = QInputDialog::getText( this, tr( "Enter username" ),
+	QString username = QInputDialog::getText( this, tr( "Enter username" ),
 										  tr( "Please enter a user login name whose access permissions to test:" ) );
 
-	if( AccessControlProvider().processAuthorizedGroups( userName ) )
+	if( AccessControlProvider().processAuthorizedGroups( username ) )
 	{
 		QMessageBox::information( this, tr( "Access allowed" ),
 								  tr( "The specified user is allowed to access computers with this configuration." ) );

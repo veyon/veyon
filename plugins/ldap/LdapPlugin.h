@@ -110,7 +110,7 @@ public:
 
 	QStringList users() override;
 	QStringList userGroups() override;
-	QStringList groupsOfUser( QString userName ) override;
+	QStringList groupsOfUser( QString username ) override;
 	QStringList allRooms() override;
 	QStringList roomsOfComputer( QString computerName ) override;
 

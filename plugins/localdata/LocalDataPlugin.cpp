@@ -195,7 +195,7 @@ QStringList LocalDataPlugin::userGroups()
 
 
 
-QStringList LocalDataPlugin::groupsOfUser( QString userName )
+QStringList LocalDataPlugin::groupsOfUser( QString username )
 {
 	QStringList groupList;
 
@@ -208,7 +208,7 @@ QStringList LocalDataPlugin::groupsOfUser( QString userName )
 	{
 		QStringList groupComponents = group.split( ':' );
 		if( groupComponents.size() == 4 &&
-				groupComponents.last().split( ',' ).contains( userName ) )
+				groupComponents.last().split( ',' ).contains( username ) )
 		{
 			groupList += groupComponents.first();
 		}
@@ -220,7 +220,7 @@ QStringList LocalDataPlugin::groupsOfUser( QString userName )
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetUserGetLocalGroups( NULL, (LPCWSTR) userName.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+	if( NetUserGetLocalGroups( NULL, (LPCWSTR) username.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
 							   &entriesRead, &totalEntries ) == NERR_Success )
 	{
 		LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;

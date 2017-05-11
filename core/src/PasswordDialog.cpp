@@ -41,17 +41,17 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 	ui->setupUi( this );
 
 	const LocalSystem::User loggedOnUser = LocalSystem::User::loggedOnUser();
-	QString userName = loggedOnUser.name();
+	QString username = loggedOnUser.name();
 #ifdef VEYON_BUILD_WIN32
-	if( !userName.isEmpty() && !loggedOnUser.domain().isEmpty() )
+	if( !username.isEmpty() && !loggedOnUser.domain().isEmpty() )
 	{
-		userName = loggedOnUser.domain() + "\\" + userName;
+		username = loggedOnUser.domain() + "\\" + username;
 	}
 #endif
 
-	ui->username->setText( userName );
+	ui->username->setText( username );
 
-	if( !userName.isEmpty() )
+	if( !username.isEmpty() )
 	{
 		ui->password->setFocus();
 	}

@@ -102,13 +102,13 @@ QStringList LdapPlugin::userGroups()
 
 
 
-QStringList LdapPlugin::groupsOfUser( QString userName )
+QStringList LdapPlugin::groupsOfUser( QString username )
 {
-	const QString userDn = ldapDirectory().users( userName ).value( 0 );
+	const QString userDn = ldapDirectory().users( username ).value( 0 );
 
 	if( userDn.isEmpty() )
 	{
-		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << userName;
+		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << username;
 		return QStringList();
 	}
 

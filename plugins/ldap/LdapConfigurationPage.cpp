@@ -395,15 +395,15 @@ void LdapConfigurationPage::testComputerLabAttribute()
 
 void LdapConfigurationPage::testGroupsOfUser()
 {
-	QString userName = QInputDialog::getText( this, tr( "Enter username" ),
+	QString username = QInputDialog::getText( this, tr( "Enter username" ),
 										  tr( "Please enter a user login name whose group memberships to query:") );
-	if( userName.isEmpty() == false )
+	if( username.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing groups of user" << userName;
+		qDebug() << "[TEST][LDAP] Testing groups of user" << username;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
-		QStringList userObjects = ldapDirectory.users(userName);
+		QStringList userObjects = ldapDirectory.users(username);
 
 		if( userObjects.isEmpty() == false )
 		{
@@ -415,7 +415,7 @@ void LdapConfigurationPage::testGroupsOfUser()
 			QMessageBox::warning( this, tr( "User not found" ),
 								  tr( "Could not find a user with the name \"%1\". "
 									  "Please check the user name or the user "
-									  "tree parameter.").arg( userName ) );
+									  "tree parameter.").arg( username ) );
 		}
 	}
 }

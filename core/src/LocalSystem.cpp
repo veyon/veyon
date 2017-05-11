@@ -248,16 +248,16 @@ User::~User()
 
 
 
-QString User::stripDomain( QString userName )
+QString User::stripDomain( QString username )
 {
-	// remove the domain part of user (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-	int domainSeparator = userName.indexOf( '\\' );
+	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
+	int domainSeparator = username.indexOf( '\\' );
 	if( domainSeparator >= 0 )
 	{
-		return userName.mid( domainSeparator + 1 );
+		return username.mid( domainSeparator + 1 );
 	}
 
-	return userName;
+	return username;
 }
 
 
@@ -288,14 +288,14 @@ static QString querySessionInformation( DWORD sessionId,
 
 User User::loggedOnUser()
 {
-	QString userName = "unknown";
+	QString username = "unknown";
 	QString domainName = QHostInfo::localDomainName();
 
 #ifdef VEYON_BUILD_WIN32
 
 	DWORD sessionId = WTSGetActiveConsoleSessionId();
 
-	userName = querySessionInformation( sessionId, WTSUserName );
+	username = querySessionInformation( sessionId, WTSUserName );
 	domainName = querySessionInformation( sessionId, WTSDomainName );
 
 	// check whether we just got the name of the local computer
@@ -337,19 +337,19 @@ User User::loggedOnUser()
 				shell.endsWith( "/null" ) ||
 				shell.endsWith( "/nologin") ) )
 		{
-			userName = QString::fromUtf8( pw_entry->pw_name );
+			username = QString::fromUtf8( pw_entry->pw_name );
 		}
 	}
 #endif	/* VEYON_HAVE_PWD_H */
 
-	if( userName.isEmpty() )
+	if( username.isEmpty() )
 	{
-		userName = QString::fromUtf8( envUser );
+		username = QString::fromUtf8( envUser );
 	}
 
 #endif
 
-	return User( userName, domainName );
+	return User( username, domainName );
 }
 
 
