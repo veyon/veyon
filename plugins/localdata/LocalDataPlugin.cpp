@@ -195,7 +195,7 @@ QStringList LocalDataPlugin::userGroups()
 
 
 
-QStringList LocalDataPlugin::groupsOfUser( const QString& userName )
+QStringList LocalDataPlugin::groupsOfUser( QString userName )
 {
 	QStringList groupList;
 
@@ -259,7 +259,7 @@ QStringList LocalDataPlugin::allRooms()
 
 
 
-QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
+QStringList LocalDataPlugin::roomsOfComputer( QString computerName )
 {
 	auto networkObjects = m_configuration.networkObjects();
 

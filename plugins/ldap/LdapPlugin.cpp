@@ -102,7 +102,7 @@ QStringList LdapPlugin::userGroups()
 
 
 
-QStringList LdapPlugin::groupsOfUser( const QString& userName )
+QStringList LdapPlugin::groupsOfUser( QString userName )
 {
 	const QString userDn = ldapDirectory().users( userName ).value( 0 );
 
@@ -126,7 +126,7 @@ QStringList LdapPlugin::allRooms()
 
 
 
-QStringList LdapPlugin::roomsOfComputer( const QString& computerName )
+QStringList LdapPlugin::roomsOfComputer( QString computerName )
 {
 	const QString computerDn = ldapDirectory().computerObjectFromHost( computerName );
 

@@ -110,9 +110,9 @@ public:
 
 	QStringList users() override;
 	QStringList userGroups() override;
-	QStringList groupsOfUser( const QString& userName ) override;
+	QStringList groupsOfUser( QString userName ) override;
 	QStringList allRooms() override;
-	QStringList roomsOfComputer( const QString& computerName ) override;
+	QStringList roomsOfComputer( QString computerName ) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 
