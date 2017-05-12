@@ -247,6 +247,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>is located in the same room as</source>
         <translation>befindet sich im selben Raum wie</translation>
     </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Regel immer verarbeiten und Bedingungen ignorieren</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -338,10 +342,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Testen</translation>
     </message>
     <message>
-        <source>Access confirmation</source>
-        <translation>Zugriffsbestätigung</translation>
-    </message>
-    <message>
         <source>Logon authentication test</source>
         <translation>Test der Anmelde-Authentifizierung</translation>
     </message>
@@ -352,10 +352,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Authentication with provided credentials failed!</source>
         <translation>Die Authentifizierung mit den angegebenen Anmeldedaten ist fehlgeschlagen!</translation>
-    </message>
-    <message>
-        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Sie können Veyon so konfigurieren, dass der Benutzer bei bestimmten Authentifizierungsmethoden um Zugriffsbestätigung gebeten wird.</translation>
     </message>
 </context>
 <context>
@@ -748,18 +744,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Teacher</source>
         <translation>Lehrer</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>Administrator</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Supportmitarbeiter</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Andere</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>

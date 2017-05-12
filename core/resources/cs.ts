@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation>O aplikaci Veyon</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>O aplikaci</translation>
     </message>
     <message>
         <source>Translation</source>
         <translation>Překlad</translation>
-    </message>
-    <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>Texty rozhraní aplikace ještě nejsou přeloženy do vámi používaného jazyka (nebo používáte původní anglické).
-
-Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, případně vylepšit ten stávající, kontaktujte vývojáře aplikace Veyon!</translation>
     </message>
     <message>
         <source>License</source>
@@ -30,25 +18,30 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
         <translation>O aplikaci Veyon</translation>
     </message>
     <message>
-        <source>Veyon - Virtual Eye On Networks
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Veyon – Virtual Eye On Networks
-(virtuální oko na sítích)
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Contributors</source>
         <translation>Na vývoji se podíleli</translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
-    <message>
-        <source>Form</source>
-        <translation>Formulář</translation>
-    </message>
     <message>
         <source>Computer access control</source>
         <translation>Řízení přístupu k počítači</translation>
@@ -307,10 +300,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
-        <source>Form</source>
-        <translation>Formulář</translation>
-    </message>
-    <message>
         <source>Authentication methods</source>
         <translation>Metody ověření</translation>
     </message>
@@ -455,13 +444,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     </message>
 </context>
 <context>
-    <name>ComputerMonitoringView</name>
-    <message>
-        <source>Form</source>
-        <translation>Formulář</translation>
-    </message>
-</context>
-<context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
@@ -502,6 +484,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     <message>
         <source>Configure Veyon at command line</source>
         <translation>Nastavit Veyon na příkazovém řádku</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -549,16 +543,16 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
         <translation>Umožnit přístup k pracovní ploše</translation>
     </message>
     <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Uživatel %1 chce z počítače %2 přistoupit k Vaší pracovní ploše. Umožníte mu to?</translation>
-    </message>
-    <message>
         <source>Never for this session</source>
         <translation>Ne po celou dobu této relace</translation>
     </message>
     <message>
         <source>Always for this session</source>
         <translation>Ano kdykoli po dobu této relace</translation>
+    </message>
+    <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -655,10 +649,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
         <translation>Omezit velikost souboru se záznamy o provozu</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
         <source>Clear all log files</source>
         <translation>Vymazat všechny soubory se záznamy o provozu</translation>
     </message>
@@ -709,6 +699,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     <message>
         <source>Could not remove all log files.</source>
         <translation>Nelze smazat soubory se záznamy o provozu.</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rotate log files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>x</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1069,10 +1071,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Nastavený atribut pro přihlášení uživatele nebo název počítače (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Computer labs</source>
-        <translation>Počítačové laboratoře</translation>
-    </message>
-    <message>
         <source>Dedicated computer groups</source>
         <translation>Vyhrazené skupiny počítačů</translation>
     </message>
@@ -1083,10 +1081,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Common attribute</source>
         <translation>Společný atribut</translation>
-    </message>
-    <message>
-        <source>Aggregate computer lab members using:</source>
-        <translation>Agregovat členy počítačové laboratoře pomocí:</translation>
     </message>
     <message>
         <source>Functionality tests</source>
@@ -1456,6 +1450,26 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 bylo úspěšně dotázáno pomocí nastaveného filtru.</translation>
     </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aggregate computers in a room using:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1592,10 +1606,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Debugging</source>
         <translation>Ladění</translation>
-    </message>
-    <message>
-        <source>Snapshots</source>
-        <translation>Snímky obrazovek</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1839,13 +1849,21 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
         <translation>Nebyly žádné ověřovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu %1. Případně můžete nastavit přihlašovací ověřování s použitím konzole pro správu %1. Pokud tak neučiníte, nebudete moci přistupovat k počítačům s %1.</translation>
     </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
-    <message>
-        <source>Form</source>
-        <translation>Formulář</translation>
-    </message>
     <message>
         <source>Directories</source>
         <translation>Složky</translation>
@@ -1859,24 +1877,8 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Nastavení uživatele</translation>
     </message>
     <message>
-        <source>Snapshots</source>
-        <translation>Snímky obrazovek</translation>
-    </message>
-    <message>
         <source>User interface &amp;&amp; behaviour</source>
         <translation>Uživatelské rozhraní a chování</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer management</source>
-        <translation>Ve správě počítačů skrýt místní počítač</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer management manually</source>
-        <translation>Umožnit ruční přidávání místností do správy počítačů</translation>
-    </message>
-    <message>
-        <source>Only show current room in computer management</source>
-        <translation>Ve správě počítačů zobrazovat pouze aktuální místnost</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -1897,6 +1899,30 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Disabled features</source>
         <translation>Vypnuté funkce</translation>
+    </message>
+    <message>
+        <source>Only show current room in computer room management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty rooms from computer room management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer room management manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer in computer room management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1924,10 +1950,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>veyon Logon</source>
-        <translation>veyon přihlášení</translation>
-    </message>
-    <message>
         <source>Username</source>
         <translation>Uživatelské jméno</translation>
     </message>
@@ -1936,8 +1958,20 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Heslo</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
-        <translation>Pro přístup k počítačům ve Veyon síti zadejte uživatelské jméno a heslo.</translation>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2045,27 +2079,19 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Vzdálený přístup</translation>
     </message>
     <message>
-        <source>Please enter a hostname or IP address of the host to access:</source>
-        <translation>Zadejte název nebo IP adresu počítače ke kterému přistupovat:</translation>
-    </message>
-    <message>
         <source>Remote view or control a computer</source>
         <translation>Vzdálený pohled nebo ovládání počítače</translation>
+    </message>
+    <message>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>View live (%1 @ %2)</source>
-        <translation>Živé zobrazení (%1 na %2)</translation>
-    </message>
-    <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation>Ovládání na dálku (%1 na %2)</translation>
-    </message>
-    <message>
-        <source>unknown user</source>
-        <translation>neznámý uživatel</translation>
+        <source>%1 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2081,10 +2107,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Send shortcut</source>
         <translation>Odeslat klávesovou zkratku</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Snímek obrazovky</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2138,6 +2160,10 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>Connected.</source>
         <translation>Připojeno.</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
@@ -2153,16 +2179,12 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
 <context>
     <name>RunProgramDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation>Spustit příkazy</translation>
-    </message>
-    <message>
-        <source>Run program</source>
-        <translation>Spustit aplikaci</translation>
-    </message>
-    <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
         <translation>Zadejte aplikace nebo příkazy které mají být spuštěné na označených počítačích. Každou z aplikací/příkazů uvádějte na samostatný řádek</translation>
+    </message>
+    <message>
+        <source>Run programs</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2182,6 +2204,21 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Uzamknout obrazovku a vstupní zařízení počítače</translation>
+    </message>
+</context>
+<context>
+    <name>Screenshot</name>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2208,11 +2245,38 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
 </context>
 <context>
-    <name>ServiceConfigurationPage</name>
+    <name>ScreenshotManagementView</name>
     <message>
-        <source>Form</source>
-        <translation>Formulář</translation>
+        <source>User:</source>
+        <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
         <translation>Obecné</translation>
@@ -2361,58 +2425,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
 </context>
 <context>
-    <name>Snapshot</name>
-    <message>
-        <source>unknown</source>
-        <translation>neznámé</translation>
-    </message>
-    <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Snímek obrazovky nelze pořídit, protože složka %1 neexistuje a nedaří se jí vytvořit.</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Snímek obrazovky</translation>
-    </message>
-</context>
-<context>
-    <name>SnapshotManagementWidget</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Všechny pořízené snímky se uchovávají zde. Snímky je možné pořizovat výběrem odpovídající položky v kontextové nabídce okna s klientem. Tyto snímky je možné dále spravovat pomocí tlačítek níže.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation>Uživatel:</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>Počítač:</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation>Datum:</translation>
-    </message>
-    <message>
-        <source>Time:</source>
-        <translation>Čas:</translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation>Zobrazit</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Smazat</translation>
-    </message>
-</context>
-<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -2451,10 +2463,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
-    <message>
-        <source>Builtin x11vnc server configuration</source>
-        <translation>Nastavení vestavěného x11vnc serveru</translation>
-    </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
         <translation>Povolit zachytávání vrstvených (jako by průhledných) oken</translation>

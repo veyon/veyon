@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation>Про veyon</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Про програму</translation>
     </message>
     <message>
         <source>Translation</source>
         <translation>Переклад</translation>
-    </message>
-    <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>Програму ще не перекладено поточною мовою (або ви користуєтеся англійською версією).
-
-Якщо ви хочете перекласти veyon вашою рідною або іншою мовою чи хочете покращити поточний переклад, зв’яжіться з розробником veyon!</translation>
     </message>
     <message>
         <source>License</source>
@@ -30,24 +18,32 @@ If you&apos;re interested in translating veyon into your local or another langua
         <translation>Про Veyon</translation>
     </message>
     <message>
-        <source>Veyon - Virtual Eye On Networks
-
-Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Veyon — віртуальний нагляд за мережами
-
-© Tobias Doerffel / Veyon Solutions, 2004–2017</translation>
-    </message>
-    <message>
         <source>Contributors</source>
         <translation>Учасники розробки</translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation>Версія:</translation>
+    </message>
+    <message>
+        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation>© Tobias Doerffel / Veyon Solutions, 2004–2017</translation>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation>Сайт:</translation>
+    </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation>Програму ще не перекладено поточною мовою (або налаштовано на використання англійської).
+
+Якщо ви хочете перекласти Veyon вашою рідною або якоюсь іншою мовою або хочете удосконалити наявний переклад, будь ласка, зв’яжіться із розробником Veyon!</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
-    <message>
-        <source>Form</source>
-        <translation>Форма</translation>
-    </message>
     <message>
         <source>Computer access control</source>
         <translation>Керування доступом до комп’ютерів</translation>
@@ -306,10 +302,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
-        <source>Form</source>
-        <translation>Форма</translation>
-    </message>
-    <message>
         <source>Authentication methods</source>
         <translation>Способи розпізнавання</translation>
     </message>
@@ -454,13 +446,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
     </message>
 </context>
 <context>
-    <name>ComputerMonitoringView</name>
-    <message>
-        <source>Form</source>
-        <translation>Форма</translation>
-    </message>
-</context>
-<context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
@@ -501,6 +486,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
     <message>
         <source>Configure Veyon at command line</source>
         <translation>Налаштувати Veyon з командного рядка</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>Файл для виведення даних непридатний до запису!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>Каталог для виведення даних непридатний до запису!</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>Не вдалося прочитати файл налаштувань!</translation>
     </message>
 </context>
 <context>
@@ -548,16 +545,16 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
         <translation>Підтвердження доступу</translation>
     </message>
     <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Користувач %1 з вузла %2 бажає отримати доступ до вашої системи. Надасте йому доступ?</translation>
-    </message>
-    <message>
         <source>Never for this session</source>
         <translation>Ніколи протягом цього сеансу</translation>
     </message>
     <message>
         <source>Always for this session</source>
         <translation>Завжди протягом цього сеансу</translation>
+    </message>
+    <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>Користувач %1 з комп’ютера %2 бажає отримати доступ до вашої системи. Надасте йому доступ?</translation>
     </message>
 </context>
 <context>
@@ -654,10 +651,6 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
         <translation>Обмежити розмір файла журналу</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>МБ</translation>
-    </message>
-    <message>
         <source>Clear all log files</source>
         <translation>Спорожнити всі файли журналу</translation>
     </message>
@@ -708,6 +701,18 @@ Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
     <message>
         <source>Could not remove all log files.</source>
         <translation>Не вдалося вилучити всі файли журналу.</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>МБ</translation>
+    </message>
+    <message>
+        <source>Rotate log files</source>
+        <translation>Освіжити файли журналу</translation>
+    </message>
+    <message>
+        <source>x</source>
+        <translation>x</translation>
     </message>
 </context>
 <context>
@@ -1068,10 +1073,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Computer labs</source>
-        <translation>Комп’ютерні лабораторії</translation>
-    </message>
-    <message>
         <source>Dedicated computer groups</source>
         <translation>Спеціалізовані групи комп’ютерів</translation>
     </message>
@@ -1082,10 +1083,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Common attribute</source>
         <translation>Загальний атрибут</translation>
-    </message>
-    <message>
-        <source>Aggregate computer lab members using:</source>
-        <translation>Збирати учасників комп’ютерної лабораторії за допомогою:</translation>
     </message>
     <message>
         <source>Functionality tests</source>
@@ -1455,6 +1452,26 @@ The public key part is used on the client computers to verify that any incoming 
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 було успішно опитано за допомогою налаштованого фільтра.</translation>
     </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation>(лише якщо відмінне від ієрархії груп)</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Ієрархія груп комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Класи</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room using:</source>
+        <translation>Збирати комп’ютери у клас на основі:</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>ієрархії груп комп’ютерів</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1591,10 +1608,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Debugging</source>
         <translation>Діагностика</translation>
-    </message>
-    <message>
-        <source>Snapshots</source>
-        <translation>Знімки екрана</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1838,13 +1851,21 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
         <translation>Не знайдено файлів ключів розпізнавання або строк дії знайдених ключів вичерпано. Будь ласка, створіть нові файли ключів за допомогою засобу налаштовування %1. Крім того, ви можете налаштувати розпізнавання за іменем користувача під час входу до системи, скориставшись для цього засобом налаштовування %1. Якщо ви не створите ключів і не налаштуєте розпізнавання, ви не зможете отримувати доступ до комп’ютерів за допомогою %1.</translation>
     </message>
+    <message>
+        <source>Access denied</source>
+        <translation>Доступ заборонено</translation>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation>Відповідно до локальних налаштувань вам заборонено доступ до комп’ютерів у мережі. Будь ласка, увійдіть до іншого облікового запису або попросіть адміністратора вашої системи змінити локальні налаштування відповідним чином.</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Знімки вікон</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
-    <message>
-        <source>Form</source>
-        <translation>Форма</translation>
-    </message>
     <message>
         <source>Directories</source>
         <translation>Каталоги</translation>
@@ -1858,24 +1879,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Налаштування користувачів</translation>
     </message>
     <message>
-        <source>Snapshots</source>
-        <translation>Знімки екрана</translation>
-    </message>
-    <message>
         <source>User interface &amp;&amp; behaviour</source>
         <translation>Поведінка та інтерфейс користувача</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer management</source>
-        <translation>Приховати локальний комп’ютер на панелі керування комп’ютерами</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer management manually</source>
-        <translation>Дозволити додавання класів на панелі керування комп’ютерами вручну</translation>
-    </message>
-    <message>
-        <source>Only show current room in computer management</source>
-        <translation>Показувати лише поточний клас на панелі керування комп’ютерами</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -1896,6 +1901,30 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Disabled features</source>
         <translation>Вимкнені можливості</translation>
+    </message>
+    <message>
+        <source>Only show current room in computer room management</source>
+        <translation>Показувати на сторінці керування класами комп’ютерів лише поточний клас</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms from computer room management</source>
+        <translation>Приховати порожні класи на панелі керування класами комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer room management manually</source>
+        <translation>Дозволити додавання класів на панелі керування класами комп’ютерів вручну</translation>
+    </message>
+    <message>
+        <source>Hide local computer in computer room management</source>
+        <translation>Приховати локальний комп’ютер на панелі керування класами комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation>Виконувати керування доступом під час запуску програми</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Знімки вікон</translation>
     </message>
 </context>
 <context>
@@ -1923,10 +1952,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>veyon Logon</source>
-        <translation>Вхід до veyon</translation>
-    </message>
-    <message>
         <source>Username</source>
         <translation>Ім’я користувача</translation>
     </message>
@@ -1935,8 +1960,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Пароль</translation>
     </message>
     <message>
-        <source>Please enter your username and password in order to access computers in your Veyon network.</source>
-        <translation>Будь ласка, введіть ім’я користувача і пароль для доступу до комп’ютерів у вашій мережі Veyon.</translation>
+        <source>Veyon Logon</source>
+        <translation>Вхід до Veyon</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Помилка розпізнавання</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Не вдалося увійти на основі вказаних імені користувача і пароля. Будь ласка, повторіть спробу!</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Будь ласка, вкажіть ваше ім’я користувача та пароль, щоб отримати доступ до комп’ютерів.</translation>
     </message>
 </context>
 <context>
@@ -2044,27 +2081,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Віддалений доступ</translation>
     </message>
     <message>
-        <source>Please enter a hostname or IP address of the host to access:</source>
-        <translation>Будь ласка, вкажіть назву вузла або IP-адресу вузла, доступ до якого слід отримати:</translation>
-    </message>
-    <message>
         <source>Remote view or control a computer</source>
         <translation>Віддалений перегляд або керування комп’ютером</translation>
+    </message>
+    <message>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation>Будь ласка, вкажіть назву вузла або IP-адресу комп’ютера, доступ до якого слід отримати:</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>View live (%1 @ %2)</source>
-        <translation>Перегляд наживо (%1 @ %2)</translation>
-    </message>
-    <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation>Віддалене керування (%1 @ %2)</translation>
-    </message>
-    <message>
-        <source>unknown user</source>
-        <translation>невідомий користувач</translation>
+        <source>%1 Remote Access</source>
+        <translation>Віддалений доступ до %1</translation>
     </message>
 </context>
 <context>
@@ -2080,10 +2109,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Send shortcut</source>
         <translation>Надіслати скорочення</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Знімок екрана</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2137,6 +2162,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Connected.</source>
         <translation>З’єднано.</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Знімок вікна</translation>
+    </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
@@ -2152,16 +2181,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>RunProgramDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation>Виконання команд</translation>
-    </message>
-    <message>
-        <source>Run program</source>
-        <translation>Виконати програму</translation>
-    </message>
-    <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
         <translation>Будь ласка, вкажіть програми або команди, які слід виконати на позначених комп’ютерах. Ви можете вказати декілька програм або команд, записавши їх в окремих рядках.</translation>
+    </message>
+    <message>
+        <source>Run programs</source>
+        <translation>Виконати програми</translation>
     </message>
 </context>
 <context>
@@ -2181,6 +2206,21 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Заблокувати екран і пристрої введення на комп’ютері</translation>
+    </message>
+</context>
+<context>
+    <name>Screenshot</name>
+    <message>
+        <source>unknown</source>
+        <translation>невідомий</translation>
+    </message>
+    <message>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation>Не вдалося зробити знімок вікна, оскільки теки %1 не існує або її неможливо створити.</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Знімок вікна</translation>
     </message>
 </context>
 <context>
@@ -2207,11 +2247,38 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
-    <name>ServiceConfigurationPage</name>
+    <name>ScreenshotManagementView</name>
     <message>
-        <source>Form</source>
-        <translation>Форма</translation>
+        <source>User:</source>
+        <translation>Користувач:</translation>
     </message>
+    <message>
+        <source>Date:</source>
+        <translation>Дата:</translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation>Час:</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Показати</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Вилучити</translation>
+    </message>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>Тут наведено список усіх зроблених вами знімків вікон. Ви моете створювати знімки вікон, вибираючи пункт «Знімок вікна» у меню запису комп’ютера. Керувати знімками вікон можна за допомогою розташованих нижче кнопок.</translation>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation>Комп’ютер:</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
         <translation>Загальні</translation>
@@ -2360,58 +2427,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
-    <name>Snapshot</name>
-    <message>
-        <source>unknown</source>
-        <translation>невідомо</translation>
-    </message>
-    <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Не вдалося зробити знімок екрана, оскільки теки %1 не існує або її неможливо створити.</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Знімок екрана</translation>
-    </message>
-</context>
-<context>
-    <name>SnapshotManagementWidget</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут показано список всіх зроблених вами знімків екрана. Ви можете робити знімки екрана, вибираючи відповідний пункт з контекстного меню вікна клієнта. Керувати цими знімками екрана можна за допомогою кнопок, розташованих нижче.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation>Користувач:</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>Комп’ютер:</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation>Дата:</translation>
-    </message>
-    <message>
-        <source>Time:</source>
-        <translation>Час:</translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation>Показати</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Вилучити</translation>
-    </message>
-</context>
-<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
@@ -2450,10 +2465,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
-    <message>
-        <source>Builtin x11vnc server configuration</source>
-        <translation>Налаштування вбудованого сервера x11vnc</translation>
-    </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
         <translation>Увімкнути захоплення шарів (напівпрозорих) вікон</translation>

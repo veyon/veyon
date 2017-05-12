@@ -247,6 +247,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Local computer</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -335,14 +339,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -747,18 +743,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
