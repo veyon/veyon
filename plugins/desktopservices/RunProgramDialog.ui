@@ -22,7 +22,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="programInputTextEdit"/>
+    <widget class="QTextEdit" name="programInputTextEdit">
+     <property name="placeholderText">
+      <string>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
