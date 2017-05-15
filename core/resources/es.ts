@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="es_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -199,15 +201,15 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>El computador de acceso es localhot</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>El usuario de acceso ha iniciado sesión</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>El usuario de acceso ya está conectado</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -248,6 +250,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Local computer</source>
         <translation>Equipo local</translation>
+    </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Siempre procesar reglas e ignorar condiciones</translation>
     </message>
 </context>
 <context>
@@ -340,14 +346,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Comprobar</translation>
     </message>
     <message>
-        <source>Access confirmation</source>
-        <translation>Confirmación de acceso</translation>
-    </message>
-    <message>
-        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Puede configurar Veyon para pedir permiso al usuario para acceder al escritorio al utilizar ciertos métodos de autenticación.</translation>
-    </message>
-    <message>
         <source>Logon authentication test</source>
         <translation>Comprobación de autenticación de inicio de sesión</translation>
     </message>
@@ -436,7 +434,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de ordenador;Nombre de equipo;Usuario</translation>
     </message>
     <message>
         <source>Room detection failed</source>
@@ -752,18 +750,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Profesor</translation>
     </message>
     <message>
-        <source>Administrator</source>
-        <translation>Administrador</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Miembro del equipo de soporte</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Otro</translation>
-    </message>
-    <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
         <translation>Los roles de usuario utilizan múltiples claves de acceso en paralelo. Por ejemplo, puede haber diferentes claves de acceso de profesor para cada clase, mientras que las claves de acceso de soporte son las mismas para toda la escuela.</translation>
     </message>
@@ -916,19 +902,19 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Bind DN</source>
-        <translation type="unfinished"/>
+        <translation>Enlace DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation type="unfinished"/>
+        <translation>Contraseña de enlace</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished"/>
+        <translation>Enlace anónimo</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar credenciales de enlace</translation>
     </message>
     <message>
         <source>Test</source>
@@ -936,11 +922,11 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"/>
+        <translation>DN base</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation type="unfinished"/>
+        <translation>DN base fijo</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
@@ -948,11 +934,11 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
+        <translation>Descubrir el DN base mediante el contexto de nombres</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. namingContexts o defaultNamingContext</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -964,27 +950,27 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Computer tree</source>
-        <translation>Árbol de equipo</translation>
+        <translation>Árbol de equipos</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>p.ej. OU=Grupos</translation>
+        <translation>p.ej. OU=Groups</translation>
     </message>
     <message>
         <source>User tree</source>
-        <translation>Árbol de usuario</translation>
+        <translation>Árbol de usuarios</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>p.ej. OU=Usuarios</translation>
+        <translation>p.ej. OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>p.ej. OU=Equipos</translation>
+        <translation>p.ej. OU=Computers</translation>
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Árbol de grupo</translation>
+        <translation>Árbol de grupos</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
@@ -996,7 +982,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation type="unfinished"/>
+        <translation>p. ej. hwAddress</translation>
     </message>
     <message>
         <source>Computer host name attribute</source>
@@ -1004,7 +990,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. member o memberUid</translation>
     </message>
     <message>
         <source>User login attribute</source>
@@ -1012,7 +998,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
@@ -1024,11 +1010,11 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. uid o sAMAccountName</translation>
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Nombres de equipo almacenados como nombres de dominio totalmente calificados (FQDN, p. ej. myhost.example.org)</translation>
+        <translation>Nombres de equipo almacenados como nombres de dominio totalmente calificados (FQDN, p.ej. myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1040,7 +1026,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=group</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. objectClass=group</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
@@ -1048,7 +1034,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=person</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1060,7 +1046,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=computerLab or objectClass=room</source>
-        <translation type="unfinished"/>
+        <translation>p.ej. objectClass=computerLab o objectClass=room</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -1080,7 +1066,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. computerLab or room</source>
-        <translation type="unfinished"/>
+        <translation>p.ej.. computerLab o room</translation>
     </message>
     <message>
         <source>Common attribute</source>
@@ -1100,7 +1086,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>List all members of a computer lab</source>
-        <translation type="unfinished"/>
+        <translation>Lista de todos los miembros de un aula</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -1136,39 +1122,43 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación fallida de DN base de LDAP</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar el DN base configurado. Compruebe el parámetro DN base.
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación correcta de DN base de LDAP</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Consulta correcta al DN base de LDAP. Se han encontrado las siguientes entradas:
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación fallida de contexto de nombres LDAP</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar el DN base vía contextos de nombres. Compruebe el parámetro atributo para contexto de nombres.
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación correcta de contexto de nombres LDAP</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Consulta correcta al contexto de nombres LDAP. Se han encontrado los siguientes DN base:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
@@ -1204,7 +1194,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Introduzca un nombre de grupo cuyos miembros desea consultar:</translation>
+        <translation>Por favor, introduzca un nombre de grupo para consultar sus miembros:</translation>
     </message>
     <message>
         <source>group members</source>
@@ -1248,15 +1238,15 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>atributo de nombre de equipo</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca DN de equipo</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, introduzca el DN de un equipo para consultar su dirección MAC:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -1280,23 +1270,23 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Enter computer lab name</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca nombre de aula</translation>
     </message>
     <message>
         <source>Please enter the name of a computer lab (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, introduzca el nombre de un aula (se permiten comodines):</translation>
     </message>
     <message>
         <source>computer labs</source>
-        <translation type="unfinished"/>
+        <translation>aulas</translation>
     </message>
     <message>
         <source>computer lab attribute</source>
-        <translation type="unfinished"/>
+        <translation>atributo aulas</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, introduzca nombre de inicio de sesión de usuario para consultar miembros del grupo:</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -1304,7 +1294,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>atributo de inicio de sesión de usuario o atributo de pertenencia de grupo</translation>
     </message>
     <message>
         <source>User not found</source>
@@ -1312,7 +1302,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo encontrar un usuario con el nombre &quot;%1&quot;. Compruebe el nombre de usuario o el parámetro de árbol de usuario.</translation>
     </message>
     <message>
         <source>Enter host name</source>
@@ -1320,7 +1310,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, introduzca el nombre de equipo para consultar los miembros del grupo:</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -1328,7 +1318,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>computer host name attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo de nombre de equipo o atributo de pertenencia a grupo</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -1360,91 +1350,99 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Please enter the name of a computer lab whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, introduzca el nombre de aula para consultar sus miembros:</translation>
     </message>
     <message>
         <source>computer lab members</source>
-        <translation type="unfinished"/>
+        <translation>miembros del aula</translation>
     </message>
     <message>
         <source>computer group filter or computer lab member aggregation</source>
-        <translation type="unfinished"/>
+        <translation>filtro de grupo de equipos o agregación de miembros de aula</translation>
     </message>
     <message>
         <source>Enter first object</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca primer objeto</translation>
     </message>
     <message>
         <source>Please enter the distinguished name of the first object:</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca el nombre completo del primer objeto:</translation>
     </message>
     <message>
         <source>Enter second object</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca segundo objeto</translation>
     </message>
     <message>
         <source>Please enter the distinguished name of the second object:</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca el nombre completo del segundo objeto:</translation>
     </message>
     <message>
         <source>common aggregations</source>
-        <translation type="unfinished"/>
+        <translation>agregaciones comunes</translation>
     </message>
     <message>
         <source>group membership or computer lab attribute</source>
-        <translation type="unfinished"/>
+        <translation>pertenencia a un grupo o atributo de aula</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación fallida de LDAP %1</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar ninguna entrada en el %1 configurado. Compruebe el parámetro %1.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación correcta de LDAP %1</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>El %1 se ha consultado correctamente y se han encontrado %2 entradas.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar ningún %1. Compruebe el parámetro %2 o escriba el nombre de un objeto existente.
+
+%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 ha sido consultado correctamente:
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación fallida de filtro LDAP</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar ningún %1 con el filtro configurado. Compruebe el filtro LDAP para %1.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>Comprobación correcta de filtro LDAP</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 se han consultado correctamente con el filtro configurado.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(sólo si es diferente del árbol de grupos)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
@@ -1456,7 +1454,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>Aggregate computers in a room using:</source>
-        <translation type="unfinished"/>
+        <translation>Agregar equipos a un aula usando:</translation>
     </message>
     <message>
         <source>computer group tree</source>
@@ -1866,7 +1864,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>User configuration</source>
-        <translation>Configuraciónde usuario</translation>
+        <translation>Configuración de usuario</translation>
     </message>
     <message>
         <source>User interface &amp;&amp; behaviour</source>
@@ -1963,7 +1961,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca su nombre de usuario y contraseña para acceder a los equipos.</translation>
     </message>
 </context>
 <context>
@@ -1974,7 +1972,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>Haga clic en este botón para iniciar todos los equipos. De esta manera usted no tiene que iniciar cada equipo a mano.</translation>
+        <translation>Haga clic en este botón para encender todos los equipos. De esta manera usted no tiene que encender cada equipo a mano.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -1994,7 +1992,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Iniciar/apagar o reiniciar un equipo</translation>
+        <translation>Encender/apagar o reiniciar un equipo</translation>
     </message>
 </context>
 <context>
@@ -2083,7 +2081,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>Acceso Remoto %1</translation>
     </message>
 </context>
 <context>
@@ -2176,7 +2174,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Ejecutar programas</translation>
     </message>
 </context>
 <context>
@@ -2442,7 +2440,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Utilice esta función para enviar un mensaje de texto a todos los usuarios, p. ej., para asignarles nuevas tareas.</translation>
+        <translation>Utilice esta función para enviar un mensaje de texto a todos los usuarios, p.ej., para asignarles nuevas tareas.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
