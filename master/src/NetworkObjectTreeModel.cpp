@@ -106,7 +106,7 @@ QVariant NetworkObjectTreeModel::headerData(int section, Qt::Orientation orienta
 {
 	if( section == 0 && orientation == Qt::Horizontal && role == Qt::DisplayRole )
 	{
-		return tr( "Name" );
+		return tr( "Room/Computer" );
 	}
 
 	return QVariant();
