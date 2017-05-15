@@ -43,7 +43,7 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin() :
 	m_runProgramFeature( Feature::Action | Feature::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
 						 tr( "Run program" ), QString(),
-						 tr( "Click this button to run a program on each computer." ),
+						 tr( "Click this button to run a program on all computers." ),
 						 ":/desktopservices/preferences-desktop-launch-feedback.png" ),
 	m_openWebsiteFeature( Feature::Action | Feature::AllComponents,
 						  Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ),
