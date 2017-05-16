@@ -113,6 +113,7 @@ private:
 
 };
 
+Q_DECLARE_METATYPE(NetworkObject::Type)
 
 static inline uint qHash( const NetworkObject& networkObject )
 {
