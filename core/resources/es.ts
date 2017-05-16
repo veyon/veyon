@@ -369,7 +369,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>VNC server incorporado (x11vnc)</translation>
+        <translation>Servidor VNC (x11vnc) incorporado</translation>
     </message>
 </context>
 <context>
