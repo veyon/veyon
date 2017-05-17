@@ -137,7 +137,8 @@ bool DesktopServicesFeaturePlugin::handleServiceFeatureMessage( const FeatureMes
 
 	if( message.featureUid() == m_runProgramFeature.uid() )
 	{
-		for( auto program : message.argument( ProgramsArgument ).toStringList() )
+		const auto programs = message.argument( ProgramsArgument ).toStringList();
+		for( const auto& program : programs )
 		{
 			runProgramAsUser( program );
 		}

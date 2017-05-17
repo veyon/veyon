@@ -81,15 +81,16 @@ QStringList LocalDataPlugin::userGroups()
 
 #ifdef VEYON_BUILD_LINUX
 	QProcess getentProcess;
-	getentProcess.start( "getent", QStringList( { "group" } ) );
+	getentProcess.start( "getent", { "group" } );
 	getentProcess.waitForFinished();
 
-	for( auto group : QString( getentProcess.readAll() ).split( '\n' ) )
+	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
+	for( const auto& group : groups )
 	{
 		groupList += group.split( ':' ).first();
 	}
 
-	QStringList ignoredGroups( {
+	const QStringList ignoredGroups( {
 		"root",
 		"daemon",
 		"bin",
@@ -164,7 +165,7 @@ QStringList LocalDataPlugin::userGroups()
 		"uuidd",
 							   } );
 
-	for( auto ignoredGroup : ignoredGroups )
+	for( const auto& ignoredGroup : ignoredGroups )
 	{
 		groupList.removeAll( ignoredGroup );
 	}
@@ -204,12 +205,13 @@ QStringList LocalDataPlugin::groupsOfUser( QString username )
 	username = LocalSystem::User::stripDomain( username );
 
 	QProcess getentProcess;
-	getentProcess.start( "getent", QStringList() << "group" );
+	getentProcess.start( "getent", { "group" } );
 	getentProcess.waitForFinished();
 
-	for( auto group : QString( getentProcess.readAll() ).split( '\n' ) )
+	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
+	for( const auto& group : groups )
 	{
-		QStringList groupComponents = group.split( ':' );
+		const auto groupComponents = group.split( ':' );
 		if( groupComponents.size() == 4 &&
 				groupComponents.last().split( ',' ).contains( username ) )
 		{
@@ -248,9 +250,10 @@ QStringList LocalDataPlugin::allRooms()
 {
 	QStringList rooms;
 
-	for( auto networkObjectValue : m_configuration.networkObjects() )
+	const auto networkObjects = m_configuration.networkObjects();
+	for( const auto& networkObjectValue : networkObjects )
 	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject( networkObjectValue.toObject() );
 		if( networkObject.type() == NetworkObject::Group )
 		{
 			rooms.append( networkObject.name() );

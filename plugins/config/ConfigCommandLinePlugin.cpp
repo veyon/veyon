@@ -323,7 +323,7 @@ QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& va
 	}
 	else if( value.userType() == QMetaType::type( "QJsonArray" ) )
 	{
-		return QString::fromUtf8( QJsonDocument( value.value<QJsonArray>() ).toJson( QJsonDocument::Compact ) );
+		return QString::fromUtf8( QJsonDocument( value.toJsonArray() ).toJson( QJsonDocument::Compact ) );
 	}
 
 	return QString();

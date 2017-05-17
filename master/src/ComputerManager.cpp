@@ -121,6 +121,18 @@ void ComputerManager::addRoom( const QString& room )
 
 
 
+void ComputerManager::removeRoom( const QString& room )
+{
+	if( m_currentRooms.contains( room ) == false )
+	{
+		m_roomFilterList.removeAll( room );
+
+		updateRoomFilterList();
+	}
+}
+
+
+
 bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 {
 	QStringList lines( tr( "Computer name;Host name;User" ) );
@@ -431,7 +443,8 @@ ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
 								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
-								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
+								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString(),
+								   model->data( parent, NetworkObjectModel::NameRole ).toString() );
 			break;
 		default: break;
 		}

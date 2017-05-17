@@ -40,8 +40,11 @@ public:
 	ComputerManagementView( ComputerManager& computerManager, QWidget *parent = nullptr );
 	~ComputerManagementView() override;
 
+	bool eventFilter(QObject *watched, QEvent *event) override;
+
 private slots:
 	void addRoom();
+	void removeRoom();
 	void saveList();
 
 private:

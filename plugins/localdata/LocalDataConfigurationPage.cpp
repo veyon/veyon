@@ -232,9 +232,10 @@ void LocalDataConfigurationPage::populateRooms()
 
 	int rowCount = 0;
 
-	for( auto networkObjectValue : m_configuration.networkObjects() )
+	const auto networkObjects = m_configuration.networkObjects();
+	for( const auto& networkObjectValue : networkObjects )
 	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject( networkObjectValue.toObject() );
 		if( networkObject.type() == NetworkObject::Group )
 		{
 			auto item = new QTableWidgetItem( networkObject.name() );
@@ -258,9 +259,10 @@ void LocalDataConfigurationPage::populateComputers()
 
 	int rowCount = 0;
 
-	for( auto networkObjectValue : m_configuration.networkObjects() )
+	const auto networkObjects = m_configuration.networkObjects();
+	for( const auto& networkObjectValue : networkObjects )
 	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject( networkObjectValue.toObject() );
 
 		if( networkObject.type() == NetworkObject::Host &&
 				networkObject.parentUid() == parentUid )

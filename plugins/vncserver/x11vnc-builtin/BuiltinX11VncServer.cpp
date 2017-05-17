@@ -74,7 +74,8 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 	else
 	{
 		// workaround for x11vnc when running in an NX session or a Thin client LTSP session
-		for( auto s : QProcess::systemEnvironment() )
+		const auto systemEnv = QProcess::systemEnvironment();
+		for( const auto& s : systemEnv )
 		{
 			if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) || s.startsWith( "LTSP_CLIENT_MAC=" ) )
 			{
@@ -84,8 +85,9 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 	}
 
 	// build new C-style command line array based on cmdline-QStringList
+	const auto appArguments = QCoreApplication::arguments();
 	auto argv = new char *[cmdline.size()+1];
-	argv[0] = qstrdup( QCoreApplication::arguments()[0].toUtf8().constData() );
+	argv[0] = qstrdup( appArguments.first().toUtf8().constData() );
 	int argc = 1;
 
 	for( QStringList::iterator it = cmdline.begin();

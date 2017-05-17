@@ -72,6 +72,7 @@ public:
 	void updateComputerScreenSize();
 
 	void addRoom( const QString& room );
+	void removeRoom( const QString& room );
 
 	bool saveComputerAndUsersList( const QString& fileName );
 

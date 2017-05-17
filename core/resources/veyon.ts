@@ -384,6 +384,37 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
@@ -560,10 +591,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Click this button to run a program on each computer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Open website</source>
         <translation type="unfinished"></translation>
     </message>
@@ -577,6 +604,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1908,7 +1939,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Name</source>
+        <source>Room/Computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2149,6 +2180,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Run programs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

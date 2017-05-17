@@ -97,7 +97,7 @@ public:
 		return tr( "Default (store objects in local configuration)" );
 	}
 
-	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent );
+	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 

@@ -29,6 +29,7 @@ Computer::Computer(const Computer &other) :
 	m_name( other.name() ),
 	m_hostAddress( other.hostAddress() ),
 	m_macAddress( other.macAddress() ),
+	m_room( other.room() ),
 	m_controlInterface( *this )
 {
 }
@@ -38,11 +39,13 @@ Computer::Computer(const Computer &other) :
 Computer::Computer( NetworkObject::Uid networkObjectUid,
 					const QString &name,
 					const QString &hostAddress,
-					const QString &macAddress ) :
+					const QString &macAddress,
+					const QString& room ) :
 	m_networkObjectUid( networkObjectUid ),
 	m_name( name ),
 	m_hostAddress( hostAddress ),
 	m_macAddress( macAddress ),
+	m_room( room ),
 	m_controlInterface( *this )
 {
 }

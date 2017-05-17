@@ -53,11 +53,13 @@ QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObje
 
 void LocalDataNetworkObjectDirectory::update()
 {
+	const auto networkObjects = m_configuration.networkObjects();
+
 	const NetworkObject rootObject( NetworkObject::Root );
 
-	QList<NetworkObject::Uid> roomUids;
+	QVector<NetworkObject::Uid> roomUids;
 
-	for( auto networkObjectValue : m_configuration.networkObjects() )
+	for( const auto& networkObjectValue : networkObjects )
 	{
 		const NetworkObject networkObject( networkObjectValue.toObject() );
 
@@ -98,11 +100,13 @@ void LocalDataNetworkObjectDirectory::update()
 
 void LocalDataNetworkObjectDirectory::updateRoom( const NetworkObject& roomObject )
 {
+	const auto networkObjects = m_configuration.networkObjects();
+
 	QList<NetworkObject>& computerObjects = m_objects[roomObject];
 
-	QList<NetworkObject::Uid> computerUids;
+	QVector<NetworkObject::Uid> computerUids;
 
-	for( auto networkObjectValue : m_configuration.networkObjects() )
+	for( const auto& networkObjectValue : networkObjects )
 	{
 		NetworkObject networkObject( networkObjectValue.toObject() );
 

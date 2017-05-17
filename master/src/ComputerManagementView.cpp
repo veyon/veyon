@@ -23,10 +23,12 @@
  */
 
 #include <QFileDialog>
+#include <QKeyEvent>
 #include <QMessageBox>
 
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
+#include "NetworkObjectModel.h"
 #include "VeyonConfiguration.h"
 #include "RoomSelectionDialog.h"
 
@@ -40,7 +42,13 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 {
 	ui->setupUi(this);
 
+	// capture keyboard events for tree view
+	ui->treeView->installEventFilter( this );
+
+	// set computer tree model as data model
 	ui->treeView->setModel( computerManager.computerTreeModel() );
+
+	// set default sort order
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 
 	ui->addRoomButton->setVisible( VeyonCore::config().onlyCurrentRoomVisible() &&
@@ -56,12 +64,41 @@ ComputerManagementView::~ComputerManagementView()
 
 
 
+bool ComputerManagementView::eventFilter( QObject *watched, QEvent *event )
+{
+	if( watched == ui->treeView &&
+			event->type() == QEvent::KeyPress &&
+			static_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete )
+	{
+		removeRoom();
+		return true;
+	}
+
+	return QWidget::eventFilter( watched, event );
+}
+
+
+
 void ComputerManagementView::addRoom()
 {
 	RoomSelectionDialog dialog( m_computerManager.networkObjectModel(), this );
 	if( dialog.exec() && dialog.selectedRoom().isEmpty() == false )
 	{
 		m_computerManager.addRoom( dialog.selectedRoom() );
+	}
+}
+
+
+
+void ComputerManagementView::removeRoom()
+{
+	auto model = m_computerManager.computerTreeModel();
+	const auto index = ui->treeView->selectionModel()->currentIndex();
+
+	if( index.isValid() &&
+			model->data( index, NetworkObjectModel::TypeRole ).value<NetworkObject::Type>() == NetworkObject::Group )
+	{
+		m_computerManager.removeRoom( model->data( index, NetworkObjectModel::NameRole ).toString() );
 	}
 }
 

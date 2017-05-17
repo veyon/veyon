@@ -88,17 +88,24 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		qCritical( "ComputerListModel::data(): index out of range!" );
 	}
 
-	if( role == Qt::DecorationRole )
+	const auto& computer = m_manager.computerList()[index.row()];
+
+	switch( role )
 	{
-		return computerDecorationRole( m_manager.computerList()[index.row()].controlInterface() );
+	case Qt::DecorationRole:
+		return computerDecorationRole( computer );
+
+	case Qt::ToolTipRole:
+		return computerToolTipRole( computer );
+
+	case Qt::DisplayRole:
+		return computer.name();
+
+	default:
+		break;
 	}
 
-	if( role != Qt::DisplayRole)
-	{
-		return QVariant();
-	}
-
-	return m_manager.computerList()[index.row()].name();
+	return QVariant();
 }
 
 
@@ -188,8 +195,10 @@ QImage ComputerListModel::prepareIcon(const QImage &icon)
 
 
 
-QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface &controlInterface ) const
+QImage ComputerListModel::computerDecorationRole( const Computer& computer ) const
 {
+	const auto& controlInterface = computer.controlInterface();
+
 	QImage image;
 
 	switch( controlInterface.state() )
@@ -214,4 +223,61 @@ QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface
 	}
 
 	return image.scaled( controlInterface.scaledScreenSize(), Qt::KeepAspectRatio );
+}
+
+
+
+QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
+{
+	const QString state( computerStateDescription( computer ) );
+	const QString room( tr( "Room: %1" ).arg( computer.room() ) );
+	const QString user( loggedOnUserInformation( computer ) );
+
+	if( user.isEmpty() )
+	{
+		return state + "\n" + room;
+	}
+
+	return state + "\n" + room + "\n" + user;
+}
+
+
+
+QString ComputerListModel::computerStateDescription( const Computer& computer ) const
+{
+	switch( computer.controlInterface().state() )
+	{
+	case ComputerControlInterface::Connected:
+		return tr( "Online and connected" );
+
+	case ComputerControlInterface::Connecting:
+		return tr( "Establishing connection" );
+
+	case ComputerControlInterface::Unreachable:
+		return tr( "Offline" );
+
+	default:
+		break;
+	}
+
+	return tr( "Unknown" );
+}
+
+
+
+QString ComputerListModel::loggedOnUserInformation( const Computer& computer ) const
+{
+	const auto& controlInterface = computer.controlInterface();
+
+	if( controlInterface.state() == ComputerControlInterface::Connected )
+	{
+		if( controlInterface.user().isEmpty() )
+		{
+			return tr( "No user logged on" );
+		}
+
+		return tr( "Logged on user: %1" ).arg( controlInterface.user() );
+	}
+
+	return QString();
 }
