@@ -443,7 +443,8 @@ ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
 								   model->data( entryIndex, NetworkObjectModel::NameRole ).toString(),
 								   model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString(),
-								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString() );
+								   model->data( entryIndex, NetworkObjectModel::MacAddressRole ).toString(),
+								   model->data( parent, NetworkObjectModel::NameRole ).toString() );
 			break;
 		default: break;
 		}
