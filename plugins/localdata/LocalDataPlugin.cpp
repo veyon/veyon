@@ -248,9 +248,10 @@ QStringList LocalDataPlugin::allRooms()
 {
 	QStringList rooms;
 
-	for( auto networkObjectValue : m_configuration.networkObjects() )
+	const auto networkObjects = m_configuration.networkObjects();
+	for( const auto& networkObjectValue : networkObjects )
 	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject( networkObjectValue.toObject() );
 		if( networkObject.type() == NetworkObject::Group )
 		{
 			rooms.append( networkObject.name() );
