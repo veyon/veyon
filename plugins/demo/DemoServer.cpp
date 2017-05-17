@@ -327,7 +327,7 @@ void DemoServerClient::sendUpdates()
 		// and there were a lot of updates - at the end we don't send
 		// more than the whole screen one time
 		QRegion region;
-		for( auto rect : m_changedRects )
+		for( const auto& rect : qAsConst( m_changedRects ) )
 		{
 			region += rect;
 		}
@@ -346,7 +346,7 @@ void DemoServerClient::sendUpdates()
 	m_socket->write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
 
 	// process each rect
-	for( auto rect : rects )
+	for( const auto& rect : qAsConst( rects ) )
 	{
 		const int rx = rect.x();
 		const int ry = rect.y();
