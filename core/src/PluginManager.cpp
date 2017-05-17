@@ -50,7 +50,7 @@ PluginManager::PluginManager( QObject* parent ) :
 	addRelativeIfExists( "plugins" );
 	const QStringList nameFilters("*.dll");
 #else
-	addRelativeIfExists( "../plugins" );
+	addRelativeIfExists( "../lib/veyon" );
 	const QStringList nameFilters("*.so");
 #endif
 
