@@ -37,12 +37,14 @@ int main( int argc, char **argv )
 {
 	QApplication app( argc, argv );
 
-	if( app.arguments().count() < 2 )
+	const auto arguments = app.arguments();
+
+	if( arguments.count() < 2 )
 	{
 		qFatal( "Not enough arguments (feature)" );
 	}
 
-	const auto featureUid = app.arguments().last();
+	const auto featureUid = arguments.last();
 	if( QUuid( featureUid ).isNull() )
 	{
 		qFatal( "Invalid feature UID given" );
