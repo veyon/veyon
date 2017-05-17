@@ -93,7 +93,7 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 	switch( role )
 	{
 	case Qt::DecorationRole:
-		return computerDecorationRole( computer.controlInterface() );
+		return computerDecorationRole( computer );
 
 	case Qt::ToolTipRole:
 		return computerToolTipRole( computer );
@@ -195,8 +195,10 @@ QImage ComputerListModel::prepareIcon(const QImage &icon)
 
 
 
-QImage ComputerListModel::computerDecorationRole( const ComputerControlInterface &controlInterface ) const
+QImage ComputerListModel::computerDecorationRole( const Computer& computer ) const
 {
+	const auto& controlInterface = computer.controlInterface();
+
 	QImage image;
 
 	switch( controlInterface.state() )

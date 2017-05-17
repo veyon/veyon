@@ -59,7 +59,7 @@ private slots:
 private:
 	void loadIcons();
 	QImage prepareIcon( const QImage& icon );
-	QImage computerDecorationRole( const ComputerControlInterface& controlInterface ) const;
+	QImage computerDecorationRole( const Computer& computer ) const;
 	QString computerToolTipRole( const Computer& computer ) const;
 	QString computerStateDescription( const Computer& computer ) const;
 	QString loggedOnUserInformation( const Computer& computer ) const;
