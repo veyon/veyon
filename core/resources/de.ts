@@ -384,6 +384,37 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation>Raum: %1</translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation>Online und verbunden</translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation>Verbindung wird hergestellt</translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation>Offline</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Unbekannt</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Kein Benutzer angemeldet</translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation>Angemeldeter Benutzer: %1</translation>
+    </message>
+</context>
+<context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
@@ -560,10 +591,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Programm starten</translation>
     </message>
     <message>
-        <source>Click this button to run a program on each computer.</source>
-        <translation>Klicken Sie auf diesen Button, um ein Programm auf jedem Computer zu starten.</translation>
-    </message>
-    <message>
         <source>Open website</source>
         <translation>Website öffnen</translation>
     </message>
@@ -578,6 +605,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Start programs and services in user desktop</source>
         <translation>Programme und Dienste im Benutzerdesktop starten</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um Programme auf allen Computern zu starten.</translation>
     </message>
 </context>
 <context>
@@ -1929,8 +1960,8 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Name</source>
-        <translation>Name</translation>
+        <source>Room/Computer</source>
+        <translation>Raum/Computer</translation>
     </message>
 </context>
 <context>
@@ -2171,6 +2202,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Run programs</source>
         <translation>Programme starten</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>z.B. &quot;C:\Programme\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
