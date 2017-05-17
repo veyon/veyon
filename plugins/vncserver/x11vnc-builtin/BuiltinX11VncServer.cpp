@@ -74,7 +74,8 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 	else
 	{
 		// workaround for x11vnc when running in an NX session or a Thin client LTSP session
-		for( auto s : QProcess::systemEnvironment() )
+		const auto systemEnv = QProcess::systemEnvironment();
+		for( const auto& s : systemEnv )
 		{
 			if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) || s.startsWith( "LTSP_CLIENT_MAC=" ) )
 			{
