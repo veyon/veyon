@@ -88,17 +88,21 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		qCritical( "ComputerListModel::data(): index out of range!" );
 	}
 
-	if( role == Qt::DecorationRole )
+	const auto& computer = m_manager.computerList()[index.row()];
+
+	switch( role )
 	{
-		return computerDecorationRole( m_manager.computerList()[index.row()].controlInterface() );
+	case Qt::DecorationRole:
+		return computerDecorationRole( computer.controlInterface() );
+
+	case Qt::DisplayRole:
+		return computer.name();
+
+	default:
+		break;
 	}
 
-	if( role != Qt::DisplayRole)
-	{
-		return QVariant();
-	}
-
-	return m_manager.computerList()[index.row()].name();
+	return QVariant();
 }
 
 
