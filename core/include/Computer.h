@@ -38,7 +38,8 @@ public:
 	Computer( NetworkObject::Uid networkObjectUid = 0,
 			  const QString& name = QString(),
 			  const QString& hostAddress = QString(),
-			  const QString& macAddress = QString() );
+			  const QString& macAddress = QString(),
+			  const QString& room = QString() );
 
 	bool operator==( const Computer& other ) const
 	{
@@ -85,6 +86,16 @@ public:
 		return m_macAddress;
 	}
 
+	void setRoom( const QString& room )
+	{
+		m_room = room;
+	}
+
+	const QString& room() const
+	{
+		return m_room;
+	}
+
 	const ComputerControlInterface& controlInterface() const
 	{
 		return m_controlInterface;
@@ -100,6 +111,7 @@ private:
 	QString m_name;
 	QString m_hostAddress;
 	QString m_macAddress;
+	QString m_room;
 
 	ComputerControlInterface m_controlInterface;
 
