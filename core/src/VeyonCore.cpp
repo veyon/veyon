@@ -44,6 +44,7 @@
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
+#include "PlatformPluginManager.h"
 #include "PluginManager.h"
 #include "VariantStream.h"
 
@@ -185,6 +186,9 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_pluginManager = new PluginManager( this );
 
 	m_accessControlDataBackendManager = new AccessControlDataBackendManager( *m_pluginManager );
+	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
+
+	m_platformPlugin = m_platformPluginManager->platformPlugin();
 }
 
 
@@ -193,6 +197,9 @@ VeyonCore::~VeyonCore()
 {
 	delete m_accessControlDataBackendManager;
 	m_accessControlDataBackendManager = nullptr;
+
+	delete m_platformPluginManager;
+	m_platformPluginManager = nullptr;
 
 	delete m_pluginManager;
 	m_pluginManager = nullptr;

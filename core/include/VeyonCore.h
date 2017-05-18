@@ -109,6 +109,8 @@ class AuthenticationCredentials;
 class CryptoCore;
 class VeyonConfiguration;
 class Logger;
+class PlatformPluginInterface;
+class PlatformPluginManager;
 class PluginManager;
 
 class VEYON_CORE_EXPORT VeyonCore : public QObject
@@ -138,6 +140,11 @@ public:
 	static AccessControlDataBackendManager& accessControlDataBackendManager()
 	{
 		return *( instance()->m_accessControlDataBackendManager );
+	}
+
+	static PlatformPluginInterface& platform()
+	{
+		return *( instance()->m_platformPlugin );
 	}
 
 	static void setupApplicationParameters();
@@ -179,6 +186,8 @@ private:
 	CryptoCore* m_cryptoCore;
 	PluginManager* m_pluginManager;
 	AccessControlDataBackendManager* m_accessControlDataBackendManager;
+	PlatformPluginManager* m_platformPluginManager;
+	PlatformPluginInterface* m_platformPlugin;
 
 	QString m_applicationName;
 	UserRole m_userRole;
