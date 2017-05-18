@@ -213,6 +213,7 @@ QImage ComputerListModel::computerDecorationRole( const Computer& computer ) con
 		image = m_iconUnknownState;
 		break;
 
+	case ComputerControlInterface::AuthenticationFailed:
 	case ComputerControlInterface::ServiceUnreachable:
 		image = m_iconComputerUnreachable;
 		break;
