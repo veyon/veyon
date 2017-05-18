@@ -121,6 +121,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_cryptoCore( nullptr ),
 	m_pluginManager( nullptr ),
 	m_accessControlDataBackendManager( nullptr ),
+	m_platformPluginManager( nullptr ),
+	m_platformPlugin( nullptr ),
 	m_applicationName( "Veyon" ),
 	m_userRole( RoleTeacher )
 {
