@@ -30,6 +30,8 @@
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
+#include "PlatformNetworkFunctions.h"
+#include "PlatformPluginInterface.h"
 #include "VeyonConfiguration.h"
 #include "VeyonVncConnection.h"
 #include "LocalSystem.h"
@@ -562,7 +564,14 @@ void VeyonVncConnection::doConnection()
 			// guess reason why connection failed
 			if( m_serviceReachable == false )
 			{
-				setState( ServiceUnreachable );
+				if( VeyonCore::platform().networkFunctions()->ping( m_host ) == false )
+				{
+					setState( HostOffline );
+				}
+				else
+				{
+					setState( ServiceUnreachable );
+				}
 			}
 			else if( m_frameBufferInitialized == false )
 			{
