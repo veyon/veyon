@@ -139,6 +139,13 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	m_logger = new Logger( appComponentName, m_config );
 
+	// only perform partial initialization when running without QCoreApplication
+	// (e.g. as service monitor)
+	if( application == nullptr )
+	{
+		return;
+	}
+
 	QLocale configuredLocale( QLocale::C );
 
 	QRegExp localeRegEx( "[^(]*\\(([^)]*)\\)");
