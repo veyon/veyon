@@ -30,7 +30,7 @@
 class LinuxNetworkFunctions : public PlatformNetworkFunctions
 {
 public:
-	bool ping( const QString& hostAddress );
+	bool ping( const QString& hostAddress ) override;
 
 };
 
