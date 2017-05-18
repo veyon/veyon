@@ -236,10 +236,10 @@ QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
 
 	if( user.isEmpty() )
 	{
-		return state + "\n" + room;
+		return "<b>" + state + "</b><br>" + room;
 	}
 
-	return state + "\n" + room + "\n" + user;
+	return "<b>" + state + "</b><br>" + room + "<br>" + user;
 }
 
 
