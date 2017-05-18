@@ -338,6 +338,9 @@ VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
 	m_scaledSize(),
 	m_state( Disconnected )
 {
+	rfbClientLog = hookOutputHandler;
+	rfbClientErr = hookOutputHandler;
+
 	m_terminateTimer.setSingleShot( true );
 	m_terminateTimer.setInterval( ThreadTerminationTimeout );
 
@@ -501,9 +504,6 @@ void VeyonVncConnection::rescaleScreen()
 
 void VeyonVncConnection::run()
 {
-	rfbClientLog = hookOutputHandler;
-	rfbClientErr = hookOutputHandler;
-
 	while( isInterruptionRequested() == false )
 	{
 		doConnection();
