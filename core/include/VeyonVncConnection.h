@@ -69,6 +69,7 @@ public:
 	{
 		Disconnected,
 		Connecting,
+		HostOffline,
 		ServiceUnreachable,
 		AuthenticationFailed,
 		ConnectionFailed,
