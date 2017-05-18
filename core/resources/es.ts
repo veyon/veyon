@@ -369,7 +369,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>VNC server incorporado (x11vnc)</translation>
+        <translation>Servidor VNC (x11vnc) incorporado</translation>
     </message>
 </context>
 <context>
@@ -385,6 +385,37 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
         <translation>¡ El usuario %1 (IP: %2) intentó acceder a este equipo pero no pudo autenticarse correctamente !</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation>Aula: %1</translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation>En línea y conectado</translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation>Estableciendo conexión</translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation>Fuera de línea</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>Desconocido</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Ningún usuario ha iniciado sesión</translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation>Usuario conectado: %1</translation>
     </message>
 </context>
 <context>
@@ -564,10 +595,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Ejecutar programa</translation>
     </message>
     <message>
-        <source>Click this button to run a program on each computer.</source>
-        <translation>Haga clic en este botón para ejecutar un programa en cada equipo.</translation>
-    </message>
-    <message>
         <source>Open website</source>
         <translation>Abrir sitio web</translation>
     </message>
@@ -582,6 +609,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Start programs and services in user desktop</source>
         <translation>Iniciar programas y servicios en el escritorio del usuario</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
+        <translation>Haga clic en este botón para ejecutar un programa en todos los equipos.</translation>
     </message>
 </context>
 <context>
@@ -1933,8 +1964,8 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Name</source>
-        <translation>Nombre</translation>
+        <source>Room/Computer</source>
+        <translation>Aula/Equipo</translation>
     </message>
 </context>
 <context>
@@ -2175,6 +2206,10 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Run programs</source>
         <translation>Ejecutar programas</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>p.ej. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
