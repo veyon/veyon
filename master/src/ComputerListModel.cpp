@@ -34,8 +34,8 @@ ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) 
 	QAbstractListModel( parent ),
 	m_dummyControlInterface( Computer() ),
 	m_manager( manager ),
-	m_iconUnknownState(),
-	m_iconComputerUnreachable(),
+	m_iconDefault(),
+	m_iconConnectionProblem(),
 	m_iconDemoMode()
 {
 	connect( &m_manager, &ComputerManager::computerAboutToBeInserted,
@@ -177,8 +177,8 @@ void ComputerListModel::updateComputerScreenSize()
 
 void ComputerListModel::loadIcons()
 {
-	m_iconUnknownState = prepareIcon( QImage( ":/resources/preferences-desktop-display-gray.png" ) );
-	m_iconComputerUnreachable = prepareIcon( QImage( ":/resources/preferences-desktop-display-red.png" ) );
+	m_iconDefault = prepareIcon( QImage( ":/resources/preferences-desktop-display-gray.png" ) );
+	m_iconConnectionProblem = prepareIcon( QImage( ":/resources/preferences-desktop-display-red.png" ) );
 	m_iconDemoMode = prepareIcon( QImage( ":/resources/preferences-desktop-display-orange.png" ) );
 }
 
@@ -210,16 +210,16 @@ QImage ComputerListModel::computerDecorationRole( const Computer& computer ) con
 			return image;
 		}
 
-		image = m_iconUnknownState;
+		image = m_iconDefault;
 		break;
 
 	case ComputerControlInterface::AuthenticationFailed:
 	case ComputerControlInterface::ServiceUnreachable:
-		image = m_iconComputerUnreachable;
+		image = m_iconConnectionProblem;
 		break;
 
 	default:
-		image = m_iconUnknownState;
+		image = m_iconDefault;
 		break;
 	}
 

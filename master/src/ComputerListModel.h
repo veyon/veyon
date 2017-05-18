@@ -66,8 +66,8 @@ private:
 
 	ComputerControlInterface m_dummyControlInterface;
 	ComputerManager& m_manager;
-	QImage m_iconUnknownState;
-	QImage m_iconComputerUnreachable;
+	QImage m_iconDefault;
+	QImage m_iconConnectionProblem;
 	QImage m_iconDemoMode;
 
 };
