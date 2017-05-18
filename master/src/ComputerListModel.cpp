@@ -213,7 +213,7 @@ QImage ComputerListModel::computerDecorationRole( const Computer& computer ) con
 		image = m_iconUnknownState;
 		break;
 
-	case ComputerControlInterface::Unreachable:
+	case ComputerControlInterface::ServiceUnreachable:
 		image = m_iconComputerUnreachable;
 		break;
 
@@ -253,7 +253,7 @@ QString ComputerListModel::computerStateDescription( const Computer& computer ) 
 	case ComputerControlInterface::Connecting:
 		return tr( "Establishing connection" );
 
-	case ComputerControlInterface::Unreachable:
+	case ComputerControlInterface::ServiceUnreachable:
 		return tr( "Offline" );
 
 	default:

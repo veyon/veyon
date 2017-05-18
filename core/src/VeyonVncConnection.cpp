@@ -321,7 +321,7 @@ void VeyonVncConnection::framebufferCleanup( void *framebuffer )
 
 VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
 	QThread( parent ),
-	m_hostReachable( false ),
+	m_serviceReachable( false ),
 	m_frameBufferInitialized( false ),
 	m_frameBufferValid( false ),
 	m_cl( nullptr ),
@@ -554,7 +554,7 @@ void VeyonVncConnection::doConnection()
 
 		emit newClient( m_cl );
 
-		m_hostReachable = false;
+		m_serviceReachable = false;
 
 		if( rfbInitClient( m_cl, nullptr, nullptr ) )
 		{
@@ -566,9 +566,9 @@ void VeyonVncConnection::doConnection()
 		else
 		{
 			// guess reason why connection failed
-			if( m_hostReachable == false )
+			if( m_serviceReachable == false )
 			{
-				m_state = HostUnreachable;
+				m_state = ServiceUnreachable;
 				emit stateChanged();
 			}
 			else if( m_frameBufferInitialized == false )
@@ -887,7 +887,7 @@ void VeyonVncConnection::hookPrepareAuthentication(rfbClient *cl)
 
 	// set our internal flag which indicates that we basically have communication with the client
 	// which means that the host is reachable
-	t->m_hostReachable = true;
+	t->m_serviceReachable = true;
 }
 
 

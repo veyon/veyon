@@ -46,7 +46,7 @@ public:
 	typedef enum States
 	{
 		Disconnected,
-		Unreachable,
+		ServiceUnreachable,
 		Connecting,
 		Connected,
 		Unknown,

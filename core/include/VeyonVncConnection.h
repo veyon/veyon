@@ -69,7 +69,7 @@ public:
 	{
 		Disconnected,
 		Connecting,
-		HostUnreachable,
+		ServiceUnreachable,
 		AuthenticationFailed,
 		ConnectionFailed,
 		Connected
@@ -221,7 +221,7 @@ private:
 						rfbServerToClientMsg *msg );
 	static void framebufferCleanup( void* framebuffer );
 
-	bool m_hostReachable;
+	bool m_serviceReachable;
 	bool m_frameBufferInitialized;
 	bool m_frameBufferValid;
 	rfbClient *m_cl;

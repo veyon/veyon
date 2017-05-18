@@ -171,7 +171,7 @@ void ComputerControlInterface::updateState()
 		case VeyonVncConnection::Disconnected: m_state = Disconnected; break;
 		case VeyonVncConnection::Connecting: m_state = Connecting; break;
 		case VeyonVncConnection::Connected: m_state = Connected; break;
-		case VeyonVncConnection::HostUnreachable: m_state = Unreachable; break;
+		case VeyonVncConnection::ServiceUnreachable: m_state = ServiceUnreachable; break;
 		default: m_state = Unknown; break;
 		}
 
