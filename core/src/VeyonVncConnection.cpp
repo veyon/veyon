@@ -281,7 +281,7 @@ void VeyonVncConnection::hookOutputHandler( const char *format, ... )
 	va_end(args);
 
 	message = message.trimmed();
-	qWarning() << "VeyonVncConnection: VNC message:" << message;
+	qDebug() << "VeyonVncConnection: VNC message:" << message;
 
 #if 0
 	if( ( message.contains( "Couldn't convert " ) ) ||
