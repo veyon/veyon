@@ -555,8 +555,6 @@ void VeyonVncConnection::doConnection()
 
 		if( rfbInitClient( m_cl, nullptr, nullptr ) )
 		{
-			emit connected();
-
 			setState( Connected );
 		}
 		else

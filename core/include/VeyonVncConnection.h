@@ -186,7 +186,6 @@ signals:
 	void gotCut( const QString &text );
 	void passwordRequest();
 	void outputErrorMessage( const QString &message );
-	void connected();
 	void stateChanged();
 
 
