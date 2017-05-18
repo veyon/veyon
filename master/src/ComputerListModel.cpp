@@ -253,14 +253,20 @@ QString ComputerListModel::computerStateDescription( const Computer& computer ) 
 	case ComputerControlInterface::Connecting:
 		return tr( "Establishing connection" );
 
+	case ComputerControlInterface::Offline:
+		return tr( "Computer offline or switched off" );
+
 	case ComputerControlInterface::ServiceUnreachable:
-		return tr( "Offline" );
+		return tr( "Service unreachable or not running" );
+
+	case ComputerControlInterface::AuthenticationFailed:
+		return tr( "Authentication failed or access denied" );
 
 	default:
 		break;
 	}
 
-	return tr( "Unknown" );
+	return tr( "Disconnected" );
 }
 
 
