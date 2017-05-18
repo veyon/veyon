@@ -398,20 +398,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Verbindung wird hergestellt</translation>
     </message>
     <message>
-        <source>Offline</source>
-        <translation>Offline</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Unbekannt</translation>
-    </message>
-    <message>
         <source>No user logged on</source>
         <translation>Kein Benutzer angemeldet</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
         <translation>Angemeldeter Benutzer: %1</translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation>Computer offline oder ausgeschalten</translation>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation>Dienst nicht erreichbar oder läuft nicht</translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation>Authentifizierung fehgeschlagen oder Zugriff verweigert</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Nicht verbunden</translation>
     </message>
 </context>
 <context>
@@ -1511,6 +1519,13 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
 </context>
 <context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation>Plugin zur Implementierung abstrakter Funktionen für die Linux-Plattform</translation>
+    </message>
+</context>
+<context>
     <name>LocalDataConfigurationPage</name>
     <message>
         <source>Local data</source>
@@ -2547,6 +2562,13 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Verbindung zu %1 wird hergestellt ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
     </message>
 </context>
 <context>

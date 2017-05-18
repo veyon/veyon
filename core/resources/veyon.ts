@@ -398,19 +398,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No user logged on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1495,6 +1503,13 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
 </context>
 <context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LocalDataConfigurationPage</name>
     <message>
         <source>Local data</source>
@@ -2525,6 +2540,13 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
