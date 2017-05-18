@@ -207,6 +207,8 @@ private:
 		ThreadTerminationTimeout = 10000
 	};
 
+	void setState( State state );
+
 	void finishFrameBufferUpdate();
 
 	// hooks for LibVNCClient

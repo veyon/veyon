@@ -499,9 +499,6 @@ void VeyonVncConnection::rescaleScreen()
 
 void VeyonVncConnection::run()
 {
-	m_state = Disconnected;
-	emit stateChanged();
-
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
 
@@ -510,7 +507,7 @@ void VeyonVncConnection::run()
 		doConnection();
 	}
 
-	m_state = Disconnected;
+	setState( Disconnected );
 }
 
 
@@ -519,7 +516,7 @@ void VeyonVncConnection::doConnection()
 {
 	QMutex sleeperMutex;
 
-	m_state = Connecting;
+	setState( Connecting );
 
 	m_frameBufferValid = false;
 	m_frameBufferInitialized = false;
@@ -560,27 +557,23 @@ void VeyonVncConnection::doConnection()
 		{
 			emit connected();
 
-			m_state = Connected;
-			emit stateChanged();
+			setState( Connected );
 		}
 		else
 		{
 			// guess reason why connection failed
 			if( m_serviceReachable == false )
 			{
-				m_state = ServiceUnreachable;
-				emit stateChanged();
+				setState( ServiceUnreachable );
 			}
 			else if( m_frameBufferInitialized == false )
 			{
-				m_state = AuthenticationFailed;
-				emit stateChanged();
+				setState( AuthenticationFailed );
 			}
 			else
 			{
 				// failed for an unknown reason
-				m_state = ConnectionFailed;
-				emit stateChanged();
+				setState( ConnectionFailed );
 			}
 
 			// do not sleep when already requested to stop
@@ -697,9 +690,19 @@ void VeyonVncConnection::doConnection()
 		rfbClientCleanup( m_cl );
 	}
 
-	m_state = Disconnected;
+	setState( Disconnected );
+}
 
-	emit stateChanged();
+
+
+void VeyonVncConnection::setState( State state )
+{
+	if( state != m_state )
+	{
+		m_state = state;
+
+		emit stateChanged();
+	}
 }
 
 
