@@ -198,7 +198,6 @@ public slots:
 
 protected:
 	void run() override;
-	void doConnection();
 
 
 private:
@@ -206,6 +205,10 @@ private:
 		InitialFrameBufferTimeout = 15000,	/**< A server has to send an initial framebuffer within given timeout in ms */
 		ThreadTerminationTimeout = 10000
 	};
+
+	void establishConnection();
+	void handleConnection();
+	void closeConnection();
 
 	void setState( State state );
 

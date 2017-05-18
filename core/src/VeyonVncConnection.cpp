@@ -506,7 +506,9 @@ void VeyonVncConnection::run()
 {
 	while( isInterruptionRequested() == false )
 	{
-		doConnection();
+		establishConnection();
+		handleConnection();
+		closeConnection();
 	}
 
 	setState( Disconnected );
@@ -514,7 +516,7 @@ void VeyonVncConnection::run()
 
 
 
-void VeyonVncConnection::doConnection()
+void VeyonVncConnection::establishConnection()
 {
 	QMutex sleeperMutex;
 
@@ -604,6 +606,13 @@ void VeyonVncConnection::doConnection()
 			sleeperMutex.unlock();
 		}
 	}
+}
+
+
+
+void VeyonVncConnection::handleConnection()
+{
+	QMutex sleeperMutex;
 
 	QTime connectionTime;
 	connectionTime.restart();
@@ -691,7 +700,12 @@ void VeyonVncConnection::doConnection()
 			sleeperMutex.unlock();
 		}
 	}
+}
 
+
+
+void VeyonVncConnection::closeConnection()
+{
 	if( m_state == Connected && m_cl )
 	{
 		rfbClientCleanup( m_cl );
