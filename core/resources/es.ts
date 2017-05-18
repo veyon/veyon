@@ -402,20 +402,28 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Estableciendo conexión</translation>
     </message>
     <message>
-        <source>Offline</source>
-        <translation>Fuera de línea</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation>Desconocido</translation>
-    </message>
-    <message>
         <source>No user logged on</source>
         <translation>Ningún usuario ha iniciado sesión</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
         <translation>Usuario conectado: %1</translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation>El equipo está desconectado o apagado</translation>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation>Servicio inaccesible o no ejecutádose</translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation>Error de autenticación o acceso denegado</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Desconectado</translation>
     </message>
 </context>
 <context>
@@ -1515,6 +1523,13 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
 </context>
 <context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation>Plugin implementando funciones abstractas para la plataforma Linux</translation>
+    </message>
+</context>
+<context>
     <name>LocalDataConfigurationPage</name>
     <message>
         <source>Local data</source>
@@ -2551,6 +2566,13 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Estableciendo conexión con %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Plugin implementando funciones abstractas para la plataforma Windows</translation>
     </message>
 </context>
 <context>
