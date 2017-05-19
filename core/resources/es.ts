@@ -2323,7 +2323,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Arranque automático</translation>
+        <translation>Inicio automático</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
