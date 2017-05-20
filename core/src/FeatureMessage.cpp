@@ -37,8 +37,6 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 {
 	if( ioDevice )
 	{
-		qDebug() << "FeatureMessage::send():" << featureUid() << command() << arguments();
-
 		VariantArrayMessage message( ioDevice );
 
 		message.write( m_featureUid );
@@ -78,8 +76,6 @@ FeatureMessage &FeatureMessage::receive()
 		m_featureUid = message.read().toUuid();
 		m_command = message.read().value<Command>();
 		m_arguments = message.read().toMap();
-
-		qDebug() << "FeatureMessage::receive():" << featureUid() << command() << arguments();
 	}
 	else
 	{
