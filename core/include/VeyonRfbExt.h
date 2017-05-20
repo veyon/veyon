@@ -28,7 +28,7 @@
 
 typedef struct _rfbClient rfbClient;
 
-// new rfb command which tells server or client that an veyon feature message is following
+// new rfb command which tells server or client that a Veyon feature message is following
 #define rfbVeyonFeatureMessage		41
 
 
