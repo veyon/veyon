@@ -124,11 +124,6 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 		return false;
 	}
 
-	qDebug() << "ComputerControlServer::handleFeatureMessage():"
-			 << featureMessage.featureUid()
-			 << featureMessage.command()
-			 << featureMessage.arguments();
-
 	return m_featureManager.handleServiceFeatureMessage( featureMessage, m_featureWorkerManager );
 }
 
