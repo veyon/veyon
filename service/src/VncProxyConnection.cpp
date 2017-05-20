@@ -24,6 +24,7 @@
 
 #include <QHostAddress>
 #include <QTcpSocket>
+#include <QTimer>
 
 #include "VncProxyConnection.h"
 
@@ -79,4 +80,18 @@ bool VncProxyConnection::forwardDataToServer( qint64 size )
 	}
 
 	return false;
+}
+
+
+
+void VncProxyConnection::readFromServerLater()
+{
+	QTimer::singleShot( ProtocolRetryTime, this, &VncProxyConnection::readFromServer );
+}
+
+
+
+void VncProxyConnection::readFromClientLater()
+{
+	QTimer::singleShot( ProtocolRetryTime, this, &VncProxyConnection::readFromClient );
 }

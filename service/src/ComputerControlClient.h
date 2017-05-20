@@ -47,10 +47,6 @@ public:
 	void readFromServer() override;
 
 private:
-	enum {
-		ProtocolRetryTime = 100
-	};
-
 	bool receiveMessage();
 
 	ComputerControlServer* m_server;

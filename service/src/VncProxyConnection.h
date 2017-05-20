@@ -33,6 +33,10 @@ class VncProxyConnection : public QObject
 {
 	Q_OBJECT
 public:
+	enum {
+		ProtocolRetryTime = 100
+	};
+
 	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
 	~VncProxyConnection() override;
 
@@ -54,6 +58,9 @@ protected slots:
 protected:
 	bool forwardDataToClient( qint64 size = -1 );
 	bool forwardDataToServer( qint64 size = -1 );
+
+	void readFromServerLater();
+	void readFromClientLater();
 
 private:
 	QTcpSocket* m_proxyClientSocket;
