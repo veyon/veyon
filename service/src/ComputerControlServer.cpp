@@ -117,13 +117,6 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive();
 
-	if( VeyonCore::config().disabledFeatures().contains( featureMessage.featureUid().toString() ) )
-	{
-		qWarning() << "ComputerControlServer::handleFeatureMessage(): ignoring message as feature"
-				   << featureMessage.featureUid() << "is disabled by configuration!";
-		return false;
-	}
-
 	return m_featureManager.handleServiceFeatureMessage( featureMessage, m_featureWorkerManager );
 }
 

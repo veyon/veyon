@@ -28,6 +28,7 @@
 #include "FeatureMessage.h"
 #include "PluginInterface.h"
 #include "PluginManager.h"
+#include "VeyonConfiguration.h"
 
 Q_DECLARE_METATYPE(Feature)
 Q_DECLARE_METATYPE(FeatureMessage)
@@ -175,6 +176,13 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 			 << message.featureUid()
 			 << message.command()
 			 << message.arguments();
+
+	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
+	{
+		qWarning() << Q_FUNC_INFO << " ignoring message as feature"
+				   << message.featureUid() << "is disabled by configuration!";
+		return false;
+	}
 
 	bool handled = false;
 
