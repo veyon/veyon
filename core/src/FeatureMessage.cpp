@@ -61,26 +61,26 @@ bool FeatureMessage::isReadyForReceive()
 
 
 
-FeatureMessage &FeatureMessage::receive()
+bool FeatureMessage::receive()
 {
 	if( m_ioDevice )
 	{
 		VariantArrayMessage message( m_ioDevice );
 
-		if( message.receive() == false )
+		if( message.receive() )
 		{
-			qWarning( "FeatureMessage::receive(): could not receive message!" );
-			return *this;
+			m_featureUid = message.read().toUuid();
+			m_command = message.read().value<Command>();
+			m_arguments = message.read().toMap();
+			return true;
 		}
 
-		m_featureUid = message.read().toUuid();
-		m_command = message.read().value<Command>();
-		m_arguments = message.read().toMap();
+		qWarning( "FeatureMessage::receive(): could not receive message!" );
 	}
 	else
 	{
 		qCritical( "FeatureMessage::receive(): no IO device!" );
 	}
 
-	return *this;
+	return false;
 }

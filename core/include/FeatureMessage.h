@@ -106,7 +106,7 @@ public:
 
 	bool isReadyForReceive();
 
-	FeatureMessage& receive();
+	bool receive();
 
 	QIODevice* ioDevice() const
 	{
