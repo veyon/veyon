@@ -114,6 +114,10 @@ private slots:
 	void handleFeatureMessage( const FeatureMessage& message );
 
 private:
+	enum {
+		FramebufferUpdateInterval = 1000,
+	};
+
 	const Computer& m_computer;
 
 	State m_state;

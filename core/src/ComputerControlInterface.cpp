@@ -62,7 +62,7 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSession
 		m_vncConnection->setHost( m_computer.hostAddress() );
 		m_vncConnection->setQuality( VeyonVncConnection::ThumbnailQuality );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
-		m_vncConnection->setFramebufferUpdateInterval( 1000 );	// TODO: replace hard-coded value
+		m_vncConnection->setFramebufferUpdateInterval( FramebufferUpdateInterval );
 		m_vncConnection->start();
 
 		m_coreConnection = new VeyonCoreConnection( m_vncConnection );
