@@ -25,7 +25,12 @@
 #ifndef USER_SESSION_CONTROL_H
 #define USER_SESSION_CONTROL_H
 
+#include <QReadWriteLock>
+
 #include "FeaturePluginInterface.h"
+
+class QThread;
+class QTimer;
 
 class VEYON_CORE_EXPORT UserSessionControl : public QObject, public FeaturePluginInterface, public PluginInterface
 {
@@ -33,7 +38,7 @@ class VEYON_CORE_EXPORT UserSessionControl : public QObject, public FeaturePlugi
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
 	UserSessionControl();
-	~UserSessionControl() override {}
+	~UserSessionControl() override;
 
 	bool getUserSessionInfo( const ComputerControlInterfaceList& computerControlInterfaces );
 
@@ -104,10 +109,20 @@ private:
 		HomeDir,
 	};
 
+	void queryUserInformation();
+
 	Feature m_userSessionInfoFeature;
 	Feature m_userLogoutFeature;
 	FeatureList m_features;
 
+	QThread* m_userInfoQueryThread;
+	QTimer* m_userInfoQueryTimer;
+
+	QReadWriteLock m_userDataLock;
+	QString m_userName;
+	QString m_userFullName;
+	QString m_userHomePath;
+
 };
 
-#endif // SYSTEM_TRAY_ICON_H
+#endif // USER_SESSION_CONTROL_H

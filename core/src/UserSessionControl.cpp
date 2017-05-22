@@ -22,11 +22,14 @@
  *
  */
 
+#include <QThread>
+#include <QTimer>
+
 #include "UserSessionControl.h"
 #include "FeatureWorkerManager.h"
+#include "LocalSystem.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "VeyonRfbExt.h"
 
 
@@ -39,10 +42,24 @@ UserSessionControl::UserSessionControl() :
 						 tr( "Logout user" ), QString(),
 						 tr( "Click this button to logout users from all computers." ),
 						 ":/resources/system-suspend-hibernate.png" ),
-	m_features()
+	m_features(),
+	m_userInfoQueryThread( new QThread( this ) ),
+	m_userInfoQueryTimer( new QTimer )
 {
 	m_features += m_userSessionInfoFeature;
 	m_features += m_userLogoutFeature;
+
+	// initialize user info query timer and thread
+	m_userInfoQueryTimer->moveToThread( m_userInfoQueryThread );
+	connect( m_userInfoQueryThread, &QThread::finished, m_userInfoQueryThread, &QObject::deleteLater );
+}
+
+
+
+UserSessionControl::~UserSessionControl()
+{
+	m_userInfoQueryThread->quit();
+	m_userInfoQueryTimer->deleteLater();
 }
 
 
@@ -111,15 +128,19 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 
 	if( m_userSessionInfoFeature.uid() == message.featureUid() )
 	{
-		LocalSystem::User user = LocalSystem::User::loggedOnUser();
-
 		FeatureMessage reply( message.featureUid(), message.command() );
-		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( user.name(), user.fullName() ) );
-		reply.addArgument( HomeDir, user.homePath() );
 
-		uint8_t rfbMessageType = rfbVeyonFeatureMessage;
-		message.ioDevice()->write( (const char *) &rfbMessageType, sizeof(rfbMessageType) );
+		m_userDataLock.lockForRead();
+		if( m_userName.isEmpty() )
+		{
+			queryUserInformation();
+		}
+		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( m_userName, m_userFullName ) );
+		reply.addArgument( HomeDir, m_userHomePath );
+		m_userDataLock.unlock();
 
+		char rfbMessageType = rfbVeyonFeatureMessage;
+		message.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
 		reply.send( message.ioDevice() );
 
 		return true;
@@ -139,4 +160,28 @@ bool UserSessionControl::handleWorkerFeatureMessage( const FeatureMessage& messa
 	Q_UNUSED(message);
 
 	return false;
+}
+
+
+
+void UserSessionControl::queryUserInformation()
+{
+	if( m_userInfoQueryThread->isRunning() == false )
+	{
+		m_userInfoQueryThread->start();
+	}
+
+	// asynchronously query information about logged on user (which might block
+	// due to domain controller queries and timeouts etc.)
+	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
+		auto user = LocalSystem::User::loggedOnUser();
+		const auto name = user.name();
+		const auto fullName = user.fullName();
+		const auto homePath = user.homePath();
+		m_userDataLock.lockForWrite();
+		m_userName = name;
+		m_userFullName = fullName;
+		m_userHomePath = homePath;
+		m_userDataLock.unlock();
+	} );
 }
