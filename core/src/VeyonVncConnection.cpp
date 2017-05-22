@@ -151,7 +151,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 			cl->appData.useRemoteCursor = true;
 			break;
 		case ThumbnailQuality:
-			cl->appData.encodingsString = "tight zrle ultra "
+			cl->appData.encodingsString = "zrle ultra "
 							"copyrect hextile zlib "
 							"corre rre raw";
 			cl->appData.compressLevel = 9;
@@ -164,7 +164,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 			break;
 		case DemoClientQuality:
 			//cl->appData.useRemoteCursor = true;
-			cl->appData.encodingsString = "tight ultra copyrect "
+			cl->appData.encodingsString = "ultra copyrect "
 									"hextile zlib corre rre raw";
 			cl->appData.compressLevel = 9;
 			cl->appData.qualityLevel = 9;
