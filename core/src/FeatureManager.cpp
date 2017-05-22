@@ -121,7 +121,7 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 										 ComputerControlInterface& localComputerControlInterface,
 										 QWidget* parent )
 {
-	qDebug() << "Run master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
+	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -136,7 +136,7 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 										ComputerControlInterface& localComputerControlInterface,
 										QWidget* parent )
 {
-	qDebug() << "Stop master feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
+	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -149,10 +149,10 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
 												 ComputerControlInterface& computerControlInterface )
 {
-	qDebug() << "FeatureManager::handleMasterFeatureMessage():"
-			 << message.featureUid()
-			 << message.command()
-			 << message.arguments();
+	qDebug() << Q_FUNC_INFO
+			 << "feature" << message.featureUid()
+			 << "command" << message.command()
+			 << "arguments" << message.arguments();
 
 	bool handled = false;
 
@@ -172,10 +172,10 @@ bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
 bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 												  FeatureWorkerManager& featureWorkerManager )
 {
-	qDebug() << "FeatureManager::handleServiceFeatureMessage():"
-			 << message.featureUid()
-			 << message.command()
-			 << message.arguments();
+	qDebug() << Q_FUNC_INFO
+			 << "feature" << message.featureUid()
+			 << "command" << message.command()
+			 << "arguments" << message.arguments();
 
 	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
 	{
@@ -201,7 +201,10 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 
 bool FeatureManager::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
-	qDebug() << "FeatureManager::handleWorkerFeatureMessage():" << message.featureUid() << message.command() << message.arguments();
+	qDebug() << Q_FUNC_INFO
+			 << "feature" << message.featureUid()
+			 << "command" << message.command()
+			 << "arguments" << message.arguments();
 
 	bool handled = false;
 
