@@ -325,8 +325,6 @@ bool VncProxyConnection::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHe
 
 	const int bytesPerPixel = clientProtocol().pixelFormat().bitsPerPixel / 8;
 	const int bytesPerRow = ( width + 7 ) / 8;
-	const int bytesPerLine = width * bytesPerPixel;
-	const int rawSize = width * height * bytesPerPixel;
 
 	switch( rectHeader.encoding )
 	{
@@ -340,7 +338,7 @@ bool VncProxyConnection::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHe
 
 	case rfbEncodingRichCursor:
 		return width * height == 0 ||
-				( buffer.read( rawSize ).size() == rawSize &&
+				( buffer.read( width * height * bytesPerPixel ).size() == width * height * bytesPerPixel &&
 				  buffer.read( bytesPerRow * height ).size() == bytesPerRow * height );
 
 	case rfbEncodingSupportedMessages:
@@ -352,7 +350,7 @@ bool VncProxyConnection::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHe
 		return buffer.read( width ).size() == width;
 
 	case rfbEncodingRaw:
-		return buffer.read( bytesPerLine * height ).size() == bytesPerLine * height;
+		return buffer.read( width * height * bytesPerPixel ).size() == width * height * bytesPerPixel;
 
 	case rfbEncodingCopyRect:
 		return buffer.read( sz_rfbCopyRect ).size() == sz_rfbCopyRect;
