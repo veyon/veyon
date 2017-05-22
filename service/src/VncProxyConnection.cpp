@@ -485,7 +485,7 @@ bool VncProxyConnection::handleRectEncodingHextile( QBuffer& buffer,
 				return false;
 			}
 
-			int subRectDataSize = 0;
+			int64_t subRectDataSize = 0;
 
 			if( subEncoding & rfbHextileSubrectsColoured )
 			{
@@ -493,7 +493,7 @@ bool VncProxyConnection::handleRectEncodingHextile( QBuffer& buffer,
 			}
 			else
 			{
-				subRectDataSize = nSubrects * bytesPerPixel;
+				subRectDataSize = nSubrects * 2;
 			}
 
 			if( buffer.read( subRectDataSize ).size() != subRectDataSize )
