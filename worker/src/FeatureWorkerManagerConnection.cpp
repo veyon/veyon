@@ -23,16 +23,15 @@
  */
 
 #include <QCoreApplication>
-#include <QDebug>
 #include <QHostAddress>
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
-#include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 
 
-FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& featureManager, const Feature::Uid& featureUid ) :
+FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& featureManager,
+																const Feature::Uid& featureUid ) :
 	QObject(),
 	m_featureManager( featureManager ),
 	m_socket( this ),
@@ -54,7 +53,8 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& 
 
 void FeatureWorkerManagerConnection::sendInitMessage()
 {
-	qDebug() << "FeatureWorkerManagerConnection::sendInitMessage():" << m_featureUid;
+	qDebug() << Q_FUNC_INFO << m_featureUid;
+
 	FeatureMessage( m_featureUid, FeatureMessage::InitCommand ).send( &m_socket );
 }
 
@@ -62,9 +62,13 @@ void FeatureWorkerManagerConnection::sendInitMessage()
 
 void FeatureWorkerManagerConnection::receiveMessage()
 {
-	qDebug() << "FeatureWorkerManagerConnection::receiveMessage():" << m_featureUid;
-	while( m_socket.bytesAvailable() > 0 )
+	FeatureMessage featureMessage( &m_socket );
+
+	while( featureMessage.isReadyForReceive() )
 	{
-		m_featureManager.handleWorkerFeatureMessage( FeatureMessage( &m_socket ).receive() );
+		if( featureMessage.receive() )
+		{
+			m_featureManager.handleWorkerFeatureMessage( featureMessage );
+		}
 	}
 }
