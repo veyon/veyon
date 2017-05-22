@@ -109,6 +109,7 @@ private slots:
 	}
 
 	void updateState();
+	void updateUser();
 
 	void handleFeatureMessage( const FeatureMessage& message );
 

@@ -69,8 +69,12 @@ void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSession
 
 		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete,
 				 this, &ComputerControlInterface::setScreenUpdateFlag );
+		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete,
+				 this, &ComputerControlInterface::updateUser );
 		connect( m_vncConnection, &VeyonVncConnection::stateChanged,
 				 this, &ComputerControlInterface::updateState );
+		connect( m_vncConnection, &VeyonVncConnection::stateChanged,
+				 this, &ComputerControlInterface::updateUser );
 		connect( m_coreConnection, &VeyonCoreConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
 	}
@@ -176,23 +180,30 @@ void ComputerControlInterface::updateState()
 		case VeyonVncConnection::AuthenticationFailed: m_state = AuthenticationFailed; break;
 		default: m_state = Unknown; break;
 		}
-
-		if( m_state == Connected && m_coreConnection )
-		{
-			m_userSessionControl->getUserSessionInfo( ComputerControlInterfaceList( { this } ) );
-		}
-		else
-		{
-			setUser( QString() );
-		}
 	}
 	else
 	{
 		m_state = Disconnected;
-		setUser( QString() );
 	}
 
 	setScreenUpdateFlag();
+}
+
+
+
+void ComputerControlInterface::updateUser()
+{
+	if( m_vncConnection && m_coreConnection && state() == Connected )
+	{
+		if( user().isEmpty() )
+		{
+			m_userSessionControl->getUserSessionInfo( ComputerControlInterfaceList( { this } ) );
+		}
+	}
+	else
+	{
+		setUser( QString() );
+	}
 }
 
 
