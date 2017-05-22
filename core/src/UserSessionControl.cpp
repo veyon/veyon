@@ -134,9 +134,14 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		if( m_userName.isEmpty() )
 		{
 			queryUserInformation();
+			reply.addArgument( UserName, QString() );
+			reply.addArgument( HomeDir, QString() );
 		}
-		reply.addArgument( UserName, QString( "%1 (%2)" ).arg( m_userName, m_userFullName ) );
-		reply.addArgument( HomeDir, m_userHomePath );
+		else
+		{
+			reply.addArgument( UserName, QString( "%1 (%2)" ).arg( m_userName, m_userFullName ) );
+			reply.addArgument( HomeDir, m_userHomePath );
+		}
 		m_userDataLock.unlock();
 
 		char rfbMessageType = rfbVeyonFeatureMessage;
