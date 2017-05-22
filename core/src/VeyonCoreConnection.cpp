@@ -139,7 +139,12 @@ bool VeyonCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 	{
 		SocketDevice socketDev( VeyonVncConnection::libvncClientDispatcher, client );
 		FeatureMessage featureMessage( &socketDev );
-		featureMessage.receive();
+		if( featureMessage.receive() == false )
+		{
+			qDebug( "VeyonCoreConnection: could not receive feature message" );
+
+			return false;
+		}
 
 		qDebug() << "VeyonCoreConnection: received feature message"
 				 << featureMessage.command()
