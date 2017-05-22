@@ -37,16 +37,38 @@ class VncServerClient;
 class VncServerProtocol
 {
 public:
+	typedef enum States {
+		Disconnected,
+		Protocol,
+		SecurityInit,
+		AuthenticationTypes,
+		Authenticating,
+		AccessControl,
+		FramebufferInit,
+		Running,
+		Close,
+		StateCount
+	} State;
+
 	VncServerProtocol( QTcpSocket* socket,
 					   VncServerClient* client,
 					   ServerAuthenticationManager& serverAuthenticationManager,
 					   ServerAccessControlManager& serverAccessControlManager );
 	~VncServerProtocol();
 
+	State state() const;
+
 	void start();
 	bool read();
 
+	void setServerInitMessage( const QByteArray& serverInitMessage )
+	{
+		m_serverInitMessage = serverInitMessage;
+	}
+
 private:
+	void setState( State state );
+
 	bool readProtocol();
 	bool sendSecurityTypes();
 	bool receiveSecurityTypeResponse();
@@ -57,10 +79,14 @@ private:
 	bool processAuthentication( VariantArrayMessage& message );
 	bool processAccessControl();
 
+	bool processFramebufferInit();
+
 	QTcpSocket* m_socket;
 	VncServerClient* m_client;
 	ServerAuthenticationManager& m_serverAuthenticationManager;
 	ServerAccessControlManager& m_serverAccessControlManager;
+
+	QByteArray m_serverInitMessage;
 
 } ;
 

@@ -25,25 +25,11 @@
 #ifndef VNC_SERVER_CLIENT_H
 #define VNC_SERVER_CLIENT_H
 
-#include <QByteArray>
-
-#include "RfbVeyonAuth.h"
+#include "VncServerProtocol.h"
 
 class VncServerClient
 {
 public:
-	typedef enum ProtocolStates {
-		Disconnected,
-		Protocol,
-		SecurityInit,
-		AuthenticationTypes,
-		Authenticating,
-		AccessControl,
-		Initialized,
-		Close,
-		StateCount
-	} ProtocolState;
-
 	typedef enum AuthStates {
 		AuthInit,
 		AuthChallenge,
@@ -54,7 +40,7 @@ public:
 	} AuthState;
 
 	VncServerClient() :
-		m_protocolState( Disconnected ),
+		m_protocolState( VncServerProtocol::Disconnected ),
 		m_authState( AuthInit ),
 		m_authType( RfbVeyonAuth::Invalid ),
 		m_username(),
@@ -63,12 +49,12 @@ public:
 	{
 	}
 
-	ProtocolState protocolState() const
+	VncServerProtocol::State protocolState() const
 	{
 		return m_protocolState;
 	}
 
-	void setProtocolState( ProtocolState protocolState )
+	void setProtocolState( VncServerProtocol::State protocolState )
 	{
 		m_protocolState = protocolState;
 	}
@@ -134,7 +120,7 @@ public:
 	}
 
 private:
-	ProtocolState m_protocolState;
+	VncServerProtocol::State m_protocolState;
 	AuthState m_authState;
 	RfbVeyonAuth::Type m_authType;
 	QString m_username;

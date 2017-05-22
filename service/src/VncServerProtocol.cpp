@@ -48,7 +48,8 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 	m_socket( socket ),
 	m_client( client ),
 	m_serverAuthenticationManager( serverAuthenticationManager ),
-	m_serverAccessControlManager( serverAccessControlManager )
+	m_serverAccessControlManager( serverAccessControlManager ),
+	m_serverInitMessage()
 {
 }
 
@@ -60,9 +61,16 @@ VncServerProtocol::~VncServerProtocol()
 
 
 
+VncServerProtocol::State VncServerProtocol::state() const
+{
+	return m_client->protocolState();
+}
+
+
+
 void VncServerProtocol::start()
 {
-	if( m_client->protocolState() == VncServerClient::Disconnected )
+	if( state() == Disconnected )
 	{
 		char protocol[sz_rfbProtocolVersionMsg+1];
 
@@ -70,7 +78,7 @@ void VncServerProtocol::start()
 
 		m_socket->write( protocol, sz_rfbProtocolVersionMsg );
 
-		m_client->setProtocolState( VncServerClient::Protocol );
+		setState( Protocol );
 	}
 }
 
@@ -78,24 +86,27 @@ void VncServerProtocol::start()
 
 bool VncServerProtocol::read()
 {
-	switch( m_client->protocolState() )
+	switch( state() )
 	{
-	case VncServerClient::Protocol:
+	case Protocol:
 		return readProtocol();
 
-	case VncServerClient::SecurityInit:
+	case SecurityInit:
 		return receiveSecurityTypeResponse();
 
-	case VncServerClient::AuthenticationTypes:
+	case AuthenticationTypes:
 		return receiveAuthenticationTypeResponse();
 
-	case VncServerClient::Authenticating:
+	case Authenticating:
 		return receiveAuthenticationMessage();
 
-	case VncServerClient::AccessControl:
+	case AccessControl:
 		return processAccessControl();
 
-	case VncServerClient::Close:
+	case FramebufferInit:
+		return processFramebufferInit();
+
+	case Close:
 		qDebug( "VncServerProtocol::read(): closing connection per protocol state" );
 		m_socket->close();
 		break;
@@ -105,6 +116,13 @@ bool VncServerProtocol::read()
 	}
 
 	return false;
+}
+
+
+
+void VncServerProtocol::setState( VncServerProtocol::State state )
+{
+	m_client->setProtocolState( state );
 }
 
 
@@ -126,7 +144,7 @@ bool VncServerProtocol::readProtocol()
 			return false;
 		}
 
-		m_client->setProtocolState( VncServerClient::SecurityInit );
+		setState( SecurityInit );
 
 		return sendSecurityTypes();
 	}
@@ -162,7 +180,7 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 			return false;
 		}
 
-		m_client->setProtocolState( VncServerClient::AuthenticationTypes );
+		setState( AuthenticationTypes );
 
 		return sendAuthenticationTypes();
 	}
@@ -208,7 +226,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		if( chosenAuthType == RfbVeyonAuth::None )
 		{
 			qWarning( "VncServerProtocol::receiveAuthenticationTypeResponse(): skipping authentication." );
-			m_client->setProtocolState( VncServerClient::AccessControl );
+			setState( AccessControl );
 			return true;
 		}
 
@@ -218,7 +236,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		m_client->setUsername( username );
 		m_client->setHostAddress( m_socket->peerAddress().toString() );
 
-		m_client->setProtocolState( VncServerClient::Authenticating );
+		setState( Authenticating );
 
 		// send auth ack message
 		VariantArrayMessage( m_socket ).send();
@@ -258,7 +276,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 		uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
 		m_socket->write( (char *) &authResult, sizeof(authResult) );
 
-		m_client->setProtocolState( VncServerClient::AccessControl );
+		setState( AccessControl );
 		return true;
 	}
 
@@ -281,12 +299,32 @@ bool VncServerProtocol::processAccessControl()
 {
 	if( m_serverAccessControlManager.addClient( m_client ) )
 	{
-		m_client->setProtocolState( VncServerClient::Initialized );
+		setState( FramebufferInit );
 		return true;
 	}
 
 	qCritical( "VncServerProtocol:::processAccessControl(): access control failed - closing connection" );
 	m_socket->close();
+
+	return false;
+}
+
+
+
+bool VncServerProtocol::processFramebufferInit()
+{
+	if( m_socket->bytesAvailable() >= sz_rfbClientInitMsg &&
+			m_serverInitMessage.isEmpty() == false )
+	{
+		// just read client init message without further evaluation
+		m_socket->read( sz_rfbClientInitMsg );
+
+		m_socket->write( m_serverInitMessage );
+
+		setState( Running );
+
+		return true;
+	}
 
 	return false;
 }

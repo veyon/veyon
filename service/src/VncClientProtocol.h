@@ -25,7 +25,7 @@
 #ifndef VNC_CLIENT_PROTOCOL_H
 #define VNC_CLIENT_PROTOCOL_H
 
-#include <QString>
+#include "VeyonCore.h"
 
 class QTcpSocket;
 
@@ -38,8 +38,8 @@ public:
 		SecurityInit,
 		SecurityChallenge,
 		SecurityResult,
-		Authenticated,
-		Connected,
+		FramebufferInit,
+		Running,
 		StateCount
 	} State;
 
@@ -53,16 +53,31 @@ public:
 	void start();
 	bool read();
 
+	const QByteArray& serverInitMessage() const
+	{
+		return m_serverInitMessage;
+	}
+
+	const rfbPixelFormat& pixelFormat() const
+	{
+		return m_pixelFormat;
+	}
+
 private:
 	bool readProtocol();
 	bool receiveSecurityTypes();
 	bool receiveSecurityChallenge();
 	bool receiveSecurityResult();
+	bool receiveServerInitMessage();
 
 	QTcpSocket* m_socket;
 	State m_state;
 
 	QByteArray m_vncPassword;
+
+	QByteArray m_serverInitMessage;
+
+	rfbPixelFormat m_pixelFormat;
 
 } ;
 

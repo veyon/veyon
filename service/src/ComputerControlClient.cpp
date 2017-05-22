@@ -22,12 +22,9 @@
  *
  */
 
-#include "VeyonCore.h"
-
-#include <QtEndian>
 #include <QTcpSocket>
-#include <QTimer>
 
+#include "VeyonCore.h"
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"
 
@@ -40,17 +37,12 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 	VncProxyConnection( clientSocket, vncServerPort, parent ),
 	m_server( server ),
 	m_serverClient(),
-	m_serverProtocol( proxyClientSocket(),
+	m_serverProtocol( clientSocket,
 					  &m_serverClient,
 					  server->authenticationManager(),
 					  server->accessControlManager() ),
 	m_clientProtocol( vncServerSocket(), vncServerPassword )
 {
-	m_rfbMessageSizes[rfbSetPixelFormat] = sz_rfbSetPixelFormatMsg;
-	m_rfbMessageSizes[rfbFramebufferUpdateRequest] = sz_rfbFramebufferUpdateRequestMsg;
-	m_rfbMessageSizes[rfbKeyEvent] = sz_rfbKeyEventMsg;
-	m_rfbMessageSizes[rfbPointerEvent] = sz_rfbPointerEventMsg;
-
 	m_serverProtocol.start();
 	m_clientProtocol.start();
 }
@@ -64,101 +56,20 @@ ComputerControlClient::~ComputerControlClient()
 
 
 
-void ComputerControlClient::readFromClient()
+bool ComputerControlClient::receiveClientMessage()
 {
-	if( m_serverClient.protocolState() != VncServerClient::Initialized )
-	{
-		while( m_serverProtocol.read() )
-		{
-		}
-
-		// did we finish server protocol initialization? then we must not miss this
-		// read signaĺ from client but process it as the client is still waiting
-		// for our response
-		if( m_serverClient.protocolState() == VncServerClient::Initialized )
-		{
-			readFromClient();
-		}
-	}
-	else if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
-	{
-		while( proxyClientSocket()->bytesAvailable() >= 1 && receiveMessage() )
-		{
-		}
-	}
-	else
-	{
-		// try again as client connection is not yet ready and we can't forward data
-		QTimer::singleShot( ProtocolRetryTime, this, &ComputerControlClient::readFromClient );
-	}
-}
-
-
-
-void ComputerControlClient::readFromServer()
-{
-	if( m_clientProtocol.state() != VncClientProtocol::Authenticated )
-	{
-		while( m_clientProtocol.read() )
-		{
-		}
-
-		// did we finish client protocol initialization? then we must not miss this
-		// read signaĺ from server but process it as the server is still waiting
-		// for our response
-		if( m_clientProtocol.state() == VncClientProtocol::Authenticated )
-		{
-			readFromServer();
-		}
-	}
-	else if( m_serverClient.protocolState() == VncServerClient::Initialized )
-	{
-		forwardDataToClient();
-	}
-	else
-	{
-		// try again as server connection is not yet ready and we can't forward data
-		QTimer::singleShot( ProtocolRetryTime, this, &ComputerControlClient::readFromServer );
-	}
-}
-
-
-
-bool ComputerControlClient::receiveMessage()
-{
-	QTcpSocket* socket = proxyClientSocket();
+	auto socket = proxyClientSocket();
 
 	char messageType = 0;
 	if( socket->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
 	{
-		qCritical( "ComputerControlClient:::receiveMessage(): could not peek message type - closing connection" );
-
-		deleteLater();
 		return false;
 	}
 
-	int rfbMessageSize = m_rfbMessageSizes.value( messageType, 0 );
-
-	switch( messageType )
+	if( messageType == rfbVeyonFeatureMessage )
 	{
-	case rfbVeyonFeatureMessage:
 		return m_server->handleFeatureMessage( socket );
-
-	case rfbSetEncodings:
-		if( socket->bytesAvailable() >= sz_rfbSetEncodingsMsg )
-		{
-			rfbSetEncodingsMsg setEncodingsMessage;
-			if( socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
-			{
-				return forwardDataToServer( sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t) );
-			}
-		}
-		break;
-
-	default:
-		return forwardDataToServer( rfbMessageSize );
-
 	}
 
-	return false;
+	return VncProxyConnection::receiveClientMessage();
 }

@@ -25,9 +25,13 @@
 #ifndef VNC_PROXY_CONNECTION_H
 #define VNC_PROXY_CONNECTION_H
 
-#include <QObject>
+#include "VeyonCore.h"
 
+class QBuffer;
 class QTcpSocket;
+
+class VncClientProtocol;
+class VncServerProtocol;
 
 class VncProxyConnection : public QObject
 {
@@ -40,7 +44,6 @@ public:
 	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
 	~VncProxyConnection() override;
 
-protected:
 	QTcpSocket* proxyClientSocket()
 	{
 		return m_proxyClientSocket;
@@ -52,19 +55,40 @@ protected:
 	}
 
 protected slots:
-	virtual void readFromClient() = 0;
-	virtual void readFromServer() = 0;
+	void readFromClient();
+	void readFromServer();
 
 protected:
-	bool forwardDataToClient( qint64 size = -1 );
-	bool forwardDataToServer( qint64 size = -1 );
+	bool forwardDataToClient( qint64 size );
+	bool forwardDataToServer( qint64 size );
 
 	void readFromServerLater();
 	void readFromClientLater();
 
+	virtual bool receiveClientMessage();
+	virtual bool receiveServerMessage();
+
+	bool forwardServerFramebufferUpdate();
+	bool forwardServerColourMapEntries();
+	bool forwardServerCutText();
+
+	virtual VncClientProtocol& clientProtocol() = 0;
+	virtual VncServerProtocol& serverProtocol() = 0;
+
 private:
+	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader );
+	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
+	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
+	bool handleRectEncodingHextile( QBuffer& buffer,
+									const rfbFramebufferUpdateRectHeader& rectHeader,
+									int bytesPerPixel );
+	bool handleRectEncodingZlib( QBuffer& buffer );
+	bool handleRectEncodingZRLE( QBuffer& buffer );
+
 	QTcpSocket* m_proxyClientSocket;
 	QTcpSocket* m_vncServerSocket;
+
+	const QMap<int, int> m_rfbClientToServerMessageSizes;
 
 signals:
 	void clientConnectionClosed();

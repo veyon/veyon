@@ -68,9 +68,12 @@ vncEncryptBytes(unsigned char *bytes, char *passwd)
 VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPassword ) :
 	m_socket( socket ),
 	m_state( Disconnected ),
-	m_vncPassword( vncPassword.toLatin1() )
+	m_vncPassword( vncPassword.toLatin1() ),
+	m_serverInitMessage()
 {
+	memset( &m_pixelFormat, 0, sz_rfbPixelFormat );
 }
+
 
 
 void VncClientProtocol::start()
@@ -95,6 +98,9 @@ bool VncClientProtocol::read()
 
 	case SecurityResult:
 		return receiveSecurityResult();
+
+	case FramebufferInit:
+		return receiveServerInitMessage();
 
 	default:
 		break;
@@ -221,8 +227,48 @@ bool VncClientProtocol::receiveSecurityResult()
 
 		qDebug( "VncClientProtocol::receiveSecurityResult(): authentication successful" );
 
-		m_state = Authenticated;
+		// finally send client init message
+		rfbClientInitMsg clientInitMessage;
+		clientInitMessage.shared = 1;
+		m_socket->write( (const char *) &clientInitMessage, sz_rfbClientInitMsg );
+
+		// wait for server init message
+		m_state = FramebufferInit;
+
 		return true;
+	}
+
+	return false;
+}
+
+
+
+bool VncClientProtocol::receiveServerInitMessage()
+{
+	rfbServerInitMsg message;
+
+	if( m_socket->bytesAvailable() >= sz_rfbServerInitMsg &&
+			m_socket->peek( (char *) &message, sz_rfbServerInitMsg ) == sz_rfbServerInitMsg )
+	{
+		auto nameLength = qFromBigEndian( message.nameLength );
+
+		if( nameLength > 255 )
+		{
+			qCritical() << Q_FUNC_INFO << "size of desktop name > 255!";
+			m_socket->close();
+			return false;
+		}
+
+		memcpy( &m_pixelFormat, &message.format, sz_rfbPixelFormat );
+
+		if( static_cast<uint32_t>( m_socket->peek( nameLength ).size() ) == nameLength )
+		{
+			m_serverInitMessage = m_socket->read( sz_rfbServerInitMsg + nameLength );
+
+			m_state = Running;
+
+			return true;
+		}
 	}
 
 	return false;

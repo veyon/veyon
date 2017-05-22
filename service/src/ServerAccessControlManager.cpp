@@ -94,7 +94,7 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 		if( addClient( client ) == false )
 		{
 			qDebug( "ServerAccessControlManager::removeClient(): closing connection as client does not pass access control any longer" );
-			client->setProtocolState( VncServerClient::Close );
+			client->setProtocolState( VncServerProtocol::Close );
 		}
 	}
 }

@@ -25,8 +25,8 @@
 #ifndef COMPUTER_CONTROL_CLIENT_H
 #define COMPUTER_CONTROL_CLIENT_H
 
-#include "VncProxyConnection.h"
 #include "VncClientProtocol.h"
+#include "VncProxyConnection.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
@@ -43,20 +43,26 @@ public:
 						   QObject* parent );
 	~ComputerControlClient() override;
 
-	void readFromClient() override;
-	void readFromServer() override;
+	bool receiveClientMessage() override;
+
+protected:
+	VncClientProtocol& clientProtocol() override
+	{
+		return m_clientProtocol;
+	}
+
+	VncServerProtocol& serverProtocol() override
+	{
+		return m_serverProtocol;
+	}
 
 private:
-	bool receiveMessage();
-
 	ComputerControlServer* m_server;
 
 	VncServerClient m_serverClient;
 
 	VncServerProtocol m_serverProtocol;
 	VncClientProtocol m_clientProtocol;
-
-	QMap<int, int> m_rfbMessageSizes;
 
 } ;
 
