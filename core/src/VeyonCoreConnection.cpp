@@ -44,8 +44,8 @@ public:
 	void fire( rfbClient *client ) override
 	{
 		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
-				 << "with command" << m_featureMessage.command()
-				 << "with arguments" << m_featureMessage.arguments();
+				 << "command" << m_featureMessage.command()
+				 << "arguments" << m_featureMessage.arguments();
 
 		SocketDevice socketDevice( VeyonVncConnection::libvncClientDispatcher, client );
 		char messageType = rfbVeyonFeatureMessage;
