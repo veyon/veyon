@@ -57,6 +57,10 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 
 VncProxyConnection::~VncProxyConnection()
 {
+	// do not get notified about disconnects any longer
+	disconnect( m_vncServerSocket );
+	disconnect( m_proxyClientSocket );
+
 	delete m_vncServerSocket;
 	delete m_proxyClientSocket;
 }
@@ -104,7 +108,6 @@ void VncProxyConnection::readFromServer()
 		// for our response
 		if( clientProtocol().state() == VncClientProtocol::Running )
 		{
-			qDebug("client protocol running");
 			// if client protocol is running we have the server init message which
 			// we can forward to the real client
 			serverProtocol().setServerInitMessage( clientProtocol().serverInitMessage() );
