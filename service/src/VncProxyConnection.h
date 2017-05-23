@@ -38,7 +38,7 @@ class VncProxyConnection : public QObject
 	Q_OBJECT
 public:
 	enum {
-		ProtocolRetryTime = 100
+		ProtocolRetryTime = 250
 	};
 
 	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
