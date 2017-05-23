@@ -106,10 +106,11 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 
 		auto& worker = m_workers[feature.uid()];
 
-		m_workersMutex.unlock();
-
 		if( worker.socket )
 		{
+			worker.socket->disconnect( this );
+			disconnect( worker.socket );
+
 			worker.socket->close();
 			worker.socket->deleteLater();
 		}
@@ -123,7 +124,6 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 			killTimer->start( 5000 );
 		}
 
-		m_workersMutex.lock();
 		m_workers.remove( feature.uid() );
 	}
 
