@@ -25,6 +25,8 @@
 #ifndef DESKTOP_ACCESS_DIALOG_H
 #define DESKTOP_ACCESS_DIALOG_H
 
+class QTimer;
+
 #include "FeaturePluginInterface.h"
 
 class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeaturePluginInterface, public PluginInterface
@@ -45,7 +47,15 @@ public:
 	DesktopAccessDialog();
 	~DesktopAccessDialog() override {}
 
-	Choice exec( FeatureWorkerManager& featureWorkerManager, QString user, QString host );
+	bool isBusy( FeatureWorkerManager* featureWorkerManager ) const;
+
+	void exec( FeatureWorkerManager* featureWorkerManager, QString user, QString host );
+	void abort( FeatureWorkerManager* featureWorkerManager );
+
+	Choice choice() const
+	{
+		return m_choice;
+	}
 
 	Plugin::Uid uid() const override
 	{
@@ -125,7 +135,12 @@ private:
 	Feature m_desktopAccessDialogFeature;
 	FeatureList m_features;
 
-	Choice m_result;
+	Choice m_choice;
+
+	QTimer* m_abortTimer;
+
+signals:
+	void finished();
 
 };
 

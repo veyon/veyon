@@ -25,8 +25,7 @@
 #include <QCoreApplication>
 #include <QMessageBox>
 #include <QPushButton>
-#include <QThread>
-#include <QTime>
+#include <QTimer>
 
 #include "DesktopAccessDialog.h"
 #include "FeatureWorkerManager.h"
@@ -38,44 +37,46 @@ DesktopAccessDialog::DesktopAccessDialog() :
 										   Feature::Uid( "3dd8ec3e-7004-4936-8f2a-70699b9819be" ),
 										   tr( "Desktop access dialog" ), QString(), QString() ) ),
 	m_features(),
-	m_result( ChoiceNone )
+	m_choice( ChoiceNone ),
+	m_abortTimer( new QTimer( this ) )
 {
 	m_features += m_desktopAccessDialogFeature;
+
+	m_abortTimer->setSingleShot( true );
 }
 
 
 
-DesktopAccessDialog::Choice DesktopAccessDialog::exec( FeatureWorkerManager& featureWorkerManager, QString user, QString host )
+bool DesktopAccessDialog::isBusy( FeatureWorkerManager* featureWorkerManager ) const
 {
-	if( featureWorkerManager.isWorkerRunning( m_desktopAccessDialogFeature ) == false )
-	{
-		featureWorkerManager.startWorker( m_desktopAccessDialogFeature );
-	}
+	return featureWorkerManager->isWorkerRunning( m_desktopAccessDialogFeature );
+}
 
-	m_result = ChoiceNone;
 
-	featureWorkerManager.sendMessage( FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess ).
-									  addArgument( UserArgument, user ).
-									  addArgument( HostArgument, host ) );
 
-	// wait for answer
-	QTime t;
-	t.start();
+void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, QString user, QString host )
+{
+	featureWorkerManager->startWorker( m_desktopAccessDialogFeature );
 
-	while( m_result == ChoiceNone &&
-		   featureWorkerManager.isWorkerRunning( m_desktopAccessDialogFeature ) )
-	{
-		QCoreApplication::processEvents();
-		if( t.elapsed() > DialogTimeout )
-		{
-			featureWorkerManager.stopWorker( m_desktopAccessDialogFeature );
-			break;
-		}
+	m_choice = ChoiceNone;
 
-		QThread::msleep( SleepTime );
-	}
+	featureWorkerManager->sendMessage( FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess ).
+									   addArgument( UserArgument, user ).
+									   addArgument( HostArgument, host ) );
 
-	return m_result;
+	connect( m_abortTimer, &QTimer::timeout, [=]() { abort( featureWorkerManager ); } );
+	m_abortTimer->start( DialogTimeout );
+}
+
+
+
+void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
+{
+	featureWorkerManager->stopWorker( m_desktopAccessDialogFeature );
+
+	m_choice = ChoiceNone;
+
+	emit finished();
 }
 
 
@@ -127,7 +128,13 @@ bool DesktopAccessDialog::handleServiceFeatureMessage( const FeatureMessage& mes
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 			message.command() == ReportDesktopAccessChoice )
 	{
-		m_result = static_cast<Choice>( message.argument( ChoiceArgument ).toInt() );
+		m_choice = static_cast<Choice>( message.argument( ChoiceArgument ).toInt() );
+
+		featureWorkerManager.stopWorker( m_desktopAccessDialogFeature );
+
+		m_abortTimer->stop();
+
+		emit finished();
 
 		return true;
 	}

@@ -39,16 +39,22 @@ public:
 								DesktopAccessDialog& desktopAccessDialog,
 								QObject* parent );
 
-	bool addClient( VncServerClient* client );
+	void addClient( VncServerClient* client );
 	void removeClient( VncServerClient* client );
 
 
 signals:
+	void accessControlFinished( VncServerClient* client );
 	void accessControlError( QString host, QString user );
 
 private:
-	bool performAccessControl( VncServerClient* client );
-	bool confirmDesktopAccess( VncServerClient* client );
+	enum {
+		ClientWaitInterval = 1000
+	};
+
+	void performAccessControl( VncServerClient* client );
+	VncServerClient::AccessControlState confirmDesktopAccess( VncServerClient* client );
+	void finishDesktopAccessConfirmation( VncServerClient* client );
 
 	QStringList connectedUsers() const;
 

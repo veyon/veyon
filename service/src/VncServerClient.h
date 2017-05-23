@@ -25,10 +25,13 @@
 #ifndef VNC_SERVER_CLIENT_H
 #define VNC_SERVER_CLIENT_H
 
+#include <QElapsedTimer>
+
 #include "VncServerProtocol.h"
 
-class VncServerClient
+class VncServerClient : public QObject
 {
+	Q_OBJECT
 public:
 	typedef enum AuthStates {
 		AuthInit,
@@ -39,10 +42,20 @@ public:
 		AuthFinishedFail,
 	} AuthState;
 
+	typedef enum AccessControlStates {
+		AccessControlInit,
+		AccessControlSuccessful,
+		AccessControlPending,
+		AccessControlWaiting,
+		AccessControlFailed,
+		AccessControlStateCount
+	} AccessControlState;
+
 	VncServerClient() :
 		m_protocolState( VncServerProtocol::Disconnected ),
 		m_authState( AuthInit ),
 		m_authType( RfbVeyonAuth::Invalid ),
+		m_accessControlState( AccessControlInit ),
 		m_username(),
 		m_hostAddress(),
 		m_challenge()
@@ -77,6 +90,21 @@ public:
 	void setAuthType( RfbVeyonAuth::Type authType )
 	{
 		m_authType = authType;
+	}
+
+	AccessControlState accessControlState() const
+	{
+		return m_accessControlState;
+	}
+
+	void setAccessControlState( AccessControlState accessControlState )
+	{
+		m_accessControlState = accessControlState;
+	}
+
+	QElapsedTimer& accessControlTimer()
+	{
+		return m_accessControlTimer;
 	}
 
 	const QString& username() const
@@ -119,10 +147,21 @@ public:
 		m_privateKey = privateKey;
 	}
 
+public slots:
+	void finishAccessControl()
+	{
+		emit accessControlFinished( this );
+	}
+
+signals:
+	void accessControlFinished( VncServerClient* );
+
 private:
 	VncServerProtocol::State m_protocolState;
 	AuthState m_authState;
 	RfbVeyonAuth::Type m_authType;
+	AccessControlState m_accessControlState;
+	QElapsedTimer m_accessControlTimer;
 	QString m_username;
 	QString m_hostAddress;
 	QByteArray m_challenge;

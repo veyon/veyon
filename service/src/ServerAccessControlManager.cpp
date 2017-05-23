@@ -45,36 +45,29 @@ ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& fe
 
 
 
-bool ServerAccessControlManager::addClient( VncServerClient* client )
+void ServerAccessControlManager::addClient( VncServerClient* client )
 {
-	bool result = false;
-
 	switch( client->authType() )
 	{
 	case RfbVeyonAuth::DSA:
-		result = performAccessControl( client );
-		break;
-
 	case RfbVeyonAuth::Logon:
-		result = performAccessControl( client );
+		performAccessControl( client );
 		break;
 
 	case RfbVeyonAuth::None:
 	case RfbVeyonAuth::HostWhiteList:
 	case RfbVeyonAuth::Token:
-		result = true;
+		client->setAccessControlState( VncServerClient::AccessControlSuccessful );
 		break;
 
 	default:
 		break;
 	}
 
-	if( result )
+	if( client->accessControlState() == VncServerClient::AccessControlSuccessful )
 	{
 		m_clients.append( client );
 	}
-
-	return result;
 }
 
 
@@ -86,12 +79,16 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 	// force all remaining clients to pass access control again as conditions might
 	// have changed (e.g. AccessControlRule::ConditionAccessFromAlreadyConnectedUser)
 
-	VncServerClientList previousClients = m_clients;
+	const VncServerClientList previousClients = m_clients;
 	m_clients.clear();
 
-	for( auto client : previousClients )
+	for( auto client : qAsConst( previousClients ) )
 	{
-		if( addClient( client ) == false )
+		client->setAccessControlState( VncServerClient::AccessControlInit );
+		addClient( client );
+
+		if( client->accessControlState() != VncServerClient::AccessControlSuccessful &&
+				client->accessControlState() != VncServerClient::AccessControlPending )
 		{
 			qDebug( "ServerAccessControlManager::removeClient(): closing connection as client does not pass access control any longer" );
 			client->setProtocolState( VncServerProtocol::Close );
@@ -101,8 +98,26 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 
 
 
-bool ServerAccessControlManager::performAccessControl( VncServerClient* client )
+void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 {
+	// implement access control wait for connections other than the one an
+	// access dialog is currently active for
+	switch( client->accessControlState() )
+	{
+	case VncServerClient::AccessControlInit:
+		client->accessControlTimer().restart();
+		break;
+	case VncServerClient::AccessControlWaiting:
+		if( client->accessControlTimer().elapsed() < ClientWaitInterval )
+		{
+			return;
+		}
+		client->accessControlTimer().restart();
+		break;
+	default:
+		break;
+	}
+
 	const auto accessResult =
 			AccessControlProvider().checkAccess( client->username(),
 												 client->hostAddress(),
@@ -111,40 +126,90 @@ bool ServerAccessControlManager::performAccessControl( VncServerClient* client )
 	switch( accessResult )
 	{
 	case AccessControlProvider::AccessAllow:
-		return true;
+		client->setAccessControlState( VncServerClient::AccessControlSuccessful );
+		break;
+
 	case AccessControlProvider::AccessToBeConfirmed:
-		return confirmDesktopAccess( client );
+		client->setAccessControlState( confirmDesktopAccess( client ) );
+		break;
+
 	default:
+		client->setAccessControlState( VncServerClient::AccessControlFailed );
+		client->setProtocolState( VncServerProtocol::Close );
 		break;
 	}
-
-	return false;
 }
 
 
 
-bool ServerAccessControlManager::confirmDesktopAccess(VncServerClient *client)
+VncServerClient::AccessControlState ServerAccessControlManager::confirmDesktopAccess( VncServerClient* client )
 {
 	const HostUserPair hostUserPair( client->username(), client->hostAddress() );
 
 	// did we save a previous choice because user chose "always" or "never"?
 	if( m_desktopAccessChoices.contains( hostUserPair ) )
 	{
-		return m_desktopAccessChoices[hostUserPair] == DesktopAccessDialog::ChoiceAlways;
+		if( m_desktopAccessChoices[hostUserPair] == DesktopAccessDialog::ChoiceAlways )
+		{
+			return VncServerClient::AccessControlSuccessful;
+		}
+
+		return VncServerClient::AccessControlFailed;
 	}
 
-	const auto result = m_desktopAccessDialog.exec( m_featureWorkerManager,
-													client->username(), client->hostAddress() );
+	// already an access dialog running?
+	if( m_desktopAccessDialog.isBusy( &m_featureWorkerManager ) )
+	{
+		// then close connection so that client has to try again later
+		return VncServerClient::AccessControlWaiting;
+	}
+
+	// get notified whenever the dialog finishes - use signal indirection for
+	// automatically breaking connection if VncServerClient gets deleted while
+	// dialog is active (e.g. due another connection being closed and thus
+	// all other connections are closed as well in order to perform access
+	// control again)
+	connect( &m_desktopAccessDialog, &DesktopAccessDialog::finished,
+			 client, &VncServerClient::finishAccessControl );
+
+	connect( client, &VncServerClient::accessControlFinished,
+			 this, &ServerAccessControlManager::finishDesktopAccessConfirmation );
+
+	// start the dialog (non-blocking)
+	m_desktopAccessDialog.exec( &m_featureWorkerManager, client->username(), client->hostAddress() );
+
+	return VncServerClient::AccessControlPending;
+}
+
+
+
+void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClient* client )
+{
+	// break helper connections for asynchronous desktop access control operations
+	client->disconnect( &m_desktopAccessDialog );
+	disconnect( client );
+
+	const auto choice = m_desktopAccessDialog.choice();
 
 	// remember choices "always" and "never"
-	if( result == DesktopAccessDialog::ChoiceAlways ||
-			result == DesktopAccessDialog::ChoiceNever )
+	if( choice == DesktopAccessDialog::ChoiceAlways || choice == DesktopAccessDialog::ChoiceNever )
 	{
-		m_desktopAccessChoices[hostUserPair] = result;
+		m_desktopAccessChoices[HostUserPair( client->username(), client->hostAddress() )] = choice;
 	}
 
-	return result == DesktopAccessDialog::ChoiceYes ||
-			result == DesktopAccessDialog::ChoiceAlways;
+	// evaluate choice and set according access control state
+	if( choice == DesktopAccessDialog::ChoiceYes || choice == DesktopAccessDialog::ChoiceAlways )
+	{
+		client->setAccessControlState( VncServerClient::AccessControlSuccessful );
+		m_clients.append( client );
+	}
+	else
+	{
+		client->setAccessControlState( VncServerClient::AccessControlFailed );
+		client->setProtocolState( VncServerProtocol::Close );
+	}
+
+	emit accessControlFinished( client );
 }
 
 

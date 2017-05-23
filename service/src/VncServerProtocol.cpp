@@ -51,6 +51,11 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 	m_serverAccessControlManager( serverAccessControlManager ),
 	m_serverInitMessage()
 {
+	m_client->setAccessControlState( VncServerClient::AccessControlInit );
+
+	connect( &m_serverAccessControlManager, &ServerAccessControlManager::accessControlFinished,
+			 this, &VncServerProtocol::finishAccessControl );
+
 }
 
 
@@ -297,14 +302,30 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 
 bool VncServerProtocol::processAccessControl()
 {
-	if( m_serverAccessControlManager.addClient( m_client ) )
+	// perform access control via ServerAccessControl manager if either
+	// client just entered access control or is still waiting to be
+	// processed (e.g. desktop access dialog already active for a different connection)
+	if( m_client->accessControlState() == VncServerClient::AccessControlInit ||
+			m_client->accessControlState() == VncServerClient::AccessControlWaiting )
 	{
-		setState( FramebufferInit );
-		return true;
+		m_serverAccessControlManager.addClient( m_client );
 	}
 
-	qCritical( "VncServerProtocol:::processAccessControl(): access control failed - closing connection" );
-	m_socket->close();
+	switch( m_client->accessControlState() )
+	{
+	case VncServerClient::AccessControlSuccessful:
+		setState( FramebufferInit );
+		return true;
+
+	case VncServerClient::AccessControlPending:
+	case VncServerClient::AccessControlWaiting:
+		break;
+
+	default:
+		qCritical( "VncServerProtocol:::processAccessControl(): access control failed - closing connection" );
+		m_socket->close();
+		break;
+	}
 
 	return false;
 }
@@ -327,4 +348,16 @@ bool VncServerProtocol::processFramebufferInit()
 	}
 
 	return false;
+}
+
+
+
+void VncServerProtocol::finishAccessControl( VncServerClient* client )
+{
+	if( client == m_client && processAccessControl() )
+	{
+		while( read() )
+		{
+		}
+	}
 }

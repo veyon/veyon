@@ -34,8 +34,9 @@ class ServerAccessControlManager;
 class VariantArrayMessage;
 class VncServerClient;
 
-class VncServerProtocol
+class VncServerProtocol : public QObject
 {
+	Q_OBJECT
 public:
 	typedef enum States {
 		Disconnected,
@@ -81,6 +82,10 @@ private:
 
 	bool processFramebufferInit();
 
+private slots:
+	void finishAccessControl( VncServerClient* client );
+
+private:
 	QTcpSocket* m_socket;
 	VncServerClient* m_client;
 	ServerAuthenticationManager& m_serverAuthenticationManager;
