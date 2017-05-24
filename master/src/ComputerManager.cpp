@@ -71,6 +71,7 @@ ComputerManager::ComputerManager( UserConfig& config,
 	initNetworkObjectLayer();
 	initRooms();
 	initComputerTreeModel();
+	updateComputerList();
 
 	auto computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
