@@ -76,6 +76,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, manualRoomAdditionAllowed, setManualRoomAdditionAllowed, "ManualRoomAdditionAllowed", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, localComputerHidden, setLocalComputerHidden, "LocalComputerHidden", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, emptyRoomsHidden, setEmptyRoomsHidden, "EmptyRoomsHidden", "Master" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, computerFilterHidden, setComputerFilterHidden, "ComputerFilterHidden", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), UUID, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
