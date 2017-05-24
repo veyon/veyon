@@ -82,9 +82,6 @@ private:
 
 	bool processFramebufferInit();
 
-private slots:
-	void finishAccessControl( VncServerClient* client );
-
 private:
 	QTcpSocket* m_socket;
 	VncServerClient* m_client;

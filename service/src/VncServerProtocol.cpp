@@ -52,10 +52,6 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 	m_serverInitMessage()
 {
 	m_client->setAccessControlState( VncServerClient::AccessControlInit );
-
-	connect( &m_serverAccessControlManager, &ServerAccessControlManager::accessControlFinished,
-			 this, &VncServerProtocol::finishAccessControl );
-
 }
 
 
@@ -348,16 +344,4 @@ bool VncServerProtocol::processFramebufferInit()
 	}
 
 	return false;
-}
-
-
-
-void VncServerProtocol::finishAccessControl( VncServerClient* client )
-{
-	if( client == m_client && processAccessControl() )
-	{
-		while( read() )
-		{
-		}
-	}
 }

@@ -211,8 +211,6 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 		client->setAccessControlState( VncServerClient::AccessControlFailed );
 		client->setProtocolState( VncServerProtocol::Close );
 	}
-
-	emit accessControlFinished( client );
 }
 
 

@@ -44,7 +44,6 @@ public:
 
 
 signals:
-	void accessControlFinished( VncServerClient* client );
 	void accessControlError( QString host, QString user );
 
 private:
