@@ -82,16 +82,16 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 	const VncServerClientList previousClients = m_clients;
 	m_clients.clear();
 
-	for( auto client : qAsConst( previousClients ) )
+	for( auto prevClient : qAsConst( previousClients ) )
 	{
-		client->setAccessControlState( VncServerClient::AccessControlInit );
-		addClient( client );
+		prevClient->setAccessControlState( VncServerClient::AccessControlInit );
+		addClient( prevClient );
 
-		if( client->accessControlState() != VncServerClient::AccessControlSuccessful &&
-				client->accessControlState() != VncServerClient::AccessControlPending )
+		if( prevClient->accessControlState() != VncServerClient::AccessControlSuccessful &&
+				prevClient->accessControlState() != VncServerClient::AccessControlPending )
 		{
 			qDebug( "ServerAccessControlManager::removeClient(): closing connection as client does not pass access control any longer" );
-			client->setProtocolState( VncServerProtocol::Close );
+			prevClient->setProtocolState( VncServerProtocol::Close );
 		}
 	}
 }
