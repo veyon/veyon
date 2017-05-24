@@ -83,31 +83,35 @@
       <string>User interface &amp;&amp; behaviour</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="2" column="0" colspan="2">
-       <widget class="QCheckBox" name="onlyCurrentRoomVisible">
-        <property name="text">
-         <string>Only show current room in computer room management</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
+      <item row="8" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Feature on computer double click:</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QComboBox" name="computerDoubleClickFeature"/>
+      <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="onlyCurrentRoomVisible">
+        <property name="text">
+         <string>Only show current room in computer room management</string>
+        </property>
+       </widget>
       </item>
-      <item row="5" column="0" colspan="2">
+      <item row="6" column="0" colspan="2">
        <widget class="QCheckBox" name="emptyRoomsHidden">
         <property name="text">
          <string>Hide empty rooms from computer room management</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="2">
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
+        <property name="text">
+         <string>Automatically switch to current room at start</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
        <widget class="QCheckBox" name="manualRoomAdditionAllowed">
         <property name="enabled">
          <bool>false</bool>
@@ -117,17 +121,10 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0" colspan="2">
+      <item row="5" column="0" colspan="2">
        <widget class="QCheckBox" name="localComputerHidden">
         <property name="text">
          <string>Hide local computer in computer room management</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
-        <property name="text">
-         <string>Automatically switch to current room at start</string>
         </property>
        </widget>
       </item>
@@ -135,6 +132,16 @@
        <widget class="QCheckBox" name="accessControlForMasterEnabled">
         <property name="text">
          <string>Perform access control at program start</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QComboBox" name="computerDoubleClickFeature"/>
+      </item>
+      <item row="7" column="0" colspan="2">
+       <widget class="QCheckBox" name="computerFilterHidden">
+        <property name="text">
+         <string>Hide computer filter field in computer room management</string>
         </property>
        </widget>
       </item>
@@ -235,6 +242,7 @@
   <tabstop>manualRoomAdditionAllowed</tabstop>
   <tabstop>localComputerHidden</tabstop>
   <tabstop>emptyRoomsHidden</tabstop>
+  <tabstop>computerFilterHidden</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disabledFeaturesListWidget</tabstop>
