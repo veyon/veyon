@@ -186,8 +186,11 @@ VncServerClient::AccessControlState ServerAccessControlManager::confirmDesktopAc
 void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClient* client )
 {
 	// break helper connections for asynchronous desktop access control operations
-	client->disconnect( &m_desktopAccessDialog );
-	disconnect( client );
+	if( m_desktopAccessDialog.disconnect( client ) == false ||
+			client->disconnect( this ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "could not break object connections";
+	}
 
 	const auto choice = m_desktopAccessDialog.choice();
 
