@@ -35,6 +35,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QLineEdit" name="filterLineEdit">
+     <property name="placeholderText">
+      <string>Computer search</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="addRoomButton">
      <property name="text">
       <string>Add room</string>

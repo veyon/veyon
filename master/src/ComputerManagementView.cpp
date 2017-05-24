@@ -29,8 +29,9 @@
 #include "ComputerManagementView.h"
 #include "ComputerManager.h"
 #include "NetworkObjectModel.h"
-#include "VeyonConfiguration.h"
+#include "RecursiveFilterProxyModel.h"
 #include "RoomSelectionDialog.h"
+#include "VeyonConfiguration.h"
 
 #include "ui_ComputerManagementView.h"
 
@@ -38,21 +39,30 @@
 ComputerManagementView::ComputerManagementView( ComputerManager& computerManager, QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerManagementView),
-	m_computerManager( computerManager )
+	m_computerManager( computerManager ),
+	m_filterProxyModel( new RecursiveFilterProxyModel( this ) )
 {
+	m_filterProxyModel->setSourceModel( computerManager.computerTreeModel() );
+	m_filterProxyModel->setFilterCaseSensitivity( Qt::CaseInsensitive );
+
 	ui->setupUi(this);
 
 	// capture keyboard events for tree view
 	ui->treeView->installEventFilter( this );
 
 	// set computer tree model as data model
-	ui->treeView->setModel( computerManager.computerTreeModel() );
+	ui->treeView->setModel( m_filterProxyModel );
 
 	// set default sort order
 	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
 
 	ui->addRoomButton->setVisible( VeyonCore::config().onlyCurrentRoomVisible() &&
 										VeyonCore::config().manualRoomAdditionAllowed() );
+
+	ui->filterLineEdit->setHidden( VeyonCore::config().computerFilterHidden() );
+
+	connect( ui->filterLineEdit, &QLineEdit::textChanged,
+			 this, &ComputerManagementView::updateFilter );
 }
 
 
@@ -116,5 +126,47 @@ void ComputerManagementView::saveList()
 								   tr( "Could not write the computer and users list to %1! "
 									   "Please check the file access permissions." ).arg( fileName ) );
 		}
+	}
+}
+
+
+
+void ComputerManagementView::updateFilter()
+{
+	const auto filter = ui->filterLineEdit->text();
+	auto model = ui->treeView->model();
+
+	if( filter.isEmpty() )
+	{
+		m_filterProxyModel->setFilterWildcard( filter );
+
+		for( int i = 0; i < model->rowCount(); ++i )
+		{
+			const auto index = model->index( i, 0 );
+			ui->treeView->setExpanded( index, m_expandedGroups.contains( index ) );
+		}
+
+		m_previousFilter.clear();
+	}
+	else
+	{
+		if( m_previousFilter.isEmpty() )
+		{
+			m_expandedGroups.clear();
+
+			for( int i = 0; i < model->rowCount(); ++i )
+			{
+				const auto index = model->index( i, 0 );
+				if( ui->treeView->isExpanded( index ) )
+				{
+					m_expandedGroups.append( index );
+				}
+			}
+		}
+
+		m_previousFilter = filter;
+
+		m_filterProxyModel->setFilterWildcard( filter );
+		ui->treeView->expandAll();
 	}
 }

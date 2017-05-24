@@ -25,6 +25,7 @@
 #ifndef COMPUTER_MANAGER_VIEW_H
 #define COMPUTER_MANAGER_VIEW_H
 
+#include <QModelIndexList>
 #include <QWidget>
 
 namespace Ui {
@@ -32,6 +33,7 @@ class ComputerManagementView;
 }
 
 class ComputerManager;
+class RecursiveFilterProxyModel;
 
 class ComputerManagementView : public QWidget
 {
@@ -46,10 +48,14 @@ private slots:
 	void addRoom();
 	void removeRoom();
 	void saveList();
+	void updateFilter();
 
 private:
 	Ui::ComputerManagementView *ui;
 	ComputerManager& m_computerManager;
+	RecursiveFilterProxyModel* m_filterProxyModel;
+	QString m_previousFilter;
+	QModelIndexList m_expandedGroups;
 
 };
 
