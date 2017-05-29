@@ -1,7 +1,7 @@
 /*
- *  ProgressWidget.cpp - widget for locking a client
+ *  ProgressWidget.cpp - widget with animated progress indicator
  *
- *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of Veyon - http://veyon.io
  *
@@ -21,42 +21,34 @@
  *  USA.
  */
 
-
 #include "ProgressWidget.h"
 
-#include <QtCore/QTimer>
-#include <QtGui/QPainter>
+#include <QTimer>
+#include <QPainter>
 
 
-
-ProgressWidget::ProgressWidget(  const QString & _txt,
-					const QString & _anim, int _frames,
-					QWidget * _parent ) :
-	QWidget( _parent ),
-	m_txt( _txt ),
-	m_anim( _anim ),
-	m_frames( _frames ),
+ProgressWidget::ProgressWidget( const QString& text, const QString& animationPixmapBase, int frames, QWidget* parent ) :
+	QWidget( parent ),
+	m_text( text ),
+	m_frames( frames ),
 	m_curFrame( 0 )
 {
-	for( int i = 1; i <= m_frames; ++i )
+	for( int i = 0; i < m_frames; ++i )
 	{
-		m_pixmaps.push_back( QPixmap( m_anim.arg(
-						QString::number( i ) ) ) );
+		m_pixmaps.push_back( QPixmap( animationPixmapBase.arg( QString::number( i+1 ) ) ) );
 	}
 
 	QFont f = font();
 	f.setPointSize( 12 );
 	setFont( f );
 
-	setFixedSize( 30 + m_pixmaps[0].width() +
-			fontMetrics().width( m_txt ),
+	setFixedSize( 30 + m_pixmaps[0].width() + fontMetrics().width( m_text ),
 			m_pixmaps[0].height() * 5 / 4 );
 
 	auto t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ), this, SLOT( nextAnim() ) );
+	connect( t, &QTimer::timeout, this, &ProgressWidget::nextFrame );
 	t->start( 150 );
 }
-
 
 
 
@@ -66,37 +58,26 @@ ProgressWidget::~ProgressWidget()
 
 
 
-
-void ProgressWidget::nextAnim()
+void ProgressWidget::nextFrame()
 {
 	m_curFrame = ( m_curFrame+1 ) % m_frames;
+
 	update();
 }
 
 
 
-const int ROUNDED = 2000;
-
-void ProgressWidget::paintEvent( QPaintEvent * )
+void ProgressWidget::paintEvent( QPaintEvent* event )
 {
+	Q_UNUSED(event);
+
 	QPainter p( this );
 	p.setRenderHint( QPainter::Antialiasing );
-	p.setPen( Qt::black );
+	p.setPen( QColor( 0x55, 0x55, 0x55 ) );
 
-	QLinearGradient grad( 0, 0, 0, height() );
-	QColor g1( 224, 224, 224 );
-	//g1.setAlpha( 204 );
-	QColor g2( 160, 160, 160 );
-	//g2.setAlpha( 204 );
-	grad.setColorAt( 0, g1 );
-	grad.setColorAt( 1, g2 );
-	p.setBrush( grad );
-	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					ROUNDED / width(), ROUNDED / height() );
-	p.drawPixmap( 6, ( height() - m_pixmaps[m_curFrame].height() ) / 2 - 1,
-							m_pixmaps[m_curFrame] );
-	p.setPen( Qt::black );
-	p.drawText( 14 + m_pixmaps[m_curFrame].width(), 25, m_txt );
+	p.setBrush( Qt::white );
+	p.drawRect( 0, 0, width() - 1, height() - 1 );
+	p.drawPixmap( 6, ( height() - m_pixmaps[m_curFrame].height() ) / 2 - 1, m_pixmaps[m_curFrame] );
+
+	p.drawText( 14 + m_pixmaps[m_curFrame].width(), 25, m_text );
 }
-
-

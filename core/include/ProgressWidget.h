@@ -1,7 +1,7 @@
 /*
- *  ProgressWidget.h - widget with animated progress-indicator
+ *  ProgressWidget.h - widget with animated progress indicator
  *
- *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of Veyon - http://veyon.io
  *
@@ -21,34 +21,28 @@
  *  USA.
  */
 
-
 #ifndef PROGRESS_WIDGET_H
 #define PROGRESS_WIDGET_H
 
-#include <QtCore/QVector>
-#include <QtGui/QPixmap>
+#include <QPixmap>
+#include <QVector>
 #include <QWidget>
-
 
 class ProgressWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	ProgressWidget( const QString & _txt,
-			const QString & _anim, int _frames,
-			QWidget * _parent = nullptr );
+	ProgressWidget( const QString& text, const QString& animationPixmapBase, int frames, QWidget* parent = nullptr );
 	~ProgressWidget() override;
 
+protected:
+	void paintEvent( QPaintEvent* event ) override;
 
 private slots:
-	void nextAnim( void );
-
+	void nextFrame();
 
 private:
-	void paintEvent( QPaintEvent * ) override;
-
-	QString m_txt;
-	QString m_anim;
+	QString m_text;
 	int m_frames;
 	int m_curFrame;
 
@@ -56,6 +50,4 @@ private:
 
 } ;
 
-
 #endif
-
