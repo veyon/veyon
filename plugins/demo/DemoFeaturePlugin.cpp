@@ -82,6 +82,8 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 											ComputerControlInterface& localServiceInterface,
 											QWidget* parent )
 {
+	Q_UNUSED(parent);
+
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
 		localServiceInterface.sendFeatureMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
