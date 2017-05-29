@@ -297,8 +297,9 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 	connect( m_vncView, SIGNAL( sizeHintChanged() ),
 					this, SLOT( updateSize() ) );
 
-	show();
+	showMaximized();
 	LocalSystem::activateWindow( this );
+	showNormal();
 
 	toggleViewOnly( viewOnly );
 }
