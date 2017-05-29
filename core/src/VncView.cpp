@@ -52,7 +52,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	m_scaledView( true ),
 	m_initDone( false ),
 	m_buttonMask( 0 ),
-	m_establishingConnection( nullptr ),
+	m_establishingConnectionWidget( nullptr ),
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
 {
 	m_vncConn->setHost( host );
@@ -62,36 +62,34 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	{
 		m_vncConn->setQuality( VeyonVncConnection::DemoClientQuality );
 		m_vncConn->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
-		m_establishingConnection = new ProgressWidget(
+		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
 					":/resources/watch%1.png", 16, this );
-		connect( m_vncConn, SIGNAL( connected() ),
-					m_establishingConnection, SLOT( hide() ) );
-
+		connect( m_vncConn, &VeyonVncConnection::stateChanged,
+				 this, &VncView::updateConnectionState );
 	}
 	else if( m_mode == RemoteControlMode )
 	{
 		m_vncConn->setQuality( VeyonVncConnection::RemoteControlQuality );
 	}
 
-	connect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
-			this, SLOT( updateImage( int, int, int, int ) ),
-						Qt::BlockingQueuedConnection );
+	connect( m_vncConn, &VeyonVncConnection::imageUpdated,
+			 this, &VncView::updateImage, Qt::BlockingQueuedConnection );
 
-	connect( m_vncConn, SIGNAL( framebufferSizeChanged( int, int ) ),
-				this, SLOT( updateSizeHint( int, int ) ), Qt::QueuedConnection );
+	connect( m_vncConn, &VeyonVncConnection::framebufferSizeChanged,
+			 this, &VncView::updateSizeHint, Qt::QueuedConnection );
 
-	connect( m_vncConn, SIGNAL( cursorPosChanged( int, int ) ),
-				this, SLOT( updateCursorPos( int, int ) ) );
+	connect( m_vncConn, &VeyonVncConnection::cursorPosChanged,
+			 this, &VncView::updateCursorPos );
 
-	connect( m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
-				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
+	connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated,
+			 this, &VncView::updateCursorShape );
 
 	// forward trapped special keys
-	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
-				m_vncConn, SLOT( keyEvent( unsigned int, bool ) ) );
-	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
-				this, SLOT( checkKeyEvent( unsigned int, bool ) ) );
+	connect( m_sysKeyTrapper, &SystemKeyTrapper::keyEvent,
+			 m_vncConn, &VeyonVncConnection::keyEvent );
+	connect( m_sysKeyTrapper, &SystemKeyTrapper::keyEvent,
+			 this, &VncView::checkKeyEvent );
 
 
 	// set up background color
@@ -105,8 +103,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 	show();
 
-	resize( QApplication::desktop()->
-						availableGeometry( this ).size() - QSize( 10, 30 ) );
+	resize( QApplication::desktop()->availableGeometry( this ).size() - QSize( 10, 30 ) );
 
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
@@ -116,21 +113,16 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 
 
-
 VncView::~VncView()
 {
-	disconnect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
-			this, SLOT( updateImage( int, int, int, int ) ) );
+	// do not receive any signals during connection shutdown
+	m_vncConn->disconnect( this );
 
 	unpressModifiers();
 	delete m_sysKeyTrapper;
 
-	if( m_vncConn )
-	{
-		m_vncConn->stop( true );
-	}
+	m_vncConn->stop( true );
 }
-
 
 
 
@@ -152,7 +144,6 @@ bool VncView::eventFilter(QObject *obj, QEvent *event)
 
 
 
-
 QSize VncView::sizeHint() const
 {
 	if( m_scaledView )
@@ -161,7 +152,6 @@ QSize VncView::sizeHint() const
 	}
 	return framebufferSize();
 }
-
 
 
 
@@ -177,7 +167,6 @@ QSize VncView::scaledSize() const
 	fbs.scale( s, Qt::KeepAspectRatio );
 	return fbs;
 }
-
 
 
 
@@ -202,7 +191,6 @@ void VncView::setViewOnly( bool _vo )
 		m_sysKeyTrapper->setEnabled( true );
 	}
 }
-
 
 
 
@@ -301,7 +289,6 @@ void VncView::checkKeyEvent( unsigned int key, bool pressed )
 
 
 
-
 void VncView::updateCursorPos( int x, int y )
 {
 	if( isViewOnly() )
@@ -320,7 +307,6 @@ void VncView::updateCursorPos( int x, int y )
 		}
 	}
 }
-
 
 
 
@@ -347,7 +333,6 @@ void VncView::updateCursorShape( const QImage &cursorShape, int xh, int yh )
 
 
 
-
 void VncView::focusInEvent( QFocusEvent * _e )
 {
 	if( !m_viewOnlyFocus )
@@ -356,7 +341,6 @@ void VncView::focusInEvent( QFocusEvent * _e )
 	}
 	QWidget::focusInEvent( _e );
 }
-
 
 
 
@@ -369,7 +353,6 @@ void VncView::focusOutEvent( QFocusEvent * _e )
 	}
 	QWidget::focusOutEvent( _e );
 }
-
 
 
 
@@ -579,7 +562,6 @@ void VncView::unpressModifiers()
 
 
 
-
 QPoint VncView::mapToFramebuffer( const QPoint &pos )
 {
 	const QSize fbs = framebufferSize();
@@ -599,7 +581,6 @@ QPoint VncView::mapToFramebuffer( const QPoint &pos )
 
 
 
-
 QRect VncView::mapFromFramebuffer( const QRect &r )
 {
 	if( framebufferSize().isEmpty() )
@@ -615,7 +596,6 @@ QRect VncView::mapFromFramebuffer( const QRect &r )
 	}
 	return r;
 }
-
 
 
 void VncView::updateLocalCursor()
@@ -671,7 +651,6 @@ bool VncView::event( QEvent * event )
 			return QWidget::event(event);
 	}
 }
-
 
 
 
@@ -762,23 +741,21 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 
 
-
 void VncView::resizeEvent( QResizeEvent *event )
 {
 	m_vncConn->setScaledSize( scaledSize() );
 
 	update();
 
-	if( m_establishingConnection )
+	if( m_establishingConnectionWidget )
 	{
-		m_establishingConnection->move( 10, 10 );
+		m_establishingConnectionWidget->move( 10, 10 );
 	}
 
 	updateLocalCursor();
 
 	QWidget::resizeEvent( event );
 }
-
 
 
 
@@ -789,7 +766,6 @@ void VncView::wheelEventHandler( QWheelEvent * _we )
 		( ( _we->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
 	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 }
-
 
 
 
@@ -840,8 +816,6 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 		m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 	}
 }
-
-
 
 
 
@@ -901,3 +875,11 @@ void VncView::updateSizeHint( int w, int h )
 }
 
 
+
+void VncView::updateConnectionState()
+{
+	if( m_establishingConnectionWidget )
+	{
+		m_establishingConnectionWidget->setVisible( m_vncConn->state() != VeyonVncConnection::Connected );
+	}
+}

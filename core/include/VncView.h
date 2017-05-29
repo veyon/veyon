@@ -106,7 +106,7 @@ private slots:
 	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
 	void updateImage( int x, int y, int w, int h );
 	void updateSizeHint( int w, int h );
-
+	void updateConnectionState();
 
 private:
 	bool eventFilter( QObject * _obj, QEvent * _event ) override;
@@ -128,7 +128,7 @@ private:
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
 
-	QPointer<VeyonVncConnection> m_vncConn;
+	VeyonVncConnection* m_vncConn;
 
 	Mode m_mode;
 	int m_x, m_y, m_w, m_h;
@@ -148,11 +148,10 @@ private:
 	int m_buttonMask;
 	QMap<unsigned int, bool> m_mods;
 
-	ProgressWidget * m_establishingConnection;
+	ProgressWidget* m_establishingConnectionWidget;
 
-	SystemKeyTrapper * m_sysKeyTrapper;
+	SystemKeyTrapper* m_sysKeyTrapper;
 
 } ;
 
 #endif
-
