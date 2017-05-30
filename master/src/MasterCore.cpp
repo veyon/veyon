@@ -46,6 +46,9 @@ MasterCore::MasterCore() :
 	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
 	m_currentMode()
 {
+	connect( &m_localComputerControlInterface, &ComputerControlInterface::featureMessageReceived,
+			 m_featureManager, &FeatureManager::handleMasterFeatureMessage );
+
 	m_localComputerControlInterface.start( QSize(), &m_builtinFeatures->userSessionControl() );
 }
 
