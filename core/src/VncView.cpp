@@ -32,8 +32,8 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QMouseEvent>
-#include <QtGui/QPainter>
-
+#include <QPainter>
+#include <QtMath>
 
 
 VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
@@ -855,8 +855,8 @@ void VncView::updateImage(int x, int y, int w, int h)
 	}
 
 	m_repaint = true;
-	repaint( qRound( m_x*scale ), qRound( m_y*scale ),
-			qRound( m_w*scale ), qRound( m_h*scale ) );
+	repaint( qFloor( m_x*scale ), qFloor( m_y*scale ),
+			qCeil( m_w*scale ), qCeil( m_h*scale ) );
 	m_repaint = false;
 }
 
