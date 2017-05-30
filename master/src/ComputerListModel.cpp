@@ -232,14 +232,15 @@ QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
 {
 	const QString state( computerStateDescription( computer ) );
 	const QString room( tr( "Room: %1" ).arg( computer.room() ) );
+	const QString host( tr( "Host/IP address: %1" ).arg( computer.hostAddress() ) );
 	const QString user( loggedOnUserInformation( computer ) );
 
 	if( user.isEmpty() )
 	{
-		return "<b>" + state + "</b><br>" + room;
+		return QString( "<b>%1</b><br>%2<br>%3" ).arg( state, room, host );
 	}
 
-	return "<b>" + state + "</b><br>" + room + "<br>" + user;
+	return QString( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, user );
 }
 
 
