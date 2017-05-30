@@ -136,7 +136,6 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 	cl->format.greenMax = 0xff;
 	cl->format.blueMax = 0xff;
 
-	// only use remote cursor for remote control
 	cl->appData.useRemoteCursor = false;
 	cl->appData.compressLevel = 0;
 	cl->appData.useBGR233 = false;
@@ -150,7 +149,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 			break;
 		case RemoteControlQuality:
 			cl->appData.encodingsString = "copyrect hextile raw";
-			cl->appData.useRemoteCursor = true;
+			//cl->appData.useRemoteCursor = true;
 			break;
 		case ThumbnailQuality:
 			cl->appData.encodingsString = "zrle ultra "
