@@ -101,7 +101,7 @@ void InputDeviceBlocker::enableInterception()
 void InputDeviceBlocker::disableInterception()
 {
 #ifdef VEYON_BUILD_WIN32
-	interception_destroy_context( &m_interceptionContext );
+	interception_destroy_context( m_interceptionContext );
 #endif
 }
 
