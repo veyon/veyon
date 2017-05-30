@@ -111,6 +111,8 @@ private slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
+	bool initAuthentication();
+
 	Feature m_remoteViewFeature;
 	Feature m_remoteControlFeature;
 	FeatureList m_features;

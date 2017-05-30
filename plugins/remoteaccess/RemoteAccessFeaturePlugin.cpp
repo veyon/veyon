@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <QInputDialog>
 
+#include "AuthenticationCredentials.h"
 #include "RemoteAccessFeaturePlugin.h"
 #include "RemoteAccessWidget.h"
 
@@ -198,6 +199,11 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( co
 		return NotEnoughArguments;
 	}
 
+	if( initAuthentication() == false )
+	{
+		return Failed;
+	}
+
 	Computer remoteComputer;
 	remoteComputer.setHostAddress( arguments.first() );
 
@@ -215,6 +221,11 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 	if( arguments.count() < 1 )
 	{
 		return NotEnoughArguments;
+	}
+
+	if( initAuthentication() == false )
+	{
+		return Failed;
 	}
 
 	Computer remoteComputer;
@@ -243,4 +254,17 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( co
 	}
 
 	return InvalidCommand;
+}
+
+
+
+bool RemoteAccessFeaturePlugin::initAuthentication()
+{
+	if( VeyonCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) == false )
+	{
+		qWarning() << "Could not initialize authentication";
+		return false;
+	}
+
+	return true;
 }
