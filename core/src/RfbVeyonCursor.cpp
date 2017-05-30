@@ -22,6 +22,8 @@
  *
  */
 
+#include <QPixmap>
+
 #include "VeyonVncConnection.h"
 #include "RfbVeyonCursor.h"
 #include "SocketDevice.h"
@@ -42,7 +44,7 @@ static rfbBool handleEncodingVeyonCursor( rfbClient *c,
 
 	SocketDevice socketDevice( VeyonVncConnection::libvncClientDispatcher, c );
 
-	QImage cursorShape( VariantStream( &socketDevice ).read().value<QImage>() );
+	const auto cursorShape = VariantStream( &socketDevice ).read().value<QPixmap>();
 
 	t->cursorShapeUpdatedExternal( cursorShape, r->r.x, r->r.y );
 

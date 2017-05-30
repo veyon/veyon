@@ -171,7 +171,7 @@ public:
 	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 										  SocketDevice::SocketOperation operation, void * user );
 
-	void cursorShapeUpdatedExternal( const QImage &cursorShape, int xh, int yh )
+	void cursorShapeUpdatedExternal( const QPixmap& cursorShape, int xh, int yh )
 	{
 		emit cursorShapeUpdated( cursorShape, xh, yh );
 	}
@@ -183,7 +183,7 @@ signals:
 	void framebufferUpdateComplete();
 	void framebufferSizeChanged( int w, int h );
 	void cursorPosChanged( int x, int y );
-	void cursorShapeUpdated( const QImage &cursorShape, int xh, int yh );
+	void cursorShapeUpdated( const QPixmap& cursorShape, int xh, int yh );
 	void gotCut( const QString &text );
 	void passwordRequest();
 	void outputErrorMessage( const QString &message );

@@ -246,11 +246,11 @@ void DemoServerClient::updateRect( int x, int y, int w, int h )
 
 
 
-void DemoServerClient::updateCursorShape( const QImage &img, int x, int y )
+void DemoServerClient::updateCursorShape( const QPixmap& cursorShape, int x, int y )
 {
 	return;		// TODO
 	m_dataMutex.lock();
-	m_cursorShape = img;
+	m_cursorShape = cursorShape;
 	m_cursorHotX = x;
 	m_cursorHotY = y;
 	m_cursorShapeChanged = true;
@@ -477,13 +477,12 @@ void DemoServerClient::sendUpdates()
 
 	if( m_cursorShapeChanged )
 	{
-		const QImage cur = m_cursorShape;
 		const rfbRectangle rr =
 		{
 			qToBigEndian<uint16_t>( m_cursorHotX ),
 			qToBigEndian<uint16_t>( m_cursorHotY ),
-			qToBigEndian<uint16_t>( cur.width() ),
-			qToBigEndian<uint16_t>( cur.height() )
+			qToBigEndian<uint16_t>( m_cursorShape.width() ),
+			qToBigEndian<uint16_t>( m_cursorShape.height() )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rh =
@@ -494,7 +493,7 @@ void DemoServerClient::sendUpdates()
 
 		m_socket->write( (const char *) &rh, sizeof( rh ) );
 
-		VariantStream( m_socket ).write( QVariant::fromValue( cur ) );
+		VariantStream( m_socket ).write( QVariant::fromValue( m_cursorShape ) );
 	}
 
 	// reset vars

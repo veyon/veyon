@@ -103,7 +103,7 @@ signals:
 private slots:
 	void checkKeyEvent( unsigned int key, bool pressed );
 	void updateCursorPos( int x, int y );
-	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
+	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
 	void updateImage( int x, int y, int w, int h );
 	void updateSizeHint( int w, int h );
 	void updateConnectionState();
@@ -134,7 +134,7 @@ private:
 	int m_x, m_y, m_w, m_h;
 	bool m_repaint;
 	QImage m_frame;
-	QImage m_cursorShape;
+	QPixmap m_cursorShape;
 	int m_cursorX;
 	int m_cursorY;
 	QSize m_framebufferSize;

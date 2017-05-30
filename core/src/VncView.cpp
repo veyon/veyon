@@ -310,7 +310,7 @@ void VncView::updateCursorPos( int x, int y )
 
 
 
-void VncView::updateCursorShape( const QImage &cursorShape, int xh, int yh )
+void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 {
 	float scale = 1;
 	if( !scaledSize().isEmpty() && !framebufferSize().isEmpty() )
@@ -319,13 +319,12 @@ void VncView::updateCursorShape( const QImage &cursorShape, int xh, int yh )
 	}
 	m_cursorHotX = xh*scale;
 	m_cursorHotY = yh*scale;
-	m_cursorShape = cursorShape.scaled( m_cursorShape.width()*scale,
-										m_cursorShape.height()*scale );
+	m_cursorShape = cursorShape.scaled( cursorShape.width()*scale, cursorShape.height()*scale,
+										Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
 	if( isViewOnly() )
 	{
-		update( m_cursorX, m_cursorY,
-					m_cursorShape.width(), m_cursorShape.height() );
+		update( m_cursorX, m_cursorY, m_cursorShape.width(), m_cursorShape.height() );
 	}
 
 	updateLocalCursor();
@@ -602,8 +601,7 @@ void VncView::updateLocalCursor()
 {
 	if( !isViewOnly() && !m_cursorShape.isNull() )
 	{
-		setCursor( QCursor( QPixmap::fromImage( m_cursorShape ),
-								m_cursorHotX, m_cursorHotY ) );
+		setCursor( QCursor( m_cursorShape, m_cursorHotX, m_cursorHotY ) );
 	}
 	else
 	{
@@ -717,7 +715,7 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 		if( paintEvent->region().intersects( cursorRect ) )
 		{
 			// then repaint it
-			p.drawImage( cursorRect.topLeft(), m_cursorShape );
+			p.drawPixmap( cursorRect.topLeft(), m_cursorShape );
 		}
 	}
 

@@ -25,8 +25,10 @@
  *
  */
 
+#include <QBitmap>
 #include <QHostAddress>
 #include <QMutexLocker>
+#include <QPixmap>
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
@@ -237,17 +239,17 @@ rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
 
 void VeyonVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp )
 {
-	for( int i = 0; i < w*h;++i )
+	if( bpp != 4 )
 	{
-		if( cl->rcMask[i] )
-		{
-			cl->rcMask[i] = 255;
-		}
+		qWarning( "VeyonVncConnection: bytes per pixel != 4" );
+		return;
 	}
-	QImage alpha( cl->rcMask, w, h, QImage::Format_Indexed8 );
 
-	QImage cursorShape = QImage( cl->rcSource, w, h, QImage::Format_RGB32 ).convertToFormat( QImage::Format_ARGB32 );
-	cursorShape.setAlphaChannel( alpha );
+	QImage alpha( cl->rcMask, w, h, QImage::Format_Indexed8 );
+	alpha.setColorTable( { qRgb(255,255,255), qRgb(0,0,0) } );
+
+	QPixmap cursorShape( QPixmap::fromImage( QImage( cl->rcSource, w, h, QImage::Format_RGB32 ) ) );
+	cursorShape.setMask( QBitmap::fromImage( alpha ) );
 
 	VeyonVncConnection* t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 	emit t->cursorShapeUpdated( cursorShape, xh, yh );

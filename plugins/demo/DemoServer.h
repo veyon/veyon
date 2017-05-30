@@ -26,9 +26,10 @@
 #ifndef DEMO_SERVER_H
 #define DEMO_SERVER_H
 
-#include <QtCore/QPair>
-#include <QtCore/QReadWriteLock>
-#include <QtNetwork/QTcpServer>
+#include <QPair>
+#include <QPixmap>
+#include <QReadWriteLock>
+#include <QTcpServer>
 
 #include "VeyonVncConnection.h"
 
@@ -103,7 +104,7 @@ private slots:
 	void updateRect( int x, int y, int w, int h );
 
 	// called whenever VeyonVncConnection::cursorShapeUpdated() is emitted
-	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
+	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
 
 	// called regularly for sending pointer-movement-events detected by
 	// checkForCursorMovement() to clients - connection has to be done
@@ -149,7 +150,7 @@ private:
 	bool m_updateRequested;
 	QList<QRect> m_changedRects;
 	bool m_fullUpdatePending;
-	QImage m_cursorShape;
+	QPixmap m_cursorShape;
 	int m_cursorHotX;
 	int m_cursorHotY;
 	QPoint m_lastCursorPos;
