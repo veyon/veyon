@@ -421,6 +421,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Disconnected</source>
         <translation>Nicht verbunden</translation>
     </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Host-/IP-Adresse: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
@@ -451,6 +455,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Die Computer- und Benutzerliste konnte nicht in die Datei %1 geschrieben werden. Bitte überprüfen Sie die Dateizugriffsrechte.</translation>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation>Computersuche</translation>
     </message>
 </context>
 <context>
@@ -567,6 +575,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Give a demonstration by screen broadcasting</source>
         <translation>Eine Präsentation durch Bildschirmübertragung</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo-Server</translation>
+    </message>
+    <message>
+        <source>Demo client</source>
+        <translation>Demo-Client</translation>
     </message>
 </context>
 <context>
@@ -1955,6 +1971,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Screenshots</source>
         <translation>Bildschirmfotos</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
+        <translation>Filterfeld für Computer in Computerraumverwaltung ausblenden</translation>
     </message>
 </context>
 <context>

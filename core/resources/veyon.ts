@@ -421,6 +421,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
@@ -450,6 +454,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -566,6 +574,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Demo client</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1933,6 +1949,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
