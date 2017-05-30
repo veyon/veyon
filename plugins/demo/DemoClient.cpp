@@ -22,10 +22,10 @@
  *
  */
 
-#include <QtGui/QIcon>
-#include <QLayout>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QIcon>
+#include <QLayout>
 
 #include "DemoClient.h"
 #include "VeyonConfiguration.h"
@@ -36,24 +36,27 @@
 #include "VncView.h"
 
 
-DemoClient::DemoClient( const QString &host, bool fullscreen ) :
+DemoClient::DemoClient( const QString& host, bool fullscreen ) :
 	QObject(),
-	m_toplevel( fullscreen ? new LockWidget( LockWidget::NoBackground )
-							: new QWidget() )
+	m_toplevel( nullptr )
 {
+	if( fullscreen )
+	{
+		m_toplevel = new LockWidget( LockWidget::NoBackground );
+	}
+	else
+	{
+		m_toplevel = new QWidget();
+	}
+
 	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( VeyonCore::applicationName() ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 
 	if( fullscreen == false )
 	{
-		m_toplevel->setWindowFlags( Qt::Window |
-								Qt::CustomizeWindowHint |
-								Qt::WindowTitleHint |
-								Qt::WindowMinMaxButtonsHint );
-		m_toplevel->resize( QApplication::desktop()->
-					availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
-
+		m_toplevel->setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
+		m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 	}
 
 	// initialize extended protocol handlers
@@ -75,17 +78,17 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 			 this, &DemoClient::resizeToplevelWidget );
 
 	m_toplevel->move( 0, 0 );
-	if( !fullscreen )
-	{
-		m_toplevel->show();
-	}
-	else
+	if( fullscreen )
 	{
 		m_toplevel->showFullScreen();
 	}
+	else
+	{
+		m_toplevel->show();
+	}
+
 	LocalSystem::activateWindow( m_toplevel );
 }
-
 
 
 
@@ -96,28 +99,27 @@ DemoClient::~DemoClient()
 
 
 
-
-void DemoClient::viewDestroyed( QObject * _obj )
+void DemoClient::viewDestroyed( QObject* obj )
 {
-	if( m_toplevel == _obj )
+	// prevent double deletion of toplevel widget
+	if( m_toplevel == obj )
 	{
 		m_toplevel = nullptr;
 	}
+
 	deleteLater();
 }
 
 
 
-
 void DemoClient::resizeToplevelWidget()
 {
-	if( !( m_toplevel->windowState() & Qt::WindowFullScreen ) )
-	{
-		m_toplevel->resize( m_vncView->sizeHint() );
-	}
-	else
+	if( m_toplevel->windowState() & Qt::WindowFullScreen )
 	{
 		m_vncView->resize( m_toplevel->size() );
 	}
+	else
+	{
+		m_toplevel->resize( m_vncView->sizeHint() );
+	}
 }
-

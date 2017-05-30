@@ -22,11 +22,10 @@
  *
  */
 
-
 #ifndef DEMO_CLIENT_H
 #define DEMO_CLIENT_H
 
-#include <QtCore/QObject>
+#include <QObject>
 
 class VncView;
 
@@ -34,21 +33,19 @@ class DemoClient : public QObject
 {
 	Q_OBJECT
 public:
-	DemoClient( const QString & _host, bool _fullscreen );
+	DemoClient( const QString& host, bool fullscreen );
 	~DemoClient() override;
 
 
 private slots:
-	void viewDestroyed( QObject * );
+	void viewDestroyed( QObject* obj );
 	void resizeToplevelWidget();
 
 
 private:
-	QWidget * m_toplevel;
-	VncView *m_vncView;
+	QWidget* m_toplevel;
+	VncView* m_vncView;
 
 } ;
 
-
 #endif
-
