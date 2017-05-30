@@ -182,7 +182,7 @@ void VncView::setViewOnly( bool _vo )
 	{
 		releaseKeyboard();
 		m_sysKeyTrapper->setEnabled( false );
-		setCursor( Qt::ArrowCursor );
+		updateLocalCursor();
 	}
 	else
 	{
@@ -597,15 +597,20 @@ QRect VncView::mapFromFramebuffer( const QRect &r )
 }
 
 
+
 void VncView::updateLocalCursor()
 {
-	if( !isViewOnly() && !m_cursorShape.isNull() )
+	if( isViewOnly()  )
+	{
+		setCursor( Qt::ArrowCursor );
+	}
+	else if( m_cursorShape.isNull() == false )
 	{
 		setCursor( QCursor( m_cursorShape, m_cursorHotX, m_cursorHotY ) );
 	}
 	else
 	{
-		setCursor( Qt::ArrowCursor );
+		setCursor( Qt::BlankCursor );
 	}
 }
 
