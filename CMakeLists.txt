@@ -364,7 +364,6 @@ ENDIF()
 #
 # generate packages
 # 
-
 SET(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
 SET(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
 SET(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
@@ -375,10 +374,24 @@ SET(CPACK_GENERATOR "DEB")
 SET(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 SET(CPACK_PACKAGE_FILE_NAME "veyon-${VERSION_STRING}")
 SET(CPACK_PACKAGE_NAME "veyon")
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY " Virtual Eye On Networks - OpenSource classroom management")
 SET(CPACK_PACKAGE_CONTACT "Tobias Doerffel <tobias.doerffel@gmail.com>")
 SET(CPACK_PACKAGE_HOMEPAGE "http://veyon.io")
-
+# SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION_SUMMARY "Virtual Eye On Networks - OpenSource classroom management")
+SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Virtual Eye On Networks - OpenSource classroom management
+  Veyon is an Open Source computer monitoring and classroom management software. 
+  It enables teachers to view and control computer labs and interact with students. 
+  Veyon is available in different languages and provides lots of useful features:
+  .
+  * see what's going on in computer labs in overview mode and take screenshots
+  * remote control computers to support and help users
+  * broadcast teacher's screen to students in realtime by using demo mode (either in fullscreen or in a window)
+  * lock workstations for attracting attention to teacher
+  * send text messages to students
+  * powering on/off and rebooting computers remote
+  * remote logoff and remote execution of arbitrary commands/scripts
+  * home schooling - Veyon's network-technology is not restricted to a subnet and therefore students at home
+  can join lessons via VPN connections just by installing the Veyon service
+")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
 SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5core5a, libqt5gui5, libqt5x11extras5, xorg, libxtst6, libjpeg-turbo8, zlib1g, openssl, libpam0g, liblzo2-2, libqca2, libqca-qt5-2, libsasl2-2, libldap-2.4-2")
 SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
@@ -390,12 +403,8 @@ SET(CPACK_STRIP_FILES  TRUE)
 #SET(CPACK_INSTALLED_DIRECTORIES "/etc/veyon/keys/private/teacher")
 
 
-
 INCLUDE(CPack)
 
-
-
- 
 # To generate packages use:
 # make package
 
