@@ -425,6 +425,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>Disconnected</source>
         <translation>Desconectado</translation>
     </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Equipo/Dirección IP: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
@@ -455,6 +459,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>No se pudo escribir la lista de equipos y usuarios en %1. Por favor, compruebe los permisos de acceso al archivo.</translation>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation>Búsqueda de equipos</translation>
     </message>
 </context>
 <context>
@@ -571,6 +579,14 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Give a demonstration by screen broadcasting</source>
         <translation>Dar una demostración por transmisión a pantalla</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Servidor demo</translation>
+    </message>
+    <message>
+        <source>Demo client</source>
+        <translation>Cliente demo</translation>
     </message>
 </context>
 <context>
@@ -1960,6 +1976,10 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <source>Screenshots</source>
         <translation>Capturas</translation>
     </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
+        <translation>Ocultar el campo de filtro de equipo en la gestión de aula</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2323,7 +2343,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Inicio automático</translation>
+        <translation>Arranque automático</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
