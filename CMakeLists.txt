@@ -359,6 +359,47 @@ IF(WIN32)
 		)
 ENDIF()
 
+
+
+#
+# generate packages
+# 
+
+SET(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
+SET(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
+SET(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
+
+
+# DEB package
+SET(CPACK_GENERATOR "DEB")
+SET(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+SET(CPACK_PACKAGE_FILE_NAME "veyon-${VERSION_STRING}")
+SET(CPACK_PACKAGE_NAME "veyon")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY " Virtual Eye On Networks - OpenSource classroom management")
+SET(CPACK_PACKAGE_CONTACT "Tobias Doerffel <tobias.doerffel@gmail.com>")
+SET(CPACK_PACKAGE_HOMEPAGE "http://veyon.io")
+
+SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5core5a, libqt5gui5, libqt5x11extras5, xorg, libxtst6, libjpeg-turbo8, zlib1g, openssl, libpam0g, liblzo2-2, libqca2, libqca-qt5-2, libsasl2-2, libldap-2.4-2")
+SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
+SET(CPACK_STRIP_FILES  TRUE)
+
+#SET(CPACK_RESOURCE_FILE_LICENSE "COPYING")
+#SET(CPACK_RESOURCE_FILE_README "README.md")
+#SET(CPACK_INSTALLED_DIRECTORIES "/etc/veyon/keys/public/teacher")
+#SET(CPACK_INSTALLED_DIRECTORIES "/etc/veyon/keys/private/teacher")
+
+
+
+INCLUDE(CPack)
+
+
+
+ 
+# To generate packages use:
+# make package
+
+
 #
 # display configuration information
 #
