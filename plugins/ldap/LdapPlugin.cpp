@@ -122,9 +122,7 @@ QStringList LdapPlugin::groupsOfUser( QString username )
 
 QStringList LdapPlugin::allRooms()
 {
-	QStringList roomList = ldapDirectory().computerLabs();
-
-	return roomList;
+	return ldapDirectory().computerLabs();
 }
 
 

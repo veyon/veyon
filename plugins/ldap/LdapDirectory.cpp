@@ -360,15 +360,15 @@ QStringList LdapDirectory::computerLabs(const QString &filterValue)
 	if( d->computerLabMembersByAttribute )
 	{
 		computerLabs = d->queryAttributes( d->computersDn,
-											d->computerLabAttribute,
-											constructQueryFilter( d->computerLabAttribute, filterValue ),
-											d->defaultSearchScope );
+										   d->computerLabAttribute,
+										   constructQueryFilter( d->computerLabAttribute, filterValue ),
+										   d->defaultSearchScope );
 	}
 	else
 	{
 		computerLabs = d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn, "cn",
-											constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
-											d->defaultSearchScope );
+										   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
+										   d->defaultSearchScope );
 	}
 
 	computerLabs.removeDuplicates();
