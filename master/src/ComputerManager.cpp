@@ -399,7 +399,10 @@ ComputerList ComputerManager::getComputersInRoom( const QString& roomName, const
 		switch( objectType )
 		{
 		case NetworkObject::Group:
-			computers += getComputersInRoom( roomName, entryIndex );
+			if( model->data( entryIndex, NetworkObjectModel::NameRole ).toString() == roomName )
+			{
+				computers += getComputersInRoom( roomName, entryIndex );
+			}
 			break;
 		case NetworkObject::Host:
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
