@@ -1,5 +1,5 @@
 /*
- * PlatformPluginInterface.h - interface class for platform plugins
+ * PlatformUserSessionFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,28 +22,16 @@
  *
  */
 
-#ifndef PLATFORM_PLUGIN_INTERFACE_H
-#define PLATFORM_PLUGIN_INTERFACE_H
+#ifndef PLATFORM_USER_SESSION_FUNCTIONS_H
+#define PLATFORM_USER_SESSION_FUNCTIONS_H
 
-#include "PluginInterface.h"
+#include "VeyonCore.h"
 
-class PlatformNetworkFunctions;
-class PlatformUserSessionFunctions;
-
-class VEYON_CORE_EXPORT PlatformPluginInterface
+class VEYON_CORE_EXPORT PlatformUserSessionFunctions
 {
 public:
-	virtual ~PlatformPluginInterface() {}
-
-	virtual PlatformNetworkFunctions* networkFunctions() = 0;
-	virtual PlatformUserSessionFunctions* userSessionFunctions() = 0;
+	virtual QStringList loggedOnUsers() = 0;
 
 };
 
-typedef QList<PlatformPluginInterface *> PlatformPluginInterfaceList;
-
-#define PlatformPluginInterface_iid "org.veyon.Veyon.Plugins.PlatformPluginInterface"
-
-Q_DECLARE_INTERFACE(PlatformPluginInterface, PlatformPluginInterface_iid)
-
-#endif // PLATFORM_PLUGIN_INTERFACE_H
+#endif // PLATFORM_USER_SESSION_FUNCTIONS_H
