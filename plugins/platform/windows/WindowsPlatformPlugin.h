@@ -28,6 +28,7 @@
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "WindowsNetworkFunctions.h"
+#include "WindowsUserSessionFunctions.h"
 
 class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
 {
@@ -78,8 +79,14 @@ public:
 		return &m_windowsNetworkFunctions;
 	}
 
+	PlatformUserSessionFunctions* userSessionFunctions() override
+	{
+		return &m_windowsUserSessionFunctions;
+	}
+
 private:
 	WindowsNetworkFunctions m_windowsNetworkFunctions;
+	WindowsUserSessionFunctions m_windowsUserSessionFunctions;
 
 };
 

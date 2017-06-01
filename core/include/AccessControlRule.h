@@ -56,6 +56,7 @@ public:
 		ConditionAccessFromLocalHost,
 		ConditionAccessFromLocalUser,
 		ConditionAccessFromAlreadyConnectedUser,
+		ConditionNoUserLoggedOn,
 		ConditionCount
 	} ;
 

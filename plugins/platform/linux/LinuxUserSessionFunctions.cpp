@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * LinuxUserSessionFunctions.cpp - implementation of LinuxUserSessionFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,17 +22,32 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#include <QProcess>
 
+#include "LinuxUserSessionFunctions.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin() :
-	m_linuxNetworkFunctions(),
-	m_linuxUserSessionFunctions()
+QStringList LinuxUserSessionFunctions::loggedOnUsers()
 {
-}
+	QStringList users;
 
+	QProcess whoProcess;
+	whoProcess.start( "who" );
+	whoProcess.waitForFinished( WhoProcessTimeout );
 
+	if( whoProcess.exitCode() != 0 )
+	{
+		return users;
+	}
 
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
+	const auto lines = whoProcess.readAll().split( '\n' );
+	for( const auto& line : lines )
+	{
+		const auto user = line.split( ' ' ).value( 0 );
+		if( user.isEmpty() == false && users.contains( user ) == false )
+		{
+			users.append( user );
+		}
+	}
+
+	return users;
 }

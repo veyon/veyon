@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * WindowsUserSessionFunctions.h - declaration of WindowsUserSessionFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,17 +22,16 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef WINDOWS_USER_SESSION_FUNCTIONS_H
+#define WINDOWS_USER_SESSION_FUNCTIONS_H
 
+#include "PlatformUserSessionFunctions.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin() :
-	m_linuxNetworkFunctions(),
-	m_linuxUserSessionFunctions()
+class WindowsUserSessionFunctions : public PlatformUserSessionFunctions
 {
-}
+public:
+	QStringList loggedOnUsers() override;
 
+};
 
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+#endif // WINDOWS_USER_SESSION_FUNCTIONS_H

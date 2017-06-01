@@ -76,6 +76,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->isLocalHostAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost ) );
 	ui->isLocalUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser ) );
 	ui->isSameUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) );
+	ui->noUserLoggedOnCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionNoUserLoggedOn ) );
 
 	// load selected condition subjects
 	ui->isMemberOfGroupSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionMemberOfUserGroup ) ) );
@@ -165,6 +166,9 @@ void AccessControlRuleEditDialog::accept()
 
 	m_rule.setConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser,
 								ui->isSameUserAccessCheckBox->isChecked() );
+
+	m_rule.setConditionEnabled( AccessControlRule::ConditionNoUserLoggedOn,
+								ui->noUserLoggedOnCheckBox->isChecked() );
 
 	// save action
 	if( ui->actionAllowRadioButton->isChecked() )

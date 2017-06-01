@@ -30,6 +30,8 @@
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "LocalSystem.h"
+#include "PlatformPluginInterface.h"
+#include "PlatformUserSessionFunctions.h"
 
 
 AccessControlProvider::AccessControlProvider() :
@@ -239,6 +241,13 @@ bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QSt
 
 
 
+bool AccessControlProvider::isNoUserLoggedOn() const
+{
+	return VeyonCore::platform().userSessionFunctions()->loggedOnUsers().isEmpty();
+}
+
+
+
 QString AccessControlProvider::lookupSubject( AccessControlRule::Subject subject,
 											  const QString &accessingUser, const QString &accessingComputer,
 											  const QString &localUser, const QString &localComputer ) const
@@ -365,6 +374,16 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		hasConditions = true;
 
 		if( connectedUsers.contains( accessingUser ) != matchResult )
+		{
+			return false;
+		}
+	}
+
+	if( rule.isConditionEnabled( AccessControlRule::ConditionNoUserLoggedOn ) )
+	{
+		hasConditions = true;
+
+		if( isNoUserLoggedOn() != matchResult )
 		{
 			return false;
 		}

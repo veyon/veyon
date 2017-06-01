@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * PlatformUserSessionFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,17 +22,16 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef PLATFORM_USER_SESSION_FUNCTIONS_H
+#define PLATFORM_USER_SESSION_FUNCTIONS_H
 
+#include "VeyonCore.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin() :
-	m_linuxNetworkFunctions(),
-	m_linuxUserSessionFunctions()
+class VEYON_CORE_EXPORT PlatformUserSessionFunctions
 {
-}
+public:
+	virtual QStringList loggedOnUsers() = 0;
 
+};
 
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+#endif // PLATFORM_USER_SESSION_FUNCTIONS_H
