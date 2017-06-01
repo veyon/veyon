@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * WindowsUserSessionFunctions.cpp - implementation of WindowsUserSessionFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,18 +22,39 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#include "WindowsUserSessionFunctions.h"
 
+#include <ntsecapi.h>
+#include <ntstatus.h>
 
-WindowsPlatformPlugin::WindowsPlatformPlugin() :
-    m_windowsNetworkFunctions(),
-    m_windowsUserSessionFunctions()
+QStringList WindowsUserSessionFunctions::loggedOnUsers()
 {
-	qCritical() << m_windowsUserSessionFunctions.loggedOnUsers();
-}
+	QStringList users;
 
+	ULONG sessionCount = 0;
+	PLUID sessionList = nullptr;
 
+	if( LsaEnumerateLogonSessions( &sessionCount, &sessionList ) != STATUS_SUCCESS )
+	{
+		return users;
+	}
 
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
+	for( ULONG i = 0; i < sessionCount; ++i )
+	{
+		PSECURITY_LOGON_SESSION_DATA sessionData = nullptr;
+
+		if( LsaGetLogonSessionData( sessionList+i, &sessionData ) == STATUS_SUCCESS )
+		{
+			const auto user = QString::fromWCharArray( sessionData->UserName.Buffer, sessionData->UserName.Length );
+			if( users.contains( user ) == false )
+			{
+				users += user;
+			}
+			LsaFreeReturnBuffer( sessionData );
+		}
+	}
+
+	LsaFreeReturnBuffer( sessionList );
+
+	return users;
 }

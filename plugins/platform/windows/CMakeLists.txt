@@ -1,4 +1,5 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(windows-platform WindowsPlatformPlugin.cpp WindowsNetworkFunctions.cpp MOCFILES WindowsPlatformPlugin.h WindowsNetworkFunctions.h)
+BUILD_PLUGIN(windows-platform WindowsPlatformPlugin.cpp WindowsNetworkFunctions.cpp WindowsUserSessionFunctions.cpp MOCFILES WindowsPlatformPlugin.h WindowsNetworkFunctions.h WindowsUserSessionFunctions.h)
 
+TARGET_LINK_LIBRARIES(windows-platform -lsecur32)

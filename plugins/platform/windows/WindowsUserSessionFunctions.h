@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * WindowsUserSessionFunctions.h - declaration of WindowsUserSessionFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,18 +22,16 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#ifndef WINDOWS_USER_SESSION_FUNCTIONS_H
+#define WINDOWS_USER_SESSION_FUNCTIONS_H
 
+#include "PlatformUserSessionFunctions.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin() :
-    m_windowsNetworkFunctions(),
-    m_windowsUserSessionFunctions()
+class WindowsUserSessionFunctions : public PlatformUserSessionFunctions
 {
-	qCritical() << m_windowsUserSessionFunctions.loggedOnUsers();
-}
+public:
+	QStringList loggedOnUsers() override;
 
+};
 
-
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
-}
+#endif // WINDOWS_USER_SESSION_FUNCTIONS_H
