@@ -726,6 +726,20 @@ Process::Handle Process::runAsUser( const QString &proc,
 		return NULL;
 	}
 
+	LPVOID userEnvironment = nullptr;
+	if( CreateEnvironmentBlock( &userEnvironment, hToken, FALSE ) == false )
+	{
+		ilog_failedf( "CreateEnvironmentBlock()", "%d", GetLastError() );
+		return nullptr;
+	}
+
+	PWSTR profileDir = nullptr;
+	if( SHGetKnownFolderPath( FOLDERID_Profile, 0, hToken, &profileDir ) != S_OK )
+	{
+		ilog_failedf( "SHGetKnownFolderPath()", "%d", GetLastError() );
+		return nullptr;
+	}
+
 	if( !ImpersonateLoggedOnUser( hToken ) )
 	{
 		ilog_failedf( "ImpersonateLoggedOnUser()", "%d", GetLastError() );
@@ -752,9 +766,9 @@ Process::Handle Process::runAsUser( const QString &proc,
 				NULL,			  // pointer to process SECURITY_ATTRIBUTES
 				NULL,			  // pointer to thread SECURITY_ATTRIBUTES
 				FALSE,			 // handles are not inheritable
-				NORMAL_PRIORITY_CLASS,   // creation flags
-				NULL,			  // pointer to new environment block
-				NULL,			  // name of current directory
+				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
+				userEnvironment,			  // pointer to new environment block
+				profileDir,			  // name of current directory
 				&si,			   // pointer to STARTUPINFO structure
 				&pi				// receives information about new process
 				) )
@@ -762,6 +776,9 @@ Process::Handle Process::runAsUser( const QString &proc,
 		ilog_failedf( "CreateProcessAsUser()", "%d", GetLastError() );
 		return NULL;
 	}
+
+	CoTaskMemFree( profileDir );
+	DestroyEnvironmentBlock( userEnvironment );
 
 	CloseHandle( hNewToken );
 	RevertToSelf();
