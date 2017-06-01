@@ -37,6 +37,11 @@
 class LdapDirectory::LdapDirectoryPrivate
 {
 public:
+	LdapDirectoryPrivate() :
+		state( Disconnected ),
+		queryRetry( false )
+	{
+	}
 
 	QStringList queryAttributes(const QString &dn, const QString &attribute,
 								const QString& filter = QStringLiteral( "(objectclass=*)" ),
@@ -44,24 +49,25 @@ public:
 	{
 		QStringList entries;
 
-		if( isConnected == false || isBound == false )
+		if( state != Bound && reconnect() == false )
 		{
-			qCritical() << "LdapDirectory::queryAttributes(): not connected or not bound to server!";
+			qCritical( "LdapDirectory::queryAttributes(): not bound to server!" );
 			return entries;
 		}
 
 		if( dn.isEmpty() && attribute != namingContextAttribute )
 		{
-			qCritical() << "LdapDirectory::queryAttributes(): DN is empty!";
+			qCritical( "LdapDirectory::queryAttributes(): DN is empty!" );
 			return entries;
 		}
 
 		if( attribute.isEmpty() )
 		{
-			qCritical() << "LdapDirectory::queryAttributes(): attribute is empty!";
+			qCritical( "LdapDirectory::queryAttributes(): attribute is empty!" );
 			return entries;
 		}
 
+		int result = -1;
 		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
 
 		if( id != -1 )
@@ -69,7 +75,7 @@ public:
 			bool isFirstResult = true;
 			QString realAttributeName = attribute.toLower();
 
-			while( operation.waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+			while( ( result = operation.waitForResult( id, LdapQueryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 			{
 				if( isFirstResult )
 				{
@@ -95,11 +101,22 @@ public:
 					entries += value;
 				}
 			}
+
 			qDebug() << "LdapDirectory::queryAttributes(): results:" << entries;
 		}
-		else
+
+		if( result == -1 )
 		{
-			qWarning() << "LDAP search failed:" << ldapErrorDescription();
+			qWarning() << "LDAP search failed with code" << connection.ldapErrorCode();
+
+			if( state == Bound && queryRetry == false )
+			{
+				// close connection and try again
+				queryRetry = true;
+				state = Disconnected;
+				entries = queryAttributes( dn, attribute, filter, scope );
+				queryRetry = false;
+			}
 		}
 
 		return entries;
@@ -109,9 +126,9 @@ public:
 	{
 		QStringList distinguishedNames;
 
-		if( isConnected == false || isBound == false )
+		if( state != Bound && reconnect() == false )
 		{
-			qCritical() << "LdapDirectory::queryAttributes(): not connected or not bound to server!";
+			qCritical() << "LdapDirectory::queryAttributes(): not bound to server!";
 			return distinguishedNames;
 		}
 
@@ -122,19 +139,30 @@ public:
 			return distinguishedNames;
 		}
 
+		int result = -1;
 		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
 
 		if( id != -1 )
 		{
-			while( operation.waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+			while( ( result = operation.waitForResult( id, LdapQueryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 			{
 				distinguishedNames += operation.object().dn().toString();
 			}
 			qDebug() << "LdapDirectory::queryDistinguishedNames(): results:" << distinguishedNames;
 		}
-		else
+
+		if( result == -1 )
 		{
-			qWarning() << "LDAP search failed:" << ldapErrorDescription();
+			qWarning() << "LDAP search failed with code" << connection.ldapErrorCode();
+
+			if( state == Bound && queryRetry == false )
+			{
+				// close connection and try again
+				queryRetry = true;
+				state = Disconnected;
+				distinguishedNames = queryDistinguishedNames( dn, filter, scope );
+				queryRetry = false;
+			}
 		}
 
 		return distinguishedNames;
@@ -158,10 +186,39 @@ public:
 		return QString();
 	}
 
+	bool reconnect()
+	{
+		connection.close();
+		state = Disconnected;
+
+		connection.setServer( server );
+
+		if( connection.connect() != 0 )
+		{
+			qWarning() << "LDAP connect failed:" << ldapErrorDescription();
+			return false;
+		}
+
+		state = Connected;
+
+		operation.setConnection( connection );
+		if( operation.bind_s() != 0 )
+		{
+			qWarning() << "LDAP bind failed:" << ldapErrorDescription();
+			return false;
+		}
+
+		state = Bound;
+
+		return true;
+	}
+
 	enum {
-		LdapQueryTimeout = 3000
+		LdapQueryTimeout = 3000,
+		LdapConnectionTimeout = 60*1000
 	};
 
+	KLDAP::LdapServer server;
 	KLDAP::LdapConnection connection;
 	KLDAP::LdapOperation operation;
 
@@ -188,8 +245,18 @@ public:
 	bool computerLabMembersByAttribute;
 	QString computerLabAttribute;
 
-	bool isConnected;
-	bool isBound;
+	typedef enum States
+	{
+		Disconnected,
+		Connected,
+		Bound,
+		StateCount
+	} State;
+
+	State state;
+
+	bool queryRetry;
+
 };
 
 
@@ -211,14 +278,14 @@ LdapDirectory::~LdapDirectory()
 
 bool LdapDirectory::isConnected() const
 {
-	return d->isConnected;
+	return d->state >= LdapDirectoryPrivate::Connected;
 }
 
 
 
 bool LdapDirectory::isBound() const
 {
-	return d->isBound;
+	return d->state >= LdapDirectoryPrivate::Bound;
 }
 
 
@@ -529,52 +596,32 @@ QStringList LdapDirectory::computerLabMembers(const QString &computerLabName)
 
 bool LdapDirectory::reconnect( const QUrl &url )
 {
-	KLDAP::LdapServer server;
-
 	if( url.isValid() )
 	{
-		server.setUrl( KLDAP::LdapUrl( url ) );
+		d->server.setUrl( KLDAP::LdapUrl( url ) );
 	}
 	else
 	{
-		server.setHost( m_configuration.ldapServerHost() );
-		server.setPort( m_configuration.ldapServerPort() );
+		d->server.setHost( m_configuration.ldapServerHost() );
+		d->server.setPort( m_configuration.ldapServerPort() );
 
 		if( m_configuration.ldapUseBindCredentials() )
 		{
-			server.setBindDn( m_configuration.ldapBindDn() );
-			server.setPassword( m_configuration.ldapBindPassword() );
-			server.setAuth( KLDAP::LdapServer::Simple );
+			d->server.setBindDn( m_configuration.ldapBindDn() );
+			d->server.setPassword( m_configuration.ldapBindPassword() );
+			d->server.setAuth( KLDAP::LdapServer::Simple );
 		}
 		else
 		{
-			server.setAuth( KLDAP::LdapServer::Anonymous );
+			d->server.setAuth( KLDAP::LdapServer::Anonymous );
 		}
-		server.setSecurity( KLDAP::LdapServer::None );
+		d->server.setSecurity( KLDAP::LdapServer::None );
 	}
 
-	d->connection.close();
-
-	d->isConnected = false;
-	d->isBound = false;
-
-	d->connection.setServer( server );
-	if( d->connection.connect() != 0 )
+	if( d->reconnect() == false )
 	{
-		qWarning() << "LDAP connect failed:" << ldapErrorDescription();
 		return false;
 	}
-
-	d->isConnected = true;
-
-	d->operation.setConnection( d->connection );
-	if( d->operation.bind_s() != 0 )
-	{
-		qWarning() << "LDAP bind failed:" << ldapErrorDescription();
-		return false;
-	}
-
-	d->isBound = true;
 
 	d->namingContextAttribute = m_configuration.ldapNamingContextAttribute();
 
