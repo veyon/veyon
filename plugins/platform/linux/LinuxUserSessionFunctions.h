@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * LinuxUserSessionFunctions.h - declaration of LinuxUserSessionFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,17 +22,20 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef LINUX_USER_SESSION_FUNCTIONS_H
+#define LINUX_USER_SESSION_FUNCTIONS_H
 
+#include "PlatformUserSessionFunctions.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin() :
-	m_linuxNetworkFunctions(),
-	m_linuxUserSessionFunctions()
+class LinuxUserSessionFunctions : public PlatformUserSessionFunctions
 {
-}
+public:
+	QStringList loggedOnUsers() override;
 
+private:
+	enum {
+		WhoProcessTimeout = 3000
+	};
+};
 
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+#endif // LINUX_USER_SESSION_FUNCTIONS_H
