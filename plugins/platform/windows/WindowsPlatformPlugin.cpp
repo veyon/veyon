@@ -29,7 +29,6 @@ WindowsPlatformPlugin::WindowsPlatformPlugin() :
     m_windowsNetworkFunctions(),
     m_windowsUserSessionFunctions()
 {
-	qCritical() << m_windowsUserSessionFunctions.loggedOnUsers();
 }
 
 
