@@ -251,6 +251,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Always process rule and ignore conditions</source>
         <translation>Regel immer verarbeiten und Bedingungen ignorieren</translation>
     </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Kein Benutzer angemeldet</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -541,6 +545,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Configuration file is not readable!</source>
         <translation>Konfigurationsdatei ist nicht lesbar!</translation>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>Das Serviceargument für den %1-Dienst konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>Die Firewallkonfiguration für den %1-Dienst konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation>Schlüssel überschreiben</translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation>Einige der Schlüsseldateien existieren bereits. Wenn Sie diese mit neu generierten Schlüsseln ersetzen, müssen Sie die öffentlichen Schlüssel auf allen Computern ebenfalls aktualisieren. Möchten Sie fortfahren?</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Konfiguration gelöscht</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>Die lokale Konfiguration wurde erfolgreich gelöscht.</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Configurator</translation>
     </message>
 </context>
 <context>
@@ -1816,22 +1859,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Ein %1-Fehlerberichtsarchiv wurde unter %2 gespeichert. Es beinhaltet %3-Logdateien und Informationen über Ihr Betriebssystem. Sie können es an einen Fehlerbericht anhängen.</translation>
     </message>
     <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Das Serviceargument für den %1-Dienst konnte nicht geändert werden.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Die Firewallkonfiguration für den %1-Dienst konnte nicht geändert werden.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
     </message>
@@ -1854,14 +1881,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>%1 bug report (*.json)</source>
         <translation>%1-Fehlerbericht (*.json)</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Konfiguration gelöscht</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>Die lokale Konfiguration wurde erfolgreich gelöscht.</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -1892,10 +1911,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>About Veyon</source>
         <translation>Über Veyon</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
     </message>
     <message>
         <source>Access denied</source>

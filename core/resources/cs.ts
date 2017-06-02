@@ -23,21 +23,23 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Verze:</translation>
     </message>
     <message>
         <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation type="unfinished"/>
+        <translation>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Webové stránky:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Texty rozhraní aplikace ještě nejsou přeloženy do vámi používaného jazyka (nebo používáte původní anglické).
+
+Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, případně vylepšit ten stávající, kontaktujte vývojáře aplikace Veyon!</translation>
     </message>
 </context>
 <context>
@@ -245,6 +247,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Local computer</source>
         <translation>Tento počítač</translation>
     </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Pravidlo vždy zpracovat a ignorovat podmínky</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -336,14 +342,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Zkouška</translation>
     </message>
     <message>
-        <source>Access confirmation</source>
-        <translation>Potvrzení přístupu</translation>
-    </message>
-    <message>
-        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Veyon je možné nastavit tak, aby se ptal uživatele na schválení přístupu k pracovní ploše při použití konkrétních způsobů ověření.</translation>
-    </message>
-    <message>
         <source>Logon authentication test</source>
         <translation>Zkouška ověření při přihlášení</translation>
     </message>
@@ -386,6 +384,49 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation>Místnost: %1</translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation>Dostupné a připojeno</translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation>Navazování spojení</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Není přihlášen žádný uživatel</translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation>Přihlášení uživatel: %1</translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation>Počítač není dostupný na síti nebo je vypnutý</translation>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation>Služba není dosažitelná nebo není spuštěná</translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation>Ověřování se nezdařilo nebo odepřený přístup</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Odpojeno</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
@@ -414,6 +455,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nedaří se zapsat seznam počítačů a uživatelů do %1! Zkontrolujte přístupová práva souboru.</translation>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -487,15 +532,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Do výstupního souboru není možné zapisovat!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Do výstupní složky se nedaří zapisovat!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>Nedaří se načíst soubor s nastaveními!</translation>
     </message>
 </context>
 <context>
@@ -531,6 +576,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Give a demonstration by screen broadcasting</source>
         <translation>Předvést ostatním vysíláním obsahu obrazovky</translation>
     </message>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo client</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -552,7 +605,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation>Uživatel %1 chce z počítače %2 přistoupit k Vaší pracovní ploše. Umožníte mu to?</translation>
     </message>
 </context>
 <context>
@@ -560,10 +613,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Run program</source>
         <translation>Spustit aplikaci</translation>
-    </message>
-    <message>
-        <source>Click this button to run a program on each computer.</source>
-        <translation>Kliknutím na toto tlačítko spustíte aplikaci na všech počítačích.</translation>
     </message>
     <message>
         <source>Open website</source>
@@ -580,6 +629,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Start programs and services in user desktop</source>
         <translation>Spustit aplikace a služby na počítači uživatele</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
+        <translation>Kliknutím na toto tlačítko spustíte aplikaci na všech počítačích.</translation>
     </message>
 </context>
 <context>
@@ -702,15 +755,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>Rotovat soubory se záznamem událostí</translation>
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
 </context>
 <context>
@@ -746,18 +799,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Teacher</source>
         <translation>Vyučující</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>Správce systémů</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Pracovník technické podpory</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Jiná</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
@@ -1452,23 +1493,23 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(pouze pokud se liší od stromu skupin)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Strom skupin počítačů</translation>
     </message>
     <message>
         <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>Místnosti</translation>
     </message>
     <message>
         <source>Aggregate computers in a room using:</source>
-        <translation type="unfinished"/>
+        <translation>Sloučit počítače v místnosti pomocí:</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Strom skupin uživatelů</translation>
     </message>
 </context>
 <context>
@@ -1491,6 +1532,13 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (místní uživatelé/skupiny a počítače/místnosti z LDAP/AD)</translation>
+    </message>
+</context>
+<context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation>Zásuvný modul implementující abstrahující funkce pro Linuxovou platformu</translation>
     </message>
 </context>
 <context>
@@ -1851,15 +1899,15 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Přístup odepřen</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Podle místního nastavení vám není umožněn přístup k počítačům na síti. Přihlaste se jiným účtem nebo se obraťte na správce systémů ohledně kontroly místního nastavení.</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Snímky obrazovky</translation>
     </message>
 </context>
 <context>
@@ -1902,26 +1950,30 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Only show current room in computer room management</source>
-        <translation type="unfinished"/>
+        <translation>Ve správě počítačových učeben zobrazovat pouze současnou místnost</translation>
     </message>
     <message>
         <source>Hide empty rooms from computer room management</source>
-        <translation type="unfinished"/>
+        <translation>Ve správě počítačových učeben skrýt prázdné místnosti</translation>
     </message>
     <message>
         <source>Allow adding rooms to computer room management manually</source>
-        <translation type="unfinished"/>
+        <translation>Umožnit ruční přidávání místností do správy počítačových místností</translation>
     </message>
     <message>
         <source>Hide local computer in computer room management</source>
-        <translation type="unfinished"/>
+        <translation>Nezobrazovat tento místní počítač ve správě počítačových místností</translation>
     </message>
     <message>
         <source>Perform access control at program start</source>
-        <translation type="unfinished"/>
+        <translation>Provádět při spouštění aplikace řízení přístupu</translation>
     </message>
     <message>
         <source>Screenshots</source>
+        <translation>Snímky obrazovky</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1943,8 +1995,8 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Name</source>
-        <translation>Název</translation>
+        <source>Room/Computer</source>
+        <translation>Místnost/počítač</translation>
     </message>
 </context>
 <context>
@@ -1959,19 +2011,19 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon přihlášení</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Chyba ověření</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>Přihlášení daným uživatelským jménem a heslem se nezdařilo. Zkuste to znovu!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte své uživatelské jméno a heslo pro přístup k počítačům.</translation>
     </message>
 </context>
 <context>
@@ -2084,14 +2136,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte název nebo IP adresu počítače ke kterému přistoupit:</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>Vzdálený přístup %1</translation>
     </message>
 </context>
 <context>
@@ -2162,7 +2214,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Snímek obrazovky</translation>
     </message>
 </context>
 <context>
@@ -2184,7 +2236,11 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Spustit aplikace</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>např.: „C:\Program Files\VideoLAN\VLC\vlc.exe“</translation>
     </message>
 </context>
 <context>
@@ -2210,15 +2266,15 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>Neznámé</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"/>
+        <translation>Nepodařilo se pořídit snímek obrazovky protože složka %1 neexistuje a nepodařilo se ji vytvořit.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Snímek obrazovky</translation>
     </message>
 </context>
 <context>
@@ -2248,31 +2304,31 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Uživatel:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Datum:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Čas:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Smazat</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>Zde jsou vypsány veškeré snímky obrazovky, které jste pořídili. Snímky je možné pořídit kliknutím na položku „Snímek obrazovky“ v kontextové nabídce počítače. Snímky obrazovky je možné spravovat pomocí níže se nacházejícího tlačítka.</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Počítač:</translation>
     </message>
 </context>
 <context>
@@ -2526,6 +2582,13 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Připojování k %1…</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Zásuvný modul implementující abstrahující funkce pro platformu Windows</translation>
     </message>
 </context>
 <context>
