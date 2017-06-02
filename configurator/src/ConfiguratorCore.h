@@ -25,14 +25,13 @@
 #ifndef CONFIGURATOR_CORE_H
 #define CONFIGURATOR_CORE_H
 
-#include <QtCore/QDir>
-#include <QtCore/QCoreApplication>
-#include <QtCore/QString>
+#include <QDir>
+#include <QCoreApplication>
+#include <QString>
 
 #include "VeyonCore.h"
 
 class VeyonConfiguration;
-class MainWindow;
 
 namespace ConfiguratorCore
 {
@@ -40,16 +39,12 @@ namespace ConfiguratorCore
 	int clearConfiguration();
 
 	bool createKeyPair( VeyonCore::UserRole role, const QString &destDir );
-	bool importPublicKey( VeyonCore::UserRole role,
-							const QString &pubKey, const QString &destDir );
+	bool importPublicKey( VeyonCore::UserRole role, const QString &pubKey, const QString &destDir );
 
 	void informationMessage( const QString &title, const QString &msg );
 	void criticalMessage( const QString &title, const QString &msg );
 
 	extern bool silent;
-
-	// UI objects
-	extern MainWindow * mainWindow;
 
 } ;
 
