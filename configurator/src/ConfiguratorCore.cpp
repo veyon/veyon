@@ -97,13 +97,13 @@ bool applyConfiguration( const VeyonConfiguration &c )
 
 bool createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 {
-	QString privateKeyFile = LocalSystem::Path::privateKeyPath( role, destDir );
-	QString publicKeyFile = LocalSystem::Path::publicKeyPath( role, destDir );
+	QString privateKeyFileName = LocalSystem::Path::privateKeyPath( role, destDir );
+	QString publicKeyFileName = LocalSystem::Path::publicKeyPath( role, destDir );
 
-	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFile ).path() );
-	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFile ).path() );
+	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFileName ).path() );
+	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFileName ).path() );
 
-	qInfo() << "ConfiguratorCore: creating new key pair in" << privateKeyFile << "and" << publicKeyFile;
+	qInfo() << "ConfiguratorCore: creating new key pair in" << privateKeyFileName << "and" << publicKeyFileName;
 
 	CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
 	CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
@@ -114,24 +114,45 @@ bool createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 		return false;
 	}
 
-	if( privateKey.toPEMFile( privateKeyFile ) == false )
+	QFile privateKeyFile( privateKeyFileName );
+	QFile publicKeyFile( publicKeyFileName );
+
+	if( privateKeyFile.exists() || publicKeyFile.exists() )
+	{
+		if( QMessageBox::question( nullptr, MainWindow::tr( "Overwrite keys" ),
+								   MainWindow::tr( "Some of the key files are already existing. If you replace them "
+												   "with newly generated ones you will have to update the public keys "
+												   "on all computers as well. Do you want to continue?" ),
+								   QMessageBox::Yes, QMessageBox::No ) == QMessageBox::No )
+		{
+			return false;
+		}
+
+		privateKeyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
+		privateKeyFile.remove();
+
+		publicKeyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
+		publicKeyFile.remove();
+	}
+
+	if( privateKey.toPEMFile( privateKeyFileName ) == false )
 	{
 		ilog_failed( "saving private key" );
 		return false;
 	}
 
-	if( publicKey.toPEMFile( publicKeyFile ) == false )
+	if( publicKey.toPEMFile( publicKeyFileName ) == false )
 	{
 		ilog_failed( "saving public key" );
 		return false;
 	}
 
-	QFile( privateKeyFile ).setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
-	QFile( publicKeyFile ).setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
+	privateKeyFile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
+	publicKeyFile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
 
 	printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
-						privateKeyFile.toUtf8().constData(),
-						publicKeyFile.toUtf8().constData() );
+						privateKeyFileName.toUtf8().constData(),
+						publicKeyFileName.toUtf8().constData() );
 	printf( "\n\n\nFor now the file is only readable by "
 				"root and members of group root (if you\n"
 				"didn't ran this command as non-root).\n"
