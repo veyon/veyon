@@ -183,7 +183,7 @@ bool importPublicKey( VeyonCore::UserRole role,
 	QFile destFile( destinationPublicKeyPath );
 	if( destFile.exists() )
 	{
-		destFile.setPermissions( QFile::WriteOwner );
+		destFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
 		if( !destFile.remove() )
 		{
 			qCritical() << "ConfiguratorCore::importPublicKey(): could not remove "
