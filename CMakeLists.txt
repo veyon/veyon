@@ -359,6 +359,10 @@ IF(WIN32)
 		)
 ENDIF()
 
+#
+# package generation
+#
+INCLUDE(cmake/CPackDefinitions.cmake)
 
 
 
