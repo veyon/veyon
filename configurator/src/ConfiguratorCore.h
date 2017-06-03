@@ -25,33 +25,28 @@
 #ifndef CONFIGURATOR_CORE_H
 #define CONFIGURATOR_CORE_H
 
-#include <QtCore/QDir>
-#include <QtCore/QCoreApplication>
-#include <QtCore/QString>
-
 #include "VeyonCore.h"
 
 class VeyonConfiguration;
-class MainWindow;
 
-namespace ConfiguratorCore
+class ConfiguratorCore : public QObject
 {
-	bool applyConfiguration( const VeyonConfiguration &config );
-	int clearConfiguration();
+	Q_OBJECT
+public:
+	static bool applyConfiguration( const VeyonConfiguration &config );
+	static int clearConfiguration();
 
-	bool createKeyPair( VeyonCore::UserRole role, const QString &destDir );
-	bool importPublicKey( VeyonCore::UserRole role,
-							const QString &pubKey, const QString &destDir );
+	static bool createKeyPair( VeyonCore::UserRole role, const QString &destDir );
+	static bool importPublicKey( VeyonCore::UserRole role, const QString &pubKey, const QString &destDir );
 
-	void informationMessage( const QString &title, const QString &msg );
-	void criticalMessage( const QString &title, const QString &msg );
+	static void informationMessage( const QString &title, const QString &msg );
+	static void criticalMessage( const QString &title, const QString &msg );
 
-	extern bool silent;
+	static bool silent;
 
-	// UI objects
-	extern MainWindow * mainWindow;
+private:
+	static void configApplyError( const QString &msg );
 
-} ;
-
+};
 
 #endif

@@ -23,6 +23,7 @@
  */
 
 #include <QApplication>
+#include <QDir>
 
 #include "ConfigurationTestController.h"
 #include "ConfiguratorCore.h"

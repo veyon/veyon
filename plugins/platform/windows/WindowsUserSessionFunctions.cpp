@@ -22,39 +22,50 @@
  *
  */
 
+#define UNICODE
+
 #include "WindowsUserSessionFunctions.h"
 
-#include <ntsecapi.h>
-#include <ntstatus.h>
+#include <wtsapi32.h>
 
 QStringList WindowsUserSessionFunctions::loggedOnUsers()
 {
 	QStringList users;
 
-	ULONG sessionCount = 0;
-	PLUID sessionList = nullptr;
+	PWTS_SESSION_INFO sessionInfo = nullptr;
+	DWORD sessionCount = 0;
 
-	if( LsaEnumerateLogonSessions( &sessionCount, &sessionList ) != STATUS_SUCCESS )
+	if( WTSEnumerateSessions( WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessionInfo, &sessionCount ) == false )
 	{
 		return users;
 	}
 
-	for( ULONG i = 0; i < sessionCount; ++i )
+	for( DWORD session = 0; session < sessionCount; ++session )
 	{
-		PSECURITY_LOGON_SESSION_DATA sessionData = nullptr;
-
-		if( LsaGetLogonSessionData( sessionList+i, &sessionData ) == STATUS_SUCCESS )
+		if( sessionInfo[session].State != WTSActive )
 		{
-			const auto user = QString::fromWCharArray( sessionData->UserName.Buffer, sessionData->UserName.Length );
-			if( users.contains( user ) == false )
-			{
-				users += user;
-			}
-			LsaFreeReturnBuffer( sessionData );
+			continue;
 		}
+
+		LPTSTR userBuffer = nullptr;
+		DWORD bytesReturned = 0;
+		if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionInfo[session].SessionId, WTSUserName,
+		                                &userBuffer, &bytesReturned ) == false ||
+		        userBuffer == nullptr )
+		{
+			continue;
+		}
+
+		const auto user = QString::fromWCharArray( userBuffer );
+		if( user.isEmpty() == false && users.contains( user ) == false )
+		{
+			users.append( user );
+		}
+
+		WTSFreeMemory( userBuffer );
 	}
 
-	LsaFreeReturnBuffer( sessionList );
+	WTSFreeMemory( sessionInfo );
 
 	return users;
 }

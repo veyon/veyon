@@ -23,6 +23,8 @@
  */
 
 #include <QApplication>
+#include <QFile>
+#include <QFileInfo>
 #include <QMessageBox>
 
 #include "Configuration/LocalStore.h"
@@ -35,22 +37,11 @@
 #include "MainWindow.h"
 #include "SystemConfigurationModifier.h"
 
-
-namespace ConfiguratorCore
-{
-
 // static data initialization
-MainWindow *mainWindow = nullptr;
-bool silent = false;
+bool ConfiguratorCore::silent = false;
 
 
-static void configApplyError( const QString &msg )
-{
-	criticalMessage( MainWindow::tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ), msg );
-}
-
-
-bool applyConfiguration( const VeyonConfiguration &c )
+bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 {
 	// merge configuration
 	VeyonCore::config() += c;
@@ -60,30 +51,27 @@ bool applyConfiguration( const VeyonConfiguration &c )
 									VeyonCore::config().autostartService() ) )
 	{
 		configApplyError(
-			MainWindow::tr( "Could not modify the autostart property "
-										"for the %1 Service." ).arg( VeyonCore::applicationName() ) );
+			tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
 	if( !SystemConfigurationModifier::setServiceArguments(
 									VeyonCore::config().serviceArguments() ) )
 	{
 		configApplyError(
-			MainWindow::tr( "Could not modify the service arguments "
-									"for the %1 Service." ).arg( VeyonCore::applicationName() ) );
+			tr( "Could not modify the service arguments for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 	if( !SystemConfigurationModifier::enableFirewallException(
 							VeyonCore::config().isFirewallExceptionEnabled() ) )
 	{
 		configApplyError(
-			MainWindow::tr( "Could not change the firewall configuration "
-									"for the %1 Service." ).arg( VeyonCore::applicationName() ) );
+			tr( "Could not change the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
 	if( !SystemConfigurationModifier::enableSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) )
 	{
 		configApplyError(
-			MainWindow::tr( "Could not change the setting for SAS generation by software. "
-							"Sending Ctrl+Alt+Del via remote control will not work!" ) );
+			tr( "Could not change the setting for SAS generation by software. "
+				"Sending Ctrl+Alt+Del via remote control will not work!" ) );
 	}
 
 	// write global configuration
@@ -95,15 +83,15 @@ bool applyConfiguration( const VeyonConfiguration &c )
 
 
 
-bool createKeyPair( VeyonCore::UserRole role, const QString &destDir )
+bool ConfiguratorCore::createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 {
-	QString privateKeyFile = LocalSystem::Path::privateKeyPath( role, destDir );
-	QString publicKeyFile = LocalSystem::Path::publicKeyPath( role, destDir );
+	QString privateKeyFileName = LocalSystem::Path::privateKeyPath( role, destDir );
+	QString publicKeyFileName = LocalSystem::Path::publicKeyPath( role, destDir );
 
-	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFile ).path() );
-	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFile ).path() );
+	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFileName ).path() );
+	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFileName ).path() );
 
-	qInfo() << "ConfiguratorCore: creating new key pair in" << privateKeyFile << "and" << publicKeyFile;
+	qInfo() << "ConfiguratorCore: creating new key pair in" << privateKeyFileName << "and" << publicKeyFileName;
 
 	CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
 	CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
@@ -114,24 +102,45 @@ bool createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 		return false;
 	}
 
-	if( privateKey.toPEMFile( privateKeyFile ) == false )
+	QFile privateKeyFile( privateKeyFileName );
+	QFile publicKeyFile( publicKeyFileName );
+
+	if( privateKeyFile.exists() || publicKeyFile.exists() )
+	{
+		if( QMessageBox::question( nullptr, tr( "Overwrite keys" ),
+								   tr( "Some of the key files are already existing. If you replace them "
+									   "with newly generated ones you will have to update the public keys "
+									   "on all computers as well. Do you want to continue?" ),
+								   QMessageBox::Yes, QMessageBox::No ) == QMessageBox::No )
+		{
+			return false;
+		}
+
+		privateKeyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
+		privateKeyFile.remove();
+
+		publicKeyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
+		publicKeyFile.remove();
+	}
+
+	if( privateKey.toPEMFile( privateKeyFileName ) == false )
 	{
 		ilog_failed( "saving private key" );
 		return false;
 	}
 
-	if( publicKey.toPEMFile( publicKeyFile ) == false )
+	if( publicKey.toPEMFile( publicKeyFileName ) == false )
 	{
 		ilog_failed( "saving public key" );
 		return false;
 	}
 
-	QFile( privateKeyFile ).setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
-	QFile( publicKeyFile ).setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
+	privateKeyFile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
+	publicKeyFile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
 
 	printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
-						privateKeyFile.toUtf8().constData(),
-						publicKeyFile.toUtf8().constData() );
+						privateKeyFileName.toUtf8().constData(),
+						publicKeyFileName.toUtf8().constData() );
 	printf( "\n\n\nFor now the file is only readable by "
 				"root and members of group root (if you\n"
 				"didn't ran this command as non-root).\n"
@@ -146,8 +155,7 @@ bool createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 
 
 
-bool importPublicKey( VeyonCore::UserRole role,
-							const QString& publicKeyFile, const QString &destDir )
+bool ConfiguratorCore::importPublicKey( VeyonCore::UserRole role, const QString& publicKeyFile, const QString &destDir )
 {
 	// look whether the public key file is valid
 	CryptoCore::PublicKey publicKey( publicKeyFile );
@@ -162,7 +170,7 @@ bool importPublicKey( VeyonCore::UserRole role,
 	QFile destFile( destinationPublicKeyPath );
 	if( destFile.exists() )
 	{
-		destFile.setPermissions( QFile::WriteOwner );
+		destFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
 		if( !destFile.remove() )
 		{
 			qCritical() << "ConfiguratorCore::importPublicKey(): could not remove "
@@ -177,7 +185,7 @@ bool importPublicKey( VeyonCore::UserRole role,
 
 
 
-void informationMessage( const QString &title, const QString &msg )
+void ConfiguratorCore::informationMessage( const QString &title, const QString &msg )
 {
 	qInfo() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
@@ -188,7 +196,7 @@ void informationMessage( const QString &title, const QString &msg )
 
 
 
-void criticalMessage( const QString &title, const QString &msg )
+void ConfiguratorCore::criticalMessage( const QString &title, const QString &msg )
 {
 	qCritical() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
 	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
@@ -199,16 +207,20 @@ void criticalMessage( const QString &title, const QString &msg )
 
 
 
-int clearConfiguration()
+int ConfiguratorCore::clearConfiguration()
 {
 	// clear global configuration
 	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
 
-	informationMessage( MainWindow::tr( "Configuration cleared" ),
-						MainWindow::tr( "The local configuration has been cleared successfully." ) );
+	informationMessage( tr( "Configuration cleared" ),
+						tr( "The local configuration has been cleared successfully." ) );
 
 	return 0;
 }
 
 
+
+void ConfiguratorCore::configApplyError( const QString &msg )
+{
+	criticalMessage( tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ), msg );
 }

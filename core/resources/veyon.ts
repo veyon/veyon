@@ -251,6 +251,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Always process rule and ignore conditions</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -540,6 +544,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Configuration file is not readable!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1830,34 +1873,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

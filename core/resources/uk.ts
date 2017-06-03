@@ -247,6 +247,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Local computer</source>
         <translation>Локальний комп’ютер</translation>
     </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Завжди обробляти правило і ігнорувати умови</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -338,14 +342,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Перевірити</translation>
     </message>
     <message>
-        <source>Access confirmation</source>
-        <translation>Підтвердження доступу</translation>
-    </message>
-    <message>
-        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Ви можете налаштувати Veyon так, щоб програма запитувала користувача про права доступу до стільниці у разі використання певних способів розпізнавання.</translation>
-    </message>
-    <message>
         <source>Logon authentication test</source>
         <translation>Перевірка розпізнавання під час входу</translation>
     </message>
@@ -388,6 +384,49 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation>Клас: %1</translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation>У мережі і з’єднано</translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation>Встановлюємо з’єднання</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Немає користувачів у системі</translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation>Користувач у системі: %1</translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation>Комп’ютер перебуває поза мережею або його вимкнено</translation>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation>Служба недоступна або її не запущено</translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation>Не пройдено розпізнавання або заборонено доступ</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Від’єднано</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Вузол/IP-адреса: %1</translation>
+    </message>
+</context>
+<context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
@@ -416,6 +455,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не вдалося записати список комп’ютерів і користувачів до %1! Будь ласка, перевірте, чи є у вас належні права для доступу до цього файла.</translation>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation>Пошук комп’ютера</translation>
     </message>
 </context>
 <context>
@@ -533,6 +576,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Give a demonstration by screen broadcasting</source>
         <translation>Виконати демонстрацію трансляцією зображення на екрані</translation>
     </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Демосервер</translation>
+    </message>
+    <message>
+        <source>Demo client</source>
+        <translation>Демоклієнт</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -564,10 +615,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Виконати програму</translation>
     </message>
     <message>
-        <source>Click this button to run a program on each computer.</source>
-        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
-    </message>
-    <message>
         <source>Open website</source>
         <translation>Відкрити сайт</translation>
     </message>
@@ -582,6 +629,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Start programs and services in user desktop</source>
         <translation>Запустити програми і служби на робочій станції користувача</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
+        <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
     </message>
 </context>
 <context>
@@ -748,18 +799,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Teacher</source>
         <translation>Вчитель</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>Адміністратор</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Учасник команди супроводу</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Інший</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
@@ -1496,6 +1535,13 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
 </context>
 <context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation>Додаток, який реалізуває абстрактні функції на платформі Linux</translation>
+    </message>
+</context>
+<context>
     <name>LocalDataConfigurationPage</name>
     <message>
         <source>Local data</source>
@@ -1926,6 +1972,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Screenshots</source>
         <translation>Знімки вікон</translation>
     </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
+        <translation>Приховати поле фільтрування комп’ютерів на панелі керування класами комп’ютерів</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1945,8 +1995,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Name</source>
-        <translation>Назва</translation>
+        <source>Room/Computer</source>
+        <translation>Клас/Комп’ютер</translation>
     </message>
 </context>
 <context>
@@ -2187,6 +2237,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Run programs</source>
         <translation>Виконати програми</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>наприклад, «C:\Program Files\VideoLAN\VLC\vlc.exe»</translation>
     </message>
 </context>
 <context>
@@ -2528,6 +2582,13 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Establishing connection to %1 ...</source>
         <translation>Встановлення зв’язку з %1 ...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Додаток, який реалізуває абстрактні функції на платформі Windows</translation>
     </message>
 </context>
 <context>
