@@ -25,8 +25,11 @@
 #ifndef VNC_CLIENT_PROTOCOL_H
 #define VNC_CLIENT_PROTOCOL_H
 
+#include <QRect>
+
 #include "VeyonCore.h"
 
+class QBuffer;
 class QTcpSocket;
 
 class VEYON_CORE_EXPORT VncClientProtocol
@@ -58,12 +61,34 @@ public:
 		return m_serverInitMessage;
 	}
 
-	const rfbPixelFormat& pixelFormat() const
+	int framebufferWidth() const
 	{
-		return m_pixelFormat;
+		return m_framebufferWidth;
+	}
+
+	int framebufferHeight() const
+	{
+		return m_framebufferHeight;
 	}
 
 	void requestFramebufferUpdate( bool incremental );
+
+	bool receiveMessage();
+
+	const QByteArray& lastMessage() const
+	{
+		return m_lastMessage;
+	}
+
+	uint8_t lastMessageType() const
+	{
+		return m_lastMessage.constData()[0];
+	}
+
+	const QRect& lastUpdatedRect() const
+	{
+		return m_lastUpdatedRect;
+	}
 
 private:
 	bool readProtocol();
@@ -71,6 +96,23 @@ private:
 	bool receiveSecurityChallenge();
 	bool receiveSecurityResult();
 	bool receiveServerInitMessage();
+
+	bool receiveFramebufferUpdateMessage();
+	bool receiveColourMapEntriesMessage();
+	bool receiveBellMessage();
+	bool receiveCutTextMessage();
+	bool receiveResizeFramebufferMessage();
+
+	bool readMessage( qint64 size );
+
+	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader );
+	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
+	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
+	bool handleRectEncodingHextile( QBuffer& buffer,
+									const rfbFramebufferUpdateRectHeader& rectHeader,
+									int bytesPerPixel );
+	bool handleRectEncodingZlib( QBuffer& buffer );
+	bool handleRectEncodingZRLE( QBuffer& buffer );
 
 	QTcpSocket* m_socket;
 	State m_state;
@@ -83,6 +125,9 @@ private:
 
 	uint16_t m_framebufferWidth;
 	uint16_t m_framebufferHeight;
+
+	QByteArray m_lastMessage;
+	QRect m_lastUpdatedRect;
 
 } ;
 

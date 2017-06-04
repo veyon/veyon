@@ -24,6 +24,8 @@
 
 #include "VeyonCore.h"
 
+#include <QBuffer>
+#include <QRegion>
 #include <QTcpSocket>
 
 extern "C"
@@ -71,7 +73,7 @@ VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPass
 	m_vncPassword( vncPassword.toLatin1() ),
 	m_serverInitMessage(),
 	m_framebufferWidth( 0 ),
-	m_framebufferWidth( 0 )
+	m_framebufferHeight( 0 )
 {
 	memset( &m_pixelFormat, 0, sz_rfbPixelFormat );
 }
@@ -124,11 +126,47 @@ void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 	updateRequest.w = qFromBigEndian( m_framebufferWidth );
 	updateRequest.h = qFromBigEndian( m_framebufferHeight );
 
-	if( m_socket->write( &updateRequest, sizeof( sz_rfbFramebufferUpdateRequestMsg ) ) != sz_rfbFramebufferUpdateRequestMsg )
+	if( m_socket->write( (const char *) &updateRequest, sz_rfbFramebufferUpdateRequestMsg ) != sz_rfbFramebufferUpdateRequestMsg )
 	{
 		qDebug( "VncClientProtocol::requestFramebufferUpdate(): could not write to socket - closing connection" );
 		m_socket->close();
 	}
+}
+
+
+
+bool VncClientProtocol::receiveMessage()
+{
+	char messageType = 0;
+	if( m_socket->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	{
+		return false;
+	}
+
+	switch( messageType )
+	{
+	case rfbFramebufferUpdate:
+		return receiveFramebufferUpdateMessage();
+
+	case rfbSetColourMapEntries:
+		return receiveColourMapEntriesMessage();
+
+	case rfbBell:
+		return receiveBellMessage();
+
+	case rfbServerCutText:
+		return receiveCutTextMessage();
+
+	case rfbResizeFrameBuffer:
+		return receiveResizeFramebufferMessage();
+
+	default:
+		qCritical( "VncClientProtocol::receiveMessage(): received unknown message type: %d", (int) messageType );
+		m_socket->close();
+		return false;
+	}
+
+	return false;
 }
 
 
@@ -287,7 +325,7 @@ bool VncClientProtocol::receiveServerInitMessage()
 		{
 			m_serverInitMessage = m_socket->read( sz_rfbServerInitMsg + nameLength );
 
-			const auto serverInitMessage = static_cast<rfbServerInitMsg *>( m_serverInitMessage.data() );
+			const auto serverInitMessage = (const rfbServerInitMsg *) m_serverInitMessage.constData();
 			m_framebufferWidth = qFromBigEndian( serverInitMessage->framebufferWidth );
 			m_framebufferHeight = qFromBigEndian( serverInitMessage->framebufferHeight );
 
@@ -298,4 +336,342 @@ bool VncClientProtocol::receiveServerInitMessage()
 	}
 
 	return false;
+}
+
+
+
+bool VncClientProtocol::receiveFramebufferUpdateMessage()
+{
+	// peek all available data and work on a local buffer so we can continously read from it
+	QByteArray data = m_socket->peek( m_socket->bytesAvailable() );
+
+	QBuffer buffer( &data );
+	buffer.open( QBuffer::ReadOnly );
+
+	rfbFramebufferUpdateMsg message;
+	if( buffer.read( (char *) &message, sz_rfbFramebufferUpdateMsg ) != sz_rfbFramebufferUpdateMsg )
+	{
+		return false;
+	}
+
+	QRegion updatedRegion;
+
+	int nRects = qFromBigEndian( message.nRects );
+
+	for( int i = 0; i < nRects; ++i )
+	{
+		rfbFramebufferUpdateRectHeader rectHeader;
+		if( buffer.read( (char *) &rectHeader, sz_rfbFramebufferUpdateRectHeader ) != sz_rfbFramebufferUpdateRectHeader )
+		{
+			return false;
+		}
+
+		rectHeader.encoding = qFromBigEndian( rectHeader.encoding );
+		rectHeader.r.w = qFromBigEndian( rectHeader.r.w );
+		rectHeader.r.h = qFromBigEndian( rectHeader.r.h );
+		rectHeader.r.x = qFromBigEndian( rectHeader.r.x );
+		rectHeader.r.y = qFromBigEndian( rectHeader.r.y );
+
+		if( rectHeader.encoding == rfbEncodingLastRect )
+		{
+			break;
+		}
+
+		if( handleRect( buffer, rectHeader ) == false )
+		{
+			return false;
+		}
+
+		updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
+	}
+
+	m_lastUpdatedRect = updatedRegion.boundingRect();
+
+	// save as much data as we read by processing rects
+	return readMessage( buffer.pos() );
+}
+
+
+
+bool VncClientProtocol::receiveColourMapEntriesMessage()
+{
+	rfbSetColourMapEntriesMsg message;
+	if( m_socket->peek( (char *) &message, sz_rfbSetColourMapEntriesMsg ) != sz_rfbSetColourMapEntriesMsg )
+	{
+		return false;
+	}
+
+	return readMessage( sz_rfbSetColourMapEntriesMsg + qFromBigEndian( message.nColours ) * 6 );
+}
+
+
+
+
+bool VncClientProtocol::receiveBellMessage()
+{
+	return readMessage( sz_rfbBellMsg );
+}
+
+
+
+bool VncClientProtocol::receiveCutTextMessage()
+{
+	rfbServerCutTextMsg message;
+	if( m_socket->peek( (char *) &message, sz_rfbServerCutTextMsg ) != sz_rfbServerCutTextMsg )
+	{
+		return false;
+	}
+
+	return readMessage( sz_rfbServerCutTextMsg + qFromBigEndian( message.length ) );
+}
+
+
+
+bool VncClientProtocol::receiveResizeFramebufferMessage()
+{
+	if( readMessage( sz_rfbResizeFrameBufferMsg ) )
+	{
+		const auto msg = (rfbResizeFrameBufferMsg *) m_lastMessage.constData();
+		m_framebufferWidth = qFromBigEndian( msg->framebufferWidth );
+		m_framebufferHeight = qFromBigEndian( msg->framebufferHeigth );
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool VncClientProtocol::readMessage( qint64 size )
+{
+	if( m_socket->bytesAvailable() < size )
+	{
+		return false;
+	}
+
+	m_lastMessage = m_socket->read( size );
+
+	return m_lastMessage.size() == size;
+}
+
+
+
+bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader )
+{
+	const int width = rectHeader.r.w;
+	const int height = rectHeader.r.h;
+
+	const int bytesPerPixel = m_pixelFormat.bitsPerPixel / 8;
+	const int bytesPerRow = ( width + 7 ) / 8;
+
+	switch( rectHeader.encoding )
+	{
+	case rfbEncodingLastRect:
+		return true;
+
+	case rfbEncodingXCursor:
+		return width * height == 0 ||
+				( buffer.read( sz_rfbXCursorColors ).size() == sz_rfbXCursorColors &&
+				  buffer.read( 2 * bytesPerRow * height ).size() == 2 * bytesPerRow * height );
+
+	case rfbEncodingRichCursor:
+		return width * height == 0 ||
+				( buffer.read( width * height * bytesPerPixel ).size() == width * height * bytesPerPixel &&
+				  buffer.read( bytesPerRow * height ).size() == bytesPerRow * height );
+
+	case rfbEncodingSupportedMessages:
+		return buffer.read( sz_rfbSupportedMessages ).size() == sz_rfbSupportedMessages;
+
+	case rfbEncodingSupportedEncodings:
+	case rfbEncodingServerIdentity:
+		// width = byte count
+		return buffer.read( width ).size() == width;
+
+	case rfbEncodingRaw:
+		return buffer.read( width * height * bytesPerPixel ).size() == width * height * bytesPerPixel;
+
+	case rfbEncodingCopyRect:
+		return buffer.read( sz_rfbCopyRect ).size() == sz_rfbCopyRect;
+
+	case rfbEncodingRRE:
+		return handleRectEncodingRRE( buffer, bytesPerPixel );
+
+	case rfbEncodingCoRRE:
+		return handleRectEncodingCoRRE( buffer, bytesPerPixel );
+
+	case rfbEncodingHextile:
+		return handleRectEncodingHextile( buffer, rectHeader, bytesPerPixel );
+
+	case rfbEncodingUltra:
+	case rfbEncodingUltraZip:
+	case rfbEncodingZlib:
+		return handleRectEncodingZlib( buffer );
+
+	case rfbEncodingZRLE:
+	case rfbEncodingZYWRLE:
+		return handleRectEncodingZRLE( buffer );
+
+	case rfbEncodingPointerPos:
+	case rfbEncodingKeyboardLedState:
+	case rfbEncodingNewFBSize:
+		// no further data to read for this rect
+		return true;
+
+	default:
+		qCritical() << Q_FUNC_INFO << "Unsupported rect encoding" << rectHeader.encoding;
+		m_socket->close();
+		break;
+	}
+
+	return false;
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel )
+{
+	rfbRREHeader hdr;
+
+	if( buffer.read( (char *) &hdr, sz_rfbRREHeader ) != sz_rfbRREHeader )
+	{
+		return false;
+	}
+
+	const int rectDataSize =
+			qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + sz_rfbRectangle );
+
+	return buffer.read( bytesPerPixel + rectDataSize ).size() == bytesPerPixel + rectDataSize;
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel )
+{
+	rfbRREHeader hdr;
+
+	if( buffer.read( (char *) &hdr, sz_rfbRREHeader ) != sz_rfbRREHeader )
+	{
+		return false;
+	}
+
+	const int rectDataSize =
+			qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + 4 );
+
+	return buffer.read( bytesPerPixel + rectDataSize ).size() == bytesPerPixel + rectDataSize;
+
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
+													const rfbFramebufferUpdateRectHeader& rectHeader,
+													int bytesPerPixel )
+{
+	const int rx = rectHeader.r.x;
+	const int ry = rectHeader.r.y;
+	const int rw = rectHeader.r.w;
+	const int rh = rectHeader.r.h;
+
+	for( int y = ry; y < ry+rh; y += 16 )
+	{
+		for( int x = rx; x < rx+rw; x += 16 )
+		{
+			int w = 16, h = 16;
+			if( rx+rw - x < 16 ) w = rx+rw - x;
+			if( ry+rh - y < 16 ) h = ry+rh - y;
+
+			uint8_t subEncoding = 0;
+			if( buffer.read( (char *) &subEncoding, 1 ) != 1 )
+			{
+				return false;
+			}
+
+			if( subEncoding & rfbHextileRaw )
+			{
+				if( buffer.read( w * h * bytesPerPixel ).size() != w * h * bytesPerPixel )
+				{
+					return false;
+				}
+				continue;
+			}
+
+			if( subEncoding & rfbHextileBackgroundSpecified )
+			{
+				if( buffer.read( bytesPerPixel ).size() != bytesPerPixel )
+				{
+					return false;
+				}
+			}
+
+			if( subEncoding & rfbHextileForegroundSpecified )
+			{
+				if( buffer.read( bytesPerPixel ).size() != bytesPerPixel )
+				{
+					return false;
+				}
+			}
+
+			if( !( subEncoding & rfbHextileAnySubrects ) )
+			{
+				continue;
+			}
+
+			uint8_t nSubrects = 0;
+			if( buffer.read( (char *) &nSubrects, 1 ) != 1 )
+			{
+				return false;
+			}
+
+			int64_t subRectDataSize = 0;
+
+			if( subEncoding & rfbHextileSubrectsColoured )
+			{
+				subRectDataSize = nSubrects * ( 2 + bytesPerPixel );
+			}
+			else
+			{
+				subRectDataSize = nSubrects * 2;
+			}
+
+			if( buffer.read( subRectDataSize ).size() != subRectDataSize )
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingZlib( QBuffer& buffer )
+{
+	rfbZlibHeader hdr;
+
+	if( buffer.read( (char *) &hdr, sz_rfbZlibHeader ) != sz_rfbZlibHeader )
+	{
+		return false;
+	}
+
+	hdr.nBytes = qFromBigEndian( hdr.nBytes );
+
+	return buffer.read( hdr.nBytes ).size() == static_cast<int64_t>( hdr.nBytes );
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
+{
+	rfbZRLEHeader hdr;
+
+	if( buffer.read( (char *) &hdr, sz_rfbZRLEHeader ) != sz_rfbZRLEHeader )
+	{
+		return false;
+	}
+
+	hdr.length = qFromBigEndian( hdr.length );
+
+	return buffer.read( hdr.length ).size() == static_cast<int64_t>( hdr.length );
 }

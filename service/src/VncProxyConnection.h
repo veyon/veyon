@@ -68,23 +68,10 @@ protected:
 	virtual bool receiveClientMessage();
 	virtual bool receiveServerMessage();
 
-	bool forwardServerFramebufferUpdate();
-	bool forwardServerColourMapEntries();
-	bool forwardServerCutText();
-
 	virtual VncClientProtocol& clientProtocol() = 0;
 	virtual VncServerProtocol& serverProtocol() = 0;
 
 private:
-	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader );
-	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
-	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
-	bool handleRectEncodingHextile( QBuffer& buffer,
-									const rfbFramebufferUpdateRectHeader& rectHeader,
-									int bytesPerPixel );
-	bool handleRectEncodingZlib( QBuffer& buffer );
-	bool handleRectEncodingZRLE( QBuffer& buffer );
-
 	QTcpSocket* m_proxyClientSocket;
 	QTcpSocket* m_vncServerSocket;
 
