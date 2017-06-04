@@ -24,31 +24,21 @@
 
 #include "VeyonCore.h"
 
-#ifdef VEYON_BUILD_WIN32
-#include <winsock2.h>
-#endif
-
 #include <QHostAddress>
 #include <QTcpSocket>
 
 #include "rfb/rfbproto.h"
 
 #include "AuthenticationCredentials.h"
-#include "ServerAuthenticationManager.h"
-#include "ServerAccessControlManager.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
 
 VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
-									  VncServerClient* client,
-									  ServerAuthenticationManager& serverAuthenticationManager,
-									  ServerAccessControlManager& serverAccessControlManager ) :
+									  VncServerClient* client ) :
 	m_socket( socket ),
 	m_client( client ),
-	m_serverAuthenticationManager( serverAuthenticationManager ),
-	m_serverAccessControlManager( serverAccessControlManager ),
 	m_serverInitMessage()
 {
 	m_client->setAccessControlState( VncServerClient::AccessControlInit );
@@ -193,12 +183,12 @@ bool VncServerProtocol::receiveSecurityTypeResponse()
 
 bool VncServerProtocol::sendAuthenticationTypes()
 {
+	const auto authTypes = supportedAuthTypes();
+
 	VariantArrayMessage message( m_socket );
-	message.write( m_serverAuthenticationManager.supportedAuthTypes().count() );
+	message.write( authTypes.count() );
 
-	const auto supportedAuthTypes = m_serverAuthenticationManager.supportedAuthTypes();
-
-	for( auto authType : supportedAuthTypes )
+	for( auto authType : authTypes )
 	{
 		message.write( authType );
 	}
@@ -216,7 +206,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 	{
 		auto chosenAuthType = message.read().value<RfbVeyonAuth::Type>();
 
-		if( m_serverAuthenticationManager.supportedAuthTypes().contains( chosenAuthType ) == false )
+		if( supportedAuthTypes().contains( chosenAuthType ) == false )
 		{
 			qCritical( "VncServerProtocol:::receiveAuthenticationTypeResponse(): unsupported authentication type chosen by client!" );
 			m_socket->close();
@@ -268,7 +258,7 @@ bool VncServerProtocol::receiveAuthenticationMessage()
 
 bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 {
-	m_serverAuthenticationManager.processAuthenticationMessage( m_client, message );
+	processAuthenticationMessage( message );
 
 	switch( m_client->authState() )
 	{
@@ -298,14 +288,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 
 bool VncServerProtocol::processAccessControl()
 {
-	// perform access control via ServerAccessControl manager if either
-	// client just entered access control or is still waiting to be
-	// processed (e.g. desktop access dialog already active for a different connection)
-	if( m_client->accessControlState() == VncServerClient::AccessControlInit ||
-			m_client->accessControlState() == VncServerClient::AccessControlWaiting )
-	{
-		m_serverAccessControlManager.addClient( m_client );
-	}
+	performAccessControl();
 
 	switch( m_client->accessControlState() )
 	{

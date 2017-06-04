@@ -25,7 +25,7 @@ ENDIF(VEYON_BUILD_WIN32)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-ADD_EXECUTABLE(veyon-service ${service_SOURCES} ${service_INCLUDES} ${service_MOC_out} ${libvncserver_DIR}/common/d3des.c ${WINRC})
+ADD_EXECUTABLE(veyon-service ${service_SOURCES} ${service_INCLUDES} ${service_MOC_out} ${WINRC})
 TARGET_LINK_LIBRARIES(veyon-service veyon-core)
 
 INSTALL(TARGETS veyon-service RUNTIME DESTINATION bin)

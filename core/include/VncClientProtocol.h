@@ -29,7 +29,7 @@
 
 class QTcpSocket;
 
-class VncClientProtocol
+class VEYON_CORE_EXPORT VncClientProtocol
 {
 public:
 	typedef enum States {
