@@ -69,7 +69,9 @@ VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPass
 	m_socket( socket ),
 	m_state( Disconnected ),
 	m_vncPassword( vncPassword.toLatin1() ),
-	m_serverInitMessage()
+	m_serverInitMessage(),
+	m_framebufferWidth( 0 ),
+	m_framebufferWidth( 0 )
 {
 	memset( &m_pixelFormat, 0, sz_rfbPixelFormat );
 }
@@ -107,6 +109,26 @@ bool VncClientProtocol::read()
 	}
 
 	return false;
+}
+
+
+
+void VncClientProtocol::requestFramebufferUpdate( bool incremental )
+{
+	rfbFramebufferUpdateRequestMsg updateRequest;
+
+	updateRequest.type = rfbFramebufferUpdateRequest;
+	updateRequest.incremental = incremental ? 1 : 0;
+	updateRequest.x = 0;
+	updateRequest.y = 0;
+	updateRequest.w = qFromBigEndian( m_framebufferWidth );
+	updateRequest.h = qFromBigEndian( m_framebufferHeight );
+
+	if( m_socket->write( &updateRequest, sizeof( sz_rfbFramebufferUpdateRequestMsg ) ) != sz_rfbFramebufferUpdateRequestMsg )
+	{
+		qDebug( "VncClientProtocol::requestFramebufferUpdate(): could not write to socket - closing connection" );
+		m_socket->close();
+	}
 }
 
 
@@ -264,6 +286,10 @@ bool VncClientProtocol::receiveServerInitMessage()
 		if( static_cast<uint32_t>( m_socket->peek( nameLength ).size() ) == nameLength )
 		{
 			m_serverInitMessage = m_socket->read( sz_rfbServerInitMsg + nameLength );
+
+			const auto serverInitMessage = static_cast<rfbServerInitMsg *>( m_serverInitMessage.data() );
+			m_framebufferWidth = qFromBigEndian( serverInitMessage->framebufferWidth );
+			m_framebufferHeight = qFromBigEndian( serverInitMessage->framebufferHeight );
 
 			m_state = Running;
 

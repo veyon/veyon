@@ -63,6 +63,8 @@ public:
 		return m_pixelFormat;
 	}
 
+	void requestFramebufferUpdate( bool incremental );
+
 private:
 	bool readProtocol();
 	bool receiveSecurityTypes();
@@ -78,6 +80,9 @@ private:
 	QByteArray m_serverInitMessage;
 
 	rfbPixelFormat m_pixelFormat;
+
+	uint16_t m_framebufferWidth;
+	uint16_t m_framebufferHeight;
 
 } ;
 
