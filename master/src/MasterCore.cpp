@@ -46,6 +46,9 @@ MasterCore::MasterCore() :
 	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
 	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
 {
+	connect( m_computerManager, &ComputerManager::computerAboutToBeRemoved,
+			 this, &MasterCore::shutdownComputerControlInterface );
+
 	connect( &m_localComputerControlInterface, &ComputerControlInterface::featureMessageReceived,
 			 m_featureManager, &FeatureManager::handleMasterFeatureMessage );
 
@@ -56,6 +59,8 @@ MasterCore::MasterCore() :
 
 MasterCore::~MasterCore()
 {
+	stopAllModeFeatures( m_computerManager->computerControlInterfaces(), nullptr );
+
 	delete m_computerManager;
 
 	m_userConfig->flushStore();
@@ -68,19 +73,11 @@ MasterCore::~MasterCore()
 
 void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 {
-	ComputerControlInterfaceList computerControlInterfaces = m_computerManager->computerControlInterfaces();
+	const auto computerControlInterfaces = m_computerManager->computerControlInterfaces();
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
-		// stop any previously active featues
-		for( const auto& feature : qAsConst( features() ) )
-		{
-			if( feature.testFlag( Feature::Mode ) )
-			{
-				m_featureManager->stopMasterFeature( feature, computerControlInterfaces,
-													 m_localComputerControlInterface, parent );
-			}
-		}
+		stopAllModeFeatures( computerControlInterfaces, parent );
 
 		if( m_currentMode == feature.uid() )
 		{
@@ -101,6 +98,28 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 	{
 		m_featureManager->startMasterFeature( feature, computerControlInterfaces,
 											  m_localComputerControlInterface, parent );
+	}
+}
+
+
+
+void MasterCore::shutdownComputerControlInterface( int computerIndex )
+{
+	stopAllModeFeatures( { &m_computerManager->computerList()[computerIndex].controlInterface() }, nullptr );
+}
+
+
+
+void MasterCore::stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent )
+{
+	// stop any previously active featues
+	for( const auto& feature : qAsConst( features() ) )
+	{
+		if( feature.testFlag( Feature::Mode ) )
+		{
+			m_featureManager->stopMasterFeature( feature, computerControlInterfaces,
+												 m_localComputerControlInterface, parent );
+		}
 	}
 }
 
