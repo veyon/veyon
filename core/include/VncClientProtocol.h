@@ -71,6 +71,9 @@ public:
 		return m_framebufferHeight;
 	}
 
+	bool setPixelFormat( const rfbPixelFormat& pixelFormat );
+	bool setEncodings( const QVector<uint32_t>& encodings );
+
 	void requestFramebufferUpdate( bool incremental );
 
 	bool receiveMessage();

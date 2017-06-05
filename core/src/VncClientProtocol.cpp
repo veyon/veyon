@@ -115,6 +115,54 @@ bool VncClientProtocol::read()
 
 
 
+bool VncClientProtocol::setPixelFormat( const rfbPixelFormat& pixelFormat )
+{
+	rfbSetPixelFormatMsg spf;
+
+	spf.type = rfbSetPixelFormat;
+	spf.pad1 = 0;
+	spf.pad2 = 0;
+	spf.format = pixelFormat;
+	spf.format.redMax = qFromBigEndian(pixelFormat.redMax);
+	spf.format.greenMax = qFromBigEndian(pixelFormat.greenMax);
+	spf.format.blueMax = qFromBigEndian(pixelFormat.blueMax);
+
+	return m_socket->write( (const char *) &spf, sz_rfbSetPixelFormatMsg ) == sz_rfbSetPixelFormatMsg;
+}
+
+
+
+bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
+{
+	if( encodings.size() > MAX_ENCODINGS )
+	{
+		return false;
+	}
+
+	char buf[sz_rfbSetEncodingsMsg + MAX_ENCODINGS * 4];
+
+	rfbSetEncodingsMsg *se = (rfbSetEncodingsMsg *)buf;
+	uint32_t *encs = (uint32_t *)(&buf[sz_rfbSetEncodingsMsg]);
+	int len = 0;
+
+	se->type = rfbSetEncodings;
+	se->pad = 0;
+	se->nEncodings = 0;
+
+	for( auto encoding : encodings )
+	{
+		encs[se->nEncodings++] = qFromBigEndian<uint32_t>( encoding );
+	}
+
+	len = sz_rfbSetEncodingsMsg + se->nEncodings * 4;
+
+	se->nEncodings = qFromBigEndian(se->nEncodings);
+
+	return m_socket->write( buf, len ) == len;
+}
+
+
+
 void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 {
 	rfbFramebufferUpdateRequestMsg updateRequest;
