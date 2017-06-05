@@ -276,6 +276,33 @@ cleanup:
 	return hr;
 }
 
+static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t* fwApplicationPath, const wchar_t* fwName, bool enabled )
+{
+	// always remove firewall exception first
+	HRESULT hr = WindowsFirewallRemoveApp2( fwPolicy2, fwName );
+
+	if( enabled )
+	{
+		// add service to the list of authorized applications
+		hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
+		if( FAILED( hr ) )
+		{
+			// failed because firewall service not running / disabled?
+			if( (DWORD) hr == 0x800706D9 )
+			{
+				// then assume this is intended, log a warning and
+				// pretend everything went well
+				qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
+				return true;
+			}
+
+			ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
+			return false;
+		}
+	}
+
+	return true;
+}
 
 #endif
 
@@ -284,6 +311,8 @@ cleanup:
 
 bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 {
+	bool result = true;
+
 #ifdef VEYON_BUILD_WIN32
 	HRESULT hr = S_OK;
 
@@ -303,95 +332,22 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		}
 	}
 
-	static const wchar_t *fwRuleName = L"Veyon Service";
-
-	const QString p = ServiceControl::serviceFilePath().replace( '/', '\\' );
-
-	wchar_t icaPath[MAX_PATH];
-	p.toWCharArray( icaPath );
-	icaPath[p.size()] = 0;
-
-	OSVERSIONINFO ovi;
-	ovi.dwOSVersionInfoSize = sizeof( OSVERSIONINFO );
-	GetVersionEx( &ovi );
-
-	// Windows >= Vista ?
-	if( ovi.dwMajorVersion >= 6 )
+	// retrieve current firewall profile
+	INetFwPolicy2 *fwPolicy2 = nullptr;
+	hr = WindowsFirewallInitialize2( &fwPolicy2 );
+	if( FAILED( hr ) )
 	{
-		// code for advanced firewall API
-
-		// retrieve current firewall profile
-		INetFwPolicy2 *fwPolicy2 = NULL;
-		hr = WindowsFirewallInitialize2( &fwPolicy2 );
-		if( FAILED( hr ) )
-		{
-			ilog_failedf( "WindowsFirewallInitialize2()", "0x%08lx\n", hr );
-			return false;
-		}
-
-		// always remove firewall exception first
-		hr = WindowsFirewallRemoveApp2( fwPolicy2, fwRuleName );
-
-		if( enabled )
-		{
-			// add ICA to the list of authorized applications
-			hr = WindowsFirewallAddApp2( fwPolicy2, icaPath, fwRuleName );
-			if( FAILED( hr ) )
-			{
-				// failed because firewall service not running / disabled?
-				if( (DWORD) hr == 0x800706D9 )
-				{
-					// then assume this is intended, log a warning and
-					// pretend everything went well
-					qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
-					return true;
-				}
-
-				ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
-				return false;
-			}
-		}
-
-		WindowsFirewallCleanup2( fwPolicy2 );
+		ilog_failedf( "WindowsFirewallInitialize2()", "0x%08lx\n", hr );
+		return false;
 	}
-	else
-	{
-		// code for old firewall API
 
-		// retrieve current firewall profile
-		INetFwProfile *fwProfile = NULL;
-		hr = WindowsFirewallInitialize( &fwProfile );
-		if( FAILED( hr ) )
-		{
-			// failed because firewall service not running / disabled?
-			if( (DWORD) hr == 0x800706D9 )
-			{
-				// then assume this is intended, log a warning and
-				// pretend everything went well
-				qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
-				return true;
-			}
+	auto serviceFilePath = ServiceControl::serviceFilePath().replace( '/', '\\' );
+	auto workerFilePath = serviceFilePath.replace( "veyon-service", "veyon-worker" );
 
-			ilog_failedf( "WindowsFirewallInitialize()", "0x%08lx\n", hr );
-			return false;
-		}
+	result &= configureFirewallException( fwPolicy2, (const wchar_t *) serviceFilePath.utf16(), L"Veyon Service", enabled );
+	result &= configureFirewallException( fwPolicy2, (const wchar_t *) workerFilePath.utf16(), L"Veyon Worker", enabled );
 
-		// always remove firewall exception first
-		hr = WindowsFirewallRemoveApp( fwProfile, icaPath );
-
-		if( enabled )
-		{
-			// add ICA to the list of authorized applications
-			hr = WindowsFirewallAddApp( fwProfile, icaPath, fwRuleName );
-			if( FAILED( hr ) )
-			{
-				ilog_failedf( "WindowsFirewallAddApp()", "0x%08lx\n", hr );
-				return false;
-			}
-		}
-
-		WindowsFirewallCleanup( fwProfile );
-	}
+	WindowsFirewallCleanup2( fwPolicy2 );
 
 	// Uninitialize COM.
 	if( SUCCEEDED( comInit ) )
@@ -400,7 +356,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 	}
 #endif
 
-	return true;
+	return result;
 }
 
 
