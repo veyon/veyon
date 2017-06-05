@@ -81,6 +81,8 @@ public:
 
 public slots:
 	void runFeature( const Feature& feature, QWidget* parent );
+	void shutdownComputerControlInterface( int computerIndex );
+	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
 
 private:
 	FeatureList featureList() const;

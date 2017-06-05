@@ -1,12 +1,9 @@
 /*
- * RfbVeyonCursor.h - veyon cursor rectangle encoding
+ * DemoServerProtocol.h - header file for DemoServerProtocol class
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
- *
- * code partly taken from KRDC / vncclientthread.h:
- * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,17 +22,27 @@
  *
  */
 
-#ifndef RFB_VEYON_CURSOR_H
-#define RFB_VEYON_CURSOR_H
+#ifndef DEMO_SERVER_PROTOCOL_H
+#define DEMO_SERVER_PROTOCOL_H
 
-#include "VeyonCore.h"
+#include "VncServerClient.h"
+#include "VncServerProtocol.h"
 
-#define rfbEncodingVeyonCursor 31
-
-class VEYON_CORE_EXPORT RfbVeyonCursor
+class DemoServerProtocol : public VncServerProtocol
 {
+	Q_OBJECT
 public:
-	RfbVeyonCursor();
+	DemoServerProtocol( const QString& demoAccessToken, QTcpSocket* socket, VncServerClient* client );
+
+protected:
+	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
+	void processAuthenticationMessage( VariantArrayMessage& message ) override;
+	void performAccessControl() override;
+
+private:
+	VncServerClient::AuthState performTokenAuthentication( VariantArrayMessage& message );
+
+	const QString m_demoAccessToken;
 
 } ;
 

@@ -5,6 +5,7 @@ FILE(GLOB veyoncore_INCLUDES
 FILE(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
+						${libvncserver_DIR}/common/d3des.c
 )
 
 FILE(GLOB veyoncore_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)

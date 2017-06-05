@@ -60,8 +60,7 @@ public:
 		ThumbnailQuality,
 		ScreenshotQuality,
 		RemoteControlQuality,
-		DemoServerQuality,
-		DemoClientQuality,
+		DefaultQuality,
 		NumQualityLevels
 	} ;
 
@@ -80,7 +79,7 @@ public:
 	explicit VeyonVncConnection( QObject *parent = nullptr );
 	~VeyonVncConnection() override;
 
-	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;
+	QImage image() const;
 	void stop( bool deleteAfterFinished = false );
 	void reset( const QString &host );
 	void setHost( const QString &host );
@@ -213,6 +212,8 @@ private:
 	void setState( State state );
 
 	void finishFrameBufferUpdate();
+
+	void sendEvents();
 
 	// hooks for LibVNCClient
 	static int8_t hookInitFrameBuffer( rfbClient *cl );

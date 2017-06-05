@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCloseEvent>
 #include <QKeyEvent>
 #include <QHostAddress>
 #include <QMenu>
@@ -115,19 +116,6 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	ui->toolBar->toggleViewAction()->setEnabled( false );
 
 	addToolBar( Qt::TopToolBarArea, ui->toolBar );
-
-#if 0
-	ToolButton * scr = new ToolButton(
-			QPixmap( ":/resources/applications-education.png" ),
-			tr( "Classroom" ), QString::null,
-			tr( "Click this button to open a menu where you can "
-				"choose the active classroom." ) );
-	//scr->setMenu( m_classroomManager->quickSwitchMenu() );
-	scr->setPopupMode( ToolButton::InstantPopup );
-	scr->setWhatsThis( tr( "Click this button to switch between classrooms." ) );
-
-	scr->addTo( ui->toolBar );
-#endif
 
 	addFeaturesToToolBar();
 	addFeaturesToSystemTrayMenu();
@@ -224,6 +212,17 @@ bool MainWindow::initAccessControl()
 
 void MainWindow::closeEvent( QCloseEvent* event )
 {
+	if( m_masterCore.currentMode() != m_masterCore.builtinFeatures().monitoringMode().feature().uid() )
+	{
+		const Feature& activeFeature = m_masterCore.featureManager().feature( m_masterCore.currentMode() );
+
+		QMessageBox::information( this, tr( "Feature active" ),
+								  tr( "The feature \"%1\" is still active. Please stop it before closing %2." ).
+								  arg( activeFeature.displayName(), VeyonCore::applicationName() ) );
+		event->ignore();
+		return;
+	}
+
 	m_masterCore.userConfig().setWindowState( saveState().toBase64() );
 	m_masterCore.userConfig().setWindowGeometry( saveGeometry().toBase64() );
 
@@ -296,46 +295,6 @@ void MainWindow::showAboutDialog()
 {
 	AboutDialog( this ).exec();
 }
-
-
-
-#if 0
-void MainWindow::remoteControlClient( QAction* action )
-{
-	show();
-/*	remoteControlDisplay( _a->data().toString(),
-				m_classroomManager->clientDblClickAction() );*/
-}
-
-
-
-
-void MainWindow::remoteControlDisplay( const QString& hostname,
-										bool viewOnly,
-										bool stopDemoAfterwards )
-{
-	if( m_remoteControlWidget )
-	{
-		return;
-	}
-
-	m_remoteControlWidget = new RemoteControlWidget( hostname, viewOnly );
-
-	// determine screen offset where to show the remote control window
-	int x = 0;
-	for( int i = 0; i < m_remoteControlScreen; ++i )
-	{
-		x += QApplication::desktop()->screenGeometry( i ).width();
-	}
-	m_remoteControlWidget->move( x, 0 );
-
-	if( stopDemoAfterwards )
-	{
-		connect( m_remoteControlWidget, SIGNAL( objectDestroyed( QObject* ) ),
-				this, SLOT( stopDemoAfterRemoteControl() ) );
-	}
-}
-#endif
 
 
 

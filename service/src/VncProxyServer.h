@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef VNC_PROXY_H
-#define VNC_PROXY_H
+#ifndef VNC_PROXY_SERVER_H
+#define VNC_PROXY_SERVER_H
 
 #include <QHostAddress>
 #include <QVector>
