@@ -44,7 +44,7 @@ MasterCore::MasterCore() :
 	m_localComputerControlInterface( m_localComputer ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
-	m_currentMode()
+	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
 {
 	connect( &m_localComputerControlInterface, &ComputerControlInterface::featureMessageReceived,
 			 m_featureManager, &FeatureManager::handleMasterFeatureMessage );
