@@ -123,8 +123,8 @@ private:
 
 	rfbPixelFormat m_pixelFormat;
 
-	uint16_t m_framebufferWidth;
-	uint16_t m_framebufferHeight;
+	int m_framebufferWidth;
+	int m_framebufferHeight;
 
 	QByteArray m_lastMessage;
 	QRect m_lastUpdatedRect;

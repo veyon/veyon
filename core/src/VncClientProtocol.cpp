@@ -123,8 +123,8 @@ void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 	updateRequest.incremental = incremental ? 1 : 0;
 	updateRequest.x = 0;
 	updateRequest.y = 0;
-	updateRequest.w = qFromBigEndian( m_framebufferWidth );
-	updateRequest.h = qFromBigEndian( m_framebufferHeight );
+	updateRequest.w = qFromBigEndian<uint16_t>( m_framebufferWidth );
+	updateRequest.h = qFromBigEndian<uint16_t>( m_framebufferHeight );
 
 	if( m_socket->write( (const char *) &updateRequest, sz_rfbFramebufferUpdateRequestMsg ) != sz_rfbFramebufferUpdateRequestMsg )
 	{
