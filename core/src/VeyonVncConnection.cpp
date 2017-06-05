@@ -646,23 +646,7 @@ void VeyonVncConnection::handleConnection()
 			lastFullUpdateTime.restart();
 		}
 
-		m_mutex.lock();
-
-		while( !m_eventQueue.isEmpty() )
-		{
-			MessageEvent * clientEvent = m_eventQueue.dequeue();
-
-			// unlock the queue mutex during the runtime of ClientEvent::fire()
-			m_mutex.unlock();
-
-			clientEvent->fire( m_cl );
-			delete clientEvent;
-
-			// and lock it again
-			m_mutex.lock();
-		}
-
-		m_mutex.unlock();
+		sendEvents();
 
 		if( m_framebufferUpdateInterval > 0 && isInterruptionRequested() == false )
 		{
@@ -672,6 +656,8 @@ void VeyonVncConnection::handleConnection()
 			sleeperMutex.unlock();
 		}
 	}
+
+	sendEvents();
 }
 
 
@@ -712,6 +698,29 @@ void VeyonVncConnection::finishFrameBufferUpdate()
 	emit framebufferUpdateComplete();
 
 	m_scaledScreenNeedsUpdate = true;
+}
+
+
+
+void VeyonVncConnection::sendEvents()
+{
+	m_mutex.lock();
+
+	while( m_eventQueue.isEmpty() == false )
+	{
+		auto event = m_eventQueue.dequeue();
+
+		// unlock the queue mutex during the runtime of ClientEvent::fire()
+		m_mutex.unlock();
+
+		event->fire( m_cl );
+		delete event;
+
+		// and lock it again
+		m_mutex.lock();
+	}
+
+	m_mutex.unlock();
 }
 
 

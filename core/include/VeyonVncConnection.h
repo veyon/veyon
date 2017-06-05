@@ -213,6 +213,8 @@ private:
 
 	void finishFrameBufferUpdate();
 
+	void sendEvents();
+
 	// hooks for LibVNCClient
 	static int8_t hookInitFrameBuffer( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
