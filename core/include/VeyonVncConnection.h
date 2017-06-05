@@ -60,8 +60,7 @@ public:
 		ThumbnailQuality,
 		ScreenshotQuality,
 		RemoteControlQuality,
-		DemoServerQuality,
-		DemoClientQuality,
+		DefaultQuality,
 		NumQualityLevels
 	} ;
 

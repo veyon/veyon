@@ -60,7 +60,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 	if( m_mode == DemoMode )
 	{
-		m_vncConn->setQuality( VeyonVncConnection::DemoClientQuality );
+		m_vncConn->setQuality( VeyonVncConnection::DefaultQuality );
 		m_vncConn->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
 		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
