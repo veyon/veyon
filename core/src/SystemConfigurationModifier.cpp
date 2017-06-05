@@ -135,204 +135,8 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 
 
 #ifdef VEYON_BUILD_WIN32
-HRESULT WindowsFirewallInitialize( INetFwProfile **fwProfile )
-{
-	HRESULT hr = S_OK;
-	INetFwMgr* fwMgr = NULL;
-	INetFwPolicy* fwPolicy = NULL;
 
-	*fwProfile = NULL;
-
-	// Create an instance of the firewall settings manager.
-	hr = CoCreateInstance( CLSID_NetFwMgr, NULL, CLSCTX_INPROC_SERVER,
-							IID_INetFwMgr, (void**)&fwMgr );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Retrieve the local firewall policy.
-	hr = fwMgr->get_LocalPolicy(&fwPolicy);
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_LocalPolicy()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Retrieve the firewall profile currently in effect.
-	hr = fwPolicy->get_CurrentProfile(fwProfile);
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_CurrentProfile()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-error:
-	if( fwPolicy != NULL )
-	{
-		fwPolicy->Release();
-	}
-
-	if( fwMgr != NULL )
-	{
-		fwMgr->Release();
-	}
-
-	return hr;
-}
-
-
-void WindowsFirewallCleanup( INetFwProfile *fwProfile )
-{
-	if( fwProfile != NULL )
-	{
-		fwProfile->Release();
-	}
-}
-
-
-
-HRESULT WindowsFirewallAddApp( INetFwProfile* fwProfile,
-								const wchar_t* fwProcessImageFileName,
-								const wchar_t* fwName )
-{
-	HRESULT hr = S_OK;
-	BSTR fwBstrName = NULL;
-	BSTR fwBstrProcessImageFileName = NULL;
-	INetFwAuthorizedApplication* fwApp = NULL;
-	INetFwAuthorizedApplications* fwApps = NULL;
-
-	// Retrieve the authorized application collection.
-	hr = fwProfile->get_AuthorizedApplications( &fwApps );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_AuthorizedApplications()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Create an instance of an authorized application.
-	hr = CoCreateInstance( CLSID_NetFwAuthorizedApplication, NULL,
-							CLSCTX_INPROC_SERVER,
-							IID_INetFwAuthorizedApplication, (void**)&fwApp );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Allocate a BSTR for the process image file name.
-	fwBstrProcessImageFileName = SysAllocString( fwProcessImageFileName );
-	if( fwBstrProcessImageFileName == NULL )
-	{
-		hr = E_OUTOFMEMORY;
-		ilog_failedf( "SysAllocString()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Set the process image file name.
-	hr = fwApp->put_ProcessImageFileName( fwBstrProcessImageFileName );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "put_ProcessImageFileName()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Allocate a BSTR for the application friendly name.
-	fwBstrName = SysAllocString( fwName );
-	if( SysStringLen( fwBstrName ) == 0 )
-	{
-		hr = E_OUTOFMEMORY;
-		ilog_failedf( "SysAllocString()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Set the application friendly name.
-	hr = fwApp->put_Name( fwBstrName );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "put_Name()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Add the application to the collection.
-	hr = fwApps->Add( fwApp );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "Add()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-error:
-	// Free the BSTRs.
-	SysFreeString( fwBstrName );
-	SysFreeString( fwBstrProcessImageFileName );
-
-	// Release the authorized application instance.
-	if( fwApp != NULL )
-	{
-		fwApp->Release();
-	}
-
-	// Release the authorized application collection.
-	if( fwApps != NULL )
-	{
-		fwApps->Release();
-	}
-
-	return hr;
-}
-
-
-
-HRESULT WindowsFirewallRemoveApp( INetFwProfile* fwProfile,
-								const wchar_t* fwProcessImageFileName )
-{
-	HRESULT hr = S_OK;
-	BSTR fwBstrProcessImageFileName = NULL;
-	INetFwAuthorizedApplications* fwApps = NULL;
-
-	// Retrieve the authorized application collection.
-	hr = fwProfile->get_AuthorizedApplications( &fwApps );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_AuthorizedApplications()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Allocate a BSTR for the process image file name.
-	fwBstrProcessImageFileName = SysAllocString( fwProcessImageFileName );
-	if( fwBstrProcessImageFileName == NULL )
-	{
-		hr = E_OUTOFMEMORY;
-		ilog_failedf( "SysAllocString()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Remove the application from the collection.
-	hr = fwApps->Remove( fwBstrProcessImageFileName );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "Remove()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-error:
-	// Free the BSTRs.
-	SysFreeString( fwBstrProcessImageFileName );
-
-	// Release the authorized application collection.
-	if( fwApps != NULL )
-	{
-		fwApps->Release();
-	}
-
-	return hr;
-}
-
-
-
-HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
+static HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
 {
 	HRESULT hr = S_OK;
 
@@ -348,7 +152,7 @@ HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
 }
 
 
-void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
+static void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
 {
 	if( fwPolicy2 != NULL )
 	{
@@ -358,9 +162,9 @@ void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
 
 
 
-HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
-								const wchar_t* fwApplicationPath,
-								const wchar_t* fwName )
+static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
+									   const wchar_t* fwApplicationPath,
+									   const wchar_t* fwName )
 {
 	HRESULT hr = S_OK;
 	BSTR fwBstrRuleName = NULL;
@@ -436,8 +240,8 @@ cleanup:
 
 
 
-HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
-									const wchar_t* fwName )
+static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
+										  const wchar_t* fwName )
 {
 	HRESULT hr = S_OK;
 	BSTR fwBstrRuleName = SysAllocString( fwName );
