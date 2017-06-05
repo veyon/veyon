@@ -67,6 +67,8 @@ MasterCore::~MasterCore()
 	delete m_userConfig;
 
 	delete m_featureManager;
+
+	delete m_builtinFeatures;
 }
 
 
