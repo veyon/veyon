@@ -1,5 +1,5 @@
 /*
- * ComputerControlClient.h - header file for the ComputerControlClient class
+ * VeyonServiceProtocol.h - header file for the VeyonServiceProtocol class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,47 +22,31 @@
  *
  */
 
-#ifndef COMPUTER_CONTROL_CLIENT_H
-#define COMPUTER_CONTROL_CLIENT_H
+#ifndef VEYON_SERVICE_PROTOCOL_H
+#define VEYON_SERVICE_PROTOCOL_H
 
-#include "VncClientProtocol.h"
-#include "VncProxyConnection.h"
-#include "VncServerClient.h"
-#include "VeyonServiceProtocol.h"
+#include "VncServerProtocol.h"
 
-class ComputerControlServer;
+class ServerAuthenticationManager;
+class ServerAccessControlManager;
 
-class ComputerControlClient : public VncProxyConnection
+class VeyonServiceProtocol : public VncServerProtocol
 {
 	Q_OBJECT
 public:
-	ComputerControlClient( ComputerControlServer* server,
-						   QTcpSocket* clientSocket,
-						   int vncServerPort,
-						   const QString& vncServerPassword,
-						   QObject* parent );
-	~ComputerControlClient() override;
-
-	bool receiveClientMessage() override;
+	VeyonServiceProtocol( QTcpSocket* socket,
+						  VncServerClient* client,
+						  ServerAuthenticationManager& serverAuthenticationManager,
+						  ServerAccessControlManager& serverAccessControlManager );
 
 protected:
-	VncClientProtocol& clientProtocol() override
-	{
-		return m_clientProtocol;
-	}
-
-	VncServerProtocol& serverProtocol() override
-	{
-		return m_serverProtocol;
-	}
+	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
+	void processAuthenticationMessage( VariantArrayMessage& message ) override;
+	void performAccessControl() override;
 
 private:
-	ComputerControlServer* m_server;
-
-	VncServerClient m_serverClient;
-
-	VeyonServiceProtocol m_serverProtocol;
-	VncClientProtocol m_clientProtocol;
+	ServerAuthenticationManager& m_serverAuthenticationManager;
+	ServerAccessControlManager& m_serverAccessControlManager;
 
 } ;
 

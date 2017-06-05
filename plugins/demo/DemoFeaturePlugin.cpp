@@ -58,7 +58,6 @@ DemoFeaturePlugin::DemoFeaturePlugin() :
 						 tr( "Demo client" ), QString(), QString() ),
 	m_features(),
 	m_demoAccessToken( CryptoCore::generateChallenge().toBase64() ),
-	m_demoServerToken( CryptoCore::generateChallenge().toBase64() ),
 	m_demoClientHosts(),
 	m_demoServer( nullptr ),
 	m_demoClient( nullptr )
@@ -87,7 +86,6 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
 		localServiceInterface.sendFeatureMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
-												  addArgument( VncServerToken, m_demoServerToken ).
 												  addArgument( DemoAccessToken, m_demoAccessToken ) );
 
 		for( auto computerControlInterface : computerControlInterfaces )
@@ -162,13 +160,19 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			featureWorkerManager.startWorker( m_demoServerFeature );
 		}
 
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) == false )
+		if( message.command() == StartDemoServer )
 		{
-			VeyonCore::authenticationCredentials().setToken( message.argument( VncServerToken ).toString() );
+			// add VNC server password to message
+			featureWorkerManager.
+					sendMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
+								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword() ).
+								 addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
 		}
-
-		// forward message to worker
-		featureWorkerManager.sendMessage( message );
+		else
+		{
+			// forward message to worker
+			featureWorkerManager.sendMessage( message );
+		}
 
 		return true;
 	}
@@ -227,7 +231,7 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 		case StartDemoServer:
 			if( m_demoServer == nullptr )
 			{
-				m_demoServer = new DemoServer( message.argument( VncServerToken ).toString(),
+				m_demoServer = new DemoServer( message.argument( VncServerPassword ).toString(),
 											   message.argument( DemoAccessToken ).toString(),
 											   this );
 			}

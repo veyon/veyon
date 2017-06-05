@@ -29,12 +29,10 @@
 
 class QTcpSocket;
 
-class ServerAuthenticationManager;
-class ServerAccessControlManager;
 class VariantArrayMessage;
 class VncServerClient;
 
-class VncServerProtocol : public QObject
+class VEYON_CORE_EXPORT VncServerProtocol : public QObject
 {
 	Q_OBJECT
 public:
@@ -52,9 +50,7 @@ public:
 	} State;
 
 	VncServerProtocol( QTcpSocket* socket,
-					   VncServerClient* client,
-					   ServerAuthenticationManager& serverAuthenticationManager,
-					   ServerAccessControlManager& serverAccessControlManager );
+					   VncServerClient* client );
 	~VncServerProtocol();
 
 	State state() const;
@@ -65,6 +61,21 @@ public:
 	void setServerInitMessage( const QByteArray& serverInitMessage )
 	{
 		m_serverInitMessage = serverInitMessage;
+	}
+
+protected:
+	virtual QVector<RfbVeyonAuth::Type> supportedAuthTypes() const = 0;
+	virtual void processAuthenticationMessage( VariantArrayMessage& message ) = 0;
+	virtual void performAccessControl() = 0;
+
+	QTcpSocket* socket()
+	{
+		return m_socket;
+	}
+
+	VncServerClient* client()
+	{
+		return m_client;
 	}
 
 private:
@@ -85,8 +96,6 @@ private:
 private:
 	QTcpSocket* m_socket;
 	VncServerClient* m_client;
-	ServerAuthenticationManager& m_serverAuthenticationManager;
-	ServerAccessControlManager& m_serverAccessControlManager;
 
 	QByteArray m_serverInitMessage;
 

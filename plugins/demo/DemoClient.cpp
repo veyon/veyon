@@ -31,8 +31,6 @@
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "LockWidget.h"
-#include "RfbLZORLE.h"
-#include "RfbVeyonCursor.h"
 #include "VncView.h"
 
 
@@ -58,10 +56,6 @@ DemoClient::DemoClient( const QString& host, bool fullscreen ) :
 		m_toplevel->setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
 		m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 	}
-
-	// initialize extended protocol handlers
-	RfbLZORLE();
-	RfbVeyonCursor();
 
 	m_vncView = new VncView( host, VeyonCore::config().demoServerPort(), m_toplevel, VncView::DemoMode );
 

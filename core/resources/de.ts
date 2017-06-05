@@ -1759,14 +1759,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Konfiguration nicht schreibbar</translation>
     </message>
     <message>
-        <source>Classroom</source>
-        <translation>Klassenraum</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Klicken Sie auf diesen Knopf, um ein Menü zu öffnen, in dem sie den aktiven Klassenraum wählen können.</translation>
-    </message>
-    <message>
         <source>Remote control</source>
         <translation>Fernsteuern</translation>
     </message>
@@ -1863,10 +1855,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
     </message>
     <message>
-        <source>Click this button to switch between classrooms.</source>
-        <translation>Clicken Sie auf diesen Button, um zwischen Klassenräumen zu wechseln.</translation>
-    </message>
-    <message>
         <source>%1 Master Control</source>
         <translation>%1 Mastersteuerung</translation>
     </message>
@@ -1923,6 +1911,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Screenshots</source>
         <translation>Bildschirmfotos</translation>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation>Funktion aktiv</translation>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
     </message>
 </context>
 <context>
