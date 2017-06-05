@@ -57,6 +57,13 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 
 FeatureWorkerManager::~FeatureWorkerManager()
 {
+	m_tcpServer.close();
+
+	// properly shutdown all worker processes
+	while( m_workers.isEmpty() == false )
+	{
+		stopWorker( m_workers.firstKey() );
+	}
 }
 
 
