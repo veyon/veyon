@@ -439,17 +439,11 @@ void VeyonVncConnection::setPort( int port )
 
 
 
-const QImage VeyonVncConnection::image( int x, int y, int w, int h ) const
+QImage VeyonVncConnection::image() const
 {
 	QReadLocker locker( &m_imgLock );
-
-	if( w == 0 || h == 0 ) // full image requested
-	{
-		return m_image;
-	}
-	return m_image.copy( x, y, w, h );
+	return m_image;
 }
-
 
 
 

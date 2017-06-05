@@ -79,7 +79,7 @@ public:
 	explicit VeyonVncConnection( QObject *parent = nullptr );
 	~VeyonVncConnection() override;
 
-	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;
+	QImage image() const;
 	void stop( bool deleteAfterFinished = false );
 	void reset( const QString &host );
 	void setHost( const QString &host );
