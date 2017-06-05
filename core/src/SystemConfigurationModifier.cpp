@@ -32,6 +32,7 @@
 #include <netfw.h>
 #endif
 
+#include "FeatureWorkerManager.h"
 #include "SystemConfigurationModifier.h"
 #include "ServiceControl.h"
 #include "Logger.h"
@@ -341,8 +342,8 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		return false;
 	}
 
-	auto serviceFilePath = ServiceControl::serviceFilePath().replace( '/', '\\' );
-	auto workerFilePath = serviceFilePath.replace( "veyon-service", "veyon-worker" );
+	const auto serviceFilePath = ServiceControl::serviceFilePath();
+	const auto workerFilePath = FeatureWorkerManager::workerProcessFilePath();
 
 	result &= configureFirewallException( fwPolicy2, (const wchar_t *) serviceFilePath.utf16(), L"Veyon Service", enabled );
 	result &= configureFirewallException( fwPolicy2, (const wchar_t *) workerFilePath.utf16(), L"Veyon Worker", enabled );
