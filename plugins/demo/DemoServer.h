@@ -26,150 +26,74 @@
 #ifndef DEMO_SERVER_H
 #define DEMO_SERVER_H
 
-#include <QPair>
-#include <QPixmap>
-#include <QReadWriteLock>
-#include <QTcpServer>
+#include <QElapsedTimer>
+#include <QTimer>
 
-#include "VeyonVncConnection.h"
+#include "VncClientProtocol.h"
 
+class QTcpServer;
 
-// there's one instance of a DemoServer on the Veyon master
-class DemoServer : public QTcpServer
+class DemoServer : public QObject
 {
 	Q_OBJECT
 public:
-	DemoServer( const QString& vncServerToken, const QString& demoAccessToken, QObject *parent );
-	~DemoServer() override;
+	typedef QVector<QByteArray> MessageList;
 
-	QPoint cursorPos()
-	{
-		m_cursorLock.lockForRead();
-		QPoint p = m_cursorPos;
-		m_cursorLock.unlock();
-		return p;
-	}
-
-	QImage initialCursorShape()
-	{
-		m_cursorLock.lockForRead();
-		QImage i = m_initialCursorShape;
-		m_cursorLock.unlock();
-		return i;
-	}
-
-
-private slots:
-	// checks whether cursor was moved and sets according flags and
-	// variables used by moveCursor() - connection has to be done in
-	// GUI-thread as we're calling QCursor::pos() which at least under X11
-	// must not be called from another thread than the GUI-thread
-	void checkForCursorMovement();
-	void updateInitialCursorShape( const QImage &img, int x, int y );
-
-
-private:
-	void incomingConnection( qintptr sock ) override;
-
-	QString m_demoAccessToken;
-
-	VeyonVncConnection m_vncConn;
-	QReadWriteLock m_cursorLock;
-	QImage m_initialCursorShape;
-	QPoint m_cursorPos;
-
-} ;
-
-
-
-// the demo-server creates an instance of this class for each client, i.e.
-// each client is connected to a different server-thread for a maximum
-// performance
-class DemoServerClient : public QObject
-{
-	Q_OBJECT
-public:
-	DemoServerClient( const QString& demoAccessToken, qintptr sock, const VeyonVncConnection *vncConn,
-							DemoServer *parent );
-	~DemoServerClient() override;
-
-public slots:
-	void start();
-
-private slots:
-	// connected to imageUpdated(...)-signal of demo-server's
-	// VNC connection - this way we can record changes in screen, later we
-	// extract single, non-overlapping rectangles out of changed region for
-	// updating as less as possible of screen
-	void updateRect( int x, int y, int w, int h );
-
-	// called whenever VeyonVncConnection::cursorShapeUpdated() is emitted
-	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
-
-	// called regularly for sending pointer-movement-events detected by
-	// checkForCursorMovement() to clients - connection has to be done
-	// in DemoServerClient-thread-context as we're writing to socket
-	void moveCursor();
-
-	// connected to readyRead() signal of our client-socket and called as
-	// soon as the clients sends something (e.g. an update-request)
-	void processClient();
-
-	bool processProtocol();
-
-	bool processMessage();
-
-	// actually sends framebuffer update - if there's nothing to send but
-	// an update response pending, it will start a singleshot timer
-	void sendUpdates();
-
-private:
 	enum {
-		MaxRects = 100
+		FramebufferUpdateInterval = 100,
+		FullFramebufferUpdateInterval = FramebufferUpdateInterval*100,
+		UpdateQueueMemorySoftLimit = 1024*1024*128,
+		UpdateQueueMemoryHardLimit = UpdateQueueMemorySoftLimit * 2
 	};
 
-	typedef enum ProtocolStates
+	DemoServer( const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent );
+	~DemoServer() override;
+
+	const QByteArray& serverInitMessage() const
 	{
-		ProtocolInvalid,
-		ProtocolVersion,
-		ProtocolSecurityType,
-		ProtocolAuthTypes,
-		ProtocolToken,
-		ProtocolClientInitMessage,
-		ProtocolRunning,
-	} ProtocolState;
+		return m_vncClientProtocol.serverInitMessage();
+	}
 
-	qint64 readExact( char* buffer, qint64 size );
+	int keyFrame() const
+	{
+		return m_keyFrame;
+	}
 
-	ProtocolState m_protocolState;
+	const MessageList& framebufferUpdateMessages() const
+	{
+		return m_framebufferUpdateMessages;
+	}
 
-	QString m_demoAccessToken;
+private slots:
+	void acceptPendingConnections();
+	void reconnectToVncServer();
+	void readFromVncServer();
+	void requestFramebufferUpdate();
 
-	DemoServer * m_demoServer;
-	QMutex m_dataMutex;
-	bool m_updateRequested;
-	QList<QRect> m_changedRects;
-	bool m_fullUpdatePending;
-	QPixmap m_cursorShape;
-	int m_cursorHotX;
-	int m_cursorHotY;
-	QPoint m_lastCursorPos;
-	volatile bool m_cursorShapeChanged;
+private:
+	bool receiveVncServerMessage();
+	void enqueueFramebufferUpdateMessage( const QByteArray& message );
 
-	qintptr m_socketDescriptor;
-	QTcpSocket *m_socket;
-	const VeyonVncConnection *m_vncConn;
-	bool m_otherEndianess;
-	char *m_lzoWorkMem;
-	QRgb *m_rawBuf;
+	qint64 framebufferUpdateMessageQueueSize() const;
 
-	uint8_t *m_rleBuf;
-	size_t m_currentRleBufSize;
+	void start();
+	bool setVncServerPixelFormat();
+	bool setVncServerEncodings();
 
-	uint8_t *m_lzoOutBuf;
-	size_t m_currentLzoOutBufSize;
+	const QString m_demoAccessToken;
+
+	QTcpServer* m_tcpServer;
+	QTcpSocket* m_vncServerSocket;
+	VncClientProtocol m_vncClientProtocol;
+
+	QTimer m_framebufferUpdateTimer;
+	QElapsedTimer m_lastFullFramebufferUpdate;
+	QElapsedTimer m_keyFrameTimer;
+	bool m_requestFullFramebufferUpdate;
+
+	int m_keyFrame;
+	MessageList m_framebufferUpdateMessages;
 
 } ;
-
 
 #endif
