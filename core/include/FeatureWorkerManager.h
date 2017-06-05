@@ -42,6 +42,8 @@ public:
 	FeatureWorkerManager( FeatureManager& featureManager );
 	~FeatureWorkerManager() override;
 
+	static QString workerProcessFilePath();
+
 	Q_INVOKABLE void startWorker( const Feature& feature );
 	Q_INVOKABLE void stopWorker( const Feature& feature );
 
@@ -57,8 +59,6 @@ private slots:
 	void sendPendingMessages();
 
 private:
-	static QString workerProcessFilePath();
-
 	FeatureManager& m_featureManager;
 	QTcpServer m_tcpServer;
 

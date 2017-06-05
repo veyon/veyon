@@ -32,6 +32,7 @@
 #include <netfw.h>
 #endif
 
+#include "FeatureWorkerManager.h"
 #include "SystemConfigurationModifier.h"
 #include "ServiceControl.h"
 #include "Logger.h"
@@ -135,204 +136,8 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 
 
 #ifdef VEYON_BUILD_WIN32
-HRESULT WindowsFirewallInitialize( INetFwProfile **fwProfile )
-{
-	HRESULT hr = S_OK;
-	INetFwMgr* fwMgr = NULL;
-	INetFwPolicy* fwPolicy = NULL;
 
-	*fwProfile = NULL;
-
-	// Create an instance of the firewall settings manager.
-	hr = CoCreateInstance( CLSID_NetFwMgr, NULL, CLSCTX_INPROC_SERVER,
-							IID_INetFwMgr, (void**)&fwMgr );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Retrieve the local firewall policy.
-	hr = fwMgr->get_LocalPolicy(&fwPolicy);
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_LocalPolicy()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Retrieve the firewall profile currently in effect.
-	hr = fwPolicy->get_CurrentProfile(fwProfile);
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_CurrentProfile()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-error:
-	if( fwPolicy != NULL )
-	{
-		fwPolicy->Release();
-	}
-
-	if( fwMgr != NULL )
-	{
-		fwMgr->Release();
-	}
-
-	return hr;
-}
-
-
-void WindowsFirewallCleanup( INetFwProfile *fwProfile )
-{
-	if( fwProfile != NULL )
-	{
-		fwProfile->Release();
-	}
-}
-
-
-
-HRESULT WindowsFirewallAddApp( INetFwProfile* fwProfile,
-								const wchar_t* fwProcessImageFileName,
-								const wchar_t* fwName )
-{
-	HRESULT hr = S_OK;
-	BSTR fwBstrName = NULL;
-	BSTR fwBstrProcessImageFileName = NULL;
-	INetFwAuthorizedApplication* fwApp = NULL;
-	INetFwAuthorizedApplications* fwApps = NULL;
-
-	// Retrieve the authorized application collection.
-	hr = fwProfile->get_AuthorizedApplications( &fwApps );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_AuthorizedApplications()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Create an instance of an authorized application.
-	hr = CoCreateInstance( CLSID_NetFwAuthorizedApplication, NULL,
-							CLSCTX_INPROC_SERVER,
-							IID_INetFwAuthorizedApplication, (void**)&fwApp );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Allocate a BSTR for the process image file name.
-	fwBstrProcessImageFileName = SysAllocString( fwProcessImageFileName );
-	if( fwBstrProcessImageFileName == NULL )
-	{
-		hr = E_OUTOFMEMORY;
-		ilog_failedf( "SysAllocString()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Set the process image file name.
-	hr = fwApp->put_ProcessImageFileName( fwBstrProcessImageFileName );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "put_ProcessImageFileName()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Allocate a BSTR for the application friendly name.
-	fwBstrName = SysAllocString( fwName );
-	if( SysStringLen( fwBstrName ) == 0 )
-	{
-		hr = E_OUTOFMEMORY;
-		ilog_failedf( "SysAllocString()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Set the application friendly name.
-	hr = fwApp->put_Name( fwBstrName );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "put_Name()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Add the application to the collection.
-	hr = fwApps->Add( fwApp );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "Add()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-error:
-	// Free the BSTRs.
-	SysFreeString( fwBstrName );
-	SysFreeString( fwBstrProcessImageFileName );
-
-	// Release the authorized application instance.
-	if( fwApp != NULL )
-	{
-		fwApp->Release();
-	}
-
-	// Release the authorized application collection.
-	if( fwApps != NULL )
-	{
-		fwApps->Release();
-	}
-
-	return hr;
-}
-
-
-
-HRESULT WindowsFirewallRemoveApp( INetFwProfile* fwProfile,
-								const wchar_t* fwProcessImageFileName )
-{
-	HRESULT hr = S_OK;
-	BSTR fwBstrProcessImageFileName = NULL;
-	INetFwAuthorizedApplications* fwApps = NULL;
-
-	// Retrieve the authorized application collection.
-	hr = fwProfile->get_AuthorizedApplications( &fwApps );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "get_AuthorizedApplications()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Allocate a BSTR for the process image file name.
-	fwBstrProcessImageFileName = SysAllocString( fwProcessImageFileName );
-	if( fwBstrProcessImageFileName == NULL )
-	{
-		hr = E_OUTOFMEMORY;
-		ilog_failedf( "SysAllocString()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-	// Remove the application from the collection.
-	hr = fwApps->Remove( fwBstrProcessImageFileName );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "Remove()", "0x%08lx\n", hr );
-		goto error;
-	}
-
-error:
-	// Free the BSTRs.
-	SysFreeString( fwBstrProcessImageFileName );
-
-	// Release the authorized application collection.
-	if( fwApps != NULL )
-	{
-		fwApps->Release();
-	}
-
-	return hr;
-}
-
-
-
-HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
+static HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
 {
 	HRESULT hr = S_OK;
 
@@ -348,7 +153,7 @@ HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
 }
 
 
-void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
+static void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
 {
 	if( fwPolicy2 != NULL )
 	{
@@ -358,9 +163,9 @@ void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
 
 
 
-HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
-								const wchar_t* fwApplicationPath,
-								const wchar_t* fwName )
+static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
+									   const wchar_t* fwApplicationPath,
+									   const wchar_t* fwName )
 {
 	HRESULT hr = S_OK;
 	BSTR fwBstrRuleName = NULL;
@@ -436,8 +241,8 @@ cleanup:
 
 
 
-HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
-									const wchar_t* fwName )
+static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
+										  const wchar_t* fwName )
 {
 	HRESULT hr = S_OK;
 	BSTR fwBstrRuleName = SysAllocString( fwName );
@@ -472,6 +277,33 @@ cleanup:
 	return hr;
 }
 
+static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t* fwApplicationPath, const wchar_t* fwName, bool enabled )
+{
+	// always remove firewall exception first
+	HRESULT hr = WindowsFirewallRemoveApp2( fwPolicy2, fwName );
+
+	if( enabled )
+	{
+		// add service to the list of authorized applications
+		hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
+		if( FAILED( hr ) )
+		{
+			// failed because firewall service not running / disabled?
+			if( (DWORD) hr == 0x800706D9 )
+			{
+				// then assume this is intended, log a warning and
+				// pretend everything went well
+				qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
+				return true;
+			}
+
+			ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
+			return false;
+		}
+	}
+
+	return true;
+}
 
 #endif
 
@@ -480,6 +312,8 @@ cleanup:
 
 bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 {
+	bool result = true;
+
 #ifdef VEYON_BUILD_WIN32
 	HRESULT hr = S_OK;
 
@@ -499,95 +333,22 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		}
 	}
 
-	static const wchar_t *fwRuleName = L"Veyon Service";
-
-	const QString p = ServiceControl::serviceFilePath().replace( '/', '\\' );
-
-	wchar_t icaPath[MAX_PATH];
-	p.toWCharArray( icaPath );
-	icaPath[p.size()] = 0;
-
-	OSVERSIONINFO ovi;
-	ovi.dwOSVersionInfoSize = sizeof( OSVERSIONINFO );
-	GetVersionEx( &ovi );
-
-	// Windows >= Vista ?
-	if( ovi.dwMajorVersion >= 6 )
+	// retrieve current firewall profile
+	INetFwPolicy2 *fwPolicy2 = nullptr;
+	hr = WindowsFirewallInitialize2( &fwPolicy2 );
+	if( FAILED( hr ) )
 	{
-		// code for advanced firewall API
-
-		// retrieve current firewall profile
-		INetFwPolicy2 *fwPolicy2 = NULL;
-		hr = WindowsFirewallInitialize2( &fwPolicy2 );
-		if( FAILED( hr ) )
-		{
-			ilog_failedf( "WindowsFirewallInitialize2()", "0x%08lx\n", hr );
-			return false;
-		}
-
-		// always remove firewall exception first
-		hr = WindowsFirewallRemoveApp2( fwPolicy2, fwRuleName );
-
-		if( enabled )
-		{
-			// add ICA to the list of authorized applications
-			hr = WindowsFirewallAddApp2( fwPolicy2, icaPath, fwRuleName );
-			if( FAILED( hr ) )
-			{
-				// failed because firewall service not running / disabled?
-				if( (DWORD) hr == 0x800706D9 )
-				{
-					// then assume this is intended, log a warning and
-					// pretend everything went well
-					qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
-					return true;
-				}
-
-				ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
-				return false;
-			}
-		}
-
-		WindowsFirewallCleanup2( fwPolicy2 );
+		ilog_failedf( "WindowsFirewallInitialize2()", "0x%08lx\n", hr );
+		return false;
 	}
-	else
-	{
-		// code for old firewall API
 
-		// retrieve current firewall profile
-		INetFwProfile *fwProfile = NULL;
-		hr = WindowsFirewallInitialize( &fwProfile );
-		if( FAILED( hr ) )
-		{
-			// failed because firewall service not running / disabled?
-			if( (DWORD) hr == 0x800706D9 )
-			{
-				// then assume this is intended, log a warning and
-				// pretend everything went well
-				qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
-				return true;
-			}
+	const auto serviceFilePath = ServiceControl::serviceFilePath();
+	const auto workerFilePath = FeatureWorkerManager::workerProcessFilePath();
 
-			ilog_failedf( "WindowsFirewallInitialize()", "0x%08lx\n", hr );
-			return false;
-		}
+	result &= configureFirewallException( fwPolicy2, (const wchar_t *) serviceFilePath.utf16(), L"Veyon Service", enabled );
+	result &= configureFirewallException( fwPolicy2, (const wchar_t *) workerFilePath.utf16(), L"Veyon Worker", enabled );
 
-		// always remove firewall exception first
-		hr = WindowsFirewallRemoveApp( fwProfile, icaPath );
-
-		if( enabled )
-		{
-			// add ICA to the list of authorized applications
-			hr = WindowsFirewallAddApp( fwProfile, icaPath, fwRuleName );
-			if( FAILED( hr ) )
-			{
-				ilog_failedf( "WindowsFirewallAddApp()", "0x%08lx\n", hr );
-				return false;
-			}
-		}
-
-		WindowsFirewallCleanup( fwProfile );
-	}
+	WindowsFirewallCleanup2( fwPolicy2 );
 
 	// Uninitialize COM.
 	if( SUCCEEDED( comInit ) )
@@ -596,7 +357,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 	}
 #endif
 
-	return true;
+	return result;
 }
 
 

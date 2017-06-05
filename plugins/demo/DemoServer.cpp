@@ -23,757 +23,250 @@
  *
  */
 
-#include "VeyonCore.h"
+#include <QTcpServer>
+#include <QTcpSocket>
 
-#include <QtCore/QDateTime>
-#include <QtNetwork/QTcpSocket>
-#include <QtCore/QTimer>
-#include <QtGui/QCursor>
-
-#include "AuthenticationCredentials.h"
 #include "DemoServer.h"
+#include "DemoServerConnection.h"
 #include "VeyonConfiguration.h"
-#include "VeyonVncConnection.h"
-#include "RfbLZORLE.h"
-#include "RfbVeyonCursor.h"
-#include "SocketDevice.h"
-#include "VariantStream.h"
-#include "VariantArrayMessage.h"
-
-#include <lzo/lzo1x.h>
-
-extern "C"
-{
-#include "rfb/rfb.h"
-#include "rfb/rfbclient.h"
-}
-
-const int CURSOR_UPDATE_TIME = 35;
 
 
-#ifdef LIBVNCSERVER_WORDS_BIGENDIAN
-char rfbEndianTest = (1==0);
-#else
-char rfbEndianTest = (1==1);
-#endif
-
-
-DemoServer::DemoServer( const QString& vncServerToken, const QString& demoAccessToken, QObject *parent ) :
-	QTcpServer( parent ),
+DemoServer::DemoServer( const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent ) :
+	QObject( parent ),
 	m_demoAccessToken( demoAccessToken ),
-	m_vncConn()
+	m_tcpServer( new QTcpServer( this ) ),
+	m_vncServerSocket( new QTcpSocket( this ) ),
+	m_vncClientProtocol( m_vncServerSocket, vncServerPassword ),
+	m_framebufferUpdateTimer( this ),
+	m_lastFullFramebufferUpdate(),
+	m_requestFullFramebufferUpdate( false ),
+	m_keyFrame( 0 )
 {
-	if( listen( QHostAddress::Any, VeyonCore::config().demoServerPort() ) == false )
+	connect( m_tcpServer, &QTcpServer::newConnection, this, &DemoServer::acceptPendingConnections );
+
+	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer );
+	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer );
+
+	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
+
+	if( m_tcpServer->listen( QHostAddress::Any, VeyonCore::config().demoServerPort() ) == false )
 	{
-		qCritical( "DemoServer::DemoServer(): could not start demo server!" );
+		qCritical( "DemoServer: could not listen to demo server port!" );
 		return;
 	}
 
-	VeyonCore::authenticationCredentials().setToken( vncServerToken );
-	m_vncConn.setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	m_vncConn.setPort( VeyonCore::config().computerControlServerPort() );
-	m_vncConn.setVeyonAuthType( RfbVeyonAuth::Token );
-	m_vncConn.setQuality( VeyonVncConnection::DemoServerQuality );
-	m_vncConn.setFramebufferUpdateInterval( 100 );
-	m_vncConn.start();
+	m_framebufferUpdateTimer.start( FramebufferUpdateInterval );
 
-	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
-			 this, SLOT( updateInitialCursorShape( const QImage &, int, int ) ) );
-	checkForCursorMovement();
+	reconnectToVncServer();
 }
-
 
 
 
 DemoServer::~DemoServer()
 {
-	QList<DemoServerClient *> l;
-	while( !( l = findChildren<DemoServerClient *>() ).isEmpty() )
+	m_vncServerSocket->disconnect( this );
+	m_tcpServer->disconnect( this );
+
+	QList<DemoServerConnection *> l;
+	while( !( l = findChildren<DemoServerConnection *>() ).isEmpty() )
 	{
 		delete l.front();
 	}
+
+	delete m_vncServerSocket;
+	delete m_tcpServer;
 }
 
 
 
-
-void DemoServer::checkForCursorMovement()
+void DemoServer::acceptPendingConnections()
 {
-	return;	// TODO
-	m_cursorLock.lockForWrite();
-	if( m_cursorPos != QCursor::pos() )
+	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
 	{
-		m_cursorPos = QCursor::pos();
-	}
-	m_cursorLock.unlock();
-	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
-						SLOT( checkForCursorMovement() ) );
-}
-
-
-
-
-void DemoServer::updateInitialCursorShape( const QImage &img, int x, int y )
-{
-	return;	// TODO
-	m_cursorLock.lockForWrite();
-	m_initialCursorShape = img;
-	m_cursorLock.unlock();
-}
-
-
-
-
-void DemoServer::incomingConnection( qintptr sock )
-{
-	auto clientThead = new QThread( this );
-	auto client = new DemoServerClient( m_demoAccessToken, sock, &m_vncConn, this );
-	client->moveToThread( clientThead );
-
-	connect( clientThead, &QThread::started, client, &DemoServerClient::start );
-	connect( clientThead, &QThread::finished, client, &DemoServerClient::deleteLater );
-
-	clientThead->start();
-}
-
-
-
-
-#define RAW_MAX_PIXELS 1024
-
-DemoServerClient::DemoServerClient( const QString& demoAccessToken,
-									qintptr sock,
-									const VeyonVncConnection *vncConn,
-									DemoServer *parent ) :
-	QObject(),
-	m_protocolState( ProtocolInvalid ),
-	m_demoAccessToken( demoAccessToken ),
-	m_demoServer( parent ),
-	m_dataMutex( QMutex::Recursive ),
-	m_updateRequested( false ),
-	m_changedRects(),
-	m_fullUpdatePending( false ),
-	m_cursorHotX( 0 ),
-	m_cursorHotY( 0 ),
-	m_cursorShapeChanged( false ),
-	m_socketDescriptor( sock ),
-	m_socket( nullptr ),
-	m_vncConn( vncConn ),
-	m_otherEndianess( false ),
-	m_lzoWorkMem( new char[sizeof( lzo_align_t ) *
-  ( ( ( LZO1X_1_MEM_COMPRESS ) +
-  ( sizeof( lzo_align_t ) - 1 ) ) /
-  sizeof( lzo_align_t ) ) ] ),
-	m_rawBuf( new QRgb[RAW_MAX_PIXELS] ),
-	m_rleBuf( nullptr ),
-	m_currentRleBufSize( 0 ),
-	m_lzoOutBuf( nullptr ),
-	m_currentLzoOutBufSize( 0 )
-{
-}
-
-
-
-
-DemoServerClient::~DemoServerClient()
-{
-	delete m_socket;
-
-	if( m_lzoOutBuf )
-	{
-		delete[] m_lzoOutBuf;
-	}
-	if( m_rleBuf )
-	{
-		delete[] m_rleBuf;
-	}
-	delete[] m_lzoWorkMem;
-	delete[] m_rawBuf;
-}
-
-
-
-void DemoServerClient::start()
-{
-	if( m_socket )
-	{
-		qCritical( "DemoServerClient already running!" );
 		return;
 	}
 
-	m_socket = new QTcpSocket( this );
-
-	if( !m_socket->setSocketDescriptor( m_socketDescriptor ) )
+	while( m_tcpServer->hasPendingConnections() )
 	{
-		qCritical( "DemoServerClient::run(): could not set socket descriptor - aborting" );
-		deleteLater();
-		return;
+		new DemoServerConnection( m_demoAccessToken, m_tcpServer->nextPendingConnection(), this );
 	}
-
-	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerClient::processClient );
-	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerClient::deleteLater );
-
-	rfbProtocolVersionMsg pv;
-	sprintf( pv, rfbProtocolVersionFormat, rfbProtocolMajorVersion,
-			 rfbProtocolMinorVersion );
-
-	m_socket->write( (const char *) pv, sz_rfbProtocolVersionMsg );
-
-	m_protocolState = ProtocolVersion;
 }
 
 
 
-
-void DemoServerClient::updateRect( int x, int y, int w, int h )
+void DemoServer::reconnectToVncServer()
 {
-	m_dataMutex.lock();
-	if( m_fullUpdatePending == false )
+	m_vncClientProtocol.start();
+
+	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, VeyonCore::config().vncServerPort() );
+}
+
+
+
+void DemoServer::readFromVncServer()
+{
+	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
 	{
-		if( m_changedRects.size() < MaxRects )
+		while( m_vncClientProtocol.read() )
 		{
-			m_changedRects += QRect( x, y, w, h );
 		}
-		else
+
+		if( m_vncClientProtocol.state() == VncClientProtocol::Running )
 		{
-			m_fullUpdatePending = true;
-			m_changedRects.clear();
+			start();
 		}
-	}
-	m_dataMutex.unlock();
-}
-
-
-
-
-void DemoServerClient::updateCursorShape( const QPixmap& cursorShape, int x, int y )
-{
-	return;		// TODO
-	m_dataMutex.lock();
-	m_cursorShape = cursorShape;
-	m_cursorHotX = x;
-	m_cursorHotY = y;
-	m_cursorShapeChanged = true;
-	m_dataMutex.unlock();
-}
-
-
-
-
-void DemoServerClient::moveCursor()
-{
-	return;		// TODO
-	QPoint p = m_demoServer->cursorPos();
-	if( p != m_lastCursorPos )
-	{
-		m_dataMutex.lock();
-		m_lastCursorPos = p;
-		const rfbFramebufferUpdateMsg m =
-		{
-			rfbFramebufferUpdate,
-			0,
-			qToBigEndian<uint16_t>( 1 )
-		} ;
-
-		m_socket->write( (const char *) &m, sizeof( m ) );
-
-		const rfbRectangle rr =
-		{
-			qToBigEndian<uint16_t>( m_lastCursorPos.x() ),
-			qToBigEndian<uint16_t>( m_lastCursorPos.y() ),
-			qToBigEndian<uint16_t>( 0 ),
-			qToBigEndian<uint16_t>( 0 )
-		} ;
-
-		const rfbFramebufferUpdateRectHeader rh =
-		{
-			rr,
-			qToBigEndian<uint32_t>( rfbEncodingPointerPos )
-		} ;
-
-		m_socket->write( (const char *) &rh, sizeof( rh ) );
-		m_socket->flush();
-		m_dataMutex.unlock();
-	}
-}
-
-
-
-
-void DemoServerClient::sendUpdates()
-{
-	QMutexLocker ml( &m_dataMutex );
-
-	if( m_fullUpdatePending == false && m_changedRects.isEmpty() )// && m_cursorShapeChanged == false )
-	{
-		if( m_updateRequested )
-		{
-			QTimer::singleShot( 50, this, &DemoServerClient::sendUpdates );
-		}
-		return;
-	}
-
-	QVector<QRect> rects;
-
-	if( m_fullUpdatePending )
-	{
-		rects += QRect( QPoint( 0, 0 ), m_vncConn->framebufferSize() );
 	}
 	else
 	{
-		// extract single (non-overlapping) rects out of changed region
-		// this way we avoid lot of simliar/overlapping rectangles,
-		// e.g. if we didn't get an update-request for a quite long time
-		// and there were a lot of updates - at the end we don't send
-		// more than the whole screen one time
-		QRegion region;
-		for( const auto& rect : qAsConst( m_changedRects ) )
+		while( receiveVncServerMessage() )
 		{
-			region += rect;
 		}
-		rects = region.rects();
-	}
-
-	// no we gonna post all changed rects!
-	const rfbFramebufferUpdateMsg m =
-	{
-		rfbFramebufferUpdate,
-		0,
-		qToBigEndian<uint16_t>( rects.size() +
-		( m_cursorShapeChanged ? 1 : 0 ) )
-	} ;
-
-	m_socket->write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
-
-	// process each rect
-	for( const auto& rect : qAsConst( rects ) )
-	{
-		const int rx = rect.x();
-		const int ry = rect.y();
-		const int rw = rect.width();
-		const int rh = rect.height();
-		const rfbRectangle rr =
-		{
-			qToBigEndian<uint16_t>( rx ),
-			qToBigEndian<uint16_t>( ry ),
-			qToBigEndian<uint16_t>( rw ),
-			qToBigEndian<uint16_t>( rh )
-		} ;
-
-		const rfbFramebufferUpdateRectHeader rhdr =
-		{
-			rr,
-			qToBigEndian<uint32_t>( rfbEncodingLZORLE )
-		} ;
-
-		m_socket->write( (const char *) &rhdr, sizeof( rhdr ) );
-
-		const QImage & i = m_vncConn->image();
-		RfbLZORLE::Header hdr = { 0, 0, 0 } ;
-
-		// we only compress if it's enough data, otherwise
-		// there's too much overhead
-		if( rw * rh > RAW_MAX_PIXELS )
-		{
-
-			hdr.compressed = 1;
-			QRgb last_pix = *( (QRgb *) i.constScanLine( ry ) + rx );
-
-			// re-allocate RLE buffer if current one is too small
-			const size_t rleBufSize = rw * rh * sizeof( QRgb )+16;
-			if( rleBufSize > m_currentRleBufSize )
-			{
-				if( m_rleBuf )
-				{
-					delete[] m_rleBuf;
-				}
-				m_rleBuf = new uint8_t[rleBufSize];
-				m_currentRleBufSize = rleBufSize;
-			}
-
-			uint8_t rle_cnt = 0;
-			uint8_t rle_sub = 1;
-			uint8_t *out = m_rleBuf;
-			uint8_t *out_ptr = out;
-			for( int y = ry; y < ry+rh; ++y )
-			{
-				const QRgb * data = ( (const QRgb *) i.constScanLine( y ) ) + rx;
-				for( int x = 0; x < rw; ++x )
-				{
-					if( data[x] != last_pix || rle_cnt > 254 )
-					{
-						*( (QRgb *) out_ptr ) = Swap24IfLE( last_pix );
-						*( out_ptr + 3 ) = rle_cnt - rle_sub;
-						out_ptr += 4;
-						last_pix = data[x];
-						rle_cnt = rle_sub = 0;
-					}
-					else
-					{
-						++rle_cnt;
-					}
-				}
-			}
-
-			// flush RLE-loop
-			*( (QRgb *) out_ptr ) = Swap24IfLE( last_pix );
-			*( out_ptr + 3 ) = rle_cnt;
-			out_ptr += 4;
-			hdr.bytesRLE = out_ptr - out;
-
-			lzo_uint bytes_lzo = hdr.bytesRLE + hdr.bytesRLE / 16 + 67;
-
-			// re-allocate LZO output buffer if current one is too small
-			if( bytes_lzo > m_currentLzoOutBufSize )
-			{
-				if( m_lzoOutBuf )
-				{
-					delete[] m_lzoOutBuf;
-				}
-				m_lzoOutBuf = new uint8_t[bytes_lzo];
-				m_currentLzoOutBufSize = bytes_lzo;
-			}
-
-			uint8_t *comp = m_lzoOutBuf;
-			lzo1x_1_compress( (const unsigned char *) out, (lzo_uint) hdr.bytesRLE,
-							  (unsigned char *) comp,
-							  &bytes_lzo, m_lzoWorkMem );
-			hdr.bytesRLE = qToBigEndian<uint32_t>( hdr.bytesRLE );
-			hdr.bytesLZO = qToBigEndian<uint32_t>( bytes_lzo );
-
-			m_socket->write( (const char *) &hdr, sizeof( hdr ) );
-			m_socket->write( (const char *) comp, bytes_lzo );
-
-		}
-		else
-		{
-			m_socket->write( (const char *) &hdr, sizeof( hdr ) );
-			QRgb *dst = m_rawBuf;
-			if( m_otherEndianess )
-			{
-				for( int y = 0; y < rh; ++y )
-				{
-					const QRgb *src = (const QRgb *) i.scanLine( ry + y ) + rx;
-					for( int x = 0; x < rw; ++x, ++src, ++dst )
-					{
-						*dst = qToBigEndian<uint32_t>( *src );
-					}
-				}
-			}
-			else
-			{
-				for( int y = 0; y < rh; ++y )
-				{
-					const QRgb *src = (const QRgb *) i.scanLine( ry + y ) + rx;
-					for( int x = 0; x < rw; ++x, ++src, ++dst )
-					{
-						*dst = *src;
-					}
-				}
-			}
-			m_socket->write( (const char *) m_rawBuf, rh * rw * sizeof( QRgb ) );
-		}
-	}
-
-	if( m_cursorShapeChanged )
-	{
-		const rfbRectangle rr =
-		{
-			qToBigEndian<uint16_t>( m_cursorHotX ),
-			qToBigEndian<uint16_t>( m_cursorHotY ),
-			qToBigEndian<uint16_t>( m_cursorShape.width() ),
-			qToBigEndian<uint16_t>( m_cursorShape.height() )
-		} ;
-
-		const rfbFramebufferUpdateRectHeader rh =
-		{
-			rr,
-			qToBigEndian<uint32_t>( rfbEncodingVeyonCursor )
-		} ;
-
-		m_socket->write( (const char *) &rh, sizeof( rh ) );
-
-		VariantStream( m_socket ).write( QVariant::fromValue( m_cursorShape ) );
-	}
-
-	// reset vars
-	m_changedRects.clear();
-	m_cursorShapeChanged = false;
-	m_fullUpdatePending = false;
-
-	if( m_updateRequested )
-	{
-		// make sure to send an update once more even if there has
-		// been no update request
-		QTimer::singleShot( 1000, this, &DemoServerClient::sendUpdates );
-	}
-
-	m_updateRequested = false;
-}
-
-
-
-void DemoServerClient::processClient()
-{
-	while( m_socket->bytesAvailable() && processProtocol() )
-	{
 	}
 }
 
 
 
-bool DemoServerClient::processProtocol()
+void DemoServer::requestFramebufferUpdate()
 {
-	switch( m_protocolState )
+	if( m_vncClientProtocol.state() != VncClientProtocol::Running )
 	{
-	case ProtocolVersion:
-		if( m_socket->bytesAvailable() >= sz_rfbProtocolVersionMsg )
-		{
-			m_socket->read( sz_rfbProtocolVersionMsg );
-
-			const uint8_t secTypeList[2] = { 1, rfbSecTypeVeyon } ;
-			m_socket->write( (const char *) secTypeList, sizeof( secTypeList ) );
-			m_protocolState = ProtocolSecurityType;
-
-			return true;
-		}
-		break;
-
-	case ProtocolSecurityType:
-		if( m_socket->bytesAvailable() >= 1 )
-		{
-			uint8_t chosen = 0;
-			m_socket->read( (char *) &chosen, sizeof( chosen ) );
-
-			if( chosen != rfbSecTypeVeyon )
-			{
-				qCritical( "DemoServerClient:::run(): protocol initialization failed" );
-				deleteLater();
-				return false;
-			}
-
-			// send list of supported authentication types
-			VariantArrayMessage supportedAuthTypesMessage( m_socket );
-			supportedAuthTypesMessage.write( 1 );
-			supportedAuthTypesMessage.write( RfbVeyonAuth::Token );
-			supportedAuthTypesMessage.send();
-
-			m_protocolState = ProtocolAuthTypes;
-
-			return true;
-		}
-		break;
-
-	case ProtocolAuthTypes:
-	{
-		VariantArrayMessage authTypeMessageResponse( m_socket );
-		if( authTypeMessageResponse.isReadyForReceive() && authTypeMessageResponse.receive() )
-		{
-			auto chosenVeyonAuthType = authTypeMessageResponse.read().value<RfbVeyonAuth::Type>();
-
-			if( chosenVeyonAuthType != RfbVeyonAuth::Token )
-			{
-				qWarning("DemoServerClient::run(): client did not chose token authentication\n");
-				deleteLater();
-				return false;
-			}
-
-			const QString username = authTypeMessageResponse.read().toString();
-			qDebug() << "DemoServerClient::run(): authenticate for user" << username;
-
-			// send auth type ack so we can receive token later
-			VariantArrayMessage( m_socket ).send();
-
-			m_protocolState = ProtocolToken;
-
-			return true;
-		}
-		break;
+		return;
 	}
 
-	case ProtocolToken:
+	if( m_requestFullFramebufferUpdate ||
+			m_lastFullFramebufferUpdate.elapsed() >= FullFramebufferUpdateInterval )
 	{
-		VariantArrayMessage tokenMessage( m_socket );
-		if( tokenMessage.isReadyForReceive() && tokenMessage.receive() )
-		{
-			const QString token = tokenMessage.read().toString();
-			if( token.isEmpty() || token != m_demoAccessToken )
-			{
-				qWarning("DemoServerClient::run(): client sent empty or invalid token\n");
-				deleteLater();
-				return false;
-			}
-
-			uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
-
-			m_socket->write( (char *) &authResult, sizeof( authResult ) );
-
-			m_protocolState = ProtocolClientInitMessage;
-
-			return true;
-		}
-		break;
+		m_vncClientProtocol.requestFramebufferUpdate( false );
+		m_lastFullFramebufferUpdate.restart();
+		m_requestFullFramebufferUpdate = false;
 	}
+	else
+	{
+		m_vncClientProtocol.requestFramebufferUpdate( true );
+	}
+}
 
-	case ProtocolClientInitMessage:
-		if( m_socket->bytesAvailable() >= sz_rfbClientInitMsg )
+
+
+bool DemoServer::receiveVncServerMessage()
+{
+	if( m_vncClientProtocol.receiveMessage() )
+	{
+		if( m_vncClientProtocol.lastMessageType() == rfbFramebufferUpdate )
 		{
-			rfbClientInitMsg ci;
-			m_socket->read( (char *) &ci, sz_rfbClientInitMsg );
-
-			rfbServerInitMsg si = m_vncConn->getRfbClient()->si;
-			si.framebufferWidth = qToBigEndian<uint16_t>( si.framebufferWidth );
-			si.framebufferHeight = qToBigEndian<uint16_t>( si.framebufferHeight );
-			si.format.redMax = qToBigEndian<uint16_t>( 255 );
-			si.format.greenMax = qToBigEndian<uint16_t>( 255 );
-			si.format.blueMax = qToBigEndian<uint16_t>( 255 );
-			si.format.redShift = 16;
-			si.format.greenShift = 8;
-			si.format.blueShift = 0;
-			si.format.bitsPerPixel = 32;
-			si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian ) ? 1 : 0;
-			si.nameLength = qToBigEndian<uint32_t>( 4 );
-			if( m_socket->write( ( const char *) &si, sz_rfbServerInitMsg ) != sz_rfbServerInitMsg )
-			{
-				qWarning( "failed writing rfbServerInitMsg" );
-				deleteLater();
-				return false;
-			}
-
-			if( m_socket->write( "DEMO", 4 ) != 4 )
-			{
-				qWarning( "failed writing desktop name" );
-				deleteLater();
-				return false;
-			}
-
-			connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated,
-					 this, &DemoServerClient::updateCursorShape, Qt::QueuedConnection );
-
-			connect( m_vncConn, &VeyonVncConnection::imageUpdated,
-					 this, &DemoServerClient::updateRect, Qt::QueuedConnection );
-
-			// TODO
-			//updateCursorShape( m_demoServer->initialCursorShape(), 0, 0 );
-
-			// first time send a key-frame
-			QSize s = m_vncConn->framebufferSize();
-			updateRect( 0, 0, s.width(), s.height() );
-
-			// TODO
-			/*	QTimer t;
-	connect( &t, SIGNAL( timeout() ),
-			this, SLOT( moveCursor() ), Qt::DirectConnection );
-	t.start( CURSOR_UPDATE_TIME );*/
-
-			/*	QTimer t2;
-	connect( &t2, SIGNAL( timeout() ),
-			this, SLOT( processClient() ), Qt::DirectConnection );
-	t2.start( 2*CURSOR_UPDATE_TIME );*/
-
-			m_protocolState = ProtocolRunning;
-
-			return true;
+			enqueueFramebufferUpdateMessage( m_vncClientProtocol.lastMessage() );
 		}
-		break;
 
-	case ProtocolRunning:
-		return processMessage();
-
-	default:
-		qWarning( "DemoServerClient: unhandled protocol state!" );
-		break;
+		return true;
 	}
 
 	return false;
 }
 
 
-bool DemoServerClient::processMessage()
+
+void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 {
-	m_dataMutex.lock();
-	while( m_socket->bytesAvailable() > 0 )
+	bool isFullUpdate = false;
+	const auto lastUpdatedRect = m_vncClientProtocol.lastUpdatedRect();
+
+	if( lastUpdatedRect.x() == 0 && lastUpdatedRect.y() == 0 &&
+			lastUpdatedRect.width() == m_vncClientProtocol.framebufferWidth() &&
+			lastUpdatedRect.height() == m_vncClientProtocol.framebufferHeight() )
 	{
-		rfbClientToServerMsg msg;
-		if( readExact( (char *) &msg, 1 ) <= 0 )
-		{
-			qWarning( "DemoServerClient::processClient(): "
-					  "could not read cmd" );
-			continue;
-		}
-
-		switch( msg.type )
-		{
-		case rfbSetEncodings:
-			readExact( ((char *)&msg)+1, sz_rfbSetEncodingsMsg-1 );
-			msg.se.nEncodings = qFromBigEndian<uint16_t>(msg.se.nEncodings);
-			for( int i = 0; i < msg.se.nEncodings; ++i )
-			{
-				uint32_t enc;
-				readExact( (char *) &enc, 4 );
-			}
-			continue;
-
-		case rfbSetPixelFormat:
-			readExact( ((char *) &msg)+1, sz_rfbSetPixelFormatMsg-1 );
-			continue;
-		case rfbSetServerInput:
-			readExact( ((char *) &msg)+1, sz_rfbSetServerInputMsg-1 );
-			continue;
-		case rfbClientCutText:
-			readExact( ((char *) &msg)+1, sz_rfbClientCutTextMsg-1 );
-			msg.cct.length = qFromBigEndian<uint32_t>( msg.cct.length );
-			if( msg.cct.length )
-			{
-				auto t = new char[msg.cct.length];
-				readExact( t, msg.cct.length );
-				delete[] t;
-			}
-			continue;
-		case rfbFramebufferUpdateRequest:
-			readExact( ((char *) &msg)+1, sz_rfbFramebufferUpdateRequestMsg-1 );
-			m_updateRequested = true;
-			break;
-		default:
-			qWarning( "DemoServerClient::processClient(): unknown message type %d", msg.type );
-			deleteLater();
-			return false;
-		}
-
+		isFullUpdate = true;
 	}
 
-	if( m_updateRequested )
+	if( isFullUpdate || framebufferUpdateMessageQueueSize() > UpdateQueueMemoryHardLimit  )
 	{
-		sendUpdates();
+		if( m_keyFrameTimer.elapsed() > 1 )
+		{
+			const auto memTotal = framebufferUpdateMessageQueueSize() / 1024;
+			qDebug() << Q_FUNC_INFO
+					 << "   MEMTOTAL:" << memTotal
+					 << "   KB/s:" << ( memTotal * 1000 ) / m_keyFrameTimer.elapsed();
+		}
+		m_keyFrameTimer.restart();
+		++m_keyFrame;
+		m_framebufferUpdateMessages.clear();
 	}
 
-	m_dataMutex.unlock();
+	m_framebufferUpdateMessages.append( message );
 
-	return false;	// everything processed - do not call again until new data is available
+	// we're about to reach memory limits?
+	if( framebufferUpdateMessageQueueSize() > UpdateQueueMemorySoftLimit )
+	{
+		// then request a full update so we can clear our queue
+		m_requestFullFramebufferUpdate = true;
+	}
 }
 
 
 
-qint64 DemoServerClient::readExact( char* buffer, qint64 size )
+qint64 DemoServer::framebufferUpdateMessageQueueSize() const
 {
-	// implement blocking read
+	qint64 size = 0;
 
-	qint64 bytesRead = 0;
-	while( bytesRead < size )
+	for( const auto& message : qAsConst( m_framebufferUpdateMessages ) )
 	{
-		qint64 n = m_socket->read( buffer + bytesRead, size - bytesRead );
-		if( n < 0 )
-		{
-			qDebug( "DemoServerClient::readExact(): read() returned %d while reading %d of %d bytes", (int) n, (int) bytesRead, (int) size );
-			return -1;
-		}
-		bytesRead += n;
-		if( bytesRead < size && m_socket->waitForReadyRead( 5000 ) == false )
-		{
-			qDebug( "DemoServerClient::readExact(): timeout after reading %d of %d bytes", (int) bytesRead, (int) size );
-			return bytesRead;
-		}
+		size += message.size();
 	}
 
-	return bytesRead;
+	return size;
+}
+
+
+
+void DemoServer::start()
+{
+	setVncServerPixelFormat();
+	setVncServerEncodings();
+
+	m_requestFullFramebufferUpdate = true;
+	m_lastFullFramebufferUpdate.restart();
+
+	acceptPendingConnections();
+}
+
+
+
+bool DemoServer::setVncServerPixelFormat()
+{
+	rfbPixelFormat format;
+
+	format.bitsPerPixel = 32;
+	format.depth = 32;
+	format.bigEndian = qFromBigEndian<uint16_t>( 1 ) == 1 ? true : false;
+	format.trueColour = 1;
+	format.redShift = 16;
+	format.greenShift = 8;
+	format.blueShift = 0;
+	format.redMax = 0xff;
+	format.greenMax = 0xff;
+	format.blueMax = 0xff;
+
+	return m_vncClientProtocol.setPixelFormat( format );
+}
+
+
+
+bool DemoServer::setVncServerEncodings()
+{
+	return m_vncClientProtocol.
+			setEncodings( {
+							  rfbEncodingZRLE,
+							  rfbEncodingUltraZip,
+							  rfbEncodingUltra,
+							  rfbEncodingCopyRect,
+							  rfbEncodingHextile,
+							  rfbEncodingZlib,
+							  rfbEncodingZYWRLE,
+							  rfbEncodingCoRRE,
+							  rfbEncodingRRE,
+							  rfbEncodingRaw,
+							  rfbEncodingCompressLevel9,
+							  rfbEncodingQualityLevel7,
+							  rfbEncodingNewFBSize,
+							  rfbEncodingLastRect
+						  } );
 }

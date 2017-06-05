@@ -29,7 +29,7 @@
 
 #include "VncServerProtocol.h"
 
-class VncServerClient : public QObject
+class VEYON_CORE_EXPORT VncServerClient : public QObject
 {
 	Q_OBJECT
 public:
