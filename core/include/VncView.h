@@ -63,14 +63,9 @@ public:
 	VncView( const QString &host, int port, QWidget *parent, Mode mode );
 	~VncView() override;
 
-	inline bool isViewOnly() const
+	bool isViewOnly() const
 	{
 		return m_viewOnly;
-	}
-
-	inline bool isScaledView() const
-	{
-		return m_scaledView;
 	}
 
 	VeyonVncConnection* vncConnection()
@@ -87,8 +82,7 @@ public:
 
 
 public slots:
-	void setViewOnly( bool _vo );
-	void setScaledView( bool _sv );
+	void setViewOnly( bool viewOnly );
 	void sendShortcut( Shortcut shortcut );
 
 
@@ -105,7 +99,7 @@ private slots:
 	void updateCursorPos( int x, int y );
 	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
 	void updateImage( int x, int y, int w, int h );
-	void updateSizeHint( int w, int h );
+	void updateFramebufferSize( int w, int h );
 	void updateConnectionState();
 
 private:
@@ -121,6 +115,8 @@ private:
 	void wheelEventHandler( QWheelEvent * );
 	void unpressModifiers();
 
+	bool isScaledView() const;
+	float scaleFactor() const;
 	QPoint mapToFramebuffer( const QPoint & _pos );
 	QRect mapFromFramebuffer( const QRect & _rect );
 
@@ -131,9 +127,6 @@ private:
 	VeyonVncConnection* m_vncConn;
 
 	Mode m_mode;
-	int m_x, m_y, m_w, m_h;
-	bool m_repaint;
-	QImage m_frame;
 	QPixmap m_cursorShape;
 	int m_cursorX;
 	int m_cursorY;
@@ -142,7 +135,6 @@ private:
 	int m_cursorHotY;
 	bool m_viewOnly;
 	bool m_viewOnlyFocus;
-	bool m_scaledView;
 	bool m_initDone;
 
 	int m_buttonMask;

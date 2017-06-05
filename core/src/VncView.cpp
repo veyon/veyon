@@ -40,7 +40,6 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
 	m_vncConn( new VeyonVncConnection( QCoreApplication::instance() ) ),
 	m_mode( mode ),
-	m_frame(),
 	m_cursorShape(),
 	m_cursorX( 0 ),
 	m_cursorY( 0 ),
@@ -49,7 +48,6 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	m_cursorHotY( 0 ),
 	m_viewOnly( true ),
 	m_viewOnlyFocus( true ),
-	m_scaledView( true ),
 	m_initDone( false ),
 	m_buttonMask( 0 ),
 	m_establishingConnectionWidget( nullptr ),
@@ -73,17 +71,11 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 		m_vncConn->setQuality( VeyonVncConnection::RemoteControlQuality );
 	}
 
-	connect( m_vncConn, &VeyonVncConnection::imageUpdated,
-			 this, &VncView::updateImage, Qt::BlockingQueuedConnection );
+	connect( m_vncConn, &VeyonVncConnection::imageUpdated, this, &VncView::updateImage );
+	connect( m_vncConn, &VeyonVncConnection::framebufferSizeChanged, this, &VncView::updateFramebufferSize );
 
-	connect( m_vncConn, &VeyonVncConnection::framebufferSizeChanged,
-			 this, &VncView::updateSizeHint, Qt::QueuedConnection );
-
-	connect( m_vncConn, &VeyonVncConnection::cursorPosChanged,
-			 this, &VncView::updateCursorPos );
-
-	connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated,
-			 this, &VncView::updateCursorShape );
+	connect( m_vncConn, &VeyonVncConnection::cursorPosChanged, this, &VncView::updateCursorPos );
+	connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated, this, &VncView::updateCursorShape );
 
 	// forward trapped special keys
 	connect( m_sysKeyTrapper, &SystemKeyTrapper::keyEvent,
@@ -146,10 +138,6 @@ bool VncView::eventFilter(QObject *obj, QEvent *event)
 
 QSize VncView::sizeHint() const
 {
-	if( m_scaledView )
-	{
-		return scaledSize();
-	}
 	return framebufferSize();
 }
 
@@ -157,26 +145,23 @@ QSize VncView::sizeHint() const
 
 QSize VncView::scaledSize() const
 {
-	const QSize s = size();
-	QSize fbs = framebufferSize();
-	if( ( s.width() >= fbs.width() && s.height() >= fbs.height() ) ||
-							m_scaledView == false )
+	if( isScaledView() == false )
 	{
-		return fbs;
+		return m_framebufferSize;
 	}
-	fbs.scale( s, Qt::KeepAspectRatio );
-	return fbs;
+
+	return m_framebufferSize.scaled( size(), Qt::KeepAspectRatio );
 }
 
 
 
-void VncView::setViewOnly( bool _vo )
+void VncView::setViewOnly( bool viewOnly )
 {
-	if( _vo == m_viewOnly )
+	if( viewOnly == m_viewOnly )
 	{
 		return;
 	}
-	m_viewOnly = _vo;
+	m_viewOnly = viewOnly;
 
 	if( m_viewOnly )
 	{
@@ -190,15 +175,6 @@ void VncView::setViewOnly( bool _vo )
 		updateLocalCursor();
 		m_sysKeyTrapper->setEnabled( true );
 	}
-}
-
-
-
-void VncView::setScaledView( bool scaledView )
-{
-	m_scaledView = scaledView;
-	m_vncConn->setScaledSize( scaledSize() );
-	update();
 }
 
 
@@ -312,11 +288,8 @@ void VncView::updateCursorPos( int x, int y )
 
 void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 {
-	float scale = 1;
-	if( !scaledSize().isEmpty() && !framebufferSize().isEmpty() )
-	{
-		scale = (float) scaledSize().width() / framebufferSize().width();
-	}
+	const auto scale = scaleFactor();
+
 	m_cursorHotX = xh*scale;
 	m_cursorHotY = yh*scale;
 	m_cursorShape = cursorShape.scaled( cursorShape.width()*scale, cursorShape.height()*scale,
@@ -561,39 +534,51 @@ void VncView::unpressModifiers()
 
 
 
+bool VncView::isScaledView() const
+{
+	return width() < m_framebufferSize.width() ||
+			height() < m_framebufferSize.height();
+}
+
+
+
+float VncView::scaleFactor() const
+{
+	if( isScaledView() )
+	{
+		return (float) scaledSize().width() / m_framebufferSize.width();
+	}
+
+	return 1;
+}
+
+
+
 QPoint VncView::mapToFramebuffer( const QPoint &pos )
 {
-	const QSize fbs = framebufferSize();
-	if( fbs.isEmpty() )
+	if( m_framebufferSize.isEmpty() )
 	{
 		return QPoint( 0, 0 );
 	}
 
-	if( m_scaledView )
-	{
-		return QPoint( pos.x() * fbs.width() / scaledSize().width(),
-						pos.y() * fbs.height() / scaledSize().height() );
-	}
-
-	return pos;
+	return QPoint( pos.x() * m_framebufferSize.width() / scaledSize().width(),
+				   pos.y() * m_framebufferSize.height() / scaledSize().height() );
 }
 
 
 
 QRect VncView::mapFromFramebuffer( const QRect &r )
 {
-	if( framebufferSize().isEmpty() )
+	if( m_framebufferSize.isEmpty() )
 	{
 		return QRect();
 	}
-	if( m_scaledView )
-	{
-		const float dx = width() / (float) framebufferSize().width();
-		const float dy = height() / (float) framebufferSize().height();
-		return( QRect( (int)(r.x()*dx), (int)(r.y()*dy),
-					(int)(r.width()*dx), (int)(r.height()*dy) ) );
-	}
-	return r;
+
+	const float dx = scaledSize().width() / (float) m_framebufferSize.width();
+	const float dy = scaledSize().height() / (float) m_framebufferSize.height();
+
+	return( QRect( (int)(r.x()*dx), (int)(r.y()*dy),
+				   (int)(r.width()*dx), (int)(r.height()*dy) ) );
 }
 
 
@@ -659,55 +644,25 @@ bool VncView::event( QEvent * event )
 
 void VncView::paintEvent( QPaintEvent *paintEvent )
 {
-	paintEvent->accept();
-
 	QPainter p( this );
+	p.setRenderHint( QPainter::SmoothPixmapTransform );
 
-	p.fillRect( paintEvent->rect(), Qt::black );
-	if( m_frame.isNull() || m_frame.format() == QImage::Format_Invalid )
+	const auto& image = m_vncConn->image();
+
+	if( image.isNull() || image.format() == QImage::Format_Invalid )
 	{
+		p.fillRect( paintEvent->rect(), Qt::black );
 		return;
 	}
 
-	const QSize sSize = scaledSize();
-	const float scale = sSize.isEmpty() ? 1 :
-			(float) sSize.width() / framebufferSize().width();
-	if( m_repaint )
+	if( isScaledView() )
 	{
-		if( scale == 1.0 )
-		{
-			p.drawImage( QRect( m_x, m_y, m_w, m_h ),
-					m_frame.copy( m_x, m_y, m_w, m_h ) );
-		}
-		else
-		{
-			p.drawImage( 0, 0, m_frame.scaled( sSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
-		}
+		// repaint everything in scaled mode to avoid artifacts at rectangle boundaries
+		p.drawImage( QRect( QPoint( 0, 0 ), scaledSize() ), image );
 	}
 	else
 	{
-		QRect rect = paintEvent->rect();
-		if( rect.width() != m_frame.width() || rect.height() != m_frame.height() )
-		{
-			int sx = qRound( rect.x()/scale );
-			int sy = qRound( rect.y()/scale );
-			int sw = qRound( rect.width()/scale );
-			int sh = qRound( rect.height()/scale );
-			p.drawImage( rect, m_frame.copy( sx, sy, sw, sh ).
-				scaled( rect.width(), rect.height(),
-						Qt::IgnoreAspectRatio,
-						Qt::SmoothTransformation ) );
-		}
-		else
-		{
-			// even we just have to update a part of the screen, update
-			// everything when in scaled mode as otherwise there're annoying
-			// artifacts
-			p.drawImage( QPoint( 0, 0 ),
-		m_frame.scaled( qRound( m_frame.width() * scale ),
-					qRound( m_frame.height()*scale ),
-			Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
-		}
+		p.drawImage( 0, 0, image );
 	}
 
 	if( isViewOnly() && !m_cursorShape.isNull() )
@@ -724,30 +679,24 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 		}
 	}
 
-
-
 	// draw black borders if neccessary
-	const int fbw = sSize.isValid() ? sSize.width() :
-				m_vncConn->framebufferSize().width();
-	if( fbw < width() )
+	const int screenWidth = scaledSize().width();
+	if( screenWidth < width() )
 	{
-		p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
-	}
-	const int fbh = sSize.isValid() ? sSize.height() :
-				m_vncConn->framebufferSize().height();
-	if( fbh < height() )
-	{
-		p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
+		p.fillRect( screenWidth, 0, width() - screenWidth, height(), Qt::black );
 	}
 
+	const int screenHeight = scaledSize().height();
+	if( screenHeight < height() )
+	{
+		p.fillRect( 0, screenHeight, width(), height() - screenHeight, Qt::black );
+	}
 }
 
 
 
 void VncView::resizeEvent( QResizeEvent *event )
 {
-	m_vncConn->setScaledSize( scaledSize() );
-
 	update();
 
 	if( m_establishingConnectionWidget )
@@ -822,29 +771,10 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 
 
 
-void VncView::updateImage(int x, int y, int w, int h)
+void VncView::updateImage( int x, int y, int w, int h )
 {
-	m_x = x;
-	m_y = y;
-	m_w = w;
-	m_h = h;
-
-	const QSize sSize = scaledSize();
-	const float scale = sSize.isEmpty() ? 1 :
-			(float) sSize.width() / framebufferSize().width();
-	if( !sSize.isEmpty() )
+	if( m_initDone == false )
 	{
-		m_x-=1;
-		m_y-=1;
-		m_w+=2;
-		m_h+=2;
-	}
-
-	m_frame = m_vncConn->image();
-
-	if( !m_initDone )
-	{
-		setAttribute( Qt::WA_StaticContents );
 		setAttribute( Qt::WA_OpaquePaintEvent );
 		installEventFilter( this );
 
@@ -852,28 +782,26 @@ void VncView::updateImage(int x, int y, int w, int h)
 		setFocusPolicy( Qt::WheelFocus );
 
 		resize( sizeHint() );
-		m_vncConn->setScaledSize( scaledSize() );
 
 		emit connectionEstablished();
 		m_initDone = true;
 
 	}
 
-	m_repaint = true;
-	repaint( qFloor( m_x*scale ), qFloor( m_y*scale ),
-			qCeil( m_w*scale ), qCeil( m_h*scale ) );
-	m_repaint = false;
+	const auto scale = scaleFactor();
+
+	update( qMax( 0, qFloor( x*scale - 1 ) ), qMax( 0, qFloor( y*scale - 1 ) ),
+			qCeil( w*scale + 2 ), qCeil( h*scale + 2 ) );
 }
 
 
 
-void VncView::updateSizeHint( int w, int h )
+void VncView::updateFramebufferSize( int w, int h )
 {
 	m_framebufferSize = QSize( w, h );
-	if( isScaledView() )
-	{
-		resize( w, h );
-	}
+
+	resize( w, h );
+
 	emit sizeHintChanged();
 }
 
