@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCloseEvent>
 #include <QKeyEvent>
 #include <QHostAddress>
 #include <QMenu>
@@ -211,6 +212,17 @@ bool MainWindow::initAccessControl()
 
 void MainWindow::closeEvent( QCloseEvent* event )
 {
+	if( m_masterCore.currentMode() != m_masterCore.builtinFeatures().monitoringMode().feature().uid() )
+	{
+		const Feature& activeFeature = m_masterCore.featureManager().feature( m_masterCore.currentMode() );
+
+		QMessageBox::information( this, tr( "Feature active" ),
+								  tr( "The feature \"%1\" is still active. Please stop it before closing %2." ).
+								  arg( activeFeature.displayName(), VeyonCore::applicationName() ) );
+		event->ignore();
+		return;
+	}
+
 	m_masterCore.userConfig().setWindowState( saveState().toBase64() );
 	m_masterCore.userConfig().setWindowGeometry( saveGeometry().toBase64() );
 
