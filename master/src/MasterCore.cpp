@@ -72,8 +72,15 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
-		m_featureManager->stopMasterFeature( Feature( m_currentMode ), computerControlInterfaces,
-											 m_localComputerControlInterface, parent );
+		// stop any previously active featues
+		for( const auto& feature : qAsConst( features() ) )
+		{
+			if( feature.testFlag( Feature::Mode ) )
+			{
+				m_featureManager->stopMasterFeature( feature, computerControlInterfaces,
+													 m_localComputerControlInterface, parent );
+			}
+		}
 
 		if( m_currentMode == feature.uid() )
 		{
