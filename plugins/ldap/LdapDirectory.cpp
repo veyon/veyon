@@ -239,6 +239,7 @@ public:
 
 	QString usersFilter;
 	QString userGroupsFilter;
+	QString computersFilter;
 	QString computerGroupsFilter;
 
 	bool identifyGroupMembersByNameAttribute;
@@ -308,6 +309,7 @@ void LdapDirectory::disableFilters()
 {
 	d->usersFilter.clear();
 	d->userGroupsFilter.clear();
+	d->computersFilter.clear();
 	d->computerGroupsFilter.clear();
 }
 
@@ -405,7 +407,7 @@ QStringList LdapDirectory::userGroups(const QString &filterValue)
 QStringList LdapDirectory::computers(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->computersDn,
-									   constructQueryFilter( d->computerHostNameAttribute, filterValue ),
+									   constructQueryFilter( d->computerHostNameAttribute, filterValue, d->computersFilter ),
 									   d->defaultSearchScope );
 }
 
@@ -428,7 +430,7 @@ QStringList LdapDirectory::computerLabs(const QString &filterValue)
 	{
 		computerLabs = d->queryAttributes( d->computersDn,
 										   d->computerLabAttribute,
-										   constructQueryFilter( d->computerLabAttribute, filterValue ),
+										   constructQueryFilter( d->computerLabAttribute, filterValue, d->computersFilter ),
 										   d->defaultSearchScope );
 	}
 	else
@@ -584,12 +586,21 @@ QStringList LdapDirectory::computerLabMembers(const QString &computerLabName)
 {
 	if( d->computerLabMembersByAttribute )
 	{
-		return d->queryDistinguishedNames( d->baseDn,
-										   constructQueryFilter( d->computerLabAttribute, computerLabName ),
-										   KLDAP::LdapUrl::Sub );
+		return d->queryDistinguishedNames( d->computersDn,
+										   constructQueryFilter( d->computerLabAttribute, computerLabName, d->computersFilter ),
+										   d->defaultSearchScope );
 	}
 
-	return groupMembers( computerGroups( computerLabName ).value( 0 ) );
+	auto memberComputers = groupMembers( computerGroups( computerLabName ).value( 0 ) );
+
+	// computer filter configured?
+	if( d->computerGroupsFilter.isEmpty() == false )
+	{
+		// then return intersection of filtered computer list and group members
+		return memberComputers.toSet().intersect( computers().toSet() ).toList();
+	}
+
+	return memberComputers;
 }
 
 
@@ -671,6 +682,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 
 	d->usersFilter = m_configuration.ldapUsersFilter();
 	d->userGroupsFilter = m_configuration.ldapUserGroupsFilter();
+	d->computersFilter = m_configuration.ldapComputersFilter();
 	d->computerGroupsFilter = m_configuration.ldapComputerGroupsFilter();
 
 	d->identifyGroupMembersByNameAttribute = m_configuration.ldapIdentifyGroupMembersByNameAttribute();
