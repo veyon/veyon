@@ -1119,10 +1119,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Filter für Computergruppen</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computerLab or objectClass=room</source>
-        <translation>z.B. objectClass=computerLab oder objectClass=room</translation>
-    </message>
-    <message>
         <source>Group member identification</source>
         <translation>Identifizierung von Gruppenmitgliedern</translation>
     </message>
@@ -1139,10 +1135,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Dedizierte Computergruppen</translation>
     </message>
     <message>
-        <source>e.g. computerLab or room</source>
-        <translation>z.B. computerLab oder room</translation>
-    </message>
-    <message>
         <source>Common attribute</source>
         <translation>Gemeinsames Attribut</translation>
     </message>
@@ -1151,16 +1143,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Funktionstests</translation>
     </message>
     <message>
-        <source>Get common aggregations of two objects</source>
-        <translation>Gemeinsame Gruppierungen von zwei Objekten ermitteln</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Alle Gruppen eines Benutzers auflisten</translation>
-    </message>
-    <message>
-        <source>List all members of a computer lab</source>
-        <translation>Alle Mitglieder eines Computerraums auflisten</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -1343,22 +1327,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computergruppen</translation>
     </message>
     <message>
-        <source>Enter computer lab name</source>
-        <translation>Computerraumname eingeben</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab (wildcards allowed):</source>
-        <translation>Bitte geben Sie den Namen eines Computerraums ein (Platzhalter erlaubt):</translation>
-    </message>
-    <message>
-        <source>computer labs</source>
-        <translation>Computerräume</translation>
-    </message>
-    <message>
-        <source>computer lab attribute</source>
-        <translation>Attribut Computerraum</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Bitte geben Sie den Benutzerlogin-Name ein, dessen Gruppenmitgliedschaften abgefragt werden sollen:</translation>
     </message>
@@ -1417,42 +1385,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>computers</source>
         <translation>Computer</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab whose members to query:</source>
-        <translation>Bitte geben Sie den Namen eines Computerraums ein, dessen Mitglieder abgefragt werden sollen:</translation>
-    </message>
-    <message>
-        <source>computer lab members</source>
-        <translation>Computerraummitglieder</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer lab member aggregation</source>
-        <translation>Computergruppenfilter oder Gruppierung von Computerraummitgliedern</translation>
-    </message>
-    <message>
-        <source>Enter first object</source>
-        <translation>Erstes Objekt eingeben</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the first object:</source>
-        <translation>Bitte geben Sie den distinguished name des ersten Objekts ein:</translation>
-    </message>
-    <message>
-        <source>Enter second object</source>
-        <translation>Zweites Objekt eingeben</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the second object:</source>
-        <translation>Bitte geben Sie den distinguished name des zweiten Objekts ein:</translation>
-    </message>
-    <message>
-        <source>common aggregations</source>
-        <translation>Gemeinsame Gruppierungen</translation>
-    </message>
-    <message>
-        <source>group membership or computer lab attribute</source>
-        <translation>Gruppenmitgliedschaft oder Computerraumattribut</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1553,6 +1485,58 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>(only if different from group tree)</source>
         <translation>(nur wenn anders als Gruppenbaum)</translation>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation>Filter für Computer</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation>z.B. objectClass=computer</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation>z.B. objectClass=room oder objectClass=computerLab</translation>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation>Alle Mitglieder eines Computerraums auflisten</translation>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation>Alle Computerräume auflisten</translation>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation>Computerraumname eingeben</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation>Bitte geben Sie den Namen eines Computerraums ein (Platzhalter erlaubt):</translation>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation>Computerräume</translation>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation>Computerraumattribut</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation>Bitte geben Sie den Namen eines Computerraums ein, dessen Mitglieder abgefragt werden sollen:</translation>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation>Computerraummitglieder</translation>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation>Computergruppenfilter oder Gruppierung von Computerraummitgliedern</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>z.B. room oder computerLab</translation>
     </message>
 </context>
 <context>
