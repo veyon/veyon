@@ -67,7 +67,6 @@ public:
 	QStringList groupsOfUser( const QString& userDn );
 	QStringList groupsOfComputer( const QString& computerDn );
 	QStringList computerLabsOfComputer( const QString& computerDn );
-	QStringList commonAggregations( const QString& objectOne, const QString& objectTwo );
 
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
