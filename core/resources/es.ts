@@ -255,6 +255,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>Always process rule and ignore conditions</source>
         <translation>Siempre procesar reglas e ignorar condiciones</translation>
     </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Ningún usuario ha iniciado sesión</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -545,6 +549,45 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Configuration file is not readable!</source>
         <translation>¡El archivo de configuración no puede leerse!</translation>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>No se pudo modificar la propiedad autoinicio del servicio %1.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>No se pudieron modificar los argumentos de servicio para el servicio %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>No se pudo cambiar la configuración del cortafuegos para el servicio %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>No se pudo cambiar la configuración para la generación de SAS por software. ¡El envío de Ctrl+Alt+Del a través del control remoto no funcionará!</translation>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation>Sobreescribir claves</translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation>Algunos de los archivos clave ya existen. Si los reemplaza con los generados de nuevo, tendrá que actualizar las claves públicas en todos los equipos también. ¿Quiere continuar?</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Configuración borrada</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>La configuración local se ha borrado correctamente.</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Configurador %1</translation>
     </message>
 </context>
 <context>
@@ -1856,34 +1899,6 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
         <translation>Se ha guardado un archivo %1 de informe de errores en %2. Incluye %3 archivos de registro e información acerca de su sistema operativo. Puede adjuntarlo a un informe de error.</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Configurador %1</translation>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>No se pudo modificar la propiedad de inicio automático del Servicio %1.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>No se pudieron modificar los argumentos de servicio para el Servicio %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>No se pudo cambiar la configuración del cortafuegos para el servicio %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>No se pudo cambiar la configuración para la generación de SAS por software. ¡El envío de Ctrl+Alt+Del vía control remoto no funcionará!</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Configuración borrada</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>La configuración local ha sido borrada correctamente.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
