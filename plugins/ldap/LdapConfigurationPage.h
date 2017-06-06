@@ -66,7 +66,7 @@ private slots:
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();
 	void testComputerLabMembers();
-	void testCommonAggregations();
+	void testComputerLabs();
 
 private:
 	bool testBindQuietly()

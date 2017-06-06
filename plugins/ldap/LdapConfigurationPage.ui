@@ -710,25 +710,38 @@
        <string>Functionality tests</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_19">
-       <item row="4" column="0">
-        <widget class="QPushButton" name="testCommonAggregations">
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="testComputerObjectByIpAddress">
          <property name="text">
-          <string>Get common aggregations of two objects</string>
+          <string>Get computer object by IP address</string>
          </property>
          <property name="icon">
           <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
+           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="testGroupsOfUser">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="testGroupsOfComputer">
          <property name="text">
-          <string>List all groups of a user</string>
+          <string>List all groups of a computer</string>
          </property>
          <property name="icon">
           <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/user-group-properties.png</normaloff>:/ldap/user-group-properties.png</iconset>
+           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
          </property>
         </widget>
        </item>
@@ -743,38 +756,25 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <spacer name="verticalSpacer_10">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="testGroupsOfComputer">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="testGroupsOfUser">
          <property name="text">
-          <string>List all groups of a computer</string>
+          <string>List all groups of a user</string>
          </property>
          <property name="icon">
           <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+           <normaloff>:/ldap/user-group-properties.png</normaloff>:/ldap/user-group-properties.png</iconset>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="testComputerObjectByIpAddress">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="testComputerLabs">
          <property name="text">
-          <string>Get computer object by IP address</string>
+          <string>List all computer labs</string>
          </property>
          <property name="icon">
           <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+           <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
          </property>
         </widget>
        </item>
@@ -835,7 +835,7 @@
   <tabstop>testGroupsOfComputer</tabstop>
   <tabstop>testComputerObjectByIpAddress</tabstop>
   <tabstop>testComputerLabMembers</tabstop>
-  <tabstop>testCommonAggregations</tabstop>
+  <tabstop>testComputerLabs</tabstop>
  </tabstops>
  <resources>
   <include location="ldap.qrc"/>

@@ -66,7 +66,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration )
 	CONNECT_BUTTON_SLOT( testGroupsOfComputer );
 	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress );
 	CONNECT_BUTTON_SLOT( testComputerLabMembers );
-	CONNECT_BUTTON_SLOT( testCommonAggregations );
+	CONNECT_BUTTON_SLOT( testComputerLabs );
 }
 
 
@@ -512,29 +512,14 @@ void LdapConfigurationPage::testComputerLabMembers()
 
 
 
-void LdapConfigurationPage::testCommonAggregations()
+void LdapConfigurationPage::testComputerLabs()
 {
-	QString objectOne = QInputDialog::getText( this, tr( "Enter first object" ),
-										  tr( "Please enter the distinguished name of the first object:" ) );
-	if( objectOne.isEmpty() )
-	{
-		return;
-	}
-
-	QString objectTwo = QInputDialog::getText( this, tr( "Enter second object" ),
-										  tr( "Please enter the distinguished name of the second object:" ) );
-	if( objectTwo.isEmpty() )
-	{
-		return;
-	}
-
-	qDebug() << "[TEST][LDAP] Testing common aggregations of" << ( QStringList() << objectOne << objectTwo );
+	qDebug() << "[TEST][LDAP] Querying all computer labs";
 
 	LdapDirectory ldapDirectory( m_configuration );
-
-	reportLdapObjectQueryResults( tr( "common aggregations" ),
-								  tr( "group membership or computer lab attribute" ),
-								  ldapDirectory.commonAggregations( objectOne, objectTwo ), ldapDirectory );
+	reportLdapObjectQueryResults( tr( "computer labs" ),
+									  tr( "computer group filter or computer lab member aggregation" ),
+									  ldapDirectory.computerLabs(), ldapDirectory );
 }
 
 
