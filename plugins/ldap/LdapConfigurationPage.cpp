@@ -57,6 +57,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration )
 
 	CONNECT_BUTTON_SLOT( testUsersFilter );
 	CONNECT_BUTTON_SLOT( testUserGroupsFilter );
+	CONNECT_BUTTON_SLOT( testComputersFilter );
 	CONNECT_BUTTON_SLOT( testComputerGroupsFilter );
 
 	CONNECT_BUTTON_SLOT( testComputerLabAttribute );
@@ -360,6 +361,18 @@ void LdapConfigurationPage::testUserGroupsFilter()
 	int count = ldapDirectory.userGroups().count();
 
 	reportLdapFilterTestResult( tr( "user groups" ), count, ldapDirectory.ldapErrorDescription() );
+}
+
+
+
+void LdapConfigurationPage::testComputersFilter()
+{
+	qDebug() << "[TEST][LDAP] Testing computers filter";
+
+	LdapDirectory ldapDirectory( m_configuration );
+	const auto count = ldapDirectory.computers().count();
+
+	reportLdapFilterTestResult( tr( "computers" ), count, ldapDirectory.ldapErrorDescription() );
 }
 
 

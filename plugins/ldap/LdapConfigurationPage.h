@@ -59,6 +59,7 @@ private slots:
 	void testComputerMacAddressAttribute();
 	void testUsersFilter();
 	void testUserGroupsFilter();
+	void testComputersFilter();
 	void testComputerGroupsFilter();
 	void testComputerLabAttribute();
 	void testGroupsOfUser();
