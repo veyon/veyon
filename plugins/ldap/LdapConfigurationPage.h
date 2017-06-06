@@ -61,12 +61,12 @@ private slots:
 	void testUserGroupsFilter();
 	void testComputersFilter();
 	void testComputerGroupsFilter();
-	void testComputerLabAttribute();
+	void testComputerRoomAttribute();
 	void testGroupsOfUser();
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();
-	void testComputerLabMembers();
-	void testComputerLabs();
+	void testComputerRoomMembers();
+	void testComputerRooms();
 
 private:
 	bool testBindQuietly()

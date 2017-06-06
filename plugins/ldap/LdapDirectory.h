@@ -61,12 +61,12 @@ public:
 	QStringList userGroups( const QString& filterValue = QString() );
 	QStringList computers( const QString& filterValue = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
-	QStringList computerLabs( const QString& filterValue = QString() );
+	QStringList computerRooms( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );
 	QStringList groupsOfComputer( const QString& computerDn );
-	QStringList computerLabsOfComputer( const QString& computerDn );
+	QStringList computerRoomsOfComputer( const QString& computerDn );
 
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
@@ -75,7 +75,7 @@ public:
 	QString groupMemberUserIdentification( const QString& userDn );
 	QString groupMemberComputerIdentification( const QString& computerDn );
 
-	QStringList computerLabMembers( const QString& computerLabName );
+	QStringList computerRoomMembers( const QString& computerRoomName );
 
 	QString hostToLdapFormat( const QString& host );
 	QString computerObjectFromHost( const QString& host );

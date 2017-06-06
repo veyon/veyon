@@ -42,7 +42,7 @@ public:
 
 private slots:
 	void update() override;
-	void updateComputerLab( LdapDirectory& ldapDirectory, const QString& computerLab );
+	void updateComputerRoom( LdapDirectory& ldapDirectory, const QString& computerRoom );
 
 private:
 	const LdapConfiguration& m_configuration;

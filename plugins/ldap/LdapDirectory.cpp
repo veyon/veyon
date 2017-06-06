@@ -243,8 +243,8 @@ public:
 	QString computerGroupsFilter;
 
 	bool identifyGroupMembersByNameAttribute;
-	bool computerLabMembersByAttribute;
-	QString computerLabAttribute;
+	bool computerRoomMembersByAttribute;
+	QString computerRoomAttribute;
 
 	typedef enum States
 	{
@@ -422,29 +422,29 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::computerLabs(const QString &filterValue)
+QStringList LdapDirectory::computerRooms(const QString &filterValue)
 {
-	QStringList computerLabs;
+	QStringList computerRooms;
 
-	if( d->computerLabMembersByAttribute )
+	if( d->computerRoomMembersByAttribute )
 	{
-		computerLabs = d->queryAttributes( d->computersDn,
-										   d->computerLabAttribute,
-										   constructQueryFilter( d->computerLabAttribute, filterValue, d->computersFilter ),
+		computerRooms = d->queryAttributes( d->computersDn,
+										   d->computerRoomAttribute,
+										   constructQueryFilter( d->computerRoomAttribute, filterValue, d->computersFilter ),
 										   d->defaultSearchScope );
 	}
 	else
 	{
-		computerLabs = d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn, "cn",
+		computerRooms = d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn, "cn",
 										   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
 										   d->defaultSearchScope );
 	}
 
-	computerLabs.removeDuplicates();
+	computerRooms.removeDuplicates();
 
-	std::sort( computerLabs.begin(), computerLabs.end() );
+	std::sort( computerRooms.begin(), computerRooms.end() );
 
-	return computerLabs;
+	return computerRooms;
 }
 
 
@@ -478,11 +478,11 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 
 
 
-QStringList LdapDirectory::computerLabsOfComputer(const QString &computerDn)
+QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 {
-	if( d->computerLabMembersByAttribute )
+	if( d->computerRoomMembersByAttribute )
 	{
-		return d->queryAttributes( computerDn, d->computerLabAttribute );
+		return d->queryAttributes( computerDn, d->computerRoomAttribute );
 	}
 
 	QString computerId = groupMemberComputerIdentification( computerDn );
@@ -556,16 +556,16 @@ QString LdapDirectory::groupMemberComputerIdentification(const QString &computer
 
 
 
-QStringList LdapDirectory::computerLabMembers(const QString &computerLabName)
+QStringList LdapDirectory::computerRoomMembers(const QString &computerRoomName)
 {
-	if( d->computerLabMembersByAttribute )
+	if( d->computerRoomMembersByAttribute )
 	{
 		return d->queryDistinguishedNames( d->computersDn,
-										   constructQueryFilter( d->computerLabAttribute, computerLabName, d->computersFilter ),
+										   constructQueryFilter( d->computerRoomAttribute, computerRoomName, d->computersFilter ),
 										   d->defaultSearchScope );
 	}
 
-	auto memberComputers = groupMembers( computerGroups( computerLabName ).value( 0 ) );
+	auto memberComputers = groupMembers( computerGroups( computerRoomName ).value( 0 ) );
 
 	// computer filter configured?
 	if( d->computerGroupsFilter.isEmpty() == false )
@@ -661,8 +661,8 @@ bool LdapDirectory::reconnect( const QUrl &url )
 
 	d->identifyGroupMembersByNameAttribute = m_configuration.ldapIdentifyGroupMembersByNameAttribute();
 
-	d->computerLabMembersByAttribute = m_configuration.ldapComputerLabMembersByAttribute();
-	d->computerLabAttribute = m_configuration.ldapComputerLabAttribute();
+	d->computerRoomMembersByAttribute = m_configuration.ldapComputerRoomMembersByAttribute();
+	d->computerRoomAttribute = m_configuration.ldapComputerRoomAttribute();
 
 	return true;
 }
