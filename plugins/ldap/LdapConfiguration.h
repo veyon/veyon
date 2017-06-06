@@ -48,6 +48,7 @@
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, ldapComputersFilter, setLdapComputersFilter, "ComputersFilter", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerLabMembersByAttribute, setLdapComputerLabMembersByAttribute, "ComputerLabMembersByAttribute", "LDAP" );	\
@@ -83,6 +84,7 @@ public slots:
 	void setLdapComputerMacAddressAttribute( const QString& );
 	void setLdapUsersFilter( const QString& );
 	void setLdapUserGroupsFilter( const QString& );
+	void setLdapComputersFilter( const QString& );
 	void setLdapIdentifyGroupMembersByNameAttribute( bool );
 	void setLdapComputerGroupsFilter( const QString& );
 	void setLdapComputerLabMembersByAttribute( bool );
