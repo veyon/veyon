@@ -570,8 +570,10 @@ QStringList LdapDirectory::computerRoomMembers(const QString &computerRoomName)
 	// computer filter configured?
 	if( d->computerGroupsFilter.isEmpty() == false )
 	{
+		auto memberComputersSet = memberComputers.toSet();
+
 		// then return intersection of filtered computer list and group members
-		return memberComputers.toSet().intersect( computers().toSet() ).toList();
+		return memberComputersSet.intersect( computers().toSet() ).toList();
 	}
 
 	return memberComputers;
