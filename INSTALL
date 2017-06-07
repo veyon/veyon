@@ -20,18 +20,51 @@ If you have ready to use packages (RPMs, DEBs etc.), you can skip this section
 and continue with "Install Veyon".
 
 
-Requirements:
+Requirements for Debian-based distributions:
 
-- qtbase5-dev and qtbase5-dev-tools (Debian-based distributions)
-- xorg-dev or similiar
+- qtbase5-dev
+- qtbase5-dev-tools 
+- qttools5-dev       (for ubuntu 16.04)
+- qttools5-dev-tools (for ubuntu 16.04)
+- xorg-dev
 - libxtst-dev
-- libjpeg-dev/libjpeg-devel
-- zlib1g-dev/zlib-devel
-- libssl-dev/openssl-devel
-- libpam0g-dev/pam-devel
+- libjpeg-turbo8-dev
+- zlib1g-dev
+- libssl-dev
+- libpam0g-dev
+- liblzo2-dev 
+- libqca2-dev 
+- libqca-qt5-2-dev 
+- libldap2-dev 
+- libsasl2-dev
 
-for ubuntu 16.04
-- qttools5-dev and qttools5-dev-tools
+As root you can run
+
+	apt install qtbase5-dev  qtbase5-dev-tools qttools5-dev  qttools5-dev-tools \
+	            xorg-dev libxtst-dev libjpeg-turbo8-dev zlib1g-dev libssl-dev libpam0g-dev \ 
+	            liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev libsasl2-dev
+    
+
+Requirements for RedHat-based distributions:
+
+- qt5-devel
+- libXtst-devel
+- libjpeg-turbo-devel
+- zlib-devel
+- qca-devel
+- qca-qt5-devel
+- openssl-devel
+- pam-devel
+- lzo-devel
+- libgsasl
+- openldap-devel 
+
+As root you can run
+
+	dnf install qt5-devel  libXtst-devel  libjpeg-turbo-devel  zlib-devel  \
+                    qca-devel  qca-qt5-devel  openssl-devel  pam-devel  lzo-devel  libgsasl  openldap-devel
+
+
 
 Of course GCC/G++, make and cmake must not be missing...
 
@@ -51,6 +84,13 @@ After CMake ran successfully you can run
 
 Make sure you're issuing the "make install" as root! This will install Veyon
 directly on the computer.
+
+Also you can generate a package (.deb or .rpm depending what system you are in).
+For generating a package you can run
+    
+	make package
+
+Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z-arch.rpm
 
 
 Read the next section on how to setup Veyon.
@@ -79,22 +119,28 @@ On clients you only have to install the packages veyon:
 
 on DPKG-based systems:
 
-
-	apt-get install veyon-client
-
+        dpkg -i  veyon...deb
 
 on RPM-based systems:
 
-	rpm -i veyon...rpm
+	rpm -i  veyon...rpm
+
+Of course, if your linux distribution has available such package you can install it from repositories:
+
+	apt install veyon
+
+	dnf install veyon
 
 
-On the master computer you additionally need veyon-master.
+Essentially, there are 3 main apps in package:
 
-	apt-get install veyon-master
+-  veyon-configurator 
+-  veyon-service
+-  veyon-master
 
-or
 
-	rpm -i veyon-master...rpm
+On the master computer you must be sure to have installed veyon-master.
+On clients computers remove veyon-master if you installed it.
 
 
 
