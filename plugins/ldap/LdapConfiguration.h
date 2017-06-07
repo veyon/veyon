@@ -48,10 +48,11 @@
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, ldapComputersFilter, setLdapComputersFilter, "ComputersFilter", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerLabMembersByAttribute, setLdapComputerLabMembersByAttribute, "ComputerLabMembersByAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerLabAttribute, setLdapComputerLabAttribute, "ComputerLabAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerRoomMembersByAttribute, setLdapComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, ldapComputerRoomAttribute, setLdapComputerRoomAttribute, "ComputerRoomAttribute", "LDAP" );	\
 
 
 class LdapConfiguration : public Configuration::Proxy
@@ -83,10 +84,11 @@ public slots:
 	void setLdapComputerMacAddressAttribute( const QString& );
 	void setLdapUsersFilter( const QString& );
 	void setLdapUserGroupsFilter( const QString& );
+	void setLdapComputersFilter( const QString& );
 	void setLdapIdentifyGroupMembersByNameAttribute( bool );
 	void setLdapComputerGroupsFilter( const QString& );
-	void setLdapComputerLabMembersByAttribute( bool );
-	void setLdapComputerLabAttribute( const QString& );
+	void setLdapComputerRoomMembersByAttribute( bool );
+	void setLdapComputerRoomAttribute( const QString& );
 
 } ;
 

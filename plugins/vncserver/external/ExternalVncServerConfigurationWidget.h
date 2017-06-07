@@ -1,12 +1,9 @@
 /*
- * RfbVeyonCursor.h - veyon cursor rectangle encoding
+ * ExternalVncServerConfigurationWidget.h - header for the ExternalVncServerConfigurationWidget class
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
- *
- * code partly taken from KRDC / vncclientthread.h:
- * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -25,18 +22,29 @@
  *
  */
 
-#ifndef RFB_VEYON_CURSOR_H
-#define RFB_VEYON_CURSOR_H
+#ifndef EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H
+#define EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H
 
-#include "VeyonCore.h"
+#include <QWidget>
 
-#define rfbEncodingVeyonCursor 31
+namespace Ui {
+class ExternalVncServerConfigurationWidget;
+}
 
-class VEYON_CORE_EXPORT RfbVeyonCursor
+class ExternalVncServerConfiguration;
+
+class ExternalVncServerConfigurationWidget : public QWidget
 {
+	Q_OBJECT
+
 public:
-	RfbVeyonCursor();
+	explicit ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration );
+	~ExternalVncServerConfigurationWidget() override;
 
-} ;
+private:
+	Ui::ExternalVncServerConfigurationWidget *ui;
+	ExternalVncServerConfiguration& m_configuration;
 
-#endif
+};
+
+#endif // EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H

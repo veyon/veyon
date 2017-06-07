@@ -1,6 +1,5 @@
 /*
- * VncServer.h - class VncServer, a VNC server abstraction for
- *                    platform-independent VNC server usage
+ * DemoServerConnection.h - header file for DemoServerConnection class
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,28 +22,45 @@
  *
  */
 
-#ifndef VNC_SERVER_H
-#define VNC_SERVER_H
+#ifndef DEMO_SERVER_CONNECTION_H
+#define DEMO_SERVER_CONNECTION_H
 
-#include <QThread>
+#include "DemoServerProtocol.h"
 
-class VncServerPluginInterface;
+class DemoServer;
 
-class VncServer : public QThread
+// the demo server creates an instance of this class for each client connection,
+// i.e. each client is connected to a different server thread for best
+// performance
+class DemoServerConnection : public QObject
 {
 	Q_OBJECT
 public:
-	VncServer();
-	virtual ~VncServer();
+	enum {
+		ProtocolRetryTime = 250,
+	};
 
-	int serverPort() const;
+	DemoServerConnection( const QString& demoAccessToken, QTcpSocket* socket, DemoServer* demoServer );
+	~DemoServerConnection() override;
 
-	QString password() const;
+public slots:
+	void processClient();
+	void sendFramebufferUpdate();
 
 private:
-	virtual void run();
+	bool receiveClientMessage();
 
-	VncServerPluginInterface* m_pluginInterface;
+	DemoServer* m_demoServer;
+
+	QTcpSocket* m_socket;
+
+	VncServerClient m_vncServerClient;
+	DemoServerProtocol m_serverProtocol;
+
+	const QMap<int, int> m_rfbClientToServerMessageSizes;
+
+	int m_keyFrame;
+	int m_framebufferUpdateMessageIndex;
 
 } ;
 

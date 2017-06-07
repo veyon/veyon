@@ -1,7 +1,7 @@
 /*
- * LdapNetworkObjectDirectory.h - provides a NetworkObjectDirectory for LDAP
+ * DemoServerProtocol.h - header file for DemoServerProtocol class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,31 +22,28 @@
  *
  */
 
-#ifndef LDAP_NETWORK_OBJECT_DIRECTORY_H
-#define LDAP_NETWORK_OBJECT_DIRECTORY_H
+#ifndef DEMO_SERVER_PROTOCOL_H
+#define DEMO_SERVER_PROTOCOL_H
 
-#include <QHash>
+#include "VncServerClient.h"
+#include "VncServerProtocol.h"
 
-#include "NetworkObjectDirectory.h"
-
-class LdapConfiguration;
-class LdapDirectory;
-
-class LdapNetworkObjectDirectory : public NetworkObjectDirectory
+class DemoServerProtocol : public VncServerProtocol
 {
 	Q_OBJECT
 public:
-	LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent );
+	DemoServerProtocol( const QString& demoAccessToken, QTcpSocket* socket, VncServerClient* client );
 
-	QList<NetworkObject> objects( const NetworkObject& parent ) override;
-
-private slots:
-	void update() override;
-	void updateComputerRoom( LdapDirectory& ldapDirectory, const QString& computerRoom );
+protected:
+	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
+	void processAuthenticationMessage( VariantArrayMessage& message ) override;
+	void performAccessControl() override;
 
 private:
-	const LdapConfiguration& m_configuration;
-	QHash<NetworkObject, QList<NetworkObject>> m_objects;
-};
+	VncServerClient::AuthState performTokenAuthentication( VariantArrayMessage& message );
 
-#endif // LDAP_NETWORK_OBJECT_DIRECTORY_H
+	const QString m_demoAccessToken;
+
+} ;
+
+#endif

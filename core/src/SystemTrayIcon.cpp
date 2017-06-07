@@ -148,7 +148,7 @@ bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
 
 	if( m_systemTrayIcon == nullptr && VeyonCore::config().isTrayIconHidden() == false )
 	{
-		m_systemTrayIcon = new QSystemTrayIcon;
+		m_systemTrayIcon = new QSystemTrayIcon( this );
 
 		QIcon icon( ":/resources/icon16.png" );
 		icon.addFile( ":/resources/icon22.png" );

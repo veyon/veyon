@@ -1,7 +1,7 @@
 /*
- * RfbLZORLE.h - LZO+RLE-based RFB rectangle encoding
+ * ExternalVncServerConfiguration.cpp - configuration values for external VNC server
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,27 +22,14 @@
  *
  */
 
-#ifndef RFB_LZO_RLE_H
-#define RFB_LZO_RLE_H
+#include "VeyonConfiguration.h"
+#include "ExternalVncServerConfiguration.h"
 
-#include "VeyonCore.h"
 
-#include <stdint.h>
-
-#define rfbEncodingLZORLE 30
-
-class VEYON_CORE_EXPORT RfbLZORLE
+ExternalVncServerConfiguration::ExternalVncServerConfiguration() :
+	Configuration::Proxy( &VeyonCore::config() )
 {
-public:
-	RfbLZORLE();
+}
 
-	struct Header
-	{
-		uint8_t compressed;
-		uint32_t bytesLZO;
-		uint32_t bytesRLE;
-	} ;
 
-} ;
-
-#endif
+FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)

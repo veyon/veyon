@@ -159,18 +159,6 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 			cl->appData.qualityLevel = 5;
 			cl->appData.enableJPEG = true;
 			break;
-		case DemoServerQuality:
-			cl->appData.encodingsString = "copyrect corre rre raw";
-			//cl->appData.useRemoteCursor = true;
-			break;
-		case DemoClientQuality:
-			//cl->appData.useRemoteCursor = true;
-			cl->appData.encodingsString = "ultra copyrect "
-									"hextile zlib corre rre raw";
-			cl->appData.compressLevel = 9;
-			cl->appData.qualityLevel = 9;
-			cl->appData.enableJPEG = true;
-			break;
 		default:
 			cl->appData.encodingsString = "zrle ultra copyrect "
 							"hextile zlib corre rre raw";
@@ -189,21 +177,10 @@ void VeyonVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 {
 	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
 
-	if( t->quality() == DemoServerQuality )
+	if( t )
 	{
-		// if we're providing data for demo server, perform a simple
-		// color-reduction for better compression-results
-		for( int ry = y; ry < y+h; ++ry )
-		{
-			QRgb *data = ( (QRgb *) cl->frameBuffer ) + ry * cl->width;
-			for( int rx = x; rx < x+w; ++rx )
-			{
-				data[rx] &= 0xfcfcfc;
-			}
-		}
+		emit t->imageUpdated( x, y, w, h );
 	}
-
-	emit t->imageUpdated( x, y, w, h );
 }
 
 
@@ -329,7 +306,7 @@ VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
 	m_frameBufferValid( false ),
 	m_cl( nullptr ),
 	m_veyonAuthType( RfbVeyonAuth::DSA ),
-	m_quality( DemoClientQuality ),
+	m_quality( DefaultQuality ),
 	m_port( -1 ),
 	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
@@ -462,17 +439,11 @@ void VeyonVncConnection::setPort( int port )
 
 
 
-const QImage VeyonVncConnection::image( int x, int y, int w, int h ) const
+QImage VeyonVncConnection::image() const
 {
 	QReadLocker locker( &m_imgLock );
-
-	if( w == 0 || h == 0 ) // full image requested
-	{
-		return m_image;
-	}
-	return m_image.copy( x, y, w, h );
+	return m_image;
 }
-
 
 
 
@@ -675,23 +646,7 @@ void VeyonVncConnection::handleConnection()
 			lastFullUpdateTime.restart();
 		}
 
-		m_mutex.lock();
-
-		while( !m_eventQueue.isEmpty() )
-		{
-			MessageEvent * clientEvent = m_eventQueue.dequeue();
-
-			// unlock the queue mutex during the runtime of ClientEvent::fire()
-			m_mutex.unlock();
-
-			clientEvent->fire( m_cl );
-			delete clientEvent;
-
-			// and lock it again
-			m_mutex.lock();
-		}
-
-		m_mutex.unlock();
+		sendEvents();
 
 		if( m_framebufferUpdateInterval > 0 && isInterruptionRequested() == false )
 		{
@@ -701,6 +656,8 @@ void VeyonVncConnection::handleConnection()
 			sleeperMutex.unlock();
 		}
 	}
+
+	sendEvents();
 }
 
 
@@ -741,6 +698,29 @@ void VeyonVncConnection::finishFrameBufferUpdate()
 	emit framebufferUpdateComplete();
 
 	m_scaledScreenNeedsUpdate = true;
+}
+
+
+
+void VeyonVncConnection::sendEvents()
+{
+	m_mutex.lock();
+
+	while( m_eventQueue.isEmpty() == false )
+	{
+		auto event = m_eventQueue.dequeue();
+
+		// unlock the queue mutex during the runtime of ClientEvent::fire()
+		m_mutex.unlock();
+
+		event->fire( m_cl );
+		delete event;
+
+		// and lock it again
+		m_mutex.lock();
+	}
+
+	m_mutex.unlock();
 }
 
 

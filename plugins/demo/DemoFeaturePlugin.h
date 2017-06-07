@@ -102,7 +102,7 @@ private:
 
 	enum Arguments {
 		DemoAccessToken,
-		VncServerToken,
+		VncServerPassword,
 		IsFullscreenDemo,
 		DemoServerHost,
 	};
@@ -114,7 +114,6 @@ private:
 
 	FeatureList m_features;
 	QString m_demoAccessToken;
-	QString m_demoServerToken;
 	QStringList m_demoClientHosts;
 
 	DemoServer* m_demoServer;

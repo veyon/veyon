@@ -27,10 +27,11 @@
 #include <QThread>
 #include <QTimer>
 
+#include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
+#include "LocalSystem.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
-#include "FeatureManager.h"
 
 
 FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
@@ -56,6 +57,24 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
 
 FeatureWorkerManager::~FeatureWorkerManager()
 {
+	m_tcpServer.close();
+
+	// properly shutdown all worker processes
+	while( m_workers.isEmpty() == false )
+	{
+		stopWorker( m_workers.firstKey() );
+	}
+}
+
+
+
+QString FeatureWorkerManager::workerProcessFilePath()
+{
+	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "veyon-worker";
+#ifdef VEYON_BUILD_WIN32
+	path += ".exe";
+#endif
+	return QDTNS( path );
 }
 
 
@@ -248,11 +267,4 @@ void FeatureWorkerManager::sendPendingMessages()
 	}
 
 	m_workersMutex.unlock();
-}
-
-
-
-QString FeatureWorkerManager::workerProcessFilePath()
-{
-	return QCoreApplication::applicationDirPath() + QDir::separator() + "veyon-worker";
 }
