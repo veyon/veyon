@@ -90,7 +90,7 @@ For generating a package you can run
     
 	make package
 
-Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z-arch.rpm
+Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z.arch.rpm
 
 
 Read the next section on how to setup Veyon.
