@@ -35,11 +35,11 @@
 
 VncServer::VncServer( int serverPort ) :
 	QThread(),
-	m_password( CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) ),
 	m_serverPort( serverPort ),
 	m_pluginInterface( nullptr )
 {
-	VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_password );
+	VeyonCore::authenticationCredentials().setInternalVncServerPassword(
+				CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) );
 
 	VncServerPluginInterfaceList defaultVncServerPlugins;
 
@@ -79,6 +79,19 @@ VncServer::VncServer( int serverPort ) :
 VncServer::~VncServer()
 {
 }
+
+
+
+QString VncServer::password() const
+{
+	if( m_pluginInterface && m_pluginInterface->configuredPassword().isEmpty() == false )
+	{
+		return m_pluginInterface->configuredPassword();
+	}
+
+	return VeyonCore::authenticationCredentials().internalVncServerPassword();
+}
+
 
 
 void VncServer::run()

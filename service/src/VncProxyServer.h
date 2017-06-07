@@ -38,15 +38,13 @@ class VncProxyServer : public QObject
 public:
 	typedef QVector<VncProxyConnection *> VncProxyConnectionList;
 
-	VncProxyServer( int vncServerPort,
-					const QString& vncServerPassword,
-					const QHostAddress& listenAddress,
+	VncProxyServer( const QHostAddress& listenAddress,
 					int listenPort,
 					VncProxyConnectionFactory* clientFactory,
 					QObject* parent = nullptr );
 	~VncProxyServer() override;
 
-	void start();
+	void start( int vncServerPort, const QString& vncServerPassword );
 
 	const VncProxyConnectionList& clients() const
 	{

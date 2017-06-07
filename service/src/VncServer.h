@@ -42,15 +42,11 @@ public:
 		return m_serverPort;
 	}
 
-	const QString& password() const
-	{
-		return m_password;
-	}
+	QString password() const;
 
 private:
 	virtual void run();
 
-	QString m_password;
 	int m_serverPort;
 
 	VncServerPluginInterface* m_pluginInterface;

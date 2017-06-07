@@ -51,9 +51,7 @@ ComputerControlServer::ComputerControlServer() :
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
 	m_vncServer( VeyonCore::config().vncServerPort() ),
-	m_vncProxyServer( m_vncServer.serverPort(),
-					  m_vncServer.password(),
-					  VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
+	m_vncProxyServer( VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
 					  VeyonCore::config().computerControlServerPort(),
 					  this,
@@ -83,7 +81,7 @@ ComputerControlServer::~ComputerControlServer()
 void ComputerControlServer::start()
 {
 	m_vncServer.start();
-	m_vncProxyServer.start();
+	m_vncProxyServer.start( m_vncServer.serverPort(), m_vncServer.password() );
 }
 
 
