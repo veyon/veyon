@@ -1,8 +1,7 @@
 /*
- * VncServer.h - class VncServer, a VNC server abstraction for
- *                    platform-independent VNC server usage
+ * ExternalVncServerConfiguration.h - configuration values for external VNC server
  *
- * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -23,28 +22,26 @@
  *
  */
 
-#ifndef VNC_SERVER_H
-#define VNC_SERVER_H
+#ifndef EXTERNAL_VNC_SERVER_CONFIGURATION_H
+#define EXTERNAL_VNC_SERVER_CONFIGURATION_H
 
-#include <QThread>
+#include "Configuration/Proxy.h"
 
-class VncServerPluginInterface;
+#define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
+	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer" ); \
+	OP( ExternalVncServerConfiguration, m_configuration, STRING, password, setPassword, "Password", "ExternalVncServer" );
 
-class VncServer : public QThread
+class ExternalVncServerConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT
 public:
-	VncServer();
-	virtual ~VncServer();
+	ExternalVncServerConfiguration();
 
-	int serverPort() const;
+	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
-	QString password() const;
-
-private:
-	virtual void run();
-
-	VncServerPluginInterface* m_pluginInterface;
+public slots:
+	void setServerPort( int port );
+	void setPassword( const QString& );
 
 } ;
 

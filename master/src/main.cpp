@@ -82,10 +82,7 @@ int main( int argc, char * * argv )
 	}
 
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
-	if( VeyonCore::config().applicationName().isEmpty() )
-	{
-		splashScreen.show();
-	}
+	splashScreen.show();
 
 	if( MainWindow::initAuthentication() == false ||
 			MainWindow::initAccessControl() == false )

@@ -57,15 +57,16 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration )
 
 	CONNECT_BUTTON_SLOT( testUsersFilter );
 	CONNECT_BUTTON_SLOT( testUserGroupsFilter );
+	CONNECT_BUTTON_SLOT( testComputersFilter );
 	CONNECT_BUTTON_SLOT( testComputerGroupsFilter );
 
-	CONNECT_BUTTON_SLOT( testComputerLabAttribute );
+	CONNECT_BUTTON_SLOT( testComputerRoomAttribute );
 
 	CONNECT_BUTTON_SLOT( testGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testGroupsOfComputer );
 	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress );
-	CONNECT_BUTTON_SLOT( testComputerLabMembers );
-	CONNECT_BUTTON_SLOT( testCommonAggregations );
+	CONNECT_BUTTON_SLOT( testComputerRoomMembers );
+	CONNECT_BUTTON_SLOT( testComputerRooms );
 }
 
 
@@ -364,6 +365,18 @@ void LdapConfigurationPage::testUserGroupsFilter()
 
 
 
+void LdapConfigurationPage::testComputersFilter()
+{
+	qDebug() << "[TEST][LDAP] Testing computers filter";
+
+	LdapDirectory ldapDirectory( m_configuration );
+	const auto count = ldapDirectory.computers().count();
+
+	reportLdapFilterTestResult( tr( "computers" ), count, ldapDirectory.ldapErrorDescription() );
+}
+
+
+
 void LdapConfigurationPage::testComputerGroupsFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing computer groups filter";
@@ -376,18 +389,18 @@ void LdapConfigurationPage::testComputerGroupsFilter()
 
 
 
-void LdapConfigurationPage::testComputerLabAttribute()
+void LdapConfigurationPage::testComputerRoomAttribute()
 {
-	QString computerLabName = QInputDialog::getText( this, tr( "Enter computer lab name" ),
-										  tr( "Please enter the name of a computer lab (wildcards allowed):") );
-	if( computerLabName.isEmpty() == false )
+	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
+										  tr( "Please enter the name of a computer room (wildcards allowed):") );
+	if( computerRoomName.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer lab attribute for" << computerLabName;
+		qDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
-		reportLdapObjectQueryResults( tr( "computer labs" ), tr( "computer lab attribute" ),
-									  ldapDirectory.computerLabs( computerLabName ), ldapDirectory );
+		reportLdapObjectQueryResults( tr( "computer rooms" ), tr( "computer room attribute" ),
+									  ldapDirectory.computerRooms( computerRoomName ), ldapDirectory );
 	}
 }
 
@@ -482,46 +495,31 @@ void LdapConfigurationPage::testComputerObjectByIpAddress()
 
 
 
-void LdapConfigurationPage::testComputerLabMembers()
+void LdapConfigurationPage::testComputerRoomMembers()
 {
-	QString computerLabName = QInputDialog::getText( this, tr( "Enter computer lab name" ),
-													  tr( "Please enter the name of a computer lab whose members to query:") );
-	if( computerLabName.isEmpty() == false )
+	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
+													  tr( "Please enter the name of a computer room whose members to query:") );
+	if( computerRoomName.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer lab members for" << computerLabName;
+		qDebug() << "[TEST][LDAP] Testing computer room members for" << computerRoomName;
 
 		LdapDirectory ldapDirectory( m_configuration );
-		reportLdapObjectQueryResults( tr( "computer lab members" ),
-									  tr( "computer group filter or computer lab member aggregation" ),
-									  ldapDirectory.computerLabMembers( computerLabName ), ldapDirectory );
+		reportLdapObjectQueryResults( tr( "computer room members" ),
+									  tr( "computer group filter or computer room member aggregation" ),
+									  ldapDirectory.computerRoomMembers( computerRoomName ), ldapDirectory );
 	}
 }
 
 
 
-void LdapConfigurationPage::testCommonAggregations()
+void LdapConfigurationPage::testComputerRooms()
 {
-	QString objectOne = QInputDialog::getText( this, tr( "Enter first object" ),
-										  tr( "Please enter the distinguished name of the first object:" ) );
-	if( objectOne.isEmpty() )
-	{
-		return;
-	}
-
-	QString objectTwo = QInputDialog::getText( this, tr( "Enter second object" ),
-										  tr( "Please enter the distinguished name of the second object:" ) );
-	if( objectTwo.isEmpty() )
-	{
-		return;
-	}
-
-	qDebug() << "[TEST][LDAP] Testing common aggregations of" << ( QStringList() << objectOne << objectTwo );
+	qDebug() << "[TEST][LDAP] Querying all computer rooms";
 
 	LdapDirectory ldapDirectory( m_configuration );
-
-	reportLdapObjectQueryResults( tr( "common aggregations" ),
-								  tr( "group membership or computer lab attribute" ),
-								  ldapDirectory.commonAggregations( objectOne, objectTwo ), ldapDirectory );
+	reportLdapObjectQueryResults( tr( "computer rooms" ),
+									  tr( "computer group filter or computer room member aggregation" ),
+									  ldapDirectory.computerRooms(), ldapDirectory );
 }
 
 

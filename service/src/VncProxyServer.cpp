@@ -31,15 +31,13 @@
 #include "VncProxyConnectionFactory.h"
 
 
-VncProxyServer::VncProxyServer( int vncServerPort,
-								const QString& vncServerPassword,
-								const QHostAddress& listenAddress,
+VncProxyServer::VncProxyServer( const QHostAddress& listenAddress,
 								int listenPort,
 								VncProxyConnectionFactory* connectionFactory,
 								QObject* parent ) :
 	QObject( parent ),
-	m_vncServerPort( vncServerPort ),
-	m_vncServerPassword( vncServerPassword ),
+	m_vncServerPort( -1 ),
+	m_vncServerPassword(),
 	m_listenAddress( listenAddress ),
 	m_listenPort( listenPort ),
 	m_server( new QTcpServer( this ) ),
@@ -62,8 +60,11 @@ VncProxyServer::~VncProxyServer()
 
 
 
-void VncProxyServer::start()
+void VncProxyServer::start( int vncServerPort, const QString& vncServerPassword )
 {
+	m_vncServerPort = vncServerPort;
+	m_vncServerPassword = vncServerPassword;
+
 	if( m_server->listen( m_listenAddress, m_listenPort ) == false )
 	{
 		qWarning() << "VncProxyServer: could not listen on port" << m_listenPort << m_server->errorString();
