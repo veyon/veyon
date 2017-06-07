@@ -28,6 +28,7 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
+	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer" ); \
 	OP( ExternalVncServerConfiguration, m_configuration, STRING, password, setPassword, "Password", "ExternalVncServer" );
 
 class ExternalVncServerConfiguration : public Configuration::Proxy
@@ -39,6 +40,7 @@ public:
 	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
 public slots:
+	void setServerPort( int port );
 	void setPassword( const QString& );
 
 } ;

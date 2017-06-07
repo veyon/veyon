@@ -77,6 +77,8 @@ public:
 
 	void run( int serverPort, const QString& password ) override;
 
+	int configuredServerPort() override;
+
 	QString configuredPassword() override;
 
 private:

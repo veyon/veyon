@@ -35,6 +35,12 @@ ExternalVncServerConfigurationWidget::ExternalVncServerConfigurationWidget( Exte
 {
 	ui->setupUi( this );
 
+	// sanitize configuration
+	if( m_configuration.serverPort() <= 0 )
+	{
+		m_configuration.setServerPort( 5900 );
+	}
+
 	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }

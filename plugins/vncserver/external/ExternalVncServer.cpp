@@ -54,9 +54,14 @@ void ExternalVncServer::run( int serverPort, const QString& password )
 	Q_UNUSED(serverPort);
 	Q_UNUSED(password);
 
-	VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_configuration.password() );
-
 	QEventLoop().exec();
+}
+
+
+
+int ExternalVncServer::configuredServerPort()
+{
+	return m_configuration.serverPort();
 }
 
 
