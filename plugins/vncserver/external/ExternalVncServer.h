@@ -1,5 +1,5 @@
 /*
- * BuiltinUltraVncServer.h - declaration of BuiltinUltraVncServer class
+ * ExternalVncServer.h - declaration of ExternalVncServer class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,24 +22,25 @@
  *
  */
 
-#ifndef BUILTIN_ULTRAVNC_SERVER_H
-#define BUILTIN_ULTRAVNC_SERVER_H
+#ifndef EXTERNAL_VNC_SERVER_H
+#define EXTERNAL_VNC_SERVER_H
 
-#include "UltraVncConfiguration.h"
+#include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
+#include "ExternalVncServerConfiguration.h"
 
-class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface
+class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinUltraVncServer")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ExternalVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
-	BuiltinUltraVncServer();
-	virtual ~BuiltinUltraVncServer();
+	ExternalVncServer();
+	~ExternalVncServer() override;
 
 	Plugin::Uid uid() const override
 	{
-		return "39d7a07f-94db-4912-aa1a-c4df8aee3879";
+		return "67dfc1c1-8f37-4539-a298-16e74e34fd8b";
 	}
 
 	QString version() const override
@@ -49,12 +50,12 @@ public:
 
 	QString name() const override
 	{
-		return QStringLiteral( "BuiltinUltraVncServer" );
+		return QStringLiteral( "ExternalVncServer" );
 	}
 
 	QString description() const override
 	{
-		return tr( "Builtin VNC server (UltraVNC)" );
+		return tr( "External VNC server" );
 	}
 
 	QString vendor() const override
@@ -69,44 +70,20 @@ public:
 
 	Plugin::Flags flags() const override
 	{
-		return Plugin::ProvidesDefaultImplementation;
+		return Plugin::NoFlags;
 	}
 
 	QWidget* configurationWidget() override;
 
 	void run( int serverPort, const QString& password ) override;
 
-	int configuredServerPort() override
-	{
-		return -1;
-	}
+	int configuredServerPort() override;
 
-	QString configuredPassword() override
-	{
-		return QString();
-	}
-
-	const UltraVncConfiguration& configuration() const
-	{
-		return m_configuration;
-	}
-
-	int serverPort() const
-	{
-		return m_serverPort;
-	}
-
-	const QString& password() const
-	{
-		return m_password;
-	}
+	QString configuredPassword() override;
 
 private:
-	UltraVncConfiguration m_configuration;
-
-	int m_serverPort;
-	QString m_password;
+	ExternalVncServerConfiguration m_configuration;
 
 };
 
-#endif // BUILTIN_ULTRAVNC_SERVER_H
+#endif // EXTERNAL_VNC_SERVER_H

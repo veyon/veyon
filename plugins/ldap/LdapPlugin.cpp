@@ -122,7 +122,7 @@ QStringList LdapPlugin::groupsOfUser( QString username )
 
 QStringList LdapPlugin::allRooms()
 {
-	return ldapDirectory().computerLabs();
+	return ldapDirectory().computerRooms();
 }
 
 
@@ -137,7 +137,7 @@ QStringList LdapPlugin::roomsOfComputer( QString computerName )
 		return QStringList();
 	}
 
-	return ldapDirectory().computerLabsOfComputer( computerDn );
+	return ldapDirectory().computerRoomsOfComputer( computerDn );
 }
 
 
@@ -202,7 +202,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 
 	if( objectType == "rooms" )
 	{
-		results = ldapDirectory().computerLabs( filter );
+		results = ldapDirectory().computerRooms( filter );
 	}
 	else if( objectType == "computers" )
 	{

@@ -1,7 +1,7 @@
 /*
- * LdapNetworkObjectDirectory.h - provides a NetworkObjectDirectory for LDAP
+ * ExternalVncServerConfigurationWidget.h - header for the ExternalVncServerConfigurationWidget class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,31 +22,29 @@
  *
  */
 
-#ifndef LDAP_NETWORK_OBJECT_DIRECTORY_H
-#define LDAP_NETWORK_OBJECT_DIRECTORY_H
+#ifndef EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H
+#define EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H
 
-#include <QHash>
+#include <QWidget>
 
-#include "NetworkObjectDirectory.h"
+namespace Ui {
+class ExternalVncServerConfigurationWidget;
+}
 
-class LdapConfiguration;
-class LdapDirectory;
+class ExternalVncServerConfiguration;
 
-class LdapNetworkObjectDirectory : public NetworkObjectDirectory
+class ExternalVncServerConfigurationWidget : public QWidget
 {
 	Q_OBJECT
+
 public:
-	LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent );
-
-	QList<NetworkObject> objects( const NetworkObject& parent ) override;
-
-private slots:
-	void update() override;
-	void updateComputerRoom( LdapDirectory& ldapDirectory, const QString& computerRoom );
+	explicit ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration );
+	~ExternalVncServerConfigurationWidget() override;
 
 private:
-	const LdapConfiguration& m_configuration;
-	QHash<NetworkObject, QList<NetworkObject>> m_objects;
+	Ui::ExternalVncServerConfigurationWidget *ui;
+	ExternalVncServerConfiguration& m_configuration;
+
 };
 
-#endif // LDAP_NETWORK_OBJECT_DIRECTORY_H
+#endif // EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H

@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>LdapConfigurationPage</class>
  <widget class="QWidget" name="LdapConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1016</width>
-    <height>704</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>LDAP</string>
   </property>
@@ -504,28 +496,10 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_36">
-            <property name="text">
-             <string>Filter for user groups</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="ldapUsersFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=person</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="testUserGroupsFilter">
-            <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -540,6 +514,42 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="testUserGroupsFilter">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="testComputerGroupsFilter">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Filter for user groups</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_37">
+            <property name="text">
+             <string>Filter for computer groups</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_34">
             <property name="text">
@@ -547,22 +557,29 @@
             </property>
            </widget>
           </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="ldapComputerGroupsFilter">
+            <property name="placeholderText">
+             <string>e.g. objectClass=room or objectClass=computerLab</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="label_37">
+           <widget class="QLabel" name="label_41">
             <property name="text">
-             <string>Filter for computer groups</string>
+             <string>Filter for computers</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="ldapComputerGroupsFilter">
+           <widget class="QLineEdit" name="ldapComputersFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=computerLab or objectClass=room</string>
+             <string>e.g. objectClass=computer</string>
             </property>
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QPushButton" name="testComputerGroupsFilter">
+           <widget class="QPushButton" name="testComputersFilter">
             <property name="text">
              <string>Test</string>
             </property>
@@ -621,7 +638,7 @@
            </widget>
           </item>
           <item row="1" column="0" colspan="3">
-           <widget class="QRadioButton" name="ldapComputerLabMembersByGroups">
+           <widget class="QRadioButton" name="ldapComputerRoomMembersByGroups">
             <property name="text">
              <string>Dedicated computer groups</string>
             </property>
@@ -634,7 +651,7 @@
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="QPushButton" name="testComputerLabAttribute">
+           <widget class="QPushButton" name="testComputerRoomAttribute">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -648,17 +665,17 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="ldapComputerLabAttribute">
+           <widget class="QLineEdit" name="ldapComputerRoomAttribute">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="placeholderText">
-             <string>e.g. computerLab or room</string>
+             <string>e.g. room or computerLab</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QRadioButton" name="ldapComputerLabMembersByAttribute">
+           <widget class="QRadioButton" name="ldapComputerRoomMembersByAttribute">
             <property name="text">
              <string>Common attribute</string>
             </property>
@@ -693,14 +710,49 @@
        <string>Functionality tests</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_19">
-       <item row="4" column="0">
-        <widget class="QPushButton" name="testCommonAggregations">
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="testComputerObjectByIpAddress">
          <property name="text">
-          <string>Get common aggregations of two objects</string>
+          <string>Get computer object by IP address</string>
          </property>
          <property name="icon">
           <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
+           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="testGroupsOfComputer">
+         <property name="text">
+          <string>List all groups of a computer</string>
+         </property>
+         <property name="icon">
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="testComputerRoomMembers">
+         <property name="text">
+          <string>List all members of a computer room</string>
+         </property>
+         <property name="icon">
+          <iconset resource="ldap.qrc">
+           <normaloff>:/ldap/configure.png</normaloff>:/ldap/configure.png</iconset>
          </property>
         </widget>
        </item>
@@ -715,49 +767,14 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="testComputerLabMembers">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="testComputerRooms">
          <property name="text">
-          <string>List all members of a computer lab</string>
+          <string>List all computer rooms</string>
          </property>
          <property name="icon">
           <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/configure.png</normaloff>:/ldap/configure.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <spacer name="verticalSpacer_10">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="testGroupsOfComputer">
-         <property name="text">
-          <string>List all groups of a computer</string>
-         </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="testComputerObjectByIpAddress">
-         <property name="text">
-          <string>Get computer object by IP address</string>
-         </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+           <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
          </property>
         </widget>
        </item>
@@ -802,21 +819,23 @@
   <tabstop>testComputerMacAddressAttribute</tabstop>
   <tabstop>ldapUsersFilter</tabstop>
   <tabstop>ldapUserGroupsFilter</tabstop>
+  <tabstop>ldapComputersFilter</tabstop>
   <tabstop>ldapComputerGroupsFilter</tabstop>
   <tabstop>testUsersFilter</tabstop>
   <tabstop>testUserGroupsFilter</tabstop>
+  <tabstop>testComputersFilter</tabstop>
   <tabstop>testComputerGroupsFilter</tabstop>
   <tabstop>ldapIdentifyGroupMembersByDN</tabstop>
   <tabstop>ldapIdentifyGroupMembersByNameAttribute</tabstop>
-  <tabstop>ldapComputerLabMembersByGroups</tabstop>
-  <tabstop>ldapComputerLabMembersByAttribute</tabstop>
-  <tabstop>ldapComputerLabAttribute</tabstop>
-  <tabstop>testComputerLabAttribute</tabstop>
+  <tabstop>ldapComputerRoomMembersByGroups</tabstop>
+  <tabstop>ldapComputerRoomMembersByAttribute</tabstop>
+  <tabstop>ldapComputerRoomAttribute</tabstop>
+  <tabstop>testComputerRoomAttribute</tabstop>
   <tabstop>testGroupsOfUser</tabstop>
   <tabstop>testGroupsOfComputer</tabstop>
   <tabstop>testComputerObjectByIpAddress</tabstop>
-  <tabstop>testComputerLabMembers</tabstop>
-  <tabstop>testCommonAggregations</tabstop>
+  <tabstop>testComputerRoomMembers</tabstop>
+  <tabstop>testComputerRooms</tabstop>
  </tabstops>
  <resources>
   <include location="ldap.qrc"/>
@@ -871,9 +890,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapComputerLabMembersByAttribute</sender>
+   <sender>ldapComputerRoomMembersByAttribute</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapComputerLabAttribute</receiver>
+   <receiver>ldapComputerRoomAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -887,9 +906,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapComputerLabMembersByAttribute</sender>
+   <sender>ldapComputerRoomMembersByAttribute</sender>
    <signal>toggled(bool)</signal>
-   <receiver>testComputerLabAttribute</receiver>
+   <receiver>testComputerRoomAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -972,8 +991,8 @@
  </slots>
  <buttongroups>
   <buttongroup name="groupMemberMatchingGroup"/>
-  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>

@@ -57,27 +57,27 @@ void LdapNetworkObjectDirectory::update()
 {
 	LdapDirectory ldapDirectory( m_configuration );
 
-	const auto computerLabs = ldapDirectory.computerLabs();
+	const auto computerRooms = ldapDirectory.computerRooms();
 	const NetworkObject rootObject( NetworkObject::Root );
 
-	for( const auto& computerLab : qAsConst( computerLabs ) )
+	for( const auto& computerRoom : qAsConst( computerRooms ) )
 	{
-		NetworkObject computerLabObject( NetworkObject::Group, computerLab );
+		NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
 
-		if( m_objects.contains( computerLabObject ) == false )
+		if( m_objects.contains( computerRoomObject ) == false )
 		{
 			emit objectsAboutToBeInserted( rootObject, m_objects.count(), 1 );
-			m_objects[computerLabObject] = QList<NetworkObject>();
+			m_objects[computerRoomObject] = QList<NetworkObject>();
 			emit objectsInserted();
 		}
 
-		updateComputerLab( ldapDirectory, computerLab );
+		updateComputerRoom( ldapDirectory, computerRoom );
 	}
 
 	int index = 0;
 	for( auto it = m_objects.begin(); it != m_objects.end(); )
 	{
-		if( computerLabs.contains( it.key().name() ) == false )
+		if( computerRooms.contains( it.key().name() ) == false )
 		{
 			emit objectsAboutToBeRemoved( rootObject, index, 1 );
 			it = m_objects.erase( it );
@@ -93,12 +93,12 @@ void LdapNetworkObjectDirectory::update()
 
 
 
-void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory, const QString &computerLab )
+void LdapNetworkObjectDirectory::updateComputerRoom( LdapDirectory& ldapDirectory, const QString &computerRoom )
 {
-	const NetworkObject computerLabObject( NetworkObject::Group, computerLab );
-	QList<NetworkObject>& computerLabObjects = m_objects[computerLabObject];
+	const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
+	QList<NetworkObject>& computerRoomObjects = m_objects[computerRoomObject];
 
-	QStringList computers = ldapDirectory.computerLabMembers( computerLab );
+	QStringList computers = ldapDirectory.computerRoomMembers( computerRoom );
 
 	bool hasMacAddressAttribute = ( m_configuration.ldapComputerMacAddressAttribute().count() > 0 );
 
@@ -122,21 +122,21 @@ void LdapNetworkObjectDirectory::updateComputerLab( LdapDirectory& ldapDirectory
 											computerMacAddress,
 											computer );
 
-		if( computerLabObjects.contains( computerObject ) == false )
+		if( computerRoomObjects.contains( computerObject ) == false )
 		{
-			emit objectsAboutToBeInserted( computerLabObject, computerLabObjects.count(), 1 );
-			computerLabObjects += computerObject;
+			emit objectsAboutToBeInserted( computerRoomObject, computerRoomObjects.count(), 1 );
+			computerRoomObjects += computerObject;
 			emit objectsInserted();
 		}
 	}
 
 	int index = 0;
-	for( auto it = computerLabObjects.begin(); it != computerLabObjects.end(); )
+	for( auto it = computerRoomObjects.begin(); it != computerRoomObjects.end(); )
 	{
 		if( computers.contains( it->directoryAddress() ) == false )
 		{
-			emit objectsAboutToBeRemoved( computerLabObject, index, 1 );
-			it = computerLabObjects.erase( it );
+			emit objectsAboutToBeRemoved( computerRoomObject, index, 1 );
+			it = computerRoomObjects.erase( it );
 			emit objectsRemoved();
 		}
 		else

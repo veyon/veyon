@@ -59,13 +59,14 @@ private slots:
 	void testComputerMacAddressAttribute();
 	void testUsersFilter();
 	void testUserGroupsFilter();
+	void testComputersFilter();
 	void testComputerGroupsFilter();
-	void testComputerLabAttribute();
+	void testComputerRoomAttribute();
 	void testGroupsOfUser();
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();
-	void testComputerLabMembers();
-	void testCommonAggregations();
+	void testComputerRoomMembers();
+	void testComputerRooms();
 
 private:
 	bool testBindQuietly()
