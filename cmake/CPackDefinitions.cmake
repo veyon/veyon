@@ -1,6 +1,6 @@
 #
 # generate packages
-# 
+#
 # Environment
 if (NOT CPACK_SYSTEM_NAME)
         set(CPACK_SYSTEM_NAME "${CMAKE_SYSTEM_PROCESSOR}")
@@ -54,14 +54,14 @@ It enables teachers to view and control computer labs and interact with students
 
 
 # Generators
-IF (WIN32)   # TODO
+IF (WIN32)    # TODO
     IF (USE_WIX_TOOLSET)
         SET(CPACK_GENERATOR "WIX") # this need WiX Tooset installed and a path to candle.exe
     ELSE ()
         SET(CPACK_GENERATOR "NSIS") # this needs NSIS installed, and available
     ENDIF ()
     SET(CPACK_SOURCE_GENERATOR "ZIP")
-ELSEIF ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")  # TODO
+ELSEIF ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")   # TODO
      SET(CPACK_GENERATOR "PackageMake")
 ELSE ()
      # SET(CPACK_INSTALLED_DIRECTORIES "${CMAKE_SOURCE_DIR}/etc;/etc")
