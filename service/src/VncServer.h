@@ -34,20 +34,15 @@ class VncServer : public QThread
 {
 	Q_OBJECT
 public:
-	VncServer( int serverPort );
+	VncServer();
 	virtual ~VncServer();
 
-	int serverPort() const
-	{
-		return m_serverPort;
-	}
+	int serverPort() const;
 
 	QString password() const;
 
 private:
 	virtual void run();
-
-	int m_serverPort;
 
 	VncServerPluginInterface* m_pluginInterface;
 

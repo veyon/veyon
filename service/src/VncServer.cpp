@@ -33,9 +33,8 @@
 #include "VncServerPluginInterface.h"
 
 
-VncServer::VncServer( int serverPort ) :
+VncServer::VncServer() :
 	QThread(),
-	m_serverPort( serverPort ),
 	m_pluginInterface( nullptr )
 {
 	VeyonCore::authenticationCredentials().setInternalVncServerPassword(
@@ -82,6 +81,18 @@ VncServer::~VncServer()
 
 
 
+int VncServer::serverPort() const
+{
+	if( m_pluginInterface && m_pluginInterface->configuredServerPort() > 0 )
+	{
+		return m_pluginInterface->configuredServerPort();
+	}
+
+	return VeyonCore::config().vncServerPort();
+}
+
+
+
 QString VncServer::password() const
 {
 	if( m_pluginInterface && m_pluginInterface->configuredPassword().isEmpty() == false )
@@ -98,6 +109,16 @@ void VncServer::run()
 {
 	if( m_pluginInterface )
 	{
+		if( m_pluginInterface->configuredServerPort() > 0 )
+		{
+			VeyonCore::config().setVncServerPort( m_pluginInterface->configuredServerPort() );
+		}
+
+		if( m_pluginInterface->configuredPassword().isEmpty() == false )
+		{
+			VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_pluginInterface->configuredPassword() );
+		}
+
 		m_pluginInterface->run( serverPort(), password() );
 	}
 }
