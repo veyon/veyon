@@ -76,6 +76,11 @@ public:
 
 	void run( int serverPort, const QString& password ) override;
 
+	QString configuredPassword() override
+	{
+		return QString();
+	}
+
 	const UltraVncConfiguration& configuration() const
 	{
 		return m_configuration;

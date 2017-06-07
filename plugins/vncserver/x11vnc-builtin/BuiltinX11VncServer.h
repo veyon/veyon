@@ -77,6 +77,11 @@ public:
 
 	void run( int serverPort, const QString& password ) override;
 
+	QString configuredPassword() override
+	{
+		return QString();
+	}
+
 private:
 	X11VncConfiguration m_configuration;
 

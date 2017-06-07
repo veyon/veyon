@@ -42,6 +42,8 @@ public:
 	 */
 	virtual void run( int serverPort, const QString& password ) = 0;
 
+	virtual QString configuredPassword() = 0;
+
 } ;
 
 typedef QList<VncServerPluginInterface *> VncServerPluginInterfaceList;
