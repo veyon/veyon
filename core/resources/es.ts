@@ -1143,10 +1143,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Filtro para grupos de ordenadores</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computerLab or objectClass=room</source>
-        <translation>p.ej. objectClass=computerLab o objectClass=room</translation>
-    </message>
-    <message>
         <source>Group member identification</source>
         <translation>Identificación del miembro del grupo</translation>
     </message>
@@ -1163,10 +1159,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Grupos de equipos dedicados</translation>
     </message>
     <message>
-        <source>e.g. computerLab or room</source>
-        <translation>p.ej.. computerLab o room</translation>
-    </message>
-    <message>
         <source>Common attribute</source>
         <translation>Atributo común</translation>
     </message>
@@ -1175,16 +1167,8 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Pruebas de funcionalidad</translation>
     </message>
     <message>
-        <source>Get common aggregations of two objects</source>
-        <translation>Obtener agregaciones comunes de dos objetos</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Listar todos los grupos de un usuario</translation>
-    </message>
-    <message>
-        <source>List all members of a computer lab</source>
-        <translation>Lista de todos los miembros de un aula</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -1367,22 +1351,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>grupos de equipos</translation>
     </message>
     <message>
-        <source>Enter computer lab name</source>
-        <translation>Introduzca nombre de aula</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab (wildcards allowed):</source>
-        <translation>Por favor, introduzca el nombre de un aula (se permiten comodines):</translation>
-    </message>
-    <message>
-        <source>computer labs</source>
-        <translation>aulas</translation>
-    </message>
-    <message>
-        <source>computer lab attribute</source>
-        <translation>atributo aulas</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Por favor, introduzca nombre de inicio de sesión de usuario para consultar miembros del grupo:</translation>
     </message>
@@ -1445,42 +1413,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>computers</source>
         <translation>equipos</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab whose members to query:</source>
-        <translation>Por favor, introduzca el nombre de aula para consultar sus miembros:</translation>
-    </message>
-    <message>
-        <source>computer lab members</source>
-        <translation>miembros del aula</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer lab member aggregation</source>
-        <translation>filtro de grupo de equipos o agregación de miembros de aula</translation>
-    </message>
-    <message>
-        <source>Enter first object</source>
-        <translation>Introduzca primer objeto</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the first object:</source>
-        <translation>Introduzca el nombre completo del primer objeto:</translation>
-    </message>
-    <message>
-        <source>Enter second object</source>
-        <translation>Introduzca segundo objeto</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the second object:</source>
-        <translation>Introduzca el nombre completo del segundo objeto:</translation>
-    </message>
-    <message>
-        <source>common aggregations</source>
-        <translation>agregaciones comunes</translation>
-    </message>
-    <message>
-        <source>group membership or computer lab attribute</source>
-        <translation>pertenencia a un grupo o atributo de aula</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1557,6 +1489,58 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>computer group tree</source>
         <translation>árbol de grupo de equipos</translation>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation>Filtro para equipos</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation>p.ej. objectClass=equipo</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation>p.ej. objectClass=sala or objectClass=aula</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>p.ej. sala o aula</translation>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation>Listar todos los miembros de un aula</translation>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation>Listar todas las aulas</translation>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation>Introduzca el nombre del aula</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation>Por favor, introduzca el nombre de un aula (se permiten comodines):</translation>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation>aulas</translation>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation>atributo de aula</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation>Introduzca el nombre de un aula cuyos miembros desea consultar:</translation>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation>miembros del aula</translation>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation>filtro de grupo de equipos o agregación de miembros de aula</translation>
     </message>
 </context>
 <context>
@@ -1783,14 +1767,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Acerca de Qt</translation>
     </message>
     <message>
-        <source>Classroom</source>
-        <translation>Clase</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Pulse en este botón para abrir un menú donde puede seleccionar la clase activa.</translation>
-    </message>
-    <message>
         <source>Authentication impossible</source>
         <translation>Autenticación imposible</translation>
     </message>
@@ -1905,10 +1881,6 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <translation>¡El backend de configuración local informó que la configuración no es escribible! Ejecute el Configurador de %1 con privilegios más altos.</translation>
     </message>
     <message>
-        <source>Click this button to switch between classrooms.</source>
-        <translation>Haga clic en este botón para cambiar entre las aulas.</translation>
-    </message>
-    <message>
         <source>%1 Master Control</source>
         <translation>Control Maestro %1</translation>
     </message>
@@ -1927,6 +1899,14 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Screenshots</source>
         <translation>Capturas</translation>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation>Característica activa</translation>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation>La característica &quot;%1&quot; está aún activa. Por favor, detengala antes de cerrar %2.</translation>
     </message>
 </context>
 <context>
@@ -2358,7 +2338,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Arranque automático</translation>
+        <translation>Inicio automático</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
