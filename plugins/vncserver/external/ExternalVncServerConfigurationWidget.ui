@@ -3,7 +3,7 @@
  <class>ExternalVncServerConfigurationWidget</class>
  <widget class="QWidget" name="ExternalVncServerConfigurationWidget">
   <property name="windowTitle">
-   <string>Builtin x11vnc server configuration</string>
+   <string>External VNC server configuration</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
