@@ -679,6 +679,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation>Externer VNC-Server</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>Port:</source>
+        <translation>Port:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Passwort:</translation>
+    </message>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation>Konfiguration des externen VNC-Servers</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1024,7 +1046,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Objektbaum</translation>
+        <translation>Objektbäume</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -1537,6 +1559,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>e.g. room or computerLab</source>
         <translation>z.B. room oder computerLab</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Computerräume</translation>
     </message>
 </context>
 <context>

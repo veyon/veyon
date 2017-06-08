@@ -679,6 +679,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1520,6 +1542,10 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
