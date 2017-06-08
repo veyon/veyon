@@ -627,7 +627,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_13">
          <property name="title">
-          <string>Rooms</string>
+          <string>Computer rooms</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_16">
           <item row="0" column="0" colspan="3">
