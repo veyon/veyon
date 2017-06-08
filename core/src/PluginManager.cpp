@@ -51,6 +51,7 @@ PluginManager::PluginManager( QObject* parent ) :
 	const QStringList nameFilters("*.dll");
 #else
 	addRelativeIfExists( "../lib/veyon" );
+	addRelativeIfExists( "../lib64/veyon" );  // for some 64bits linux distributions, mainly Fedora 64bit
 	const QStringList nameFilters("*.so");
 #endif
 
