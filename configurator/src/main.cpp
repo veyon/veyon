@@ -157,6 +157,8 @@ int main( int argc, char **argv )
 		return 0;
 	}
 
+	VeyonCore::setupApplicationParameters();
+
 	QApplication app( argc, argv );
 
 	VeyonCore core( &app, "Configurator" );
