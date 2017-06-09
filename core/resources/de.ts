@@ -784,7 +784,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Aktualisierungsinterval:</translation>
+        <translation>Aktualisierungsintervall:</translation>
     </message>
     <message>
         <source> s</source>
