@@ -79,13 +79,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setLogToWindowsEventLog( false );
 	c.setLogFileSizeLimit( 100 );
 	c.setLogFileRotationCount( 10 );
-	c.setLogFileDirectory(
-#ifdef VEYON_BUILD_WIN32
-		"%TEMP%"
-#else
-		"$TEMP"
-#endif
-				);
+	c.setLogFileDirectory( "$TEMP" );
 
 	c.setComputerControlServerPort( PortOffsetComputerControlServer );
 	c.setVncServerPort( PortOffsetVncServer );
