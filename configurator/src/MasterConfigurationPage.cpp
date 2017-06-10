@@ -134,6 +134,9 @@ void MasterConfigurationPage::disableFeature()
 
 void MasterConfigurationPage::populateFeatureComboBox()
 {
+	ui->computerDoubleClickFeature->addItem( QIcon(), tr( "<no feature>" ), QUuid() );
+	ui->computerDoubleClickFeature->insertSeparator( ui->computerDoubleClickFeature->count() );
+
 	for( const auto& feature : m_featureManager.features() )
 	{
 		if( feature.testFlag( Feature::Master ) )
