@@ -830,6 +830,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>x</source>
         <translation>x</translation>
     </message>
+    <message>
+        <source> seconds</source>
+        <translation> Sekunden</translation>
+    </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
@@ -1955,7 +1959,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation>Beim Start automatisch zu aktuellem Klassenraum wechseln</translation>
+        <translation>Beim Start automatisch zu aktuellem Raum wechseln</translation>
     </message>
     <message>
         <source>Features</source>
@@ -1997,6 +2001,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Hide computer filter field in computer room management</source>
         <translation>Filterfeld für Computer in Computerraumverwaltung ausblenden</translation>
     </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;Keine Funktion&gt;</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2005,12 +2013,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Beobachten</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
-        <translation>Dies ist der Standardmodus und erlaubt es Ihnen, alle Computer im Klassenraum zu beobachten.</translation>
-    </message>
-    <message>
         <source>Builtin monitoring mode</source>
         <translation>Eingebauter Beobachtungsmodus</translation>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation>Dies ist der Standardmodus und erlaubt es Ihnen, alle Computer in einem oder mehreren Räumen zu beobachten.</translation>
     </message>
 </context>
 <context>
@@ -2437,6 +2445,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
         <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation>Funktionsverwalter-Port</translation>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation>Primärer Dienst-Port</translation>
     </message>
 </context>
 <context>

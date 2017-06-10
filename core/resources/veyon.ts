@@ -830,6 +830,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>x</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source> seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
@@ -1976,6 +1980,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Hide computer filter field in computer room management</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1984,11 +1992,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
+        <source>Builtin monitoring mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Builtin monitoring mode</source>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2415,6 +2423,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Primary service port</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
