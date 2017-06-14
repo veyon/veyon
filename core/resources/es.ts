@@ -683,6 +683,28 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
 </context>
 <context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation>Servidor VNC externo</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation>Configuración de servidor VNC externo</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>Puerto:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Contraseña:</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -811,6 +833,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>x</source>
         <translation>x</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> segundos</translation>
     </message>
 </context>
 <context>
@@ -1542,6 +1568,10 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <source>computer group filter or computer room member aggregation</source>
         <translation>filtro de grupo de equipos o agregación de miembros de aula</translation>
     </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Aulas</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1975,6 +2005,10 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <source>Hide computer filter field in computer room management</source>
         <translation>Ocultar el campo de filtro de equipo en la gestión de aula</translation>
     </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;ninguna característica&gt;</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1983,12 +2017,12 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <translation>Monitorización</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
-        <translation>Este es el modo predeterminado y le permite monitorear todos los equipos en el aula.</translation>
-    </message>
-    <message>
         <source>Builtin monitoring mode</source>
         <translation>Modo de monitorización incorporado</translation>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation>Este es el modo predeterminado y le permite monitorizar todos los equipos en una o más habitaciones.</translation>
     </message>
 </context>
 <context>
@@ -2415,6 +2449,14 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Running</source>
         <translation>Funcionando</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation>Puerto del administrador de funciones</translation>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation>Puerto de servicio principal</translation>
     </message>
 </context>
 <context>
