@@ -78,7 +78,7 @@ AccessControlRule::AccessControlRule(const QJsonValue &jsonValue) :
 
 			m_parameters[condition].enabled = parametersObj["Enabled"].toBool();
 			m_parameters[condition].subject = static_cast<Subject>( parametersObj["Subject"].toInt() );
-			m_parameters[condition].argument = parametersObj["Argument"].toVariant();
+			m_parameters[condition].argument = parametersObj["Argument"].toString();
 		}
 	}
 }
@@ -105,7 +105,7 @@ QJsonObject AccessControlRule::toJson() const
 			parametersObject["Condition"] = it.key();
 			parametersObject["Enabled"] = true;
 			parametersObject["Subject"] = subject( it.key() );
-			parametersObject["Argument"] = QJsonValue::fromVariant( argument( it.key() ) );
+			parametersObject["Argument"] = argument( it.key() );
 			parameters.append( parametersObject );
 		}
 	}
