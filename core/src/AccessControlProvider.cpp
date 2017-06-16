@@ -287,7 +287,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		hasConditions = true;
 
 		const auto user = lookupSubject( rule.subject( condition ), accessingUser, QString(), localUser, QString() );
-		const auto group = rule.argument( condition ).toString();
+		const auto group = rule.argument( condition );
 
 		if( user.isEmpty() || group.isEmpty() ||
 				isMemberOfUserGroup( user, group ) != matchResult )
@@ -302,13 +302,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	{
 		hasConditions = true;
 
-		const auto userOne = lookupSubject( rule.subject( condition ), accessingUser, QString(), localUser, QString() );
-
-		const auto userTwo = lookupSubject( rule.argument( condition ).value<AccessControlRule::Subject>(),
-											accessingUser, QString(), localUser, QString() );
-
-		if( userOne.isEmpty() || userTwo.isEmpty() ||
-				hasGroupsInCommon( userOne, userTwo ) != matchResult )
+		if( accessingUser.isEmpty() || localUser.isEmpty() ||
+				hasGroupsInCommon( accessingUser, localUser ) != matchResult )
 		{
 			return false;
 		}
@@ -321,7 +316,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		hasConditions = true;
 
 		const auto computer = lookupSubject( rule.subject( condition ), QString(), accessingComputer, QString(), localComputer );
-		const auto room = rule.argument( condition ).toString();
+		const auto room = rule.argument( condition );
 
 		if( computer.isEmpty() || room.isEmpty() ||
 				isLocatedInRoom( computer, room ) != matchResult )
@@ -337,13 +332,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	{
 		hasConditions = true;
 
-		const auto computerOne = lookupSubject( rule.subject( condition ), QString(), accessingComputer, QString(), localComputer );
-
-		const auto computerTwo = lookupSubject( rule.argument( condition ).value<AccessControlRule::Subject>(),
-												  QString(), accessingComputer, QString(), localComputer  );
-
-		if( computerOne.isEmpty() || computerTwo.isEmpty() ||
-				isLocatedInSameRoom( computerOne, computerTwo ) != matchResult )
+		if( accessingComputer.isEmpty() || localComputer.isEmpty() ||
+				isLocatedInSameRoom( accessingComputer, localComputer ) != matchResult )
 		{
 			return false;
 		}
