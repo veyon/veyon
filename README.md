@@ -48,4 +48,4 @@ Before starting the implementation of a new feature, please always file an issue
 ## More Information
 
 * http://veyon.io/
-* http://veyon.io/wiki/
+* http://facebook.com/veyon.io/
