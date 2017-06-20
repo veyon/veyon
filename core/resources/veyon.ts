@@ -184,15 +184,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>has one or more groups in common with</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>is located in room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>is located in the same room as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -253,6 +245,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No user logged on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -791,10 +791,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1181,10 +1177,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Functionality tests</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1485,10 +1477,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rooms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room using:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1550,6 +1538,10 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Computer rooms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2383,14 +2375,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Demo server port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Feature worker manager port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer control server port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

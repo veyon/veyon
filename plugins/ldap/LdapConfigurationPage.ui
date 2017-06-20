@@ -707,7 +707,7 @@
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>Functionality tests</string>
+       <string>Integration tests</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_19">
        <item row="5" column="0">

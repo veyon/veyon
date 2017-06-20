@@ -188,10 +188,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>ist Mitglied von Gruppe</translation>
     </message>
     <message>
-        <source>has one or more groups in common with</source>
-        <translation>hat eine oder mehrere Gruppen gemeinsam mit</translation>
-    </message>
-    <message>
         <source>Accessing computer is localhost</source>
         <translation>Zugreifender Computer ist localhost</translation>
     </message>
@@ -244,16 +240,20 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>befindet sich im Raum</translation>
     </message>
     <message>
-        <source>is located in the same room as</source>
-        <translation>befindet sich im selben Raum wie</translation>
-    </message>
-    <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Regel immer verarbeiten und Bedingungen ignorieren</translation>
     </message>
     <message>
         <source>No user logged on</source>
         <translation>Kein Benutzer angemeldet</translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation>Zugreifender Computer befindet sich im selben Raum wie der lokale Computer</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>Zugreifender Benutzer hat eine oder mehrere gemeinsame Gruppen mit lokalem (angemeldeten) Benutzer</translation>
     </message>
 </context>
 <context>
@@ -787,10 +787,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Aktualisierungsintervall:</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation> s</translation>
-    </message>
-    <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
         <translation>Der %1-Dienst muss temporär beendet werden, um die Logdateien zu löschen. Fortfahren?</translation>
     </message>
@@ -1165,10 +1161,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Gemeinsames Attribut</translation>
     </message>
     <message>
-        <source>Functionality tests</source>
-        <translation>Funktionstests</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Alle Gruppen eines Benutzers auflisten</translation>
     </message>
@@ -1497,10 +1489,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computergruppenbaum</translation>
     </message>
     <message>
-        <source>Rooms</source>
-        <translation>Räume</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room using:</source>
         <translation>Computer in einem Raum gruppieren über:</translation>
     </message>
@@ -1567,6 +1555,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Computer rooms</source>
         <translation>Computerräume</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Integrationstests</translation>
     </message>
 </context>
 <context>
@@ -2401,14 +2393,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Demo server port</source>
         <translation>Demoserver-Port</translation>
-    </message>
-    <message>
-        <source>Feature worker manager port</source>
-        <translation>Funktionsverwalter-Port</translation>
-    </message>
-    <message>
-        <source>Computer control server port</source>
-        <translation>Computersteuerungsserver-Port</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>

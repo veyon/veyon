@@ -74,7 +74,7 @@ public:
 
 	Q_ENUM(Subject)
 
-	typedef QVariant ConditionArgument;
+	typedef QString ConditionArgument;
 
 	struct ConditionParameters
 	{
@@ -164,11 +164,6 @@ public:
 	{
 		m_parameters[condition].enabled = enabled;
 	}
-
-/*	const ConditionArgumentMap conditions() const
-	{
-		return m_conditions;
-	}*/
 
 	ConditionArgument argument( Condition condition ) const
 	{
