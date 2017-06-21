@@ -1685,10 +1685,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1903,6 +1899,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bug reporting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
