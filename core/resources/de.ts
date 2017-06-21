@@ -1030,7 +1030,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation>Feste Base-DN</translation>
+        <translation>Fester Base-DN</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
@@ -1038,7 +1038,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation>Base-DN über Naming-Context herausfinden</translation>
+        <translation>Base-DN über Naming-Context ermitteln</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
@@ -1769,10 +1769,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Fernsteuern</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Fehlersuche</translation>
-    </message>
-    <message>
         <source>1)</source>
         <translation>1)</translation>
     </message>
@@ -1925,6 +1921,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation>Fehlerbericht</translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation>Fehler in Veyon berichten</translation>
     </message>
 </context>
 <context>
