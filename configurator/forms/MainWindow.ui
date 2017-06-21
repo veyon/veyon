@@ -32,7 +32,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox_10">
           <property name="title">
-           <string>Debugging Veyon</string>
+           <string>Reporting bugs in Veyon</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12" stretch="0,0,0,0,0,0,0">
            <property name="spacing">
@@ -442,7 +442,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </item>
       <item>
        <property name="text">
-        <string>Debugging</string>
+        <string>Bug reporting</string>
        </property>
        <property name="icon">
         <iconset resource="../veyon-configurator.qrc">
