@@ -22,8 +22,6 @@
  *
  */
 
-#define UNICODE
-
 #include "WindowsUserSessionFunctions.h"
 
 #include <wtsapi32.h>

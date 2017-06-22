@@ -70,7 +70,7 @@ vncEncryptBytes(unsigned char *bytes, char *passwd)
 VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPassword ) :
 	m_socket( socket ),
 	m_state( Disconnected ),
-	m_vncPassword( vncPassword.toLatin1() ),
+	m_vncPassword( vncPassword.toUtf8() ),
 	m_serverInitMessage(),
 	m_framebufferWidth( 0 ),
 	m_framebufferHeight( 0 )

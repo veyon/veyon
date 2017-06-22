@@ -66,7 +66,7 @@ bool ServiceControl::isServiceRegistered()
 		return false;
 	}
 
-	SC_HANDLE serviceHandle = OpenService( serviceManager, "VeyonService", SERVICE_QUERY_STATUS );
+	SC_HANDLE serviceHandle = OpenService( serviceManager, L"VeyonService", SERVICE_QUERY_STATUS );
 	if( !serviceHandle )
 	{
 		CloseServiceHandle( serviceManager );
@@ -94,7 +94,7 @@ bool ServiceControl::isServiceRunning()
 		return false;
 	}
 
-	SC_HANDLE hservice = OpenService( hsrvmanager, "VeyonService", SERVICE_QUERY_STATUS );
+	SC_HANDLE hservice = OpenService( hsrvmanager, L"VeyonService", SERVICE_QUERY_STATUS );
 	if( !hservice )
 	{
 		ilog_failed( "OpenService()" );

@@ -1,5 +1,7 @@
 INCLUDE(BuildPlugin)
 
+ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
+
 BUILD_PLUGIN(localdata
 	LocalDataPlugin.cpp
 	LocalDataConfiguration.cpp

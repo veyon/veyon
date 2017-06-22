@@ -38,6 +38,8 @@
 #include "Logger.h"
 
 
+static auto serviceName = L"VeyonService";
+
 bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
 {
 #ifdef VEYON_BUILD_WIN32
@@ -48,7 +50,7 @@ bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
 		return false;
 	}
 
-	SC_HANDLE hservice = OpenService( hsrvmanager, "VeyonService", SERVICE_ALL_ACCESS );
+	SC_HANDLE hservice = OpenService( hsrvmanager, serviceName, SERVICE_ALL_ACCESS );
 	if( !hservice )
 	{
 		ilog_failed( "OpenService()" );
@@ -97,7 +99,7 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 		return false;
 	}
 
-	SC_HANDLE hservice = OpenService( hsrvmanager, "VeyonService", SERVICE_ALL_ACCESS );
+	SC_HANDLE hservice = OpenService( hsrvmanager, serviceName, SERVICE_ALL_ACCESS );
 	if( !hservice )
 	{
 		ilog_failed( "OpenService()" );
@@ -113,7 +115,7 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 					SERVICE_NO_CHANGE,	// dwServiceType
 					SERVICE_NO_CHANGE,	// dwStartType
 					SERVICE_NO_CHANGE,	// dwErrorControl
-					binaryPath.toUtf8().constData(),	// lpBinaryPathName
+					(wchar_t *) binaryPath.utf16(),	// lpBinaryPathName
 					NULL,	// lpLoadOrderGroup
 					NULL,	// lpdwTagId
 					NULL,	// lpDependencies
@@ -368,7 +370,7 @@ bool SystemConfigurationModifier::enableSoftwareSAS( bool enabled )
 	HKEY hkLocal, hkLocalKey;
 	DWORD dw;
 	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
-						"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
 						0, REG_NONE, REG_OPTION_NON_VOLATILE,
 						KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
 	{
@@ -376,7 +378,7 @@ bool SystemConfigurationModifier::enableSoftwareSAS( bool enabled )
 	}
 
 	if( RegOpenKeyEx( hkLocal,
-					  "System",
+					  L"System",
 					  0, KEY_WRITE | KEY_READ,
 					  &hkLocalKey ) != ERROR_SUCCESS )
 	{
@@ -385,7 +387,7 @@ bool SystemConfigurationModifier::enableSoftwareSAS( bool enabled )
 	}
 
 	LONG pref = enabled ? 1 : 0;
-	RegSetValueEx( hkLocalKey, "SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref) );
+	RegSetValueEx( hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref) );
 	RegCloseKey( hkLocalKey );
 	RegCloseKey( hkLocal );
 #endif

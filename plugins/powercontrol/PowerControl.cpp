@@ -25,8 +25,6 @@
 #include <veyonconfig.h>
 
 #ifdef VEYON_BUILD_WIN32
-
-#define UNICODE
 #include <winsock2.h>
 #include <windows.h>
 
@@ -88,7 +86,7 @@ void broadcastWOLPacket( QString macAddress )
 	macAddress.replace( '-', "" );
 	macAddress.replace( '.', "" );
 
-	if( sscanf( macAddress.toLatin1().constData(),
+	if( sscanf( macAddress.toUtf8().constData(),
 				"%2x%2x%2x%2x%2x%2x",
 				(unsigned int *) &mac[0],
 				(unsigned int *) &mac[1],

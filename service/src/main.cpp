@@ -88,7 +88,7 @@ int main( int argc, char **argv )
 	VeyonCore core( &app, "Service" );
 
 #ifdef VEYON_BUILD_WIN32
-	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, false, "Global\\SessionEventUltra" );
+	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, false, L"Global\\SessionEventUltra" );
 	if( !hShutdownEvent )
 	{
 		// no global event available already as we're not running under the
@@ -98,7 +98,7 @@ int main( int argc, char **argv )
 			qWarning( "Creating session event" );
 			// then create our own event as otherwise the VNC server main loop
 			// will eat 100% CPU due to failing WaitForSingleObject() calls
-			hShutdownEvent = CreateEvent( NULL, false, false, "Global\\SessionEventUltra" );
+			hShutdownEvent = CreateEvent( NULL, false, false, L"Global\\SessionEventUltra" );
 		}
 		else
 		{

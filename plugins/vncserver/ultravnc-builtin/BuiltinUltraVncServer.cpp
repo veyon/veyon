@@ -37,7 +37,7 @@ extern DWORD		mainthreadId;
 
 void ultravnc_veyon_load_password( char* out, int size )
 {
-	QByteArray password = vncServerInstance->password().toLatin1();
+	QByteArray password = vncServerInstance->password().toUtf8();
 	memcpy( out, password.constData(), std::min<int>( size, password.length() ) );
 }
 

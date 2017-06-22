@@ -134,7 +134,7 @@ void InputDeviceBlocker::setEmptyKeyMapTable()
 	QProcess p;
 	p.start( "xmodmap", QStringList() << "-" );
 	p.waitForStarted();
-	p.write( emptyKeyMapTable.join( '\n' ).toLocal8Bit() );
+	p.write( emptyKeyMapTable.join( '\n' ).toUtf8() );
 	p.closeWriteChannel();
 	p.waitForFinished();
 #endif
