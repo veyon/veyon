@@ -29,6 +29,7 @@
 
 #include "WindowsService.h"
 #include "ComputerControlServer.h"
+#include "VeyonConfiguration.h"
 
 
 #ifdef VEYON_BUILD_WIN32
@@ -87,12 +88,32 @@ int main( int argc, char **argv )
 
 	VeyonCore core( &app, "Service" );
 
+	// parse arguments
+	QStringListIterator argIt( app.arguments() );
+	argIt.next();
+
+	while( argc > 1 && argIt.hasNext() )
+	{
+		const QString a = argIt.next().toLower();
+
+		if( a == "-session" && argIt.hasNext() )
+		{
+			int sessionId = argIt.next().toUInt();
+			if( sessionId > 0 )
+			{
+				core.config().setPrimaryServicePort( core.config().primaryServicePort() + sessionId );
+				core.config().setVncServerPort( core.config().vncServerPort() + sessionId );
+				core.config().setFeatureWorkerManagerPort( core.config().featureWorkerManagerPort() + sessionId );
+			}
+		}
+	}
+
 #ifdef VEYON_BUILD_WIN32
 	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, false, L"Global\\SessionEventUltra" );
 	if( !hShutdownEvent )
 	{
 		// no global event available already as we're not running under the
-		// control of the ICA service supervisor?
+		// control of the veyon service supervisor?
 		if( GetLastError() == ERROR_FILE_NOT_FOUND )
 		{
 			qWarning( "Creating session event" );
@@ -102,8 +123,7 @@ int main( int argc, char **argv )
 		}
 		else
 		{
-			qCritical( "Could not open or create session event" );
-			return -1;
+			qWarning( "Could not open or create session event" );
 		}
 	}
 
