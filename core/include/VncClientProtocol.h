@@ -105,6 +105,7 @@ private:
 	bool receiveBellMessage();
 	bool receiveCutTextMessage();
 	bool receiveResizeFramebufferMessage();
+	bool receiveXvpMessage();
 
 	bool readMessage( qint64 size );
 
