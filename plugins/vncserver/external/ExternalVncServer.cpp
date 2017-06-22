@@ -32,6 +32,11 @@
 ExternalVncServer::ExternalVncServer() :
 	m_configuration()
 {
+	// sanitize configuration
+	if( m_configuration.serverPort() <= 0 )
+	{
+		m_configuration.setServerPort( 5900 );
+	}
 }
 
 
