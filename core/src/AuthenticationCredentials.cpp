@@ -62,7 +62,7 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 	if( credentialType & Token )
 	{
 		return m_token.isEmpty() == false &&
-				QByteArray::fromBase64( m_token.toLatin1() ).size() == CryptoCore::ChallengeSize;
+				QByteArray::fromBase64( m_token.toUtf8() ).size() == CryptoCore::ChallengeSize;
 	}
 
 	qCritical( "AuthenticationCredentials::hasCredentials(): no valid credential type given: %d", credentialType );

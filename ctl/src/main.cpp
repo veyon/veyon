@@ -91,7 +91,7 @@ int main( int argc, char **argv )
 
 				if( subCommands.contains( subCommand ) &&
 						QMetaObject::invokeMethod( it.value(),
-												   QString( "handle_%1" ).arg( subCommand ).toLatin1().constData(),
+												   QString( "handle_%1" ).arg( subCommand ).toUtf8().constData(),
 												   Qt::DirectConnection,
 												   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
 												   Q_ARG( QStringList, arguments.mid( 3 ) ) ) )

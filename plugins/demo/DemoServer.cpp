@@ -31,8 +31,9 @@
 #include "VeyonConfiguration.h"
 
 
-DemoServer::DemoServer( const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent ) :
+DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent ) :
 	QObject( parent ),
+	m_vncServerPort( vncServerPort ),
 	m_demoAccessToken( demoAccessToken ),
 	m_tcpServer( new QTcpServer( this ) ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
@@ -98,7 +99,7 @@ void DemoServer::reconnectToVncServer()
 {
 	m_vncClientProtocol.start();
 
-	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, VeyonCore::config().vncServerPort() );
+	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, m_vncServerPort );
 }
 
 

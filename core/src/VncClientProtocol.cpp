@@ -70,7 +70,7 @@ vncEncryptBytes(unsigned char *bytes, char *passwd)
 VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPassword ) :
 	m_socket( socket ),
 	m_state( Disconnected ),
-	m_vncPassword( vncPassword.toLatin1() ),
+	m_vncPassword( vncPassword.toUtf8() ),
 	m_serverInitMessage(),
 	m_framebufferWidth( 0 ),
 	m_framebufferHeight( 0 )
@@ -185,8 +185,8 @@ void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 
 bool VncClientProtocol::receiveMessage()
 {
-	char messageType = 0;
-	if( m_socket->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	uint8_t messageType = 0;
+	if( m_socket->peek( (char *) &messageType, sizeof(messageType) ) != sizeof(messageType) )
 	{
 		return false;
 	}
@@ -207,6 +207,9 @@ bool VncClientProtocol::receiveMessage()
 
 	case rfbResizeFrameBuffer:
 		return receiveResizeFramebufferMessage();
+
+	case rfbXvp:
+		return receiveXvpMessage();
 
 	default:
 		qCritical( "VncClientProtocol::receiveMessage(): received unknown message type: %d", (int) messageType );
@@ -254,9 +257,9 @@ bool VncClientProtocol::receiveSecurityTypes()
 {
 	if( m_socket->bytesAvailable() >= 2 )
 	{
-		char securityTypeCount = 0;
+		uint8_t securityTypeCount = 0;
 
-		m_socket->read( &securityTypeCount, sizeof(securityTypeCount) );
+		m_socket->read( (char *) &securityTypeCount, sizeof(securityTypeCount) );
 
 		if( securityTypeCount == 0 )
 		{
@@ -487,6 +490,13 @@ bool VncClientProtocol::receiveResizeFramebufferMessage()
 	}
 
 	return false;
+}
+
+
+
+bool VncClientProtocol::receiveXvpMessage()
+{
+	return readMessage( sz_rfbXvpMsg );
 }
 
 

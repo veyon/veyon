@@ -184,16 +184,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>є учасником групи</translation>
     </message>
     <message>
-        <source>has one or more groups in common with</source>
-        <translation>має одну або декілька спільних груп з</translation>
-    </message>
-    <message>
         <source>is located in room</source>
         <translation>розташовано у класі</translation>
-    </message>
-    <message>
-        <source>is located in the same room as</source>
-        <translation>розташовано у тому самому класі, що і</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -250,6 +242,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Завжди обробляти правило і ігнорувати умови</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Немає користувачів у системі</translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation>Комп’ютер для доступу розташовано у тому самому класі, що і локальний комп’ютер</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>Користувач для доступу є учасником однієї або декількох груп, які є спільними із локальним (поточним) користувачем</translation>
     </message>
 </context>
 <context>
@@ -544,6 +548,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>Не вдалося змінити параметри служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>Не вдалося змінити налаштування брандмауера для служби %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation>Перезаписати ключі</translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation>Деякі з файлів ключів вже існують. Якщо ви заміните їх новоствореними, вам доведеться також оновити відкриті ключі на усіх комп’ютерах. Хочете продовжити виконання цієї дії?</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Налаштування скинуто</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>Локальні налаштування було успішно вилучено.</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Засіб налаштовування %1</translation>
+    </message>
+</context>
+<context>
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
@@ -633,6 +676,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation>Зовнішній сервер VNC</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation>Налаштування зовнішнього сервера VNC</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>Порт:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Пароль:</translation>
     </message>
 </context>
 <context>
@@ -726,10 +791,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Інтервал оновлення:</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation> с</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>Служба %1</translation>
     </message>
@@ -764,6 +825,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>x</source>
         <translation>x</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> секунд</translation>
     </message>
 </context>
 <context>
@@ -1096,10 +1161,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Фільтрування за групами комп’ютерів</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computerLab or objectClass=room</source>
-        <translation>наприклад, objectClass=computerLab або objectClass=room</translation>
-    </message>
-    <message>
         <source>Group member identification</source>
         <translation>Ідентифікація учасників групи</translation>
     </message>
@@ -1116,28 +1177,12 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Спеціалізовані групи комп’ютерів</translation>
     </message>
     <message>
-        <source>e.g. computerLab or room</source>
-        <translation>наприклад, computerLab або room</translation>
-    </message>
-    <message>
         <source>Common attribute</source>
         <translation>Загальний атрибут</translation>
     </message>
     <message>
-        <source>Functionality tests</source>
-        <translation>Функціональні тести</translation>
-    </message>
-    <message>
-        <source>Get common aggregations of two objects</source>
-        <translation>Отримати загальні збирання двох об’єктів</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Список усіх груп користувача</translation>
-    </message>
-    <message>
-        <source>List all members of a computer lab</source>
-        <translation>Список усіх учасників комп’ютерної лабораторії</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -1320,22 +1365,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>групи комп’ютерів</translation>
     </message>
     <message>
-        <source>Enter computer lab name</source>
-        <translation>Вкажіть назву комп’ютерної лабораторії</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab (wildcards allowed):</source>
-        <translation>Вкажіть назву комп’ютерної лабораторії (можна використовувати символи-замінники):</translation>
-    </message>
-    <message>
-        <source>computer labs</source>
-        <translation>комп’ютерні лабораторії</translation>
-    </message>
-    <message>
-        <source>computer lab attribute</source>
-        <translation>атрибут комп’ютерної лабораторії</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Будь ласка, вкажіть назву запису користувача, для кого слід отримати дані щодо участі у групах:</translation>
     </message>
@@ -1398,42 +1427,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>computers</source>
         <translation>комп&apos;ютери</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab whose members to query:</source>
-        <translation>Будь ласка, вкажіть назву комп’ютерної лабораторії, учасників якої слід опитати:</translation>
-    </message>
-    <message>
-        <source>computer lab members</source>
-        <translation>учасники комп’ютерної лабораторії</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer lab member aggregation</source>
-        <translation>фільтр групування комп’ютерів або збирання учасників до комп’ютерної лабораторії</translation>
-    </message>
-    <message>
-        <source>Enter first object</source>
-        <translation>Введіть перший об’єкт</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the first object:</source>
-        <translation>Будь ласка, вкажіть власну назву першого об’єкта:</translation>
-    </message>
-    <message>
-        <source>Enter second object</source>
-        <translation>Введіть другий об’єкт</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the second object:</source>
-        <translation>Будь ласка, вкажіть власну назву другого об’єкта:</translation>
-    </message>
-    <message>
-        <source>common aggregations</source>
-        <translation>загальні збирання</translation>
-    </message>
-    <message>
-        <source>group membership or computer lab attribute</source>
-        <translation>участь у групах або атрибут комп’ютерної лабораторії</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1500,16 +1493,72 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Ієрархія груп комп’ютерів</translation>
     </message>
     <message>
-        <source>Rooms</source>
-        <translation>Класи</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room using:</source>
         <translation>Збирати комп’ютери у клас на основі:</translation>
     </message>
     <message>
         <source>computer group tree</source>
         <translation>ієрархії груп комп’ютерів</translation>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation>Фільтр для комп’ютерів</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation>наприклад, objectClass=computer</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation>наприклад, objectClass=room або objectClass=computerLab</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>наприклад, room або computerLab</translation>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation>Список усіх учасників комп’ютерного класу</translation>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation>Список усіх комп’ютерних класів</translation>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation>Введіть назву комп’ютерного класу</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation>Будь ласка, введіть назву комп’ютерного класу (можна використовувати символи-замінники):</translation>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation>комп’ютерні класи</translation>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation>атрибут комп’терного класу</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation>Будь ласка, введіть назву комп’ютерного класу, запит до учасників якого слід виконати:</translation>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation>учасники комп’ютерного класу</translation>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation>фільтр групування комп’ютерів або збирання учасників до комп’ютерного класу</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Комп’ютерні класи</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Перевірки інтеграції</translation>
     </message>
 </context>
 <context>
@@ -1652,10 +1701,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Розпізнавання</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Діагностика</translation>
-    </message>
-    <message>
         <source>1)</source>
         <translation>1)</translation>
     </message>
@@ -1734,14 +1779,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>About Qt</source>
         <translation>Про Qt</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Клас</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Натисніть на цю кнопку, щоб відкрити меню, у якому ви зможете вибрати активний клас.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -1854,40 +1891,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Архів звіту щодо вади %1 було збережено до %2. До архіву включено файли журналу %3 та дані щодо вашої операційної системи. Ви можете долучити архів до вашого звіту щодо вади.</translation>
     </message>
     <message>
-        <source>%1 Configurator</source>
-        <translation>Засіб налаштовування %1</translation>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Не вдалося змінити параметри служби %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Не вдалося змінити налаштування брандмауера для служби %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Налаштування скинуто</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>Локальні налаштування було успішно вилучено.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування %1 із ширшими правами доступу.</translation>
-    </message>
-    <message>
-        <source>Click this button to switch between classrooms.</source>
-        <translation>Натисніть цю кнопку для перемикання між класами.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -1908,6 +1913,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Screenshots</source>
         <translation>Знімки вікон</translation>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation>Задіяно можливість</translation>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation>Задіяно можливість «%1». Будь ласка, вимкніть її, перш ніж завершувати роботу %2.</translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation>Звітування щодо вад у Veyon</translation>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation>Звітування щодо вад</translation>
     </message>
 </context>
 <context>
@@ -1976,6 +1997,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Hide computer filter field in computer room management</source>
         <translation>Приховати поле фільтрування комп’ютерів на панелі керування класами комп’ютерів</translation>
     </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -1984,12 +2009,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Спостереження</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
-        <translation>Це типовий режим. Він надає вам змогу стежити за усіма комп’ютерами у класі.</translation>
-    </message>
-    <message>
         <source>Builtin monitoring mode</source>
         <translation>Вбудований режим стеження</translation>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation>Це типовий режим. Він надає вам змогу стежити за усіма комп’ютерами у одному або декількох класах.</translation>
     </message>
 </context>
 <context>
@@ -2378,14 +2403,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Порт демосервера</translation>
     </message>
     <message>
-        <source>Feature worker manager port</source>
-        <translation>Порт засобу керування можливостями</translation>
-    </message>
-    <message>
-        <source>Computer control server port</source>
-        <translation>Порт сервера керування комп’ютерами</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Увімкнути виключення брандмауера</translation>
     </message>
@@ -2416,6 +2433,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Running</source>
         <translation>Запущено</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation>Порт керування можливостями</translation>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation>Порт основної служби</translation>
     </message>
 </context>
 <context>

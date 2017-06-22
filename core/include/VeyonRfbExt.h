@@ -36,10 +36,10 @@ typedef struct _rfbClient rfbClient;
 
 enum PortOffsets
 {
-	PortOffsetComputerControlServer = 11100,
-	PortOffsetVncServer = PortOffsetComputerControlServer+100,
-	PortOffsetFeatureManagerPort = PortOffsetComputerControlServer+200,
-	PortOffsetDemoServer = PortOffsetComputerControlServer+300,
+	PortOffsetPrimaryServiceServer = 11100,
+	PortOffsetVncServer = PortOffsetPrimaryServiceServer+100,
+	PortOffsetFeatureManagerPort = PortOffsetPrimaryServiceServer+200,
+	PortOffsetDemoServer = PortOffsetPrimaryServiceServer+300,
 } ;
 
 #ifdef __cplusplus

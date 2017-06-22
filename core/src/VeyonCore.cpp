@@ -50,51 +50,7 @@
 
 #include "rfb/rfbclient.h"
 
-#include <lzo/lzo1x.h>
-
-
 VeyonCore *VeyonCore::s_instance = nullptr;
-
-
-static void killWisPtis()
-{
-#ifdef VEYON_BUILD_WIN32
-	int pid = -1;
-	while( ( pid = LocalSystem::Process::findProcessId( "wisptis.exe" ) ) >= 0 )
-	{
-		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-										PROCESS_TERMINATE |
-										PROCESS_VM_READ,
-										false, pid );
-		if( !TerminateProcess( hProcess, 0 ) )
-		{
-			CloseHandle( hProcess );
-			break;
-		}
-		CloseHandle( hProcess );
-	}
-
-	if( pid >= 0 )
-	{
-		LocalSystem::User user = LocalSystem::User::loggedOnUser();
-		while( ( pid = LocalSystem::Process::findProcessId( "wisptis.exe", -1, &user ) ) >= 0 )
-		{
-			HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-											PROCESS_TERMINATE |
-											PROCESS_VM_READ,
-											false, pid );
-			if( !TerminateProcess( hProcess, 0 ) )
-			{
-				CloseHandle( hProcess );
-				break;
-			}
-			CloseHandle( hProcess );
-		}
-	}
-#endif
-}
-
-
 
 void VeyonCore::setupApplicationParameters()
 {
@@ -126,10 +82,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_applicationName( "Veyon" ),
 	m_userRole( RoleTeacher )
 {
-	killWisPtis();
-
-	lzo_init();
-
 	setupApplicationParameters();
 
 	s_instance = this;

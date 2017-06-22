@@ -1,5 +1,7 @@
 INCLUDE(BuildPlugin)
 
+ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
+
 SET(kldap_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/kldap/src)
 SET(kldap_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/__/__/3rdparty/kldap/src)
 

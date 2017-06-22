@@ -46,7 +46,7 @@ public:
 		UpdateQueueMemoryHardLimit = UpdateQueueMemorySoftLimit * 2
 	};
 
-	DemoServer( const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent );
+	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent );
 	~DemoServer() override;
 
 	const QByteArray& serverInitMessage() const
@@ -80,6 +80,7 @@ private:
 	bool setVncServerPixelFormat();
 	bool setVncServerEncodings();
 
+	const int m_vncServerPort;
 	const QString m_demoAccessToken;
 
 	QTcpServer* m_tcpServer;

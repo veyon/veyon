@@ -23,12 +23,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
-#ifdef VEYON_BUILD_WIN32
-#define UNICODE
-#endif
-
 #include "VeyonCore.h"
 
 #include <QDir>
@@ -466,13 +460,13 @@ void User::lookupFullName()
 	// try to retrieve user's full name from domain
 
 	PBYTE dc = NULL;	// domain controller
-	if( NetGetDCName( NULL, (LPWSTR) m_domain.unicode(), &dc ) != NERR_Success )
+	if( NetGetDCName( NULL, (LPWSTR) m_domain.utf16(), &dc ) != NERR_Success )
 	{
 		dc = NULL;
 	}
 
 	LPUSER_INFO_2 pBuf = NULL;
-	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, (LPWSTR) m_name.unicode(), 2,
+	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, (LPWSTR) m_name.utf16(), 2,
 												(LPBYTE *) &pBuf );
 	if( nStatus == NERR_Success && pBuf != NULL )
 	{

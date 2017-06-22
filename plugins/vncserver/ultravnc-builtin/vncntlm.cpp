@@ -1,7 +1,7 @@
 /*
- * vncntlm.cpp - minimalistic implementation of vncntlm module
+ * vncntlm.cpp - dummy implementation of vncntlm module
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,20 +22,10 @@
  *
  */
 
-
-#include "addon/ms-logon/authSSP/authSSP.h"
-
-#define MAXSTRING 254
-
-int CheckUserGroupPasswordUni(char * userin,char *password,const char *machine)
+int CheckUserGroupPasswordUni(char *,char *,const char *)
 {
-	TCHAR user2[MAXSTRING];
-#if defined(UNICODE) || defined(_UNICODE)
-	mbstowcs(user2, userin, MAXSTRING);
-#else
-	strcpy(user2, userin);
-#endif
-
-	return CUPSD2(user2, password);
+	// never perform logon authentication as we're only using
+	// simple VNC authentication for internal VNC server
+	return 0;
 }
 

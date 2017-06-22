@@ -167,6 +167,9 @@ bool ConfiguratorCore::importPublicKey( VeyonCore::UserRole role, const QString&
 	}
 
 	QString destinationPublicKeyPath = LocalSystem::Path::publicKeyPath( role, destDir );
+
+	LocalSystem::Path::ensurePathExists( QFileInfo( destinationPublicKeyPath ).path() );
+
 	QFile destFile( destinationPublicKeyPath );
 	if( destFile.exists() )
 	{

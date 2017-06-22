@@ -99,7 +99,8 @@ void FeatureWorkerManager::startWorker( const Feature& feature )
 			 worker.process, &QProcess::deleteLater );
 
 	qDebug() << "Starting worker for feature" << feature.displayName() << feature.uid();
-	worker.process->start( workerProcessFilePath(), QStringList( { feature.uid().toString() } ) );
+	worker.process->start( workerProcessFilePath(),	{ feature.uid().toString(),
+													  QString::number( VeyonCore::config().featureWorkerManagerPort() ) } );
 
 	m_workersMutex.lock();
 	m_workers[feature.uid()] = worker;

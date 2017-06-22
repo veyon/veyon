@@ -40,12 +40,23 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 	qInfo() << "Authenticating user" << cred.logonUsername();
 
 	bool result = false;
+
 #ifdef VEYON_BUILD_WIN32
-#ifdef UNICODE
-	return CUPSD2( (const char *) cred.logonUsername().unicode(), (const char *) cred.logonPassword().unicode() );
-#else
-	return CUPSD2( cred.logonUsername().toLocal8Bit().constData(), cred.logonPassword().toLocal8Bit().constData() );
-#endif
+	QString domain;
+	QString user;
+
+	const auto userNameParts = cred.logonUsername().split( '\\' );
+	if( userNameParts.count() == 2 )
+	{
+		domain = userNameParts[0];
+		user = userNameParts[1];
+	}
+	else
+	{
+		user = cred.logonUsername();
+	}
+
+	result = SSPLogonUser( (LPTSTR) domain.utf16(), (LPTSTR) user.utf16(), (LPTSTR) cred.logonPassword().utf16() );
 #endif
 
 #ifdef VEYON_BUILD_LINUX
