@@ -50,9 +50,6 @@
 
 #include "rfb/rfbclient.h"
 
-#include <lzo/lzo1x.h>
-
-
 VeyonCore *VeyonCore::s_instance = nullptr;
 
 void VeyonCore::setupApplicationParameters()
@@ -85,8 +82,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_applicationName( "Veyon" ),
 	m_userRole( RoleTeacher )
 {
-	lzo_init();
-
 	setupApplicationParameters();
 
 	s_instance = this;
