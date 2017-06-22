@@ -22,6 +22,8 @@
  *
  */
 
+#include <QCoreApplication>
+
 #include "BuiltinUltraVncServer.h"
 #include "UltraVncConfiguration.h"
 #include "UltraVncConfigurationWidget.h"
@@ -31,8 +33,9 @@ extern int WinVNCAppMain();
 
 static BuiltinUltraVncServer* vncServerInstance = nullptr;
 
-extern HINSTANCE	hAppInstance;
-extern DWORD		mainthreadId;
+extern BOOL multi;
+extern HINSTANCE hAppInstance;
+extern DWORD mainthreadId;
 
 
 void ultravnc_veyon_load_password( char* out, int size )
@@ -153,6 +156,13 @@ void BuiltinUltraVncServer::run( int serverPort, const QString& password )
 {
 	m_serverPort = serverPort;
 	m_password = password;
+
+	// only allow multiple instances when explicitely working with multiple
+	// service instances
+	if( QCoreApplication::arguments().contains( "-session" ) )
+	{
+		multi = true;
+	}
 
 	// run winvnc-server
 	Myinit( GetModuleHandle( NULL ) );
