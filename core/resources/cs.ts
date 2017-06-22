@@ -184,16 +184,8 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
         <translation>je členem skupiny</translation>
     </message>
     <message>
-        <source>has one or more groups in common with</source>
-        <translation>má jednu nebo více skupin společnou s</translation>
-    </message>
-    <message>
         <source>is located in room</source>
         <translation>nachází se v místnosti</translation>
-    </message>
-    <message>
-        <source>is located in the same room as</source>
-        <translation>nachází se ve stejné místnosti jako</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -250,6 +242,18 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     <message>
         <source>Always process rule and ignore conditions</source>
         <translation>Pravidlo vždy zpracovat a ignorovat podmínky</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Není přihlášen žádný uživatel</translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation>Přistupující počítač se nachází ve stejné místnosti jako váš počítač</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>Přistupující uživatel má jednu či více skupin společných s právě přihlášeným uživatelem.</translation>
     </message>
 </context>
 <context>
@@ -423,7 +427,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Stroj / IP adresa: %1</translation>
     </message>
 </context>
 <context>
@@ -458,7 +462,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Vyhledání počítače</translation>
     </message>
 </context>
 <context>
@@ -544,6 +548,45 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
 </context>
 <context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>Nedaří se nastavit automatické spouštění služby %1.</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>Nedaří se upravit argumenty pro službu %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>Nedaří se změnit nastavení brány firewall pro službu %1.</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes vzdálené ovládání nebude fungovat!</translation>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation>Přepsat klíče</translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation>Některé ze souborů s klíči už existují. Pokud je nahradíte nově vytvořenými, bude třeba aktualizovat veřejné části klíčů také na všech počítačích. Opravdu pokračovat?</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Nastavení odstraněna</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>Místní nastavení bylo úspěšně vyčištěno.</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Nastavení %1</translation>
+    </message>
+</context>
+<context>
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
@@ -578,11 +621,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Ukázkový server</translation>
     </message>
     <message>
         <source>Demo client</source>
-        <translation type="unfinished"/>
+        <translation>Ukázkový klient</translation>
     </message>
 </context>
 <context>
@@ -633,6 +676,28 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Kliknutím na toto tlačítko spustíte aplikaci na všech počítačích.</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation>Externí VNC server</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation>Nastavení externího VNC serveru</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>Port:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Heslo:</translation>
     </message>
 </context>
 <context>
@@ -726,10 +791,6 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
         <translation>Interval aktualizace:</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation>s</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>služba %1</translation>
     </message>
@@ -764,6 +825,10 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     <message>
         <source>x</source>
         <translation>x</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> sekund</translation>
     </message>
 </context>
 <context>
@@ -1096,10 +1161,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Filtrovat dle skupin počítačů</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computerLab or objectClass=room</source>
-        <translation>Např. objectClass=computerLab nebo objectClass=room</translation>
-    </message>
-    <message>
         <source>Group member identification</source>
         <translation>Identifikace člena skupiny</translation>
     </message>
@@ -1116,28 +1177,12 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Vyhrazené skupiny počítačů</translation>
     </message>
     <message>
-        <source>e.g. computerLab or room</source>
-        <translation>např. computerLab nebo room</translation>
-    </message>
-    <message>
         <source>Common attribute</source>
         <translation>Společný atribut</translation>
     </message>
     <message>
-        <source>Functionality tests</source>
-        <translation>Funkční testy</translation>
-    </message>
-    <message>
-        <source>Get common aggregations of two objects</source>
-        <translation>Získat běžné agregace dvou objektů</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Vypsat veškeré skupiny kterých je uživatel členem</translation>
-    </message>
-    <message>
-        <source>List all members of a computer lab</source>
-        <translation>Vypsat veškeré členy počítačové laboratoře</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -1320,22 +1365,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>skupiny počítačů</translation>
     </message>
     <message>
-        <source>Enter computer lab name</source>
-        <translation>Zadejte název počítačové učebny</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab (wildcards allowed):</source>
-        <translation>Zadejte název počítačové laboratoře (je možné použít i zástupné znaky):</translation>
-    </message>
-    <message>
-        <source>computer labs</source>
-        <translation>Počítačové laboratoře</translation>
-    </message>
-    <message>
-        <source>computer lab attribute</source>
-        <translation>atribut počítačová laboratoř</translation>
-    </message>
-    <message>
         <source>Please enter a user login name whose group memberships to query:</source>
         <translation>Zadejte přihlašovací jméno uživatele na jehož členství ve skupinách se dotázat:</translation>
     </message>
@@ -1398,42 +1427,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>computers</source>
         <translation>počítače</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab whose members to query:</source>
-        <translation>Zadejte název počítačové laboratoře na jejíž členy se dotázat:</translation>
-    </message>
-    <message>
-        <source>computer lab members</source>
-        <translation>členové počítačové laboratoře</translation>
-    </message>
-    <message>
-        <source>computer group filter or computer lab member aggregation</source>
-        <translation>agregace filtru skupin počítače nebo členů počítačové laboratoře</translation>
-    </message>
-    <message>
-        <source>Enter first object</source>
-        <translation>Zadejte první objekt</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the first object:</source>
-        <translation>Zadejte rozlišený název prvního objektu:</translation>
-    </message>
-    <message>
-        <source>Enter second object</source>
-        <translation>Zadejte druhý objekt</translation>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the second object:</source>
-        <translation>Zadejte rozlišený název druhého objektu:</translation>
-    </message>
-    <message>
-        <source>common aggregations</source>
-        <translation>běžné agregace</translation>
-    </message>
-    <message>
-        <source>group membership or computer lab attribute</source>
-        <translation>atribut členství ve skupině nebo počítačové laboratoři</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1500,16 +1493,72 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Strom skupin počítačů</translation>
     </message>
     <message>
-        <source>Rooms</source>
-        <translation>Místnosti</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room using:</source>
         <translation>Sloučit počítače v místnosti pomocí:</translation>
     </message>
     <message>
         <source>computer group tree</source>
         <translation>Strom skupin uživatelů</translation>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation>Filtrovat dle počítačů</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation>např. objectClass=pocitac</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation>např. objectClass=mistnost nebo objectClass=pocitacovaLaborator</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>např. mistnost nebo pocitacovaLaborator</translation>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation>Vypsat veškeré členy počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation>Vypsat veškeré počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation>Zadejte název počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation>Zadejte název počítačové místnosti (je možné použít i zástupné znaky):</translation>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation>počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation>atribut počítačová místnost</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation>Zadejte název počítačové místnosti na jejíž členy se chcete dotázat:</translation>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation>členové počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation>filtr skupin počítačů nebo seskupování členů počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Integrační testy</translation>
     </message>
 </context>
 <context>
@@ -1652,10 +1701,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Ověření</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Ladění</translation>
-    </message>
-    <message>
         <source>1)</source>
         <translation>1)</translation>
     </message>
@@ -1734,14 +1779,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>About Qt</source>
         <translation>O aplikačním rámci (framework) Qt</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Učebna</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Kliknutím na toto tlačítko se zobrazí nabídka, ze které je možné zvolit učebnu.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -1854,40 +1891,8 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Archiv s údaji pro hlášení chyby v %1 uložen do %2 Obsahuje soubory se záznamy o provozu %3 a informace o vašem operačním systému. Můžete jej připojit k hlášení chyby.</translation>
     </message>
     <message>
-        <source>%1 Configurator</source>
-        <translation>Nastavení %1</translation>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Nedaří se nastavit automatické spouštění služby %1.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Nedaří se upravit argumenty pro službu %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Nedaří se změnit nastavení brány firewall pro službu %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes vzdálené ovládání nebude fungovat!</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Nastavení odstraněna</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>Místní nastavení bylo úspěšně vyčištěno.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Podpůrná vrstva (backend) nastavení na tomto počítači hlásí, že do nastavení nelze zapisovat! Spusťte konzolu pro správu Veyon s vyššími oprávněními.</translation>
-    </message>
-    <message>
-        <source>Click this button to switch between classrooms.</source>
-        <translation>Kliknutím na toto tlačítko přepínejte mezi učebnami.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -1908,6 +1913,22 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Screenshots</source>
         <translation>Snímky obrazovky</translation>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation>Funkce aktivní</translation>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation>Funkce „%1“ je pořád aktivní. Ukončete ji a až teprve potom ukončete %2.</translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1974,7 +1995,11 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Hide computer filter field in computer room management</source>
-        <translation type="unfinished"/>
+        <translation>Skrýt kolonku filtrování počítačů ve správě počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -1984,12 +2009,12 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Dohledování</translation>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
-        <translation>Toto je výchozí režim a umožňuje monitorovat veškeré počítače v učebně.</translation>
-    </message>
-    <message>
         <source>Builtin monitoring mode</source>
         <translation>Režim vestavěného dohledování</translation>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation>Toto je výchozí režim a umožňuje monitorovat veškeré počítače v jedné a více místnostech.</translation>
     </message>
 </context>
 <context>
@@ -2378,14 +2403,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Port ukázkového serveru</translation>
     </message>
     <message>
-        <source>Feature worker manager port</source>
-        <translation>Port řízení vykonávání funkce</translation>
-    </message>
-    <message>
-        <source>Computer control server port</source>
-        <translation>Portu řízení počítače</translation>
-    </message>
-    <message>
         <source>Enable firewall exception</source>
         <translation>Vytvořit výjimku na bráně firewall</translation>
     </message>
@@ -2416,6 +2433,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Running</source>
         <translation>Spuštěné</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation>Port správce funkce</translation>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation>Port hlavní služby</translation>
     </message>
 </context>
 <context>
