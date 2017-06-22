@@ -42,6 +42,7 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 									 std::pair<int, int>( rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg ),
 									 std::pair<int, int>( rfbKeyEvent, sz_rfbKeyEventMsg ),
 									 std::pair<int, int>( rfbPointerEvent, sz_rfbPointerEventMsg ),
+									 std::pair<int, int>( rfbXvp, sz_rfbXvpMsg ),
 									 } )
 {
 	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient );
@@ -172,8 +173,8 @@ bool VncProxyConnection::receiveClientMessage()
 {
 	auto socket = proxyClientSocket();
 
-	char messageType = 0;
-	if( socket->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	uint8_t messageType = 0;
+	if( socket->peek( (char *) &messageType, sizeof(messageType) ) != sizeof(messageType) )
 	{
 		return false;
 	}
