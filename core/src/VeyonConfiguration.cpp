@@ -81,7 +81,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setLogFileRotationCount( 10 );
 	c.setLogFileDirectory( "$TEMP" );
 
-	c.setComputerControlServerPort( PortOffsetComputerControlServer );
+	c.setPrimaryServicePort( PortOffsetPrimaryServiceServer );
 	c.setVncServerPort( PortOffsetVncServer );
 	c.setFeatureWorkerManagerPort( PortOffsetFeatureManagerPort );
 	c.setDemoServerPort( PortOffsetDemoServer );

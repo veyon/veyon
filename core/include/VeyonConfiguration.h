@@ -70,7 +70,7 @@ public slots:
 	void setNetworkObjectDirectoryUpdateInterval( int );
 	void setDisabledFeatures( const QStringList& );
 	void setVncServerPlugin( const QUuid& );
-	void setComputerControlServerPort( int );
+	void setPrimaryServicePort( int );
 	void setVncServerPort( int );
 	void setFeatureWorkerManagerPort( int );
 	void setDemoServerPort( int );

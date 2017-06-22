@@ -513,7 +513,7 @@ void VeyonVncConnection::establishConnection()
 
 		if( m_port < 0 ) // use default port?
 		{
-			m_cl->serverPort = VeyonCore::config().computerControlServerPort();
+			m_cl->serverPort = VeyonCore::config().primaryServicePort();
 		}
 		else
 		{
