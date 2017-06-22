@@ -58,7 +58,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), UUID, vncServerPlugin, setVncServerPlugin, "Plugin", "VncServer" );	\
 
 #define FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), INT, computerControlServerPort, setComputerControlServerPort, "ComputerControlServerPort", "Network" );			\
+	OP( VeyonConfiguration, VeyonCore::config(), INT, primaryServicePort, setPrimaryServicePort, "PrimaryServicePort", "Network" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, vncServerPort, setVncServerPort, "VncServerPort", "Network" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, featureWorkerManagerPort, setFeatureWorkerManagerPort, "FeatureWorkerManagerPort", "Network" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\

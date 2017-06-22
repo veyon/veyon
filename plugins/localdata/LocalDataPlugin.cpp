@@ -25,7 +25,6 @@
 #include <veyonconfig.h>
 
 #ifdef VEYON_BUILD_WIN32
-#define UNICODE
 #include <winsock2.h>
 #include <windef.h>
 #include <wtsapi32.h>

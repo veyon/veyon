@@ -188,16 +188,8 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>es miembro del grupo</translation>
     </message>
     <message>
-        <source>has one or more groups in common with</source>
-        <translation>tiene uno o más grupos en común con</translation>
-    </message>
-    <message>
         <source>is located in room</source>
         <translation>se encuentra en el aula</translation>
-    </message>
-    <message>
-        <source>is located in the same room as</source>
-        <translation>se encuentra en la misma aula que</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -258,6 +250,14 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>No user logged on</source>
         <translation>Ningún usuario ha iniciado sesión</translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation>El acceso al equipo se encuentra en la misma habitación que el ordenador local</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>El acceso al usuario tiene uno o más grupos en común con el usuario local (conectado)</translation>
     </message>
 </context>
 <context>
@@ -795,10 +795,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Intervalo de actualización:</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation> s</translation>
-    </message>
-    <message>
         <source>%1 service</source>
         <translation>servicio %1</translation>
     </message>
@@ -1189,10 +1185,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Atributo común</translation>
     </message>
     <message>
-        <source>Functionality tests</source>
-        <translation>Pruebas de funcionalidad</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Listar todos los grupos de un usuario</translation>
     </message>
@@ -1505,10 +1497,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Árbol de grupo de equipos</translation>
     </message>
     <message>
-        <source>Rooms</source>
-        <translation>Aulas</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room using:</source>
         <translation>Agregar equipos a un aula usando:</translation>
     </message>
@@ -1571,6 +1559,10 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>Computer rooms</source>
         <translation>Aulas</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Pruebas de integración</translation>
     </message>
 </context>
 <context>
@@ -1711,10 +1703,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>Authentication</source>
         <translation>Autenticación</translation>
-    </message>
-    <message>
-        <source>Debugging</source>
-        <translation>Depuración</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1937,6 +1925,14 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>La característica &quot;%1&quot; está aún activa. Por favor, detengala antes de cerrar %2.</translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation>Notificar fallos en Veyon</translation>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation>Notificación de fallos</translation>
     </message>
 </context>
 <context>
@@ -2409,14 +2405,6 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Demo server port</source>
         <translation>Puerto de servidor demo</translation>
-    </message>
-    <message>
-        <source>Feature worker manager port</source>
-        <translation>Puerto del gestor de funciones</translation>
-    </message>
-    <message>
-        <source>Computer control server port</source>
-        <translation>Puerto del servidor de control de equipo</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>

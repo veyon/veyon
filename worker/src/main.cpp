@@ -44,7 +44,7 @@ int main( int argc, char **argv )
 		qFatal( "Not enough arguments (feature)" );
 	}
 
-	const auto featureUid = arguments.last();
+	const auto featureUid = arguments[1];
 	if( QUuid( featureUid ).isNull() )
 	{
 		qFatal( "Invalid feature UID given" );
@@ -77,7 +77,13 @@ int main( int argc, char **argv )
 		qFatal( "Specified feature is disabled by configuration!" );
 	}
 
-	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, featureUid );
+	auto featureWorkerManagerPort = VeyonCore::config().featureWorkerManagerPort();
+	if( arguments.count() > 2 )
+	{
+		featureWorkerManagerPort = arguments[2].toUInt();
+	}
+
+	FeatureWorkerManagerConnection featureWorkerManagerConnection( featureManager, featureUid, featureWorkerManagerPort );
 
 	qInfo() << "Running worker for feature" << workerFeature->displayName();
 

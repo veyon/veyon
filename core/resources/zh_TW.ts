@@ -2,783 +2,83 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation>關於 veyon</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>關於</translation>
-    </message>
-    <message>
-        <source>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
-        <translation>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
-    </message>
-    <message>
-        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation>作者</translation>
     </message>
     <message>
         <source>Translation</source>
         <translation>翻譯</translation>
     </message>
     <message>
+        <source>License</source>
+        <translation>授權</translation>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>關於 Veyon</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>貢獻者</translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation>版本:</translation>
+    </message>
+    <message>
+        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
+        <translation>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation>網站:</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>TeliuTe&lt;teliute@163.com&gt;, 2014, 2016.
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation>目前語言尚未翻譯 (或原生英語)。
 
-若您想參與翻譯 veyon，或是想修正目前的翻譯，請與 veyon 開發者聯絡。</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>授權條款</translation>
+如果您有興趣翻譯 Veyon 為您的本地或另一種語言或想要改善現有的翻譯，請聯繫 Veyon 開發人員!</translation>
     </message>
 </context>
 <context>
-    <name>AccessDialogSlave</name>
+    <name>AccessControlPage</name>
     <message>
-        <source>Confirm desktop access</source>
-        <translation>確認桌面存取</translation>
+        <source>Computer access control</source>
+        <translation>電腦存取控制</translation>
     </message>
     <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>於主機 %2 的使用者 %1 要存取您的桌面。您要給予對方權限嗎？</translation>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>每個經過驗證的使用者授予存取權限 (預設值)</translation>
     </message>
     <message>
-        <source>Never for this session</source>
-        <translation>在這個作業階段中永遠不要</translation>
+        <source>Test</source>
+        <translation>測試</translation>
     </message>
     <message>
-        <source>Always for this session</source>
-        <translation>在這個作業階段中都要</translation>
+        <source>Restrict access to members of certain user groups</source>
+        <translation>限制對某些使用者群組成員的存取</translation>
     </message>
-</context>
-<context>
-    <name>ClassroomManager</name>
     <message>
-        <source>Classroom-Manager</source>
-        <translation>教室管理程式</translation>
+        <source>Process access control rules</source>
+        <translation>處理程序存取控制規則</translation>
     </message>
     <message>
-        <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>使用這個工作區以簡單的方式來管理您的電腦和教室。</translation>
+        <source>Data backend:</source>
+        <translation>後台資料:</translation>
     </message>
     <message>
-        <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>這是管理電腦與教室的地方。您可以在這個清單中按右鍵加入電腦或教室。</translation>
+        <source>User groups authorized for computer access</source>
+        <translation>授權電腦存取的使用者群組</translation>
     </message>
     <message>
-        <source>Classrooms/computers</source>
-        <translation>教室/電腦</translation>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation>請加入群組，其成員應授權存取 Veyon 網路中的電腦。</translation>
     </message>
     <message>
-        <source>IP-address</source>
-        <translation>IP-位址</translation>
-    </message>
-    <message>
-        <source>Usernames</source>
-        <translation>使用者名稱</translation>
-    </message>
-    <message>
-        <source>Show usernames</source>
-        <translation>顯示使用者名稱</translation>
-    </message>
-    <message>
-        <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation>使用快顯功能表（滑鼠右鍵）來加入/移除電腦和/或教室。</translation>
-    </message>
-    <message>
-        <source>Export to text file</source>
-        <translation>匯出為純文字檔案</translation>
-    </message>
-    <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>用這個按鈕將這份電腦與使用者名稱的清單匯出為純文字檔案。稍後您可以在測驗結束後使用這個檔案來收集相關檔案。這在某些時候是必要的，因為有些使用者可能早已完成測驗並且登出，這麼一來您就不能在測驗結束後收集到他們的檔案。</translation>
-    </message>
-    <message>
-        <source>Hide teacher computers</source>
-        <translation>隱藏老師電腦</translation>
-    </message>
-    <message>
-        <source>Show/hide</source>
-        <translation>顯示/隱藏</translation>
-    </message>
-    <message>
-        <source>Edit settings</source>
-        <translation>編輯設定值</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation>移除</translation>
-    </message>
-    <message>
-        <source>Show all computers in classroom</source>
-        <translation>顯示教室中的所有電腦</translation>
-    </message>
-    <message>
-        <source>Hide all computers in classroom</source>
-        <translation>隱藏教室中的所有電腦</translation>
-    </message>
-    <message>
-        <source>Edit name</source>
-        <translation>編輯名稱</translation>
-    </message>
-    <message>
-        <source>Remove classroom</source>
-        <translation>移除教室</translation>
-    </message>
-    <message>
-        <source>Add computer</source>
-        <translation>加入電腦</translation>
-    </message>
-    <message>
-        <source>Add classroom</source>
-        <translation>加入教室</translation>
-    </message>
-    <message>
-        <source>No configuration file found</source>
-        <translation>找不到組態檔案</translation>
-    </message>
-    <message>
-        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>無法開啟組態檔案 %1。您必須先使用位於程式中左側的側邊列的教室管理程式加入至少一個教室與電腦。</translation>
-    </message>
-    <message>
-        <source>Error in configuration file</source>
-        <translation>組態檔案中有錯誤</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>解析組態檔案 %1 時發生錯誤。請編輯它。否則您應該刪除這個檔案並且須要重新加入所有的教室和電腦。</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>解析組態檔案 %1 時發生錯誤。請編輯它。否則您應該刪除這個檔案。</translation>
-    </message>
-    <message>
-        <source>Select output-file</source>
-        <translation>選擇輸出檔案</translation>
-    </message>
-    <message>
-        <source>Text files (*.txt)</source>
-        <translation>純文字檔案 (*.txt)</translation>
-    </message>
-    <message>
-        <source>Actions for selected</source>
-        <translation>可選擇的動作</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>動作</translation>
-    </message>
-    <message>
-        <source>Actions for %1</source>
-        <translation>對 %1 的動作</translation>
-    </message>
-    <message>
-        <source>New name for classroom</source>
-        <translation>教室的新名稱</translation>
-    </message>
-    <message>
-        <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>請輸入教室 &quot;%1&quot; 的新名稱。</translation>
-    </message>
-    <message>
-        <source>Are you sure want to remove classroom &quot;%1&quot;?
-All computers in it will be removed as well!</source>
-        <translation>您確定要移除教室 &quot;%1&quot;？
-所有在此教室中的電腦也會被移除！</translation>
-    </message>
-    <message>
-        <source>Missing classroom</source>
-        <translation>遺失教室</translation>
-    </message>
-    <message>
-        <source>Before adding computers you have to create at least one classroom.
-Do you want to create a new classrom now?</source>
-        <translation>在加入電腦前您必須先至少建立一個教室。
-您是否要立刻建立一個新的教室？</translation>
-    </message>
-    <message>
-        <source>New classroom</source>
-        <translation>新增教室</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the classroom you want to create.</source>
-        <translation>請輸入您要建立教室的名稱。</translation>
-    </message>
-</context>
-<context>
-    <name>Client</name>
-    <message>
-        <source>Unknown state</source>
-        <translation>未知的狀態</translation>
-    </message>
-    <message>
-        <source>No user logged in</source>
-        <translation>沒有使用者登入</translation>
-    </message>
-    <message>
-        <source>Host unreachable</source>
-        <translation>無法連接主機</translation>
-    </message>
-    <message>
-        <source>Demo running</source>
-        <translation>正在示範</translation>
-    </message>
-    <message>
-        <source>Desktop locked</source>
-        <translation>桌面已鎖定</translation>
-    </message>
-    <message>
-        <source>Message from teacher</source>
-        <translation>來自老師的訊息</translation>
-    </message>
-</context>
-<context>
-    <name>ClientAction</name>
-    <message>
-        <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>您確定要登出所有可見電腦上的所有使用者？</translation>
-    </message>
-    <message>
-        <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>您確定要登出所有已選取電腦上的所有使用者？</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>登出使用者</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all visible computers?</source>
-        <translation>您確定要讓所有可見的電腦重新開機？</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all selected computers?</source>
-        <translation>您確定要讓所有選取的電腦重新開機？</translation>
-    </message>
-    <message>
-        <source>Reboot computers</source>
-        <translation>重新啟動電腦</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all visible computers?</source>
-        <translation>您確定要讓所有可見的電腦關機？</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all selected computers?</source>
-        <translation>您確定要讓所有選取的電腦關機？</translation>
-    </message>
-</context>
-<context>
-    <name>ClientSettingsDialog</name>
-    <message>
-        <source>Client settings</source>
-        <translation>客戶端設定值</translation>
-    </message>
-    <message>
-        <source>IP/hostname</source>
-        <translation>IP/主機名稱</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;輸入讓 veyon 可以到達客戶端的 IP-位址或主機名稱（使用 &apos;:&apos; 以指定選擇性的連接埠）&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>名稱</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;這個主機在 veyon 中顯示的選用性暱稱。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC 硬體位址</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;用來讓客戶端開機的客戶端硬體/MAC-位址 - 只用於讓客戶端開機&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>教室</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>類型</translation>
-    </message>
-    <message>
-        <source>Student computer</source>
-        <translation>學生電腦</translation>
-    </message>
-    <message>
-        <source>Teacher computer</source>
-        <translation>老師電腦</translation>
-    </message>
-    <message>
-        <source>Other/undefined computer</source>
-        <translation>其他/未定義的電腦</translation>
-    </message>
-    <message>
-        <source>Missing IP address/hostname</source>
-        <translation>遺失 IP 位址/主機名稱</translation>
-    </message>
-    <message>
-        <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>您沒有指定此電腦的 IP 位址或主機名稱！</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address</source>
-        <translation>無效的 MAC-位址</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation>您指定了無效的 MAC-位址。您可以讓此欄位留空或輸入有效的 MAC-位址（使用 英文冒號“:”分隔！）。</translation>
-    </message>
-</context>
-<context>
-    <name>Config</name>
-    <message>
-        <source>Interval between updates</source>
-        <translation>更新的間隔</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可以在這裡設定客戶端更新的問隔。較高的數值可使這台電腦有較低的網路流量和 CPU 使用率。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation> 秒</translation>
-    </message>
-    <message>
-        <source>User interface</source>
-        <translation>使用者介面</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;不要顯示工具列按鈕的氣泡式工具提示&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;如果您覺得在工具列按鈕上移動滑鼠指標時出現的氣泡式工具提示很煩人的話可以核取這個選項。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No balloon-tooltips</source>
-        <translation>無氣泡式工具提示</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;不要在工具列按鈕上顯示文字。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No texts on toolbar-buttons</source>
-        <translation>工具列按鈕不顯示文字</translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation>語言：</translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation>系統預設</translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation>ar - العربية</translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation>cs - Česky</translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation>de - Deutsch</translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation>el - Ελληνικά</translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation>es - Español</translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation>fi - Suomi</translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation>fr - Français</translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation>he - עִבְרִית</translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation>hu - Magyar</translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation>it - Italiano</translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation>nl - Nederlands</translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation>nn - Norsk</translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation>pl - Polski</translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation>pt_br - Brasileiro</translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation>pt_pt - Português</translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation>ru - Русский</translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation>sk - Slovenský</translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation>sl - Slovenčina</translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation>sv - Svenska</translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation>tr - Türkçe</translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation>uk - Українська</translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation>zh_cn - 简体字</translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation>zh_tw - 繁體字</translation>
-    </message>
-    <message>
-        <source>Your role (needs according keys!)</source>
-        <translation>您的角色（需要對應的鍵值！）</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可以在這裡選擇您的角色。請只在您了解自己在做什麼時才改變此選項。否則在您回復舊的角色前將可能無法存取任何客戶端。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Teacher</source>
-        <translation>教師</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>管理者</translation>
-    </message>
-    <message>
-        <source>Supporter</source>
-        <translation>協助者</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>其他</translation>
-    </message>
-    <message>
-        <source>Double click action for client window</source>
-        <translation>應用於客戶端窗口的雙擊動作</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可以在這裡設定雙擊客戶端視窗時會發生什麼事。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>遠端控制</translation>
-    </message>
-    <message>
-        <source>View live in fullscreen</source>
-        <translation>全螢幕現場直播</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;請注意，有些變更要在您重新啟動 veyon 後才會生效。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigWidget</name>
-    <message>
-        <source>Your veyon-configuration</source>
-        <translation>您的 veyon-組態</translation>
-    </message>
-    <message>
-        <source>In this workspace you can customize veyon to fit your needs.</source>
-        <translation>在這個工作區中您可以自訂 veyon 以符合您的需求。</translation>
-    </message>
-</context>
-<context>
-    <name>DemoClient</name>
-    <message>
-        <source>veyon Demo</source>
-        <translation>veyon 示範</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonCoreServer</name>
-    <message>
-        <source>Authentication error</source>
-        <translation>驗證錯誤</translation>
-    </message>
-    <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
-        <translation>某人 (IP: %1) 嘗試存取這台電腦，但是無法成功的通過驗證！</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC 驗證失敗，因為嘗試過太多次了。</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC 驗證失敗。</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC 伺服器已關閉連線。</translation>
-    </message>
-</context>
-<context>
-    <name>KeyFileAssistant</name>
-    <message>
-        <source>veyon Access Key Assistant</source>
-        <translation>veyon 存取金鑰小助手</translation>
-    </message>
-    <message>
-        <source>Create/import veyon access keys</source>
-        <translation>建立/匯入 veyon 存取金鑰</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import veyon access keys.</source>
-        <translation>此小助手會協助您建立或匯入 veyon 存取金鑰。</translation>
-    </message>
-    <message>
-        <source>How does it work?</source>
-        <translation>它是怎麼運作的？</translation>
-    </message>
-    <message>
-        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>veyon 存取金鑰包含兩個部份，私密金鑰與公開金鑰。
-
-主電腦上的使用者可以透過私密金鑰存取客戶端的電腦。所以很重要的是，只有經過授權的使用者才能存取私密金鑰檔。
-
-公開金鑰是用於客戶端電腦，以便驗證前來存取該電腦的要求。</translation>
-    </message>
-    <message>
-        <source>Assistant mode</source>
-        <translation>小助手模式</translation>
-    </message>
-    <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>請選擇是要建立新的存取金鑰，還是匯入某個客戶端裡的公開金鑰。</translation>
-    </message>
-    <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>建立新的存取金鑰（主電腦）</translation>
-    </message>
-    <message>
-        <source>Import public key (client computer)</source>
-        <translation>匯入公開金鑰（客戶端電腦）</translation>
-    </message>
-    <message>
-        <source>Select user role</source>
-        <translation>請選擇使用者角色</translation>
-    </message>
-    <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>請選擇使用者角色，用於建立或匯入存取金鑰：</translation>
-    </message>
-    <message>
-        <source>Teacher</source>
-        <translation>教師</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>管理者</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>支援團隊成員</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>其他</translation>
-    </message>
-    <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>多個使用者角色可以同時使用多個存取金鑰。例如，可能每間教室有不同的教師的存取金鑰，而支援者的存取金鑰則整間學校都相同。</translation>
-    </message>
-    <message>
-        <source>Directories</source>
-        <translation>目錄</translation>
-    </message>
-    <message>
-        <source>Export public key part (master computer)</source>
-        <translation>匯出公開金鑰（主電腦）</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>使用自訂的目的地目錄存放金鑰</translation>
-    </message>
-    <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>請指定公開金鑰要被匯入到哪個位置。</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>摘要</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>將會進行以下的動作：</translation>
-    </message>
-    <message>
-        <source>• Create new access keys</source>
-        <translation>• 建立新的存取金鑰</translation>
-    </message>
-    <message>
-        <source>• Import public access key from</source>
-        <translation>• 從以下來源匯入公開存取金鑰：</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;未知&gt;</translation>
-    </message>
-    <message>
-        <source>• Write access key(s) to</source>
-        <translation>• 將存取金鑰寫到：</translation>
-    </message>
-    <message>
-        <source>• Export public key to</source>
-        <translation>• 將公開金鑰匯出到：</translation>
-    </message>
-    <message>
-        <source>• Configure for user role</source>
-        <translation>• 設定使用者角色</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>選擇您要將公開金鑰匯出到哪個目錄</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>金鑰檔 (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>不合法的公開金鑰</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public veyon access key!</source>
-        <translation>選取的檔案裡並沒有包含合法的公開 veyon 存取金鑰！</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>選擇目的地目錄</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>建立存取金鑰</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>無法移除已存在的檔案 %1。</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>無法將公開存取金鑰從 %1 匯出到 %2。</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>存取金鑰已建立，並已寫入 %1 與 %2。</translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>建立存取金鑰時發生錯誤。您可能不允許寫入您所選擇的目錄。</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>匯入公開金鑰</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>匯入公開金鑰時發生錯誤。您可能不允許讀取金鑰來源檔，或是不允許寫入目的檔。</translation>
-    </message>
-    <message>
-        <source>The public key was successfully imported to %1.</source>
-        <translation>公開金鑰已成功匯入到 %1。</translation>
-    </message>
-</context>
-<context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>鎖定螢幕</translation>
-    </message>
-</context>
-<context>
-    <name>LogonGroupEditor</name>
-    <message>
-        <source>Logon group editor</source>
-        <translation>登入群組編輯器</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
-        <translation>請新增可以存取您的 veyon 網路裡的電腦的成員群組。</translation>
+        <source>Authorized user groups</source>
+        <translation>授權的使用者群組</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -789,86 +89,638 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>...</translation>
     </message>
     <message>
-        <source>Groups with veyon privileges</source>
-        <translation>有 veyon 權限的群組</translation>
+        <source>Access control rules</source>
+        <translation>存取控制規則</translation>
+    </message>
+    <message>
+        <source>Add access control rule</source>
+        <translation>加入存取控制規則</translation>
+    </message>
+    <message>
+        <source>Remove access control rule</source>
+        <translation>移除存取控制規則</translation>
+    </message>
+    <message>
+        <source>Move selected rule down</source>
+        <translation>向下移動所選的規則</translation>
+    </message>
+    <message>
+        <source>Move selected rule up</source>
+        <translation>向上移動所選的規則</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>編輯所選的規則</translation>
+    </message>
+    <message>
+        <source>Missing access control data backend</source>
+        <translation>缺少存取控制後台資料</translation>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation>找不到預設存取控制後台外掛程式。 請檢查您的安裝!</translation>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation>輸入使用者名稱</translation>
+    </message>
+    <message>
+        <source>Please enter a user login name whose access permissions to test:</source>
+        <translation>請輸入測試其存取權限的使用者登入名稱:</translation>
+    </message>
+    <message>
+        <source>Access allowed</source>
+        <translation>允許存取</translation>
+    </message>
+    <message>
+        <source>The specified user is allowed to access computers with this configuration.</source>
+        <translation>允許指定的使用者以這個組態存取電腦。</translation>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation>存取拒絕</translation>
+    </message>
+    <message>
+        <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation>不允許指定的使用者以這個組態存取電腦。</translation>
     </message>
 </context>
 <context>
-    <name>MainToolBar</name>
+    <name>AccessControlRuleEditDialog</name>
     <message>
-        <source>Actions</source>
-        <translation>動作</translation>
-    </message>
-</context>
-<context>
-    <name>MainWindow</name>
-    <message>
-        <source>MainWindow</source>
-        <translation>主視窗</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>工具列</translation>
-    </message>
-    <message>
-        <source>veyon Management Console</source>
-        <translation>veyon 管理主控台</translation>
+        <source>Edit access control rule</source>
+        <translation>編輯存取控制規則</translation>
     </message>
     <message>
         <source>General</source>
         <translation>一般</translation>
     </message>
     <message>
-        <source>veyon Server</source>
-        <translation>veyon 伺服器</translation>
+        <source>enter a short name for the rule here</source>
+        <translation>在此輸入規則的簡稱</translation>
     </message>
     <message>
-        <source>Paths</source>
-        <translation>路徑</translation>
+        <source>Rule name:</source>
+        <translation>規則名稱:</translation>
     </message>
     <message>
-        <source>Authentication</source>
-        <translation>驗證</translation>
+        <source>enter a description for the rule here</source>
+        <translation>在此輸入規則的描述</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>除錯</translation>
+        <source>Rule description:</source>
+        <translation>規則描述:</translation>
     </message>
     <message>
-        <source>veyon Service</source>
-        <translation>veyon 服務</translation>
+        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
+        <translation>反向所有條件 (&quot;是/有&quot; 解釋為 &quot;不是/沒有&quot;)</translation>
     </message>
     <message>
-        <source>Hide tray icon</source>
-        <translation>隱藏系統匣圖示</translation>
+        <source>Conditions</source>
+        <translation>條件</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>自動開始</translation>
+        <source>is member of group</source>
+        <translation>是群組的成員</translation>
     </message>
     <message>
-        <source>Additional arguments</source>
-        <translation>額外的參數</translation>
+        <source>is located in room</source>
+        <translation>位於教室</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>開始服務</translation>
+        <source>Accessing computer is localhost</source>
+        <translation>存取電腦是 localhost</translation>
     </message>
     <message>
-        <source>Stop service</source>
-        <translation>結束服務</translation>
+        <source>Accessing user is logged on user</source>
+        <translation>存取使用者是登入的使用者</translation>
     </message>
     <message>
-        <source>State:</source>
-        <translation>狀態：</translation>
+        <source>Accessing user is already connected</source>
+        <translation>存取使用者已連線</translation>
     </message>
     <message>
-        <source>Stopped</source>
-        <translation>已停止</translation>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>如果有啟用一個以上條件，每個條件必須滿足，以便使規則套用 (邏輯 AND)。 如果多個條件只有一個必須滿足 (邏輯 OR)，請建立多個存取控制規則。</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>開啟螢幕鎖定的桌面切換（實驗性功能）</translation>
+        <source>Action</source>
+        <translation>動作</translation>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation>允許存取</translation>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation>拒絕存取</translation>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation>詢問登入使用者的權限</translation>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation>無 (停用規則)</translation>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation>存取使用者</translation>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation>存取電腦</translation>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation>本機 (登入的) 使用者</translation>
+    </message>
+    <message>
+        <source>Local computer</source>
+        <translation>本機電腦</translation>
+    </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>始終處理規則和忽略條件</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>沒有使用者登入</translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation>存取電腦與本機電腦位在相同教室</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>存取使用者與本機 (登入的) 使用者有一個或數個群組在通用</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlRulesTestDialog</name>
+    <message>
+        <source>Access control rules test</source>
+        <translation>存取控制規則測試</translation>
+    </message>
+    <message>
+        <source>Accessing user:</source>
+        <translation>存取使用者:</translation>
+    </message>
+    <message>
+        <source>Local computer:</source>
+        <translation>本機電腦:</translation>
+    </message>
+    <message>
+        <source>Accessing computer:</source>
+        <translation>存取電腦:</translation>
+    </message>
+    <message>
+        <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
+        <translation>請輸入以下使用者和電腦的資訊，以便測試組態的規則集。</translation>
+    </message>
+    <message>
+        <source>Local user:</source>
+        <translation>本機使用者:</translation>
+    </message>
+    <message>
+        <source>Connected users:</source>
+        <translation>已連線的使用者:</translation>
+    </message>
+    <message>
+        <source>The access in the given scenario is allowed.</source>
+        <translation>允許在給予場景中存取。</translation>
+    </message>
+    <message>
+        <source>The access in the given scenario is denied.</source>
+        <translation>拒絕在給予場景中存取。</translation>
+    </message>
+    <message>
+        <source>The access in the given scenario needs permission of the logged on user.</source>
+        <translation>在給予場景中存取。需要登入使用者的權限。</translation>
+    </message>
+    <message>
+        <source>ERROR: Unknown action</source>
+        <translation>錯誤: 未知的動作</translation>
+    </message>
+    <message>
+        <source>Test result</source>
+        <translation>測試結果</translation>
+    </message>
+</context>
+<context>
+    <name>AuthenticationConfigurationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>驗證方式</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>登入驗證</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>金鑰檔驗證</translation>
+    </message>
+    <message>
+        <source>Access key management</source>
+        <translation>存取金鑰管理</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>公開金鑰檔基礎目錄</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>私密金鑰檔基礎目錄</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>啟動金鑰小助手</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>測試</translation>
+    </message>
+    <message>
+        <source>Logon authentication test</source>
+        <translation>登入驗證測試</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials was successful.</source>
+        <translation>以提供的認證驗證成功。</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials failed!</source>
+        <translation>以提供的認證驗證失敗!</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>Builtin VNC server (UltraVNC)</source>
+        <translation>內建 VNC 伺服器 (UltraVNC)</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinX11VncServer</name>
+    <message>
+        <source>Builtin VNC server (x11vnc)</source>
+        <translation>內建 VNC 伺服器 (x11vnc)</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 服務 %2 在 %3: %4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>驗證錯誤</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>使用者 %1 (IP: %2) 試圖存取這台電腦，但無法驗證成功!</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation>教室: %1</translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation>線上和已連線</translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation>建立連線</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>沒有使用者登入</translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation>登入的使用者: %1</translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation>電腦離線或關機</translation>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation>服務無法存取或未執行</translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation>驗證失敗或存取拒絕</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>中斷連線</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>主機/IP 位址: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerManagementView</name>
+    <message>
+        <source>Computer management</source>
+        <translation>電腦管理</translation>
+    </message>
+    <message>
+        <source>Add room</source>
+        <translation>加入教室</translation>
+    </message>
+    <message>
+        <source>Save computer/user list</source>
+        <translation>儲存電腦/使用者清單</translation>
+    </message>
+    <message>
+        <source>Select output filename</source>
+        <translation>選擇輸出檔案名稱</translation>
+    </message>
+    <message>
+        <source>CSV files (*.csv)</source>
+        <translation>CSV 檔 (*.csv)</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>檔案錯誤</translation>
+    </message>
+    <message>
+        <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation>無法寫入電腦和使用者清單到 %1! 請檢查檔案的存取權限。</translation>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation>電腦搜尋</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation>使用者</translation>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation>缺少網路物件目錄外掛程式</translation>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation>找不到預設網路物件目錄外掛程式。 請檢查您的安裝或透過 %1 組態器設定不同的網路物件目錄後台。</translation>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation>電腦名稱;主機名稱;使用者</translation>
+    </message>
+    <message>
+        <source>Room detection failed</source>
+        <translation>教室偵測失敗</translation>
+    </message>
+    <message>
+        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
+        <translation>無法確定此電腦屬於的那個教室。 這表示系統組態有問題。 所有教室將都顯示在電腦管理。</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation>請指定要匯入的現有組態檔。</translation>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation>請指定一個有效的檔案名稱作為組態匯出。</translation>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation>請指定一個有效的金鑰。</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation>在目前組態中指定的金鑰不存在!</translation>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation>請指定一個有效的值。</translation>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>無法修改 %1 服務的自動啟動內容。</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>無法修改 %1 服務的服務參數。</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>無法變更服務 %1 的防火牆組態。</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>軟體無法變更 SAS 產生的設定。 透過遠端控制傳送 Ctrl+Alt+Del 將無法動作!</translation>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>在命令列上組態 Veyon</translation>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation>輸出檔案無法寫入!</translation>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation>輸出目錄無法寫入!</translation>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation>組態檔無法讀取!</translation>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation>無法修改 %1 服務的自動啟動內容。</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation>無法修改 %1 服務的服務參數。</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation>無法變更服務 %1 的防火牆組態。</translation>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation>軟體無法變更 SAS 產生的設定。 透過遠端控制傳送 Ctrl + Alt + Del 將無法動作!</translation>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation>覆寫金鑰</translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation>一些金鑰檔已經存在。 如果您以新產生的金鑰檔取代它們，您也將必須更新所有電腦的公開金鑰。 您想要繼續嗎?</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>組態清除</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>本機組態已成功清除。</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 組態器</translation>
+    </message>
+</context>
+<context>
+    <name>DemoClient</name>
+    <message>
+        <source>%1 Demo</source>
+        <translation>%1 演示</translation>
+    </message>
+</context>
+<context>
+    <name>DemoFeaturePlugin</name>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation>全螢幕演示</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>停止演示</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation>在此模式下您的螢幕顯示在所有電腦上。 此外，使用者無法做別的事情，如所有輸入的裝置將在這種模式中鎖定。</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>視窗演示</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation>在此模式下您的螢幕顯示在所有電腦上的視窗中。 使用者能夠切換到其它視窗，因此可以繼續工作。</translation>
+    </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>通過螢幕廣播給予演示</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>演示伺服器</translation>
+    </message>
+    <message>
+        <source>Demo client</source>
+        <translation>演示用戶端</translation>
+    </message>
+</context>
+<context>
+    <name>DesktopAccessDialog</name>
+    <message>
+        <source>Desktop access dialog</source>
+        <translation>桌面存取對話方塊</translation>
+    </message>
+    <message>
+        <source>Confirm desktop access</source>
+        <translation>確認桌面存取</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>永不在這個工作階段</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>始終在這個工作階段</translation>
+    </message>
+    <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>在電腦 %2 的使用者 %1 想要存取您的桌面。 您想要授予存取嗎?</translation>
+    </message>
+</context>
+<context>
+    <name>DesktopServicesFeaturePlugin</name>
+    <message>
+        <source>Run program</source>
+        <translation>執行程式</translation>
+    </message>
+    <message>
+        <source>Open website</source>
+        <translation>開啟網站</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>按一下此按鈕可以在所有電腦上開啟一個網站。</translation>
+    </message>
+    <message>
+        <source>Please enter the URL of the website to open:</source>
+        <translation>請輸入開啟網站的 URL:</translation>
+    </message>
+    <message>
+        <source>Start programs and services in user desktop</source>
+        <translation>啟動程式和服務在使用者桌面</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
+        <translation>按一下此按鈕可以在所有電腦上執行一個程式。</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation>外部 VNC 伺服器</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation>外部 VNC 伺服器組態</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>連接埠:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>密碼:</translation>
+    </message>
+</context>
+<context>
+    <name>GeneralConfigurationPage</name>
+    <message>
+        <source>User interface</source>
+        <translation>使用者介面</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation>語言:</translation>
+    </message>
+    <message>
+        <source>Use system language setting</source>
+        <translation>使用系統語言設定</translation>
+    </message>
+    <message>
+        <source>Enable high DPI scaling</source>
+        <translation>啟用高 DPI 縮放</translation>
+    </message>
+    <message>
+        <source>Veyon</source>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -900,23 +752,23 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>警告與所有錯誤訊息</translation>
+        <translation>警告和錯誤</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>資訊，警告與所有錯誤</translation>
+        <translation>資訊，警告和錯誤</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>所有訊息，包含除錯訊息</translation>
+        <translation>除錯訊息和所有一切</translation>
     </message>
     <message>
         <source>Limit log file size</source>
         <translation>限制紀錄檔大小</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>MB</translation>
+        <source>Clear all log files</source>
+        <translation>清除所有的紀錄檔</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -927,156 +779,926 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>紀錄到 Windows 事件紀錄</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>清除所有的紀錄檔</translation>
+        <source>Network object directory</source>
+        <translation>網路物件目錄</translation>
     </message>
     <message>
-        <source>Desktop capturing</source>
-        <translation>桌面擷取</translation>
+        <source>Backend:</source>
+        <translation>後台:</translation>
     </message>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>開啟多層次（半透明）視窗擷取</translation>
+        <source>Update interval:</source>
+        <translation>更新間隔:</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>輪詢全螢幕(默認開啓)</translation>
+        <source>%1 service</source>
+        <translation>%1 服務</translation>
     </message>
     <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>低精確度（快速模式）</translation>
+        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>%1 服務需要暫時停止，以便刪除日誌檔。 繼續?</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>展示伺服器</translation>
+        <source>Log files cleared</source>
+        <translation>紀錄檔已清除</translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>後端介面</translation>
+        <source>All log files were cleared successfully.</source>
+        <translation>所有紀錄檔已成功清除。</translation>
     </message>
     <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector</translation>
+        <source>Error</source>
+        <translation>錯誤</translation>
     </message>
     <message>
-        <source>veyon 1 demo server</source>
-        <translation>veyon 1 展示伺服器</translation>
+        <source>Could not remove all log files.</source>
+        <translation>無法移除所有的紀錄檔。</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>網路</translation>
+        <source> MB</source>
+        <translation> MB</translation>
     </message>
     <message>
-        <source>Core server port</source>
-        <translation>核心伺服器連接埠</translation>
+        <source>Rotate log files</source>
+        <translation>旋轉日誌檔</translation>
     </message>
     <message>
-        <source>Demo server port</source>
-        <translation>展示伺服器連接埠</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>開啟防火牆例外設定</translation>
+        <source> seconds</source>
+        <translation>秒</translation>
+    </message>
+</context>
+<context>
+    <name>KeyFileAssistant</name>
+    <message>
+        <source>How does it work?</source>
+        <translation>它是如何動作?</translation>
     </message>
     <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>開啟提供 JavaViewer applet 的 HTTP 伺服器</translation>
+        <source>Assistant mode</source>
+        <translation>助手模式</translation>
     </message>
     <message>
-        <source>HTTP server port</source>
-        <translation>HTTP 伺服器連接埠</translation>
+        <source>Please choose whether to create new access keys or import a public key on a client.</source>
+        <translation>請選擇是要建立新的存取金鑰，或在用戶端匯入公開金鑰。</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>只允許 localhost 來的連線</translation>
+        <source>Create new access keys (master computer)</source>
+        <translation>建立新的存取金鑰 (主電腦)</translation>
     </message>
     <message>
-        <source>Configuration files</source>
-        <translation>設定檔</translation>
+        <source>Import public key (client computer)</source>
+        <translation>匯入公開金鑰 (用戶端電腦)</translation>
     </message>
     <message>
-        <source>Global configuration</source>
-        <translation>全域設定檔</translation>
+        <source>Select user role</source>
+        <translation>請選擇使用者角色</translation>
     </message>
     <message>
-        <source>Personal configuration</source>
-        <translation>個人設定檔</translation>
+        <source>Please select a user role for which to create or import the access keys:</source>
+        <translation>請選擇使用者角色，用於建立或匯入存取金鑰:</translation>
     </message>
     <message>
-        <source>Data directories</source>
-        <translation>資料目錄</translation>
+        <source>Teacher</source>
+        <translation>教師</translation>
     </message>
     <message>
-        <source>Snapshots</source>
-        <translation>螢幕截圖</translation>
+        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
+        <translation>多個使用者角色可以同時使用多個存取金鑰。 例如，每間教室能有不同教師的存取金鑰，而技術支援的存取金鑰則對整間學校都相同。</translation>
     </message>
     <message>
-        <source>Authentication methods</source>
-        <translation>認證方式</translation>
+        <source>Directories</source>
+        <translation>目錄</translation>
     </message>
     <message>
-        <source>Key file authentication</source>
-        <translation>金鑰檔認證</translation>
+        <source>Export public key part (master computer)</source>
+        <translation>匯出公開金鑰組 (主電腦)</translation>
     </message>
     <message>
-        <source>ACL-based logon authentication</source>
-        <translation>存取控制清單式的登入認證</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>Access key management</source>
-        <translation>存取金鑰管理</translation>
+        <source>Use custom destination directory for access keys</source>
+        <translation>存取金鑰使用自訂目的地目錄</translation>
     </message>
     <message>
-        <source>Public key file base directory</source>
-        <translation>公開金鑰檔的基底目錄</translation>
+        <source>Please specify the location of the public access key to be imported.</source>
+        <translation>請指定要匯入公開存取金鑰的位置。</translation>
     </message>
     <message>
-        <source>Private key file base directory</source>
-        <translation>私密金鑰檔的基底目錄</translation>
+        <source>Summary</source>
+        <translation>摘要</translation>
     </message>
     <message>
-        <source>Launch key file assistant</source>
-        <translation>啟動金鑰小助手</translation>
+        <source>The following actions will be taken:</source>
+        <translation>將會進行以下的動作:</translation>
     </message>
     <message>
-        <source>Logon settings</source>
-        <translation>登入設定</translation>
+        <source>• Create new access keys</source>
+        <translation>• 建立新的存取金鑰</translation>
     </message>
     <message>
-        <source>Manage permissions</source>
-        <translation>管理權限</translation>
+        <source>• Import public access key from</source>
+        <translation>• 從以下來源匯入公開存取金鑰</translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation>&lt;unknown&gt;</translation>
+    </message>
+    <message>
+        <source>• Write access key(s) to</source>
+        <translation>• 將存取金鑰寫到</translation>
+    </message>
+    <message>
+        <source>• Export public key to</source>
+        <translation>• 將公開金鑰匯出到</translation>
+    </message>
+    <message>
+        <source>• Configure for user role</source>
+        <translation>• 組態使用者角色</translation>
+    </message>
+    <message>
+        <source>Select directory in which to export the public key</source>
+        <translation>選取要匯出公開金鑰的目錄</translation>
+    </message>
+    <message>
+        <source>Key files (*.key.txt)</source>
+        <translation>金鑰檔 (*.key.txt)</translation>
+    </message>
+    <message>
+        <source>Invalid public key</source>
+        <translation>公開金鑰無效</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>選擇目的地目錄</translation>
+    </message>
+    <message>
+        <source>Access key creation</source>
+        <translation>建立存取金鑰</translation>
+    </message>
+    <message>
+        <source>Could not remove previously existing file %1.</source>
+        <translation>無法移除先前存在的檔案 %1。</translation>
+    </message>
+    <message>
+        <source>Failed exporting public access key from %1 to %2.</source>
+        <translation>無法將公開存取金鑰從 %1 匯出到 %2。</translation>
+    </message>
+    <message>
+        <source>Access keys were created and written successfully to %1 and %2.</source>
+        <translation>存取金鑰已建立，並寫入到 %1 和 %2 成功。</translation>
+    </message>
+    <message>
+        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
+        <translation>建立存取金鑰時發生錯誤。 您可能不允許寫入到您所選擇的目錄。</translation>
+    </message>
+    <message>
+        <source>Public key import</source>
+        <translation>匯入公開金鑰</translation>
+    </message>
+    <message>
+        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
+        <translation>匯入公開存取金鑰時發生錯誤。 您可能不允許讀取來源金鑰，或是不允許寫入目的地檔案。</translation>
+    </message>
+    <message>
+        <source>The public key was successfully imported to %1.</source>
+        <translation>公開金鑰已成功匯入到 %1。</translation>
+    </message>
+    <message>
+        <source>Veyon Access Key Assistant</source>
+        <translation>Veyon 存取金鑰助手</translation>
+    </message>
+    <message>
+        <source>Create/import Veyon access keys</source>
+        <translation>建立/匯入 Veyon 存取金鑰</translation>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import Veyon access keys.</source>
+        <translation>這個助手將協助您建立或匯入 Veyon 存取金鑰。</translation>
+    </message>
+    <message>
+        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation>Veyon 存取金鑰包含屬於在一起的兩個部分，私密金鑰和公開金鑰部分。
+
+使用私密金鑰部分，在主電腦上的使用者將能夠存取用戶端電腦。 它是重要的只有授權的使用者有私密金鑰檔的讀取權限。
+
+公開金鑰部分用在用戶端電腦上，以驗證任何連入的連線請求為已授權。</translation>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public Veyon access key!</source>
+        <translation>選取的檔案不包含有效的公開 Veyon 存取金鑰!</translation>
+    </message>
+</context>
+<context>
+    <name>LdapConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>基本設定</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>LDAP 伺服器和埠</translation>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>綁定 DN</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>綁定密碼</translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation>匿名綁定</translation>
+    </message>
+    <message>
+        <source>Use bind credentials</source>
+        <translation>使用綁定認證</translation>
     </message>
     <message>
         <source>Test</source>
         <translation>測試</translation>
     </message>
     <message>
-        <source>Access confirmation</source>
-        <translation>存取確認</translation>
+        <source>Base DN</source>
+        <translation>基礎 DN</translation>
     </message>
     <message>
-        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>使用特定認證方式時，您可以設定讓 veyon 要求使用者通過權限認證才能存取桌面。</translation>
+        <source>Fixed base DN</source>
+        <translation>固定的基礎 DN</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>登入認證</translation>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>如 dc=example,dc=org</translation>
     </message>
     <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>允許相同使用者不需再經過確認即可存取桌面</translation>
+        <source>Discover base DN by naming context</source>
+        <translation>以命名內容探索基礎 DN</translation>
     </message>
     <message>
-        <source>Debugging veyon</source>
-        <translation>除錯 veyon</translation>
+        <source>e.g. namingContexts or defaultNamingContext</source>
+        <translation>如 namingCoNtexts 或 defaultNamingCoNtext</translation>
     </message>
     <message>
-        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+        <source>Environment settings</source>
+        <translation>環境設定</translation>
+    </message>
+    <message>
+        <source>Object trees</source>
+        <translation>物件樹</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>電腦樹</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>如 OU=群組</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>使用者樹</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>如 OU=使用者</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Computers</source>
+        <translation>如 OU=電腦</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>群組樹</translation>
+    </message>
+    <message>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>在物件樹中執行遞迴搜尋操作</translation>
+    </message>
+    <message>
+        <source>Object attributes</source>
+        <translation>物件屬性</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>如 hwAddress</translation>
+    </message>
+    <message>
+        <source>Computer host name attribute</source>
+        <translation>電腦主機名稱屬性</translation>
+    </message>
+    <message>
+        <source>e.g. member or memberUid</source>
+        <translation>如 成員或 memberUid</translation>
+    </message>
+    <message>
+        <source>User login attribute</source>
+        <translation>使用者登入屬性</translation>
+    </message>
+    <message>
+        <source>e.g. dNSHostName</source>
+        <translation>如 dNSHostName</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>電腦 MAC 位址屬性</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>群組成員屬性</translation>
+    </message>
+    <message>
+        <source>e.g. uid or sAMAccountName</source>
+        <translation>如 uid 或 sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>主機名稱儲存為完整限定的網域名稱 (FQDN，例如 myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation>進階設定</translation>
+    </message>
+    <message>
+        <source>Optional object filters</source>
+        <translation>可選的物件篩選器</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=group</source>
+        <translation>如 objectClass=群組</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>使用者群組的篩選器</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=person</source>
+        <translation>如 objectClass=個人</translation>
+    </message>
+    <message>
+        <source>Filter for users</source>
+        <translation>使用者的篩選器</translation>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation>電腦群組的篩選器</translation>
+    </message>
+    <message>
+        <source>Group member identification</source>
+        <translation>群組成員身份</translation>
+    </message>
+    <message>
+        <source>Distinguished name (Samba/AD)</source>
+        <translation>可分辨名稱 (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
+        <translation>使用者登入或電腦的主機名稱 (OpenLDAP) 組態的屬性</translation>
+    </message>
+    <message>
+        <source>Dedicated computer groups</source>
+        <translation>專用的電腦群組</translation>
+    </message>
+    <message>
+        <source>Common attribute</source>
+        <translation>通用屬性</translation>
+    </message>
+    <message>
+        <source>List all groups of a user</source>
+        <translation>列出所有的使用者群組</translation>
+    </message>
+    <message>
+        <source>List all groups of a computer</source>
+        <translation>列出所有電腦的群組</translation>
+    </message>
+    <message>
+        <source>Get computer object by IP address</source>
+        <translation>以 IP 位址取得電腦物件</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP 連線失敗</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
+        <translation>無法連接到 LDAP 伺服器。 請檢查伺服器參數。 %1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP 綁定失敗</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
+        <translation>無法綁定到 LDAP 伺服器。請檢查伺服器參數和綁定認證。 %1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP 綁定成功</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>成功地連接到 LDAP 伺服器並執行 LDAP 綁定。 基本的 LDAP 設定正確組態。</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation>LDAP 基礎 DN 測試失敗</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+%1</source>
+        <translation>無法查詢組態的基礎 DN。 請檢查基礎 DN 參數。
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation>LDAP 基礎 DN 測試成功</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+%1</source>
+        <translation>查詢 LDAP 基礎 DN 成功。 找到以下項目:
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation>LDAP 命名內容測試失敗</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+%1</source>
+        <translation>無法透過命名內容查詢基礎 DN。 請檢查命名內容屬性參數。
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation>LDAP 命名內容測試成功</translation>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation>查詢 LDAP 命名內容成功。 找到以下基礎 DN:
+%1</translation>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation>使用者樹</translation>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation>群組樹</translation>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation>電腦樹</translation>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation>輸入使用者名稱</translation>
+    </message>
+    <message>
+        <source>Please enter a user login name (wildcards allowed) which to query:</source>
+        <translation>請輸入查詢的使用者登入名稱 (允許使用萬用字元):</translation>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation>使用者物件</translation>
+    </message>
+    <message>
+        <source>user login attribute</source>
+        <translation>使用者登入屬性</translation>
+    </message>
+    <message>
+        <source>Enter group name</source>
+        <translation>輸入群組名稱</translation>
+    </message>
+    <message>
+        <source>Please enter a group name whose members to query:</source>
+        <translation>請輸入查詢其成員的群組名稱:</translation>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation>群組成員</translation>
+    </message>
+    <message>
+        <source>group member attribute</source>
+        <translation>群組成員屬性</translation>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation>找不到群組</translation>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation>找不到名稱為「%1」的群組。 請檢查群組名稱或群組樹參數。</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>輸入電腦名稱</translation>
+    </message>
+    <message>
+        <source>Please enter a computer host name to query:</source>
+        <translation>請輸入查詢的電腦主機名稱:</translation>
+    </message>
+    <message>
+        <source>Invalid host name</source>
+        <translation>主機名稱無效</translation>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
+        <translation>您組態的電腦主機名稱存放為完整限定的網域名稱 (FQDN)，但輸入的主機名稱沒有網域。</translation>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
+        <translation>您組態的電腦主機名稱存放為不含網域的簡單主機名稱，但輸入含網域名稱部分的主機名稱。</translation>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation>電腦物件</translation>
+    </message>
+    <message>
+        <source>computer host name attribute</source>
+        <translation>電腦主機名稱屬性</translation>
+    </message>
+    <message>
+        <source>Enter computer DN</source>
+        <translation>輸入電腦 DN</translation>
+    </message>
+    <message>
+        <source>Please enter the DN of a computer whose MAC address to query:</source>
+        <translation>請輸入查詢其 MAC 位址的電腦 DN :</translation>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation>電腦 MAC 位址</translation>
+    </message>
+    <message>
+        <source>computer MAC address attribute</source>
+        <translation>電腦 MAC 位址屬性</translation>
+    </message>
+    <message>
+        <source>users</source>
+        <translation>使用者</translation>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation>使用者群組</translation>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation>電腦群組</translation>
+    </message>
+    <message>
+        <source>Please enter a user login name whose group memberships to query:</source>
+        <translation>請輸入查詢其群組成員的使用者登入名稱:</translation>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation>使用者的群組</translation>
+    </message>
+    <message>
+        <source>user login attribute or group membership attribute</source>
+        <translation>使用者登入屬性或群組成員屬性</translation>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation>找不到使用者</translation>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
+        <translation>找不到名稱為「%1」的使用者。  請檢查使用者名稱或使用者樹參數。</translation>
+    </message>
+    <message>
+        <source>Enter host name</source>
+        <translation>輸入主機名稱</translation>
+    </message>
+    <message>
+        <source>Please enter a computer host name whose group memberships to query:</source>
+        <translation>請輸入查詢其群組成員的電腦主機名稱:</translation>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation>電腦的群組</translation>
+    </message>
+    <message>
+        <source>computer host name attribute or group membership attribute</source>
+        <translation>電腦主機名稱屬性或群組成員屬性</translation>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation>找不到電腦</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
+        <translation>找不到主機名稱為「%1」的電腦。 請檢查主機名稱或電腦樹參數。</translation>
+    </message>
+    <message>
+        <source>Enter computer IP address</source>
+        <translation>輸入電腦 IP 位址</translation>
+    </message>
+    <message>
+        <source>Please enter a computer IP address which to resolve to an computer object:</source>
+        <translation>請輸入電腦的 IP 位址，解析為一個電腦物件:</translation>
+    </message>
+    <message>
+        <source>Host name lookup failed</source>
+        <translation>主機名稱稱尋找失敗</translation>
+    </message>
+    <message>
+        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
+        <translation>找不到 IP 位址 %1 的主機名稱。 請檢查您的 DNS 伺服器設定。</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>電腦</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation>LDAP %1 測試失敗</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>當在 veyon 下遇到問題或其他不正常的行為時，我們希望您能回報給開發者知道，這樣才能在將來的版本中修正。此頁面讓您可以輕鬆提交錯誤報告。
+%2</source>
+        <translation>無法查詢組態 %1 中的任何項目。 請檢查 %1 參數。
 
-如果這個問題無法重現，請跳過步驟 1 到 3。</translation>
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation>LDAP %1 測試成功</translation>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation>查詢 %1 成功和找到 %2 個項目。</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
+
+%3</source>
+        <translation>無法查詢任何 %1。 請檢查 %2 參數或輸入現有物件的名稱。
+
+%3</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation>%1 %2 查詢成功:
+
+%3</translation>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation>LDAP 篩選器測試失敗</translation>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation>使用組態的篩選器無法查詢任何 %1。 請檢查 %1 的 LDAP 篩選器。
+
+%2</translation>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation>LDAP 篩選器測試成功</translation>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation>%1 %2 使用組態的篩選器查詢成功。</translation>
+    </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation>(僅從不同群組樹時)</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>電腦群組樹</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room using:</source>
+        <translation>在教室中使用聚合電腦:</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>電腦群組樹</translation>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation>電腦的篩選器</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation>如 objectClass=電腦</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation>如 objectClass=教室或 objectClass=computerLab</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>如 教室或 computerLab</translation>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation>列出電腦教室的所有成員</translation>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation>列出所有電腦教室</translation>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation>輸入電腦教室名稱</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation>請輸入電腦教室名稱 (允許使用萬用字元):</translation>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation>電腦教室</translation>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation>電腦教室屬性</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation>請輸入查詢其成員的電腦教室名稱:</translation>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation>電腦教室成員</translation>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation>電腦群組篩選器或電腦教室成員聚合</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>電腦教室</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>整合測試</translation>
+    </message>
+</context>
+<context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP 錯誤描述: %1</translation>
+    </message>
+</context>
+<context>
+    <name>LdapPlugin</name>
+    <message>
+        <source>Configure LDAP/AD integration of Veyon at command line</source>
+        <translation>在命令列組態 Veyon 的 LDAP/AD 整合 </translation>
+    </message>
+    <message>
+        <source>LDAP (load objects from LDAP/AD)</source>
+        <translation>LDAP (從 LDAP/AD 載入物件)</translation>
+    </message>
+    <message>
+        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation>LDAP (從 LDAP/AD 載入使用者/群組和電腦/教室)</translation>
+    </message>
+</context>
+<context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation>外掛程式實現 Linux 平臺的抽象函數</translation>
+    </message>
+</context>
+<context>
+    <name>LocalDataConfigurationPage</name>
+    <message>
+        <source>Local data</source>
+        <translation>本機資料</translation>
+    </message>
+    <message>
+        <source>Network objects</source>
+        <translation>網路物件</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>教室</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>電腦</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>主機位址/IP</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC 位址</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>加入新的教室</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>移除選取的教室</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>加入新的電腦</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>移除選取的電腦</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>新教室</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>新電腦</translation>
+    </message>
+</context>
+<context>
+    <name>LocalDataPlugin</name>
+    <message>
+        <source>Backends which use local data</source>
+        <translation>使用本機資料的後台</translation>
+    </message>
+    <message>
+        <source>Default (local users/groups and computers/rooms from configuration)</source>
+        <translation>預設 (從組態的本機使用者/群組和電腦/教室)</translation>
+    </message>
+    <message>
+        <source>Default (store objects in local configuration)</source>
+        <translation>預設 (存放在本地組態的物件)</translation>
+    </message>
+</context>
+<context>
+    <name>LockWidget</name>
+    <message>
+        <source>screen lock</source>
+        <translation>螢幕鎖定</translation>
+    </message>
+</context>
+<context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Configuration</source>
+        <translation>組態</translation>
+    </message>
+    <message>
+        <source>Disable balloon tooltips</source>
+        <translation>停用氣球工具提示</translation>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>只顯示圖示</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation>主視窗</translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>工具列</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>驗證</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1092,7 +1714,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>在「一般」區中設定紀錄等級為「所有訊息，包含除錯訊息」。</translation>
+        <translation>在「一般」區中設定紀錄等級為「除錯訊息和所有一切」。</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1100,7 +1722,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>重新執行會出問題的動作。</translation>
+        <translation>重新執行出現問題的動作。</translation>
     </message>
     <message>
         <source>4)</source>
@@ -1108,7 +1730,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation>點擊下方的按鍵來儲存檔案。</translation>
+        <translation>按一下下方按鈕並儲存檔案到不明位置。</translation>
     </message>
     <message>
         <source>Generate bug report archive</source>
@@ -1117,16 +1739,6 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     <message>
         <source>5)</source>
         <translation>5)</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>前往&lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon 錯誤回報站台&lt;/a&gt;，建立一個新的錯誤報告，描述一下您在 3) 做了些什麼，並附上您在 4) 所儲存的檔案。&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-注意：若是此問題需要在主電腦與客戶端電腦上同時使用時才會產生，請記得附上兩台電腦所產生的檔案。</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1165,188 +1777,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>關於 veyon</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>關於 Qt</translation>
     </message>
     <message>
-        <source>veyon</source>
-        <translation>veyon</translation>
-    </message>
-    <message>
-        <source>No write access</source>
-        <translation>沒有寫入權限</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>無法讀取/寫入或建立目錄 %1！為了執行 veyon，請確定您被允許建立或寫入這個目錄。</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>教室</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>切換教室</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>按下這個按鈕會開啟一個選單讓您選擇使用中的教室。</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>按下這個按鈕在教室間切換。</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>概覽模式</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>概覽</translation>
-    </message>
-    <message>
-        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>這是 veyon 的預設模式，讓您可以概覽所有可見的電腦。同時按下這個按鈕可以解鎖被鎖定的工作站或離開示範模式。</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>全螢幕示範</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>全螢幕示範</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>停止示範</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>在這個模式中您的螢幕會在所有出現的電腦中。同時使用者將無法進行其他操作，因為所有的輸入裝置在這個模式中都會被鎖定。</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>視窗示範</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>視窗示範</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>在這個模式中您的螢幕會以視窗的形式顯示在所有出現的電腦中。使用者可以切換到其他視窗以繼續他們的操作。</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>鎖定/解鎖桌面</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>鎖定全部</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>鎖定全部</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>要讓所有的使用者全心注意您可以使用這個按鈕鎖定他們的桌面。在這個模式中所有的輸入裝置都會被鎖定而畫面都會變成黑色。</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>傳送文字訊息</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>文字訊息</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>使用這個按鈕傳送文字訊息給所有的使用者，例如告訴他們新的工作等等。</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>讓電腦開機</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>開機</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>按下這個按鈕讓所有可視的電腦開機。這樣您可以不用親自開啟每一台電腦。</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>關閉電腦</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>關機</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>要讓所有顯示的電腦關機（例如在課程結束後）您可以按這個按鈕。</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>支援</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>直接協助</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>如果您需要協助使用某台電腦的人，可以按下這個按鈕，然後輸入對應的主機名稱或 IP。</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>調整/對齊</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>調整視窗和他們的大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>當按下這個按鈕會調整客戶端視窗為最大可能的大小。同時所有的視窗也會被調整。</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>自動檢視</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>自動重新排列視窗和他們的大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>當按下這個按鈕所有可見的視窗會重新排列並調整。</translation>
-    </message>
-    <message>
-        <source>Could not contact veyon service</source>
-        <translation>無法與 veyon 服務聯繫</translation>
-    </message>
-    <message>
-        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
-        <translation>無法與本地端的 veyon 服務聯繫。您有可能是輸入了錯誤的密碼或是金鑰檔並未正確安裝。請與您的站台管理員聯絡，以便使用 veyon 管理主控台來解決此問題。</translation>
-    </message>
-    <message>
-        <source>veyon Master Control</source>
-        <translation>veyon 主要控制</translation>
-    </message>
-    <message>
         <source>Authentication impossible</source>
-        <translation>無法認證</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
-        <translation>找不到認證金鑰檔，或是您目前使用的金鑰檔已過期。請使用 veyon 管理主控台建立新的金鑰檔。此外您也可以在 veyon 管理主控台裡設定登入認證方式。不然您將無法使用veyon 存取電腦。</translation>
+        <translation>無法驗證</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1357,116 +1793,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>離開</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the veyon Service.</source>
-        <translation>無法變更 veyon 服務的自動開始屬性。</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the veyon Service.</source>
-        <translation>無法變更 veyon 服務的參數。</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the veyon Service.</source>
-        <translation>無法變更 veyon 服務的防火牆設定。</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
-        <translation>設定檔無法寫入</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
-        <translation>本地端的設定後端回報，您的設定無法寫入。請以較高的權限執行 veyon 管理主控台。</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>所有設定均已成功套用。</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>當套用設定時發生錯誤！</translation>
-    </message>
-    <message>
-        <source>veyon Management Console %1</source>
-        <translation>veyon 管理主控台 %1</translation>
-    </message>
-    <message>
-        <source>Restart veyon Service</source>
-        <translation>重新啟動 veyon 服務</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
-        <translation>所有設定均已成功儲存。要讓變更的設定生效，veyon 服務必須重新啟動。您現在要重新啟動它嗎？</translation>
-    </message>
-    <message>
-        <source>Starting veyon service</source>
-        <translation>重新啟動 veyon 服務</translation>
-    </message>
-    <message>
-        <source>Stopping veyon service</source>
-        <translation>停止 veyon 服務</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>執行中</translation>
-    </message>
-    <message>
-        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>veyon 需要暫時停止以便移除紀錄檔。要繼續嗎？</translation>
-    </message>
-    <message>
-        <source>Log files cleared</source>
-        <translation>紀錄檔已清除</translation>
-    </message>
-    <message>
-        <source>All log files were cleared successfully.</source>
-        <translation>所有紀錄檔都已成功清除。</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>錯誤</translation>
-    </message>
-    <message>
-        <source>Could not remove all log files.</source>
-        <translation>無法移除所有的紀錄檔。</translation>
+        <translation>組態無法寫入</translation>
     </message>
     <message>
         <source>Load settings from file</source>
         <translation>從檔案載入設定</translation>
     </message>
     <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML 檔 (*.xml)</translation>
-    </message>
-    <message>
         <source>Save settings to file</source>
         <translation>將設定存到檔案</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>登入認證測試</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>認證成功。</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>認證失敗！</translation>
-    </message>
-    <message>
         <source>Save bug report archive</source>
-        <translation>儲存錯誤回報檔案</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive (*.ibra.xml)</source>
-        <translation>veyon 錯誤回報檔 (*.ibra.xml)</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive saved</source>
-        <translation>veyon 錯誤回報檔已儲存</translation>
-    </message>
-    <message>
-        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>veyon 錯誤回報檔已儲存到 %1。它包含了 veyon 紀錄檔與您的作業系統的資訊。您可以將它附在錯誤報告中。</translation>
+        <translation>儲存錯誤報告壓縮檔</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1474,63 +1814,218 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>有尚未儲存的設定。還是要離開嗎？</translation>
+        <translation>有尚未儲存的設定。 仍要離開嗎?</translation>
+    </message>
+    <message>
+        <source>Veyon Configurator</source>
+        <translation>Veyon 組態器</translation>
+    </message>
+    <message>
+        <source>Debugging Veyon</source>
+        <translation>除錯 Veyon</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>在遇到 bug 或其他不當行為在 Veyon 時重要的是讓開發人員瞭解他們，所以 bug 可以固定在將來的版本。此頁允許您輕鬆地提交一個樂於助人的 bug 報告。
+
+如果不重現該 bug，請跳過步驟 1) -3)。</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>移至 &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon 問題追蹤器&lt;/a&gt;，建立新的問題，在步驟 3) 中描述您的行為和附加您在步驟 4) 中儲存的檔案。&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+注意: 如果該 bug 涉及主機和用戶端電腦，附上兩台電腦的 bug 報告檔案。</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>服務</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>主要</translation>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation>存取控制</translation>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>關於 Veyon</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>電腦教室</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>關於</translation>
+    </message>
+    <message>
+        <source>%1 Configurator %2</source>
+        <translation>%1 組態器 %2</translation>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation>JSON 檔 (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation>%1 bug 報告 (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report archive saved</source>
+        <translation>%1 bug 報告壓縮檔已儲存</translation>
+    </message>
+    <message>
+        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation>%1 bug 報告壓縮檔已儲存到 %2。它包括 %3 日誌檔和關於您的作業系統的資訊。 您可以將它附加到 bug 報告。</translation>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation>本機組態後台報告組態不可寫入! 請以較高特權執行 %1 組態器。</translation>
+    </message>
+    <message>
+        <source>%1 Master Control</source>
+        <translation>%1 主控制</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation>找不到驗證金鑰檔或目前的已過時。 請使用 %1 組態器建立新的金鑰檔。 或者使用 %1 組態器設定登入驗證。 否則您將無法使用 %1 存取電腦。</translation>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation>存取拒絕</translation>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation>根據本機組態您不允許存取網路中的電腦。 請使用不同的帳戶登入，或讓您的系統管理員檢查本機組態。</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>螢幕快照</translation>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation>特色活動</translation>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation>功能 &quot;%1&quot; 仍活動中。 請先停止它再關閉 %2。</translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Overview</name>
+    <name>MasterConfigurationPage</name>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;歡迎使用 veyon！&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Directories</source>
+        <translation>目錄</translation>
     </message>
     <message>
-        <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>在這裡您可以看到含有許多按鈕的工作列。每個按鈕都連接到一個工作區。要看看可用的工作區只要按下對應的按鈕即可。</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>使用教室管理程式讓您可以管理教室和電腦。您也可以看到哪個使用者已經登入。</translation>
+        <source>User configuration</source>
+        <translation>使用者組態</translation>
     </message>
     <message>
-        <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>畫面快照-工作區是很有用的工具。它讓您管理您所拍下的畫面快照。</translation>
+        <source>User interface &amp;&amp; behaviour</source>
+        <translation>使用者介面 &amp;&amp; 行為</translation>
     </message>
     <message>
-        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
-        <translation>您當然可以設定 veyon。這通常可以使用組態-工作區來完成。</translation>
+        <source>Feature on computer double click:</source>
+        <translation>功能在電腦上按兩下:</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>關於 veyon</translation>
+        <source>Automatically switch to current room at start</source>
+        <translation>啟動時自動切換到目前的教室</translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>功能</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>所有功能</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>停用的功能</translation>
+    </message>
+    <message>
+        <source>Only show current room in computer room management</source>
+        <translation>在電腦教室管理只顯示目前教室</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms from computer room management</source>
+        <translation>在電腦教室管理隱藏空的教室</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms to computer room management manually</source>
+        <translation>允許將教室手動加入到電腦教室管理</translation>
+    </message>
+    <message>
+        <source>Hide local computer in computer room management</source>
+        <translation>在電腦教室管理隱藏本機電腦</translation>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation>程式啟動時執行存取控制</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>螢幕快照</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
+        <translation>在電腦教室管理隱藏電腦篩選欄位</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
-    <name>OverviewWidget</name>
+    <name>MonitoringMode</name>
     <message>
-        <source>Overview</source>
-        <translation>概覽</translation>
+        <source>Monitoring</source>
+        <translation>監視</translation>
     </message>
     <message>
-        <source>Some basic information on veyon and how to use it.</source>
-        <translation>一些關於 veyon 的基本資訊及如何使用它。</translation>
+        <source>Builtin monitoring mode</source>
+        <translation>內建監視模式</translation>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation>這是預設模式，允許您監視在一個或數個教室的所有電腦。</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectTreeModel</name>
+    <message>
+        <source>Room/Computer</source>
+        <translation>教室/電腦</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
-    <message>
-        <source>veyon Logon</source>
-        <translation>veyon 登入</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access veyon clients.</source>
-        <translation>請輸入您的使用者名稱與密碼，以便存取 veyon 客戶端程式。</translation>
-    </message>
     <message>
         <source>Username</source>
         <translation>使用者名稱</translation>
@@ -1540,23 +2035,62 @@ p, li { white-space: pre-wrap; }
         <translation>密碼</translation>
     </message>
     <message>
-        <source>Manage</source>
-        <translation>管理</translation>
+        <source>Veyon Logon</source>
+        <translation>Veyon 登入</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>驗證錯誤</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>以給予的使用者名稱和密碼登入失敗。 請再試一次!</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>請輸入您的使用者名稱和密碼才能存取電腦。</translation>
+    </message>
+</context>
+<context>
+    <name>PowerControlFeaturePlugin</name>
+    <message>
+        <source>Power on</source>
+        <translation>開機</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
+        <translation>按一下此按鈕以開啟所有電腦的電源。 這種方式，您不需要手動開啟每台電腦電源。</translation>
+    </message>
+    <message>
+        <source>Reboot</source>
+        <translation>重新開機</translation>
+    </message>
+    <message>
+        <source>Click this button to reboot all computers.</source>
+        <translation>按一下此按鈕以重新開機所有電腦。</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation>關機</translation>
+    </message>
+    <message>
+        <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
+        <translation>按一下此按鈕以關閉所有電腦的電源。 這種方式，您不需要手動關閉每台電腦電源。</translation>
+    </message>
+    <message>
+        <source>Power on/down or reboot a computer</source>
+        <translation>開啟/關閉電源或重新啟動電腦</translation>
     </message>
 </context>
 <context>
     <name>QApplication</name>
-    <message>
-        <source>veyon Client %1 on %2:%3</source>
-        <translation>veyon 客戶端 %1 於 %2:%3</translation>
-    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>無法註冊服務 &apos;%1&apos;。</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>無法連接服務控制管理程式（您是否有需要的權限？！）－ 服務 &apos;%1&apos; 尚未註冊。</translation>
+        <translation>無法連接服務控制管理程式 (您是否有需要的權限?!) - 服務 &apos;%1&apos; 尚未註冊。</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1568,7 +2102,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>服務 &apos;%1&apos; 成功的註冊了。</translation>
+        <translation>服務 &apos;%1&apos; 成功註冊。</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be stopped.</source>
@@ -1576,15 +2110,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>服務 &apos;%1&apos; 已經註銷。</translation>
+        <translation>服務 &apos;%1&apos; 已經取消註冊。</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>服務 &apos;%1&apos; 尚未註冊因此無法註銷。</translation>
+        <translation>服務 &apos;%1&apos; 尚未註冊因此無法取消註冊。</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>服務 &apos;%1&apos; 無法註銷。</translation>
+        <translation>服務 &apos;%1&apos; 無法取消註冊。</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
@@ -1592,49 +2126,64 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>無法連接服務控制管理程式（您是否有需要的權限？！）－ 服務 &apos;%1&apos; 尚未註銷。</translation>
+        <translation>無法連接服務控制管理程式 (您是否有需要的權限?!) － 服務 &apos;%1&apos; 尚未取消註冊。</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>無法連接服務控制管理程式（您是否有需要的權限？！）－ 服務 &apos;%1&apos; 尚未停止。</translation>
-    </message>
-</context>
-<context>
-    <name>RemoteControlWidget</name>
-    <message>
-        <source>View live (%1 @ %2)</source>
-        <translation>檢視現場直播 (%1 @ %2)</translation>
-    </message>
-    <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation>遠端控制 (%1 @ %2)</translation>
-    </message>
-    <message>
-        <source>unknown user</source>
-        <translation>未知的使用者</translation>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
+        <translation>無法連接服務控制管理程式 (您有必要權利嗎?) -服務 &apos;%1&apos; 沒有停止。</translation>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidgetToolBar</name>
+    <name>RemoteAccessFeaturePlugin</name>
     <message>
-        <source>View only</source>
-        <translation>只有觀看</translation>
+        <source>Remote view</source>
+        <translation>遠端檢視</translation>
+    </message>
+    <message>
+        <source>Open a remote view for a computer without interaction.</source>
+        <translation>開啟電腦的遠端檢視，而不需互動。</translation>
     </message>
     <message>
         <source>Remote control</source>
         <translation>遠端控制</translation>
     </message>
     <message>
-        <source>Lock student</source>
-        <translation>鎖定學生</translation>
+        <source>Open a remote control window for a computer.</source>
+        <translation>開啟電腦的遠端控制視窗。</translation>
     </message>
     <message>
-        <source>Unlock student</source>
-        <translation>解鎖學生</translation>
+        <source>Remote access</source>
+        <translation>遠端存取</translation>
     </message>
     <message>
-        <source>Snapshot</source>
-        <translation>螢幕截圖</translation>
+        <source>Remote view or control a computer</source>
+        <translation>遠端檢視或控制電腦</translation>
+    </message>
+    <message>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation>請輸入主機名稱或電腦的 IP 位址來存取:</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidget</name>
+    <message>
+        <source>%1 Remote Access</source>
+        <translation>%1 遠端存取</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidgetToolBar</name>
+    <message>
+        <source>View only</source>
+        <translation>只有檢視</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation>遠端控制</translation>
+    </message>
+    <message>
+        <source>Send shortcut</source>
+        <translation>傳送快速鍵</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -1649,6 +2198,38 @@ p, li { white-space: pre-wrap; }
         <translation>離開</translation>
     </message>
     <message>
+        <source>Ctrl+Alt+Del</source>
+        <translation>Ctrl+Alt+Del</translation>
+    </message>
+    <message>
+        <source>Ctrl+Esc</source>
+        <translation>Ctrl+Esc</translation>
+    </message>
+    <message>
+        <source>Alt+Tab</source>
+        <translation>Alt+Tab</translation>
+    </message>
+    <message>
+        <source>Alt+F4</source>
+        <translation>Alt+F4</translation>
+    </message>
+    <message>
+        <source>Win+Tab</source>
+        <translation>Win+Tab</translation>
+    </message>
+    <message>
+        <source>Win</source>
+        <translation>Win</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>功能表</translation>
+    </message>
+    <message>
+        <source>Alt+Ctrl+F1</source>
+        <translation>Alt+Ctrl+F1</translation>
+    </message>
+    <message>
         <source>Connecting %1</source>
         <translation>正在連線 %1</translation>
     </message>
@@ -1656,94 +2237,107 @@ p, li { white-space: pre-wrap; }
         <source>Connected.</source>
         <translation>已連線。</translation>
     </message>
-</context>
-<context>
-    <name>RemoteLogonDialog</name>
     <message>
-        <source>Remote logon</source>
-        <translation>遠端登入</translation>
-    </message>
-    <message>
-        <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>使用以下的欄位輸入使用者名稱、密碼與網域名稱。這些資訊會用於登入電腦。</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>使用者名稱</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密碼</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>網域</translation>
+        <source>Screenshot</source>
+        <translation>螢幕快照</translation>
     </message>
 </context>
 <context>
-    <name>RunCommandsDialog</name>
+    <name>RoomSelectionDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation>執行指令</translation>
+        <source>Room selection</source>
+        <translation>教室選擇</translation>
     </message>
     <message>
-        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>請輸入要執行在選取的客戶端電腦上的指令。多個指令可以用不同行。</translation>
+        <source>enter search filter...</source>
+        <translation>請輸入搜尋篩選器...</translation>
     </message>
 </context>
 <context>
-    <name>Snapshot</name>
+    <name>RunProgramDialog</name>
+    <message>
+        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation>請輸入程式或在選取電腦上執行的命令。 您可以用行分隔多個程式/命令。</translation>
+    </message>
+    <message>
+        <source>Run programs</source>
+        <translation>執行程式</translation>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation>如 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ScreenLockFeaturePlugin</name>
+    <message>
+        <source>Lock</source>
+        <translation>鎖定</translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation>解鎖</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation>所有使用者充分注意: 您可以使用此按鈕鎖定他們的電腦。 在此模式下鎖定所有輸入的裝置，且螢幕是黑的。</translation>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>鎖定電腦的螢幕和輸入裝置</translation>
+    </message>
+</context>
+<context>
+    <name>Screenshot</name>
     <message>
         <source>unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>無法拍下畫面快照，因為目錄 %1 不存在而且無法建立。</translation>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation>無法取得螢幕快照，因為目錄 %1 不存在且無法建立。</translation>
     </message>
     <message>
-        <source>Snapshot</source>
-        <translation>螢幕截圖</translation>
+        <source>Screenshot</source>
+        <translation>螢幕快照</translation>
     </message>
 </context>
 <context>
-    <name>SnapshotList</name>
+    <name>ScreenshotFeaturePlugin</name>
     <message>
-        <source>Snapshots</source>
-        <translation>螢幕截圖</translation>
+        <source>Screenshot</source>
+        <translation>螢幕快照</translation>
     </message>
     <message>
-        <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>使用這個工作區簡單的管理您拍下的畫面快照。</translation>
+        <source>Use this function to take a screenshot of selected computers.</source>
+        <translation>使用此功能來取得選取電腦的螢幕快照。</translation>
+    </message>
+    <message>
+        <source>Screenshots taken</source>
+        <translation>螢幕快照已取得</translation>
+    </message>
+    <message>
+        <source>Screenshot of %1 computer have been taken successfully.</source>
+        <translation>取得 %1 電腦的螢幕快照成功。</translation>
+    </message>
+    <message>
+        <source>Take screenshots of computers and save them locally.</source>
+        <translation>取得電腦螢幕快照並儲存在本機。</translation>
     </message>
 </context>
 <context>
-    <name>Snapshots</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;所有您拍下的畫面快照都列在此處。您可以在客戶端視窗的快顯功能表中選擇對應的項目來拍下畫面快照。這些畫面快照可以使用下列按鈕來管理。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
+    <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation>使用者：</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>主機：</translation>
+        <translation>使用者:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>日期：</translation>
+        <translation>日期:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>時刻：</translation>
+        <translation>時間:</translation>
     </message>
     <message>
         <source>Show</source>
@@ -1753,16 +2347,169 @@ p, li { white-space: pre-wrap; }
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
-</context>
-<context>
-    <name>SupportDialog</name>
     <message>
-        <source>Support</source>
-        <translation>支援</translation>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation>這裡列出所有您取得的螢幕快照。 您可以在電腦的內容功能表中按一下「螢幕快照」項目來取得螢幕快照。 能使用下面的按鈕來管理螢幕快照。</translation>
     </message>
     <message>
-        <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>請輸入您要連線的 IP 位址或主機名稱。</translation>
+        <source>Computer:</source>
+        <translation>電腦:</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceConfigurationPage</name>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Autostart</source>
+        <translation>自動啟動</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>隱藏通知區域圖示</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>啟動服務</translation>
+    </message>
+    <message>
+        <source>Additional arguments</source>
+        <translation>額外引數</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>已停止</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>停止服務</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>狀態:</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>透過軟體啟用 SAS 世代 (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>網路</translation>
+    </message>
+    <message>
+        <source>Demo server port</source>
+        <translation>展示伺服器連接埠</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>啟用防火牆例外</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>只允許 localhost 來的連線</translation>
+    </message>
+    <message>
+        <source>Internal VNC server port</source>
+        <translation>內部的 VNC 伺服器埠</translation>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation>VNC 伺服器</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>外掛程式:</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>重新啟動 %1 服務</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>已成功儲存所有的設定。 為了生效 %1 服務需要重新啟動。 立即重新啟動它?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>執行中</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation>功能管理埠</translation>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation>主服務埠</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceControl</name>
+    <message>
+        <source>Starting %1 Service</source>
+        <translation>啟動 %1 服務</translation>
+    </message>
+    <message>
+        <source>Stopping %1 Service</source>
+        <translation>停止 %1 服務</translation>
+    </message>
+    <message>
+        <source>Registering %1 Service</source>
+        <translation>註冊 %1 服務</translation>
+    </message>
+    <message>
+        <source>Unregistering %1 Service</source>
+        <translation>取消註冊 %1 服務</translation>
+    </message>
+</context>
+<context>
+    <name>ServiceControlPlugin</name>
+    <message>
+        <source>register Veyon Service</source>
+        <translation>註冊 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>unregister Veyon Service</source>
+        <translation>取消註冊 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>start Veyon Service</source>
+        <translation>啟動 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>stop Veyon Service</source>
+        <translation>停止 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>restart Veyon Service</source>
+        <translation>重新啟動 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>query status of Veyon Service</source>
+        <translation>Veyon 服務的查詢狀態</translation>
+    </message>
+    <message>
+        <source>Service is running</source>
+        <translation>服務正在執行</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>服務未執行</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>組態和控制 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>commands for configuring and controlling Veyon Service</source>
+        <translation>用於組態和控制 Veyon 服務的命令</translation>
+    </message>
+</context>
+<context>
+    <name>SystemTrayIcon</name>
+    <message>
+        <source>System tray icon</source>
+        <translation>系統通知區域圖示</translation>
     </message>
 </context>
 <context>
@@ -1777,6 +2524,85 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TextMessageFeaturePlugin</name>
+    <message>
+        <source>Text message</source>
+        <translation>文字訊息</translation>
+    </message>
+    <message>
+        <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
+        <translation>使用此函數來向所有使用者傳送文字訊息，例如要向其分配新任務。</translation>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>來自教師的訊息</translation>
+    </message>
+    <message>
+        <source>Send a message to a user</source>
+        <translation>向使用者傳送訊息</translation>
+    </message>
+</context>
+<context>
+    <name>UltraVncConfigurationWidget</name>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>開啟多層次 (半透明) 視窗擷取</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>輪詢全螢幕(預設開啓)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>低精確度 (快速模式)</translation>
+    </message>
+    <message>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>內建 UltraVNC 伺服器組態</translation>
+    </message>
+</context>
+<context>
+    <name>UserConfig</name>
+    <message>
+        <source>No write access</source>
+        <translation>沒有寫入存取</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>無法儲存您的個人設定 ! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
+    </message>
+</context>
+<context>
+    <name>UserSessionControl</name>
+    <message>
+        <source>User session control</source>
+        <translation>使用者工作階段控制</translation>
+    </message>
+    <message>
+        <source>Logout user</source>
+        <translation>登出使用者</translation>
+    </message>
+    <message>
+        <source>Click this button to logout users from all computers.</source>
+        <translation>按一下此按鈕從所有電腦登出使用者。</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonVncConnection</name>
+    <message>
+        <source>VNC authentication failed because of too many authentication tries.</source>
+        <translation>VNC 驗證失敗，因為嘗試太多次。</translation>
+    </message>
+    <message>
+        <source>VNC authentication failed.</source>
+        <translation>VNC 驗證失敗。</translation>
+    </message>
+    <message>
+        <source>VNC server closed connection.</source>
+        <translation>VNC 伺服器已關閉連線。</translation>
+    </message>
+</context>
+<context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
@@ -1784,62 +2610,25 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>clientMenu</name>
+    <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Overview</source>
-        <translation>概覽</translation>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>執行 Windows 平臺的抽象函數的外掛程式</translation>
+    </message>
+</context>
+<context>
+    <name>X11VncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation>內建 x11vnc 伺服器組態</translation>
     </message>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>全螢幕示範</translation>
+        <source>Custom x11vnc parameters:</source>
+        <translation>自訂 x11vnc 參數:</translation>
     </message>
     <message>
-        <source>Window demo</source>
-        <translation>視窗示範</translation>
-    </message>
-    <message>
-        <source>Locked display</source>
-        <translation>鎖定顯示</translation>
-    </message>
-    <message>
-        <source>View live</source>
-        <translation>即時檢視</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>遠端控制</translation>
-    </message>
-    <message>
-        <source>Let student show demo</source>
-        <translation>讓學生示範</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>傳送文字訊息</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>登出使用者</translation>
-    </message>
-    <message>
-        <source>Take a snapshot</source>
-        <translation>拍下畫面快照</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>開機</translation>
-    </message>
-    <message>
-        <source>Reboot</source>
-        <translation>重新開機</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>關機</translation>
-    </message>
-    <message>
-        <source>Execute commands</source>
-        <translation>執行指令</translation>
+        <source>Do not use X Damage extension</source>
+        <translation>不使用 X Damage 擴充功能</translation>
     </message>
 </context>
 </TS>

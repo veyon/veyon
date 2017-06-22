@@ -63,7 +63,7 @@ Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 #ifdef Q_OS_WIN
 	if( config->logToWindowsEventLog() )
 	{
-		winEventLog = new CXEventLog( appName.toUtf8().constData() );
+		winEventLog = new CXEventLog( (wchar_t*) appName.utf16() );
 	}
 #endif
 
@@ -299,7 +299,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 			}
 			if( winEventLog != NULL && wtype > 0 )
 			{
-				winEventLog->Write( wtype, msg.toUtf8().constData() );
+				winEventLog->Write( wtype, (wchar_t*) msg.utf16() );
 			}
 #endif
 			lastMsg = msg;

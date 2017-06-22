@@ -53,14 +53,14 @@ ComputerControlServer::ComputerControlServer() :
 	m_vncServer(),
 	m_vncProxyServer( VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
-					  VeyonCore::config().computerControlServerPort(),
+					  VeyonCore::config().primaryServicePort(),
 					  this,
 					  this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VEYON_VERSION,
 					QHostInfo::localHostName(),
-					QString::number( VeyonCore::config().computerControlServerPort() ) ),
+					QString::number( VeyonCore::config().primaryServicePort() ) ),
 				m_featureWorkerManager );
 
 	// make app terminate once the VNC server thread has finished

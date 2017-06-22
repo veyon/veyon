@@ -1,3 +1,5 @@
+ADD_SUBDIRECTORY(vnchooks)
+
 INCLUDE(BuildPlugin)
 
 INCLUDE_DIRECTORIES(

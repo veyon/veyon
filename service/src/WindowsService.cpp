@@ -46,15 +46,15 @@ public:
 
 	SasEventListener()
 	{
-		m_sasLibrary = LoadLibrary( "sas.dll" );
+		m_sasLibrary = LoadLibrary( L"sas.dll" );
 		m_sendSas = (SendSas)GetProcAddress( m_sasLibrary, "SendSAS" );
 		if( m_sendSas == nullptr )
 		{
 			qWarning( "SendSAS is not supported by operating system!" );
 		}
 
-		m_sasEvent = CreateEvent( nullptr, false, false, "Global\\VeyonServiceSasEvent" );
-		m_stopEvent = CreateEvent( nullptr, false, false, "StopEvent" );
+		m_sasEvent = CreateEvent( nullptr, false, false, L"Global\\VeyonServiceSasEvent" );
+		m_stopEvent = CreateEvent( nullptr, false, false, L"StopEvent" );
 	}
 
 	~SasEventListener() override
@@ -126,7 +126,7 @@ public:
 	{
 		stop();
 
-		char appPath[MAX_PATH];
+		wchar_t appPath[MAX_PATH];
 		if( GetModuleFileName( NULL, appPath, ARRAYSIZE(appPath) ) )
 		{
 			qInfo() << "Starting core server for user" << LocalSystem::User::loggedOnUser().name();
@@ -135,7 +135,7 @@ public:
 				LocalSystem::Process(
 					LocalSystem::Process::findProcessId( "winlogon.exe",
 															sessionId )
-									).runAsUser( appPath,
+									).runAsUser( QString::fromWCharArray( appPath ),
 											LocalSystem::Desktop().name() );
 		}
 	}
@@ -203,7 +203,7 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 		return false;
 	}
 
-	char appPath[MAX_PATH];
+	wchar_t appPath[MAX_PATH];
 	if( !GetModuleFileName( NULL, appPath, ARRAYSIZE(appPath) ) )
 	{
 		return false;
@@ -253,8 +253,7 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 					{
 						serviceArgs += " -quiet";
 					}
-					LocalSystem::Process::runAsAdmin( appPath,
-											serviceArgs.toUtf8().constData() );
+					LocalSystem::Process::runAsAdmin( QString::fromWCharArray( appPath ), serviceArgs );
 				}
 				else
 				{
@@ -283,11 +282,10 @@ QAtomicInt WindowsService::s_sessionChangeEvent = 0;
 bool WindowsService::install()
 {
 	const unsigned int pathlength = 2048;
-	char path[pathlength];
-	char servicecmd[pathlength];
+	wchar_t path[pathlength];
 
 	// Get the filename of this executable
-	if( GetModuleFileName( NULL, path, pathlength-(m_arg.length()+2) ) == 0 )
+	if( GetModuleFileName( NULL, path, pathlength-1 ) == 0 )
 	{
 		QMessageBox::critical( NULL, m_displayName,
 			QApplication::tr( "Unable to register service '%1'." ).
@@ -295,16 +293,8 @@ bool WindowsService::install()
 		return false;
 	}
 
-	// Append the service-start flag to the end of the path:
-	if( strlen( path ) + 4 + m_arg.length() < pathlength )
-	{
-		sprintf( servicecmd, "\"%s\" %s", path,
-					m_arg.toLocal8Bit().constData() );
-	}
-	else
-	{
-		return false;
-	}
+	// Append the service arguments to the end of the path
+	QString serviceCmd = QString("\"%1\" %2" ).arg( QString::fromWCharArray( path ), m_arg );
 
 	// Open the default, local Service Control Manager database
 	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
@@ -323,17 +313,17 @@ bool WindowsService::install()
 	// Create an entry for the WinVNC service
 	SC_HANDLE hservice = CreateService(
 			hsrvmanager,		// SCManager database
-			m_name.toLocal8Bit().constData(),	// name of service
-			m_displayName.toLocal8Bit().constData(),// name to display
+			(LPCWSTR) m_name.utf16(),	// name of service
+			(LPCWSTR) m_displayName.utf16(),// name to display
 			SERVICE_ALL_ACCESS,	// desired access
 			SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
 						// service type
 			SERVICE_AUTO_START,	// start type
 			SERVICE_ERROR_NORMAL,	// error control type
-			servicecmd,		// service's binary
+			(LPCWSTR) serviceCmd.utf16(),		// service's binary
 			NULL,			// no load ordering group
 			NULL,			// no tag identifier
-			NULL,//m_dependencies.toLocal8Bit().constData(), // dependencies
+			NULL,			// dependencies
 			NULL,			// LocalSystem account
 			NULL );			// no password
 	if( hservice == NULL)
@@ -367,10 +357,7 @@ bool WindowsService::install()
 	service_failure_actions.lpsaActions = &service_actions;
 	service_failure_actions.cActions = 1;
 	ChangeServiceConfig2( hservice, SERVICE_CONFIG_FAILURE_ACTIONS,
-						&service_failure_actions );
-/*	QProcess::execute(
-		QString( "sc failure %1 reset= 0 actions= restart/1000"
-							).arg( m_name ) );*/
+						  &service_failure_actions );
 
 	CloseServiceHandle( hservice );
 	CloseServiceHandle( hsrvmanager );
@@ -400,9 +387,7 @@ bool WindowsService::remove()
 
 	if( hsrvmanager )
 	{
-		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toLocal8Bit().constData(),
-							SERVICE_ALL_ACCESS );
+		SC_HANDLE hservice = OpenService( hsrvmanager, (LPCWSTR) m_name.utf16(), SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
 		{
@@ -492,19 +477,15 @@ bool WindowsService::remove()
 
 bool WindowsService::start()
 {
-	return QProcess::execute( QString( "net start %1" ).arg( m_name ) ) == 0;
-
-/*	// Open the SCM
+	// Open the SCM
 	SC_HANDLE hsrvmanager = OpenSCManager(
-					NULL,	// machine (NULL == local)
-					NULL,	// database (NULL == default)
+				NULL,	// machine (NULL == local)
+				NULL,	// database (NULL == default)
 				SC_MANAGER_ALL_ACCESS	// access required
 							);
 	if( hsrvmanager )
 	{
-		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toUtf8().constData(),
-							SERVICE_ALL_ACCESS );
+		SC_HANDLE hservice = OpenService( hsrvmanager, (LPCWSTR) m_name.utf16(), SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
 		{
@@ -554,7 +535,8 @@ bool WindowsService::start()
 						"started." ).
 							arg( m_displayName )  );
 		return false;
-	}*/
+	}
+
 	return true;
 }
 
@@ -571,9 +553,7 @@ bool WindowsService::stop()
 							);
 	if( hsrvmanager )
 	{
-		SC_HANDLE hservice = OpenService( hsrvmanager,
-					m_name.toLocal8Bit().constData(),
-							SERVICE_ALL_ACCESS );
+		SC_HANDLE hservice = OpenService( hsrvmanager, (LPCWSTR) m_name.utf16(), SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
 		{
@@ -645,7 +625,7 @@ bool WindowsService::runAsService()
 	// Create a service entry table
 	SERVICE_TABLE_ENTRY dispatchTable[] =
 	{
-		{ m_name.toLocal8Bit().data(), (LPSERVICE_MAIN_FUNCTION) serviceMain },
+		{ (LPWSTR) m_name.utf16(), (LPSERVICE_MAIN_FUNCTION) serviceMain },
 		{ NULL, NULL }
 	} ;
 
@@ -669,9 +649,7 @@ void WINAPI WindowsService::serviceMain( DWORD argc, char **argv )
 {
 	DWORD context = 1;
 	// register the service control handler
-	s_statusHandle = RegisterServiceCtrlHandlerEx(
-					s_this->m_name.toLocal8Bit().constData(),
-								serviceCtrl, &context );
+	s_statusHandle = RegisterServiceCtrlHandlerEx( (LPCWSTR) s_this->m_name.utf16(), serviceCtrl, &context );
 
 	if( s_statusHandle == 0 )
 	{
@@ -819,7 +797,7 @@ void WindowsService::monitorSessions()
 	VeyonServiceSubProcess veyonProcess;
 
 	HANDLE hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
-									"Global\\SessionEventUltra" );
+									L"Global\\SessionEventUltra" );
 	ResetEvent( hShutdownEvent );
 
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;

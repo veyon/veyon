@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>ServiceConfigurationPage</class>
  <widget class="QWidget" name="ServiceConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>682</width>
-    <height>970</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
@@ -159,7 +151,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="computerControlServerPort">
+       <widget class="QSpinBox" name="primaryServicePort">
         <property name="minimum">
          <number>1024</number>
         </property>
@@ -277,7 +269,7 @@
   <tabstop>serviceArguments</tabstop>
   <tabstop>startService</tabstop>
   <tabstop>stopService</tabstop>
-  <tabstop>computerControlServerPort</tabstop>
+  <tabstop>primaryServicePort</tabstop>
   <tabstop>vncServerPort</tabstop>
   <tabstop>featureWorkerManagerPort</tabstop>
   <tabstop>demoServerPort</tabstop>
