@@ -102,6 +102,7 @@ private:
 
 	enum Arguments {
 		DemoAccessToken,
+		VncServerPort,
 		VncServerPassword,
 		IsFullscreenDemo,
 		DemoServerHost,
