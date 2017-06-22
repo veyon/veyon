@@ -31,7 +31,8 @@
 
 
 FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& featureManager,
-																const Feature::Uid& featureUid ) :
+																const Feature::Uid& featureUid,
+																int featureWorkerManagerPort ) :
 	QObject(),
 	m_featureManager( featureManager ),
 	m_socket( this ),
@@ -46,7 +47,7 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& 
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
-	m_socket.connectToHost( QHostAddress::LocalHost, VeyonCore::config().featureWorkerManagerPort() );
+	m_socket.connectToHost( QHostAddress::LocalHost, featureWorkerManagerPort );
 }
 
 
