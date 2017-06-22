@@ -187,8 +187,6 @@ bool VncProxyConnection::receiveClientMessage()
 			rfbSetEncodingsMsg setEncodingsMessage;
 			if( socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
 			{
-				qDebug() << "trying to forward set encodings:"
-						 << sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t);
 				return forwardDataToServer( sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t) );
 			}
 		}
