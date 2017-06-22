@@ -37,8 +37,9 @@
 #include "ServiceControl.h"
 #include "Logger.h"
 
-
+#ifdef VEYON_BUILD_WIN32
 static auto serviceName = L"VeyonService";
+#endif
 
 bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
 {
