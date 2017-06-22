@@ -426,6 +426,16 @@ void VeyonVncConnection::setHost( const QString &host )
 	{
 		m_host = QHostAddress( QHostAddress::LocalHost ).toString();
 	}
+	else if( m_host.count( ':' ) == 1 )
+	{
+		// host name + port number?
+		QRegExp rx2( "(.*[^:]):(\\d+)$" );
+		if( rx2.indexIn( m_host ) == 0 )
+		{
+			m_host = rx2.cap( 1 );
+			m_port = rx2.cap( 2 ).toUInt();
+		}
+	}
 }
 
 
