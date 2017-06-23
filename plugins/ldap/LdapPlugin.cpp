@@ -34,11 +34,11 @@
 LdapPlugin::LdapPlugin() :
 	m_configuration(),
 	m_ldapDirectory( nullptr ),
-	m_subCommands( {
-				   std::pair<QString, QString>( "autoconfigurebasedn", "auto-configure the base DN via naming context" ),
-				   std::pair<QString, QString>( "query", "query objects from LDAP directory" ),
-				   std::pair<QString, QString>( "help", "show help about subcommand" ),
-				   } )
+	m_commands( {
+{ "autoconfigurebasedn", tr( "Auto-configure the base DN via naming context" ) },
+{ "query", tr( "Query objects from LDAP directory" ) },
+{ "help", tr( "Show help about command" ) },
+				} )
 {
 }
 
@@ -52,23 +52,23 @@ LdapPlugin::~LdapPlugin()
 
 
 
-QStringList LdapPlugin::subCommands() const
+QStringList LdapPlugin::commands() const
 {
-	return m_subCommands.keys();
+	return m_commands.keys();
 }
 
 
 
-QString LdapPlugin::subCommandHelp( const QString& subCommand ) const
+QString LdapPlugin::commandHelp( const QString& command ) const
 {
-	return m_subCommands.value( subCommand );
+	return m_commands.value( command );
 }
 
 
 
 CommandLinePluginInterface::RunResult LdapPlugin::runCommand( const QStringList& arguments )
 {
-	// all subcommands are handled as slots so if we land here an unsupported subcommand has been called
+	// all commands are handled as slots so if we land here an unsupported command has been called
 	return InvalidCommand;
 }
 
@@ -234,9 +234,9 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 
 CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList& arguments )
 {
-	QString subCommand = arguments.value( 0 );
+	QString command = arguments.value( 0 );
 
-	if( subCommand == "autoconfigurebasedn" )
+	if( command == "autoconfigurebasedn" )
 	{
 		printf( "\n"
 				"ldap autoconfigurebasedn <LDAP URL> [<naming context attribute name>]\n"
@@ -248,7 +248,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 				"  ldap[s]://[user[:password]@]hostname[:port]\n\n" );
 		return NoResult;
 	}
-	else if( subCommand == "query" )
+	else if( command == "query" )
 	{
 		printf( "\n"
 				"ldap query <object type> [filter]\n"
