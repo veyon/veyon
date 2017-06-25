@@ -550,6 +550,38 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>Configuration file is not readable!</source>
         <translation>¡El archivo de configuración no puede leerse!</translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>Borrar la configuración de Veyon del sistema</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>Listar todas las claves y valores de la configuración</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>Importar configuración de archivo</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>Exportar la configuración a archivo</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>Leer y mostrar valor de configuración para una clave</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>Escribir un valor a una clave de configuración</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>Desactivar (quitar) la clave de configuración</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Comandos para gestionar la configuración de Veyon</translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -1586,6 +1618,22 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (cargar usuarios/grupos y equipos/aulas desde LDAP/AD)</translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>Configuración automática del DN base a través del contexto de nombres</translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>Consultar objetos desde el directorio LDAP</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Mostrar ayuda sobre el comando</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Comandos para configurar y probar la integración LDAP/AD</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1823,10 +1871,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>Veyon Configurator</source>
         <translation>Configurador de Veyon</translation>
-    </message>
-    <message>
-        <source>Debugging Veyon</source>
-        <translation>Depurando Veyon</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
@@ -2136,6 +2180,14 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>No se pudo contactar con el Administrador de Control de Servicios (¿tiene los derechos necesarios?) - el servicio &apos;%1&apos; no se paró.</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>No se pudo iniciar el servicio &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>No se pudo contactar con el Administrador de Control de Servicios (¿tiene los derechos necesarios?) - el servicio &apos;%1&apos; no se inició.</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2166,6 +2218,10 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>Por favor, introduzca el nombre o la dirección IP del equipo a acceder:</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Mostrar ayuda sobre el comando</translation>
     </message>
 </context>
 <context>
@@ -2469,30 +2525,6 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>registrar Servicio de Veyon</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>des-registrar Servicio de Veyon</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>iniciar Servicio de Veyon</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>detener Servicio de Veyon</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>reiniciar Servicio de Veyon</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>consultar estado del Servicio de Veyon</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>El servicio esta ejecutándose</translation>
     </message>
@@ -2505,8 +2537,32 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <translation>Configurar y controlar el Servicio de Veyon</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
-        <translation>comandos para configurar y controlar el Servicio de Veyon</translation>
+        <source>Register Veyon Service</source>
+        <translation>Registrar Servicio Veyon</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Anular el registro del Servicio Veyon</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Iniciar Servicio Veyon</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Detener Servicio Veyon</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Reiniciar Servicio Veyon</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>Consultar estado de Servicio Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation>Comandos para configurar y controlar el Servicio Veyon</translation>
     </message>
 </context>
 <context>
@@ -2589,6 +2645,45 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Haga clic en este botón para cerrar sesión a los usuarios de todos los equipos.</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[OK]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[FALLO]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>¡Comando inválido!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Comandos disponibles:</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>Argumentos inválidos</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>No hay suficientes argumentos - utilice &quot;%1 help&quot; para obtener más información</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>¡Resultado desconocido!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Módulos disponibles:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>Módulo no encontrado - los módulos disponibles son:</translation>
     </message>
 </context>
 <context>
