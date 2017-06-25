@@ -546,6 +546,38 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Configuration file is not readable!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -1566,6 +1598,22 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1802,10 +1850,6 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Debugging Veyon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2111,6 +2155,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2140,6 +2192,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2444,30 +2500,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2480,7 +2512,31 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
+        <source>Register Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2563,6 +2619,45 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

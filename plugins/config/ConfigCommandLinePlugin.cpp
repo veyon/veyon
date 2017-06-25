@@ -34,15 +34,15 @@
 
 
 ConfigCommandLinePlugin::ConfigCommandLinePlugin() :
-	m_subCommands( {
-				   std::pair<QString, QString>( "clear", "clear system-wide Veyon configuration" ),
-				   std::pair<QString, QString>( "list", "list all configuration keys and values" ),
-				   std::pair<QString, QString>( "import", "import configuration from given file" ),
-				   std::pair<QString, QString>( "export", "export configuration to given file" ),
-				   std::pair<QString, QString>( "get", "read and output configuration value for given key" ),
-				   std::pair<QString, QString>( "set", "write given value to given configuration key" ),
-				   std::pair<QString, QString>( "unset", "unset (remove) given configuration key" ),
-				   } )
+	m_commands( {
+{ "clear", tr( "Clear system-wide Veyon configuration" ) },
+{ "list", tr( "List all configuration keys and values" ) },
+{ "import", tr( "Import configuration from given file" ) },
+{ "export", tr( "Export configuration to given file" ) },
+{ "get", tr( "Read and output configuration value for given key" ) },
+{ "set", tr( "Write given value to given configuration key" ) },
+{ "unset", tr( "Unset (remove) given configuration key" ) },
+				} )
 {
 }
 
@@ -54,23 +54,23 @@ ConfigCommandLinePlugin::~ConfigCommandLinePlugin()
 
 
 
-QStringList ConfigCommandLinePlugin::subCommands() const
+QStringList ConfigCommandLinePlugin::commands() const
 {
-	return m_subCommands.keys();
+	return m_commands.keys();
 }
 
 
 
-QString ConfigCommandLinePlugin::subCommandHelp( const QString& subCommand ) const
+QString ConfigCommandLinePlugin::commandHelp( const QString& command ) const
 {
-	return m_subCommands.value( subCommand );
+	return m_commands.value( command );
 }
 
 
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::runCommand( const QStringList& arguments )
 {
-	// all subcommands are handled as slots so if we land here an unsupported subcommand has been called
+	// all commands are handled as slots so if we land here an unsupported commands has been called
 	return InvalidCommand;
 }
 

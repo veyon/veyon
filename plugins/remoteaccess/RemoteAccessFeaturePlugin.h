@@ -89,19 +89,19 @@ public:
 
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
-	QString commandName() const override
+	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "remoteaccess" );
 	}
 
-	QString commandHelp() const override
+	QString commandLineModuleHelp() const override
 	{
 		return description();
 	}
 
-	QStringList subCommands() const override;
+	QStringList commands() const override;
 
-	QString subCommandHelp( const QString& subCommand ) const override;
+	QString commandHelp( const QString& command ) const override;
 
 	RunResult runCommand( const QStringList& arguments ) override;
 
@@ -118,7 +118,7 @@ private:
 	FeatureList m_features;
 	Computer m_customComputer;
 	ComputerControlInterface m_customComputerControlInterface;
-	QMap<QString, QString> m_subCommands;
+	QMap<QString, QString> m_commands;
 
 };
 
