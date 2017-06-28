@@ -117,7 +117,7 @@ class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonCore( QCoreApplication* application, const QString& appComponentName );
+	VeyonCore( QCoreApplication* application, const QString& appComponentName, QObject* parent = nullptr );
 	~VeyonCore() override;
 
 	static VeyonCore* instance();

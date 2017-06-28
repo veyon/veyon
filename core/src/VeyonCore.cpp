@@ -69,8 +69,8 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
-	QObject( application ),
+VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName, QObject* parent ) :
+	QObject( parent ),
 	m_config( nullptr ),
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),

@@ -29,8 +29,8 @@
 #include "UserSessionControl.h"
 
 
-ComputerControlInterface::ComputerControlInterface(const Computer &computer) :
-	QObject(),
+ComputerControlInterface::ComputerControlInterface( const Computer &computer, QObject* parent ) :
+	QObject( parent ),
 	m_computer( computer ),
 	m_state( Disconnected ),
 	m_user(),
