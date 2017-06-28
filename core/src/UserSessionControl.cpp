@@ -33,7 +33,8 @@
 #include "VeyonRfbExt.h"
 
 
-UserSessionControl::UserSessionControl() :
+UserSessionControl::UserSessionControl( QObject* parent ) :
+	QObject( parent ),
 	m_userSessionInfoFeature( Feature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 									   Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
 									   tr( "User session control" ), QString(), QString() ) ),
