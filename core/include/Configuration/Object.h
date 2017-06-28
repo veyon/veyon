@@ -154,7 +154,7 @@ private:
 		}
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
-			DECLARE_CONFIG_##type##_PROPERTY(get,key,parentKey)
+			DECLARE_CONFIG_##type##_PROPERTY(get,QStringLiteral(key),QStringLiteral(parentKey))
 
 
 #define IMPLEMENT_CONFIG_SET_STRING_PROPERTY(className,set,key,parentKey)\
@@ -200,7 +200,7 @@ private:
 		}
 
 #define IMPLEMENT_CONFIG_SET_PROPERTY(className, config,type, get, set, key, parentKey)	\
-			IMPLEMENT_CONFIG_SET_##type##_PROPERTY(className,set,key,parentKey)
+			IMPLEMENT_CONFIG_SET_##type##_PROPERTY(className,set,QStringLiteral(key),QStringLiteral(parentKey))
 
 
 }
