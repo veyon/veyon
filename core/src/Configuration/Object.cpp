@@ -124,7 +124,7 @@ Object &Object::operator=( const Object &ref )
 // allow easy merging of two data maps - source is dominant over destination
 static Object::DataMap operator+( Object::DataMap dst, Object::DataMap src )
 {
-	for( Object::DataMap::ConstIterator it = src.begin(); it != src.end(); ++it )
+	for( auto it = src.begin(), end = src.end(); it != end; ++it )
 	{
 		if( it.value().type() == QVariant::Map && dst.contains( it.key() ) )
 		{
