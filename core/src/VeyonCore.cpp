@@ -54,9 +54,9 @@ VeyonCore *VeyonCore::s_instance = nullptr;
 
 void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( "Veyon Solutions" );
-	QCoreApplication::setOrganizationDomain( "veyon.org" );
-	QCoreApplication::setApplicationName( "Veyon" );
+	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
+	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.org" ) );
+	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
 
 	if( VeyonConfiguration().isHighDPIScalingEnabled() )
 	{
@@ -69,8 +69,8 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
-	QObject( application ),
+VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName, QObject* parent ) :
+	QObject( parent ),
 	m_config( nullptr ),
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),
@@ -79,7 +79,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_accessControlDataBackendManager( nullptr ),
 	m_platformPluginManager( nullptr ),
 	m_platformPlugin( nullptr ),
-	m_applicationName( "Veyon" ),
+	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_userRole( RoleTeacher )
 {
 	setupApplicationParameters();
@@ -100,7 +100,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	QLocale configuredLocale( QLocale::C );
 
-	QRegExp localeRegEx( "[^(]*\\(([^)]*)\\)");
+	QRegExp localeRegEx( QStringLiteral( "[^(]*\\(([^)]*)\\)") );
 	if( localeRegEx.indexIn( config().uiLanguage() ) == 0 )
 	{
 		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
@@ -110,10 +110,10 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	{
 		auto tr = new QTranslator;
 		if( configuredLocale == QLocale::C ||
-				tr->load( QString( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
+				tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
 		{
 			configuredLocale = QLocale::system();
-			tr->load( QString( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
+			tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
 		}
 
 		QLocale::setDefault( configuredLocale );
@@ -122,9 +122,9 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 		auto qtTr = new QTranslator;
 #ifdef QT_TRANSLATIONS_DIR
-		qtTr->load( QString( "qt_%1.qm" ).arg( configuredLocale.name() ), QT_TRANSLATIONS_DIR );
+		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), QStringLiteral( QT_TRANSLATIONS_DIR ) );
 #else
-		qtTr->load( QString( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
+		qtTr->load( QStringLiteral( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
 #endif
 		QCoreApplication::installTranslator( qtTr );
 	}
@@ -258,43 +258,45 @@ QString VeyonCore::applicationName()
 
 void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 {
+	const auto appName = QStringLiteral( "Veyon" );
+
 	auto labels = topLevelWidget->findChildren<QLabel *>();
 	for( auto label : labels )
 	{
-		label->setText( label->text().replace( "Veyon", VeyonCore::applicationName() ) );
+		label->setText( label->text().replace( appName, VeyonCore::applicationName() ) );
 	}
 
 	auto buttons = topLevelWidget->findChildren<QAbstractButton *>();
 	for( auto button : buttons )
 	{
-		button->setText( button->text().replace( "Veyon", VeyonCore::applicationName() ) );
+		button->setText( button->text().replace( appName, VeyonCore::applicationName() ) );
 	}
 
 	auto groupBoxes = topLevelWidget->findChildren<QGroupBox *>();
 	for( auto groupBox : groupBoxes )
 	{
-		groupBox->setTitle( groupBox->title().replace( "Veyon", VeyonCore::applicationName() ) );
+		groupBox->setTitle( groupBox->title().replace( appName, VeyonCore::applicationName() ) );
 	}
 
 	auto actions = topLevelWidget->findChildren<QAction *>();
 	for( auto action : actions )
 	{
-		action->setText( action->text().replace( "Veyon", VeyonCore::applicationName() ) );
+		action->setText( action->text().replace( appName, VeyonCore::applicationName() ) );
 	}
 
 	auto widgets = topLevelWidget->findChildren<QWidget *>();
 	for( auto widget : widgets )
 	{
-		widget->setWindowTitle( widget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
+		widget->setWindowTitle( widget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
 	}
 
 	auto wizardPages = topLevelWidget->findChildren<QWizardPage *>();
 	for( auto wizardPage : wizardPages )
 	{
-		wizardPage->setTitle( wizardPage->title().replace( "Veyon", VeyonCore::applicationName() ) );
+		wizardPage->setTitle( wizardPage->title().replace( appName, VeyonCore::applicationName() ) );
 	}
 
-	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "Veyon", VeyonCore::applicationName() ) );
+	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
 }
 
 

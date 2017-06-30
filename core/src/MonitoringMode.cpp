@@ -24,7 +24,8 @@
 
 #include "MonitoringMode.h"
 
-MonitoringMode::MonitoringMode() :
+MonitoringMode::MonitoringMode( QObject* parent ) :
+	QObject( parent ),
 	m_monitoringModeFeature( Feature::Mode | Feature::Master | Feature::Builtin,
 							 Feature::Uid( "edad8259-b4ef-4ca5-90e6-f238d0fda694" ),
 							 tr( "Monitoring" ), QString(),

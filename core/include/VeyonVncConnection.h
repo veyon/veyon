@@ -143,7 +143,7 @@ public:
 		return m_frameBufferValid;
 	}
 
-	void setScaledSize( const QSize &s )
+	void setScaledSize( QSize s )
 	{
 		if( m_scaledSize != s )
 		{

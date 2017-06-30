@@ -44,12 +44,12 @@ public:
 		ChoiceCount
 	} Choice;
 
-	DesktopAccessDialog();
+	DesktopAccessDialog( QObject* parent = nullptr );
 	~DesktopAccessDialog() override {}
 
 	bool isBusy( FeatureWorkerManager* featureWorkerManager ) const;
 
-	void exec( FeatureWorkerManager* featureWorkerManager, QString user, QString host );
+	void exec( FeatureWorkerManager* featureWorkerManager, const QString& user, const QString& host );
 	void abort( FeatureWorkerManager* featureWorkerManager );
 
 	Choice choice() const
@@ -64,12 +64,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral( "1.0" );
 	}
 
 	QString name() const override
 	{
-		return "DesktopAccessDialog";
+		return QStringLiteral( "DesktopAccessDialog" );
 	}
 
 	QString description() const override
@@ -79,12 +79,12 @@ public:
 
 	QString vendor() const override
 	{
-		return "Veyon Community";
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral( "Tobias Doerffel" );
 	}
 
 	const FeatureList& featureList() const override
@@ -111,7 +111,7 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
 private:
-	static Choice requestDesktopAccess( QString user, QString host );
+	static Choice requestDesktopAccess( const QString& user, const QString& host );
 
 	enum
 	{

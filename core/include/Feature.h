@@ -32,9 +32,9 @@
 
 #include "VeyonCore.h"
 
-class VEYON_CORE_EXPORT Feature : public QObject
+class VEYON_CORE_EXPORT Feature
 {
-	Q_OBJECT
+	Q_GADGET
 public:
 	typedef QUuid Uid;
 
@@ -57,13 +57,12 @@ public:
 	Q_FLAG(Flags)
 
 	Feature( Flags flags,
-			 const Uid& uid,
+			 Uid uid,
 			 const QString& displayName,
 			 const QString& displayNameActive,
 			 const QString& description,
 			 const QString& iconUrl = QString(),
 			 const QKeySequence& shortcut = QKeySequence() ) :
-		QObject(),
 		m_flags( flags ),
 		m_uid( uid ),
 		m_displayName( displayName ),
@@ -74,8 +73,7 @@ public:
 	{
 	}
 
-	Feature( const Uid& uid = Uid() ) :
-		QObject(),
+	Feature( Uid uid = Uid() ) :
 		m_flags( NoFlags ),
 		m_uid( uid ),
 		m_displayName(),
@@ -87,7 +85,6 @@ public:
 	}
 
 	Feature( const Feature& other ) :
-		QObject(),
 		m_flags( other.flags() ),
 		m_uid( other.uid() ),
 		m_displayName( other.displayName() ),

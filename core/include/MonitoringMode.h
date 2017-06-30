@@ -32,7 +32,7 @@ class MonitoringMode : public QObject, FeaturePluginInterface, PluginInterface
 	Q_OBJECT
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
-	MonitoringMode();
+	MonitoringMode( QObject* parent = nullptr );
 
 	const Feature& feature() const
 	{
@@ -46,12 +46,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral( "1.0" );
 	}
 
 	QString name() const override
 	{
-		return "MonitoringMode";
+		return QStringLiteral( "MonitoringMode" );
 	}
 
 	QString description() const override
@@ -61,12 +61,12 @@ public:
 
 	QString vendor() const override
 	{
-		return "Veyon Community";
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral( "Tobias Doerffel" );
 	}
 
 	const FeatureList& featureList() const override
