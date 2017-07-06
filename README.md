@@ -35,7 +35,77 @@ See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
 ## Building
 
-See the file INSTALL for information on how to build Veyon.
+### Downloading sources
+
+First grab the latest sources by cloning the Git repository and fetching all submodules:
+
+	git clone https://github.com/veyon/veyon.git
+	cd veyon
+	git submodule update --init
+
+
+### Building Linux packages
+
+Requirements for Debian-based distributions:
+
+- Build tools: g++ make cmake
+- Qt5: qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools
+- X11: xorg-dev libxtst-dev
+- libjpeg: libjpeg-turbo8-dev
+- zlib: zlib1g-dev
+- OpenSSL: libssl-dev
+- PAM: libpam0g-dev
+- LZO: liblzo2-dev 
+- QCA: libqca2-dev libqca-qt5-2-dev 
+- LDAP: libldap2-dev libsasl2-dev
+
+As root you can run
+
+	apt install g++ make cmake qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
+	            xorg-dev libxtst-dev libjpeg-turbo8-dev zlib1g-dev libssl-dev libpam0g-dev \ 
+	            liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev libsasl2-dev
+    
+
+Requirements for RedHat-based distributions:
+
+- Build tools: gcc-c++ make cmake
+- Qt5: qt5-devel
+- X11: libXtst-devel
+- libjpeg: libjpeg-turbo-devel
+- zlib: zlib-devel
+- OpenSSL: openssl-devel
+- PAM: pam-devel
+- LZO: lzo-devel
+- QCA: qca-devel qca-qt5-devel
+- LDAP: openldap-devel libgsasl
+
+As root you can run
+
+	dnf install gcc-g++ make cmake qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
+             openssl-devel pam-devel lzo-devel qca-devel qca-qt5-devel openldap-devel libgsasl
+
+
+Now configure and build Veyon:
+
+	mkdir build
+	cd build
+	cmake ..
+	make -j4
+
+If some requirements are not fullfilled, CMake will inform you about it and
+you will have to install the missing software before continuing.
+
+You can now generate a package (.deb or .rpm depending what system you are in).
+For generating a package you can run
+    
+	make package
+
+Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z.arch.rpm
+
+Alternatively you can install the built binaries directly (not recommended for
+production systems) by running the following command as root:
+
+	make install
 
 
 ## Join development
@@ -48,4 +118,5 @@ Before starting the implementation of a new feature, please always file an issue
 ## More Information
 
 * http://veyon.io/
+* http://docs.veyon.io/
 * http://facebook.com/veyon.io/
