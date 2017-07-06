@@ -1,112 +1,25 @@
-INSTALLING AND SETTING UP Veyon FOR USE
-=========================================
-
+INSTALLING AND SETTING UP VEYON FOR USE
+=======================================
 
 Please note that all instructions in this file apply to the Linux version of
-Veyon. Users of the win32 version of Veyon should run the installer which will
+Veyon. Users of the Windows version of Veyon should run the installer which will
 guide you through the installation. Afterwards the graphical Veyon Configurator
 helps to set up Veyon.
 
-For further information you can also take a look at Veyon-Wiki:
+For further information you can also take a look at Veyon administrator manual:
 
-	http://veyon.io/wiki/
-
-
-
-Building Veyon
-----------------
-
-If you have ready to use packages (RPMs, DEBs etc.), you can skip this section
-and continue with "Install Veyon".
-
-
-Requirements for Debian-based distributions:
-
-- qtbase5-dev
-- qtbase5-dev-tools 
-- qttools5-dev       (for ubuntu 16.04)
-- qttools5-dev-tools (for ubuntu 16.04)
-- xorg-dev
-- libxtst-dev
-- libjpeg-turbo8-dev
-- zlib1g-dev
-- libssl-dev
-- libpam0g-dev
-- liblzo2-dev 
-- libqca2-dev 
-- libqca-qt5-2-dev 
-- libldap2-dev 
-- libsasl2-dev
-
-As root you can run
-
-	apt install qtbase5-dev  qtbase5-dev-tools qttools5-dev  qttools5-dev-tools \
-	            xorg-dev libxtst-dev libjpeg-turbo8-dev zlib1g-dev libssl-dev libpam0g-dev \ 
-	            liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev libsasl2-dev
-    
-
-Requirements for RedHat-based distributions:
-
-- qt5-devel
-- libXtst-devel
-- libjpeg-turbo-devel
-- zlib-devel
-- qca-devel
-- qca-qt5-devel
-- openssl-devel
-- pam-devel
-- lzo-devel
-- libgsasl
-- openldap-devel 
-
-As root you can run
-
-	dnf install qt5-devel  libXtst-devel  libjpeg-turbo-devel  zlib-devel  \
-                    qca-devel  qca-qt5-devel  openssl-devel  pam-devel  lzo-devel  libgsasl  openldap-devel
-
-
-
-Of course GCC/G++, make and cmake must not be missing...
-
-
-Building:
-
-	mkdir build
-	cd build
-	cmake ..
-
-If some requirements are not fullfilled, CMake will inform you about it and
-you will have to install the missing software before continuing.
-
-After CMake ran successfully you can run
-
-	make install
-
-Make sure you're issuing the "make install" as root! This will install Veyon
-directly on the computer.
-
-Also you can generate a package (.deb or .rpm depending what system you are in).
-For generating a package you can run
-    
-	make package
-
-Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z.arch.rpm
-
-
-Read the next section on how to setup Veyon.
-
+	http://docs.veyon.io/en/latest/admin/index.html
 
 
 Installing Veyon
--------------------
+----------------
 
 Requirements:
 
-Of course you should have some computers, connected via TCP/IP network... :-)
-
 First you should download the necessary packages depending on your
 Linux distribution. If there're no packages for your distribution,
-try to build Veyon yourself. See previous section for details.
+try to build Veyon yourself. See according section in README file
+for details.
 
 If there're unfulfilled requirements, your package management system (dpkg,
 RPM etc.) will complain about it.
@@ -134,7 +47,7 @@ Of course, if your linux distribution has available such package you can install
 
 Essentially, there are 3 main apps in package:
 
--  veyon-configurator 
+-  veyon-configurator
 -  veyon-service
 -  veyon-master
 
@@ -144,8 +57,8 @@ On clients computers remove veyon-master if you installed it.
 
 
 
-Setup an Veyon client
-----------------------
+Setup a Veyon client
+--------------------
 
 On clients you have to make sure that the Veyon Service is being started when
 either X is started or a user logs on. There're several methods to achieve this
@@ -172,48 +85,7 @@ example:
 You should see something like "RFB 003.008".
 
 
+Setting up and configuring Veyon
+---------------------------------
 
-Setup Veyon authentication
-----------------------------
-
-Veyon uses a sophisticated authentication concept to make sure only
-authorized persons are able to access computers using Veyon.
-
-The security is achieved by data signing and -verification using a public and
-a private key. Thus you have to create a key pair by invoking
-
-	veyon-configurator -role teacher -createkeypair
-
-which will create a key pair in /etc/veyon/keys.
-
-Now copy the directory /etc/veyon/keys/public to each client. Make sure the
-whole directory including subdirectories and files are readable but not
-writable to normal users. If you have network shares (AFS, NFS, Samba etc.) it's
-recommended to copy this directory to a network share, set the according
-permissions and link it on each client to /etc/veyon/keys. This way it's no
-problem to generate a new key pair (e.g. if the private key was compromised)
-
-Then (the most important thing!) make sure only the users which should be
-allowed to use Veyon have (only!) read access to /etc/veyon/keys/private
-including subdirectories and files. In most cases you would have to create a
-group "teacher", add all teachers etc. to it and set permissions, so that only
-this group has read permissions.
-
-
-
-Setup clients and classrooms (i.e. client groups)
--------------------------------------------------
-
-Before using Veyon, you need tell Veyon which clients to access and how they're
-grouped. For doing so Veyon has an easy to use client manager. After starting
-Veyon, you can open it by clicking on the according button on Veyon's sidebar.
-
-Now you can add clients and client groups using the context menu.
-
-For installing the client configuration you made for other users, copy the
-XML files in $HOME/.veyon/ into directory .veyon in every Veyon user's home.
-You can also link the file 'GlobalConfig.xml' to one global client
-configuration in a public network directory, so that you can change every
-user's client config at once, if something in your network has changed (e.g. a
-client was exchanged -> different MAC address).
-
+Please refer to the official Veyon Administrator Manual at http://docs.veyon.io/en/latest/admin/index.html
