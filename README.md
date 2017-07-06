@@ -21,7 +21,7 @@ Veyon is available in different languages and provides lots of useful features:
   * send text messages to students
   * powering on/off and rebooting computers remote
   * remote logoff and remote execution of arbitrary commands/scripts
-  * home schooling - Veyon's network-technology is not restricted to a subnet
+  * home schooling - Veyon's network technology is not restricted to a subnet
     and therefore students at home can join lessons via VPN connections just by
     installing the Veyon service
 
@@ -33,7 +33,19 @@ Copyright (c) 2004-2017 Tobias Doerffel / Veyon Solutions.
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
 
-## Building
+## Installation and configuration
+
+Please refer to the official Veyon Administrator Manual at http://docs.veyon.io/en/latest/admin/index.html
+for information on the installation and configuration of Veyon.
+
+
+## Usage
+
+Please refer to the official Veyon User Manual at http://docs.veyon.io/en/latest/user/index.html
+for information on how to use Veyon.
+
+
+## Veyon on Linux
 
 ### Downloading sources
 
@@ -44,7 +56,7 @@ First grab the latest sources by cloning the Git repository and fetching all sub
 	git submodule update --init
 
 
-### Building Linux packages
+### Installing dependencies
 
 Requirements for Debian-based distributions:
 
@@ -85,7 +97,9 @@ As root you can run
              openssl-devel pam-devel lzo-devel qca-devel qca-qt5-devel openldap-devel libgsasl
 
 
-Now configure and build Veyon:
+### Configuring and building sources
+
+Run the following commands:
 
 	mkdir build
 	cd build
@@ -112,7 +126,7 @@ production systems) by running the following command as root:
 
 If you are interested in Veyon, its programming, artwork, testing or something like that, you're welcome to participate in the development of Veyon!
 
-Before starting the implementation of a new feature, please always file an issue for your idea and suggestions about your feature and about the intended implementation on GitHub or post to the Veyon developers mailing list (veyon-devel@lists.sourceforge.net) and wait for replies! There may be different ideas, improvements, hints or maybe an already ongoing work on this feature.
+Before starting the implementation of a new feature, please always open an issue at https://github.com/veyon/veyon/issues to start a discussion about your intended implementation. There may be different ideas, improvements, hints or maybe an already ongoing work on this feature.
 
 
 ## More Information
