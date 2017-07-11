@@ -1,5 +1,5 @@
 /*
- * VeyonCore.h - definitions for veyon Core
+ * VeyonCore.h - declaration of VeyonCore class + basic headers
  *
  * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -38,67 +38,12 @@
 #include <QString>
 #include <QDebug>
 
+#include "QtCompat.h"
+
 #if defined(BUILD_VEYON_CORE_LIBRARY)
 #  define VEYON_CORE_EXPORT Q_DECL_EXPORT
 #else
 #  define VEYON_CORE_EXPORT Q_DECL_IMPORT
-#endif
-
-template<class A, class B>
-static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
-{
-#if QT_VERSION < 0x050600
-	return QSet<A>( a ).intersect( b ).isEmpty() == false;
-#else
-	return a.intersects( b );
-#endif
-}
-
-#if QT_VERSION < 0x050700
-template <typename T> struct QAddConst { typedef const T Type; };
-template <typename T> constexpr typename QAddConst<T>::Type &qAsConst(T &t) { return t; }
-template <typename T> void qAsConst(const T &&) = delete;
-
-template <typename... Args>
-struct QNonConstOverload
-{
-	template <typename R, typename T>
-	Q_DECL_CONSTEXPR auto operator()(R (T::*ptr)(Args...)) const Q_DECL_NOTHROW -> decltype(ptr)
-	{ return ptr; }
-
-	template <typename R, typename T>
-	static Q_DECL_CONSTEXPR auto of(R (T::*ptr)(Args...)) Q_DECL_NOTHROW -> decltype(ptr)
-	{ return ptr; }
-};
-
-template <typename... Args>
-struct QConstOverload
-{
-	template <typename R, typename T>
-	Q_DECL_CONSTEXPR auto operator()(R (T::*ptr)(Args...) const) const Q_DECL_NOTHROW -> decltype(ptr)
-	{ return ptr; }
-
-	template <typename R, typename T>
-	static Q_DECL_CONSTEXPR auto of(R (T::*ptr)(Args...) const) Q_DECL_NOTHROW -> decltype(ptr)
-	{ return ptr; }
-};
-
-template <typename... Args>
-struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
-{
-	using QConstOverload<Args...>::of;
-	using QConstOverload<Args...>::operator();
-	using QNonConstOverload<Args...>::of;
-	using QNonConstOverload<Args...>::operator();
-
-	template <typename R>
-	Q_DECL_CONSTEXPR auto operator()(R (*ptr)(Args...)) const Q_DECL_NOTHROW -> decltype(ptr)
-	{ return ptr; }
-
-	template <typename R>
-	static Q_DECL_CONSTEXPR auto of(R (*ptr)(Args...)) Q_DECL_NOTHROW -> decltype(ptr)
-	{ return ptr; }
-};
 #endif
 
 class QCoreApplication;
