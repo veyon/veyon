@@ -109,7 +109,7 @@ static QString serializeJsonValue( const QJsonValue& jsonValue )
 	}
 	else
 	{
-		qCritical( "LocalStore: trying to save unknown JSON value type!" );
+		qCritical( "LocalStore: trying to save unknown JSON value type %d!", (int) jsonValue.type() );
 	}
 
 	return "@JsonValue(" + QJsonDocument( jsonObject ).toJson( QJsonDocument::Compact ).toBase64() + ")";
