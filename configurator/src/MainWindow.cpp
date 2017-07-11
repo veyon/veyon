@@ -31,7 +31,7 @@
 #include <QMessageBox>
 
 #include "Configuration/JsonStore.h"
-#include "Configuration/UiMapping.h"
+#include "Configuration/LocalStore.h"
 
 #include "AboutDialog.h"
 #include "FileSystemBrowser.h"
@@ -193,6 +193,20 @@ void MainWindow::saveSettingsToFile()
 
 		m_configChanged = configChangedPrevious;
 		ui->buttonBox->setEnabled( m_configChanged );
+	}
+}
+
+
+
+void MainWindow::resetConfiguration()
+{
+	if( QMessageBox::warning( this, tr( "Reset configuration" ),
+							  tr( "Do you really want to reset the local configuration and revert "
+								  "all settings to their defaults?" ), QMessageBox::Yes | QMessageBox::No, QMessageBox::No ) ==
+			QMessageBox::Yes )
+	{
+		Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+		reset( false );
 	}
 }
 
