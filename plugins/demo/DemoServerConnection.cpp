@@ -138,6 +138,8 @@ bool DemoServerConnection::receiveClientMessage()
 
 void DemoServerConnection::sendFramebufferUpdate()
 {
+	m_demoServer->lockDataForRead();
+
 	const auto& framebufferUpdateMessages = m_demoServer->framebufferUpdateMessages();
 
 	const int framebufferUpdateMessageCount = framebufferUpdateMessages.count();
@@ -155,6 +157,8 @@ void DemoServerConnection::sendFramebufferUpdate()
 		m_socket->write( framebufferUpdateMessages[m_framebufferUpdateMessageIndex] );
 		sentUpdates = true;
 	}
+
+	m_demoServer->unlockData();
 
 	if( sentUpdates == false )
 	{

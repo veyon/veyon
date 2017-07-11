@@ -181,6 +181,8 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		isFullUpdate = true;
 	}
 
+	m_dataLock.lockForWrite();
+
 	if( isFullUpdate || framebufferUpdateMessageQueueSize() > m_configuration.memoryLimit()*2*1024*1024  )
 	{
 		if( m_keyFrameTimer.elapsed() > 1 )
@@ -196,6 +198,8 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 	}
 
 	m_framebufferUpdateMessages.append( message );
+
+	m_dataLock.unlock();
 
 	// we're about to reach memory limits?
 	if( framebufferUpdateMessageQueueSize() > m_configuration.memoryLimit() * 1024 * 1024 )

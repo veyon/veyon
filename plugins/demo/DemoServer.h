@@ -27,6 +27,7 @@
 #define DEMO_SERVER_H
 
 #include <QElapsedTimer>
+#include <QReadWriteLock>
 #include <QTimer>
 
 #include "VncClientProtocol.h"
@@ -52,6 +53,16 @@ public:
 	const QByteArray& serverInitMessage() const
 	{
 		return m_vncClientProtocol.serverInitMessage();
+	}
+
+	void lockDataForRead()
+	{
+		m_dataLock.lockForRead();
+	}
+
+	void unlockData()
+	{
+		m_dataLock.unlock();
 	}
 
 	int keyFrame() const
@@ -88,6 +99,7 @@ private:
 	QTcpSocket* m_vncServerSocket;
 	VncClientProtocol m_vncClientProtocol;
 
+	QReadWriteLock m_dataLock;
 	QTimer m_framebufferUpdateTimer;
 	QElapsedTimer m_lastFullFramebufferUpdate;
 	QElapsedTimer m_keyFrameTimer;
