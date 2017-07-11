@@ -181,6 +181,8 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 
 		setComputerScreenSize( size-20 );
 	}
+
+	emit computerScreenSizeAdjusted( m_masterCore->userConfig().monitoringScreenSize() );
 }
 
 

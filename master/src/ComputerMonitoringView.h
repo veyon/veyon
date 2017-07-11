@@ -69,6 +69,9 @@ private:
 	QMenu* m_featureMenu;
 	ComputerListModel* m_computerListModel;
 
+signals:
+	void computerScreenSizeAdjusted( int size );
+
 };
 
 #endif // COMPUTER_MONITORING_VIEW_H
