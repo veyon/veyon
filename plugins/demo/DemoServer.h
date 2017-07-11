@@ -31,6 +31,7 @@
 
 #include "VncClientProtocol.h"
 
+class DemoConfiguration;
 class QTcpServer;
 
 class DemoServer : public QObject
@@ -39,15 +40,14 @@ class DemoServer : public QObject
 public:
 	typedef QVector<QByteArray> MessageList;
 
-	enum {
-		FramebufferUpdateInterval = 100,
-		FullFramebufferUpdateInterval = FramebufferUpdateInterval*100,
-		UpdateQueueMemorySoftLimit = 1024*1024*128,
-		UpdateQueueMemoryHardLimit = UpdateQueueMemorySoftLimit * 2
-	};
-
-	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent );
+	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+				const DemoConfiguration& configuration, QObject *parent );
 	~DemoServer() override;
+
+	const DemoConfiguration& configuration() const
+	{
+		return m_configuration;
+	}
 
 	const QByteArray& serverInitMessage() const
 	{
@@ -80,6 +80,7 @@ private:
 	bool setVncServerPixelFormat();
 	bool setVncServerEncodings();
 
+	const DemoConfiguration& m_configuration;
 	const int m_vncServerPort;
 	const QString m_demoAccessToken;
 

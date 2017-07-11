@@ -25,16 +25,18 @@
 #ifndef DEMO_FEATURE_PLUGIN_H
 #define DEMO_FEATURE_PLUGIN_H
 
+#include "ConfigurationPagePluginInterface.h"
+#include "DemoConfiguration.h"
 #include "FeaturePluginInterface.h"
 
 class DemoServer;
 class DemoClient;
 
-class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
+class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.PluginFeatureInterface")
-	Q_INTERFACES(PluginInterface FeaturePluginInterface)
+	Q_INTERFACES(PluginInterface FeaturePluginInterface ConfigurationPagePluginInterface)
 public:
 	DemoFeaturePlugin();
 	~DemoFeaturePlugin() override;
@@ -92,6 +94,8 @@ public:
 
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
+	ConfigurationPage* createConfigurationPage() override;
+
 private:
 	enum Commands {
 		StartDemoServer,
@@ -116,6 +120,8 @@ private:
 	FeatureList m_features;
 	QString m_demoAccessToken;
 	QStringList m_demoClientHosts;
+
+	DemoConfiguration m_configuration;
 
 	DemoServer* m_demoServer;
 	DemoClient* m_demoClient;
