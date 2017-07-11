@@ -626,6 +626,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo-Server</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Feineinstellungen</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Key-Frame-Intervall</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Speicherlimit</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Multithreading benutzen (experimentell)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Update-Intervall</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1925,10 +1964,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Veyon Configurator</translation>
     </message>
     <message>
-        <source>Debugging Veyon</source>
-        <translation type="vanished">Veyon-Fehlersuche</translation>
-    </message>
-    <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
@@ -1977,6 +2012,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Reporting bugs in Veyon</source>
         <translation>Fehler in Veyon berichten</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Konfiguration zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
     </message>
 </context>
 <context>
@@ -2048,6 +2091,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;Keine Funktion&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Beim Start automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
     </message>
 </context>
 <context>
@@ -2525,30 +2572,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation type="vanished">Veyon-Dienst registrieren</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation type="vanished">Veyon-Dienst deregistrieren</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation type="vanished">Veyon-Dienst starten</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation type="vanished">Veyon-Dienst beenden</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation type="vanished">Veyon-Dienst neustarten</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation type="vanished">Status des Veyon-Diensts abfragen</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>Dienst läuft</translation>
     </message>
@@ -2559,10 +2582,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Configure and control Veyon service</source>
         <translation>Veyon-Dienst konfigurieren und steuern</translation>
-    </message>
-    <message>
-        <source>commands for configuring and controlling Veyon Service</source>
-        <translation type="vanished">Befehle zur Konfiguration und Steuerung des Veyon-Diensts</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
@@ -2692,10 +2711,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Available commands:</source>
         <translation>Verfügbare Befehle:</translation>
-    </message>
-    <message>
-        <source>Invalid arguments specified</source>
-        <translation type="vanished">Ungültige Argumente angegeben</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
