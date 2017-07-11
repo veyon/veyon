@@ -137,6 +137,13 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="autoAdjustGridSize">
+        <property name="text">
+         <string>Automatically adjust computer thumbnail size at start</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -229,6 +236,7 @@
   <tabstop>screenshotDirectory</tabstop>
   <tabstop>openScreenshotDirectory</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
+  <tabstop>autoAdjustGridSize</tabstop>
   <tabstop>autoSwitchToCurrentRoom</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>
   <tabstop>manualRoomAdditionAllowed</tabstop>
