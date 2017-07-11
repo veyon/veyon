@@ -63,6 +63,8 @@ private slots:
 	void runFeature( const Feature& feature );
 
 private:
+	void showEvent( QShowEvent* event ) override;
+
 	Ui::ComputerMonitoringView *ui;
 
 	MasterCore* m_masterCore;
