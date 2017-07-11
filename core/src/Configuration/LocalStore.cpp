@@ -88,7 +88,7 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 
 void LocalStore::load( Object *obj )
 {
-	QSettings *s = createSettingsObject();
+	auto s = createSettingsObject();
 	loadSettingsTree( obj, s, QString() );
 	delete s;
 }
@@ -143,7 +143,7 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 
 void LocalStore::flush( Object *obj )
 {
-	QSettings *s = createSettingsObject();
+	auto s = createSettingsObject();
 	// clear previously saved items
 	s->setFallbacksEnabled( false );
 	s->clear();
@@ -155,7 +155,7 @@ void LocalStore::flush( Object *obj )
 
 bool LocalStore::isWritable() const
 {
-	QSettings *s = createSettingsObject();
+	auto s = createSettingsObject();
 	bool ret = s->isWritable();
 	delete s;
 
@@ -166,7 +166,7 @@ bool LocalStore::isWritable() const
 
 void LocalStore::clear()
 {
-	QSettings* s = createSettingsObject();
+	auto s = createSettingsObject();
 	s->setFallbacksEnabled( false );
 	s->clear();
 	delete s;
