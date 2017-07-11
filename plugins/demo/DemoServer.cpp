@@ -138,7 +138,7 @@ void DemoServer::requestFramebufferUpdate()
 	}
 
 	if( m_requestFullFramebufferUpdate ||
-			m_lastFullFramebufferUpdate.elapsed() >= m_configuration.keyFrameInterval() )
+			m_lastFullFramebufferUpdate.elapsed() >= m_configuration.keyFrameInterval() * 1000 )
 	{
 		m_vncClientProtocol.requestFramebufferUpdate( false );
 		m_lastFullFramebufferUpdate.restart();
