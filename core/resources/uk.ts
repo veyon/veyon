@@ -546,6 +546,38 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Configuration file is not readable!</source>
         <translation>Не вдалося прочитати файл налаштувань!</translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>Вилучити загальносистемні налаштування Veyon</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>Список усіх ключів і значень налаштувань</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>Імпортувати налаштування із вказаного файла</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>Експортувати налаштування до вказаного файла</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>Прочитати і вивести значення налаштування для вказаного ключа</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>Записати вказане значення до вказаного ключа налаштування</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>Скинути (вилучити) вказаний ключ налаштування</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Команди для керування налаштуваннями Veyon</translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -1582,6 +1614,22 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (завантажувати локальні користувачі або групи і комп’ютери або класи з LDAP/AD)</translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>Автоматичне налаштовування базового DN за контекстном назви</translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>Опитати об’єкти з каталогу LDAP</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Показати довідку щодо команди</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Команди для налаштовування і тестування інтеграції із LDAP/AD</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1819,10 +1867,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Veyon Configurator</source>
         <translation>Засіб налаштовування Veyon</translation>
-    </message>
-    <message>
-        <source>Debugging Veyon</source>
-        <translation>Діагностика Veyon</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
@@ -2132,6 +2176,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?) — роботу служби «%1» не було зупинено.</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>Не вдалося запустити службу «%1».</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>Не вдалося встановити зв’язок із засобом керування службами (чи є у вас відповідні права доступу?!) — службу «%1» не запущено.</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2162,6 +2214,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>Будь ласка, вкажіть назву вузла або IP-адресу комп’ютера, доступ до якого слід отримати:</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Показати довідку щодо команди</translation>
     </message>
 </context>
 <context>
@@ -2465,30 +2521,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>зареєструвати службу Veyon</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>скасувати реєстрацію служби Veyon</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>запустити службу Veyon</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>зупинити службу Veyon</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>перезапустити службу Veyon</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>визначити стан служби Veyon</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>Службу запущено</translation>
     </message>
@@ -2501,8 +2533,32 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Налаштовування і керування службою Veyon</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
-        <translation>команди для налаштовування і керування службою Veyon</translation>
+        <source>Register Veyon Service</source>
+        <translation>Зареєструвати службу Veyon</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Скасувати реєстрацію служби Veyon</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Запустити службу Veyon</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Зупинити службу Veyon</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Перезапустити службу Veyon</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>Визначити стан служби Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation>Команди для налаштовування і керування службою Veyon</translation>
     </message>
 </context>
 <context>
@@ -2585,6 +2641,45 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Натисніть цю кнопку, щоб примусово виконати вихід користувачів на усіх комп’ютерах.</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[Гаразд]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[ПОМИЛКА]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>Некоректна команда!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Доступні команди:</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>Вказано некоректні аргументи</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>Вказано недостатньо аргументів — скористайтеся командою «%1 help», щоб дізнатися більше</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>Невідомий результат!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Доступні модулі:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>Модуль недоступний. Ось список доступних модулів:</translation>
     </message>
 </context>
 <context>

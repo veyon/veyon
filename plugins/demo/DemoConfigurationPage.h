@@ -1,7 +1,7 @@
 /*
- * MainWindow.h - main window of the Veyon Configurator
+ * DemoConfigurationPage.h - header for the DemoConfigurationPage class
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,46 +22,34 @@
  *
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef DEMO_CONFIGURATION_PAGE_H
+#define DEMO_CONFIGURATION_PAGE_H
 
-#include <QMainWindow>
-
-class QAbstractButton;
+#include "ConfigurationPage.h"
 
 namespace Ui {
-class MainWindow;
+class DemoConfigurationPage;
 }
 
-class MainWindow : public QMainWindow
+class DemoConfiguration;
+
+class DemoConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	MainWindow();
-	~MainWindow() override;
+	DemoConfigurationPage( DemoConfiguration& configuration );
+	~DemoConfigurationPage();
 
-	void reset( bool onlyUI = false );
-	void apply();
-
-
-private slots:
-	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
-	void loadSettingsFromFile();
-	void saveSettingsToFile();
-	void resetConfiguration();
-	void generateBugReportArchive();
-	void aboutVeyon();
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
 
 
 private:
-	void loadConfigurationPagePlugins();
+	Ui::DemoConfigurationPage *ui;
 
-	void closeEvent( QCloseEvent *closeEvent ) override;
+	DemoConfiguration& m_configuration;
 
-	Ui::MainWindow *ui;
-	bool m_configChanged;
+};
 
-} ;
-
-#endif
+#endif // DEMO_CONFIGURATION_PAGE_H

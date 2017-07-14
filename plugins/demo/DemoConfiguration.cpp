@@ -1,7 +1,7 @@
 /*
- * MainWindow.h - main window of the Veyon Configurator
+ * DemoConfiguration.cpp - configuration values for Demo plugin
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,46 +22,29 @@
  *
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#include "VeyonConfiguration.h"
+#include "DemoConfiguration.h"
 
-#include <QMainWindow>
 
-class QAbstractButton;
+DemoConfiguration::DemoConfiguration() :
+	Configuration::Proxy( &VeyonCore::config() )
+{
+	// sanitize configuration
+	if( framebufferUpdateInterval() <= 0 )
+	{
+		setFramebufferUpdateInterval( DefaultFramebufferUpdateInterval );
+	}
 
-namespace Ui {
-class MainWindow;
+	if( keyFrameInterval() <= 0 )
+	{
+		setKeyFrameInterval( DefaultKeyFrameInterval );
+	}
+
+	if( memoryLimit() <= 0 )
+	{
+		setMemoryLimit( DefaultMemoryLimit );
+	}
 }
 
-class MainWindow : public QMainWindow
-{
-	Q_OBJECT
-public:
-	MainWindow();
-	~MainWindow() override;
 
-	void reset( bool onlyUI = false );
-	void apply();
-
-
-private slots:
-	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
-	void loadSettingsFromFile();
-	void saveSettingsToFile();
-	void resetConfiguration();
-	void generateBugReportArchive();
-	void aboutVeyon();
-
-
-private:
-	void loadConfigurationPagePlugins();
-
-	void closeEvent( QCloseEvent *closeEvent ) override;
-
-	Ui::MainWindow *ui;
-	bool m_configChanged;
-
-} ;
-
-#endif
+FOREACH_DEMO_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)

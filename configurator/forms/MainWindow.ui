@@ -489,6 +489,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <addaction name="actionLoadSettings"/>
     <addaction name="actionSaveSettings"/>
     <addaction name="separator"/>
+    <addaction name="actionResetConfiguration"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
@@ -548,6 +550,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
   <action name="actionAboutQt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionResetConfiguration">
+   <property name="icon">
+    <iconset resource="../veyon-configurator.qrc">
+     <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reset configuration</string>
    </property>
   </action>
  </widget>
@@ -636,8 +647,25 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionResetConfiguration</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>resetConfiguration()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>680</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>aboutVeyon()</slot>
+  <slot>resetConfiguration()</slot>
  </slots>
 </ui>

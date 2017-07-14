@@ -251,7 +251,15 @@ void ComputerManager::updateComputerScreens()
 
 void ComputerManager::initRooms()
 {
-	QString localHostName = QHostInfo::localHostName();
+	const auto localHostName = QHostInfo::localHostName().toLower();
+
+	QStringList localHostNames( localHostName );
+
+	if( QHostInfo::localDomainName().isEmpty() == false )
+	{
+		localHostNames.append( localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName().toLower() );
+	}
+
 	const auto localHostAddresses = QHostInfo::fromName( localHostName ).addresses();
 
 	for( const auto& address : localHostAddresses )
@@ -259,7 +267,7 @@ void ComputerManager::initRooms()
 		qDebug() << "ComputerManager::initRooms(): initializing rooms for"
 				 << QString( "%1 (%2)" ).arg( localHostName, address.toString() );
 	}
-	m_currentRooms.append( findRoomOfComputer( localHostName, localHostAddresses, QModelIndex() ) );
+	m_currentRooms.append( findRoomOfComputer( localHostNames, localHostAddresses, QModelIndex() ) );
 
 	qDebug() << "ComputerManager::initRooms(): found local rooms" << m_currentRooms;
 
@@ -344,7 +352,7 @@ void ComputerManager::updateRoomFilterList()
 
 
 
-QString ComputerManager::findRoomOfComputer( const QString& hostName, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent )
+QString ComputerManager::findRoomOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent )
 {
 	QAbstractItemModel* model = networkObjectModel();
 
@@ -358,7 +366,7 @@ QString ComputerManager::findRoomOfComputer( const QString& hostName, const QLis
 
 		if( objectType == NetworkObject::Group )
 		{
-			QString room = findRoomOfComputer( hostName, hostAddresses, entryIndex );
+			QString room = findRoomOfComputer( hostNames, hostAddresses, entryIndex );
 			if( room.isEmpty() == false )
 			{
 				return room;
@@ -366,10 +374,10 @@ QString ComputerManager::findRoomOfComputer( const QString& hostName, const QLis
 		}
 		else if( objectType == NetworkObject::Host )
 		{
-			QString currentHost = model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString();
+			QString currentHost = model->data( entryIndex, NetworkObjectModel::HostAddressRole ).toString().toLower();
 			QHostAddress currentHostAddress;
 
-			if( hostName.toLower() == currentHost.toLower() ||
+			if( hostNames.contains( currentHost ) ||
 					( currentHostAddress.setAddress( currentHost ) && hostAddresses.contains( currentHostAddress ) ) )
 			{
 				return model->data( parent, NetworkObjectModel::NameRole ).toString();

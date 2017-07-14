@@ -39,7 +39,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>현재 한국어 번역이 진행중입니다 (영어에서 한국어로).
 
-Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다. </translation>
+Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다. </translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>기본 접근제어 백엔드 플러그인이 없슴. 설치를 확인하세요</translation>
+        <translation>기본 접근제어 백엔드 플러그인이 없습니다. 설치를 확인하세요</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -528,7 +528,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>소프트웨어로 생성한 SAS 설정을 변경할 수 없습니다. 원격제어로 전송한 Ctrl+Alt+Del  는 작동안됩니다!</translation>
+        <translation>SAS 생성 설정을 소프트웨어로 변경할 수 없습니다. 원격제어로 Ctrl+Alt+Del 를 전송할 수 없습니다 !</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
@@ -545,6 +545,38 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     <message>
         <source>Configuration file is not readable!</source>
         <translation>설정화일을 읽을 수 없습니다</translation>
+    </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>시스템 상의 Veyon 설정 삭제</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>설정된 모든 키 및 값 출력</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>지정된 화일에서 설정 가져오기</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>지정된 화일로 설정 내보내기</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>해당 키에 대한 설정을 읽고 출력함</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>입력된 값을 해당 설정 키에 쓰기</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>해당 설정 키를 삭제(선택취소)함</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon 설정 관리 명령어들</translation>
     </message>
 </context>
 <context>
@@ -563,7 +595,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>소프트웨어로 생성한 SAS 설정을 변경할 수 없습니다. 원격제어로 전송한 Ctrl+Alt+Del  는 작동안됩니다!</translation>
+        <translation>SAS 생성 설정을 소프트웨어로 변경할 수 없습니다. 원격제어로 Ctrl+Alt+Del 를 전송할 수 없습니다 !</translation>
     </message>
     <message>
         <source>Overwrite keys</source>
@@ -571,7 +603,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>일부 키 화일이 이미 존재함. 새로 생성된 키로 덮어 쓰면 모든 컴퓨터에 대한 공개 키를 반드시 새로 업데이트 해야 합니다. 계속 하시겠습니까 ?</translation>
+        <translation>일부 키 화일이 이미 존재합니다. 새로 생성된 키로 덮어 쓰면 모든 컴퓨터에 대한 공개 키를 반드시 새로 업데이트 해야 합니다. 계속 하시겠습니까 ?</translation>
     </message>
     <message>
         <source>Configuration cleared</source>
@@ -579,7 +611,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>The local configuration has been cleared successfully.</source>
-        <translation>로컬 설정이 성공적으로 삭제됨</translation>
+        <translation>로컬 설정이 성공적으로 삭제되었습니다</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -605,7 +637,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>이 모드에서 당신의 화면이 모든 컴퓨터에 표시됩니다.
+        <translation>이 모드에서 교사의 화면이 모든 컴퓨터에 표시됩니다.
 또한 입력장치가 잠기므로 사용자들은 다른 작업을 할 수 없습니다.</translation>
     </message>
     <message>
@@ -614,11 +646,11 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>이 모드에서는 당신의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
+        <translation>이 모드에서는 교사의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>화면 전송으로 데모를 보여 줌</translation>
+        <translation>화면 전송으로 데모를 보여 줍니다.</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -633,7 +665,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation>데스크 탑 접근 다이얼로그</translation>
+        <translation>데스크탑 접근 다이얼로그</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
@@ -641,7 +673,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>이번 세션에서는 허락안함</translation>
+        <translation>이번 세션에서는 허락하지 않음</translation>
     </message>
     <message>
         <source>Always for this session</source>
@@ -664,7 +696,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 한 웹사이트를 오픈함</translation>
+        <translation>클릭하면 모든 컴퓨터에서 한 웹사이트를 오픈합니다</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -676,14 +708,14 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 프로그램을 실행함</translation>
+        <translation>클릭하면 모든 컴퓨터에서 프로그램을 실행합니다</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>외부 VNC 서버</translation>
+        <translation>External VNC server</translation>
     </message>
 </context>
 <context>
@@ -789,7 +821,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>업데이트 간격:</translation>
+        <translation>화면업데이트 간격:</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -844,11 +876,11 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>클라이언트 컴퓨터에서 새 접근 키를 생성할 것인지 또는 공개키를 불러 올 것인지 선택하세요</translation>
+        <translation>클라이언트 컴퓨터에서 새 접근 키를 생성할 것인지  공개키를 불러 올 것인지 선택하세요</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
-        <translation>새로운 접근 키를 생성함 (마스터 컴퓨터)</translation>
+        <translation>새로운 접근 키를 생성합니다 (마스터 컴퓨터)</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
@@ -876,7 +908,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation>공개키 파트 추출하기(마스터 컴퓨터)</translation>
+        <translation>공개키 파트(마스터 컴퓨터) 내보내기</translation>
     </message>
     <message>
         <source>...</source>
@@ -956,7 +988,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>접근 키 생성중에 에러 발생. 선택된 폴더에 쓰기 권한이 없습니다</translation>
+        <translation>접근 키 생성중 에러 발생. 선택된 폴더에 쓰기 권한이 없습니다</translation>
     </message>
     <message>
         <source>Public key import</source>
@@ -964,7 +996,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>공개 접근 키를 불러오는 중에 에러 발생. 소스 키를 읽을 권한이 없거나 대상 화일에 쓰기 권한이 없습니다</translation>
+        <translation>공개 접근 키를 불러오는 중 에러 발생. 소스 키를 읽을 권한이 없거나 대상 화일에 쓰기 권한이 없습니다</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
@@ -980,7 +1012,7 @@ Veyon 번역에 관심이 있거나 현재 번역을 개선하실 의향이 있�
     </message>
     <message>
         <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>도우미가 Veyon 접근 키 생성 또는 불러오기를 도와줄 것임.</translation>
+        <translation>도우미가 Veyon 접근 키 생성 또는 불러오기를 도와줄 것입니다.</translation>
     </message>
     <message>
         <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
@@ -991,11 +1023,11 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Veyon 접근 키는 두 부분으로 구성되어 있습니다,  공개 키 파트와 개인 키 파트.
 사용자는 개인 키 파트를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다. 오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는것이 아주 중요합니다.
 
-공기 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
+공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
     </message>
     <message>
         <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>선택된 화일에 유효한 공개 Veyon 키가 없음.</translation>
+        <translation>선택된 화일에 유효한  공개  Veyon 접근 키가 없음.</translation>
     </message>
 </context>
 <context>
@@ -1130,7 +1162,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>호스트 이름이 완전히 검증된 도메인 이름으로 저장되었음 (FQDN, 예 myhost.example.org)</translation>
+        <translation>호스트 이름이 완전히 인증된 도메인 이름으로 저장되었음 (FQDN, 예 myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1170,7 +1202,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>사용자 로그인 또는 컴픂터 호스트 이름의 설정된 속성 (OpenLDAP)</translation>
+        <translation>사용자 로그인 또는 컴픂터 호스트 이름의 설정 속성 (OpenLDAP)</translation>
     </message>
     <message>
         <source>Dedicated computer groups</source>
@@ -1214,7 +1246,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</translation>
+        <translation>LDAP 서버  연결및 바인드에 성공했습니다. 기본 LDAP 설정이 올바르게 끝났습니다.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -1223,7 +1255,7 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 %1</source>
-        <translation>Could not query the configured base DN. Please check the base DN parameter.
+        <translation>설정된 기본 DN울 찾지 못함. 기본 DN 파라메터를 점검하세요
 %1</translation>
     </message>
     <message>
@@ -1322,11 +1354,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>컴퓨터 호스트 이름을 완전히 검증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음</translation>
+        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름을 입력했음</translation>
+        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -1482,7 +1514,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>컴퓨터 필터를 사용한 %1 %2 검색 질의 성공 </translation>
+        <translation>컴퓨터 필터를 사용한 %1 %2 검색 조회 성공 </translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
@@ -1582,6 +1614,22 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (LDAP/AD에서 사용자/그룹과 컴퓨터/교실 불러오기)</translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>기본 DN 을 명칭 기반으로 자동 설정함 </translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>개체를 LADP 폴더에서 조회</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>명령어에 대한 도움말 보여줌</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>LDAP/AD 통합을 설정하거나 제어하는 명령어</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1598,7 +1646,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Network objects</source>
-        <translation>네트웍 개체</translation>
+        <translation>네트워크 개체</translation>
     </message>
     <message>
         <source>Rooms</source>
@@ -1758,11 +1806,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation>&amp;Save 설정 화일에 저장</translation>
+        <translation>&amp;S 화일에 설정 저장</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>설정을 화일에 저장</translation>
+        <translation>화일에 설정 저장</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -1770,7 +1818,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>L&amp;oad 화일에서 설정 불러오기</translation>
+        <translation>&amp;o 화일에서 설정 불러오기</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -1790,7 +1838,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Quit</source>
-        <translation>종료하기</translation>
+        <translation>종료</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -1802,7 +1850,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>설정을 화일에 저장</translation>
+        <translation>화일에 설정 저장</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
@@ -1818,17 +1866,13 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon 설정</translation>
-    </message>
-    <message>
-        <source>Debugging Veyon</source>
-        <translation>Veyon 디버깅</translation>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Veyon에서 버그 또는 이상한 작동을 발견하면 그것을 개발자에게 보고하여 다음 릴리즈 버전에서 버그를 수정하는 것이 중요합니다.  이 페이지는 당신이 유용한 버그를 쉽게 보고할 수 있도록 도와줍니다
+        <translation>Veyon에서 버그 또는 이상한 작동을 발견하면 그버그를 개발자에게 보고하여 다음 릴리즈 버전에서 버그를 수정하는 것이 중요합니다.  이 페이지는 유용한 버그 보고서를 쉽게 제출할 수 있도록 도와줍니다
 
 만일 버그를 다시 만들수 없다면 단계 1)-3)을 건너 뛰세요</translation>
     </message>
@@ -1892,7 +1936,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1 설정을 관리자 권한으로 실행하세요</translation>
+        <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1 Configurator  를 관리자 권한으로 실행하세요</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -1900,7 +1944,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>인증 키 화일이 없거나 현재의 키 화일이 오래되었습니다. %1 설정기를 이용하여 새로운 키를 생성하세요. 다른 방법으로는 %1 설정기를 사용하여 로그온 인증을 설치하세요. 그렇지 않으면 %1을 사용하여 컴퓨터를 접속할 수 없습니다</translation>
+        <translation>인증 키 화일이 없거나 현재의 키 화일이 오래되었습니다. %1 Configurator 를 이용하여 새로운 키를 생성하세요. 다른 방법으로는 %1 Configurator 를 사용하여 로그온 인증을 설치하세요. 그렇지 않으면 %1을 사용하여 컴퓨터를 접속할 수 없습니다</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -1908,7 +1952,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>로컬 설정에 따라 당신은 네트워크상의 컴퓨터에 접근이 거부됩니다. 다른 사용자 이름으로 다시 로그인 하던지 아니면 시스템 관리자가 로컬 설정을 확인하게 하세요</translation>
+        <translation>로컬 설정에 따라 당신은 네트워크상의 컴퓨터에 접근이 거부됩니다. 다른 사용자 이름으로 다시 로그인 하거나 시스템 관리자에게 로컬 설정 확인을 요청하세요</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -1959,11 +2003,11 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Features</source>
-        <translation>기능들</translation>
+        <translation>기능</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation>모든 기능</translation>
+        <translation>모든 기능 항목</translation>
     </message>
     <message>
         <source>Disabled features</source>
@@ -2059,7 +2103,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>이버튼 눌러서 모든 컴퓨터를 파워 온 함. 따라서 수동으로 한대씩 전원을 켤 필요가 없슴</translation>
+        <translation>이버튼 눌러서 모든 컴퓨터의 파워를 켭니다. 따라서 수동으로 한대씩 전원을 켤 필요가 없습니다</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2075,7 +2119,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>이 버튼 클릭해서 모든 컴퓨터 파워 오프.  따라서 한대씩 수동을 파워 오프 할 필요 없슴</translation>
+        <translation>이버튼 눌러서 모든 컴퓨터의 파워를 끕니다. 따라서 수동으로 한대씩 전원을 끌 필요가 없습니다</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -2133,12 +2177,20 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>서비스 제어 관리자를 접속할 수 없슴(필요한 권한이 있나요?) 서비스 %1은 중지되지 않음</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>서비스 &apos;%1&apos;를 시작할 수 없음。</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>서비스 제어 매니저를 연결할 수 없습니다 (필요한 권한을 가지고 있나요?) 서비스 %1은 시작되지 않았습니다</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>원격 보기</translation>
+        <translation>원격화면보기</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -2150,7 +2202,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>한 컴퓨터의 원격제어 윈도우를 열기</translation>
+        <translation>컴퓨터의 원격제어 윈도우를 열기</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -2158,11 +2210,15 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>원격 보기 또는 컴퓨터 제어</translation>
+        <translation>감시화면 또는 컴퓨터 제어</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>연결할 컴퓨터의 호스트 이름 또는 IP를 입력하세요</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>명령어에 대한 도움말 보여줌</translation>
     </message>
 </context>
 <context>
@@ -2258,7 +2314,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation>선택된 컴퓨터(들)에서 실행할 명령어 또는 프로그램을 입력하세요.  몇개의 프로그램/명령어를 각각의 라인으로 구분할 수 있습니다</translation>
+        <translation>선택된 컴퓨터(들)에서 실행할 명령어 또는 프로그램을 입력하세요.  각각의 라인으로 다수의 프로그램/명령어를 구분할 수 있습니다.</translation>
     </message>
     <message>
         <source>Run programs</source>
@@ -2292,7 +2348,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>알 수 없음</translation>
+        <translation>알수없음</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2300,14 +2356,14 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>화면 캡쳐</translation>
+        <translation>화면캡쳐</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>화면 캡쳐</translation>
+        <translation>화면캡쳐</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2413,11 +2469,11 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation>내부 VNC 서버 포트</translation>
+        <translation>내부 VNC server 포트</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>VNC 서버</translation>
+        <translation>VNC server</translation>
     </message>
     <message>
         <source>Plugin:</source>
@@ -2429,7 +2485,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>모든 설정이 성공적으로 저장됨. %1 서비스가 작동하려면 재시작해야 합니다. 지금 재시작 ?</translation>
+        <translation>모든 설정이 성공적으로 저장됨. %1 서비스가 작동하려면 재시작해야 합니다. 지금 재시작 할까요 ?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -2466,30 +2522,6 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>Veyon 서비스 등록</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>Veyon 서비스 등록해지</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>Veyon 서비스 시작</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>Veyon 서비스 중지</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>Veyon 서비스 재시작</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>Veyon 서비스 상태 조회</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>서비스 실행중</translation>
     </message>
@@ -2502,7 +2534,31 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <translation>Veyon 서비스 설정및 제어</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
+        <source>Register Veyon Service</source>
+        <translation>Veyon 서비스 등록</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Veyon 서비스 등록해지</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Veyon 서비스 시작</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Veyon 서비스 중지</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Veyon 서비스 재시작</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>Veyon 서비스 상태 조회</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Veyon 서비스 설정 및 제어 명령어</translation>
     </message>
 </context>
@@ -2517,7 +2573,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>메세지 보내기</translation>
+        <translation>문자 메세지 보내기</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -2586,6 +2642,45 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>클릭하면 사용자를 모든 컴퓨터에서 로그아웃</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[OK]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[실패]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>잘못된 명령어</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>사용가능한 명령어</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>인자가 잘못됨</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>필수 인자 미입력 - 자세한 정보는 %1 HELP를 사용하세요</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>결과를 알수 없음</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>사용가능한 모듈</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>모듈 발견되지 않음 - 사용가능한 모듈은:</translation>
     </message>
 </context>
 <context>

@@ -99,6 +99,8 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	// initialize monitoring screen size slider
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
+	connect( ui->computerMonitoringView, &ComputerMonitoringView::computerScreenSizeAdjusted,
+			 ui->gridSizeSlider, &QSlider::setValue );
 	connect( ui->autoFitButton, &QToolButton::clicked,
 			 ui->computerMonitoringView, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 

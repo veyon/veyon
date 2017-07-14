@@ -626,6 +626,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1953,6 +1992,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Bug reporting</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2022,6 +2069,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

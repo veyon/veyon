@@ -26,6 +26,7 @@
 #include "Computer.h"
 #include "CryptoCore.h"
 #include "DemoClient.h"
+#include "DemoConfigurationPage.h"
 #include "DemoFeaturePlugin.h"
 #include "DemoServer.h"
 #include "FeatureWorkerManager.h"
@@ -235,6 +236,7 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 				m_demoServer = new DemoServer( message.argument( VncServerPort ).toInt(),
 											   message.argument( VncServerPassword ).toString(),
 											   message.argument( DemoAccessToken ).toString(),
+											   m_configuration,
 											   this );
 			}
 			return true;
@@ -274,4 +276,11 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 	}
 
 	return false;
+}
+
+
+
+ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
+{
+	return new DemoConfigurationPage( m_configuration );
 }

@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Sürüm:</translation>
     </message>
     <message>
         <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation type="unfinished"/>
+        <translation>Telif Hakkı © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -56,7 +56,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>Bazı kullanıcı kümelerinin üyelerine erişimi kısıtla</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -64,11 +64,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Data backend:</source>
-        <translation type="unfinished"/>
+        <translation>Veri arka ucu:</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar erişimi için yetkili kullanıcı kümeleri</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
@@ -76,11 +76,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Yetkili kullanıcı kümeleri</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>Tüm kümeler</translation>
     </message>
     <message>
         <source>...</source>
@@ -116,7 +116,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Öntanımlı erişim denetimi arka uç eklentisi bulunamadı. Lütfen kurulumunuzu gözden geçirin!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -132,7 +132,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Bu yapılandırmayla, belirtilen kullanıcının bilgisayarlara erişmesine izin verilmiştir.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -140,14 +140,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Bu yapılandırmayla, belirtilen kullanıcının bilgisayarlara erişmesine izin verilmemiştir.</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Erişim denetimi kuralını düzenle</translation>
     </message>
     <message>
         <source>General</source>
@@ -155,19 +155,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>burada kural için kısa bir ad girin</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Kural adı:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>burada kural için kısa bir açıklama girin</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Kural açıklaması:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -175,22 +175,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Koşullar</translation>
     </message>
     <message>
         <source>is member of group</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>has one or more groups in common with</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>is located in the same room as</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -244,6 +236,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Local computer</source>
         <translation>Yerel bilgisayar</translation>
+    </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Oturum açan kullanıcı yok</translation>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -336,24 +344,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Access confirmation</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You can configure Veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Logon authentication test</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation type="unfinished"/>
+        <translation>Sağlanan kimlikle yetkilendirme başarılı.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation type="unfinished"/>
+        <translation>Sağlanan kimlikle yetkilendirme başarısız!</translation>
     </message>
 </context>
 <context>
@@ -386,6 +386,49 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation>Oda: %1</translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation>Çevrim içi ve bağlı</translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation>Bağlantı kuruluyor</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Oturum açan kullanıcı yok</translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation>Oturum açan kullanıcı: %1</translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation>Hizmet erişilebilir değil veya çalışmıyor</translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation>Yetkilendirme başarısız veya erişim engellendi</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Bağlı değil</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Ana makine/IP adresi: %1</translation>
+    </message>
+</context>
+<context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
@@ -401,7 +444,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>Çıktı dosya adı seç</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
@@ -413,6 +456,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation>Bilgisayar ve kullanıcı listesi %1 konumuna yazılamadı! Lütfen dosya erişim izinlerini gözden geçirin.</translation>
+    </message>
+    <message>
+        <source>Computer search</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -436,7 +483,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Oda saptama başarısız</translation>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
@@ -483,19 +530,90 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>Veyon&apos;u komut satırında yapılandır</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Çıktı dosyası yazılabilir değil!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Çıktı dizini yazılabilir değil!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
+        <translation>Yapılandırma dosyası okunabilir değil!</translation>
+    </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>Sistem geneli Veyon yapılandırmasını temizle</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>Tüm yapılandırma anahtarları ve değerlerini listele</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>Yapılandırmayı verilen dosyadan içe aktar</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>Yapılandırmayı verilen dosyaya dışa aktar</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>Verilen değeri verilen yapılandırma anahtarına yaz</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>Verilen yapılandırma anahtarını kaldır</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Veyon&apos;un yapılandırmasını yönetmek için komutlar</translation>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation>Anahtarların üstüne yaz</translation>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation>Bazı anahtar dosyaları zaten var. Eğer onları yeni oluşturulanlarla değiştirirseniz, tüm bilgisayarlardaki genel anahtarları da güncellemeniz gerekecektir. Devam etmek istiyor musunuz?</translation>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation>Yapılandırma temizlendi</translation>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation>Yerel yapılandırma başarıyla temizlendi.</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Yapılandırıcı</translation>
     </message>
 </context>
 <context>
@@ -531,6 +649,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Give a demonstration by screen broadcasting</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Tanıtım sunucusu</translation>
+    </message>
+    <message>
+        <source>Demo client</source>
+        <translation>Tanıtım istemcisi</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -544,15 +670,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Never for this session</source>
-        <translation type="unfinished"/>
+        <translation>Bu oturum için asla</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation type="unfinished"/>
+        <translation>Bu oturum için her zaman</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation>%2 bilgisayarındaki %1 kullanıcısı masaüstünüze erişmek istiyor. İzin vermek ister misiniz?</translation>
     </message>
 </context>
 <context>
@@ -562,24 +688,46 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to run a program on each computer.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Open website</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıkla.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen açılacak web sitesinin URL&apos;sini girin:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı masaüstünde program ve hizmetler başlat</translation>
+    </message>
+    <message>
+        <source>Click this button to run a program on all computers.</source>
+        <translation>Tüm bilgisayarlarda bir program çalıştırmak için bu düğmeye tıkla.</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServer</name>
+    <message>
+        <source>External VNC server</source>
+        <translation>Harici VNC sunucu</translation>
+    </message>
+</context>
+<context>
+    <name>ExternalVncServerConfigurationWidget</name>
+    <message>
+        <source>External VNC server configuration</source>
+        <translation>Harici VNC sunucu yapılandırması</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>Bağlantı noktası:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Parola:</translation>
     </message>
 </context>
 <context>
@@ -594,11 +742,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>Sistem dil ayarını kullan</translation>
     </message>
     <message>
         <source>Enable high DPI scaling</source>
-        <translation type="unfinished"/>
+        <translation>Yüksek DPI ölçeklemeyi etkinleştir</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -654,27 +802,23 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation type="unfinished"/>
+        <translation>Standart hata çıktısına günlükle</translation>
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation type="unfinished"/>
+        <translation>Windows etkinlik günlüğüne günlükle</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Ağ nesnesi dizini</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Arka uç:</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> s</source>
-        <translation>s</translation>
+        <translation>Güncelleme aralığı:</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -698,11 +842,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm günlük dosyaları silinemedi.</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -710,18 +854,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>saniye</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
         <source>How does it work?</source>
-        <translation type="unfinished"/>
+        <translation>Nasıl çalışır?</translation>
     </message>
     <message>
         <source>Assistant mode</source>
-        <translation type="unfinished"/>
+        <translation>Yardımcı kip</translation>
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
@@ -729,11 +877,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
-        <translation type="unfinished"/>
+        <translation>Yeni erişim anahtarları oluştur (ana bilgisayar)</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
-        <translation type="unfinished"/>
+        <translation>Genel anahtar içe aktar (istemci bilgisayar)</translation>
     </message>
     <message>
         <source>Select user role</source>
@@ -748,18 +896,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Öğretmen</translation>
     </message>
     <message>
-        <source>Administrator</source>
-        <translation>Yönetici</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Destek ekibi üyesi</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Diğer</translation>
-    </message>
-    <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
         <translation type="unfinished"/>
     </message>
@@ -769,7 +905,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation type="unfinished"/>
+        <translation>Genel anahtar parçasını dışa aktar (ana bilgisayar)</translation>
     </message>
     <message>
         <source>...</source>
@@ -777,7 +913,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
-        <translation type="unfinished"/>
+        <translation>Erişim anahtarları için özel hedef dizin kullan</translation>
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
@@ -789,7 +925,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The following actions will be taken:</source>
-        <translation type="unfinished"/>
+        <translation>Şu eylemler uygulanacak:</translation>
     </message>
     <message>
         <source>• Create new access keys</source>
@@ -797,19 +933,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>• Import public access key from</source>
-        <translation type="unfinished"/>
+        <translation>• Şuradan genel erişim anahtarı içe aktar</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
         <source>• Write access key(s) to</source>
-        <translation type="unfinished"/>
+        <translation>• Erişim anahtar(lar)ını şuraya yaz</translation>
     </message>
     <message>
         <source>• Export public key to</source>
-        <translation type="unfinished"/>
+        <translation>• Genel anahtarı dışarı aktar</translation>
     </message>
     <message>
         <source>• Configure for user role</source>
@@ -829,27 +965,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Hedef dizini seç</translation>
     </message>
     <message>
         <source>Access key creation</source>
-        <translation type="unfinished"/>
+        <translation>Erişim anahtarı oluşturma</translation>
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Daha önceden var olan %1 dosyası kaldırılamadı.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1&apos;den %2&apos;ye genel erişim anahtarı dışa aktarma başarısız.</translation>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Erişim anahtarları başarıyla oluşturuldu ve %1 ve %2&apos;ye yazıldı.</translation>
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation type="unfinished"/>
+        <translation>Erişim anahtarları oluşturulurken bir hata oluştu. Büyük olasılıkla seçilen dizinlere yazma izniniz yok.</translation>
     </message>
     <message>
         <source>Public key import</source>
@@ -857,23 +993,23 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation type="unfinished"/>
+        <translation>Erişim anahtarları içe aktarılırken bir hata oluştu. Büyük olasılıkla kaynak anahtarı okuma veya hedef dosyaya yazma izniniz yok.</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Genel anahtar başarıyla %1&apos;ye yazıldı.</translation>
     </message>
     <message>
         <source>Veyon Access Key Assistant</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Erişim Anahtarı Yardımcısı</translation>
     </message>
     <message>
         <source>Create/import Veyon access keys</source>
-        <translation type="unfinished"/>
+        <translation>Veyon erişim anahtarı oluştur/içe aktar</translation>
     </message>
     <message>
         <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation type="unfinished"/>
+        <translation>Bu yardımcı, Veyon erişim anahtarları oluştururken veya içeri aktarırken size yardım edecek.</translation>
     </message>
     <message>
         <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
@@ -881,18 +1017,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation type="unfinished"/>
+        <translation>Veyon erişim anahtarları birbirine ait iki parçadan oluşur, bir özel ve bir genel anahtar parçası.
+
+Ana bilgisayardaki kullanıcılar özel anahtar parçasını kullanarak istemci bilgisayarlarına erişebilecektir. Yalnızca yetkili kullanıcıların özel anahtar dosyasını okuma iznine sahip olması önemlidir.
+
+Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı isteğinin yetkili olduğunu doğrulamak için kullanılır.</translation>
     </message>
     <message>
         <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen dosya geçerli bir genel Veyon erişim anahtarı içermiyor!</translation>
     </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
-        <translation type="unfinished"/>
+        <translation>LDAP</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -904,7 +1044,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation type="unfinished"/>
+        <translation>LDAP sunucusu ve bağlantı noktası</translation>
     </message>
     <message>
         <source>Bind DN</source>
@@ -964,7 +1104,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>User tree</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı ağacı</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
@@ -976,7 +1116,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Group tree</source>
-        <translation type="unfinished"/>
+        <translation>Küme ağacı</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
@@ -1051,10 +1191,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>e.g. objectClass=computerLab or objectClass=room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Group member identification</source>
         <translation type="unfinished"/>
     </message>
@@ -1071,32 +1207,16 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>e.g. computerLab or room</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Common attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Functionality tests</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Get common aggregations of two objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>List all groups of a user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all members of a computer lab</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcının tüm kümelerini listele</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarın tüm kümelerini listele</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
@@ -1104,11 +1224,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP bağlantısı başarısız</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP sunucusuna bağlanılamadı. Lütfen sunucu parametrelerini gözden geçirin. %1</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
@@ -1164,15 +1284,15 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>user tree</source>
-        <translation type="unfinished"/>
+        <translation>kullanıcı ağacı</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation type="unfinished"/>
+        <translation>küme ağacı</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar ağacı</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -1192,7 +1312,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>Küme adı gir</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -1200,7 +1320,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>küme üyeleri</translation>
     </message>
     <message>
         <source>group member attribute</source>
@@ -1208,11 +1328,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>Küme bulunamadı</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; adlı bir küme bulunamadı.. Lütfen küme adını veya küme ağacı parametresini gözden geçirin.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
@@ -1220,7 +1340,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak bir bilgisayar ana makine adı girin:</translation>
     </message>
     <message>
         <source>Invalid host name</source>
@@ -1252,7 +1372,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar MAC adresleri</translation>
     </message>
     <message>
         <source>computer MAC address attribute</source>
@@ -1264,27 +1384,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>kullanıcı kümeleri</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter computer lab name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab (wildcards allowed):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer labs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer lab attribute</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar kümeleri</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -1304,7 +1408,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; adlı bir kullanıcı bulunamadı.. Lütfen kullanıcı adını veya kullanıcı ağacı parametresini gözden geçirin.</translation>
     </message>
     <message>
         <source>Enter host name</source>
@@ -1328,7 +1432,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; ana makine adlı bir bilgisayar bulunamadı.. Lütfen ana makine adını veya bilgisayar ağacı parametresini gözden geçirin.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -1340,7 +1444,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Host name lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>Ana makine adı arama başarısız</translation>
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
@@ -1349,42 +1453,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>computers</source>
         <translation>bilgisayarlar</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer lab whose members to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer lab members</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer group filter or computer lab member aggregation</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter first object</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the first object:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter second object</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the distinguished name of the second object:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>common aggregations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>group membership or computer lab attribute</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1414,7 +1482,9 @@ The public key part is used on the client computers to verify that any incoming 
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 başarıyla sorgulandı.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
@@ -1436,15 +1506,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(eğer yalnızca küme ağacından farklıysa)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar kümesi ağacı</translation>
     </message>
     <message>
         <source>Aggregate computers in a room using:</source>
@@ -1452,6 +1518,66 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computer group tree</source>
+        <translation>bilgisayar kümesi ağacı</translation>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation>Tüm bilgisayar odalarını listele</translation>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation>Bilgisayar odası adı gir</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation>Lütfen bilgisayar odasının adını girin (joker karakterler kullanılabilir):</translation>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation>bilgisayar odaları</translation>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Bilgisayar odaları</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1474,6 +1600,29 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation>LDAP (LDAP/AD&apos;den kullanıcıları/kümeleri ve bilgisayarları/odaları yükle)</translation>
+    </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1540,7 +1689,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Öntanımlı (yapılandırmadan yerel kullanıcılar/kümeler ve bilgisayarlar/odalar)</translation>
     </message>
     <message>
         <source>Default (store objects in local configuration)</source>
@@ -1585,10 +1734,6 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Debugging</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1672,14 +1817,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Qt Hakkında</translation>
     </message>
     <message>
-        <source>Classroom</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication impossible</source>
         <translation type="unfinished"/>
     </message>
@@ -1720,10 +1857,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Debugging Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
@@ -1738,7 +1871,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet</translation>
     </message>
     <message>
         <source>Master</source>
@@ -1746,7 +1879,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access control</source>
-        <translation type="unfinished"/>
+        <translation>Erişim denetimi</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -1758,7 +1891,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar odaları</translation>
     </message>
     <message>
         <source>About</source>
@@ -1785,39 +1918,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 Configurator</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Yapılandırma temizlendi</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Click this button to switch between classrooms.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1830,7 +1931,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Erişim engellendi</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -1838,7 +1939,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
+        <translation>Ekran görüntüleri</translation>
+    </message>
+    <message>
+        <source>Feature active</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation>&quot;%1&quot; özelliği hala aktif. Lütfen %2&apos;yi kapatmadan önce durdurun.</translation>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation>Hata bildirme</translation>
     </message>
 </context>
 <context>
@@ -1857,7 +1974,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>User interface &amp;&amp; behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı arayüzü &amp;&amp; davranış</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -1901,6 +2018,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
+        <translation>Ekran görüntüleri</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field in computer room management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1911,19 +2036,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>This is the default mode and allows you to monitor all computers in the classroom.</source>
+        <source>Builtin monitoring mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Builtin monitoring mode</source>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
-        <source>Name</source>
-        <translation>Ad</translation>
+        <source>Room/Computer</source>
+        <translation>Oda/Bilgisayar</translation>
     </message>
 </context>
 <context>
@@ -2034,6 +2159,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>&apos;%1&apos; hizmeti başlatılamadı.</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2063,6 +2196,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2141,7 +2278,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekran görüntüsü</translation>
     </message>
 </context>
 <context>
@@ -2163,6 +2300,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Run programs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2189,7 +2330,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>bilinmeyen</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2197,7 +2338,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekran görüntüsü</translation>
     </message>
 </context>
 <context>
@@ -2227,23 +2368,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Tarih:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Zaman:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Göster</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Sil</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2251,7 +2392,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar:</translation>
     </message>
 </context>
 <context>
@@ -2266,7 +2407,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Tepsi simgesini gizle</translation>
     </message>
     <message>
         <source>Start service</source>
@@ -2298,15 +2439,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Demo server port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Feature worker manager port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer control server port</source>
-        <translation type="unfinished"/>
+        <translation>Tanıtım sunucusu bağlantı noktası</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -2326,7 +2459,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
@@ -2339,6 +2472,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Running</source>
         <translation>Çalışıyor</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2363,30 +2504,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>Veyon Hizmetini kaydet</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>Veyon Hizmetinin kaydını sil</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>Veyon Hizmetini başlat</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>Veyon Hizmetini durdur</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>Veyon Hizmetini yeniden başlat</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>Hizmet çalışıyor</translation>
     </message>
@@ -2399,15 +2516,39 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
+        <source>Register Veyon Service</source>
+        <translation>Veyon Hizmetini Kaydet</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Veyon Hizmetinin Kaydını Kaldır</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Veyon Hizmetini Başlat</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Veyon Hizmetini Durdur</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Veyon Hizmetini Yeniden Başlat</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation>Veyon Hizmetini yapılandırmak ve denetlemek için komutlar</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Sistem tepsisi simgesi</translation>
     </message>
 </context>
 <context>
@@ -2463,7 +2604,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"/>
+        <translation>Erişim izni yok</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
@@ -2486,24 +2627,70 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[TAMAM]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[BAŞARISIZ]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>Geçersiz komut!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Kullanılabilir komutlar:</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>Bilinmeyen sonuç!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Kullanılabilir modüller:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>Modül bulunamadı - kullanılabilir modüller şunlardır:</translation>
+    </message>
+</context>
+<context>
     <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation type="unfinished"/>
+        <translation>Çok fazla yetkilendirme denemesi nedeniyle VNC yetkilendirmesi başarısız.</translation>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation type="unfinished"/>
+        <translation>VNC yetkilendirmesi başarısız.</translation>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation type="unfinished"/>
+        <translation>VNC sunucusu bağlantıyı kapattı.</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
+        <translation>%1 ile bağlantı kuruluyor...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2515,11 +2702,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>Özel x11vnc parametreleri:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>X Damage eklentisini kullanma</translation>
     </message>
 </context>
 </TS>
