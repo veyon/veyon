@@ -546,6 +546,38 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
         <source>Configuration file is not readable!</source>
         <translation>Nedaří se načíst soubor s nastaveními!</translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>Vyčistit nastavení Veyon týkající se celého systému</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>Vypsat veškeré položky nastavení a jejich hodnoty</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>Importovat nastavení ze zadaného souboru</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>Exportovat nastavení do zadaného souboru</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>Načíst a zobrazit hodnotu nastavení pro danou položku</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>Zapsat zadanou hodnotu do zadané položky nastavení</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>Zrušit nastavení (odebrat) zadanou položku nastavení</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Příkazy pro správu nastavení Veyon</translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -1582,6 +1614,22 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (místní uživatelé/skupiny a počítače/místnosti z LDAP/AD)</translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>Automaticky nastavit základ rozlišeného názvu prostřednictvím kontextu pojmenování</translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>Dotazovat objekty z LDAP adresáře</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Zobrazit nápovědu k příkazu</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Příkazy pro nastavování a testování integrace s LDAP/AD</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1821,10 +1869,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Nastavení pro Veyon</translation>
     </message>
     <message>
-        <source>Debugging Veyon</source>
-        <translation>Ladění aplikace Veyon</translation>
-    </message>
-    <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
@@ -1924,11 +1968,11 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Hlášení chyb ve Veyon</translation>
     </message>
     <message>
         <source>Bug reporting</source>
-        <translation type="unfinished"/>
+        <translation>Hlášení chyb</translation>
     </message>
 </context>
 <context>
@@ -2132,6 +2176,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Správce služeb se nepodařilo kontaktovat (máte potřebná oprávnění?) – služba „%1“ nebyla zastavena.</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>Službu „%1“ se nepodařilo spustit.</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>Nepodařilo se kontaktovat systémovou součást „Správce služeb“ (máte potřebná oprávnění?!) – služba „%1“ proto nebyla zastavena.</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2162,6 +2214,10 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>Zadejte název nebo IP adresu počítače ke kterému přistoupit:</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Zobrazit nápovědu k příkazu</translation>
     </message>
 </context>
 <context>
@@ -2465,30 +2521,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>zaregistrovat službu Veyon</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>zrušit registraci služby Veyon</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>spustit službu Veyon</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>zastavit službu Veyon</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>restartovat službu Veyon</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>dotázat se na stav služby Veyon</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>Služba je spuštěná</translation>
     </message>
@@ -2501,8 +2533,32 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Nastavit a ovládat službu Veyon</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
-        <translation>povely pro nastavování a ovládání služby Veyon</translation>
+        <source>Register Veyon Service</source>
+        <translation>Zaregistrovat službu Veyon</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Zrušit registraci služby Veyon</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Spustit službu Veyon</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Zastavit službu Veyon</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Restartovat službu Veyon</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>Dotázat se na stav služby Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation>Přikazy pro nastavování a ovládání služby Veyon</translation>
     </message>
 </context>
 <context>
@@ -2585,6 +2641,45 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[OK]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[NEZDAR]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>Neplatný příkaz!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Příkazy k dispozici:</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>Zadány neplatné argumenty</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>Nebylo zadáno dostatek parametrů – další informace poskytne „%1 help“</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>Neznámý výsledek!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Moduly k dispozici:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>Modul nenalezen – dostupné moduly jsou:</translation>
     </message>
 </context>
 <context>

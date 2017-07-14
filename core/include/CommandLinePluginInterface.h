@@ -47,10 +47,10 @@ public:
 
 	virtual ~CommandLinePluginInterface() {}
 
-	virtual QString commandName() const = 0;
-	virtual QString commandHelp() const = 0;
-	virtual QStringList subCommands() const = 0;
-	virtual QString subCommandHelp( const QString& command ) const = 0;
+	virtual QString commandLineModuleName() const = 0;
+	virtual QString commandLineModuleHelp() const = 0;
+	virtual QStringList commands() const = 0;
+	virtual QString commandHelp( const QString& command ) const = 0;
 	virtual RunResult runCommand( const QStringList& arguments ) = 0;
 
 };

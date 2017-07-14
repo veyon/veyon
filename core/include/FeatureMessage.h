@@ -54,7 +54,7 @@ public:
 	{
 	}
 
-	explicit FeatureMessage( const FeatureUid& featureUid, Command command ) :
+	explicit FeatureMessage( FeatureUid featureUid, Command command ) :
 		m_ioDevice( nullptr ),
 		m_featureUid( featureUid ),
 		m_command( command ),

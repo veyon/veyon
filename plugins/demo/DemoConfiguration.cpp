@@ -1,7 +1,7 @@
 /*
- * ConfigurationPage.h - base class for all configuration pages
+ * DemoConfiguration.cpp - configuration values for Demo plugin
  *
- * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,24 +22,29 @@
  *
  */
 
-#ifndef CONFIGURATION_PAGE_H
-#define CONFIGURATION_PAGE_H
+#include "VeyonConfiguration.h"
+#include "DemoConfiguration.h"
 
-#include "VeyonCore.h"
 
-#include <QWidget>
-
-class VEYON_CORE_EXPORT ConfigurationPage : public QWidget
+DemoConfiguration::DemoConfiguration() :
+	Configuration::Proxy( &VeyonCore::config() )
 {
-	Q_OBJECT
-public:
-	ConfigurationPage( QWidget* parent = nullptr );
-	~ConfigurationPage() override;
+	// sanitize configuration
+	if( framebufferUpdateInterval() <= 0 )
+	{
+		setFramebufferUpdateInterval( DefaultFramebufferUpdateInterval );
+	}
 
-	virtual void resetWidgets() = 0;
-	virtual void connectWidgetsToProperties() = 0;
-	virtual void applyConfiguration() = 0;
+	if( keyFrameInterval() <= 0 )
+	{
+		setKeyFrameInterval( DefaultKeyFrameInterval );
+	}
 
-};
+	if( memoryLimit() <= 0 )
+	{
+		setMemoryLimit( DefaultMemoryLimit );
+	}
+}
 
-#endif // CONFIGURATION_PAGE_H
+
+FOREACH_DEMO_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)

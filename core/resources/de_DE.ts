@@ -546,6 +546,38 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Configuration file is not readable!</source>
         <translation>Konfigurationsdatei ist nicht lesbar!</translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>Systemweite Veyon-Konfiguration löschen</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>Alle Konfigurationsschlüssel und -werte auflisten</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>Konfiguration aus angegebener Datei importieren</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>Konfiguration in angegebene Datei exportieren</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>Konfigurationswert für gegebenen Schlüssel lesen und ausgeben</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>Angegebenen Wert in angegebenen Konfigurationsschlüssel schreiben</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>Angegebenen Konfigurationsschlüssel zurücksetzen (löschen)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Befehle zur Verwaltung der Veyon-Konfiguration</translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -591,6 +623,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>%1 Demo</source>
         <translation>%1 Demo</translation>
+    </message>
+</context>
+<context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo-Server</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Feineinstellungen</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Key-Frame-Intervall</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Speicherlimit</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Multithreading benutzen (experimentell)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Update-Intervall</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
     </message>
 </context>
 <context>
@@ -1582,6 +1653,22 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (Benutzer/Gruppen und Computer/Räume aus LDAP/AD laden)</translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>Basis-DN mittels Naming-Context automatisch konfigurieren</translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>Objekte aus LDAP-Verzeichnis abfragen</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Hilfe über Befehl anzeigen</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Befehle zum Konfigurieren und Testen der LDAP-/AD-Integration</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1877,10 +1964,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Veyon Configurator</translation>
     </message>
     <message>
-        <source>Debugging Veyon</source>
-        <translation>Veyon-Fehlersuche</translation>
-    </message>
-    <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
@@ -1929,6 +2012,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Reporting bugs in Veyon</source>
         <translation>Fehler in Veyon berichten</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Konfiguration zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
     </message>
 </context>
 <context>
@@ -2000,6 +2091,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;Keine Funktion&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Beim Start automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
     </message>
 </context>
 <context>
@@ -2132,6 +2227,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht beendet.</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>Der Dienst &apos;%1&apos; konnte nicht gestartet werden.</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht gestartet.</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2162,6 +2265,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>Bitte geben Sie den Hostnamen oder IP-Adresse des Computers ein, auf den Sie zugreifen möchten:</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Hilfe über Befehl anzeigen</translation>
     </message>
 </context>
 <context>
@@ -2465,30 +2572,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>Veyon-Dienst registrieren</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>Veyon-Dienst deregistrieren</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>Veyon-Dienst starten</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>Veyon-Dienst beenden</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>Veyon-Dienst neustarten</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>Status des Veyon-Diensts abfragen</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>Dienst läuft</translation>
     </message>
@@ -2501,7 +2584,31 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Veyon-Dienst konfigurieren und steuern</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
+        <source>Register Veyon Service</source>
+        <translation>Veyon-Dienst registrieren</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Veyon-Dienst deregistrieren</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Veyon-Dienst starten</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Veyon-Dienst beenden</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Veyon-Dienst neustarten</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>Status des Veyon-Diensts abfragen</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Befehle zur Konfiguration und Steuerung des Veyon-Diensts</translation>
     </message>
 </context>
@@ -2585,6 +2692,45 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>User session control</source>
         <translation>Benutzersitzungssteuerung</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[IN ORDNUNG]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[FEHLGESCHLAGEN]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>Ungültiger Befehl!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Verfügbare Befehle:</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>Nicht genügend Argumente angegeben - benutzen Sie &quot;%1 help&quot; für mehr Informationen</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>Unbekanntes Ergebnis!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Verfügbare Module:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>Modul nicht gefunden - verfügbare Module sind:</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>Ungültige Argumente angegeben</translation>
     </message>
 </context>
 <context>

@@ -26,14 +26,14 @@
 #include "ServiceControl.h"
 
 ServiceControlPlugin::ServiceControlPlugin() :
-	m_subCommands( {
-				   std::pair<QString, QString>( "register", tr( "register Veyon Service" ) ),
-				   std::pair<QString, QString>( "unregister", tr( "unregister Veyon Service" ) ),
-				   std::pair<QString, QString>( "start", tr( "start Veyon Service" ) ),
-				   std::pair<QString, QString>( "stop", tr( "stop Veyon Service" ) ),
-				   std::pair<QString, QString>( "restart", tr( "restart Veyon Service" ) ),
-				   std::pair<QString, QString>( "status", tr( "query status of Veyon Service" ) ),
-				   } ),
+	m_commands( {
+{ "register", tr( "Register Veyon Service" ) },
+{ "unregister", tr( "Unregister Veyon Service" ) },
+{ "start", tr( "Start Veyon Service" ) },
+{ "stop", tr( "Stop Veyon Service" ) },
+{ "restart", tr( "Restart Veyon Service" ) },
+{ "status", tr( "Query status of Veyon Service" ) },
+				} ),
 	m_serviceControl( nullptr )
 {
 }
@@ -48,7 +48,7 @@ ServiceControlPlugin::~ServiceControlPlugin()
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::runCommand( const QStringList& arguments )
 {
-	// all subcommands are handled as slots so if we land here an unsupported subcommand has been called
+	// all commands are handled as slots so if we land here an unsupported command has been called
 	return InvalidCommand;
 }
 

@@ -80,18 +80,18 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
-	QString commandName() const override
+	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "ldap" );
 	}
 
-	QString commandHelp() const override
+	QString commandLineModuleHelp() const override
 	{
-		return QStringLiteral( "operations for configuring LDAP/AD integration of Veyon" );
+		return tr( "Commands for configuring and testing LDAP/AD integration" );
 	}
 
-	QStringList subCommands() const override;
-	QString subCommandHelp( const QString& subCommand ) const override;
+	QStringList commands() const override;
+	QString commandHelp( const QString& command ) const override;
 	RunResult runCommand( const QStringList& arguments ) override;
 
 	QString directoryName() const override
@@ -127,7 +127,7 @@ private:
 
 	LdapConfiguration m_configuration;
 	LdapDirectory* m_ldapDirectory;
-	QMap<QString, QString> m_subCommands;
+	QMap<QString, QString> m_commands;
 
 };
 

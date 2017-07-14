@@ -522,12 +522,10 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 
 void VncView::unpressModifiers()
 {
-	QList<unsigned int> keys = m_mods.keys();
-	QList<unsigned int>::const_iterator it = keys.begin();
-	while( it != keys.end() )
+	const auto keys = m_mods.keys();
+	for( auto key : keys )
 	{
-		m_vncConn->keyEvent( *it, false );
-		it++;
+		m_vncConn->keyEvent( key, false );
 	}
 	m_mods.clear();
 }

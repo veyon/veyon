@@ -24,6 +24,7 @@
 
 #include <QMenu>
 #include <QScrollBar>
+#include <QShowEvent>
 
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
@@ -181,6 +182,8 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 
 		setComputerScreenSize( size-20 );
 	}
+
+	emit computerScreenSizeAdjusted( m_masterCore->userConfig().monitoringScreenSize() );
 }
 
 
@@ -209,4 +212,17 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 
 	m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces,
 													   m_masterCore->localComputerControlInterface(), topLevelWidget() );
+}
+
+
+
+void ComputerMonitoringView::showEvent( QShowEvent* event )
+{
+	if( event->spontaneous() == false &&
+			VeyonCore::config().autoAdjustGridSize() )
+	{
+		autoAdjustComputerScreenSize();
+	}
+
+	QWidget::showEvent( event );
 }

@@ -27,10 +27,12 @@
 #define DEMO_SERVER_H
 
 #include <QElapsedTimer>
+#include <QReadWriteLock>
 #include <QTimer>
 
 #include "VncClientProtocol.h"
 
+class DemoConfiguration;
 class QTcpServer;
 
 class DemoServer : public QObject
@@ -39,19 +41,28 @@ class DemoServer : public QObject
 public:
 	typedef QVector<QByteArray> MessageList;
 
-	enum {
-		FramebufferUpdateInterval = 100,
-		FullFramebufferUpdateInterval = FramebufferUpdateInterval*100,
-		UpdateQueueMemorySoftLimit = 1024*1024*128,
-		UpdateQueueMemoryHardLimit = UpdateQueueMemorySoftLimit * 2
-	};
-
-	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent );
+	DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+				const DemoConfiguration& configuration, QObject *parent );
 	~DemoServer() override;
+
+	const DemoConfiguration& configuration() const
+	{
+		return m_configuration;
+	}
 
 	const QByteArray& serverInitMessage() const
 	{
 		return m_vncClientProtocol.serverInitMessage();
+	}
+
+	void lockDataForRead()
+	{
+		m_dataLock.lockForRead();
+	}
+
+	void unlockData()
+	{
+		m_dataLock.unlock();
 	}
 
 	int keyFrame() const
@@ -80,6 +91,7 @@ private:
 	bool setVncServerPixelFormat();
 	bool setVncServerEncodings();
 
+	const DemoConfiguration& m_configuration;
 	const int m_vncServerPort;
 	const QString m_demoAccessToken;
 
@@ -87,6 +99,7 @@ private:
 	QTcpSocket* m_vncServerSocket;
 	VncClientProtocol m_vncClientProtocol;
 
+	QReadWriteLock m_dataLock;
 	QTimer m_framebufferUpdateTimer;
 	QElapsedTimer m_lastFullFramebufferUpdate;
 	QElapsedTimer m_keyFrameTimer;

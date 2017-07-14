@@ -80,9 +80,9 @@ public:
 	{
 		switch( scope() )
 		{
-			case User: return "UserConfig";
-			case System: return "SystemConfig";
-			case BugReportArchive: return "BugReportArchive";
+			case User: return QStringLiteral( "UserConfig" );
+			case System: return QStringLiteral( "SystemConfig" );
+			case BugReportArchive: return QStringLiteral( "BugReportArchive" );
 		}
 
 		return QString();

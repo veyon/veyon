@@ -341,7 +341,7 @@ IF(WIN32)
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
 			COMMAND unzip -j -d ${TMP} ${InterceptionZip} Interception/command\ line\ installer/install-interception.exe
-			COMMAND cp core/veyon-core.dll service/veyon-service.exe service/win32/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
+			COMMAND cp core/veyon-core.dll service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/

@@ -25,6 +25,7 @@
 
 #include <QTcpSocket>
 
+#include "DemoConfiguration.h"
 #include "DemoServer.h"
 #include "DemoServerConnection.h"
 
@@ -137,6 +138,8 @@ bool DemoServerConnection::receiveClientMessage()
 
 void DemoServerConnection::sendFramebufferUpdate()
 {
+	m_demoServer->lockDataForRead();
+
 	const auto& framebufferUpdateMessages = m_demoServer->framebufferUpdateMessages();
 
 	const int framebufferUpdateMessageCount = framebufferUpdateMessages.count();
@@ -155,10 +158,12 @@ void DemoServerConnection::sendFramebufferUpdate()
 		sentUpdates = true;
 	}
 
+	m_demoServer->unlockData();
+
 	if( sentUpdates == false )
 	{
 		// did not send updates but client still waiting for update? then try again soon
-		QTimer::singleShot( DemoServer::FramebufferUpdateInterval,
+		QTimer::singleShot( m_demoServer->configuration().framebufferUpdateInterval(),
 							this, &DemoServerConnection::sendFramebufferUpdate );
 	}
 }

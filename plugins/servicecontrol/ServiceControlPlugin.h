@@ -67,24 +67,24 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
-	QString commandName() const override
+	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "service" );
 	}
 
-	QString commandHelp() const override
+	QString commandLineModuleHelp() const override
 	{
-		return tr( "commands for configuring and controlling Veyon Service" );
+		return tr( "Commands for configuring and controlling Veyon Service" );
 	}
 
-	QStringList subCommands() const override
+	QStringList commands() const override
 	{
-		return m_subCommands.keys();
+		return m_commands.keys();
 	}
 
-	QString subCommandHelp( const QString& subCommand ) const override
+	QString commandHelp( const QString& command ) const override
 	{
-		return m_subCommands.value( subCommand );
+		return m_commands.value( command );
 	}
 
 	RunResult runCommand( const QStringList& arguments ) override;
@@ -98,7 +98,7 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_status( const QStringList& arguments );
 
 private:
-	QMap<QString, QString> m_subCommands;
+	QMap<QString, QString> m_commands;
 	ServiceControl m_serviceControl;
 
 };

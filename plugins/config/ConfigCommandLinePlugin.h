@@ -67,18 +67,18 @@ public:
 		return QStringLiteral( "Tobias Doerffel" );
 	}
 
-	QString commandName() const override
+	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "config" );
 	}
 
-	QString commandHelp() const override
+	QString commandLineModuleHelp() const override
 	{
-		return QStringLiteral( "operations for changing the configuration of Veyon" );
+		return tr( "Commands for managing the configuration of Veyon" );
 	}
 
-	QStringList subCommands() const override;
-	QString subCommandHelp( const QString& subCommand ) const override;
+	QStringList commands() const override;
+	QString commandHelp( const QString& command ) const override;
 	RunResult runCommand( const QStringList& arguments ) override;
 
 public slots:
@@ -99,7 +99,7 @@ private:
 
 	CommandLinePluginInterface::RunResult operationError( const QString& message );
 
-	QMap<QString, QString> m_subCommands;
+	QMap<QString, QString> m_commands;
 
 };
 

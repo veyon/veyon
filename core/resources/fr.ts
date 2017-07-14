@@ -39,7 +39,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>La langue actuelle n&apos;est pas encore traduite.
 
-Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans une autre langue, ou vous souhaitez améliorer la traduction existante, merci de contacter l&apos;équipe de développeurs de Veyon !</translation>
+Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans une autre langue, ou si vous souhaitez améliorer la traduction existante, merci de contacter l&apos;équipe des développeurs de Veyon !</translation>
     </message>
 </context>
 <context>
@@ -62,11 +62,11 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Icône de la zone de notification</translation>
+        <translation>Procéder avec des règles de contrôle d&apos;accès</translation>
     </message>
     <message>
         <source>Data backend:</source>
-        <translation>Donnée secondaire:</translation>
+        <translation>Processus de donnée:</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -114,11 +114,11 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Missing access control data backend</source>
-        <translation type="unfinished"/>
+        <translation>Processus de données de contrôle d&apos;accès manquant</translation>
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Aucune extension du processus de contrôle d&apos;accès par défaut n&apos;a été trouvé. Veuillez vérifier votre installation!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -126,7 +126,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Pour tester, veuillez entrer un identifiant qui possède des droits d&apos;accès:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -134,7 +134,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>L&apos;utilisateur spécifié est autorisé à accéder aux ordinateurs avec cette configuration</translation>
+        <translation>Avec cette configuration, l&apos;utilisateur spécifié est autorisé à accéder aux ordinateurs.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -142,7 +142,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>L&apos;utilisateur spécifié n&apos;est pas autorisé à accéder aux ordinateurs avec cette configuration.</translation>
+        <translation>Avec cette configuration, l&apos;utilisateur spécifié n&apos;est pas autorisé à accéder aux ordinateurs.</translation>
     </message>
 </context>
 <context>
@@ -157,7 +157,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>Entrer ici un titre court pour la règle</translation>
+        <translation>Entrer ici un titre ou un mot clé pour identifier la règle</translation>
     </message>
     <message>
         <source>Rule name:</source>
@@ -165,7 +165,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>Entrer ici une description pour la règle</translation>
+        <translation>Entrer ici une description sommaire de l&apos;action effectuée par la règle</translation>
     </message>
     <message>
         <source>Rule description:</source>
@@ -173,7 +173,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Inverser toutes les conditions (&quot;est&quot; sera interprété par &quot;n&apos;est pas&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
@@ -217,27 +217,27 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Demander la permission à l&apos;utilisateur connecté</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Aucun (Règle désactivée)</translation>
+        <translation>Aucune (Règle désactivée)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Utilisateur accédant</translation>
+        <translation>L&apos;utilisateur accédant</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Ordinateur accédant</translation>
+        <translation>L&apos;ordinateur accédant</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Utilisateur local (connecté)</translation>
+        <translation>L&apos;utilisateur local (connecté)</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Ordinateur local</translation>
+        <translation>L&apos;ordinateur local</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -249,11 +249,11 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;ordinateur accédant est situé dans la même salle que l&apos;ordinateur local</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;utilisateur accédant est membre d&apos;un ou plusieurs groupes en commun avec l&apos;utilisateur local (connecté)</translation>
     </message>
 </context>
 <context>
@@ -296,7 +296,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;accès dans le scénario donné demande la permission à l&apos;utilisateur connecté.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -311,15 +311,15 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <name>AuthenticationConfigurationPage</name>
     <message>
         <source>Authentication methods</source>
-        <translation>Méthode d&apos;authentification</translation>
+        <translation>Méthodes d&apos;authentification</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Authentification par identifiant</translation>
+        <translation>Authentification par un identifiant</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Authentification par fichier clé</translation>
+        <translation>Authentification par un fichier clé</translation>
     </message>
     <message>
         <source>Access key management</source>
@@ -376,7 +376,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Service %2 à %3:%4</translation>
+        <translation>Service %1 %2 sur %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -415,7 +415,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>Service injoignable ou non actif</translation>
+        <translation>Service injoignable ou inactif</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -477,7 +477,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Aucune extension de répertoire d&apos;objet réseau par défaut n&apos;a été trouvée. Veuillez vérifier votre installation ou configurer un processus d&apos;annuaire d&apos;objets réseau différent via la console de gestion %1.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
@@ -546,6 +546,38 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
         <source>Configuration file is not readable!</source>
         <translation>Le fichier de configuration n&apos;est pas lisible!</translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>Purger la configuration Veyon de tout le système</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>Lister toutes les clés et paramètres de configuration</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>Importer la configuration à partir d&apos;un fichier</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>Exporter la configuration dans un fichier</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>Lire et extraire la configuration pour une clé donnée</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>Écrire un paramètre dans une clé de configuration donnée</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>Retirer une clé de configuration donnée</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Commandes pour la gestion de la configuration de Veyon</translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -583,7 +615,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation>Configurateur %1</translation>
+        <translation>Console de gestion %1</translation>
     </message>
 </context>
 <context>
@@ -597,7 +629,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Démo plein écran</translation>
+        <translation>Démo en plein écran</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -609,7 +641,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Démo fenêtre</translation>
+        <translation>Démo dans une fenêtre</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
@@ -617,22 +649,22 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>Faire une démonstration par diffusion de l&apos;écran</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Serveur de démonstration</translation>
     </message>
     <message>
         <source>Demo client</source>
-        <translation type="unfinished"/>
+        <translation>Démonstration client</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation type="unfinished"/>
+        <translation>Boîte de dialogue d&apos;accès au bureau</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
@@ -659,7 +691,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Open website</source>
-        <translation>Ouvrir site internet</translation>
+        <translation>Ouvrir une page internet</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
@@ -671,7 +703,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
+        <translation>Démarrer les programmes et les services dans le bureau utilisateur</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
@@ -724,7 +756,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Logging</source>
-        <translation>Connexion</translation>
+        <translation>Journalisation</translation>
     </message>
     <message>
         <source>Log file directory</source>
@@ -740,7 +772,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Rien</translation>
+        <translation>Ne rien consigner</translation>
     </message>
     <message>
         <source>Only critical messages</source>
@@ -748,43 +780,43 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Erreurs et messages critiques</translation>
+        <translation>Les erreurs et les messages critiques</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Alertes et erreurs</translation>
+        <translation>Les alertes et les erreurs</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Informations, alertes et erreurs</translation>
+        <translation>Les informations, les alertes et les erreurs</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Message de débogage et tout le reste</translation>
+        <translation>Les messages de débogage et tout le reste...</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Taille limite du fichier de journalisation</translation>
+        <translation>Taille maximum du fichier de journalisation</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Vider tous les fichiers de journalisation</translation>
+        <translation>Purger tous les fichiers de journalisation</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Journaliser dans la sortie standard</translation>
+        <translation>Journaliser via la sortie standard</translation>
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation>Journaliser dans le journal d&apos;évènements de Windows</translation>
+        <translation>Journaliser via le journal des évènements de Windows</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire objets réseau</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Méthode de fonctionnement:</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -796,7 +828,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Le service %1 a besoin d&apos;être arrêté temporairement afin de supprimer les fichiers de journalisation. Continuer ?</translation>
+        <translation>Le service %1 a besoin d&apos;être temporairement arrêté afin de supprimer les fichiers de journalisation. Souhaitez vous pour continuer ?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -816,7 +848,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source> MB</source>
-        <translation>MO</translation>
+        <translation> Mo</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -824,18 +856,18 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>x</source>
-        <translation>x</translation>
+        <translation> x</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation>secondes</translation>
+        <translation> secondes</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
         <source>How does it work?</source>
-        <translation>Comment est-ce que ça marche ?</translation>
+        <translation>Comment cela fonctionne ?</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -843,7 +875,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Veuillez choisir de créer de nouvelles clés d&apos;accès ou d&apos;importer une clé publique sur un client.</translation>
+        <translation>Choisissez de créer de nouvelles clés d&apos;accès ou bien d&apos;importer une clé publique existante sur un ordinateur client.</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
@@ -859,7 +891,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Veuillez sélectionner le rôle pour lequel vous voulez créer ou importer les clés d&apos;accès :</translation>
+        <translation>Veuillez sélectionner le rôle pour lequel vous voulez créer ou importer des clés d&apos;accès :</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -867,7 +899,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Les rôles utilisateurs permettent d&apos;utiliser de multiples clés d&apos;accès en parallèle. Par exemple il peut y avoir des clés d&apos;accès enseignants différentes dans chaque salle de cours, mais une seule clé d&apos;accès assistance pour tout l&apos;établissement.</translation>
+        <translation>Les rôles utilisateurs permettent d&apos;utiliser de multiples clés d&apos;accès en parallèle. Par exemple il peut y avoir des clés d&apos;accès enseignants différentes dans chaque salle de cours, mais une seule clé d&apos;accès d&apos;assistance pour tout l&apos;établissement.</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -1018,19 +1050,19 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Liaison DN</translation>
+        <translation>Authentification DN</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Mot de passe lié</translation>
+        <translation>Mot de passe d&apos;authentification</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Lien anonyme</translation>
+        <translation>Authentification anonyme</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Utiliser des accréditations liées</translation>
+        <translation>Utiliser des informations d&apos;identification</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1038,11 +1070,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"/>
+        <translation>Base DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation type="unfinished"/>
+        <translation>Base DN Fixe</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
@@ -1050,11 +1082,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
+        <translation>Explorer la base DN à partir d&apos;un contexte de nommage</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
+        <translation>ex: ContextesNommés ou ContexteNomméParDéfaut</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1090,7 +1122,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation type="unfinished"/>
+        <translation>Effectuer des recherches récursives dans les arborescences objet</translation>
     </message>
     <message>
         <source>Object attributes</source>
@@ -1098,15 +1130,15 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>ex: hwAddress</translation>
+        <translation>ex: Adressehw</translation>
     </message>
     <message>
         <source>Computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attribut du nom de l&apos;ordinateur hôte</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"/>
+        <translation>ex: membre ou surnom</translation>
     </message>
     <message>
         <source>User login attribute</source>
@@ -1114,11 +1146,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation type="unfinished"/>
+        <translation>ex: NomHotedNS</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attribut de l&apos;adresse MAC de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>Group member attribute</source>
@@ -1126,11 +1158,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"/>
+        <translation>ex: uid ou sAMAccountName</translation>
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Noms d&apos;hôtes enregistré comme des noms de domaine pleinement qualifié (FQDN, ex: monhote.exemple.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1138,11 +1170,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation type="unfinished"/>
+        <translation>Filtres d&apos;objet optionnel</translation>
     </message>
     <message>
         <source>e.g. objectClass=group</source>
-        <translation type="unfinished"/>
+        <translation>ex: ClasseObjet=groupe</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
@@ -1150,7 +1182,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>e.g. objectClass=person</source>
-        <translation type="unfinished"/>
+        <translation>ex: ClasseObjet=personne</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1166,19 +1198,19 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"/>
+        <translation>Nom distinct (Samba/AD)</translation>
     </message>
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Attribut configuré pour la connexion utilisateur ou le nom d&apos;hôte de l&apos;ordinateur (OpenLDAP)</translation>
     </message>
     <message>
         <source>Dedicated computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Groupes d&apos;ordinateurs dédiés</translation>
     </message>
     <message>
         <source>Common attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attribut en commun</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1190,67 +1222,71 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation type="unfinished"/>
+        <translation>Trouver un ordinateur par son adresse IP</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation type="unfinished"/>
+        <translation>La connexion LDAP a échoué</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de se connecter au serveur LDAP. Veuillez vérifier les paramètres du serveur. %1</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec de l&apos;authentification LDAP</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation type="unfinished"/>
+        <translation>Authentification au serveur LDAP impossible. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. %1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation type="unfinished"/>
+        <translation>Authentification LDAP réussie</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <translation>La connexion au serveur LDAP ainsi que l&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec du test base LDAP DN</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;interroger la base DN ainsi configurée. Veuillez vérifier les paramètres de la base DN.
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>Le test base LDAP DN à réussi</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>La base LDAP DN a été interrogée avec succès. Les entrées suivantes ont été trouvées:
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec du test LDAP de nommage par contexte  </translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;interroger la base DN via des contextes de nommage. Veuillez vérifier l&apos;attribut du paramètre de contexte de nommage.
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>Le test LDAP de nommage par contexte à réussi.</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Le contexte de nommage LDAP à été interrogé avec succès. La base DN suivante à été trouvée:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
@@ -1270,11 +1306,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer un identifiant utilisateur (jokers autorisé ? *) à rechercher:</translation>
     </message>
     <message>
         <source>user objects</source>
-        <translation type="unfinished"/>
+        <translation>objets utilisateur</translation>
     </message>
     <message>
         <source>user login attribute</source>
@@ -1286,7 +1322,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer le nom d&apos;un groupe dont vous recherchez les membres:</translation>
     </message>
     <message>
         <source>group members</source>
@@ -1294,7 +1330,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>attribut du membre du groupe</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -1302,7 +1338,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de trouver un groupe avec le nom &quot;%1&quot;. Veuillez vérifier le nom du groupe ou le paramètre de l&apos;arborescence du groupe.</translation>
     </message>
     <message>
         <source>Enter computer name</source>
@@ -1310,35 +1346,35 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer un nom d&apos;ordinateur hôte à rechercher:</translation>
     </message>
     <message>
         <source>Invalid host name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de l&apos;hôte non valide</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Vous avez choisi de stocker les noms d&apos;ordinateurs hotes comme des noms de domaine pleinement qualifié (FQDN) mais vous avez saisi un nom d&apos;hôte sans son domaine.</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Vous avez choisi de stocker les noms d&apos;ordinateurs hôtes comme de simple noms sans domaine, mais vous avez saisi un nom d&apos;hôte dont une partie est un nom de domaine.</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation type="unfinished"/>
+        <translation>objets ordinateur</translation>
     </message>
     <message>
         <source>computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>attribut du nom de l&apos;ordinateur hôte</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>Entrer le DN de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer le DN d&apos;un ordinateur dont vous recherchez l&apos;adresse MAC:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -1346,7 +1382,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>computer MAC address attribute</source>
-        <translation>Attribut d&apos;adresse MAC de l&apos;ordinateur</translation>
+        <translation>attribut de l&apos;adresse MAC de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>users</source>
@@ -1362,15 +1398,15 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer l&apos;identifiant dont vous recherchez les groupes d&apos;appartenance:</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation type="unfinished"/>
+        <translation>groupes d&apos;utilisateur</translation>
     </message>
     <message>
         <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>attribut de l&apos;identifiant utilisateur ou d&apos;appartenance au groupe</translation>
     </message>
     <message>
         <source>User not found</source>
@@ -1378,23 +1414,23 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de trouver un utilisateur dont le nom est &quot;%1&quot;. Vérifiez le nom de l&apos;utilisateur ou du paramètre d&apos;arborescence utilisateur.</translation>
     </message>
     <message>
         <source>Enter host name</source>
-        <translation type="unfinished"/>
+        <translation>Entrer un nom d&apos;hôte</translation>
     </message>
     <message>
         <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer le nom d&apos;un ordinateur hôte dont vous recherchez les groupes membre:</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>groupes d&apos;ordinateur</translation>
     </message>
     <message>
         <source>computer host name attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>attribut du nom de l&apos;ordinateur hôte ou d&apos;appartenance au groupe</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -1402,7 +1438,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de trouver un ordinateur dont le nom est &quot;%1&quot;. Vérifiez le nom de l&apos;ordinateur ou du paramètre d&apos;arborescence ordinateur.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -1410,15 +1446,15 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer une adresse IP pour trouver un ordinateur:</translation>
     </message>
     <message>
         <source>Host name lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la recherche du nom d&apos;hôte</translation>
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de rechercher le nom d&apos;hôte pour l&apos;adresse IP %1. Veuillez vérifier le paramétrage de votre serveur DNS.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -1426,55 +1462,63 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec du test LDAP %1</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Aucune entrée ne peut être interrogé dans le %1 configuré. Veuillez vérifier le paramètre %1
+
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>Le test LDAP %1 à réussi</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>%1 a été interrogé avec succès et %2 entrée(s) ont été trouvée(s).</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Aucun %1 ne peut être interrogé. Veuillez vérifier le paramètre %2 ou bien saisir le nom d&apos;un objet existant
+
+%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%2 %1 a été interrogé avec succès:
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec du test du filtre LDAP</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;interroger %1 en utilisant le filtre configuré. Veuillez vérifier le filtre LDAP pour %1
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>Le test du filtre LDAP à réussi</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>%2 %1 a été interrogé avec succès en appliquant le filtre.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(seulement si différent de l&apos;arborescence du groupe)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
@@ -1482,11 +1526,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Aggregate computers in a room using:</source>
-        <translation type="unfinished"/>
+        <translation>Regrouper des ordinateurs dans une salle en utilisant:</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>arborescence groupe ordinateur</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -1494,51 +1538,51 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>e.g. objectClass=computer</source>
-        <translation type="unfinished"/>
+        <translation>ex: ClasseObjet=ordinateur</translation>
     </message>
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation type="unfinished"/>
+        <translation>ex: ClasseObjet=salle ou ClasseObjet=Labo</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>ex: salle ou labo</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
-        <translation>Liste tous les membres d&apos;une salle d&apos;ordinateurs</translation>
+        <translation>Lister tous les membres d&apos;une salle d&apos;ordinateurs</translation>
     </message>
     <message>
         <source>List all computer rooms</source>
-        <translation>Liste tous les salles d&apos;ordinateurs</translation>
+        <translation>Lister tous les salles d&apos;ordinateurs</translation>
     </message>
     <message>
         <source>Enter computer room name</source>
-        <translation type="unfinished"/>
+        <translation>Entrer un nom de salle</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer un nom de salle (jokers: * ? autorisés):</translation>
     </message>
     <message>
         <source>computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>salles</translation>
     </message>
     <message>
         <source>computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>attribut de salle</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer le nom d&apos;une salle dont vous recherchez les membres:</translation>
     </message>
     <message>
         <source>computer room members</source>
-        <translation type="unfinished"/>
+        <translation>membres de la salle</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
+        <translation>Filtre de groupe d&apos;ordinateur ou regroupement d&apos;ordinateur d&apos;une même salle</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -1546,14 +1590,14 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>Tests d&apos;intégration</translation>
     </message>
 </context>
 <context>
     <name>LdapDirectory</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>Description de l&apos;erreur LDAP: %1</translation>
     </message>
 </context>
 <context>
@@ -1564,29 +1608,45 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>LDAP (load objects from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (Charge les objets à partir de LDAP/AD)</translation>
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (charge les utilisateurs/groupes et les ordinateurs/salles à partir de LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>Auto configurer la base DN à partir d&apos;un contexte de nommage</translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>Requête d&apos;objets depuis l&apos;annuaire LDAP</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Afficher la commande aide et à propos</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Commandes pour configurer et tester l&apos;intégration LDAP/AD</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Extension implémentant les fonctions abstraites pour le système Linux</translation>
     </message>
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
     <message>
         <source>Local data</source>
-        <translation>Donné locale</translation>
+        <translation>Données locales</translation>
     </message>
     <message>
         <source>Network objects</source>
-        <translation type="unfinished"/>
+        <translation>Objets réseau</translation>
     </message>
     <message>
         <source>Rooms</source>
@@ -1637,15 +1697,15 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     <name>LocalDataPlugin</name>
     <message>
         <source>Backends which use local data</source>
-        <translation type="unfinished"/>
+        <translation>Processus utilisant des données locales</translation>
     </message>
     <message>
         <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Par défaut (utilisateurs/groupes locaux et ordinateurs/salles à partir du fichier de configuration)</translation>
     </message>
     <message>
         <source>Default (store objects in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Par défaut (stocker les objets dans la configuration locale)</translation>
     </message>
 </context>
 <context>
@@ -1694,7 +1754,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Vider les fichiers de journalisation dans la section « Générale ».</translation>
+        <translation>Purgez les fichiers de journalisation dans la section « Général ».</translation>
     </message>
     <message>
         <source>2)</source>
@@ -1702,7 +1762,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Dans la section « Général » , sélectionnez le niveau de journalisation sur « Message de débogage et tout le reste ».</translation>
+        <translation>Dans la section « Général » , sélectionnez le niveau de journalisation sur « Les messages de débogage et tout le reste... ».</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1710,7 +1770,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Répétez les actions ayant menées au bogue ou au mauvais comportement du logiciel.</translation>
+        <translation>Répétez les actions ayant conduit au bogue ou au mauvais comportement du logiciel.</translation>
     </message>
     <message>
         <source>4)</source>
@@ -1746,11 +1806,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation>&amp;Enregistrer les paramètres dans un fichier</translation>
+        <translation>&amp;Enregistrer la configuration dans un fichier</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>Enregistrer les paramètres dans un fichier</translation>
+        <translation>Enregistrer la configuration dans un fichier</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -1758,7 +1818,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>&amp;Charger les paramètres à partir d&apos;un fichier</translation>
+        <translation>&amp;Charger la configuration à partir d&apos;un fichier</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -1786,11 +1846,11 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Charge les paramètres à partir du fichier</translation>
+        <translation>Charge la configuration à partir d&apos;un fichier</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Enregistre les paramètres dans le fichier</translation>
+        <translation>Enregistre la configuration dans un fichier</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
@@ -1802,21 +1862,17 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Des paramètres n&apos;ont pas été enregistrés. Quitter tout de même ?</translation>
+        <translation>Certains paramètres n&apos;ont pas été enregistrés. Souhaitez-vous tout de même quitter?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Configurateur Veyon</translation>
-    </message>
-    <message>
-        <source>Debugging Veyon</source>
-        <translation>Déboguer Veyon</translation>
+        <translation>Console de gestion Veyon</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Quant vous rencontrez des bogues et autres dysfonctionnements dans Veyon, il est important d&apos;en informer les développeurs afin que ceux-ci soient corrigés dans les versions futures. Cette page vous permet de soumettre un rapport d&apos;incident bien s&apos;avèrera bien utile, assez simplement.
+        <translation>Dans Veyon, quand vous rencontrez des bogues ou des dysfonctionnements, il est important d&apos;en informer les développeurs afin que ces erreurs soient corrigées dans les versions futures. Cette page vous permet assez simplement de soumettre un rapport d&apos;incident qui s&apos;avèrera bien utile.
 
 Si le bogue n&apos;est pas reproductible, passez les étapes 1) - 3).</translation>
     </message>
@@ -1825,7 +1881,7 @@ Si le bogue n&apos;est pas reproductible, passez les étapes 1) - 3).</translati
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Allez sur&lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;le traqueur de bogue de Veyon&lt;/a&gt;, ouvrez un nouveau bug, décrivez ce que vous avez fait à l&apos;étape 3) et joignez le fichier généré lors de l&apos;étape 4).&lt;/p&gt;
+        <translation>Allez sur &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;le traqueur de bogue de Veyon&lt;/a&gt;, ouvrez un nouveau bogue, décrivez ce que vous avez fait à l&apos;étape 3) et joignez le fichier généré lors de l&apos;étape 4).&lt;/p&gt;
  &lt;br/&gt;
  &lt;br/&gt; 
 Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs maîtres, joignez un rapport de bogue pour chaque ordinateur.</translation>
@@ -1860,7 +1916,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation type="unfinished"/>
+        <translation>Console de gestion %1 %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
@@ -1872,15 +1928,15 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>%1 bug report archive saved</source>
-        <translation>Archive du rapport de bogue de %1 sauvegardé</translation>
+        <translation>Archive du rapport de bogue de %1 sauvegardée</translation>
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Une archive de rapport de bogue de %1 a été enregistrée dans %2. Il comprend les journaux de %3 et des informations sur votre système d&apos;exploitation. Vous pouvez le joindre à un rapport de bogue.</translation>
+        <translation>Une archive de rapport de bogue de %1 a été enregistrée dans %2. Elle comprend les journaux de %3 et des informations sur votre système d&apos;exploitation. Vous pouvez la joindre à un rapport de bogue.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Le processus de configuration locale rapporte que le fichier de configuration ne peut pas s&apos;enregistrer! Veuillez exécuter la console de gestion %1 avec des droits plus importants.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -1888,7 +1944,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
+        <translation>Aucune clés d&apos;authentification n&apos;ont été trouvées ou bien les clés actuelles sont obsolètes. Veuillez créer de nouvelles clés en utilisant la Console de gestion %1. Sinon, vous pouvez paramétrer l&apos;authentification par l&apos;identifiant en utilisant également la Console de gestion %1. Sans cela, vous ne serez pas en mesure d&apos;accéder aux ordinateurs en utilisant %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -1896,7 +1952,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Selon la configuration locale, vous n&apos;êtes pas autorisé à accéder aux ordinateurs du réseau. Veuillez vous identifier avec un compte différent ou bien demandez à votre administrateur système de vérifier la configuration locale.</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -1908,15 +1964,15 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation type="unfinished"/>
+        <translation>La fonctionnalité &quot;%1&quot; est toujours active. Veuillez l&apos;interrompre avant de fermer %2.</translation>
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Rapporter les dysfonctionnements de Veyon</translation>
     </message>
     <message>
         <source>Bug reporting</source>
-        <translation type="unfinished"/>
+        <translation>Rapport de bogue</translation>
     </message>
 </context>
 <context>
@@ -1935,15 +1991,15 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>User interface &amp;&amp; behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Interface utilisateur et comportements</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Action au double clique sur un ordinateur:</translation>
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation>Au démarrage, changer automatiquement pour la salle actuelle</translation>
+        <translation>Au démarrage, changer automatiquement pour la salle courante</translation>
     </message>
     <message>
         <source>Features</source>
@@ -1951,7 +2007,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>All features</source>
-        <translation>Toutes les fonctionnalités</translation>
+        <translation>Fonctionnalités disponibles</translation>
     </message>
     <message>
         <source>Disabled features</source>
@@ -1959,15 +2015,15 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Only show current room in computer room management</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;afficher que la salle courante dans le gestionnaire de salle</translation>
     </message>
     <message>
         <source>Hide empty rooms from computer room management</source>
-        <translation type="unfinished"/>
+        <translation>Cacher les salles vides du gestionnaire de salle</translation>
     </message>
     <message>
         <source>Allow adding rooms to computer room management manually</source>
-        <translation type="unfinished"/>
+        <translation>Autoriser l&apos;ajout manuel de salles dans le gestionnaire de salle</translation>
     </message>
     <message>
         <source>Hide local computer in computer room management</source>
@@ -1975,7 +2031,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Perform access control at program start</source>
-        <translation type="unfinished"/>
+        <translation>Effectuer le contrôle d&apos;accès au démarrage du programme</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -1983,11 +2039,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Hide computer filter field in computer room management</source>
-        <translation type="unfinished"/>
+        <translation>Cacher le filtre ordinateur du gestionnaire de salle</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
+        <translation>Aucune action</translation>
     </message>
 </context>
 <context>
@@ -1998,7 +2054,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>mode de surveillance intégré</translation>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
@@ -2016,7 +2072,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Nom d&apos;utilisateur</translation>
+        <translation>Identifiant</translation>
     </message>
     <message>
         <source>Password</source>
@@ -2032,11 +2088,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>La connexion a échoué avec le nom d&apos;utilisateur et le mot de passe donné. Veuillez réessayer!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Veuillez entrer votre nom d&apos;utilisateur et votre mot de passe afin d&apos;accéder aux ordinateurs.</translation>
+        <translation>Veuillez entrer votre identifiant et votre mot de passe afin d&apos;accéder aux ordinateurs.</translation>
     </message>
 </context>
 <context>
@@ -2120,6 +2176,14 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Le gestionnaire de contrôle de service ne réponds pas (Avez vous des droits suffisant pour l&apos;accès ?) - le service &apos;%1&apos; n&apos;a pas été arrêté.</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>Le service &apos;%1&apos; n&apos;a pas pu être démarré.</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>Le contrôleur de services ne répond pas (avez-vous les permissions nécessaires ?!) - le service &apos;%1&apos; n&apos;a pas été démarré.</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2150,6 +2214,10 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>Pour accéder, veuillez entrer le nom de l&apos;hôte ou l&apos;adresse IP de l&apos;ordinateur:</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>Afficher la commande aide et à propos</translation>
     </message>
 </context>
 <context>
@@ -2245,7 +2313,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez entrer les programmes ou les commandes à exécuter sur les ordinateurs sélectionnés. Vous pouvez séparer vos différents programmes/commandes ligne par ligne.</translation>
     </message>
     <message>
         <source>Run programs</source>
@@ -2260,11 +2328,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Vérrouiller</translation>
+        <translation>Verrouiller</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Dévérouiller</translation>
+        <translation>Déverrouiller</translation>
     </message>
     <message>
         <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
@@ -2337,7 +2405,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>Toutes les captures d&apos;écrans que vous avez effectuées sont listé ici. Vous pouvez prendre des captures d&apos;écran en cliquant sur &quot;capture d&apos;écran&quot; dans le menu contextuel d&apos;un ordinateur. Les captures d&apos;écran peuvent être gérées en utilisant les boutons ci-dessous.</translation>
     </message>
     <message>
         <source>Computer:</source>
@@ -2392,11 +2460,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Activer l&apos;exception pour le firewall</translation>
+        <translation>Autoriser une exception pour le pare-feu</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Autoriser les connexions à partir de l&apos;hôte local seulement</translation>
+        <translation>Autoriser les connexions seulement à partir de l&apos;hôte local </translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
@@ -2453,30 +2521,6 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>Inscription du service Veyon</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>Désinscription du service Veyon</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>Démarrer le service Veyon</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>Arrêter le service Veyon</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>Redémarrer le service Veyon</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>Interrogation du statut du service Veyon</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>Le service fonctionne</translation>
     </message>
@@ -2489,8 +2533,32 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <translation>Configure et contrôle le service Veyon</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
-        <translation>commandes pour configurer et contrôler le service Veyon</translation>
+        <source>Register Veyon Service</source>
+        <translation>Inscription du service Veyon</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>Désinscription du service Veyon</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>Démarrer le service Veyon</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>Arrêter le service Veyon</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>Redémarrer le service Veyon</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>Interrogation du statut du service Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation>Commandes pour configurer et contrôler le Service Veyon</translation>
     </message>
 </context>
 <context>
@@ -2504,11 +2572,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Envoyer un message textuel</translation>
+        <translation>Envoyer un message écrit</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Tapez votre message dans le champ ci-dessous. Il sera envoyé à tous les utilisateurs sélectionnés.</translation>
+        <translation>Utilisez le champ ci-dessous pour saisir votre message, il sera envoyé à tous les utilisateurs sélectionnés.</translation>
     </message>
 </context>
 <context>
@@ -2523,7 +2591,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Message de l&apos;enseignant</translation>
+        <translation>Message de la part de l&apos;enseignant</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
@@ -2557,7 +2625,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Impossible de sauvegarder vos paramètres personnels! Veuillez vérifier le chemin du fichier de configuration utilisateur en utilisant le configurateur %1</translation>
+        <translation>Impossible de sauvegarder vos paramétrages! Veuillez vérifier le chemin du fichier de configuration utilisateur en utilisant la console de gestion %1</translation>
     </message>
 </context>
 <context>
@@ -2573,6 +2641,45 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Cliquer sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[OK]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[ERREUR]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>Commande non valide!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Commandes disponibles:</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>Les arguments donnés ne sont pas valide</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>Pas assez d&apos;arguments donnés - Utiliser &quot;l&apos;aide %1&quot; pour plus d&apos;information</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>Résultat inconnu!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Modules disponibles:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>Module introuvable - les modules disponibles sont:</translation>
     </message>
 </context>
 <context>

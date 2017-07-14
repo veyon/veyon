@@ -44,11 +44,11 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin() :
 	m_features(),
 	m_customComputer(),
 	m_customComputerControlInterface( m_customComputer ),
-	m_subCommands( {
-				   std::pair<QString, QString>( "view", m_remoteViewFeature.displayName() ),
-				   std::pair<QString, QString>( "control", m_remoteControlFeature.displayName() ),
-				   std::pair<QString, QString>( "help", "show help about subcommand" ),
-				   } )
+	m_commands( {
+{ "view", m_remoteViewFeature.displayName() },
+{ "control", m_remoteControlFeature.displayName() },
+{ "help", tr( "Show help about command" ) },
+				} )
 {
 	m_features += m_remoteViewFeature;
 	m_features += m_remoteControlFeature;
@@ -171,16 +171,16 @@ bool RemoteAccessFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage
 
 
 
-QStringList RemoteAccessFeaturePlugin::subCommands() const
+QStringList RemoteAccessFeaturePlugin::commands() const
 {
-	return m_subCommands.keys();
+	return m_commands.keys();
 }
 
 
 
-QString RemoteAccessFeaturePlugin::subCommandHelp( const QString& subCommand ) const
+QString RemoteAccessFeaturePlugin::commandHelp( const QString& command ) const
 {
-	return m_subCommands.value( subCommand );
+	return m_commands.value( command );
 }
 
 

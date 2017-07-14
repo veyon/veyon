@@ -34,7 +34,7 @@ class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeaturePluginInt
 	Q_OBJECT
 	Q_INTERFACES(FeaturePluginInterface PluginInterface)
 public:
-	SystemTrayIcon();
+	SystemTrayIcon( QObject* parent = nullptr );
 	~SystemTrayIcon() override {}
 
 	void setToolTip( const QString& toolTipText,
@@ -51,12 +51,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral( "1.0" );
 	}
 
 	QString name() const override
 	{
-		return "SystemTrayIcon";
+		return QStringLiteral( "SystemTrayIcon" );
 	}
 
 	QString description() const override
@@ -66,12 +66,12 @@ public:
 
 	QString vendor() const override
 	{
-		return "Veyon Community";
+		return QStringLiteral( "Veyon Community" );
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral( "Tobias Doerffel" );
 	}
 
 	const FeatureList& featureList() const override

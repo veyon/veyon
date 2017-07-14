@@ -1,7 +1,7 @@
 /*
- * ConfigurationPage.h - base class for all configuration pages
+ * DemoConfigurationPage.h - header for the DemoConfigurationPage class
  *
- * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,24 +22,34 @@
  *
  */
 
-#ifndef CONFIGURATION_PAGE_H
-#define CONFIGURATION_PAGE_H
+#ifndef DEMO_CONFIGURATION_PAGE_H
+#define DEMO_CONFIGURATION_PAGE_H
 
-#include "VeyonCore.h"
+#include "ConfigurationPage.h"
 
-#include <QWidget>
+namespace Ui {
+class DemoConfigurationPage;
+}
 
-class VEYON_CORE_EXPORT ConfigurationPage : public QWidget
+class DemoConfiguration;
+
+class DemoConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	ConfigurationPage( QWidget* parent = nullptr );
-	~ConfigurationPage() override;
+	DemoConfigurationPage( DemoConfiguration& configuration );
+	~DemoConfigurationPage();
 
-	virtual void resetWidgets() = 0;
-	virtual void connectWidgetsToProperties() = 0;
-	virtual void applyConfiguration() = 0;
+	void resetWidgets() override;
+	void connectWidgetsToProperties() override;
+	void applyConfiguration() override;
+
+
+private:
+	Ui::DemoConfigurationPage *ui;
+
+	DemoConfiguration& m_configuration;
 
 };
 
-#endif // CONFIGURATION_PAGE_H
+#endif // DEMO_CONFIGURATION_PAGE_H

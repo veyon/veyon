@@ -546,6 +546,38 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Configuration file is not readable!</source>
         <translation>組態檔無法讀取!</translation>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation>清除系統範圍 Veyon 組態</translation>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation>列出所有組態金鑰和數值</translation>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation>從給予的檔案匯入組態</translation>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation>匯出組態到給予的檔案</translation>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation>讀取和輸出給予金鑰的組態值</translation>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation>寫入給予的數值到給予的組態金鑰</translation>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation>取消設定 (移除) 給予的組態金鑰</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>管理 Veyon 組態的命令</translation>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -1582,6 +1614,22 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
         <translation>LDAP (從 LDAP/AD 載入使用者/群組和電腦/教室)</translation>
     </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation>透過命名內文自動組態基礎 DN</translation>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation>從 LDAP 目錄查詢物件</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>顯示命令的說明</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>組態和測試 LDAP/AD 整合的命命</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -1821,10 +1869,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Veyon 組態器</translation>
     </message>
     <message>
-        <source>Debugging Veyon</source>
-        <translation>除錯 Veyon</translation>
-    </message>
-    <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
@@ -1924,11 +1968,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
-        <translation type="unfinished"/>
+        <translation>報告 Veyon 中 Bug</translation>
     </message>
     <message>
         <source>Bug reporting</source>
-        <translation type="unfinished"/>
+        <translation>Bug 報告</translation>
     </message>
 </context>
 <context>
@@ -2132,6 +2176,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation>無法連接服務控制管理程式 (您有必要權利嗎?) -服務 &apos;%1&apos; 沒有停止。</translation>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation>無法啟動服務「%1」。</translation>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation>無法聯絡 Service Control Manager (是否有所需的權限?!) - 服務「%1」沒有啟動。</translation>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2162,6 +2214,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
         <translation>請輸入主機名稱或電腦的 IP 位址來存取:</translation>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation>顯示命令的說明</translation>
     </message>
 </context>
 <context>
@@ -2465,30 +2521,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation>註冊 Veyon 服務</translation>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation>取消註冊 Veyon 服務</translation>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation>啟動 Veyon 服務</translation>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation>停止 Veyon 服務</translation>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation>重新啟動 Veyon 服務</translation>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation>Veyon 服務的查詢狀態</translation>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation>服務正在執行</translation>
     </message>
@@ -2501,8 +2533,32 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>組態和控制 Veyon 服務</translation>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
-        <translation>用於組態和控制 Veyon 服務的命令</translation>
+        <source>Register Veyon Service</source>
+        <translation>註冊 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation>取消註冊 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation>啟動 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation>停止 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation>重新啟動 Veyon 服務</translation>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation>查詢 Veyon 服務的狀態</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation>組態和控制 Veyon 服務的命令</translation>
     </message>
 </context>
 <context>
@@ -2585,6 +2641,45 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>按一下此按鈕從所有電腦登出使用者。</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation>[正常]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[失敗]</translation>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation>命令無效!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>可用命令</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>給予的引數無效</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>給予的引數不夠 - 使用「%1 說明」取得更多資訊</translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation>未知結果!</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>可用模組:</translation>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation>找不到模組 - 可用模組:</translation>
     </message>
 </context>
 <context>

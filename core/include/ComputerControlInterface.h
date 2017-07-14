@@ -55,7 +55,7 @@ public:
 		StateCount
 	} State;
 
-	ComputerControlInterface( const Computer& computer );
+	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
 	void start( const QSize& scaledScreenSize, UserSessionControl* userSessionControl );

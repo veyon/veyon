@@ -49,6 +49,7 @@ private slots:
 	void resetOrApply( QAbstractButton *btn );
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
+	void resetConfiguration();
 	void generateBugReportArchive();
 	void aboutVeyon();
 

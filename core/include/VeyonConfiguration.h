@@ -79,6 +79,7 @@ public slots:
 	void setUserConfigurationDirectory( const QString & );
 	void setScreenshotDirectory( const QString & );
 	void setAccessControlForMasterEnabled( bool );
+	void setAutoAdjustGridSize( bool );
 	void setAutoSwitchToCurrentRoom( bool );
 	void setOnlyCurrentRoomVisible( bool );
 	void setManualRoomAdditionAllowed( bool );

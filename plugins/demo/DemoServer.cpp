@@ -26,13 +26,16 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
+#include "DemoConfiguration.h"
 #include "DemoServer.h"
 #include "DemoServerConnection.h"
 #include "VeyonConfiguration.h"
 
 
-DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken, QObject *parent ) :
+DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, const QString& demoAccessToken,
+						const DemoConfiguration& configuration, QObject *parent ) :
 	QObject( parent ),
+	m_configuration( configuration ),
 	m_vncServerPort( vncServerPort ),
 	m_demoAccessToken( demoAccessToken ),
 	m_tcpServer( new QTcpServer( this ) ),
@@ -56,7 +59,7 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 		return;
 	}
 
-	m_framebufferUpdateTimer.start( FramebufferUpdateInterval );
+	m_framebufferUpdateTimer.start( m_configuration.framebufferUpdateInterval() );
 
 	reconnectToVncServer();
 }
@@ -135,7 +138,7 @@ void DemoServer::requestFramebufferUpdate()
 	}
 
 	if( m_requestFullFramebufferUpdate ||
-			m_lastFullFramebufferUpdate.elapsed() >= FullFramebufferUpdateInterval )
+			m_lastFullFramebufferUpdate.elapsed() >= m_configuration.keyFrameInterval() * 1000 )
 	{
 		m_vncClientProtocol.requestFramebufferUpdate( false );
 		m_lastFullFramebufferUpdate.restart();
@@ -178,7 +181,9 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		isFullUpdate = true;
 	}
 
-	if( isFullUpdate || framebufferUpdateMessageQueueSize() > UpdateQueueMemoryHardLimit  )
+	m_dataLock.lockForWrite();
+
+	if( isFullUpdate || framebufferUpdateMessageQueueSize() > m_configuration.memoryLimit()*2*1024*1024  )
 	{
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
@@ -194,8 +199,10 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 
 	m_framebufferUpdateMessages.append( message );
 
+	m_dataLock.unlock();
+
 	// we're about to reach memory limits?
-	if( framebufferUpdateMessageQueueSize() > UpdateQueueMemorySoftLimit )
+	if( framebufferUpdateMessageQueueSize() > m_configuration.memoryLimit() * 1024 * 1024 )
 	{
 		// then request a full update so we can clear our queue
 		m_requestFullFramebufferUpdate = true;
