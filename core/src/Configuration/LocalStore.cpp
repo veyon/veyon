@@ -127,10 +127,13 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 			saveSettingsTree( it.value().toMap(), s );
 			s->endGroup();
 		}
-		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray ||
-				 static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
 		{
-			s->setValue( it.key(), serializeJsonValue( QJsonValue::fromVariant( it.value() ) ) );
+			s->setValue( it.key(), serializeJsonValue( it.value().toJsonArray() ) );
+		}
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
+		{
+			s->setValue( it.key(), serializeJsonValue( it.value().toJsonObject() ) );
 		}
 		else
 		{
