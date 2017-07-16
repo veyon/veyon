@@ -30,7 +30,7 @@
 CryptoCore::CryptoCore() :
 	m_qcaInitializer()
 {
-	qDebug() << "CryptoCore instance created - features supported by QCA:" << QCA::supportedFeatures();
+	qDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << QCA::supportedFeatures();
 }
 
 
