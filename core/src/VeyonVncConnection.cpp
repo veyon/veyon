@@ -838,7 +838,13 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
-			QByteArray challenge = challengeReceiveMessage.read().toByteArray();
+			const auto challenge = challengeReceiveMessage.read().toByteArray();
+
+			if( challenge.size() != CryptoCore::ChallengeSize )
+			{
+				qCritical( "VeyonVncConnection::handleSecTypeVeyon(): challenge size mismatch!" );
+				break;
+			}
 
 			// create local copy of private key so we can modify it within our own thread
 			auto key = VeyonCore::authenticationCredentials().privateKey();
