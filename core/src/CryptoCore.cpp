@@ -30,7 +30,15 @@
 CryptoCore::CryptoCore() :
 	m_qcaInitializer()
 {
-	qDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << QCA::supportedFeatures();
+	const auto features = QCA::supportedFeatures();
+
+	qDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << features;
+
+	if( features.contains( "rsa" ) == false )
+	{
+		qFatal( "CryptoCore: RSA not supported! Please install a QCA plugin which provides RSA support "
+				"(e.g. packages such as libqca-qt5-2-plugins or qca-qt5-ossl)." );
+	}
 }
 
 
