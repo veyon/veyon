@@ -842,6 +842,12 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 
 			// create local copy of private key so we can modify it within our own thread
 			auto key = VeyonCore::authenticationCredentials().privateKey();
+			if( key.isNull() || key.canSign() == false )
+			{
+				qCritical( "VeyonVncConnection::handleSecTypeVeyon(): invalid private key!" );
+				break;
+			}
+
 			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
