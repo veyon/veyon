@@ -839,8 +839,10 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
 			QByteArray challenge = challengeReceiveMessage.read().toByteArray();
-			QByteArray signature = VeyonCore::authenticationCredentials().
-					privateKey().signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
+
+			// create local copy of private key so we can modify it within our own thread
+			auto key = VeyonCore::authenticationCredentials().privateKey();
+			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
 			challengeResponseMessage.write( VeyonCore::instance()->userRole() );
