@@ -48,7 +48,7 @@ public:
 
 	// private key auth
 	bool loadPrivateKey( const QString& privateKeyFile );
-	CryptoCore::PrivateKey& privateKey()
+	const CryptoCore::PrivateKey& privateKey() const
 	{
 		return m_privateKey;
 	}
