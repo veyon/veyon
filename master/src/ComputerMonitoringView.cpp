@@ -40,7 +40,8 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	ui(new Ui::ComputerMonitoringView),
 	m_masterCore( nullptr ),
 	m_featureMenu( new QMenu( this ) ),
-	m_computerListModel( nullptr )
+	m_computerListModel( nullptr ),
+	m_sortFilterProxyModel( this )
 {
 	ui->setupUi( this );
 
@@ -74,7 +75,11 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	// create computer list model and attach it to list view
 	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
 
-	ui->listView->setModel( m_computerListModel );
+	m_sortFilterProxyModel.setSourceModel( m_computerListModel );
+	m_sortFilterProxyModel.sort( 0 );
+
+	ui->listView->setModel( &m_sortFilterProxyModel );
+
 
 	// populate feature menu
 	Plugin::Uid previousPluginUid;
@@ -115,7 +120,8 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 		const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
 		for( const auto& index : selectedIndices )
 		{
-			computerControlInterfaces += &( m_computerListModel->computerControlInterface( index ) );
+			computerControlInterfaces += &( m_computerListModel->computerControlInterface(
+												m_sortFilterProxyModel.mapToSource( index ) ) );
 		}
 	}
 
