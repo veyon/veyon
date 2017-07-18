@@ -56,9 +56,6 @@ ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) 
 	connect( &m_manager, &ComputerManager::computerScreenUpdated,
 			 this, &ComputerListModel::updateComputerScreen );
 
-	connect( &m_manager, &ComputerManager::computerScreenSizeChanged,
-			 this, &ComputerListModel::updateComputerScreenSize );
-
 	loadIcons();
 }
 
@@ -164,13 +161,6 @@ void ComputerListModel::updateComputerScreen( int computerIndex )
 	emit dataChanged( index( computerIndex, 0 ),
 					  index( computerIndex, 0 ),
 					  QVector<int>( { Qt::DecorationRole, Qt::ToolTipRole } ) );
-}
-
-
-
-void ComputerListModel::updateComputerScreenSize()
-{
-	emit layoutChanged();
 }
 
 
