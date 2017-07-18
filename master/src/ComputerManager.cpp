@@ -107,8 +107,6 @@ void ComputerManager::updateComputerScreenSize()
 	{
 		computer.controlInterface().setScaledScreenSize( computerScreenSize() );
 	}
-
-	emit computerScreenSizeChanged();
 }
 
 
