@@ -56,7 +56,7 @@ LockWidget::LockWidget( Mode mode ) :
 	switch( mode )
 	{
 	case Black:
-		m_background = QPixmap( ":/resources/locked_bg.png" );
+		m_background = QPixmap( QStringLiteral( ":/resources/locked_bg.png" ) );
 		break;
 	case DesktopVisible:
 		QPixmap::grabWindow( qApp->desktop()->winId() );

@@ -102,15 +102,15 @@ QJsonObject AccessControlRule::toJson() const
 		if( isConditionEnabled( it.key() ) )
 		{
 			QJsonObject parametersObject;
-			parametersObject["Condition"] = it.key();
-			parametersObject["Enabled"] = true;
-			parametersObject["Subject"] = subject( it.key() );
-			parametersObject["Argument"] = argument( it.key() );
+			parametersObject[QStringLiteral("Condition")] = it.key();
+			parametersObject[QStringLiteral("Enabled")] = true;
+			parametersObject[QStringLiteral("Subject")] = subject( it.key() );
+			parametersObject[QStringLiteral("Argument")] = argument( it.key() );
 			parameters.append( parametersObject );
 		}
 	}
 
-	json["Parameters"] = parameters;
+	json[QStringLiteral("Parameters")] = parameters;
 
 	return json;
 }

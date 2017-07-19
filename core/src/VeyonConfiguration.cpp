@@ -79,7 +79,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setLogToWindowsEventLog( false );
 	c.setLogFileSizeLimit( 100 );
 	c.setLogFileRotationCount( 10 );
-	c.setLogFileDirectory( "$TEMP" );
+	c.setLogFileDirectory( QStringLiteral( "$TEMP" ) );
 
 	c.setPrimaryServicePort( PortOffsetPrimaryServiceServer );
 	c.setVncServerPort( PortOffsetVncServer );
@@ -88,14 +88,14 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setFirewallExceptionEnabled( true );
 	c.setSoftwareSASEnabled( true );
 
-	c.setUserConfigurationDirectory( QDTNS( "$APPDATA/Config" ) );
-	c.setScreenshotDirectory( QDTNS( "$APPDATA/Screenshots" ) );
+	c.setUserConfigurationDirectory( QDTNS( QStringLiteral( "$APPDATA/Config" ) ) );
+	c.setScreenshotDirectory( QDTNS( QStringLiteral( "$APPDATA/Screenshots" ) ) );
 
 	c.setKeyAuthenticationEnabled( true );
 	c.setLogonAuthenticationEnabled( true );
 
-	c.setPrivateKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/private" ) );
-	c.setPublicKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/public" ) );
+	c.setPrivateKeyBaseDir( QDTNS( QStringLiteral( "$GLOBALAPPDATA/keys/private" ) ) );
+	c.setPublicKeyBaseDir( QDTNS( QStringLiteral( "$GLOBALAPPDATA/keys/public" ) ) );
 
 	c.setAuthorizedUserGroups( QStringList() );
 

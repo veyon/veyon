@@ -151,10 +151,10 @@ bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
 	{
 		m_systemTrayIcon = new QSystemTrayIcon( this );
 
-		QIcon icon( ":/resources/icon16.png" );
-		icon.addFile( ":/resources/icon22.png" );
-		icon.addFile( ":/resources/icon32.png" );
-		icon.addFile( ":/resources/icon64.png" );
+		QIcon icon( QStringLiteral( ":/resources/icon16.png" ) );
+		icon.addFile( QStringLiteral( ":/resources/icon22.png" ) );
+		icon.addFile( QStringLiteral( ":/resources/icon32.png" ) );
+		icon.addFile( QStringLiteral( ":/resources/icon64.png" ) );
 
 		m_systemTrayIcon->setIcon( icon );
 		m_systemTrayIcon->show();

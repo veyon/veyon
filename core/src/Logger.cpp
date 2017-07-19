@@ -47,7 +47,7 @@ CXEventLog *Logger::winEventLog = NULL;
 #endif
 
 Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
-	m_appName( "Veyon" + appName ),
+	m_appName( QStringLiteral( "Veyon" ) + appName ),
 	m_logFile( nullptr ),
 	m_logFileSizeLimit( -1 ),
 	m_logFileRotationCount( -1 )
@@ -114,7 +114,7 @@ void Logger::initLogFile( VeyonConfiguration* config )
 	}
 
 	logPath = logPath + QDir::separator();
-	m_logFile = new QFile( logPath + QString( "%1.log" ).arg( m_appName ) );
+	m_logFile = new QFile( logPath + QString( QStringLiteral( "%1.log" ) ).arg( m_appName ) );
 
 	openLogFile();
 
@@ -165,7 +165,7 @@ void Logger::rotateLogFile()
 	closeLogFile();
 
 	const QFileInfo logFileInfo( *m_logFile );
-	const QStringList logFileFilter( { logFileInfo.fileName() + ".*" } );
+	const QStringList logFileFilter( { logFileInfo.fileName() + QStringLiteral( ".*" ) } );
 
 	auto rotatedLogFiles = logFileInfo.dir().entryList( logFileFilter, QDir::NoFilter, QDir::Name );
 
@@ -188,8 +188,8 @@ void Logger::rotateLogFile()
 		int logFileIndex = it->section( '.', -1 ).toInt( &numberOk );
 		if( numberOk )
 		{
-			const auto oldFileName = QString( "%1.%2" ).arg( m_logFile->fileName() ).arg( logFileIndex );
-			const auto newFileName = QString( "%1.%2" ).arg( m_logFile->fileName() ).arg( logFileIndex + 1 );
+			const auto oldFileName = QString( QStringLiteral( "%1.%2" ) ).arg( m_logFile->fileName() ).arg( logFileIndex );
+			const auto newFileName = QString( QStringLiteral( "%1.%2" ) ).arg( m_logFile->fileName() ).arg( logFileIndex + 1 );
 			QFile::rename( oldFileName, newFileName );
 		}
 		else
@@ -199,7 +199,7 @@ void Logger::rotateLogFile()
 		}
 	}
 
-	QFile::rename( m_logFile->fileName(), m_logFile->fileName() + ".0" );
+	QFile::rename( m_logFile->fileName(), m_logFile->fileName() + QStringLiteral( ".0" ) );
 
 	openLogFile();
 }
@@ -218,17 +218,17 @@ QString Logger::formatMessage( LogLevel ll, const QString &msg )
 	QString msgType;
 	switch( ll )
 	{
-		case LogLevelDebug: msgType = "DEBUG"; break;
-		case LogLevelInfo: msgType = "INFO"; break;
-		case LogLevelWarning: msgType = "WARN"; break;
-		case LogLevelError: msgType = "ERR"; break;
-		case LogLevelCritical: msgType = "CRIT"; break;
+		case LogLevelDebug: msgType = QStringLiteral( "DEBUG" ); break;
+		case LogLevelInfo: msgType = QStringLiteral( "INFO" ); break;
+		case LogLevelWarning: msgType = QStringLiteral( "WARN" ); break;
+		case LogLevelError: msgType = QStringLiteral( "ERR" ); break;
+		case LogLevelCritical: msgType = QStringLiteral( "CRIT" ); break;
 		default: break;
 	}
 
-	return QString( "%1.%2: [%3] %4%5" ).arg(
+	return QString( QStringLiteral( "%1.%2: [%3] %4%5" ) ).arg(
 				QDateTime::currentDateTime().toString( Qt::ISODate ),
-				QDateTime::currentDateTime().toString( "zzz"),
+				QDateTime::currentDateTime().toString( QStringLiteral( "zzz" ) ),
 				msgType,
 				msg.trimmed(),
 				linebreak );
@@ -254,7 +254,7 @@ void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext& context,
 
 	if( context.category && strcmp(context.category, "default") != 0 )
 	{
-		log( ll, QString("[%1] ").arg(context.category) + msg );
+		log( ll, QString( QStringLiteral( "[%1] " ) ).arg(context.category) + msg );
 	}
 	else
 	{
@@ -278,11 +278,9 @@ void Logger::log( LogLevel ll, const QString &msg )
 		{
 			if( lastMsgCount )
 			{
-				instance->outputMessage( formatMessage( lastMsgLevel, "---" ) );
-				instance->outputMessage( formatMessage( lastMsgLevel,
-				QString( "Last message repeated %1 times" ).
-					arg( lastMsgCount ) ) );
-				instance->outputMessage( formatMessage( lastMsgLevel, "---" ) );
+				instance->outputMessage( formatMessage( lastMsgLevel, QStringLiteral( "---" ) ) );
+				instance->outputMessage( formatMessage( lastMsgLevel, QString( QStringLiteral( "Last message repeated %1 times" ) ).arg( lastMsgCount ) ) );
+				instance->outputMessage( formatMessage( lastMsgLevel, QStringLiteral( "---" ) ) );
 				lastMsgCount = 0;
 			}
 			instance->outputMessage( formatMessage( ll, msg ) );

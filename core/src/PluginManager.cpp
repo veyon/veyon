@@ -41,21 +41,21 @@ PluginManager::PluginManager( QObject* parent ) :
 		QDir dir(qApp->applicationDirPath());
 		if( !path.isEmpty() && dir.cd( path ) )
 		{
-			QDir::addSearchPath( "plugins", dir.absolutePath() );
+			QDir::addSearchPath( QStringLiteral( "plugins" ), dir.absolutePath() );
 		}
 
 	};
 
 #ifdef Q_OS_WIN
-	addRelativeIfExists( "plugins" );
-	const QStringList nameFilters("*.dll");
+	addRelativeIfExists( QStringLiteral( "plugins" ) );
+	const QStringList nameFilters( QStringLiteral( "*.dll" ) );
 #else
-	addRelativeIfExists( "../lib/veyon" );
-	addRelativeIfExists( "../lib64/veyon" );  // for some 64bits linux distributions, mainly Fedora 64bit
-	const QStringList nameFilters("*.so");
+	addRelativeIfExists( QStringLiteral( "../lib/veyon" ) );
+	addRelativeIfExists( QStringLiteral( "../lib64/veyon" ) );  // for some 64bits linux distributions, mainly Fedora 64bit
+	const QStringList nameFilters( QStringLiteral( "*.so" ) );
 #endif
 
-	auto plugins = QDir( "plugins:" ).entryInfoList( nameFilters );
+	auto plugins = QDir( QStringLiteral( "plugins:" ) ).entryInfoList( nameFilters );
 	for( const auto& fileInfo : plugins )
 	{
 		auto pluginObject = QPluginLoader( fileInfo.filePath() ).instance();
