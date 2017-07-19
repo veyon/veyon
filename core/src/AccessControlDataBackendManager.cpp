@@ -27,7 +27,8 @@
 #include "AccessControlDataBackendManager.h"
 
 
-AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager& pluginManager ) :
+AccessControlDataBackendManager::AccessControlDataBackendManager( PluginManager& pluginManager, QObject* parent ) :
+	QObject( parent ),
 	m_backends(),
 	m_defaultBackend( nullptr ),
 	m_configuredBackend( nullptr )

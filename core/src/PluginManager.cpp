@@ -64,8 +64,8 @@ PluginManager::PluginManager( QObject* parent ) :
 		if( pluginObject && pluginInterface )
 		{
 			qDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
-			m_pluginInterfaces += pluginInterface;
-			m_pluginObjects += pluginObject;
+			m_pluginInterfaces += pluginInterface;	// clazy:exclude=reserve-candidates
+			m_pluginObjects += pluginObject;		// clazy:exclude=reserve-candidates
 		}
 	}
 }
@@ -88,6 +88,8 @@ PluginUidList PluginManager::pluginUids() const
 {
 	PluginUidList pluginUidList;
 
+	pluginUidList.reserve( m_pluginInterfaces.size() );
+
 	for( auto pluginInterface : m_pluginInterfaces )
 	{
 		pluginUidList += pluginInterface->uid();
@@ -100,7 +102,7 @@ PluginUidList PluginManager::pluginUids() const
 
 
 
-PluginInterface* PluginManager::pluginInterface( const Plugin::Uid& pluginUid )
+PluginInterface* PluginManager::pluginInterface( Plugin::Uid pluginUid )
 {
 	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
 	{
@@ -115,7 +117,7 @@ PluginInterface* PluginManager::pluginInterface( const Plugin::Uid& pluginUid )
 
 
 
-QString PluginManager::pluginName( const Plugin::Uid& pluginUid ) const
+QString PluginManager::pluginName( Plugin::Uid pluginUid ) const
 {
 	for( auto pluginInterface : m_pluginInterfaces )
 	{

@@ -95,6 +95,21 @@ public:
 	{
 	}
 
+	~Feature() {}
+
+	Feature& operator=( const Feature& other )
+	{
+		m_flags = other.flags();
+		m_uid = other.uid();
+		m_displayName = other.displayName();
+		m_displayNameActive = other.displayNameActive();
+		m_description = other.description();
+		m_iconUrl = other.iconUrl();
+		m_shortcut = other.shortcut();
+
+		return *this;
+	}
+
 	bool operator==( const Feature& other ) const
 	{
 		return other.uid() == uid();

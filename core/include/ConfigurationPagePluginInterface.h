@@ -29,6 +29,8 @@
 
 class ConfigurationPage;
 
+// clazy:excludeall=copyable-polymorphic
+
 class ConfigurationPagePluginInterface
 {
 public:

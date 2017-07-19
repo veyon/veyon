@@ -42,16 +42,16 @@
 #include "SocketDevice.h"
 
 
-class MessageEvent
+class MessageEvent	// clazy:exclude=copyable-polymorphic
 {
 public:
-	virtual ~MessageEvent() { }
-
+	virtual ~MessageEvent() {}
 	virtual void fire( rfbClient *c ) = 0;
+
 } ;
 
 
-class VEYON_CORE_EXPORT VeyonVncConnection: public QThread
+class VEYON_CORE_EXPORT VeyonVncConnection : public QThread
 {
 	Q_OBJECT
 public:

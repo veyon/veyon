@@ -33,9 +33,10 @@
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 
+// clazy:excludeall=detaching-member
 
-FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager ) :
-	QObject(),
+FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager, QObject* parent ) :
+	QObject( parent ),
 	m_featureManager( featureManager ),
 	m_tcpServer( this )
 {

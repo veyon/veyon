@@ -32,11 +32,11 @@
 
 class FeatureWorkerManager;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT FeaturePluginInterface
 {
 public:
-	virtual ~FeaturePluginInterface() {}
-
 	/*!
 	 * \brief Returns a list of features implemented by the feature class
 	 */

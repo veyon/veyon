@@ -2,7 +2,7 @@
  * SystemKeyTrapper.cpp - class for trapping system-keys and -key-sequences
  *                        such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -23,7 +23,6 @@
  *
  */
 
-
 #include <veyonconfig.h>
 
 #ifdef VEYON_BUILD_WIN32
@@ -32,7 +31,6 @@
 
 #endif
 
-
 #define XK_KOREAN
 #include "rfb/keysym.h"
 #include "SystemKeyTrapper.h"
@@ -40,6 +38,8 @@
 #include <QtCore/QList>
 #include <QtCore/QProcess>
 #include <QtCore/QTimer>
+
+// clazy:excludeall=non-pod-global-static
 
 static QMutex __trapped_keys_mutex;
 static QList<SystemKeyTrapper::TrappedKeys> __trapped_keys;
@@ -129,8 +129,8 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 #endif
 
 
-SystemKeyTrapper::SystemKeyTrapper( bool enabled ) :
-	QObject(),
+SystemKeyTrapper::SystemKeyTrapper( bool enabled, QObject* parent ) :
+	QObject( parent ),
 	m_enabled( false )
 {
 	setEnabled( enabled );

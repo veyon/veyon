@@ -85,7 +85,7 @@ Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 
 Logger::~Logger()
 {
-	qDebug() << "Shutdown";
+	qDebug( "Shutdown" );
 
 	qInstallMessageHandler(nullptr);
 

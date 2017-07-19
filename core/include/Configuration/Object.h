@@ -36,6 +36,8 @@
 namespace Configuration
 {
 
+// clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
+
 class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT

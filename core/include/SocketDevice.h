@@ -42,8 +42,8 @@ public:
 	typedef qint64 (* Dispatcher )( char* buffer, const qint64 bytes,
 									SocketOperation operation, void* user );
 
-	SocketDevice( Dispatcher dispatcher, void *user = NULL ) :
-		QIODevice(),
+	SocketDevice( Dispatcher dispatcher, void *user = nullptr, QObject* parent = nullptr ) :
+		QIODevice( parent ),
 		m_dispatcher( dispatcher ),
 		m_user( user )
 	{

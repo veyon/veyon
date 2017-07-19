@@ -42,7 +42,7 @@ public:
 		NoBackground
 	} Mode;
 
-	LockWidget( Mode mode = Black );
+	LockWidget( Mode mode = Black, QWidget* parent = nullptr );
 	~LockWidget() override;
 
 

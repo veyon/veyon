@@ -74,7 +74,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 	if( p.exitCode() == 0 )
 	{
 		result = true;
-		qDebug() << "User authenticated successfully";
+		qDebug( "User authenticated successfully" );
 	}
 	else
 	{

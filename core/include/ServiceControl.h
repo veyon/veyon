@@ -32,6 +32,8 @@
 class QProcess;
 class QWidget;
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class VEYON_CORE_EXPORT ServiceControl : public QObject
 {
 	Q_OBJECT

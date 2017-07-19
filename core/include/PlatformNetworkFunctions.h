@@ -27,6 +27,8 @@
 
 #include "VeyonCore.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT PlatformNetworkFunctions
 {
 public:

@@ -40,16 +40,16 @@ class VEYON_CORE_EXPORT FeatureManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureManager();
+	FeatureManager( QObject* parent = nullptr );
 
 	const FeatureList& features() const
 	{
 		return m_features;
 	}
 
-	const FeatureList& features( const Plugin::Uid& pluginUid ) const;
+	const FeatureList& features( Plugin::Uid pluginUid ) const;
 
-	const Feature& feature( const Feature::Uid& featureUid ) const;
+	const Feature& feature( Feature::Uid featureUid ) const;
 
 	Plugin::Uid pluginUid( const Feature& feature ) const;
 

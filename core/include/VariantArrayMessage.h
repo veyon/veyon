@@ -32,6 +32,8 @@
 
 class VariantStream;
 
+// clazy:excludeall=rule-of-three
+
 class VEYON_CORE_EXPORT VariantArrayMessage
 {
 public:

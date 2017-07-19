@@ -35,6 +35,7 @@
 
 class QWidget;
 
+// clazy:excludeall=rule-of-three
 
 namespace LocalSystem
 {

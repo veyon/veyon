@@ -32,6 +32,8 @@ class QSettings;
 namespace Configuration
 {
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT LocalStore : public Store
 {
 public:

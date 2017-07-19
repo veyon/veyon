@@ -26,7 +26,8 @@
 #include "PlatformPluginManager.h"
 
 
-PlatformPluginManager::PlatformPluginManager( PluginManager& pluginManager ) :
+PlatformPluginManager::PlatformPluginManager( PluginManager& pluginManager, QObject* parent ) :
+	QObject( parent ),
 	m_platformPlugin( nullptr )
 {
 	for( auto pluginObject : qAsConst( pluginManager.pluginObjects() ) )

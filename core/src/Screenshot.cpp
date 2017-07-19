@@ -36,7 +36,8 @@
 #include "Logger.h"
 
 
-Screenshot::Screenshot( const QString &fileName ) :
+Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
+	QObject( parent ),
 	m_fileName( fileName ),
 	m_image()
 {

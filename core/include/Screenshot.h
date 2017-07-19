@@ -35,7 +35,7 @@ class VEYON_CORE_EXPORT Screenshot : public QObject
 {
 	Q_OBJECT
 public:
-	Screenshot( const QString &fileName = QString() );
+	Screenshot( const QString &fileName = QString(), QObject* parent = nullptr );
 
 	void take( const ComputerControlInterface& computerControlInterface );
 

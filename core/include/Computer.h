@@ -31,6 +31,8 @@
 #include "ComputerControlInterface.h"
 #include "NetworkObject.h"
 
+// clazy:excludeall=rule-of-three
+
 class VEYON_CORE_EXPORT Computer
 {
 public:

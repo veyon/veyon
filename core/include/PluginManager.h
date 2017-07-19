@@ -55,9 +55,9 @@ public:
 
 	PluginUidList pluginUids() const;
 
-	PluginInterface* pluginInterface( const Plugin::Uid& pluginUid );
+	PluginInterface* pluginInterface( Plugin::Uid pluginUid );
 
-	QString pluginName( const Plugin::Uid& pluginUid ) const;
+	QString pluginName( Plugin::Uid pluginUid ) const;
 
 
 private:

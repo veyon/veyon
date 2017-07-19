@@ -44,7 +44,7 @@ public:
 	QStringList userGroups() const;
 	QStringList rooms() const;
 
-	AccessResult checkAccess( QString accessingUser, QString accessingComputer,
+	AccessResult checkAccess( const QString& accessingUser, const QString& accessingComputer,
 							  const QStringList& connectedUsers );
 
 	bool processAuthorizedGroups( const QString& accessingUser );

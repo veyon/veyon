@@ -33,6 +33,8 @@
 
 #include "VeyonConfigurationProperties.h"
 
+// clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
+
 class VEYON_CORE_EXPORT VeyonConfiguration : public Configuration::Object
 {
 	Q_OBJECT

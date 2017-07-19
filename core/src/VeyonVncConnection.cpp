@@ -29,6 +29,7 @@
 #include <QHostAddress>
 #include <QMutexLocker>
 #include <QPixmap>
+#include <QTime>
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
@@ -45,6 +46,7 @@ extern "C"
 	#include <rfb/rfbclient.h>
 }
 
+// clazy:excludeall=copyable-polymorphic
 
 class KeyClientEvent : public MessageEvent
 {
@@ -100,7 +102,7 @@ public:
 
 	void fire( rfbClient *cl ) override
 	{
-		SendClientCutText( cl, m_text.data(), m_text.size() );
+		SendClientCutText( cl, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
 	}
 
 private:
@@ -782,6 +784,8 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 	int authTypeCount = message.read().toInt();
 
 	QList<RfbVeyonAuth::Type> authTypes;
+	authTypes.reserve( authTypeCount );
+
 	for( int i = 0; i < authTypeCount; ++i )
 	{
 		authTypes.append( message.read().value<RfbVeyonAuth::Type>() );

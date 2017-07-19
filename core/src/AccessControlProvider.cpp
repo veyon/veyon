@@ -40,6 +40,8 @@ AccessControlProvider::AccessControlProvider() :
 {
 	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
+	m_accessControlRules.reserve( accessControlRules.size() );
+
 	for( const auto& accessControlRule : accessControlRules )
 	{
 		m_accessControlRules.append( accessControlRule );
@@ -70,8 +72,8 @@ QStringList AccessControlProvider::rooms() const
 
 
 
-AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString accessingUser,
-																		QString accessingComputer,
+AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QString& accessingUser,
+																		const QString& accessingComputer,
 																		const QStringList& connectedUsers )
 {
 	if( VeyonCore::config().isAccessRestrictedToUserGroups() )

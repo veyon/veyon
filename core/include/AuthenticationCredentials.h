@@ -28,6 +28,8 @@
 #include "CryptoCore.h"
 #include "VeyonCore.h"
 
+// clazy:excludeall=rule-of-three
+
 class VEYON_CORE_EXPORT AuthenticationCredentials
 {
 public:

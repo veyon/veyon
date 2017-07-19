@@ -134,8 +134,7 @@ void ToolButton::enterEvent( QEvent * _e )
 		auto tbt = new ToolButtonTip( m_pixmap, m_label,
 							m_descr,
 				QApplication::desktop()->screen( screenNumber ), this );
-		connect( this, SIGNAL( mouseLeftButton() ),
-							tbt, SLOT( close() ) );
+		connect( this, &ToolButton::mouseLeftButton, tbt, &QWidget::close );
 
 		if( p.x() + tbt->width() > screen.x() + screen.width() )
 			p.rx() -= 4;// + tbt->width();
@@ -249,7 +248,7 @@ bool ToolButton::checkForLeaveEvent()
 	if( QRect( mapToGlobal( QPoint( 0, 0 ) ), size() ).
 					contains( QCursor::pos() ) )
 	{
-		QTimer::singleShot( 20, this, SLOT( checkForLeaveEvent() ) );
+		QTimer::singleShot( 20, this, &ToolButton::checkForLeaveEvent );
 	}
 	else
 	{

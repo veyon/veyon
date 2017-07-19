@@ -1,7 +1,7 @@
 /*
  * Logger.h - a global clas for easily logging messages to log files
  *
- * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -25,14 +25,15 @@
 #ifndef VEYONCORE_LOGGER_H
 #define VEYONCORE_LOGGER_H
 
-#include <QtCore/QDebug>
-#include <QtCore/QTextStream>
-#include <QtCore/QMutex>
+#include <QMutex>
+#include <QTextStream>
 
 #include "VeyonCore.h"
 
 class QFile;
 class CXEventLog;
+
+// clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT Logger
 {

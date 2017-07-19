@@ -32,6 +32,7 @@ extern "C"
 	#include <rfb/rfbclient.h>
 }
 
+// clazy:excludeall=copyable-polymorphic
 
 class FeatureMessageEvent : public MessageEvent
 {
@@ -83,8 +84,8 @@ VeyonCoreConnection::VeyonCoreConnection( VeyonVncConnection *vncConn ):
 	}
 
 	if (m_vncConn) {
-		connect( m_vncConn, SIGNAL( newClient( rfbClient * ) ),
-				this, SLOT( initNewClient( rfbClient * ) ),
+		connect( m_vncConn, &VeyonVncConnection::newClient,
+				this, &VeyonCoreConnection::initNewClient,
 				Qt::DirectConnection );
 	}
 }

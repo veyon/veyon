@@ -47,8 +47,8 @@ static int __ss_val[3];
 
 
 
-LockWidget::LockWidget( Mode mode ) :
-	QWidget( nullptr, Qt::X11BypassWindowManagerHint ),
+LockWidget::LockWidget( Mode mode, QWidget* parent ) :
+	QWidget( parent, Qt::X11BypassWindowManagerHint ),
 	m_background(),
 	m_mode( mode ),
 	m_inputDeviceBlocker()

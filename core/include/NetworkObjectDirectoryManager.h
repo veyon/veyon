@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT NetworkObjectDirectoryManager : public QObject
 {
 	Q_OBJECT
 public:
-	NetworkObjectDirectoryManager();
+	NetworkObjectDirectoryManager( QObject* parent = nullptr );
 
 	QMap<Plugin::Uid, QString> availableDirectories();
 
