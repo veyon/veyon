@@ -31,13 +31,14 @@
 #include "LocalSystem.h"
 
 
-LdapPlugin::LdapPlugin() :
+LdapPlugin::LdapPlugin( QObject* parent ) :
+	QObject( parent ),
 	m_configuration(),
 	m_ldapDirectory( nullptr ),
 	m_commands( {
-{ "autoconfigurebasedn", tr( "Auto-configure the base DN via naming context" ) },
-{ "query", tr( "Query objects from LDAP directory" ) },
-{ "help", tr( "Show help about command" ) },
+{ QStringLiteral("autoconfigurebasedn"), tr( "Auto-configure the base DN via naming context" ) },
+{ QStringLiteral("query"), tr( "Query objects from LDAP directory" ) },
+{ QStringLiteral("help"), tr( "Show help about command" ) },
 				} )
 {
 }
@@ -200,19 +201,19 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 	QString filter = arguments.value( 1 );
 	QStringList results;
 
-	if( objectType == "rooms" )
+	if( objectType == QStringLiteral("rooms") )
 	{
 		results = ldapDirectory().computerRooms( filter );
 	}
-	else if( objectType == "computers" )
+	else if( objectType == QStringLiteral("computers") )
 	{
 		results = ldapDirectory().computers( filter );
 	}
-	else if( objectType == "groups" )
+	else if( objectType == QStringLiteral("groups") )
 	{
 		results = ldapDirectory().groups( filter );
 	}
-	else if( objectType == "users" )
+	else if( objectType == QStringLiteral("users") )
 	{
 		results = ldapDirectory().users( filter );
 	}
@@ -236,7 +237,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 {
 	QString command = arguments.value( 0 );
 
-	if( command == "autoconfigurebasedn" )
+	if( command == QStringLiteral("autoconfigurebasedn") )
 	{
 		printf( "\n"
 				"ldap autoconfigurebasedn <LDAP URL> [<naming context attribute name>]\n"
@@ -248,7 +249,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 				"  ldap[s]://[user[:password]@]hostname[:port]\n\n" );
 		return NoResult;
 	}
-	else if( command == "query" )
+	else if( command == QStringLiteral("query") )
 	{
 		printf( "\n"
 				"ldap query <object type> [filter]\n"

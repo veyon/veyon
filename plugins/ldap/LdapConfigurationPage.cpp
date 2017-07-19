@@ -33,8 +33,8 @@
 
 #include "ui_LdapConfigurationPage.h"
 
-LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration ) :
-	ConfigurationPage(),
+LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui(new Ui::LdapConfigurationPage),
 	m_configuration( configuration )
 {

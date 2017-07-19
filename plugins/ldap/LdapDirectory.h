@@ -36,7 +36,7 @@ class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	LdapDirectory( const LdapConfiguration& configuration, const QUrl& url = QUrl() );
+	LdapDirectory( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
 	~LdapDirectory() override;
 
 	bool isConnected() const;

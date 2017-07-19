@@ -59,7 +59,7 @@ class LdapConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT
 public:
-	LdapConfiguration();
+	LdapConfiguration( QObject* parent = nullptr );
 
 	FOREACH_LDAP_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 

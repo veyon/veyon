@@ -47,7 +47,7 @@ class LdapPlugin : public QObject, PluginInterface,
 				 AccessControlDataBackendInterface
 				 ConfigurationPagePluginInterface)
 public:
-	LdapPlugin();
+	LdapPlugin( QObject* parent = nullptr );
 	~LdapPlugin() override;
 
 	Plugin::Uid uid() const override
