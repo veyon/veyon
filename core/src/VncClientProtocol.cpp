@@ -115,7 +115,7 @@ bool VncClientProtocol::read()
 
 
 
-bool VncClientProtocol::setPixelFormat( const rfbPixelFormat& pixelFormat )
+bool VncClientProtocol::setPixelFormat( rfbPixelFormat pixelFormat )
 {
 	rfbSetPixelFormatMsg spf;
 
@@ -623,7 +623,7 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPi
 
 
 bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
-													const rfbFramebufferUpdateRectHeader& rectHeader,
+													rfbFramebufferUpdateRectHeader rectHeader,
 													int bytesPerPixel )
 {
 	const int rx = rectHeader.r.x;
