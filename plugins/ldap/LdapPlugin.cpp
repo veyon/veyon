@@ -103,15 +103,15 @@ QStringList LdapPlugin::userGroups()
 
 
 
-QStringList LdapPlugin::groupsOfUser( QString username )
+QStringList LdapPlugin::groupsOfUser( const QString& username )
 {
-	username = LocalSystem::User::stripDomain( username );
+	const auto strippedUsername = LocalSystem::User::stripDomain( username );
 
-	const QString userDn = ldapDirectory().users( username ).value( 0 );
+	const QString userDn = ldapDirectory().users( strippedUsername ).value( 0 );
 
 	if( userDn.isEmpty() )
 	{
-		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << username;
+		qWarning() << "LdapPlugin::groupsOfUser(): empty user DN for user" << strippedUsername;
 		return QStringList();
 	}
 
@@ -127,7 +127,7 @@ QStringList LdapPlugin::allRooms()
 
 
 
-QStringList LdapPlugin::roomsOfComputer( QString computerName )
+QStringList LdapPlugin::roomsOfComputer( const QString& computerName )
 {
 	const QString computerDn = ldapDirectory().computerObjectFromHost( computerName );
 
