@@ -32,7 +32,6 @@ class ServerAccessControlManager;
 
 class VeyonServiceProtocol : public VncServerProtocol
 {
-	Q_OBJECT
 public:
 	VeyonServiceProtocol( QTcpSocket* socket,
 						  VncServerClient* client,
