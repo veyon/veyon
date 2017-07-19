@@ -552,7 +552,7 @@ float VncView::scaleFactor() const
 
 
 
-QPoint VncView::mapToFramebuffer( const QPoint &pos )
+QPoint VncView::mapToFramebuffer( QPoint pos )
 {
 	if( m_framebufferSize.isEmpty() )
 	{
@@ -565,7 +565,7 @@ QPoint VncView::mapToFramebuffer( const QPoint &pos )
 
 
 
-QRect VncView::mapFromFramebuffer( const QRect &r )
+QRect VncView::mapFromFramebuffer( QRect r )
 {
 	if( m_framebufferSize.isEmpty() )
 	{
