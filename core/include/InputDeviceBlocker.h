@@ -31,9 +31,10 @@
 #include <interception.h>
 #endif
 
-#include <QtCore/QByteArray>
-#include <QtCore/QMutex>
+#include <QByteArray>
+#include <QMutex>
 
+// clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT InputDeviceBlocker
 {
