@@ -42,7 +42,7 @@ extern "C"
  */
 
 static void
-vncEncryptBytes(unsigned char *bytes, char *passwd)
+vncEncryptBytes(unsigned char *bytes, const char *passwd)
 {
 	unsigned char key[8];
 	unsigned int i;
@@ -307,7 +307,7 @@ bool VncClientProtocol::receiveSecurityChallenge()
 		uint8_t challenge[CHALLENGESIZE];
 		m_socket->read( (char *) challenge, CHALLENGESIZE );
 
-		vncEncryptBytes( challenge, m_vncPassword.data() );
+		vncEncryptBytes( challenge, m_vncPassword.constData() );
 
 		m_socket->write( (const char *) challenge, CHALLENGESIZE );
 
