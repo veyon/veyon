@@ -110,8 +110,15 @@ void InputDeviceBlocker::saveKeyMapTable()
 	// read original keymap
 	QProcess p;
 	p.start( QStringLiteral( "xmodmap" ), { QStringLiteral( "-pke" ) } );	// print keymap
-	p.waitForFinished();
-	m_origKeyTable = p.readAll();
+	if( p.waitForStarted( XmodmapMaxStartTime ) )
+	{
+		p.waitForFinished();
+		m_origKeyTable = p.readAll();
+	}
+	else
+	{
+		xmodmapError();
+	}
 #endif
 }
 
@@ -134,10 +141,16 @@ void InputDeviceBlocker::setEmptyKeyMapTable()
 	// start new xmodmap process and dump our empty keytable from stdin
 	QProcess p;
 	p.start( QStringLiteral( "xmodmap" ), { QStringLiteral( "-" ) } );
-	p.waitForStarted();
-	p.write( emptyKeyMapTable.join( '\n' ).toUtf8() );
-	p.closeWriteChannel();
-	p.waitForFinished();
+	if( p.waitForStarted( XmodmapMaxStartTime ) )
+	{
+		p.write( emptyKeyMapTable.join( '\n' ).toUtf8() );
+		p.closeWriteChannel();
+		p.waitForFinished();
+	}
+	else
+	{
+		xmodmapError();
+	}
 #endif
 }
 
@@ -149,10 +162,22 @@ void InputDeviceBlocker::restoreKeyMapTable()
 	// start xmodmap process and dump our original keytable from stdin
 	QProcess p;
 	p.start( QStringLiteral( "xmodmap" ), { QStringLiteral( "-" ) } );
-	p.waitForStarted();
-	p.write( m_origKeyTable );
-	p.closeWriteChannel();
-	p.waitForFinished();
+	if( p.waitForStarted( XmodmapMaxStartTime ) )
+	{
+		p.write( m_origKeyTable );
+		p.closeWriteChannel();
+		p.waitForFinished();
+	}
+	else
+	{
+		xmodmapError();
+	}
 #endif
 }
 
+
+
+void InputDeviceBlocker::xmodmapError()
+{
+	qCritical( "InputDeviceBlocker: could not start xmodmap - do you have x11-xserver-utils, xmodmap or xorg-xmodmap installed?" );
+}

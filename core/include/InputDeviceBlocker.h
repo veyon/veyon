@@ -50,11 +50,16 @@ public:
 
 
 private:
+	enum {
+		XmodmapMaxStartTime = 5000
+	};
+
 	void enableInterception();
 	void disableInterception();
 	void saveKeyMapTable();
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
+	void xmodmapError();
 
 	static QMutex s_refCntMutex;
 	static int s_refCnt;
