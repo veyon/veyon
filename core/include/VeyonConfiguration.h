@@ -66,10 +66,10 @@ public slots:
 	void setLogFileSizeLimit( int );
 	void setLogFileRotationCount( int );
 	void setLogFileDirectory( const QString & );
-	void setNetworkObjectDirectoryPlugin( const QUuid& );
+	void setNetworkObjectDirectoryPlugin( QUuid );
 	void setNetworkObjectDirectoryUpdateInterval( int );
 	void setDisabledFeatures( const QStringList& );
-	void setVncServerPlugin( const QUuid& );
+	void setVncServerPlugin( QUuid );
 	void setPrimaryServicePort( int );
 	void setVncServerPort( int );
 	void setFeatureWorkerManagerPort( int );
@@ -86,12 +86,12 @@ public slots:
 	void setLocalComputerHidden( bool );
 	void setEmptyRoomsHidden( bool );
 	void setComputerFilterHidden( bool );
-	void setComputerDoubleClickFeature( const QUuid& );
+	void setComputerDoubleClickFeature( QUuid );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
-	void setAccessControlDataBackend( const QUuid& );
+	void setAccessControlDataBackend( QUuid );
 	void setAccessRestrictedToUserGroups( bool );
 	void setAccessControlRulesProcessingEnabled( bool );
 	void setAuthorizedUserGroups( const QStringList& );

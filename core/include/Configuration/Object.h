@@ -194,7 +194,7 @@ private:
 		}
 
 #define IMPLEMENT_CONFIG_SET_UUID_PROPERTY(className,set,key,parentKey)	\
-		void className::set( const QUuid& val )									\
+		void className::set( QUuid val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
