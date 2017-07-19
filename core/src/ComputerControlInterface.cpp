@@ -51,7 +51,7 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( const QSize& scaledScreenSize, UserSessionControl* userSessionControl )
+void ComputerControlInterface::start( QSize scaledScreenSize, UserSessionControl* userSessionControl )
 {
 	m_scaledScreenSize = scaledScreenSize;
 	m_userSessionControl = userSessionControl;
@@ -106,7 +106,7 @@ void ComputerControlInterface::stop()
 
 
 
-void ComputerControlInterface::setScaledScreenSize( const QSize& scaledScreenSize )
+void ComputerControlInterface::setScaledScreenSize( QSize scaledScreenSize )
 {
 	m_scaledScreenSize = scaledScreenSize;
 
