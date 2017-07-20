@@ -22,36 +22,12 @@
  *
  */
 
-#include <QTcpSocket>
-
 #include "VariantStream.h"
 
 VariantStream::VariantStream( QIODevice* ioDevice ) :
-	m_dataStream( this ),
-	m_ioDevice( ioDevice ),
-	m_socket( nullptr )
+	m_dataStream( ioDevice )
 {
 	m_dataStream.setVersion( QDataStream::Qt_5_5 );
-
-	open( QIODevice::ReadWrite | QIODevice::Unbuffered );
-}
-
-
-
-VariantStream::VariantStream( QTcpSocket* socket ) :
-	m_dataStream( this ),
-	m_ioDevice( socket ),
-	m_socket( socket )
-{
-	m_dataStream.setVersion( QDataStream::Qt_5_5 );
-
-	open( QIODevice::ReadWrite | QIODevice::Unbuffered );
-}
-
-
-
-VariantStream::~VariantStream()
-{
 }
 
 
@@ -61,9 +37,9 @@ QVariant VariantStream::read()
 	QVariant v;
 	m_dataStream >> v;
 
-	if( m_socket && ( v.isValid() == false || v.isNull() ) )
+	if( v.isValid() == false || v.isNull() )
 	{
-		m_socket->close();
+		qWarning( "VariantStream: none or invalid data read" );
 	}
 
 	return v;
@@ -71,47 +47,7 @@ QVariant VariantStream::read()
 
 
 
-void VariantStream::write( const QVariant &v )
+void VariantStream::write( const QVariant& v )
 {
 	m_dataStream << v;
-}
-
-
-
-qint64 VariantStream::bytesAvailable() const
-{
-	return m_ioDevice->bytesAvailable();
-}
-
-
-
-qint64 VariantStream::readData( char* data, qint64 maxSize )
-{
-	// implement blocking read
-
-	qint64 bytesRead = 0;
-	while( bytesRead < maxSize )
-	{
-		qint64 n = m_ioDevice->read( data + bytesRead, maxSize - bytesRead );
-		if( n < 0 )
-		{
-			qDebug( "VariantStream: read() returned %d while reading %d of %d bytes", (int) n, (int) bytesRead, (int) maxSize );
-			return -1;
-		}
-		bytesRead += n;
-		if( bytesRead < maxSize && m_ioDevice->waitForReadyRead( 5000 ) == false )
-		{
-			qDebug( "VariantStream: timeout after reading %d of %d bytes", (int) bytesRead, (int) maxSize );
-			return bytesRead;
-		}
-	}
-
-	return bytesRead;
-}
-
-
-
-qint64 VariantStream::writeData( const char* data, qint64 maxSize )
-{
-	return m_ioDevice->write( data, maxSize );
 }
