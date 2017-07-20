@@ -48,6 +48,17 @@ public:
 	void loadStates( const QJsonArray& data );
 
 private:
+	Qt::CheckState checkStateFromVariant( const QVariant& data )
+	{
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		// work around broken conversion for Q_ENUMs in QVariant of Qt 5.5
+		return static_cast<Qt::CheckState>( data.toInt() );
+#else
+		return data.value<Qt::CheckState>();
+#endif
+	}
+
 	int m_uidRole;
 	QHash<QUuid, Qt::CheckState> m_checkStates;
 	int m_callDepth;
