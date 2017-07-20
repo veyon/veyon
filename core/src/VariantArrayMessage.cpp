@@ -30,19 +30,12 @@
 
 VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
 	m_buffer(),
-	m_stream( new VariantStream( &m_buffer ) ),
+	m_stream( &m_buffer ),
 	m_ioDevice( ioDevice )
 {
 	Q_ASSERT( m_ioDevice != nullptr );
 
 	m_buffer.open( QBuffer::ReadWrite );
-}
-
-
-
-VariantArrayMessage::~VariantArrayMessage()
-{
-	delete m_stream;
 }
 
 
@@ -88,7 +81,7 @@ bool VariantArrayMessage::receive()
 
 	messageSize = qFromBigEndian(messageSize);
 
-	QByteArray data = m_ioDevice->read( messageSize );
+	const auto data = m_ioDevice->read( messageSize );
 	if( data.size() != (int) messageSize )
 	{
 		qWarning( "VariantArrayMessage::receive(): could not read message data!" );
@@ -106,14 +99,14 @@ bool VariantArrayMessage::receive()
 
 QVariant VariantArrayMessage::read()
 {
-	return m_stream->read();
+	return m_stream.read();
 }
 
 
 
 VariantArrayMessage& VariantArrayMessage::write( const QVariant& v )
 {
-	m_stream->write( v );
+	m_stream.write( v );
 
 	return *this;
 }
