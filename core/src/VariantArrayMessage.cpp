@@ -42,8 +42,6 @@ VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
 
 bool VariantArrayMessage::send()
 {
-	m_buffer.seek( 0 );
-
 	MessageSize messageSize = qToBigEndian<MessageSize>( m_buffer.size() );
 	m_ioDevice->write( (const char *) &messageSize, sizeof(messageSize) );
 	m_ioDevice->write( m_buffer.data() );
