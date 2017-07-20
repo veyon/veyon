@@ -46,7 +46,6 @@
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
 #include "PluginManager.h"
-#include "VariantStream.h"
 
 #include "rfb/rfbclient.h"
 

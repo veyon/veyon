@@ -38,7 +38,6 @@
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "SystemTrayIcon.h"
-#include "VariantStream.h"
 
 
 ComputerControlServer::ComputerControlServer() :
