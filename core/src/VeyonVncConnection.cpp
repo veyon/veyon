@@ -788,7 +788,12 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 
 	for( int i = 0; i < authTypeCount; ++i )
 	{
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		authTypes.append( static_cast<RfbVeyonAuth::Type>( message.read().toInt() ) );
+#else
 		authTypes.append( message.read().value<RfbVeyonAuth::Type>() );
+#endif
 	}
 
 	qDebug() << "VeyonVncConnection::handleSecTypeVeyon(): received authentication types:" << authTypes;
