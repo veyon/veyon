@@ -105,13 +105,13 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
 		{
 			QJsonObject jsonObj;
-			jsonObj[QStringLiteral("JsonStoreArray")] = QJsonValue::fromVariant( it.value() ).toArray();
+			jsonObj[QStringLiteral("JsonStoreArray")] = it.value().toJsonArray();
 			jsonData[it.key()] = jsonObj;
 		}
 		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
 		{
 			QJsonObject jsonObj;
-			jsonObj[QStringLiteral("JsonStoreObject")] = QJsonValue::fromVariant( it.value() ).toObject();
+			jsonObj[QStringLiteral("JsonStoreObject")] = it.value().toJsonObject();
 			jsonData[it.key()] = jsonObj;
 		}
 		else
