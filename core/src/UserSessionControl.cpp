@@ -42,7 +42,7 @@ UserSessionControl::UserSessionControl( QObject* parent ) :
 						 Feature::Uid( "7311d43d-ab53-439e-a03a-8cb25f7ed526" ),
 						 tr( "Logout user" ), QString(),
 						 tr( "Click this button to logout users from all computers." ),
-						 ":/resources/system-suspend-hibernate.png" ),
+						 QStringLiteral( ":/resources/system-suspend-hibernate.png" ) ),
 	m_features(),
 	m_userInfoQueryThread( new QThread( this ) ),
 	m_userInfoQueryTimer( new QTimer )
@@ -140,7 +140,7 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		}
 		else
 		{
-			reply.addArgument( UserName, QString( "%1 (%2)" ).arg( m_userName, m_userFullName ) );
+			reply.addArgument( UserName, QString( QStringLiteral( "%1 (%2)" ) ).arg( m_userName, m_userFullName ) );
 			reply.addArgument( HomeDir, m_userHomePath );
 		}
 		m_userDataLock.unlock();

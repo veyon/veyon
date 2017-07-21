@@ -71,7 +71,7 @@ public:
 		return m_framebufferHeight;
 	}
 
-	bool setPixelFormat( const rfbPixelFormat& pixelFormat );
+	bool setPixelFormat( rfbPixelFormat pixelFormat );
 	bool setEncodings( const QVector<uint32_t>& encodings );
 
 	void requestFramebufferUpdate( bool incremental );
@@ -113,7 +113,7 @@ private:
 	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
 	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
 	bool handleRectEncodingHextile( QBuffer& buffer,
-									const rfbFramebufferUpdateRectHeader& rectHeader,
+									rfbFramebufferUpdateRectHeader rectHeader,
 									int bytesPerPixel );
 	bool handleRectEncodingZlib( QBuffer& buffer );
 	bool handleRectEncodingZRLE( QBuffer& buffer );

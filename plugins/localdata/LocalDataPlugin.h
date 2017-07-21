@@ -87,10 +87,10 @@ public:
 
 	QStringList users() override;
 	QStringList userGroups() override;
-	QStringList groupsOfUser( QString username ) override;
+	QStringList groupsOfUser( const QString& username ) override;
 
 	QStringList allRooms() override;
-	QStringList roomsOfComputer( QString computerName ) override;
+	QStringList roomsOfComputer( const QString& computerName ) override;
 
 	QString directoryName() const override
 	{

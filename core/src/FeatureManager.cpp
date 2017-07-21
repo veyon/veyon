@@ -33,9 +33,10 @@
 Q_DECLARE_METATYPE(Feature)
 Q_DECLARE_METATYPE(FeatureMessage)
 
+// clazy:excludeall=reserve-candidates
 
-FeatureManager::FeatureManager() :
-	QObject(),
+FeatureManager::FeatureManager( QObject* parent ) :
+	QObject( parent ),
 	m_features(),
 	m_emptyFeatureList(),
 	m_pluginObjects(),
@@ -61,7 +62,7 @@ FeatureManager::FeatureManager() :
 
 
 
-const FeatureList& FeatureManager::features( const Plugin::Uid& pluginUid ) const
+const FeatureList& FeatureManager::features( Plugin::Uid pluginUid ) const
 {
 	for( auto pluginObject : m_pluginObjects )
 	{
@@ -79,7 +80,7 @@ const FeatureList& FeatureManager::features( const Plugin::Uid& pluginUid ) cons
 
 
 
-const Feature& FeatureManager::feature( const Feature::Uid& featureUid ) const
+const Feature& FeatureManager::feature( Feature::Uid featureUid ) const
 {
 	for( auto featureInterface : m_featurePluginInterfaces )
 	{

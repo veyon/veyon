@@ -36,6 +36,8 @@ namespace Configuration
 
 class Object;
 
+// clazy:excludeall=copyable-polymorphic
+
 class Store
 {
 public:

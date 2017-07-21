@@ -52,7 +52,7 @@ public:
 	} ;
 
 
-	SystemKeyTrapper( bool enable = true );
+	SystemKeyTrapper( bool enable = true, QObject* parent = nullptr );
 	~SystemKeyTrapper() override;
 
 	void setEnabled( bool on );

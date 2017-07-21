@@ -90,6 +90,10 @@ public:
 	AccessControlRule( const AccessControlRule& other );
 	AccessControlRule( const QJsonValue& jsonValue );
 
+	~AccessControlRule() {}
+
+	AccessControlRule& operator=( const AccessControlRule& other );
+
 	const QString& name() const
 	{
 		return m_name;
@@ -175,7 +179,7 @@ public:
 		m_parameters.clear();
 	}
 
-	void setArgument( Condition condition, ConditionArgument conditionArgument )
+	void setArgument( Condition condition, const ConditionArgument& conditionArgument )
 	{
 		m_parameters[condition].argument = conditionArgument;
 	}

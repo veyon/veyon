@@ -38,7 +38,7 @@ class LdapConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	LdapConfigurationPage( LdapConfiguration& configuration );
+	LdapConfigurationPage( LdapConfiguration& configuration, QWidget* parent = nullptr );
 	~LdapConfigurationPage() override;
 
 	void resetWidgets() override;

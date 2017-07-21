@@ -61,7 +61,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 
 #ifdef VEYON_BUILD_LINUX
 	QProcess p;
-	p.start( "veyon-auth-helper" );
+	p.start( QStringLiteral( "veyon-auth-helper" ) );
 	p.waitForStarted();
 
 	QDataStream ds( &p );
@@ -74,7 +74,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 	if( p.exitCode() == 0 )
 	{
 		result = true;
-		qDebug() << "User authenticated successfully";
+		qDebug( "User authenticated successfully" );
 	}
 	else
 	{

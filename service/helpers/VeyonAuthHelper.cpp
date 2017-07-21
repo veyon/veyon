@@ -1,12 +1,35 @@
-#include <cstdlib>
+/*
+ * VeyonAuthHelper.cpp - main file for Veyon Authentication Helper
+ *
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
+ * This file is part of Veyon - http://veyon.io
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program (see COPYING); if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ */
 
-#include <QtCore/QDataStream>
-#include <QtCore/QFile>
+#include <QDataStream>
+#include <QFile>
 
 #include <security/pam_appl.h>
 
 
-static QString username, password;
+static char* pam_username = nullptr;
+static char* pam_password = nullptr;
 
 static int pam_conv( int num_msg, const struct pam_message **msg,
 						struct pam_response **resp,
@@ -26,11 +49,11 @@ static int pam_conv( int num_msg, const struct pam_message **msg,
 		{
 			case PAM_PROMPT_ECHO_ON:
 				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = strdup( username.toUtf8().constData() );
+				reply[replies].resp = pam_username;
 				break;
 			case PAM_PROMPT_ECHO_OFF:
 				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = strdup( password.toUtf8().constData() );
+				reply[replies].resp = pam_password;
 				break;
 			case PAM_TEXT_INFO:
 			case PAM_ERROR_MSG:
@@ -50,11 +73,15 @@ static int pam_conv( int num_msg, const struct pam_message **msg,
 
 int main()
 {
+	QString username, password;
 	QFile stdIn;
 	stdIn.open( 0, QFile::ReadOnly );
 	QDataStream ds( &stdIn );
 	ds >> username;
 	ds >> password;
+
+	pam_username = qstrdup( username.toUtf8().constData() );
+	pam_password = qstrdup( password.toUtf8().constData() );
 
 	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t *pamh;
@@ -73,6 +100,9 @@ int main()
 	}
 
 	pam_end( pamh, err );
+
+	delete[] pam_username;
+	delete[] pam_password;
 
 	return -1;
 }

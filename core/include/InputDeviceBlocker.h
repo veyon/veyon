@@ -31,9 +31,10 @@
 #include <interception.h>
 #endif
 
-#include <QtCore/QByteArray>
-#include <QtCore/QMutex>
+#include <QByteArray>
+#include <QMutex>
 
+// clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT InputDeviceBlocker
 {
@@ -49,11 +50,16 @@ public:
 
 
 private:
+	enum {
+		XmodmapMaxStartTime = 5000
+	};
+
 	void enableInterception();
 	void disableInterception();
 	void saveKeyMapTable();
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
+	void xmodmapError();
 
 	static QMutex s_refCntMutex;
 	static int s_refCnt;

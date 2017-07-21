@@ -30,6 +30,8 @@
 
 class NetworkObjectDirectory;
 
+// clazy:excludeall=copyable-polymorphic
+
 class NetworkObjectDirectoryPluginInterface
 {
 public:

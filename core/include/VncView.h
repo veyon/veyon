@@ -117,8 +117,8 @@ private:
 
 	bool isScaledView() const;
 	float scaleFactor() const;
-	QPoint mapToFramebuffer( const QPoint & _pos );
-	QRect mapFromFramebuffer( const QRect & _rect );
+	QPoint mapToFramebuffer( QPoint pos );
+	QRect mapFromFramebuffer( QRect rect );
 
 	void updateLocalCursor();
 	void pressKey( unsigned int key );

@@ -34,7 +34,8 @@ class VEYON_CORE_EXPORT Proxy : public QObject
 {
 	Q_OBJECT
 public:
-	Proxy( Object* object ) :
+	Proxy( Object* object, QObject* parent = nullptr ) :
+		QObject( parent ),
 		m_object( object )
 	{
 	}

@@ -58,7 +58,7 @@ public:
 	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
-	void start( const QSize& scaledScreenSize, UserSessionControl* userSessionControl );
+	void start( QSize scaledScreenSize, UserSessionControl* userSessionControl );
 	void stop();
 
 	const Computer& computer() const
@@ -76,7 +76,7 @@ public:
 		return m_scaledScreenSize;
 	}
 
-	void setScaledScreenSize( const QSize& size );
+	void setScaledScreenSize( QSize size );
 
 	QImage scaledScreen() const;
 

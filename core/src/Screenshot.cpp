@@ -36,7 +36,8 @@
 #include "Logger.h"
 
 
-Screenshot::Screenshot( const QString &fileName ) :
+Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
+	QObject( parent ),
 	m_fileName( fileName ),
 	m_image()
 {
@@ -58,7 +59,7 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 	}
 	if( !u.contains( '(' ) )
 	{
-		u = QString( "%1 (%2)" ).arg( u, u );
+		u = QString( QStringLiteral( "%1 (%2)" ) ).arg( u, u );
 	}
 
 	// construct text
@@ -83,7 +84,7 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 	}
 
 	// construct filename
-	m_fileName =  QString( "_%1_%2_%3.png" ).arg( computerControlInterface.computer().hostAddress(),
+	m_fileName =  QString( QStringLiteral( "_%1_%2_%3.png" ) ).arg( computerControlInterface.computer().hostAddress(),
 						QDate( QDate::currentDate() ).toString( Qt::ISODate ),
 						QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
 					replace( ':', '-' );
@@ -97,7 +98,7 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 
 	m_image = QImage( computerControlInterface.screen() );
 
-	QPixmap icon( QPixmap( ":/resources/icon16.png" ) );
+	QPixmap icon( QStringLiteral( ":/resources/icon16.png" ) );
 
 	QPainter p( &m_image );
 	QFont fnt = p.font();

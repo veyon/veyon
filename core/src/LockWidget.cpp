@@ -47,8 +47,8 @@ static int __ss_val[3];
 
 
 
-LockWidget::LockWidget( Mode mode ) :
-	QWidget( nullptr, Qt::X11BypassWindowManagerHint ),
+LockWidget::LockWidget( Mode mode, QWidget* parent ) :
+	QWidget( parent, Qt::X11BypassWindowManagerHint ),
 	m_background(),
 	m_mode( mode ),
 	m_inputDeviceBlocker()
@@ -56,7 +56,7 @@ LockWidget::LockWidget( Mode mode ) :
 	switch( mode )
 	{
 	case Black:
-		m_background = QPixmap( ":/resources/locked_bg.png" );
+		m_background = QPixmap( QStringLiteral( ":/resources/locked_bg.png" ) );
 		break;
 	case DesktopVisible:
 		QPixmap::grabWindow( qApp->desktop()->winId() );

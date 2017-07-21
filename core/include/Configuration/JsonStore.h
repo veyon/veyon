@@ -30,6 +30,8 @@
 namespace Configuration
 {
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT JsonStore : public Store
 {
 public:

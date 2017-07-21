@@ -80,7 +80,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 	++m_callDepth;
 
-	Qt::CheckState checkState = value.value<Qt::CheckState>();
+	const auto checkState = checkStateFromVariant( value );
 
 	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUuid()] = checkState;
 
@@ -103,14 +103,14 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 		for( int i = 0; i < childrenCount; ++i )
 		{
-			if( data( this->index( i, 0, index.parent() ), role ).value<Qt::CheckState>() != parentCheckState )
+			if( checkStateFromVariant( data( this->index( i, 0, index.parent() ), role ) ) != parentCheckState )
 			{
 				parentCheckState = Qt::PartiallyChecked;
 				break;
 			}
 		}
 
-		if( data( index.parent(), Qt::CheckStateRole ).value<Qt::CheckState>() != parentCheckState )
+		if( checkStateFromVariant( data( index.parent(), Qt::CheckStateRole ) ) != parentCheckState )
 		{
 			setData( index.parent(), parentCheckState, role );
 			if( m_callDepth == 0 )
@@ -132,7 +132,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 void CheckableItemProxyModel::updateNewRows(const QModelIndex &parent, int first, int last)
 {
 	// also set newly inserted items checked if parent is checked
-	if( parent.isValid() && data( parent, Qt::CheckStateRole ).value<Qt::CheckState>() == Qt::Checked )
+	if( parent.isValid() && checkStateFromVariant( data( parent, Qt::CheckStateRole ) ) == Qt::Checked )
 	{
 		for( int i = first; i <= last; ++i )
 		{

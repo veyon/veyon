@@ -196,12 +196,12 @@ QStringList LocalDataPlugin::userGroups()
 
 
 
-QStringList LocalDataPlugin::groupsOfUser( QString username )
+QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 {
 	QStringList groupList;
 
 #ifdef VEYON_BUILD_LINUX
-	username = LocalSystem::User::stripDomain( username );
+	const auto strippedUsername = LocalSystem::User::stripDomain( username );
 
 	QProcess getentProcess;
 	getentProcess.start( "getent", { "group" } );
@@ -212,7 +212,7 @@ QStringList LocalDataPlugin::groupsOfUser( QString username )
 	{
 		const auto groupComponents = group.split( ':' );
 		if( groupComponents.size() == 4 &&
-				groupComponents.last().split( ',' ).contains( username ) )
+				groupComponents.last().split( ',' ).contains( strippedUsername ) )
 		{
 			groupList += groupComponents.first();
 		}
@@ -264,7 +264,7 @@ QStringList LocalDataPlugin::allRooms()
 
 
 
-QStringList LocalDataPlugin::roomsOfComputer( QString computerName )
+QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
 {
 	auto networkObjects = m_configuration.networkObjects();
 

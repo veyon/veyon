@@ -262,7 +262,8 @@ public:
 
 
 
-LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl &url ) :
+LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl &url, QObject* parent ) :
+	QObject( parent ),
 	m_configuration( configuration ),
 	d( new LdapDirectoryPrivate )
 {

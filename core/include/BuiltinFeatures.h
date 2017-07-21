@@ -32,6 +32,8 @@ class MonitoringMode;
 class SystemTrayIcon;
 class UserSessionControl;
 
+// clazy:excludeall=rule-of-three
+
 class VEYON_CORE_EXPORT BuiltinFeatures
 {
 public:

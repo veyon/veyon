@@ -36,6 +36,8 @@
 namespace Configuration
 {
 
+// clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
+
 class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
@@ -194,7 +196,7 @@ private:
 		}
 
 #define IMPLEMENT_CONFIG_SET_UUID_PROPERTY(className,set,key,parentKey)	\
-		void className::set( const QUuid& val )									\
+		void className::set( QUuid val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}

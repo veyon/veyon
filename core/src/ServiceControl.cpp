@@ -151,7 +151,7 @@ void ServiceControl::serviceControl( const QString& title, QStringList arguments
 	if( m_parent == nullptr )
 	{
 		// then prevent service application from showing any message boxes
-		arguments.prepend( "-quiet" );
+		arguments.prepend( QStringLiteral( "-quiet" ) );
 	}
 
 	QProcess serviceProcess;

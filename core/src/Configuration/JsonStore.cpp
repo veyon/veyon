@@ -53,13 +53,13 @@ static void loadJsonTree( Object* obj, const QJsonObject& jsonParent, const QStr
 		{
 			QJsonObject jsonObject = it.value().toObject();
 
-			if( jsonObject.contains( "JsonStoreArray" ) )
+			if( jsonObject.contains( QStringLiteral( "JsonStoreArray" ) ) )
 			{
-				obj->setValue( it.key(), jsonObject["JsonStoreArray"].toArray(), parentKey );
+				obj->setValue( it.key(), jsonObject[QStringLiteral("JsonStoreArray")].toArray(), parentKey );
 			}
-			else if( jsonObject.contains( "JsonStoreObject" ) )
+			else if( jsonObject.contains( QStringLiteral( "JsonStoreObject" ) ) )
 			{
-				obj->setValue( it.key(), jsonObject["JsonStoreObject"].toObject(), parentKey );
+				obj->setValue( it.key(), jsonObject[QStringLiteral("JsonStoreObject")].toObject(), parentKey );
 			}
 			else
 			{
@@ -105,13 +105,13 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
 		{
 			QJsonObject jsonObj;
-			jsonObj["JsonStoreArray"] = QJsonValue::fromVariant( it.value() ).toArray();
+			jsonObj[QStringLiteral("JsonStoreArray")] = it.value().toJsonArray();
 			jsonData[it.key()] = jsonObj;
 		}
 		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
 		{
 			QJsonObject jsonObj;
-			jsonObj["JsonStoreObject"] = QJsonValue::fromVariant( it.value() ).toObject();
+			jsonObj[QStringLiteral("JsonStoreObject")] = it.value().toJsonObject();
 			jsonData[it.key()] = jsonObj;
 		}
 		else

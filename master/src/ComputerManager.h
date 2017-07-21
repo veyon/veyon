@@ -87,7 +87,6 @@ signals:
 	void computerRemoved();
 
 	void computerScreenUpdated( int index );
-	void computerScreenSizeChanged();
 
 public slots:
 	void reloadComputerList();

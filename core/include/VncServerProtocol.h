@@ -32,9 +32,10 @@ class QTcpSocket;
 class VariantArrayMessage;
 class VncServerClient;
 
-class VEYON_CORE_EXPORT VncServerProtocol : public QObject
+// clazy:excludeall=copyable-polymorphic
+
+class VEYON_CORE_EXPORT VncServerProtocol
 {
-	Q_OBJECT
 public:
 	typedef enum States {
 		Disconnected,

@@ -50,9 +50,12 @@ public:
 				   const QString& hostAddress = QString(),
 				   const QString& macAddress = QString(),
 				   const QString& directoryAddress = QString(),
-				   const Uid& uid = Uid(),
-				   const Uid& parentUid = Uid() );
+				   Uid uid = Uid(),
+				   Uid parentUid = Uid() );
 	NetworkObject( const QJsonObject& jsonObject );
+	~NetworkObject();
+
+	NetworkObject& operator=( const NetworkObject& other );
 
 	bool operator ==( const NetworkObject& other ) const;
 

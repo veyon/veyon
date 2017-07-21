@@ -28,9 +28,9 @@
 #include <QBuffer>
 #include <QVariant>
 
-#include "VeyonCore.h"
+#include "VariantStream.h"
 
-class VariantStream;
+// clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT VariantArrayMessage
 {
@@ -38,7 +38,6 @@ public:
 	typedef quint32 MessageSize;
 
 	VariantArrayMessage( QIODevice* ioDevice );
-	~VariantArrayMessage();
 
 	bool send();
 
@@ -57,7 +56,7 @@ public:
 
 private:
 	QBuffer m_buffer;
-	VariantStream* m_stream;
+	VariantStream m_stream;
 	QIODevice* m_ioDevice;
 
 } ;

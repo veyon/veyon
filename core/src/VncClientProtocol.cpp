@@ -42,7 +42,7 @@ extern "C"
  */
 
 static void
-vncEncryptBytes(unsigned char *bytes, char *passwd)
+vncEncryptBytes(unsigned char *bytes, const char *passwd)
 {
 	unsigned char key[8];
 	unsigned int i;
@@ -115,7 +115,7 @@ bool VncClientProtocol::read()
 
 
 
-bool VncClientProtocol::setPixelFormat( const rfbPixelFormat& pixelFormat )
+bool VncClientProtocol::setPixelFormat( rfbPixelFormat pixelFormat )
 {
 	rfbSetPixelFormatMsg spf;
 
@@ -307,7 +307,7 @@ bool VncClientProtocol::receiveSecurityChallenge()
 		uint8_t challenge[CHALLENGESIZE];
 		m_socket->read( (char *) challenge, CHALLENGESIZE );
 
-		vncEncryptBytes( challenge, m_vncPassword.data() );
+		vncEncryptBytes( challenge, m_vncPassword.constData() );
 
 		m_socket->write( (const char *) challenge, CHALLENGESIZE );
 
@@ -623,7 +623,7 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPi
 
 
 bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
-													const rfbFramebufferUpdateRectHeader& rectHeader,
+													rfbFramebufferUpdateRectHeader rectHeader,
 													int bytesPerPixel )
 {
 	const int rx = rectHeader.r.x;

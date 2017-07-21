@@ -30,11 +30,11 @@
 #include "VeyonCore.h"
 #include "Plugin.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT PluginInterface
 {
 public:
-	virtual ~PluginInterface() {}
-
 	virtual Plugin::Uid uid() const = 0;
 	virtual QString version() const = 0;
 	virtual QString name() const = 0;

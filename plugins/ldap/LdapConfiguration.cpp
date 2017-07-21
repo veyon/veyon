@@ -26,8 +26,8 @@
 #include "LdapConfiguration.h"
 
 
-LdapConfiguration::LdapConfiguration() :
-	Configuration::Proxy( &VeyonCore::config() )
+LdapConfiguration::LdapConfiguration( QObject* parent ) :
+	Configuration::Proxy( &VeyonCore::config(), parent )
 {
 }
 

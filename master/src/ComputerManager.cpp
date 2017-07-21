@@ -107,8 +107,6 @@ void ComputerManager::updateComputerScreenSize()
 	{
 		computer.controlInterface().setScaledScreenSize( computerScreenSize() );
 	}
-
-	emit computerScreenSizeChanged();
 }
 
 
@@ -439,7 +437,12 @@ ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 	{
 		QModelIndex entryIndex = model->index( i, 0, parent );
 
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		if( static_cast<Qt::CheckState>( model->data( entryIndex, NetworkObjectModel::CheckStateRole ).toInt() ) == Qt::Unchecked )
+#else
 		if( model->data( entryIndex, NetworkObjectModel::CheckStateRole ).value<Qt::CheckState>() == Qt::Unchecked )
+#endif
 		{
 			continue;
 		}

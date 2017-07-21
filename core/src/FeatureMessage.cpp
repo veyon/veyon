@@ -70,7 +70,12 @@ bool FeatureMessage::receive()
 		if( message.receive() )
 		{
 			m_featureUid = message.read().toUuid();
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+			m_command = static_cast<Command>( message.read().toInt() );
+#else
 			m_command = message.read().value<Command>();
+#endif
 			m_arguments = message.read().toMap();
 			return true;
 		}

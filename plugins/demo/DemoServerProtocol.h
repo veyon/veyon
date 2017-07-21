@@ -30,7 +30,6 @@
 
 class DemoServerProtocol : public VncServerProtocol
 {
-	Q_OBJECT
 public:
 	DemoServerProtocol( const QString& demoAccessToken, QTcpSocket* socket, VncServerClient* client );
 

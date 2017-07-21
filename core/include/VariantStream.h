@@ -26,37 +26,20 @@
 #define VARIANT_STREAM_H
 
 #include <QDataStream>
-#include <QIODevice>
 
 #include "VeyonCore.h"
 
-class QTcpSocket;
-
-class VEYON_CORE_EXPORT VariantStream : public QIODevice
+class VEYON_CORE_EXPORT VariantStream
 {
-	Q_OBJECT
 public:
 	VariantStream( QIODevice* ioDevice );
 
-	VariantStream( QTcpSocket* socket );
-
-	virtual ~VariantStream();
-
 	QVariant read();
 
-	void write( const QVariant &v );
-
+	void write( const QVariant& v );
 
 private:
-	qint64 bytesAvailable() const override;
-
-	qint64 readData( char* data, qint64 maxSize ) override;
-
-	qint64 writeData( const char* data, qint64 maxSize ) override;
-
 	QDataStream m_dataStream;
-	QIODevice* m_ioDevice;
-	QTcpSocket* m_socket;
 
 } ;
 

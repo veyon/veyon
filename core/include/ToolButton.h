@@ -31,6 +31,8 @@
 
 class QToolBar;
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class VEYON_CORE_EXPORT ToolButton : public QToolButton
 {
 	Q_OBJECT

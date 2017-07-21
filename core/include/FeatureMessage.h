@@ -63,11 +63,23 @@ public:
 	}
 
 	explicit FeatureMessage( const FeatureMessage& other ) :
-		m_ioDevice( other.m_ioDevice ),
+		m_ioDevice( other.ioDevice() ),
 		m_featureUid( other.featureUid() ),
 		m_command( other.command() ),
 		m_arguments( other.arguments() )
 	{
+	}
+
+	~FeatureMessage() {}
+
+	FeatureMessage& operator=( const FeatureMessage& other )
+	{
+		m_ioDevice = other.ioDevice();
+		m_featureUid = other.featureUid();
+		m_command = other.command();
+		m_arguments = other.arguments();
+
+		return *this;
 	}
 
 	const FeatureUid& featureUid() const

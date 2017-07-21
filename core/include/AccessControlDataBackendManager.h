@@ -31,7 +31,7 @@ class VEYON_CORE_EXPORT AccessControlDataBackendManager : public QObject
 {
 	Q_OBJECT
 public:
-	AccessControlDataBackendManager( PluginManager& pluginManager );
+	AccessControlDataBackendManager( PluginManager& pluginManager, QObject* parent = nullptr );
 
 	QMap<Plugin::Uid, QString> availableBackends();
 

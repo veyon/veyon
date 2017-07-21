@@ -47,7 +47,7 @@ class LdapPlugin : public QObject, PluginInterface,
 				 AccessControlDataBackendInterface
 				 ConfigurationPagePluginInterface)
 public:
-	LdapPlugin();
+	LdapPlugin( QObject* parent = nullptr );
 	~LdapPlugin() override;
 
 	Plugin::Uid uid() const override
@@ -110,9 +110,9 @@ public:
 
 	QStringList users() override;
 	QStringList userGroups() override;
-	QStringList groupsOfUser( QString username ) override;
+	QStringList groupsOfUser( const QString& username ) override;
 	QStringList allRooms() override;
-	QStringList roomsOfComputer( QString computerName ) override;
+	QStringList roomsOfComputer( const QString& computerName ) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 

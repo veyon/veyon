@@ -54,7 +54,6 @@ private slots:
 	void reload();
 
 	void updateComputerScreen( int index );
-	void updateComputerScreenSize();
 
 private:
 	void loadIcons();

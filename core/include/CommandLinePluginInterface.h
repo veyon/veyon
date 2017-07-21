@@ -27,6 +27,8 @@
 
 #include "PluginInterface.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT CommandLinePluginInterface
 {
 	Q_GADGET
@@ -44,8 +46,6 @@ public:
 	} RunResult;
 
 	Q_ENUM(RunResult)
-
-	virtual ~CommandLinePluginInterface() {}
 
 	virtual QString commandLineModuleName() const = 0;
 	virtual QString commandLineModuleHelp() const = 0;

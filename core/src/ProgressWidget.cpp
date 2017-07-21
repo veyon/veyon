@@ -26,6 +26,7 @@
 #include <QTimer>
 #include <QPainter>
 
+// clazy:excludeall=detaching-member
 
 ProgressWidget::ProgressWidget( const QString& text, const QString& animationPixmapBase, int frames, QWidget* parent ) :
 	QWidget( parent ),
@@ -33,6 +34,8 @@ ProgressWidget::ProgressWidget( const QString& text, const QString& animationPix
 	m_frames( frames ),
 	m_curFrame( 0 )
 {
+	m_pixmaps.reserve( m_frames );
+
 	for( int i = 0; i < m_frames; ++i )
 	{
 		m_pixmaps.push_back( QPixmap( animationPixmapBase.arg( QString::number( i+1 ) ) ) );

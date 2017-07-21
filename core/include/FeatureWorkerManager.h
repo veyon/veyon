@@ -39,7 +39,7 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureWorkerManager( FeatureManager& featureManager );
+	FeatureWorkerManager( FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
 	static QString workerProcessFilePath();
@@ -80,6 +80,17 @@ private:
 			process( ref.process ),
 			pendingMessages( ref.pendingMessages )
 		{
+		}
+
+		~Worker() {}
+
+		Worker& operator=( const Worker& ref )
+		{
+			socket = ref.socket;
+			process = ref.process;
+			pendingMessages = ref.pendingMessages;
+
+			return *this;
 		}
 	};
 

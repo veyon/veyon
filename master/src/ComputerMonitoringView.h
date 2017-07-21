@@ -27,6 +27,7 @@
 
 #include "ComputerListModel.h"
 
+#include <QSortFilterProxyModel>
 #include <QWidget>
 
 class QMenu;
@@ -70,6 +71,7 @@ private:
 	MasterCore* m_masterCore;
 	QMenu* m_featureMenu;
 	ComputerListModel* m_computerListModel;
+	QSortFilterProxyModel m_sortFilterProxyModel;
 
 signals:
 	void computerScreenSizeAdjusted( int size );

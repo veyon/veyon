@@ -28,6 +28,8 @@
 #include "CryptoCore.h"
 #include "VeyonCore.h"
 
+// clazy:excludeall=rule-of-three
+
 class VEYON_CORE_EXPORT AuthenticationCredentials
 {
 public:
@@ -48,7 +50,7 @@ public:
 
 	// private key auth
 	bool loadPrivateKey( const QString& privateKeyFile );
-	CryptoCore::PrivateKey& privateKey()
+	const CryptoCore::PrivateKey& privateKey() const
 	{
 		return m_privateKey;
 	}

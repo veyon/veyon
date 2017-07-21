@@ -29,6 +29,8 @@
 
 #include <QtCrypto>
 
+// clazy:excludeall=rule-of-three
+
 class CryptoCore
 {
 public:

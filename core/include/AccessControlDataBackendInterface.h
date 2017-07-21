@@ -27,6 +27,8 @@
 
 #include "PluginInterface.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class AccessControlDataBackendInterface
 {
 public:
@@ -36,10 +38,10 @@ public:
 
 	virtual QStringList users() = 0;
 	virtual QStringList userGroups() = 0;
-	virtual QStringList groupsOfUser( QString username ) = 0;
+	virtual QStringList groupsOfUser( const QString& username ) = 0;
 
 	virtual QStringList allRooms() = 0;
-	virtual QStringList roomsOfComputer( QString computerName ) = 0;
+	virtual QStringList roomsOfComputer( const QString& computerName ) = 0;
 
 };
 

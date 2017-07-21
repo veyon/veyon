@@ -29,6 +29,7 @@
 #include <QHostAddress>
 #include <QMutexLocker>
 #include <QPixmap>
+#include <QTime>
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
@@ -45,6 +46,7 @@ extern "C"
 	#include <rfb/rfbclient.h>
 }
 
+// clazy:excludeall=copyable-polymorphic
 
 class KeyClientEvent : public MessageEvent
 {
@@ -100,7 +102,7 @@ public:
 
 	void fire( rfbClient *cl ) override
 	{
-		SendClientCutText( cl, m_text.data(), m_text.size() );
+		SendClientCutText( cl, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
 	}
 
 private:
@@ -422,7 +424,7 @@ void VeyonVncConnection::setHost( const QString &host )
 		// IPv6-mapped IPv4 addresses on Windows properly
 		m_host = rx.cap( 1 );
 	}
-	else if( m_host == "::1" )
+	else if( m_host == QStringLiteral( "::1" ) )
 	{
 		m_host = QHostAddress( QHostAddress::LocalHost ).toString();
 	}
@@ -782,9 +784,16 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 	int authTypeCount = message.read().toInt();
 
 	QList<RfbVeyonAuth::Type> authTypes;
+	authTypes.reserve( authTypeCount );
+
 	for( int i = 0; i < authTypeCount; ++i )
 	{
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		authTypes.append( static_cast<RfbVeyonAuth::Type>( message.read().toInt() ) );
+#else
 		authTypes.append( message.read().value<RfbVeyonAuth::Type>() );
+#endif
 	}
 
 	qDebug() << "VeyonVncConnection::handleSecTypeVeyon(): received authentication types:" << authTypes;
@@ -838,9 +847,23 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
 			challengeReceiveMessage.receive();
-			QByteArray challenge = challengeReceiveMessage.read().toByteArray();
-			QByteArray signature = VeyonCore::authenticationCredentials().
-					privateKey().signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
+			const auto challenge = challengeReceiveMessage.read().toByteArray();
+
+			if( challenge.size() != CryptoCore::ChallengeSize )
+			{
+				qCritical( "VeyonVncConnection::handleSecTypeVeyon(): challenge size mismatch!" );
+				break;
+			}
+
+			// create local copy of private key so we can modify it within our own thread
+			auto key = VeyonCore::authenticationCredentials().privateKey();
+			if( key.isNull() || key.canSign() == false )
+			{
+				qCritical( "VeyonVncConnection::handleSecTypeVeyon(): invalid private key!" );
+				break;
+			}
+
+			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
 			challengeResponseMessage.write( VeyonCore::instance()->userRole() );

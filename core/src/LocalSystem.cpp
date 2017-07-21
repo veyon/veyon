@@ -121,7 +121,7 @@ Desktop Desktop::activeDesktop()
 	if( GetUserObjectInformation( desktopHandle, UOI_NAME, dname,
 									sizeof( dname ) / sizeof( wchar_t ), NULL ) )
 	{
-		deskName = QString( "winsta0\\%1" ).arg( QString::fromWCharArray( dname ) );
+		deskName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( dname ) );
 	}
 	CloseDesktop( desktopHandle );
 #endif
@@ -133,7 +133,7 @@ Desktop Desktop::activeDesktop()
 
 Desktop Desktop::screenLockDesktop()
 {
-	return Desktop( "ScreenLockSlaveDesktop" );
+	return Desktop( QStringLiteral( "ScreenLockSlaveDesktop" ) );
 }
 
 
@@ -282,7 +282,7 @@ static QString querySessionInformation( DWORD sessionId,
 
 User User::loggedOnUser()
 {
-	QString username = "unknown";
+	QString username = QStringLiteral( "unknown" );
 	QString domainName = QHostInfo::localDomainName();
 
 #ifdef VEYON_BUILD_WIN32
@@ -326,10 +326,10 @@ User User::loggedOnUser()
 		QString shell( pw_entry->pw_shell );
 
 		// Skip not real users
-		if ( !( shell.endsWith( "/false" ) ||
-				shell.endsWith( "/true" ) ||
-				shell.endsWith( "/null" ) ||
-				shell.endsWith( "/nologin") ) )
+		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
+				shell.endsWith( QStringLiteral( "/true" ) ) ||
+				shell.endsWith( QStringLiteral( "/null" ) ) ||
+				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
 		{
 			username = QString::fromUtf8( pw_entry->pw_name );
 		}
@@ -436,10 +436,10 @@ void User::lookupNameAndDomain()
 		QString shell( pw_entry->pw_shell );
 
 		// Skip not real users
-		if ( !( shell.endsWith( "/false" ) ||
-				shell.endsWith( "/true" ) ||
-				shell.endsWith( "/null" ) ||
-				shell.endsWith( "/nologin") ) )
+		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
+				shell.endsWith( QStringLiteral( "/true" ) ) ||
+				shell.endsWith( QStringLiteral( "/null" ) ) ||
+				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
 		{
 			m_name = QString::fromUtf8( pw_entry->pw_name );
 		}
@@ -494,10 +494,10 @@ void User::lookupFullName()
 		QString shell( pw_entry->pw_shell );
 
 		// Skip not real users
-		if ( !( shell.endsWith( "/false" ) ||
-				shell.endsWith( "/true" ) ||
-				shell.endsWith( "/null" ) ||
-				shell.endsWith( "/nologin") ) )
+		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
+				shell.endsWith( QStringLiteral( "/true" ) ) ||
+				shell.endsWith( QStringLiteral( "/null" ) ) ||
+				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
 		{
 			m_fullName = QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
 		}
@@ -876,13 +876,13 @@ void logoutUser()
 	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
 #else
 	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
-	QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" );
+	QProcess::startDetached( QStringLiteral( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" ) );
 	// KDE 3 logout
-	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" );
+	QProcess::startDetached( QStringLiteral( "dcop ksmserver ksmserver logout 0 0 0" ) );
 	// KDE 4 logout
-	QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" );
+	QProcess::startDetached( QStringLiteral( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ) );
 	// KDE 5 logout
-	QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" );
+	QProcess::startDetached( QStringLiteral( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" ) );
 #endif
 }
 
@@ -890,24 +890,24 @@ void logoutUser()
 
 QString Path::expand( QString path )
 {
-	QString p = QDTNS( path.replace( "$HOME", QDir::homePath() ).
-						replace( "%HOME%", QDir::homePath() ).
-						replace( "$PROFILE", QDir::homePath() ).
-						replace( "%PROFILE%", QDir::homePath() ).
-						replace( "$APPDATA", personalConfigDataPath() ).
-						replace( "%APPDATA%", personalConfigDataPath() ).
-						replace( "$GLOBALAPPDATA", systemConfigDataPath() ).
-						replace( "%GLOBALAPPDATA%", systemConfigDataPath() ).
-						replace( "$TMP", QDir::tempPath() ).
-						replace( "$TEMP", QDir::tempPath() ).
-						replace( "%TMP%", QDir::tempPath() ).
-						replace( "%TEMP%", QDir::tempPath() ) );
+	QString p = QDTNS( path.replace( QStringLiteral( "$HOME" ), QDir::homePath() ).
+						replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
+						replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
+						replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
+						replace( QStringLiteral( "$APPDATA" ), personalConfigDataPath() ).
+						replace( QStringLiteral( "%APPDATA%" ), personalConfigDataPath() ).
+						replace( QStringLiteral( "$GLOBALAPPDATA" ), systemConfigDataPath() ).
+						replace( QStringLiteral( "%GLOBALAPPDATA%" ), systemConfigDataPath() ).
+						replace( QStringLiteral( "$TMP" ), QDir::tempPath() ).
+						replace( QStringLiteral( "$TEMP" ), QDir::tempPath() ).
+						replace( QStringLiteral( "%TMP%" ), QDir::tempPath() ).
+						replace( QStringLiteral( "%TEMP%" ), QDir::tempPath() ) );
 	// remove duplicate directory separators - however skip the first two chars
 	// as they might specify an UNC path on Windows
 	if( p.length() > 3 )
 	{
 		return p.left( 2 ) + p.mid( 2 ).replace(
-									QString( "%1%1" ).arg( QDir::separator() ),
+									QString( QStringLiteral( "%1%1" ) ).arg( QDir::separator() ),
 									QDir::separator() );
 	}
 	return p;
@@ -929,26 +929,26 @@ QString Path::shrink( QString path )
 	path = QDTNS( path );
 #ifdef VEYON_BUILD_WIN32
 	const Qt::CaseSensitivity cs = Qt::CaseInsensitive;
-	const QString envVar = "%%1%\\";
+	const QString envVar( QStringLiteral( "%%1%\\" ) );
 #else
 	const Qt::CaseSensitivity cs = Qt::CaseSensitive;
-	const QString envVar = "$%1/";
+	const QString envVar( QStringLiteral( "$%1/" ) );
 #endif
 	if( path.startsWith( personalConfigDataPath(), cs ) )
 	{
-		path.replace( personalConfigDataPath(), envVar.arg( "APPDATA" ) );
+		path.replace( personalConfigDataPath(), envVar.arg( QStringLiteral( "APPDATA" ) ) );
 	}
 	else if( path.startsWith( systemConfigDataPath(), cs ) )
 	{
-		path.replace( systemConfigDataPath(), envVar.arg( "GLOBALAPPDATA" ) );
+		path.replace( systemConfigDataPath(), envVar.arg( QStringLiteral( "GLOBALAPPDATA" ) ) );
 	}
 	else if( path.startsWith( QDTNS( QDir::homePath() ), cs ) )
 	{
-		path.replace( QDTNS( QDir::homePath() ), envVar.arg( "HOME" ) );
+		path.replace( QDTNS( QDir::homePath() ), envVar.arg( QStringLiteral( "HOME" ) ) );
 	}
 	else if( path.startsWith( QDTNS( QDir::tempPath() ), cs ) )
 	{
-		path.replace( QDTNS( QDir::tempPath() ), envVar.arg( "TEMP" ) );
+		path.replace( QDTNS( QDir::tempPath() ), envVar.arg( QStringLiteral( "TEMP" ) ) );
 	}
 
 	// remove duplicate directory separators - however skip the first two chars
@@ -956,7 +956,7 @@ QString Path::shrink( QString path )
 	if( path.length() > 3 )
 	{
 		return QDTNS( path.left( 2 ) + path.mid( 2 ).replace(
-									QString( "%1%1" ).arg( QDir::separator() ), QDir::separator() ) );
+									QString( QStringLiteral( "%1%1" ) ).arg( QDir::separator() ), QDir::separator() ) );
 	}
 
 	return QDTNS( path );
@@ -1018,10 +1018,10 @@ QString Path::privateKeyPath( VeyonCore::UserRoles role, QString baseDir )
 	}
 	else
 	{
-		baseDir += "/private";
+		baseDir += QDir::separator() + QStringLiteral( "private" );
 	}
 	QString d = baseDir + QDir::separator() + VeyonCore::userRoleName( role ) +
-					QDir::separator() + "key";
+					QDir::separator() + QStringLiteral( "key" );
 	return QDTNS( d );
 }
 
@@ -1035,10 +1035,10 @@ QString Path::publicKeyPath( VeyonCore::UserRoles role, QString baseDir )
 	}
 	else
 	{
-		baseDir += "/public";
+		baseDir += QDir::separator() + QStringLiteral( "public" );
 	}
 	QString d = baseDir + QDir::separator() + VeyonCore::userRoleName( role ) +
-					QDir::separator() + "key";
+					QDir::separator() + QStringLiteral( "key" );
 	return QDTNS( d );
 }
 
@@ -1048,9 +1048,9 @@ QString Path::publicKeyPath( VeyonCore::UserRoles role, QString baseDir )
 QString Path::systemConfigDataPath()
 {
 #ifdef VEYON_BUILD_WIN32
-	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "Veyon/" );
+	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + QStringLiteral( "Veyon" ) + QDir::separator() );
 #else
-	return "/etc/veyon/";
+	return QStringLiteral( "/etc/veyon/" );
 #endif
 }
 

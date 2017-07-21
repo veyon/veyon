@@ -30,11 +30,11 @@
 class PlatformNetworkFunctions;
 class PlatformUserSessionFunctions;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VEYON_CORE_EXPORT PlatformPluginInterface
 {
 public:
-	virtual ~PlatformPluginInterface() {}
-
 	virtual PlatformNetworkFunctions* networkFunctions() = 0;
 	virtual PlatformUserSessionFunctions* userSessionFunctions() = 0;
 

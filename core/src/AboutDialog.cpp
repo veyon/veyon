@@ -36,15 +36,15 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( QString( "About %1 %2" ).arg( VeyonCore::applicationName(), VEYON_VERSION ) );
+	setWindowTitle( tr( "About %1 %2" ).arg( VeyonCore::applicationName(), QStringLiteral( VEYON_VERSION ) ) );
 
-	ui->versionLabel->setText( VEYON_VERSION );
+	ui->versionLabel->setText( QStringLiteral( VEYON_VERSION ) );
 
-	QFile authors( ":/CONTRIBUTORS" );
+	QFile authors( QStringLiteral( ":/CONTRIBUTORS" ) );
 	authors.open( QFile::ReadOnly );
 	ui->authors->setPlainText( authors.readAll() );
 
-	QFile license( ":/COPYING" );
+	QFile license( QStringLiteral( ":/COPYING" ) );
 	license.open( QFile::ReadOnly );
 	ui->license->setPlainText( license.readAll() );
 

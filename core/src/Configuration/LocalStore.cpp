@@ -64,13 +64,13 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 		if( jsonValueRX.indexIn( stringValue ) == 0 )
 		{
 			auto jsonValue = QJsonDocument::fromJson( QByteArray::fromBase64( jsonValueRX.cap( 1 ).toUtf8() ) ).object();
-			if( jsonValue.contains( "a" ) )
+			if( jsonValue.contains( QStringLiteral( "a" ) ) )
 			{
-				obj->setValue( k, jsonValue["a"].toArray(), parentKey );
+				obj->setValue( k, jsonValue[QStringLiteral("a")].toArray(), parentKey );
 			}
-			else if( jsonValue.contains( "o" ) )
+			else if( jsonValue.contains( QStringLiteral("o") ) )
 			{
-				obj->setValue( k, jsonValue["o"].toObject(), parentKey );
+				obj->setValue( k, jsonValue[QStringLiteral("o")].toObject(), parentKey );
 			}
 			else
 			{
@@ -101,11 +101,11 @@ static QString serializeJsonValue( const QJsonValue& jsonValue )
 
 	if( jsonValue.isArray() )
 	{
-		jsonObject["a"] = jsonValue;
+		jsonObject[QStringLiteral("a")] = jsonValue;
 	}
 	else if( jsonValue.isObject() )
 	{
-		jsonObject["o"] = jsonValue;
+		jsonObject[QStringLiteral("o")] = jsonValue;
 	}
 	else
 	{
@@ -127,10 +127,13 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 			saveSettingsTree( it.value().toMap(), s );
 			s->endGroup();
 		}
-		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray ||
-				 static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
 		{
-			s->setValue( it.key(), serializeJsonValue( QJsonValue::fromVariant( it.value() ) ) );
+			s->setValue( it.key(), serializeJsonValue( it.value().toJsonArray() ) );
+		}
+		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
+		{
+			s->setValue( it.key(), serializeJsonValue( it.value().toJsonObject() ) );
 		}
 		else
 		{

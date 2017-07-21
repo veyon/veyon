@@ -28,7 +28,8 @@
 #include "PluginManager.h"
 
 
-NetworkObjectDirectoryManager::NetworkObjectDirectoryManager() :
+NetworkObjectDirectoryManager::NetworkObjectDirectoryManager( QObject* parent ) :
+	QObject( parent ),
 	m_directoryPluginInterfaces()
 {
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
