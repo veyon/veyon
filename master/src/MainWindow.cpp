@@ -251,6 +251,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason reason
 		case QSystemTrayIcon::Trigger:
 			setVisible( !isVisible() );
 			break;
+#if 0
 		case QSystemTrayIcon::Context:
 		{
 			QMenu m( this );
@@ -283,6 +284,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason reason
 			m.exec( QCursor::pos() );
 			break;
 		}
+#endif
 		default:
 			break;
 	}
