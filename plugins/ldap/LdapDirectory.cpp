@@ -236,13 +236,16 @@ public:
 	QString computerHostNameAttribute;
 	bool computerHostNameAsFQDN;
 	QString computerMacAddressAttribute;
+	QString computerRoomNameAttribute;
 
 	QString usersFilter;
 	QString userGroupsFilter;
 	QString computersFilter;
 	QString computerGroupsFilter;
+	QString computerParentsFilter;
 
 	bool identifyGroupMembersByNameAttribute;
+	bool computerRoomMembersByParent;
 	bool computerRoomMembersByAttribute;
 	QString computerRoomAttribute;
 
@@ -312,6 +315,7 @@ void LdapDirectory::disableFilters()
 	d->userGroupsFilter.clear();
 	d->computersFilter.clear();
 	d->computerGroupsFilter.clear();
+	d->computerParentsFilter.clear();
 }
 
 
@@ -443,15 +447,23 @@ QStringList LdapDirectory::computerRooms(const QString &filterValue)
 	if( d->computerRoomMembersByAttribute )
 	{
 		computerRooms = d->queryAttributes( d->computersDn,
-										   d->computerRoomAttribute,
-										   constructQueryFilter( d->computerRoomAttribute, filterValue, d->computersFilter ),
-										   d->defaultSearchScope );
+											d->computerRoomAttribute,
+											constructQueryFilter( d->computerRoomAttribute, filterValue, d->computersFilter ),
+											d->defaultSearchScope );
+	}
+	else if( d->computerRoomMembersByParent )
+	{
+		computerRooms = d->queryAttributes( d->computersDn,
+											d->computerRoomNameAttribute,
+											constructQueryFilter( d->computerRoomNameAttribute, filterValue, d->computerParentsFilter ) ,
+											d->defaultSearchScope );
 	}
 	else
 	{
-		computerRooms = d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn, "cn",
-										   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
-										   d->defaultSearchScope );
+		computerRooms = d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
+											d->computerRoomNameAttribute,
+											constructQueryFilter( d->computerRoomNameAttribute, filterValue, d->computerGroupsFilter ) ,
+											d->defaultSearchScope );
 	}
 
 	computerRooms.removeDuplicates();
@@ -498,12 +510,17 @@ QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 	{
 		return d->queryAttributes( computerDn, d->computerRoomAttribute );
 	}
+	else if( d->computerRoomMembersByParent )
+	{
+		return d->queryAttributes( parentDn( computerDn ), d->computerRoomNameAttribute );
+	}
 
 	QString computerId = groupMemberComputerIdentification( computerDn );
 
-	return d->queryCommonNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
-								constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
-								d->defaultSearchScope );
+	return d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
+							   d->computerRoomNameAttribute,
+							   constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
+							   d->defaultSearchScope );
 }
 
 
@@ -576,6 +593,15 @@ QStringList LdapDirectory::computerRoomMembers(const QString &computerRoomName)
 	{
 		return d->queryDistinguishedNames( d->computersDn,
 										   constructQueryFilter( d->computerRoomAttribute, computerRoomName, d->computersFilter ),
+										   d->defaultSearchScope );
+	}
+	else if( d->computerRoomMembersByParent )
+	{
+		const auto roomDnFilter = constructQueryFilter( d->computerRoomNameAttribute, computerRoomName, d->computerParentsFilter );
+		const auto roomDns = d->queryDistinguishedNames( d->computersDn, roomDnFilter, d->defaultSearchScope );
+
+		return d->queryDistinguishedNames( roomDns.value( 0 ),
+										   constructQueryFilter( QString(), QString(), d->computersFilter ),
 										   d->defaultSearchScope );
 	}
 
@@ -669,14 +695,21 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->computerHostNameAttribute = m_configuration.ldapComputerHostNameAttribute();
 	d->computerHostNameAsFQDN = m_configuration.ldapComputerHostNameAsFQDN();
 	d->computerMacAddressAttribute = m_configuration.ldapComputerMacAddressAttribute();
+	d->computerRoomNameAttribute = m_configuration.ldapComputerRoomNameAttribute();
+	if( d->computerRoomNameAttribute.isEmpty() )
+	{
+		d->computerRoomNameAttribute = QStringLiteral("cn");
+	}
 
 	d->usersFilter = m_configuration.ldapUsersFilter();
 	d->userGroupsFilter = m_configuration.ldapUserGroupsFilter();
 	d->computersFilter = m_configuration.ldapComputersFilter();
 	d->computerGroupsFilter = m_configuration.ldapComputerGroupsFilter();
+	d->computerParentsFilter = m_configuration.ldapComputerParentsFilter();
 
 	d->identifyGroupMembersByNameAttribute = m_configuration.ldapIdentifyGroupMembersByNameAttribute();
 
+	d->computerRoomMembersByParent = m_configuration.ldapComputerRoomMembersByParent();
 	d->computerRoomMembersByAttribute = m_configuration.ldapComputerRoomMembersByAttribute();
 	d->computerRoomAttribute = m_configuration.ldapComputerRoomAttribute();
 
