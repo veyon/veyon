@@ -626,6 +626,45 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Ukázkový server</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Vyladitelné</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Interval mezi úplnými snímky</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Paměťový limit</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Provozovat vícevláknově (experimentální)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Interval aktualizace</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1974,6 +2013,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>Bug reporting</source>
         <translation>Hlášení chyb</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Resetovat nastavení</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Opravdu chcete resetovat místní nastavení a vrátit veškerá nastavení do výchozích hodnot?</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2044,6 +2091,10 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Při spouštění automaticky přizpůsobit velikost náhledu počítače</translation>
     </message>
 </context>
 <context>

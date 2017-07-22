@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -16,18 +14,12 @@
         <translation>Lizenz</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>Mitwirkende</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>Über Veyon</translation>
     </message>
     <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
+        <source>Contributors</source>
+        <translation>Mitwirkende</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -41,20 +33,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Website:</source>
         <translation>Website:</translation>
     </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
         <translation>Computerzugriffskontrolle</translation>
-    </message>
-    <message>
-        <source>Process access control rules</source>
-        <translation>Zugriffskontrollregeln abarbeiten</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of certain user groups</source>
-        <translation>Zugriff auf Mitglieder bestimmter Benutzergruppen einschränken</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
@@ -65,8 +55,24 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Testen</translation>
     </message>
     <message>
+        <source>Restrict access to members of certain user groups</source>
+        <translation>Zugriff auf Mitglieder bestimmter Benutzergruppen einschränken</translation>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation>Zugriffskontrollregeln abarbeiten</translation>
+    </message>
+    <message>
+        <source>Data backend:</source>
+        <translation>Datenbackend:</translation>
+    </message>
+    <message>
         <source>User groups authorized for computer access</source>
         <translation>Autorisierte Benutzergruppen für Computerzugriff</translation>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation>Bitte geben Sie die Gruppen an, deren Mitgliedern es erlaubt sein soll, auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -105,6 +111,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Gewählte Regel bearbeiten</translation>
     </message>
     <message>
+        <source>Missing access control data backend</source>
+        <translation>Fehlendes Backend für Zugriffskontrolldaten</translation>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation>Es wurde kein Standard-Backendplugin für Zugriffskontrolldaten gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
+    </message>
+    <message>
         <source>Enter username</source>
         <translation>Benutzername eingeben</translation>
     </message>
@@ -127,22 +141,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Der angegebene Benutzer darf mit dieser Konfiguration nicht auf Computer zugreifen.</translation>
-    </message>
-    <message>
-        <source>Data backend:</source>
-        <translation>Datenbackend:</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Bitte geben Sie die Gruppen an, deren Mitgliedern es erlaubt sein soll, auf Computer in Ihrem Veyon-Netzwerk zuzugreifen.</translation>
-    </message>
-    <message>
-        <source>Missing access control data backend</source>
-        <translation>Fehlendes Backend für Zugriffskontrolldaten</translation>
-    </message>
-    <message>
-        <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Es wurde kein Standard-Backendplugin für Zugriffskontrolldaten gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
     </message>
 </context>
 <context>
@@ -180,24 +178,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Bedingungen</translation>
     </message>
     <message>
-        <source>Accessing user is logged on user</source>
-        <translation>Zugreifender Benutzer ist angemeldeter Benutzer</translation>
-    </message>
-    <message>
         <source>is member of group</source>
         <translation>ist Mitglied von Gruppe</translation>
+    </message>
+    <message>
+        <source>is located in room</source>
+        <translation>befindet sich im Raum</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
         <translation>Zugreifender Computer ist localhost</translation>
     </message>
     <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Wenn mehr als eine Bedingung aktiviert wird muss jede Bedingung zutreffen, damit die Regel angewendet wird (logisches UND). Wenn nur eine von mehreren Regeln zutreffen soll (logisches ODER) erstellen Sie bitte mehrere Zugriffskontrollregeln.</translation>
+        <source>Accessing user is logged on user</source>
+        <translation>Zugreifender Benutzer ist angemeldeter Benutzer</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
         <translation>Zugreifender Benutzer ist bereits verbunden</translation>
+    </message>
+    <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Wenn mehr als eine Bedingung aktiviert wird muss jede Bedingung zutreffen, damit die Regel angewendet wird (logisches UND). Wenn nur eine von mehreren Regeln zutreffen soll (logisches ODER) erstellen Sie bitte mehrere Zugriffskontrollregeln.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -234,10 +236,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Local computer</source>
         <translation>Lokaler Computer</translation>
-    </message>
-    <message>
-        <source>is located in room</source>
-        <translation>befindet sich im Raum</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -472,24 +470,24 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Benutzer</translation>
     </message>
     <message>
-        <source>Room detection failed</source>
-        <translation>Raumerkennung fehlgeschlagen</translation>
-    </message>
-    <message>
-        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Es konnte nicht festgestellt werden, zu welchem Raum dieser Computer gehört. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Räume in der Computerverwaltung angezeigt.</translation>
-    </message>
-    <message>
-        <source>Computer name;Host name;User</source>
-        <translation>Computername;Hostname;Benutzer</translation>
-    </message>
-    <message>
         <source>Missing network object directory plugin</source>
         <translation>Fehlendes Netzwerkobjektverzeichnis-Plugin</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
         <translation>Es wurde kein Standard-Netzwerkobjektverzeichnis-Plugin gefunden. Bitte überprüfen Sie Ihre Installation oder stellen ein anderes Netzwerkobjektverzeichnis-Backend mit Hilfe des %1 Configurators ein.</translation>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation>Computername;Hostname;Benutzer</translation>
+    </message>
+    <message>
+        <source>Room detection failed</source>
+        <translation>Raumerkennung fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
+        <translation>Es konnte nicht festgestellt werden, zu welchem Raum dieser Computer gehört. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Räume in der Computerverwaltung angezeigt.</translation>
     </message>
 </context>
 <context>
@@ -626,45 +624,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>DemoConfigurationPage</name>
-    <message>
-        <source>Demo server</source>
-        <translation>Demo-Server</translation>
-    </message>
-    <message>
-        <source>Tunables</source>
-        <translation>Feineinstellungen</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>Key-Frame-Intervall</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>Speicherlimit</translation>
-    </message>
-    <message>
-        <source>Use multithreading (experimental)</source>
-        <translation>Multithreading benutzen (experimentell)</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <source>Update interval</source>
-        <translation>Update-Intervall</translation>
-    </message>
-    <message>
-        <source> s</source>
-        <translation> s</translation>
-    </message>
-</context>
-<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -702,6 +661,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>DesktopAccessDialog</name>
     <message>
+        <source>Desktop access dialog</source>
+        <translation>Desktopzugriffsdialog</translation>
+    </message>
+    <message>
         <source>Confirm desktop access</source>
         <translation>Arbeitsflächenzugriff bestätigen</translation>
     </message>
@@ -712,10 +675,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Always for this session</source>
         <translation>Immer für diese Sitzung</translation>
-    </message>
-    <message>
-        <source>Desktop access dialog</source>
-        <translation>Desktopzugriffsdialog</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -759,16 +718,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
+        <source>External VNC server configuration</source>
+        <translation>Konfiguration des externen VNC-Servers</translation>
+    </message>
+    <message>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
         <source>Password:</source>
         <translation>Passwort:</translation>
-    </message>
-    <message>
-        <source>External VNC server configuration</source>
-        <translation>Konfiguration des externen VNC-Servers</translation>
     </message>
 </context>
 <context>
@@ -788,6 +747,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Enable high DPI scaling</source>
         <translation>High-DPI-Skalierung aktivieren</translation>
+    </message>
+    <message>
+        <source>Veyon</source>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -834,16 +797,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Logdateigröße begrenzen</translation>
     </message>
     <message>
+        <source>Clear all log files</source>
+        <translation>Alle Logdateien leeren</translation>
+    </message>
+    <message>
         <source>Log to standard error output</source>
         <translation>Nach Standardfehlerausgabe loggen</translation>
     </message>
     <message>
         <source>Log to Windows event log</source>
         <translation>In Windows-Ereignisanzeige loggen</translation>
-    </message>
-    <message>
-        <source>Clear all log files</source>
-        <translation>Alle Logdateien leeren</translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -856,6 +819,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Update interval:</source>
         <translation>Aktualisierungsintervall:</translation>
+    </message>
+    <message>
+        <source>%1 service</source>
+        <translation>%1-Dienst</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -876,14 +843,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Could not remove all log files.</source>
         <translation>Konnte nicht alle Logdateien entfernen.</translation>
-    </message>
-    <message>
-        <source>%1 service</source>
-        <translation>%1-Dienst</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1072,6 +1031,18 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>LdapConfigurationPage</name>
     <message>
+        <source>LDAP</source>
+        <translation>LDAP</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Grundeinstellungen</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
+    </message>
+    <message>
         <source>LDAP server and port</source>
         <translation>LDAP-Server und Port</translation>
     </message>
@@ -1114,6 +1085,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
         <translation>z.B. namingContexts oder defaultNamingContext</translation>
+    </message>
+    <message>
+        <source>Environment settings</source>
+        <translation>Umgebungseinstellungen</translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -1186,6 +1161,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Computernamen sind als vollqualifizierte Domainnamen gespeichert (FQDN, z.B. myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation>Erweiterte Einstellungen</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -1456,6 +1435,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computer nicht gefunden</translation>
     </message>
     <message>
+        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
+        <translation>Es wurde kein Computer mit dem Name &quot;%1&quot; gefunden. Bitte überprüfen Sie den Computername oder den Computerbaum-Parameter.</translation>
+    </message>
+    <message>
         <source>Enter computer IP address</source>
         <translation>Computer-IP-Adresse eingeben</translation>
     </message>
@@ -1532,28 +1515,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>%1 %2 wurden mit dem konfigurierten Filter erfolgreich abgefragt.</translation>
     </message>
     <message>
-        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Es wurde kein Computer mit dem Name &quot;%1&quot; gefunden. Bitte überprüfen Sie den Computername oder den Computerbaum-Parameter.</translation>
-    </message>
-    <message>
-        <source>LDAP</source>
-        <translation>LDAP</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>Grundeinstellungen</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Allgemein</translation>
-    </message>
-    <message>
-        <source>Environment settings</source>
-        <translation>Umgebungseinstellungen</translation>
-    </message>
-    <message>
-        <source>Advanced settings</source>
-        <translation>Erweiterte Einstellungen</translation>
+        <source>(only if different from group tree)</source>
+        <translation>(nur wenn anders als Gruppenbaum)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
@@ -1568,10 +1531,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computergruppenbaum</translation>
     </message>
     <message>
-        <source>(only if different from group tree)</source>
-        <translation>(nur wenn anders als Gruppenbaum)</translation>
-    </message>
-    <message>
         <source>Filter for computers</source>
         <translation>Filter für Computer</translation>
     </message>
@@ -1582,6 +1541,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
         <translation>z.B. objectClass=room oder objectClass=computerLab</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>z.B. room oder computerLab</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -1618,10 +1581,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>computer group filter or computer room member aggregation</source>
         <translation>Computergruppenfilter oder Gruppierung von Computerraummitgliedern</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>z.B. room oder computerLab</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -1772,88 +1731,20 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>MainWindow</name>
     <message>
+        <source>MainWindow</source>
+        <translation>Hauptfenster</translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>Werkzeugleiste</translation>
+    </message>
+    <message>
         <source>General</source>
         <translation>Allgemein</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Beenden</translation>
-    </message>
-    <message>
         <source>Authentication</source>
         <translation>Authentifizierung</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Datei</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Hilfe</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Beenden</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Strg+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>Einstellungen in Datei &amp;speichern</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Einstellungen in Datei speichern</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Strg+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>Einstellungen aus Datei &amp;laden</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Strg+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Über Qt</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Einstellungen aus Datei laden</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Einstellungen in Datei speichern</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Ungespeicherte Einstellungen</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Einige Einstellungen sind nicht gespeichert. Trotzdem beenden?</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Konfiguration nicht schreibbar</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Fernsteuern</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1896,68 +1787,80 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>5)</translation>
     </message>
     <message>
-        <source>Save bug report archive</source>
-        <translation>Fehlerberichtsarchiv speichern</translation>
+        <source>&amp;File</source>
+        <translation>&amp;Datei</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Hilfe</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Beenden</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Strg+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings into file</source>
+        <translation>Einstellungen in Datei &amp;speichern</translation>
+    </message>
+    <message>
+        <source>Save settings into file</source>
+        <translation>Einstellungen in Datei speichern</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Strg+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>Einstellungen aus Datei &amp;laden</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Strg+O</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Über Qt</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Authentifizierung nicht möglich</translation>
     </message>
     <message>
-        <source>Service</source>
-        <translation>Dienst</translation>
+        <source>Remote control</source>
+        <translation>Fernsteuern</translation>
     </message>
     <message>
-        <source>Master</source>
-        <translation>Master</translation>
+        <source>Quit</source>
+        <translation>Beenden</translation>
     </message>
     <message>
-        <source>Access control</source>
-        <translation>Zugriffskontrolle</translation>
+        <source>Configuration not writable</source>
+        <translation>Konfiguration nicht schreibbar</translation>
     </message>
     <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
+        <source>Load settings from file</source>
+        <translation>Einstellungen aus Datei laden</translation>
     </message>
     <message>
-        <source>Computer rooms</source>
-        <translation>Computerräume</translation>
+        <source>Save settings to file</source>
+        <translation>Einstellungen in Datei speichern</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation>Über</translation>
+        <source>Save bug report archive</source>
+        <translation>Fehlerberichtsarchiv speichern</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Configurator %2</translation>
+        <source>Unsaved settings</source>
+        <translation>Ungespeicherte Einstellungen</translation>
     </message>
     <message>
-        <source>%1 bug report archive saved</source>
-        <translation>%1-Fehlerberichtsarchiv gespeichert</translation>
-    </message>
-    <message>
-        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Ein %1-Fehlerberichtsarchiv wurde unter %2 gespeichert. Es beinhaltet %3-Logdateien und Informationen über Ihr Betriebssystem. Sie können es an einen Fehlerbericht anhängen.</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>%1 Mastersteuerung</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind nicht mehr aktuell. Bitte erzeugen Sie neue Schlüsseldateien mit Hilfe des %1 Configurators. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe des %1 Configurators einrichten. Andernfalls werden Sie nicht in der Lage sein, mit %1 auf Computer zuzugreifen.</translation>
-    </message>
-    <message>
-        <source>JSON files (*.json)</source>
-        <translation>JSON-Dateien (*.json)</translation>
-    </message>
-    <message>
-        <source>%1 bug report (*.json)</source>
-        <translation>%1-Fehlerbericht (*.json)</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Einige Einstellungen sind nicht gespeichert. Trotzdem beenden?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -1982,8 +1885,64 @@ Note: if the bug involves both a master and client computer, attach bug report a
 Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie bitte ein Fehlerberichtsarchiv für beide Computer an.</translation>
     </message>
     <message>
+        <source>Service</source>
+        <translation>Dienst</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Master</translation>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation>Zugriffskontrolle</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>Über Veyon</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Computerräume</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Über</translation>
+    </message>
+    <message>
+        <source>%1 Configurator %2</source>
+        <translation>%1 Configurator %2</translation>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation>JSON-Dateien (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation>%1-Fehlerbericht (*.json)</translation>
+    </message>
+    <message>
+        <source>%1 bug report archive saved</source>
+        <translation>%1-Fehlerberichtsarchiv gespeichert</translation>
+    </message>
+    <message>
+        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation>Ein %1-Fehlerberichtsarchiv wurde unter %2 gespeichert. Es beinhaltet %3-Logdateien und Informationen über Ihr Betriebssystem. Sie können es an einen Fehlerbericht anhängen.</translation>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
+    </message>
+    <message>
+        <source>%1 Master Control</source>
+        <translation>%1 Mastersteuerung</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind nicht mehr aktuell. Bitte erzeugen Sie neue Schlüsseldateien mit Hilfe des %1 Configurators. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe des %1 Configurators einrichten. Andernfalls werden Sie nicht in der Lage sein, mit %1 auf Computer zuzugreifen.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2006,20 +1965,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
     </message>
     <message>
-        <source>Bug reporting</source>
-        <translation>Fehlerbericht</translation>
-    </message>
-    <message>
         <source>Reporting bugs in Veyon</source>
         <translation>Fehler in Veyon berichten</translation>
     </message>
     <message>
-        <source>Reset configuration</source>
-        <translation>Konfiguration zurücksetzen</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
+        <source>Bug reporting</source>
+        <translation>Fehlerbericht</translation>
     </message>
 </context>
 <context>
@@ -2092,10 +2043,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>&lt;no feature&gt;</source>
         <translation>&lt;Keine Funktion&gt;</translation>
     </message>
-    <message>
-        <source>Automatically adjust computer thumbnail size at start</source>
-        <translation>Beim Start automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2130,12 +2077,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Passwort</translation>
     </message>
     <message>
-        <source>Authentication error</source>
-        <translation>Authentifizierungsfehler</translation>
-    </message>
-    <message>
         <source>Veyon Logon</source>
         <translation>Veyon-Anmeldung</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authentifizierungsfehler</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -2255,12 +2202,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Eine Fernsteuerung für einen Computer öffnen.</translation>
     </message>
     <message>
-        <source>Remote view or control a computer</source>
-        <translation>Fernansicht oder -Steuerung eines Computers</translation>
-    </message>
-    <message>
         <source>Remote access</source>
         <translation>Fernzugriff</translation>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Fernansicht oder -Steuerung eines Computers</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -2289,6 +2236,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Fernsteuern</translation>
     </message>
     <message>
+        <source>Send shortcut</source>
+        <translation>Tastaturkürzel senden</translation>
+    </message>
+    <message>
         <source>Fullscreen</source>
         <translation>Vollbild</translation>
     </message>
@@ -2299,18 +2250,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Quit</source>
         <translation>Beenden</translation>
-    </message>
-    <message>
-        <source>Connecting %1</source>
-        <translation>Verbindung wird hergestellt %1</translation>
-    </message>
-    <message>
-        <source>Connected.</source>
-        <translation>Verbindung hergestellt.</translation>
-    </message>
-    <message>
-        <source>Send shortcut</source>
-        <translation>Tastaturkürzel senden</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -2343,6 +2282,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Alt+Ctrl+F1</source>
         <translation>Alt+Strg+F1</translation>
+    </message>
+    <message>
+        <source>Connecting %1</source>
+        <translation>Verbindung wird hergestellt %1</translation>
+    </message>
+    <message>
+        <source>Connected.</source>
+        <translation>Verbindung hergestellt.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2470,16 +2417,16 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Allgemein</translation>
     </message>
     <message>
+        <source>Autostart</source>
+        <translation>Autostart</translation>
+    </message>
+    <message>
         <source>Hide tray icon</source>
         <translation>Icon im Infobereich verstecken</translation>
     </message>
     <message>
         <source>Start service</source>
         <translation>Dienst starten</translation>
-    </message>
-    <message>
-        <source>Autostart</source>
-        <translation>Autostart</translation>
     </message>
     <message>
         <source>Additional arguments</source>
@@ -2496,6 +2443,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>State:</source>
         <translation>Status:</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation>SAS-Generierung in Software aktivieren (Strg+Alt+Entf)</translation>
     </message>
     <message>
         <source>Network</source>
@@ -2518,14 +2469,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Port des internen VNC-Servers</translation>
     </message>
     <message>
-        <source>Running</source>
-        <translation>Läuft</translation>
-    </message>
-    <message>
-        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>SAS-Generierung in Software aktivieren (Strg+Alt+Entf)</translation>
-    </message>
-    <message>
         <source>VNC server</source>
         <translation>VNC-Server</translation>
     </message>
@@ -2540,6 +2483,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
         <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neugestartet werden. Jetzt neustarten?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Läuft</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -2682,16 +2629,16 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
 <context>
     <name>UserSessionControl</name>
     <message>
+        <source>User session control</source>
+        <translation>Benutzersitzungssteuerung</translation>
+    </message>
+    <message>
         <source>Logout user</source>
         <translation>Benutzer abmelden</translation>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
-    </message>
-    <message>
-        <source>User session control</source>
-        <translation>Benutzersitzungssteuerung</translation>
     </message>
 </context>
 <context>
@@ -2713,6 +2660,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Verfügbare Befehle:</translation>
     </message>
     <message>
+        <source>Invalid arguments given</source>
+        <translation>Ungültige Argumente angegeben</translation>
+    </message>
+    <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
         <translation>Nicht genügend Argumente angegeben - benutzen Sie &quot;%1 help&quot; für mehr Informationen</translation>
     </message>
@@ -2727,10 +2678,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Module not found - available modules are:</source>
         <translation>Modul nicht gefunden - verfügbare Module sind:</translation>
-    </message>
-    <message>
-        <source>Invalid arguments given</source>
-        <translation>Ungültige Argumente angegeben</translation>
     </message>
 </context>
 <context>
