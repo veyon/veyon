@@ -54,13 +54,14 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testGroupMemberAttribute );
 	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute );
 	CONNECT_BUTTON_SLOT( testComputerMacAddressAttribute );
+	CONNECT_BUTTON_SLOT( testComputerRoomAttribute );
+	CONNECT_BUTTON_SLOT( testComputerRoomNameAttribute );
 
 	CONNECT_BUTTON_SLOT( testUsersFilter );
 	CONNECT_BUTTON_SLOT( testUserGroupsFilter );
 	CONNECT_BUTTON_SLOT( testComputersFilter );
 	CONNECT_BUTTON_SLOT( testComputerGroupsFilter );
-
-	CONNECT_BUTTON_SLOT( testComputerRoomAttribute );
+	CONNECT_BUTTON_SLOT( testComputerParentsFilter );
 
 	CONNECT_BUTTON_SLOT( testGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testGroupsOfComputer );
@@ -341,6 +342,41 @@ void LdapConfigurationPage::testComputerMacAddressAttribute()
 
 
 
+void LdapConfigurationPage::testComputerRoomAttribute()
+{
+	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
+										  tr( "Please enter the name of a computer room (wildcards allowed):") );
+	if( computerRoomName.isEmpty() == false )
+	{
+		qDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
+
+		LdapDirectory ldapDirectory( m_configuration );
+
+		reportLdapObjectQueryResults( tr( "computer rooms" ), tr( "computer room attribute" ),
+									  ldapDirectory.computerRooms( computerRoomName ), ldapDirectory );
+	}
+}
+
+
+
+void LdapConfigurationPage::testComputerRoomNameAttribute()
+{
+	if( m_configuration.ldapComputerRoomMembersByAttribute() )
+	{
+		QMessageBox::information( this, tr( "Test not applicable" ),
+								  tr( "Please change the computer room settings to use computer groups "
+									  "or parent objects of computer objects as computer rooms. Then the "
+									  "specified attribute instead of the common name of computer groups "
+									  "or parent objects will be queried. "
+									  "Otherwise you don't need to configure this attribute." ) );
+		return;
+	}
+
+	testComputerRoomAttribute();
+}
+
+
+
 void LdapConfigurationPage::testUsersFilter()
 {
 	qDebug() << "[TEST][LDAP] Testing users filter";
@@ -389,19 +425,18 @@ void LdapConfigurationPage::testComputerGroupsFilter()
 
 
 
-void LdapConfigurationPage::testComputerRoomAttribute()
+void LdapConfigurationPage::testComputerParentsFilter()
 {
-	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
-										  tr( "Please enter the name of a computer room (wildcards allowed):") );
-	if( computerRoomName.isEmpty() == false )
+	if( m_configuration.ldapComputerRoomMembersByParent() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
-
-		LdapDirectory ldapDirectory( m_configuration );
-
-		reportLdapObjectQueryResults( tr( "computer rooms" ), tr( "computer room attribute" ),
-									  ldapDirectory.computerRooms( computerRoomName ), ldapDirectory );
+		QMessageBox::information( this, tr( "Test not applicable" ),
+								  tr( "Please change the computer room settings below to use parent objects "
+									  "of computer objects as computer rooms. Otherwise you don't need to "
+									  "configure this filter." ) );
+		return;
 	}
+
+	testComputerRooms();
 }
 
 

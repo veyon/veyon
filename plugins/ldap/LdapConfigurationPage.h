@@ -57,11 +57,13 @@ private slots:
 	void testGroupMemberAttribute();
 	void testComputerHostNameAttribute();
 	void testComputerMacAddressAttribute();
+	void testComputerRoomAttribute();
+	void testComputerRoomNameAttribute();
 	void testUsersFilter();
 	void testUserGroupsFilter();
 	void testComputersFilter();
 	void testComputerGroupsFilter();
-	void testComputerRoomAttribute();
+	void testComputerParentsFilter();
 	void testGroupsOfUser();
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();
