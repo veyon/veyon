@@ -25,6 +25,8 @@
 #include <QApplication>
 #include <QProcessEnvironment>
 
+#include <openssl/crypto.h>
+
 #include "CommandLinePluginInterface.h"
 #include "PluginManager.h"
 
@@ -56,10 +58,20 @@ int main( int argc, char **argv )
 		return -1;
 	}
 
-	if( arguments.last() == "-v" || arguments.last() == "--version" )
+	if( arguments.count() == 2 )
 	{
-		printf( "%s\n", VEYON_VERSION );
-		return 0;
+		if( arguments.last() == "-v" || arguments.last() == "--version" )
+		{
+			printf( "%s\n", VEYON_VERSION );
+			return 0;
+		}
+		else if( arguments.last() == "about" )
+		{
+			printf( "Veyon: %s (%s)\n", VEYON_VERSION, __DATE__ );
+			printf( "Qt: %s (built against %s/%s)\n", qVersion(), QT_VERSION_STR, qPrintable( QSysInfo::buildAbi() ) );
+			printf( "OpenSSL: %s\n", SSLeay_version(SSLEAY_VERSION) );
+			return 0;
+		}
 	}
 
 	VeyonCore* core = new VeyonCore( app, "Control" );
