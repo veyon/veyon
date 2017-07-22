@@ -322,7 +322,7 @@ QString LdapDirectory::ldapErrorDescription() const
 
 QStringList LdapDirectory::queryBaseDn()
 {
-	return d->queryDistinguishedNames( d->baseDn, QString( "(objectclass=*)"), KLDAP::LdapUrl::Base );
+	return d->queryDistinguishedNames( d->baseDn, QStringLiteral( "(objectclass=*)" ), KLDAP::LdapUrl::Base );
 }
 
 
@@ -396,7 +396,7 @@ QStringList LdapDirectory::users(const QString &filterValue)
 QStringList LdapDirectory::groups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( "cn", filterValue ),
+									   constructQueryFilter( QStringLiteral( "cn" ), filterValue ),
 									   d->defaultSearchScope );
 }
 
@@ -405,7 +405,7 @@ QStringList LdapDirectory::groups(const QString &filterValue)
 QStringList LdapDirectory::userGroups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( "cn", filterValue, d->userGroupsFilter ),
+									   constructQueryFilter( QStringLiteral( "cn" ), filterValue, d->userGroupsFilter ),
 									   d->defaultSearchScope );
 }
 
@@ -427,7 +427,7 @@ QStringList LdapDirectory::computers(const QString &filterValue)
 QStringList LdapDirectory::computerGroups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
-									   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
+									   constructQueryFilter( QStringLiteral( "cn" ), filterValue, d->computerGroupsFilter ) ,
 									   d->defaultSearchScope );
 }
 
@@ -652,7 +652,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	if( d->namingContextAttribute.isEmpty() )
 	{
 		// fallback to AD default value
-		d->namingContextAttribute = "defaultNamingContext";
+		d->namingContextAttribute = QStringLiteral( "defaultNamingContext" );
 	}
 
 	// query base DN via naming context if configured
@@ -725,11 +725,11 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 	{
 		if( filterValue.isEmpty() )
 		{
-			queryFilter = QString( "(%1=*)" ).arg( filterAttribute );
+			queryFilter = QStringLiteral( "(%1=*)" ).arg( filterAttribute );
 		}
 		else
 		{
-			queryFilter = QString( "(%1=%2)" ).arg( filterAttribute, filterValue );
+			queryFilter = QStringLiteral( "(%1=%2)" ).arg( filterAttribute, filterValue );
 		}
 	}
 
@@ -737,11 +737,11 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 	{
 		if( queryFilter.isEmpty() )
 		{
-			queryFilter = QString( "(%1)" ).arg( extraFilter );
+			queryFilter = QStringLiteral( "(%1)" ).arg( extraFilter );
 		}
 		else
 		{
-			queryFilter = QString( "(&(%1)%2)" ).arg( extraFilter, queryFilter );
+			queryFilter = QStringLiteral( "(&(%1)%2)" ).arg( extraFilter, queryFilter );
 		}
 	}
 
