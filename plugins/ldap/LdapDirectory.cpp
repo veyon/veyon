@@ -608,7 +608,7 @@ QStringList LdapDirectory::computerRoomMembers(const QString &computerRoomName)
 	auto memberComputers = groupMembers( computerGroups( computerRoomName ).value( 0 ) );
 
 	// computer filter configured?
-	if( d->computerGroupsFilter.isEmpty() == false )
+	if( d->computersFilter.isEmpty() == false )
 	{
 		auto memberComputersSet = memberComputers.toSet();
 
