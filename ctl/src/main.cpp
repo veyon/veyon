@@ -37,7 +37,7 @@ int main( int argc, char **argv )
 
 #ifdef VEYON_BUILD_LINUX
 	// do not create graphical application if DISPLAY is not available
-	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) == false )
+	if( QProcessEnvironment::systemEnvironment().contains( QStringLiteral("DISPLAY") ) == false )
 	{
 		app = new QCoreApplication( argc, argv );
 	}
@@ -60,12 +60,12 @@ int main( int argc, char **argv )
 
 	if( arguments.count() == 2 )
 	{
-		if( arguments.last() == "-v" || arguments.last() == "--version" )
+		if( arguments.last() == QStringLiteral("-v") || arguments.last() == QStringLiteral("--version") )
 		{
 			printf( "%s\n", VEYON_VERSION );
 			return 0;
 		}
-		else if( arguments.last() == "about" )
+		else if( arguments.last() == QStringLiteral("about") )
 		{
 			printf( "Veyon: %s (%s)\n", VEYON_VERSION, __DATE__ );
 			printf( "Qt: %s (built against %s/%s)\n", qVersion(), QT_VERSION_STR, qPrintable( QSysInfo::buildAbi() ) );
@@ -74,7 +74,7 @@ int main( int argc, char **argv )
 		}
 	}
 
-	VeyonCore* core = new VeyonCore( app, "Control" );
+	VeyonCore* core = new VeyonCore( app, QStringLiteral("Control") );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 	const auto pluginObjects = core->pluginManager().pluginObjects();
@@ -103,7 +103,7 @@ int main( int argc, char **argv )
 
 				if( commands.contains( command ) &&
 						QMetaObject::invokeMethod( it.value(),
-												   QString( "handle_%1" ).arg( command ).toUtf8().constData(),
+												   QStringLiteral( "handle_%1" ).arg( command ).toUtf8().constData(),
 												   Qt::DirectConnection,
 												   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
 												   Q_ARG( QStringList, arguments.mid( 3 ) ) ) )
@@ -131,7 +131,7 @@ int main( int argc, char **argv )
 				qInfo( "%s", qPrintable( VeyonCore::tr( "[FAIL]" ) ) );
 				return -1;
 			case CommandLinePluginInterface::InvalidCommand:
-				if( arguments.contains( "help" ) == false )
+				if( arguments.contains( QStringLiteral("help") ) == false )
 				{
 					qCritical( "%s", qPrintable( VeyonCore::tr( "Invalid command!" ) ) );
 				}
@@ -161,7 +161,7 @@ int main( int argc, char **argv )
 
 	delete core;
 
-	if( module == "help" )
+	if( module == QStringLiteral("help") )
 	{
 		qCritical( "%s", qPrintable( VeyonCore::tr( "Available modules:" ) ) );
 	}
