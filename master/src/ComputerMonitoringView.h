@@ -60,7 +60,7 @@ public slots:
 
 private slots:
 	void runDoubleClickFeature( const QModelIndex& index );
-	void showContextMenu( const QPoint& pos );
+	void showContextMenu( QPoint pos );
 	void runFeature( const Feature& feature );
 
 private:

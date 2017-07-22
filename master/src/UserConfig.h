@@ -27,6 +27,8 @@
 
 #include "Configuration/Object.h"
 
+// clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
+
 class UserConfig : public Configuration::Object
 {
 	Q_OBJECT

@@ -41,9 +41,9 @@ int main( int argc, char * * argv )
 	VeyonCore::setupApplicationParameters();
 
 	QApplication app( argc, argv );
-	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
+	app.connect( &app, &QApplication::lastWindowClosed, &QApplication::quit );
 
-	VeyonCore core( &app, "Master" );
+	VeyonCore core( &app, QStringLiteral("Master") );
 
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
@@ -52,20 +52,20 @@ int main( int argc, char * * argv )
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
-		if( a == "-role" )
+		if( a == QStringLiteral("-role") )
 		{
 			if( arg_it.hasNext() )
 			{
 				const QString role = arg_it.next();
-				if( role == "teacher" )
+				if( role == QStringLiteral("teacher") )
 				{
 					core.setUserRole( VeyonCore::RoleTeacher );
 				}
-				else if( role == "admin" )
+				else if( role == QStringLiteral("admin") )
 				{
 					core.setUserRole( VeyonCore::RoleAdmin );
 				}
-				else if( role == "supporter" )
+				else if( role == QStringLiteral("supporter") )
 				{
 					core.setUserRole( VeyonCore::RoleSupporter );
 				}
@@ -81,7 +81,7 @@ int main( int argc, char * * argv )
 		}
 	}
 
-	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
+	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/resources/splash.png") ) );
 	splashScreen.show();
 
 	if( MainWindow::initAuthentication() == false ||

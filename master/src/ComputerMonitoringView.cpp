@@ -119,6 +119,7 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 	if( m_computerListModel )
 	{
 		const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
+		computerControlInterfaces.reserve( selectedIndices.size() );
 		for( const auto& index : selectedIndices )
 		{
 			computerControlInterfaces += &( m_computerListModel->computerControlInterface(
@@ -144,7 +145,7 @@ void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 
 
 
-void ComputerMonitoringView::showContextMenu( const QPoint& pos )
+void ComputerMonitoringView::showContextMenu( QPoint pos )
 {
 	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
 }

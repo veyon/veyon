@@ -167,9 +167,9 @@ void ComputerListModel::updateComputerScreen( int computerIndex )
 
 void ComputerListModel::loadIcons()
 {
-	m_iconDefault = prepareIcon( QImage( ":/resources/preferences-desktop-display-gray.png" ) );
-	m_iconConnectionProblem = prepareIcon( QImage( ":/resources/preferences-desktop-display-red.png" ) );
-	m_iconDemoMode = prepareIcon( QImage( ":/resources/preferences-desktop-display-orange.png" ) );
+	m_iconDefault = prepareIcon( QImage( QStringLiteral(":/resources/preferences-desktop-display-gray.png") ) );
+	m_iconConnectionProblem = prepareIcon( QImage( QStringLiteral(":/resources/preferences-desktop-display-red.png") ) );
+	m_iconDemoMode = prepareIcon( QImage( QStringLiteral(":/resources/preferences-desktop-display-orange.png") ) );
 }
 
 
@@ -227,10 +227,10 @@ QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
 
 	if( user.isEmpty() )
 	{
-		return QString( "<b>%1</b><br>%2<br>%3" ).arg( state, room, host );
+		return QStringLiteral( "<b>%1</b><br>%2<br>%3" ).arg( state, room, host );
 	}
 
-	return QString( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, user );
+	return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, user );
 }
 
 

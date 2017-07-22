@@ -91,6 +91,8 @@ ComputerControlInterfaceList ComputerManager::computerControlInterfaces()
 {
 	ComputerControlInterfaceList interfaces;
 
+	interfaces.reserve( m_computerList.size() );
+
 	for( auto& computer : m_computerList )
 	{
 		interfaces += &computer.controlInterface();
@@ -147,7 +149,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 			// fetch user
 			QString user = m_networkObjectOverlayDataModel->data( networkObjectIndex ).toString();
 			// create new line with computer and user
-			lines += computer.name() + ";" + computer.hostAddress() + ";" + user;
+			lines += computer.name() + ";" + computer.hostAddress() + ";" + user; // clazy:exclude=reserve-candidates
 		}
 	}
 
@@ -160,7 +162,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 		return false;
 	}
 
-	outputFile.write( lines.join( "\r\n" ).toUtf8() );
+	outputFile.write( lines.join( QStringLiteral("\r\n") ).toUtf8() );
 
 	return true;
 }
@@ -188,7 +190,7 @@ void ComputerManager::updateComputerList()
 
 	int index = 0;
 
-	for( auto computerIt = m_computerList.begin(); computerIt != m_computerList.end(); )
+	for( auto computerIt = m_computerList.begin(); computerIt != m_computerList.end(); ) // clazy:exclude=detaching-member
 	{
 		if( newComputerList.contains( *computerIt ) == false )
 		{
@@ -218,7 +220,7 @@ void ComputerManager::updateComputerList()
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.append( computer );
-			startComputerControlInterface( m_computerList.last() );
+			startComputerControlInterface( m_computerList.last() ); // clazy:exclude=detaching-member
 			emit computerInserted();
 		}
 
@@ -263,7 +265,7 @@ void ComputerManager::initRooms()
 	for( const auto& address : localHostAddresses )
 	{
 		qDebug() << "ComputerManager::initRooms(): initializing rooms for"
-				 << QString( "%1 (%2)" ).arg( localHostName, address.toString() );
+				 << QStringLiteral( "%1 (%2)" ).arg( localHostName, address.toString() );
 	}
 	m_currentRooms.append( findRoomOfComputer( localHostNames, localHostAddresses, QModelIndex() ) );
 
@@ -507,7 +509,7 @@ void ComputerManager::updateUser( Computer& computer )
 
 
 
-QModelIndex ComputerManager::findNetworkObject( const NetworkObject::Uid& networkObjectUid, const QModelIndex& parent )
+QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent )
 {
 	QAbstractItemModel* model = networkObjectModel();
 
