@@ -157,7 +157,7 @@ QJsonArray CheckableItemProxyModel::saveStates()
 {
 	QJsonArray data;
 
-	for( auto it = m_checkStates.begin(); it != m_checkStates.end(); ++it )
+	for( auto it = m_checkStates.constBegin(), end = m_checkStates.constEnd(); it != end; ++it )
 	{
 		if( it.value() == Qt::Checked )
 		{
