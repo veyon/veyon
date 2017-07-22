@@ -354,7 +354,7 @@ QString LdapDirectory::parentDn( const QString& dn )
 
 
 
-QString LdapDirectory::toRelativeDn( QString fullDn )
+QString LdapDirectory::toRelativeDn( const QString& fullDn )
 {
 	const auto fullDnLower = fullDn.toLower();
 	const auto baseDnLower = d->baseDn.toLower();
@@ -370,7 +370,7 @@ QString LdapDirectory::toRelativeDn( QString fullDn )
 
 
 
-QString LdapDirectory::toFullDn( QString relativeDn )
+QString LdapDirectory::toFullDn( const QString& relativeDn )
 {
 	return relativeDn + QLatin1Char( ',' ) + d->baseDn;
 }
