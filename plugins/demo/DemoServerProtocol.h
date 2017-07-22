@@ -28,6 +28,8 @@
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class DemoServerProtocol : public VncServerProtocol
 {
 public:

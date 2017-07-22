@@ -29,6 +29,8 @@
 
 class DemoServer;
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 // the demo server creates an instance of this class for each client connection,
 // i.e. each client is connected to a different server thread for best
 // performance

@@ -38,7 +38,7 @@ class LocalDataConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	LocalDataConfigurationPage( LocalDataConfiguration& configuration );
+	LocalDataConfigurationPage( LocalDataConfiguration& configuration, QWidget* parent = nullptr );
 	~LocalDataConfigurationPage();
 
 	void resetWidgets() override;

@@ -29,8 +29,8 @@
 
 #include "ui_LocalDataConfigurationPage.h"
 
-LocalDataConfigurationPage::LocalDataConfigurationPage( LocalDataConfiguration& configuration ) :
-	ConfigurationPage(),
+LocalDataConfigurationPage::LocalDataConfigurationPage( LocalDataConfiguration& configuration, QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui(new Ui::LocalDataConfigurationPage),
 	m_configuration( configuration )
 {

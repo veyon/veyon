@@ -40,7 +40,7 @@ class LocalDataPlugin : public QObject,
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.LocalData")
 	Q_INTERFACES(PluginInterface AccessControlDataBackendInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
 public:
-	LocalDataPlugin();
+	LocalDataPlugin( QObject* paren = nullptr );
 	virtual ~LocalDataPlugin();
 
 	Plugin::Uid uid() const override

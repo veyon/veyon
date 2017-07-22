@@ -39,17 +39,18 @@
 #include "RunProgramDialog.h"
 
 
-DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin() :
+DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
+	QObject( parent ),
 	m_runProgramFeature( Feature::Action | Feature::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
 						 tr( "Run program" ), QString(),
 						 tr( "Click this button to run a program on all computers." ),
-						 ":/desktopservices/preferences-desktop-launch-feedback.png" ),
+						 QStringLiteral(":/desktopservices/preferences-desktop-launch-feedback.png") ),
 	m_openWebsiteFeature( Feature::Action | Feature::AllComponents,
 						  Feature::Uid( "8a11a75d-b3db-48b6-b9cb-f8422ddd5b0c" ),
 						  tr( "Open website" ), QString(),
 						  tr( "Click this button to open a website on all computers." ),
-						  ":/desktopservices/internet-web-browser.png" ),
+						  QStringLiteral(":/desktopservices/internet-web-browser.png") ),
 	m_features()
 {
 	m_features += m_runProgramFeature;
@@ -195,9 +196,9 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 				   << "via QDesktopServices - trying native approach";
 		QString launcher;
 #ifdef VEYON_BUILD_LINUX
-		launcher = "xdg-open ";
+		launcher = QStringLiteral("xdg-open ");
 #elif defined(VEYON_BUILD_WIN32)
-		launcher = "cmd /c start ";
+		launcher = QStringLiteral("cmd /c start ");
 #else
 #warning unsupported platform
 #endif

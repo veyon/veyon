@@ -31,7 +31,7 @@ QStringList LinuxUserSessionFunctions::loggedOnUsers()
 	QStringList users;
 
 	QProcess whoProcess;
-	whoProcess.start( "who" );
+	whoProcess.start( QStringLiteral("who") );
 	whoProcess.waitForFinished( WhoProcessTimeout );
 
 	if( whoProcess.exitCode() != 0 )
@@ -45,7 +45,7 @@ QStringList LinuxUserSessionFunctions::loggedOnUsers()
 		const auto user = line.split( ' ' ).value( 0 );
 		if( user.isEmpty() == false && users.contains( user ) == false )
 		{
-			users.append( user );
+			users.append( user ); // clazy:exclude=reserve-candidates
 		}
 	}
 

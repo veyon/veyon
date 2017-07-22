@@ -33,6 +33,7 @@
 	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo" );	\
 	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo" );	\
 
+// clazy:excludeall=ctor-missing-parent-argument
 
 class DemoConfiguration : public Configuration::Proxy
 {

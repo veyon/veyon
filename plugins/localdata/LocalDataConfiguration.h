@@ -30,6 +30,7 @@
 #define FOREACH_LOCAL_DATA_CONFIG_PROPERTY(OP) \
 	OP( LocalDataConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "LocalData" );	\
 
+// clazy:excludeall=ctor-missing-parent-argument
 
 class LocalDataConfiguration : public Configuration::Proxy
 {

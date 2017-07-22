@@ -34,8 +34,8 @@
 #include "VncView.h"
 
 
-DemoClient::DemoClient( const QString& host, bool fullscreen ) :
-	QObject(),
+DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) :
+	QObject( parent ),
 	m_toplevel( nullptr )
 {
 	if( fullscreen )

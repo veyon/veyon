@@ -48,7 +48,8 @@
 
 
 
-LocalDataPlugin::LocalDataPlugin() :
+LocalDataPlugin::LocalDataPlugin( QObject* parent ) :
+	QObject( parent ),
 	m_configuration()
 {
 }
@@ -80,10 +81,13 @@ QStringList LocalDataPlugin::userGroups()
 
 #ifdef VEYON_BUILD_LINUX
 	QProcess getentProcess;
-	getentProcess.start( "getent", { "group" } );
+	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
 	getentProcess.waitForFinished();
 
 	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
+
+	groupList.reserve( groups.size() );
+
 	for( const auto& group : groups )
 	{
 		groupList += group.split( ':' ).first();
@@ -179,6 +183,8 @@ QStringList LocalDataPlugin::userGroups()
 	{
 		LOCALGROUP_INFO_0* groupInfos = (LOCALGROUP_INFO_0 *) outBuffer;
 
+		groupList.reserve( entriesRead );
+
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
 				groupList += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
@@ -189,7 +195,7 @@ QStringList LocalDataPlugin::userGroups()
 #endif
 
 	// remove all empty entries
-	groupList.removeAll( "" );
+	groupList.removeAll( QStringLiteral("") );
 
 	return groupList;
 }
@@ -204,7 +210,7 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 	const auto strippedUsername = LocalSystem::User::stripDomain( username );
 
 	QProcess getentProcess;
-	getentProcess.start( "getent", { "group" } );
+	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
 	getentProcess.waitForFinished();
 
 	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
@@ -214,7 +220,7 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 		if( groupComponents.size() == 4 &&
 				groupComponents.last().split( ',' ).contains( strippedUsername ) )
 		{
-			groupList += groupComponents.first();
+			groupList += groupComponents.first(); // clazy:exclude=reserve-candidates
 		}
 	}
 #endif
@@ -229,6 +235,8 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 	{
 		LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
 
+		groupList.reserve( entriesRead );
+
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
 				groupList += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
@@ -238,7 +246,7 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 	}
 #endif
 
-	groupList.removeAll( "" );
+	groupList.removeAll( QStringLiteral("") );
 
 	return groupList;
 }
@@ -255,7 +263,7 @@ QStringList LocalDataPlugin::allRooms()
 		const NetworkObject networkObject( networkObjectValue.toObject() );
 		if( networkObject.type() == NetworkObject::Group )
 		{
-			rooms.append( networkObject.name() );
+			rooms.append( networkObject.name() ); // clazy:exclude=reserve-candidates
 		}
 	}
 
