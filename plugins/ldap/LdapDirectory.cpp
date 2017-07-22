@@ -374,6 +374,8 @@ QStringList LdapDirectory::toRelativeDnList( const QStringList &fullDnList )
 {
 	QStringList relativeDnList;
 
+	relativeDnList.reserve( fullDnList.size() );
+
 	for( const auto& fullDn : fullDnList )
 	{
 		relativeDnList += toRelativeDn( fullDn );
