@@ -168,13 +168,6 @@ public:
 		return distinguishedNames;
 	}
 
-	QStringList queryCommonNames( const QString& dn,
-								  const QString& filter = QStringLiteral( "(objectclass=*)" ),
-								  KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base )
-	{
-		return queryAttributes( dn, "cn", filter, scope );
-	}
-
 	QString ldapErrorDescription() const
 	{
 		QString errorString = connection.ldapErrorString();
@@ -534,7 +527,11 @@ QString LdapDirectory::userLoginName(const QString &userDn)
 
 QString LdapDirectory::groupName(const QString &groupDn)
 {
-	return d->queryCommonNames( groupDn ).value( 0 );
+	return d->queryAttributes( groupDn,
+							   QStringLiteral( "cn" ),
+							   QStringLiteral( "(objectclass=*)" ),
+							   KLDAP::LdapUrl::Base ).
+			value( 0 );
 }
 
 
