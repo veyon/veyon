@@ -42,7 +42,7 @@ class ComputerControlServer : public QObject, VncProxyConnectionFactory
 {
 	Q_OBJECT
 public:
-	ComputerControlServer();
+	ComputerControlServer( QObject* parent = nullptr );
 	~ComputerControlServer() override;
 
 	void start();
@@ -68,7 +68,7 @@ public:
 
 
 private:
-	void showAuthenticationErrorMessage( QString host, QString user );
+	void showAuthenticationErrorMessage( const QString& host, const QString& user );
 
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;

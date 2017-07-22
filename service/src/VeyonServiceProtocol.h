@@ -30,6 +30,8 @@
 class ServerAuthenticationManager;
 class ServerAccessControlManager;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VeyonServiceProtocol : public VncServerProtocol
 {
 public:

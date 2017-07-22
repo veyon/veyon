@@ -40,8 +40,8 @@
 #include "SystemTrayIcon.h"
 
 
-ComputerControlServer::ComputerControlServer() :
-	QObject(),
+ComputerControlServer::ComputerControlServer( QObject* parent ) :
+	QObject( parent ),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
 	m_builtinFeatures(),
@@ -57,7 +57,7 @@ ComputerControlServer::ComputerControlServer() :
 					  this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
-				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VEYON_VERSION,
+				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), QStringLiteral(VEYON_VERSION),
 					QHostInfo::localHostName(),
 					QString::number( VeyonCore::config().primaryServicePort() ) ),
 				m_featureWorkerManager );
@@ -119,7 +119,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 
 
-void ComputerControlServer::showAuthenticationErrorMessage( QString host, QString user )
+void ComputerControlServer::showAuthenticationErrorMessage( const QString& host, const QString& user )
 {
 	qWarning() << "ComputerControlServer: failed authenticating client" << host << user;
 

@@ -86,7 +86,7 @@ int main( int argc, char **argv )
 
 	QCoreApplication app( argc, argv );
 
-	VeyonCore core( &app, "Service" );
+	VeyonCore core( &app, QStringLiteral("Service") );
 
 	// parse arguments
 	QStringListIterator argIt( app.arguments() );
@@ -96,7 +96,7 @@ int main( int argc, char **argv )
 	{
 		const QString a = argIt.next().toLower();
 
-		if( a == "-session" && argIt.hasNext() )
+		if( a == QStringLiteral("-session") && argIt.hasNext() )
 		{
 			int sessionId = argIt.next().toUInt();
 			if( sessionId > 0 )

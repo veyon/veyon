@@ -34,7 +34,7 @@ class VncServer : public QThread
 {
 	Q_OBJECT
 public:
-	VncServer();
+	VncServer( QObject* parent = nullptr );
 	virtual ~VncServer();
 
 	int serverPort() const;

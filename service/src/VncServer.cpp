@@ -33,8 +33,8 @@
 #include "VncServerPluginInterface.h"
 
 
-VncServer::VncServer() :
-	QThread(),
+VncServer::VncServer( QObject* parent ) :
+	QThread( parent ),
 	m_pluginInterface( nullptr )
 {
 	VeyonCore::authenticationCredentials().setInternalVncServerPassword(
@@ -55,7 +55,7 @@ VncServer::VncServer() :
 			}
 			else if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
 			{
-				defaultVncServerPlugins.append( vncServerPluginInterface );
+				defaultVncServerPlugins.append( vncServerPluginInterface ); // clazy:exclude=reserve-candidates
 			}
 		}
 	}
