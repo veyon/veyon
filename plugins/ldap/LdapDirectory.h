@@ -51,6 +51,7 @@ public:
 
 	QString queryNamingContext();
 
+	static QString parentDn( const QString& dn );
 	QString toRelativeDn( QString fullDn );
 	QString toFullDn( QString relativeDn );
 

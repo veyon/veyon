@@ -337,6 +337,19 @@ QString LdapDirectory::queryNamingContext()
 
 
 
+QString LdapDirectory::parentDn( const QString& dn )
+{
+	const auto separatorPos = dn.indexOf( ',' );
+	if( separatorPos > 0 && separatorPos+1 < dn.size() )
+	{
+		return dn.mid( separatorPos + 1 );
+	}
+
+	return QString();
+}
+
+
+
 QString LdapDirectory::toRelativeDn( QString fullDn )
 {
 	const auto fullDnLower = fullDn.toLower();
