@@ -133,7 +133,7 @@ void LdapConfigurationPage::testBaseDn()
 			QMessageBox::information( this, tr( "LDAP base DN test successful" ),
 							tr( "The LDAP base DN has been queried successfully. "
 								"The following entries were found:\n%1" ).
-									  arg( entries.join("\n") ) );
+									  arg( entries.join('\n') ) );
 		}
 	}
 }
