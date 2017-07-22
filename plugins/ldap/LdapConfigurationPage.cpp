@@ -664,9 +664,9 @@ QString LdapConfigurationPage::formatResultsString( const QStringList &results )
 	{
 	case 0: return QString();
 	case 1: return results.first();
-	case 2: return QString( "%1\n%2" ).arg( results[0], results[1] );
+	case 2: return QStringLiteral( "%1\n%2" ).arg( results[0], results[1] );
 	default: break;
 	}
 
-	return QString( "%1\n%2\n[...]" ).arg( results[0], results[1] );
+	return QStringLiteral( "%1\n%2\n[...]" ).arg( results[0], results[1] );
 }
