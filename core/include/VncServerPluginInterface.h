@@ -27,6 +27,8 @@
 
 #include "PluginInterface.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class VncServerPluginInterface
 {
 public:
