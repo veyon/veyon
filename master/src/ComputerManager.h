@@ -108,7 +108,7 @@ private:
 
 	void startComputerControlInterface( Computer& computer );
 	void updateUser( Computer& computer );
-	QModelIndex findNetworkObject( const NetworkObject::Uid& networkObjectUid, const QModelIndex& parent = QModelIndex() );
+	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
 	UserConfig& m_config;
 	FeatureManager& m_featureManager;

@@ -626,6 +626,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Демосервер</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Налаштовувані</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Інтервал між ключовими кадрами</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Межа пам’яті</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Використовувати багатопоточність (експериментальне)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>МБ</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Інтервал оновлення</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>с</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1974,6 +2013,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Bug reporting</source>
         <translation>Звітування щодо вад</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Скинути налаштування</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Ви справді хочете скинути локальні налаштування і повернути усі параметри до типових значень?</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2044,6 +2091,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Автоматично коригувати розмір мініатюри комп’ютера під час запуску</translation>
     </message>
 </context>
 <context>

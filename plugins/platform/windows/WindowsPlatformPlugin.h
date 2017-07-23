@@ -36,7 +36,7 @@ class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInt
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.WindowsPlatform")
 	Q_INTERFACES(PluginInterface PlatformPluginInterface)
 public:
-	WindowsPlatformPlugin();
+	WindowsPlatformPlugin( QObject* parent = nullptr );
 	~WindowsPlatformPlugin() override;
 
 	Plugin::Uid uid() const override

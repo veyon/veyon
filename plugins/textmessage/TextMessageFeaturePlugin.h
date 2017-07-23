@@ -34,7 +34,7 @@ class TextMessageFeaturePlugin : public QObject, FeaturePluginInterface, PluginI
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeaturePluginInterface")
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
-	TextMessageFeaturePlugin();
+	TextMessageFeaturePlugin( QObject* parent = nullptr );
 	~TextMessageFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
@@ -44,12 +44,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral("1.0");
 	}
 
 	QString name() const override
 	{
-		return "TextMessage";
+		return QStringLiteral("TextMessage");
 	}
 
 	QString description() const override
@@ -59,12 +59,12 @@ public:
 
 	QString vendor() const override
 	{
-		return "Veyon Community";
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral("Tobias Doerffel");
 	}
 
 	const FeatureList& featureList() const override;

@@ -48,7 +48,7 @@ public:
 
 
 signals:
-	void authenticationError( QString host, QString user );
+	void authenticationError( const QString& host, const QString& user );
 
 private:
 	VncServerClient::AuthState performKeyAuthentication( VncServerClient* client, VariantArrayMessage& message );

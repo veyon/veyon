@@ -33,7 +33,7 @@ class DemoClient : public QObject
 {
 	Q_OBJECT
 public:
-	DemoClient( const QString& host, bool fullscreen );
+	DemoClient( const QString& host, bool fullscreen, QObject* parent = nullptr );
 	~DemoClient() override;
 
 

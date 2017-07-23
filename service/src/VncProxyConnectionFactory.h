@@ -29,6 +29,8 @@ class QObject;
 class QTcpSocket;
 class VncProxyConnection;
 
+// clazy:excludeall=copyable-polymorphic
+
 class VncProxyConnectionFactory
 {
 public:

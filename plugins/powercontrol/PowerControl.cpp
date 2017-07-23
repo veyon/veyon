@@ -82,9 +82,9 @@ void broadcastWOLPacket( QString macAddress )
 	const auto originalMacAddress = macAddress;
 
 	// remove all possible delimiters
-	macAddress.replace( ':', "" );
-	macAddress.replace( '-', "" );
-	macAddress.replace( '.', "" );
+	macAddress.replace( ':', QStringLiteral("") );
+	macAddress.replace( '-', QStringLiteral("") );
+	macAddress.replace( '.', QStringLiteral("") );
 
 	if( sscanf( macAddress.toUtf8().constData(),
 				"%2x%2x%2x%2x%2x%2x",
@@ -167,22 +167,22 @@ void powerDown()
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
 #else
-	if( LocalSystem::User::loggedOnUser().name() == "root" )
+	if( LocalSystem::User::loggedOnUser().name() == QStringLiteral("root") )
 	{
-		QProcess::startDetached( "poweroff" );
+		QProcess::startDetached( QStringLiteral("poweroff") );
 	}
 	else
 	{
 		// Gnome shutdown
-		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown" );
+		QProcess::startDetached( QStringLiteral("dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown") );
 		// KDE 3 shutdown
-		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" );
+		QProcess::startDetached( QStringLiteral("dcop ksmserver ksmserver logout 0 2 0") );
 		// KDE 4 shutdown
-		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 2 0" );
+		QProcess::startDetached( QStringLiteral("qdbus org.kde.ksmserver /KSMServer logout 0 2 0") );
 		// KDE 5 shutdown
-		QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2" );
+		QProcess::startDetached( QStringLiteral("dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2") );
 		// generic shutdown via consolekit
-		QProcess::startDetached( "dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop" );
+		QProcess::startDetached( QStringLiteral("dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop") );
 	}
 #endif
 }
@@ -196,22 +196,22 @@ void reboot()
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
 #else
-	if( LocalSystem::User::loggedOnUser().name() == "root" )
+	if( LocalSystem::User::loggedOnUser().name() == QStringLiteral("root") )
 	{
-		QProcess::startDetached( "reboot" );
+		QProcess::startDetached( QStringLiteral("reboot") );
 	}
 	else
 	{
 		// Gnome reboot
-		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot" );
+		QProcess::startDetached( QStringLiteral("dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot") );
 		// KDE 3 reboot
-		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" );
+		QProcess::startDetached( QStringLiteral("dcop ksmserver ksmserver logout 0 1 0") );
 		// KDE 4 reboot
-		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 1 0" );
+		QProcess::startDetached( QStringLiteral("qdbus org.kde.ksmserver /KSMServer logout 0 1 0") );
 		// KDE 5 reboot
-		QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:1 int32:1" );
+		QProcess::startDetached( QStringLiteral("dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:1 int32:1") );
 		// generic reboot via consolekit
-		QProcess::startDetached( "dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart" );
+		QProcess::startDetached( QStringLiteral("dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart") );
 	}
 #endif
 }

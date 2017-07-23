@@ -138,7 +138,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation>存取拒絕</translation>
+        <translation>拒絕存取</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -197,7 +197,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>存取使用者已連線</translation>
+        <translation>存取使用者已經連線</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -623,6 +623,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>%1 Demo</source>
         <translation>%1 演示</translation>
+    </message>
+</context>
+<context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>展示伺服器</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>可調整</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>毫秒</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>關鍵框架間隔</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>記憶體限制</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>使用多執行緒 (實驗性)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>更新間隔</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
     </message>
 </context>
 <context>
@@ -1974,6 +2013,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Bug reporting</source>
         <translation>Bug 報告</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>重設組態</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>您確定要重設本機組態並恢復所有設定為其預設值嗎?</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2044,6 +2091,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>啟動時自動調整電腦縮圖大小</translation>
     </message>
 </context>
 <context>

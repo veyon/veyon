@@ -29,7 +29,7 @@
 bool WindowsNetworkFunctions::ping( const QString& hostAddress )
 {
 	QProcess pingProcess;
-	pingProcess.start( "ping", { "-n", "1", "-w", QString::number( PingTimeout ), hostAddress } );
+	pingProcess.start( QStringLiteral("ping"), { "-n", "1", "-w", QString::number( PingTimeout ), hostAddress } );
 	pingProcess.waitForFinished( PingProcessTimeout );
 
 	return pingProcess.exitCode() == 0;

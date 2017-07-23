@@ -25,6 +25,7 @@
 #include <QMenu>
 #include <QScrollBar>
 #include <QShowEvent>
+#include <QTimer>
 
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
@@ -118,6 +119,7 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 	if( m_computerListModel )
 	{
 		const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
+		computerControlInterfaces.reserve( selectedIndices.size() );
 		for( const auto& index : selectedIndices )
 		{
 			computerControlInterfaces += &( m_computerListModel->computerControlInterface(
@@ -143,7 +145,7 @@ void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 
 
 
-void ComputerMonitoringView::showContextMenu( const QPoint& pos )
+void ComputerMonitoringView::showContextMenu( QPoint pos )
 {
 	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
 }
@@ -227,7 +229,7 @@ void ComputerMonitoringView::showEvent( QShowEvent* event )
 	if( event->spontaneous() == false &&
 			VeyonCore::config().autoAdjustGridSize() )
 	{
-		autoAdjustComputerScreenSize();
+		QTimer::singleShot( 10, this, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 	}
 
 	QWidget::showEvent( event );

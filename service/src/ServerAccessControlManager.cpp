@@ -149,7 +149,7 @@ VncServerClient::AccessControlState ServerAccessControlManager::confirmDesktopAc
 	// did we save a previous choice because user chose "always" or "never"?
 	if( m_desktopAccessChoices.contains( hostUserPair ) )
 	{
-		if( m_desktopAccessChoices[hostUserPair] == DesktopAccessDialog::ChoiceAlways )
+		if( qAsConst(m_desktopAccessChoices)[hostUserPair] == DesktopAccessDialog::ChoiceAlways )
 		{
 			return VncServerClient::AccessControlSuccessful;
 		}
@@ -218,6 +218,8 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 QStringList ServerAccessControlManager::connectedUsers() const
 {
 	QStringList users;
+
+	users.reserve( m_clients.size() );
 
 	for( auto client : m_clients )
 	{

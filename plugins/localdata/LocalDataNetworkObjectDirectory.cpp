@@ -43,7 +43,7 @@ QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObje
 	else if( parent.type() == NetworkObject::Group &&
 			 m_objects.contains( parent ) )
 	{
-		return m_objects[parent];
+		return qAsConst(m_objects)[parent];
 	}
 
 	return QList<NetworkObject>();
@@ -65,7 +65,7 @@ void LocalDataNetworkObjectDirectory::update()
 
 		if( networkObject.type() == NetworkObject::Group )
 		{
-			roomUids.append( networkObject.uid() );
+			roomUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
 			if( m_objects.contains( networkObject ) == false )
 			{
@@ -79,7 +79,7 @@ void LocalDataNetworkObjectDirectory::update()
 	}
 
 	int index = 0;
-	for( auto it = m_objects.begin(); it != m_objects.end(); )
+	for( auto it = m_objects.begin(); it != m_objects.end(); ) // clazy:exclude=detaching-member
 	{
 		if( it.key().type() == NetworkObject::Group &&
 				roomUids.contains( it.key().uid() ) == false )
@@ -102,7 +102,7 @@ void LocalDataNetworkObjectDirectory::updateRoom( const NetworkObject& roomObjec
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
-	QList<NetworkObject>& computerObjects = m_objects[roomObject];
+	QList<NetworkObject>& computerObjects = m_objects[roomObject]; // clazy:exclude=detaching-member
 
 	QVector<NetworkObject::Uid> computerUids;
 
@@ -112,12 +112,12 @@ void LocalDataNetworkObjectDirectory::updateRoom( const NetworkObject& roomObjec
 
 		if( networkObject.parentUid() == roomObject.uid() )
 		{
-			computerUids.append( networkObject.uid() );
+			computerUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
 			if( computerObjects.contains( networkObject ) == false )
 			{
 				emit objectsAboutToBeInserted( roomObject, computerObjects.count(), 1 );
-				computerObjects += networkObject;
+				computerObjects += networkObject; // clazy:exclude=reserve-candidates
 				emit objectsInserted();
 			}
 		}

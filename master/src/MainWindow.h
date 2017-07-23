@@ -42,7 +42,7 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MainWindow( MasterCore& masterCore );
+	MainWindow( MasterCore& masterCore, QWidget* parent = nullptr );
 	~MainWindow() override;
 
 	static bool initAuthentication();

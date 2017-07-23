@@ -45,7 +45,7 @@ ScreenshotManagementView::ScreenshotManagementView( QWidget *parent ) :
 
 	LocalSystem::Path::ensurePathExists( VeyonCore::config().screenshotDirectory() );
 
-	m_fsModel.setNameFilters( QStringList() << "*.png" );
+	m_fsModel.setNameFilters( { QStringLiteral("*.png") } );
 	m_fsModel.setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
 	m_fsModel.setRootPath( LocalSystem::Path::expand(
 									VeyonCore::config().screenshotDirectory() ) );

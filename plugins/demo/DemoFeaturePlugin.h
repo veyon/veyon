@@ -38,7 +38,7 @@ class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterfac
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.PluginFeatureInterface")
 	Q_INTERFACES(PluginInterface FeaturePluginInterface ConfigurationPagePluginInterface)
 public:
-	DemoFeaturePlugin();
+	DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override;
 
 	Plugin::Uid uid() const override
@@ -48,12 +48,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral("1.0");
 	}
 
 	QString name() const override
 	{
-		return "Demonstration";
+		return QStringLiteral("Demonstration");
 	}
 
 	QString description() const override
@@ -63,12 +63,12 @@ public:
 
 	QString vendor() const override
 	{
-		return "Veyon Community";
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral("Tobias Doerffel");
 	}
 
 	const FeatureList& featureList() const override

@@ -626,6 +626,45 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>데모 서버</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>조정할수 있는 항목들</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>키 프레임 인터벌</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>메모리 한계</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>멀티쓰레딩 사용(개발중임)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>갱신 간격</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1974,6 +2013,14 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <source>Bug reporting</source>
         <translation>버그 보고</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>설정 초기화</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>정말 로컬설정을 초기화하고 기본 설정값으로 되돌릴건가요?</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2044,6 +2091,10 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>시작할때  컴퓨터 썸네일 사진 크기를 자동조정</translation>
     </message>
 </context>
 <context>

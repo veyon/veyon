@@ -40,7 +40,7 @@ class MasterCore : public QObject
 {
 	Q_OBJECT
 public:
-	MasterCore();
+	MasterCore( QObject* parent = nullptr );
 	~MasterCore() override;
 
 	BuiltinFeatures& builtinFeatures()

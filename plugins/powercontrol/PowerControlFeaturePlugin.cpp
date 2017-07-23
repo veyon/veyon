@@ -28,24 +28,25 @@
 #include "PowerControlFeaturePlugin.h"
 
 
-PowerControlFeaturePlugin::PowerControlFeaturePlugin() :
+PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
+	QObject( parent ),
 	m_powerOnFeature( Feature::Action | Feature::AllComponents,
 					  Feature::Uid( "f483c659-b5e7-4dbc-bd91-2c9403e70ebd" ),
 					  tr( "Power on" ), QString(),
 					  tr( "Click this button to power on all computers. "
 						  "This way you do not have to power on each computer by hand." ),
-					  ":/powercontrol/preferences-system-power-management.png" ),
+					  QStringLiteral(":/powercontrol/preferences-system-power-management.png") ),
 	m_rebootFeature( Feature::Action | Feature::AllComponents,
 					 Feature::Uid( "4f7d98f0-395a-4fff-b968-e49b8d0f748c" ),
 					 tr( "Reboot" ), QString(),
 					 tr( "Click this button to reboot all computers." ),
-					 ":/powercontrol/system-reboot.png" ),
+					 QStringLiteral(":/powercontrol/system-reboot.png") ),
 	m_powerDownFeature( Feature::Action | Feature::AllComponents,
 						Feature::Uid( "6f5a27a0-0e2f-496e-afcc-7aae62eede10" ),
 						tr( "Power down" ), QString(),
 						tr( "Click this button to power down all computers. "
 							"This way you do not have to power down each computer by hand." ),
-						":/powercontrol/system-shutdown.png" ),
+						QStringLiteral(":/powercontrol/system-shutdown.png") ),
 	m_features()
 {
 	m_features += m_powerOnFeature;

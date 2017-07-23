@@ -25,7 +25,8 @@
 #include "ServiceControlPlugin.h"
 #include "ServiceControl.h"
 
-ServiceControlPlugin::ServiceControlPlugin() :
+ServiceControlPlugin::ServiceControlPlugin( QObject* parent ) :
+	QObject( parent ),
 	m_commands( {
 { "register", tr( "Register Veyon Service" ) },
 { "unregister", tr( "Unregister Veyon Service" ) },

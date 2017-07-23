@@ -27,6 +27,8 @@
 
 #include "PlatformUserSessionFunctions.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class LinuxUserSessionFunctions : public PlatformUserSessionFunctions
 {
 public:

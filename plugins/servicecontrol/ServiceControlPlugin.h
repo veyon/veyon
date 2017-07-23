@@ -34,7 +34,7 @@ class ServiceControlPlugin : public QObject, CommandLinePluginInterface, PluginI
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ServiceControl")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	ServiceControlPlugin();
+	ServiceControlPlugin( QObject* parent = nullptr );
 	~ServiceControlPlugin() override;
 
 	Plugin::Uid uid() const override

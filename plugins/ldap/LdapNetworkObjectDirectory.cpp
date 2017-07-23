@@ -45,7 +45,7 @@ QList<NetworkObject> LdapNetworkObjectDirectory::objects(const NetworkObject &pa
 	else if( parent.type() == NetworkObject::Group &&
 			 m_objects.contains( parent ) )
 	{
-		return m_objects[parent];
+		return qAsConst(m_objects)[parent];
 	}
 
 	return QList<NetworkObject>();
@@ -75,7 +75,7 @@ void LdapNetworkObjectDirectory::update()
 	}
 
 	int index = 0;
-	for( auto it = m_objects.begin(); it != m_objects.end(); )
+	for( auto it = m_objects.begin(); it != m_objects.end(); )	// clazy:exclude=detaching-member
 	{
 		if( computerRooms.contains( it.key().name() ) == false )
 		{
@@ -96,7 +96,7 @@ void LdapNetworkObjectDirectory::update()
 void LdapNetworkObjectDirectory::updateComputerRoom( LdapDirectory& ldapDirectory, const QString &computerRoom )
 {
 	const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
-	QList<NetworkObject>& computerRoomObjects = m_objects[computerRoomObject];
+	QList<NetworkObject>& computerRoomObjects = m_objects[computerRoomObject]; // clazy:exclude=detaching-member
 
 	QStringList computers = ldapDirectory.computerRoomMembers( computerRoom );
 

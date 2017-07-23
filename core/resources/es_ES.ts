@@ -628,6 +628,45 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Servidor demo</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Ajustes</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Intervalo entre frames</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Límite de memoria</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Utilizar multithreading (experimental)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Intervalo de actualización</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1976,6 +2015,14 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <source>Bug reporting</source>
         <translation>Notificación de fallos</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Restablecer configuración</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>¿Realmente desea restablecer la configuración local y revertir todas las configuraciones a sus valores predeterminados?</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2046,6 +2093,10 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;ninguna característica&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Ajustar automáticamente el tamaño de la imagen miniatura al inicio</translation>
     </message>
 </context>
 <context>

@@ -25,7 +25,8 @@
 #include "LinuxPlatformPlugin.h"
 
 
-LinuxPlatformPlugin::LinuxPlatformPlugin() :
+LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
+	QObject( parent ),
 	m_linuxNetworkFunctions(),
 	m_linuxUserSessionFunctions()
 {

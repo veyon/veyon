@@ -48,8 +48,8 @@
 #include "ui_MainWindow.h"
 
 
-MainWindow::MainWindow( MasterCore &masterCore ) :
-	QMainWindow(),
+MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
+	QMainWindow( parent ),
 	ui( new Ui::MainWindow ),
 	m_masterCore( masterCore ),
 	m_modeGroup( new QButtonGroup( this ) ),
@@ -57,7 +57,7 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( QString( "%1 Master" ).arg( VeyonCore::applicationName() ) );
+	setWindowTitle( QStringLiteral( "%1 Master" ).arg( VeyonCore::applicationName() ) );
 
 	restoreState( QByteArray::fromBase64( m_masterCore.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_masterCore.userConfig().windowGeometry().toUtf8() ) );
@@ -125,18 +125,15 @@ MainWindow::MainWindow( MasterCore &masterCore ) :
 	m_modeGroup->button( qHash( m_masterCore.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
 
 	// setup system tray icon
-	QIcon icon( ":/resources/icon16.png" );
-	icon.addFile( ":/resources/icon22.png" );
-	icon.addFile( ":/resources/icon32.png" );
-	icon.addFile( ":/resources/icon64.png" );
+	QIcon icon( QStringLiteral(":/resources/icon16.png") );
+	icon.addFile( QStringLiteral(":/resources/icon22.png") );
+	icon.addFile( QStringLiteral(":/resources/icon32.png") );
+	icon.addFile( QStringLiteral(":/resources/icon64.png") );
 
 	m_systemTrayIcon.setIcon( icon );
 	m_systemTrayIcon.setToolTip( tr( "%1 Master Control" ).arg( VeyonCore::applicationName() ) );
 	m_systemTrayIcon.show();
-	connect( &m_systemTrayIcon, SIGNAL( activated(
-					QSystemTrayIcon::ActivationReason ) ),
-		this, SLOT( handleSystemTrayEvent(
-					QSystemTrayIcon::ActivationReason ) ) );
+	connect( &m_systemTrayIcon, &QSystemTrayIcon::activated, this, &MainWindow::handleSystemTrayEvent );
 
 	VeyonCore::enforceBranding( this );
 }
@@ -247,13 +244,14 @@ void MainWindow::keyPressEvent( QKeyEvent* event )
 
 
 
-void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
+void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason reason )
 {
-	switch( _r )
+	switch( reason )
 	{
 		case QSystemTrayIcon::Trigger:
 			setVisible( !isVisible() );
 			break;
+#if 0
 		case QSystemTrayIcon::Context:
 		{
 			QMenu m( this );
@@ -286,6 +284,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 			m.exec( QCursor::pos() );
 			break;
 		}
+#endif
 		default:
 			break;
 	}

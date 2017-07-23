@@ -28,8 +28,8 @@
 
 #include "ui_DemoConfigurationPage.h"
 
-DemoConfigurationPage::DemoConfigurationPage( DemoConfiguration& configuration ) :
-	ConfigurationPage(),
+DemoConfigurationPage::DemoConfigurationPage( DemoConfiguration& configuration, QWidget* parent ) :
+	ConfigurationPage( parent ),
 	ui( new Ui::DemoConfigurationPage ),
 	m_configuration( configuration )
 {

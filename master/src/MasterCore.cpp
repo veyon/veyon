@@ -36,11 +36,12 @@
 #include "PluginManager.h"
 
 
-MasterCore::MasterCore() :
+MasterCore::MasterCore( QObject* parent ) :
+	QObject( parent ),
 	m_builtinFeatures( new BuiltinFeatures() ),
 	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
-	m_localComputer( NetworkObject::Uid::createUuid(), "localhost", QHostAddress( QHostAddress::LocalHost ).toString() ),
+	m_localComputer( NetworkObject::Uid::createUuid(), QStringLiteral("localhost"), QHostAddress( QHostAddress::LocalHost ).toString() ),
 	m_localComputerControlInterface( m_localComputer ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),

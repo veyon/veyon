@@ -25,7 +25,8 @@
 #include "WindowsPlatformPlugin.h"
 
 
-WindowsPlatformPlugin::WindowsPlatformPlugin() :
+WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
+    QObject( parent ),
     m_windowsNetworkFunctions(),
     m_windowsUserSessionFunctions()
 {

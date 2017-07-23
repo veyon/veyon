@@ -27,6 +27,8 @@
 
 #include "PlatformUserSessionFunctions.h"
 
+// clazy:exclude=copyable-polymorphic
+
 class WindowsUserSessionFunctions : public PlatformUserSessionFunctions
 {
 public:

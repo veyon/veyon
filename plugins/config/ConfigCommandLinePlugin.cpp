@@ -33,7 +33,8 @@
 #include "SystemConfigurationModifier.h"
 
 
-ConfigCommandLinePlugin::ConfigCommandLinePlugin() :
+ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
+	QObject( parent ),
 	m_commands( {
 { "clear", tr( "Clear system-wide Veyon configuration" ) },
 { "list", tr( "List all configuration keys and values" ) },
@@ -203,7 +204,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
 	}
 
-	if( type == "json" ||
+	if( type == QStringLiteral("json") ||
 			VeyonCore::config().value( key, parentKey ).userType() == QMetaType::type( "QJsonArray" ) )
 	{
 		VeyonCore::config().setValue( key, QJsonDocument::fromJson( value.toUtf8() ).array(), parentKey );

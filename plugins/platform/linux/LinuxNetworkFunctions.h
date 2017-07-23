@@ -27,6 +27,8 @@
 
 #include "PlatformNetworkFunctions.h"
 
+// clazy:excludeall=copyable-polymorphic
+
 class LinuxNetworkFunctions : public PlatformNetworkFunctions
 {
 public:

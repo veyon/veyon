@@ -44,7 +44,7 @@ public:
 
 
 signals:
-	void accessControlError( QString host, QString user );
+	void accessControlError( const QString& host, const QString& user );
 
 private:
 	enum {

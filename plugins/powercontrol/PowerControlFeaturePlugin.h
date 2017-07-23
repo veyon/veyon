@@ -34,7 +34,7 @@ class PowerControlFeaturePlugin : public QObject, FeaturePluginInterface, Plugin
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeaturePluginInterface")
 	Q_INTERFACES(PluginInterface FeaturePluginInterface)
 public:
-	PowerControlFeaturePlugin();
+	PowerControlFeaturePlugin( QObject* parent = nullptr );
 	~PowerControlFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
@@ -44,12 +44,12 @@ public:
 
 	QString version() const override
 	{
-		return "1.0";
+		return QStringLiteral("1.0");
 	}
 
 	QString name() const override
 	{
-		return "PowerControl";
+		return QStringLiteral("PowerControl");
 	}
 
 	QString description() const override
@@ -59,12 +59,12 @@ public:
 
 	QString vendor() const override
 	{
-		return "Veyon Community";
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return QStringLiteral("Tobias Doerffel");
 	}
 
 	const FeatureList& featureList() const override;

@@ -41,6 +41,10 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1240,14 +1244,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1548,10 +1544,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1613,6 +1605,54 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Integration tests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>e.g. cn or description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer group/room name attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
