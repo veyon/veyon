@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -38,6 +40,10 @@
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
+    </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>Über %1 %2</translation>
     </message>
 </context>
 <context>
@@ -624,6 +630,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo-Server</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Feineinstellungen</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Key-Frame-Intervall</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Speicherlimit</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Multithreading benutzen (experimentell)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Update-Intervall</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation> s</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -1203,14 +1248,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Konfiguriertes Attribut für Benutzer-Login oder Computername (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation>Dedizierte Computergruppen</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>Gemeinsames Attribut</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Alle Gruppen eines Benutzers auflisten</translation>
     </message>
@@ -1523,10 +1560,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computergruppenbaum</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>Computer in einem Raum gruppieren über:</translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>Computergruppenbaum</translation>
     </message>
@@ -1589,6 +1622,54 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Integration tests</source>
         <translation>Integrationstests</translation>
+    </message>
+    <message>
+        <source>e.g. cn or description</source>
+        <translation>z.B. cn oder description</translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>Computerraumattribut</translation>
+    </message>
+    <message>
+        <source>Computer group/room name attribute</source>
+        <translation>Attribut Name Computergruppen-/raum</translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>Filter für Computerobjekten übergeordnete Objekte</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>z.B. objectClass=container oder objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>Computer in einem Raum gruppieren über:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Computergruppen</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>Übergeordnete Objekte von Computerobjekten (z.B. OUs oder Container)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>Computerraumattribut in Computerobjekten</translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>Test nicht anwendbar</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Bitte ändern Sie die Computerraumeinstellungen, so dass Computergruppen oder übergeordnete Objekte von Computerobjekten als Computerräume verwendet werden. Dann wird das angegebene Attribut anstatt des Common Names von Computergruppen oder übergeordneten Objekten abgefragt. Andernfalls müssen Sie dieses Attribut nicht konfigurieren.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Bitte ändern Sie die Computerraumeinstellungen unterhalb, so dass übergeordnete Objekte von Computerobjekten als Computerräume verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
     </message>
 </context>
 <context>
@@ -1972,6 +2053,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Bug reporting</source>
         <translation>Fehlerbericht</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Konfiguration zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2042,6 +2131,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;Keine Funktion&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Beim Start automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
     </message>
 </context>
 <context>
