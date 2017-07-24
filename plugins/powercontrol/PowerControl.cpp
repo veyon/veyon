@@ -175,8 +175,6 @@ void powerDown()
 	{
 		// Gnome shutdown
 		QProcess::startDetached( QStringLiteral("dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown") );
-		// KDE 3 shutdown
-		QProcess::startDetached( QStringLiteral("dcop ksmserver ksmserver logout 0 2 0") );
 		// KDE 4 shutdown
 		QProcess::startDetached( QStringLiteral("qdbus org.kde.ksmserver /KSMServer logout 0 2 0") );
 		// KDE 5 shutdown
@@ -206,8 +204,6 @@ void reboot()
 	{
 		// Gnome reboot
 		QProcess::startDetached( QStringLiteral("dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot") );
-		// KDE 3 reboot
-		QProcess::startDetached( QStringLiteral("dcop ksmserver ksmserver logout 0 1 0") );
 		// KDE 4 reboot
 		QProcess::startDetached( QStringLiteral("qdbus org.kde.ksmserver /KSMServer logout 0 1 0") );
 		// KDE 5 reboot
