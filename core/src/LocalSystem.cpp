@@ -883,6 +883,8 @@ void logoutUser()
 	QProcess::startDetached( QStringLiteral( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ) );
 	// KDE 5 logout
 	QProcess::startDetached( QStringLiteral( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" ) );
+	// Xfce logout
+	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
 #endif
 }
 
