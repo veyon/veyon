@@ -67,10 +67,12 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	// add widgets to status bar
 	ui->statusBar->addWidget( ui->computerManagementButton );
 	ui->statusBar->addWidget( ui->screenshotManagementButton );
-	ui->statusBar->addWidget( ui->spacerLabel, 1 );
+	ui->statusBar->addWidget( ui->spacerLabel1 );
+	ui->statusBar->addWidget( ui->filterLineEdit, 2 );
+	ui->statusBar->addWidget( ui->spacerLabel2, 1 );
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
-	ui->statusBar->addWidget( ui->spacerLabel2 );
+	ui->statusBar->addWidget( ui->spacerLabel3 );
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
@@ -95,6 +97,9 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	connect( ui->screenshotManagementButton, &QAbstractButton::toggled,
 			 m_screenshotManagementView, &QWidget::setVisible );
 
+	// initialize search filter
+	connect( ui->filterLineEdit, &QLineEdit::textChanged,
+			 ui->computerMonitoringView, &ComputerMonitoringView::setSearchFilter );
 
 	// initialize monitoring screen size slider
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,

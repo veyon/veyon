@@ -39,7 +39,7 @@
       <widget class="QToolButton" name="autoFitButton">
        <property name="geometry">
         <rect>
-         <x>760</x>
+         <x>790</x>
          <y>570</y>
          <width>69</width>
          <height>37</height>
@@ -52,9 +52,9 @@
       <widget class="QSlider" name="gridSizeSlider">
        <property name="geometry">
         <rect>
-         <x>491</x>
+         <x>660</x>
          <y>580</y>
-         <width>251</width>
+         <width>111</width>
          <height>25</height>
         </rect>
        </property>
@@ -106,7 +106,7 @@
       <widget class="QToolButton" name="screenshotManagementButton">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>260</x>
          <y>570</y>
          <width>158</width>
          <height>37</height>
@@ -129,12 +129,12 @@
         <string notr="true">buttonGroup</string>
        </attribute>
       </widget>
-      <widget class="QLabel" name="spacerLabel">
+      <widget class="QLabel" name="spacerLabel1">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>580</y>
-         <width>99</width>
+         <x>430</x>
+         <y>570</y>
+         <width>31</width>
          <height>30</height>
         </rect>
        </property>
@@ -165,7 +165,7 @@
         <enum>Qt::ToolButtonTextBesideIcon</enum>
        </property>
       </widget>
-      <widget class="QLabel" name="spacerLabel2">
+      <widget class="QLabel" name="spacerLabel3">
        <property name="geometry">
         <rect>
          <x>840</x>
@@ -173,6 +173,32 @@
          <width>99</width>
          <height>30</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="filterLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>570</y>
+         <width>113</width>
+         <height>38</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>Search users and computers</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="spacerLabel2">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>570</y>
+         <width>31</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
