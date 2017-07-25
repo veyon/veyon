@@ -77,6 +77,7 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
 
 	m_sortFilterProxyModel.setSourceModel( m_computerListModel );
+	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );
 	m_sortFilterProxyModel.sort( 0 );
 
 	ui->listView->setModel( &m_sortFilterProxyModel );
