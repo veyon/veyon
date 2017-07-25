@@ -46,6 +46,8 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
+	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
+
 	connect( ui->listView, &QListView::doubleClicked,
 			 this, &ComputerMonitoringView::runDoubleClickFeature );
 
@@ -77,6 +79,7 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
 
 	m_sortFilterProxyModel.setSourceModel( m_computerListModel );
+	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );
 	m_sortFilterProxyModel.sort( 0 );
 
 	ui->listView->setModel( &m_sortFilterProxyModel );
@@ -128,6 +131,13 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 	}
 
 	return computerControlInterfaces;
+}
+
+
+
+void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
+{
+	m_sortFilterProxyModel.setFilterRegExp( searchFilter );
 }
 
 

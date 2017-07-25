@@ -55,6 +55,7 @@ public:
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
 public slots:
+	void setSearchFilter( const QString& searchFilter );
 	void setComputerScreenSize( int size );
 	void autoAdjustComputerScreenSize();
 
