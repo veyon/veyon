@@ -60,6 +60,7 @@ private:
 	QImage prepareIcon( const QImage& icon );
 	QImage computerDecorationRole( const Computer& computer ) const;
 	QString computerToolTipRole( const Computer& computer ) const;
+	QString computerDisplayRole( const Computer& computer ) const;
 	QString computerStateDescription( const Computer& computer ) const;
 	QString loggedOnUserInformation( const Computer& computer ) const;
 

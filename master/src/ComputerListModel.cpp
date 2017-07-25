@@ -96,7 +96,7 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 		return computerToolTipRole( computer );
 
 	case Qt::DisplayRole:
-		return computer.name();
+		return computerDisplayRole( computer );
 
 	default:
 		break;
@@ -160,7 +160,7 @@ void ComputerListModel::updateComputerScreen( int computerIndex )
 {
 	emit dataChanged( index( computerIndex, 0 ),
 					  index( computerIndex, 0 ),
-					  QVector<int>( { Qt::DecorationRole, Qt::ToolTipRole } ) );
+					  QVector<int>( { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole } ) );
 }
 
 
@@ -231,6 +231,37 @@ QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
 	}
 
 	return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, user );
+}
+
+
+
+QString ComputerListModel::computerDisplayRole( const Computer& computer ) const
+{
+	const auto& controlInterface = computer.controlInterface();
+
+	if( controlInterface.state() == ComputerControlInterface::Connected &&
+			controlInterface.user().isEmpty() == false )
+	{
+		auto user = controlInterface.user();
+
+		// do we have full name information?
+		QRegExp fullNameRX( "(.*) \\((.*)\\)" );
+		if( fullNameRX.indexIn( user ) >= 0 )
+		{
+			if( fullNameRX.cap( 2 ).isEmpty() == false )
+			{
+				user = fullNameRX.cap( 2 );
+			}
+			else
+			{
+				user = fullNameRX.cap( 1 );
+			}
+		}
+
+		return QStringLiteral("%1 - %2").arg( user, computer.name() );
+	}
+
+	return computer.name();
 }
 
 
