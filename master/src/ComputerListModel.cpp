@@ -98,6 +98,9 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 	case Qt::DisplayRole:
 		return computerDisplayRole( computer );
 
+	case Qt::InitialSortOrderRole:
+		return computer.room() + computer.name();
+
 	default:
 		break;
 	}
