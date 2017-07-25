@@ -46,6 +46,8 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
+	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
+
 	connect( ui->listView, &QListView::doubleClicked,
 			 this, &ComputerMonitoringView::runDoubleClickFeature );
 
@@ -129,6 +131,13 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 	}
 
 	return computerControlInterfaces;
+}
+
+
+
+void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
+{
+	m_sortFilterProxyModel.setFilterRegExp( searchFilter );
 }
 
 
