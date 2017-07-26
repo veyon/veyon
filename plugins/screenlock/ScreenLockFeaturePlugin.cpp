@@ -106,13 +106,19 @@ bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 {
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
-		if( featureWorkerManager.isWorkerRunning( m_screenLockFeature ) == false )
+		if( featureWorkerManager.isWorkerRunning( m_screenLockFeature ) == false &&
+				message.command() != StopLockCommand )
 		{
 			featureWorkerManager.startWorker( m_screenLockFeature );
 		}
 
 		// forward message to worker
 		featureWorkerManager.sendMessage( message );
+
+		if( message.command() == StopLockCommand )
+		{
+			featureWorkerManager.stopWorker( m_screenLockFeature );
+		}
 
 		return true;
 	}
