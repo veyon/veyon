@@ -25,12 +25,7 @@
 #ifndef FEATURE_CONTROL_H
 #define FEATURE_CONTROL_H
 
-#include <QReadWriteLock>
-
 #include "FeaturePluginInterface.h"
-
-class QThread;
-class QTimer;
 
 class VEYON_CORE_EXPORT FeatureControl : public QObject, public FeaturePluginInterface, public PluginInterface
 {
