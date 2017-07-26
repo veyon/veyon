@@ -26,6 +26,7 @@
 #define COMPUTER_MONITORING_VIEW_H
 
 #include "ComputerListModel.h"
+#include "Feature.h"
 
 #include <QSortFilterProxyModel>
 #include <QWidget>
@@ -36,7 +37,6 @@ namespace Ui {
 class ComputerMonitoringView;
 }
 
-class Feature;
 class MasterCore;
 
 class ComputerMonitoringView : public QWidget
@@ -66,6 +66,10 @@ private slots:
 
 private:
 	void showEvent( QShowEvent* event ) override;
+
+	FeatureUidList activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
+
+	void populateFeatureMenu( const FeatureUidList& activeFeatures );
 
 	Ui::ComputerMonitoringView *ui;
 

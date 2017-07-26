@@ -83,34 +83,6 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	m_sortFilterProxyModel.sort( 0 );
 
 	ui->listView->setModel( &m_sortFilterProxyModel );
-
-
-	// populate feature menu
-	Plugin::Uid previousPluginUid;
-
-	for( const auto& feature : m_masterCore->features() )
-	{
-		Plugin::Uid pluginUid = m_masterCore->featureManager().pluginUid( feature );
-
-		if( previousPluginUid.isNull() == false &&
-				pluginUid != previousPluginUid &&
-				feature.testFlag( Feature::Mode ) == false )
-		{
-			m_featureMenu->addSeparator();
-		}
-
-		previousPluginUid = pluginUid;
-
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), feature.displayName() );
-		connect( action, &QAction::triggered, [=] () { runFeature( feature ); } );
-#else
-		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
-								  feature.displayName(),
-								  [=] () { runFeature( feature ); } );
-#endif
-	}
 }
 
 
@@ -157,6 +129,8 @@ void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 
 void ComputerMonitoringView::showContextMenu( QPoint pos )
 {
+	populateFeatureMenu( activeFeatures( selectedComputerControlInterfaces() ) );
+
 	m_featureMenu->exec( ui->listView->mapToGlobal( pos ) );
 }
 
@@ -215,21 +189,32 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 
 	ComputerControlInterfaceList computerControlInterfaces = selectedComputerControlInterfaces();
 
-	// stop any active mode feature
-	if( feature.testFlag( Feature::Mode ) )
+	// mode feature already active?
+	if( feature.testFlag( Feature::Mode ) &&
+			activeFeatures( computerControlInterfaces ).contains( feature.uid().toString() ) )
 	{
-		for( const auto& currentFeature : m_masterCore->features() )
+		// then stop it
+		m_masterCore->featureManager().stopMasterFeature( feature, computerControlInterfaces,
+														  m_masterCore->localComputerControlInterface(), topLevelWidget() );
+	}
+	else
+	{
+		// stop all other active mode feature
+		if( feature.testFlag( Feature::Mode ) )
 		{
-			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != feature )
+			for( const auto& currentFeature : m_masterCore->features() )
 			{
-				m_masterCore->featureManager().stopMasterFeature( currentFeature, computerControlInterfaces,
-																  m_masterCore->localComputerControlInterface(), topLevelWidget() );
+				if( currentFeature.testFlag( Feature::Mode ) && currentFeature != feature )
+				{
+					m_masterCore->featureManager().stopMasterFeature( currentFeature, computerControlInterfaces,
+																	  m_masterCore->localComputerControlInterface(), topLevelWidget() );
+				}
 			}
 		}
-	}
 
-	m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces,
-													   m_masterCore->localComputerControlInterface(), topLevelWidget() );
+		m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces,
+														   m_masterCore->localComputerControlInterface(), topLevelWidget() );
+	}
 }
 
 
@@ -243,4 +228,59 @@ void ComputerMonitoringView::showEvent( QShowEvent* event )
 	}
 
 	QWidget::showEvent( event );
+}
+
+
+
+FeatureUidList ComputerMonitoringView::activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	FeatureUidList featureUidList;
+
+	for( const auto& controlInterface : computerControlInterfaces )
+	{
+		featureUidList.append( controlInterface->activeFeatures() );
+	}
+
+	featureUidList.removeDuplicates();
+
+	return featureUidList;
+}
+
+
+
+void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFeatures )
+{
+	Plugin::Uid previousPluginUid;
+
+	m_featureMenu->clear();
+
+	for( const auto& feature : m_masterCore->features() )
+	{
+		Plugin::Uid pluginUid = m_masterCore->featureManager().pluginUid( feature );
+
+		if( previousPluginUid.isNull() == false &&
+				pluginUid != previousPluginUid &&
+				feature.testFlag( Feature::Mode ) == false )
+		{
+			m_featureMenu->addSeparator();
+		}
+
+		previousPluginUid = pluginUid;
+
+		auto label = feature.displayName();
+		if( activeFeatures.contains( feature.uid().toString() ) )
+		{
+			label = feature.displayNameActive();
+		}
+
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), label );
+		connect( action, &QAction::triggered, [=] () { runFeature( feature ); } );
+#else
+		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
+								  label,
+								  [=] () { runFeature( feature ); } );
+#endif
+	}
 }
