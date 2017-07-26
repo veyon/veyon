@@ -180,6 +180,23 @@ bool FeatureWorkerManager::isWorkerRunning( const Feature& feature )
 
 
 
+FeatureUidList FeatureWorkerManager::runningWorkers()
+{
+	QMutexLocker locker( &m_workersMutex );
+
+	FeatureUidList featureUidList;
+	featureUidList.reserve( m_workers.size() );
+
+	for( auto it = m_workers.begin(); it != m_workers.end(); ++it )
+	{
+		featureUidList.append( it.key().toString() );
+	}
+
+	return featureUidList;
+}
+
+
+
 void FeatureWorkerManager::acceptConnection()
 {
 	qDebug( "FeatureWorkerManager: accepting connection" );

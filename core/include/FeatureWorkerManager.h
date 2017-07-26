@@ -50,6 +50,7 @@ public:
 	Q_INVOKABLE void sendMessage( const FeatureMessage& message );
 
 	bool isWorkerRunning( const Feature& feature );
+	FeatureUidList runningWorkers();
 
 private slots:
 	void acceptConnection();
