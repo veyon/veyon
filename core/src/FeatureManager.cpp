@@ -128,6 +128,14 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 	{
 		featureInterface->startMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
 	}
+
+	if( feature.flags().testFlag( Feature::Mode ) )
+	{
+		for( auto controlInterface : computerControlInterfaces )
+		{
+			controlInterface->setDesignatedModeFeature( feature.uid() );
+		}
+	}
 }
 
 
@@ -142,6 +150,14 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		featureInterface->stopMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
+	}
+
+	for( auto controlInterface : computerControlInterfaces )
+	{
+		if( controlInterface->designatedModeFeature() == feature.uid() )
+		{
+			controlInterface->setDesignatedModeFeature( Feature::Uid() );
+		}
 	}
 }
 
