@@ -22,6 +22,8 @@
  *
  */
 
+#include <QCoreApplication>
+
 #include "ScreenLockFeaturePlugin.h"
 #include "FeatureWorkerManager.h"
 #include "LockWidget.h"
@@ -114,11 +116,6 @@ bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 		// forward message to worker
 		featureWorkerManager.sendMessage( message );
 
-		if( message.command() == StopLockCommand )
-		{
-			featureWorkerManager.stopWorker( m_screenLockFeature );
-		}
-
 		return true;
 	}
 
@@ -143,6 +140,9 @@ bool ScreenLockFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& 
 		case StopLockCommand:
 			delete m_lockWidget;
 			m_lockWidget = nullptr;
+
+			QCoreApplication::quit();
+
 			return true;
 
 		default:
