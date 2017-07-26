@@ -179,5 +179,6 @@ private:
 Q_DECLARE_OPERATORS_FOR_FLAGS(Feature::Flags)
 
 typedef QList<Feature> FeatureList;
+typedef QStringList FeatureUidList;
 
 #endif // FEATURE_H
