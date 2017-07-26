@@ -482,8 +482,7 @@ QSize ComputerManager::computerScreenSize() const
 
 void ComputerManager::startComputerControlInterface( Computer& computer )
 {
-	computer.controlInterface().start( computerScreenSize(),
-									   &m_builtinFeatures.userSessionControl() );
+	computer.controlInterface().start( computerScreenSize(), &m_builtinFeatures );
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::featureMessageReceived,
 			 &m_featureManager, &FeatureManager::handleMasterFeatureMessage );
