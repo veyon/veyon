@@ -698,10 +698,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Demo server</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Demo client</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -772,6 +768,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2038,6 +2041,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
