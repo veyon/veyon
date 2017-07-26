@@ -22,6 +22,8 @@
  *
  */
 
+#include <QCoreApplication>
+
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
 #include "CryptoCore.h"
@@ -209,10 +211,6 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			featureWorkerManager.sendMessage( message );
 		}
 
-		if( message.command() == StopDemoClient )
-		{
-			featureWorkerManager.stopWorker( message.featureUid() );
-		}
 		return true;
 	}
 
@@ -268,6 +266,9 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 		case StopDemoClient:
 			delete m_demoClient;
 			m_demoClient = nullptr;
+
+			QCoreApplication::quit();
+
 			return true;
 
 		default:
