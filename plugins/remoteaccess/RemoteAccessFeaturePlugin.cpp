@@ -42,7 +42,7 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 							tr( "Remote control" ), QString(),
 							tr( "Open a remote control window for a computer." ),
 							QStringLiteral(":/remoteaccess/krdc.png") ),
-	m_features(),
+	m_features( { m_remoteViewFeature, m_remoteControlFeature } ),
 	m_customComputer(),
 	m_customComputerControlInterface( m_customComputer ),
 	m_commands( {
@@ -51,8 +51,6 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 { "help", tr( "Show help about command" ) },
 				} )
 {
-	m_features += m_remoteViewFeature;
-	m_features += m_remoteControlFeature;
 }
 
 

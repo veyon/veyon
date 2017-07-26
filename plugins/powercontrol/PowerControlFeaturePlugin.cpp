@@ -47,11 +47,8 @@ PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
 						tr( "Click this button to power down all computers. "
 							"This way you do not have to power down each computer by hand." ),
 						QStringLiteral(":/powercontrol/system-shutdown.png") ),
-	m_features()
+	m_features( { m_powerOnFeature, m_rebootFeature, m_powerDownFeature } )
 {
-	m_features += m_powerOnFeature;
-	m_features += m_rebootFeature;
-	m_features += m_powerDownFeature;
 }
 
 

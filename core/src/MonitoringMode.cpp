@@ -31,9 +31,8 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 							 tr( "Monitoring" ), tr( "Monitoring" ),
 							 tr( "This is the default mode and allows you to monitor all computers in one or more rooms." ),
 							 QStringLiteral( ":/resources/presentation-none.png" ) ),
-	m_features()
+	m_features( { m_monitoringModeFeature } )
 {
-	m_features += m_monitoringModeFeature;
 }
 
 

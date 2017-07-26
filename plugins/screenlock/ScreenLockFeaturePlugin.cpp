@@ -37,10 +37,9 @@ ScreenLockFeaturePlugin::ScreenLockFeaturePlugin( QObject* parent ) :
 							 "In this mode all input devices are locked and "
 							 "the screen is black." ),
 						 QStringLiteral(":/screenlock/system-lock-screen.png") ),
-	m_features(),
+	m_features( { m_screenLockFeature } ),
 	m_lockWidget( nullptr )
 {
-	m_features += m_screenLockFeature;
 }
 
 

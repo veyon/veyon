@@ -35,9 +35,8 @@ ScreenshotFeaturePlugin::ScreenshotFeaturePlugin() :
 								  tr( "Screenshot" ), QString(),
 								  tr( "Use this function to take a screenshot of selected computers." ),
 								  ":/screenshot/camera-photo.png" ) ),
-	m_features()
+	m_features( { m_screenshotFeature } )
 {
-	m_features += m_screenshotFeature;
 }
 
 

@@ -38,9 +38,8 @@ TextMessageFeaturePlugin::TextMessageFeaturePlugin( QObject* parent ) :
 								   tr( "Use this function to send a text message to all "
 									   "users e.g. to assign them new tasks." ),
 								   QStringLiteral(":/textmessage/dialog-information.png") ) ),
-	m_features()
+	m_features( { m_textMessageFeature } )
 {
-	m_features += m_textMessageFeature;
 }
 
 

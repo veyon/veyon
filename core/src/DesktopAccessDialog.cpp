@@ -37,12 +37,10 @@ DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
 	m_desktopAccessDialogFeature( Feature( Feature::Dialog | Feature::Service | Feature::Worker | Feature::Builtin,
 										   Feature::Uid( "3dd8ec3e-7004-4936-8f2a-70699b9819be" ),
 										   tr( "Desktop access dialog" ), QString(), QString() ) ),
-	m_features(),
+	m_features( { m_desktopAccessDialogFeature } ),
 	m_choice( ChoiceNone ),
 	m_abortTimer( new QTimer( this ) )
 {
-	m_features += m_desktopAccessDialogFeature;
-
 	m_abortTimer->setSingleShot( true );
 }
 

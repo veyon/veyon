@@ -51,10 +51,8 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 						  tr( "Open website" ), QString(),
 						  tr( "Click this button to open a website on all computers." ),
 						  QStringLiteral(":/desktopservices/internet-web-browser.png") ),
-	m_features()
+	m_features( { m_runProgramFeature, m_openWebsiteFeature } )
 {
-	m_features += m_runProgramFeature;
-	m_features += m_openWebsiteFeature;
 }
 
 
