@@ -22,14 +22,17 @@
  *
  */
 
+#include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
 #include "Computer.h"
+#include "FeatureControl.h"
 #include "VeyonVncConnection.h"
 #include "VeyonCoreConnection.h"
 #include "UserSessionControl.h"
 
 
-ComputerControlInterface::ComputerControlInterface( const Computer &computer, QObject* parent ) :
+ComputerControlInterface::ComputerControlInterface( const Computer &computer,
+													QObject* parent ) :
 	QObject( parent ),
 	m_computer( computer ),
 	m_state( Disconnected ),
@@ -37,7 +40,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer &computer, QO
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
 	m_coreConnection( nullptr ),
-	m_userSessionControl( nullptr ),
+	m_builtinFeatures( nullptr ),
 	m_screenUpdated( false )
 {
 }
@@ -51,10 +54,10 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( QSize scaledScreenSize, UserSessionControl* userSessionControl )
+void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures )
 {
 	m_scaledScreenSize = scaledScreenSize;
-	m_userSessionControl = userSessionControl;
+	m_builtinFeatures = builtinFeatures;
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
@@ -67,14 +70,14 @@ void ComputerControlInterface::start( QSize scaledScreenSize, UserSessionControl
 
 		m_coreConnection = new VeyonCoreConnection( m_vncConnection );
 
-		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete,
-				 this, &ComputerControlInterface::setScreenUpdateFlag );
-		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete,
-				 this, &ComputerControlInterface::updateUser );
-		connect( m_vncConnection, &VeyonVncConnection::stateChanged,
-				 this, &ComputerControlInterface::updateState );
-		connect( m_vncConnection, &VeyonVncConnection::stateChanged,
-				 this, &ComputerControlInterface::updateUser );
+		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
+		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete ,this, &ComputerControlInterface::updateUser );
+		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::updateActiveFeatures );
+
+		connect( m_vncConnection, &VeyonVncConnection::stateChanged, this, &ComputerControlInterface::updateState );
+		connect( m_vncConnection, &VeyonVncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
+		connect( m_vncConnection, &VeyonVncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
+
 		connect( m_coreConnection, &VeyonCoreConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
 	}
@@ -156,6 +159,16 @@ void ComputerControlInterface::setUser( const QString& user )
 
 
 
+void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFeatures )
+{
+	if( activeFeatures != m_activeFeatures )
+	{
+		m_activeFeatures = activeFeatures;
+	}
+}
+
+
+
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_coreConnection && m_coreConnection->isConnected() )
@@ -197,12 +210,26 @@ void ComputerControlInterface::updateUser()
 	{
 		if( user().isEmpty() )
 		{
-			m_userSessionControl->getUserSessionInfo( ComputerControlInterfaceList( { this } ) );
+			m_builtinFeatures->userSessionControl().getUserSessionInfo( ComputerControlInterfaceList( { this } ) );
 		}
 	}
 	else
 	{
 		setUser( QString() );
+	}
+}
+
+
+
+void ComputerControlInterface::updateActiveFeatures()
+{
+	if( m_vncConnection && m_coreConnection && state() == Connected )
+	{
+		m_builtinFeatures->featureControl().queryActiveFeatures( ComputerControlInterfaceList( { this } ) );
+	}
+	else
+	{
+		setActiveFeatures( {} );
 	}
 }
 

@@ -29,15 +29,16 @@
 #include <QObject>
 #include <QSize>
 
+#include "Feature.h"
 #include "VeyonCore.h"
 
 class QImage;
 
+class BuiltinFeatures;
 class Computer;
 class FeatureMessage;
 class VeyonVncConnection;
 class VeyonCoreConnection;
-class UserSessionControl;
 
 class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 {
@@ -58,7 +59,7 @@ public:
 	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
 
-	void start( QSize scaledScreenSize, UserSessionControl* userSessionControl );
+	void start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures );
 	void stop();
 
 	const Computer& computer() const
@@ -99,6 +100,13 @@ public:
 
 	void setUser( const QString& user );
 
+	const FeatureUidList& activeFeatures() const
+	{
+		return m_activeFeatures;
+	}
+
+	void setActiveFeatures( const FeatureUidList& activeFeatures );
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 
@@ -110,6 +118,7 @@ private slots:
 
 	void updateState();
 	void updateUser();
+	void updateActiveFeatures();
 
 	void handleFeatureMessage( const FeatureMessage& message );
 
@@ -122,12 +131,13 @@ private:
 
 	State m_state;
 	QString m_user;
+	FeatureUidList m_activeFeatures;
 
 	QSize m_scaledScreenSize;
 
 	VeyonVncConnection* m_vncConnection;
 	VeyonCoreConnection* m_coreConnection;
-	UserSessionControl* m_userSessionControl;
+	BuiltinFeatures* m_builtinFeatures;
 
 	bool m_screenUpdated;
 
