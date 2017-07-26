@@ -108,14 +108,12 @@ private:
 		DemoAccessToken,
 		VncServerPort,
 		VncServerPassword,
-		IsFullscreenDemo,
 		DemoServerHost,
 	};
 
 	Feature m_fullscreenDemoFeature;
 	Feature m_windowDemoFeature;
 	Feature m_demoServerFeature;
-	Feature m_demoClientFeature;
 
 	FeatureList m_features;
 	QString m_demoAccessToken;

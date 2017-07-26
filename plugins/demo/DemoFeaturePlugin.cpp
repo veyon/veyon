@@ -55,9 +55,6 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	m_demoServerFeature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
 						 tr( "Demo server" ), QString(), QString() ),
-	m_demoClientFeature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
-						 Feature::Uid( "7b68b525-1114-4aea-8d42-ab4f26bbf5e5" ),
-						 tr( "Demo client" ), QString(), QString() ),
 	m_features(),
 	m_demoAccessToken( CryptoCore::generateChallenge().toBase64() ),
 	m_demoClientHosts(),
@@ -67,7 +64,6 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	m_features += m_fullscreenDemoFeature;
 	m_features += m_windowDemoFeature;
 	m_features += m_demoServerFeature;
-	m_features += m_demoClientFeature;
 }
 
 
@@ -97,9 +93,7 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 
 		qDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
 
-		return sendFeatureMessage( FeatureMessage( m_demoClientFeature.uid(), StartDemoClient ).
-								   addArgument( DemoAccessToken, m_demoAccessToken ).
-								   addArgument( IsFullscreenDemo, feature == m_fullscreenDemoFeature ),
+		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).addArgument( DemoAccessToken, m_demoAccessToken ),
 								   computerControlInterfaces );
 	}
 
@@ -117,7 +111,7 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
-		sendFeatureMessage( FeatureMessage( m_demoClientFeature.uid(), StopDemoClient ), computerControlInterfaces );
+		sendFeatureMessage( FeatureMessage( feature.uid(), StopDemoClient ), computerControlInterfaces );
 
 		for( auto computerControlInterface : computerControlInterfaces )
 		{
@@ -179,7 +173,8 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 
 		return true;
 	}
-	else if( message.featureUid() == m_demoClientFeature.uid() )
+	else if( message.featureUid() == m_fullscreenDemoFeature.uid() ||
+			 message.featureUid() == m_windowDemoFeature.uid() )
 	{
 		// if a demo server is started, it's likely that the demo accidentally was
 		// started on master computer as well therefore we deny starting a demo on
@@ -190,9 +185,10 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			return false;
 		}
 
-		if( featureWorkerManager.isWorkerRunning( m_demoClientFeature ) == false )
+		if( featureWorkerManager.isWorkerRunning( message.featureUid() ) == false &&
+				message.command() != StopDemoClient )
 		{
-			featureWorkerManager.startWorker( m_demoClientFeature );
+			featureWorkerManager.startWorker( message.featureUid() );
 		}
 
 		QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
@@ -207,7 +203,6 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			// construct a new message as we have to append the peer address as demo server host
 			FeatureMessage startDemoClientMessage( message.featureUid(), message.command() );
 			startDemoClientMessage.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) );
-			startDemoClientMessage.addArgument( IsFullscreenDemo, message.argument( IsFullscreenDemo ) );
 			startDemoClientMessage.addArgument( DemoServerHost, socket->peerAddress().toString() );
 			featureWorkerManager.sendMessage( startDemoClientMessage );
 		}
@@ -217,6 +212,10 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 			featureWorkerManager.sendMessage( message );
 		}
 
+		if( message.command() == StopDemoClient )
+		{
+			featureWorkerManager.stopWorker( message.featureUid() );
+		}
 		return true;
 	}
 
@@ -251,7 +250,8 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 			break;
 		}
 	}
-	else if( message.featureUid() == m_demoClientFeature.uid() )
+	else if( message.featureUid() == m_fullscreenDemoFeature.uid() ||
+			 message.featureUid() == m_windowDemoFeature.uid() )
 	{
 		switch( message.command() )
 		{
@@ -260,9 +260,11 @@ bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& messag
 
 			if( m_demoClient == nullptr )
 			{
-				qDebug() << "DemoClient: connecting with master" << message.argument( DemoServerHost ).toString();
-				m_demoClient = new DemoClient( message.argument( DemoServerHost ).toString(),
-											   message.argument( IsFullscreenDemo ).toBool() );
+				const auto demoServerHost = message.argument( DemoServerHost ).toString();
+				const auto isFullscreenDemo = message.featureUid() == m_fullscreenDemoFeature.uid();
+
+				qDebug() << "DemoClient: connecting with master" << demoServerHost;
+				m_demoClient = new DemoClient( demoServerHost, isFullscreenDemo );
 			}
 			return true;
 
