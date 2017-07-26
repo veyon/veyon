@@ -28,6 +28,7 @@
 #include "VeyonCore.h"
 
 class DesktopAccessDialog;
+class FeatureControl;
 class MonitoringMode;
 class SystemTrayIcon;
 class UserSessionControl;
@@ -39,6 +40,11 @@ class VEYON_CORE_EXPORT BuiltinFeatures
 public:
 	BuiltinFeatures();
 	~BuiltinFeatures();
+
+	FeatureControl& featureControl()
+	{
+		return *m_featureControl;
+	}
 
 	SystemTrayIcon& systemTrayIcon()
 	{
@@ -61,6 +67,7 @@ public:
 	}
 
 private:
+	FeatureControl* m_featureControl;
 	SystemTrayIcon* m_systemTrayIcon;
 	MonitoringMode* m_monitoringMode;
 	DesktopAccessDialog* m_desktopAccessDialog;
