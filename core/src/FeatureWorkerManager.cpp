@@ -161,11 +161,6 @@ void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
 	{
 		m_workers[message.featureUid()].pendingMessages.append( message );
 	}
-	else
-	{
-		qCritical() << "FeatureWorkerManager::sendMessage(): trying to send message to non existent worker for feature"
-					<< message.featureUid();
-	}
 
 	m_workersMutex.unlock();
 }
