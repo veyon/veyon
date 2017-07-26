@@ -53,7 +53,7 @@ MasterCore::MasterCore( QObject* parent ) :
 	connect( &m_localComputerControlInterface, &ComputerControlInterface::featureMessageReceived,
 			 m_featureManager, &FeatureManager::handleMasterFeatureMessage );
 
-	m_localComputerControlInterface.start( QSize(), &m_builtinFeatures->userSessionControl() );
+	m_localComputerControlInterface.start( QSize(), m_builtinFeatures );
 }
 
 
