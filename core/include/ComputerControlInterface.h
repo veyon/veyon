@@ -107,6 +107,13 @@ public:
 
 	void setActiveFeatures( const FeatureUidList& activeFeatures );
 
+	Feature::Uid designatedModeFeature() const
+	{
+		return m_designatedModeFeature;
+	}
+
+	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 
@@ -132,6 +139,7 @@ private:
 	State m_state;
 	QString m_user;
 	FeatureUidList m_activeFeatures;
+	Feature::Uid m_designatedModeFeature;
 
 	QSize m_scaledScreenSize;
 

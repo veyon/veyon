@@ -169,6 +169,13 @@ void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFe
 
 
 
+void ComputerControlInterface::setDesignatedModeFeature( Feature::Uid designatedModeFeature )
+{
+	m_designatedModeFeature = designatedModeFeature;
+}
+
+
+
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_coreConnection && m_coreConnection->isConnected() )
