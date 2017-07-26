@@ -129,7 +129,7 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 		featureInterface->startMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
 	}
 
-	if( feature.flags().testFlag( Feature::Mode ) )
+	if( feature.testFlag( Feature::Mode ) )
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
