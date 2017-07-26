@@ -239,6 +239,7 @@ FeatureUidList ComputerMonitoringView::activeFeatures( const ComputerControlInte
 	for( const auto& controlInterface : computerControlInterfaces )
 	{
 		featureUidList.append( controlInterface->activeFeatures() );
+		featureUidList.append( controlInterface->designatedModeFeature().toString() );
 	}
 
 	featureUidList.removeDuplicates();
