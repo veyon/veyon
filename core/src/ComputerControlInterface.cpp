@@ -172,6 +172,8 @@ void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFe
 void ComputerControlInterface::setDesignatedModeFeature( Feature::Uid designatedModeFeature )
 {
 	m_designatedModeFeature = designatedModeFeature;
+
+	updateActiveFeatures();
 }
 
 
