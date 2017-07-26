@@ -92,21 +92,6 @@ bool UserSessionControl::startMasterFeature( const Feature& feature,
 
 
 
-bool UserSessionControl::handleMasterFeatureMessage( const FeatureMessage& message,
-													 ComputerControlInterface& computerControlInterface )
-{
-	if( message.featureUid() == m_userSessionInfoFeature.uid() )
-	{
-		computerControlInterface.setUser( message.argument( UserName ).toString() );
-
-		return true;
-	}
-
-	return false;
-}
-
-
-
 bool UserSessionControl::stopMasterFeature( const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces,
 											ComputerControlInterface& localComputerControlInterface,
@@ -116,6 +101,21 @@ bool UserSessionControl::stopMasterFeature( const Feature& feature,
 	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
+
+	return false;
+}
+
+
+
+bool UserSessionControl::handleMasterFeatureMessage( const FeatureMessage& message,
+													 ComputerControlInterface& computerControlInterface )
+{
+	if( message.featureUid() == m_userSessionInfoFeature.uid() )
+	{
+		computerControlInterface.setUser( message.argument( UserName ).toString() );
+
+		return true;
+	}
 
 	return false;
 }
