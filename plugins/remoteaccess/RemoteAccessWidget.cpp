@@ -301,6 +301,8 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 	LocalSystem::activateWindow( this );
 	showNormal();
 
+	move( 0, 0 );
+
 	toggleViewOnly( viewOnly );
 }
 
