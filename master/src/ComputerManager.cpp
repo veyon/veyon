@@ -263,12 +263,17 @@ void ComputerManager::initRooms()
 		localHostNames.append( localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName().toLower() );
 	}
 
+	for( const auto& hostName : localHostNames )
+	{
+		qDebug() << "ComputerManager::initRooms(): initializing rooms for" << hostName;
+	}
+
 	const auto localHostAddresses = QHostInfo::fromName( localHostName ).addresses();
 
 	for( const auto& address : localHostAddresses )
 	{
 		qDebug() << "ComputerManager::initRooms(): initializing rooms for"
-				 << QStringLiteral( "%1 (%2)" ).arg( localHostName, address.toString() );
+				 << address.toString();
 	}
 	m_currentRooms.append( findRoomOfComputer( localHostNames, localHostAddresses, QModelIndex() ) );
 
