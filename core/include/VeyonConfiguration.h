@@ -90,6 +90,7 @@ public slots:
 	void setComputerFilterHidden( bool );
 	void setComputerDoubleClickFeature( QUuid );
 	void setEnforceSelectedModeForClients( bool );
+	void setOpenComputerManagementAtStart( bool );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );
