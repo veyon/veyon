@@ -433,7 +433,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <string>Access control</string>
        </property>
        <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
+        <iconset resource="../../core/core.qrc">
          <normaloff>:/resources/application-x-pem-key.png</normaloff>:/resources/application-x-pem-key.png</iconset>
        </property>
        <property name="flags">
