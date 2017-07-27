@@ -5,245 +5,278 @@
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_6">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Directories</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <property name="leftMargin">
-       <number>10</number>
-      </property>
-      <property name="horizontalSpacing">
-       <number>10</number>
-      </property>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="openUserConfigurationDirectory">
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>User configuration</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="userConfigurationDirectory"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Screenshots</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="screenshotDirectory"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QToolButton" name="openScreenshotDirectory">
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>User interface &amp;&amp; behaviour</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
-      <item row="8" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Feature on computer double click:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QCheckBox" name="onlyCurrentRoomVisible">
-        <property name="text">
-         <string>Only show current room in computer room management</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="2">
-       <widget class="QCheckBox" name="emptyRoomsHidden">
-        <property name="text">
-         <string>Hide empty rooms from computer room management</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
-        <property name="text">
-         <string>Automatically switch to current room at start</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2">
-       <widget class="QCheckBox" name="manualRoomAdditionAllowed">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Allow adding rooms to computer room management manually</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0" colspan="2">
-       <widget class="QCheckBox" name="localComputerHidden">
-        <property name="text">
-         <string>Hide local computer in computer room management</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QCheckBox" name="accessControlForMasterEnabled">
-        <property name="text">
-         <string>Perform access control at program start</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QComboBox" name="computerDoubleClickFeature"/>
-      </item>
-      <item row="7" column="0" colspan="2">
-       <widget class="QCheckBox" name="computerFilterHidden">
-        <property name="text">
-         <string>Hide computer filter field in computer room management</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QCheckBox" name="autoAdjustGridSize">
-        <property name="text">
-         <string>Automatically adjust computer thumbnail size at start</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Features</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>All features</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Disabled features</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <layout class="QVBoxLayout" name="verticalLayout_18">
-        <item>
-         <spacer name="verticalSpacer_15">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Basic settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Directories</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <property name="leftMargin">
+           <number>10</number>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
+          <property name="horizontalSpacing">
+           <number>10</number>
           </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QToolButton" name="disableFeatureButton">
-          <property name="text">
-           <string>...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
-            <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="enableFeatureButton">
-          <property name="text">
-           <string>...</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
-            <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_16">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <widget class="QListWidget" name="allFeaturesListWidget"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QListWidget" name="disabledFeaturesListWidget"/>
-      </item>
-     </layout>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="openUserConfigurationDirectory">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../veyon-configurator.qrc">
+              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>User configuration</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="userConfigurationDirectory"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Screenshots</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="screenshotDirectory"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="openScreenshotDirectory">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../veyon-configurator.qrc">
+              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Behaviour</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="accessControlForMasterEnabled">
+            <property name="text">
+             <string>Perform access control at program start</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Feature on computer double click:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="computerDoubleClickFeature"/>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
+            <property name="text">
+             <string>Automatically switch to current room at start</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QCheckBox" name="autoAdjustGridSize">
+            <property name="text">
+             <string>Automatically adjust computer thumbnail size at start</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
+          <string>Computer room management</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QCheckBox" name="onlyCurrentRoomVisible">
+            <property name="text">
+             <string>Only show current room</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="manualRoomAdditionAllowed">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Allow adding rooms manually</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="localComputerHidden">
+            <property name="text">
+             <string>Hide local computer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="emptyRoomsHidden">
+            <property name="text">
+             <string>Hide empty rooms</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="computerFilterHidden">
+            <property name="text">
+             <string>Hide computer filter field</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Features</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>All features</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Disabled features</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QListWidget" name="allFeaturesListWidget"/>
+         </item>
+         <item row="1" column="1">
+          <layout class="QVBoxLayout" name="verticalLayout_18">
+           <item>
+            <spacer name="verticalSpacer_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QToolButton" name="disableFeatureButton">
+             <property name="text">
+              <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../veyon-configurator.qrc">
+               <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="enableFeatureButton">
+             <property name="text">
+              <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../veyon-configurator.qrc">
+               <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="2">
+          <widget class="QListWidget" name="disabledFeaturesListWidget"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
  </widget>
  <tabstops>
+  <tabstop>tabWidget</tabstop>
   <tabstop>userConfigurationDirectory</tabstop>
-  <tabstop>openUserConfigurationDirectory</tabstop>
   <tabstop>screenshotDirectory</tabstop>
+  <tabstop>openUserConfigurationDirectory</tabstop>
   <tabstop>openScreenshotDirectory</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
-  <tabstop>autoAdjustGridSize</tabstop>
   <tabstop>autoSwitchToCurrentRoom</tabstop>
+  <tabstop>autoAdjustGridSize</tabstop>
+  <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>
   <tabstop>manualRoomAdditionAllowed</tabstop>
   <tabstop>localComputerHidden</tabstop>
   <tabstop>emptyRoomsHidden</tabstop>
   <tabstop>computerFilterHidden</tabstop>
-  <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disabledFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
