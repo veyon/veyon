@@ -22,6 +22,7 @@
  *
  */
 
+#include "NetworkObjectModel.h"
 #include "NetworkObjectFilterProxyModel.h"
 
 NetworkObjectFilterProxyModel::NetworkObjectFilterProxyModel( QObject* parent ) :
@@ -61,9 +62,10 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 			return true;
 		}
 
-		return m_computerExcludeList.contains(
-					sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ) ).toString(),
-					Qt::CaseInsensitive ) == false;
+		const auto hostAddress = sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
+													  NetworkObjectModel::HostAddressRole ).toString();
+
+		return m_computerExcludeList.contains( hostAddress, Qt::CaseInsensitive ) == false;
 	}
 
 	if( m_excludeEmptyGroups && sourceModel()->rowCount( sourceModel()->index( sourceRow, 0 ) ) == 0 )
