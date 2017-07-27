@@ -86,14 +86,14 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Feature on computer double click:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QComboBox" name="computerDoubleClickFeature"/>
           </item>
           <item row="1" column="0" colspan="2">
@@ -107,6 +107,13 @@
            <widget class="QCheckBox" name="autoAdjustGridSize">
             <property name="text">
              <string>Automatically adjust computer thumbnail size at start</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="enforceSelectedModeForClients">
+            <property name="text">
+             <string>Enforce selected mode for client computers</string>
             </property>
            </widget>
           </item>
@@ -271,6 +278,7 @@
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSwitchToCurrentRoom</tabstop>
   <tabstop>autoAdjustGridSize</tabstop>
+  <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>
   <tabstop>manualRoomAdditionAllowed</tabstop>
