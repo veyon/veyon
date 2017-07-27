@@ -2047,6 +2047,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Search users and computers</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2156,6 +2160,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

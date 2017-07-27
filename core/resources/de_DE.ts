@@ -2068,6 +2068,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Search users and computers</source>
         <translation>Benutzer und Computer suchen</translation>
     </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>Optimale Größe einstellen</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2178,6 +2182,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Computer management</source>
         <translation>Computerverwaltung</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>Beim Start immer öffnen</translation>
     </message>
 </context>
 <context>
