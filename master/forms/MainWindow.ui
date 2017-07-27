@@ -45,8 +45,15 @@
          <height>37</height>
         </rect>
        </property>
+       <property name="toolTip">
+        <string>Adjust optimal size</string>
+       </property>
        <property name="text">
         <string>Auto</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../master.qrc">
+         <normaloff>:/resources/zoom-fit-best.png</normaloff>:/resources/zoom-fit-best.png</iconset>
        </property>
       </widget>
       <widget class="QSlider" name="gridSizeSlider">
@@ -116,8 +123,8 @@
         <string>Screenshots</string>
        </property>
        <property name="icon">
-        <iconset resource="../../plugins/screenshot/screenshot.qrc">
-         <normaloff>:/screenshot/camera-photo.png</normaloff>:/screenshot/camera-photo.png</iconset>
+        <iconset resource="../master.qrc">
+         <normaloff>:/resources/camera-photo.png</normaloff>:/resources/camera-photo.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -145,24 +152,21 @@
       <widget class="QToolButton" name="aboutButton">
        <property name="geometry">
         <rect>
-         <x>880</x>
+         <x>890</x>
          <y>570</y>
-         <width>113</width>
+         <width>71</width>
          <height>37</height>
         </rect>
        </property>
        <property name="toolTip">
-        <string>About</string>
+        <string>About Veyon</string>
        </property>
        <property name="text">
         <string>About</string>
        </property>
        <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/icon64.png</normaloff>:/resources/icon64.png</iconset>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
+        <iconset resource="../master.qrc">
+         <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
        </property>
       </widget>
       <widget class="QLabel" name="spacerLabel3">
@@ -232,9 +236,8 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../core/core.qrc"/>
   <include location="../master.qrc"/>
-  <include location="../../plugins/screenshot/screenshot.qrc"/>
+  <include location="../../core/core.qrc"/>
  </resources>
  <connections>
   <connection>

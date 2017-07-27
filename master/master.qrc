@@ -2,6 +2,7 @@
     <qresource prefix="/" >
 	<file>resources/document-edit.png</file>
         <file>resources/zoom-fit-best.png</file>
+        <file>resources/camera-photo.png</file>
         <file>resources/vcs-locally-modified.png</file>
         <file>resources/go-previous.png</file>
         <file>resources/edit-delete.png</file>
