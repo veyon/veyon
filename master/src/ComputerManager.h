@@ -87,6 +87,7 @@ signals:
 	void computerRemoved();
 
 	void computerScreenUpdated( int index );
+	void activeFeaturesOfComputerChanged( int index );
 
 public slots:
 	void reloadComputerList();
@@ -106,8 +107,9 @@ private:
 	ComputerList getCheckedComputers( const QModelIndex& parent );
 	QSize computerScreenSize() const;
 
-	void startComputerControlInterface( Computer& computer );
+	void startComputerControlInterface( Computer& computer, int index );
 	void updateUser( Computer& computer );
+
 	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
 	UserConfig& m_config;

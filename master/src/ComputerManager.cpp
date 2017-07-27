@@ -174,9 +174,12 @@ void ComputerManager::reloadComputerList()
 	emit computerListAboutToBeReset();
 	m_computerList = getCheckedComputers( QModelIndex() );
 
+	int index = 0;
+
 	for( auto& computer : m_computerList )
 	{
-		startComputerControlInterface( computer );
+		startComputerControlInterface( computer, index );
+		++index;
 	}
 
 	emit computerListReset();
@@ -213,14 +216,14 @@ void ComputerManager::updateComputerList()
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.insert( index, computer );
-			startComputerControlInterface( m_computerList[index] );
+			startComputerControlInterface( m_computerList[index], index );
 			emit computerInserted();
 		}
 		else if( index >= m_computerList.count() )
 		{
 			emit computerAboutToBeInserted( index );
 			m_computerList.append( computer );
-			startComputerControlInterface( m_computerList.last() ); // clazy:exclude=detaching-member
+			startComputerControlInterface( m_computerList.last(), index ); // clazy:exclude=detaching-member
 			emit computerInserted();
 		}
 
@@ -480,7 +483,7 @@ QSize ComputerManager::computerScreenSize() const
 
 
 
-void ComputerManager::startComputerControlInterface( Computer& computer )
+void ComputerManager::startComputerControlInterface( Computer& computer, int index )
 {
 	computer.controlInterface().start( computerScreenSize(), &m_builtinFeatures );
 
@@ -489,6 +492,9 @@ void ComputerManager::startComputerControlInterface( Computer& computer )
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::userChanged,
 			 [&] () { updateUser( computer ); } );
+
+	connect( &computer.controlInterface(), &ComputerControlInterface::activeFeaturesChanged,
+			 [=] () { emit activeFeaturesOfComputerChanged( index ); } );
 }
 
 
