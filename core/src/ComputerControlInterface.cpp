@@ -164,6 +164,8 @@ void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFe
 	if( activeFeatures != m_activeFeatures )
 	{
 		m_activeFeatures = activeFeatures;
+
+		emit activeFeaturesChanged();
 	}
 }
 

@@ -152,6 +152,7 @@ private:
 signals:
 	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface& );
 	void userChanged();
+	void activeFeaturesChanged();
 
 };
 
