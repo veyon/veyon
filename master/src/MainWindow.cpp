@@ -97,6 +97,11 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	connect( ui->screenshotManagementButton, &QAbstractButton::toggled,
 			 m_screenshotManagementView, &QWidget::setVisible );
 
+	if( VeyonCore::config().openComputerManagementAtStart() )
+	{
+		ui->computerManagementButton->setChecked( true );
+	}
+
 	// initialize search filter
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setSearchFilter );
