@@ -306,7 +306,19 @@ void ComputerManager::initNetworkObjectLayer()
 
 	if( VeyonCore::config().localComputerHidden() )
 	{
-		m_networkObjectFilterProxyModel->setComputerExcludeFilter( QStringList( QHostInfo::localHostName() ) );
+		QStringList localHostNames( {
+										QHostInfo::localHostName(),
+										QStringLiteral("localhost"),
+										QHostAddress( QHostAddress::LocalHost ).toString(),
+										QHostAddress( QHostAddress::LocalHostIPv6 ).toString()
+									} );
+
+		if( QHostInfo::localDomainName().isEmpty() == false )
+		{
+			localHostNames.append( QHostInfo::localHostName() + QStringLiteral( "." ) + QHostInfo::localDomainName().toLower() );
+		}
+
+		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames );
 	}
 
 	m_networkObjectFilterProxyModel->setEmptyGroupsExcluded( VeyonCore::config().emptyRoomsHidden() );
