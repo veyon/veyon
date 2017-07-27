@@ -1,32 +1,17 @@
 <RCC>
     <qresource prefix="/" >
-	<file>resources/document-edit.png</file>
         <file>resources/zoom-fit-best.png</file>
         <file>resources/camera-photo.png</file>
-        <file>resources/vcs-locally-modified.png</file>
-        <file>resources/go-previous.png</file>
         <file>resources/edit-delete.png</file>
-        <file>resources/folder-add.png</file>
         <file>resources/preferences-desktop-display.png</file>
         <file>resources/preferences-desktop-display-blue.png</file>
         <file>resources/preferences-desktop-display-orange.png</file>
         <file>resources/preferences-desktop-display-gray.png</file>
         <file>resources/preferences-desktop-display-red.png</file>
-        <file>resources/list-add.png</file>
-        <file>resources/list-remove.png</file>
-        <file>resources/chronometer.png</file>
-        <file>resources/adjustrgb.png</file>
-        <file>resources/document-save.png</file>
         <file>resources/help-about.png</file>
-        <file>resources/preferences-system-login.png</file>
-        <file>resources/view-calendar-month.png</file>
         <file>resources/splash.png</file>
-        <file>resources/dialog-error.png</file>
         <file>resources/applications-education.png</file>
-        <file>resources/window-duplicate.png</file>
         <file>resources/edit-find.png</file>
-        <file>resources/dot-green.png</file>
-        <file>resources/user-group-new.png</file>
         <file>resources/toolbar-background.png</file>
     </qresource>
 </RCC>
