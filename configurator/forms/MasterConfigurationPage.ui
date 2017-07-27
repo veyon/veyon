@@ -127,6 +127,13 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
+           <widget class="QCheckBox" name="openComputerManagementAtStart">
+            <property name="text">
+             <string>Always open at start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="onlyCurrentRoomVisible">
             <property name="text">
              <string>Only show current room</string>
@@ -280,15 +287,16 @@
   <tabstop>autoAdjustGridSize</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
+  <tabstop>openComputerManagementAtStart</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>
   <tabstop>manualRoomAdditionAllowed</tabstop>
   <tabstop>localComputerHidden</tabstop>
   <tabstop>emptyRoomsHidden</tabstop>
   <tabstop>computerFilterHidden</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
-  <tabstop>disabledFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
   <tabstop>enableFeatureButton</tabstop>
+  <tabstop>disabledFeaturesListWidget</tabstop>
  </tabstops>
  <resources>
   <include location="../veyon-configurator.qrc"/>
