@@ -698,10 +698,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Demo server</source>
         <translation>Demo-Server</translation>
     </message>
-    <message>
-        <source>Demo client</source>
-        <translation>Demo-Client</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -773,6 +769,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Password:</source>
         <translation>Passwort:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>Funktionssteuerung</translation>
     </message>
 </context>
 <context>
@@ -2061,6 +2064,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
     </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Benutzer und Computer suchen</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2135,6 +2142,42 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation>Beim Start automatisch die Größe der Computer-Miniaturansichten anpassen</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Grundeinstellungen</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>Verhalten</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Gewählten Modus für Client-Computer durchsetzen</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>Nur aktuellen Raum anzeigen</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>Manuelles Hinzufügen von Räumen erlauben</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Lokalen Computer ausblenden</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>Leere Räume ausblenden</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Filterfeld für Computer ausblenden</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>Computerverwaltung</translation>
     </message>
 </context>
 <context>

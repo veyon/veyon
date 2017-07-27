@@ -2122,6 +2122,42 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
