@@ -106,6 +106,12 @@ Run the following commands:
 	cmake ..
 	make -j4
 
+NOTE: If you want to build a .deb or .rpm package for this software, instead of the provided cmake command, you should use:
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+
+to install package files in /usr instead of /usr/local.
+
 If some requirements are not fullfilled, CMake will inform you about it and
 you will have to install the missing software before continuing.
 
