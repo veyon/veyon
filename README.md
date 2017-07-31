@@ -110,6 +110,11 @@ If some requirements are not fullfilled, CMake will inform you about it and
 you will have to install the missing software before continuing.
 
 You can now generate a package (.deb or .rpm depending what system you are in).
+
+On Fedora, this requires an additional dependency (rpm-build) which can be installed by running
+
+	dnf install rpm-build
+
 For generating a package you can run
     
 	make package
