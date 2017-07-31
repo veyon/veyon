@@ -93,7 +93,7 @@ Requirements for RedHat-based distributions:
 
 As root you can run
 
-	dnf install gcc-g++ make cmake qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
+	dnf install gcc-c++ make cmake qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
              openssl-devel pam-devel lzo-devel qca-devel qca-qt5-devel openldap-devel libgsasl
 
 
