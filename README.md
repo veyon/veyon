@@ -5,11 +5,12 @@
 [![Overall downloads on Github](https://img.shields.io/github/downloads/veyon/veyon/total.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
 [![Documentation Status](https://readthedocs.org/projects/veyon/badge/?version=latest)](http://veyon.readthedocs.io/en/latest/?badge=latest)
 [![Localise on Transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/veyon-solutions/veyon/)
+[![license](https://img.shields.io/badge/license-GPLv2-green.svg)](LICENSE)
 
 
 ## What is Veyon?
 
-Veyon is an Open Source computer monitoring and classroom management software.
+Veyon is an Open Source computer monitoring and classroom management software supporting Windows and Linux.
 It enables teachers to view and control computer labs and interact with students.
 Veyon is available in different languages and provides lots of useful features:
 
@@ -145,3 +146,4 @@ Before starting the implementation of a new feature, please always open an issue
 * http://veyon.io/
 * http://docs.veyon.io/
 * http://facebook.com/veyon.io/
+* https://twitter.com/veyon_io
