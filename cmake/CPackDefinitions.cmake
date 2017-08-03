@@ -65,13 +65,11 @@ IF (WIN32)    # TODO
 ELSEIF ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")   # TODO
      SET(CPACK_GENERATOR "PackageMake")
 ELSE ()
-     # SET(CPACK_INSTALLED_DIRECTORIES "${CMAKE_SOURCE_DIR}/etc;/etc")
-     FILE(READ "/proc/version" DISTRO)  # file /etc/issue doesn't contain Red Hat/Fedora
-     IF(DISTRO MATCHES "Red Hat" OR DISTRO MATCHES "Fedora" OR DISTRO MATCHES "SUSE")
+     IF(EXISTS /etc/redhat-release OR EXISTS /etc/fedora-release OR EXISTS /etc/SuSE-release)
         SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CPACK_SYSTEM_NAME}")
         SET(CPACK_GENERATOR "RPM")
      ENDIF ()
-     IF(DISTRO MATCHES "Debian" OR DISTRO MATCHES "Ubuntu")
+     IF(EXISTS /etc/debian_version)
         if (CPACK_SYSTEM_NAME STREQUAL "x86_64")
                 set(CPACK_SYSTEM_NAME "amd64")
         endif ()
