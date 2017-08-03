@@ -1611,15 +1611,7 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>e.g. cn or description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Computer room attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer group/room name attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1656,6 +1648,14 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2067,10 +2067,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Feature on computer double click:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2091,31 +2087,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide computer filter field in computer room management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
