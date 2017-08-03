@@ -13,7 +13,7 @@ dpkg -I *.deb
 
 # generate source tarball
 cd /veyon
-VERSION=$(git describe --tags --abbrev=0)
+VERSION=$(git describe --tags --abbrev=0 | sed -e 's/^v//g')
 cp /build/CONTRIBUTORS .
 
 cd /
