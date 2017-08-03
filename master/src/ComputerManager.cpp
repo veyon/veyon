@@ -263,12 +263,12 @@ void ComputerManager::updateComputerScreens()
 
 void ComputerManager::initRooms()
 {
-	for( const auto& hostName : m_localHostNames )
+	for( const auto& hostName : qAsConst( m_localHostNames ) )
 	{
 		qDebug() << "ComputerManager::initRooms(): initializing rooms for host name" << hostName;
 	}
 
-	for( const auto& address : m_localHostAddresses )
+	for( const auto& address : qAsConst( m_localHostAddresses ) )
 	{
 		qDebug() << "ComputerManager::initRooms(): initializing rooms for host address" << address.toString();
 	}
@@ -312,7 +312,7 @@ void ComputerManager::initNetworkObjectLayer()
 
 		localHostNames.append( m_localHostNames );
 
-		for( const auto& address : m_localHostAddresses )
+		for( const auto& address : qAsConst( m_localHostAddresses ) )
 		{
 			localHostNames.append( address.toString() );
 		}
