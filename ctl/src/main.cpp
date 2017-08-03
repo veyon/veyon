@@ -161,9 +161,12 @@ int main( int argc, char **argv )
 
 	delete core;
 
+	int rc = -1;
+
 	if( module == QStringLiteral("help") )
 	{
 		qCritical( "%s", qPrintable( VeyonCore::tr( "Available modules:" ) ) );
+		rc = 0;
 	}
 	else
 	{
@@ -179,5 +182,5 @@ int main( int argc, char **argv )
 
 	delete app;
 
-	return -1;
+	return rc;
 }
