@@ -31,7 +31,7 @@
 #include "VeyonCore.h"
 #include "LocalSystem.h"
 #include "PlatformPluginInterface.h"
-#include "PlatformUserSessionFunctions.h"
+#include "PlatformUserInfoFunctions.h"
 
 
 AccessControlProvider::AccessControlProvider() :
@@ -245,7 +245,7 @@ bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QSt
 
 bool AccessControlProvider::isNoUserLoggedOn() const
 {
-	return VeyonCore::platform().userSessionFunctions()->loggedOnUsers().isEmpty();
+	return VeyonCore::platform().userInfoFunctions()->loggedOnUsers().isEmpty();
 }
 
 

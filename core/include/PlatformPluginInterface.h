@@ -28,7 +28,7 @@
 #include "PluginInterface.h"
 
 class PlatformNetworkFunctions;
-class PlatformUserSessionFunctions;
+class PlatformUserInfoFunctions;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT PlatformPluginInterface
 {
 public:
 	virtual PlatformNetworkFunctions* networkFunctions() = 0;
-	virtual PlatformUserSessionFunctions* userSessionFunctions() = 0;
+	virtual PlatformUserInfoFunctions* userInfoFunctions() = 0;
 
 };
 

@@ -1,5 +1,5 @@
 /*
- * WindowsUserSessionFunctions.cpp - implementation of WindowsUserSessionFunctions class
+ * WindowsUserInfoFunctions.cpp - implementation of WindowsUserInfoFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,11 +22,72 @@
  *
  */
 
-#include "WindowsUserSessionFunctions.h"
+#include "WindowsUserInfoFunctions.h"
 
 #include <wtsapi32.h>
+#include <lm.h>
 
-QStringList WindowsUserSessionFunctions::loggedOnUsers()
+QStringList WindowsUserInfoFunctions::userGroups()
+{
+	QStringList groupList;
+
+	LPBYTE outBuffer = NULL;
+	DWORD entriesRead = 0;
+	DWORD totalEntries = 0;
+
+	if( NetLocalGroupEnum( nullptr, 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, nullptr ) == NERR_Success )
+	{
+		LOCALGROUP_INFO_0* groupInfos = (LOCALGROUP_INFO_0 *) outBuffer;
+
+		groupList.reserve( entriesRead );
+
+		for( DWORD i = 0; i < entriesRead; ++i )
+		{
+			    groupList += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
+		}
+
+		NetApiBufferFree( outBuffer );
+	}
+
+	// remove all empty entries
+	groupList.removeAll( QStringLiteral("") );
+
+	return groupList;
+}
+
+
+
+QStringList WindowsUserInfoFunctions::groupsOfUser( const QString& username )
+{
+	QStringList groupList;
+
+	LPBYTE outBuffer = NULL;
+	DWORD entriesRead = 0;
+	DWORD totalEntries = 0;
+
+	if( NetUserGetLocalGroups( NULL, (LPCWSTR) username.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+	                           &entriesRead, &totalEntries ) == NERR_Success )
+	{
+		LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
+
+		groupList.reserve( entriesRead );
+
+		for( DWORD i = 0; i < entriesRead; ++i )
+		{
+			    groupList += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
+		}
+
+		NetApiBufferFree( outBuffer );
+	}
+
+	groupList.removeAll( QStringLiteral("") );
+
+	return groupList;
+}
+
+
+
+QStringList WindowsUserInfoFunctions::loggedOnUsers()
 {
 	QStringList users;
 

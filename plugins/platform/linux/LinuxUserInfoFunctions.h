@@ -1,5 +1,5 @@
 /*
- * WindowsUserSessionFunctions.h - declaration of WindowsUserSessionFunctions class
+ * LinuxUserInfoFunctions.h - declaration of LinuxUserInfoFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,18 +22,25 @@
  *
  */
 
-#ifndef WINDOWS_USER_SESSION_FUNCTIONS_H
-#define WINDOWS_USER_SESSION_FUNCTIONS_H
+#ifndef LINUX_USER_INFO_FUNCTIONS_H
+#define LINUX_USER_INFO_FUNCTIONS_H
 
-#include "PlatformUserSessionFunctions.h"
+#include "PlatformUserInfoFunctions.h"
 
-// clazy:exclude=copyable-polymorphic
+// clazy:excludeall=copyable-polymorphic
 
-class WindowsUserSessionFunctions : public PlatformUserSessionFunctions
+class LinuxUserInfoFunctions : public PlatformUserInfoFunctions
 {
 public:
+	QStringList userGroups() override;
+	QStringList groupsOfUser( const QString& username ) override;
+
 	QStringList loggedOnUsers() override;
 
+private:
+	enum {
+		WhoProcessTimeout = 3000
+	};
 };
 
-#endif // WINDOWS_USER_SESSION_FUNCTIONS_H
+#endif // LINUX_USER_INFO_FUNCTIONS_H
