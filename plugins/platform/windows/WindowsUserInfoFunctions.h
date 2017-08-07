@@ -37,6 +37,14 @@ public:
 
 	QStringList loggedOnUsers() override;
 
+private:
+	static QString domainController();
+	static QStringList domainUserGroups();
+	static QStringList domainGroupsOfUser( const QString& username );
+
+	static QStringList localUserGroups();
+	static QStringList localGroupsOfUser( const QString& username );
+
 };
 
 #endif // WINDOWS_USER_INFO_FUNCTIONS_H
