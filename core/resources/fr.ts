@@ -37,9 +37,13 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>La langue actuelle n&apos;est pas encore traduite.
+        <translation>La langue actuelle n&apos;est pas encore traduite (ou anglais natal) .
 
 Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans une autre langue, ou si vous souhaitez améliorer la traduction existante, merci de contacter l&apos;équipe des développeurs de Veyon !</translation>
+    </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>A propos %1 %2</translation>
     </message>
 </context>
 <context>
@@ -572,7 +576,7 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Retirer une clé de configuration donnée</translation>
+        <translation>Désactiver (retirer) une clé de configuration donnée</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
@@ -626,6 +630,45 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation>Serveur de démo</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Réglables</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Intervalle entre les images clés </translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Limite de mémoire</translation>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation>Utiliser le multithreading (expérimental)</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Intervalle d&apos;actualisation</translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation>s</translation>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -654,10 +697,6 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <message>
         <source>Demo server</source>
         <translation>Serveur de démonstration</translation>
-    </message>
-    <message>
-        <source>Demo client</source>
-        <translation>Démonstration client</translation>
     </message>
 </context>
 <context>
@@ -730,6 +769,13 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <message>
         <source>Password:</source>
         <translation>Mot de passe:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>Contrôle des fonctionnalités</translation>
     </message>
 </context>
 <context>
@@ -1205,14 +1251,6 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <translation>Attribut configuré pour la connexion utilisateur ou le nom d&apos;hôte de l&apos;ordinateur (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation>Groupes d&apos;ordinateurs dédiés</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>Attribut en commun</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Lister tous les groupes d&apos;un utilisateur</translation>
     </message>
@@ -1525,10 +1563,6 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <translation>Arborescence groupe ordinateur</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>Regrouper des ordinateurs dans une salle en utilisant:</translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>arborescence groupe ordinateur</translation>
     </message>
@@ -1591,6 +1625,54 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     <message>
         <source>Integration tests</source>
         <translation>Tests d&apos;intégration</translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>Attribut de la salle informatique </translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>Filtre pour ordinateurs parents</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>ex: objectClass=container ou objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>Agréger les ordinateurs dans une classe via:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Groupe d&apos;ordinateurs</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>Parent de l&apos;objet ordinateur (ex: OU ou conteneur)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>Attribut de salle informatique dans les objets informatiques </translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>Test non applicable</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Veuillez changer les paramètres de la salle informatique pour utiliser les groupes d&apos;ordinateurs ou les objets parents d&apos;objets informatiques comme salle informatique. Dans ce cas il sera demandé l&apos;attribut spécifié à la place du nom du groupe d&apos;ordinateur ou des objets parents. Autrement il n&apos;est pas nécessaire de configurer cet attribut. </translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Veuillez changer les paramètres de la salle informatique ci-dessous  pour utiliser les groupes d&apos;ordinateurs ou les objets parents d&apos;objets informatiques comme salle informatique.  Autrement il n&apos;est pas nécessaire de configurer ce filtre. </translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>Attribut du nom de la salle informatique</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>Ex: nom ou description </translation>
     </message>
 </context>
 <context>
@@ -1974,6 +2056,22 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <source>Bug reporting</source>
         <translation>Rapport de bogue</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Reset de la configuration</translation>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Voulez-vous vraiment reset la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Chercher des utilisateurs et des ordinateurs</translation>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>Ajuster la taille optimale</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -1988,10 +2086,6 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <message>
         <source>User configuration</source>
         <translation>Configuration utilisateur</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>Interface utilisateur et comportements</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2014,22 +2108,6 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <translation>Fonctionnalités désactivées</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>N&apos;afficher que la salle courante dans le gestionnaire de salle</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>Cacher les salles vides du gestionnaire de salle</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>Autoriser l&apos;ajout manuel de salles dans le gestionnaire de salle</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>Cacher l&apos;ordinateur local de la gestion des ordinateurs de la salle</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>Effectuer le contrôle d&apos;accès au démarrage du programme</translation>
     </message>
@@ -2038,12 +2116,52 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <translation>Captures d&apos;écrans</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>Cacher le filtre ordinateur du gestionnaire de salle</translation>
-    </message>
-    <message>
         <source>&lt;no feature&gt;</source>
         <translation>Aucune action</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation>Ajuster automatiquement la taille des prévues ordinateurs au démarrage</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Paramètres généraux</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>Comportement</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Forcer le mode sélectionné pour les ordinateurs</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>Afficher seulement la classe courante</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>Autoriser l&apos;ajout manuel de salles</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Masquer l&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>Masquer les classes vides</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Masquer le champ filtre ordinateur</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>Gestion ordinateur</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>Toujours ouvrir au démarrage</translation>
     </message>
 </context>
 <context>

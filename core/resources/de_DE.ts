@@ -1627,16 +1627,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Integrationstests</translation>
     </message>
     <message>
-        <source>e.g. cn or description</source>
-        <translation>z.B. cn oder description</translation>
-    </message>
-    <message>
         <source>Computer room attribute</source>
-        <translation>Computerraumattribut</translation>
-    </message>
-    <message>
-        <source>Computer group/room name attribute</source>
-        <translation>Attribut Name Computergruppen-/raum</translation>
+        <translation>Attribut Computerraum</translation>
     </message>
     <message>
         <source>Filter for computer parents</source>
@@ -1660,7 +1652,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
-        <translation>Computerraumattribut in Computerobjekten</translation>
+        <translation>Attribut Computerraum in Computerobjekten</translation>
     </message>
     <message>
         <source>Test not applicable</source>
@@ -1673,6 +1665,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation>Bitte ändern Sie die Computerraumeinstellungen unterhalb, so dass übergeordnete Objekte von Computerobjekten als Computerräume verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>Attribut Computerraumname</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>z.B. name oder description</translation>
     </message>
 </context>
 <context>
@@ -2088,10 +2088,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Benutzerkonfiguration</translation>
     </message>
     <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>Benutzeroberfläche &amp;&amp; Verhalten</translation>
-    </message>
-    <message>
         <source>Feature on computer double click:</source>
         <translation>Funktion bei Doppelklick:</translation>
     </message>
@@ -2112,32 +2108,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Deaktivierte Funktionen</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>Nur aktuellen Raum in Computerraumverwaltung anzeigen</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>Leere Räume in Computerraumverwaltung ausblenden</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>Manuelles Hinzufügen von Räumen zur Computerraumverwaltung erlauben</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>Lokalen Computer in Computerraumverwaltung ausblenden</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>Zugriffskontrolle beim Programmstart durchführen</translation>
     </message>
     <message>
         <source>Screenshots</source>
         <translation>Bildschirmfotos</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>Filterfeld für Computer in Computerraumverwaltung ausblenden</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2448,7 +2424,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>Suchtfilter eingeben...</translation>
+        <translation>Suchfilter eingeben...</translation>
     </message>
 </context>
 <context>

@@ -1,5 +1,5 @@
 /*
- * WindowsUserSessionFunctions.h - declaration of WindowsUserSessionFunctions class
+ * WindowsUserInfoFunctions.h - declaration of WindowsUserInfoFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,18 +22,29 @@
  *
  */
 
-#ifndef WINDOWS_USER_SESSION_FUNCTIONS_H
-#define WINDOWS_USER_SESSION_FUNCTIONS_H
+#ifndef WINDOWS_USER_INFO_FUNCTIONS_H
+#define WINDOWS_USER_INFO_FUNCTIONS_H
 
-#include "PlatformUserSessionFunctions.h"
+#include "PlatformUserInfoFunctions.h"
 
 // clazy:exclude=copyable-polymorphic
 
-class WindowsUserSessionFunctions : public PlatformUserSessionFunctions
+class WindowsUserInfoFunctions : public PlatformUserInfoFunctions
 {
 public:
+	QStringList userGroups();
+	QStringList groupsOfUser( const QString& username );
+
 	QStringList loggedOnUsers() override;
+
+private:
+	static QString domainController();
+	static QStringList domainUserGroups();
+	static QStringList domainGroupsOfUser( const QString& username );
+
+	static QStringList localUserGroups();
+	static QStringList localGroupsOfUser( const QString& username );
 
 };
 
-#endif // WINDOWS_USER_SESSION_FUNCTIONS_H
+#endif // WINDOWS_USER_INFO_FUNCTIONS_H

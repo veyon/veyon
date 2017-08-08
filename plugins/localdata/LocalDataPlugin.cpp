@@ -22,31 +22,11 @@
  *
  */
 
-#include <veyonconfig.h>
-
-#ifdef VEYON_BUILD_WIN32
-#include <winsock2.h>
-#include <windef.h>
-#include <wtsapi32.h>
-#include <lm.h>
-#endif
-
 #include "LocalDataConfigurationPage.h"
 #include "LocalDataNetworkObjectDirectory.h"
 #include "LocalDataPlugin.h"
-#include "LocalSystem.h"
-
-#include <QProcess>
-
-#ifdef VEYON_HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#ifdef VEYON_HAVE_PWD_H
-#include <pwd.h>
-#endif
-
-
+#include "PlatformPluginInterface.h"
+#include "PlatformUserInfoFunctions.h"
 
 LocalDataPlugin::LocalDataPlugin( QObject* parent ) :
 	QObject( parent ),
@@ -67,6 +47,7 @@ void LocalDataPlugin::reloadConfiguration()
 }
 
 
+
 QStringList LocalDataPlugin::users()
 {
 	// TODO
@@ -77,178 +58,14 @@ QStringList LocalDataPlugin::users()
 
 QStringList LocalDataPlugin::userGroups()
 {
-	QStringList groupList;
-
-#ifdef VEYON_BUILD_LINUX
-	QProcess getentProcess;
-	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
-	getentProcess.waitForFinished();
-
-	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
-
-	groupList.reserve( groups.size() );
-
-	for( const auto& group : groups )
-	{
-		groupList += group.split( ':' ).first();
-	}
-
-	const QStringList ignoredGroups( {
-		"root",
-		"daemon",
-		"bin",
-		"tty",
-		"disk",
-		"lp",
-		"mail",
-		"news",
-		"uucp",
-		"man",
-		"proxy",
-		"kmem",
-		"dialout",
-		"fax",
-		"voice",
-		"cdrom",
-		"tape",
-		"audio",
-		"dip",
-		"www-data",
-		"backup",
-		"list",
-		"irc",
-		"src",
-		"gnats",
-		"shadow",
-		"utmp",
-		"video",
-		"sasl",
-		"plugdev",
-		"games",
-		"users",
-		"nogroup",
-		"libuuid",
-		"syslog",
-		"fuse",
-		"lpadmin",
-		"ssl-cert",
-		"messagebus",
-		"crontab",
-		"mlocate",
-		"avahi-autoipd",
-		"netdev",
-		"saned",
-		"sambashare",
-		"haldaemon",
-		"polkituser",
-		"mysql",
-		"avahi",
-		"klog",
-		"floppy",
-		"oprofile",
-		"netdev",
-		"dirmngr",
-		"vboxusers",
-		"bluetooth",
-		"colord",
-		"libvirtd",
-		"nm-openvpn",
-		"input",
-		"kvm",
-		"pulse",
-		"pulse-access",
-		"rtkit",
-		"scanner",
-		"sddm",
-		"systemd-bus-proxy",
-		"systemd-journal",
-		"systemd-network",
-		"systemd-resolve",
-		"systemd-timesync",
-		"uuidd",
-							   } );
-
-	for( const auto& ignoredGroup : ignoredGroups )
-	{
-		groupList.removeAll( ignoredGroup );
-	}
-#endif
-
-#ifdef VEYON_BUILD_WIN32
-	LPBYTE outBuffer = NULL;
-	DWORD entriesRead = 0;
-	DWORD totalEntries = 0;
-
-	if( NetLocalGroupEnum( NULL, 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, NULL ) == NERR_Success )
-	{
-		LOCALGROUP_INFO_0* groupInfos = (LOCALGROUP_INFO_0 *) outBuffer;
-
-		groupList.reserve( entriesRead );
-
-		for( DWORD i = 0; i < entriesRead; ++i )
-		{
-				groupList += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
-		}
-
-		NetApiBufferFree( outBuffer );
-	}
-#endif
-
-	// remove all empty entries
-	groupList.removeAll( QStringLiteral("") );
-
-	return groupList;
+	return VeyonCore::platform().userInfoFunctions()->userGroups();
 }
 
 
 
 QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 {
-	QStringList groupList;
-
-#ifdef VEYON_BUILD_LINUX
-	const auto strippedUsername = LocalSystem::User::stripDomain( username );
-
-	QProcess getentProcess;
-	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
-	getentProcess.waitForFinished();
-
-	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
-	for( const auto& group : groups )
-	{
-		const auto groupComponents = group.split( ':' );
-		if( groupComponents.size() == 4 &&
-				groupComponents.last().split( ',' ).contains( strippedUsername ) )
-		{
-			groupList += groupComponents.first(); // clazy:exclude=reserve-candidates
-		}
-	}
-#endif
-
-#ifdef VEYON_BUILD_WIN32
-	LPBYTE outBuffer = NULL;
-	DWORD entriesRead = 0;
-	DWORD totalEntries = 0;
-
-	if( NetUserGetLocalGroups( NULL, (LPCWSTR) username.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
-							   &entriesRead, &totalEntries ) == NERR_Success )
-	{
-		LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
-
-		groupList.reserve( entriesRead );
-
-		for( DWORD i = 0; i < entriesRead; ++i )
-		{
-				groupList += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
-		}
-
-		NetApiBufferFree( outBuffer );
-	}
-#endif
-
-	groupList.removeAll( QStringLiteral("") );
-
-	return groupList;
+	return VeyonCore::platform().userInfoFunctions()->groupsOfUser( username );
 }
 
 

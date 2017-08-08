@@ -44,11 +44,16 @@ SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Virtual Eye On Networks - OpenSource class
   can join lessons via VPN connections just by installing the Veyon service
 ")
 SET(CPACK_DEBIAN_PACKAGE_SECTION "Education")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt5core5a, libqt5gui5, libqt5x11extras5, xorg, libxtst6, libjpeg-turbo8, zlib1g, openssl, libpam0g, liblzo2-2, libqca2, libqca-qt5-2, libsasl2-2, libldap-2.4-2")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins")
+SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
 
 # RPM package
-SET(CPACK_RPM_PACKAGE_REQUIRES "qt5-qtbase, qt5-qtbase-gui, libXtst, libjpeg-turbo, zlib, openssl, pam, lzo, qca, qca-qt5, libgsasl, openldap")
+IF(EXISTS /etc/SuSE-release)
+SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "libqca-qt5-plugins")
+ELSE()
+SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "qca-qt5-ossl")
+ENDIF()
 SET(CPACK_RPM_PACKAGE_LICENSE "GPLv2")
 SET(CPACK_RPM_PACKAGE_DESCRIPTION "Veyon is an Open Source computer monitoring and classroom management software.
 It enables teachers to view and control computer labs and interact with students." )
@@ -65,13 +70,11 @@ IF (WIN32)    # TODO
 ELSEIF ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")   # TODO
      SET(CPACK_GENERATOR "PackageMake")
 ELSE ()
-     # SET(CPACK_INSTALLED_DIRECTORIES "${CMAKE_SOURCE_DIR}/etc;/etc")
-     FILE(READ "/proc/version" DISTRO)  # file /etc/issue doesn't contain Red Hat/Fedora
-     IF(DISTRO MATCHES "Red Hat" OR DISTRO MATCHES "Fedora" OR DISTRO MATCHES "SUSE")
+     IF(EXISTS /etc/redhat-release OR EXISTS /etc/fedora-release OR EXISTS /etc/SuSE-release)
         SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CPACK_SYSTEM_NAME}")
         SET(CPACK_GENERATOR "RPM")
      ENDIF ()
-     IF(DISTRO MATCHES "Debian" OR DISTRO MATCHES "Ubuntu")
+     IF(EXISTS /etc/debian_version)
         if (CPACK_SYSTEM_NAME STREQUAL "x86_64")
                 set(CPACK_SYSTEM_NAME "amd64")
         endif ()

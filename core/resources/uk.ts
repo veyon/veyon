@@ -41,6 +41,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
 
 Якщо ви хочете перекласти Veyon вашою рідною або якоюсь іншою мовою або хочете удосконалити наявний переклад, будь ласка, зв’яжіться із розробником Veyon!</translation>
     </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>Про %1 %2</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -694,10 +698,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Demo server</source>
         <translation>Демосервер</translation>
     </message>
-    <message>
-        <source>Demo client</source>
-        <translation>Демоклієнт</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -769,6 +769,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Password:</source>
         <translation>Пароль:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>Керування можливосями</translation>
     </message>
 </context>
 <context>
@@ -1244,14 +1251,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Налаштований атрибут для імені користувача або назви вузла комп’ютера (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation>Спеціалізовані групи комп’ютерів</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>Загальний атрибут</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Список усіх груп користувача</translation>
     </message>
@@ -1564,10 +1563,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Ієрархія груп комп’ютерів</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>Збирати комп’ютери у клас на основі:</translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>ієрархії груп комп’ютерів</translation>
     </message>
@@ -1630,6 +1625,54 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Integration tests</source>
         <translation>Перевірки інтеграції</translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>Атрибут комп’терного класу</translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>Фільтр для батьківських записів комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>наприклад, objectClass=container або objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>Збирати комп’ютери у клас на основі:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Групи комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>Батьківські об&apos;єкти об&apos;єктів комп&apos;ютерів (наприклад OU або контейнери)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>Атрибути комп&apos;ютерного класу у об&apos;єктах комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>Перевірка не є застосовною</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Будь ласка, змініть параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи групи комп&apos;ютерів або батьківські об&apos;єкти об&apos;єктів комп&apos;ютерів. Якщо ви це зробите, запит виконуватиметься не щодо загальної назви (CN) груп комп&apos;ютерів або батьківських об&apos;єктів, ащодо вказаного атрибута. Якщо потреби у таких налаштуваннях немає, вам не слід визначати цей атрибут.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Будь ласка, змініть нижче параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи батьківські об&apos;єкти об&apos;єктів комп&apos;ютерів. Якщо потреби у такому налаштуванні немає, не визначайте цей фільтр.</translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>Атрибут назви комп&apos;ютерного класу</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>наприклад назва чи опис</translation>
     </message>
 </context>
 <context>
@@ -2021,6 +2064,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Ви справді хочете скинути локальні налаштування і повернути усі параметри до типових значень?</translation>
     </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Пошук користувачів і комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>Скоригувати оптимальний розмір</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2035,10 +2086,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>User configuration</source>
         <translation>Налаштування користувачів</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>Поведінка та інтерфейс користувача</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2061,22 +2108,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Вимкнені можливості</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>Показувати на сторінці керування класами комп’ютерів лише поточний клас</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>Приховати порожні класи на панелі керування класами комп’ютерів</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>Дозволити додавання класів на панелі керування класами комп’ютерів вручну</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>Приховати локальний комп’ютер на панелі керування класами комп’ютерів</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>Виконувати керування доступом під час запуску програми</translation>
     </message>
@@ -2085,16 +2116,52 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Знімки вікон</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>Приховати поле фільтрування комп’ютерів на панелі керування класами комп’ютерів</translation>
-    </message>
-    <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation>Автоматично коригувати розмір мініатюри комп’ютера під час запуску</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Основні параметри</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>Поведінка</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Примусовий вибраний режим для комп&apos;ютерів-клієнтів</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>Показувати лише поточний клас</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>Дозволити додавання класів вручну</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Приховати локальний комп&apos;ютер</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>Приховати порожні класи</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Приховати поле фільтрування комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>Керування комп&apos;ютерами</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>Завжди відкривати після запуску</translation>
     </message>
 </context>
 <context>

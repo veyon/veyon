@@ -5,11 +5,12 @@
 [![Overall downloads on Github](https://img.shields.io/github/downloads/veyon/veyon/total.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
 [![Documentation Status](https://readthedocs.org/projects/veyon/badge/?version=latest)](http://veyon.readthedocs.io/en/latest/?badge=latest)
 [![Localise on Transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/veyon-solutions/veyon/)
+[![license](https://img.shields.io/badge/license-GPLv2-green.svg)](LICENSE)
 
 
 ## What is Veyon?
 
-Veyon is an Open Source computer monitoring and classroom management software.
+Veyon is an Open Source computer monitoring and classroom management software supporting Windows and Linux.
 It enables teachers to view and control computer labs and interact with students.
 Veyon is available in different languages and provides lots of useful features:
 
@@ -93,7 +94,7 @@ Requirements for RedHat-based distributions:
 
 As root you can run
 
-	dnf install gcc-g++ make cmake qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
+	dnf install gcc-c++ make cmake qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
              openssl-devel pam-devel lzo-devel qca-devel qca-qt5-devel openldap-devel libgsasl
 
 
@@ -106,10 +107,21 @@ Run the following commands:
 	cmake ..
 	make -j4
 
+NOTE: If you want to build a .deb or .rpm package for this software, instead of the provided cmake command, you should use:
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+
+to install package files in /usr instead of /usr/local.
+
 If some requirements are not fullfilled, CMake will inform you about it and
 you will have to install the missing software before continuing.
 
 You can now generate a package (.deb or .rpm depending what system you are in).
+
+On Fedora, this requires an additional dependency (rpm-build) which can be installed by running
+
+	dnf install rpm-build
+
 For generating a package you can run
     
 	make package
@@ -134,3 +146,4 @@ Before starting the implementation of a new feature, please always open an issue
 * http://veyon.io/
 * http://docs.veyon.io/
 * http://facebook.com/veyon.io/
+* https://twitter.com/veyon_io

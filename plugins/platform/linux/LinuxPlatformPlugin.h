@@ -28,7 +28,7 @@
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "LinuxNetworkFunctions.h"
-#include "LinuxUserSessionFunctions.h"
+#include "LinuxUserInfoFunctions.h"
 
 class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
 {
@@ -79,14 +79,14 @@ public:
 		return &m_linuxNetworkFunctions;
 	}
 
-	PlatformUserSessionFunctions* userSessionFunctions() override
+	PlatformUserInfoFunctions* userInfoFunctions() override
 	{
-		return &m_linuxUserSessionFunctions;
+		return &m_linuxUserInfoFunctions;
 	}
 
 private:
 	LinuxNetworkFunctions m_linuxNetworkFunctions;
-	LinuxUserSessionFunctions m_linuxUserSessionFunctions;
+	LinuxUserInfoFunctions m_linuxUserInfoFunctions;
 
 };
 

@@ -1,6 +1,6 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(windows-platform WindowsPlatformPlugin.cpp WindowsNetworkFunctions.cpp WindowsUserSessionFunctions.cpp MOCFILES WindowsPlatformPlugin.h WindowsNetworkFunctions.h WindowsUserSessionFunctions.h)
+BUILD_PLUGIN(windows-platform WindowsPlatformPlugin.cpp WindowsNetworkFunctions.cpp WindowsUserInfoFunctions.cpp MOCFILES WindowsPlatformPlugin.h WindowsNetworkFunctions.h WindowsUserInfoFunctions.h)
 
 ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
 

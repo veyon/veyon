@@ -1,4 +1,4 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(linux-platform LinuxPlatformPlugin.cpp LinuxNetworkFunctions.cpp LinuxUserSessionFunctions.cpp MOCFILES LinuxPlatformPlugin.h LinuxNetworkFunctions.h LinuxUserSessionFunctions.h)
+BUILD_PLUGIN(linux-platform LinuxPlatformPlugin.cpp LinuxNetworkFunctions.cpp LinuxUserInfoFunctions.cpp MOCFILES LinuxPlatformPlugin.h LinuxNetworkFunctions.h LinuxUserInfoFunctions.h)
 

@@ -41,6 +41,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
 
 如果您有興趣翻譯 Veyon 為您的本地或另一種語言或想要改善現有的翻譯，請聯繫 Veyon 開發人員!</translation>
     </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>關於 %1 %2</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -694,10 +698,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Demo server</source>
         <translation>演示伺服器</translation>
     </message>
-    <message>
-        <source>Demo client</source>
-        <translation>演示用戶端</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -769,6 +769,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Password:</source>
         <translation>密碼:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>功能控制</translation>
     </message>
 </context>
 <context>
@@ -1244,14 +1251,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>使用者登入或電腦的主機名稱 (OpenLDAP) 組態的屬性</translation>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation>專用的電腦群組</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>通用屬性</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>列出所有的使用者群組</translation>
     </message>
@@ -1564,10 +1563,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>電腦群組樹</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>在教室中使用聚合電腦:</translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>電腦群組樹</translation>
     </message>
@@ -1630,6 +1625,54 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Integration tests</source>
         <translation>整合測試</translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>電腦教室屬性</translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>篩選電腦上層</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>例如: objectClass=container 或 objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>安排教室中電腦透過:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>電腦群組</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>電腦物件的上層物件 (例如: OUs 或容器)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>電腦物件中電腦教室屬性</translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>文字不適用</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>請變更電腦教室設定以使用電腦群組或電腦物件的上層物件為電腦教室。 接著指定屬性而不是電腦群組的一般名稱或將查詢上層物件。 否則，您不需要組態這個屬性。</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>請變更以下電腦教室設定以使用電腦物件的上層物件為電腦教室。  否則，您不需要組態這個篩選器。</translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>電腦教室名稱屬性</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>例如: 名稱或描述</translation>
     </message>
 </context>
 <context>
@@ -2021,6 +2064,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>您確定要重設本機組態並恢復所有設定為其預設值嗎?</translation>
     </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>搜尋使用者和電腦</translation>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>調整最佳大小</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2035,10 +2086,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>User configuration</source>
         <translation>使用者組態</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>使用者介面 &amp;&amp; 行為</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2061,22 +2108,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>停用的功能</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>在電腦教室管理只顯示目前教室</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>在電腦教室管理隱藏空的教室</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>允許將教室手動加入到電腦教室管理</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>在電腦教室管理隱藏本機電腦</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>程式啟動時執行存取控制</translation>
     </message>
@@ -2085,16 +2116,52 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>螢幕快照</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>在電腦教室管理隱藏電腦篩選欄位</translation>
-    </message>
-    <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation>啟動時自動調整電腦縮圖大小</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>基本設定</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>行為</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>對用戶端電腦強制選取的模式</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>只顯示目前教室</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>手動允許加入教室</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>隱藏本機電腦</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>隱藏空的教室</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>隱藏電腦篩選欄位</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>電腦管理</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>啟動時始終開啟</translation>
     </message>
 </context>
 <context>

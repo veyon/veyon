@@ -1,22 +1,21 @@
 language: cpp
-compiler: gcc
+services:
+    - docker
 dist: trusty
 sudo: required
 matrix:
     include:
-        - env: TARGET_OS=
-        - env: TARGET_OS=win32
-        - env: TARGET_OS=win64
+        - env: TARGET_OS=ubuntu.xenial
+        - env: TARGET_OS=debian.stretch
+        - env: TARGET_OS=cross.win32
+        - env: TARGET_OS=cross.win64
+        - env: TARGET_OS=centos.73
+        - env: TARGET_OS=fedora.26
+        - env: TARGET_OS=opensuse.42.2
 before_install:
-    - . ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}.before_install.sh
-install:
-    - . ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}.install.sh
-before_script:
-    - mkdir build && cd build
+    - docker build -t veyon-build ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
 script:
-    - . ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}.script.sh
-    - make -j4
-before_deploy: make win-nsi
+    - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon-build /bin/sh /veyon/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
 deploy:
     provider: releases
     api_key:
@@ -24,8 +23,7 @@ deploy:
     repo: veyon/veyon
     skip_cleanup: true
     file_glob: true
-    file: "veyon-*-$TARGET_OS-setup.exe"
+    file: "veyon-*"
     on:
         tags: true
         all_branches: true
-        condition: "$TARGET_OS == win*"

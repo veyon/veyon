@@ -1,5 +1,5 @@
 /*
- * LinuxUserSessionFunctions.cpp - implementation of LinuxUserSessionFunctions class
+ * PlatformUserInfoFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,32 +22,21 @@
  *
  */
 
-#include <QProcess>
+#ifndef PLATFORM_USER_INFO_FUNCTIONS_H
+#define PLATFORM_USER_INFO_FUNCTIONS_H
 
-#include "LinuxUserSessionFunctions.h"
+#include "VeyonCore.h"
 
-QStringList LinuxUserSessionFunctions::loggedOnUsers()
+// clazy:excludeall=copyable-polymorphic
+
+class VEYON_CORE_EXPORT PlatformUserInfoFunctions
 {
-	QStringList users;
+public:
+	virtual QStringList userGroups() = 0;
+	virtual QStringList groupsOfUser( const QString& username ) = 0;
 
-	QProcess whoProcess;
-	whoProcess.start( QStringLiteral("who") );
-	whoProcess.waitForFinished( WhoProcessTimeout );
+	virtual QStringList loggedOnUsers() = 0;
 
-	if( whoProcess.exitCode() != 0 )
-	{
-		return users;
-	}
+};
 
-	const auto lines = whoProcess.readAll().split( '\n' );
-	for( const auto& line : lines )
-	{
-		const auto user = line.split( ' ' ).value( 0 );
-		if( user.isEmpty() == false && users.contains( user ) == false )
-		{
-			users.append( user ); // clazy:exclude=reserve-candidates
-		}
-	}
-
-	return users;
-}
+#endif // PLATFORM_USER_INFO_FUNCTIONS_H

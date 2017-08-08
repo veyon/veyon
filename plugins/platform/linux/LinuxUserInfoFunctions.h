@@ -1,5 +1,5 @@
 /*
- * LinuxUserSessionFunctions.h - declaration of LinuxUserSessionFunctions class
+ * LinuxUserInfoFunctions.h - declaration of LinuxUserInfoFunctions class
  *
  * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,16 +22,19 @@
  *
  */
 
-#ifndef LINUX_USER_SESSION_FUNCTIONS_H
-#define LINUX_USER_SESSION_FUNCTIONS_H
+#ifndef LINUX_USER_INFO_FUNCTIONS_H
+#define LINUX_USER_INFO_FUNCTIONS_H
 
-#include "PlatformUserSessionFunctions.h"
+#include "PlatformUserInfoFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class LinuxUserSessionFunctions : public PlatformUserSessionFunctions
+class LinuxUserInfoFunctions : public PlatformUserInfoFunctions
 {
 public:
+	QStringList userGroups() override;
+	QStringList groupsOfUser( const QString& username ) override;
+
 	QStringList loggedOnUsers() override;
 
 private:
@@ -40,4 +43,4 @@ private:
 	};
 };
 
-#endif // LINUX_USER_SESSION_FUNCTIONS_H
+#endif // LINUX_USER_INFO_FUNCTIONS_H

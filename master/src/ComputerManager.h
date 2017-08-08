@@ -127,6 +127,9 @@ private:
 	QStringList m_roomFilterList;
 	ComputerList m_computerList;
 
+	QStringList m_localHostNames;
+	QList<QHostAddress> m_localHostAddresses;
+
 };
 
 #endif // COMPUTER_MANAGER_H

@@ -55,7 +55,9 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
-	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) )
+	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) ),
+	m_localHostNames( QHostInfo::localHostName().toLower() ),
+	m_localHostAddresses( QHostInfo::fromName( QHostInfo::localHostName() ).addresses() )
 {
 	if( m_networkObjectDirectory == nullptr )
 	{
@@ -66,6 +68,13 @@ ComputerManager::ComputerManager( UserConfig& config,
 								   "network object directory backend via %1 Configurator." ).
 							   arg( VeyonCore::applicationName() ) );
 		qFatal( "ComputerManager: missing network object directory plugin!" );
+	}
+
+	if( QHostInfo::localDomainName().isEmpty() == false )
+	{
+		m_localHostNames.append( QHostInfo::localHostName().toLower() +
+								 QStringLiteral( "." ) +
+								 QHostInfo::localDomainName().toLower() );
 	}
 
 	initNetworkObjectLayer();
@@ -254,28 +263,17 @@ void ComputerManager::updateComputerScreens()
 
 void ComputerManager::initRooms()
 {
-	const auto localHostName = QHostInfo::localHostName().toLower();
-
-	QStringList localHostNames( localHostName );
-
-	if( QHostInfo::localDomainName().isEmpty() == false )
+	for( const auto& hostName : qAsConst( m_localHostNames ) )
 	{
-		localHostNames.append( localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName().toLower() );
+		qDebug() << "ComputerManager::initRooms(): initializing rooms for host name" << hostName;
 	}
 
-	for( const auto& hostName : localHostNames )
+	for( const auto& address : qAsConst( m_localHostAddresses ) )
 	{
-		qDebug() << "ComputerManager::initRooms(): initializing rooms for" << hostName;
+		qDebug() << "ComputerManager::initRooms(): initializing rooms for host address" << address.toString();
 	}
 
-	const auto localHostAddresses = QHostInfo::fromName( localHostName ).addresses();
-
-	for( const auto& address : localHostAddresses )
-	{
-		qDebug() << "ComputerManager::initRooms(): initializing rooms for"
-				 << address.toString();
-	}
-	m_currentRooms.append( findRoomOfComputer( localHostNames, localHostAddresses, QModelIndex() ) );
+	m_currentRooms.append( findRoomOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
 
 	qDebug() << "ComputerManager::initRooms(): found local rooms" << m_currentRooms;
 
@@ -307,16 +305,19 @@ void ComputerManager::initNetworkObjectLayer()
 	if( VeyonCore::config().localComputerHidden() )
 	{
 		QStringList localHostNames( {
-										QHostInfo::localHostName(),
 										QStringLiteral("localhost"),
 										QHostAddress( QHostAddress::LocalHost ).toString(),
 										QHostAddress( QHostAddress::LocalHostIPv6 ).toString()
 									} );
 
-		if( QHostInfo::localDomainName().isEmpty() == false )
+		localHostNames.append( m_localHostNames );
+
+		for( const auto& address : qAsConst( m_localHostAddresses ) )
 		{
-			localHostNames.append( QHostInfo::localHostName() + QStringLiteral( "." ) + QHostInfo::localDomainName().toLower() );
+			localHostNames.append( address.toString() );
 		}
+
+		qDebug() << "ComputerManager::initNetworkObjectLayer(): excluding local computer via" << localHostNames;
 
 		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames );
 	}
