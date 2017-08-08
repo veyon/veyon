@@ -41,6 +41,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
 
 Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다. </translation>
     </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>%1 %2 에 대하여</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -74,7 +78,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Veyon 네트워크 상의 컴퓨터에 접근을 허용할 사용자가 속한 그룹을 추가 하세요</translation>
+        <translation>Veyon 네트워크의 컴퓨터에 접근을 허용할 사용자가 속한 그룹을 추가 하세요</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -118,7 +122,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>기본 접근제어 백엔드 플러그인이 없습니다. 설치를 확인하세요</translation>
+        <translation>기본 접근제어 백엔드 플러그인이 없습니다. 설치여부를 확인하세요</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -233,7 +237,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>로컬 사용자(로그온됨)</translation>
+        <translation>(로그온된)로컬 사용자</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -384,7 +388,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>사용자 %1 (IP: %2) 가 이 컴퓨터를 접속하려고 시도하였으나 인증실패</translation>
+        <translation>사용자 %1 (IP: %2) 가 이 컴퓨터에 접속하려고 시도하였으나 인증실패</translation>
     </message>
 </context>
 <context>
@@ -489,7 +493,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>이 컴퓨터가 소속된 교실을 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 모든 교실을 컴퓨터 관리에 표시됩니다.</translation>
+        <translation>이 컴퓨터가 소속된 교실을 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 모든 교실을 컴퓨터 관리에 표시합니다.</translation>
     </message>
 </context>
 <context>
@@ -500,7 +504,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>설정 내보내기를 할 유효한 화일 이름을 지정하세요</translation>
+        <translation>설정을 내보낼 유효한 화일 이름을 지정하세요</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
@@ -695,10 +699,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>Demo server</source>
         <translation>데모 서버</translation>
     </message>
-    <message>
-        <source>Demo client</source>
-        <translation>데모 클라이언트</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -754,7 +754,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>External VNC server</translation>
+        <translation>외부 VNC 서버</translation>
     </message>
 </context>
 <context>
@@ -770,6 +770,13 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Password:</source>
         <translation>패스워드:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>기능제어</translation>
     </message>
 </context>
 <context>
@@ -1060,7 +1067,7 @@ Using the private key part, users on the master computer will be able to access 
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
         <translation>Veyon 접근 키는 두 부분으로 구성되어 있습니다,  공개 키 파트와 개인 키 파트.
-사용자는 개인 키 파트를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다. 오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는것이 아주 중요합니다.
+사용자는 개인 키 파트를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다. 오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는 것이 아주 중요합니다.
 
 공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
     </message>
@@ -1242,14 +1249,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
         <translation>사용자 로그인 또는 컴픂터 호스트 이름의 설정 속성 (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>Dedicated computer groups</source>
-        <translation>지정된 컴퓨터 그룹</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>공통 속성</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1564,10 +1563,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>컴퓨터 그룹 트리</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>다음을 사용해 교실의 컴퓨터들을 묶음:</translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>컴퓨터 그룹 트리</translation>
     </message>
@@ -1609,7 +1604,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computer room attribute</source>
-        <translation>컴퓨터 교실 소석</translation>
+        <translation>컴퓨터 교실 속성</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
@@ -1630,6 +1625,54 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Integration tests</source>
         <translation>결합 테스트</translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>컴퓨터교실 속성</translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>상위 컴퓨터용 필터 </translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>예. objectClass=container  또는  objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>교실의 컴퓨터를 다음을 사용해 묶음:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>컴퓨터 그룹</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>컴퓨터 객체의 부모객체 (예. OUs 또는 containers)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>컴퓨터 객체중의 컴퓨터 교실의 속성</translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>테스트를 할수 없음</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>부모객체 또는 컴퓨터그룹의 컴퓨터 객체를 컴퓨터 교실로 사용하려면 컴퓨터교실의 설정을 변경하세요. 그러면 컴퓨터 그룹 또는 부모객체의 공통명칭 대신 설정된 속성을 조회합니다. 그렇지 않으면 이 속성을 설정할 필요가 없습니다.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>컴퓨터 객체의 부모객체를 컴퓨터 교실로 사용하려면 아래의 컴퓨터 교실 설정을 변경하세요. 그렇지 않으면 이속성을 설절할 필요가 없습니다.</translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>컴퓨터 교실 이름 속성</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>예. 이름 또는 설명</translation>
     </message>
 </context>
 <context>
@@ -1911,7 +1954,7 @@ The public key part is used on the client computers to verify that any incoming 
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Veyon에서 버그 또는 이상한 작동을 발견하면 그버그를 개발자에게 보고하여 다음 릴리즈 버전에서 버그를 수정하는 것이 중요합니다.  이 페이지는 유용한 버그 보고서를 쉽게 제출할 수 있도록 도와줍니다
+        <translation>Veyon에서 버그 또는 이상한 작동을 발견하면 그버그를 개발자에게 알려서 다음 릴리즈 버전에서 버그를 수정하는 것이 중요합니다.  이 페이지는 유용한 버그 보고서를 쉽게 제출할 수 있도록 도와줍니다
 
 만일 버그를 다시 만들수 없다면 단계 1)-3)을 건너 뛰세요</translation>
     </message>
@@ -2021,6 +2064,14 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>정말 로컬설정을 초기화하고 기본 설정값으로 되돌릴건가요?</translation>
     </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>사용자 또는 컴퓨터 검색</translation>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>최적 크기로 조정</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2035,10 +2086,6 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <message>
         <source>User configuration</source>
         <translation>사용자 설정</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>사용자 인터페이스 &amp;&amp; 행동</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2061,22 +2108,6 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <translation>기능 비활성화</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>컴퓨터 교실 관리에서 현재 교실만 보여줌</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>컴퓨터 교실 관리에서 빈 교실은 숨김</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>컴퓨터 교실 관리에 수동으로 교실 추가 허용</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>컴퓨터 교실 관리에서 로컬 컴퓨터 숨김</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>프로그램 시작시 접근 제어 실행</translation>
     </message>
@@ -2085,16 +2116,52 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <translation>화면캡쳐</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>컴퓨터 교실 관리에서 컴퓨터 필터 항목 숨김</translation>
-    </message>
-    <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation>시작할때  컴퓨터 썸네일 사진 크기를 자동조정</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>기본 설정</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>수행형태</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>클라이언트 컴퓨터를 선택된 모드로 실행</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>현재 교실만 보여줌</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>수동으로 교실추가 허용</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>로컬컴퓨터 숨김</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>빈 교실 숨김</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>컴퓨터 필터 필드 숨김</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>컴퓨터 관리</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>시작시 항상 오픈</translation>
     </message>
 </context>
 <context>

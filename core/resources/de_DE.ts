@@ -2424,7 +2424,7 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>Suchtfilter eingeben...</translation>
+        <translation>Suchfilter eingeben...</translation>
     </message>
 </context>
 <context>

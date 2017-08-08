@@ -43,6 +43,10 @@ José Antonio Muñoz Jiménez &lt;jamj2000 at gmail dot com&gt;
 
 Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrollador de Veyon!</translation>
     </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>Acerca de %1 %2</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -696,10 +700,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>Demo server</source>
         <translation>Servidor demo</translation>
     </message>
-    <message>
-        <source>Demo client</source>
-        <translation>Cliente demo</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -771,6 +771,13 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Password:</source>
         <translation>Contraseña:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>Control de funciones</translation>
     </message>
 </context>
 <context>
@@ -1246,14 +1253,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Atributo configurado para inicio de sesión de usuario o nombre de equipo (OpenLDAP)</translation>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation>Grupos de equipos dedicados</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>Atributo común</translation>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Listar todos los grupos de un usuario</translation>
     </message>
@@ -1566,10 +1565,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <translation>Árbol de grupo de equipos</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>Agregar equipos a un aula usando:</translation>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>árbol de grupo de equipos</translation>
     </message>
@@ -1632,6 +1627,54 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>Integration tests</source>
         <translation>Pruebas de integración</translation>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>Atributo de aula</translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>Filtro para padres de equipo</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>p.ej. objectClass=container o objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>Agregar equipos a un aula a través de:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Grupos de equipos</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>Objetos principales de objetos de equipo (p.ej. OUs o contenedores)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>Atributo de aula en objetos de equipo</translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>Prueba no aplicable</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Por favor, cambie la configuración de aula para usar grupos de equipos o objetos primarios de objetos de equipo como aulas. Entonces se consultará el atributo especificado en lugar del nombre común de los grupos de equipos o de los objetos principales. De lo contrario, no es necesario configurar este atributo.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Por favor, cambie la configuración del aula abajo para usar los objetos primarios de objetos de equipo como aulas. De lo contrario, no es necesario configurar este filtro.</translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>Atributo de nombre de aula</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>p.ej. nombre o descripción</translation>
     </message>
 </context>
 <context>
@@ -2023,6 +2066,14 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>¿Realmente desea restablecer la configuración local y revertir todas las configuraciones a sus valores predeterminados?</translation>
     </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Buscar usuarios y equipos</translation>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>Ajustar el tamaño óptimo</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2037,10 +2088,6 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     <message>
         <source>User configuration</source>
         <translation>Configuración de usuario</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>Interfaz de usuario &amp;&amp; comportamiento</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2063,22 +2110,6 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <translation>Funciones deshabilitadas</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>Mostrar sólo el aula actual en la gestión de aulas</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>Ocultar aulas vacías en la gestión de aulas</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>Permitir añadir aulas manualmente a la gestión de aulas</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>Ocultar equipo local en la gestión de aulas</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>Realizar el control de acceso al inicio del programa</translation>
     </message>
@@ -2087,16 +2118,54 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
         <translation>Capturas</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>Ocultar el campo de filtro de equipo en la gestión de aula</translation>
-    </message>
-    <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;ninguna característica&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation>Ajustar automáticamente el tamaño de la imagen miniatura al inicio</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>
+14/5000
+Ajustes básicos</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>Comportamiento</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Aplicar el modo seleccionado para los equipos cliente</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>Mostrar sólo el aula actual</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>Permitir añadir aulas manualmente</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Ocultar equipo local</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>Ocultar aulas vacías</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Ocultar campo de filtro de equipo</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>Gestión de equipo</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>Siempre abierto al inicio</translation>
     </message>
 </context>
 <context>

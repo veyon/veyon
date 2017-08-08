@@ -37,9 +37,13 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Texty rozhraní aplikace ještě nejsou přeloženy do vámi používaného jazyka (nebo používáte původní anglické).
+        <translation>Texty rozhraní aplikace už jsou přeložené do tohoto jazyka.
 
-Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, případně vylepšit ten stávající, kontaktujte vývojáře aplikace Veyon!</translation>
+Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně máte zájem vytvořit/doplnit/vylepšit překlad jiného jazyka, kontaktujte vývojáře aplikace Veyon!</translation>
+    </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>O %1 %2</translation>
     </message>
 </context>
 <context>
@@ -54,11 +58,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Test</source>
-        <translation>Zkouška</translation>
+        <translation>Vyzkoušet funkčnost</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation>Omezit přístup na členy určité skupiny uživatelů</translation>
+        <translation>Omezit přístup na členy určitých skupin uživatelů</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -102,11 +106,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Posunout označené pravidlo dolů</translation>
+        <translation>Posunout označené pravidlo níž</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Posunout označené pravidlo nahoru</translation>
+        <translation>Posunout označené pravidlo výš</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
@@ -118,7 +122,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Nebyl nalezen zásuvný modul podpůrné vrstvy výchozího řízení přístupu. Zkontrolujte svojí instalaci!</translation>
+        <translation>Nebyl nalezen žádný výchozí zásuvný modul podpůrné vrstvy řízení přístupu. Zkontrolujte svojí instalaci!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -126,7 +130,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Zadejte uživatelské jméno jehož přístupová práva chcete otestovat:</translation>
+        <translation>Zadejte uživatelské jméno jehož přístupová práva chcete vyzkoušet:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -134,7 +138,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Zadanému uživateli je umožněn přístup k počítači s tímto nastavením.</translation>
+        <translation>Zadanému uživateli je umožněn přístup k počítačům s tímto nastavením.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -142,7 +146,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Zadanému uživateli není umožněn přístup k počítači s tímto nastavením.</translation>
+        <translation>Zadanému uživateli není umožněn přístup k počítačům s tímto nastavením.</translation>
     </message>
 </context>
 <context>
@@ -157,11 +161,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>zadejte krátký název tohoto pravidla</translation>
+        <translation>sem zadejte stručný název tohoto pravidla</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Název pravidla</translation>
+        <translation>Název pravidla:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
@@ -189,11 +193,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Přistupující počítač je tento počítač</translation>
+        <translation>Přistupující počítač přistupuje sám na sebe</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Přistupující uživatel je přihlášen jako uživatel</translation>
+        <translation>Přistupující uživatel přistupuje sám na sebe</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
@@ -201,7 +205,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Pokud je zapnutá více než jedna podmínka, je třeba, aby byly splněné všechny, aby se toto pravidlo uplatnilo (logické A). Pokud je třeba splnit pouze jednu ze zadaných podmínek (logické NEBO) vytvořte vícero pravidel řízení přístupu.</translation>
+        <translation>Pokud je zapnutá více než jedna, pak aby se pravidlo uplatnilo je třeba, aby byly splněné všechny podmínky (logické A). Pokud postačí splnit pouze jednu z daných podmínek (logické NEBO) vytvořte pravidlo řízení přístupu pro každou zvlášť.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -217,7 +221,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Požádat přihlášeného uživatele svolení</translation>
+        <translation>Požádat přihlášeného uživatele o svolení</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -233,7 +237,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Místní (přihlášený) uživatel</translation>
+        <translation>Uživatel na tomto počítači (právě přihlášený)</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -241,19 +245,19 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Pravidlo vždy zpracovat a ignorovat podmínky</translation>
+        <translation>Ignorovat podmínky a pravidlo zpracovat vždy</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Není přihlášen žádný uživatel</translation>
+        <translation>Není přihlášený žádný uživatel</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Přistupující počítač se nachází ve stejné místnosti jako váš počítač</translation>
+        <translation>Přistupující počítač se nachází ve stejné místnosti jako tento počítač</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Přistupující uživatel má jednu či více skupin společných s právě přihlášeným uživatelem.</translation>
+        <translation>Přistupující uživatel má jednu nebo více skupin společných s uživatelem, který je právě přihlášený k počítači</translation>
     </message>
 </context>
 <context>
@@ -268,7 +272,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Tento počítač:</translation>
+        <translation>Počítač ke kterému se přistupuje:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -296,7 +300,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Přístup v zadaném scénáři vyžaduje oprávnění přihlášeného uživatele.</translation>
+        <translation>Přístup v zadaném scénáři vyžaduje svolení od přihlášeného uživatele.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -304,22 +308,22 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Test result</source>
-        <translation>Výsledek testu</translation>
+        <translation>Výsledek zkoušky fungování</translation>
     </message>
 </context>
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
         <source>Authentication methods</source>
-        <translation>Metody ověření</translation>
+        <translation>Metody ověřování</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Přihlašovací ověrení</translation>
+        <translation>Ověření přihlášením se</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Ověřování pomocí souboru s klíčem</translation>
+        <translation>Ověření pomocí souboru s klíčem</translation>
     </message>
     <message>
         <source>Access key management</source>
@@ -343,11 +347,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Test</source>
-        <translation>Zkouška</translation>
+        <translation>Ověřit funkčnost</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation>Zkouška ověření při přihlášení</translation>
+        <translation>Zkouška ověření přihlášením</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
@@ -384,7 +388,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Uživatel %1 (IP adresa: %2) se pokusil přistoupit na tento počítač ale nebyl schopen poskytnout platné přihlašovací údaje!</translation>
+        <translation>Uživatel %1 (IP adresa: %2) se pokusil přistoupit k tomuto počítači ale nebyl schopen se úspěšně ověřit!</translation>
     </message>
 </context>
 <context>
@@ -407,7 +411,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Přihlášení uživatel: %1</translation>
+        <translation>Přihlášený uživatel: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -419,7 +423,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>Ověřování se nezdařilo nebo odepřený přístup</translation>
+        <translation>Ověření se nezdařilo nebo odepřen přístup</translation>
     </message>
     <message>
         <source>Disconnected</source>
@@ -473,15 +477,15 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>Chybí zásuvný modul objekt sítě pro adresář</translation>
+        <translation>Chybí zásuvný modul pro adresář se síťovými objekty</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nebyl nalezen výchozí zásuvný modul adresáře síťových objektů. Zkontrolujte svou instalaci nebo nastavte jinou podpůrnou vrstvu síťového adresáře objektů prostřednictvím %1 nastavení.</translation>
+        <translation>Nebyl nalezen žádný výchozí zásuvný modul pro adresář se síťovými objekty. Zkontrolujte svou instalaci nebo v nastavení %1 určete jinou podpůrnou vrstvu (backend) pro takový adresář.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation>Název počítače; Název stroje; Uživatel</translation>
+        <translation>Název počítače;Název stroje;Uživatel</translation>
     </message>
     <message>
         <source>Room detection failed</source>
@@ -489,7 +493,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Nedaří se zjistit místnost do které tento počítač přísluší. To značí problém s nastavením systému. Všechny místnosti budou náhradně zobrazeny ve správě počítače.</translation>
+        <translation>Nedaří se zjistit do které místnosti tento počítač přísluší. To značí problém s nastavením systému. Náhradně budou ve správě počítače zobrazeny všechny místnosti.</translation>
     </message>
 </context>
 <context>
@@ -528,7 +532,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes vzdálené ovládání nebude fungovat!</translation>
+        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes ovládání na dálku nebude fungovat!</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
@@ -536,15 +540,15 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Do výstupního souboru není možné zapisovat!</translation>
+        <translation>Výstupní soubor není přístupný pro zápis!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Do výstupní složky se nedaří zapisovat!</translation>
+        <translation>Výstupní složka není přístupná pro zápis!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>Nedaří se načíst soubor s nastaveními!</translation>
+        <translation>Soubor s nastaveními není přístupný pro čtení!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
@@ -572,7 +576,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Zrušit nastavení (odebrat) zadanou položku nastavení</translation>
+        <translation>Zrušit nastavení (odebrat ze) zadané položky nastavení</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
@@ -595,7 +599,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes vzdálené ovládání nebude fungovat!</translation>
+        <translation>Nedaří se změnit nastavení vytváření SAS v software. Odesílání Ctrl+Alt+Del přes ovládání na dálku nebude fungovat!</translation>
     </message>
     <message>
         <source>Overwrite keys</source>
@@ -603,7 +607,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Některé ze souborů s klíči už existují. Pokud je nahradíte nově vytvořenými, bude třeba aktualizovat veřejné části klíčů také na všech počítačích. Opravdu pokračovat?</translation>
+        <translation>Některé ze souborů s klíči už existují. Pokud je nahradíte těmi nově vytvořenými, bude třeba také aktualizovat veřejné části klíčů na všech počítačích. Opravdu chcete pokračovat?</translation>
     </message>
     <message>
         <source>Configuration cleared</source>
@@ -676,7 +680,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>V tomto režimu bude vaše obrazovka zobrazena na všech počítačích. Mimo to, uživatelé nebudou schopni dělat nic jiného, protože jejich vstupní zařízení budou uzamčena.</translation>
+        <translation>V tomto režimu bude vaše obrazovka zobrazována na všech počítačích. Mimo to, uživatelé na nich nebudou moci dělat nic jiného, protože jejich vstupní zařízení budou uzamčena.</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -684,7 +688,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>V tomto režimu se vaše obrazovka zobrazí na všech počítačích. Uživatelé přitom budou moci přepínat mezi dalšími okny a pokračovat ve své práci.</translation>
+        <translation>V tomto režimu bude vaše obrazovka zobrazována na všech počítačích. Uživatelé přitom budou moci přepínat mezi dalšími okny a pokračovat ve své práci.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -693,10 +697,6 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     <message>
         <source>Demo server</source>
         <translation>Ukázkový server</translation>
-    </message>
-    <message>
-        <source>Demo client</source>
-        <translation>Ukázkový klient</translation>
     </message>
 </context>
 <context>
@@ -707,7 +707,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Umožnit přístup k pracovní ploše</translation>
+        <translation>Schválit přístup k pracovní ploše</translation>
     </message>
     <message>
         <source>Never for this session</source>
@@ -772,6 +772,13 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
 </context>
 <context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation>Ovládání funkce</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -787,7 +794,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Enable high DPI scaling</source>
-        <translation>Zapnout přepočítávání pro obrazovky s vysokým rozlišením (high DPI)</translation>
+        <translation>Zapnout přepočítávání zobrazení pro obrazovky s vysokým rozlišením (high DPI)</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -795,11 +802,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Logging</source>
-        <translation>Pořizování záznamů o provozu</translation>
+        <translation>Pořizování záznamů událostí</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Složka pro soubor se záznamy o provozu</translation>
+        <translation>Složka pro soubor se záznamy událostí</translation>
     </message>
     <message>
         <source>...</source>
@@ -807,7 +814,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Log level</source>
-        <translation>Úroveň podrobností záznamů o provozu</translation>
+        <translation>Úroveň podrobností záznamu událostí</translation>
     </message>
     <message>
         <source>Nothing</source>
@@ -831,15 +838,15 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Ladicí zprávy a vše ostatní</translation>
+        <translation>Ladící zprávy a vše ostatní</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Omezit velikost souboru se záznamy o provozu</translation>
+        <translation>Omezit velikost souboru se záznamy událostí</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Vymazat všechny soubory se záznamy o provozu</translation>
+        <translation>Vymazat všechny soubory se záznamy událostí</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -847,7 +854,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation>Zaznamenávat v rámci záznamů o provozu systému Windows</translation>
+        <translation>Zaznamenávat v rámci záznamu událostí v systému Windows</translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -867,15 +874,15 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Pro smazání souborů se záznamy o provozu je třeba dočasně zastavit službu %1 – pokračovat?</translation>
+        <translation>Pro smazání souborů se záznamy událostí je třeba dočasně zastavit službu %1 – pokračovat?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation>Soubory se záznamy o provozu byly smazány</translation>
+        <translation>Soubory se záznamy událostí byly smazány</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>Všechny soubory se záznamy o provozu byly úspěšně smazány.</translation>
+        <translation>Všechny soubory se záznamy událostí byly úspěšně smazány.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -883,7 +890,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>Nelze smazat soubory se záznamy o provozu.</translation>
+        <translation>Nedaří se smazat soubory se záznamy událostí.</translation>
     </message>
     <message>
         <source> MB</source>
@@ -938,7 +945,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Uživatelské úlohy umožňují používat více přístupových klíčů naráz. Například zde mohou být různé přístupové klíče vyučujících zvlášť pro každou z učeben, zatímco klíče pracovníků technické podpory mohou být stejné pro celou školu.</translation>
+        <translation>Uživatelské úlohy umožňují používat více přístupových klíčů souběžně. Například zde mohou být různé přístupové klíče vyučujících zvlášť pro každou z učeben, zatímco klíče pracovníků technické podpory mohou být stejné pro celou školu.</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -958,7 +965,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Zadejte, kde se nachází veřejná část přístupového klíče, který má být importován.</translation>
+        <translation>Zadejte kde se nachází veřejná část přístupového klíče, který má být importován.</translation>
     </message>
     <message>
         <source>Summary</source>
@@ -978,7 +985,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation>&lt;neznámé&gt;</translation>
+        <translation>&lt;neznáme&gt;</translation>
     </message>
     <message>
         <source>• Write access key(s) to</source>
@@ -994,7 +1001,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
-        <translation>Zvolte složku do které má být exportována veřejná část klíče</translation>
+        <translation>Vyberte složku do které má být exportována veřejná část klíče</translation>
     </message>
     <message>
         <source>Key files (*.key.txt)</source>
@@ -1014,7 +1021,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation>Nelze odebrat už existující soubor %1.</translation>
+        <translation>Nedaří se odebrat už dříve existující soubor %1.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
@@ -1042,11 +1049,11 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
     </message>
     <message>
         <source>Veyon Access Key Assistant</source>
-        <translation>Pomocník pro přístupové klíče k Veyon</translation>
+        <translation>Pomocník pro přístupové klíče pro Veyon</translation>
     </message>
     <message>
         <source>Create/import Veyon access keys</source>
-        <translation>Vytvořit/importovat přístupové klíče k Veyon</translation>
+        <translation>Vytvořit/importovat přístupové klíče pro Veyon</translation>
     </message>
     <message>
         <source>This assistant will help you to create or import Veyon access keys.</source>
@@ -1058,7 +1065,7 @@ Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, p
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Přístupové klíče k Veyon se sestávají ze dvou vzájemně si odpovídajících částí – soukromé a veřejné.
+        <translation>Přístupové klíče pro Veyon se sestávají ze dvou vzájemně si odpovídajících částí – soukromé a veřejné.
 
 S použitím soukromé části mohou uživatelé řídícího počítače přistupovat ke klientským počítačům. Je velmi důležité, aby k soukromé části klíče měli přístup pouze pověření uživatelé.
 
@@ -1089,7 +1096,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Spojovací rozlišený název</translation>
+        <translation>Spojovací rozlišený název (DN)</translation>
     </message>
     <message>
         <source>Bind password</source>
@@ -1105,15 +1112,15 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Test</source>
-        <translation>Zkouška</translation>
+        <translation>Ověřit funkčnost</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Základ rozlišeného názvu</translation>
+        <translation>Základ rozlišeného názvu (DN)</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation>Pevný základní rozlišený název</translation>
+        <translation>Neměnný základ rozlišeného názvu (DN)</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
@@ -1121,7 +1128,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation>Zjistit základ rozlišeného názvu pomocí kontextu pojemnování</translation>
+        <translation>Zjistit základ rozlišeného názvu (DN) pomocí kontextu pojmenování</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
@@ -1137,7 +1144,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Computer tree</source>
-        <translation>Stroj počítačů</translation>
+        <translation>Strom počítačů</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
@@ -1169,11 +1176,11 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>např. hwAdresa</translation>
+        <translation>např. hwAdress</translation>
     </message>
     <message>
         <source>Computer host name attribute</source>
-        <translation>Atribut názvu počítače</translation>
+        <translation>Atribut název počítače</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
@@ -1181,7 +1188,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>User login attribute</source>
-        <translation>Atribut přihlašovacího jména uživatele</translation>
+        <translation>Atribut přihlašovací jméno uživatele</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1189,7 +1196,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation>Atribut fyzické (MAC) adresy počítače</translation>
+        <translation>Atribut fyzická (MAC) adresa počítače</translation>
     </message>
     <message>
         <source>Group member attribute</source>
@@ -1241,15 +1248,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation>Nastavený atribut pro přihlášení uživatele nebo název počítače (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>Dedicated computer groups</source>
-        <translation>Vyhrazené skupiny počítačů</translation>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation>Společný atribut</translation>
+        <translation>Atribut nastavený jako uživatelské jméno nebo název počítače (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1265,11 +1264,11 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation>Připojení k LDAP se nezdařilo</translation>
+        <translation>Nepodařilo se připojit do LDAP</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Nedaří se připojit k LDAP serveru. Zkontrolujte parametry serveru. %1</translation>
+        <translation>Nedaří se připojit k LDAP serveru. Zkontrolujte parametry nastavení pro server. %1</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
@@ -1277,11 +1276,11 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Nedaří se přihlásit k LDAP serveru. Zkontrolujte parametry serveru a přihlašovací údaje. %1</translation>
+        <translation>Nedaří se spojit s LDAP serverem. Zkontrolujte parametry nastavení pro server a přihlašovací údaje. %1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>Spojení do LDAP úspěšné</translation>
+        <translation>Spojení do LDAP úspěšně navázáno</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
@@ -1289,17 +1288,17 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>Test základního názvu LDAP se nezdařil</translation>
+        <translation>Test základu LDAP rozliš. (DN) názvu se nezdařil</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 %1</source>
-        <translation>Nedaří se dotázat nastavený základ rozlišeného názvu. Zkontrolujte parametru základ DN.
+        <translation>Nedaří se dotázat na nastavený základ rozlišeného názvu. Zkontrolujte parametr základ rozliš. názvu (DN).
 %1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>Test LDAP základního názvu úspěšný</translation>
+        <translation>Test základu LDAP rozliš. názvu úspěšný</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
@@ -1345,7 +1344,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Zadejte přihlašovací jméno uživatele (je možné použít i zástupné znaky) kterého dotázat:</translation>
+        <translation>Zadejte přihlašovací jméno uživatele (je možné použít i zástupné znaky) na které se dotázat:</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -1353,7 +1352,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>user login attribute</source>
-        <translation>atribut přihlašovacího jména uživatele</translation>
+        <translation>atribut přihlašovací jméno uživatele</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -1361,7 +1360,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Zadejte název skupiny jejíž členy dotázat:</translation>
+        <translation>Zadejte název skupiny na jejíž členy se dotázat:</translation>
     </message>
     <message>
         <source>group members</source>
@@ -1385,7 +1384,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
-        <translation>Zadejte název počítače který dotázat:</translation>
+        <translation>Zadejte název počítače na se který dotázat:</translation>
     </message>
     <message>
         <source>Invalid host name</source>
@@ -1393,19 +1392,19 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>Nastavené názvy počítačů které mají být uloženy jako úplné doménové názvy (FQDN) ale byly zadané bez domény.</translation>
+        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě úplných doménových názvů (FQDN), ale nyní jste zadali pouze název stroje bez domény.</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>Nastavené názvy počítačů které mají být uloženy bez doménové části ale byly zadané s doménou.</translation>
+        <translation>Nastavili jste, že názvy strojů mají být ukládány v podobě krátkých názvů bez doménové části, ale nyní jste zadali název stroje včetně domény.</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation>Objekty počítačů</translation>
+        <translation>objekty počítačů</translation>
     </message>
     <message>
         <source>computer host name attribute</source>
-        <translation>atribut názvu počítače</translation>
+        <translation>atribut název počítače</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -1413,7 +1412,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>Zadejte rozlišený název počítače na jehož MAC adresu dotázat:</translation>
+        <translation>Zadejte rozlišený název (DN) počítače na jehož MAC adresu se dotázat:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -1421,7 +1420,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>computer MAC address attribute</source>
-        <translation>atribut MAC adresa počítače</translation>
+        <translation>atribut MAC adresa síťového rozhraní počítače</translation>
     </message>
     <message>
         <source>users</source>
@@ -1429,7 +1428,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>user groups</source>
-        <translation>uživatelské skupiny</translation>
+        <translation>skupiny uživatelů</translation>
     </message>
     <message>
         <source>computer groups</source>
@@ -1477,7 +1476,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>Nedaří se nalézt počítač „%1“. Zkontrolujte uživatelské jméno nebo parametr strom uživatelů.</translation>
+        <translation>Nedaří se nalézt počítač nazvaný „%1“. Zkontrolujte název stroje nebo parametr strom počítačů.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -1493,7 +1492,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation>Nedaří se zjistit název stroje pro IP adresu %1. Zkontrolujte nastavení DNS serveru.</translation>
+        <translation>Nedaří se zjistit název stroje pro IP adresu %1. Zkontrolujte nastavení pro DNS server.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -1507,7 +1506,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation>Nedaří se dotázat na žádné položky v nastaveném %1. Zkontrolujte parametry %1.
+        <translation>Nedaří se dotázat na žádné položky v nastaveném %1. Zkontrolujte parametr %1.
 
 %2</translation>
     </message>
@@ -1517,13 +1516,13 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>%1 bylo úspěšně dotázáno a bylo nalezeno %2 položek.</translation>
+        <translation>Úspěšně dotázáno na %1 a nalezeno %2 položek.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation>Nedaří se dotázat žádné %1. Zkontrolujte parametr %2 nebo zadejte název existujícího objektu.
+        <translation>Nedaří se dotázat na žádné %1. Zkontrolujte parametr %2 nebo zadejte název existujícího objektu.
 
 %3</translation>
     </message>
@@ -1531,7 +1530,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 bylo dotázáno úspěšně:
+        <translation>Úspěšně dotázáno na %1 %2:
 
 %3</translation>
     </message>
@@ -1543,7 +1542,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation>Nedaří se dotázat žádné %1 pomocí nastaveného filtru. Zkontrolujte LDAP filtr pro %1.
+        <translation>S takto nastaveným filtrem se nedaří dotázat na žádné %1. Zkontrolujte LDAP filtr pro %1.
 
 %2</translation>
     </message>
@@ -1553,7 +1552,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>%1 %2 bylo úspěšně dotázáno pomocí nastaveného filtru.</translation>
+        <translation>S nastaveným filtrem úspěšně dotázáno na %1 %2.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
@@ -1562,10 +1561,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Computer group tree</source>
         <translation>Strom skupin počítačů</translation>
-    </message>
-    <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation>Sloučit počítače v místnosti pomocí:</translation>
     </message>
     <message>
         <source>computer group tree</source>
@@ -1577,15 +1572,15 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>e.g. objectClass=computer</source>
-        <translation>např. objectClass=pocitac</translation>
+        <translation>např. objectClass=computer</translation>
     </message>
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>např. objectClass=mistnost nebo objectClass=pocitacovaLaborator</translation>
+        <translation>např. objectClass=room nebo objectClass=computerLab</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>např. mistnost nebo pocitacovaLaborator</translation>
+        <translation>např. room (místnost) nebo computerLab (počítačová laboratoř)</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -1631,6 +1626,54 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>Integration tests</source>
         <translation>Integrační testy</translation>
     </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation>Atribut počítačová místnost</translation>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation>Filtrovat dle počítačům nadřazených struktur</translation>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation>např. objectClass=container nebo objectClass=organizationalUnit</translation>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation>Sloučit počítače v místnosti prostřednictvím:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Skupiny počítačů</translation>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation>Objekty nadřazené objektům počítačů (např. organizační jednotky nebo kontejnery)</translation>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation>Atribut počítačová místnost v objektech počítačů</translation>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation>Test není aplikovatelný</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tento účel byly používány skupiny počítačů nebo objekty, které jsou počítačům nadřazené. Pak bude dotazováno na zadaný atribut namísto běžného názvu (CN) skupiny počítačů nebo nadřazeného objektu. Jinak tento atribut není třeba nastavovat.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tyto účely byly používány skupiny počítačů. Jinak tento filtr není třeba nastavovat.</translation>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation>Atribut název počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>např. název nebo popis</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1643,7 +1686,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <name>LdapPlugin</name>
     <message>
         <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation>Nastavit začlenění aplikace Veyon s LDAP/AD na příkazovém řádku</translation>
+        <translation>Nastavit napojení aplikace Veyon na LDAP/AD na příkazovém řádku</translation>
     </message>
     <message>
         <source>LDAP (load objects from LDAP/AD)</source>
@@ -1651,15 +1694,15 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation>LDAP (místní uživatelé/skupiny a počítače/místnosti z LDAP/AD)</translation>
+        <translation>LDAP (načíst uživatele/skupiny a počítače/místnosti z LDAP/AD)</translation>
     </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation>Automaticky nastavit základ rozlišeného názvu prostřednictvím kontextu pojmenování</translation>
+        <translation>Automaticky nastavit základ rozliš. názvu (DN) prostřednictvím kontextu pojmenování</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation>Dotazovat objekty z LDAP adresáře</translation>
+        <translation>Dotazovat se na objekty z LDAP adresáře</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1667,7 +1710,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Příkazy pro nastavování a testování integrace s LDAP/AD</translation>
+        <translation>Příkazy pro nastavování a testování napojení na LDAP/AD</translation>
     </message>
 </context>
 <context>
@@ -1736,7 +1779,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <name>LocalDataPlugin</name>
     <message>
         <source>Backends which use local data</source>
-        <translation>Podpůrná vrstva která používá místní data</translation>
+        <translation>Podpůrná vrstva (backend) která používá místní data</translation>
     </message>
     <message>
         <source>Default (local users/groups and computers/rooms from configuration)</source>
@@ -1801,7 +1844,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>V sekci „Obecné“ nastavte úroveň podrobností záznamu událostí na „Ladicí zprávy a vše ostatní“.</translation>
+        <translation>V sekci „Obecné“ nastavte úroveň podrobností záznamu událostí na „Ladící zprávy a vše ostatní“.</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1873,7 +1916,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Vzdálené ovládání</translation>
+        <translation>Ovládání na dálku</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -1881,7 +1924,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Nastavení nelze zapsat</translation>
+        <translation>Nastavení není přístupné pro zápis</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -1901,7 +1944,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Některá nastavení nebyla doposud uložena. Ukončit i tak?</translation>
+        <translation>Některá nastavení doposud nebyla uložena. Ukončit i tak?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -1911,7 +1954,7 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Setkáte-li se s chybou či neočekávaným chování aplikace Veyon, je důležité o tom informovat vývojáře, aby chyba mohla být opravena v příštích vydáních. Tato stránka slouží ke snadnému a správnému nahlášení chyby.
+        <translation>Když se setkáte s chybou či neočekávaným chování aplikace Veyon, je důležité o tom informovat vývojáře, aby chyba už mohla být v příštích vydáních opravená. Tato stránka slouží ke snadnému a užitečnému nahlášení chyby.
 
 Pokud chybu není možné zopakovat, přeskočte kroky 1 až 3.</translation>
     </message>
@@ -1920,10 +1963,10 @@ Pokud chybu není možné zopakovat, přeskočte kroky 1 až 3.</translation>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Přejděte do &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;systému správy hlášení chyb v Veyon&lt;/a&gt;, zadejte nové hlášení, popište, co jste dělali v kroku 3 a připojte soubor, který jste uložili v kroku 4.&lt;/p&gt;
+        <translation>Přejděte do &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;systému správy hlášení chyb v Veyon&lt;/a&gt;, zadejte nové hlášení, popište co jste dělali v kroku 3 a připojte soubor, který jste uložili v kroku 4.&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
-Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte archivy s údaji pro nahlášení chyby z obou těchto počítačů.</translation>
+Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte archivy s údaji pro nahlášení chyby z obou.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -1971,11 +2014,11 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Archiv s údaji pro hlášení chyby v %1 uložen do %2 Obsahuje soubory se záznamy o provozu %3 a informace o vašem operačním systému. Můžete jej připojit k hlášení chyby.</translation>
+        <translation>Archiv s údaji pro hlášení chyby v %1 uložen do %2 Obsahuje soubory se záznamem událostí v %3 a informace o vašem operačním systému. Můžete ho připojit k hlášení chyby.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Podpůrná vrstva (backend) nastavení na tomto počítači hlásí, že do nastavení nelze zapisovat! Spusťte konzolu pro správu Veyon s vyššími oprávněními.</translation>
+        <translation>Podpůrná vrstva (backend) nastavení na tomto počítači hlásí, že do nastavení nelze zapisovat! Spusťte konzolu pro správu %1 s vyššími oprávněními.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -1983,7 +2026,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Nebyly žádné ověřovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu %1. Případně můžete nastavit přihlašovací ověřování s použitím konzole pro správu %1. Pokud tak neučiníte, nebudete moci přistupovat k počítačům s %1.</translation>
+        <translation>Nebyly nalezeny žádné ověřovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu %1. Případně můžete v konzoli pro správu %1 nastavit ověřování přihlášením. Pokud tak neučiníte, nebudete moci přistupovat k počítačům pomocí %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2021,6 +2064,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Opravdu chcete resetovat místní nastavení a vrátit veškerá nastavení do výchozích hodnot?</translation>
     </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Hledání uživatelů a počítačů</translation>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation>Upravit optimální velikost</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2035,10 +2086,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>User configuration</source>
         <translation>Nastavení uživatele</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>Uživatelské rozhraní a chování</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2061,22 +2108,6 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Vypnuté funkce</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation>Ve správě počítačových učeben zobrazovat pouze současnou místnost</translation>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation>Ve správě počítačových učeben skrýt prázdné místnosti</translation>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation>Umožnit ruční přidávání místností do správy počítačových místností</translation>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation>Nezobrazovat tento místní počítač ve správě počítačových místností</translation>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation>Provádět při spouštění aplikace řízení přístupu</translation>
     </message>
@@ -2085,16 +2116,52 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Snímky obrazovky</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
-        <translation>Skrýt kolonku filtrování počítačů ve správě počítačové místnosti</translation>
-    </message>
-    <message>
         <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
+        <translation>&lt;žádná funkce&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
         <translation>Při spouštění automaticky přizpůsobit velikost náhledu počítače</translation>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation>Základní nastavení</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>Chování</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Vynutit vybraný režim pro klientské počítače</translation>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation>Zobrazit pouze stávající mísntost</translation>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation>Umožnit ruční přidávání místností</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Skrýt tento počítač</translation>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation>Skrýt prázdné místnosti</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Skrýt kolonku filtr počítačů</translation>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation>Správa počítače</translation>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation>Otevírat vždy při spouštění</translation>
     </message>
 </context>
 <context>
@@ -2181,7 +2248,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <name>QApplication</name>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Nepodařilo se zaregistrovat službu „%1“.</translation>
+        <translation>Nedaří se zaregistrovat službu „%1“.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
@@ -2225,7 +2292,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Správce služeb se nepodařilo kontaktovat (máte potřebná oprávnění?) – služba „%1“ nebyla zastavena.</translation>
+        <translation>Nepodařilo se kontaktovat systémovou součást „Správce služeb“ (máte potřebná oprávnění?!) – služba „%1“ nebyla zastavena.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be started.</source>
@@ -2252,7 +2319,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>Otevřít okno vzdáleného ovládání počítače.</translation>
+        <translation>Otevřít okno ovládání počítače na dálku.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -2260,7 +2327,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Vzdálený pohled nebo ovládání počítače</translation>
+        <translation>Pohled na nebo ovládání počítače na dálku</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -2286,7 +2353,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Vzdálené ovládání</translation>
+        <translation>Ovládání na dálku</translation>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -2372,7 +2439,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>např.: „C:\Program Files\VideoLAN\VLC\vlc.exe“</translation>
+        <translation>např.: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
@@ -2499,7 +2566,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Umožnit vytváření SAS pomocí software (Ctrl+Alt+Del)</translation>
+        <translation>Zapnout vytváření SAS pomocí software (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Network</source>
@@ -2653,11 +2720,11 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Povolit zachytávání vrstvených (jako by průhledných) oken</translation>
+        <translation>Zapnout zachytávání vrstvených (jako by průhledných) oken</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Kontrolovat celou obrazovku (ponechte povolené jako výchozí)</translation>
+        <translation>Zjišťovat z celé obrazovky (ponechte zapnuté jako výchozí)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -2718,7 +2785,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>Nebylo zadáno dostatek parametrů – další informace poskytne „%1 help“</translation>
+        <translation>Nebyl zadán dostatek parametrů – další informace poskytne „%1 help“</translation>
     </message>
     <message>
         <source>Unknown result!</source>
@@ -2774,7 +2841,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>Nezjišťovat změny ve zobrazení pomocí rozšíření X Damage</translation>
+        <translation>Nezjišťovat změny ve zobrazení pomocí rozšíření Damage pro X zobrazovací server</translation>
     </message>
 </context>
 </TS>

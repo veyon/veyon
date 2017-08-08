@@ -41,6 +41,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
 		
 Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual, entre em contato com um desenvolvedor Veyon!</translation>
     </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation>Sobre %1 %2</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -245,15 +249,15 @@ Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual,
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum usuário logado</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>O acesso ao computador está localizado na mesma sala do computador local</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>O acesso ao usuário tem um ou mais grupos em comum com o usuário local (logado)</translation>
     </message>
 </context>
 <context>
@@ -481,15 +485,15 @@ Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual,
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation type="unfinished"/>
+        <translation>Nome do computador;Nome do host;Usuário</translation>
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Falha na detecção de sala</translation>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível determinar a sala a que esse computador pertence. Isso indica um problema com a configuração do sistema. Todas as salas serão exibidas no gerenciamento de computadores.</translation>
     </message>
 </context>
 <context>
@@ -546,6 +550,38 @@ Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual,
         <source>Configuration file is not readable!</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
@@ -594,6 +630,45 @@ Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual,
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -621,10 +696,6 @@ Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual,
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Demo client</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -697,6 +768,13 @@ Caso se interesse em ajudar a traduzir o Veyon ou a melhorar a tradução atual,
     </message>
     <message>
         <source>Password:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1169,14 +1247,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation type="unfinished"/>
     </message>
@@ -1477,10 +1547,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation type="unfinished"/>
     </message>
@@ -1544,6 +1610,54 @@ The public key part is used on the client computers to verify that any incoming 
         <source>Integration tests</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer parents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1564,6 +1678,22 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1805,10 +1935,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Debugging Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
@@ -1909,6 +2035,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Bug reporting</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -1922,10 +2064,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1949,22 +2087,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation type="unfinished"/>
     </message>
@@ -1973,11 +2095,51 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
+        <source>&lt;no feature&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;no feature&gt;</source>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always open at start</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2111,6 +2273,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
@@ -2140,6 +2310,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2444,30 +2618,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControlPlugin</name>
     <message>
-        <source>register Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>unregister Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>start Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>stop Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>restart Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>query status of Veyon Service</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Service is running</source>
         <translation type="unfinished"/>
     </message>
@@ -2480,7 +2630,31 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>commands for configuring and controlling Veyon Service</source>
+        <source>Register Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2563,6 +2737,45 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
         <translation type="unfinished"/>
     </message>
 </context>
