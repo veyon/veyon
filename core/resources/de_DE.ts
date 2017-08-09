@@ -679,16 +679,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Demo beenden</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>In diesem Modus wird Ihr Bildschirm auf allen Computern angezeigt. Außerdem können die Benutzer nichts anderes tun, da ihre Eingabegeräte in diesem Modus gesperrt sind.</translation>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>Fenster-Demo</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>In diesem Modus wird Ihr Bildschirm auf allen Computern angezeigt. Die Benutzer können zu anderen Fenstern wechseln und können ihre Arbeit somit fortführen.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -697,6 +689,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Demo server</source>
         <translation>Demo-Server</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation>In diesem Modus wird Ihr Bildschirm als Vollbild auf allen Computern angezeigt während die Eingabegeräte der Benutzer gesperrt werden.</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>In diesem Modus wird Ihr Bildschirm in einem Fenster auf allen Computern angezeigt. Die Benutzer können bei Bedarf zu anderen Fenstern wechseln.</translation>
     </message>
 </context>
 <context>
@@ -2453,12 +2453,12 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Entsperren</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Mit diesem Button können Sie alle Computer sperren, um die volle Aufmerksamkeit der Benutzer zu bekommen. In diesem Modus werden alle Eingabegeräte gesperrt und der Bildschirm ist schwarz.</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Bildschirm und Eingabegeräte eines Computers sperren</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation>Mit diesem Button können Sie alle Computer sperren und die volle Aufmerksamkeit der Benutzer zurückerhalten. In diesem Modus werden alle Eingabegeräte gesperrt und die Bildschirme der Benutzer schwarz eingefärbt.</translation>
     </message>
 </context>
 <context>
