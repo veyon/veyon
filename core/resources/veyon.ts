@@ -1615,10 +1615,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1631,10 +1627,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1643,19 +1635,27 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. name or description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

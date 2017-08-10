@@ -1631,10 +1631,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Attribut Computerraum</translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation>Filter für Computerobjekten übergeordnete Objekte</translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation>z.B. objectClass=container oder objectClass=organizationalUnit</translation>
     </message>
@@ -1647,10 +1643,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Computergruppen</translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation>Übergeordnete Objekte von Computerobjekten (z.B. OUs oder Container)</translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation>Attribut Computerraum in Computerobjekten</translation>
     </message>
@@ -1659,20 +1651,28 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Test nicht anwendbar</translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Bitte ändern Sie die Computerraumeinstellungen, so dass Computergruppen oder übergeordnete Objekte von Computerobjekten als Computerräume verwendet werden. Dann wird das angegebene Attribut anstatt des Common Names von Computergruppen oder übergeordneten Objekten abgefragt. Andernfalls müssen Sie dieses Attribut nicht konfigurieren.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Bitte ändern Sie die Computerraumeinstellungen unterhalb, so dass übergeordnete Objekte von Computerobjekten als Computerräume verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation>Attribut Computerraumname</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
         <translation>z.B. name oder description</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filter für Computercontainer</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Computercontainer oder OUs</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Bitte ändern Sie die Computerraumeinstellungen, so dass Computergruppen oder Computercontainer als Computerräume verwendet werden. Dann wird das angegebene Attribut anstatt des Common Names von Computergruppen oder übergeordneten Objekten abgefragt. Andernfalls müssen Sie dieses Attribut nicht konfigurieren.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Bitte ändern Sie die Computerraumeinstellungen unterhalb, so dass Computercontainer als Computerräume verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
     </message>
 </context>
 <context>
