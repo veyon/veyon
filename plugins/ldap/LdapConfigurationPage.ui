@@ -642,19 +642,19 @@
           <item row="4" column="0">
            <widget class="QLabel" name="label_43">
             <property name="text">
-             <string>Filter for computer parents</string>
+             <string>Filter for computer containers</string>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="ldapComputerParentsFilter">
+           <widget class="QLineEdit" name="ldapComputerContainersFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=container or objectClass=organizationalUnit</string>
             </property>
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QPushButton" name="testComputerParentsFilter">
+           <widget class="QPushButton" name="testComputerContainersFilter">
             <property name="text">
              <string>Test</string>
             </property>
@@ -726,9 +726,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="ldapComputerRoomMembersByParent">
+           <widget class="QRadioButton" name="ldapComputerRoomMembersByContainer">
             <property name="text">
-             <string>Parent objects of computer objects (e.g. OUs or containers)</string>
+             <string>Computer containers or OUs</string>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">computerGroupingGroup</string>
@@ -886,16 +886,16 @@
   <tabstop>ldapUserGroupsFilter</tabstop>
   <tabstop>ldapComputersFilter</tabstop>
   <tabstop>ldapComputerGroupsFilter</tabstop>
-  <tabstop>ldapComputerParentsFilter</tabstop>
+  <tabstop>ldapComputerContainersFilter</tabstop>
   <tabstop>testUsersFilter</tabstop>
   <tabstop>testUserGroupsFilter</tabstop>
   <tabstop>testComputersFilter</tabstop>
   <tabstop>testComputerGroupsFilter</tabstop>
-  <tabstop>testComputerParentsFilter</tabstop>
+  <tabstop>testComputerContainersFilter</tabstop>
   <tabstop>ldapIdentifyGroupMembersByDN</tabstop>
   <tabstop>ldapIdentifyGroupMembersByNameAttribute</tabstop>
   <tabstop>ldapComputerRoomMembersByGroups</tabstop>
-  <tabstop>ldapComputerRoomMembersByParent</tabstop>
+  <tabstop>ldapComputerRoomMembersByContainer</tabstop>
   <tabstop>ldapComputerRoomMembersByAttribute</tabstop>
   <tabstop>testGroupsOfUser</tabstop>
   <tabstop>testGroupsOfComputer</tabstop>
