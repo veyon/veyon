@@ -63,7 +63,7 @@ private slots:
 	void testUserGroupsFilter();
 	void testComputersFilter();
 	void testComputerGroupsFilter();
-	void testComputerParentsFilter();
+	void testComputerContainersFilter();
 	void testGroupsOfUser();
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();

@@ -238,7 +238,7 @@ public:
 	QString computerParentsFilter;
 
 	bool identifyGroupMembersByNameAttribute;
-	bool computerRoomMembersByParent;
+	bool computerRoomMembersByContainer;
 	bool computerRoomMembersByAttribute;
 	QString computerRoomAttribute;
 
@@ -446,7 +446,7 @@ QStringList LdapDirectory::computerRooms(const QString &filterValue)
 											constructQueryFilter( d->computerRoomAttribute, filterValue, d->computersFilter ),
 											d->defaultSearchScope );
 	}
-	else if( d->computerRoomMembersByParent )
+	else if( d->computerRoomMembersByContainer )
 	{
 		computerRooms = d->queryAttributes( d->computersDn,
 											d->computerRoomNameAttribute,
@@ -505,7 +505,7 @@ QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 	{
 		return d->queryAttributes( computerDn, d->computerRoomAttribute );
 	}
-	else if( d->computerRoomMembersByParent )
+	else if( d->computerRoomMembersByContainer )
 	{
 		return d->queryAttributes( parentDn( computerDn ), d->computerRoomNameAttribute );
 	}
@@ -594,7 +594,7 @@ QStringList LdapDirectory::computerRoomMembers(const QString &computerRoomName)
 										   constructQueryFilter( d->computerRoomAttribute, computerRoomName, d->computersFilter ),
 										   d->defaultSearchScope );
 	}
-	else if( d->computerRoomMembersByParent )
+	else if( d->computerRoomMembersByContainer )
 	{
 		const auto roomDnFilter = constructQueryFilter( d->computerRoomNameAttribute, computerRoomName, d->computerParentsFilter );
 		const auto roomDns = d->queryDistinguishedNames( d->computersDn, roomDnFilter, d->defaultSearchScope );
@@ -704,11 +704,11 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->userGroupsFilter = m_configuration.ldapUserGroupsFilter();
 	d->computersFilter = m_configuration.ldapComputersFilter();
 	d->computerGroupsFilter = m_configuration.ldapComputerGroupsFilter();
-	d->computerParentsFilter = m_configuration.ldapComputerParentsFilter();
+	d->computerParentsFilter = m_configuration.ldapComputerContainersFilter();
 
 	d->identifyGroupMembersByNameAttribute = m_configuration.ldapIdentifyGroupMembersByNameAttribute();
 
-	d->computerRoomMembersByParent = m_configuration.ldapComputerRoomMembersByParent();
+	d->computerRoomMembersByContainer = m_configuration.ldapComputerRoomMembersByContainer();
 	d->computerRoomMembersByAttribute = m_configuration.ldapComputerRoomMembersByAttribute();
 	d->computerRoomAttribute = m_configuration.ldapComputerRoomAttribute();
 

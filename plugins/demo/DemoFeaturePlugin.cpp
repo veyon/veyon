@@ -41,18 +41,16 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	m_fullscreenDemoFeature( Feature::Mode | Feature::AllComponents,
 							 Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
 							 tr( "Fullscreen demo" ), tr( "Stop demo" ),
-							 tr( "In this mode your screen is being displayed on "
-								 "all computers. Furthermore the users "
-								 "aren't able to do something else as all input "
-								 "devices are locked in this mode." ),
+							 tr( "In this mode your screen is being displayed in "
+								 "fullscreen mode on all computers while input "
+								 "devices of the users are locked." ),
 							 QStringLiteral(":/demo/presentation-fullscreen.png") ),
 	m_windowDemoFeature( Feature::Mode | Feature::AllComponents,
 						 Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
 						 tr( "Window demo" ), tr( "Stop demo" ),
 						 tr( "In this mode your screen being displayed in a "
 							 "window on all computers. The users are "
-							 "able to switch to other windows and thus "
-							 "can continue to work." ),
+							 "able to switch to other windows as needed." ),
 						 QStringLiteral(":/demo/presentation-window.png") ),
 	m_demoServerFeature( Feature::Session | Feature::Service | Feature::Worker | Feature::Builtin,
 						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),

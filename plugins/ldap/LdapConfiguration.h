@@ -52,8 +52,8 @@
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputersFilter, setLdapComputersFilter, "ComputersFilter", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerParentsFilter, setLdapComputerParentsFilter, "ComputerParentsFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerRoomMembersByParent, setLdapComputerRoomMembersByParent, "ComputerRoomMembersByParent", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, ldapComputerContainersFilter, setLdapComputerContainersFilter, "ComputerContainersFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerRoomMembersByContainer, setLdapComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerRoomMembersByAttribute, setLdapComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapComputerRoomAttribute, setLdapComputerRoomAttribute, "ComputerRoomAttribute", "LDAP" );	\
 
@@ -91,8 +91,8 @@ public slots:
 	void setLdapComputersFilter( const QString& );
 	void setLdapIdentifyGroupMembersByNameAttribute( bool );
 	void setLdapComputerGroupsFilter( const QString& );
-	void setLdapComputerParentsFilter( const QString& );
-	void setLdapComputerRoomMembersByParent( bool );
+	void setLdapComputerContainersFilter( const QString& );
+	void setLdapComputerRoomMembersByContainer( bool );
 	void setLdapComputerRoomMembersByAttribute( bool );
 	void setLdapComputerRoomAttribute( const QString& );
 
