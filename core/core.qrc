@@ -58,5 +58,6 @@
     <file>resources/watch14.png</file>
     <file>resources/watch15.png</file>
     <file>resources/watch16.png</file>
+    <file>resources/toolbar-background.png</file>
   </qresource>
 </RCC>
