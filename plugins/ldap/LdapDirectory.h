@@ -85,6 +85,8 @@ public:
 private:
 	bool reconnect( const QUrl& url );
 
+	static QString constructSubDn( const QString& subtree, const QString& baseDn );
+
 	static QString constructQueryFilter( const QString& filterAttribute,
 										 const QString& filterValue,
 										 const QString& extraFilter = QString() );
