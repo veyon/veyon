@@ -4,7 +4,7 @@ MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 RUN \
 	yum --enablerepo=extras install -y epel-release && \
 	yum install -y centos-release-scl && \
-	yum install -y git devtoolset-6 make cmake rpm-build \
+	yum install -y git devtoolset-6 make cmake rpm-build fakeroot \
 		qt5-qtbase-devel qt5-qtbase qt5-linguist qt5-qttools \
 		libXtst-devel libXrandr-devel libXinerama-devel \
 		libjpeg-turbo-devel \
