@@ -41,7 +41,9 @@ PluginManager::PluginManager( QObject* parent ) :
 		QDir dir(qApp->applicationDirPath());
 		if( !path.isEmpty() && dir.cd( path ) )
 		{
-			QDir::addSearchPath( QStringLiteral( "plugins" ), dir.absolutePath() );
+			const auto pluginSearchPath = dir.absolutePath();
+			qDebug() << "Adding plugin search path" << pluginSearchPath;
+			QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
 		}
 
 	};
