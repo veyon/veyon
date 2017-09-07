@@ -110,6 +110,7 @@ private:
 	};
 
 	void queryUserInformation();
+	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 
 	Feature m_userSessionInfoFeature;
 	Feature m_userLogoutFeature;
