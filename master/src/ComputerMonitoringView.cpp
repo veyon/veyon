@@ -156,7 +156,8 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 
 	if( ui->listView->verticalScrollBar()->isVisible() )
 	{
-		while( ui->listView->verticalScrollBar()->isVisible() )
+		while( ui->listView->verticalScrollBar()->isVisible() &&
+			   size > MinimumComputerScreenSize )
 		{
 			size -= 10;
 			setComputerScreenSize( size );
@@ -165,7 +166,8 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 	}
 	else
 	{
-		while( ui->listView->verticalScrollBar()->isVisible() == false )
+		while( ui->listView->verticalScrollBar()->isVisible() == false &&
+			   size < MaximumComputerScreenSize )
 		{
 			size += 10;
 			setComputerScreenSize( size );

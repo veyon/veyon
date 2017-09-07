@@ -44,7 +44,9 @@ class ComputerMonitoringView : public QWidget
 	Q_OBJECT
 public:
 	enum {
-		DefaultComputerScreenSize = 160
+		MinimumComputerScreenSize = 50,
+		MaximumComputerScreenSize = 1000,
+		DefaultComputerScreenSize = 150
 	};
 
 	ComputerMonitoringView( QWidget *parent = nullptr );

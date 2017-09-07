@@ -107,6 +107,9 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 			 ui->computerMonitoringView, &ComputerMonitoringView::setSearchFilter );
 
 	// initialize monitoring screen size slider
+	ui->gridSizeSlider->setMinimum( ComputerMonitoringView::MinimumComputerScreenSize );
+	ui->gridSizeSlider->setMaximum( ComputerMonitoringView::MaximumComputerScreenSize );
+
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
 	connect( ui->computerMonitoringView, &ComputerMonitoringView::computerScreenSizeAdjusted,
@@ -115,7 +118,7 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 			 ui->computerMonitoringView, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 
 	int size = ComputerMonitoringView::DefaultComputerScreenSize;
-	if( m_masterCore.userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	if( m_masterCore.userConfig().monitoringScreenSize() >= ComputerMonitoringView::MinimumComputerScreenSize )
 	{
 		size = m_masterCore.userConfig().monitoringScreenSize();
 	}
