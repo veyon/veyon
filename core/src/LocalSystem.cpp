@@ -2,7 +2,7 @@
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
  *				   transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

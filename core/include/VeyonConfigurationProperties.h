@@ -2,7 +2,7 @@
  * VeyonConfigurationProperties.h - definition of every configuration property
  *                                  stored in global veyon configuration
  *
- * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

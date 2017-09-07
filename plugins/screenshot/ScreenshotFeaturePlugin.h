@@ -1,7 +1,7 @@
 /*
  * ScreenshotFeaturePlugin.h - declaration of ScreenshotFeature class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -64,7 +64,7 @@ public:
 
 	QString copyright() const override
 	{
-		return "Tobias Doerffel";
+		return "Tobias Junghans";
 	}
 
 	const FeatureList& featureList() const override;

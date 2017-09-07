@@ -1,5 +1,5 @@
 FROM opensuse:42.2
-MAINTAINER Tobias Doerffel <tobias.doerffel@gmail.com>
+MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	zypper install -y git gcc6-c++ make cmake rpm-build \

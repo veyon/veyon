@@ -1,7 +1,7 @@
 /*
  * FileSystemBrowser.cpp - a wrapper class for easily browsing the file system
  *
- * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * ExternalVncServerConfiguration.cpp - configuration values for external VNC server
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

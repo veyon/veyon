@@ -2,10 +2,10 @@ project:
   name: Veyon
   version: 3.99.7
   copyright: 2004-2017
-  author: Tobias Doerffel
-  contact: Tobias Doerffel <tobias.doerffel@gmail.com>
+  author: Tobias Junghans
+  contact: Tobias Junghans <tobydox@users.sf.net>
   contributors:
-    - Tobias Doerffel <tobias.doerffel@gmail.com>
+    - Tobias Junghans <tobydox@users.sf.net>
   description: Virtual Eye On Networks - OpenSource classroom management
   license: GPL-2.0
   category: Education

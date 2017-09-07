@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-MAINTAINER Tobias Doerffel <tobias.doerffel@gmail.com>
+MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	apt-get update && \

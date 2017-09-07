@@ -1,7 +1,7 @@
 /*
  * ComputerManagementView.cpp - provides a view for a network object tree
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -1,5 +1,5 @@
 FROM centos:7.3.1611
-MAINTAINER Tobias Doerffel <tobias.doerffel@gmail.com>
+MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	yum --enablerepo=extras install -y epel-release && \

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author>Tobias Doerffel</author>
+ <author>Tobias Junghans</author>
  <class>AboutDialog</class>
  <widget class="QDialog" name="AboutDialog">
   <property name="geometry">
@@ -152,7 +152,7 @@
        <item row="3" column="0" colspan="2">
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</string>
+          <string>Copyright © 2004-2017 Tobias Junghans / Veyon Solutions</string>
          </property>
         </widget>
        </item>

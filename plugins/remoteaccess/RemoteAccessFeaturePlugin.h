@@ -1,7 +1,7 @@
 /*
  * RemoteAccessFeaturePlugin.h - declaration of RemoteAccessFeaturePlugin class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -66,7 +66,7 @@ public:
 
 	QString copyright() const override
 	{
-		return QStringLiteral("Tobias Doerffel");
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	const FeatureList& featureList() const override;

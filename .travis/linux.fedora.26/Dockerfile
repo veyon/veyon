@@ -1,5 +1,5 @@
 FROM fedora:26
-MAINTAINER Tobias Doerffel <tobias.doerffel@gmail.com>
+MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	yum install -y git gcc-c++ make cmake rpm-build \

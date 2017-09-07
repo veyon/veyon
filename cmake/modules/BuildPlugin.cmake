@@ -1,4 +1,4 @@
-# BuildPlugin.cmake - Copyright (c) 2017 Tobias Doerffel
+# BuildPlugin.cmake - Copyright (c) 2017 Tobias Junghans
 #
 # description: build Veyon plugin
 # usage: BUILD_PLUGIN(<NAME> <SOURCES> MOCFILES <HEADERS> RESOURCES <QRCFILES> FORMS <UIFILES> LINK <SHARED|MODULE>)
