@@ -91,6 +91,7 @@ public slots:
 	void setComputerDoubleClickFeature( QUuid );
 	void setEnforceSelectedModeForClients( bool );
 	void setOpenComputerManagementAtStart( bool );
+	void setConfirmDangerousActions( bool );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );
