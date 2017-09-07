@@ -88,6 +88,8 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
 private:
+	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
+
 	Feature m_powerOnFeature;
 	Feature m_rebootFeature;
 	Feature m_powerDownFeature;
