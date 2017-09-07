@@ -226,7 +226,7 @@ void ComputerMonitoringView::showEvent( QShowEvent* event )
 	if( event->spontaneous() == false &&
 			VeyonCore::config().autoAdjustGridSize() )
 	{
-		QTimer::singleShot( 10, this, &ComputerMonitoringView::autoAdjustComputerScreenSize );
+		QTimer::singleShot( 250, this, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 	}
 
 	QWidget::showEvent( event );
