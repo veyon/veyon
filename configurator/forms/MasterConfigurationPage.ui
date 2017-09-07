@@ -79,27 +79,20 @@
           <string>Behaviour</string>
          </property>
          <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="accessControlForMasterEnabled">
+          <item row="5" column="1">
+           <widget class="QComboBox" name="computerDoubleClickFeature"/>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QCheckBox" name="enforceSelectedModeForClients">
             <property name="text">
-             <string>Perform access control at program start</string>
+             <string>Enforce selected mode for client computers</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
              <string>Feature on computer double click:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="computerDoubleClickFeature"/>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
-            <property name="text">
-             <string>Automatically switch to current room at start</string>
             </property>
            </widget>
           </item>
@@ -110,10 +103,27 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="enforceSelectedModeForClients">
+          <item row="1" column="0" colspan="2">
+           <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
             <property name="text">
-             <string>Enforce selected mode for client computers</string>
+             <string>Automatically switch to current room at start</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="accessControlForMasterEnabled">
+            <property name="text">
+             <string>Perform access control at program start</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="confirmDangerousActions">
+            <property name="toolTip">
+             <string>Actions such as rebooting or powering down computers</string>
+            </property>
+            <property name="text">
+             <string>Show confirmation dialog for potential dangerous actions</string>
             </property>
            </widget>
           </item>
@@ -286,6 +296,7 @@
   <tabstop>autoSwitchToCurrentRoom</tabstop>
   <tabstop>autoAdjustGridSize</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
+  <tabstop>confirmDangerousActions</tabstop>
   <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>openComputerManagementAtStart</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>
