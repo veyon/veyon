@@ -30,6 +30,7 @@
 #include <QWidget>
 
 #include "VeyonVncConnection.h"
+#include "VncKeyMapper.h"
 
 class ProgressWidget;
 class RemoteControlWidget;
@@ -138,7 +139,9 @@ private:
 	bool m_initDone;
 
 	int m_buttonMask;
-	QMap<unsigned int, bool> m_mods;
+
+	VncKeyMapper m_keyMapper;
+	QMap<Qt::Key, bool> m_keyModifiers;
 
 	ProgressWidget* m_establishingConnectionWidget;
 

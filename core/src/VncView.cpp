@@ -250,17 +250,19 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 
 void VncView::checkKeyEvent( unsigned int key, bool pressed )
 {
+#if 0
 	if( key == XK_Super_L )
 	{
 		if( pressed )
 		{
-			m_mods[key] = true;
+			m_keyModifiers[key] = true;
 		}
-		else if( m_mods.contains( key ) )
+		else if( m_keyModifiers.contains( key ) )
 		{
-			m_mods.remove( key );
+			m_keyModifiers.remove( key );
 		}
 	}
+#endif
 }
 
 
@@ -329,148 +331,52 @@ void VncView::focusOutEvent( QFocusEvent * _e )
 
 
 // our builtin keyboard-handler
-void VncView::keyEventHandler( QKeyEvent * _ke )
+void VncView::keyEventHandler( QKeyEvent *event )
 {
-	bool pressed = _ke->type() == QEvent::KeyPress;
+	const Qt::Key qtKey = static_cast<Qt::Key>( event->key() );
 
-#ifdef VEYON_BUILD_LINUX
-	// Starting with Qt 4.2 there's a nice function returning the key-code
-	// of the key-event (platform-dependent) so when operating under Linux/X11,
-	// key-codes are equal to the ones used by RFB protocol
-	int key = _ke->nativeVirtualKey();
+	bool pressed = ( event->type() == QEvent::KeyPress );
 
-	// we do not handle Key_Backtab separately as the Shift-modifier
-	// is already enabled
-	if( _ke->key() == Qt::Key_Backtab )
+	// handle modifiers
+	if( m_keyMapper.isModifier( qtKey ) )
 	{
-		key = XK_Tab;
-	}
-
-#else
-	// hmm, either Win32-platform or too old Qt so we have to handle and
-	// translate Qt-key-codes to X-keycodes
-	unsigned int key = 0;
-	switch( _ke->key() )
-	{
-		// modifiers are handled separately
-		case Qt::Key_Shift: key = XK_Shift_L; break;
-		case Qt::Key_Control: key = XK_Control_L; break;
-		case Qt::Key_Meta: key = XK_Meta_L; break;
-		case Qt::Key_Alt: key = XK_Alt_L; break;
-		case Qt::Key_Escape: key = XK_Escape; break;
-		case Qt::Key_Tab: key = XK_Tab; break;
-		case Qt::Key_Backtab: key = XK_Tab; break;
-		case Qt::Key_Backspace: key = XK_BackSpace; break;
-		case Qt::Key_Return: key = XK_Return; break;
-		case Qt::Key_Insert: key = XK_Insert; break;
-		case Qt::Key_Delete: key = XK_Delete; break;
-		case Qt::Key_Pause: key = XK_Pause; break;
-		case Qt::Key_Print: key = XK_Print; break;
-		case Qt::Key_Home: key = XK_Home; break;
-		case Qt::Key_End: key = XK_End; break;
-		case Qt::Key_Left: key = XK_Left; break;
-		case Qt::Key_Up: key = XK_Up; break;
-		case Qt::Key_Right: key = XK_Right; break;
-		case Qt::Key_Down: key = XK_Down; break;
-		case Qt::Key_PageUp: key = XK_Prior; break;
-		case Qt::Key_PageDown: key = XK_Next; break;
-		case Qt::Key_CapsLock: key = XK_Caps_Lock; break;
-		case Qt::Key_NumLock: key = XK_Num_Lock; break;
-		case Qt::Key_ScrollLock: key = XK_Scroll_Lock; break;
-		case Qt::Key_Super_L: key = XK_Super_L; break;
-		case Qt::Key_Super_R: key = XK_Super_R; break;
-		case Qt::Key_Menu: key = XK_Menu; break;
-		case Qt::Key_Hyper_L: key = XK_Hyper_L; break;
-		case Qt::Key_Hyper_R: key = XK_Hyper_R; break;
-		case Qt::Key_Help: key = XK_Help; break;
-		case Qt::Key_AltGr: key = XK_ISO_Level3_Shift; break;
-		case Qt::Key_Multi_key: key = XK_Multi_key; break;
-		case Qt::Key_SingleCandidate: key = XK_SingleCandidate; break;
-		case Qt::Key_MultipleCandidate: key = XK_MultipleCandidate; break;
-		case Qt::Key_PreviousCandidate: key = XK_PreviousCandidate; break;
-		case Qt::Key_Mode_switch: key = XK_Mode_switch; break;
-		case Qt::Key_Kanji: key = XK_Kanji; break;
-		case Qt::Key_Muhenkan: key = XK_Muhenkan; break;
-		case Qt::Key_Henkan: key = XK_Henkan; break;
-		case Qt::Key_Romaji: key = XK_Romaji; break;
-		case Qt::Key_Hiragana: key = XK_Hiragana; break;
-		case Qt::Key_Katakana: key = XK_Katakana; break;
-		case Qt::Key_Hiragana_Katakana: key = XK_Hiragana_Katakana; break;
-		case Qt::Key_Zenkaku: key = XK_Zenkaku; break;
-		case Qt::Key_Hankaku: key = XK_Hankaku; break;
-		case Qt::Key_Zenkaku_Hankaku: key = XK_Zenkaku_Hankaku; break;
-		case Qt::Key_Touroku: key = XK_Touroku; break;
-		case Qt::Key_Massyo: key = XK_Massyo; break;
-		case Qt::Key_Kana_Lock: key = XK_Kana_Lock; break;
-		case Qt::Key_Kana_Shift: key = XK_Kana_Shift; break;
-		case Qt::Key_Eisu_Shift: key = XK_Eisu_Shift; break;
-		case Qt::Key_Eisu_toggle: key = XK_Eisu_toggle; break;
-		case Qt::Key_Hangul: key = XK_Hangul; break;
-		case Qt::Key_Hangul_Start: key = XK_Hangul_Start; break;
-		case Qt::Key_Hangul_End: key = XK_Hangul_End; break;
-		case Qt::Key_Hangul_Hanja: key = XK_Hangul_Hanja; break;
-		case Qt::Key_Hangul_Jamo: key = XK_Hangul_Jamo; break;
-		case Qt::Key_Hangul_Romaja: key = XK_Hangul_Romaja; break;
-		case Qt::Key_Hangul_Jeonja: key = XK_Hangul_Jeonja; break;
-		case Qt::Key_Hangul_Banja: key = XK_Hangul_Banja; break;
-		case Qt::Key_Hangul_PreHanja: key = XK_Hangul_PreHanja; break;
-		case Qt::Key_Hangul_PostHanja: key = XK_Hangul_PostHanja; break;
-		case Qt::Key_Hangul_Special: key = XK_Hangul_Special; break;
-		case Qt::Key_Dead_Grave: key = XK_dead_grave; break;
-		case Qt::Key_Dead_Acute: key = XK_dead_acute; break;
-		case Qt::Key_Dead_Circumflex: key = XK_dead_circumflex; break;
-		case Qt::Key_Dead_Tilde: key = XK_dead_tilde; break;
-		case Qt::Key_Dead_Macron: key = XK_dead_macron; break;
-		case Qt::Key_Dead_Breve: key = XK_dead_breve; break;
-		case Qt::Key_Dead_Abovedot: key = XK_dead_abovedot; break;
-		case Qt::Key_Dead_Diaeresis: key = XK_dead_diaeresis; break;
-		case Qt::Key_Dead_Abovering: key = XK_dead_abovering; break;
-		case Qt::Key_Dead_Doubleacute: key = XK_dead_doubleacute; break;
-		case Qt::Key_Dead_Caron: key = XK_dead_caron; break;
-		case Qt::Key_Dead_Cedilla: key = XK_dead_cedilla; break;
-		case Qt::Key_Dead_Ogonek: key = XK_dead_ogonek; break;
-		case Qt::Key_Dead_Iota: key = XK_dead_iota; break;
-		case Qt::Key_Dead_Voiced_Sound: key = XK_dead_voiced_sound; break;
-		case Qt::Key_Dead_Semivoiced_Sound: key = XK_dead_semivoiced_sound; break;
-		case Qt::Key_Dead_Belowdot: key = XK_dead_belowdot; break;
-	}
-
-	if( _ke->key() >= Qt::Key_F1 && _ke->key() <= Qt::Key_F35 )
-	{
-		key = XK_F1 + _ke->key() - Qt::Key_F1;
-	}
-	else if( key == 0 )
-	{
-		if( m_mods.contains( XK_Control_L ) &&
-			QKeySequence( _ke->key() ).toString().length() == 1 )
+		if( pressed )
 		{
-			QString s = QKeySequence( _ke->key() ).toString();
-			if( !m_mods.contains( XK_Shift_L ) )
-			{
-				s = s.toLower();
-			}
-			key = s.utf16()[0];
+			m_keyModifiers[qtKey] = true;
+		}
+		else if( m_keyModifiers.contains( qtKey ) )
+		{
+			m_keyModifiers.remove( qtKey );
 		}
 		else
 		{
-			key = _ke->text().utf16()[0];
+			unpressModifiers();
 		}
 	}
-	// correct translation of AltGr+<character key> (non-US-keyboard layout
-	// such as German keyboard layout)
-	if( m_mods.contains( XK_Alt_L ) && m_mods.contains( XK_Control_L ) &&
-						key >= 64 && key < 0xF000 )
+
+	auto xKey = m_keyMapper.qtToXKey( qtKey );
+	if( xKey == XK_VoidSymbol )
 	{
-		unpressModifiers();
-		m_vncConn->keyEvent( XK_ISO_Level3_Shift, true );
+		QString text = event->text();
+
+		if( m_keyModifiers.contains( Qt::Key_Control ) &&
+				QKeySequence( qtKey ).toString().length() == 1 )
+		{
+			text = QKeySequence( qtKey ).toString();
+			if( m_keyModifiers.contains( Qt::Key_Shift ) == false )
+			{
+				text = text.toLower();
+			}
+		}
+
+		xKey = m_keyMapper.unicodeToXKey( text.utf16()[0] );
 	}
-#endif
 
 	// handle Ctrl+Alt+Del replacement (Meta/Super key+Del)
-	if( ( m_mods.contains( XK_Super_L ) ||
-			m_mods.contains( XK_Super_R ) ||
-			m_mods.contains( XK_Meta_L ) ) &&
-				_ke->key() == Qt::Key_Delete )
+	if( ( m_keyModifiers.contains( Qt::Key_Super_L ) ||
+			m_keyModifiers.contains( Qt::Key_Super_R ) ||
+			m_keyModifiers.contains( Qt::Key_Meta ) ) &&
+				qtKey == Qt::Key_Delete )
 	{
 		if( pressed )
 		{
@@ -481,39 +387,21 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 			m_vncConn->keyEvent( XK_Delete, false );
 			m_vncConn->keyEvent( XK_Alt_L, false );
 			m_vncConn->keyEvent( XK_Control_L, false );
-			key = 0;
+			xKey = XK_VoidSymbol;
 		}
 	}
 
-	// handle modifiers
-	if( key == XK_Shift_L || key == XK_Control_L || key == XK_Meta_L ||
-			key == XK_Alt_L || key == XK_Super_L || key == XK_Super_R )
-	{
-		if( pressed )
-		{
-			m_mods[key] = true;
-		}
-		else if( m_mods.contains( key ) )
-		{
-			m_mods.remove( key );
-		}
-		else
-		{
-			unpressModifiers();
-		}
-	}
-
-	if( key )
+	if( xKey != XK_VoidSymbol )
 	{
 		// forward key event to the VNC connection
-		m_vncConn->keyEvent( key, pressed );
+		m_vncConn->keyEvent( xKey, pressed );
 
 		// signal key event - used by RemoteControlWidget to close itself
 		// when pressing Esc
-		emit keyEvent( key, pressed );
+		emit keyEvent( xKey, pressed );
 
 		// inform Qt that we handled the key event
-		_ke->accept();
+		event->accept();
 	}
 }
 
@@ -522,12 +410,12 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 
 void VncView::unpressModifiers()
 {
-	const auto keys = m_mods.keys();
+	const auto keys = m_keyModifiers.keys();
 	for( auto key : keys )
 	{
-		m_vncConn->keyEvent( key, false );
+		m_vncConn->keyEvent( m_keyMapper.qtToXKey( key ), false );
 	}
-	m_mods.clear();
+	m_keyModifiers.clear();
 }
 
 
