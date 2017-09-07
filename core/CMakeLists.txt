@@ -68,6 +68,7 @@ IF(VEYON_BUILD_WIN32)
 ENDIF(VEYON_BUILD_WIN32)
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
+ADD_DEFINITIONS(-D'VEYON_LIB_DIR="${LIB_DIR}"')
 
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
 ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_MOC_out} ${veyoncore_UIC_out} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES} ${WIN32_AUTHSSP_SOURCES})
