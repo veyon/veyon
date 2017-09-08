@@ -121,6 +121,12 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 		return true;
 	}
 
+	if( strcmp( valname, "secondary" ) == 0 )
+	{
+		*out = vncServerInstance->configuration().ultraVncDualMonitorSupportEnabled();
+		return true;
+	}
+
 	return false;
 }
 

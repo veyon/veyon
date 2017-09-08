@@ -33,17 +33,24 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="2" column="0">
     <widget class="QCheckBox" name="ultraVncPollFullScreen">
      <property name="text">
       <string>Poll full screen (leave this enabled per default)</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="0">
     <widget class="QCheckBox" name="ultraVncLowAccuracy">
      <property name="text">
       <string>Low accuracy (turbo mode)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="ultraVncDualMonitorSupportEnabled">
+     <property name="text">
+      <string>Enable dual monitor support</string>
      </property>
     </widget>
    </item>
