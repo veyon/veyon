@@ -206,7 +206,7 @@ bool UserSessionControl::confirmFeatureExecution( const Feature& feature, QWidge
 	if( feature == m_userLogoutFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm user logout" ),
-									  tr( "Do you really want to logout selected user(s)?" ) ) ==
+									  tr( "Do you really want to logout the selected users?" ) ) ==
 				QMessageBox::Yes;
 	}
 
