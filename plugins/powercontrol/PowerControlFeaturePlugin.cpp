@@ -163,13 +163,13 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 	if( feature == m_rebootFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm reboot" ),
-									  tr( "Do you really want to reboot selected computer(s)?" ) ) ==
+									  tr( "Do you really want to reboot the selected computers?" ) ) ==
 				QMessageBox::Yes;
 	}
 	else if( feature == m_powerDownFeature )
 	{
 		return QMessageBox::question( parent, tr( "Confirm power down" ),
-									  tr( "Do you really want to power down selected computer(s)?" ) ) ==
+									  tr( "Do you really want to power down the selected computer?" ) ) ==
 				QMessageBox::Yes;
 	}
 
