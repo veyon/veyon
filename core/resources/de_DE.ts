@@ -28,10 +28,6 @@
         <translation>Version:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation>Website:</translation>
     </message>
@@ -2163,6 +2159,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Always open at start</source>
         <translation>Beim Start immer öffnen</translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Aktionen wie Computer neustarten oder ausschalten</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation>Bestätigungsdialog für potentiell gefährliche Aktionen anzeigen</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2242,6 +2246,22 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Power on/down or reboot a computer</source>
         <translation>Computer ein-/ausschalten oder neustarten</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Neustart bestätigen</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Herunterfahren bestätigen</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Möchten Sie wirklich die gewählten Computer neustarten?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
     </message>
 </context>
 <context>
@@ -2734,6 +2754,10 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <source>Builtin UltraVNC server configuration</source>
         <translation>Konfiguration des eingebauten UltraVNC-Servers</translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation>Dual-Monitor-Unterstützung aktivieren</translation>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2759,6 +2783,14 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation>Benutzerabmeldung bestätigen</translation>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
     </message>
 </context>
 <context>
