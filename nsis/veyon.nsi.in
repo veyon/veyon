@@ -77,6 +77,8 @@ RequestExecutionLevel highest
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_TEXT "Run Veyon Configurator now"
 !define MUI_FINISHPAGE_RUN_FUNCTION "RunConfigurator"
+!define MUI_FINISHPAGE_LINK "Support Veyon project with a donation"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Veyon+-+OpenSource+classroom+management&cmd=_donations&business=donate%40veyon.io"
 
 !insertmacro MUI_PAGE_FINISH
 
