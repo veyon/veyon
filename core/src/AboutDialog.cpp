@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDesktopServices>
 #include <QFile>
 
 #include "AboutDialog.h"
@@ -49,4 +50,11 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 	ui->license->setPlainText( license.readAll() );
 
 	VeyonCore::enforceBranding( this );
+}
+
+
+
+void AboutDialog::openDonationWebsite()
+{
+	  QDesktopServices::openUrl( QUrl( QStringLiteral( "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Veyon+-+OpenSource+classroom+management&cmd=_donations&business=donate%40veyon.io" ) ) );
 }

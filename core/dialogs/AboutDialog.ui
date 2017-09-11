@@ -115,13 +115,6 @@
        <property name="verticalSpacing">
         <number>16</number>
        </property>
-       <item row="2" column="1">
-        <widget class="QLabel" name="versionLabel">
-         <property name="text">
-          <string notr="true">0.0</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0" colspan="2">
         <widget class="QLabel" name="label_3">
          <property name="text">
@@ -129,30 +122,10 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>Version:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string notr="true">Copyright © 2004-2017 Tobias Junghans / Veyon Solutions</string>
          </property>
         </widget>
        </item>
@@ -170,6 +143,40 @@
          </property>
          <property name="openExternalLinks">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string notr="true">Copyright © 2004-2017 Tobias Junghans / Veyon Solutions</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="versionLabel">
+         <property name="text">
+          <string notr="true">0.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QPushButton" name="donateButton">
+         <property name="text">
+          <string>Support Veyon project with a donation</string>
          </property>
         </widget>
        </item>
@@ -310,5 +317,24 @@ If you're interested in translating Veyon into your local or another language or
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>donateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AboutDialog</receiver>
+   <slot>openDonationWebsite()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>376</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>368</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>openDonationWebsite()</slot>
+ </slots>
 </ui>
