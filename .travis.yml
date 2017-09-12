@@ -23,7 +23,7 @@ deploy:
     repo: veyon/veyon
     skip_cleanup: true
     file_glob: true
-    file: "veyon-*"
+    file: "veyon*"
     on:
         tags: true
         all_branches: true
