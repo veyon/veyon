@@ -2,55 +2,706 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation>Apie veyon</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Apie programą</translation>
-    </message>
-    <message>
-        <source>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
-        <translation>VEYON-Sumanus Mokymas Ir Mokymasis su Kompiuteriu.
-
-Sukurta © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
-    </message>
-    <message>
-        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;veyon.io&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation>Аutoriai</translation>
     </message>
     <message>
         <source>Translation</source>
         <translation>Vertimas</translation>
     </message>
     <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>Vertimo dabartiniai kalbai nėra arba jį gimtoji anglų.
-
-Jeigu norėtumėte padėti su programos veyon vertimų į naują kalbą arba pataisyti jau esama vertimą susiekite su  veyon! kurėjų komanda</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licencija</translation>
     </message>
+    <message>
+        <source>About Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>AccessDialogSlave</name>
+    <name>AccessControlPage</name>
+    <message>
+        <source>Computer access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testuoti</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of certain user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Data backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups authorized for computer access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authorized user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All groups</source>
+        <translation>Visos grupės</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Access control rules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected rule down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected rule up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing access control data backend</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name whose access permissions to test:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified user is allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AccessControlRuleEditDialog</name>
+    <message>
+        <source>Edit access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Pagrindinis</translation>
+    </message>
+    <message>
+        <source>enter a short name for the rule here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rule name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter a description for the rule here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rule description:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located in room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer is localhost</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user is logged on user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AccessControlRulesTestDialog</name>
+    <message>
+        <source>Access control rules test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local user:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected users:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario is allowed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario is denied.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario needs permission of the logged on user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR: Unknown action</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test result</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationConfigurationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Autorizavimosi metodai</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Autorizacija prisijungiant į sistemą</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Autorizuotis naudojant pasiekiamumo raktą</translation>
+    </message>
+    <message>
+        <source>Access key management</source>
+        <translation>Pasiekiamuymo raktų valdymas</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Katalogas kuriame saugomas viešas raktas</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Katalogas kuriame saugomas privatus raktas</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Paleisti pasiekiamumo raktų vedlį</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testuoti</translation>
+    </message>
+    <message>
+        <source>Logon authentication test</source>
+        <translation>Prisijungimo prie sistemos autorizacijos testas</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials was successful.</source>
+        <translation>Autorizacija iš duotų duomenų įvygdyta sėkmingai.</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials failed!</source>
+        <translation>Autorizacija iš duotų duomenų nepavyko!</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>Builtin VNC server (UltraVNC)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>BuiltinX11VncServer</name>
+    <message>
+        <source>Builtin VNC server (x11vnc)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Autorizacijos klaida</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerManagementView</name>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer/user list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select output filename</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CSV files (*.csv)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoClient</name>
+    <message>
+        <source>%1 Demo</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoFeaturePlugin</name>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation>Pilno ekrano prezentacija</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Prezentacija ekrane</translation>
+    </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DesktopAccessDialog</name>
+    <message>
+        <source>Desktop access dialog</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Patvirtinti darbalaukio valdymą</translation>
-    </message>
-    <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation> Vartotojas %1 iš kompiuterio  %2 bando prisijungti prie jūsų kompiuterio. Ar norite tai leisti?</translation>
     </message>
     <message>
         <source>Never for this session</source>
@@ -60,555 +711,203 @@ Jeigu norėtumėte padėti su programos veyon vertimų į naują kalbą arba pat
         <source>Always for this session</source>
         <translation>Visada šiame seanse</translation>
     </message>
-</context>
-<context>
-    <name>ClassroomManager</name>
     <message>
-        <source>Classroom-Manager</source>
-        <translation>Klasių tvarkyklė</translation>
-    </message>
-    <message>
-        <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>Naudokitės šia tvarkykle kad lengviau administruotumėte kompiuterius ir klases.</translation>
-    </message>
-    <message>
-        <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>Čia jūs tvarkysite savo kompiuterius ir klases.Kadpridėtumėte naujus kompiuterius ar klases sąraše paspauskite dešinį pelės klavišą</translation>
-    </message>
-    <message>
-        <source>Classrooms/computers</source>
-        <translation>Klasės/Kompiuteriai</translation>
-    </message>
-    <message>
-        <source>IP-address</source>
-        <translation>IP-adresai</translation>
-    </message>
-    <message>
-        <source>Usernames</source>
-        <translation>Vartotojai</translation>
-    </message>
-    <message>
-        <source>Show usernames</source>
-        <translation>Rodyti vartotojus</translation>
-    </message>
-    <message>
-        <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation>Naudokitės papildomumeniu (Paspausdami dešinį pelės klavišą) kad pridėti arba šalinti kompiuterius ar klases.</translation>
-    </message>
-    <message>
-        <source>Export to text file</source>
-        <translation>Eksportuoti į tekstinį failą</translation>
-    </message>
-    <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Naudokitės šiuo mygtuku kad eksportuotumėte šį kompiuterių ir vartotojų sąrašą į tekstinį failą.Vėliau galėsite pasinaudoti šiuo failu rinkdami informacją po testų pabaigos.Tai kai kada būtina ,nes vartotojas gali pabaigti ir atsijungti ankščiau ir taip jūs negalėsite išsaugoti jų failų po egzaminų pabaigos.</translation>
-    </message>
-    <message>
-        <source>Hide teacher computers</source>
-        <translation>Paslėpti mokytojo kompiuterį</translation>
-    </message>
-    <message>
-        <source>Show/hide</source>
-        <translation>Rodyti/Slėpti</translation>
-    </message>
-    <message>
-        <source>Edit settings</source>
-        <translation>Redaguoti nustatymus</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation>Pašalinti</translation>
-    </message>
-    <message>
-        <source>Show all computers in classroom</source>
-        <translation>Rodyti visus klasės kompiuterius</translation>
-    </message>
-    <message>
-        <source>Hide all computers in classroom</source>
-        <translation>Slėpti visus kompiuterius klasėe</translation>
-    </message>
-    <message>
-        <source>Edit name</source>
-        <translation>Redaguoti vardą</translation>
-    </message>
-    <message>
-        <source>Remove classroom</source>
-        <translation>Pašalinti klasę</translation>
-    </message>
-    <message>
-        <source>Add computer</source>
-        <translation>Pridėti kompiuterį</translation>
-    </message>
-    <message>
-        <source>Add classroom</source>
-        <translation>Pridėti klasę</translation>
-    </message>
-    <message>
-        <source>No configuration file found</source>
-        <translation>Konfiguracinis failas nerastas.</translation>
-    </message>
-    <message>
-        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Nepavyko atverti konfiguracijos failo %1. Turėsite pridėti bent vieną klasę ir kompiuterius naudodamiesi klasės valdymo įrankiu kurį rasite programos viduje kairės puses įrankių juostoje.</translation>
-    </message>
-    <message>
-        <source>Error in configuration file</source>
-        <translation>Konfiguraciniame faile įvyko klaida.</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>Įvyko klaida nuskaitant konfiguracijos failą %1. Prašome ištaisyti jį rankiniu būdu. Kitaip privalėsite pašalinti failą ir iš naujo pridėti klases ir kompiuterius</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>Įvyko klaida nuskaitant konfiguracijos failą %1. Prašome pataisyti jį rankiniu būdu. Kitaip tiesiog pašalinkite failą.</translation>
-    </message>
-    <message>
-        <source>Select output-file</source>
-        <translation>Pasirinkite išeities failą</translation>
-    </message>
-    <message>
-        <source>Text files (*.txt)</source>
-        <translation>Tekstinis failas (*.txt)</translation>
-    </message>
-    <message>
-        <source>Actions for selected</source>
-        <translation>Veiksmai pasirinktiems failams</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Veiksmai</translation>
-    </message>
-    <message>
-        <source>Actions for %1</source>
-        <translation>Veiksmai failui %1</translation>
-    </message>
-    <message>
-        <source>New name for classroom</source>
-        <translation>Naujas klasės pavadinimas</translation>
-    </message>
-    <message>
-        <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>Prašome įvesti naują klasės pavadinimą klasei: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Are you sure want to remove classroom &quot;%1&quot;?
-All computers in it will be removed as well!</source>
-        <translation>Ar tikrai norite pašalinti klasę? su ja bus pašalinti ir pridėti kompiuteriai!</translation>
-    </message>
-    <message>
-        <source>Missing classroom</source>
-        <translation>Trūkstamos klasės</translation>
-    </message>
-    <message>
-        <source>Before adding computers you have to create at least one classroom.
-Do you want to create a new classrom now?</source>
-        <translation>Prieš pridėdami kompiuterius turite sukurti bent vieną klasę. Ar norite tai padaryti dabar?</translation>
-    </message>
-    <message>
-        <source>New classroom</source>
-        <translation>Nauja klasė</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Prašome įvesti norimos sukurti klasės pavadinimą.</translation>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Client</name>
+    <name>DesktopServicesFeaturePlugin</name>
     <message>
-        <source>Unknown state</source>
-        <translation>Būsena nežinoma</translation>
+        <source>Run program</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>No user logged in</source>
-        <translation>Aktyvių vartotojų nėra</translation>
+        <source>Open website</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Host unreachable</source>
-        <translation>Kompiuteris nepasiekiamas</translation>
+        <source>Click this button to open a website on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Demo running</source>
-        <translation>Paleista demonstracija</translation>
+        <source>Please enter the URL of the website to open:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Desktop locked</source>
-        <translation>Darbalaukis užrakintas</translation>
+        <source>Start programs and services in user desktop</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Message from teacher</source>
-        <translation>Žinutė nuo mokytojo</translation>
-    </message>
-</context>
-<context>
-    <name>ClientAction</name>
-    <message>
-        <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Ar tikrai norite atjungti visus vartotojus visose matomose kompiuteriuose ??</translation>
-    </message>
-    <message>
-        <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>Ar jūs tikrai norite atjungti visus vartotojus pasirinktuose kompiuteriuose?</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>Atjungti vartotoją</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Ar tikrai norite perkrauti visus matomus kompiuterius?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all selected computers?</source>
-        <translation>Ar tikrai norite perkrauti visus pasirinktus kompiuterius?</translation>
-    </message>
-    <message>
-        <source>Reboot computers</source>
-        <translation>Perkrauti kompiuterius</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all visible computers?</source>
-        <translation>Ar tikrai norite išjungti visus matomus kompiuterius?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all selected computers?</source>
-        <translation>Ar tikrai norite išjungti visus pasirinktus kompiuterius?</translation>
+        <source>Click this button to run a program on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ClientSettingsDialog</name>
+    <name>ExternalVncServer</name>
     <message>
-        <source>Client settings</source>
-        <translation>Kliento nustatymai</translation>
-    </message>
-    <message>
-        <source>IP/hostname</source>
-        <translation>IP/Kompiuterio vardas</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Įveskite ip adresą arba kompiuterio vardą, kurio pagalba  veyon galės nustatyti klientą (Naudokite &apos;:&apos;, kad įvesti šliuzo adresą - Pvz.: 192.168.0.10:3567 )&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Vardas</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Numatytasis kompiuterio vardas kuris bus rodomas programoje veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>Mac adresas</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kliento Sisteminis/MAC-adresas  - Naudojamas įjungti klientą&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Klasė</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Tipas</translation>
-    </message>
-    <message>
-        <source>Student computer</source>
-        <translation>Mokinio kompiuteris</translation>
-    </message>
-    <message>
-        <source>Teacher computer</source>
-        <translation>Mokytojo kompiuteris</translation>
-    </message>
-    <message>
-        <source>Other/undefined computer</source>
-        <translation>Kitas/Nepriskirtas kompiuteris</translation>
-    </message>
-    <message>
-        <source>Missing IP address/hostname</source>
-        <translation>Tūkstamas ip adresas/Vardas</translation>
-    </message>
-    <message>
-        <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>Jūs nenurodėte ip adreso arba vardo kompiuteriui</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address</source>
-        <translation>Neleistinas mac adresas</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation>Jūs nurodėte neleistina MAC adresą. Palikite laukelį tuščia arba įveskite tinkama MAC adresą. (naudokite &quot;:&quot; kaip skirtuką)</translation>
+        <source>External VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Config</name>
+    <name>ExternalVncServerConfigurationWidget</name>
     <message>
-        <source>Interval between updates</source>
-        <translation>Intervalas tarp atnaujinimų</translation>
+        <source>External VNC server configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Čia jūs galite nustatyti atsinaujinimo intervalą tarp kompiuterių. Didesnis perdavimo greitis įtakos procesoriaus didesnę apkrovą.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Port:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source> seconds</source>
-        <translation>Sekundės</translation>
+        <source>Password:</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
         <translation>Vartotojo sąsaja</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nerodyti pagalbos patarimų irankių juostos mygtukams&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pažymėkite šia funkciją jeigu jums atsibodo iššokantys patarimai pasirodantys vaikštant ant mygtukų&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No balloon-tooltips</source>
-        <translation>Ne iššokantiems patarimams</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nerodyti teksto ant meniu mygtukų&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No texts on toolbar-buttons</source>
-        <translation>Nerodyti teksto ant meniu mygtukų</translation>
     </message>
     <message>
         <source>Language:</source>
         <translation>Kalba</translation>
     </message>
     <message>
-        <source>System default</source>
-        <translation>Gamykliniai nustatymai</translation>
+        <source>Use system language setting</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>ar - العربية</source>
-        <translation>Arabų</translation>
+        <source>Enable high DPI scaling</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>cs - Česky</source>
-        <translation>Čekų</translation>
+        <source>Veyon</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>de - Deutsch</source>
-        <translation>Vokiečių</translation>
+        <source>Logging</source>
+        <translation>Įvykių žurnalas</translation>
     </message>
     <message>
-        <source>el - Ελληνικά</source>
-        <translation>Graikų</translation>
+        <source>Log file directory</source>
+        <translation>Įvykių žurnalo direktorija</translation>
     </message>
     <message>
-        <source>es - Español</source>
-        <translation>Ispanų</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>fi - Suomi</source>
-        <translation>Suomių</translation>
+        <source>Log level</source>
+        <translation>Įvykių žurnalo lygmuo</translation>
     </message>
     <message>
-        <source>fr - Français</source>
-        <translation>Prancuzų</translation>
+        <source>Nothing</source>
+        <translation>Nevygdyti įvykių žurnalo</translation>
     </message>
     <message>
-        <source>he - עִבְרִית</source>
-        <translation>Hebrajų</translation>
+        <source>Only critical messages</source>
+        <translation>Tik kritines klaidas</translation>
     </message>
     <message>
-        <source>hu - Magyar</source>
-        <translation>Vengrų</translation>
+        <source>Errors and critical messages</source>
+        <translation>Visas klaidas</translation>
     </message>
     <message>
-        <source>it - Italiano</source>
-        <translation>Italų</translation>
+        <source>Warnings and errors</source>
+        <translation>Įspėjimai ir klaidos</translation>
     </message>
     <message>
-        <source>nl - Nederlands</source>
-        <translation>Olandų</translation>
+        <source>Information, warnings and errors</source>
+        <translation>Informaciniai įspėjimai ir klaidos</translation>
     </message>
     <message>
-        <source>nn - Norsk</source>
-        <translation>Norvegų</translation>
+        <source>Debug messages and everything else</source>
+        <translation>Patarimų žinutės ir visa kita</translation>
     </message>
     <message>
-        <source>pl - Polski</source>
-        <translation>Lenkų</translation>
+        <source>Limit log file size</source>
+        <translation>Limituoti žurnalo failo dydį</translation>
     </message>
     <message>
-        <source>pt_br - Brasileiro</source>
-        <translation>Brazilų</translation>
+        <source>Clear all log files</source>
+        <translation>Išvalyti visus įvykių žurnalo failus</translation>
     </message>
     <message>
-        <source>pt_pt - Português</source>
-        <translation>Portugalų</translation>
+        <source>Log to standard error output</source>
+        <translation>Persijungti į įvykių žurnalą</translation>
     </message>
     <message>
-        <source>ru - Русский</source>
-        <translation>Rusų</translation>
+        <source>Log to Windows event log</source>
+        <translation>Persijungti į sisteminį įvykių žurnalą</translation>
     </message>
     <message>
-        <source>sk - Slovenský</source>
-        <translation>Slovakų</translation>
+        <source>Network object directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>sl - Slovenčina</source>
-        <translation>Slovėnų</translation>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>sv - Svenska</source>
-        <translation>Švedų</translation>
+        <source>Update interval:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>tr - Türkçe</source>
-        <translation>Turkų</translation>
+        <source>%1 service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>uk - Українська</source>
-        <translation>Ukrainiečių</translation>
+        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>zh_cn - 简体字</source>
-        <translation>Kinų</translation>
+        <source>Log files cleared</source>
+        <translation>Įvykio failai ištrinti</translation>
     </message>
     <message>
-        <source>zh_tw - 簡體字</source>
-        <translation>Taivaniečių</translation>
+        <source>All log files were cleared successfully.</source>
+        <translation>Visi įvyko failai pašalinti sėkmingai.</translation>
     </message>
     <message>
-        <source>Your role (needs according keys!)</source>
-        <translation>Jūsų teisės(Reikalauja patvirtinančio rakto)</translation>
+        <source>Error</source>
+        <translation>Klaida</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Čia galite pasirinkti savo teises kitam kompiuteriui. Keskite jei gikrai žinote ką darote kitaip negalėsite pasiekti kitų kompiuterių &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Could not remove all log files.</source>
+        <translation>Nepavyko pašalinti visų įvykio failų.</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Mokytojas</translation>
+        <source> MB</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Administrator</source>
-        <translation>Administratorius</translation>
+        <source>Rotate log files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Supporter</source>
-        <translation>Pagalbininkas</translation>
+        <source>x</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Other</source>
-        <translation>Kitas</translation>
-    </message>
-    <message>
-        <source>Double click action for client window</source>
-        <translation>Du kart nuspauskite veiksmą and kliento lango.</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Čia jūs galite nusistatyti kas įvyks nuspaudus du kartus ant vartotojo kliento lango&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Nuotolinis valdymas</translation>
-    </message>
-    <message>
-        <source>View live in fullscreen</source>
-        <translation>Rodyti pilno ekrano demonstraciją</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Įsidemėkite kad kaikurie nustatymai nepasikeis tol kol neperkrausite programos veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigWidget</name>
-    <message>
-        <source>Your veyon-configuration</source>
-        <translation>Jūsų veyon konfiguracija</translation>
-    </message>
-    <message>
-        <source>In this workspace you can customize veyon to fit your needs.</source>
-        <translation>Šioje tvarkyklėje galite veyon pritaikyti savo poreikiams.</translation>
-    </message>
-</context>
-<context>
-    <name>DemoClient</name>
-    <message>
-        <source>veyon Demo</source>
-        <translation>veyon demonstracija</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonCoreServer</name>
-    <message>
-        <source>Authentication error</source>
-        <translation>Autorizacijos klaida</translation>
-    </message>
-    <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Kažkas  (IP: %1) bandė patekti į šį kompiuterį ,bet negalėjo sėkmingai prisiregistruoti.</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC autorizacija nepavyko ,nes bandėte per daug kartų.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC autorizacija nepavyko.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC serveris atsijungė.</translation>
+        <source> seconds</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>veyon Access Key Assistant</source>
-        <translation>veyon pasiekiamojo rakto veldys </translation>
-    </message>
-    <message>
-        <source>Create/import veyon access keys</source>
-        <translation>Sukurti/Importuoti pasiekiamumo raktą</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import veyon access keys.</source>
-        <translation>Šis vedlys padės jums susikurti arba importuoti veyon pasiekiamumo raktus</translation>
-    </message>
-    <message>
         <source>How does it work?</source>
         <translation>Kaip tai veikia?</translation>
-    </message>
-    <message>
-        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>veyon pasiekiamumo raktas turi dvi dalis privačia ir vieša.Naudojant privatų pasiekiamumo raktą vartotojas valdantis mokytojo kompiuterį galės pasiekti ir valdyti mokinių kompiuterius.Labai svarbu kad tik autorizuoti vartotojai turėtų prieėjimą prie privataus rakto
-	Viešas pasiekiamumo raktas naudojamas vartotojo mokinio kompiuteryje kad patvirtinti įeinančių susijungimų paraiška yra autorizuota.	
-		</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -637,18 +936,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Teacher</source>
         <translation>Mokytojas</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>Administratorius</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Pagalbininkas</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Kita</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
@@ -719,10 +1006,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Neteisingas viešas raktas</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public veyon access key!</source>
-        <translation>Pasirinktas failas neturi reikiamos viešo rakto informacijos darbui su veyon</translation>
-    </message>
-    <message>
         <source>Select destination directory</source>
         <translation>Pasirinkite katalogą</translation>
     </message>
@@ -758,6 +1041,732 @@ The public key part is used on the client computers to verify that any incoming 
         <source>The public key was successfully imported to %1.</source>
         <translation>Viešas raktas sėkmingai importuotas į %1.</translation>
     </message>
+    <message>
+        <source>Veyon Access Key Assistant</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create/import Veyon access keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import Veyon access keys.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public Veyon access key!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Pagrindinis</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use bind credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testuoti</translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fixed base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Discover base DN by naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. namingContexts or defaultNamingContext</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object trees</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform recursive search operations in object trees</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer host name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. member or memberUid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. dNSHostName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. uid or sAMAccountName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional object filters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=person</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group member identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Distinguished name (Samba/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all groups of a user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all groups of a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get computer object by IP address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name (wildcards allowed) which to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user login attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter group name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a group name whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer host name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer host name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the DN of a computer whose MAC address to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC address attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user login attribute or group membership attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer host name whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer host name attribute or group membership attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer IP address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer IP address which to resolve to an computer object:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host name lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the %1 parameter.
+
+%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapPlugin</name>
+    <message>
+        <source>Configure LDAP/AD integration of Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load objects from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LocalDataConfigurationPage</name>
+    <message>
+        <source>Local data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Vardas</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>Mac adresas</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LocalDataPlugin</name>
+    <message>
+        <source>Backends which use local data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (local users/groups and computers/rooms from configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (store objects in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LockWidget</name>
@@ -767,33 +1776,18 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
 </context>
 <context>
-    <name>LogonGroupEditor</name>
-    <message>
-        <source>Logon group editor</source>
-        <translation>Prisijungimų grupės redagavimas</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
-        <translation>Prašome pridėti grupes kurių nariai gali turėti prieigą prie veyon kompiuterių tinklo.</translation>
-    </message>
-    <message>
-        <source>All groups</source>
-        <translation>Visos grupės</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Groups with veyon privileges</source>
-        <translation>Grupės su veyon privilegijomis</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
-        <source>Actions</source>
-        <translation>Veiksmai</translation>
+        <source>Configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable balloon tooltips</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -807,270 +1801,12 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Įrankių juosta</translation>
     </message>
     <message>
-        <source>veyon Management Console</source>
-        <translation>veyon nustatymų konsolė</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Pagrindinis</translation>
     </message>
     <message>
-        <source>veyon Server</source>
-        <translation>veyon serveris</translation>
-    </message>
-    <message>
-        <source>Paths</source>
-        <translation>Maršrutai</translation>
-    </message>
-    <message>
         <source>Authentication</source>
         <translation>Autorizavimas</translation>
-    </message>
-    <message>
-        <source>Debugging</source>
-        <translation>Derinimas</translation>
-    </message>
-    <message>
-        <source>veyon Service</source>
-        <translation>veyon tarnyba</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>Paslėpti piktogramas</translation>
-    </message>
-    <message>
-        <source>Autostart</source>
-        <translation>Automatinė paleistis</translation>
-    </message>
-    <message>
-        <source>Additional arguments</source>
-        <translation>Papildomi parametrai</translation>
-    </message>
-    <message>
-        <source>Start service</source>
-        <translation>Paleisti tarnybą</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Sustabdyti tarnybą</translation>
-    </message>
-    <message>
-        <source>State:</source>
-        <translation>Būsena:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Sustabdytas</translation>
-    </message>
-    <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Įjungti darbalukio perjungimą darbalaukio blokavimui (eksperimentinė funkcija</translation>
-    </message>
-    <message>
-        <source>Logging</source>
-        <translation>Įvykių žurnalas</translation>
-    </message>
-    <message>
-        <source>Log file directory</source>
-        <translation>Įvykių žurnalo direktorija</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Log level</source>
-        <translation>Įvykių žurnalo lygmuo</translation>
-    </message>
-    <message>
-        <source>Nothing</source>
-        <translation>Nevygdyti įvykių žurnalo</translation>
-    </message>
-    <message>
-        <source>Only critical messages</source>
-        <translation>Tik kritines klaidas</translation>
-    </message>
-    <message>
-        <source>Errors and critical messages</source>
-        <translation>Visas klaidas</translation>
-    </message>
-    <message>
-        <source>Warnings and errors</source>
-        <translation>Įspėjimai ir klaidos</translation>
-    </message>
-    <message>
-        <source>Information, warnings and errors</source>
-        <translation>Informaciniai įspėjimai ir klaidos</translation>
-    </message>
-    <message>
-        <source>Debug messages and everything else</source>
-        <translation>Patarimų žinutės ir visa kita</translation>
-    </message>
-    <message>
-        <source>Limit log file size</source>
-        <translation>Limituoti žurnalo failo dydį</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Log to standard error output</source>
-        <translation>Persijungti į įvykių žurnalą</translation>
-    </message>
-    <message>
-        <source>Log to Windows event log</source>
-        <translation>Persijungti į sisteminį įvykių žurnalą</translation>
-    </message>
-    <message>
-        <source>Clear all log files</source>
-        <translation>Išvalyti visus įvykių žurnalo failus</translation>
-    </message>
-    <message>
-        <source>Desktop capturing</source>
-        <translation>Darbalaukio įrašinėjimas</translation>
-    </message>
-    <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Leisti įrašinėti su permatomu langu</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Apklausa naudojant pilną ekraną (Palikite tai įjungta numatytuose nustatymuose)</translation>
-    </message>
-    <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>Žemos kokybės (Didelio įrašymo greičio)</translation>
-    </message>
-    <message>
-        <source>Demo server</source>
-        <translation>Prezantacijų serveris</translation>
-    </message>
-    <message>
-        <source>Backend</source>
-        <translation>Vidinis</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflektorius</translation>
-    </message>
-    <message>
-        <source>veyon 1 demo server</source>
-        <translation>veyon 1 - demonstracinis serveris</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>Tinklas</translation>
-    </message>
-    <message>
-        <source>Core server port</source>
-        <translation>Pagrindinis serverio šliuzas</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Prezaentacinio serverio šliuzas</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation>Įjungti ugnesienės išimtį</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Įjungti HTTP-serverį, kuris palaiko JavaViewer funkciją</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>HTTP serverio šliuzas</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Leisti prisijungimus tik vietiniam tinkle</translation>
-    </message>
-    <message>
-        <source>Configuration files</source>
-        <translation>Konfiguraciniai failai</translation>
-    </message>
-    <message>
-        <source>Global configuration</source>
-        <translation>Bendri nustatymai</translation>
-    </message>
-    <message>
-        <source>Personal configuration</source>
-        <translation>Privatūs nustatymai</translation>
-    </message>
-    <message>
-        <source>Data directories</source>
-        <translation>Katalogai su informacija</translation>
-    </message>
-    <message>
-        <source>Snapshots</source>
-        <translation>Ekrano nuotraukos</translation>
-    </message>
-    <message>
-        <source>Authentication methods</source>
-        <translation>Autorizavimosi metodai</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Autorizuotis naudojant pasiekiamumo raktą</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL autorizavimas naudojant sąrašą</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Pasiekiamuymo raktų valdymas</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Katalogas kuriame saugomas viešas raktas</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Katalogas kuriame saugomas privatus raktas</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Paleisti pasiekiamumo raktų vedlį</translation>
-    </message>
-    <message>
-        <source>Logon settings</source>
-        <translation>Prisijungimo į sistemą nustatymai</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Tvarkyti teises</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testuoti</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Priėjimo patvirtinimas</translation>
-    </message>
-    <message>
-        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Jūs galite nusistatyti veyon taip kad būtu būtina prašyti vartotojo leidimo prisijungti prie jo naudojant tam tikrus metodus</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Autorizacija prisijungiant į sistemą</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Leisti tam pačiam vartotojui pasiekti ir darbalaukį be autorizacijos</translation>
-    </message>
-    <message>
-        <source>Debugging veyon</source>
-        <translation>veyon derinimas</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Kada pastebite klaidas ar kitus negerus dalykus veyon programoje svarbu informuoti kurėjus apie tai tam kad klaidos būtų kuo greičiau ištaisytos. Ši skiltis leidžia jums pranešti apie klaidas paprastai. Jeigu klaida nėra linkusi plisti ir kartotis tada praleiskite 1)-3) žingsnius</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1113,16 +1849,6 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Nueikite į &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt; klaidų seklys veyon&lt;/a&gt;, atsidarykite nauja klaida ir aprašykite ką darėte 3 žingsnyje ir prisekite failą kurį gavote 4 žingsnyje.&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikalinga informacija iš abiejų kompiuterių.</translation>
-    </message>
-    <message>
         <source>&amp;File</source>
         <translation>&amp;Failas</translation>
     </message>
@@ -1159,188 +1885,12 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>CTRL+O</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Apie programą veyon</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>Apie Qt</translation>
     </message>
     <message>
-        <source>veyon</source>
-        <translation>veyon</translation>
-    </message>
-    <message>
-        <source>No write access</source>
-        <translation>Neturite leidimo įrašyti</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Neįmanoma skaityti ir rašyti į direktoriją %1!  veyon paleidimui. Įsitikinkite kad jums leidžiama sukurti naujas direktorijas ir į jas rašyti.</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Klasė</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Perjungti klasę</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Paspauskite šį mygtuką kad atverti meniu iš kurio pasirinksite aktyvią klasę.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>PAspauskite šį mygtuką kad persijungti tarp klasių.</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Peržiūros režimas</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Peržiūra</translation>
-    </message>
-    <message>
-        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Tai yra numatytasis veyon režimas . Jame jūs galite peržiūrėti visus kompiuterius.Taip pat galite nuspausti šį mygtuką kad atrakintumėte užrakintus darbalaukius arba baigtumėte prezentaciją</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Prezentacija per visą ekraną</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Prezentacija per visą ekraną</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Sustabdyti prezentaciją</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>Šiame re-ime jūsų ekranas rodomas visiems kompiuteriams.Kompiuteriai tuo metu nieko daryti ir negali ,nes jų darbalaukis tampa užrakintas</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Prezentacoka lange</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Prezentacija lange</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>Šiame režime prezentacija rodoma lange visuose kompiuteriuose.Vartotojai gali persijungti į kitą langą ir tęsti darbą</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Užrakinti/Atrakinti darbalaukius</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Užrakinti visus</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Atrakinti visus</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Kad pritraukti visų mokinių dėmesį galite užrakinti jų darbalaukius.Šiame režime visi mokinių darbalaukiai yra užrakinti ir jie mato tik juodą ekraną</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Nusiųsti žinutę </translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Tekstinė žinutė</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Pasinaudokite šiuo mygtuku kad nusiųsti žinutę visiems vartotojams pvz.: kad pasakytumėte jiems naujas užduotis</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Įjungti kompiuterius</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Įjungti</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Paspauskite šį mygtuką kad įjungti visus kompiuterius iš karto. Taip jums nereikės kiekvieno įjunginėti atskirai ranka</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Išjungti kompiuterius</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Išjungti</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Kad išjungti visus kompiuterius iš karto (Pavyzdžiui kada baigėsi pamokos) paspauskite šį mygtuką.</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Pagalba</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Tiesioginė pagalba</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Jeigu jums reikia bet kokios pagalbos paspauskite šį mygtuką ir įveskite vardą arba ip adresą</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Reguliuoti/Lygiuoti</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Reguliuoti langus ir jų dydžius</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Kada nuspaudžiate šį mygtuką nustatomas dydžiausias galimas vartotojo lango dydis. O kiti langai yra lygiuojami</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Automatinė išvaizda</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Automatiškia keisti langus ir jų dydžius</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Paspaudus šį mygtuką visi matomi langai yra surikiuojami ir pakeičiamas jų dydis.</translation>
-    </message>
-    <message>
-        <source>Could not contact veyon service</source>
-        <translation>Nepavyko susisiekti su veyon tarnyba</translation>
-    </message>
-    <message>
-        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
-        <translation>Neįmanoma susisiekti su vietinia veyon tarnybą. Greičiausiai įvedėte neteisingą informaciją arba pasiekiamumo raktas nenustatytas teisingai.Pabandykite vėl arba susisiekite su savo sistemos administratoriumi kad išsprestu bėdą naudodamasis veyon konsole  </translation>
-    </message>
-    <message>
-        <source>veyon Master Control</source>
-        <translation>veyon pagrindinis valdymas</translation>
-    </message>
-    <message>
         <source>Authentication impossible</source>
         <translation>Autorizavimas neįmanomas</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
-        <translation>Jokie autorizacijos raktai nerasti. Arba turimi yra per seni. Prašome sukurti naujus pasiekiamumo raktus naudojantis veyon tvarkymo konsole.Alternatyvai galite nustatyti prisijungimo autorizavimą naudojantis veyon konsole. Kitaip jūs negalėsite valdyti kompiuterių naudodamiesi veyon</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1351,116 +1901,20 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>Išeiti</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the veyon Service.</source>
-        <translation>Nepavyko pakeisti auto paleisties nusstatymų veyon tarnybai.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the veyon Service.</source>
-        <translation>Nepavyko pakeisti veyon tarnybos parametrų.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the veyon Service.</source>
-        <translation>Nepavyko pakeisti ugiasienės nustatymų  veyon tarnybai.</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Konfiguracinis failas negali būti įrašytas</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
-        <translation>Vietinis konfiguracijos veldys pranešė, kad konfiguracija negali būti įrašyta. Prašome paleisti veyon konsolę su aukštesnėmis privilegijomis.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Visi nustatymai pritaikyti sėkmingai.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Pritaikaint nustatymus įvyko klaida!</translation>
-    </message>
-    <message>
-        <source>veyon Management Console %1</source>
-        <translation>veyon valdymo komnsolė %1</translation>
-    </message>
-    <message>
-        <source>Restart veyon Service</source>
-        <translation>Perkrauti veyon tarnybą</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
-        <translation>Visi nustatymai išsaugoti sėkmingai. Tam kad pakeitimai taptu aktyvūs reikia perkrauti veyon. Perkrauti dabar?</translation>
-    </message>
-    <message>
-        <source>Starting veyon service</source>
-        <translation>Paleidžiama veyon tarnyba</translation>
-    </message>
-    <message>
-        <source>Stopping veyon service</source>
-        <translation>Sustabdoma veyon tarnyba</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Veikia</translation>
-    </message>
-    <message>
-        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>veyon tarnyba turi būti laikinai sustabdyta kad ištrinti įvykių žurnalo failus. Tęsti?</translation>
-    </message>
-    <message>
-        <source>Log files cleared</source>
-        <translation>Įvykio failai ištrinti</translation>
-    </message>
-    <message>
-        <source>All log files were cleared successfully.</source>
-        <translation>Visi įvyko failai pašalinti sėkmingai.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Klaida</translation>
-    </message>
-    <message>
-        <source>Could not remove all log files.</source>
-        <translation>Nepavyko pašalinti visų įvykio failų.</translation>
     </message>
     <message>
         <source>Load settings from file</source>
         <translation>Įkelti nustatymus iš failo</translation>
     </message>
     <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML failai (*.xml)</translation>
-    </message>
-    <message>
         <source>Save settings to file</source>
         <translation>Išsaugoti nustatymus į failą</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Prisijungimo prie sistemos autorizacijos testas</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Autorizacija iš duotų duomenų įvygdyta sėkmingai.</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>Autorizacija iš duotų duomenų nepavyko!</translation>
-    </message>
-    <message>
         <source>Save bug report archive</source>
         <translation>Išsaugoti klaidų archyvą</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive (*.ibra.xml)</source>
-        <translation>veyon klaidos archyvas (*.ibra.xml)</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive saved</source>
-        <translation>veyon klaidos archyvas išsaugotas</translation>
-    </message>
-    <message>
-        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>veyon klaidos archyvas išsaugotas į %1 . Jame yra veyon ivykių žurnalai ir informacija apie jūsų operacinę sistemą. Galita šį archyvą prisegti prie klaidos pranešimo </translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1470,61 +1924,251 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>Egzistuoja dar neišsaugoti nustatymai. Vistiek išeiti?</translation>
     </message>
+    <message>
+        <source>Veyon Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Apie programą</translation>
+    </message>
+    <message>
+        <source>%1 Configurator %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 bug report archive saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master Control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>Overview</name>
+    <name>MasterConfigurationPage</name>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Sveiki atvykę į veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Directories</source>
+        <translation>Katalogai</translation>
     </message>
     <message>
-        <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Čia jūs matote darbo skydelį kuris turi kelis mygtukus. Kiekvienas mygtukas yra sujungtas su kompiuteriu.Tiesiog apsižiūrėkite galimus kompiuterius spausdami ant antitinkamo mygtuko</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>Naudodamiesi Klasių tvarkykle jūs galite tvarkyti savo klases ir kompiuterius.Taip pat galite matyti kuris vartotojas yra prisijungęs šiuo metu.</translation>
+        <source>User configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Darbalaukio fotografavvimo tvarkyklė labai naudingas dalykas.Ji leidžia tvarkyti jums ekrano nuotraukas kurias padarėte</translation>
+        <source>Feature on computer double click:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
-        <translation>Aišku jūs taip pat galite keisti veyon nustatymus. Paprastai tai darosi naudojant Nustaymų tvarkyklę.</translation>
+        <source>Automatically switch to current room at start</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Apie programą veyon</translation>
+        <source>Features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>OverviewWidget</name>
+    <name>MonitoringMode</name>
     <message>
-        <source>Overview</source>
-        <translation>Peržiūra</translation>
+        <source>Monitoring</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Some basic information on veyon and how to use it.</source>
-        <translation>Truputis pagrindinės informacijos apie veyon ir kaip ja naudotis.</translation>
+        <source>Builtin monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectTreeModel</name>
+    <message>
+        <source>Room/Computer</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
-    <message>
-        <source>veyon Logon</source>
-        <translation>Prisijungimas prie veyon</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access veyon clients.</source>
-        <translation>Prašome įvesti vartotojo vardą ir slaptažodį kad prisijungtumėte prie veyon.</translation>
-    </message>
     <message>
         <source>Username</source>
         <translation>Vartotojo vardas</translation>
@@ -1534,23 +2178,78 @@ p, li { white-space: pre-wrap; }
         <translation>Slaptažodis</translation>
     </message>
     <message>
-        <source>Manage</source>
-        <translation>Tvarkyti</translation>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PowerControlFeaturePlugin</name>
+    <message>
+        <source>Power on</source>
+        <translation>Įjungti</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reboot</source>
+        <translation>Perkrauti</translation>
+    </message>
+    <message>
+        <source>Click this button to reboot all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation>Išjungti</translation>
+    </message>
+    <message>
+        <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power on/down or reboot a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QApplication</name>
-    <message>
-        <source>veyon Client %1 on %2:%3</source>
-        <translation>veyon klienras %1 yra %2:%3</translation>
-    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Negaliu užregistruoti tarnybos &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Neįmanoma susisiekti su tarnybos administratoriumi (Gal jums neužtenka teisių?!) - tarnyba &apos;%1&apos; neužregistruota</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1586,49 +2285,76 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Neįmanoma susisiekti su tarnybos administratoriumi (Gal jums neužtenka teisių?!) - tarnyba &apos;%1&apos; neužregistruota.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Neįmanoma susisiekti su tarnybos administratoriumi (Gal jums neužtenka teisių?!) - tarnyba &apos;%1&apos; nesustabdyta.</translation>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidget</name>
+    <name>RemoteAccessFeaturePlugin</name>
     <message>
-        <source>View live (%1 @ %2)</source>
-        <translation>Peržiūrėti tiesiogiai (%1 @ %2)</translation>
+        <source>Remote view</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation>Nuotolinis valdymas (%1 @ %2)</translation>
+        <source>Open a remote view for a computer without interaction.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>unknown user</source>
-        <translation>Nežinomas vartotojas</translation>
+        <source>Remote control</source>
+        <translation>Nuotolinis valdymas</translation>
+    </message>
+    <message>
+        <source>Open a remote control window for a computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidgetToolBar</name>
+    <name>RemoteAccessWidget</name>
+    <message>
+        <source>%1 Remote Access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
         <translation>Tik peržiūra</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Nuotolinsi valdymas</translation>
+        <translation>Nuotolinis valdymas</translation>
     </message>
     <message>
-        <source>Lock student</source>
-        <translation>Užblokuoti mokinį</translation>
-    </message>
-    <message>
-        <source>Unlock student</source>
-        <translation>Atblokuoti studentą</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Ekrano nuotrauką</translation>
+        <source>Send shortcut</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -1643,6 +2369,38 @@ p, li { white-space: pre-wrap; }
         <translation>Išeiti</translation>
     </message>
     <message>
+        <source>Ctrl+Alt+Del</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Esc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+F4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Win+Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Win</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+Ctrl+F1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Connecting %1</source>
         <translation>Jungiamasi su %1</translation>
     </message>
@@ -1650,113 +2408,279 @@ p, li { white-space: pre-wrap; }
         <source>Connected.</source>
         <translation>Prisijungta.</translation>
     </message>
-</context>
-<context>
-    <name>RemoteLogonDialog</name>
     <message>
-        <source>Remote logon</source>
-        <translation>Nuotolinis prisijungimas</translation>
-    </message>
-    <message>
-        <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>Naudokitės langeliais kad įvestumėte vartotojo vardą ir slaptažodį ir domeno pavadinimą.Ši informacija bus naudojama kad prisijungti prie kompiuterių.</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Vartotojo vardas</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Slaptažodis</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Domenas</translation>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RunCommandsDialog</name>
+    <name>RoomSelectionDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation>Paleisti komandą</translation>
+        <source>Room selection</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>Prašome įvesti komandą kuria norite paleisti pasirinkto vartotojo kompiuuteryje. Galite paleisti daug komandų atskirdami jas linijomis</translation>
+        <source>enter search filter...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Snapshot</name>
+    <name>RunProgramDialog</name>
+    <message>
+        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Run programs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ScreenLockFeaturePlugin</name>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>Nežinomas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Neįmanoma padaryti ekrano nuotraukos nes katalogas %1 neegzistuoja arba negali būti sukurtas.</translation>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Snapshot</source>
-        <translation>Ekrano nuotrauka</translation>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>SnapshotList</name>
+    <name>ScreenshotFeaturePlugin</name>
     <message>
-        <source>Snapshots</source>
-        <translation>Ekrano nuotraukos</translation>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Lengvai valdykite ekrano nuotraukas naudodamiesi šia tvarkykle.</translation>
+        <source>Use this function to take a screenshot of selected computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots taken</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshot of %1 computer have been taken successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Take screenshots of computers and save them locally.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Snapshots</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Čia saugomos visos jūsų padarytos ekrano nuotraukos.Jūs galite padaryti ekrano nuotrauką pasirinkdami tikamą funkciją meniu kontekste paspausdami ant vartotojo kompiuterio ikonėlės.Nuotraukos gali būti tvarkomos naudojantis mygtuku apačioje.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
+    <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation>Vartotojas:</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>Kompiuteris:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Data:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Laikas:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show</source>
-        <translation>Rodyti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ištrinti</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>SupportDialog</name>
+    <name>ServiceConfigurationPage</name>
     <message>
-        <source>Support</source>
-        <translation>Pagalba</translation>
+        <source>General</source>
+        <translation>Pagrindinis</translation>
     </message>
     <message>
-        <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>Prašome įvesti ip adresą arva vardą kompiuterio prie kurio norite prisijungti.</translation>
+        <source>Autostart</source>
+        <translation>Automatinė paleistis</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Paslėpti piktogramas</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>Paleisti tarnybą</translation>
+    </message>
+    <message>
+        <source>Additional arguments</source>
+        <translation>Papildomi parametrai</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Sustabdytas</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>Sustabdyti tarnybą</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>Būsena:</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Tinklas</translation>
+    </message>
+    <message>
+        <source>Demo server port</source>
+        <translation>Prezaentacinio serverio šliuzas</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>Įjungti ugnesienės išimtį</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Leisti prisijungimus tik vietiniam tinkle</translation>
+    </message>
+    <message>
+        <source>Internal VNC server port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Veikia</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceControl</name>
+    <message>
+        <source>Starting %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceControlPlugin</name>
+    <message>
+        <source>Service is running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Register Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SystemTrayIcon</name>
+    <message>
+        <source>System tray icon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1771,6 +2695,136 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>TextMessageFeaturePlugin</name>
+    <message>
+        <source>Text message</source>
+        <translation>Tekstinė žinutė</translation>
+    </message>
+    <message>
+        <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Žinutė nuo mokytojo</translation>
+    </message>
+    <message>
+        <source>Send a message to a user</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UltraVncConfigurationWidget</name>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Leisti įrašinėti su permatomu langu</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Apklausa naudojant pilną ekraną (Palikite tai įjungta numatytuose nustatymuose)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>Žemos kokybės (Didelio įrašymo greičio)</translation>
+    </message>
+    <message>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserConfig</name>
+    <message>
+        <source>No write access</source>
+        <translation>Neturite leidimo įrašyti</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserSessionControl</name>
+    <message>
+        <source>User session control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logout user</source>
+        <translation>Išjungti vartotoją</translation>
+    </message>
+    <message>
+        <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonVncConnection</name>
+    <message>
+        <source>VNC authentication failed because of too many authentication tries.</source>
+        <translation>VNC autorizacija nepavyko ,nes bandėte per daug kartų.</translation>
+    </message>
+    <message>
+        <source>VNC authentication failed.</source>
+        <translation>VNC autorizacija nepavyko.</translation>
+    </message>
+    <message>
+        <source>VNC server closed connection.</source>
+        <translation>VNC serveris atsijungė.</translation>
+    </message>
+</context>
+<context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
@@ -1778,62 +2832,25 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>clientMenu</name>
+    <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Overview</source>
-        <translation>Peržiūra</translation>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>X11VncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Pilno ekrano prezentacija</translation>
+        <source>Custom x11vnc parameters:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Window demo</source>
-        <translation>Prezentacija ekrane</translation>
-    </message>
-    <message>
-        <source>Locked display</source>
-        <translation>Užrakinti ekraną</translation>
-    </message>
-    <message>
-        <source>View live</source>
-        <translation>Tiesioginis peržiūrėjimas</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Nuotolinis valdymas</translation>
-    </message>
-    <message>
-        <source>Let student show demo</source>
-        <translation>Leisti mokiniui parodyti prezentaciją</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Nusiųsti tekstine žinutę</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>Išjungti vartotoją</translation>
-    </message>
-    <message>
-        <source>Take a snapshot</source>
-        <translation>Padaryti ekrano nuotrauką</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Įjungti</translation>
-    </message>
-    <message>
-        <source>Reboot</source>
-        <translation>Perkrauti</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Išjungti</translation>
-    </message>
-    <message>
-        <source>Execute commands</source>
-        <translation>Paleisti komandą</translation>
+        <source>Do not use X Damage extension</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

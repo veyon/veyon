@@ -26,10 +26,6 @@
         <translation>Версія:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>© Tobias Doerffel / Veyon Solutions, 2004–2017</translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation>Сайт:</translation>
     </message>
@@ -679,16 +675,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Припинити демонстрацію</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано на всіх комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>Демо у вікні</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -697,6 +685,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Demo server</source>
         <translation>Демосервер</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation>У цьому режимі зображення з екрана вашого комп&apos;ютера демонструватиметься на увесь екран на усіх комп&apos;ютерах, а пристрої введення даних на комп&apos;ютерах буде заблоковано.</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх комп’ютерах. Користувачі, якщо захочуть, матимуть змогу перемикатися на інші вікна.</translation>
     </message>
 </context>
 <context>
@@ -1631,10 +1627,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Атрибут комп’терного класу</translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation>Фільтр для батьківських записів комп&apos;ютера</translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation>наприклад, objectClass=container або objectClass=organizationalUnit</translation>
     </message>
@@ -1647,10 +1639,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Групи комп&apos;ютерів</translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation>Батьківські об&apos;єкти об&apos;єктів комп&apos;ютерів (наприклад OU або контейнери)</translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation>Атрибути комп&apos;ютерного класу у об&apos;єктах комп&apos;ютерів</translation>
     </message>
@@ -1659,20 +1647,28 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Перевірка не є застосовною</translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Будь ласка, змініть параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи групи комп&apos;ютерів або батьківські об&apos;єкти об&apos;єктів комп&apos;ютерів. Якщо ви це зробите, запит виконуватиметься не щодо загальної назви (CN) груп комп&apos;ютерів або батьківських об&apos;єктів, ащодо вказаного атрибута. Якщо потреби у таких налаштуваннях немає, вам не слід визначати цей атрибут.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Будь ласка, змініть нижче параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи батьківські об&apos;єкти об&apos;єктів комп&apos;ютерів. Якщо потреби у такому налаштуванні немає, не визначайте цей фільтр.</translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation>Атрибут назви комп&apos;ютерного класу</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
         <translation>наприклад назва чи опис</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Фільтр для контейнерів комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Контейнери комп&apos;ютерів або OU</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Будь ласка, змініть параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи групи комп&apos;ютерів або контейнери комп&apos;ютерів. Якщо ви це зробите, запит виконуватиметься не щодо загальної назви (CN) груп комп&apos;ютерів або контейнерів, щодо вказаного атрибута. Якщо потреби у таких налаштуваннях немає, вам не слід визначати цей атрибут.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Будь ласка, змініть нижче параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи контейнери комп&apos;ютерів. Якщо потреби у такому налаштуванні немає, не визначайте цей фільтр.</translation>
     </message>
 </context>
 <context>
@@ -2163,6 +2159,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Always open at start</source>
         <translation>Завжди відкривати після запуску</translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Дії, зокрема перезавантаження та вимикання комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation>Показувати вікно підтвердження для потенційно небезпечних дій</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2242,6 +2246,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Power on/down or reboot a computer</source>
         <translation>Увімкнути/Вимкнути або перезавантажити комп’ютер</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Підтвердження перезавантаження</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Підтвердження вимикання</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Ви справді хочете перезавантажити позначені комп&apos;ютери?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation>Ви справді хочете вимкнути позначений комп&apos;ютер?</translation>
     </message>
 </context>
 <context>
@@ -2453,12 +2473,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Розблокувати</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп’ютери за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Заблокувати екран і пристрої введення на комп’ютері</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні комп’ютери за допомогою цієї кнопки. У цьому режимі всі пристрої введення даних буде заблоковано, а екрани стануть чорними.</translation>
     </message>
 </context>
 <context>
@@ -2734,6 +2754,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Builtin UltraVNC server configuration</source>
         <translation>Налаштування вбудованого сервера UltraVNC</translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation>Увімкнути підтримку двох моніторів</translation>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2759,6 +2783,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Натисніть цю кнопку, щоб примусово виконати вихід користувачів на усіх комп’ютерах.</translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation>Підтвердження виходу користувачів</translation>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
     </message>
 </context>
 <context>

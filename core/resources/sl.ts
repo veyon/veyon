@@ -2,56 +2,706 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About veyon</source>
-        <translation>Kaj je veyon</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Splošno</translation>
-    </message>
-    <message>
-        <source>veyon - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</source>
-        <translation>veyon - Intelligent Teaching And Learning with Computers
-Iteligentno poučevanje ter učenje z računalniki
-
-Copyright © 2004-2016 Tobias Doerffel / veyon Solutions</translation>
-    </message>
-    <message>
-        <source>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation>Avtorji</translation>
     </message>
     <message>
         <source>Translation</source>
         <translation>Prevod</translation>
     </message>
     <message>
-        <source>Current language not translated yet (or native English).
-
-If you&apos;re interested in translating veyon into your local or another language or want to improve an existing translation, please contact an veyon developer!</source>
-        <translation>Prevedel: Iztok Osredkar(2007) &amp; Miharix(2016)
-
-Če vas mika prevajananje veyon-a v vaš jezik ali kateri drugi jezik, ali pa želite izboljšat prevod prosimo kontaktirajte razvijalce veyon-a!</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licence</translation>
     </message>
+    <message>
+        <source>About Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Website:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About %1 %2</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>AccessDialogSlave</name>
+    <name>AccessControlPage</name>
+    <message>
+        <source>Computer access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkusi</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of certain user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Data backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups authorized for computer access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authorized user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All groups</source>
+        <translation>Vse skupine</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Access control rules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected rule down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected rule up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing access control data backend</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default access control backend plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name whose access permissions to test:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified user is allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AccessControlRuleEditDialog</name>
+    <message>
+        <source>Edit access control rule</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Splošno</translation>
+    </message>
+    <message>
+        <source>enter a short name for the rule here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rule name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>enter a description for the rule here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rule description:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is member of group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>is located in room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer is localhost</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user is logged on user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user is already connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer is located in the same room as local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AccessControlRulesTestDialog</name>
+    <message>
+        <source>Access control rules test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local user:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connected users:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario is allowed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario is denied.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The access in the given scenario needs permission of the logged on user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR: Unknown action</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test result</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthenticationConfigurationPage</name>
+    <message>
+        <source>Authentication methods</source>
+        <translation>Načini avtentifikacije</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Avtentifikacija preko uporabniškega imena sistema</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Avtentifikacija z ključi v datoteki</translation>
+    </message>
+    <message>
+        <source>Access key management</source>
+        <translation>Upravljanje ključev</translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation>Direktorij datotek z javnim ključem</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Direktorij datotek z privatnim ključem</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Zaženi čarovnika za datoteke z ključi</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkusi</translation>
+    </message>
+    <message>
+        <source>Logon authentication test</source>
+        <translation>Preizkus avtentifikacije</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials was successful.</source>
+        <translation>Avtentificiranje z vnešenimi podatki je bilo USPEŠNO.</translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials failed!</source>
+        <translation>Avtentifikacija z vnešenimi podatki je SPODLETELO!</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>Builtin VNC server (UltraVNC)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>BuiltinX11VncServer</name>
+    <message>
+        <source>Builtin VNC server (x11vnc)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Napaka avtentifikacije</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerListModel</name>
+    <message>
+        <source>Room: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service unreachable or not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerManagementView</name>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer/user list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select output filename</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CSV files (*.csv)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer search</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ComputerManager</name>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing network object directory plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name;Host name;User</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ConfigCommandLinePlugin</name>
+    <message>
+        <source>Please specify an existing configuration file to import.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid filename for the configuration export.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid key.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Specified key does not exist in current configuration!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify a valid value.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output file is not writable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory is not writable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration file is not readable!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Clear system-wide Veyon configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all configuration keys and values</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import configuration from given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export configuration to given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Read and output configuration value for given key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Write given value to given configuration key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unset (remove) given configuration key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorCore</name>
+    <message>
+        <source>Could not modify the autostart property for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the %1 Service.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overwrite keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration cleared</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The local configuration has been cleared successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoClient</name>
+    <message>
+        <source>%1 Demo</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DemoFeaturePlugin</name>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation>Predavaj v celem zaslonu</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Vodi v oknu</translation>
+    </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DesktopAccessDialog</name>
+    <message>
+        <source>Desktop access dialog</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Potrdi dostop do namizja</translation>
-    </message>
-    <message>
-        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Uporabnik %1 na %2 želi dostopat do vašega namizja. Želite dostop odobriti?</translation>
     </message>
     <message>
         <source>Never for this session</source>
@@ -61,560 +711,203 @@ If you&apos;re interested in translating veyon into your local or another langua
         <source>Always for this session</source>
         <translation>Zmeraj za to sejo</translation>
     </message>
-</context>
-<context>
-    <name>ClassroomManager</name>
     <message>
-        <source>Classroom-Manager</source>
-        <translation>Upravitelj učilnice</translation>
-    </message>
-    <message>
-        <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>Uporabite to mesto za enostavno upravljanje računalnikov in učilnic.</translation>
-    </message>
-    <message>
-        <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>Tukaj lahko upravljate učilnice in računalnike. S desnim klikom v seznamu lahko dodajate učilnice ali računalnike.</translation>
-    </message>
-    <message>
-        <source>Classrooms/computers</source>
-        <translation>Učilnice/računalniki</translation>
-    </message>
-    <message>
-        <source>IP-address</source>
-        <translation>IP-naslov</translation>
-    </message>
-    <message>
-        <source>Usernames</source>
-        <translation>Uporabniška imena</translation>
-    </message>
-    <message>
-        <source>Show usernames</source>
-        <translation>Prikaži uporabniška imena</translation>
-    </message>
-    <message>
-        <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation>Uporabite kontekstni meni(desni miškin gumb) za dodajo/izbris računlanikov in/ali učilnic.</translation>
-    </message>
-    <message>
-        <source>Export to text file</source>
-        <translation>Izvozi v besedilno datoteko</translation>
-    </message>
-    <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Uporabite ta gumb za izvoz tega seznama računalnikov in uporabniških imen v tekstovno datoteko. To datoteko lahko uporabite kasneje za pobiranje datotek, ko se je ocenjevanje končalo. To je občasno potrebno, saj so morebiti nekateri uporabniki končali prej ter se odjavili ter zaradi tega ne morete pobrat njihove datoteke ob koncu ocenjevanja.   </translation>
-    </message>
-    <message>
-        <source>Hide teacher computers</source>
-        <translation>Skrij računalnike učiteljev</translation>
-    </message>
-    <message>
-        <source>Show/hide</source>
-        <translation>Prikaži/skrij</translation>
-    </message>
-    <message>
-        <source>Edit settings</source>
-        <translation>Uredi nastavitve</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation>Odstrani</translation>
-    </message>
-    <message>
-        <source>Show all computers in classroom</source>
-        <translation>Prikaži vse računalnike v učilnici</translation>
-    </message>
-    <message>
-        <source>Hide all computers in classroom</source>
-        <translation>Skrij vse računalnike v učilnici</translation>
-    </message>
-    <message>
-        <source>Edit name</source>
-        <translation>Uredi ime</translation>
-    </message>
-    <message>
-        <source>Remove classroom</source>
-        <translation>Odstrani učilnico</translation>
-    </message>
-    <message>
-        <source>Add computer</source>
-        <translation>Dodaj računalnik</translation>
-    </message>
-    <message>
-        <source>Add classroom</source>
-        <translation>Dodaj učilnico</translation>
-    </message>
-    <message>
-        <source>No configuration file found</source>
-        <translation>Ni mogoče najt konfiguracijske datoteke</translation>
-    </message>
-    <message>
-        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Ni mogoče odpret konfiguracijske datoteke %1. Potrebno bo dodat vsaj eno učilnico ter računalnike z uporabo upravitelja razredov, katerega boste našli znotraj programa na levi stranski vrstici.</translation>
-    </message>
-    <message>
-        <source>Error in configuration file</source>
-        <translation>Napaka v konfiguracijski datoteki</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>Napaka med procesiranjem konfiguracijske datoteke %1. Popravite datoteko ročno. Sicer izbrišite datoteko ter dodajte znova vse razrede in računalnike.</translation>
-    </message>
-    <message>
-        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>Napaka med procesiranjem konfiguracijske datoteke %1. Popravite datoteko ročno ali jo izbrišite.</translation>
-    </message>
-    <message>
-        <source>Select output-file</source>
-        <translation>Izberite izhodno datoteko</translation>
-    </message>
-    <message>
-        <source>Text files (*.txt)</source>
-        <translation>Tekstovne datoteke (*.txt)</translation>
-    </message>
-    <message>
-        <source>Actions for selected</source>
-        <translation>Dejanja za izbrano</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Dejanja</translation>
-    </message>
-    <message>
-        <source>Actions for %1</source>
-        <translation>Dejanja za %1</translation>
-    </message>
-    <message>
-        <source>New name for classroom</source>
-        <translation>Novo ime učilnice</translation>
-    </message>
-    <message>
-        <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>Prosim, vpišite novo ime učilnice &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Are you sure want to remove classroom &quot;%1&quot;?
-All computers in it will be removed as well!</source>
-        <translation>Ste prepričani, da želite odstraniti učilnico &quot;%1&quot;?
-Z njo bodo odstranjeni tudi vsi računalniki v njej!</translation>
-    </message>
-    <message>
-        <source>Missing classroom</source>
-        <translation>Manjka učilnica</translation>
-    </message>
-    <message>
-        <source>Before adding computers you have to create at least one classroom.
-Do you want to create a new classrom now?</source>
-        <translation>Pred dodajanjem računalnikov morate ustvariti vsaj eno učilnico.
-Jo želite ustvariti zdaj?</translation>
-    </message>
-    <message>
-        <source>New classroom</source>
-        <translation>Nova učilnica</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Prosim, vnesite ime učilnice, ki jo želite ustvariti.</translation>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Client</name>
+    <name>DesktopServicesFeaturePlugin</name>
     <message>
-        <source>Unknown state</source>
-        <translation>Neznano stanje</translation>
+        <source>Run program</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>No user logged in</source>
-        <translation>Noben uporabnik ni prijavljen</translation>
+        <source>Open website</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Host unreachable</source>
-        <translation>Gostitelj ni dosegljiv</translation>
+        <source>Click this button to open a website on all computers.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Demo running</source>
-        <translation>Predavanje v teku</translation>
+        <source>Please enter the URL of the website to open:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Desktop locked</source>
-        <translation>Namizje je zaklenjeno</translation>
+        <source>Start programs and services in user desktop</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Message from teacher</source>
-        <translation>Sporočilo predavatelja</translation>
-    </message>
-</context>
-<context>
-    <name>ClientAction</name>
-    <message>
-        <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Ste prepričani, da želite odjaviti vse uporabnike na vseh vidnih računalnikih?</translation>
-    </message>
-    <message>
-        <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>Ste prepričani, da želite odjaviti vse uporabnike na izbranih računalnikih?</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>Odjavi uporabnika</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Ste prepričani, da želite ponovno zagnati vse vidne računalnike?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to reboot all selected computers?</source>
-        <translation>Ste prepričani, da želite ponovno zagnati izbrane računalnike?</translation>
-    </message>
-    <message>
-        <source>Reboot computers</source>
-        <translation>Ponovno zaženi računalnike</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all visible computers?</source>
-        <translation>Ste prepričani, da želite izključiti vse vidne računalnike?</translation>
-    </message>
-    <message>
-        <source>Are you sure want to power down all selected computers?</source>
-        <translation>Ste prepričani, da želite izključiti izbrane računalnike?</translation>
+        <source>Click this button to run a program on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ClientSettingsDialog</name>
+    <name>ExternalVncServer</name>
     <message>
-        <source>Client settings</source>
-        <translation>Nastavitve odjemalca</translation>
-    </message>
-    <message>
-        <source>IP/hostname</source>
-        <translation>IP ali ime klienta</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which veyon can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;vnesite IP-naslov ali ime klienta pod katerim bo veyon lahko dosegel oddaljen PC (uporabite &apos;:&apos; za določanje vrat - opcijsko)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Ime</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in veyon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Opcijsko. Vzdevek klienta, ki bo prikazan v veyon-u.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC naslov</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Strojni/MAC-naslov klienta - uporabljeno le za oddaljen vklop klienta&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Učilnica</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Tip</translation>
-    </message>
-    <message>
-        <source>Student computer</source>
-        <translation>Učenčev računalnik</translation>
-    </message>
-    <message>
-        <source>Teacher computer</source>
-        <translation>Učiteljev računalnik</translation>
-    </message>
-    <message>
-        <source>Other/undefined computer</source>
-        <translation>Drug/nedoločen računalnik</translation>
-    </message>
-    <message>
-        <source>Missing IP address/hostname</source>
-        <translation>Manjka IP naslov ali ime klienta</translation>
-    </message>
-    <message>
-        <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>Niste definirali IP naslova ali imena računalnika za oddaljen računalnik!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address</source>
-        <translation>Neveljavni MAC naslov</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation>Vnesli ste neveljaven MAC naslov. Polje pustite prazno ali vnesite veljavni MAC naslov (uporabite &quot;:&quot; kot delitelj!)</translation>
+        <source>External VNC server</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Config</name>
+    <name>ExternalVncServerConfigurationWidget</name>
     <message>
-        <source>Interval between updates</source>
-        <translation>Časovni interval med osvežitvami</translation>
+        <source>External VNC server configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko vnesete časovni interval med posodobitvami odjemalcev. Večje vrednosti manj obremenjujejo omrežje in procesor tega računalnika.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Port:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source> seconds</source>
-        <translation> sekund</translation>
+        <source>Password:</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
         <translation>Uporabniški vmesnik</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ne prikaži namigov za gumbe orodne vrstice&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Označite to možnost, če vas namigi, ki se prikazujejo, ko z miško pokažete na gumb, motijo..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No balloon-tooltips</source>
-        <translation>Brez namigov</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ne prikaži besedila pod gumbi v zgornji vrstici&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>No texts on toolbar-buttons</source>
-        <translation>Brez besedila pod gumbi v vrstici</translation>
     </message>
     <message>
         <source>Language:</source>
         <translation>Jezik:</translation>
     </message>
     <message>
-        <source>System default</source>
-        <translation>Sistemsko privzeti</translation>
+        <source>Use system language setting</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>ar - العربية</source>
-        <translation>ar - العربية</translation>
+        <source>Enable high DPI scaling</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>cs - Česky</source>
-        <translation>cs - Česky</translation>
+        <source>Veyon</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>de - Deutsch</source>
-        <translation>de - Deutsch</translation>
+        <source>Logging</source>
+        <translation>Beleženje</translation>
     </message>
     <message>
-        <source>el - Ελληνικά</source>
-        <translation>el - Ελληνικά</translation>
+        <source>Log file directory</source>
+        <translation>Log direktorij</translation>
     </message>
     <message>
-        <source>es - Español</source>
-        <translation>es - Español</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>fi - Suomi</source>
-        <translation>fi - Suomi</translation>
+        <source>Log level</source>
+        <translation>Nivo beleženja</translation>
     </message>
     <message>
-        <source>fr - Français</source>
-        <translation>fr - Français</translation>
+        <source>Nothing</source>
+        <translation>Nič</translation>
     </message>
     <message>
-        <source>he - עִבְרִית</source>
-        <translation>he - עִבְרִית</translation>
+        <source>Only critical messages</source>
+        <translation>Samo kritična sporočila</translation>
     </message>
     <message>
-        <source>hu - Magyar</source>
-        <translation>hu - Magyar</translation>
+        <source>Errors and critical messages</source>
+        <translation>Napake in kritična sporočila</translation>
     </message>
     <message>
-        <source>it - Italiano</source>
-        <translation>it - Italiano</translation>
+        <source>Warnings and errors</source>
+        <translation>Opozorila in napake</translation>
     </message>
     <message>
-        <source>nl - Nederlands</source>
-        <translation>nl - Nederlands</translation>
+        <source>Information, warnings and errors</source>
+        <translation>Informacije, opozorila in napake</translation>
     </message>
     <message>
-        <source>nn - Norsk</source>
-        <translation>nn - Norsk</translation>
+        <source>Debug messages and everything else</source>
+        <translation>Debug sporočila in vse ostalo</translation>
     </message>
     <message>
-        <source>pl - Polski</source>
-        <translation>pl - Polski</translation>
+        <source>Limit log file size</source>
+        <translation>Omeji velikost log datoteke</translation>
     </message>
     <message>
-        <source>pt_br - Brasileiro</source>
-        <translation>pt_br - Brasileiro</translation>
+        <source>Clear all log files</source>
+        <translation>Počisti vse log datoteke</translation>
     </message>
     <message>
-        <source>pt_pt - Português</source>
-        <translation>pt_pt - Português</translation>
+        <source>Log to standard error output</source>
+        <translation>Logiraj v standardni izhod</translation>
     </message>
     <message>
-        <source>ru - Русский</source>
-        <translation>ru - Русский</translation>
+        <source>Log to Windows event log</source>
+        <translation>Logiraj v Windows event log</translation>
     </message>
     <message>
-        <source>sk - Slovenský</source>
-        <translation>sk - Slovenský</translation>
+        <source>Network object directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>sl - Slovenčina</source>
-        <translation>sl - Slovenčina</translation>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>sv - Svenska</source>
-        <translation>sv - Svenska</translation>
+        <source>Update interval:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>tr - Türkçe</source>
-        <translation>tr - Türkçe</translation>
+        <source>%1 service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>uk - Українська</source>
-        <translation>uk - Українська</translation>
+        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>zh_cn - 简体字</source>
-        <translation>zh_cn - 简体字</translation>
+        <source>Log files cleared</source>
+        <translation>Log datoteke pobrisane</translation>
     </message>
     <message>
-        <source>zh_tw - 簡體字</source>
-        <translation>zh_tw - 簡體字</translation>
+        <source>All log files were cleared successfully.</source>
+        <translation>Vse log datotke so bile uspešno pobrisane.</translation>
     </message>
     <message>
-        <source>Your role (needs according keys!)</source>
-        <translation>Vaša vloga (zahteva ustrezne ključe!)</translation>
+        <source>Error</source>
+        <translation>Napaka</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
-p, li { white-space: pre-wrap; }(new line)
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;(new line)
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko izberete svojo vlogo. Spreminjajte, če resnično veste, kaj delate. Sicer ne boste mogli dostopati do odjemalcev dokler ne boste obnovili svoje stare vloge.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Could not remove all log files.</source>
+        <translation>Ni bilo možno odstranit vseh log datotek.</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Učitelj</translation>
+        <source> MB</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Administrator</source>
-        <translation>Administrator</translation>
+        <source>Rotate log files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Supporter</source>
-        <translation>Pomočnik</translation>
+        <source>x</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Other</source>
-        <translation>Drugo</translation>
-    </message>
-    <message>
-        <source>Double click action for client window</source>
-        <translation>Akcija ob dvokliku na okno klienta</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
-p, li { white-space: pre-wrap; }(new line)
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;(new line)
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko določite, kaj naj se zgodi ob dvokliku na okno odjemalca.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Nadzor na daljavo</translation>
-    </message>
-    <message>
-        <source>View live in fullscreen</source>
-        <translation>Celozaslonski pogled v živo</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart veyon.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Nekatere spremembe ne bodo stopile v veljavo, dokler ponovno ne zaženete veyon-a.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigWidget</name>
-    <message>
-        <source>Your veyon-configuration</source>
-        <translation>Vaše veyon nastavitve</translation>
-    </message>
-    <message>
-        <source>In this workspace you can customize veyon to fit your needs.</source>
-        <translation>Tukaj lahko prilagodite veyon vašim potrebam.</translation>
-    </message>
-</context>
-<context>
-    <name>DemoClient</name>
-    <message>
-        <source>veyon Demo</source>
-        <translation>veyon predavanje</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonCoreServer</name>
-    <message>
-        <source>Authentication error</source>
-        <translation>Napaka avtentifikacije</translation>
-    </message>
-    <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Nekdo (IP: %1) je poizkusil dostopat do tega računalnika a je bila avtentifikacija neuspešna!</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC avtentifikacija je spodletela zaradi prevelikega števila poizkusov avtentifikacije.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC avtentifikacija spodletela.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC server je zaprl povezavo.</translation>
+        <source> seconds</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
-        <source>veyon Access Key Assistant</source>
-        <translation>veyon čarovnik ključev za dostop</translation>
-    </message>
-    <message>
-        <source>Create/import veyon access keys</source>
-        <translation>Ustvari / Uvozi veyon ključe za dostop</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import veyon access keys.</source>
-        <translation>Ta čarovnik vam bo pomagal ustvarit ali uvozit veyon ključe za dostop.</translation>
-    </message>
-    <message>
         <source>How does it work?</source>
         <translation>Kako deluje?</translation>
-    </message>
-    <message>
-        <source>veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>veyon ključ za dostop je sestavljen iz dveh delov, ki sodita skupaj. Sestavljen je iz privatnega in javnega dela ključa.
-
-Z uporabo PRIVATNEGA dela ključa, bodo uporabniki NA NADZORNEM računalniku imeli dostop do računalnikov klientov.
-Pomembno je, da SAMO AVTOTORIZIRANI uporabniki imajo dostop do PRIVATNEGA ključa.
-
-JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so prijajajoče povezave avtorizirane.</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -643,18 +936,6 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     <message>
         <source>Teacher</source>
         <translation>Učitelj</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>Administrator</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Pomočnik</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Drugo</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
@@ -725,10 +1006,6 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>Neveljavni JAVNI ključ</translation>
     </message>
     <message>
-        <source>The selected file does not contain a valid public veyon access key!</source>
-        <translation>Izbrana datoteka ne vsebuje veljavnega JAVNEGA veyon ključa za dostop!</translation>
-    </message>
-    <message>
         <source>Select destination directory</source>
         <translation>Izberite ciljni direktorij</translation>
     </message>
@@ -764,6 +1041,732 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <source>The public key was successfully imported to %1.</source>
         <translation>Javni ključ je bil uspešno uvožen v %1.</translation>
     </message>
+    <message>
+        <source>Veyon Access Key Assistant</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create/import Veyon access keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import Veyon access keys.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public Veyon access key!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapConfigurationPage</name>
+    <message>
+        <source>LDAP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Splošno</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use bind credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkusi</translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fixed base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Discover base DN by naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. namingContexts or defaultNamingContext</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object trees</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform recursive search operations in object trees</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer host name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. member or memberUid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. dNSHostName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. uid or sAMAccountName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional object filters</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=person</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group member identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Distinguished name (Samba/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all groups of a user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all groups of a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get computer object by IP address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP base DN test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP naming context test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP naming context has been queried successfully. The following base DN was found:
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter username</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name (wildcards allowed) which to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user login attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter group name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a group name whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer host name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer host name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the DN of a computer whose MAC address to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC addresses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer MAC address attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a user login name whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>user login attribute or group membership attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer host name whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>groups of computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer host name attribute or group membership attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer IP address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer IP address which to resolve to an computer object:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host name lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the %1 parameter.
+
+%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP %1 test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully:
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP filter test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
+
+%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP filter test successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 %2 have been queried successfully using the configured filter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>(only if different from group tree)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=room or objectClass=computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all members of a computer room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer room name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer room whose members to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer room members</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group filter or computer room member aggregation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapDirectory</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapPlugin</name>
+    <message>
+        <source>Configure LDAP/AD integration of Veyon at command line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load objects from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto-configure the base DN via naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query objects from LDAP directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LinuxPlatformPlugin</name>
+    <message>
+        <source>Plugin implementing abstract functions for the Linux platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LocalDataConfigurationPage</name>
+    <message>
+        <source>Local data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ime</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC naslov</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LocalDataPlugin</name>
+    <message>
+        <source>Backends which use local data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (local users/groups and computers/rooms from configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (store objects in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LockWidget</name>
@@ -773,33 +1776,18 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     </message>
 </context>
 <context>
-    <name>LogonGroupEditor</name>
-    <message>
-        <source>Logon group editor</source>
-        <translation>Urejevalec prijavnih skupin</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be allowed to access computers in your veyon network.</source>
-        <translation>Prosim dodajte skupine, katerim uporabnikom naj bo dovoljeno dostopat do računalnikov v vašem veyon omrežju.</translation>
-    </message>
-    <message>
-        <source>All groups</source>
-        <translation>Vse skupine</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Groups with veyon privileges</source>
-        <translation>Skupine z veyon privilegiji</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
-        <source>Actions</source>
-        <translation>Dejanja</translation>
+        <source>Configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable balloon tooltips</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -813,272 +1801,12 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>Orodna vrstica</translation>
     </message>
     <message>
-        <source>veyon Management Console</source>
-        <translation>veyon upraviteljska konzola</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Splošno</translation>
     </message>
     <message>
-        <source>veyon Server</source>
-        <translation>veyon strežnik</translation>
-    </message>
-    <message>
-        <source>Paths</source>
-        <translation>Lokacije</translation>
-    </message>
-    <message>
         <source>Authentication</source>
         <translation>Avtentifikacija</translation>
-    </message>
-    <message>
-        <source>Debugging</source>
-        <translation>Razhroščevanje</translation>
-    </message>
-    <message>
-        <source>veyon Service</source>
-        <translation>veyon servis</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>Skrij ikono v orodni vrstici</translation>
-    </message>
-    <message>
-        <source>Autostart</source>
-        <translation>Samodejni zagon</translation>
-    </message>
-    <message>
-        <source>Additional arguments</source>
-        <translation>Dodatni parametri</translation>
-    </message>
-    <message>
-        <source>Start service</source>
-        <translation>Zaženi servis</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Ustavi servis</translation>
-    </message>
-    <message>
-        <source>State:</source>
-        <translation>Stanje:</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Ustavljeno</translation>
-    </message>
-    <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Mogoči &quot;preklopi uporabnika&quot; za zaklepanje zaslona (eksperimentalno)</translation>
-    </message>
-    <message>
-        <source>Logging</source>
-        <translation>Beleženje</translation>
-    </message>
-    <message>
-        <source>Log file directory</source>
-        <translation>Log direktorij</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Log level</source>
-        <translation>Nivo beleženja</translation>
-    </message>
-    <message>
-        <source>Nothing</source>
-        <translation>Nič</translation>
-    </message>
-    <message>
-        <source>Only critical messages</source>
-        <translation>Samo kritična sporočila</translation>
-    </message>
-    <message>
-        <source>Errors and critical messages</source>
-        <translation>Napake in kritična sporočila</translation>
-    </message>
-    <message>
-        <source>Warnings and errors</source>
-        <translation>Opozorila in napake</translation>
-    </message>
-    <message>
-        <source>Information, warnings and errors</source>
-        <translation>Informacije, opozorila in napake</translation>
-    </message>
-    <message>
-        <source>Debug messages and everything else</source>
-        <translation>Debug sporočila in vse ostalo</translation>
-    </message>
-    <message>
-        <source>Limit log file size</source>
-        <translation>Omeji velikost log datoteke</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Log to standard error output</source>
-        <translation>Logiraj v standardni izhod</translation>
-    </message>
-    <message>
-        <source>Log to Windows event log</source>
-        <translation>Logiraj v Windows event log</translation>
-    </message>
-    <message>
-        <source>Clear all log files</source>
-        <translation>Počisti vse log datoteke</translation>
-    </message>
-    <message>
-        <source>Desktop capturing</source>
-        <translation>Zajemanje zaslona</translation>
-    </message>
-    <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Omogoči zajemanje plastnih (delno prosojnih) oken</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Prenašaj polni zaslon (vklopljeno po privzetem)</translation>
-    </message>
-    <message>
-        <source>Low accuracy (turbo mode)</source>
-        <translation>Majhna natančnost (turbo način)</translation>
-    </message>
-    <message>
-        <source>Demo server</source>
-        <translation>Strežnik predavanj</translation>
-    </message>
-    <message>
-        <source>Backend</source>
-        <translation>Ogrodje</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector (VNC server = drug močnejši računalnik)</translation>
-    </message>
-    <message>
-        <source>veyon 1 demo server</source>
-        <translation>veyon 1 demo server (VNC server = predavateljev PC)</translation>
-    </message>
-    <message>
-        <source>Network</source>
-        <translation>Omrežje</translation>
-    </message>
-    <message>
-        <source>Core server port</source>
-        <translation>Vrata strežnika za krmiljenje</translation>
-    </message>
-    <message>
-        <source>Demo server port</source>
-        <translation>Vrata strežnika za predavanja</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation>Omogoči izjemo požarnega zidu</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Omogoči HTTP strežnik kateri ponuja JavaViewer vmesnik</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>Vrata HTTP strežnika</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Dovoli povezave samo iz localhost</translation>
-    </message>
-    <message>
-        <source>Configuration files</source>
-        <translation>Konfiguracijske datoteke</translation>
-    </message>
-    <message>
-        <source>Global configuration</source>
-        <translation>Globalne nastavitve</translation>
-    </message>
-    <message>
-        <source>Personal configuration</source>
-        <translation>Osebne nastavitve</translation>
-    </message>
-    <message>
-        <source>Data directories</source>
-        <translation>Podatkovni direktorji</translation>
-    </message>
-    <message>
-        <source>Snapshots</source>
-        <translation>Zaslonski posnetki</translation>
-    </message>
-    <message>
-        <source>Authentication methods</source>
-        <translation>Načini avtentifikacije</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Avtentifikacija z ključi v datoteki</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL-temelječa avtentifikacija (lokalni računi, skupine, domena...)</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Upravljanje ključev</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Direktorij datotek z javnim ključem</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Direktorij datotek z privatnim ključem</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Zaženi čarovnika za datoteke z ključi</translation>
-    </message>
-    <message>
-        <source>Logon settings</source>
-        <translation>Nastavitve ACL prijave</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Upravljaj pravice</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Preizkusi</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Potrdilo dostopa</translation>
-    </message>
-    <message>
-        <source>You can configure veyon to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>veyon lahko nastavite tako, da vpraša uporabnika, če odobri dostop do namizja ob uporabi določene metode avtentifikacije.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Avtentifikacija preko uporabniškega imena sistema</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Dovoli, da isti uporabnik(isto ime &amp; geslo) dostopa do namizja brez potrjevanja</translation>
-    </message>
-    <message>
-        <source>Debugging veyon</source>
-        <translation>Razhroščevanje veyon</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Ko naletite na hrošče ali nenavadno obnašanje v veyon-u je pomembno, da o tem obvestite razvijalce. Le tako so lahko hrošči odpravljeni v bodočih verzijah.  Ta stran vam omogoča, da oddate uporabne prijave hriščev na enostaven način.
-
-Če hrošča ni mogoče reproducirat, preskočite korake 1) - 3).</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1121,16 +1849,6 @@ If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>5)</translation>
     </message>
     <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Pojdite na &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;veyon bug tracker&lt;/a&gt;, &quot;open a new bug&quot;, opišite(ang) kaj ste nardili v koraku 3) ter pripnite datoteko, ki ste jo shranili pri koraku 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datoteko koraka 4) od obeh računalnikov.</translation>
-    </message>
-    <message>
         <source>&amp;File</source>
         <translation>&amp;Datoteka</translation>
     </message>
@@ -1167,188 +1885,12 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Več o veyon-u</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>Kaj je Qt</translation>
     </message>
     <message>
-        <source>veyon</source>
-        <translation>veyon</translation>
-    </message>
-    <message>
-        <source>No write access</source>
-        <translation>Ni pravice pisanja</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running veyon, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Ne morem brati/zapisati ali ustvariti mape %1! Za delovanje veyon morate imeti dovoljenja za ustvarjanje ali pisanje v to mapo.</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Učilnica</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Zamenjaj učilnico</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Kliknite ta gumb, da bi odprli meni, kjer lahko izberete aktivno učilnico.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Kliknite ta gumb za zamenjavo učilnic.</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Pregledni način</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Pregled</translation>
-    </message>
-    <message>
-        <source>This is the default mode in veyon and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>To je privzeti način veyon in vam omogoča imeti pregled nad vsemi vidnimi računalniki. Ta gumb kliknite tudi za odklepanje zaklenjenih delovnih postaj ali zapuščanje demo načina.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Predavaj v celem zaslonu</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Predavaj</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Ustavi predavanje</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>V tem načinu je vaš zaslon prikazan na vseh prikazanih računalnikih. Še več, uporabniki ne morejo delati ničesar, ker so vse vhodne naprave zaklenjene.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Vodi v pomanjšanem oknu</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Vodi</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>V tem načinu je na vseh prikazanih računalnikih prikazan vaš zaslon v oknu. Uporabniki lahko zamenjajo okno in nadaljujejo z delom.</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Zakleni/odkleni vsa namizja</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Zakleni</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Odkleni</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Da bi dosegli pozornost vseh uporabnikov lahko zaklenete njihova namizja z uporabo tega gumba. Vse njihove vhodne naprave so tedaj zaklenjene in njihovi zasloni črni.</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Pošlji besedilno sporočilo</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Sporočilo</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Uporabite ta gumb za pošiljanje besedilnih sporočil vsem uporabnikom, npr. da jim pojasnite nova opravila itd.</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Vključi vse računalnike</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Vključi</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Kliknite ta gumb za vključitev vseh vidnih računalnikov. Na ta način vam ni potrebno ročno vključevati vsakega računalnika posebej.</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Izključi računalnike</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Izključi</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Za zaustavitev vseh prikazanih računalnikov (npr. ko je ura končana) lahko kliknete ta gumb.</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Pomagaj</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Direktno pomagaj</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Če potrebujete pomagati nekomu na določenem računalniku, lahko kliknete ta gumb ter nato vnesete ustrezni IP ali ime računalnika.</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Prilagodi</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Poravnaji in prilagodi velikost oken</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Po kliku tega gumba bo velikost oken odjemalca nastavljena na največjo mogočo. Vsa okna bodo poravnana.</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Preuredi</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Preuredi okna in njihovo velikost</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Po kliku tega gumba bodo vsa vidna okna samodejno preurejena in ponovno nastavljena.</translation>
-    </message>
-    <message>
-        <source>Could not contact veyon service</source>
-        <translation>Ni bilo možno poklicat veyon servis</translation>
-    </message>
-    <message>
-        <source>Could not contact the local veyon service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the veyon Management Console.</source>
-        <translation>Ni bilo možno poklicat lokalni veyon servis. Verjetno ste vnesli napačne prijavne podatke ali datoteke ključev niso nastavljene pravilno. Poizkusite znova ali kontaktirajte vašega administratorja za odpravo te napake v veyon upravni konzoli.</translation>
-    </message>
-    <message>
-        <source>veyon Master Control</source>
-        <translation>veyon glavne nastavitve</translation>
-    </message>
-    <message>
         <source>Authentication impossible</source>
         <translation>Avtentifikacija NI možna</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the veyon Management Console. Alternatively set up logon authentication using the veyon Management Console. Otherwise you won&apos;t be able to access computers using veyon.</source>
-        <translation>Ni možno najt nobenih datotek ključev ali vaši trenutni niso aktualni. Prosim ustvarite nove ključe z porabo veyon upravilne konzole. Namesto tega lahko tudi nastavite prijavo preko uporabniškega imena sistema prav tako v veyon upravilni konzoli. Brez tega ne boste mogli dostopat do računlanikov z uporabo veyon-a.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1359,116 +1901,20 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
         <translation>Zapusti</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the veyon Service.</source>
-        <translation>Ni mogoče spremenit nastavitve samodenega zagona za VEYON servis.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the veyon Service.</source>
-        <translation>Ni mogoče spremeniti parametrov za veyon servis.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the veyon Service.</source>
-        <translation>Ni mogoče spremeniti nastavitev požarnega zida za veyon servis.</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Nastavitve niso pisljive</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the veyon Management Console with higher privileges.</source>
-        <translation>Lokalno nastavitveno ogrodje je sporočilo, da nastavitve niso pisljive! Prosim zaženite veyon upraviteljsko konzolo z povišanimi privilegiji.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Vse nastavitve so bile izvedene uspešno.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Prišlo je do napake med izvedbo spremeb!</translation>
-    </message>
-    <message>
-        <source>veyon Management Console %1</source>
-        <translation>veyon upraviteljska konzola %1</translation>
-    </message>
-    <message>
-        <source>Restart veyon Service</source>
-        <translation>Ponovno zaženi veyon servis</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the veyon service needs to be restarted. Restart it now?</source>
-        <translation>Vse nastavitve so bile uspešno shranjene. Da bodo začele delovat je potrebno veyon servis ponovno zagnat. Ponovno zaženem sedaj?</translation>
-    </message>
-    <message>
-        <source>Starting veyon service</source>
-        <translation>Zaganjam veyon servis</translation>
-    </message>
-    <message>
-        <source>Stopping veyon service</source>
-        <translation>Ustavljam veyon servis</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>V teku</translation>
-    </message>
-    <message>
-        <source>The veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Servis veyon je potrebno začasno ustavit, da lahko odstranim log datoteke. Nadaljujem?</translation>
-    </message>
-    <message>
-        <source>Log files cleared</source>
-        <translation>Log datoteke pobrisane</translation>
-    </message>
-    <message>
-        <source>All log files were cleared successfully.</source>
-        <translation>Vse log datotke so bile uspešno pobrisane.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Napaka</translation>
-    </message>
-    <message>
-        <source>Could not remove all log files.</source>
-        <translation>Ni bilo možno odstranit vseh log datotek.</translation>
     </message>
     <message>
         <source>Load settings from file</source>
         <translation>Naloži nastavitve iz datoteke</translation>
     </message>
     <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML datoteke (*.xml)</translation>
-    </message>
-    <message>
         <source>Save settings to file</source>
         <translation>Shrani nastavitve v datoteko</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Preizkus avtentifikacije</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Avtentificiranje z vnešenimi podatki je bilo USPEŠNO.</translation>
-    </message>
-    <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>Avtentifikacija z vnešenimi podatki je SPODLETELO!</translation>
-    </message>
-    <message>
         <source>Save bug report archive</source>
         <translation>Shrani arhiv prijave hrošča</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive (*.ibra.xml)</source>
-        <translation>veyon arhiv prijave hrošča (*.ibra.xml)</translation>
-    </message>
-    <message>
-        <source>veyon bug report archive saved</source>
-        <translation>veyon arhiv prijave hrošča shanjen</translation>
-    </message>
-    <message>
-        <source>An veyon bug report archive has been saved to %1. It includes veyon log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>veyon arhiv prijave hrošča je bil shranjen v %1. Vsebuje veyon log datoteke in informacije o vašem operacijskem sistemu. Sedaj ga lahko pripnete k prijavi hrišča.</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1478,61 +1924,251 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>Nekatere nastavitve niso shranjene. Vseeno končam?</translation>
     </message>
+    <message>
+        <source>Veyon Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Splošno</translation>
+    </message>
+    <message>
+        <source>%1 Configurator %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 bug report (*.json)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 bug report archive saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master Control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature active</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reporting bugs in Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bug reporting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>Overview</name>
+    <name>MasterConfigurationPage</name>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to veyon!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Dobrodošli v veyon-u!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Directories</source>
+        <translation>Direktoriji</translation>
     </message>
     <message>
-        <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Tukaj vidite delovno vrstico, ki vsebuje več gumbov. Vsak gumb pripada delovnemu prostoru. Preglejte delovne prostore s kliki na ustrezne gumbe.</translation>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>Z uporabo upravitelja učilnica, lahko upravljate svoje učilnice ter računalnike. Prav tako lahko vidite kateri uporabniki so pravkar prijavljeni.</translation>
+        <source>User configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Zaslonski posnetek je zelo uporabno orodje. Tukaj lahko upravljate z zaslonskimi slikami, ki ste jih naredili.</translation>
+        <source>Feature on computer double click:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Of course you can configure veyon. This is usually done using the configuration-workspace.</source>
-        <translation>Seveda lahko nastavljate veyon. To navadno naredite z uporabo nastavitvenega delovnega prostora.</translation>
+        <source>Automatically switch to current room at start</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>About veyon</source>
-        <translation>Več o veyon-u</translation>
+        <source>Features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control at program start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>OverviewWidget</name>
+    <name>MonitoringMode</name>
     <message>
-        <source>Overview</source>
-        <translation>Pregled</translation>
+        <source>Monitoring</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Some basic information on veyon and how to use it.</source>
-        <translation>Osnovne informacije o veyon-u in njegovi uporabi.</translation>
+        <source>Builtin monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkObjectTreeModel</name>
+    <message>
+        <source>Room/Computer</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
-    <message>
-        <source>veyon Logon</source>
-        <translation>veyon prijava</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access veyon clients.</source>
-        <translation>Prosim vnesite uporabniško ime ter geslo, za dostop do veyon klientov.</translation>
-    </message>
     <message>
         <source>Username</source>
         <translation>Uporabniško ime</translation>
@@ -1542,23 +2178,78 @@ p, li { white-space: pre-wrap; }
         <translation>Geslo</translation>
     </message>
     <message>
-        <source>Manage</source>
-        <translation>Upravljaj</translation>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PowerControlFeaturePlugin</name>
+    <message>
+        <source>Power on</source>
+        <translation>Vključi</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reboot</source>
+        <translation>Restartaj</translation>
+    </message>
+    <message>
+        <source>Click this button to reboot all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation>Izključi</translation>
+    </message>
+    <message>
+        <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power on/down or reboot a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QApplication</name>
-    <message>
-        <source>veyon Client %1 on %2:%3</source>
-        <translation>veyon odjemalec %1 na %2:%3</translation>
-    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Ne morem registrirati storitve &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitev  &apos;%1&apos;  ni bila registrirana.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1594,30 +2285,65 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitevi  &apos;%1&apos;  ni bila neregistrirana.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitev  &apos;%1&apos;  ni bila ustavljena..</translation>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &apos;%1&apos; could not be started.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidget</name>
+    <name>RemoteAccessFeaturePlugin</name>
     <message>
-        <source>View live (%1 @ %2)</source>
-        <translation>Pogled v živo (%1 @ %2)</translation>
+        <source>Remote view</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remote control (%1 @ %2)</source>
-        <translation>Nadzor na daljavo (%1 @ %2)</translation>
+        <source>Open a remote view for a computer without interaction.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>unknown user</source>
-        <translation>neznan uporabnik</translation>
+        <source>Remote control</source>
+        <translation>Nadzor na daljavo</translation>
+    </message>
+    <message>
+        <source>Open a remote control window for a computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RemoteControlWidgetToolBar</name>
+    <name>RemoteAccessWidget</name>
+    <message>
+        <source>%1 Remote Access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
         <translation>Samo pogled</translation>
@@ -1627,16 +2353,8 @@ p, li { white-space: pre-wrap; }
         <translation>Nadzor na daljavo</translation>
     </message>
     <message>
-        <source>Lock student</source>
-        <translation>Zakleni učenca</translation>
-    </message>
-    <message>
-        <source>Unlock student</source>
-        <translation>Odkleni učenca</translation>
-    </message>
-    <message>
-        <source>Snapshot</source>
-        <translation>Slikaj</translation>
+        <source>Send shortcut</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -1651,6 +2369,38 @@ p, li { white-space: pre-wrap; }
         <translation>Zapri</translation>
     </message>
     <message>
+        <source>Ctrl+Alt+Del</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Esc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+F4</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Win+Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Win</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Alt+Ctrl+F1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Connecting %1</source>
         <translation>Povezujem %1</translation>
     </message>
@@ -1658,113 +2408,279 @@ p, li { white-space: pre-wrap; }
         <source>Connected.</source>
         <translation>Povezan.</translation>
     </message>
-</context>
-<context>
-    <name>RemoteLogonDialog</name>
     <message>
-        <source>Remote logon</source>
-        <translation>Oddaljena prijava</translation>
-    </message>
-    <message>
-        <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>Uporabite polja spodaj, da vnesete uporabniško ime, geslo ter morebitno ime domene. Vnesene informacije bodo uporabljene za povezavo na računalnik/ke.</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Uporabniško ime</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Geslo</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Domena</translation>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>RunCommandsDialog</name>
+    <name>RoomSelectionDialog</name>
     <message>
-        <source>Run commands</source>
-        <translation>Zaženi ukaz/e</translation>
+        <source>Room selection</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>Prosim vnesite ukaz/e, ki bodo zagnani na izbranih klientih. Več ukazov lahko ločite v vrstice.</translation>
+        <source>enter search filter...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Snapshot</name>
+    <name>RunProgramDialog</name>
+    <message>
+        <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Run programs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ScreenLockFeaturePlugin</name>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>neznan</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Ne morem zajti posnetka ker mapa %1 ne obstaja ter je ni mogoče ustvarit.</translation>
+        <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Snapshot</source>
-        <translation>Posnetek</translation>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>SnapshotList</name>
+    <name>ScreenshotFeaturePlugin</name>
     <message>
-        <source>Snapshots</source>
-        <translation>Zaslonski posnetki</translation>
+        <source>Screenshot</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Enostavno upravljajte z zaslonskimi posnetki, ki ste jih naredili, z uporabo tega prostora.</translation>
+        <source>Use this function to take a screenshot of selected computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots taken</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshot of %1 computer have been taken successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Take screenshots of computers and save them locally.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>Snapshots</name>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
-p, li { white-space: pre-wrap; }(new line)
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;(new line)
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vsi zaslonski posnetki, ki ste jih naredili, so našteti tukaj. Posnetke lahko naredite z ustrezno izbiro v kontekstnem meniju v oknu odjemalca. S temi posnetki lahko upravljate z uporabo spodnjih gumbov.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
+    <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation>Uporabnik:</translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation>Računalnik:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Datum:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Ura:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show</source>
-        <translation>Prikaži</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Izbriši</translation>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>SupportDialog</name>
+    <name>ServiceConfigurationPage</name>
     <message>
-        <source>Support</source>
-        <translation>Pomagaj</translation>
+        <source>General</source>
+        <translation>Splošno</translation>
     </message>
     <message>
-        <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>Prosimo vnesite IP naslov ali ime računalnika, na katerega se želite povezat.</translation>
+        <source>Autostart</source>
+        <translation>Samodejni zagon</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Skrij ikono v orodni vrstici</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>Zaženi servis</translation>
+    </message>
+    <message>
+        <source>Additional arguments</source>
+        <translation>Dodatni parametri</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Ustavljeno</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>Ustavi servis</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>Stanje:</translation>
+    </message>
+    <message>
+        <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Omrežje</translation>
+    </message>
+    <message>
+        <source>Demo server port</source>
+        <translation>Vrata strežnika za predavanja</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>Omogoči izjemo požarnega zidu</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Dovoli povezave samo iz localhost</translation>
+    </message>
+    <message>
+        <source>Internal VNC server port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>V teku</translation>
+    </message>
+    <message>
+        <source>Feature manager port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Primary service port</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceControl</name>
+    <message>
+        <source>Starting %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1 Service</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServiceControlPlugin</name>
+    <message>
+        <source>Service is running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Register Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregister Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query status of Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and controlling Veyon Service</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SystemTrayIcon</name>
+    <message>
+        <source>System tray icon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1779,6 +2695,136 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
 </context>
 <context>
+    <name>TextMessageFeaturePlugin</name>
+    <message>
+        <source>Text message</source>
+        <translation>Sporočilo</translation>
+    </message>
+    <message>
+        <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Sporočilo predavatelja</translation>
+    </message>
+    <message>
+        <source>Send a message to a user</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UltraVncConfigurationWidget</name>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Omogoči zajemanje plastnih (delno prosojnih) oken</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Prenašaj polni zaslon (vklopljeno po privzetem)</translation>
+    </message>
+    <message>
+        <source>Low accuracy (turbo mode)</source>
+        <translation>Majhna natančnost (turbo način)</translation>
+    </message>
+    <message>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserConfig</name>
+    <message>
+        <source>No write access</source>
+        <translation>Ni pravice pisanja</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UserSessionControl</name>
+    <message>
+        <source>User session control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logout user</source>
+        <translation>Odjavi uporabnika</translation>
+    </message>
+    <message>
+        <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonCore</name>
+    <message>
+        <source>[OK]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Module not found - available modules are:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonVncConnection</name>
+    <message>
+        <source>VNC authentication failed because of too many authentication tries.</source>
+        <translation>VNC avtentifikacija je spodletela zaradi prevelikega števila poizkusov avtentifikacije.</translation>
+    </message>
+    <message>
+        <source>VNC authentication failed.</source>
+        <translation>VNC avtentifikacija spodletela.</translation>
+    </message>
+    <message>
+        <source>VNC server closed connection.</source>
+        <translation>VNC server je zaprl povezavo.</translation>
+    </message>
+</context>
+<context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
@@ -1786,62 +2832,25 @@ p, li { white-space: pre-wrap; }(new line)
     </message>
 </context>
 <context>
-    <name>clientMenu</name>
+    <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Overview</source>
-        <translation>Pregled</translation>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>X11VncConfigurationWidget</name>
+    <message>
+        <source>Builtin x11vnc server configuration</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Fullscreen demo</source>
-        <translation>Predavaj v celem zaslonu</translation>
+        <source>Custom x11vnc parameters:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Window demo</source>
-        <translation>Vodi v oknu</translation>
-    </message>
-    <message>
-        <source>Locked display</source>
-        <translation>Zaklenjen zaslon</translation>
-    </message>
-    <message>
-        <source>View live</source>
-        <translation>Pogled v živo</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Nadzor na daljavo</translation>
-    </message>
-    <message>
-        <source>Let student show demo</source>
-        <translation>Dovoli učencu, da predava</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Pošlji sporočilo</translation>
-    </message>
-    <message>
-        <source>Logout user</source>
-        <translation>Odjavi uporabnika</translation>
-    </message>
-    <message>
-        <source>Take a snapshot</source>
-        <translation>Slikaj trenutno stanje</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Vključi</translation>
-    </message>
-    <message>
-        <source>Reboot</source>
-        <translation>Restartaj</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Izključi</translation>
-    </message>
-    <message>
-        <source>Execute commands</source>
-        <translation>Izvedi ukaze</translation>
+        <source>Do not use X Damage extension</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

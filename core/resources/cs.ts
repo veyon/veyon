@@ -26,10 +26,6 @@
         <translation>Verze:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation>Webové stránky:</translation>
     </message>
@@ -679,16 +675,8 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Zastavit ukázku</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>V tomto režimu bude vaše obrazovka zobrazována na všech počítačích. Mimo to, uživatelé na nich nebudou moci dělat nic jiného, protože jejich vstupní zařízení budou uzamčena.</translation>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>Ukázka v okně</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>V tomto režimu bude vaše obrazovka zobrazována na všech počítačích. Uživatelé přitom budou moci přepínat mezi dalšími okny a pokračovat ve své práci.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -697,6 +685,14 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Demo server</source>
         <translation>Ukázkový server</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation>V tomto režimu bude vaše obrazovka zobrazována v celoobrazovkovém režimu na všech počítačích a jejich vstupní zařízení budou uzamčena.</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>V tomto režimu bude vaše obrazovka zobrazována v okně na všech počítačích. Uživatelé přitom budou moci v případě potřeby přepínat na další okna.</translation>
     </message>
 </context>
 <context>
@@ -1631,10 +1627,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Atribut počítačová místnost</translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation>Filtrovat dle počítačům nadřazených struktur</translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation>např. objectClass=container nebo objectClass=organizationalUnit</translation>
     </message>
@@ -1647,10 +1639,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Skupiny počítačů</translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation>Objekty nadřazené objektům počítačů (např. organizační jednotky nebo kontejnery)</translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation>Atribut počítačová místnost v objektech počítačů</translation>
     </message>
@@ -1659,20 +1647,28 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Test není aplikovatelný</translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tento účel byly používány skupiny počítačů nebo objekty, které jsou počítačům nadřazené. Pak bude dotazováno na zadaný atribut namísto běžného názvu (CN) skupiny počítačů nebo nadřazeného objektu. Jinak tento atribut není třeba nastavovat.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tyto účely byly používány skupiny počítačů. Jinak tento filtr není třeba nastavovat.</translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation>Atribut název počítačové místnosti</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
         <translation>např. název nebo popis</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filtrovat dle kontejnerů s počítači</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Kontejnery s počítači nebo organizační jednotky</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tento účel byly používány kontejnery s počítači. Pak bude dotazováno na zadaný atribut namísto běžného názvu (CN) skupiny počítačů nebo nadřazeného objektu. Jinak tento atribut není třeba nastavovat.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Změňte nastavení počítačové místnosti pokud chcete aby pro tyto účely byly používány kontejnery s počítači. Jinak tento filtr není třeba nastavovat.</translation>
     </message>
 </context>
 <context>
@@ -2163,6 +2159,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>Always open at start</source>
         <translation>Otevírat vždy při spouštění</translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Akce jako například restart nebo vypnutí počítačů</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation>Zobrazovat potvrzovací dialog pro potenciálně nebezpečné akce</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2242,6 +2246,22 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Power on/down or reboot a computer</source>
         <translation>Zap./vyp. nebo restartovat počítač</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Potvrdit restart</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Potvrdit vypnutí</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Opravdu chcete vybrané počítače restartovat?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation>Opravdu chcete vybrané počítače vypnout?</translation>
     </message>
 </context>
 <context>
@@ -2453,12 +2473,12 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Odemknout</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Abyste upoutali pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout jejich počítače. Ty v tomto režimu nebudou reagovat na klávesnici a myš a jejich obrazovky potemní.</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Uzamknout obrazovku a vstupní zařízení počítače</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation>Abyste upoutali plnou pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout jejich počítače. Ty v tomto režimu nebudou reagovat na klávesnici a myš a jejich obrazovky potemní.</translation>
     </message>
 </context>
 <context>
@@ -2734,6 +2754,10 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <source>Builtin UltraVNC server configuration</source>
         <translation>Nastavení vestavěného UltraVNC serveru</translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation>Zapnout podporu dvou monitorů</translation>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2759,6 +2783,14 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation>Potvrdit odhlášení uživatele</translation>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation>Opravdu chcete označené uživatele odhlásit?</translation>
     </message>
 </context>
 <context>

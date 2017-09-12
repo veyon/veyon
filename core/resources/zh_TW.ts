@@ -26,10 +26,6 @@
         <translation>版本:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation>網站:</translation>
     </message>
@@ -679,16 +675,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>停止演示</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>在此模式下您的螢幕顯示在所有電腦上。 此外，使用者無法做別的事情，如所有輸入的裝置將在這種模式中鎖定。</translation>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>視窗演示</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>在此模式下您的螢幕顯示在所有電腦上的視窗中。 使用者能夠切換到其它視窗，因此可以繼續工作。</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -697,6 +685,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Demo server</source>
         <translation>演示伺服器</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation>在這個模式下，所有電腦上的畫面都以全螢幕模式顯示，使用者的輸入裝置鎖定。</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>在這個模式下，所有電腦上的畫面都以視窗顯示，使用者可以視需要切換到其它視窗。</translation>
     </message>
 </context>
 <context>
@@ -1631,10 +1627,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>電腦教室屬性</translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation>篩選電腦上層</translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation>例如: objectClass=container 或 objectClass=organizationalUnit</translation>
     </message>
@@ -1647,10 +1639,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>電腦群組</translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation>電腦物件的上層物件 (例如: OUs 或容器)</translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation>電腦物件中電腦教室屬性</translation>
     </message>
@@ -1659,20 +1647,28 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>文字不適用</translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>請變更電腦教室設定以使用電腦群組或電腦物件的上層物件為電腦教室。 接著指定屬性而不是電腦群組的一般名稱或將查詢上層物件。 否則，您不需要組態這個屬性。</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>請變更以下電腦教室設定以使用電腦物件的上層物件為電腦教室。  否則，您不需要組態這個篩選器。</translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation>電腦教室名稱屬性</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
         <translation>例如: 名稱或描述</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>電腦容器篩選</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>電腦容器或組織單位 (OU)</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>請變更電腦教室設定以使用電腦群組或電腦容器作為電腦教室。 接著將查詢指定的屬性而不是電腦群組或容器物件的通用名稱。 否則，您不需要組態這個屬性。</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>請變更以下電腦教室設定以使用電腦容器作為電腦教室。 否則，您不需要組態這個篩選。</translation>
     </message>
 </context>
 <context>
@@ -2163,6 +2159,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Always open at start</source>
         <translation>啟動時始終開啟</translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2242,6 +2246,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Power on/down or reboot a computer</source>
         <translation>開啟/關閉電源或重新啟動電腦</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2453,12 +2473,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>解鎖</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>所有使用者充分注意: 您可以使用此按鈕鎖定他們的電腦。 在此模式下鎖定所有輸入的裝置，且螢幕是黑的。</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>鎖定電腦的螢幕和輸入裝置</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation>若要收回所有使用者的完全注意，您可以使用此按鈕鎖定其電腦。 在這種模式下，所有的輸入設備鎖定和畫面全黑。</translation>
     </message>
 </context>
 <context>
@@ -2734,6 +2754,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Builtin UltraVNC server configuration</source>
         <translation>內建 UltraVNC 伺服器組態</translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2759,6 +2783,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>按一下此按鈕從所有電腦登出使用者。</translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

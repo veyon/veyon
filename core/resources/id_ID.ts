@@ -1,88 +1,88 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it_IT" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="id_ID" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Informazioni su</translation>
+        <translation>Tentang</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Traduzione</translation>
+        <translation>Terjemahan</translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licenza</translation>
+        <translation>Lisensi</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Su Veyon</translation>
+        <translation>Tentang Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contribuitori</translation>
+        <translation>Kontributor</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versione:</translation>
+        <translation>Versi</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Sito Web:</translation>
+        <translation>Situs web:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>La lingua corrente non è ancora stata tradotta completamente (dall&apos;inglese).
+        <translation>Bahasa sekarang belum diterjemahkan (atau native Bahasa Inggris)
 
-Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche altra lingua o vuoi migliorare una traduzione esistente, contatta uno sviluppatore Veyon!</translation>
+Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain atau anda ingin meningkatkan terjemahan yang telah ada, silakan hubungi pengembang Veyon!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>Informazioni su %1 %2</translation>
+        <translation>Tentang %1 %2</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>Controllo accesso al computer</translation>
+        <translation>Akses kontrol komputer</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Garantire l&apos;accesso a tutti gli utenti autenticati (predefinito)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test</source>
-        <translation>Prova</translation>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation>Limita l&apos;accesso ai soli membri di alcuni gruppi di utenti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Elabora le regole di controllo di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Data backend:</source>
-        <translation>Backend dei dati:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Gruppi di utenti autorizzati all&apos;accesso al computer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Aggiungere i gruppi i cui membri dovrebbero essere autorizzati ad accedere ai computer della rete Veyon.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Gruppi di utenti autorizzati</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Tutti i gruppi</translation>
+        <translation>Semua grup</translation>
     </message>
     <message>
         <source>...</source>
@@ -90,248 +90,248 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Regole di controllo d&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>Aggiungi regola di controllo d&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>Rimuovi tutte le regole di controllo d&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Sposta la regola selezionata in basso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Sposta la regola selezionata in alto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>Modifica la regola selezionata</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Missing access control data backend</source>
-        <translation>Backend controllo accesso dati mancante</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Non è stato trovato nessun plugin backend di controllo accesso predefinito. Controllare l&apos;installazione!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Inserire il nome utente</translation>
+        <translation>Masukkan nama pengguna</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Inserire un nome utente di login per provarne i permessi di accesso:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>Accesso consentito</translation>
+        <translation>Akses diijinkan</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>All&apos;utente specificato è consentito accedere ai computer con questa configurazione.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Accesso negato</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa confiugurazione.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>Modifica la regola di controllo d&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Generale</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>inserire qui un nome compatto per la regola</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Nome regola:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>inserire qui una descrizione per la regola</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Descrizione della regola:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Inverti tutte le condizioni (&quot;è/ha&quot; interpretato come &quot;non è/ha&quot;)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>Condizioni</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>è membro del gruppo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located in room</source>
-        <translation>è nella stanza</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Il computer in accesso è localhost</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>L&apos;utente in accesso è registrato sull&apos;utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>L&apos;utente in accesso è già connesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Se è attivata più di una condizione, ciascuna condizione deve essere soddisfatta affinchè la regola venga applicata (AND logico). Se invece solo una condizione è richiesta (OR logico), allora per favore creare regole multiple di controllo accesso.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Action</source>
-        <translation>Azione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>Permette l&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Nega l&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Chiedi permesso all&apos;utente collegato </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Nessuna (regola disabilitata)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Accesso all&apos;utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Accesso al computer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Utente locale (collegato)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Computer locale</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Elabora sempre la regola ed ignora le condizioni</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nessun utente connesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Il computer a cui si sta accedendo è situato nella stessa aula del computer locale</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>L&apos;utente a cui si sta accedendo ha uno o più gruppi in comune con l&apos;utente locale (l&apos;utente ora loggato).</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>Verifica regole di controllo d&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Accesso all&apos;utente:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Computer locale:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Accesso al computer:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Per favore immettere le seguenti informazioni su utente e computer per procedere al test dell&apos;insieme di regole configurate.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Utente locale:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Utenti connessi:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>L&apos;accesso allo scenario fornito è consentito.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>L&apos;accesso allo scenario fornito è negato.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>L&apos;accesso allo scenario fornito richiede l&apos;autorizzazione dell&apos;utente connesso.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>ERRORE: azione sconosciuta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test result</source>
-        <translation>Risultati del test</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
         <source>Authentication methods</source>
-        <translation>Metodi di autenticazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Autenticazione di accesso (Logon)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Autenticazione con File chiave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access key management</source>
-        <translation>Gestione chiavi di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Cartella chiave Pubblica</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Cartella chiave Privata</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -339,228 +339,228 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation>Lancia l&apos;Assistente per la gestione delle chiavi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test</source>
-        <translation>Test</translation>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation>Test di autenticazione basato sul Logon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation>L&apos;autenticazione con le credenziali di Logon è riuscita.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation>Non è riuscita l&apos;autenticazione con le credenziali di Logon.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation>Server VNC incorporato (UltraVNC)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>Server VNC incorporato (x11vnc)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Servizio %2 alle %3:%4</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Errore di autenticazione</translation>
+        <translation>Otentikasi gagal</translation>
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>L&apos;utente %1 (IP: %2) ha provato ad accedere a questo computer ma non è riuscito ad autenticarsi!</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation>Stanza: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Connessi e online</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>Connessione stabilita</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nessun utente connesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Utente connesso: %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>Computer disconnesso o spento</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation>Servizio irraggiungibile o non in esecuzione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>Autenticazione fallita o accesso negato</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Disconnesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation>Host/indirizzo IP: %1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation>Gestione computer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add room</source>
-        <translation>Aggiungi stanza</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Salvare la lista di computer/utenti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>Selezionare il nome file d&apos;uscita</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>File CSV (*.csv)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File error</source>
-        <translation>Errore file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Impossibile scrivere l&apos;elenco computer e utenti su %1! Controllare i permessi di accesso al file.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer search</source>
-        <translation>Ricerca computer</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>Manca il plugin per l&apos;elencazione degli oggetti di rete</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Non è stato trovato alcun plugin predefinito per l&apos;elencazione degli oggetti di rete. Per favore controllare l&apos;installazione o configurare un diverso backend per l&apos;elenco degli oggetti di rete attraverso %1 Configurator.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation>Nome computer;Nome host;Utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation>Rilevamento stanza fallito</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Impossibile determinare l&apos;aula a cui questo computer appartiene. Questo indica un problema con la configurazione del sistema. Come alternativa, nella gestione del computer verranno mostrate tutte le aule.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Per favore indicare un file di configurazione esistente da importare.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Per favore indicare un nome di file valido per esportare la configurazione.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Per favore indicare una chiave valida.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>La chiave indicata non esiste nella configurazione corrente!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>Per favore indicare un valore valido.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Impossibile modificare la proprietà autostart per il %1 Service.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Non è possibile modificare gli argomenti passati al servizio %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Non è possibile modificare la configurazione del firewall per il servizio %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Non è possibile cambiare i settaggi del SAS via software. L&apos;invio della combinazione Ctrl+Alt+Del da terminale remoto non produrrà risultati.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>Non è possibile modificare gli argomenti passati a %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Non si dispone dei permessi di scrittura per il file di destinazione.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Non si dispone dei permessi di scrittura nella cartella di destinazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>Non è possibile leggere il file di configurazione (permessi o locazione non corretti)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation>Eliminazione della configurazione di Veyon su tutto il sistema.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>Lista di tutte le chiavi di configurazione e dei loro valori.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>Importa configurazione da file.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation>Esporta configurazione su file.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
@@ -568,76 +568,76 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation>Imposta il valore della chiave di configurazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Rimuovi la chiave di configurazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Comandi di configurazione</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfiguratorCore</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Impossibile modificare la proprietà autostart per il %1 Service.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Non è possibile modificare gli argomenti passati al servizio %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Non è possibile modificare la configurazione del firewall per il servizio %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Non è possibile cambiare i settaggi del SAS via software. L&apos;invio della combinazione Ctrl+Alt+Del da terminale remoto non produrrà risultati.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite keys</source>
-        <translation>Sovrascrivere i dati</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Sono già state create alcune chiavi di autenticazione. Se venissero sostituite da quelle appena generate, sarà necessario aggiornare le chiavi pubbliche su tutti i computer. Desideri proseguire con l&apos;operazione?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration cleared</source>
-        <translation>Configurazione cancellata</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The local configuration has been cleared successfully.</source>
-        <translation>La configurazione locale è stata cancellata con successo.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation>Opzioni di %1 </translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 Demo</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Server per la modalità Presentazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Modificabili</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -645,164 +645,164 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>Limite memoria</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation>Utilizzo multithreading (sperimentale)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update interval</source>
-        <translation>Intervallo di aggiornamento</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> s</source>
-        <translation> s</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Presenta su schermo intero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Ferma Presentazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Presenta in finestra</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Esemplificare trasmettendo il proprio schermo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Server per la modalità Presentazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>In questa modalità il tuo schermo sarà visualizzato su tutti i computer client a tutto schermo. Inoltre gli utenti non saranno in grado di svolgere altre azioni, in quanto le periferiche di input (mouse-tastiera) saranno bloccate.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>In questa modalità il tuo schermo sarà visualizzato in una finestra su tutti i computer client. Gli utenti, pertanto, potranno cambiare finestra e continuare il loro lavoro.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation>Finestra di accesso al Desktop</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Conferma l&apos;accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Mai per questa sessione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Sempre per questa sessione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>L&apos; utente %1 desidera collegarsi al tuo PC dal PC %2. Desideri concedergli l&apos;accesso?</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation>Apri un programma</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Collegamento ad un sito internet</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Clicca su questo pulsante per aprire un sito internet su tutti i PC.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Inserisci l&apos;indirizzo del sito da aprire:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation>Attiva il programma sul PC remoto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>Clicca su questo pulsante per lanciare un programma su tutti i PC</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>Server VNC esterno</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>Parametri del server VNC esterno</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Port:</source>
-        <translation>Porta:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Password:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation>Controllo delle opzioni</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Interfaccia Utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Linguaggio:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>Utilizza la lingua predefinita</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable high DPI scaling</source>
-        <translation>Enable high DPI scaling</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon</source>
-        <translation>Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Logging</source>
-        <translation>Fase di autenticazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Cartella per il Log file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -810,47 +810,47 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Log level</source>
-        <translation>Livello di Log</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Nessun log</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Solo i messaggi critici</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Errori e messaggi critici</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Avvisi (warnings) ed errori</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Informazioni, avvisi e errori</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Messaggi di debug e quant&apos;altro</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Limite per il file di log</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Cancella tutti i file di log</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Log sullo standard error output</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation>Log su Gestore eventi di Windows</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network object directory</source>
@@ -858,39 +858,39 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Backend:</source>
-        <translation>Backend:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Intervallo di aggiornamento:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 service</source>
-        <translation>Servizio %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Il servizio %1 deve essere riavviato per consentire la rimozione dei file di log. Continuare?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation>File di Log cancellati</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>Tutti i file di Log sono stati cancellati.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Error</source>
-        <translation>Errore</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>Impossibile cancellare tutti i file di Log.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -902,54 +902,54 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source> seconds</source>
-        <translation>secondi</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
         <source>How does it work?</source>
-        <translation>Come funziona?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Assistant mode</source>
-        <translation>Modalità assistente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Scegli se vuoi creare una nuova coppia di chiavi o importare la chiave pubblica sul client</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
-        <translation>Crea una nuova coppia di chiavi (solo sul computer master/docente)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Import public key (client computer)</source>
-        <translation>Importa la chiave pubblica (computer client/studente)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select user role</source>
-        <translation>Scegli il ruolo utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Scegli un ruolo utente per cui creare o importare le chiavi di accesso:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Teacher</source>
-        <translation>Insegnante</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>I ruoli utente permettono l&apos;utilizzo parallelo di chiavi multiple. Per esempio si potrebbero avere chiavi di accesso per ciascuna Aula, mentre gli Assistenti utilizzano la stessa chiave per tutta la scuola (tutte le Aule).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Directories</source>
-        <translation>Cartelle</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation>Cartella in cui esportare la chiave pubblica (del computer master/docente)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -957,103 +957,103 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
-        <translation>Personalizza le cartelle per le chiavi di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Specifica la destinazione per l&apos;importazione della chiave pubblica</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Summary</source>
-        <translation>Riepilogo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The following actions will be taken:</source>
-        <translation>Le seguenti azioni saranno eseguite:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>• Create new access keys</source>
-        <translation>• Crea nuove Chiavi di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>• Import public access key from</source>
-        <translation>• Importa la chiave pubblica da</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation>&lt;sconosciuto&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>• Write access key(s) to</source>
-        <translation>• Salva la/e chiavi in</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>• Export public key to</source>
-        <translation>• Esporta la chiave pubblica in</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>• Configure for user role</source>
-        <translation>• Configura le chiavi per il ruolo utente di </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
-        <translation>Scegli la cartella in cui esportare la chiave pubblica</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Key files (*.key.txt)</source>
-        <translation>File Chiavi (*.key.txt)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid public key</source>
-        <translation>Chiave pubblica non valida</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation>Indica la cartela di destinazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access key creation</source>
-        <translation>Creazione chiavi di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation>Non posso rimuovere il file già esistente %1.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Non è riuscita &apos;esportazione della chiave pubblica da %1 a %2.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Le chiavi di accesso sono state create e salvate in %1 e %2.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Si è verificato un errore durante la creazione delle chiavi di accesso. Probabilmente non si dispone dei diritti di accesso alle cartelle indicate.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Public key import</source>
-        <translation>Importa la chiave pubblica</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Si è verificato un errore durente l&apos;importazione della chiave pubblica. Probabilmente non si dispone dei diritti di accesso in lettura alla chiave o in scrittura al file di destinazione.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation>La chiave pubblica è stata importata in %1.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Access Key Assistant</source>
-        <translation>Assistente alla generazione delle chiavi di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create/import Veyon access keys</source>
-        <translation>Crea/importa chiavi di accesso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>Questo programma ti aiuterà a creare o importare le chiavi di accesso per Veyon.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
@@ -1061,75 +1061,70 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Le chiavi (crittografiche) di accesso per Veyon sono composte da due parti: una privata, l&apos;altra pubblica.
-
-Utilizzando la chiave privata, gli utenti del computer docente saranno in grado di accedere a tutti i computer studente (client). E&apos; importante che solo gli utenti autorizzati abbiano accesso al file della chiave privata.
-
-La chiave pubblica, invece, è utilizzata dai computer studente per verificare che ogni richiesta di connesione sia  autorizzata.
-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>Il file selezionato non contiene una chiave pubblica valida per Veyon!</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
-        <translation>LDAP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>Impostazioni di base</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Generale</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation>Indirizzo e porta del server LDAP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Bind DN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Bind password</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Anonymous bind</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Use bind credentials</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test</source>
-        <translation>Test</translation>
+        <translation>Tes</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Base DN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation>Fixed base DN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>e.g. dc=example,dc=org</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation>Discover base DN by naming context</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation>e.g. namingContexts or defaultNamingContext</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1145,7 +1140,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>e.g. OU=Groups</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User tree</source>
@@ -1153,11 +1148,11 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>e.g. OU=Users</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>e.g. OU=Computers</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Group tree</source>
@@ -1165,7 +1160,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation>Ricerca anche nelle sottocartelle</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Object attributes</source>
@@ -1173,7 +1168,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>e.g. hwAddress</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer host name attribute</source>
@@ -1209,7 +1204,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>Impostazioni avanzate</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -1229,11 +1224,11 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Filtro Users</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Filtro Gruppo computer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Group member identification</source>
@@ -1249,35 +1244,35 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Visualizza i gruppi a cui appartiene un User</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation>Visualizza i gruppi a cui appartiene un computer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation>Identifica il computer mediante indirizzo IP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation>Connessione al server LDAP fallita</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Non è possibile connettersi al server LDAP. Verificare i parametri %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>Il bind con il server LDAP è fallito. Verificare la sintassi delle credenziali</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Non è stato possibile effettuare il bind con il server LDAP. Verificare i parametri del server e la corretta sintassi delle credenziali. %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>Il bind con il server LDAP è riuscito.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
@@ -1333,55 +1328,55 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Inserire il nome utente</translation>
+        <translation>Masukkan nama pengguna</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Inserire un nome utente di login (caratteri speciali ammessi) per il quale effettuare la query</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>user objects</source>
-        <translation>user objects</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>user login attribute</source>
-        <translation>user login attribute</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Inserire il nome del gruppo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Inserire il nome di un gruppo in cui ricercare i membri</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>group members</source>
-        <translation>Membri del gruppo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>group member attribute</source>
-        <translation>group member attribute</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>Gruppo non trovato</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>Non è possibile trovare il gruppo %1. Verificare il nome del gruppo inserito e i parametri LDAP dei gruppi.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>Inserire il nome del computer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
-        <translation>Inserire il nome host del computer da ricercare.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid host name</source>
-        <translation>Nome host non valido</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
@@ -1725,7 +1720,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Host address/IP</source>
@@ -1733,7 +1728,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC address</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add new room</source>
@@ -1779,7 +1774,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation>Schermo Bloccato</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1801,135 +1796,135 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation>FinestraPrincipale</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>BarraStrumenti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Generale</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Autenticazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>1)</source>
-        <translation>1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Pulisci i file di LOG nella sezione Generale.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>2)</source>
-        <translation>2)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Nella sezione &quot;Generale&quot; imposta il livello di Log a &quot;Debug messaggi e quant&apos;altro&quot;.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>3)</source>
-        <translation>3)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Ripeti le azioni che hanno prodotto l&apos;errore o il comportamento anomalo.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>4)</source>
-        <translation>4)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation>Clicca sul seguente pulsante e salva il file in una cartella conosciuta.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Generate bug report archive</source>
-        <translation>Genera l&apos;archivio Rapporto Errori</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>5)</source>
-        <translation>5)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Aiuto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Esci</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation>&amp;Salva impostazioni nel file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>Salva impostazioni nel file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>C&amp;arica impostazioni dal file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Informazioni su Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation>Autenticazione impossibile</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Controlla</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Esci</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Il file di configurazione non è scrivibile</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Carica impostazioni da file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Salva impostazioni su file</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation>Salva l&apos;archivio Rapporto Errori</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Impostazioni non salvate</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Alcune impostazioni non sono state salvate. Esco comunque?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -1962,7 +1957,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Su Veyon</translation>
+        <translation>Tentang Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1974,7 +1969,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About</source>
-        <translation>Informazioni su</translation>
+        <translation>Tentang</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2010,7 +2005,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Accesso negato</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2057,7 +2052,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation>Cartelle</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -2105,7 +2100,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>Impostazioni di base</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -2171,26 +2166,26 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Room/Computer</source>
-        <translation type="unfinished"/>
+        <translation>Ruang/Komputer</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Nome Utente</translation>
+        <translation>Nama Pengguna</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Password</translation>
+        <translation>Kata sandi</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Masuk Veyon</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Otentikasi gagal</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -2205,7 +2200,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Accendi</translation>
+        <translation>Nyalakan</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -2213,15 +2208,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Riavvia il PC</translation>
+        <translation>Nyalakan Ulang</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Klik tombol ini untuk menyalakan ulang semua komputer.</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation>Spegni</translation>
+        <translation>Matikan</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -2252,47 +2247,47 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>QApplication</name>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Non è possibile registrare il servizio &apos;%1&apos;.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Il gestore dei servizi &quot;Service Control Manger&quot; non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato registrato.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
-        <translation>Il servizio &apos;%1&apos; è già registrato.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>Il servizio &apos;%1&apos; non può essere registrato.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>Il servizio &apos;%1&apos; è stato registrato correttamente.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>Il servizio &apos;%1&apos; non può essere fermato.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>Il servizio &apos;%1&apos; è stato rimosso.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Il servizio &apos;%1&apos; non è registrato, pertanto non può essere rimosso.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>Il servizio &apos;%1&apos; non può essere rimosso.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>Il servizio &apos;%1&apos; non è stato trovato.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Il gestore dei servizi &quot;Service Control Manger&quot; non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato rimosso dal registro.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
@@ -2319,7 +2314,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Controlla</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -2353,11 +2348,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Osserva solo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Controlla</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -2365,15 +2360,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Schermo intero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Window</source>
-        <translation>Finestra</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Esci</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -2409,15 +2404,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>Connessione con %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Connesso.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
 </context>
 <context>
@@ -2477,14 +2472,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Tangkapan layar</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2507,23 +2502,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Tanggal:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Waktu:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Hapus</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2531,42 +2526,42 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Komputer:</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Generale</translation>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Avvio automatico</translation>
+        <translation>Mulai otomatis</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Nascondi l&apos;icona tray</translation>
+        <translation>Sembunyikan ikon baki</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Avvia il servizio</translation>
+        <translation>Mulai layanan</translation>
     </message>
     <message>
         <source>Additional arguments</source>
-        <translation>Parametri aggiuntivi</translation>
+        <translation>Argumen tambahan</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Fermato</translation>
+        <translation>Dihentikan</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>ferma il servizio</translation>
+        <translation>Hentikan layanan</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>Stato:</translation>
+        <translation>Status:</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -2574,19 +2569,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Network</source>
-        <translation>Rete</translation>
+        <translation>Jaringan</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>Porta per la modalità Presentazione</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Abilita le eccezioni del firewall</translation>
+        <translation>Aktifkan pengecualian firewall</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Consenti connessioni solo da questo computer &apos;localhost&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server port</source>
@@ -2610,7 +2605,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Running</source>
-        <translation>In esecuzione</translation>
+        <translation>Berjalan</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -2694,18 +2689,18 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Invia un messaggio di testo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Utilizza il campo qui sotto per scrivere il messaggio che vuoi inviare agli utenti selezionati.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Invia messaggio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -2713,7 +2708,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Messaggio dall&apos;insegnante</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send a message to a user</source>
@@ -2724,15 +2719,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Abilita cattura di finestre in livelli (semi-trasparente)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Schermo pieno (lasciarlo abilitato per default)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Bassa qualità (modalità turbo)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
@@ -2747,7 +2742,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation>Nessun accesso in scrittura</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
@@ -2762,7 +2757,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Logout user</source>
-        <translation>Disconnetti utente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
@@ -2785,15 +2780,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[GAGAL]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>Perintah salah!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Perintah yang tersedia:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -2805,37 +2800,37 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Hasil tidak diketahui</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Modul yang tersedia:</translation>
     </message>
     <message>
         <source>Module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Modul tidak ditemukan - modul yang tersedia adalah:</translation>
     </message>
 </context>
 <context>
     <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>L&apos;autenticazione di VNC non è riuscita -effettuati numerosi tentativi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation>L&apos;autenticazione di VNC non è riuscita</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation>Il server VNC ha chiuso la connessione</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Connessione con %1 ...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
