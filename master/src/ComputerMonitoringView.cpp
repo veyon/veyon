@@ -278,11 +278,11 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
 		auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), label );
-		connect( action, &QAction::triggered, [=] () { runFeature( feature ); } );
+		connect( action, &QAction::triggered, this, [=] () { runFeature( feature ); } );
 #else
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  label,
-								  [=] () { runFeature( feature ); } );
+								  this, [=] () { runFeature( feature ); } );
 #endif
 	}
 }
