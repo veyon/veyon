@@ -320,7 +320,7 @@ void MainWindow::addFeaturesToToolBar()
 										  feature.displayName(),
 										  feature.displayNameActive(),
 										  feature.description() );
-		connect( btn, &QToolButton::clicked, [=] () {
+		connect( btn, &QToolButton::clicked, this, [=] () {
 			m_masterCore.runFeature( feature, this );
 			updateModeButtonGroup();
 		} );
