@@ -84,8 +84,8 @@ void VncProxyServer::acceptConnection()
 														   m_vncServerPassword,
 														   this );
 
-	connect( connection, &VncProxyConnection::clientConnectionClosed, [=]() { closeConnection( connection ); } );
-	connect( connection, &VncProxyConnection::serverConnectionClosed, [=]() { closeConnection( connection ); } );
+	connect( connection, &VncProxyConnection::clientConnectionClosed, this, [=]() { closeConnection( connection ); } );
+	connect( connection, &VncProxyConnection::serverConnectionClosed, this, [=]() { closeConnection( connection ); } );
 
 	m_connections += connection;
 }
