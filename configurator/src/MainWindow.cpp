@@ -22,8 +22,6 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include <QDir>
 #include <QProcess>
 #include <QCloseEvent>
