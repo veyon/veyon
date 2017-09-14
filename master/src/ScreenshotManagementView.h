@@ -1,7 +1,7 @@
 /*
  * ScreenshotManagementView.h - declaration of screenshot management view
  *
- * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

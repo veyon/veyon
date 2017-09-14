@@ -2,7 +2,7 @@
  * UserConfig.cpp - a Configuration object storing personal settings
  *                      for the Veyon Master Application
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -18,7 +18,7 @@
     <file>resources/fr.qm</file>
     <file>resources/hu.qm</file>
     <file>resources/nn.qm</file>
-    <file>resources/pl.qm</file>
+    <file>resources/pl_PL.qm</file>
     <file>resources/sl.qm</file>
     <file>resources/sv.qm</file>
     <file>resources/uk.qm</file>
@@ -38,6 +38,7 @@
     <file>resources/bb.qm</file>
     <file>resources/ca_ES.qm</file>
     <file>resources/ja_JP.qm</file>
+    <file>resources/id_ID.qm</file>
     <file>resources/locked_bg.png</file>
     <file>resources/icon16.png</file>
     <file>resources/icon22.png</file>
@@ -58,5 +59,6 @@
     <file>resources/watch14.png</file>
     <file>resources/watch15.png</file>
     <file>resources/watch16.png</file>
+    <file>resources/toolbar-background.png</file>
   </qresource>
 </RCC>

@@ -2,7 +2,7 @@
  * NetworkObjectDirectoryPluginInterface.h - plugin interface for network
  *                                           object directory implementations
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

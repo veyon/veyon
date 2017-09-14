@@ -1,7 +1,7 @@
 /*
  * VncProxyServer.cpp - a VNC proxy implementation for intercepting VNC connections
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -84,8 +84,8 @@ void VncProxyServer::acceptConnection()
 														   m_vncServerPassword,
 														   this );
 
-	connect( connection, &VncProxyConnection::clientConnectionClosed, [=]() { closeConnection( connection ); } );
-	connect( connection, &VncProxyConnection::serverConnectionClosed, [=]() { closeConnection( connection ); } );
+	connect( connection, &VncProxyConnection::clientConnectionClosed, this, [=]() { closeConnection( connection ); } );
+	connect( connection, &VncProxyConnection::serverConnectionClosed, this, [=]() { closeConnection( connection ); } );
 
 	m_connections += connection;
 }

@@ -1,7 +1,7 @@
 /*
  * ComputerMonitoringView.h - provides a view with computer monitor thumbnails
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -44,7 +44,9 @@ class ComputerMonitoringView : public QWidget
 	Q_OBJECT
 public:
 	enum {
-		DefaultComputerScreenSize = 160
+		MinimumComputerScreenSize = 50,
+		MaximumComputerScreenSize = 1000,
+		DefaultComputerScreenSize = 150
 	};
 
 	ComputerMonitoringView( QWidget *parent = nullptr );

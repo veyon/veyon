@@ -28,10 +28,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2142,6 +2138,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Always open at start</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2220,6 +2224,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2713,6 +2733,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Builtin UltraVNC server configuration</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2737,6 +2761,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

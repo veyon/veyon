@@ -1,7 +1,7 @@
 /*
  * WindowsService.h - convenient class for using app as Windows service
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

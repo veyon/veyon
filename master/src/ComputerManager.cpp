@@ -1,7 +1,7 @@
 /*
  * ComputerManager.cpp - maintains and provides a computer object list
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -509,10 +509,10 @@ void ComputerManager::startComputerControlInterface( Computer& computer, int ind
 			 &m_featureManager, &FeatureManager::handleMasterFeatureMessage );
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::userChanged,
-			 [&] () { updateUser( computer ); } );
+			 this, [&] () { updateUser( computer ); } );
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::activeFeaturesChanged,
-			 [=] () { emit activeFeaturesOfComputerChanged( index ); } );
+			 this, [=] () { emit activeFeaturesOfComputerChanged( index ); } );
 }
 
 

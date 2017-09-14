@@ -1,7 +1,7 @@
 /*
  * PowerControlFeaturePlugin.h - declaration of PowerControlFeaturePlugin class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -64,7 +64,7 @@ public:
 
 	QString copyright() const override
 	{
-		return QStringLiteral("Tobias Doerffel");
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	const FeatureList& featureList() const override;
@@ -88,6 +88,8 @@ public:
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
 private:
+	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
+
 	Feature m_powerOnFeature;
 	Feature m_rebootFeature;
 	Feature m_powerDownFeature;

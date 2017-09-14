@@ -29,7 +29,7 @@ Veyon is available in different languages and provides lots of useful features:
 
 ## License
 
-Copyright (c) 2004-2017 Tobias Doerffel / Veyon Solutions.
+Copyright (c) 2004-2017 Tobias Junghans / Veyon Solutions.
 
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
@@ -124,7 +124,7 @@ On Fedora, this requires an additional dependency (rpm-build) which can be insta
 
 For generating a package you can run
     
-	make package
+	fakeroot make package
 
 Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z.arch.rpm
 

@@ -1,7 +1,7 @@
 /*
  * UltraVncConfiguration.h - UltraVNC-specific configuration values
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -32,6 +32,7 @@
 
 #define FOREACH_ULTRAVNC_CONFIG_PROPERTY(OP) \
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC" );	\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDualMonitorSupportEnabled, setUltraVncDualMonitorSupportEnabled, "DualMonitorSupportEnabled", "UltraVNC" );	\
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC" );			\
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC" );					\
 
@@ -47,6 +48,7 @@ public:
 public slots:
 	void setUltraVncConfigured( bool );
 	void setUltraVncCaptureLayeredWindows( bool );
+	void setUltraVncDualMonitorSupportEnabled( bool );
 	void setUltraVncPollFullScreen( bool );
 	void setUltraVncLowAccuracy( bool );
 

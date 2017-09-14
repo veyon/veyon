@@ -1,7 +1,7 @@
 /*
  * LdapDirectory.h - class representing the LDAP directory and providing access to directory entries
  *
- * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -84,6 +84,8 @@ public:
 
 private:
 	bool reconnect( const QUrl& url );
+
+	static QString constructSubDn( const QString& subtree, const QString& baseDn );
 
 	static QString constructQueryFilter( const QString& filterAttribute,
 										 const QString& filterValue,

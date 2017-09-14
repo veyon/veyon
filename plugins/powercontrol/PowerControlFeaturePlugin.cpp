@@ -1,7 +1,7 @@
 /*
  * PowerControlFeaturePlugin.cpp - implementation of PowerControlFeaturePlugin class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,10 +22,13 @@
  *
  */
 
+#include <QMessageBox>
+
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "PowerControl.h"
 #include "PowerControlFeaturePlugin.h"
+#include "VeyonConfiguration.h"
 
 
 PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
@@ -81,6 +84,11 @@ bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 	}
 	else
 	{
+		if( confirmFeatureExecution( feature, parent ) == false )
+		{
+			return false;
+		}
+
 		sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ), computerControlInterfaces );
 	}
 
@@ -139,6 +147,31 @@ bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessag
 bool PowerControlFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
 {
 	Q_UNUSED(message);
+
+	return false;
+}
+
+
+
+bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature, QWidget* parent )
+{
+	if( VeyonCore::config().confirmDangerousActions() == false )
+	{
+		return true;
+	}
+
+	if( feature == m_rebootFeature )
+	{
+		return QMessageBox::question( parent, tr( "Confirm reboot" ),
+									  tr( "Do you really want to reboot the selected computers?" ) ) ==
+				QMessageBox::Yes;
+	}
+	else if( feature == m_powerDownFeature )
+	{
+		return QMessageBox::question( parent, tr( "Confirm power down" ),
+									  tr( "Do you really want to power down the selected computer?" ) ) ==
+				QMessageBox::Yes;
+	}
 
 	return false;
 }

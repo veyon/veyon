@@ -11,7 +11,7 @@
 !define COMP_NAME "Veyon Solutions Inc."
 !define WEB_SITE "http://veyon.io"
 !define VERSION "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@.@VERSION_BUILD@"
-!define COPYRIGHT "© Tobias Doerffel 2004-2017"
+!define COPYRIGHT "© Tobias Junghans 2004-2017"
 !define DESCRIPTION "Virtual Eye On Networks"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
 !define INSTALLER_NAME "veyon-${VERSION}-@MINGW_PLATFORM@-setup.exe"
@@ -77,6 +77,8 @@ RequestExecutionLevel highest
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_TEXT "Run Veyon Configurator now"
 !define MUI_FINISHPAGE_RUN_FUNCTION "RunConfigurator"
+!define MUI_FINISHPAGE_LINK "Support Veyon project with a donation"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Veyon+-+OpenSource+classroom+management&cmd=_donations&business=donate%40veyon.io"
 
 !insertmacro MUI_PAGE_FINISH
 
@@ -196,7 +198,7 @@ ${GetParameters} $R0
 ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
   ClearErrors
-  ExecWait '"$INSTDIR\veyon-ctl.exe" config import $R1' $0
+  ExecWait '"$INSTDIR\veyon-ctl.exe" config import "$R1"' $0
   ${If} $0 != 0
 	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
   ${EndIf}

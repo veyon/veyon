@@ -1,7 +1,7 @@
 /*
  * DesktopAccessDialog.cpp - implementation of DesktopAccessDialog class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -63,7 +63,7 @@ void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, cons
 									   addArgument( UserArgument, user ).
 									   addArgument( HostArgument, host ) );
 
-	connect( m_abortTimer, &QTimer::timeout, [=]() { abort( featureWorkerManager ); } );
+	connect( m_abortTimer, &QTimer::timeout, this, [=]() { abort( featureWorkerManager ); } );
 	m_abortTimer->start( DialogTimeout );
 }
 

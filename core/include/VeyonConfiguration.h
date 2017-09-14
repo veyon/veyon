@@ -2,7 +2,7 @@
  * VeyonConfiguration.h - a Configuration object storing system wide
  *                        configuration values
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -91,6 +91,7 @@ public slots:
 	void setComputerDoubleClickFeature( QUuid );
 	void setEnforceSelectedModeForClients( bool );
 	void setOpenComputerManagementAtStart( bool );
+	void setConfirmDangerousActions( bool );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );

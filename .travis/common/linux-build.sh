@@ -14,7 +14,7 @@ cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr $SRC
 echo Building on $CPUS CPUs
 make -j$((CPUS+1))
 
-make package
+fakeroot make package
 
 mkdir -p lib/veyon
 cd lib/veyon

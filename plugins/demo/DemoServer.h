@@ -2,7 +2,7 @@
  * DemoServer.h - multi-threaded slim VNC-server for demo-purposes (optimized
  *                for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -26,10 +26,6 @@
         <translation>Version:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Copyright © 2004-2017 Tobias Doerffel / Solutions Veyon </translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation>Site Internet:</translation>
     </message>
@@ -679,16 +675,8 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
         <translation>Arrêter la démo</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>Dans ce mode votre écran est diffusé sur tout les autres ordinateurs. Les utilisateurs ne peuvent rien faire d&apos;autre que regarder car tous les périphériques d&apos;entrée sont verrouillés dans ce mode.</translation>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>Démo dans une fenêtre</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>Dans ce mode votre écran est diffusé dans une fenêtre sur tous les autres ordinateurs. Les utilisateurs sont en mesure de changer de fenêtre et peuvent ainsi continuer à travailler.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -697,6 +685,14 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <message>
         <source>Demo server</source>
         <translation>Serveur de démonstration</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation>Dans ce mode votre écran sera affiché en plein écran sur tout les ordinateur, les périphériques d&apos;entrée des utilisateurs seront verrouillés dans ce mode.</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>Dans ce mode votre écran est diffusé dans une fenêtre sur tous les autres ordinateurs. Les utilisateurs sont librement en mesure de changer de fenêtre comme ils le souhaitent.</translation>
     </message>
 </context>
 <context>
@@ -1631,10 +1627,6 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <translation>Attribut de la salle informatique </translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation>Filtre pour ordinateurs parents</translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation>ex: objectClass=container ou objectClass=organizationalUnit</translation>
     </message>
@@ -1647,10 +1639,6 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <translation>Groupe d&apos;ordinateurs</translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation>Parent de l&apos;objet ordinateur (ex: OU ou conteneur)</translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation>Attribut de salle informatique dans les objets informatiques </translation>
     </message>
@@ -1659,20 +1647,28 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <translation>Test non applicable</translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Veuillez changer les paramètres de la salle informatique pour utiliser les groupes d&apos;ordinateurs ou les objets parents d&apos;objets informatiques comme salle informatique. Dans ce cas il sera demandé l&apos;attribut spécifié à la place du nom du groupe d&apos;ordinateur ou des objets parents. Autrement il n&apos;est pas nécessaire de configurer cet attribut. </translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Veuillez changer les paramètres de la salle informatique ci-dessous  pour utiliser les groupes d&apos;ordinateurs ou les objets parents d&apos;objets informatiques comme salle informatique.  Autrement il n&apos;est pas nécessaire de configurer ce filtre. </translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation>Attribut du nom de la salle informatique</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
         <translation>Ex: nom ou description </translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filtre pour les conteneurs d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Conteneurs d&apos;ordinateur ou bien OU</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation>Veuillez changer les paramètres de la salle informatique pour utiliser des groupes d&apos;ordinateurs ou des conteneurs d&apos;ordinateur comme salles informatique. Dans ce cas il sera demandé un attribut spécifié à la place du nom du groupe d&apos;ordinateur ou du conteneur. Autrement il n&apos;est pas nécessaire de configurer cet attribut. </translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>Veuillez changer les paramètres de la salle informatique ci-dessous  pour utiliser des conteneurs d&apos;ordinateur comme salles informatique.  Autrement il n&apos;est pas nécessaire de configurer ce filtre. </translation>
     </message>
 </context>
 <context>
@@ -2163,6 +2159,14 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <source>Always open at start</source>
         <translation>Toujours ouvrir au démarrage</translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2242,6 +2246,22 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <message>
         <source>Power on/down or reboot a computer</source>
         <translation>Allumer / Éteindre ou redémarrer un ordinateur</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2453,12 +2473,12 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <translation>Déverrouiller</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Pour conserver toute l&apos;attention des utilisateurs, vous pouvez verrouiller les ordinateurs en utilisant ce bouton. Dans ce mode, tous les périphériques d&apos;entrée sont verrouillés et l&apos;écran est noir.</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Verrouiller l&apos;écran et les périphériques d&apos;entrée d&apos;un ordinateur</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation>Pour attirer toute l&apos;attention de tous les utilisateurs, vous pouvez verrouiller les ordinateurs en utilisant ce bouton. Dans ce mode, tous les périphériques d&apos;entrée sont verrouillés et l&apos;écran est noir.</translation>
     </message>
 </context>
 <context>
@@ -2734,6 +2754,10 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
         <source>Builtin UltraVNC server configuration</source>
         <translation>Configuration du serveur intégré UltraVNC</translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2759,6 +2783,14 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Cliquer sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

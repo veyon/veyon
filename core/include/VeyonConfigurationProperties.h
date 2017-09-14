@@ -2,7 +2,7 @@
  * VeyonConfigurationProperties.h - definition of every configuration property
  *                                  stored in global veyon configuration
  *
- * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -81,6 +81,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), UUID, computerDoubleClickFeature, setComputerDoubleClickFeature, "ComputerDoubleClickFeature", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, enforceSelectedModeForClients, setEnforceSelectedModeForClients, "EnforceSelectedModeForClients", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, openComputerManagementAtStart, setOpenComputerManagementAtStart, "OpenComputerManagementAtStart", "Master" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, confirmDangerousActions, setConfirmDangerousActions, "ConfirmDangerousActions", "Master" );	\
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\

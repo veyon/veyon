@@ -26,10 +26,6 @@
         <translation>Sürüm:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>Telif Hakkı © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation type="unfinished"/>
     </message>
@@ -37,6 +33,10 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About %1 %2</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -624,6 +624,45 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DemoConfigurationPage</name>
+    <message>
+        <source>Demo server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use multithreading (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
@@ -634,16 +673,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Tanıtımı durdur</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>Pencere kipinde gösterim</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -654,8 +685,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Tanıtım sunucusu</translation>
     </message>
     <message>
-        <source>Demo client</source>
-        <translation>Tanıtım istemcisi</translation>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -728,6 +763,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Password:</source>
         <translation>Parola:</translation>
+    </message>
+</context>
+<context>
+    <name>FeatureControl</name>
+    <message>
+        <source>Feature control</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1203,14 +1245,6 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Dedicated computer groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Common attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>List all groups of a user</source>
         <translation>Kullanıcının tüm kümelerini listele</translation>
     </message>
@@ -1513,10 +1547,6 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <translation>Bilgisayar kümesi ağacı</translation>
     </message>
     <message>
-        <source>Aggregate computers in a room using:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>computer group tree</source>
         <translation>bilgisayar kümesi ağacı</translation>
     </message>
@@ -1578,6 +1608,54 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Integration tests</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aggregate computers in a room via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test not applicable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer room name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1957,6 +2035,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Bug reporting</source>
         <translation>Hata bildirme</translation>
     </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adjust optimal size</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -1971,10 +2065,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>User configuration</source>
         <translation>Kullanıcı yapılandırması</translation>
-    </message>
-    <message>
-        <source>User interface &amp;&amp; behaviour</source>
-        <translation>Kullanıcı arayüzü &amp;&amp; davranış</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -1997,22 +2087,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Devre dışı özellikler</translation>
     </message>
     <message>
-        <source>Only show current room in computer room management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide empty rooms from computer room management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Allow adding rooms to computer room management manually</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide local computer in computer room management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Perform access control at program start</source>
         <translation type="unfinished"/>
     </message>
@@ -2021,11 +2095,59 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Ekran görüntüleri</translation>
     </message>
     <message>
-        <source>Hide computer filter field in computer room management</source>
+        <source>&lt;no feature&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;no feature&gt;</source>
+        <source>Automatically adjust computer thumbnail size at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Basic settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show current room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding rooms manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty rooms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always open at start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2106,6 +2228,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2318,12 +2456,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Kilidi kaldır</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Tüm kullanıcıların tüm dikkatini elde etmek için bu düğmeyi kullanarak onların bilgisayarlarını kilitleyebilirsiniz. Bu kipte tüm giriş aygıtları kilitlidir ve ekran siyahtır.</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>Bir bilgisayarın giriş aygıtlarını ve ekranını kilitle</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2599,6 +2737,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>Builtin UltraVNC server configuration</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2623,6 +2765,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
         <translation type="unfinished"/>
     </message>
 </context>

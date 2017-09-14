@@ -1,7 +1,7 @@
 /*
  * ComputerMonitoringView.cpp - provides a view with computer monitor thumbnails
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -156,7 +156,8 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 
 	if( ui->listView->verticalScrollBar()->isVisible() )
 	{
-		while( ui->listView->verticalScrollBar()->isVisible() )
+		while( ui->listView->verticalScrollBar()->isVisible() &&
+			   size > MinimumComputerScreenSize )
 		{
 			size -= 10;
 			setComputerScreenSize( size );
@@ -165,7 +166,8 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 	}
 	else
 	{
-		while( ui->listView->verticalScrollBar()->isVisible() == false )
+		while( ui->listView->verticalScrollBar()->isVisible() == false &&
+			   size < MaximumComputerScreenSize )
 		{
 			size += 10;
 			setComputerScreenSize( size );
@@ -224,7 +226,7 @@ void ComputerMonitoringView::showEvent( QShowEvent* event )
 	if( event->spontaneous() == false &&
 			VeyonCore::config().autoAdjustGridSize() )
 	{
-		QTimer::singleShot( 10, this, &ComputerMonitoringView::autoAdjustComputerScreenSize );
+		QTimer::singleShot( 250, this, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 	}
 
 	QWidget::showEvent( event );
@@ -276,11 +278,11 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
 		auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), label );
-		connect( action, &QAction::triggered, [=] () { runFeature( feature ); } );
+		connect( action, &QAction::triggered, this, [=] () { runFeature( feature ); } );
 #else
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  label,
-								  [=] () { runFeature( feature ); } );
+								  this, [=] () { runFeature( feature ); } );
 #endif
 	}
 }

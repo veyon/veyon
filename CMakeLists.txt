@@ -59,9 +59,9 @@ ENDIF()
 
 # can't retrieve version information as not building from Git repository?
 IF(NOT VERSION_STRING)
-	SET(VERSION_MAJOR 3)
-	SET(VERSION_MINOR 99)
-	SET(VERSION_PATCH 7)
+	SET(VERSION_MAJOR 4)
+	SET(VERSION_MINOR 0)
+	SET(VERSION_PATCH 0)
 	SET(VERSION_BUILD 0)
 	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 ELSE()
@@ -375,6 +375,7 @@ MESSAGE("\n"
 "--------------------\n"
 "* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
 "* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
+"* Library & plugin directory  : ${CMAKE_INSTALL_PREFIX}/${LIB_DIR}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"

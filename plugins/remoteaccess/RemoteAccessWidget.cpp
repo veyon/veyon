@@ -1,7 +1,7 @@
 /*
  *  RemoteAccessWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2016 Tobias Junghans <tobydox@users.sf.net>
  *
  *  This file is part of Veyon - http://veyon.io
  *
@@ -83,30 +83,30 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parren
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
 	connect( shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); } );
 	connect( shortcutMenu->addAction( tr( "Ctrl+Esc" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); } );
 	connect( shortcutMenu->addAction( tr( "Alt+Tab" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); } );
 	connect( shortcutMenu->addAction( tr( "Alt+F4" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); } );
 	connect( shortcutMenu->addAction( tr( "Win+Tab" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); } );
 	connect( shortcutMenu->addAction( tr( "Win" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutWin ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); } );
 	connect( shortcutMenu->addAction( tr( "Menu" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutMenu ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); } );
 	connect( shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ) ), &QAction::triggered,
-				[=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); } );
+				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); } );
 #else
-	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
-	shortcutMenu->addAction( tr( "Ctrl+Esc" ), [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
-	shortcutMenu->addAction( tr( "Alt+Tab" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
-	shortcutMenu->addAction( tr( "Alt+F4" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); }  );
-	shortcutMenu->addAction( tr( "Win+Tab" ), [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); }  );
-	shortcutMenu->addAction( tr( "Win" ), [=]() { vncView->sendShortcut( VncView::ShortcutWin ); }  );
-	shortcutMenu->addAction( tr( "Menu" ), [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
-	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
+	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
+	shortcutMenu->addAction( tr( "Ctrl+Esc" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
+	shortcutMenu->addAction( tr( "Alt+Tab" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
+	shortcutMenu->addAction( tr( "Alt+F4" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); }  );
+	shortcutMenu->addAction( tr( "Win+Tab" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); }  );
+	shortcutMenu->addAction( tr( "Win" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); }  );
+	shortcutMenu->addAction( tr( "Menu" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
+	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
 #endif
 
 	m_sendShortcutButton->setMenu( shortcutMenu );

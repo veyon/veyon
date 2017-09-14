@@ -1,10 +1,10 @@
 FROM ubuntu:xenial
-MAINTAINER Tobias Doerffel <tobias.doerffel@gmail.com>
+MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	apt-get update && \
 	apt-get install --no-install-recommends -y --force-yes \
-		git binutils gcc g++ make cmake file \
+		git binutils gcc g++ make cmake file fakeroot \
 		qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
 		xorg-dev libxtst-dev \
 		libjpeg-dev \

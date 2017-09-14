@@ -1,7 +1,7 @@
 /*
  * LdapDirectory.cpp - class representing the LDAP directory and providing access to directory entries
  *
- * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -668,12 +668,13 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		d->baseDn = m_configuration.ldapBaseDn();
 	}
 
-	d->usersDn = m_configuration.ldapUserTree() + "," + d->baseDn;
-	d->groupsDn = m_configuration.ldapGroupTree() + "," + d->baseDn;
-	d->computersDn = m_configuration.ldapComputerTree() + "," + d->baseDn;
+	d->usersDn = constructSubDn( m_configuration.ldapUserTree(), d->baseDn );
+	d->groupsDn = constructSubDn( m_configuration.ldapGroupTree(), d->baseDn );
+	d->computersDn = constructSubDn( m_configuration.ldapComputerTree(), d->baseDn );
+
 	if( m_configuration.ldapComputerGroupTree().isEmpty() == false )
 	{
-		d->computerGroupsDn = m_configuration.ldapComputerGroupTree() + "," + d->baseDn;
+		d->computerGroupsDn = constructSubDn( m_configuration.ldapComputerGroupTree(), d->baseDn );
 	}
 	else
 	{
@@ -713,6 +714,18 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->computerRoomAttribute = m_configuration.ldapComputerRoomAttribute();
 
 	return true;
+}
+
+
+
+QString LdapDirectory::constructSubDn( const QString& subtree, const QString& baseDn )
+{
+	if( subtree.isEmpty() )
+	{
+		return baseDn;
+	}
+
+	return subtree + "," + baseDn;
 }
 
 

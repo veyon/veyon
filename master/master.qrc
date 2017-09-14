@@ -12,6 +12,5 @@
         <file>resources/splash.png</file>
         <file>resources/applications-education.png</file>
         <file>resources/edit-find.png</file>
-        <file>resources/toolbar-background.png</file>
     </qresource>
 </RCC>

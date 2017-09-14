@@ -1,7 +1,7 @@
 /*
  * UserSessionControl.cpp - implementation of UserSessionControl class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,6 +22,7 @@
  *
  */
 
+#include <QMessageBox>
 #include <QThread>
 #include <QTimer>
 
@@ -76,7 +77,11 @@ bool UserSessionControl::startMasterFeature( const Feature& feature,
 											 QWidget* parent )
 {
 	Q_UNUSED(localComputerControlInterface);
-	Q_UNUSED(parent);
+
+	if( confirmFeatureExecution( feature, parent ) == false )
+	{
+		return false;
+	}
 
 	if( feature == m_userLogoutFeature )
 	{
@@ -187,4 +192,23 @@ void UserSessionControl::queryUserInformation()
 		m_userHomePath = homePath;
 		m_userDataLock.unlock();
 	} );
+}
+
+
+
+bool UserSessionControl::confirmFeatureExecution( const Feature& feature, QWidget* parent )
+{
+	if( VeyonCore::config().confirmDangerousActions() == false )
+	{
+		return true;
+	}
+
+	if( feature == m_userLogoutFeature )
+	{
+		return QMessageBox::question( parent, tr( "Confirm user logout" ),
+									  tr( "Do you really want to logout the selected users?" ) ) ==
+				QMessageBox::Yes;
+	}
+
+	return false;
 }

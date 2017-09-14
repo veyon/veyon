@@ -1,7 +1,7 @@
 /*
  * PluginManager.cpp - implementation of the PluginManager class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -41,7 +41,9 @@ PluginManager::PluginManager( QObject* parent ) :
 		QDir dir(qApp->applicationDirPath());
 		if( !path.isEmpty() && dir.cd( path ) )
 		{
-			QDir::addSearchPath( QStringLiteral( "plugins" ), dir.absolutePath() );
+			const auto pluginSearchPath = dir.absolutePath();
+			qDebug() << "Adding plugin search path" << pluginSearchPath;
+			QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
 		}
 
 	};
@@ -50,6 +52,7 @@ PluginManager::PluginManager( QObject* parent ) :
 	addRelativeIfExists( QStringLiteral( "plugins" ) );
 	const QStringList nameFilters( QStringLiteral( "*.dll" ) );
 #else
+	addRelativeIfExists( QStringLiteral( "../" ) + QStringLiteral( VEYON_LIB_DIR ) );
 	addRelativeIfExists( QStringLiteral( "../lib/veyon" ) );
 	addRelativeIfExists( QStringLiteral( "../lib64/veyon" ) );  // for some 64bits linux distributions, mainly Fedora 64bit
 	const QStringList nameFilters( QStringLiteral( "*.so" ) );

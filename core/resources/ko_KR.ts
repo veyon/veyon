@@ -26,10 +26,6 @@
         <translation>버전:</translation>
     </message>
     <message>
-        <source>Copyright © 2004-2017 Tobias Doerffel / Veyon Solutions</source>
-        <translation>저작권자 © 2004-2017 Tobias Doerffel / Veyon Solutions</translation>
-    </message>
-    <message>
         <source>Website:</source>
         <translation>웹 사이트:</translation>
     </message>
@@ -78,7 +74,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Veyon 네트워크의 컴퓨터에 접근을 허용할 사용자가 속한 그룹을 추가 하세요</translation>
+        <translation>Veyon 네트워크의 컴퓨터에 접근을 허용할 사용자가 속한 그룹을 추가 하세요.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -122,7 +118,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>기본 접근제어 백엔드 플러그인이 없습니다. 설치여부를 확인하세요</translation>
+        <translation>기본 접근제어 백엔드 플러그인이 없습니다. 설치여부를 확인하세요!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -130,7 +126,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>접근 권한을 시험할 사용자의 로그인 이름을 입력하세요</translation>
+        <translation>접근 권한을 시험할 사용자의 로그인 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -146,7 +142,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 거부 됨</translation>
+        <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 거부 됨.</translation>
     </message>
 </context>
 <context>
@@ -205,7 +201,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>한개 이상의 조건이 활성화 될 경우 규칙이 적용되려면 각각의 조건이 일치해야 한다 (논리적 AND). 여러개 중에서 하나의  조건만 맞아야 할 경우에는(논리적 OR) 다수의 접근 제어 규칙을 생성하세요 </translation>
+        <translation>한개 이상의 조건이 활성화 될 경우 규칙이 적용되려면 각각의 조건이 일치해야 한다 (논리적 AND). 여러개 중에서 하나의  조건만 맞아야 할 경우에는(논리적 OR) 다수의 접근 제어 규칙을 생성하세요 .</translation>
     </message>
     <message>
         <source>Action</source>
@@ -280,7 +276,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>설정된 규칙을 시험하기 위해  다음 사용자및 컴퓨터 정보를 입력하세요</translation>
+        <translation>설정된 규칙을 시험하기 위해  다음 사용자및 컴퓨터 정보를 입력하세요.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -292,15 +288,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>주어진 상황에 대한 접근이 허용됨</translation>
+        <translation>주어진 상황에 대한 접근이 허용됨.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>주어진 상황에 대한 접근이 거부됨</translation>
+        <translation>주어진 상황에 대한 접근이 거부됨.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>주어진 상황에 대한 접근은 로그온된 사용자의 허가가 필요함</translation>
+        <translation>주어진 상황에 대한 접근은 로그온된 사용자의 허가가 필요함.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -355,11 +351,11 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation>제공된 신용명세를 사용한 인증 성공</translation>
+        <translation>제공된 신용명세를 사용한 인증 성공.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation>제공된 신용명세를 사용한 인증 실패</translation>
+        <translation>제공된 신용명세를 사용한 인증 실패!</translation>
     </message>
 </context>
 <context>
@@ -462,7 +458,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>컴퓨터와 사용자 리스트를 %1에 저장하지 못함. 접근 권한을 확인하세요</translation>
+        <translation>컴퓨터와 사용자 리스트를 %1에 저장하지 못함. 접근 권한을 확인하세요.</translation>
     </message>
     <message>
         <source>Computer search</source>
@@ -481,7 +477,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>기본 네트워크 개체 폴더 플러그인 없음. 설치 상태를 점검하거나 또는 %1 설정을 이용하여 다른 네트워크 개체 폴더 백엔드를 설정하세요</translation>
+        <translation>기본 네트워크 개체 폴더 플러그인 없음. 설치 상태를 점검하거나 또는 %1 설정을 이용하여 다른 네트워크 개체 폴더 백엔드를 설정하세요.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
@@ -500,7 +496,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>읽어 올 기존 설정 화일을 선택하세요</translation>
+        <translation>읽어 올 기존 설정 화일을 선택하세요.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
@@ -508,11 +504,11 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>유효한 키를 선택하세요</translation>
+        <translation>유효한 키를 선택하세요.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>현재 설정에 지정된 키가 존재하지 않습니다</translation>
+        <translation>현재 설정에 지정된 키가 존재하지 않습니다!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
@@ -520,15 +516,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>%1 서비스에 대한 자동 시작 속성을 수정할 수 없습니다</translation>
+        <translation>%1 서비스에 대한 자동 시작 속성을 수정할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>%1 서비스 부가조건을 수정할 수 없습니다</translation>
+        <translation>%1 서비스 부가조건을 수정할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>%1 서비스 용 방화벽 설정을 변경할 수 없습니다</translation>
+        <translation>%1 서비스 용 방화벽 설정을 변경할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -540,15 +536,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>출력 화일에 쓸수 없습니다</translation>
+        <translation>출력 화일에 쓸수 없습니다!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>출력 폴더에 저장할 수 없습니다</translation>
+        <translation>출력 폴더에 저장할 수 없습니다!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>설정화일을 읽을 수 없습니다</translation>
+        <translation>설정화일을 읽을 수 없습니다!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
@@ -587,15 +583,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>ConfiguratorCore</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>%1 서비스에 대한 자동 시작 속성을 수정할 수 없습니다</translation>
+        <translation>%1 서비스에 대한 자동 시작 속성을 수정할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>%1 서비스 부가조건을 수정할 수 없습니다</translation>
+        <translation>%1 서비스 부가조건을 수정할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>%1 서비스 용 방화벽 설정을 변경할 수 없습니다</translation>
+        <translation>%1 서비스 용 방화벽 설정을 변경할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -615,7 +611,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>The local configuration has been cleared successfully.</source>
-        <translation>로컬 설정이 성공적으로 삭제되었습니다</translation>
+        <translation>로컬 설정 삭제 성공.</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -679,17 +675,8 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>데모 중지</translation>
     </message>
     <message>
-        <source>In this mode your screen is being displayed on all computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>이 모드에서 교사의 화면이 모든 컴퓨터에 표시됩니다.
-또한 입력장치가 잠기므로 사용자들은 다른 작업을 할 수 없습니다.</translation>
-    </message>
-    <message>
         <source>Window demo</source>
         <translation>윈도우 데모</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>이 모드에서는 교사의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -698,6 +685,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Demo server</source>
         <translation>데모 서버</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
+        <translation>이 모드에서 교사의 화면이 모든 컴퓨터에 표시됩니다.
+또한 입력장치가 잠기므로 사용자들은 다른 작업을 할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>이 모드에서는 교사의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 필요할 경우 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
     </message>
 </context>
 <context>
@@ -735,11 +731,11 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 한 웹사이트를 오픈합니다</translation>
+        <translation>클릭하면 모든 컴퓨터에서 한 웹사이트를 오픈합니다.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>열어 볼 사이트의 주소 URL 을 입력하세요</translation>
+        <translation>열어 볼 사이트의 주소 URL 을 입력하세요:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -747,7 +743,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 프로그램을 실행합니다</translation>
+        <translation>클릭하면 모든 컴퓨터에서 프로그램을 실행합니다.</translation>
     </message>
 </context>
 <context>
@@ -883,7 +879,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>모든 로그화일 성공적으로 삭제</translation>
+        <translation>모든 로그화일 삭제 성공.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -922,7 +918,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>클라이언트 컴퓨터에서 새 접근 키를 생성할 것인지  공개키를 불러 올 것인지 선택하세요</translation>
+        <translation>클라이언트 컴퓨터에서 새 접근 키를 생성할 것인지  공개키를 불러 올 것인지 선택하세요.</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
@@ -966,7 +962,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation>불러 오려는 공개 키의 저장 위치를 선택하세요</translation>
+        <translation>불러 오려는 공개 키의 저장 위치를 선택하세요.</translation>
     </message>
     <message>
         <source>Summary</source>
@@ -1034,7 +1030,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>접근 키 생성중 에러 발생. 선택된 폴더에 쓰기 권한이 없습니다</translation>
+        <translation>접근 키 생성중 에러 발생. 선택된 폴더에 쓰기 권한이 없습니다.</translation>
     </message>
     <message>
         <source>Public key import</source>
@@ -1042,7 +1038,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>공개 접근 키를 불러오는 중 에러 발생. 소스 키를 읽을 권한이 없거나 대상 화일에 쓰기 권한이 없습니다</translation>
+        <translation>공개 접근 키를 불러오는 중 에러 발생. 소스 키를 읽을 권한이 없거나 대상 화일에 쓰기 권한이 없습니다.</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
@@ -1344,7 +1340,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>검색할 유저로그인 이름을 입력하세요 (와일드카드 허용됨)</translation>
+        <translation>검색할 유저로그인 이름을 입력하세요 (와일드카드 허용됨):</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -1360,7 +1356,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>검색할 그룹 이름을 입력하세요</translation>
+        <translation>검색할 그룹 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>group members</source>
@@ -1392,11 +1388,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음</translation>
+        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다</translation>
+        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -1631,10 +1627,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>컴퓨터교실 속성</translation>
     </message>
     <message>
-        <source>Filter for computer parents</source>
-        <translation>상위 컴퓨터용 필터 </translation>
-    </message>
-    <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
         <translation>예. objectClass=container  또는  objectClass=organizationalUnit</translation>
     </message>
@@ -1647,10 +1639,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>컴퓨터 그룹</translation>
     </message>
     <message>
-        <source>Parent objects of computer objects (e.g. OUs or containers)</source>
-        <translation>컴퓨터 객체의 부모객체 (예. OUs 또는 containers)</translation>
-    </message>
-    <message>
         <source>Computer room attribute in computer objects</source>
         <translation>컴퓨터 객체중의 컴퓨터 교실의 속성</translation>
     </message>
@@ -1659,20 +1647,28 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>테스트를 할수 없음</translation>
     </message>
     <message>
-        <source>Please change the computer room settings to use computer groups or parent objects of computer objects as computer rooms. Then the specified attribute instead of the common name of computer groups or parent objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>부모객체 또는 컴퓨터그룹의 컴퓨터 객체를 컴퓨터 교실로 사용하려면 컴퓨터교실의 설정을 변경하세요. 그러면 컴퓨터 그룹 또는 부모객체의 공통명칭 대신 설정된 속성을 조회합니다. 그렇지 않으면 이 속성을 설정할 필요가 없습니다.</translation>
-    </message>
-    <message>
-        <source>Please change the computer room settings below to use parent objects of computer objects as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>컴퓨터 객체의 부모객체를 컴퓨터 교실로 사용하려면 아래의 컴퓨터 교실 설정을 변경하세요. 그렇지 않으면 이속성을 설절할 필요가 없습니다.</translation>
-    </message>
-    <message>
         <source>Computer room name attribute</source>
         <translation>컴퓨터 교실 이름 속성</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
         <translation>예. 이름 또는 설명</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>컴퓨터 컨테이너 필터</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>컴퓨터 컨테이너 또는 OU</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
+        <translation> 컴퓨터 컨테이너 또는 컴퓨터그룹의 컴퓨터를 컴퓨터 교실로 사용하려면 컴퓨터교실의 설정을 변경하세요. 그러면 컴퓨터 그룹 또는 컨테이너 객체의 공통명칭 대신 설정된 속성을 조회합니다. 그렇지 않으면 이 속성을 설정할 필요가 없습니다.</translation>
+    </message>
+    <message>
+        <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
+        <translation>컴퓨터 객체의 컴퓨터 켄테이너를 컴퓨터 교실로 사용하려면 아래의 컴퓨터 교실 설정을 변경하세요. 그렇지 않으면 이속성을 설정할 필요가 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -1860,7 +1856,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation>아래 버튼을 눌러서 알려진 장소에 화일 저장</translation>
+        <translation>아래 버튼을 눌러서 알려진 장소에 화일 저장.</translation>
     </message>
     <message>
         <source>Generate bug report archive</source>
@@ -1956,7 +1952,7 @@ The public key part is used on the client computers to verify that any incoming 
 If the bug is not reproducible, skip step 1) - 3).</source>
         <translation>Veyon에서 버그 또는 이상한 작동을 발견하면 그버그를 개발자에게 알려서 다음 릴리즈 버전에서 버그를 수정하는 것이 중요합니다.  이 페이지는 유용한 버그 보고서를 쉽게 제출할 수 있도록 도와줍니다
 
-만일 버그를 다시 만들수 없다면 단계 1)-3)을 건너 뛰세요</translation>
+만일 버그를 다시 만들수 없다면 단계 1)-3)을 건너 뛰세요.</translation>
     </message>
     <message>
         <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
@@ -1966,7 +1962,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation> &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon 이슈 추적기 &lt;/a&gt;로 이동 , 새 이슈를 생성, 단계 3)에서 한내용을 기록하고 단계 4)에서 한 화일을 첨부 &lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
-Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 두 컴퓨터의 버그 리포트를 모두 첨부하세요</translation>
+Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 두 컴퓨터의 버그 리포트를 모두 첨부하세요.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2014,7 +2010,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>버그 %1 리포트 모음이 %2에 저장됨. %3 로그 화일과 운영체제에 대한 정보를 포함하고 있습니다. 버그 리포트에 첨부할 수 있습니다</translation>
+        <translation>버그 %1 리포트 모음이 %2에 저장됨. %3 로그 화일과 운영체제에 대한 정보를 포함하고 있습니다. 버그 리포트에 첨부할 수 있습니다.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -2062,7 +2058,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>정말 로컬설정을 초기화하고 기본 설정값으로 되돌릴건가요?</translation>
+        <translation>정말 로컬설정을 초기화하고 기본 설정값으로 되돌리시겠습니까?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -2133,7 +2129,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation>클라이언트 컴퓨터를 선택된 모드로 실행</translation>
+        <translation>클라이언트 컴퓨터를 선택된 모드로 강제로 실행</translation>
     </message>
     <message>
         <source>Only show current room</source>
@@ -2163,6 +2159,14 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <source>Always open at start</source>
         <translation>시작시 항상 오픈</translation>
     </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>리부팅 또는 컴퓨터 파워 끄기</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potential dangerous actions</source>
+        <translation>위험한 작동에 대한 확인 대화 창 보여주기</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2176,7 +2180,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>이 모드는 기본 모드로서 하나 또는 그 이상의 방의 모든 컴퓨터들의 모니터를 가능하게 합니다</translation>
+        <translation>이 모드는 기본 모드로서 하나 또는 그 이상의 방의 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
     </message>
 </context>
 <context>
@@ -2206,7 +2210,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>입력한 사용자이름과 패스워드로 로그온 실패. 다시 시도하세요</translation>
+        <translation>입력한 사용자이름과 패스워드로 로그온 실패. 다시 시도하세요!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
@@ -2243,6 +2247,22 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <source>Power on/down or reboot a computer</source>
         <translation>선택된 컴퓨터 파워 온/오프 또는 재시작</translation>
     </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>리부팅 확인</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>컴퓨터 파워 끄기 확인</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>선택된 컴퓨터를 리부팅하시겠습니까 ?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computer?</source>
+        <translation>선택된 컴퓨터 파워를 끄시겠습니까 ?</translation>
+    </message>
 </context>
 <context>
     <name>QApplication</name>
@@ -2277,7 +2297,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>서비스  &apos;%1&apos;이 등록되지 않음. 따라서 등록해지할 수 없음</translation>
+        <translation>서비스  &apos;%1&apos;이 등록되지 않음. 따라서 등록해지할 수 없습니다.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
@@ -2289,7 +2309,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>서비스 제어 관리자를 접속할 수 없슴(필요한 권한이 있나요?) 서비스 %1은 등록되지 않음</translation>
+        <translation>서비스 제어 관리자를 접속할 수 없슴(필요한 권한이 있나요?) 서비스 %1은 등록되지 않았습니다.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
@@ -2454,12 +2474,12 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <translation>잠금해제</translation>
     </message>
     <message>
-        <source>To have all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>사용자의 주의를 끌기 위해서 이버튼을 사용하여 사용자의 컴퓨터를 잠글수 있습니다. 이 모드에서 모든 입력 장치는 잠기며 화면은 검은색이 됩니다.</translation>
-    </message>
-    <message>
         <source>Lock screen and input devices of a computer</source>
         <translation>컴퓨터의 입력장치와 화면을 잠금</translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
+        <translation>사용자의 주의를 끌기 위해서 이버튼을 사용하여 사용자의 컴퓨터를 잠글수 있습니다. 이 모드에서 모든 입력 장치는 잠기며 화면은 검은색이 됩니다.</translation>
     </message>
 </context>
 <context>
@@ -2470,7 +2490,7 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>폴더 %1이 존재하지  않고 생성할 수 없기 때문에 화면캡쳐 불가.</translation>
+        <translation>폴더 %1이 존재하지  않고 생성할 수 없기 때문에 화면캡쳐는 불가능합니다.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2735,6 +2755,10 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
         <source>Builtin UltraVNC server configuration</source>
         <translation>내장 UltraVNC 서버 설정</translation>
     </message>
+    <message>
+        <source>Enable dual monitor support</source>
+        <translation>듀얼 모니터 기능 활성화</translation>
+    </message>
 </context>
 <context>
     <name>UserConfig</name>
@@ -2760,6 +2784,14 @@ Note: 버그가 마스터와 클라이언트 컴퓨터 모두에 해당하면 �
     <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>클릭하면 사용자를 모든 컴퓨터에서 로그아웃</translation>
+    </message>
+    <message>
+        <source>Confirm user logout</source>
+        <translation>유저 로그아웃 확인</translation>
+    </message>
+    <message>
+        <source>Do you really want to logout the selected users?</source>
+        <translation>선택된 컴퓨터를 로그아웃하시겠습니까 ?</translation>
     </message>
 </context>
 <context>

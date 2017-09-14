@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -107,6 +107,9 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 			 ui->computerMonitoringView, &ComputerMonitoringView::setSearchFilter );
 
 	// initialize monitoring screen size slider
+	ui->gridSizeSlider->setMinimum( ComputerMonitoringView::MinimumComputerScreenSize );
+	ui->gridSizeSlider->setMaximum( ComputerMonitoringView::MaximumComputerScreenSize );
+
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setComputerScreenSize );
 	connect( ui->computerMonitoringView, &ComputerMonitoringView::computerScreenSizeAdjusted,
@@ -115,7 +118,7 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 			 ui->computerMonitoringView, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 
 	int size = ComputerMonitoringView::DefaultComputerScreenSize;
-	if( m_masterCore.userConfig().monitoringScreenSize() >= ui->gridSizeSlider->minimum() )
+	if( m_masterCore.userConfig().monitoringScreenSize() >= ComputerMonitoringView::MinimumComputerScreenSize )
 	{
 		size = m_masterCore.userConfig().monitoringScreenSize();
 	}
@@ -317,7 +320,7 @@ void MainWindow::addFeaturesToToolBar()
 										  feature.displayName(),
 										  feature.displayNameActive(),
 										  feature.description() );
-		connect( btn, &QToolButton::clicked, [=] () {
+		connect( btn, &QToolButton::clicked, this, [=] () {
 			m_masterCore.runFeature( feature, this );
 			updateModeButtonGroup();
 		} );

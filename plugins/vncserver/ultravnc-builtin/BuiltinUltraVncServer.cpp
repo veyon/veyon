@@ -1,7 +1,7 @@
 /*
  * BuiltinUltraVncServer.cpp - implementation of BuiltinUltraVncServer class
  *
- * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -118,6 +118,12 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 	if( strcmp( valname, "PortNumber" ) == 0 )
 	{
 		*out = vncServerInstance->serverPort();
+		return true;
+	}
+
+	if( strcmp( valname, "secondary" ) == 0 )
+	{
+		*out = vncServerInstance->configuration().ultraVncDualMonitorSupportEnabled();
 		return true;
 	}
 
