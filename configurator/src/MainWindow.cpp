@@ -354,6 +354,10 @@ void MainWindow::loadConfigurationPagePlugins()
 			ui->pageSelector->addItem( item );
 		}
 	}
+
+	// adjust minimum size
+	ui->pageSelector->setMinimumSize( ui->pageSelector->sizeHintForColumn(0) + 3 * ui->pageSelector->spacing(),
+									  ui->pageSelector->minimumHeight() );
 }
 
 
