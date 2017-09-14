@@ -509,10 +509,10 @@ void ComputerManager::startComputerControlInterface( Computer& computer, int ind
 			 &m_featureManager, &FeatureManager::handleMasterFeatureMessage );
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::userChanged,
-			 [&] () { updateUser( computer ); } );
+			 this, [&] () { updateUser( computer ); } );
 
 	connect( &computer.controlInterface(), &ComputerControlInterface::activeFeaturesChanged,
-			 [=] () { emit activeFeaturesOfComputerChanged( index ); } );
+			 this, [=] () { emit activeFeaturesOfComputerChanged( index ); } );
 }
 
 
