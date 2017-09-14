@@ -152,7 +152,7 @@ template<class Config>
 inline void connectWidgetToProperty( Config* config, void (Config::*setter)( QUuid ), QComboBox* widget )
 {
 	QObject::connect( widget, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-				[=] () { (config->*setter)( widget->itemData( widget->currentIndex() ).toUuid() ); } );
+				widget, [=] () { (config->*setter)( widget->itemData( widget->currentIndex() ).toUuid() ); } );
 
 }
 
