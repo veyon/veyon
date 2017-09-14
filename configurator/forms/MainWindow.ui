@@ -353,9 +353,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
       <property name="textElideMode">
        <enum>Qt::ElideNone</enum>
       </property>
-      <property name="movement">
-       <enum>QListView::Free</enum>
-      </property>
       <property name="spacing">
        <number>4</number>
       </property>
