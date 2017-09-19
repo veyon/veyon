@@ -67,8 +67,10 @@ public:
 			return entries;
 		}
 
+		const auto escapedFilter = QString( filter ).replace( QStringLiteral("\\"), QStringLiteral("\\\\") );
+
 		int result = -1;
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, escapedFilter, QStringList( attribute ) );
 
 		if( id != -1 )
 		{
@@ -139,8 +141,10 @@ public:
 			return distinguishedNames;
 		}
 
+		const auto escapedFilter = QString( filter ).replace( QStringLiteral("\\"), QStringLiteral("\\\\") );
+
 		int result = -1;
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, escapedFilter, QStringList() );
 
 		if( id != -1 )
 		{
