@@ -30,6 +30,16 @@
 QMutex InputDeviceBlocker::s_refCntMutex;
 int InputDeviceBlocker::s_refCnt = 0;
 
+#ifdef VEYON_BUILD_WIN32
+int interception_is_any(InterceptionDevice device)
+{
+	Q_UNUSED(device)
+
+	return true;
+}
+#endif
+
+
 
 InputDeviceBlocker::InputDeviceBlocker( bool enabled ) :
 	m_enabled( false )
@@ -88,8 +98,8 @@ void InputDeviceBlocker::enableInterception()
 	m_interceptionContext = interception_create_context();
 
 	interception_set_filter( m_interceptionContext,
-								interception_is_keyboard,
-								INTERCEPTION_FILTER_KEY_ALL );
+								interception_is_any,
+								INTERCEPTION_FILTER_KEY_ALL | INTERCEPTION_FILTER_MOUSE_ALL );
 #endif
 }
 
