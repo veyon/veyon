@@ -41,6 +41,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>About %1 %2</source>
         <translation>Über %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Veyon-Projekt mit einer Spende unterstützen</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1769,6 +1773,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>New computer</source>
         <translation>Neuer Computer</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Räume &amp; Computer</translation>
     </message>
 </context>
 <context>
