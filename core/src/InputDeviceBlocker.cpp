@@ -24,6 +24,10 @@
 
 #include "InputDeviceBlocker.h"
 
+#ifdef VEYON_BUILD_LINUX
+#include <X11/XKBlib.h>
+#endif
+
 #include <QProcess>
 
 
@@ -42,7 +46,12 @@ int interception_is_any(InterceptionDevice device)
 
 
 InputDeviceBlocker::InputDeviceBlocker( bool enabled ) :
-	m_enabled( false )
+	m_enabled( false ),
+	m_origKeyTable( nullptr ),
+	m_keyCodeMin( 0 ),
+	m_keyCodeMax( 0 ),
+	m_keyCodeCount( 0 ),
+	m_keySymsPerKeyCode( 0 )
 {
 	setEnabled( enabled );
 }
@@ -73,7 +82,6 @@ void InputDeviceBlocker::setEnabled( bool on )
 		if( s_refCnt == 0 )
 		{
 			enableInterception();
-			saveKeyMapTable();
 			setEmptyKeyMapTable();
 		}
 		++s_refCnt;
@@ -114,53 +122,34 @@ void InputDeviceBlocker::disableInterception()
 
 
 
-void InputDeviceBlocker::saveKeyMapTable()
-{
-#ifdef VEYON_BUILD_LINUX
-	// read original keymap
-	QProcess p;
-	p.start( QStringLiteral( "xmodmap" ), { QStringLiteral( "-pke" ) } );	// print keymap
-	if( p.waitForStarted( XmodmapMaxStartTime ) )
-	{
-		p.waitForFinished();
-		m_origKeyTable = p.readAll();
-	}
-	else
-	{
-		xmodmapError();
-	}
-#endif
-}
-
-
-
 void InputDeviceBlocker::setEmptyKeyMapTable()
 {
 #ifdef VEYON_BUILD_LINUX
-	// create empty key map table
-	QStringList emptyKeyMapTable;
-	const int keyCodeStart = 8;
-	const int keyCodeEnd = 256;
-	emptyKeyMapTable.reserve( keyCodeStart - keyCodeEnd );
-
-	for( auto i = keyCodeStart; i < keyCodeEnd; ++i )
+	if( m_origKeyTable )
 	{
-		emptyKeyMapTable += QString( QStringLiteral( "keycode %1 =" ) ).arg( i );
+		XFree( m_origKeyTable );
 	}
 
-	// start new xmodmap process and dump our empty keytable from stdin
-	QProcess p;
-	p.start( QStringLiteral( "xmodmap" ), { QStringLiteral( "-" ) } );
-	if( p.waitForStarted( XmodmapMaxStartTime ) )
+	Display* display = XOpenDisplay( nullptr );
+	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
+	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
+
+	m_origKeyTable = XGetKeyboardMapping( display, m_keyCodeMin,
+										  m_keyCodeCount, &m_keySymsPerKeyCode );
+
+	KeySym* newKeyTable = XGetKeyboardMapping( display, m_keyCodeMin,
+											   m_keyCodeCount, &m_keySymsPerKeyCode );
+
+	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
 	{
-		p.write( emptyKeyMapTable.join( '\n' ).toUtf8() );
-		p.closeWriteChannel();
-		p.waitForFinished();
+		newKeyTable[i] = 0;
 	}
-	else
-	{
-		xmodmapError();
-	}
+
+	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
+							newKeyTable, m_keyCodeCount );
+	XFlush( display );
+	XFree( newKeyTable );
+	XCloseDisplay( display );
 #endif
 }
 
@@ -169,25 +158,15 @@ void InputDeviceBlocker::setEmptyKeyMapTable()
 void InputDeviceBlocker::restoreKeyMapTable()
 {
 #ifdef VEYON_BUILD_LINUX
-	// start xmodmap process and dump our original keytable from stdin
-	QProcess p;
-	p.start( QStringLiteral( "xmodmap" ), { QStringLiteral( "-" ) } );
-	if( p.waitForStarted( XmodmapMaxStartTime ) )
-	{
-		p.write( m_origKeyTable );
-		p.closeWriteChannel();
-		p.waitForFinished();
-	}
-	else
-	{
-		xmodmapError();
-	}
+	Display* display = XOpenDisplay( nullptr );
+
+	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
+							static_cast<KeySym *>( m_origKeyTable ), m_keyCodeCount );
+
+	XFlush( display );
+	XCloseDisplay( display );
+
+	XFree( m_origKeyTable );
+	m_origKeyTable = nullptr;
 #endif
-}
-
-
-
-void InputDeviceBlocker::xmodmapError()
-{
-	qCritical( "InputDeviceBlocker: could not start xmodmap - do you have x11-xserver-utils, xmodmap or xorg-xmodmap installed?" );
 }

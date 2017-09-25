@@ -50,23 +50,21 @@ public:
 
 
 private:
-	enum {
-		XmodmapMaxStartTime = 5000
-	};
-
 	void enableInterception();
 	void disableInterception();
-	void saveKeyMapTable();
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
-	void xmodmapError();
 
 	static QMutex s_refCntMutex;
 	static int s_refCnt;
 
 	bool m_enabled;
 #ifdef VEYON_BUILD_LINUX
-	QByteArray m_origKeyTable;
+	void* m_origKeyTable;
+	int m_keyCodeMin;
+	int m_keyCodeMax;
+	int m_keyCodeCount;
+	int m_keySymsPerKeyCode;
 #endif
 #ifdef VEYON_BUILD_WIN32
 	InterceptionContext m_interceptionContext;
