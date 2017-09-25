@@ -88,7 +88,7 @@ bool DesktopServicesFeaturePlugin::startMasterFeature( const Feature& feature,
 		QUrl url( urlAddress, QUrl::TolerantMode );
 		if( url.scheme().isEmpty() )
 		{
-			url = QUrl( "http://" + urlAddress, QUrl::TolerantMode );
+			url = QUrl( QStringLiteral("http://") + urlAddress, QUrl::TolerantMode );
 		}
 
 		if( urlAddress.isEmpty() == false && url.isValid() )
