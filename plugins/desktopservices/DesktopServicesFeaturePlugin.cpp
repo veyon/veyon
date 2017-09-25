@@ -196,7 +196,7 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 #ifdef VEYON_BUILD_LINUX
 		launcher = QStringLiteral("xdg-open ");
 #elif defined(VEYON_BUILD_WIN32)
-		launcher = QStringLiteral("cmd /c start ");
+		launcher = QStringLiteral("explorer ");
 #else
 #warning unsupported platform
 #endif
