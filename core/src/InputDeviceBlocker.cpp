@@ -46,12 +46,14 @@ int interception_is_any(InterceptionDevice device)
 
 
 InputDeviceBlocker::InputDeviceBlocker( bool enabled ) :
-	m_enabled( false ),
-	m_origKeyTable( nullptr ),
+	m_enabled( false )
+#ifdef VEYON_BUILD_LINUX
+	, m_origKeyTable( nullptr ),
 	m_keyCodeMin( 0 ),
 	m_keyCodeMax( 0 ),
 	m_keyCodeCount( 0 ),
 	m_keySymsPerKeyCode( 0 )
+#endif
 {
 	setEnabled( enabled );
 }
