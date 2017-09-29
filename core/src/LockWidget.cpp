@@ -75,6 +75,7 @@ LockWidget::LockWidget( Mode mode, QWidget* parent ) :
 	grabMouse();
 	grabKeyboard();
 	setCursor( Qt::BlankCursor );
+	QGuiApplication::setOverrideCursor( Qt::BlankCursor );
 
 #ifdef VEYON_BUILD_WIN32
 	// disable screensaver
@@ -98,6 +99,8 @@ LockWidget::~LockWidget()
 		SystemParametersInfo( __ss_set_list[x], __ss_val[x], NULL, 0 );
 	}
 #endif
+
+	QGuiApplication::restoreOverrideCursor();
 }
 
 
