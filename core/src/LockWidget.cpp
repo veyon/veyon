@@ -77,6 +77,8 @@ LockWidget::LockWidget( Mode mode, QWidget* parent ) :
 	setCursor( Qt::BlankCursor );
 	QGuiApplication::setOverrideCursor( Qt::BlankCursor );
 
+	QCursor::setPos( mapToGlobal( QPoint( 0, 0 ) ) );
+
 #ifdef VEYON_BUILD_WIN32
 	// disable screensaver
 	for( int x = 0; x < 3; ++x )
