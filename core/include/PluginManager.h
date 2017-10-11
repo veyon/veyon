@@ -59,10 +59,15 @@ public:
 
 	QString pluginName( Plugin::Uid pluginUid ) const;
 
+public slots:
+	void loadPlugins();
 
 private:
 	PluginInterfaceList m_pluginInterfaces;
 	QObjectList m_pluginObjects;
+
+signals:
+	void pluginsLoaded();
 
 };
 
