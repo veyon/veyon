@@ -22,7 +22,6 @@
  *
  */
 
-#include <QDebug>
 #include <QInputDialog>
 #include <QMessageBox>
 
