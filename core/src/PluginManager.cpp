@@ -57,7 +57,7 @@ PluginUidList PluginManager::pluginUids() const
 
 	pluginUidList.reserve( m_pluginInterfaces.size() );
 
-	for( auto pluginInterface : m_pluginInterfaces )
+	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
 	{
 		pluginUidList += pluginInterface->uid();
 	}
