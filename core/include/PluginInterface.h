@@ -45,6 +45,10 @@ public:
 	{
 		return Plugin::NoFlags;
 	}
+	virtual void upgrade( const QString& oldVersion )
+	{
+		Q_UNUSED(oldVersion)
+	}
 
 };
 
