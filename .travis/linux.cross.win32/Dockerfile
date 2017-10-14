@@ -1,10 +1,10 @@
-FROM ubuntu:xenial
+FROM ubuntu:artful
 MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	apt-get update && \
 	apt-get install -y software-properties-common && \
-	add-apt-repository -y "deb http://ppa.launchpad.net/tobydox/mingw-w64/ubuntu xenial main" && \
+	add-apt-repository -y "deb http://ppa.launchpad.net/tobydox/mingw-w64/ubuntu artful main" && \
 	apt-get update && \
 	apt-get install --no-install-recommends -y --force-yes \
 		git \
