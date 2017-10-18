@@ -6,7 +6,7 @@ RUN \
 	apt-get install --no-install-recommends -y software-properties-common && \
 	add-apt-repository -y "ppa:tobydox/mingw-w64" && \
 	apt-get update && \
-	apt-get install --no-install-recommends -y --force-yes \
+	apt-get install --no-install-recommends -y \
 		git \
 		cmake \
 		make \
