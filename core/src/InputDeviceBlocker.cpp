@@ -46,7 +46,9 @@ int interception_is_any(InterceptionDevice device)
 
 
 InputDeviceBlocker::InputDeviceBlocker( bool enabled ) :
-	m_enabled( false )
+	m_enabled( false ),
+	m_hidService( "hidserv" ),
+	m_hidServiceActivated( m_hidService.isRunning() )
 #ifdef VEYON_BUILD_LINUX
 	, m_origKeyTable( nullptr ),
 	m_keyCodeMin( 0 ),
@@ -84,6 +86,7 @@ void InputDeviceBlocker::setEnabled( bool on )
 		if( s_refCnt == 0 )
 		{
 			enableInterception();
+			stopHIDService();
 			setEmptyKeyMapTable();
 		}
 		++s_refCnt;
@@ -94,6 +97,7 @@ void InputDeviceBlocker::setEnabled( bool on )
 		if( s_refCnt == 0 )
 		{
 			disableInterception();
+			restoreHIDService();
 			restoreKeyMapTable();
 		}
 	}
@@ -120,6 +124,25 @@ void InputDeviceBlocker::disableInterception()
 #ifdef VEYON_BUILD_WIN32
 	interception_destroy_context( m_interceptionContext );
 #endif
+}
+
+
+void InputDeviceBlocker::restoreHIDService()
+{
+	if( m_hidServiceActivated )
+	{
+		m_hidService.start();
+	}
+}
+
+
+
+void InputDeviceBlocker::stopHIDService()
+{
+	if( m_hidServiceActivated )
+	{
+		m_hidService.stop();
+	}
 }
 
 
