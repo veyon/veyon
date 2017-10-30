@@ -725,9 +725,9 @@ bool VncClientProtocol::handleRectEncodingZlib( QBuffer& buffer )
 		return false;
 	}
 
-	hdr.nBytes = qFromBigEndian( hdr.nBytes );
+	const auto n = qFromBigEndian( hdr.nBytes );
 
-	return buffer.read( hdr.nBytes ).size() == static_cast<int64_t>( hdr.nBytes );
+	return buffer.read( n ).size() == static_cast<int64_t>( n );
 }
 
 
@@ -741,9 +741,9 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 		return false;
 	}
 
-	hdr.length = qFromBigEndian( hdr.length );
+	const auto n = qFromBigEndian( hdr.length );
 
-	return buffer.read( hdr.length ).size() == static_cast<int64_t>( hdr.length );
+	return buffer.read( n ).size() == static_cast<int64_t>( n );
 }
 
 
