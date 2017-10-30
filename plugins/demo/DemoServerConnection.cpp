@@ -45,7 +45,8 @@ DemoServerConnection::DemoServerConnection( const QString& demoAccessToken,
 									 std::pair<int, int>( rfbPointerEvent, sz_rfbPointerEventMsg ),
 									 } ),
 	m_keyFrame( -1 ),
-	m_framebufferUpdateMessageIndex( 0 )
+	m_framebufferUpdateMessageIndex( 0 ),
+	m_framebufferUpdateInterval( m_demoServer->configuration().framebufferUpdateInterval() )
 {
 	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerConnection::processClient );
 	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerConnection::deleteLater );
@@ -167,7 +168,6 @@ void DemoServerConnection::sendFramebufferUpdate()
 	if( sentUpdates == false )
 	{
 		// did not send updates but client still waiting for update? then try again soon
-		QTimer::singleShot( m_demoServer->configuration().framebufferUpdateInterval(),
-							this, &DemoServerConnection::sendFramebufferUpdate );
+		QTimer::singleShot( m_framebufferUpdateInterval, this, &DemoServerConnection::sendFramebufferUpdate );
 	}
 }
