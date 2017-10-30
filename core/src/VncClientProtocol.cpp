@@ -433,7 +433,9 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 			return false;
 		}
 
-		if( isPseudoEncoding( rectHeader ) == false )
+		if( isPseudoEncoding( rectHeader ) == false &&
+			rectHeader.r.x+rectHeader.r.w <= m_framebufferWidth &&
+			rectHeader.r.y+rectHeader.r.h <= m_framebufferHeight )
 		{
 			updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
 		}
