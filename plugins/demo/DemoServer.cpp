@@ -231,7 +231,12 @@ void DemoServer::start()
 	setVncServerEncodings();
 
 	m_requestFullFramebufferUpdate = true;
-	m_lastFullFramebufferUpdate.restart();
+
+	requestFramebufferUpdate();
+
+	while( receiveVncServerMessage() )
+	{
+	}
 
 	acceptPendingConnections();
 }
