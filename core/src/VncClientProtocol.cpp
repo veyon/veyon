@@ -733,3 +733,23 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 
 	return buffer.read( hdr.length ).size() == static_cast<int64_t>( hdr.length );
 }
+
+
+
+bool VncClientProtocol::isPseudoEncoding( const rfbFramebufferUpdateRectHeader& header )
+{
+	switch( header.encoding )
+	{
+	case rfbEncodingSupportedEncodings:
+	case rfbEncodingSupportedMessages:
+	case rfbEncodingServerIdentity:
+	case rfbEncodingPointerPos:
+	case rfbEncodingKeyboardLedState:
+	case rfbEncodingNewFBSize:
+		return true;
+	default:
+		break;
+	}
+
+	return false;
+}

@@ -118,6 +118,8 @@ private:
 	bool handleRectEncodingZlib( QBuffer& buffer );
 	bool handleRectEncodingZRLE( QBuffer& buffer );
 
+	static bool isPseudoEncoding( const rfbFramebufferUpdateRectHeader& header );
+
 	QTcpSocket* m_socket;
 	State m_state;
 
