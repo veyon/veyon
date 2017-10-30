@@ -102,7 +102,11 @@ bool DemoServerConnection::receiveClientMessage()
 			rfbSetEncodingsMsg setEncodingsMessage;
 			if( m_socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
 			{
-				m_socket->read( sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t) );
+				const qint64 totalSize = sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t);
+				if( m_socket->bytesAvailable() >= totalSize )
+				{
+					return m_socket->read( totalSize ).size() == totalSize;
+				}
 			}
 		}
 		break;
