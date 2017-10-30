@@ -58,6 +58,8 @@ FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager, QObj
 
 FeatureWorkerManager::~FeatureWorkerManager()
 {
+	qDebug(Q_FUNC_INFO);
+
 	m_tcpServer.close();
 
 	// properly shutdown all worker processes
@@ -65,6 +67,8 @@ FeatureWorkerManager::~FeatureWorkerManager()
 	{
 		stopWorker( m_workers.firstKey() );
 	}
+
+	qDebug() << Q_FUNC_INFO << "finished";
 }
 
 
