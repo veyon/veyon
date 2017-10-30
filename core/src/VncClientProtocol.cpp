@@ -513,9 +513,16 @@ bool VncClientProtocol::readMessage( qint64 size )
 		return false;
 	}
 
-	m_lastMessage = m_socket->read( size );
+	auto message = m_socket->read( size );
+	if( message.size() == size )
+	{
+		m_lastMessage = message;
+		return true;
+	}
 
-	return m_lastMessage.size() == size;
+	qWarning( "VncClientProtocol::readMessage(): only received %d of %d bytes", (int) message.size(), (int) size );
+
+	return false;
 }
 
 
