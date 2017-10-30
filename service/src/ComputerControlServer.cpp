@@ -22,12 +22,6 @@
  *
  */
 
-#include "VeyonCore.h"
-
-#ifdef VEYON_BUILD_WIN32
-#include <windows.h>
-#endif
-
 #include <QCoreApplication>
 #include <QHostInfo>
 
