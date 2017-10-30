@@ -34,6 +34,8 @@
 #include <QByteArray>
 #include <QMutex>
 
+#include "SystemService.h"
+
 // clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT InputDeviceBlocker
@@ -52,6 +54,8 @@ public:
 private:
 	void enableInterception();
 	void disableInterception();
+	void stopHIDService();
+	void restoreHIDService();
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
 
@@ -59,6 +63,8 @@ private:
 	static int s_refCnt;
 
 	bool m_enabled;
+	SystemService m_hidService;
+	bool m_hidServiceActivated;
 #ifdef VEYON_BUILD_LINUX
 	void* m_origKeyTable;
 	int m_keyCodeMin;

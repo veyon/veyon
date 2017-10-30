@@ -132,12 +132,14 @@ int main( int argc, char **argv )
 	app.installNativeEventFilter( &eventFilter );
 #endif
 
-	ComputerControlServer computerControlServer;
-	computerControlServer.start();
+	auto server = new ComputerControlServer;
+	server->start();
 
 	qInfo( "Exec" );
 
 	int ret = app.exec();
+
+	delete server;
 
 	qInfo( "Exec Done" );
 

@@ -234,6 +234,26 @@ void ComputerMonitoringView::showEvent( QShowEvent* event )
 
 
 
+void ComputerMonitoringView::wheelEvent( QWheelEvent* event )
+{
+	if( event->modifiers().testFlag( Qt::ControlModifier ) )
+	{
+		setComputerScreenSize( qBound<int>( MinimumComputerScreenSize,
+											ui->listView->iconSize().width() + event->angleDelta().y() / 8,
+											MaximumComputerScreenSize ) );
+
+		emit computerScreenSizeAdjusted( m_masterCore->userConfig().monitoringScreenSize() );
+
+		event->accept();
+	}
+	else
+	{
+		QWidget::wheelEvent( event );
+	}
+}
+
+
+
 FeatureUidList ComputerMonitoringView::activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	FeatureUidList featureUidList;

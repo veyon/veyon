@@ -433,7 +433,12 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 			return false;
 		}
 
-		updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
+		if( isPseudoEncoding( rectHeader ) == false &&
+			rectHeader.r.x+rectHeader.r.w <= m_framebufferWidth &&
+			rectHeader.r.y+rectHeader.r.h <= m_framebufferHeight )
+		{
+			updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
+		}
 	}
 
 	m_lastUpdatedRect = updatedRegion.boundingRect();
@@ -508,14 +513,21 @@ bool VncClientProtocol::readMessage( qint64 size )
 		return false;
 	}
 
-	m_lastMessage = m_socket->read( size );
+	auto message = m_socket->read( size );
+	if( message.size() == size )
+	{
+		m_lastMessage = message;
+		return true;
+	}
 
-	return m_lastMessage.size() == size;
+	qWarning( "VncClientProtocol::readMessage(): only received %d of %d bytes", (int) message.size(), (int) size );
+
+	return false;
 }
 
 
 
-bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader )
+bool VncClientProtocol::handleRect( QBuffer& buffer, const rfbFramebufferUpdateRectHeader& rectHeader )
 {
 	const int width = rectHeader.r.w;
 	const int height = rectHeader.r.h;
@@ -623,7 +635,7 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPi
 
 
 bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
-													rfbFramebufferUpdateRectHeader rectHeader,
+													const rfbFramebufferUpdateRectHeader rectHeader,
 													int bytesPerPixel )
 {
 	const int rx = rectHeader.r.x;
@@ -713,9 +725,9 @@ bool VncClientProtocol::handleRectEncodingZlib( QBuffer& buffer )
 		return false;
 	}
 
-	hdr.nBytes = qFromBigEndian( hdr.nBytes );
+	const auto n = qFromBigEndian( hdr.nBytes );
 
-	return buffer.read( hdr.nBytes ).size() == static_cast<int64_t>( hdr.nBytes );
+	return buffer.read( n ).size() == static_cast<int64_t>( n );
 }
 
 
@@ -729,7 +741,27 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 		return false;
 	}
 
-	hdr.length = qFromBigEndian( hdr.length );
+	const auto n = qFromBigEndian( hdr.length );
 
-	return buffer.read( hdr.length ).size() == static_cast<int64_t>( hdr.length );
+	return buffer.read( n ).size() == static_cast<int64_t>( n );
+}
+
+
+
+bool VncClientProtocol::isPseudoEncoding( const rfbFramebufferUpdateRectHeader& header )
+{
+	switch( header.encoding )
+	{
+	case rfbEncodingSupportedEncodings:
+	case rfbEncodingSupportedMessages:
+	case rfbEncodingServerIdentity:
+	case rfbEncodingPointerPos:
+	case rfbEncodingKeyboardLedState:
+	case rfbEncodingNewFBSize:
+		return true;
+	default:
+		break;
+	}
+
+	return false;
 }
