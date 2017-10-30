@@ -41,6 +41,10 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <source>About %1 %2</source>
         <translation>Sobre %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Apoie o projeto Veyon com uma doação</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -58,7 +62,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation>Restringir acesso para membros de certos grupos de usuário</translation>
+        <translation>Restringir acesso para membros de determinados grupos</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -114,7 +118,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Missing access control data backend</source>
-        <translation>Faltando o backend de dados de controle de acesso</translation>
+        <translation>Falta o backend de dados de controle de acesso</translation>
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
@@ -622,14 +626,14 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>Demonstração %1</translation>
+        <translation>Exibição %1</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Servidor de demonstração</translation>
+        <translation>Servidor de exibição</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -668,27 +672,27 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Demonstrar em tela cheia</translation>
+        <translation>Exibir em tela cheia</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Parar demonstração</translation>
+        <translation>Parar exibição</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Demonstrar em uma janela</translation>
+        <translation> Exibir em janela</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Dar uma demonstração por transmissão de tela</translation>
+        <translation>Exibir por transmissão de tela</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Servidor de demonstração</translation>
+        <translation>Servidor de exibição</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>Neste modo a sua tela está sendo exibida em modo tela cheia em todos os computadores enquanto os dispositivos de input dos usuários estão travados.</translation>
+        <translation>Neste modo a sua tela está sendo exibida em modo tela cheia em todos os computadores enquanto os dispositivos de entrada dos usuários estão travados.</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1053,7 +1057,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>Esse assistente lhe acompanhara na criação/importação de chaves de acesso Veyon</translation>
+        <translation>Esse assistente lhe acompanhará na criação/importação de chaves de acesso Veyon</translation>
     </message>
     <message>
         <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
@@ -1428,7 +1432,7 @@ A parte pública da chave é usada nos computadores cliente para verificar que q
     </message>
     <message>
         <source>computer groups</source>
-        <translation>Grupos de computadores</translation>
+        <translation>grupos de computadores</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -1769,6 +1773,10 @@ A parte pública da chave é usada nos computadores cliente para verificar que q
     <message>
         <source>New computer</source>
         <translation>Novo computador</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Salas &amp; computadores</translation>
     </message>
 </context>
 <context>
@@ -2280,7 +2288,7 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>O serviço &apos;%1&apos; não pôde se registrado.</translation>
+        <translation>O serviço &apos;%1&apos; não pôde ser registrado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; was successfully registered.</source>
@@ -2300,7 +2308,7 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>O serviço &apos;%1&apos; não pôde ser registrado.</translation>
+        <translation>O serviço &apos;%1&apos; não pôde ser cancelado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
@@ -2327,11 +2335,11 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>Visão remota</translation>
+        <translation>Exibir tela</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>Abra uma visão remota para um computador sem interação.</translation>
+        <translation>Exibe a tela de um computador sem interação.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -2347,7 +2355,7 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Visão remota ou controlar um computador</translation>
+        <translation>Exibir tela ou controlar um computador</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -2466,19 +2474,19 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Travar</translation>
+        <translation>Bloquear computador</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Destravar</translation>
+        <translation>Desbloquear computador</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation>Travar a tela e dispositivos de input de um computador</translation>
+        <translation>Bloquear a tela e dispositivos de entrada de um computador</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>Para chamar a atenção total de todos os usuários você pode travar os seus computadores usando este botão. Nesse modo todos os dispositivos de input são travados e as telas são desligadas.</translation>
+        <translation>Com esse botão, você pode bloquear os computadores de todos os usuários para chamar a atenção deles. Nesse modo todos os dispositivos de entrada são travados e as telas são desligadas.</translation>
     </message>
 </context>
 <context>
@@ -2594,7 +2602,7 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>Demonstrar porta do servidor</translation>
+        <translation>Exibir porta do servidor</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -2767,7 +2775,7 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Falha para salvar suas configurações pessoais! Por favor cheque o arquivo de configuração  usando o configurador de %1. </translation>
+        <translation>Não foi possível salvar suas configurações pessoais! Por favor verifique o arquivo de configuração usando o configurador %1. </translation>
     </message>
 </context>
 <context>
@@ -2813,7 +2821,7 @@ Observação: se o bug envolve um computador mestre e cliente, anexe arquivos de
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Argumentos invalidos</translation>
+        <translation>Argumentos inválidos</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>

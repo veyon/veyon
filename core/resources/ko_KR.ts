@@ -41,6 +41,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>About %1 %2</source>
         <translation>%1 %2 에 대하여</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Veyon 프로그램에 기부하여 지원하기</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1769,6 +1773,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>New computer</source>
         <translation>새 컴퓨터</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>컴퓨터 룸과 컴퓨터</translation>
     </message>
 </context>
 <context>

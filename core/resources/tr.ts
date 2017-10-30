@@ -27,32 +27,38 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Web Sitesi:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli dilde henüz bir çeviri yapılmamış (veya anadili İngilizce) .
+
+Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya var olan bir çeviriyi geliştirmek istiyorsanız, lütfen bir Veyon geliştiricisine başvurun!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation> %1 %2 Hakkında</translation>
+    </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Bağış ile Veyon projesini destekle</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarlara erişim denetimi</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirilmiş her kullanıcıya erişim ver (öntamılı)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Sına</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
@@ -60,7 +66,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>İşlem erişim denetim kuralları</translation>
     </message>
     <message>
         <source>Data backend:</source>
@@ -88,15 +94,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Erişim denetim kuralları</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Erişim denetim kuralı ekle</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Erişim denetim kuralını sil</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
@@ -124,7 +130,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Sınamak için izinlere erişecek bir kullanıcı giriş adı girin:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -179,7 +185,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>kümenin üyesidir</translation>
     </message>
     <message>
         <source>is located in room</source>
@@ -191,11 +197,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>Erişilen kullanıcı oturumu açmış</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>Erişilen kullanıcı zaten bağlı</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -215,19 +221,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Giriş yapan kullanıcıdan izin al</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Yok (kural devre dışı)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcıya erişim</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayara erişim</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -239,7 +245,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Her zaman kuralı işle ve koşulları yok say</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -258,11 +264,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Erişim denetim kuralları</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcıya erişim:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -270,7 +276,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayara erişim:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -302,7 +308,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Sınama sonuçları</translation>
     </message>
 </context>
 <context>
@@ -313,11 +319,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"/>
+        <translation>Oturum açma yetkilendirmesi</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosya yetkilendirmesi</translation>
     </message>
     <message>
         <source>Access key management</source>
@@ -325,11 +331,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Genel anahtar dizin yolu</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Özel anahtar dizin yolu</translation>
     </message>
     <message>
         <source>...</source>
@@ -337,15 +343,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosya oluşturma asistanı çalıştır</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Sına</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Oturum açma kimlik doğrulaması testi</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
@@ -409,7 +415,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar çevrim dışı veya kapalı</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
@@ -460,7 +466,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ara</translation>
     </message>
 </context>
 <context>
@@ -494,7 +500,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Lütfen içe aktarmak için varolan yapılandırma dosyasını belirtin.</translation>
+        <translation>Lütfen içe aktarmak için var olan yapılandırma dosyasını belirtin.</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
@@ -627,15 +633,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Tanıtım sunucusu</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>Ayarlanabilir</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -643,30 +649,30 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>Bellek sınırı</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Çoklu iş parçacığı kullanımı (deneysel)</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>Güncelleme aralığı</translation>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation>s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Tam ekran kipinde gösterim</translation>
+        <translation>Tam ekran kipinde tanıtım</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -678,7 +684,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>Ekran yayını ile bir tanıtım gerçekleştir</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -686,18 +692,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Bu kipte, kullanıcıların giriş aygıtları kilitlenirken ekranınız tüm bilgisayarlarda tam ekran kipinde görüntülenir.</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Bu kipte, ekranınız tüm bilgisayarlarda bir pencerede görüntülenir. Kullanıcılar, gerektiğinde diğer pencerelere geçiş yapabilirler.</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation type="unfinished"/>
+        <translation>Masaüstü erişim iletişim penceresi</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
@@ -720,15 +726,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>Program çalıştır</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Web sitesi aç</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıkla.</translation>
+        <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -740,7 +746,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>Tüm bilgisayarlarda bir program çalıştırmak için bu düğmeye tıkla.</translation>
+        <translation>Tüm bilgisayarlarda bir program çalıştırmak için bu düğmeye tıklayın.</translation>
     </message>
 </context>
 <context>
@@ -769,7 +775,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation type="unfinished"/>
+        <translation>Özellik denetimi</translation>
     </message>
 </context>
 <context>
@@ -915,7 +921,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation type="unfinished"/>
+        <translation>Bir istemci üzerinde yeni erişim anahtarı oluşturmayı ya da genel anahtarın içe aktarmayı seçin.</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
@@ -931,7 +937,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation type="unfinished"/>
+        <translation>Oluşturulacak veya içe aktarılacak erişim anahtarları için bir kullanıcı rolü seçin:</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -939,7 +945,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı rolleri, paralel olarak birden çok erişim anahtarı kullanmaya izin verir. Örneğin, her sınıf için farklı öğretmen erişim anahtarı olabilir, destek erişim anahtarları tüm okul için aynıdır.</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -959,7 +965,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen,  genel erişim anahtarının konumunu belirtin.</translation>
     </message>
     <message>
         <source>Summary</source>
@@ -991,7 +997,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>• Configure for user role</source>
-        <translation type="unfinished"/>
+        <translation>• Kullanıcı rolü için yapılandırma</translation>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
@@ -1031,7 +1037,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Public key import</source>
-        <translation type="unfinished"/>
+        <translation>Genel erişim anahtarını içe aktar</translation>
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
@@ -1039,7 +1045,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation>Genel anahtar başarıyla %1&apos;ye yazıldı.</translation>
+        <translation>Genel anahtar başarıyla %1 içine aktarıldı.</translation>
     </message>
     <message>
         <source>Veyon Access Key Assistant</source>
@@ -1106,7 +1112,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Sına</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1134,15 +1140,15 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Object trees</source>
-        <translation type="unfinished"/>
+        <translation>Nesne ağaçları</translation>
     </message>
     <message>
         <source>Computer tree</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ağacı</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation type="unfinished"/>
+        <translation>örn. OU=Gruplar</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -1150,11 +1156,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation type="unfinished"/>
+        <translation>örn. OU=Kullanıcılar</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation type="unfinished"/>
+        <translation>örn. OU=Bilgisayarlar</translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -1166,7 +1172,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Object attributes</source>
-        <translation type="unfinished"/>
+        <translation>Nesne öznitelikleri</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -1226,15 +1232,15 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Filter for users</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcılar için süzme</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar grupları için süzme</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation type="unfinished"/>
+        <translation>Küme üyeliği kimliği</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
@@ -1430,7 +1436,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>groups of user</source>
-        <translation type="unfinished"/>
+        <translation>kullanıcı kümeleri</translation>
     </message>
     <message>
         <source>user login attribute or group membership attribute</source>
@@ -1442,7 +1448,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation>&quot;%1&quot; adlı bir kullanıcı bulunamadı.. Lütfen kullanıcı adını veya kullanıcı ağacı parametresini gözden geçirin.</translation>
+        <translation>&quot;%1&quot; adlı bir kullanıcı bulunamadı. Lütfen kullanıcı adını veya kullanıcı ağacı parametresini gözden geçirin.</translation>
     </message>
     <message>
         <source>Enter host name</source>
@@ -1454,7 +1460,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar kümeleri</translation>
     </message>
     <message>
         <source>computer host name attribute or group membership attribute</source>
@@ -1466,7 +1472,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation>&quot;%1&quot; ana makine adlı bir bilgisayar bulunamadı.. Lütfen ana makine adını veya bilgisayar ağacı parametresini gözden geçirin.</translation>
+        <translation>&quot;%1&quot; ana makine adlı bir bilgisayar bulunamadı. Lütfen ana makine adını veya bilgisayar ağacı parametresini gözden geçirin.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -1478,11 +1484,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Host name lookup failed</source>
-        <translation>Ana makine adı arama başarısız</translation>
+        <translation>Ana makine adı bulma başarısız</translation>
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>%1 IP adresi için ana makine adı bulunamıyor. Lütfen DNS sunucusu ayarlarınızı gözden geçirin.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -1568,7 +1574,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>List all members of a computer room</source>
-        <translation type="unfinished"/>
+        <translation>Bir bilgisayar odasının tüm üyelerini listele</translation>
     </message>
     <message>
         <source>List all computer rooms</source>
@@ -1608,11 +1614,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>Tümleştirme sınamaları</translation>
     </message>
     <message>
         <source>Computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar odası öznitelikleri</translation>
     </message>
     <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
@@ -1624,7 +1630,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar kümeleri</translation>
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
@@ -1632,15 +1638,15 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Test not applicable</source>
-        <translation type="unfinished"/>
+        <translation>Sınama uygulanmaz</translation>
     </message>
     <message>
         <source>Computer room name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar odası adı özniteliği</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation type="unfinished"/>
+        <translation>örn. ad ve tanımlama</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
@@ -1690,7 +1696,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Komut hakkında bilgi göster</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -1758,12 +1764,16 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <source>New computer</source>
         <translation>Yeni bilgisayar</translation>
     </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Odalar ve bilgisayarlar</translation>
+    </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
     <message>
         <source>Backends which use local data</source>
-        <translation type="unfinished"/>
+        <translation>Yerel veriyi kullanacak arka uçlar</translation>
     </message>
     <message>
         <source>Default (local users/groups and computers/rooms from configuration)</source>
@@ -1771,29 +1781,29 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Default (store objects in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Öntanımlı (nesneleri yerel yapılandırmada biriktir)</translation>
     </message>
 </context>
 <context>
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation type="unfinished"/>
+        <translation>ekran kilidi</translation>
     </message>
 </context>
 <context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Balon iouçlarını devre dışı bırak</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca simgeleri göster</translation>
     </message>
 </context>
 <context>
@@ -1812,11 +1822,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik</translation>
     </message>
     <message>
         <source>1)</source>
-        <translation type="unfinished"/>
+        <translation>1)</translation>
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
@@ -1824,7 +1834,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>2)</source>
-        <translation type="unfinished"/>
+        <translation>2)</translation>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
@@ -1832,7 +1842,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>3)</source>
-        <translation type="unfinished"/>
+        <translation>3)</translation>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
@@ -1840,7 +1850,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>4)</source>
-        <translation type="unfinished"/>
+        <translation>4)</translation>
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
@@ -1848,47 +1858,47 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Generate bug report archive</source>
-        <translation type="unfinished"/>
+        <translation>Hata rapor arşivi oluştur</translation>
     </message>
     <message>
         <source>5)</source>
-        <translation type="unfinished"/>
+        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>Dosya</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>Yardım</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>Çıkış</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları dosyaya kaydet</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları dosyaya kaydet</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları d&amp;osyadan yükle</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About Qt</source>
@@ -1896,7 +1906,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama imkansız</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1908,19 +1918,19 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma yazılabilir değil</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları dosyadan yükle</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları dosyaya kaydet</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation type="unfinished"/>
+        <translation>Hata rapor arşivlerini kaydet</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1928,11 +1938,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Kaydedilmemiş ayarlar var. Yine de çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Yapılandırıcı</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
@@ -1965,7 +1975,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Kendiliğinden</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -1977,7 +1987,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 Yapılandırıcı %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
@@ -1997,7 +2007,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Yerel yapılandırma arka ucu, yapılandırmanın yazılabilir olmadığını bildirdi! Lütfen %1 Yapılandırıcıyı yüksek ayrıcalıklarla çalıştırın.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -2005,7 +2015,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme anahtar dosyaları yok veya var olanlar geçersiz. Lütfen, %1 Yapılandırıcı kullanarak yeni anahtar dosyalar oluşturun. Diğer bir seçenek olarak, %1 Yapılandırıcıyı kullanarak giriş yetkilendirmesini ayarlayın. Bunu dışında %1 kullanarak bilgisayarlara erişemezsiniz.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2013,7 +2023,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Yerel yapılandırmaya göre, ağdaki bilgisayarlara erişim izniniz yok. Lütfen başka bir hesapla giriş yapın veya sistem yöneticinizin yerel yapılandırmayı gözden geçirmesini isteyin.</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2025,11 +2035,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>&quot;%1&quot; özelliği hala aktif. Lütfen %2&apos;yi kapatmadan önce durdurun.</translation>
+        <translation>&quot;%1&quot; özelliği hala etkin. Lütfen %2&apos;yi kapatmadan önce durdurun.</translation>
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Hataları Veyon&apos;a raporla</translation>
     </message>
     <message>
         <source>Bug reporting</source>
@@ -2037,19 +2047,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları sıfırla</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>Yerel yapılandırmayı sıfırlamak ve tüm ayarları öntanımlılarına geri döndürmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı ve bilgisayarları ara</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
+        <translation>En uygun boyuta ayarla</translation>
     </message>
 </context>
 <context>
@@ -2072,7 +2082,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli odaya başlangıçta kendiliğindenn geç</translation>
     </message>
     <message>
         <source>Features</source>
@@ -2088,7 +2098,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Perform access control at program start</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıçta erişim denetimi yap</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2096,74 +2106,74 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar küçük resmini başlangıçta kendiliğinden uyarla</translation>
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Temel ayarlar</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Davranış</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>İstemci bilgisayarları seçilen kipe zorla</translation>
     </message>
     <message>
         <source>Only show current room</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca geçerli odayı göster</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation type="unfinished"/>
+        <translation>Elle oda eklemeye izin ver</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarları gizle</translation>
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation type="unfinished"/>
+        <translation>Tüm odaları gizle</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar süzme alanını gizle</translation>
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar yönetimi</translation>
     </message>
     <message>
         <source>Always open at start</source>
-        <translation type="unfinished"/>
+        <translation>Her zaman başlangıçta çalıştır</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarları yeniden başlatma veya kapatma eylemleri gibi</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>Olası tehlikeli eylemler için onaylama penceresi göster</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Gözlemleme</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Dahili gözlemleme kipi</translation>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation type="unfinished"/>
+        <translation>Bu öntanımlı kiptir ve tüm bilgisayarları tek veya birden çok odada gözlemlemenizi sağlar.</translation>
     </message>
 </context>
 <context>
@@ -2185,19 +2195,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Girişi</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme hatası</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>Verilen kullanıcı adı ve parola ile giriş başarısız. Lütfen yeniden deneyin!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen bilgisayarlara erişmek için kullanıcı adı ve parolanızı girin.</translation>
     </message>
 </context>
 <context>
@@ -2208,7 +2218,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarları açmak için bu düğmeye tıklayın. Bu yolla, her bilgisayarı elle açmanıza gerek kalmaz.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2216,7 +2226,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarları yeniden başlatmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2224,19 +2234,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarları kapatmak için bu düğmeye tıklayın. Bu yolla, her bilgisayarı elle kapatmanıza gerek kalmaz.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>Bir bilgisayarı aç/kapat veya yeniden başlat</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Yeniden başlatmayı onayla</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Sistemi kapatmayı onayla</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -2310,11 +2320,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan görüntüle</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>Etkileşim olmadan bir bilgisayarı uzaktan görüntüle.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -2322,7 +2332,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Bir bilgisayar için uzaktan yönetim denetimi aç.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -2330,29 +2340,29 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarı uzaktan görüntüle veya denetle</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayara erişim için lütfen bir ana makine adı veya IP adresi giriniz:</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Komut hakkında bilgi göster</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 Uzaktan Erişim</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca izle</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -2427,22 +2437,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>arama süzgeci gir...</translation>
     </message>
 </context>
 <context>
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen seçilen bilgisayar(lar)da çalıştırılacak programları veya komutları girin. Birden çok program/komut satır ile ayrılabilir.</translation>
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Program çalıştır</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>örnek. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
@@ -2461,7 +2471,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm kullanıcının dikkatini toplamak için bilgisayarlarını bu düğmeyi kullanarak kilitleyebilirsiniz. Bu kipte tüm giriş aygıtları kilitlenir ve ekranlar karartılır.</translation>
     </message>
 </context>
 <context>
@@ -2472,7 +2482,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"/>
+        <translation>% 1 dizini  olmadığı ve oluşturulamadığı için bir ekran görüntüsü alınamadı.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2526,7 +2536,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>Sizin tarafınızdan alınan tüm ekran görüntüleri burada listelenmiştir. Bir bilgisayarın sağ tuş menüsünde &quot;ekran görüntüsü&quot; ögesini tıklayarak ekran görüntülerini alabilir. Aşağıdaki düğmeler kullanılarak ekran görüntüleri yönetilebilir.</translation>
     </message>
     <message>
         <source>Computer:</source>
@@ -2553,7 +2563,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Additional arguments</source>
-        <translation type="unfinished"/>
+        <translation>Ek argümanlar</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -2565,7 +2575,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>State:</source>
-        <translation type="unfinished"/>
+        <translation>Durum:</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -2581,15 +2591,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>Güvenlik duvarı özel durumu etkinleştir</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca yerel sunucu bağlantılarına izin ver</translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>Dahili VNC sunucu bağlantı noktası</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -2613,11 +2623,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation type="unfinished"/>
+        <translation>Özellik yöneticisi bağlantı noktası</translation>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation type="unfinished"/>
+        <translation>Birincil hizmet bağlantı noktası</translation>
     </message>
 </context>
 <context>
@@ -2651,7 +2661,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon hizmetini ayarla ve denetle</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
@@ -2675,7 +2685,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Hizmetinin sorgu durumu</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -2731,15 +2741,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"/>
+        <translation>Düşük hassasiyet (turbo kipi)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Dahili UltraVNC sunucu yapılandırması</translation>
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Çift monitör desteğini etkinleştir</translation>
     </message>
 </context>
 <context>
@@ -2750,14 +2760,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Kişisel ayarlarınız kaydedilemedi! Lütfen kullanıcı yapılandırma dosyasının yolunu, %1 Yapılandırıcıyı kullanarak gözden geçirin.</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturum denetimi</translation>
     </message>
     <message>
         <source>Logout user</source>
@@ -2765,15 +2775,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm bilgisayarlardaki oturumları kapatmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı çıkışını onayla</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen kullanıcıları çıkış yaptırmak istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
@@ -2848,7 +2858,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Dahili x11vnc sunucusu yapılandırması</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>

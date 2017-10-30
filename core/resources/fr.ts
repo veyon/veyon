@@ -41,6 +41,10 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
         <source>About %1 %2</source>
         <translation>A propos %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Soutenir le projet Veyon avec un don</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1770,6 +1774,10 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <source>New computer</source>
         <translation>Nouvel ordinateur</translation>
     </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Salles et ordinateurs</translation>
+    </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
@@ -2161,11 +2169,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>Actions comme le redémarrage ou l&apos;extinction d&apos;ordinateurs</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>Afficher une confirmation pour les actions potentiellement dangereuses</translation>
     </message>
 </context>
 <context>
@@ -2249,19 +2257,19 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer le redémarrage</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer l&apos;extinction</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Souhaitez-vous réellement redémarrer les ordinateurs sélectionnés ?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Souhaitez-vous réellement éteindre les ordinateurs sélectionnés ?</translation>
     </message>
 </context>
 <context>
@@ -2756,7 +2764,7 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Activer le support pour double écran</translation>
     </message>
 </context>
 <context>
@@ -2786,11 +2794,11 @@ Note : si le bogue impacte à la fois les ordinateurs clients et les ordinateurs
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer la déconnexion utilisateur</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Souhaitez-vous réellement déconnecter les utilisateurs sélectionnés ?</translation>
     </message>
 </context>
 <context>
