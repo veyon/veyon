@@ -109,11 +109,11 @@ private:
 
 	bool readMessage( qint64 size );
 
-	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader );
+	bool handleRect( QBuffer& buffer, const rfbFramebufferUpdateRectHeader& rectHeader );
 	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
 	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
 	bool handleRectEncodingHextile( QBuffer& buffer,
-									rfbFramebufferUpdateRectHeader rectHeader,
+									const rfbFramebufferUpdateRectHeader rectHeader,
 									int bytesPerPixel );
 	bool handleRectEncodingZlib( QBuffer& buffer );
 	bool handleRectEncodingZRLE( QBuffer& buffer );

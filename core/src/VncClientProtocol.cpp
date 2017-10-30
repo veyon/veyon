@@ -518,7 +518,7 @@ bool VncClientProtocol::readMessage( qint64 size )
 
 
 
-bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader& rectHeader )
+bool VncClientProtocol::handleRect( QBuffer& buffer, const rfbFramebufferUpdateRectHeader& rectHeader )
 {
 	const int width = rectHeader.r.w;
 	const int height = rectHeader.r.h;
@@ -626,7 +626,7 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPi
 
 
 bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
-													rfbFramebufferUpdateRectHeader rectHeader,
+													const rfbFramebufferUpdateRectHeader rectHeader,
 													int bytesPerPixel )
 {
 	const int rx = rectHeader.r.x;
