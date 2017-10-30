@@ -433,7 +433,10 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 			return false;
 		}
 
-		updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
+		if( isPseudoEncoding( rectHeader ) == false )
+		{
+			updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
+		}
 	}
 
 	m_lastUpdatedRect = updatedRegion.boundingRect();
