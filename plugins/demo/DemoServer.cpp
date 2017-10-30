@@ -279,13 +279,10 @@ bool DemoServer::setVncServerEncodings()
 {
 	return m_vncClientProtocol.
 			setEncodings( {
-							  rfbEncodingZRLE,
 							  rfbEncodingUltraZip,
 							  rfbEncodingUltra,
 							  rfbEncodingCopyRect,
 							  rfbEncodingHextile,
-							  rfbEncodingZlib,
-							  rfbEncodingZYWRLE,
 							  rfbEncodingCoRRE,
 							  rfbEncodingRRE,
 							  rfbEncodingRaw,
