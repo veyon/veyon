@@ -73,6 +73,9 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 
 ComputerControlServer::~ComputerControlServer()
 {
+	qDebug(Q_FUNC_INFO);
+
+	m_vncProxyServer.stop();
 }
 
 
