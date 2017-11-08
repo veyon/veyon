@@ -22,12 +22,6 @@
  *
  */
 
-#include "VeyonCore.h"
-
-#ifdef VEYON_BUILD_WIN32
-#include <windows.h>
-#endif
-
 #include <QCoreApplication>
 #include <QHostInfo>
 
@@ -73,6 +67,9 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 
 ComputerControlServer::~ComputerControlServer()
 {
+	qDebug(Q_FUNC_INFO);
+
+	m_vncProxyServer.stop();
 }
 
 

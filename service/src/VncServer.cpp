@@ -77,6 +77,7 @@ VncServer::VncServer( QObject* parent ) :
 
 VncServer::~VncServer()
 {
+	qDebug(Q_FUNC_INFO);
 }
 
 
@@ -109,6 +110,8 @@ void VncServer::run()
 {
 	if( m_pluginInterface )
 	{
+		qDebug() << Q_FUNC_INFO << "running";
+
 		if( m_pluginInterface->configuredServerPort() > 0 )
 		{
 			VeyonCore::config().setVncServerPort( m_pluginInterface->configuredServerPort() );
@@ -120,5 +123,7 @@ void VncServer::run()
 		}
 
 		m_pluginInterface->run( serverPort(), password() );
+
+		qDebug() << Q_FUNC_INFO << "finished";
 	}
 }

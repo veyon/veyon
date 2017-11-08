@@ -45,6 +45,7 @@ public:
 	~VncProxyServer() override;
 
 	void start( int vncServerPort, const QString& vncServerPassword );
+	void stop();
 
 	const VncProxyConnectionList& clients() const
 	{

@@ -64,6 +64,8 @@ private:
 	int m_keyFrame;
 	int m_framebufferUpdateMessageIndex;
 
+	const int m_framebufferUpdateInterval;
+
 } ;
 
 #endif

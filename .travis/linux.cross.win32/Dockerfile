@@ -1,12 +1,12 @@
-FROM ubuntu:xenial
+FROM ubuntu:artful
 MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
 	apt-get update && \
-	apt-get install -y software-properties-common && \
-	add-apt-repository -y "deb http://ppa.launchpad.net/tobydox/mingw-w64/ubuntu xenial main" && \
+	apt-get install --no-install-recommends -y software-properties-common && \
+	add-apt-repository -y "ppa:tobydox/mingw-w64" && \
 	apt-get update && \
-	apt-get install --no-install-recommends -y --force-yes \
+	apt-get install --no-install-recommends -y \
 		git \
 		cmake \
 		make \

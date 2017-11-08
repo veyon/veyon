@@ -1020,9 +1020,6 @@
    </hints>
   </connection>
  </connections>
- <slots>
-  <slot>aboutVeyon()</slot>
- </slots>
  <buttongroups>
   <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="bindConfigurationGroup"/>

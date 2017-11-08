@@ -1,5 +1,5 @@
 /*
- * PluginManager.h - header for the PluginManager class
+ * InternetAccessControlConfiguration.h - INTERNET_ACCESS_CONTROL-specific configuration values
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,53 +22,26 @@
  *
  */
 
-#ifndef PLUGIN_MANAGER_H
-#define PLUGIN_MANAGER_H
+#ifndef INTERNET_ACCESS_CONTROL_CONFIGURATION_H
+#define INTERNET_ACCESS_CONTROL_CONFIGURATION_H
 
-#include <QObject>
+#include "Configuration/Proxy.h"
 
-#include "Plugin.h"
-#include "PluginInterface.h"
+#define FOREACH_INTERNET_ACCESS_CONTROL_CONFIG_PROPERTY(OP) \
+	OP( InternetAccessControlConfiguration, m_configuration, UUID, backend, setBackend, "Backend", "InternetAccessControl" );	\
 
-class VEYON_CORE_EXPORT PluginManager : public QObject
+
+class InternetAccessControlConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT
 public:
-	PluginManager( QObject* parent = nullptr );
+	InternetAccessControlConfiguration( QObject* parent = nullptr );
 
-	const PluginInterfaceList& pluginInterfaces() const
-	{
-		return m_pluginInterfaces;
-	}
-
-	PluginInterfaceList& pluginInterfaces()
-	{
-		return m_pluginInterfaces;
-	}
-
-	QObjectList& pluginObjects()
-	{
-		return m_pluginObjects;
-	}
-
-	void registerExtraPluginInterface( QObject* pluginObject );
-
-	PluginUidList pluginUids() const;
-
-	PluginInterface* pluginInterface( Plugin::Uid pluginUid );
-
-	QString pluginName( Plugin::Uid pluginUid ) const;
+	FOREACH_INTERNET_ACCESS_CONTROL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
 public slots:
-	void loadPlugins();
+	void setBackend( QUuid );
 
-private:
-	PluginInterfaceList m_pluginInterfaces;
-	QObjectList m_pluginObjects;
+} ;
 
-signals:
-	void pluginsLoaded();
-
-};
-
-#endif // PLUGIN_MANAGER_H
+#endif

@@ -67,8 +67,10 @@ public:
 			return entries;
 		}
 
+		const auto escapedFilter = QString( filter ).replace( QStringLiteral("\\"), QStringLiteral("\\\\") );
+
 		int result = -1;
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, escapedFilter, QStringList( attribute ) );
 
 		if( id != -1 )
 		{
@@ -139,8 +141,10 @@ public:
 			return distinguishedNames;
 		}
 
+		const auto escapedFilter = QString( filter ).replace( QStringLiteral("\\"), QStringLiteral("\\\\") );
+
 		int result = -1;
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, escapedFilter, QStringList() );
 
 		if( id != -1 )
 		{
@@ -479,7 +483,7 @@ QStringList LdapDirectory::groupMembers(const QString &groupDn)
 
 QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 {
-	QString userId = groupMemberUserIdentification( userDn );
+	const auto userId = groupMemberUserIdentification( userDn );
 
 	return d->queryDistinguishedNames( d->groupsDn,
 									   constructQueryFilter( d->groupMemberAttribute, userId, d->userGroupsFilter ),
@@ -490,7 +494,7 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 
 QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 {
-	QString computerId = groupMemberComputerIdentification( computerDn );
+	const auto computerId = groupMemberComputerIdentification( computerDn );
 
 	return d->queryDistinguishedNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 									   constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
@@ -510,7 +514,7 @@ QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 		return d->queryAttributes( parentDn( computerDn ), d->computerRoomNameAttribute );
 	}
 
-	QString computerId = groupMemberComputerIdentification( computerDn );
+	const auto computerId = groupMemberComputerIdentification( computerDn );
 
 	return d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 							   d->computerRoomNameAttribute,

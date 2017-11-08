@@ -1,5 +1,5 @@
 /*
- * PluginInterface.h - interface class for plugins
+ * SystemService.h - class for managing a system service
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,40 +22,29 @@
  *
  */
 
-#ifndef PLUGIN_INTERFACE_H
-#define PLUGIN_INTERFACE_H
-
-#include <QObject>
+#ifndef SYSTEM_SERVICE_H
+#define SYSTEM_SERVICE_H
 
 #include "VeyonCore.h"
-#include "Plugin.h"
 
-// clazy:excludeall=copyable-polymorphic
-
-class VEYON_CORE_EXPORT PluginInterface
+class VEYON_CORE_EXPORT SystemService
 {
 public:
-	virtual Plugin::Uid uid() const = 0;
-	virtual QString version() const = 0;
-	virtual QString name() const = 0;
-	virtual QString description() const = 0;
-	virtual QString vendor() const = 0;
-	virtual QString copyright() const = 0;
-	virtual Plugin::Flags flags() const
-	{
-		return Plugin::NoFlags;
-	}
-	virtual void upgrade( const QString& oldVersion )
-	{
-		Q_UNUSED(oldVersion)
-	}
+	SystemService( const QString& name );
+	~SystemService();
 
-};
+	bool isRunning();
+	bool start();
+	bool stop();
 
-typedef QList<PluginInterface *> PluginInterfaceList;
 
-#define PluginInterface_iid "org.veyon.Veyon.Plugins.PluginInterface"
+private:
+	const QString m_name;
+#ifdef VEYON_BUILD_WIN32
+	SC_HANDLE m_serviceManager;
+	SC_HANDLE m_serviceHandle;
+#endif
 
-Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)
+} ;
 
-#endif // PLUGIN_INTERFACE_H
+#endif

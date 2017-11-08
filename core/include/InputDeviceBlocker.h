@@ -34,6 +34,8 @@
 #include <QByteArray>
 #include <QMutex>
 
+#include "SystemService.h"
+
 // clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT InputDeviceBlocker
@@ -50,23 +52,25 @@ public:
 
 
 private:
-	enum {
-		XmodmapMaxStartTime = 5000
-	};
-
 	void enableInterception();
 	void disableInterception();
-	void saveKeyMapTable();
+	void stopHIDService();
+	void restoreHIDService();
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
-	void xmodmapError();
 
 	static QMutex s_refCntMutex;
 	static int s_refCnt;
 
 	bool m_enabled;
+	SystemService m_hidService;
+	bool m_hidServiceActivated;
 #ifdef VEYON_BUILD_LINUX
-	QByteArray m_origKeyTable;
+	void* m_origKeyTable;
+	int m_keyCodeMin;
+	int m_keyCodeMax;
+	int m_keyCodeCount;
+	int m_keySymsPerKeyCode;
 #endif
 #ifdef VEYON_BUILD_WIN32
 	InterceptionContext m_interceptionContext;

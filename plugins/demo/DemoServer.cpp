@@ -68,8 +68,11 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 
 DemoServer::~DemoServer()
 {
+	qDebug() << Q_FUNC_INFO << "disconnecting signals";
 	m_vncServerSocket->disconnect( this );
 	m_tcpServer->disconnect( this );
+
+	qDebug() << Q_FUNC_INFO << "deleting connections";
 
 	QList<DemoServerConnection *> l;
 	while( !( l = findChildren<DemoServerConnection *>() ).isEmpty() )
@@ -77,8 +80,13 @@ DemoServer::~DemoServer()
 		delete l.front();
 	}
 
+	qDebug() << Q_FUNC_INFO << "deleting server socket";
 	delete m_vncServerSocket;
+
+	qDebug() << Q_FUNC_INFO << "deleting TCP server";
 	delete m_tcpServer;
+
+	qDebug() << Q_FUNC_INFO << "finished";
 }
 
 
@@ -160,6 +168,10 @@ bool DemoServer::receiveVncServerMessage()
 		{
 			enqueueFramebufferUpdateMessage( m_vncClientProtocol.lastMessage() );
 		}
+		else
+		{
+			qWarning( "DemoServer: skipping server message of type %d", (int) m_vncClientProtocol.lastMessageType() );
+		}
 
 		return true;
 	}
@@ -231,7 +243,12 @@ void DemoServer::start()
 	setVncServerEncodings();
 
 	m_requestFullFramebufferUpdate = true;
-	m_lastFullFramebufferUpdate.restart();
+
+	requestFramebufferUpdate();
+
+	while( receiveVncServerMessage() )
+	{
+	}
 
 	acceptPendingConnections();
 }
@@ -262,13 +279,10 @@ bool DemoServer::setVncServerEncodings()
 {
 	return m_vncClientProtocol.
 			setEncodings( {
-							  rfbEncodingZRLE,
 							  rfbEncodingUltraZip,
 							  rfbEncodingUltra,
 							  rfbEncodingCopyRect,
 							  rfbEncodingHextile,
-							  rfbEncodingZlib,
-							  rfbEncodingZYWRLE,
 							  rfbEncodingCoRRE,
 							  rfbEncodingRRE,
 							  rfbEncodingRaw,

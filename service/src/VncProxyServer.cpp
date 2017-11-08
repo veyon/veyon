@@ -50,12 +50,7 @@ VncProxyServer::VncProxyServer( const QHostAddress& listenAddress,
 
 VncProxyServer::~VncProxyServer()
 {
-	for( auto connection : qAsConst( m_connections ) )
-	{
-		delete connection;
-	}
-
-	delete m_server;
+	stop();
 }
 
 
@@ -72,6 +67,20 @@ void VncProxyServer::start( int vncServerPort, const QString& vncServerPassword 
 
 	qDebug( "VncProxyServer started on port %d", m_listenPort );
 
+}
+
+
+void VncProxyServer::stop()
+{
+	for( auto connection : qAsConst( m_connections ) )
+	{
+		delete connection;
+	}
+
+	m_connections.clear();
+
+	delete m_server;
+	m_server = nullptr;
 }
 
 

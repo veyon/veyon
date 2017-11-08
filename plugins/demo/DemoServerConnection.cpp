@@ -45,7 +45,8 @@ DemoServerConnection::DemoServerConnection( const QString& demoAccessToken,
 									 std::pair<int, int>( rfbPointerEvent, sz_rfbPointerEventMsg ),
 									 } ),
 	m_keyFrame( -1 ),
-	m_framebufferUpdateMessageIndex( 0 )
+	m_framebufferUpdateMessageIndex( 0 ),
+	m_framebufferUpdateInterval( m_demoServer->configuration().framebufferUpdateInterval() )
 {
 	connect( m_socket, &QTcpSocket::readyRead, this, &DemoServerConnection::processClient );
 	connect( m_socket, &QTcpSocket::disconnected, this, &DemoServerConnection::deleteLater );
@@ -102,7 +103,11 @@ bool DemoServerConnection::receiveClientMessage()
 			rfbSetEncodingsMsg setEncodingsMessage;
 			if( m_socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
 			{
-				m_socket->read( sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t) );
+				const qint64 totalSize = sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t);
+				if( m_socket->bytesAvailable() >= totalSize )
+				{
+					return m_socket->read( totalSize ).size() == totalSize;
+				}
 			}
 		}
 		break;
@@ -163,7 +168,6 @@ void DemoServerConnection::sendFramebufferUpdate()
 	if( sentUpdates == false )
 	{
 		// did not send updates but client still waiting for update? then try again soon
-		QTimer::singleShot( m_demoServer->configuration().framebufferUpdateInterval(),
-							this, &DemoServerConnection::sendFramebufferUpdate );
+		QTimer::singleShot( m_framebufferUpdateInterval, this, &DemoServerConnection::sendFramebufferUpdate );
 	}
 }

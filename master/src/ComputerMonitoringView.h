@@ -68,6 +68,7 @@ private slots:
 
 private:
 	void showEvent( QShowEvent* event ) override;
+	void wheelEvent( QWheelEvent* event ) override;
 
 	FeatureUidList activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 

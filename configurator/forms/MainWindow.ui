@@ -335,18 +335,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </item>
     <item row="0" column="0">
      <widget class="QListWidget" name="pageSelector">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
-      </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
@@ -364,9 +352,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </property>
       <property name="textElideMode">
        <enum>Qt::ElideNone</enum>
-      </property>
-      <property name="movement">
-       <enum>QListView::Free</enum>
       </property>
       <property name="spacing">
        <number>4</number>
@@ -478,7 +463,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1355</width>
+     <width>1294</width>
      <height>35</height>
     </rect>
    </property>

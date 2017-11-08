@@ -1,6 +1,7 @@
 ADD_SUBDIRECTORY(config)
 ADD_SUBDIRECTORY(demo)
 ADD_SUBDIRECTORY(desktopservices)
+ADD_SUBDIRECTORY(internetaccesscontrol)
 ADD_SUBDIRECTORY(ldap)
 ADD_SUBDIRECTORY(localdata)
 ADD_SUBDIRECTORY(platform)

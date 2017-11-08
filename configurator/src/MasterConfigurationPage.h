@@ -28,6 +28,8 @@
 #include "ConfigurationPage.h"
 #include "FeatureManager.h"
 
+class BuiltinFeatures;
+
 namespace Ui {
 class MasterConfigurationPage;
 }
@@ -54,6 +56,8 @@ private:
 	void updateFeatureLists();
 
 	Ui::MasterConfigurationPage *ui;
+
+	BuiltinFeatures* m_builtinFeatures;
 
 	FeatureManager m_featureManager;
 	QStringList m_disabledFeatures;

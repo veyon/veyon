@@ -1,5 +1,5 @@
 /*
- * PluginInterface.h - interface class for plugins
+ * InternetAccessControlConfiguration.cpp - INTERNET_ACCESS_CONTROL-specific configuration values
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,40 +22,14 @@
  *
  */
 
-#ifndef PLUGIN_INTERFACE_H
-#define PLUGIN_INTERFACE_H
+#include "VeyonConfiguration.h"
+#include "InternetAccessControlConfiguration.h"
 
-#include <QObject>
 
-#include "VeyonCore.h"
-#include "Plugin.h"
-
-// clazy:excludeall=copyable-polymorphic
-
-class VEYON_CORE_EXPORT PluginInterface
+InternetAccessControlConfiguration::InternetAccessControlConfiguration( QObject* parent ) :
+	Configuration::Proxy( &VeyonCore::config(), parent )
 {
-public:
-	virtual Plugin::Uid uid() const = 0;
-	virtual QString version() const = 0;
-	virtual QString name() const = 0;
-	virtual QString description() const = 0;
-	virtual QString vendor() const = 0;
-	virtual QString copyright() const = 0;
-	virtual Plugin::Flags flags() const
-	{
-		return Plugin::NoFlags;
-	}
-	virtual void upgrade( const QString& oldVersion )
-	{
-		Q_UNUSED(oldVersion)
-	}
+}
 
-};
 
-typedef QList<PluginInterface *> PluginInterfaceList;
-
-#define PluginInterface_iid "org.veyon.Veyon.Plugins.PluginInterface"
-
-Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)
-
-#endif // PLUGIN_INTERFACE_H
+FOREACH_INTERNET_ACCESS_CONTROL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
