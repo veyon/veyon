@@ -22,8 +22,6 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include <QCoreApplication>
 #include <QDir>
 #include <QProcess>
@@ -35,6 +33,7 @@
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "PlatformCoreFunctions.h"
 #include "ServiceControl.h"
 
 
@@ -48,11 +47,9 @@ ServiceControl::ServiceControl(QWidget *parent) :
 
 QString ServiceControl::serviceFilePath()
 {
-	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "veyon-service";
-#ifdef VEYON_BUILD_WIN32
-	path += ".exe";
-#endif
-	return QDTNS( path );
+	return QDir::toNativeSeparators(
+				QCoreApplication::applicationDirPath() + QDir::separator() +
+				"veyon-service" + VeyonCore::platform().coreFunctions()->programFileExtension() );
 }
 
 
