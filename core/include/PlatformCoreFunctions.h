@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * PlatformCoreFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,19 +22,18 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef PLATFORM_CORE_FUNCTIONS_H
+#define PLATFORM_CORE_FUNCTIONS_H
 
+#include "PlatformPluginInterface.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_linuxCoreFunctions(),
-	m_linuxNetworkFunctions(),
-	m_linuxUserInfoFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class VEYON_CORE_EXPORT PlatformCoreFunctions
 {
-}
+public:
+	virtual QString programFileExtension() const = 0;
 
+};
 
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+#endif // PLATFORM_CORE_FUNCTIONS_H

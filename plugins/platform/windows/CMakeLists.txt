@@ -1,6 +1,15 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(windows-platform WindowsPlatformPlugin.cpp WindowsNetworkFunctions.cpp WindowsUserInfoFunctions.cpp MOCFILES WindowsPlatformPlugin.h WindowsNetworkFunctions.h WindowsUserInfoFunctions.h)
+BUILD_PLUGIN(windows-platform
+	WindowsPlatformPlugin.cpp
+	WindowsCoreFunctions.cpp
+	WindowsNetworkFunctions.cpp
+	WindowsUserInfoFunctions.cpp
+	MOCFILES
+	WindowsPlatformPlugin.h
+	WindowsCoreFunctions.h
+	WindowsNetworkFunctions.h
+	WindowsUserInfoFunctions.h)
 
 ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
 

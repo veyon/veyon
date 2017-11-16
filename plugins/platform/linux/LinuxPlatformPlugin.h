@@ -27,6 +27,7 @@
 
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
+#include "LinuxCoreFunctions.h"
 #include "LinuxNetworkFunctions.h"
 #include "LinuxUserInfoFunctions.h"
 
@@ -74,6 +75,11 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
+	PlatformCoreFunctions* coreFunctions() override
+	{
+		return &m_linuxCoreFunctions;
+	}
+
 	PlatformNetworkFunctions* networkFunctions() override
 	{
 		return &m_linuxNetworkFunctions;
@@ -85,6 +91,7 @@ public:
 	}
 
 private:
+	LinuxCoreFunctions m_linuxCoreFunctions;
 	LinuxNetworkFunctions m_linuxNetworkFunctions;
 	LinuxUserInfoFunctions m_linuxUserInfoFunctions;
 

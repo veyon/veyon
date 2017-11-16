@@ -27,6 +27,7 @@
 
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
+#include "WindowsCoreFunctions.h"
 #include "WindowsNetworkFunctions.h"
 #include "WindowsUserInfoFunctions.h"
 
@@ -74,6 +75,11 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
+	WindowsCoreFunctions* coreFunctions() override
+	{
+		return &m_windowsCoreFunctions;
+	}
+
 	PlatformNetworkFunctions* networkFunctions() override
 	{
 		return &m_windowsNetworkFunctions;
@@ -85,6 +91,7 @@ public:
 	}
 
 private:
+	WindowsCoreFunctions m_windowsCoreFunctions;
 	WindowsNetworkFunctions m_windowsNetworkFunctions;
 	WindowsUserInfoFunctions m_windowsUserInfoFunctions;
 

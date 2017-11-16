@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * LinuxCoreFunctions.cpp - implementation of LinuxCoreFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,19 +22,10 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#include "LinuxCoreFunctions.h"
 
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_linuxCoreFunctions(),
-	m_linuxNetworkFunctions(),
-	m_linuxUserInfoFunctions()
+QString LinuxCoreFunctions::programFileExtension() const
 {
-}
-
-
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
+	return QString();
 }

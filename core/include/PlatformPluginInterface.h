@@ -27,6 +27,7 @@
 
 #include "PluginInterface.h"
 
+class PlatformCoreFunctions;
 class PlatformNetworkFunctions;
 class PlatformUserInfoFunctions;
 
@@ -35,6 +36,7 @@ class PlatformUserInfoFunctions;
 class VEYON_CORE_EXPORT PlatformPluginInterface
 {
 public:
+	virtual PlatformCoreFunctions* coreFunctions() = 0;
 	virtual PlatformNetworkFunctions* networkFunctions() = 0;
 	virtual PlatformUserInfoFunctions* userInfoFunctions() = 0;
 

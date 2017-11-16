@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * WindowsCoreFunctions.cpp - implementation of WindowsCoreFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,19 +22,10 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#include "WindowsCoreFunctions.h"
 
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_linuxCoreFunctions(),
-	m_linuxNetworkFunctions(),
-	m_linuxUserInfoFunctions()
+QString WindowsCoreFunctions::programFileExtension() const
 {
-}
-
-
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
+	return QStringLiteral( ".exe" );
 }
