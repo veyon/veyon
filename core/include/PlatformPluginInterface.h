@@ -33,7 +33,7 @@ class PlatformUserInfoFunctions;
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT PlatformPluginInterface
+class PlatformPluginInterface
 {
 public:
 	virtual PlatformCoreFunctions* coreFunctions() = 0;
