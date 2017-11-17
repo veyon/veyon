@@ -76,24 +76,24 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
-	WindowsCoreFunctions* coreFunctions() override
+	WindowsCoreFunctions& coreFunctions() override
 	{
-		return &m_windowsCoreFunctions;
+		return m_windowsCoreFunctions;
 	}
 
-	PlatformNetworkFunctions* networkFunctions() override
+	PlatformNetworkFunctions& networkFunctions() override
 	{
-		return &m_windowsNetworkFunctions;
+		return m_windowsNetworkFunctions;
 	}
 
-	PlatformServiceFunctions* serviceFunctions() override
+	PlatformServiceFunctions& serviceFunctions() override
 	{
-		return &m_windowsServiceFunctions;
+		return m_windowsServiceFunctions;
 	}
 
-	PlatformUserInfoFunctions* userInfoFunctions() override
+	PlatformUserInfoFunctions& userInfoFunctions() override
 	{
-		return &m_windowsUserInfoFunctions;
+		return m_windowsUserInfoFunctions;
 	}
 
 private:

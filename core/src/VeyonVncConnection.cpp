@@ -550,7 +550,7 @@ void VeyonVncConnection::establishConnection()
 			// guess reason why connection failed
 			if( m_serviceReachable == false )
 			{
-				if( VeyonCore::platform().networkFunctions()->ping( m_host ) == false )
+				if( VeyonCore::platform().networkFunctions().ping( m_host ) == false )
 				{
 					setState( HostOffline );
 				}

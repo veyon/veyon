@@ -76,24 +76,24 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
-	PlatformCoreFunctions* coreFunctions() override
+	PlatformCoreFunctions& coreFunctions() override
 	{
-		return &m_linuxCoreFunctions;
+		return m_linuxCoreFunctions;
 	}
 
-	PlatformNetworkFunctions* networkFunctions() override
+	PlatformNetworkFunctions& networkFunctions() override
 	{
-		return &m_linuxNetworkFunctions;
+		return m_linuxNetworkFunctions;
 	}
 
-	PlatformServiceFunctions* serviceFunctions() override
+	PlatformServiceFunctions& serviceFunctions() override
 	{
-		return &m_linuxServiceFunctions;
+		return m_linuxServiceFunctions;
 	}
 
-	PlatformUserInfoFunctions* userInfoFunctions() override
+	PlatformUserInfoFunctions& userInfoFunctions() override
 	{
-		return &m_linuxUserInfoFunctions;
+		return m_linuxUserInfoFunctions;
 	}
 
 private:

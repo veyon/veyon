@@ -58,14 +58,14 @@ QStringList LocalDataPlugin::users()
 
 QStringList LocalDataPlugin::userGroups()
 {
-	return VeyonCore::platform().userInfoFunctions()->userGroups();
+	return VeyonCore::platform().userInfoFunctions().userGroups();
 }
 
 
 
 QStringList LocalDataPlugin::groupsOfUser( const QString& username )
 {
-	return VeyonCore::platform().userInfoFunctions()->groupsOfUser( username );
+	return VeyonCore::platform().userInfoFunctions().groupsOfUser( username );
 }
 
 

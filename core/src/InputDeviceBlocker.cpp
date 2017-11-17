@@ -49,7 +49,7 @@ int interception_is_any(InterceptionDevice device)
 InputDeviceBlocker::InputDeviceBlocker( bool enabled ) :
 	m_enabled( false ),
 	m_hidServiceName( "hidserv" ),
-	m_hidServiceActivated( VeyonCore::platform().serviceFunctions()->isRunning( m_hidServiceName ) )
+	m_hidServiceActivated( VeyonCore::platform().serviceFunctions().isRunning( m_hidServiceName ) )
 #ifdef VEYON_BUILD_LINUX
 	, m_origKeyTable( nullptr ),
 	m_keyCodeMin( 0 ),
@@ -132,7 +132,7 @@ void InputDeviceBlocker::restoreHIDService()
 {
 	if( m_hidServiceActivated )
 	{
-		VeyonCore::platform().serviceFunctions()->start( m_hidServiceName );
+		VeyonCore::platform().serviceFunctions().start( m_hidServiceName );
 	}
 }
 
@@ -142,7 +142,7 @@ void InputDeviceBlocker::stopHIDService()
 {
 	if( m_hidServiceActivated )
 	{
-		VeyonCore::platform().serviceFunctions()->stop( m_hidServiceName );
+		VeyonCore::platform().serviceFunctions().stop( m_hidServiceName );
 	}
 }
 

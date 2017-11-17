@@ -77,7 +77,7 @@ FeatureWorkerManager::~FeatureWorkerManager()
 QString FeatureWorkerManager::workerProcessFilePath()
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-			"veyon-worker" + VeyonCore::platform().coreFunctions()->programFileExtension() );
+			"veyon-worker" + VeyonCore::platform().coreFunctions().programFileExtension() );
 }
 
 

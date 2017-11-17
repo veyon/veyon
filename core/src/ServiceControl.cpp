@@ -49,7 +49,7 @@ QString ServiceControl::serviceFilePath()
 {
 	return QDir::toNativeSeparators(
 				QCoreApplication::applicationDirPath() + QDir::separator() +
-				"veyon-service" + VeyonCore::platform().coreFunctions()->programFileExtension() );
+				"veyon-service" + VeyonCore::platform().coreFunctions().programFileExtension() );
 }
 
 
