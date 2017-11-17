@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * LinuxServiceFunctions.cpp - implementation of LinuxServiceFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,25 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#include <QProcess>
 
+#include "LinuxServiceFunctions.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_windowsCoreFunctions(),
-    m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-    m_windowsUserInfoFunctions()
+bool LinuxServiceFunctions::isRunning( const QString& serviceName )
 {
+	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("status"), serviceName } ) == 0;
 }
 
 
 
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
+bool LinuxServiceFunctions::start( const QString& serviceName )
 {
+	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("start"), serviceName } ) == 0;
+}
+
+
+
+bool LinuxServiceFunctions::stop( const QString& serviceName )
+{
+	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("stop"), serviceName } ) == 0;
 }

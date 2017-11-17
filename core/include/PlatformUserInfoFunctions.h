@@ -25,11 +25,11 @@
 #ifndef PLATFORM_USER_INFO_FUNCTIONS_H
 #define PLATFORM_USER_INFO_FUNCTIONS_H
 
-#include "VeyonCore.h"
+#include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT PlatformUserInfoFunctions
+class PlatformUserInfoFunctions
 {
 public:
 	virtual QStringList userGroups() = 0;

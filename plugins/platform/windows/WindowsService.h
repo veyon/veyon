@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * WindowsService.h - class for managing a Windows service
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,27 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#ifndef WINDOWS_SERVICE_H
+#define WINDOWS_SERVICE_H
 
+#include "VeyonCore.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_windowsCoreFunctions(),
-    m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-    m_windowsUserInfoFunctions()
+class WindowsService
 {
-}
+public:
+	WindowsService( const QString& name );
+	~WindowsService();
+
+	bool isRunning();
+	bool start();
+	bool stop();
 
 
+private:
+	const QString m_name;
+	SC_HANDLE m_serviceManager;
+	SC_HANDLE m_serviceHandle;
 
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
-}
+} ;
+
+#endif

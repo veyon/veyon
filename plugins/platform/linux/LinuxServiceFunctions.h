@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * LinuxServiceFunctions.h - declaration of LinuxServiceFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,19 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#ifndef LINUX_SERVICE_FUNCTIONS_H
+#define LINUX_SERVICE_FUNCTIONS_H
 
+#include "PlatformServiceFunctions.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_windowsCoreFunctions(),
-    m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-    m_windowsUserInfoFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class LinuxServiceFunctions : public PlatformServiceFunctions
 {
-}
+public:
+	bool isRunning( const QString& serviceName ) override;
+	bool start( const QString& serviceName ) override;
+	bool stop( const QString& serviceName ) override;
+};
 
-
-
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
-}
+#endif // LINUX_SERVICE_FUNCTIONS_H

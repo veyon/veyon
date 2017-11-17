@@ -29,7 +29,7 @@
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT PlatformCoreFunctions
+class PlatformCoreFunctions
 {
 public:
 	virtual QString programFileExtension() const = 0;

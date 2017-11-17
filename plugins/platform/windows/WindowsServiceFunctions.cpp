@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * WindowsServiceFunctions.cpp - implementation of WindowsServiceFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,24 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#include "WindowsServiceFunctions.h"
+#include "WindowsService.h"
 
-
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_windowsCoreFunctions(),
-    m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-    m_windowsUserInfoFunctions()
+bool WindowsServiceFunctions::isRunning( const QString& serviceName )
 {
+	return WindowsService( serviceName ).isRunning();
 }
 
 
 
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
+bool WindowsServiceFunctions::start( const QString& serviceName )
 {
+	return WindowsService( serviceName ).start();
+}
+
+
+
+bool WindowsServiceFunctions::stop( const QString& serviceName )
+{
+	return WindowsService( serviceName ).stop();
 }

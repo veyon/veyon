@@ -29,6 +29,7 @@
 #include "PlatformPluginInterface.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxNetworkFunctions.h"
+#include "LinuxServiceFunctions.h"
 #include "LinuxUserInfoFunctions.h"
 
 class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
@@ -85,6 +86,11 @@ public:
 		return &m_linuxNetworkFunctions;
 	}
 
+	PlatformServiceFunctions* serviceFunctions() override
+	{
+		return &m_linuxServiceFunctions;
+	}
+
 	PlatformUserInfoFunctions* userInfoFunctions() override
 	{
 		return &m_linuxUserInfoFunctions;
@@ -93,6 +99,7 @@ public:
 private:
 	LinuxCoreFunctions m_linuxCoreFunctions;
 	LinuxNetworkFunctions m_linuxNetworkFunctions;
+	LinuxServiceFunctions m_linuxServiceFunctions;
 	LinuxUserInfoFunctions m_linuxUserInfoFunctions;
 
 };

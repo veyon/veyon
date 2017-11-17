@@ -1,5 +1,5 @@
 /*
- * SystemService.h - class for managing a system service
+ * WindowsService.h - class for managing a Windows service
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,13 +22,13 @@
  *
  */
 
-#include "SystemService.h"
+#include "WindowsService.h"
 
-SystemService::SystemService( const QString& name ) :
-	m_name( name )
+WindowsService::WindowsService( const QString& name ) :
+	m_name( name ),
+	m_serviceManager( nullptr ),
+	m_serviceHandle( nullptr )
 {
-#ifdef VEYON_BUILD_WIN32
-	m_serviceHandle = nullptr;
 
 	m_serviceManager = OpenSCManager( nullptr, nullptr, SC_MANAGER_ALL_ACCESS );
 
@@ -38,35 +38,27 @@ SystemService::SystemService( const QString& name ) :
 
 		if( m_serviceHandle == nullptr )
 		{
-			qCritical( "SystemService: '%s' could not be found.", qPrintable( m_name ) );
+			qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
 		}
 	}
 	else
 	{
-		qCritical( "SystemService: the Service Control Manager could not be contacted - service '%s' hasn't been started.", qPrintable( m_name) );
+		qCritical( "WindowsService: the Service Control Manager could not be contacted - service '%s' hasn't been started.", qPrintable( m_name) );
 	}
-#endif
 }
 
 
 
-SystemService::~SystemService()
+WindowsService::~WindowsService()
 {
-#ifdef VEYON_BUILD_WIN32
 	CloseServiceHandle( m_serviceHandle );
 	CloseServiceHandle( m_serviceManager );
-#endif
 }
 
 
 
-bool SystemService::isRunning()
+bool WindowsService::isRunning()
 {
-#ifdef VEYON_BUILD_LINUX
-	return false;
-#endif
-
-#ifdef VEYON_BUILD_WIN32
 	SERVICE_STATUS status;
 	if( QueryServiceStatus( m_serviceHandle, &status ) )
 	{
@@ -74,20 +66,12 @@ bool SystemService::isRunning()
 	}
 
 	return false;
-#endif
-
-	return false;
 }
 
 
 
-bool SystemService::start()
+bool WindowsService::start()
 {
-#ifdef VEYON_BUILD_LINUX
-	return true;
-#endif
-
-#ifdef VEYON_BUILD_WIN32
 	if( m_serviceManager == nullptr || m_serviceHandle == nullptr )
 	{
 		return false;
@@ -113,26 +97,18 @@ bool SystemService::start()
 
 	if( status.dwCurrentState != SERVICE_RUNNING )
 	{
-		qWarning( "SystemService: '%s' could not be started.", qPrintable( m_name ) );
+		qWarning( "WindowsService: '%s' could not be started.", qPrintable( m_name ) );
 		return false;
 	}
 
 	return true;
-#endif
-
-	return false;
 }
 
 
 
 
-bool SystemService::stop()
+bool WindowsService::stop()
 {
-#ifdef VEYON_BUILD_LINUX
-	return true;
-#endif
-
-#ifdef VEYON_BUILD_WIN32
 	if( m_serviceManager == nullptr || m_serviceHandle == nullptr )
 	{
 		return false;
@@ -157,13 +133,10 @@ bool SystemService::stop()
 
 		if( status.dwCurrentState != SERVICE_STOPPED )
 		{
-			qWarning( "SystemService: '%s' could not be stopped.", qPrintable( m_name ) );
+			qWarning( "WindowsService: '%s' could not be stopped.", qPrintable( m_name ) );
 			return false;
 		}
 	}
 
 	return true;
-#endif
-
-	return false;
 }

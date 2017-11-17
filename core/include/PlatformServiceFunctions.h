@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * PlatformServiceFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#ifndef PLATFORM_SERVICE_FUNCTIONS_H
+#define PLATFORM_SERVICE_FUNCTIONS_H
 
+#include "PlatformPluginInterface.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_windowsCoreFunctions(),
-    m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-    m_windowsUserInfoFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class PlatformServiceFunctions
 {
-}
+public:
+	virtual bool isRunning( const QString& serviceName ) = 0;
+	virtual bool start( const QString& serviceName ) = 0;
+	virtual bool stop( const QString& serviceName ) = 0;
 
+};
 
-
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
-}
+#endif // PLATFORM_SERVICE_FUNCTIONS_H

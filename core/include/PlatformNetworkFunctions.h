@@ -25,11 +25,11 @@
 #ifndef PLATFORM_NETWORK_FUNCTIONS_H
 #define PLATFORM_NETWORK_FUNCTIONS_H
 
-#include "VeyonCore.h"
+#include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT PlatformNetworkFunctions
+class PlatformNetworkFunctions
 {
 public:
 	enum {

@@ -1,5 +1,5 @@
 /*
- * SystemService.h - class for managing a system service
+ * WindowsServiceFunctions.h - declaration of WindowsServiceFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,29 +22,19 @@
  *
  */
 
-#ifndef SYSTEM_SERVICE_H
-#define SYSTEM_SERVICE_H
+#ifndef WINDOWS_SERVICE_FUNCTIONS_H
+#define WINDOWS_SERVICE_FUNCTIONS_H
 
-#include "VeyonCore.h"
+#include "PlatformServiceFunctions.h"
 
-class VEYON_CORE_EXPORT SystemService
+// clazy:excludeall=copyable-polymorphic
+
+class WindowsServiceFunctions : public PlatformServiceFunctions
 {
 public:
-	SystemService( const QString& name );
-	~SystemService();
+	bool isRunning( const QString& serviceName ) override;
+	bool start( const QString& serviceName ) override;
+	bool stop( const QString& serviceName ) override;
+};
 
-	bool isRunning();
-	bool start();
-	bool stop();
-
-
-private:
-	const QString m_name;
-#ifdef VEYON_BUILD_WIN32
-	SC_HANDLE m_serviceManager;
-	SC_HANDLE m_serviceHandle;
-#endif
-
-} ;
-
-#endif
+#endif // WINDOWS_SERVICE_FUNCTIONS_H
