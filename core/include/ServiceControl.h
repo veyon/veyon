@@ -57,6 +57,7 @@ private:
 	void graphicalFeedback( const QString &title, const QProcess& serviceProcess );
 	void textFeedback( const QString &title, const QProcess& serviceProcess );
 
+	const QString m_serviceName;
 	QWidget* m_parent;
 
 };

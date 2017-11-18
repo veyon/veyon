@@ -38,6 +38,7 @@
 
 ServiceControl::ServiceControl(QWidget *parent) :
 	QObject( parent ),
+	m_serviceName( QStringLiteral( "VeyonService" ) ),
 	m_parent( parent )
 {
 }
@@ -55,14 +56,14 @@ QString ServiceControl::serviceFilePath()
 
 bool ServiceControl::isServiceRegistered()
 {
-	return VeyonCore::platform().serviceFunctions().isRegistered( "VeyonService" );
+	return VeyonCore::platform().serviceFunctions().isRegistered( m_serviceName );
 }
 
 
 
 bool ServiceControl::isServiceRunning()
 {
-	return VeyonCore::platform().serviceFunctions().isRunning( "VeyonService" );
+	return VeyonCore::platform().serviceFunctions().isRunning( m_serviceName );
 }
 
 
