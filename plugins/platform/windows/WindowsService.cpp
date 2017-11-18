@@ -35,11 +35,6 @@ WindowsService::WindowsService( const QString& name ) :
 	if( m_serviceManager )
 	{
 		m_serviceHandle = OpenService( m_serviceManager, (LPCWSTR) m_name.utf16(), SERVICE_ALL_ACCESS );
-
-		if( m_serviceHandle == nullptr )
-		{
-			qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
-		}
 	}
 	else
 	{
@@ -57,8 +52,21 @@ WindowsService::~WindowsService()
 
 
 
+bool WindowsService::isRegistered()
+{
+	return m_serviceHandle != nullptr;
+}
+
+
+
 bool WindowsService::isRunning()
 {
+	if( m_serviceHandle == nullptr )
+	{
+		qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
+		return false;
+	}
+
 	SERVICE_STATUS status;
 	if( QueryServiceStatus( m_serviceHandle, &status ) )
 	{
@@ -72,8 +80,9 @@ bool WindowsService::isRunning()
 
 bool WindowsService::start()
 {
-	if( m_serviceManager == nullptr || m_serviceHandle == nullptr )
+	if( m_serviceHandle == nullptr )
 	{
+		qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
 		return false;
 	}
 
@@ -109,8 +118,9 @@ bool WindowsService::start()
 
 bool WindowsService::stop()
 {
-	if( m_serviceManager == nullptr || m_serviceHandle == nullptr )
+	if( m_serviceHandle == nullptr )
 	{
+		qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
 		return false;
 	}
 

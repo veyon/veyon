@@ -26,6 +26,11 @@
 
 #include "LinuxServiceFunctions.h"
 
+bool LinuxServiceFunctions::isRegistered(const QString &serviceName)
+{
+	return false;
+}
+
 bool LinuxServiceFunctions::isRunning( const QString& serviceName )
 {
 	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("status"), serviceName } ) == 0;

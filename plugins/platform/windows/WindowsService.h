@@ -33,6 +33,7 @@ public:
 	WindowsService( const QString& name );
 	~WindowsService();
 
+	bool isRegistered();
 	bool isRunning();
 	bool start();
 	bool stop();

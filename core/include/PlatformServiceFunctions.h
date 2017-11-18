@@ -32,6 +32,7 @@
 class PlatformServiceFunctions
 {
 public:
+	virtual bool isRegistered( const QString& serviceName ) = 0;
 	virtual bool isRunning( const QString& serviceName ) = 0;
 	virtual bool start( const QString& serviceName ) = 0;
 	virtual bool stop( const QString& serviceName ) = 0;

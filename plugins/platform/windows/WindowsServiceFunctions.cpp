@@ -25,6 +25,14 @@
 #include "WindowsServiceFunctions.h"
 #include "WindowsService.h"
 
+
+bool WindowsServiceFunctions::isRegistered( const QString& serviceName )
+{
+	return WindowsService( serviceName ).isRegistered();
+}
+
+
+
 bool WindowsServiceFunctions::isRunning( const QString& serviceName )
 {
 	return WindowsService( serviceName ).isRunning();

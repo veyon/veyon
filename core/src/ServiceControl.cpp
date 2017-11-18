@@ -31,9 +31,8 @@
 
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
-#include "Logger.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformServiceFunctions.h"
 #include "ServiceControl.h"
 
 
@@ -56,59 +55,14 @@ QString ServiceControl::serviceFilePath()
 
 bool ServiceControl::isServiceRegistered()
 {
-#ifdef VEYON_BUILD_WIN32
-	SC_HANDLE serviceManager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
-	if( !serviceManager )
-	{
-		return false;
-	}
-
-	SC_HANDLE serviceHandle = OpenService( serviceManager, L"VeyonService", SERVICE_QUERY_STATUS );
-	if( !serviceHandle )
-	{
-		CloseServiceHandle( serviceManager );
-		return false;
-	}
-
-	CloseServiceHandle( serviceHandle );
-	CloseServiceHandle( serviceManager );
-
-	return true;
-#else
-	return false;
-#endif
+	return VeyonCore::platform().serviceFunctions().isRegistered( "VeyonService" );
 }
 
 
 
 bool ServiceControl::isServiceRunning()
 {
-#ifdef VEYON_BUILD_WIN32
-	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
-	if( !hsrvmanager )
-	{
-		ilog_failed( "OpenSCManager()" );
-		return false;
-	}
-
-	SC_HANDLE hservice = OpenService( hsrvmanager, L"VeyonService", SERVICE_QUERY_STATUS );
-	if( !hservice )
-	{
-		ilog_failed( "OpenService()" );
-		CloseServiceHandle( hsrvmanager );
-		return false;
-	}
-
-	SERVICE_STATUS status;
-	QueryServiceStatus( hservice, &status );
-
-	CloseServiceHandle( hservice );
-	CloseServiceHandle( hsrvmanager );
-
-	return( status.dwCurrentState == SERVICE_RUNNING );
-#else
-	return false;
-#endif
+	return VeyonCore::platform().serviceFunctions().isRunning( "VeyonService" );
 }
 
 

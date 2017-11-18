@@ -32,6 +32,7 @@
 class LinuxServiceFunctions : public PlatformServiceFunctions
 {
 public:
+	bool isRegistered( const QString& serviceName ) override;
 	bool isRunning( const QString& serviceName ) override;
 	bool start( const QString& serviceName ) override;
 	bool stop( const QString& serviceName ) override;
