@@ -25,11 +25,10 @@
 #ifndef SERVICE_CONTROL_H
 #define SERVICE_CONTROL_H
 
-#include <QObject>
+#include <QFuture>
 
 #include "VeyonCore.h"
 
-class QProcess;
 class QWidget;
 
 // clazy:excludeall=ctor-missing-parent-argument
@@ -38,9 +37,11 @@ class VEYON_CORE_EXPORT ServiceControl : public QObject
 {
 	Q_OBJECT
 public:
-	ServiceControl( QWidget* parent );
-
-	static QString serviceFilePath();
+	ServiceControl( const QString& name,
+					const QString& filePath,
+					const QString& arguments,
+					const QString& displayName,
+					QWidget* parent );
 
 	bool isServiceRegistered();
 	void registerService();
@@ -53,11 +54,16 @@ public:
 
 
 private:
-	void serviceControl( const QString &title, QStringList arguments );
-	void graphicalFeedback( const QString &title, const QProcess& serviceProcess );
-	void textFeedback( const QString &title, const QProcess& serviceProcess );
+	typedef QFuture<void> Operation;
+	void serviceControl( const QString& title, const Operation& operation );
+	void graphicalFeedback( const QString &title, const Operation& operation );
+	void textFeedback( const QString &title, const Operation& operation );
 
-	const QString m_serviceName;
+	const QString m_name;
+	const QString m_filePath;
+	const QString m_arguments;
+	const QString m_displayName;
+
 	QWidget* m_parent;
 
 };

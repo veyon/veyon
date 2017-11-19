@@ -26,26 +26,74 @@
 
 #include "LinuxServiceFunctions.h"
 
-bool LinuxServiceFunctions::isRegistered(const QString &serviceName)
+bool LinuxServiceFunctions::isRegistered(const QString &name)
 {
 	return false;
 }
 
-bool LinuxServiceFunctions::isRunning( const QString& serviceName )
+bool LinuxServiceFunctions::isRunning( const QString& name )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("status"), serviceName } ) == 0;
+	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("status"), name } ) == 0;
 }
 
 
 
-bool LinuxServiceFunctions::start( const QString& serviceName )
+bool LinuxServiceFunctions::start( const QString& name )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("start"), serviceName } ) == 0;
+	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("start"), name } ) == 0;
 }
 
 
 
-bool LinuxServiceFunctions::stop( const QString& serviceName )
+bool LinuxServiceFunctions::stop( const QString& name )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("stop"), serviceName } ) == 0;
+	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("stop"), name } ) == 0;
+}
+
+
+
+bool LinuxServiceFunctions::install( const QString& name, const QString& filePath, const QString& arguments,
+									 StartMode startMode, const QString& displayName )
+{
+	Q_UNUSED(name)
+	Q_UNUSED(filePath)
+	Q_UNUSED(arguments)
+	Q_UNUSED(startMode)
+	Q_UNUSED(displayName)
+
+	// TODO
+	return false;
+}
+
+
+
+bool LinuxServiceFunctions::uninstall( const QString& name )
+{
+	Q_UNUSED(name)
+
+	// TODO
+	return false;
+}
+
+
+
+bool LinuxServiceFunctions::setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments )
+{
+	Q_UNUSED(name)
+	Q_UNUSED(filePath)
+	Q_UNUSED(arguments)
+
+	// TODO
+	return false;
+}
+
+
+
+bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
+{
+	Q_UNUSED(name)
+	Q_UNUSED(startMode)
+
+	// TODO
+	return false;
 }

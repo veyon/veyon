@@ -23,54 +23,48 @@
  */
 
 #include <QCoreApplication>
-#include <QDir>
-#include <QProcess>
 #include <QProgressBar>
 #include <QProgressDialog>
-#include <QThread>
+#include <QtConcurrent>
 
-#include "VeyonCore.h"
-#include "VeyonConfiguration.h"
-#include "PlatformCoreFunctions.h"
 #include "PlatformServiceFunctions.h"
 #include "ServiceControl.h"
 
 
-ServiceControl::ServiceControl(QWidget *parent) :
+ServiceControl::ServiceControl( const QString& name,
+								const QString& filePath,
+								const QString& arguments,
+								const QString& displayName,
+								QWidget* parent ) :
 	QObject( parent ),
-	m_serviceName( QStringLiteral( "VeyonService" ) ),
+	m_name( name ),
+	m_filePath( filePath ),
+	m_arguments( arguments ),
+	m_displayName( displayName ),
 	m_parent( parent )
 {
 }
 
 
 
-QString ServiceControl::serviceFilePath()
-{
-	return QDir::toNativeSeparators(
-				QCoreApplication::applicationDirPath() + QDir::separator() +
-				"veyon-service" + VeyonCore::platform().coreFunctions().programFileExtension() );
-}
-
-
-
 bool ServiceControl::isServiceRegistered()
 {
-	return VeyonCore::platform().serviceFunctions().isRegistered( m_serviceName );
+	return VeyonCore::platform().serviceFunctions().isRegistered( m_name );
 }
 
 
 
 bool ServiceControl::isServiceRunning()
 {
-	return VeyonCore::platform().serviceFunctions().isRunning( m_serviceName );
+	return VeyonCore::platform().serviceFunctions().isRunning( m_name );
 }
 
 
 
 void ServiceControl::startService()
 {
-	serviceControl( tr( "Starting %1 Service" ).arg( VeyonCore::applicationName() ), { "-startservice" } );
+	serviceControl( tr( "Starting service %1" ).arg( m_name ),
+					QtConcurrent::run( [=]() { VeyonCore::platform().serviceFunctions().start( m_name ); } ) );
 }
 
 
@@ -78,54 +72,51 @@ void ServiceControl::startService()
 
 void ServiceControl::stopService()
 {
-	serviceControl( tr( "Stopping %1 Service" ).arg( VeyonCore::applicationName() ), { "-stopservice" } );
+	serviceControl( tr( "Stopping service %1" ).arg( m_name ),
+					QtConcurrent::run( [=]() { VeyonCore::platform().serviceFunctions().stop( m_name ); } ) );
 }
 
 
 
 void ServiceControl::registerService()
 {
-	serviceControl( tr( "Registering %1 Service" ).arg( VeyonCore::applicationName() ), { "-registerservice" } );
+	serviceControl( tr( "Registering service %1" ).arg( m_name ),
+					QtConcurrent::run( [=]() { VeyonCore::platform().serviceFunctions().install( m_name,
+																								 m_filePath,
+																								 m_arguments,
+																								 PlatformServiceFunctions::StartModeAuto,
+																								 m_displayName ); } ) );
 }
 
 
 
 void ServiceControl::unregisterService()
 {
-	serviceControl( tr( "Unregistering %1 Service" ).arg( VeyonCore::applicationName() ), { "-unregisterservice" } );
+	serviceControl( tr( "Unregistering service %1" ).arg( m_name ),
+					QtConcurrent::run( [=]() { VeyonCore::platform().serviceFunctions().uninstall( m_name ); } ) );
+
 }
 
 
 
-void ServiceControl::serviceControl( const QString& title, QStringList arguments )
+void ServiceControl::serviceControl( const QString& title, const Operation& operation )
 {
-	// not running as graphical/interactive application?
-	if( m_parent == nullptr )
-	{
-		// then prevent service application from showing any message boxes
-		arguments.prepend( QStringLiteral( "-quiet" ) );
-	}
-
-	QProcess serviceProcess;
-	serviceProcess.start( serviceFilePath(), arguments );
-	serviceProcess.waitForStarted();
-
 	if( m_parent )
 	{
-		graphicalFeedback( title, serviceProcess);
+		graphicalFeedback( title, operation );
 	}
 	else
 	{
-		textFeedback( title, serviceProcess );
+		textFeedback( title, operation );
 	}
 }
 
 
 
-void ServiceControl::graphicalFeedback( const QString &title, const QProcess& serviceProcess )
+void ServiceControl::graphicalFeedback( const QString& title, const Operation& operation )
 {
 	QProgressDialog pd( title, QString(), 0, 0, m_parent );
-	pd.setWindowTitle( VeyonCore::applicationName() );
+	pd.setWindowTitle( tr( "Service control" ) );
 
 	auto b = new QProgressBar( &pd );
 	b->setMaximum( 100 );
@@ -136,7 +127,7 @@ void ServiceControl::graphicalFeedback( const QString &title, const QProcess& se
 	pd.show();
 
 	int j = 0;
-	while( serviceProcess.state() == QProcess::Running )
+	while( operation.isFinished() == false )
 	{
 		QCoreApplication::processEvents();
 		b->setValue( ++j % 100 );
@@ -146,11 +137,11 @@ void ServiceControl::graphicalFeedback( const QString &title, const QProcess& se
 
 
 
-void ServiceControl::textFeedback( const QString& title, const QProcess& serviceProcess )
+void ServiceControl::textFeedback( const QString& title, const Operation& operation )
 {
 	printf( "%s", qUtf8Printable( title ) );
 
-	while( serviceProcess.state() == QProcess::Running )
+	while( operation.isFinished() == false )
 	{
 		QCoreApplication::processEvents();
 		QThread::msleep( 200 );

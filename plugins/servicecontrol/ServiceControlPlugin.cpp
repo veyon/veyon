@@ -23,7 +23,7 @@
  */
 
 #include "ServiceControlPlugin.h"
-#include "ServiceControl.h"
+#include "VeyonServiceControl.h"
 
 ServiceControlPlugin::ServiceControlPlugin( QObject* parent ) :
 	QObject( parent ),
@@ -34,8 +34,7 @@ ServiceControlPlugin::ServiceControlPlugin( QObject* parent ) :
 { "stop", tr( "Stop Veyon Service" ) },
 { "restart", tr( "Restart Veyon Service" ) },
 { "status", tr( "Query status of Veyon Service" ) },
-				} ),
-	m_serviceControl( nullptr )
+				} )
 {
 }
 
@@ -57,36 +56,40 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::runCommand( const QS
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( const QStringList& arguments )
 {
-	m_serviceControl.registerService();
+	VeyonServiceControl serviceControl;
+	serviceControl.registerService();
 
-	return m_serviceControl.isServiceRegistered() ? Successful : Failed;
+	return serviceControl.isServiceRegistered() ? Successful : Failed;
 }
 
 
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_unregister( const QStringList& arguments )
 {
-	m_serviceControl.unregisterService();
+	VeyonServiceControl serviceControl;
+	serviceControl.unregisterService();
 
-	return m_serviceControl.isServiceRegistered() ? Failed : Successful;
+	return serviceControl.isServiceRegistered() ? Failed : Successful;
 }
 
 
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_start( const QStringList& arguments )
 {
-	m_serviceControl.startService();
+	VeyonServiceControl serviceControl;
+	serviceControl.startService();
 
-	return m_serviceControl.isServiceRunning() ? Successful : Failed;
+	return serviceControl.isServiceRunning() ? Successful : Failed;
 }
 
 
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_stop( const QStringList& arguments )
 {
-	m_serviceControl.stopService();
+	VeyonServiceControl serviceControl;
+	serviceControl.stopService();
 
-	return m_serviceControl.isServiceRunning() ? Failed : Successful;
+	return serviceControl.isServiceRunning() ? Failed : Successful;
 }
 
 
@@ -101,7 +104,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_restart( cons
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_status( const QStringList& arguments )
 {
-	if( m_serviceControl.isServiceRunning() )
+	if( VeyonServiceControl().isServiceRunning() )
 	{
 		printf( "%s\n", qUtf8Printable( tr( "Service is running" ) ) );
 	}

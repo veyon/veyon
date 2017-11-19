@@ -32,10 +32,16 @@
 class LinuxServiceFunctions : public PlatformServiceFunctions
 {
 public:
-	bool isRegistered( const QString& serviceName ) override;
-	bool isRunning( const QString& serviceName ) override;
-	bool start( const QString& serviceName ) override;
-	bool stop( const QString& serviceName ) override;
+	bool isRegistered( const QString& name ) override;
+	bool isRunning( const QString& name ) override;
+	bool start( const QString& name ) override;
+	bool stop( const QString& name ) override;
+	bool install( const QString& name, const QString& serviceFilePath, const QString& serviceArguments,
+				  StartMode startMode, const QString& displayName) override;
+	bool uninstall( const QString& name ) override;
+	bool setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments ) override;
+	bool setStartMode( const QString& name, StartMode startMode ) override;
+
 };
 
 #endif // LINUX_SERVICE_FUNCTIONS_H

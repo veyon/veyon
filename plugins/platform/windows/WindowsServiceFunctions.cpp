@@ -26,28 +26,72 @@
 #include "WindowsService.h"
 
 
-bool WindowsServiceFunctions::isRegistered( const QString& serviceName )
+bool WindowsServiceFunctions::isRegistered( const QString& name )
 {
-	return WindowsService( serviceName ).isRegistered();
+	return WindowsService( name ).isRegistered();
 }
 
 
 
-bool WindowsServiceFunctions::isRunning( const QString& serviceName )
+bool WindowsServiceFunctions::isRunning( const QString& name )
 {
-	return WindowsService( serviceName ).isRunning();
+	return WindowsService( name ).isRunning();
 }
 
 
 
-bool WindowsServiceFunctions::start( const QString& serviceName )
+bool WindowsServiceFunctions::start( const QString& name )
 {
-	return WindowsService( serviceName ).start();
+	return WindowsService( name ).start();
 }
 
 
 
-bool WindowsServiceFunctions::stop( const QString& serviceName )
+bool WindowsServiceFunctions::stop( const QString& name )
 {
-	return WindowsService( serviceName ).stop();
+	return WindowsService( name ).stop();
+}
+
+
+
+bool WindowsServiceFunctions::install( const QString& name, const QString& filePath, const QString& arguments,
+                                       StartMode startMode, const QString& displayName )
+{
+	return WindowsService( name ).install( filePath, arguments, displayName ) &&
+	        setStartMode( name, startMode );
+}
+
+
+
+bool WindowsServiceFunctions::uninstall( const QString& name )
+{
+	return WindowsService( name ).uninstall();
+}
+
+
+
+bool WindowsServiceFunctions::setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments )
+{
+	return WindowsService( name ).setFilePathAndArguments( filePath, arguments );
+}
+
+
+
+bool WindowsServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
+{
+	return WindowsService( name ).setStartType( windowsServiceStartType( startMode ) );
+}
+
+
+
+int WindowsServiceFunctions::windowsServiceStartType( PlatformServiceFunctions::StartMode startMode )
+{
+	switch( startMode )
+	{
+	case StartModeAuto: return SERVICE_AUTO_START;
+	case StartModeManual: return SERVICE_DEMAND_START;
+	default: break;
+	}
+
+	return SERVICE_DISABLED;
 }

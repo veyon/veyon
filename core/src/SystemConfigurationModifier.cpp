@@ -34,108 +34,8 @@
 
 #include "FeatureWorkerManager.h"
 #include "SystemConfigurationModifier.h"
-#include "ServiceControl.h"
+#include "VeyonServiceControl.h"
 #include "Logger.h"
-
-#ifdef VEYON_BUILD_WIN32
-static auto serviceName = L"VeyonService";
-#endif
-
-bool SystemConfigurationModifier::setServiceAutostart( bool enabled )
-{
-#ifdef VEYON_BUILD_WIN32
-	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
-	if( !hsrvmanager )
-	{
-		ilog_failed( "OpenSCManager()" );
-		return false;
-	}
-
-	SC_HANDLE hservice = OpenService( hsrvmanager, serviceName, SERVICE_ALL_ACCESS );
-	if( !hservice )
-	{
-		ilog_failed( "OpenService()" );
-		CloseServiceHandle( hsrvmanager );
-		return false;
-	}
-
-	if( !ChangeServiceConfig( hservice,
-					SERVICE_NO_CHANGE,	// dwServiceType
-					enabled ? SERVICE_AUTO_START : SERVICE_DEMAND_START,
-					SERVICE_NO_CHANGE,	// dwErrorControl
-					NULL,	// lpBinaryPathName
-					NULL,	// lpLoadOrderGroup
-					NULL,	// lpdwTagId
-					NULL,	// lpDependencies
-					NULL,	// lpServiceStartName
-					NULL,	// lpPassword
-					NULL	// lpDisplayName
-				) )
-	{
-		ilog_failed( "ChangeServiceConfig()" );
-		CloseServiceHandle( hservice );
-		CloseServiceHandle( hsrvmanager );
-
-		return false;
-	}
-
-	CloseServiceHandle( hservice );
-	CloseServiceHandle( hsrvmanager );
-#endif
-
-	return true;
-}
-
-
-
-
-bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArgs )
-{
-	bool err = false;
-#ifdef VEYON_BUILD_WIN32
-	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
-	if( !hsrvmanager )
-	{
-		ilog_failed( "OpenSCManager()" );
-		return false;
-	}
-
-	SC_HANDLE hservice = OpenService( hsrvmanager, serviceName, SERVICE_ALL_ACCESS );
-	if( !hservice )
-	{
-		ilog_failed( "OpenService()" );
-		CloseServiceHandle( hsrvmanager );
-		return false;
-	}
-
-	QString binaryPath = QString( "\"%1\" -service %2" ).
-								arg( ServiceControl::serviceFilePath() ).
-								arg( serviceArgs );
-
-	if( !ChangeServiceConfig( hservice,
-					SERVICE_NO_CHANGE,	// dwServiceType
-					SERVICE_NO_CHANGE,	// dwStartType
-					SERVICE_NO_CHANGE,	// dwErrorControl
-					(wchar_t *) binaryPath.utf16(),	// lpBinaryPathName
-					NULL,	// lpLoadOrderGroup
-					NULL,	// lpdwTagId
-					NULL,	// lpDependencies
-					NULL,	// lpServiceStartName
-					NULL,	// lpPassword
-					NULL	// lpDisplayName
-				) )
-	{
-		ilog_failed( "ChangeServiceConfig()" );
-		err = true;
-	}
-
-	CloseServiceHandle( hservice );
-	CloseServiceHandle( hsrvmanager );
-#endif
-
-	return !err;
-}
-
 
 
 #ifdef VEYON_BUILD_WIN32
@@ -345,7 +245,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		return false;
 	}
 
-	const auto serviceFilePath = ServiceControl::serviceFilePath();
+	const auto serviceFilePath = VeyonServiceControl::filePath();
 	const auto workerFilePath = FeatureWorkerManager::workerProcessFilePath();
 
 	result &= configureFirewallException( fwPolicy2, (const wchar_t *) serviceFilePath.utf16(), L"Veyon Service", enabled );

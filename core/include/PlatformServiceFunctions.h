@@ -32,10 +32,22 @@
 class PlatformServiceFunctions
 {
 public:
-	virtual bool isRegistered( const QString& serviceName ) = 0;
-	virtual bool isRunning( const QString& serviceName ) = 0;
-	virtual bool start( const QString& serviceName ) = 0;
-	virtual bool stop( const QString& serviceName ) = 0;
+	typedef enum StartModes {
+		StartModeDisabled,
+		StartModeManual,
+		StartModeAuto,
+		StartModeCount
+	} StartMode;
+
+	virtual bool isRegistered( const QString& name ) = 0;
+	virtual bool isRunning( const QString& name ) = 0;
+	virtual bool start( const QString& name ) = 0;
+	virtual bool stop( const QString& name ) = 0;
+	virtual bool install( const QString& name, const QString& filePath, const QString& arguments,
+						  StartMode startMode, const QString& displayName ) = 0;
+	virtual bool uninstall( const QString& name ) = 0;
+	virtual bool setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments ) = 0;
+	virtual bool setStartMode( const QString& name, StartMode startMode ) = 0;
 
 };
 

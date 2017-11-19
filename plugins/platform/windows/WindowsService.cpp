@@ -25,11 +25,10 @@
 #include "WindowsService.h"
 
 WindowsService::WindowsService( const QString& name ) :
-	m_name( name ),
-	m_serviceManager( nullptr ),
-	m_serviceHandle( nullptr )
+    m_name( name ),
+    m_serviceManager( nullptr ),
+    m_serviceHandle( nullptr )
 {
-
 	m_serviceManager = OpenSCManager( nullptr, nullptr, SC_MANAGER_ALL_ACCESS );
 
 	if( m_serviceManager )
@@ -61,9 +60,8 @@ bool WindowsService::isRegistered()
 
 bool WindowsService::isRunning()
 {
-	if( m_serviceHandle == nullptr )
+	if( checkService() == false )
 	{
-		qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
 		return false;
 	}
 
@@ -80,9 +78,8 @@ bool WindowsService::isRunning()
 
 bool WindowsService::start()
 {
-	if( m_serviceHandle == nullptr )
+	if( checkService() == false )
 	{
-		qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
 		return false;
 	}
 
@@ -118,9 +115,8 @@ bool WindowsService::start()
 
 bool WindowsService::stop()
 {
-	if( m_serviceHandle == nullptr )
+	if( checkService() == false )
 	{
-		qCritical( "WindowsService: '%s' could not be found.", qPrintable( m_name ) );
 		return false;
 	}
 
@@ -146,6 +142,159 @@ bool WindowsService::stop()
 			qWarning( "WindowsService: '%s' could not be stopped.", qPrintable( m_name ) );
 			return false;
 		}
+	}
+
+	return true;
+}
+
+
+
+bool WindowsService::install( const QString& filePath, const QString& arguments, const QString& displayName  )
+{
+	const auto serviceCmd = QStringLiteral("\"%1\" %2" ).arg( filePath, arguments );
+
+	m_serviceHandle = CreateService(
+	            m_serviceManager,		// SCManager database
+	            (LPCWSTR) m_name.utf16(),	// name of service
+	            (LPCWSTR) displayName.utf16(),// name to display
+	            SERVICE_ALL_ACCESS,	// desired access
+	            SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
+	            // service type
+	            SERVICE_AUTO_START,	// start type
+	            SERVICE_ERROR_NORMAL,	// error control type
+	            (LPCWSTR) serviceCmd.utf16(),		// service's binary
+	            NULL,			// no load ordering group
+	            NULL,			// no tag identifier
+	            NULL,			// dependencies
+	            NULL,			// LocalSystem account
+	            NULL );			// no password
+
+	if( m_serviceHandle == nullptr )
+	{
+		const auto error = GetLastError();
+		if( error == ERROR_SERVICE_EXISTS )
+		{
+			qCritical( qPrintable( tr( "WindowsService: the service \"%1\" is already installed." ).arg( m_name ) ) );
+		}
+		else
+		{
+			qCritical( qPrintable( tr( "WindowsService: the service \"%1\" could not be installed." ).arg( m_name ) ) );
+		}
+
+		return false;
+	}
+
+	SC_ACTION serviceActions;
+	serviceActions.Delay = 10000;
+	serviceActions.Type = SC_ACTION_RESTART;
+
+	SERVICE_FAILURE_ACTIONS serviceFailureActions;
+	serviceFailureActions.dwResetPeriod = 0;
+	serviceFailureActions.lpRebootMsg = NULL;
+	serviceFailureActions.lpCommand = NULL;
+	serviceFailureActions.lpsaActions = &serviceActions;
+	serviceFailureActions.cActions = 1;
+	ChangeServiceConfig2( m_serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS, &serviceFailureActions );
+
+	// Everything went fine
+	qInfo( qPrintable( tr( "WindowsService: the service \"%1\" has been installed successfully." ).arg( m_name ) ) );
+
+	return true;
+}
+
+
+
+bool WindowsService::uninstall()
+{
+	if( checkService() == false )
+	{
+		return false;
+	}
+
+	if( stop() == false )
+	{
+		return false;
+	}
+
+	if( DeleteService( m_serviceHandle ) == false )
+	{
+		qCritical( qPrintable( tr( "WindowsService: the service \"%1\" could not be uninstalled." ).arg( m_name ) ) );
+		return false;
+	}
+
+	qInfo( qPrintable( tr( "WindowsService: the service \"%1\" has been uninstalled successfully." ).arg( m_name ) ) );
+
+	return true;
+}
+
+
+
+bool WindowsService::setFilePathAndArguments( const QString& filePath, const QString& arguments )
+{
+	if( checkService() == false )
+	{
+		return false;
+	}
+
+	const auto serviceCmd = QStringLiteral("\"%1\" %2" ).arg( filePath, arguments );
+
+	if( ChangeServiceConfig( m_serviceHandle,
+	                         SERVICE_NO_CHANGE,	// dwServiceType
+	                         SERVICE_NO_CHANGE,	// dwStartType
+	                         SERVICE_NO_CHANGE,	// dwErrorControl
+	                         (wchar_t *) serviceCmd.utf16(),	// lpBinaryPathName
+	                         NULL,	// lpLoadOrderGroup
+	                         NULL,	// lpdwTagId
+	                         NULL,	// lpDependencies
+	                         NULL,	// lpServiceStartName
+	                         NULL,	// lpPassword
+	                         NULL	// lpDisplayName
+	                         ) == false )
+	{
+		qCritical( qPrintable( tr( "WindowsService: the arguments of service \"%1\" could not be changed." ).arg( m_name ) ) );
+		return false;
+	}
+
+	return true;
+}
+
+
+
+bool WindowsService::setStartType( int startType )
+{
+	if( checkService() == false )
+	{
+		return false;
+	}
+
+	if( ChangeServiceConfig( m_serviceHandle,
+	                         SERVICE_NO_CHANGE,	// dwServiceType
+	                         startType,
+	                         SERVICE_NO_CHANGE,	// dwErrorControl
+	                         NULL,	// lpBinaryPathName
+	                         NULL,	// lpLoadOrderGroup
+	                         NULL,	// lpdwTagId
+	                         NULL,	// lpDependencies
+	                         NULL,	// lpServiceStartName
+	                         NULL,	// lpPassword
+	                         NULL	// lpDisplayName
+	                         ) == false )
+	{
+		qCritical( qPrintable( tr( "WindowsService: the start type of service \"%1\" could not be changed." ).arg( m_name ) ) );
+		return false;
+	}
+
+	return true;
+}
+
+
+
+bool WindowsService::checkService() const
+{
+	if( m_serviceHandle == nullptr )
+	{
+		qCritical( qPrintable( tr( "WindowsService: service \"%1\" could not be found." ).arg( m_name ) ) );
+		return false;
 	}
 
 	return true;

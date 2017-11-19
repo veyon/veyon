@@ -31,6 +31,7 @@
 #include "Configuration/LocalStore.h"
 #include "ConfigCommandLinePlugin.h"
 #include "SystemConfigurationModifier.h"
+#include "VeyonServiceControl.h"
 
 
 ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
@@ -275,12 +276,13 @@ void ConfigCommandLinePlugin::listConfiguration( const VeyonConfiguration::DataM
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguration()
 {
 	// do necessary modifications of system configuration
-	if( SystemConfigurationModifier::setServiceAutostart( VeyonCore::config().autostartService() ) == false )
+	VeyonServiceControl serviceControl;
+	if( serviceControl.setAutostart( VeyonCore::config().autostartService() ) == false )
 	{
 		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( SystemConfigurationModifier::setServiceArguments( VeyonCore::config().serviceArguments() ) == false )
+	if( serviceControl.setExtraArguments( VeyonCore::config().serviceArguments() ) == false )
 	{
 		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}

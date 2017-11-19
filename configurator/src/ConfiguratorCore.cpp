@@ -36,6 +36,7 @@
 #include "Logger.h"
 #include "MainWindow.h"
 #include "SystemConfigurationModifier.h"
+#include "VeyonServiceControl.h"
 
 // static data initialization
 bool ConfiguratorCore::silent = false;
@@ -46,20 +47,20 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 	// merge configuration
 	VeyonCore::config() += c;
 
-	// do necessary modifications of system configuration
-	if( !SystemConfigurationModifier::setServiceAutostart(
-									VeyonCore::config().autostartService() ) )
+	// update Veyon Service configuration
+	VeyonServiceControl serviceControl;
+	if( serviceControl.setAutostart( VeyonCore::config().autostartService() ) == false )
 	{
 		configApplyError(
 			tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( !SystemConfigurationModifier::setServiceArguments(
-									VeyonCore::config().serviceArguments() ) )
+	if( serviceControl.setExtraArguments( VeyonCore::config().serviceArguments() ) == false )
 	{
 		configApplyError(
 			tr( "Could not modify the service arguments for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
+
 	if( !SystemConfigurationModifier::enableFirewallException(
 							VeyonCore::config().isFirewallExceptionEnabled() ) )
 	{

@@ -1,5 +1,5 @@
 /*
- * WindowsService.h - class for managing a Windows service
+ * VeyonServiceControl.h - class for controlling the Veyon service
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,34 +22,26 @@
  *
  */
 
-#ifndef WINDOWS_SERVICE_H
-#define WINDOWS_SERVICE_H
+#ifndef VEYON_SERVICE_CONTROL_H
+#define VEYON_SERVICE_CONTROL_H
 
-#include "VeyonCore.h"
+#include "ServiceControl.h"
 
-class WindowsService : public QObject
+// clazy:excludeall=ctor-missing-parent-argument
+
+class VEYON_CORE_EXPORT VeyonServiceControl : public ServiceControl
 {
 	Q_OBJECT
 public:
-	WindowsService( const QString& name );
-	~WindowsService();
+	VeyonServiceControl( QWidget* parent = nullptr );
 
-	bool isRegistered();
-	bool isRunning();
-	bool start();
-	bool stop();
-	bool install( const QString& filePath, const QString& arguments, const QString& displayName );
-	bool uninstall();
-	bool setFilePathAndArguments( const QString& filePath, const QString& arguments );
-	bool setStartType( int startType );
+	bool setAutostart( bool enabled );
+	bool setExtraArguments( const QString& extraArguments );
 
-private:
-	bool checkService() const;
+	static QString name();
+	static QString filePath();
+	static QString arguments();
+	static QString displayName();
+};
 
-	const QString m_name;
-	SC_HANDLE m_serviceManager;
-	SC_HANDLE m_serviceHandle;
-
-} ;
-
-#endif
+#endif // VEYON_SERVICE_CONTROL_H

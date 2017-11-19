@@ -32,7 +32,7 @@
 #include "LocalSystem.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PluginManager.h"
-#include "ServiceControl.h"
+#include "VeyonServiceControl.h"
 #include "Configuration/UiMapping.h"
 #include "ui_GeneralConfigurationPage.h"
 
@@ -123,7 +123,7 @@ void GeneralConfigurationPage::clearLogFiles()
 {
 	bool serviceStopped = false;
 
-	ServiceControl serviceControl( this );
+	VeyonServiceControl serviceControl( this );
 
 	if( serviceControl.isServiceRunning() )
 	{

@@ -26,7 +26,6 @@
 #define SERVICE_CONTROL_PLUGIN_H
 
 #include "CommandLinePluginInterface.h"
-#include "ServiceControl.h"
 
 class ServiceControlPlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
@@ -99,7 +98,6 @@ public slots:
 
 private:
 	QMap<QString, QString> m_commands;
-	ServiceControl m_serviceControl;
 
 };
 
