@@ -145,7 +145,7 @@ RequestExecutionLevel highest
 Section "Veyon Service"
 SectionIn RO
 ${INSTALL_TYPE}
-ExecWait '"$INSTDIR\veyon-service.exe" -quiet -unregisterservice'
+ExecWait '"$INSTDIR\veyon-ctl.exe" service unregister'
 SetOverwrite on
 SetOutPath "$INSTDIR"
 # DLLs
@@ -203,7 +203,7 @@ ${If} $R1 != ""
 	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
   ${EndIf}
 ${EndIf}
-ExecWait '"$INSTDIR\veyon-service.exe" -quiet -startservice'
+ExecWait '"$INSTDIR\veyon-ctl.exe" service start'
 SectionEnd
 
 Section "Veyon Master" SEC_MASTER
@@ -260,7 +260,7 @@ ${INSTALL_TYPE}
 
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 0'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 0'
-ExecWait '"$INSTDIR\veyon-service.exe" -quiet -unregisterservice'
+ExecWait '"$INSTDIR\veyon-ctl.exe" service unregister'
 ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
