@@ -30,7 +30,7 @@
 #include "WindowsService.h"
 #include "ComputerControlServer.h"
 #include "VeyonConfiguration.h"
-
+#include "VeyonServiceControl.h"
 
 #ifdef VEYON_BUILD_WIN32
 static HANDLE hShutdownEvent = NULL;
@@ -64,25 +64,16 @@ public:
 
 int main( int argc, char **argv )
 {
-	// decide in what mode to run
+#ifdef VEYON_BUILD_WIN32
 	if( argc >= 2 )
 	{
-#ifdef VEYON_BUILD_WIN32
-		for( int i = 1; i < argc; ++i )
+		if( QString( argv[1] ) == VeyonServiceControl::arguments() )
 		{
-			if( QString( argv[i] ).toLower().contains( "service" ) )
-			{
-				WindowsService winService( "VeyonService", "-service", "Veyon Service",
-											QString(), argc, argv );
-				if( winService.evalArgs( argc, argv ) )
-				{
-					return 0;
-				}
-				break;
-			}
+			VeyonCore core( nullptr, QStringLiteral("ServiceMonitor") );
+			return WindowsService( VeyonServiceControl::name() ).runAsService() ? 0 : -1;
 		}
-#endif
 	}
+#endif
 
 	QCoreApplication app( argc, argv );
 

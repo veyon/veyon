@@ -31,8 +31,8 @@
 #include <windows.h>
 #include <wtsapi32.h>
 
-#include <QtCore/QAtomicInt>
-#include <QtCore/QString>
+#include <QAtomicInt>
+#include <QString>
 
 typedef BOOL(WINAPI *PFN_WTSQuerySessionInformation)( HANDLE, DWORD,
 					WTS_INFO_CLASS, LPTSTR*, DWORD* );
@@ -45,63 +45,13 @@ extern PFN_WTSFreeMemory pfnWTSFreeMemory;
 class WindowsService
 {
 public:
-	WindowsService( const QString &serviceName,
-					const QString &serviceArg,
-					const QString &displayName,
-					const QString &serviceDependencies,
-					int argc,
-					char **argv );
-
-	// install service - will start at next boot
-	bool install();
-
-	// unregister service
-	bool remove();
-
-	// re-install service
-	bool reinstall()
-	{
-		return remove() && install();
-	}
-
-	// try to start service
-	bool start();
-
-	// try to stop service
-	bool stop();
-
-	// re-start service
-	bool restart()
-	{
-		return stop() && start();
-	}
+	WindowsService( const QString &serviceName );
 
 	bool runAsService();
-
-	bool evalArgs( int &argc, char **argv );
-
-	inline int & argc()
-	{
-		return m_argc;
-	}
-
-	inline char **argv()
-	{
-		return m_argv;
-	}
 
 
 private:
 	const QString m_name;
-	const QString m_arg;
-	const QString m_displayName;
-	const QString m_dependencies;
-	bool m_running;
-	bool m_quiet;
-
-	int m_argc;
-	char **m_argv;
-
 
 	static void WINAPI serviceMain( DWORD, char ** );
 	static DWORD WINAPI serviceCtrl( DWORD _ctrlcode, DWORD dwEventType, LPVOID lpEventData, LPVOID lpContext );
