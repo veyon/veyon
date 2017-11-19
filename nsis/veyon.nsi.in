@@ -189,7 +189,7 @@ File "contrib\*"
 SetOutPath "$INSTDIR\contrib\en-US"
 File "contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
-ExecWait '"$INSTDIR\veyon-service.exe" -quiet -registerservice'
+ExecWait '"$INSTDIR\veyon-ctl.exe" service register'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 1'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 1'
 # disable forced guest logon as otherwise logon authentication fails
