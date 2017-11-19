@@ -81,6 +81,7 @@ ELSE()
 ENDIF(VEYON_BUILD_WIN32)
 
 TARGET_LINK_LIBRARIES(veyon-core
+	Qt5::Concurrent
 	Qt5::Gui
 	Qt5::Network
 	Qt5::Widgets
