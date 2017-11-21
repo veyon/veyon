@@ -90,3 +90,4 @@ TARGET_LINK_LIBRARIES(veyon-core
 
 ADD_DEPENDENCIES(veyon-core GenerateTranslationFiles)
 
+COTIRE_VEYON(veyon-core)

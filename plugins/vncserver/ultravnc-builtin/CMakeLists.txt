@@ -100,3 +100,4 @@ BUILD_PLUGIN(builtin-ultravnc-server
 TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
 SET_TARGET_PROPERTIES(builtin-ultravnc-server PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unknown-pragmas -Wno-strict-aliasing -Wno-terminate -Wno-format-zero-length -fexceptions")
 SET_SOURCE_FILES_PROPERTIES(${ultravnc_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations")
+COTIRE_VEYON(builtin-ultravnc-server)

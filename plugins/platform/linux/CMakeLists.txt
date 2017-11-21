@@ -11,5 +11,7 @@ BUILD_PLUGIN(linux-platform
 	LinuxCoreFunctions.h
 	LinuxNetworkFunctions.h
 	LinuxServiceFunctions.h
-	LinuxUserInfoFunctions.h)
+	LinuxUserInfoFunctions.h
+	COTIRE
+)
 

@@ -17,6 +17,7 @@ INCLUDE(CheckFunctionExists)
 INCLUDE(CheckSymbolExists)
 INCLUDE(FindPkgConfig)
 INCLUDE(GNUInstallDirs)
+INCLUDE(CotireVeyon)
 
 FIND_PACKAGE(Git)
 

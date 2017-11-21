@@ -39,3 +39,5 @@ TARGET_LINK_LIBRARIES(veyon-service
         Qt5::Network
         Qt5::Widgets
 	)
+
+COTIRE_VEYON(veyon-service)

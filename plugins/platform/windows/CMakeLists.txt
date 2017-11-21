@@ -1,5 +1,7 @@
 INCLUDE(BuildPlugin)
 
+ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
+
 BUILD_PLUGIN(windows-platform
 	WindowsPlatformPlugin.cpp
 	WindowsCoreFunctions.cpp
@@ -13,8 +15,8 @@ BUILD_PLUGIN(windows-platform
 	WindowsNetworkFunctions.h
 	WindowsService.h
 	WindowsServiceFunctions.h
-	WindowsUserInfoFunctions.h)
-
-ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
+	WindowsUserInfoFunctions.h
+	COTIRE
+)
 
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32)

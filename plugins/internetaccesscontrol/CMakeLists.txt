@@ -14,5 +14,6 @@ BUILD_PLUGIN(internetaccesscontrol
 	InternetAccessControlConfigurationPage.ui
 	RESOURCES
 	internetaccesscontrol.qrc
+	COTIRE
 )
 
