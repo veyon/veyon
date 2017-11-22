@@ -43,6 +43,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>About %1 %2</source>
         <translation>Acerca de %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Apoyar al proyecto Veyon con una donación</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1771,6 +1775,10 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     <message>
         <source>New computer</source>
         <translation>Nuevo equipo</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Aulas y equipos</translation>
     </message>
 </context>
 <context>

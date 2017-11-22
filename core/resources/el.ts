@@ -3,19 +3,19 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Σχετικά</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"/>
+        <translation>Μετάφραση</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Άδεια</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Σχετικά με το Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Έκδοση:</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -39,6 +39,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>About %1 %2</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -52,7 +56,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Δοκιμή</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
@@ -80,11 +84,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>Όλες οι ομάδες</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -100,11 +104,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση του κανόνα προς τα κάτω</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση του κανόνα προς τα πάνω</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
@@ -151,39 +155,39 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>γράψτε ένα σύντομο όνομα για τον κανόνα</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα κανόνα:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>γράψτε μια περιγραφή για τον κανόνα εδώ</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Περιγραφή κανόνα:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Αντιστροφή όλων των συνθηκών (&quot;είναι/έχει&quot; θα είναι &quot;δεν είναι/δεν έχει&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Συνθήκες</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>είναι μέλος της ομάδας</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>είναι στην αίθουσα</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -203,7 +207,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Ενέργεια</translation>
     </message>
     <message>
         <source>Allow access</source>
@@ -235,7 +239,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Τοπικός υπολογιστής</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -266,7 +270,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Τοπικός υπολογιστής:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -333,7 +337,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Launch key file assistant</source>
@@ -341,7 +345,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Δοκιμή</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -389,7 +393,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>ComputerListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation type="unfinished"/>
+        <translation>Αίθουσα: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -432,11 +436,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Διαχείριση υπολογιστή</translation>
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη αίθουσας</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -460,14 +464,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση υπολογιστή</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Χρήστης</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -635,7 +639,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -651,34 +655,34 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>ΜΒ</translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>Διάστημα ανανέωσης</translation>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation> s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished"/>
+        <translation>Παρουσίαση σε πλήρη οθόνη</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>Διακοπή παρουσίασης</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished"/>
+        <translation>Παρουσίαση σε παράθυρο</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>Κάντε μια παρουσίαση μεταδίδοντας το περιεχόμενο της οθόνης σας</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -705,11 +709,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Never for this session</source>
-        <translation type="unfinished"/>
+        <translation>Ποτέ για αυτήν την συνεδρία</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation type="unfinished"/>
+        <translation>Πάντα για αυτήν την συνεδρία</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -720,19 +724,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>Εκτέλεση προγράμματος</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα ιστοχώρου</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Πατήστε το κουμπί για να ανοίξετε έναν ιστοχώρο σε όλους τους υπολογιστές.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>Πληκτρολογήστε την διεύθυνση του ιστοχώρου που θέλετε να ανοίξετε:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
@@ -747,22 +751,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Εξωτερικός διακομιστής VNC</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Ρυθμίσεις εξωτερικού διακομιστή VNC</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>Πόρτα:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Κωδικός πρόσβασης:</translation>
     </message>
 </context>
 <context>
@@ -776,15 +780,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>Διεπαφή χρήστη</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>Γλώσσα:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>Χρήση της γλώσσας του συστήματος</translation>
     </message>
     <message>
         <source>Enable high DPI scaling</source>
@@ -792,43 +796,43 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Καταγραφή συμβάντων</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"/>
+        <translation>Φάκελος αρχείου καταγραφής</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
-        <translation type="unfinished"/>
+        <translation>Λεπτομέρεια αρχείου καταγραφής</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"/>
+        <translation>Τίποτα</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation type="unfinished"/>
+        <translation>Μόνο τα κρίσιμα μηνύματα</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλματα και κρίσιμα μηνύματα</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation type="unfinished"/>
+        <translation>Προειδοποιήσεις και σφάλματα</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation type="unfinished"/>
+        <translation>Πληροφορίες, προειδοποιήσεις και σφάλματα</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
@@ -836,7 +840,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation type="unfinished"/>
+        <translation>Μέγεθος αρχείου καταγραφής</translation>
     </message>
     <message>
         <source>Clear all log files</source>
@@ -860,11 +864,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <translation>Ρυθμός ανανέωσης:</translation>
     </message>
     <message>
         <source>%1 service</source>
-        <translation type="unfinished"/>
+        <translation>υπηρεσία %1</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -876,11 +880,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Η εκκαθάριση των αρχείων καταγραφής έγινε με επιτυχία.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -888,7 +892,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>ΜΒ</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -896,18 +900,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished"/>
+        <translation>δευτερόλεπτα</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
         <source>How does it work?</source>
-        <translation type="unfinished"/>
+        <translation>Πώς λειτουργεί;</translation>
     </message>
     <message>
         <source>Assistant mode</source>
@@ -927,7 +931,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Select user role</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή ρόλου χρήστη</translation>
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
@@ -935,7 +939,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished"/>
+        <translation>Εκπαιδευτικός</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
@@ -943,7 +947,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Φάκελοι</translation>
     </message>
     <message>
         <source>Export public key part (master computer)</source>
@@ -951,7 +955,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
@@ -963,7 +967,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Σύνοψη</translation>
     </message>
     <message>
         <source>The following actions will be taken:</source>
@@ -1007,7 +1011,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή φακέλου προορισμού</translation>
     </message>
     <message>
         <source>Access key creation</source>
@@ -1031,7 +1035,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Public key import</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή δημόσιου κλειδιού</translation>
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
@@ -1070,19 +1074,19 @@ The public key part is used on the client computers to verify that any incoming 
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
-        <translation type="unfinished"/>
+        <translation>LDAP</translation>
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Βασικές ρυθμίσεις</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής και πόρτα LDAP</translation>
     </message>
     <message>
         <source>Bind DN</source>
@@ -1102,7 +1106,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Δοκιμή</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1350,7 +1354,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>μέλη ομάδας</translation>
     </message>
     <message>
         <source>group member attribute</source>
@@ -1358,7 +1362,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>Δεν βρέθηκε η ομάδα</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -1410,15 +1414,15 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>χρήστες</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>ομάδες χρηστών</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>ομάδες υπολογιστών</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -1482,7 +1486,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>υπολογιστές</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1562,15 +1566,15 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>List all members of a computer room</source>
-        <translation type="unfinished"/>
+        <translation>Προβολή όλων των υπολογιστών μιας αίθουσας</translation>
     </message>
     <message>
         <source>List all computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Προβολή όλων των αιθουσών</translation>
     </message>
     <message>
         <source>Enter computer room name</source>
-        <translation type="unfinished"/>
+        <translation>Εισάγετε το όνομα της αίθουσας</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room (wildcards allowed):</source>
@@ -1578,7 +1582,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>αίθουσες υπολογιστών</translation>
     </message>
     <message>
         <source>computer room attribute</source>
@@ -1598,7 +1602,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Αίθουσες υπολογιστών</translation>
     </message>
     <message>
         <source>Integration tests</source>
@@ -1684,7 +1688,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση βοήθειας για την εντολή</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -1710,47 +1714,51 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>Αίθουσες</translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Υπολογιστές</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>Διεύθυνση ΙΡ</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>Διεύθυνση MAC</translation>
     </message>
     <message>
         <source>Add new room</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη αίθουσας</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή της επιλεγμένης αίθουσας</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη υπολογιστή</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή του επιλεγμένου υπολογιστή</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>Καινούρια αίθουσα</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Καινούριος υπολογιστής</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Αίθουσες &amp; υπολογιστές</translation>
     </message>
 </context>
 <context>
@@ -1772,14 +1780,14 @@ The public key part is used on the client computers to verify that any incoming 
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation type="unfinished"/>
+        <translation>κλείδωμα οθόνης</translation>
     </message>
 </context>
 <context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Ρυθμίσεις</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
@@ -1787,7 +1795,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Προβολή μόνο των εικονιδίων</translation>
     </message>
 </context>
 <context>
@@ -1802,7 +1810,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1810,7 +1818,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>1)</source>
-        <translation type="unfinished"/>
+        <translation>1)</translation>
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
@@ -1818,7 +1826,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>2)</source>
-        <translation type="unfinished"/>
+        <translation>2)</translation>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
@@ -1826,7 +1834,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>3)</source>
-        <translation type="unfinished"/>
+        <translation>3)</translation>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
@@ -1834,7 +1842,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>4)</source>
-        <translation type="unfinished"/>
+        <translation>4)</translation>
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
@@ -1846,35 +1854,35 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>5)</source>
-        <translation type="unfinished"/>
+        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αρχείο</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Έξοδος</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation type="unfinished"/>
+        <translation>Α&amp;ποθήκευση ρυθμίσεων σε αρχείο</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση ρυθμίσεων σε αρχείο</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -1882,11 +1890,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"/>
+        <translation>Σχετικά με το Qt</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -1894,11 +1902,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένος έλεγχος</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Έξοδος</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -1910,7 +1918,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση ρυθμίσεων σε αρχείο</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
@@ -1918,11 +1926,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation type="unfinished"/>
+        <translation>Μη αποθηκευμένες ρυθμίσεις</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Υπάρχουν ρυθμίσεις που δεν έχουν αποθηκευτεί. Να γίνει έξοδος;</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -1943,7 +1951,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Υπηρεσία</translation>
     </message>
     <message>
         <source>Master</source>
@@ -1951,23 +1959,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access control</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος πρόσβασης</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Σχετικά με το Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Αυτόματα</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Αίθουσες υπολογιστών</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Σχετικά</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2011,7 +2019,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Στιγμιότυπα</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2031,7 +2039,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Επαναφορά ρυθμίσεων</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -2050,11 +2058,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Φάκελοι</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -2086,7 +2094,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Στιγμιότυπα</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2098,11 +2106,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Βασικές ρυθμίσεις</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Συμπεριφορά</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
@@ -2110,19 +2118,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Only show current room</source>
-        <translation type="unfinished"/>
+        <translation>Προβολή μόνο της τρέχουσας αίθουσας</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation type="unfinished"/>
+        <translation>Να επιτρέπεται η προσθήκη αιθουσών χειροκίνητα</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη τοπικού υπολογιστή</translation>
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη κενών αιθουσών</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2130,11 +2138,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Διαχείριση υπολογιστή</translation>
     </message>
     <message>
         <source>Always open at start</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα κατά την έναρξη</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
@@ -2171,11 +2179,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα χρήστη</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Κωδικός πρόσβασης</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -2206,11 +2214,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Επανεκκίνηση</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Πατήστε το κουμπί για την επανεκκίνηση όλων των υπολογιστών.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2226,7 +2234,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Επιβεβαίωση επανεκκίνησης</translation>
     </message>
     <message>
         <source>Confirm power down</source>
@@ -2312,19 +2320,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένος έλεγχος</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα ενός παράθυρου για τον απομακρυσμένο έλεγχο ενός υπολογιστή.</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένη πρόσβαση</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένος έλεγχος/προβολή ενός υπολογιστή</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -2332,92 +2340,92 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση βοήθειας για την εντολή</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 Απομακρυσμένη Πρόσβαση</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished"/>
+        <translation>Προβολή μόνο</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένος έλεγχος</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Αποστολή συντόμευσης</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished"/>
+        <translation>Πλήρης οθόνη</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
+        <translation>Παράθυρο</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Έξοδος</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Μενού</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση σε %1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>Συνδεδεμένος</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Στιγμιότυπο</translation>
     </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή αίθουσας</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2432,7 +2440,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Εκτέλεση προγραμμάτων</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -2443,11 +2451,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Κλείδωμα</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Ξεκλείδωμα</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -2462,7 +2470,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>άγνωστο</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2470,14 +2478,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Στιγμιότυπο</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Στιγμιότυπο</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2500,23 +2508,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Χρήστης:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Ημερομηνία:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Ώρα:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Προβολή</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2524,42 +2532,42 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Υπολογιστής:</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"/>
+        <translation>Αυτόματη έναρξη</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη εικονιδίου γραμμής κατάστασης</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση υπηρεσίας</translation>
     </message>
     <message>
         <source>Additional arguments</source>
-        <translation type="unfinished"/>
+        <translation>Επιπλέον παράμετροι</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμένη</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός υπηρεσίας</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation type="unfinished"/>
+        <translation>Κατάσταση:</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -2567,7 +2575,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Δίκτυο</translation>
     </message>
     <message>
         <source>Demo server port</source>
@@ -2603,7 +2611,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"/>
+        <translation>Εκτελείται</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -2618,11 +2626,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ServiceControl</name>
     <message>
         <source>Starting %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>Stopping %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>Registering %1 Service</source>
@@ -2637,11 +2645,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία εκτελείται</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία δεν εκτελείται</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -2657,15 +2665,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση της υπηρεσίας Veyon</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός της υπηρεσίας Veyon</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Επανεκκίνηση της υπηρεσίας Veyon</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -2680,14 +2688,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Εικονίδιο γραμμής κατάστασης</translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"/>
+        <translation>Αποστολή μηνύματος</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -2698,19 +2706,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation type="unfinished"/>
+        <translation>Μήνυμα</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>Μπορείτε να στείλετε ένα μήνυμα σε όλους του χρήστες. Για παράδειγμα για να τους αναθέσετε μια εργασία.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished"/>
+        <translation>Μήνυμα από τον εκπαιδευτικό</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Αποστολή ενός μηνύματος σε ένα χρήστη</translation>
     </message>
 </context>
 <context>
@@ -2755,19 +2763,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished"/>
+        <translation>Αποσύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Πατήστε το κουμπί για να αποσυνδέσετε τους χρήστες από τους υπολογιστές.</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>Επιβεβαίωση της αποσύνδεσης χρήστη</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Είστε σίγουρος/η ότι θέλετε να αποσυνδέσετε τους επιλεγμένους χρήστες;</translation>
     </message>
 </context>
 <context>
@@ -2786,7 +2794,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Διαθέσιμες εντολές:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>

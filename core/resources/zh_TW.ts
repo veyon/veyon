@@ -41,6 +41,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>About %1 %2</source>
         <translation>關於 %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>以捐贈支持 Veyon 專案</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1770,6 +1774,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>New computer</source>
         <translation>新電腦</translation>
     </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>教室 &amp; 電腦</translation>
+    </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
@@ -2161,11 +2169,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>動作比如重新啟動或關閉電腦</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>顯示潛在危險動作的確認對話方塊</translation>
     </message>
 </context>
 <context>
@@ -2249,19 +2257,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>確認重新啟動</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>確認關機</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>您確定要重新啟動選取的電腦嗎?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>您確定要關閉選取的電腦嗎?</translation>
     </message>
 </context>
 <context>
@@ -2756,7 +2764,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>啟用雙螢幕支援</translation>
     </message>
 </context>
 <context>
@@ -2786,11 +2794,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>確認使用者登出</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>您確定要登出選取的使用者嗎?</translation>
     </message>
 </context>
 <context>

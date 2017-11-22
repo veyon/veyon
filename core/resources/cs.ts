@@ -41,6 +41,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <source>About %1 %2</source>
         <translation>O %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Podpořit projekt Veyon darem</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1769,6 +1773,10 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>New computer</source>
         <translation>Nový počítač</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Místnosti a počítače</translation>
     </message>
 </context>
 <context>

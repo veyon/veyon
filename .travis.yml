@@ -5,8 +5,9 @@ dist: trusty
 sudo: required
 matrix:
     include:
-        - env: TARGET_OS=ubuntu.xenial
         - env: TARGET_OS=debian.stretch
+        - env: TARGET_OS=ubuntu.artful
+        - env: TARGET_OS=ubuntu.xenial
         - env: TARGET_OS=cross.win32
         - env: TARGET_OS=cross.win64
         - env: TARGET_OS=centos.73

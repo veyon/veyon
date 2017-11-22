@@ -41,6 +41,10 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <source>About %1 %2</source>
         <translation>Informazioni su %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -898,7 +902,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -1133,7 +1137,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>Impostazioni ambiente</translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -1141,7 +1145,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Computer tree</source>
-        <translation type="unfinished"/>
+        <translation>Alberatura Pc</translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
@@ -1149,7 +1153,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>User tree</source>
-        <translation type="unfinished"/>
+        <translation>Alberatura utenti</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
@@ -1317,7 +1321,8 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP interrogato con successo. Il seguente base DN è stato trovato:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
@@ -1385,7 +1390,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Hai configurato gli host names dei computes per essere memorizzati come fully qualified domain names (FQDN) ma hai inserito un host name senza dominio.</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
@@ -1757,6 +1762,10 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>New computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
