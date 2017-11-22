@@ -1,5 +1,5 @@
 /*
- * VeyonServiceProtocol.h - header file for the VeyonServiceProtocol class
+ * VeyonServerProtocol.h - header file for the VeyonServerProtocol class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef VEYON_SERVICE_PROTOCOL_H
-#define VEYON_SERVICE_PROTOCOL_H
+#ifndef VEYON_SERVER_PROTOCOL_H
+#define VEYON_SERVER_PROTOCOL_H
 
 #include "VncServerProtocol.h"
 
@@ -32,10 +32,10 @@ class ServerAccessControlManager;
 
 // clazy:excludeall=copyable-polymorphic
 
-class VeyonServiceProtocol : public VncServerProtocol
+class VeyonServerProtocol : public VncServerProtocol
 {
 public:
-	VeyonServiceProtocol( QTcpSocket* socket,
+	VeyonServerProtocol( QTcpSocket* socket,
 						  VncServerClient* client,
 						  ServerAuthenticationManager& serverAuthenticationManager,
 						  ServerAccessControlManager& serverAccessControlManager );

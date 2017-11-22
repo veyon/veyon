@@ -28,7 +28,7 @@
 #include "VncClientProtocol.h"
 #include "VncProxyConnection.h"
 #include "VncServerClient.h"
-#include "VeyonServiceProtocol.h"
+#include "VeyonServerProtocol.h"
 
 class ComputerControlServer;
 
@@ -61,7 +61,7 @@ private:
 
 	VncServerClient m_serverClient;
 
-	VeyonServiceProtocol m_serverProtocol;
+	VeyonServerProtocol m_serverProtocol;
 	VncClientProtocol m_clientProtocol;
 
 } ;
