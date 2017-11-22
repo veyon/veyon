@@ -167,6 +167,7 @@ File "${DLLDIR_LIB}\libwinpthread-1.dll"
 File "${DLLDIR_GCC}\libstdc++-6.dll"
 File "${DLLDIR_GCC}\${DLL_GCC}"
 # core components
+File "veyon-server.exe"
 File "veyon-service.exe"
 File "vnchooks.dll"
 File "veyon-core.dll"
@@ -272,6 +273,7 @@ ${IfNot} ${Errors}
 ${EndIf}
 
 Delete "$INSTDIR\veyon-service.exe"
+Delete "$INSTDIR\veyon-server.exe"
 Delete "$INSTDIR\libwinpthread-1.dll"
 Delete "$INSTDIR\libgcc_s_sjlj-1.dll"
 Delete "$INSTDIR\libgcc_s_seh-1.dll"

@@ -23,9 +23,6 @@
  */
 
 #include "VeyonCore.h"
-#ifdef VEYON_BUILD_WIN32
-#include <windows.h>
-#endif
 
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
@@ -45,6 +42,7 @@
 #include "Logger.h"
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
+#include "PlatformCoreFunctions.h"
 #include "PluginManager.h"
 
 #include "rfb/rfbclient.h"
@@ -313,4 +311,15 @@ QString VeyonCore::userRoleName( VeyonCore::UserRole role )
 	} ;
 
 	return userRoleNames[role];
+}
+
+
+
+QString VeyonCore::serverFilePath()
+{
+	return QDir::toNativeSeparators(
+				QCoreApplication::applicationDirPath() +
+				QDir::separator() +
+				QStringLiteral("veyon-server") +
+				VeyonCore::platform().coreFunctions().programFileExtension() );
 }

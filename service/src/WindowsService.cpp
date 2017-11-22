@@ -126,29 +126,25 @@ public:
 	{
 		stop();
 
-		wchar_t appPath[MAX_PATH];
-		if( GetModuleFileName( NULL, appPath, ARRAYSIZE(appPath) ) )
-		{
-			qInfo() << "Starting core server for user" << LocalSystem::User::loggedOnUser().name();
-			// run with the same user as winlogon.exe does
-			m_subProcessHandle =
+		qInfo() << "Starting server for user" << LocalSystem::User::loggedOnUser().name();
+		// run with the same user as winlogon.exe does
+		m_subProcessHandle =
 				LocalSystem::Process(
 					LocalSystem::Process::findProcessId( "winlogon.exe",
-															sessionId )
-									).runAsUser( QString::fromWCharArray( appPath ),
-											LocalSystem::Desktop().name() );
-		}
+														 sessionId )
+					).runAsUser( VeyonCore::serverFilePath(),
+								 LocalSystem::Desktop().name() );
 	}
 
 	void stop()
 	{
 		if( m_subProcessHandle )
 		{
-			qInfo( "Waiting for core server to shutdown" );
+			qInfo( "Waiting for server to shutdown" );
 			if( WaitForSingleObject( m_subProcessHandle, 10000 ) ==
 																WAIT_TIMEOUT )
 			{
-				qWarning( "Terminating core server" );
+				qWarning( "Terminating server" );
 				TerminateProcess( m_subProcessHandle, 0 );
 			}
 			CloseHandle( m_subProcessHandle ),

@@ -231,7 +231,7 @@ SET(VEYONCONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h)
 SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/config.h)
 
-SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc service/veyon-service.rc master/data/veyon-master master/data/veyon-master.desktop master/veyon-master.rc configurator/veyon-configurator.rc ctl/veyon-ctl.rc worker/veyon-worker.rc)
+SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc server/veyon-server.rc service/veyon-service.rc master/data/veyon-master master/data/veyon-master.desktop master/veyon-master.rc configurator/veyon-configurator.rc ctl/veyon-ctl.rc worker/veyon-worker.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -284,6 +284,8 @@ SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # make sub-directories
 ADD_SUBDIRECTORY(core)
+ADD_SUBDIRECTORY(auth-helper)
+ADD_SUBDIRECTORY(server)
 ADD_SUBDIRECTORY(service)
 ADD_SUBDIRECTORY(master)
 ADD_SUBDIRECTORY(configurator)
@@ -343,7 +345,7 @@ IF(WIN32)
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
 			COMMAND unzip -j -d ${TMP} ${InterceptionZip} Interception/command\ line\ installer/install-interception.exe
-			COMMAND cp core/veyon-core.dll service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
+			COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
