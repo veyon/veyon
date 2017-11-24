@@ -26,7 +26,7 @@
 #ifndef VEYON_CONFIGURATION_H
 #define VEYON_CONFIGURATION_H
 
-#include <QtCore/QStringList>
+#include <QStringList>
 
 #include "VeyonCore.h"
 #include "Configuration/Object.h"
@@ -58,7 +58,6 @@ public slots:
 	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
 	void setServiceAutostart( bool );
-	void setServiceArguments( const QString & );
 	void setSoftwareSASEnabled( bool );
 	void setLogLevel( int );
 	void setLogToStdErr( bool );

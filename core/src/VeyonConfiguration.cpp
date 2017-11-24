@@ -70,7 +70,6 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 
 	c.setTrayIconHidden( false );
 	c.setServiceAutostart( true );
-	c.setServiceArguments( QString() );
 
 	c.setLogLevel( Logger::LogLevelDefault );
 	c.setLogFileSizeLimitEnabled( false );

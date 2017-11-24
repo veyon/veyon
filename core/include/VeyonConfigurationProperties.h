@@ -34,7 +34,6 @@
 #define FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
-	OP( VeyonConfiguration, VeyonCore::config(), STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Service" );			\
 
 #define FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
