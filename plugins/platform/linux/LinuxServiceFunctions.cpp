@@ -97,3 +97,21 @@ bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFu
 	// TODO
 	return false;
 }
+
+
+
+bool LinuxServiceFunctions::runAsService( const QString& name, std::function<void(void)> serviceMain )
+{
+	Q_UNUSED(name);
+
+	serviceMain();
+
+	return true;
+}
+
+
+
+void LinuxServiceFunctions::manageServerInstances()
+{
+	QProcess::execute( VeyonCore::serverFilePath() );
+}

@@ -24,6 +24,7 @@
 
 #include "WindowsServiceFunctions.h"
 #include "WindowsService.h"
+#include "WindowsServiceCore.h"
 
 
 bool WindowsServiceFunctions::isRegistered( const QString& name )
@@ -80,6 +81,21 @@ bool WindowsServiceFunctions::setFilePathAndArguments( const QString& name, cons
 bool WindowsServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
 {
 	return WindowsService( name ).setStartType( windowsServiceStartType( startMode ) );
+}
+
+
+
+bool WindowsServiceFunctions::runAsService( const QString& name, std::function<void(void)> serviceMain )
+{
+	WindowsServiceCore windowsServiceCore( name, serviceMain );
+	return windowsServiceCore.runAsService();
+}
+
+
+
+void WindowsServiceFunctions::manageServerInstances()
+{
+	WindowsServiceCore::instance()->manageServerInstances();
 }
 
 

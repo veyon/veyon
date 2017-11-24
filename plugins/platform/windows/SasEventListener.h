@@ -1,7 +1,7 @@
 /*
- * main.cpp - main file for Veyon Service
+ * SasEventListener.h - header file for SasEventListener class
  *
- * Copyright (c) 2006-2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,23 +22,33 @@
  *
  */
 
-#include <QCoreApplication>
+#ifndef SAS_EVENT_LISTENER_H
+#define SAS_EVENT_LISTENER_H
 
-#include "VeyonServiceControl.h"
-#include "PlatformServiceFunctions.h"
+#include "VeyonCore.h"
 
-int main( int argc, char** argv )
+class SasEventListener : public QThread
 {
-	QCoreApplication app( argc, argv );
-	VeyonCore core( &app, QStringLiteral("Service") );
+public:
+	typedef void (WINAPI *SendSas)(BOOL asUser);
 
-	auto& serviceFunctions = core.platform().serviceFunctions();
+	enum {
+		WaitPeriod = 1000
+	};
 
-	if( serviceFunctions.runAsService( VeyonServiceControl::name(),
-									   [&]() { serviceFunctions.manageServerInstances(); } ) )
-	{
-		return 0;
-	}
+	SasEventListener();
+	~SasEventListener() override;
 
-	return -1;
-}
+	void stop();
+
+	void run() override;
+
+private:
+	HMODULE m_sasLibrary;
+	SendSas m_sendSas;
+	HANDLE m_sasEvent;
+	HANDLE m_stopEvent;
+
+};
+
+#endif

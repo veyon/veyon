@@ -7,15 +7,19 @@ BUILD_PLUGIN(windows-platform
 	WindowsCoreFunctions.cpp
 	WindowsNetworkFunctions.cpp
 	WindowsService.cpp
+	WindowsServiceCore.cpp
 	WindowsServiceFunctions.cpp
 	WindowsUserInfoFunctions.cpp
+	SasEventListener.cpp
 	MOCFILES
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
 	WindowsNetworkFunctions.h
 	WindowsService.h
+	WindowsServiceCore.h
 	WindowsServiceFunctions.h
 	WindowsUserInfoFunctions.h
+	SasEventListener.h
 	COTIRE
 )
 

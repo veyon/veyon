@@ -66,8 +66,8 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName, QObject* parent ) :
-	QObject( parent ),
+VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
+	QObject( application ),
 	m_config( nullptr ),
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),
@@ -79,6 +79,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_userRole( RoleTeacher )
 {
+	Q_ASSERT( application == nullptr );
+
 	setupApplicationParameters();
 
 	s_instance = this;
@@ -87,13 +89,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	*m_config += VeyonConfiguration( Configuration::Store::LocalBackend );
 
 	m_logger = new Logger( appComponentName, m_config );
-
-	// only perform partial initialization when running without QCoreApplication
-	// (e.g. as service monitor)
-	if( application == nullptr )
-	{
-		return;
-	}
 
 	QLocale configuredLocale( QLocale::C );
 

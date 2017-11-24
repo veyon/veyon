@@ -48,6 +48,8 @@ public:
 	virtual bool uninstall( const QString& name ) = 0;
 	virtual bool setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments ) = 0;
 	virtual bool setStartMode( const QString& name, StartMode startMode ) = 0;
+	virtual bool runAsService( const QString& name, std::function<void(void)> serviceMain ) = 0;
+	virtual void manageServerInstances() = 0;
 
 };
 
