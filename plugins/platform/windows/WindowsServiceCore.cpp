@@ -147,7 +147,7 @@ void WindowsServiceCore::manageServerInstances()
 
 	QTime lastServiceStart;
 
-	while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
+	do
 	{
 		bool sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 
@@ -193,7 +193,7 @@ void WindowsServiceCore::manageServerInstances()
 			oldSessionId = sessionId;
 			lastServiceStart.restart();
 		}
-	}
+	} while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT );
 
 	qInfo( "Service shutdown" );
 
