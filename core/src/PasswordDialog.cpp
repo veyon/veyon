@@ -28,7 +28,7 @@
 #include <QPushButton>
 
 #include "PasswordDialog.h"
-#include "LocalSystem.h"
+#include "PlatformUserInfoFunctions.h"
 #include "LogonAuthentication.h"
 
 #include "ui_PasswordDialog.h"
@@ -40,18 +40,9 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	const LocalSystem::User loggedOnUser = LocalSystem::User::loggedOnUser();
-	QString username = loggedOnUser.name();
-#ifdef VEYON_BUILD_WIN32
-	if( !username.isEmpty() && !loggedOnUser.domain().isEmpty() )
-	{
-		username = loggedOnUser.domain() + "\\" + username;
-	}
-#endif
+	ui->username->setText( VeyonCore::platform().userInfoFunctions().loggedOnUser() );
 
-	ui->username->setText( username );
-
-	if( !username.isEmpty() )
+	if( ui->username->text().isEmpty() == false )
 	{
 		ui->password->setFocus();
 	}

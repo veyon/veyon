@@ -186,6 +186,47 @@ QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username )
 
 
 
+QString LinuxUserInfoFunctions::loggedOnUser()
+{
+	QString username;
+
+	char * envUser = getenv( "USER" );
+
+	struct passwd * pw_entry = nullptr;
+	if( envUser )
+	{
+		pw_entry = getpwnam( envUser );
+	}
+
+	if( !pw_entry )
+	{
+		pw_entry = getpwuid( getuid() );
+	}
+
+	if( pw_entry )
+	{
+		QString shell( pw_entry->pw_shell );
+
+		// Skip not real users
+		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
+		        shell.endsWith( QStringLiteral( "/true" ) ) ||
+		        shell.endsWith( QStringLiteral( "/null" ) ) ||
+		        shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
+		{
+			username = QString::fromUtf8( pw_entry->pw_name );
+		}
+	}
+
+	if( username.isEmpty() )
+	{
+		return QString::fromUtf8( envUser );
+	}
+
+	return username;
+}
+
+
+
 QStringList LinuxUserInfoFunctions::loggedOnUsers()
 {
 	QStringList users;

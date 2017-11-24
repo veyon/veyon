@@ -30,6 +30,7 @@
 #include "VeyonConfiguration.h"
 #include "Logger.h"
 #include "LocalSystem.h"
+#include "PlatformUserInfoFunctions.h"
 
 #ifdef Q_OS_WIN
 #include "3rdparty/XEventLog.h"
@@ -67,7 +68,7 @@ Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 	}
 #endif
 
-	QString user = LocalSystem::User::loggedOnUser().name();
+	const auto user = VeyonCore::platform().userInfoFunctions().loggedOnUser();
 
 	if( QCoreApplication::instance() )
 	{

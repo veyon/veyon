@@ -28,6 +28,7 @@
 #include "WindowsServiceCore.h"
 #include "LocalSystem.h"
 #include "SasEventListener.h"
+#include "PlatformUserInfoFunctions.h"
 
 
 class VeyonServerProcess
@@ -47,7 +48,7 @@ public:
 	{
 		stop();
 
-		qInfo() << "Starting server for user" << LocalSystem::User::loggedOnUser().name();
+		qInfo() << "Starting server for user" << VeyonCore::platform().userInfoFunctions().loggedOnUser();
 		// run with the same user as winlogon.exe does
 		m_subProcessHandle =
 				LocalSystem::Process(

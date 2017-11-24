@@ -37,6 +37,7 @@ public:
 	QStringList userGroups() override;
 	QStringList groupsOfUser( const QString& username ) override;
 
+	QString loggedOnUser() override;
 	QStringList loggedOnUsers() override;
 
 private:

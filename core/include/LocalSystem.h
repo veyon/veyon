@@ -77,8 +77,6 @@ namespace LocalSystem
 		User( const User &user );
 		~User();
 
-		static User loggedOnUser();
-
 		const Token &userToken() const
 		{
 			return m_userToken;

@@ -34,7 +34,7 @@
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
 #include "PlatformNetworkFunctions.h"
-#include "PlatformPluginInterface.h"
+#include "PlatformUserInfoFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonVncConnection.h"
 #include "LocalSystem.h"
@@ -832,7 +832,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 	}
 	else
 	{
-		authReplyMessage.write( LocalSystem::User::loggedOnUser().name() );
+		authReplyMessage.write( VeyonCore::platform().userInfoFunctions().loggedOnUser() );
 	}
 
 	authReplyMessage.send();

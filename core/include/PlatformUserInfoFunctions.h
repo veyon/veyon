@@ -37,6 +37,7 @@ public:
 	virtual QStringList userGroups() = 0;
 	virtual QStringList groupsOfUser( const QString& username ) = 0;
 
+	virtual QString loggedOnUser() = 0;
 	virtual QStringList loggedOnUsers() = 0;
 
 };
