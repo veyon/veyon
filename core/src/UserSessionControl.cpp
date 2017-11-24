@@ -139,12 +139,10 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		{
 			queryUserInformation();
 			reply.addArgument( UserName, QString() );
-			reply.addArgument( HomeDir, QString() );
 		}
 		else
 		{
 			reply.addArgument( UserName, QString( QStringLiteral( "%1 (%2)" ) ).arg( m_userName, m_userFullName ) );
-			reply.addArgument( HomeDir, m_userHomePath );
 		}
 		m_userDataLock.unlock();
 
@@ -185,12 +183,9 @@ void UserSessionControl::queryUserInformation()
 	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
 		const auto userName = VeyonCore::platform().userInfoFunctions().loggedOnUser();
 		const auto userFullName = VeyonCore::platform().userInfoFunctions().fullName( userName );
-		auto user = LocalSystem::User(userName);
-		const auto userHomePath = user.homePath();
 		m_userDataLock.lockForWrite();
 		m_userName = userName;
 		m_userFullName = userFullName;
-		m_userHomePath = userHomePath;
 		m_userDataLock.unlock();
 	} );
 }

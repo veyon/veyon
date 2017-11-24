@@ -97,9 +97,6 @@ namespace LocalSystem
 			return m_domain;
 		}
 
-		QString homePath() const;
-
-
 	private:
 		void lookupNameAndDomain();
 

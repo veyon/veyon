@@ -106,7 +106,6 @@ private:
 	enum Arguments
 	{
 		UserName,
-		HomeDir,
 	};
 
 	void queryUserInformation();
@@ -122,7 +121,6 @@ private:
 	QReadWriteLock m_userDataLock;
 	QString m_userName;
 	QString m_userFullName;
-	QString m_userHomePath;
 
 };
 

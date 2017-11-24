@@ -239,41 +239,6 @@ User::~User()
 
 
 
-QString User::homePath() const
-{
-	QString homePath = QDir::homePath();
-
-#ifdef VEYON_BUILD_WIN32
-	LocalSystem::Process userProcess(
-				LocalSystem::Process::findProcessId( QString(), -1, this ) );
-	HANDLE hToken;
-	if( OpenProcessToken( userProcess.processHandle(),
-									MAXIMUM_ALLOWED, &hToken ) )
-	{
-		wchar_t userProfile[MAX_PATH];
-		DWORD size = MAX_PATH;
-		if( GetUserProfileDirectory( hToken, userProfile, &size ) )
-		{
-			homePath = QString::fromWCharArray( userProfile );
-			CloseHandle( hToken );
-		}
-		else
-		{
-			ilog_failedf( "GetUserProfileDirectory()", "%d", GetLastError() );
-		}
-	}
-	else
-	{
-		ilog_failedf( "OpenProcessToken()", "%d", GetLastError() );
-	}
-#endif
-
-	return homePath;
-}
-
-
-
-
 void User::lookupNameAndDomain()
 {
 	if( !m_name.isEmpty() && !m_domain.isEmpty() )
