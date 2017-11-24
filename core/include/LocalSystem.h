@@ -72,13 +72,11 @@ namespace LocalSystem
 #else
 		typedef int Token;
 #endif
-		User( const QString &name, const QString &domain = QString(),
-									const QString &fullname = QString() );
+		User( const QString &name, const QString &domain = QString() );
 		User( Token token );
 		User( const User &user );
 		~User();
 
-		static QString stripDomain( QString username );
 		static User loggedOnUser();
 
 		const Token &userToken() const
@@ -101,32 +99,15 @@ namespace LocalSystem
 			return m_domain;
 		}
 
-		const QString &fullName()
-		{
-			// full name lookups are quite expensive, therefore do them
-			// on-demand and only if not done before
-			if( m_fullName.isEmpty() )
-			{
-				lookupFullName();
-				if( m_fullName.isEmpty() )
-				{
-					m_fullName = name();
-				}
-			}
-			return m_fullName;
-		}
-
 		QString homePath() const;
 
 
 	private:
 		void lookupNameAndDomain();
-		void lookupFullName();
 
 		Token m_userToken;
 		QString m_name;
 		QString m_domain;
-		QString m_fullName;
 
 	} ;
 

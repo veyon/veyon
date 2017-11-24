@@ -32,8 +32,10 @@
 class WindowsUserInfoFunctions : public PlatformUserInfoFunctions
 {
 public:
-	QStringList userGroups();
-	QStringList groupsOfUser( const QString& username );
+	QString fullName( const QString& username ) override;
+
+	QStringList userGroups() override;
+	QStringList groupsOfUser( const QString& username ) override;
 
 	QStringList loggedOnUsers() override;
 

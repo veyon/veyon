@@ -43,7 +43,6 @@
 #include <lm.h>
 #include <reason.h>
 
-
 namespace LocalSystem
 {
 
@@ -81,6 +80,7 @@ QString windowsConfigPath( int type )
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "PlatformUserInfoFunctions.h"
 
 
 
@@ -139,11 +139,10 @@ Desktop Desktop::screenLockDesktop()
 
 
 
-User::User( const QString &name, const QString &dom, const QString &fullname ) :
+User::User( const QString &name, const QString &dom ) :
 	m_userToken( 0 ),
 	m_name( name ),
-	m_domain( dom ),
-	m_fullName( fullname )
+	m_domain( dom )
 {
 #ifdef VEYON_BUILD_WIN32
 	// try to look up the user -> domain
@@ -205,8 +204,7 @@ static void copySid( const PSID &src, PSID &dst )
 User::User( Token userToken ) :
 	m_userToken( userToken ),
 	m_name(),
-	m_domain(),
-	m_fullName()
+	m_domain()
 {
 #ifdef VEYON_BUILD_WIN32
 	copySid( userToken, m_userToken );
@@ -220,8 +218,7 @@ User::User( Token userToken ) :
 User::User( const User &user ) :
 	m_userToken( user.userToken() ),
 	m_name( user.name() ),
-	m_domain( user.domain() ),
-	m_fullName( user.m_fullName )
+	m_domain( user.domain() )
 {
 #ifdef VEYON_BUILD_WIN32
 	copySid( user.userToken(), m_userToken );
@@ -241,18 +238,6 @@ User::~User()
 }
 
 
-
-QString User::stripDomain( QString username )
-{
-	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-	int domainSeparator = username.indexOf( '\\' );
-	if( domainSeparator >= 0 )
-	{
-		return username.mid( domainSeparator + 1 );
-	}
-
-	return username;
-}
 
 
 
@@ -448,65 +433,6 @@ void User::lookupNameAndDomain()
 	m_domain = QHostInfo::localDomainName();
 #endif
 }
-
-
-
-
-void User::lookupFullName()
-{
-	lookupNameAndDomain();
-
-#ifdef VEYON_BUILD_WIN32
-	// try to retrieve user's full name from domain
-
-	PBYTE dc = NULL;	// domain controller
-	if( NetGetDCName( NULL, (LPWSTR) m_domain.utf16(), &dc ) != NERR_Success )
-	{
-		dc = NULL;
-	}
-
-	LPUSER_INFO_2 pBuf = NULL;
-	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, (LPWSTR) m_name.utf16(), 2,
-												(LPBYTE *) &pBuf );
-	if( nStatus == NERR_Success && pBuf != NULL )
-	{
-		m_fullName = QString::fromWCharArray( pBuf->usri2_full_name );
-	}
-
-	if( pBuf != NULL )
-	{
-		NetApiBufferFree( pBuf );
-	}
-	if( dc != NULL )
-	{
-		NetApiBufferFree( dc );
-	}
-#else
-
-#ifdef VEYON_HAVE_PWD_H
-	struct passwd * pw_entry = getpwnam( m_name.toUtf8().constData() );
-	if( !pw_entry )
-	{
-		pw_entry = getpwuid( m_userToken );
-	}
-	if( pw_entry )
-	{
-		QString shell( pw_entry->pw_shell );
-
-		// Skip not real users
-		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-				shell.endsWith( QStringLiteral( "/true" ) ) ||
-				shell.endsWith( QStringLiteral( "/null" ) ) ||
-				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
-		{
-			m_fullName = QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
-		}
-	}
-#endif
-
-#endif
-}
-
 
 
 

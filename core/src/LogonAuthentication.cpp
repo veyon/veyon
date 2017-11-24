@@ -25,7 +25,6 @@
 #include <QDataStream>
 #include <QProcess>
 
-#include "LocalSystem.h"
 #include "LogonAuthentication.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
@@ -65,7 +64,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 	p.waitForStarted();
 
 	QDataStream ds( &p );
-	ds << LocalSystem::User::stripDomain( cred.logonUsername() );
+	ds << VeyonCore::stripDomain( cred.logonUsername() );
 	ds << cred.logonPassword();
 
 	p.closeWriteChannel();

@@ -27,6 +27,46 @@
 #include <wtsapi32.h>
 #include <lm.h>
 
+
+QString WindowsUserInfoFunctions::fullName( const QString& username )
+{
+	QString fullName;
+
+	QString realUsername = username;
+	PBYTE domainController = nullptr;
+
+	const auto nameParts = username.split( '\\' );
+	if( nameParts.size() > 1 )
+	{
+		realUsername = nameParts[1];
+		if( NetGetDCName( nullptr, (LPWSTR) nameParts[0].utf16(), &domainController ) != NERR_Success )
+		{
+			domainController = nullptr;
+		}
+	}
+
+	LPUSER_INFO_2 buf = nullptr;
+	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR) domainController, (LPWSTR) realUsername.utf16(), 2, (LPBYTE *) &buf );
+	if( nStatus == NERR_Success && buf != nullptr )
+	{
+		fullName = QString::fromWCharArray( buf->usri2_full_name );
+	}
+
+	if( buf != nullptr )
+	{
+		NetApiBufferFree( buf );
+	}
+
+	if( domainController != nullptr )
+	{
+		NetApiBufferFree( domainController );
+	}
+
+	return fullName;
+}
+
+
+
 QStringList WindowsUserInfoFunctions::userGroups()
 {
 	QStringList groupList;

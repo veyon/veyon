@@ -318,3 +318,17 @@ QString VeyonCore::serverFilePath()
 				QStringLiteral("veyon-server") +
 				VeyonCore::platform().coreFunctions().programFileExtension() );
 }
+
+
+
+QString VeyonCore::stripDomain( const QString& username )
+{
+	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
+	int domainSeparator = username.indexOf( '\\' );
+	if( domainSeparator >= 0 )
+	{
+		return username.mid( domainSeparator + 1 );
+	}
+
+	return username;
+}
