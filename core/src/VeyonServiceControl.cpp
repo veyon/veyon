@@ -31,7 +31,7 @@
 
 
 VeyonServiceControl::VeyonServiceControl( QWidget* parent ) :
-	ServiceControl( name(), filePath(), arguments(), displayName(), parent )
+	ServiceControl( name(), filePath(), displayName(), parent )
 {
 }
 
@@ -42,14 +42,6 @@ bool VeyonServiceControl::setAutostart( bool enabled )
 	return VeyonCore::platform().serviceFunctions().
 			setStartMode( name(), enabled ? PlatformServiceFunctions::StartModeAuto :
 											PlatformServiceFunctions::StartModeManual );
-}
-
-
-
-bool VeyonServiceControl::setExtraArguments( const QString& extraArguments )
-{
-	return VeyonCore::platform().serviceFunctions().
-			setFilePathAndArguments( name(), filePath(), arguments() + ' ' + extraArguments );
 }
 
 
@@ -68,13 +60,6 @@ QString VeyonServiceControl::filePath()
 				QDir::separator() +
 				QStringLiteral("veyon-service") +
 				VeyonCore::platform().coreFunctions().programFileExtension() );
-}
-
-
-
-QString VeyonServiceControl::arguments()
-{
-	return QStringLiteral( "-service" );
 }
 
 

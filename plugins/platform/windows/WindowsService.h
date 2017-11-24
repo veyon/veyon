@@ -38,9 +38,8 @@ public:
 	bool isRunning();
 	bool start();
 	bool stop();
-	bool install( const QString& filePath, const QString& arguments, const QString& displayName );
+	bool install( const QString& filePath, const QString& displayName );
 	bool uninstall();
-	bool setFilePathAndArguments( const QString& filePath, const QString& arguments );
 	bool setStartType( int startType );
 
 private:

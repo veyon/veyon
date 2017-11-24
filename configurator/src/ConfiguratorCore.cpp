@@ -55,12 +55,6 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 			tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( serviceControl.setExtraArguments( VeyonCore::config().serviceArguments() ) == false )
-	{
-		configApplyError(
-			tr( "Could not modify the service arguments for the %1 Service." ).arg( VeyonCore::applicationName() ) );
-	}
-
 	if( !SystemConfigurationModifier::enableFirewallException(
 							VeyonCore::config().isFirewallExceptionEnabled() ) )
 	{

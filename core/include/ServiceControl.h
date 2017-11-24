@@ -39,7 +39,6 @@ class VEYON_CORE_EXPORT ServiceControl : public QObject
 public:
 	ServiceControl( const QString& name,
 					const QString& filePath,
-					const QString& arguments,
 					const QString& displayName,
 					QWidget* parent );
 
@@ -61,7 +60,6 @@ private:
 
 	const QString m_name;
 	const QString m_filePath;
-	const QString m_arguments;
 	const QString m_displayName;
 
 	QWidget* m_parent;

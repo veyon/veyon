@@ -149,10 +149,8 @@ bool WindowsService::stop()
 
 
 
-bool WindowsService::install( const QString& filePath, const QString& arguments, const QString& displayName  )
+bool WindowsService::install( const QString& filePath, const QString& displayName  )
 {
-	const auto serviceCmd = QStringLiteral("\"%1\" %2" ).arg( filePath, arguments );
-
 	m_serviceHandle = CreateService(
 	            m_serviceManager,		// SCManager database
 	            (LPCWSTR) m_name.utf16(),	// name of service
@@ -162,7 +160,7 @@ bool WindowsService::install( const QString& filePath, const QString& arguments,
 	            // service type
 	            SERVICE_AUTO_START,	// start type
 	            SERVICE_ERROR_NORMAL,	// error control type
-	            (LPCWSTR) serviceCmd.utf16(),		// service's binary
+				(LPCWSTR) filePath.utf16(),		// service's binary
 	            NULL,			// no load ordering group
 	            NULL,			// no tag identifier
 	            NULL,			// dependencies
@@ -223,37 +221,6 @@ bool WindowsService::uninstall()
 	}
 
 	qInfo( qPrintable( tr( "WindowsService: the service \"%1\" has been uninstalled successfully." ).arg( m_name ) ) );
-
-	return true;
-}
-
-
-
-bool WindowsService::setFilePathAndArguments( const QString& filePath, const QString& arguments )
-{
-	if( checkService() == false )
-	{
-		return false;
-	}
-
-	const auto serviceCmd = QStringLiteral("\"%1\" %2" ).arg( filePath, arguments );
-
-	if( ChangeServiceConfig( m_serviceHandle,
-	                         SERVICE_NO_CHANGE,	// dwServiceType
-	                         SERVICE_NO_CHANGE,	// dwStartType
-	                         SERVICE_NO_CHANGE,	// dwErrorControl
-	                         (wchar_t *) serviceCmd.utf16(),	// lpBinaryPathName
-	                         NULL,	// lpLoadOrderGroup
-	                         NULL,	// lpdwTagId
-	                         NULL,	// lpDependencies
-	                         NULL,	// lpServiceStartName
-	                         NULL,	// lpPassword
-	                         NULL	// lpDisplayName
-	                         ) == false )
-	{
-		qCritical( qPrintable( tr( "WindowsService: the arguments of service \"%1\" could not be changed." ).arg( m_name ) ) );
-		return false;
-	}
 
 	return true;
 }

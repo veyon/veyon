@@ -36,11 +36,9 @@ public:
 	VeyonServiceControl( QWidget* parent = nullptr );
 
 	bool setAutostart( bool enabled );
-	bool setExtraArguments( const QString& extraArguments );
 
 	static QString name();
 	static QString filePath();
-	static QString arguments();
 	static QString displayName();
 };
 

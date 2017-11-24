@@ -282,11 +282,6 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 		return operationError( tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( serviceControl.setExtraArguments( VeyonCore::config().serviceArguments() ) == false )
-	{
-		return operationError( tr( "Could not modify the service arguments for the %1 Service." ).arg( VeyonCore::applicationName() ) );
-	}
-
 	if( SystemConfigurationModifier::enableFirewallException( VeyonCore::config().isFirewallExceptionEnabled() ) == false )
 	{
 		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() ) );

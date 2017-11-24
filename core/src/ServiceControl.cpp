@@ -33,13 +33,11 @@
 
 ServiceControl::ServiceControl( const QString& name,
 								const QString& filePath,
-								const QString& arguments,
 								const QString& displayName,
 								QWidget* parent ) :
 	QObject( parent ),
 	m_name( name ),
 	m_filePath( filePath ),
-	m_arguments( arguments ),
 	m_displayName( displayName ),
 	m_parent( parent )
 {
@@ -83,7 +81,6 @@ void ServiceControl::registerService()
 	serviceControl( tr( "Registering service %1" ).arg( m_name ),
 					QtConcurrent::run( [=]() { VeyonCore::platform().serviceFunctions().install( m_name,
 																								 m_filePath,
-																								 m_arguments,
 																								 PlatformServiceFunctions::StartModeAuto,
 																								 m_displayName ); } ) );
 }

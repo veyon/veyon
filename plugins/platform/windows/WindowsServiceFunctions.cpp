@@ -55,10 +55,10 @@ bool WindowsServiceFunctions::stop( const QString& name )
 
 
 
-bool WindowsServiceFunctions::install( const QString& name, const QString& filePath, const QString& arguments,
-                                       StartMode startMode, const QString& displayName )
+bool WindowsServiceFunctions::install( const QString& name, const QString& filePath,
+									   StartMode startMode, const QString& displayName )
 {
-	return WindowsService( name ).install( filePath, arguments, displayName ) &&
+	return WindowsService( name ).install( filePath, displayName ) &&
 	        setStartMode( name, startMode );
 }
 
@@ -67,13 +67,6 @@ bool WindowsServiceFunctions::install( const QString& name, const QString& fileP
 bool WindowsServiceFunctions::uninstall( const QString& name )
 {
 	return WindowsService( name ).uninstall();
-}
-
-
-
-bool WindowsServiceFunctions::setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments )
-{
-	return WindowsService( name ).setFilePathAndArguments( filePath, arguments );
 }
 
 

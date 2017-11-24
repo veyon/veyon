@@ -52,12 +52,11 @@ bool LinuxServiceFunctions::stop( const QString& name )
 
 
 
-bool LinuxServiceFunctions::install( const QString& name, const QString& filePath, const QString& arguments,
+bool LinuxServiceFunctions::install( const QString& name, const QString& filePath,
 									 StartMode startMode, const QString& displayName )
 {
 	Q_UNUSED(name)
 	Q_UNUSED(filePath)
-	Q_UNUSED(arguments)
 	Q_UNUSED(startMode)
 	Q_UNUSED(displayName)
 
@@ -70,18 +69,6 @@ bool LinuxServiceFunctions::install( const QString& name, const QString& filePat
 bool LinuxServiceFunctions::uninstall( const QString& name )
 {
 	Q_UNUSED(name)
-
-	// TODO
-	return false;
-}
-
-
-
-bool LinuxServiceFunctions::setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments )
-{
-	Q_UNUSED(name)
-	Q_UNUSED(filePath)
-	Q_UNUSED(arguments)
 
 	// TODO
 	return false;

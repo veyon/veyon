@@ -43,10 +43,9 @@ public:
 	virtual bool isRunning( const QString& name ) = 0;
 	virtual bool start( const QString& name ) = 0;
 	virtual bool stop( const QString& name ) = 0;
-	virtual bool install( const QString& name, const QString& filePath, const QString& arguments,
+	virtual bool install( const QString& name, const QString& filePath,
 						  StartMode startMode, const QString& displayName ) = 0;
 	virtual bool uninstall( const QString& name ) = 0;
-	virtual bool setFilePathAndArguments( const QString& name, const QString& filePath, const QString& arguments ) = 0;
 	virtual bool setStartMode( const QString& name, StartMode startMode ) = 0;
 	virtual bool runAsService( const QString& name, std::function<void(void)> serviceMain ) = 0;
 	virtual void manageServerInstances() = 0;
