@@ -27,12 +27,12 @@
 
 #include "VeyonCore.h"
 
-class WindowsService : public QObject
+class WindowsServiceControl : public QObject
 {
 	Q_OBJECT
 public:
-	WindowsService( const QString& name );
-	~WindowsService();
+	WindowsServiceControl( const QString& name );
+	~WindowsServiceControl();
 
 	bool isRegistered();
 	bool isRunning();

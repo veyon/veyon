@@ -1,5 +1,5 @@
 /*
- * WindowsService.h - class for managing a Windows service
+ * WindowsServiceControl.h - class for managing a Windows service
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,9 +22,9 @@
  *
  */
 
-#include "WindowsService.h"
+#include "WindowsServiceControl.h"
 
-WindowsService::WindowsService( const QString& name ) :
+WindowsServiceControl::WindowsServiceControl( const QString& name ) :
     m_name( name ),
     m_serviceManager( nullptr ),
     m_serviceHandle( nullptr )
@@ -37,13 +37,13 @@ WindowsService::WindowsService( const QString& name ) :
 	}
 	else
 	{
-		qCritical( "WindowsService: the Service Control Manager could not be contacted - service '%s' hasn't been started.", qPrintable( m_name) );
+		qCritical( "WindowsServiceControl: the Service Control Manager could not be contacted - service '%s' hasn't been started.", qPrintable( m_name) );
 	}
 }
 
 
 
-WindowsService::~WindowsService()
+WindowsServiceControl::~WindowsServiceControl()
 {
 	CloseServiceHandle( m_serviceHandle );
 	CloseServiceHandle( m_serviceManager );
@@ -51,14 +51,14 @@ WindowsService::~WindowsService()
 
 
 
-bool WindowsService::isRegistered()
+bool WindowsServiceControl::isRegistered()
 {
 	return m_serviceHandle != nullptr;
 }
 
 
 
-bool WindowsService::isRunning()
+bool WindowsServiceControl::isRunning()
 {
 	if( checkService() == false )
 	{
@@ -76,7 +76,7 @@ bool WindowsService::isRunning()
 
 
 
-bool WindowsService::start()
+bool WindowsServiceControl::start()
 {
 	if( checkService() == false )
 	{
@@ -103,7 +103,7 @@ bool WindowsService::start()
 
 	if( status.dwCurrentState != SERVICE_RUNNING )
 	{
-		qWarning( "WindowsService: '%s' could not be started.", qPrintable( m_name ) );
+		qWarning( "WindowsServiceControl: '%s' could not be started.", qPrintable( m_name ) );
 		return false;
 	}
 
@@ -113,7 +113,7 @@ bool WindowsService::start()
 
 
 
-bool WindowsService::stop()
+bool WindowsServiceControl::stop()
 {
 	if( checkService() == false )
 	{
@@ -139,7 +139,7 @@ bool WindowsService::stop()
 
 		if( status.dwCurrentState != SERVICE_STOPPED )
 		{
-			qWarning( "WindowsService: '%s' could not be stopped.", qPrintable( m_name ) );
+			qWarning( "WindowsServiceControl: '%s' could not be stopped.", qPrintable( m_name ) );
 			return false;
 		}
 	}
@@ -149,7 +149,7 @@ bool WindowsService::stop()
 
 
 
-bool WindowsService::install( const QString& filePath, const QString& displayName  )
+bool WindowsServiceControl::install( const QString& filePath, const QString& displayName  )
 {
 	m_serviceHandle = CreateService(
 	            m_serviceManager,		// SCManager database
@@ -172,11 +172,11 @@ bool WindowsService::install( const QString& filePath, const QString& displayNam
 		const auto error = GetLastError();
 		if( error == ERROR_SERVICE_EXISTS )
 		{
-			qCritical( qPrintable( tr( "WindowsService: the service \"%1\" is already installed." ).arg( m_name ) ) );
+			qCritical( qPrintable( tr( "WindowsServiceControl: the service \"%1\" is already installed." ).arg( m_name ) ) );
 		}
 		else
 		{
-			qCritical( qPrintable( tr( "WindowsService: the service \"%1\" could not be installed." ).arg( m_name ) ) );
+			qCritical( qPrintable( tr( "WindowsServiceControl: the service \"%1\" could not be installed." ).arg( m_name ) ) );
 		}
 
 		return false;
@@ -195,14 +195,14 @@ bool WindowsService::install( const QString& filePath, const QString& displayNam
 	ChangeServiceConfig2( m_serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS, &serviceFailureActions );
 
 	// Everything went fine
-	qInfo( qPrintable( tr( "WindowsService: the service \"%1\" has been installed successfully." ).arg( m_name ) ) );
+	qInfo( qPrintable( tr( "WindowsServiceControl: the service \"%1\" has been installed successfully." ).arg( m_name ) ) );
 
 	return true;
 }
 
 
 
-bool WindowsService::uninstall()
+bool WindowsServiceControl::uninstall()
 {
 	if( checkService() == false )
 	{
@@ -216,18 +216,18 @@ bool WindowsService::uninstall()
 
 	if( DeleteService( m_serviceHandle ) == false )
 	{
-		qCritical( qPrintable( tr( "WindowsService: the service \"%1\" could not be uninstalled." ).arg( m_name ) ) );
+		qCritical( qPrintable( tr( "WindowsServiceControl: the service \"%1\" could not be uninstalled." ).arg( m_name ) ) );
 		return false;
 	}
 
-	qInfo( qPrintable( tr( "WindowsService: the service \"%1\" has been uninstalled successfully." ).arg( m_name ) ) );
+	qInfo( qPrintable( tr( "WindowsServiceControl: the service \"%1\" has been uninstalled successfully." ).arg( m_name ) ) );
 
 	return true;
 }
 
 
 
-bool WindowsService::setStartType( int startType )
+bool WindowsServiceControl::setStartType( int startType )
 {
 	if( checkService() == false )
 	{
@@ -247,7 +247,7 @@ bool WindowsService::setStartType( int startType )
 	                         NULL	// lpDisplayName
 	                         ) == false )
 	{
-		qCritical( qPrintable( tr( "WindowsService: the start type of service \"%1\" could not be changed." ).arg( m_name ) ) );
+		qCritical( qPrintable( tr( "WindowsServiceControl: the start type of service \"%1\" could not be changed." ).arg( m_name ) ) );
 		return false;
 	}
 
@@ -256,11 +256,11 @@ bool WindowsService::setStartType( int startType )
 
 
 
-bool WindowsService::checkService() const
+bool WindowsServiceControl::checkService() const
 {
 	if( m_serviceHandle == nullptr )
 	{
-		qCritical( qPrintable( tr( "WindowsService: service \"%1\" could not be found." ).arg( m_name ) ) );
+		qCritical( qPrintable( tr( "WindowsServiceControl: service \"%1\" could not be found." ).arg( m_name ) ) );
 		return false;
 	}
 

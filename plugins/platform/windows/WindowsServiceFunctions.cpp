@@ -23,34 +23,34 @@
  */
 
 #include "WindowsServiceFunctions.h"
-#include "WindowsService.h"
+#include "WindowsServiceControl.h"
 #include "WindowsServiceCore.h"
 
 
 bool WindowsServiceFunctions::isRegistered( const QString& name )
 {
-	return WindowsService( name ).isRegistered();
+	return WindowsServiceControl( name ).isRegistered();
 }
 
 
 
 bool WindowsServiceFunctions::isRunning( const QString& name )
 {
-	return WindowsService( name ).isRunning();
+	return WindowsServiceControl( name ).isRunning();
 }
 
 
 
 bool WindowsServiceFunctions::start( const QString& name )
 {
-	return WindowsService( name ).start();
+	return WindowsServiceControl( name ).start();
 }
 
 
 
 bool WindowsServiceFunctions::stop( const QString& name )
 {
-	return WindowsService( name ).stop();
+	return WindowsServiceControl( name ).stop();
 }
 
 
@@ -58,7 +58,7 @@ bool WindowsServiceFunctions::stop( const QString& name )
 bool WindowsServiceFunctions::install( const QString& name, const QString& filePath,
 									   StartMode startMode, const QString& displayName )
 {
-	return WindowsService( name ).install( filePath, displayName ) &&
+	return WindowsServiceControl( name ).install( filePath, displayName ) &&
 	        setStartMode( name, startMode );
 }
 
@@ -66,14 +66,14 @@ bool WindowsServiceFunctions::install( const QString& name, const QString& fileP
 
 bool WindowsServiceFunctions::uninstall( const QString& name )
 {
-	return WindowsService( name ).uninstall();
+	return WindowsServiceControl( name ).uninstall();
 }
 
 
 
 bool WindowsServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
 {
-	return WindowsService( name ).setStartType( windowsServiceStartType( startMode ) );
+	return WindowsServiceControl( name ).setStartType( windowsServiceStartType( startMode ) );
 }
 
 

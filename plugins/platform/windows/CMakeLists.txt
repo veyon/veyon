@@ -6,7 +6,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsPlatformPlugin.cpp
 	WindowsCoreFunctions.cpp
 	WindowsNetworkFunctions.cpp
-	WindowsService.cpp
+	WindowsServiceControl.cpp
 	WindowsServiceCore.cpp
 	WindowsServiceFunctions.cpp
 	WindowsUserInfoFunctions.cpp
@@ -15,7 +15,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
 	WindowsNetworkFunctions.h
-	WindowsService.h
+	WindowsServiceControl.h
 	WindowsServiceCore.h
 	WindowsServiceFunctions.h
 	WindowsUserInfoFunctions.h
