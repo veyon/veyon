@@ -180,8 +180,6 @@ namespace LocalSystem
 	} ;
 
 
-	void sleep( const int _ms );
-
 	void VEYON_CORE_EXPORT logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
 	void VEYON_CORE_EXPORT logoutUser();

@@ -848,20 +848,6 @@ bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 
 
 
-
-
-void sleep( const int _ms )
-{
-#ifdef VEYON_BUILD_WIN32
-	Sleep( static_cast<unsigned int>( _ms ) );
-#else
-	struct timespec ts = { _ms / 1000, ( _ms % 1000 ) * 1000 * 1000 } ;
-	nanosleep( &ts, nullptr );
-#endif
-}
-
-
-
 void logonUser( const QString & _uname, const QString & _passwd,
 						const QString & _domain )
 {
