@@ -62,14 +62,13 @@ public:
 		if( m_subProcessHandle )
 		{
 			qInfo( "Waiting for server to shutdown" );
-			if( WaitForSingleObject( m_subProcessHandle, 10000 ) ==
-					WAIT_TIMEOUT )
+			if( WaitForSingleObject( m_subProcessHandle, 10000 ) == WAIT_TIMEOUT )
 			{
 				qWarning( "Terminating server" );
 				TerminateProcess( m_subProcessHandle, 0 );
 			}
-			CloseHandle( m_subProcessHandle ),
-					m_subProcessHandle = NULL;
+			CloseHandle( m_subProcessHandle );
+			m_subProcessHandle = nullptr;
 		}
 	}
 
