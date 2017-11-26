@@ -38,6 +38,8 @@
 #include <QString>
 #include <QDebug>
 
+#include <functional>
+
 #include "QtCompat.h"
 
 #if defined(BUILD_VEYON_CORE_LIBRARY)
