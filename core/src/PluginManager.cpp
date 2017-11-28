@@ -135,8 +135,6 @@ void PluginManager::initPluginSearchPaths()
 	addRelativeIfExists( QStringLiteral( "plugins" ) );
 #else
 	addRelativeIfExists( QStringLiteral( "../" VEYON_LIB_DIR ) );
-	addRelativeIfExists( QStringLiteral( "../lib/veyon" ) );
-	addRelativeIfExists( QStringLiteral( "../lib64/veyon" ) );  // for some 64bits linux distributions, mainly Fedora 64bit
 #endif
 }
 
