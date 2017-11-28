@@ -33,6 +33,8 @@ class LinuxCoreFunctions : public PlatformCoreFunctions
 {
 public:
 	QString programFileExtension() const override;
+	QString personalAppDataPath() const override;
+	QString globalAppDataPath() const override;
 
 };
 

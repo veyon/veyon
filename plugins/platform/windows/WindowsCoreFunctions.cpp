@@ -22,10 +22,45 @@
  *
  */
 
+#include <QDir>
+
+#include <shlobj.h>
+
 #include "WindowsCoreFunctions.h"
+
+
+
+static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
+{
+	QString result;
+
+	wchar_t* path = nullptr;
+	if( SHGetKnownFolderPath( folderId, KF_FLAG_DEFAULT, nullptr, &path ) == S_OK )
+	{
+		result = QString::fromWCharArray( path );
+		CoTaskMemFree( path );
+	}
+
+	return result;
+}
+
 
 
 QString WindowsCoreFunctions::programFileExtension() const
 {
 	return QStringLiteral( ".exe" );
+}
+
+
+
+QString WindowsCoreFunctions::personalAppDataPath() const
+{
+	return windowsConfigPath( FOLDERID_RoamingAppData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();
+}
+
+
+
+QString WindowsCoreFunctions::globalAppDataPath() const
+{
+	return windowsConfigPath( FOLDERID_ProgramData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();
 }

@@ -146,9 +146,6 @@ namespace LocalSystem
 		static QString shrink( QString path );
 		static bool ensurePathExists( const QString &path );
 
-		static QString personalConfigDataPath();
-		static QString systemConfigDataPath();
-
 		static QString privateKeyPath( VeyonCore::UserRoles role,
 												QString baseDir = QString() );
 		static QString publicKeyPath( VeyonCore::UserRoles role,
