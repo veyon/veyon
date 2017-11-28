@@ -40,6 +40,13 @@ PluginManager::PluginManager( QObject* parent ) :
 
 
 
+void PluginManager::loadPlatformPlugins()
+{
+	loadPlugins( QStringLiteral("*-platform" VEYON_SHARED_LIBRARY_SUFFIX) );
+}
+
+
+
 void PluginManager::loadPlugins()
 {
 	loadPlugins( QStringLiteral("*" VEYON_SHARED_LIBRARY_SUFFIX) );
