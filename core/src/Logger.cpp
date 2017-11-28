@@ -30,7 +30,6 @@
 #include "VeyonConfiguration.h"
 #include "Logger.h"
 #include "LocalSystem.h"
-#include "PlatformUserInfoFunctions.h"
 
 #ifdef Q_OS_WIN
 #include "3rdparty/XEventLog.h"
@@ -68,16 +67,14 @@ Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 	}
 #endif
 
-	const auto user = VeyonCore::platform().userInfoFunctions().loggedOnUser();
-
 	if( QCoreApplication::instance() )
 	{
 		// log current application start up
-		qDebug() << "Startup for user" << user << "with arguments" << QCoreApplication::arguments();
+		qDebug() << "Startup with arguments" << QCoreApplication::arguments();
 	}
 	else
 	{
-		qDebug() << "Startup for user" << user << "without QCoreApplication instance";
+		qDebug() << "Startup without QCoreApplication instance";
 	}
 }
 
