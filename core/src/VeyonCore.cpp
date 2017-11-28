@@ -84,6 +84,14 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	s_instance = this;
 
+	// initialize plugin manager and load platform plugins first
+	m_pluginManager = new PluginManager( this );
+	m_pluginManager->loadPlatformPlugins();
+
+	// initialize platform plugin manager and initialize used platform plugin
+	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
+	m_platformPlugin = m_platformPluginManager->platformPlugin();
+
 	m_config = new VeyonConfiguration( VeyonConfiguration::defaultConfiguration() );
 	*m_config += VeyonConfiguration( Configuration::Store::LocalBackend );
 
