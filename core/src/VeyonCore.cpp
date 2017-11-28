@@ -78,7 +78,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_userRole( RoleTeacher )
 {
-	Q_ASSERT( application == nullptr );
+	Q_ASSERT( application != nullptr );
 
 	setupApplicationParameters();
 
