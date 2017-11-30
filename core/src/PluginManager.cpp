@@ -35,7 +35,7 @@ PluginManager::PluginManager( QObject* parent ) :
 	m_pluginInterfaces(),
 	m_pluginObjects()
 {
-	initPluginSearchPaths();
+	initPluginSearchPath();
 }
 
 
@@ -116,26 +116,15 @@ QString PluginManager::pluginName( Plugin::Uid pluginUid ) const
 
 
 
-void PluginManager::initPluginSearchPaths()
+void PluginManager::initPluginSearchPath()
 {
-	// adds a search path relative to the main executable to if the path exists.
-	auto addRelativeIfExists = [this]( const QString& path )
+	QDir dir( QCoreApplication::applicationDirPath() );
+	if( dir.cd( VEYON_PLUGIN_DIR ) )
 	{
-		QDir dir(qApp->applicationDirPath());
-		if( !path.isEmpty() && dir.cd( path ) )
-		{
-			const auto pluginSearchPath = dir.absolutePath();
-			qDebug() << "Adding plugin search path" << pluginSearchPath;
-			QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
-		}
-
-	};
-
-#ifdef Q_OS_WIN
-	addRelativeIfExists( QStringLiteral( "plugins" ) );
-#else
-	addRelativeIfExists( QStringLiteral( "../" VEYON_LIB_DIR ) );
-#endif
+		const auto pluginSearchPath = dir.absolutePath();
+		qDebug() << "Adding plugin search path" << pluginSearchPath;
+		QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
+	}
 }
 
 

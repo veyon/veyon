@@ -63,7 +63,7 @@ public:
 	QString pluginName( Plugin::Uid pluginUid ) const;
 
 private:
-	void initPluginSearchPaths();
+	void initPluginSearchPath();
 	void loadPlugins( const QString& nameFilter );
 
 	PluginInterfaceList m_pluginInterfaces;
