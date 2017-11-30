@@ -327,8 +327,7 @@ QString VeyonCore::serverFilePath()
 	return QDir::toNativeSeparators(
 				QCoreApplication::applicationDirPath() +
 				QDir::separator() +
-				QStringLiteral("veyon-server") +
-				VeyonCore::platform().coreFunctions().programFileExtension() );
+				QStringLiteral("veyon-server" VEYON_EXECUTABLE_SUFFIX) );
 }
 
 

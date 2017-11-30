@@ -32,7 +32,6 @@
 class PlatformCoreFunctions
 {
 public:
-	virtual QString programFileExtension() const = 0;
 	virtual QString personalAppDataPath() const = 0;
 	virtual QString globalAppDataPath() const = 0;
 

@@ -27,13 +27,6 @@
 #include "LinuxCoreFunctions.h"
 
 
-QString LinuxCoreFunctions::programFileExtension() const
-{
-	return QString();
-}
-
-
-
 QString LinuxCoreFunctions::personalAppDataPath() const
 {
 	return QDir::homePath() + QDir::separator() + QStringLiteral(".veyon");

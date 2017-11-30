@@ -46,13 +46,6 @@ static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
 
 
 
-QString WindowsCoreFunctions::programFileExtension() const
-{
-	return QStringLiteral( ".exe" );
-}
-
-
-
 QString WindowsCoreFunctions::personalAppDataPath() const
 {
 	return windowsConfigPath( FOLDERID_RoamingAppData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();

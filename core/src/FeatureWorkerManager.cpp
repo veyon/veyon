@@ -29,8 +29,6 @@
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
-#include "LocalSystem.h"
-#include "PlatformCoreFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 
@@ -77,7 +75,7 @@ FeatureWorkerManager::~FeatureWorkerManager()
 QString FeatureWorkerManager::workerProcessFilePath()
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-			"veyon-worker" + VeyonCore::platform().coreFunctions().programFileExtension() );
+									 QStringLiteral("veyon-worker" VEYON_EXECUTABLE_SUFFIX) );
 }
 
 
