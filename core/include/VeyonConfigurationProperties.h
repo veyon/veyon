@@ -48,7 +48,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logFileSizeLimitEnabled, setLogFileSizeLimitEnabled, "LogFileSizeLimitEnabled", "Logging" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logFileRotationEnabled, setLogFileRotationEnabled, "LogFileRotationEnabled", "Logging" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging" );	\
-	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logToSystem, setLogToSystem, "LogToSystem", "Logging" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, logFileRotationCount, setLogFileRotationCount, "LogFileRotationCount", "Logging" );		\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\

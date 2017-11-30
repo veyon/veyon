@@ -95,7 +95,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_config = new VeyonConfiguration( VeyonConfiguration::defaultConfiguration() );
 	*m_config += VeyonConfiguration( Configuration::Store::LocalBackend );
 
-	m_logger = new Logger( appComponentName, m_config );
+	m_logger = new Logger( appComponentName );
 
 	QLocale configuredLocale( QLocale::C );
 
@@ -164,12 +164,6 @@ VeyonCore::~VeyonCore()
 	delete m_accessControlDataBackendManager;
 	m_accessControlDataBackendManager = nullptr;
 
-	delete m_platformPluginManager;
-	m_platformPluginManager = nullptr;
-
-	delete m_pluginManager;
-	m_pluginManager = nullptr;
-
 	delete m_authenticationCredentials;
 	m_authenticationCredentials = nullptr;
 
@@ -178,6 +172,12 @@ VeyonCore::~VeyonCore()
 
 	delete m_logger;
 	m_logger = nullptr;
+
+	delete m_platformPluginManager;
+	m_platformPluginManager = nullptr;
+
+	delete m_pluginManager;
+	m_pluginManager = nullptr;
 
 	delete m_config;
 	m_config = nullptr;

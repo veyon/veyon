@@ -75,7 +75,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setLogFileSizeLimitEnabled( false );
 	c.setLogFileRotationEnabled( false );
 	c.setLogToStdErr( true );
-	c.setLogToWindowsEventLog( false );
+	c.setLogToSystem( false );
 	c.setLogFileSizeLimit( 100 );
 	c.setLogFileRotationCount( 10 );
 	c.setLogFileDirectory( QStringLiteral( "$TEMP" ) );

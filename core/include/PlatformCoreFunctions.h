@@ -25,6 +25,7 @@
 #ifndef PLATFORM_CORE_FUNCTIONS_H
 #define PLATFORM_CORE_FUNCTIONS_H
 
+#include "Logger.h"
 #include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -34,6 +35,8 @@ class PlatformCoreFunctions
 public:
 	virtual QString personalAppDataPath() const = 0;
 	virtual QString globalAppDataPath() const = 0;
+	virtual void initNativeLoggingSystem( const QString& appName ) = 0;
+	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
 
 };
 

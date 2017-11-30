@@ -157,7 +157,7 @@ BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /* = NULL*/)
 	}
 	else
 	{
-		ilog_failed("RegisterSource()");
+		fprintf(stderr, "RegisterSource()");
 	}
 
 	_ASSERTE(m_hEventLog != NULL);

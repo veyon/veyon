@@ -30,11 +30,7 @@
 #include "VeyonConfiguration.h"
 #include "Logger.h"
 #include "LocalSystem.h"
-
-#ifdef Q_OS_WIN
-#include "3rdparty/XEventLog.h"
-#include "3rdparty/XEventLog.cpp"
-#endif
+#include "PlatformCoreFunctions.h"
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
 Logger *Logger::instance = nullptr;
@@ -42,11 +38,9 @@ QMutex Logger::logMutex( QMutex::Recursive );
 Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
 QString Logger::lastMsg;
 int Logger::lastMsgCount = 0;
-#ifdef Q_OS_WIN
-CXEventLog *Logger::winEventLog = NULL;
-#endif
+bool Logger::logToSystem = false;
 
-Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
+Logger::Logger( const QString &appName ) :
 	m_appName( QStringLiteral( "Veyon" ) + appName ),
 	m_logFile( nullptr ),
 	m_logFileSizeLimit( -1 ),
@@ -54,18 +48,14 @@ Logger::Logger( const QString &appName, VeyonConfiguration* config ) :
 {
 	instance = this;
 
-	int ll = config->logLevel();
-	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
-	initLogFile( config );
+	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( VeyonCore::config().logLevel() ), LogLevelMax );
+	logToSystem = VeyonCore::config().logToSystem();
+
+	initLogFile();
 
 	qInstallMessageHandler( qtMsgHandler );
 
-#ifdef Q_OS_WIN
-	if( config->logToWindowsEventLog() )
-	{
-		winEventLog = new CXEventLog( (wchar_t*) appName.utf16() );
-	}
-#endif
+	VeyonCore::platform().coreFunctions().initNativeLoggingSystem( appName );
 
 	if( QCoreApplication::instance() )
 	{
@@ -95,9 +85,9 @@ Logger::~Logger()
 
 
 
-void Logger::initLogFile( VeyonConfiguration* config )
+void Logger::initLogFile()
 {
-	QString logPath = LocalSystem::Path::expand( config->logFileDirectory() );
+	QString logPath = LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() );
 
 	if( !QDir( logPath ).exists() )
 	{
@@ -116,14 +106,14 @@ void Logger::initLogFile( VeyonConfiguration* config )
 
 	openLogFile();
 
-	if( config->logFileSizeLimitEnabled() )
+	if( VeyonCore::config().logFileSizeLimitEnabled() )
 	{
-		m_logFileSizeLimit = config->logFileSizeLimit() * 1024 * 1024;
+		m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit() * 1024 * 1024;
 	}
 
-	if( config->logFileRotationEnabled() )
+	if( VeyonCore::config().logFileRotationEnabled() )
 	{
-		m_logFileRotationCount = config->logFileRotationCount();
+		m_logFileRotationCount = VeyonCore::config().logFileRotationCount();
 	}
 }
 
@@ -282,22 +272,12 @@ void Logger::log( LogLevel ll, const QString &msg )
 				lastMsgCount = 0;
 			}
 			instance->outputMessage( formatMessage( ll, msg ) );
-#ifdef Q_OS_WIN
-			WORD wtype = -1;
-			switch( ll )
+
+			if( logToSystem )
 			{
-				case LogLevelCritical:
-				case LogLevelError: wtype = EVENTLOG_ERROR_TYPE; break;
-				case LogLevelWarning: wtype = EVENTLOG_WARNING_TYPE; break;
-				//case LogLevelInfo: wtype = EVENTLOG_INFORMATION_TYPE; break;
-				default:
-					break;
+				VeyonCore::platform().coreFunctions().writeToNativeLoggingSystem( msg, ll );
 			}
-			if( winEventLog != NULL && wtype > 0 )
-			{
-				winEventLog->Write( wtype, (wchar_t*) msg.utf16() );
-			}
-#endif
+
 			lastMsg = msg;
 			lastMsgLevel = ll;
 		}

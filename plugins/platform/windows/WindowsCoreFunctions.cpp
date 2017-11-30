@@ -27,7 +27,7 @@
 #include <shlobj.h>
 
 #include "WindowsCoreFunctions.h"
-
+#include "XEventLog.h"
 
 
 static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
@@ -46,6 +46,20 @@ static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
 
 
 
+WindowsCoreFunctions::WindowsCoreFunctions() :
+	m_eventLog( nullptr )
+{
+}
+
+
+
+WindowsCoreFunctions::~WindowsCoreFunctions()
+{
+	delete m_eventLog;
+}
+
+
+
 QString WindowsCoreFunctions::personalAppDataPath() const
 {
 	return windowsConfigPath( FOLDERID_RoamingAppData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();
@@ -56,4 +70,33 @@ QString WindowsCoreFunctions::personalAppDataPath() const
 QString WindowsCoreFunctions::globalAppDataPath() const
 {
 	return windowsConfigPath( FOLDERID_ProgramData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();
+}
+
+
+
+void WindowsCoreFunctions::initNativeLoggingSystem( const QString& appName )
+{
+	m_eventLog = new CXEventLog( (wchar_t*) appName.utf16() );
+}
+
+
+
+void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel )
+{
+	WORD wtype = -1;
+
+	switch( loglevel )
+	{
+	case Logger::LogLevelCritical:
+	case Logger::LogLevelError: wtype = EVENTLOG_ERROR_TYPE; break;
+	case Logger::LogLevelWarning: wtype = EVENTLOG_WARNING_TYPE; break;
+		//case LogLevelInfo: wtype = EVENTLOG_INFORMATION_TYPE; break;
+	default:
+		break;
+	}
+
+	if( wtype > 0 )
+	{
+		m_eventLog->Write( wtype, (wchar_t*) message.utf16() );
+	}
 }

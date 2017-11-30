@@ -11,6 +11,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsServiceFunctions.cpp
 	WindowsUserInfoFunctions.cpp
 	SasEventListener.cpp
+	XEventLog.cpp
 	MOCFILES
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
@@ -20,6 +21,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsServiceFunctions.h
 	WindowsUserInfoFunctions.h
 	SasEventListener.h
+	XEventLog.h
 	COTIRE
 )
 

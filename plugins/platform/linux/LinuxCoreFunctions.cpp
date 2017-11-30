@@ -38,3 +38,18 @@ QString LinuxCoreFunctions::globalAppDataPath() const
 {
 	return QStringLiteral( "/etc/veyon/" );
 }
+
+
+
+void LinuxCoreFunctions::initNativeLoggingSystem( const QString& appName )
+{
+	Q_UNUSED(appName)
+}
+
+
+
+void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel )
+{
+	Q_UNUSED(message)
+	Q_UNUSED(loglevel)
+}

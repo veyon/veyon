@@ -243,9 +243,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="logToWindowsEventLog">
+       <widget class="QCheckBox" name="logToSystem">
         <property name="text">
-         <string>Log to Windows event log</string>
+         <string>Write to logging system of operating system</string>
         </property>
        </widget>
       </item>

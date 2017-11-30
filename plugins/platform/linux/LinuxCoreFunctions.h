@@ -34,6 +34,8 @@ class LinuxCoreFunctions : public PlatformCoreFunctions
 public:
 	QString personalAppDataPath() const override;
 	QString globalAppDataPath() const override;
+	void initNativeLoggingSystem( const QString& appName ) override;
+	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
 };
 

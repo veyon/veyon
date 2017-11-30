@@ -61,7 +61,7 @@ public slots:
 	void setSoftwareSASEnabled( bool );
 	void setLogLevel( int );
 	void setLogToStdErr( bool );
-	void setLogToWindowsEventLog( bool );
+	void setLogToSystem( bool );
 	void setLogFileSizeLimitEnabled( bool );
 	void setLogFileRotationEnabled( bool );
 	void setLogFileSizeLimit( int );
