@@ -279,7 +279,7 @@ LINK_LIBRARIES(${QT_LIBRARIES} ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${PNG_LIBRARI
 
 SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_DIR}")
+SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # make sub-directories
@@ -379,7 +379,7 @@ MESSAGE("\n"
 "--------------------\n"
 "* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
 "* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
-"* Library & plugin directory  : ${CMAKE_INSTALL_PREFIX}/${LIB_DIR}\n"
+"* Library & plugin directory  : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
