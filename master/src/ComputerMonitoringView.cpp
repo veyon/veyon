@@ -76,7 +76,9 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	m_masterCore = &masterCore;
 
 	// create computer list model and attach it to list view
-	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
+	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(),
+												 m_masterCore->features(),
+												 this );
 
 	m_sortFilterProxyModel.setSourceModel( m_computerListModel );
 	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );

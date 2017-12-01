@@ -36,7 +36,9 @@ class ComputerListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	ComputerListModel(ComputerManager& manager, QObject *parent = nullptr);
+	ComputerListModel( ComputerManager& manager,
+					   const FeatureList& masterFeatures,
+					   QObject *parent = nullptr );
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
@@ -63,9 +65,11 @@ private:
 	QString computerDisplayRole( const Computer& computer ) const;
 	QString computerStateDescription( const Computer& computer ) const;
 	QString loggedOnUserInformation( const Computer& computer ) const;
+	QString activeFeatures( const Computer& computer ) const;
 
 	ComputerControlInterface m_dummyControlInterface;
 	ComputerManager& m_manager;
+	const FeatureList m_masterFeatures;
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;
 	QImage m_iconDemoMode;

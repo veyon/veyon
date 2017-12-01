@@ -124,6 +124,7 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	}
 
 	ui->gridSizeSlider->setValue( size );
+	ui->computerMonitoringView->setComputerScreenSize( size );
 
 
 	// create the main toolbar
