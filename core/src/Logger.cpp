@@ -121,7 +121,7 @@ void Logger::initLogFile()
 
 void Logger::openLogFile()
 {
-	m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered );
+	m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered | QFile::Text );
 	m_logFile->setPermissions( QFile::ReadOwner | QFile::WriteOwner );
 }
 
@@ -197,12 +197,6 @@ void Logger::rotateLogFile()
 
 QString Logger::formatMessage( LogLevel ll, const QString &msg )
 {
-#ifdef Q_OS_WIN
-	static const char *linebreak = "\r\n";
-#else
-	static const char *linebreak = "\n";
-#endif
-
 	QString msgType;
 	switch( ll )
 	{
@@ -214,12 +208,11 @@ QString Logger::formatMessage( LogLevel ll, const QString &msg )
 		default: break;
 	}
 
-	return QString( QStringLiteral( "%1.%2: [%3] %4%5" ) ).arg(
+	return QString( QStringLiteral( "%1.%2: [%3] %4\n" ) ).arg(
 				QDateTime::currentDateTime().toString( Qt::ISODate ),
 				QDateTime::currentDateTime().toString( QStringLiteral( "zzz" ) ),
 				msgType,
-				msg.trimmed(),
-				linebreak );
+				msg.trimmed() );
 }
 
 
