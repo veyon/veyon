@@ -87,6 +87,8 @@ Logger::~Logger()
 {
 	qDebug( "Shutdown" );
 
+	QMutexLocker l( &logMutex );
+
 	qInstallMessageHandler(nullptr);
 
 	instance = nullptr;
