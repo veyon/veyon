@@ -142,7 +142,8 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	const auto groups = VeyonCore::accessControlDataBackendManager().configuredBackend()->userGroups();
+	const auto groups = VeyonCore::accessControlDataBackendManager().configuredBackend()->userGroups(
+				VeyonCore::config().domainGroupsForAccessControlEnabled() );
 
 	for( const auto& group : groups )
 	{

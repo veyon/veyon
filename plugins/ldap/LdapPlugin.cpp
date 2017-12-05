@@ -97,15 +97,19 @@ QStringList LdapPlugin::users()
 
 
 
-QStringList LdapPlugin::userGroups()
+QStringList LdapPlugin::userGroups( bool queryDomainGroups )
 {
+	Q_UNUSED(queryDomainGroups);
+
 	return ldapDirectory().toRelativeDnList( ldapDirectory().userGroups() );
 }
 
 
 
-QStringList LdapPlugin::groupsOfUser( const QString& username )
+QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
+	Q_UNUSED(queryDomainGroups);
+
 	const auto strippedUsername = LocalSystem::User::stripDomain( username );
 
 	const QString userDn = ldapDirectory().users( strippedUsername ).value( 0 );

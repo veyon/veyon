@@ -56,16 +56,16 @@ QStringList LocalDataPlugin::users()
 
 
 
-QStringList LocalDataPlugin::userGroups()
+QStringList LocalDataPlugin::userGroups( bool queryDomainGroups )
 {
-	return VeyonCore::platform().userInfoFunctions()->userGroups();
+	return VeyonCore::platform().userInfoFunctions()->userGroups( queryDomainGroups );
 }
 
 
 
-QStringList LocalDataPlugin::groupsOfUser( const QString& username )
+QStringList LocalDataPlugin::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	return VeyonCore::platform().userInfoFunctions()->groupsOfUser( username );
+	return VeyonCore::platform().userInfoFunctions()->groupsOfUser( username, queryDomainGroups );
 }
 
 
