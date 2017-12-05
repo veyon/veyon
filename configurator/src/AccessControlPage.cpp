@@ -97,7 +97,7 @@ void AccessControlPage::applyConfiguration()
 {
 	VeyonCore::accessControlDataBackendManager().reloadConfiguration();
 
-	//resetWidgets();
+	resetWidgets();
 }
 
 
