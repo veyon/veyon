@@ -32,8 +32,8 @@
 class VEYON_CORE_EXPORT PlatformUserInfoFunctions
 {
 public:
-	virtual QStringList userGroups() = 0;
-	virtual QStringList groupsOfUser( const QString& username ) = 0;
+	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
+	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
 
 	virtual QStringList loggedOnUsers() = 0;
 

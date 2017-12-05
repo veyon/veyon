@@ -27,12 +27,14 @@
 #include <wtsapi32.h>
 #include <lm.h>
 
-QStringList WindowsUserInfoFunctions::userGroups()
+QStringList WindowsUserInfoFunctions::userGroups( bool queryDomainGroups )
 {
-	QStringList groupList;
+	auto groupList = localUserGroups();
 
-	groupList.append( localUserGroups() );
-	groupList.append( domainUserGroups() );
+	if( queryDomainGroups )
+	{
+		groupList.append( domainUserGroups() );
+	}
 
 	groupList.removeDuplicates();
 	groupList.removeAll( QStringLiteral("") );
@@ -42,12 +44,14 @@ QStringList WindowsUserInfoFunctions::userGroups()
 
 
 
-QStringList WindowsUserInfoFunctions::groupsOfUser( const QString& username )
+QStringList WindowsUserInfoFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	QStringList groupList;
+	auto groupList = localGroupsOfUser( username );
 
-	groupList.append( localGroupsOfUser( username ) );
-	groupList.append( domainGroupsOfUser( username ) );
+	if( queryDomainGroups )
+	{
+		groupList.append( domainGroupsOfUser( username ) );
+	}
 
 	groupList.removeDuplicates();
 	groupList.removeAll( QStringLiteral("") );
