@@ -41,6 +41,10 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <source>About %1 %2</source>
         <translation>Tentang %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Dukung proyek Veyon dengan donasi</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -138,18 +142,18 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Akses ditolak</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna yang ditentukan tidak diizinkan mengakses komputer dengan konfigurasi ini.</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Edit aturan kontrol akses</translation>
     </message>
     <message>
         <source>General</source>
@@ -157,19 +161,19 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>masukkan nama singkat untuk aturan di sini</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Nama aturan:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>masukkan penjelasan untuk aturan di sini</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Penjelasan aturan:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -177,15 +181,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Kondisi</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>adalah anggota grup</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>terletak di ruang</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -205,15 +209,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Aksi</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Ijinkan akses</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Larang akses</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -237,19 +241,19 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Komputer lokal</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Selalu proses aturan dan abaikan kondisi</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada pengguna masuk</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>Mengakses komputer pada` ruangan yang sama dengan komputer lokal</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -268,7 +272,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Komputer lokal</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -280,11 +284,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna lokal:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna terhubung:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -304,7 +308,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Hasil test</translation>
     </message>
 </context>
 <context>
@@ -391,11 +395,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     <name>ComputerListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation type="unfinished"/>
+        <translation>Ruang: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>Daring dan terhubung</translation>
     </message>
     <message>
         <source>Establishing connection</source>
@@ -403,7 +407,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada pengguna masuk</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -423,11 +427,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Terputus</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Host/Alamat IP: %1</translation>
     </message>
 </context>
 <context>
@@ -438,7 +442,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>Tambah ruang</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -469,7 +473,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Pengguna</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -481,7 +485,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation type="unfinished"/>
+        <translation>Nama komputer;Nama host;Pengguna</translation>
     </message>
     <message>
         <source>Room detection failed</source>
@@ -536,11 +540,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Berkas keluaran tidak dapat ditulisi!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Direktori keluaran tidak dapat ditulisi!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -1754,6 +1758,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>New computer</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
@@ -2005,7 +2013,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Akses ditolak</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
