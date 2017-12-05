@@ -765,6 +765,15 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 
 
 
+QString LdapDirectory::escapeFilterValue( QString filterValue )
+{
+	return filterValue.replace( QStringLiteral("\\"), QStringLiteral("\\\\") )
+			.replace( QStringLiteral("("), QStringLiteral("\\(") )
+			.replace( QStringLiteral(")"), QStringLiteral("\\)") );
+}
+
+
+
 QString LdapDirectory::hostToLdapFormat(const QString &host)
 {
 	QHostAddress hostAddress( host );

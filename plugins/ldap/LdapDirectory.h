@@ -91,6 +91,8 @@ private:
 										 const QString& filterValue,
 										 const QString& extraFilter = QString() );
 
+	static QString escapeFilterValue( QString filterValue );
+
 	class LdapDirectoryPrivate;
 
 	const LdapConfiguration& m_configuration;
