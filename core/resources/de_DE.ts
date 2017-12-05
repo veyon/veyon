@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -43,7 +41,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Veyon-Projekt mit einer Spende unterstützen</translation>
+        <translation>Unterstützen Sie das Veyon-Projekt mit einer Spende</translation>
     </message>
 </context>
 <context>

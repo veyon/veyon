@@ -171,6 +171,19 @@ void BuiltinUltraVncServer::run( int serverPort, const QString& password )
 	}
 
 	// run winvnc-server
+	HMODULE hUser32 = LoadLibrary( "user32.dll" );
+	typedef BOOL (*SetProcessDPIAwareFunc)();
+	SetProcessDPIAwareFunc setDPIAware=NULL;
+	if( hUser32 )
+	{
+		setDPIAware = (SetProcessDPIAwareFunc) GetProcAddress( hUser32, "SetProcessDPIAware" );
+		if( setDPIAware )
+		{
+			setDPIAware();
+		}
+		FreeLibrary( hUser32 );
+	}
+
 	Myinit( GetModuleHandle( NULL ) );
 	WinVNCAppMain();
 }

@@ -78,7 +78,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Veyon ağınızdaki bilgisayarlara erişmeye yetkili olacak kullanıcıları içeren kümeleri ekleyin.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -118,7 +118,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Missing access control data backend</source>
-        <translation type="unfinished"/>
+        <translation>Eksik erişim denetimi verisi arka ucu</translation>
     </message>
     <message>
         <source>No default access control backend plugin was found. Please check your installation!</source>
@@ -221,7 +221,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Giriş yapan kullanıcıdan izin al</translation>
+        <translation>Oturum açan kullanıcıdan izin al</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -237,7 +237,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Yerel (giriş yapmış) kullanıcı</translation>
+        <translation>Yerel (oturum açmış) kullanıcı</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -253,11 +253,11 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>Erişilen bilgisayar yerel bilgisayarla aynı odada bulunmaktadır</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Erişilen kullanıcı, yerel (oturum açmış) kullanıcıyla ortak bir veya daha çok kümeye sahip</translation>
     </message>
 </context>
 <context>
@@ -280,7 +280,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen, yapılandırılmış kural setini sınamak için takip eden kullanıcı ve bilgisayar bilgisini girin.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -292,15 +292,15 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Verilen senaryodaki erişime izin verildi.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Verilen senaryodaki erişim reddedildi.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Verilen senaryodaki erişim, oturum açmış kullanıcının iznini gerektiriyor.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -423,7 +423,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>Yetkilendirme başarısız veya erişim engellendi</translation>
+        <translation>Yetkilendirme başarısız veya erişim reddedildi</translation>
     </message>
     <message>
         <source>Disconnected</source>
@@ -477,11 +477,11 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>Eksik ağ nesnesi dizini eklentisi</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Öntanımlı ağ nesnesi dizini eklentisi bulunamadı. Lütfen kurulumunuzu denetleyin veya %1 Yapılandırıcı aracılığıyla başka bir ağ nesnesi dizini eklentisi yapılandırın.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
@@ -493,7 +493,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation type="unfinished"/>
+        <translation>Bu bilgisayarın ait olduğu oda saptanamadı. Bu, sistem yapılandırmasında bir soruna işarettir. Buna karşılık tüm odalar bilgisayar yönetiminde gözükecektir.</translation>
     </message>
 </context>
 <context>
@@ -520,15 +520,15 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmeti için kendiliğinden başlatma özelliği değiştirilemedi.</translation>
     </message>
     <message>
         <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmeti için hizmet argümanları değiştirilemedi.</translation>
     </message>
     <message>
         <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmeti için güvenlik duvarı yapılandırması değiştirilemedi.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -587,15 +587,15 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <name>ConfiguratorCore</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmeti için kendiliğinden başlatma özelliği değiştirilemedi.</translation>
     </message>
     <message>
         <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmeti için hizmet argümanları değiştirilemedi.</translation>
     </message>
     <message>
         <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hizmeti için güvenlik duvarı yapılandırması değiştirilemedi.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -645,7 +645,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar çerçeve aralığı</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1148,7 +1148,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>örn. OU=Gruplar</translation>
+        <translation>örn. OU=Kümeler</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -1168,7 +1168,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation type="unfinished"/>
+        <translation>Nesne ağaçlarında özyinelemeli arama işlemleri gerçekleştir</translation>
     </message>
     <message>
         <source>Object attributes</source>
@@ -1180,7 +1180,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana makine adı özniteliği</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
@@ -1188,7 +1188,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>User login attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı giriş özniteliği</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
@@ -1196,7 +1196,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar MAC adresi özniteliği</translation>
     </message>
     <message>
         <source>Group member attribute</source>
@@ -1216,7 +1216,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation type="unfinished"/>
+        <translation>İsteğe bağlı nesne süzgeçleri</translation>
     </message>
     <message>
         <source>e.g. objectClass=group</source>
@@ -1224,7 +1224,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı kümeleri için süzgeç</translation>
     </message>
     <message>
         <source>e.g. objectClass=person</source>
@@ -1236,7 +1236,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Bilgisayar grupları için süzme</translation>
+        <translation>Bilgisayar kümeleri için süzme</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -1260,7 +1260,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation type="unfinished"/>
+        <translation>IP adresiyle bilgisayar nesnesi al</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
@@ -1340,7 +1340,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation type="unfinished"/>
+        <translation>Sorgulanacak kullanıcı giriş adını (joker karakterlere izin verilir) girin:</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -1348,7 +1348,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>user login attribute</source>
-        <translation type="unfinished"/>
+        <translation>kullanıcı giriş özniteliği</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -1356,7 +1356,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Üyeleri sorgulanacak küme adını girin:</translation>
     </message>
     <message>
         <source>group members</source>
@@ -1396,11 +1396,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>computer objects</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar nesneleri</translation>
     </message>
     <message>
         <source>computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar ana makine adı özniteliği</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -1432,7 +1432,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Küme üyelikleri sorgulanacak kullanıcı giriş adı girin:</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -1440,7 +1440,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>kullanıcı giriş özniteliği veya küme üyeliği özniteliği</translation>
     </message>
     <message>
         <source>User not found</source>
@@ -1456,7 +1456,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Küme üyelikleri sorgulanacak bilgisayar ana makine adını girin:</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -1464,7 +1464,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>computer host name attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar ana makine adı özniteliği veya küme üyeliği özniteliği</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -1480,7 +1480,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar nesnesine çıkan bir bilgisayar IP adresi girin:</translation>
     </message>
     <message>
         <source>Host name lookup failed</source>
@@ -1496,7 +1496,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP %1 sınaması başarısız</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
@@ -1506,17 +1506,19 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP %1 sınaması başarılı</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>%1 sorgulandı ve %2 girdi bulundu.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Herhangi bir %1 sorgulanamadı. Lütfen %2 parametresini denetleyin veya var olan bir nesnenin adını girin.
+
+%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -1594,15 +1596,15 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar odası özniteliği</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Üyeleri sorgulanacak bilgisayar odası adını girin:</translation>
     </message>
     <message>
         <source>computer room members</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar odası üyeleri</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
@@ -1669,18 +1671,18 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     <name>LdapDirectory</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP hata açıklaması: %1</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>Veyon&apos;un LDAP/AD tümleşmesini komut satırında yapılandır</translation>
     </message>
     <message>
         <source>LDAP (load objects from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (nesneleri LDAP/AD&apos;den yükle)</translation>
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
@@ -1991,19 +1993,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>JSON dosyaları (*.json)</translation>
     </message>
     <message>
         <source>%1 bug report (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>%1 hata bildirimi (*.json)</translation>
     </message>
     <message>
         <source>%1 bug report archive saved</source>
-        <translation type="unfinished"/>
+        <translation>%1 hata bildirimi arşivi kaydedildi</translation>
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation type="unfinished"/>
+        <translation>%1 hata bildirimi arşivi %2 konumuna kaydedildi. Bu, %3 günlük dosyasını ve işletim sisteminiz hakkındaki verileri içermektedir. Hata bildirimine iliştirebilirsiniz.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -2019,7 +2021,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Erişim engellendi</translation>
+        <translation>Erişim reddedildi</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2250,11 +2252,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen bilgisayarları yeniden başlatmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen bilgisayarları kapatmak istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
@@ -2265,7 +2267,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet Denetim Yöneticisi ilişki kurulabilir durumda değil (gerekli haklarınız var mı?!) - &apos;%1&apos; hizmeti kaydedilemedi.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -2301,11 +2303,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet Denetim Yöneticisi ilişki kurulabilir durumda değil (gerekli haklarınız var mı?!) - &apos;%1&apos; hizmetinin kaydı silinmedi.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet Denetim Yöneticisi ilişki kurulabilir durumda değil (gerekli haklarınız var mı?!) - &apos;%1&apos; hizmeti durdurulmadı.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be started.</source>
@@ -2313,7 +2315,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation type="unfinished"/>
+        <translation>Hizmet Denetim Yöneticisi ilişki kurulabilir durumda değil (gerekli haklarınız var mı?!) - &apos;%1&apos; hizmeti başlatılmadı.</translation>
     </message>
 </context>
 <context>
@@ -2707,7 +2709,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm seçili kullanıcılara gönderilecek iletinizi yazmak için aşağıdaki alanı kullanın.</translation>
     </message>
 </context>
 <context>
@@ -2718,7 +2720,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm kullanıcılara metin iletisi göndermek için bu işlevi kullanın, örneğin onlara yeni görevler atamak için.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -2733,7 +2735,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"/>
+        <translation>Katmanlandırılmış (yarı saydam) pencerelerin yakalanmasını etkinleştir</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -2806,11 +2808,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz argümanlar verildi</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation type="unfinished"/>
+        <translation>Yeteri kadar argüman verilmedi - ayrıntılı bilgi için &quot;%1 help&quot; kullanın</translation>
     </message>
     <message>
         <source>Unknown result!</source>

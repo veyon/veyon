@@ -39,6 +39,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>About %1 %2</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1751,6 +1755,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>New computer</source>
         <translation>Nowy komputer</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

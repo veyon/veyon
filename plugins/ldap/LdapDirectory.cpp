@@ -67,10 +67,8 @@ public:
 			return entries;
 		}
 
-		const auto escapedFilter = QString( filter ).replace( QStringLiteral("\\"), QStringLiteral("\\\\") );
-
 		int result = -1;
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, escapedFilter, QStringList( attribute ) );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
 
 		if( id != -1 )
 		{
@@ -130,7 +128,7 @@ public:
 
 		if( state != Bound && reconnect() == false )
 		{
-			qCritical() << "LdapDirectory::queryAttributes(): not bound to server!";
+			qCritical() << "LdapDirectory::queryDistinguishedNames(): not bound to server!";
 			return distinguishedNames;
 		}
 
@@ -141,10 +139,8 @@ public:
 			return distinguishedNames;
 		}
 
-		const auto escapedFilter = QString( filter ).replace( QStringLiteral("\\"), QStringLiteral("\\\\") );
-
 		int result = -1;
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, escapedFilter, QStringList() );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
 
 		if( id != -1 )
 		{
@@ -748,7 +744,8 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 		}
 		else
 		{
-			queryFilter = QStringLiteral( "(%1=%2)" ).arg( filterAttribute, filterValue );
+			queryFilter = QStringLiteral( "(%1=%2)" ).arg( filterAttribute,
+														   escapeFilterValue( filterValue ) );
 		}
 	}
 
@@ -765,6 +762,15 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 	}
 
 	return queryFilter;
+}
+
+
+
+QString LdapDirectory::escapeFilterValue( QString filterValue )
+{
+	return filterValue.replace( QStringLiteral("\\"), QStringLiteral("\\\\") )
+			.replace( QStringLiteral("("), QStringLiteral("\\(") )
+			.replace( QStringLiteral(")"), QStringLiteral("\\)") );
 }
 
 
