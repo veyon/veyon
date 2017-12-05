@@ -128,7 +128,7 @@ public:
 
 		if( state != Bound && reconnect() == false )
 		{
-			qCritical() << "LdapDirectory::queryAttributes(): not bound to server!";
+			qCritical() << "LdapDirectory::queryDistinguishedNames(): not bound to server!";
 			return distinguishedNames;
 		}
 
