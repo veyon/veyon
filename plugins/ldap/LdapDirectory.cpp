@@ -744,7 +744,8 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 		}
 		else
 		{
-			queryFilter = QStringLiteral( "(%1=%2)" ).arg( filterAttribute, filterValue );
+			queryFilter = QStringLiteral( "(%1=%2)" ).arg( filterAttribute,
+														   escapeFilterValue( filterValue ) );
 		}
 	}
 
