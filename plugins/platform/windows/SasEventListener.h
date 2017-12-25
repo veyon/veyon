@@ -1,5 +1,5 @@
 /*
- * VeyonServiceProtocol.h - header file for the VeyonServiceProtocol class
+ * SasEventListener.h - header file for SasEventListener class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,33 +22,33 @@
  *
  */
 
-#ifndef VEYON_SERVICE_PROTOCOL_H
-#define VEYON_SERVICE_PROTOCOL_H
+#ifndef SAS_EVENT_LISTENER_H
+#define SAS_EVENT_LISTENER_H
 
-#include "VncServerProtocol.h"
+#include "VeyonCore.h"
 
-class ServerAuthenticationManager;
-class ServerAccessControlManager;
-
-// clazy:excludeall=copyable-polymorphic
-
-class VeyonServiceProtocol : public VncServerProtocol
+class SasEventListener : public QThread
 {
 public:
-	VeyonServiceProtocol( QTcpSocket* socket,
-						  VncServerClient* client,
-						  ServerAuthenticationManager& serverAuthenticationManager,
-						  ServerAccessControlManager& serverAccessControlManager );
+	typedef void (WINAPI *SendSas)(BOOL asUser);
 
-protected:
-	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
-	void processAuthenticationMessage( VariantArrayMessage& message ) override;
-	void performAccessControl() override;
+	enum {
+		WaitPeriod = 1000
+	};
+
+	SasEventListener();
+	~SasEventListener() override;
+
+	void stop();
+
+	void run() override;
 
 private:
-	ServerAuthenticationManager& m_serverAuthenticationManager;
-	ServerAccessControlManager& m_serverAccessControlManager;
+	HMODULE m_sasLibrary;
+	SendSas m_sendSas;
+	HANDLE m_sasEvent;
+	HANDLE m_stopEvent;
 
-} ;
+};
 
 #endif

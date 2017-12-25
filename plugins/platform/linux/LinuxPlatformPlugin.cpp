@@ -27,7 +27,9 @@
 
 LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
 	QObject( parent ),
+	m_linuxCoreFunctions(),
 	m_linuxNetworkFunctions(),
+	m_linuxServiceFunctions(),
 	m_linuxUserInfoFunctions()
 {
 }

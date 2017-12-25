@@ -70,13 +70,12 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 
 	c.setTrayIconHidden( false );
 	c.setServiceAutostart( true );
-	c.setServiceArguments( QString() );
 
 	c.setLogLevel( Logger::LogLevelDefault );
 	c.setLogFileSizeLimitEnabled( false );
 	c.setLogFileRotationEnabled( false );
 	c.setLogToStdErr( true );
-	c.setLogToWindowsEventLog( false );
+	c.setLogToSystem( false );
 	c.setLogFileSizeLimit( 100 );
 	c.setLogFileRotationCount( 10 );
 	c.setLogFileDirectory( QStringLiteral( "$TEMP" ) );

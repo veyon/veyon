@@ -32,6 +32,7 @@
 #include "Configuration/Object.h"
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
+#include "PlatformCoreFunctions.h"
 
 
 namespace Configuration
@@ -175,7 +176,7 @@ QString JsonStore::configurationFilePath() const
 		base = VeyonConfiguration::defaultConfiguration().userConfigurationDirectory();
 		break;
 	case System:
-		base = LocalSystem::Path::systemConfigDataPath();
+		base = VeyonCore::platform().coreFunctions().globalAppDataPath();
 		break;
 	default:
 		base = QDir::homePath();

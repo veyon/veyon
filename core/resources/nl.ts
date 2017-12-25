@@ -41,6 +41,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>About %1 %2</source>
         <translation>Over %1 %2</translation>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -1761,6 +1765,10 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     <message>
         <source>New computer</source>
         <translation>Nieuwe computer</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

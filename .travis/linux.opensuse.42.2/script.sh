@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 export CC=gcc-6
 export CXX=g++-6
 

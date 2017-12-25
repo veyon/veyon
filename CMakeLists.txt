@@ -17,6 +17,7 @@ INCLUDE(CheckFunctionExists)
 INCLUDE(CheckSymbolExists)
 INCLUDE(FindPkgConfig)
 INCLUDE(GNUInstallDirs)
+INCLUDE(CotireVeyon)
 
 FIND_PACKAGE(Git)
 
@@ -51,7 +52,7 @@ IF(GIT_FOUND)
 						COMMAND grep -v root
 						OUTPUT_FILE "${CONTRIBUTORS}"
 						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-						TIMEOUT 1)
+						TIMEOUT 10)
 		FILE(RELATIVE_PATH CONTRIBUTORS ${CMAKE_BINARY_DIR}/core ${CONTRIBUTORS})
 	ENDIF()
 
@@ -61,7 +62,7 @@ ENDIF()
 IF(NOT VERSION_STRING)
 	SET(VERSION_MAJOR 4)
 	SET(VERSION_MINOR 0)
-	SET(VERSION_PATCH 1)
+	SET(VERSION_PATCH 3)
 	SET(VERSION_BUILD 0)
 	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 ELSE()
@@ -143,6 +144,7 @@ ENDFOREACH(_func ${FUNCS})
 # check for required Qt5 modules
 
 FIND_PACKAGE(Qt5Core REQUIRED)
+FIND_PACKAGE(Qt5Concurrent REQUIRED)
 FIND_PACKAGE(Qt5Gui REQUIRED)
 FIND_PACKAGE(Qt5Widgets REQUIRED)
 FIND_PACKAGE(Qt5Network REQUIRED)
@@ -229,7 +231,7 @@ SET(VEYONCONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h)
 SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/config.h)
 
-SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc service/veyon-service.rc master/data/veyon-master master/data/veyon-master.desktop master/veyon-master.rc configurator/veyon-configurator.rc ctl/veyon-ctl.rc worker/veyon-worker.rc)
+SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc server/veyon-server.rc service/veyon-service.rc master/data/veyon-master master/data/veyon-master.desktop master/veyon-master.rc configurator/veyon-configurator.rc ctl/veyon-ctl.rc worker/veyon-worker.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -277,11 +279,13 @@ LINK_LIBRARIES(${QT_LIBRARIES} ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${PNG_LIBRARI
 
 SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_DIR}")
+SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # make sub-directories
 ADD_SUBDIRECTORY(core)
+ADD_SUBDIRECTORY(auth-helper)
+ADD_SUBDIRECTORY(server)
 ADD_SUBDIRECTORY(service)
 ADD_SUBDIRECTORY(master)
 ADD_SUBDIRECTORY(configurator)
@@ -341,7 +345,7 @@ IF(WIN32)
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
 			COMMAND unzip -j -d ${TMP} ${InterceptionZip} Interception/command\ line\ installer/install-interception.exe
-			COMMAND cp core/veyon-core.dll service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
+			COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
@@ -375,7 +379,7 @@ MESSAGE("\n"
 "--------------------\n"
 "* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
 "* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
-"* Library & plugin directory  : ${CMAKE_INSTALL_PREFIX}/${LIB_DIR}\n"
+"* Library & plugin directory  : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"

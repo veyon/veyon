@@ -1,7 +1,28 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(windows-platform WindowsPlatformPlugin.cpp WindowsNetworkFunctions.cpp WindowsUserInfoFunctions.cpp MOCFILES WindowsPlatformPlugin.h WindowsNetworkFunctions.h WindowsUserInfoFunctions.h)
-
 ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
+
+BUILD_PLUGIN(windows-platform
+	WindowsPlatformPlugin.cpp
+	WindowsCoreFunctions.cpp
+	WindowsNetworkFunctions.cpp
+	WindowsServiceControl.cpp
+	WindowsServiceCore.cpp
+	WindowsServiceFunctions.cpp
+	WindowsUserInfoFunctions.cpp
+	SasEventListener.cpp
+	XEventLog.cpp
+	MOCFILES
+	WindowsPlatformPlugin.h
+	WindowsCoreFunctions.h
+	WindowsNetworkFunctions.h
+	WindowsServiceControl.h
+	WindowsServiceCore.h
+	WindowsServiceFunctions.h
+	WindowsUserInfoFunctions.h
+	SasEventListener.h
+	XEventLog.h
+	COTIRE
+)
 
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32)

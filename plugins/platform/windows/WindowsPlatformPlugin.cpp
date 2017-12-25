@@ -27,7 +27,9 @@
 
 WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
     QObject( parent ),
+    m_windowsCoreFunctions(),
     m_windowsNetworkFunctions(),
+	m_windowsServiceFunctions(),
     m_windowsUserInfoFunctions()
 {
 }

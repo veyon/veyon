@@ -30,7 +30,7 @@
 #include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "ServiceConfigurationPage.h"
-#include "ServiceControl.h"
+#include "VeyonServiceControl.h"
 #include "VncServerPluginInterface.h"
 #include "Configuration/UiMapping.h"
 
@@ -88,7 +88,7 @@ void ServiceConfigurationPage::connectWidgetsToProperties()
 
 void ServiceConfigurationPage::applyConfiguration()
 {
-	ServiceControl serviceControl( this );
+	VeyonServiceControl serviceControl( this );
 
 	if( serviceControl.isServiceRunning() &&
 		QMessageBox::question( this, tr( "Restart %1 Service" ).arg( VeyonCore::applicationName() ),
@@ -106,7 +106,7 @@ void ServiceConfigurationPage::applyConfiguration()
 
 void ServiceConfigurationPage::startService()
 {
-	ServiceControl( this ).startService();
+	VeyonServiceControl( this ).startService();
 
 	updateServiceControl();
 }
@@ -115,7 +115,7 @@ void ServiceConfigurationPage::startService()
 
 void ServiceConfigurationPage::stopService()
 {
-	ServiceControl( this ).stopService();
+	VeyonServiceControl( this ).stopService();
 
 	updateServiceControl();
 }
@@ -124,7 +124,7 @@ void ServiceConfigurationPage::stopService()
 
 void ServiceConfigurationPage::updateServiceControl()
 {
-	bool running = ServiceControl( this ).isServiceRunning();
+	bool running = VeyonServiceControl( this ).isServiceRunning();
 
 #ifdef VEYON_BUILD_WIN32
 	ui->startService->setEnabled( !running );

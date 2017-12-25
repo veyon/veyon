@@ -32,40 +32,12 @@
 
 #ifdef VEYON_BUILD_WIN32
 
-#include <QLibrary>
 #include <QGuiApplication>
 #include <qpa/qplatformnativeinterface.h>
 
 #include <shlobj.h>
 #include <wtsapi32.h>
-#include <sddl.h>
 #include <userenv.h>
-#include <lm.h>
-#include <reason.h>
-
-
-namespace LocalSystem
-{
-
-// taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp
-QString windowsConfigPath( int type )
-{
-	QString result;
-
-	QLibrary library( "shell32" );
-	typedef BOOL( WINAPI* GetSpecialFolderPath )( HWND, LPTSTR, int, BOOL );
-	GetSpecialFolderPath SHGetSpecialFolderPath = (GetSpecialFolderPath)
-				library.resolve( "SHGetSpecialFolderPathW" );
-	if( SHGetSpecialFolderPath )
-	{
-		wchar_t path[MAX_PATH];
-		SHGetSpecialFolderPath( 0, path, type, FALSE );
-		result = QString::fromWCharArray( path );
-	}
-	return( result );
-}
-
-}
 
 #endif
 
@@ -81,6 +53,8 @@ QString windowsConfigPath( int type )
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "PlatformCoreFunctions.h"
+#include "PlatformUserInfoFunctions.h"
 
 
 
@@ -139,11 +113,10 @@ Desktop Desktop::screenLockDesktop()
 
 
 
-User::User( const QString &name, const QString &dom, const QString &fullname ) :
+User::User( const QString &name, const QString &dom ) :
 	m_userToken( 0 ),
 	m_name( name ),
-	m_domain( dom ),
-	m_fullName( fullname )
+	m_domain( dom )
 {
 #ifdef VEYON_BUILD_WIN32
 	// try to look up the user -> domain
@@ -205,8 +178,7 @@ static void copySid( const PSID &src, PSID &dst )
 User::User( Token userToken ) :
 	m_userToken( userToken ),
 	m_name(),
-	m_domain(),
-	m_fullName()
+	m_domain()
 {
 #ifdef VEYON_BUILD_WIN32
 	copySid( userToken, m_userToken );
@@ -220,8 +192,7 @@ User::User( Token userToken ) :
 User::User( const User &user ) :
 	m_userToken( user.userToken() ),
 	m_name( user.name() ),
-	m_domain( user.domain() ),
-	m_fullName( user.m_fullName )
+	m_domain( user.domain() )
 {
 #ifdef VEYON_BUILD_WIN32
 	copySid( user.userToken(), m_userToken );
@@ -239,148 +210,6 @@ User::~User()
 	}
 #endif
 }
-
-
-
-QString User::stripDomain( QString username )
-{
-	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-	int domainSeparator = username.indexOf( '\\' );
-	if( domainSeparator >= 0 )
-	{
-		return username.mid( domainSeparator + 1 );
-	}
-
-	return username;
-}
-
-
-
-#ifdef VEYON_BUILD_WIN32
-static QString querySessionInformation( DWORD sessionId,
-										WTS_INFO_CLASS infoClass )
-{
-	QString result;
-	LPTSTR pBuffer = NULL;
-	DWORD dwBufferLen;
-	if( WTSQuerySessionInformation(
-					WTS_CURRENT_SERVER_HANDLE,
-					sessionId,
-					infoClass,
-					&pBuffer,
-					&dwBufferLen ) )
-	{
-		result = QString::fromWCharArray( pBuffer );
-	}
-	WTSFreeMemory( pBuffer );
-
-	return result;
-}
-#endif
-
-
-
-User User::loggedOnUser()
-{
-	QString username = QStringLiteral( "unknown" );
-	QString domainName = QHostInfo::localDomainName();
-
-#ifdef VEYON_BUILD_WIN32
-
-	DWORD sessionId = WTSGetActiveConsoleSessionId();
-
-	username = querySessionInformation( sessionId, WTSUserName );
-	domainName = querySessionInformation( sessionId, WTSDomainName );
-
-	// check whether we just got the name of the local computer
-	if( !domainName.isEmpty() )
-	{
-		wchar_t computerName[MAX_PATH];
-		DWORD size = MAX_PATH;
-		GetComputerName( computerName, &size );
-
-		if( domainName == QString::fromWCharArray( computerName ) )
-		{
-			// reset domain name as storing the local computer's name
-			// doesn't help here
-			domainName = QString();
-		}
-	}
-
-#else
-
-	char * envUser = getenv( "USER" );
-
-#ifdef VEYON_HAVE_PWD_H
-	struct passwd * pw_entry = nullptr;
-	if( envUser )
-	{
-		pw_entry = getpwnam( envUser );
-	}
-	if( !pw_entry )
-	{
-		pw_entry = getpwuid( getuid() );
-	}
-	if( pw_entry )
-	{
-		QString shell( pw_entry->pw_shell );
-
-		// Skip not real users
-		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-				shell.endsWith( QStringLiteral( "/true" ) ) ||
-				shell.endsWith( QStringLiteral( "/null" ) ) ||
-				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
-		{
-			username = QString::fromUtf8( pw_entry->pw_name );
-		}
-	}
-#endif	/* VEYON_HAVE_PWD_H */
-
-	if( username.isEmpty() )
-	{
-		username = QString::fromUtf8( envUser );
-	}
-
-#endif
-
-	return User( username, domainName );
-}
-
-
-
-
-QString User::homePath() const
-{
-	QString homePath = QDir::homePath();
-
-#ifdef VEYON_BUILD_WIN32
-	LocalSystem::Process userProcess(
-				LocalSystem::Process::findProcessId( QString(), -1, this ) );
-	HANDLE hToken;
-	if( OpenProcessToken( userProcess.processHandle(),
-									MAXIMUM_ALLOWED, &hToken ) )
-	{
-		wchar_t userProfile[MAX_PATH];
-		DWORD size = MAX_PATH;
-		if( GetUserProfileDirectory( hToken, userProfile, &size ) )
-		{
-			homePath = QString::fromWCharArray( userProfile );
-			CloseHandle( hToken );
-		}
-		else
-		{
-			ilog_failedf( "GetUserProfileDirectory()", "%d", GetLastError() );
-		}
-	}
-	else
-	{
-		ilog_failedf( "OpenProcessToken()", "%d", GetLastError() );
-	}
-#endif
-
-	return homePath;
-}
-
 
 
 
@@ -448,65 +277,6 @@ void User::lookupNameAndDomain()
 	m_domain = QHostInfo::localDomainName();
 #endif
 }
-
-
-
-
-void User::lookupFullName()
-{
-	lookupNameAndDomain();
-
-#ifdef VEYON_BUILD_WIN32
-	// try to retrieve user's full name from domain
-
-	PBYTE dc = NULL;	// domain controller
-	if( NetGetDCName( NULL, (LPWSTR) m_domain.utf16(), &dc ) != NERR_Success )
-	{
-		dc = NULL;
-	}
-
-	LPUSER_INFO_2 pBuf = NULL;
-	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, (LPWSTR) m_name.utf16(), 2,
-												(LPBYTE *) &pBuf );
-	if( nStatus == NERR_Success && pBuf != NULL )
-	{
-		m_fullName = QString::fromWCharArray( pBuf->usri2_full_name );
-	}
-
-	if( pBuf != NULL )
-	{
-		NetApiBufferFree( pBuf );
-	}
-	if( dc != NULL )
-	{
-		NetApiBufferFree( dc );
-	}
-#else
-
-#ifdef VEYON_HAVE_PWD_H
-	struct passwd * pw_entry = getpwnam( m_name.toUtf8().constData() );
-	if( !pw_entry )
-	{
-		pw_entry = getpwuid( m_userToken );
-	}
-	if( pw_entry )
-	{
-		QString shell( pw_entry->pw_shell );
-
-		// Skip not real users
-		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-				shell.endsWith( QStringLiteral( "/true" ) ) ||
-				shell.endsWith( QStringLiteral( "/null" ) ) ||
-				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
-		{
-			m_fullName = QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
-		}
-	}
-#endif
-
-#endif
-}
-
 
 
 
@@ -848,20 +618,6 @@ bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 
 
 
-
-
-void sleep( const int _ms )
-{
-#ifdef VEYON_BUILD_WIN32
-	Sleep( static_cast<unsigned int>( _ms ) );
-#else
-	struct timespec ts = { _ms / 1000, ( _ms % 1000 ) * 1000 * 1000 } ;
-	nanosleep( &ts, nullptr );
-#endif
-}
-
-
-
 void logonUser( const QString & _uname, const QString & _passwd,
 						const QString & _domain )
 {
@@ -894,10 +650,10 @@ QString Path::expand( QString path )
 						replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
 						replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
 						replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
-						replace( QStringLiteral( "$APPDATA" ), personalConfigDataPath() ).
-						replace( QStringLiteral( "%APPDATA%" ), personalConfigDataPath() ).
-						replace( QStringLiteral( "$GLOBALAPPDATA" ), systemConfigDataPath() ).
-						replace( QStringLiteral( "%GLOBALAPPDATA%" ), systemConfigDataPath() ).
+						replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().coreFunctions().personalAppDataPath() ).
+						replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().coreFunctions().personalAppDataPath() ).
+						replace( QStringLiteral( "$GLOBALAPPDATA" ), VeyonCore::platform().coreFunctions().globalAppDataPath() ).
+						replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().coreFunctions().globalAppDataPath() ).
 						replace( QStringLiteral( "$TMP" ), QDir::tempPath() ).
 						replace( QStringLiteral( "$TEMP" ), QDir::tempPath() ).
 						replace( QStringLiteral( "%TMP%" ), QDir::tempPath() ).
@@ -934,13 +690,15 @@ QString Path::shrink( QString path )
 	const Qt::CaseSensitivity cs = Qt::CaseSensitive;
 	const QString envVar( QStringLiteral( "$%1/" ) );
 #endif
-	if( path.startsWith( personalConfigDataPath(), cs ) )
+	const auto personalAppDataPath = VeyonCore::platform().coreFunctions().personalAppDataPath();
+	const auto globalAppDataPath = VeyonCore::platform().coreFunctions().globalAppDataPath();
+	if( path.startsWith( personalAppDataPath, cs ) )
 	{
-		path.replace( personalConfigDataPath(), envVar.arg( QStringLiteral( "APPDATA" ) ) );
+		path.replace( personalAppDataPath, envVar.arg( QStringLiteral( "APPDATA" ) ) );
 	}
-	else if( path.startsWith( systemConfigDataPath(), cs ) )
+	else if( path.startsWith( globalAppDataPath, cs ) )
 	{
-		path.replace( systemConfigDataPath(), envVar.arg( QStringLiteral( "GLOBALAPPDATA" ) ) );
+		path.replace( globalAppDataPath, envVar.arg( QStringLiteral( "GLOBALAPPDATA" ) ) );
 	}
 	else if( path.startsWith( QDTNS( QDir::homePath() ), cs ) )
 	{
@@ -996,19 +754,6 @@ bool Path::ensurePathExists( const QString &path )
 
 
 
-QString Path::personalConfigDataPath()
-{
-	const QString appData = 
-#ifdef VEYON_BUILD_WIN32
-		LocalSystem::windowsConfigPath( CSIDL_APPDATA ) + QDir::separator() + "Veyon";
-#else
-		QDir::homePath() + QDir::separator() + ".veyon";
-#endif
-
-	return QDTNS( appData + QDir::separator() );
-}
-
-
 
 QString Path::privateKeyPath( VeyonCore::UserRoles role, QString baseDir )
 {
@@ -1041,19 +786,6 @@ QString Path::publicKeyPath( VeyonCore::UserRoles role, QString baseDir )
 					QDir::separator() + QStringLiteral( "key" );
 	return QDTNS( d );
 }
-
-
-
-
-QString Path::systemConfigDataPath()
-{
-#ifdef VEYON_BUILD_WIN32
-	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + QStringLiteral( "Veyon" ) + QDir::separator() );
-#else
-	return QStringLiteral( "/etc/veyon/" );
-#endif
-}
-
 
 
 

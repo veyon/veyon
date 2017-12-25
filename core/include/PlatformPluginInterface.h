@@ -27,16 +27,20 @@
 
 #include "PluginInterface.h"
 
+class PlatformCoreFunctions;
 class PlatformNetworkFunctions;
+class PlatformServiceFunctions;
 class PlatformUserInfoFunctions;
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT PlatformPluginInterface
+class PlatformPluginInterface
 {
 public:
-	virtual PlatformNetworkFunctions* networkFunctions() = 0;
-	virtual PlatformUserInfoFunctions* userInfoFunctions() = 0;
+	virtual PlatformCoreFunctions& coreFunctions() = 0;
+	virtual PlatformNetworkFunctions& networkFunctions() = 0;
+	virtual PlatformServiceFunctions& serviceFunctions() = 0;
+	virtual PlatformUserInfoFunctions& userInfoFunctions() = 0;
 
 };
 

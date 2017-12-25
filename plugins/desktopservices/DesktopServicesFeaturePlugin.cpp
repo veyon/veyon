@@ -37,6 +37,7 @@
 #include "LocalSystem.h"
 #include "DesktopServicesFeaturePlugin.h"
 #include "RunProgramDialog.h"
+#include "PlatformUserInfoFunctions.h"
 
 
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
@@ -169,7 +170,7 @@ void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& program )
 {
 	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching program" << program;
 
-	LocalSystem::User user = LocalSystem::User::loggedOnUser();
+	LocalSystem::User user( VeyonCore::platform().userInfoFunctions().loggedOnUser() );
 	LocalSystem::Process proc( LocalSystem::Process::findProcessId( QString(), -1, &user ) );
 	QString desktop = LocalSystem::Desktop::activeDesktop().name();
 

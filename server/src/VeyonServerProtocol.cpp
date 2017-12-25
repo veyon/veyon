@@ -1,5 +1,5 @@
 /*
- * VeyonServiceProtocol.cpp - implementation of the VeyonServiceProtocol class
+ * VeyonServerProtocol.cpp - implementation of the VeyonServerProtocol class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -34,10 +34,10 @@
 #include "ServerAccessControlManager.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
-#include "VeyonServiceProtocol.h"
+#include "VeyonServerProtocol.h"
 
 
-VeyonServiceProtocol::VeyonServiceProtocol( QTcpSocket* socket,
+VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,
 											VncServerClient* client,
 											ServerAuthenticationManager& serverAuthenticationManager,
 											ServerAccessControlManager& serverAccessControlManager ) :
@@ -49,21 +49,21 @@ VeyonServiceProtocol::VeyonServiceProtocol( QTcpSocket* socket,
 
 
 
-QVector<RfbVeyonAuth::Type> VeyonServiceProtocol::supportedAuthTypes() const
+QVector<RfbVeyonAuth::Type> VeyonServerProtocol::supportedAuthTypes() const
 {
 	return m_serverAuthenticationManager.supportedAuthTypes();
 }
 
 
 
-void VeyonServiceProtocol::processAuthenticationMessage(VariantArrayMessage &message)
+void VeyonServerProtocol::processAuthenticationMessage(VariantArrayMessage &message)
 {
 	m_serverAuthenticationManager.processAuthenticationMessage( client(), message );
 }
 
 
 
-void VeyonServiceProtocol::performAccessControl()
+void VeyonServerProtocol::performAccessControl()
 {
 	// perform access control via ServerAccessControl manager if either
 	// client just entered access control or is still waiting to be

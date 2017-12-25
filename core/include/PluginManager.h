@@ -36,6 +36,9 @@ class VEYON_CORE_EXPORT PluginManager : public QObject
 public:
 	PluginManager( QObject* parent = nullptr );
 
+	void loadPlatformPlugins();
+	void loadPlugins();
+
 	const PluginInterfaceList& pluginInterfaces() const
 	{
 		return m_pluginInterfaces;
@@ -59,10 +62,10 @@ public:
 
 	QString pluginName( Plugin::Uid pluginUid ) const;
 
-public slots:
-	void loadPlugins();
-
 private:
+	void initPluginSearchPath();
+	void loadPlugins( const QString& nameFilter );
+
 	PluginInterfaceList m_pluginInterfaces;
 	QObjectList m_pluginObjects;
 

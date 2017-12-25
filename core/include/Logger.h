@@ -31,7 +31,6 @@
 #include "VeyonCore.h"
 
 class QFile;
-class CXEventLog;
 
 // clazy:excludeall=rule-of-three
 
@@ -54,7 +53,7 @@ public:
 
 	typedef LogLevels LogLevel;
 
-	Logger( const QString &appName, VeyonConfiguration* config );
+	Logger( const QString &appName );
 	~Logger();
 
 	static void log( LogLevel ll, const QString &msg );
@@ -62,7 +61,7 @@ public:
 
 
 private:
-	void initLogFile( VeyonConfiguration* config );
+	void initLogFile();
 	void openLogFile();
 	void closeLogFile();
 	void clearLogFile();
@@ -79,12 +78,9 @@ private:
 	static LogLevel lastMsgLevel;
 	static QString lastMsg;
 	static int lastMsgCount;
+	static bool logToSystem;
 
 	QString m_appName;
-
-#ifdef VEYON_BUILD_WIN32
-	static CXEventLog *winEventLog;
-#endif
 
 	QFile *m_logFile;
 	int m_logFileSizeLimit;

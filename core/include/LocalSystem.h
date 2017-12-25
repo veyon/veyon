@@ -72,14 +72,10 @@ namespace LocalSystem
 #else
 		typedef int Token;
 #endif
-		User( const QString &name, const QString &domain = QString(),
-									const QString &fullname = QString() );
+		User( const QString &name, const QString &domain = QString() );
 		User( Token token );
 		User( const User &user );
 		~User();
-
-		static QString stripDomain( QString username );
-		static User loggedOnUser();
 
 		const Token &userToken() const
 		{
@@ -101,32 +97,12 @@ namespace LocalSystem
 			return m_domain;
 		}
 
-		const QString &fullName()
-		{
-			// full name lookups are quite expensive, therefore do them
-			// on-demand and only if not done before
-			if( m_fullName.isEmpty() )
-			{
-				lookupFullName();
-				if( m_fullName.isEmpty() )
-				{
-					m_fullName = name();
-				}
-			}
-			return m_fullName;
-		}
-
-		QString homePath() const;
-
-
 	private:
 		void lookupNameAndDomain();
-		void lookupFullName();
 
 		Token m_userToken;
 		QString m_name;
 		QString m_domain;
-		QString m_fullName;
 
 	} ;
 
@@ -170,17 +146,12 @@ namespace LocalSystem
 		static QString shrink( QString path );
 		static bool ensurePathExists( const QString &path );
 
-		static QString personalConfigDataPath();
-		static QString systemConfigDataPath();
-
 		static QString privateKeyPath( VeyonCore::UserRoles role,
 												QString baseDir = QString() );
 		static QString publicKeyPath( VeyonCore::UserRoles role,
 												QString baseDir = QString() );
 	} ;
 
-
-	void sleep( const int _ms );
 
 	void VEYON_CORE_EXPORT logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );

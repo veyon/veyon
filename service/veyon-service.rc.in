@@ -1,6 +1,4 @@
 #include <windows.h>
-#include "../3rdparty/ultravnc/winvnc/winvnc/resource.h"
-
 
 VS_VERSION_INFO	VERSIONINFO
   FILEVERSION	@VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@,@VERSION_BUILD@
@@ -16,7 +14,7 @@ BEGIN
     BEGIN
       VALUE "Comments",		"Virtual Eye On Networks (http://veyon.io)\0"
       VALUE "CompanyName",	"Veyon Solutions\0"
-      VALUE "FileDescription",	"Veyon Service Application\0"
+      VALUE "FileDescription",	"Veyon Service\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
       VALUE "LegalCopyright",	"Copyright (c) 2004-2017 Tobias Junghans\0"
       VALUE "OriginalFilename",	"veyon-service.exe\0"

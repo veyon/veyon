@@ -26,14 +26,16 @@
 
 #include "ComputerListModel.h"
 #include "ComputerManager.h"
+#include "FeatureManager.h"
 
 
-
-
-ComputerListModel::ComputerListModel(ComputerManager& manager, QObject *parent) :
+ComputerListModel::ComputerListModel( ComputerManager& manager,
+									  const FeatureList& masterFeatures,
+									  QObject *parent) :
 	QAbstractListModel( parent ),
 	m_dummyControlInterface( Computer() ),
 	m_manager( manager ),
+	m_masterFeatures( masterFeatures ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
@@ -227,13 +229,14 @@ QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
 	const QString room( tr( "Room: %1" ).arg( computer.room() ) );
 	const QString host( tr( "Host/IP address: %1" ).arg( computer.hostAddress() ) );
 	const QString user( loggedOnUserInformation( computer ) );
+	const QString features( tr( "Active features: %1" ).arg( activeFeatures( computer ) ) );
 
 	if( user.isEmpty() )
 	{
-		return QStringLiteral( "<b>%1</b><br>%2<br>%3" ).arg( state, room, host );
+		return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, features );
 	}
 
-	return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4" ).arg( state, room, host, user );
+	return QStringLiteral( "<b>%1</b><br>%2<br>%3<br>%4<br>%5" ).arg( state, room, host, features, user);
 }
 
 
@@ -312,4 +315,23 @@ QString ComputerListModel::loggedOnUserInformation( const Computer& computer ) c
 	}
 
 	return QString();
+}
+
+
+
+QString ComputerListModel::activeFeatures( const Computer& computer ) const
+{
+	QStringList featureNames;
+
+	for( const auto& feature : m_masterFeatures )
+	{
+		if( computer.controlInterface().activeFeatures().contains( feature.uid().toString() ) )
+		{
+			featureNames.append( feature.displayName() );
+		}
+	}
+
+	featureNames.removeAll( QString() );
+
+	return featureNames.join( ", " );
 }

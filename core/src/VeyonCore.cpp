@@ -23,9 +23,6 @@
  */
 
 #include "VeyonCore.h"
-#ifdef VEYON_BUILD_WIN32
-#include <windows.h>
-#endif
 
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
@@ -45,6 +42,7 @@
 #include "Logger.h"
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
+#include "PlatformCoreFunctions.h"
 #include "PluginManager.h"
 
 #include "rfb/rfbclient.h"
@@ -54,12 +52,11 @@ VeyonCore *VeyonCore::s_instance = nullptr;
 void VeyonCore::setupApplicationParameters()
 {
 	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
-	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.org" ) );
+	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
 	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
 
 	if( VeyonConfiguration().isHighDPIScalingEnabled() )
 	{
-
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 		QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
 #endif
@@ -68,8 +65,8 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName, QObject* parent ) :
-	QObject( parent ),
+VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
+	QObject( application ),
 	m_config( nullptr ),
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),
@@ -81,21 +78,24 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_userRole( RoleTeacher )
 {
+	Q_ASSERT( application != nullptr );
+
 	setupApplicationParameters();
 
 	s_instance = this;
 
+	// initialize plugin manager and load platform plugins first
+	m_pluginManager = new PluginManager( this );
+	m_pluginManager->loadPlatformPlugins();
+
+	// initialize platform plugin manager and initialize used platform plugin
+	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
+	m_platformPlugin = m_platformPluginManager->platformPlugin();
+
 	m_config = new VeyonConfiguration( VeyonConfiguration::defaultConfiguration() );
 	*m_config += VeyonConfiguration( Configuration::Store::LocalBackend );
 
-	m_logger = new Logger( appComponentName, m_config );
-
-	// only perform partial initialization when running without QCoreApplication
-	// (e.g. as service monitor)
-	if( application == nullptr )
-	{
-		return;
-	}
+	m_logger = new Logger( appComponentName );
 
 	QLocale configuredLocale( QLocale::C );
 
@@ -139,17 +139,22 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 		m_applicationName = config().applicationName();
 	}
 
+	// initialize plugin manager and load platform plugins first
+	m_pluginManager = new PluginManager( this );
+	m_pluginManager->loadPlatformPlugins();
+
+	// initialize platform plugin manager and initialize used platform plugin
+	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
+	m_platformPlugin = m_platformPluginManager->platformPlugin();
+
 	m_cryptoCore = new CryptoCore;
 
 	initAuthentication( AuthenticationCredentials::None );
 
-	m_pluginManager = new PluginManager( this );
+	// load all other plugins
 	m_pluginManager->loadPlugins();
 
 	m_accessControlDataBackendManager = new AccessControlDataBackendManager( *m_pluginManager );
-	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
-
-	m_platformPlugin = m_platformPluginManager->platformPlugin();
 }
 
 
@@ -159,12 +164,6 @@ VeyonCore::~VeyonCore()
 	delete m_accessControlDataBackendManager;
 	m_accessControlDataBackendManager = nullptr;
 
-	delete m_platformPluginManager;
-	m_platformPluginManager = nullptr;
-
-	delete m_pluginManager;
-	m_pluginManager = nullptr;
-
 	delete m_authenticationCredentials;
 	m_authenticationCredentials = nullptr;
 
@@ -173,6 +172,12 @@ VeyonCore::~VeyonCore()
 
 	delete m_logger;
 	m_logger = nullptr;
+
+	delete m_platformPluginManager;
+	m_platformPluginManager = nullptr;
+
+	delete m_pluginManager;
+	m_pluginManager = nullptr;
 
 	delete m_config;
 	m_config = nullptr;
@@ -313,4 +318,28 @@ QString VeyonCore::userRoleName( VeyonCore::UserRole role )
 	} ;
 
 	return userRoleNames[role];
+}
+
+
+
+QString VeyonCore::serverFilePath()
+{
+	return QDir::toNativeSeparators(
+				QCoreApplication::applicationDirPath() +
+				QDir::separator() +
+				QStringLiteral("veyon-server" VEYON_EXECUTABLE_SUFFIX) );
+}
+
+
+
+QString VeyonCore::stripDomain( const QString& username )
+{
+	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
+	int domainSeparator = username.indexOf( '\\' );
+	if( domainSeparator >= 0 )
+	{
+		return username.mid( domainSeparator + 1 );
+	}
+
+	return username;
 }

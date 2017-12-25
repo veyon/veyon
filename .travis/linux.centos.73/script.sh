@@ -2,6 +2,8 @@
 
 source scl_source enable devtoolset-6
 
+set -e
+
 /veyon/.travis/common/linux-build.sh /veyon /build
 
 cd /build

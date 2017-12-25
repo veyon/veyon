@@ -1,5 +1,5 @@
 /*
- * main.cpp - main file for Veyon Service Application
+ * main.cpp - main file for Veyon Service
  *
  * Copyright (c) 2006-2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,130 +22,23 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include <QCoreApplication>
-#include <QAbstractNativeEventFilter>
 
-#include "WindowsService.h"
-#include "ComputerControlServer.h"
-#include "VeyonConfiguration.h"
+#include "VeyonServiceControl.h"
+#include "PlatformServiceFunctions.h"
 
-
-#ifdef VEYON_BUILD_WIN32
-static HANDLE hShutdownEvent = NULL;
-
-// event filter which makes ICA recognize logoff events etc.
-class LogoffEventFilter : public QAbstractNativeEventFilter
+int main( int argc, char** argv )
 {
-public:
-	virtual bool nativeEventFilter( const QByteArray& eventType, void *message, long *result)
-	{
-		Q_UNUSED(eventType);
-		Q_UNUSED(result);
-
-		DWORD winMsg = ( ( MSG *) message )->message;
-
-		if( winMsg == WM_QUERYENDSESSION )
-		{
-			qInfo( "Got WM_QUERYENDSESSION - initiating server shutdown" );
-
-			// tell UltraVNC server to quit
-			SetEvent( hShutdownEvent );
-		}
-
-		return false;
-	}
-
-};
-
-#endif
-
-
-int main( int argc, char **argv )
-{
-	// decide in what mode to run
-	if( argc >= 2 )
-	{
-#ifdef VEYON_BUILD_WIN32
-		for( int i = 1; i < argc; ++i )
-		{
-			if( QString( argv[i] ).toLower().contains( "service" ) )
-			{
-				WindowsService winService( "VeyonService", "-service", "Veyon Service",
-											QString(), argc, argv );
-				if( winService.evalArgs( argc, argv ) )
-				{
-					return 0;
-				}
-				break;
-			}
-		}
-#endif
-	}
-
 	QCoreApplication app( argc, argv );
-
 	VeyonCore core( &app, QStringLiteral("Service") );
 
-	// parse arguments
-	QStringListIterator argIt( app.arguments() );
-	argIt.next();
+	auto& serviceFunctions = core.platform().serviceFunctions();
 
-	while( argc > 1 && argIt.hasNext() )
+	if( serviceFunctions.runAsService( VeyonServiceControl::name(),
+									   [&]() { serviceFunctions.manageServerInstances(); } ) )
 	{
-		const QString a = argIt.next().toLower();
-
-		if( a == QStringLiteral("-session") && argIt.hasNext() )
-		{
-			int sessionId = argIt.next().toUInt();
-			if( sessionId > 0 )
-			{
-				core.config().setPrimaryServicePort( core.config().primaryServicePort() + sessionId );
-				core.config().setVncServerPort( core.config().vncServerPort() + sessionId );
-				core.config().setFeatureWorkerManagerPort( core.config().featureWorkerManagerPort() + sessionId );
-			}
-		}
+		return 0;
 	}
 
-#ifdef VEYON_BUILD_WIN32
-	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, false, L"Global\\SessionEventUltra" );
-	if( !hShutdownEvent )
-	{
-		// no global event available already as we're not running under the
-		// control of the veyon service supervisor?
-		if( GetLastError() == ERROR_FILE_NOT_FOUND )
-		{
-			qWarning( "Creating session event" );
-			// then create our own event as otherwise the VNC server main loop
-			// will eat 100% CPU due to failing WaitForSingleObject() calls
-			hShutdownEvent = CreateEvent( NULL, false, false, L"Global\\SessionEventUltra" );
-		}
-		else
-		{
-			qWarning( "Could not open or create session event" );
-		}
-	}
-
-	LogoffEventFilter eventFilter;
-
-	app.installNativeEventFilter( &eventFilter );
-#endif
-
-	auto server = new ComputerControlServer;
-	server->start();
-
-	qInfo( "Exec" );
-
-	int ret = app.exec();
-
-	delete server;
-
-	qInfo( "Exec Done" );
-
-#ifdef VEYON_BUILD_WIN32
-	CloseHandle( hShutdownEvent );
-#endif
-
-	return ret;
+	return -1;
 }

@@ -31,9 +31,6 @@
 class VEYON_CORE_EXPORT SystemConfigurationModifier
 {
 public:
-	static bool setServiceAutostart( bool enabled );
-	static bool setServiceArguments( const QString &serviceArgs );
-
 	static bool enableFirewallException( bool enabled );
 	static bool enableSoftwareSAS( bool enabled );
 

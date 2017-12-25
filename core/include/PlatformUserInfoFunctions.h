@@ -25,16 +25,19 @@
 #ifndef PLATFORM_USER_INFO_FUNCTIONS_H
 #define PLATFORM_USER_INFO_FUNCTIONS_H
 
-#include "VeyonCore.h"
+#include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT PlatformUserInfoFunctions
+class PlatformUserInfoFunctions
 {
 public:
+	virtual QString fullName( const QString& username ) = 0;
+
 	virtual QStringList userGroups() = 0;
 	virtual QStringList groupsOfUser( const QString& username ) = 0;
 
+	virtual QString loggedOnUser() = 0;
 	virtual QStringList loggedOnUsers() = 0;
 
 };

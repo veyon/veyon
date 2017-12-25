@@ -27,6 +27,32 @@
 #include "LinuxUserInfoFunctions.h"
 #include "LocalSystem.h"
 
+#include <pwd.h>
+
+
+QString LinuxUserInfoFunctions::fullName( const QString& username )
+{
+	auto pw_entry = getpwnam( VeyonCore::stripDomain( username ).toUtf8().constData() );
+
+	if( pw_entry )
+	{
+		QString shell( pw_entry->pw_shell );
+
+		// Skip not real users
+		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
+		        shell.endsWith( QStringLiteral( "/true" ) ) ||
+		        shell.endsWith( QStringLiteral( "/null" ) ) ||
+		        shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
+		{
+			return QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
+		}
+	}
+
+	return QString();
+}
+
+
+
 QStringList LinuxUserInfoFunctions::userGroups()
 {
 	QStringList groupList;
@@ -136,7 +162,7 @@ QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username )
 {
 	QStringList groupList;
 
-	const auto strippedUsername = LocalSystem::User::stripDomain( username );
+	const auto strippedUsername = VeyonCore::stripDomain( username );
 
 	QProcess getentProcess;
 	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
@@ -156,6 +182,47 @@ QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username )
 	groupList.removeAll( QStringLiteral("") );
 
 	return groupList;
+}
+
+
+
+QString LinuxUserInfoFunctions::loggedOnUser()
+{
+	QString username;
+
+	char * envUser = getenv( "USER" );
+
+	struct passwd * pw_entry = nullptr;
+	if( envUser )
+	{
+		pw_entry = getpwnam( envUser );
+	}
+
+	if( !pw_entry )
+	{
+		pw_entry = getpwuid( getuid() );
+	}
+
+	if( pw_entry )
+	{
+		QString shell( pw_entry->pw_shell );
+
+		// Skip not real users
+		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
+		        shell.endsWith( QStringLiteral( "/true" ) ) ||
+		        shell.endsWith( QStringLiteral( "/null" ) ) ||
+		        shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
+		{
+			username = QString::fromUtf8( pw_entry->pw_name );
+		}
+	}
+
+	if( username.isEmpty() )
+	{
+		return QString::fromUtf8( envUser );
+	}
+
+	return username;
 }
 
 

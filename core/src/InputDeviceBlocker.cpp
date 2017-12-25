@@ -23,6 +23,7 @@
  */
 
 #include "InputDeviceBlocker.h"
+#include "PlatformServiceFunctions.h"
 
 #ifdef VEYON_BUILD_LINUX
 #include <X11/XKBlib.h>
@@ -47,8 +48,8 @@ int interception_is_any(InterceptionDevice device)
 
 InputDeviceBlocker::InputDeviceBlocker( bool enabled ) :
 	m_enabled( false ),
-	m_hidService( "hidserv" ),
-	m_hidServiceActivated( m_hidService.isRunning() )
+	m_hidServiceName( "hidserv" ),
+	m_hidServiceActivated( VeyonCore::platform().serviceFunctions().isRunning( m_hidServiceName ) )
 #ifdef VEYON_BUILD_LINUX
 	, m_origKeyTable( nullptr ),
 	m_keyCodeMin( 0 ),
@@ -131,7 +132,7 @@ void InputDeviceBlocker::restoreHIDService()
 {
 	if( m_hidServiceActivated )
 	{
-		m_hidService.start();
+		VeyonCore::platform().serviceFunctions().start( m_hidServiceName );
 	}
 }
 
@@ -141,7 +142,7 @@ void InputDeviceBlocker::stopHIDService()
 {
 	if( m_hidServiceActivated )
 	{
-		m_hidService.stop();
+		VeyonCore::platform().serviceFunctions().stop( m_hidServiceName );
 	}
 }
 

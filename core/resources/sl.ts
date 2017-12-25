@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>O programu</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Različica:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Spletna stran:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -38,6 +38,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>About %1 %2</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Podprite projekt Veyon s prispevkom</translation>
     </message>
 </context>
 <context>
@@ -100,15 +104,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Premaknite izbrano pravilo navzdol</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Premaknite izbrano pravilo navzgor</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Uredite izbrano pravilo</translation>
     </message>
     <message>
         <source>Missing access control data backend</source>
@@ -120,7 +124,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Vnesite uporabniško ime</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -128,7 +132,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Dostop dovoljen</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -136,7 +140,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Dostop zavrnjen</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -155,19 +159,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>vpišite kratko ima za pravilo</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Ime pravila:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>Vpišite opis pravila</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Opis pravila:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -175,15 +179,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Pogoji</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>je član skupine</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>je v sobi</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -207,11 +211,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Dovoli dostop</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Prepoved dostopa</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -219,11 +223,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Brez (pravila onemogočena)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Dostopam do uporabnika</translation>
     </message>
     <message>
         <source>Accessing computer</source>
@@ -243,7 +247,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Ni prijavljenih uporabnikov</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
@@ -302,7 +306,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Rezultati testa</translation>
     </message>
 </context>
 <context>
@@ -317,7 +321,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Avtentifikacija z ključi v datoteki</translation>
+        <translation>Avtentifikacija s ključi v datoteki</translation>
     </message>
     <message>
         <source>Access key management</source>
@@ -329,7 +333,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Direktorij datotek z privatnim ključem</translation>
+        <translation>Direktorij datotek s privatnim ključem</translation>
     </message>
     <message>
         <source>...</source>
@@ -337,11 +341,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation>Zaženi čarovnika za datoteke z ključi</translation>
+        <translation>Zaženi čarovnika za datoteke s ključi</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Preizkusi</translation>
+        <translation>Preizkus</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -353,7 +357,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation>Avtentifikacija z vnešenimi podatki je SPODLETELO!</translation>
+        <translation>Avtentificiranje z vnešenimi podatki je SPODLETELO!</translation>
     </message>
 </context>
 <context>
@@ -397,11 +401,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>Vzpostavljam povezavo</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Ni prijavljenih uporabnikov</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -425,22 +429,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Gostitelj/IP naslov: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Upravljanje računalnika</translation>
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj sobo</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>Shrani seznam računalnikov/uporabnikov</translation>
     </message>
     <message>
         <source>Select output filename</source>
@@ -448,11 +452,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>CSV datoteka (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>Napaka v datoteki</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -460,14 +464,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Preišči računalnik</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Uporabnik</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -534,11 +538,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Izhodna datoteka ni zapisljiva!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>Izhodna mapa ni zapisljiva!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -762,7 +766,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Geslo:</translation>
     </message>
 </context>
 <context>
@@ -792,7 +796,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1074,7 +1078,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Osnovne nastavitve</translation>
     </message>
     <message>
         <source>General</source>
@@ -1254,7 +1258,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation type="unfinished"/>
+        <translation>Neuspela povezava na LDAP</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
@@ -1326,7 +1330,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Vnesite uporabniško ime</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1410,15 +1414,15 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>uporabniki</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>skupine uporabnikov</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>skupine računalnikov</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -1466,7 +1470,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation type="unfinished"/>
+        <translation>Vnesite računalnikov IP naslov</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
@@ -1482,7 +1486,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>računalniki</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -1722,7 +1726,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>Ime gostitelja/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -1730,27 +1734,31 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Add new room</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj novo sobo</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani izbrano sobo</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj računalnik</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani izbrani računalnik</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>Nova soba</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Nov računalnik</translation>
+    </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Sobe &amp; računalniki</translation>
     </message>
 </context>
 <context>
@@ -1779,7 +1787,7 @@ The public key part is used on the client computers to verify that any incoming 
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Nastavitev</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
@@ -1787,7 +1795,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži samo ikone</translation>
     </message>
 </context>
 <context>
@@ -1955,7 +1963,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>O programu</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1975,7 +1983,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>JSON datoteke (*.json)</translation>
     </message>
     <message>
         <source>%1 bug report (*.json)</source>
@@ -2003,7 +2011,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Dostop zavrnjen</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2011,7 +2019,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Zaslonska slika</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2086,7 +2094,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Zaslonske slike</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2098,7 +2106,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Osnovne nastavitve</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -2110,7 +2118,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Only show current room</source>
-        <translation type="unfinished"/>
+        <translation>Prikaz samo trenutne sobe</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
@@ -2130,11 +2138,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Upravljanje računalnika</translation>
     </message>
     <message>
         <source>Always open at start</source>
-        <translation type="unfinished"/>
+        <translation>Vedno zaženi ob zagonu</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
@@ -2142,14 +2150,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži potrditveni dialog za potencialno nevarne aktivnosti</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Nadzor</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -2191,7 +2199,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Vnesite uporabniško ime in geslo za dostop do računalnikov</translation>
     </message>
 </context>
 <context>
@@ -2202,15 +2210,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Tipka za vklop vseh računalnikov. Tako vam ni potreba prižigati vsakega računalnika posebej.</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Restartaj</translation>
+        <translation>Ponovni zagon</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Ponovni zagon vseh računalnikov.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2222,15 +2230,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>Vklop / Izklop / Ponovni zagon računalnika</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Potrdi ponovni zagon</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Potrdi izklop</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -2238,7 +2246,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Ste prepričani, da želite ugasniti izbrani računalnik?</translation>
     </message>
 </context>
 <context>
@@ -2370,19 +2378,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Delete</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
@@ -2410,7 +2418,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Zaslonska slika</translation>
     </message>
 </context>
 <context>
@@ -2443,11 +2451,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Zakleni</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Odkleni</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -2462,7 +2470,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>neznan</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2470,14 +2478,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Zaslonska slika</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Zaslonska slika</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2489,7 +2497,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Zaslonska slika računalnika %1 narejena.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
@@ -2500,23 +2508,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Uporabnik:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Datum:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Ura:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Briši</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2524,7 +2532,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Računalnik:</translation>
     </message>
 </context>
 <context>
@@ -2587,11 +2595,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>VNC strežnik</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Vtičnik:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
@@ -2702,7 +2710,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>Uporabite to funkcijo za pošiljanje sporočil vsem uporabnikom npr. za dodelitev nalog</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -2710,7 +2718,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Pošlji sporočilo uporabniku</translation>
     </message>
 </context>
 <context>
@@ -2733,7 +2741,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Omogoči dvozaslonski način</translation>
     </message>
 </context>
 <context>

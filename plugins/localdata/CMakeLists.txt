@@ -16,4 +16,5 @@ BUILD_PLUGIN(localdata
 	localdata.qrc
 	FORMS
 	LocalDataConfigurationPage.ui
+	COTIRE
 )

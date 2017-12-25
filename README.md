@@ -65,20 +65,20 @@ Requirements for Debian-based distributions:
 - Build tools: g++ make cmake
 - Qt5: qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools
 - X11: xorg-dev libxtst-dev
-- libjpeg: libjpeg-turbo8-dev
+- libjpeg: libjpeg-dev provided by libjpeg-turbo8-dev or libjpeg62-turbo-dev
 - zlib: zlib1g-dev
 - OpenSSL: libssl-dev
 - PAM: libpam0g-dev
-- LZO: liblzo2-dev 
-- QCA: libqca2-dev libqca-qt5-2-dev 
+- LZO: liblzo2-dev
+- QCA: libqca2-dev libqca-qt5-2-dev
 - LDAP: libldap2-dev libsasl2-dev
 
 As root you can run
 
 	apt install g++ make cmake qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
-	            xorg-dev libxtst-dev libjpeg-turbo8-dev zlib1g-dev libssl-dev libpam0g-dev \ 
+	            xorg-dev libxtst-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
 	            liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev libsasl2-dev
-    
+
 
 Requirements for RedHat-based distributions:
 
@@ -124,7 +124,7 @@ On Fedora, this requires an additional dependency (rpm-build) which can be insta
 	dnf install rpm-build
 
 For generating a package you can run
-    
+
 	fakeroot make package
 
 Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z.arch.rpm

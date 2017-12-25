@@ -34,6 +34,7 @@ BUILD_PLUGIN(ldap
 	LdapConfigurationPage.ui
 	RESOURCES
 	ldap.qrc
+	COTIRE
 )
 
 INCLUDE_DIRECTORIES(${Ldap_INCLUDE_DIRS} ${kldap_SOURCE_DIR})

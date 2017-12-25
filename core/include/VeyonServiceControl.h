@@ -1,5 +1,5 @@
 /*
- * SystemService.h - class for managing a system service
+ * VeyonServiceControl.h - class for controlling the Veyon service
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,29 +22,24 @@
  *
  */
 
-#ifndef SYSTEM_SERVICE_H
-#define SYSTEM_SERVICE_H
+#ifndef VEYON_SERVICE_CONTROL_H
+#define VEYON_SERVICE_CONTROL_H
 
-#include "VeyonCore.h"
+#include "ServiceControl.h"
 
-class VEYON_CORE_EXPORT SystemService
+// clazy:excludeall=ctor-missing-parent-argument
+
+class VEYON_CORE_EXPORT VeyonServiceControl : public ServiceControl
 {
+	Q_OBJECT
 public:
-	SystemService( const QString& name );
-	~SystemService();
+	VeyonServiceControl( QWidget* parent = nullptr );
 
-	bool isRunning();
-	bool start();
-	bool stop();
+	bool setAutostart( bool enabled );
 
+	static QString name();
+	static QString filePath();
+	static QString displayName();
+};
 
-private:
-	const QString m_name;
-#ifdef VEYON_BUILD_WIN32
-	SC_HANDLE m_serviceManager;
-	SC_HANDLE m_serviceHandle;
-#endif
-
-} ;
-
-#endif
+#endif // VEYON_SERVICE_CONTROL_H

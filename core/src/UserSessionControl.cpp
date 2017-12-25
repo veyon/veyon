@@ -32,6 +32,7 @@
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonRfbExt.h"
+#include "PlatformUserInfoFunctions.h"
 
 
 UserSessionControl::UserSessionControl( QObject* parent ) :
@@ -138,12 +139,10 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 		{
 			queryUserInformation();
 			reply.addArgument( UserName, QString() );
-			reply.addArgument( HomeDir, QString() );
 		}
 		else
 		{
 			reply.addArgument( UserName, QString( QStringLiteral( "%1 (%2)" ) ).arg( m_userName, m_userFullName ) );
-			reply.addArgument( HomeDir, m_userHomePath );
 		}
 		m_userDataLock.unlock();
 
@@ -182,14 +181,11 @@ void UserSessionControl::queryUserInformation()
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
 	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
-		auto user = LocalSystem::User::loggedOnUser();
-		const auto name = user.name();
-		const auto fullName = user.fullName();
-		const auto homePath = user.homePath();
+		const auto userName = VeyonCore::platform().userInfoFunctions().loggedOnUser();
+		const auto userFullName = VeyonCore::platform().userInfoFunctions().fullName( userName );
 		m_userDataLock.lockForWrite();
-		m_userName = name;
-		m_userFullName = fullName;
-		m_userHomePath = homePath;
+		m_userName = userName;
+		m_userFullName = userFullName;
 		m_userDataLock.unlock();
 	} );
 }

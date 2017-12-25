@@ -27,7 +27,9 @@
 
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
+#include "WindowsCoreFunctions.h"
 #include "WindowsNetworkFunctions.h"
+#include "WindowsServiceFunctions.h"
 #include "WindowsUserInfoFunctions.h"
 
 class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
@@ -74,18 +76,30 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
-	PlatformNetworkFunctions* networkFunctions() override
+	WindowsCoreFunctions& coreFunctions() override
 	{
-		return &m_windowsNetworkFunctions;
+		return m_windowsCoreFunctions;
 	}
 
-	PlatformUserInfoFunctions* userInfoFunctions() override
+	PlatformNetworkFunctions& networkFunctions() override
 	{
-		return &m_windowsUserInfoFunctions;
+		return m_windowsNetworkFunctions;
+	}
+
+	PlatformServiceFunctions& serviceFunctions() override
+	{
+		return m_windowsServiceFunctions;
+	}
+
+	PlatformUserInfoFunctions& userInfoFunctions() override
+	{
+		return m_windowsUserInfoFunctions;
 	}
 
 private:
+	WindowsCoreFunctions m_windowsCoreFunctions;
 	WindowsNetworkFunctions m_windowsNetworkFunctions;
+	WindowsServiceFunctions m_windowsServiceFunctions;
 	WindowsUserInfoFunctions m_windowsUserInfoFunctions;
 
 };

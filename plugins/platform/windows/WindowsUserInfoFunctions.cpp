@@ -27,6 +27,66 @@
 #include <wtsapi32.h>
 #include <lm.h>
 
+static QString querySessionInformation( DWORD sessionId, WTS_INFO_CLASS infoClass )
+{
+	QString result;
+	LPTSTR pBuffer = NULL;
+	DWORD dwBufferLen;
+	if( WTSQuerySessionInformation(
+					WTS_CURRENT_SERVER_HANDLE,
+					sessionId,
+					infoClass,
+					&pBuffer,
+					&dwBufferLen ) )
+	{
+		result = QString::fromWCharArray( pBuffer );
+	}
+	WTSFreeMemory( pBuffer );
+
+	return result;
+}
+
+
+
+QString WindowsUserInfoFunctions::fullName( const QString& username )
+{
+	QString fullName;
+
+	QString realUsername = username;
+	PBYTE domainController = nullptr;
+
+	const auto nameParts = username.split( '\\' );
+	if( nameParts.size() > 1 )
+	{
+		realUsername = nameParts[1];
+		if( NetGetDCName( nullptr, (LPWSTR) nameParts[0].utf16(), &domainController ) != NERR_Success )
+		{
+			domainController = nullptr;
+		}
+	}
+
+	LPUSER_INFO_2 buf = nullptr;
+	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR) domainController, (LPWSTR) realUsername.utf16(), 2, (LPBYTE *) &buf );
+	if( nStatus == NERR_Success && buf != nullptr )
+	{
+		fullName = QString::fromWCharArray( buf->usri2_full_name );
+	}
+
+	if( buf != nullptr )
+	{
+		NetApiBufferFree( buf );
+	}
+
+	if( domainController != nullptr )
+	{
+		NetApiBufferFree( domainController );
+	}
+
+	return fullName;
+}
+
+
+
 QStringList WindowsUserInfoFunctions::userGroups()
 {
 	QStringList groupList;
@@ -53,6 +113,37 @@ QStringList WindowsUserInfoFunctions::groupsOfUser( const QString& username )
 	groupList.removeAll( QStringLiteral("") );
 
 	return groupList;
+}
+
+
+
+QString WindowsUserInfoFunctions::loggedOnUser()
+{
+	auto sessionId = WTSGetActiveConsoleSessionId();
+
+	auto username = querySessionInformation( sessionId, WTSUserName );
+	auto domainName = querySessionInformation( sessionId, WTSDomainName );
+
+	// check whether we just got the name of the local computer
+	if( !domainName.isEmpty() )
+	{
+		wchar_t computerName[MAX_PATH];
+		DWORD size = MAX_PATH;
+		GetComputerName( computerName, &size );
+
+		if( domainName == QString::fromWCharArray( computerName ) )
+		{
+			// reset domain name as we do not need to store local computer name
+			domainName = QString();
+		}
+	}
+
+	if( domainName.isEmpty() )
+	{
+		return username;
+	}
+
+	return domainName + '\\' + username;
 }
 
 

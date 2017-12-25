@@ -75,8 +75,18 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 
 	m_masterCore = &masterCore;
 
+	const QColor backgroundColor( m_masterCore->userConfig().backgroundColor() );
+	if( backgroundColor.isValid() )
+	{
+		auto pal = ui->listView->palette();
+		pal.setColor( QPalette::Base, backgroundColor );
+		ui->listView->setPalette( pal );
+	}
+
 	// create computer list model and attach it to list view
-	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(), this );
+	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(),
+												 m_masterCore->features(),
+												 this );
 
 	m_sortFilterProxyModel.setSourceModel( m_computerListModel );
 	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );

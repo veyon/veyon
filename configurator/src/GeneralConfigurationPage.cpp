@@ -32,7 +32,7 @@
 #include "LocalSystem.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PluginManager.h"
-#include "ServiceControl.h"
+#include "VeyonServiceControl.h"
 #include "Configuration/UiMapping.h"
 #include "ui_GeneralConfigurationPage.h"
 
@@ -63,10 +63,6 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 	std::sort( languages.begin(), languages.end() );
 
 	ui->uiLanguage->addItems( languages );
-
-#ifndef VEYON_BUILD_WIN32
-	ui->logToWindowsEventLog->hide();
-#endif
 
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
@@ -123,7 +119,7 @@ void GeneralConfigurationPage::clearLogFiles()
 {
 	bool serviceStopped = false;
 
-	ServiceControl serviceControl( this );
+	VeyonServiceControl serviceControl( this );
 
 	if( serviceControl.isServiceRunning() )
 	{

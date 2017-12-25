@@ -38,6 +38,8 @@
 #include <QString>
 #include <QDebug>
 
+#include <functional>
+
 #include "QtCompat.h"
 
 #if defined(BUILD_VEYON_CORE_LIBRARY)
@@ -62,7 +64,7 @@ class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonCore( QCoreApplication* application, const QString& appComponentName, QObject* parent = nullptr );
+	VeyonCore( QCoreApplication* application, const QString& appComponentName );
 	~VeyonCore() override;
 
 	static VeyonCore* instance();
@@ -97,6 +99,9 @@ public:
 
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
+
+	static QString serverFilePath();
+	static QString stripDomain( const QString& username );
 
 	typedef enum UserRoles
 	{

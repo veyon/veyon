@@ -34,8 +34,6 @@
 #include <QByteArray>
 #include <QMutex>
 
-#include "SystemService.h"
-
 // clazy:excludeall=rule-of-three
 
 class VEYON_CORE_EXPORT InputDeviceBlocker
@@ -63,7 +61,7 @@ private:
 	static int s_refCnt;
 
 	bool m_enabled;
-	SystemService m_hidService;
+	QString m_hidServiceName;
 	bool m_hidServiceActivated;
 #ifdef VEYON_BUILD_LINUX
 	void* m_origKeyTable;

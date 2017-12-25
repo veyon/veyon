@@ -16,10 +16,13 @@ make -j$((CPUS+1))
 
 fakeroot make package
 
-mkdir -p lib/veyon
-cd lib/veyon
-find ../../plugins -name "*.so" -exec ln -s '{}' ';'
-cd ../../
+LIBDIR=$(grep VEYON_LIB_DIR CMakeCache.txt |cut -d "=" -f2)
+BUILD_PWD=$(pwd)
+
+mkdir -p $LIBDIR
+cd $LIBDIR
+find $BUILD_PWD/plugins -name "*.so" -exec ln -s '{}' ';'
+cd $BUILD_PWD
 
 ./ctl/veyon-ctl help
 ./ctl/veyon-ctl about
