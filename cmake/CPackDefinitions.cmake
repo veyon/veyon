@@ -70,6 +70,8 @@ IF (WIN32)    # TODO
 ELSEIF ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")   # TODO
      SET(CPACK_GENERATOR "PackageMake")
 ELSE ()
+     # Include /usr/share in linux package (for menu entries and icons)
+     SET(CPACK_INSTALLED_DIRECTORIES "${CMAKE_SOURCE_DIR}/usr;/usr")
      IF(EXISTS /etc/redhat-release OR EXISTS /etc/fedora-release OR EXISTS /etc/SuSE-release)
         SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CPACK_SYSTEM_NAME}")
         SET(CPACK_GENERATOR "RPM")
