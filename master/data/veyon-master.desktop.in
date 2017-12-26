@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Veyon Master
-GenericName=View and remote-control student computers
-GenericName[de]=Schülercomputer überwachen und fernsteuern
-Comment=Virtual Eye On Networkss
-Icon=veyon-master
-Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-master
+Version=1.0
 Type=Application
+Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-master
+Icon=veyon-master
 Terminal=false
-Categories=Qt;KDE;Education;X-KDE-Edu-Teaching;RemoteAccess;
+Name=Veyon Master
+Comment=Monitor and control remote computers
+Comment[de]=Entfernte Computer beobachten und steuern
+Categories=Qt;Education;Network;RemoteAccess;

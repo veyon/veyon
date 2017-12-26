@@ -1,4 +1,4 @@
-veyonconfiguratoricon ICON resources/veyon-configurator.ico
+veyonconfiguratoricon ICON data/veyon-configurator.ico
 #include <windows.h>
 
 VS_VERSION_INFO	VERSIONINFO

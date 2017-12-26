@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=pkexec @CMAKE_INSTALL_PREFIX@/bin/veyon-configurator
+Icon=veyon-configurator
+Terminal=false
+Name=Veyon Configurator
+Comment=Configuration tool for Veyon (Virtual Eye On Networks)
+Comment[de]=Einrichtungswerkzeug für Veyon (Virtual Eye On Networks)
+Categories=Qt;Education;Network;Settings;System;RemoteAccess;
