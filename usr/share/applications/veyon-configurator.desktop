@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=pkexec veyon-configurator
+Icon=veyon-configurator
+Terminal=false
+Name=Veyon Configurator
+Comment=Virtual Eye On Networks(Configurator)
+Categories=Application;Education;Network;Settings;Qt;

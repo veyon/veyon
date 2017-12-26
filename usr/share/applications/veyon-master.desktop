@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=veyon-master
+Icon=veyon-master
+Terminal=false
+Name=Veyon Master
+Comment=Virtual Eye On Networks (Master)
+Categories=Application;Education;Network;Qt;RemoteAccess;
