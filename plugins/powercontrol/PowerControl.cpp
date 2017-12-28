@@ -104,15 +104,6 @@ void broadcastWOLPacket( QString macAddress )
 		}
 	}
 
-#ifdef VEYON_BUILD_WIN32
-	WSADATA info;
-	if( WSAStartup( MAKEWORD( 2, 0 ), &info ) != 0 )
-	{
-		qCritical( "cannot initialize WinSock!" );
-		return;
-	}
-#endif
-
 	// UDP-broadcast the MAC-address
 	unsigned int sock = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
 	struct sockaddr_in my_addr;
@@ -137,7 +128,6 @@ void broadcastWOLPacket( QString macAddress )
 
 #ifdef VEYON_BUILD_WIN32
 	closesocket( sock );
-	WSACleanup();
 #else
 	close( sock );
 #endif
