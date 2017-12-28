@@ -22,21 +22,13 @@
  *
  */
 
-#include <veyonconfig.h>
-
-#ifdef VEYON_BUILD_WIN32
-#include <winsock2.h>
-#include <windows.h>
-
-#define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
-#define SHUTDOWN_REASON SHTDN_REASON_MAJOR_OTHER
-
-#endif
+#include "VeyonCore.h"
 
 #include <QProcess>
 
 #include "PowerControl.h"
 #include "LocalSystem.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
 
 #ifdef VEYON_HAVE_UNISTD_H
@@ -60,7 +52,6 @@
 #endif
 
 #include "VeyonConfiguration.h"
-#include "PowerControl.h"
 #include "Logger.h"
 
 
@@ -156,64 +147,6 @@ void broadcastWOLPacket( QString macAddress )
 #ifdef VEYON_BUILD_LINUX
 	QProcess::startDetached( "etherwake " + _mac );
 #endif
-#endif
-}
-
-
-
-void powerDown()
-{
-#ifdef VEYON_BUILD_WIN32
-	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
-	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
-#else
-	if( VeyonCore::platform().userFunctions().currentUser() == QStringLiteral("root") )
-	{
-		QProcess::startDetached( QStringLiteral("poweroff") );
-	}
-	else
-	{
-		// Gnome shutdown
-		QProcess::startDetached( QStringLiteral("dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown") );
-		// KDE 4 shutdown
-		QProcess::startDetached( QStringLiteral("qdbus org.kde.ksmserver /KSMServer logout 0 2 0") );
-		// KDE 5 shutdown
-		QProcess::startDetached( QStringLiteral("dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2") );
-		// Xfce shutdown
-		QProcess::startDetached( QStringLiteral("xfce4-session-logout --halt") );
-		// generic shutdown via consolekit
-		QProcess::startDetached( QStringLiteral("dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop") );
-	}
-#endif
-}
-
-
-
-void reboot()
-{
-#ifdef VEYON_BUILD_WIN32
-	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
-	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
-#else
-	if( VeyonCore::platform().userFunctions().currentUser() == QStringLiteral("root") )
-	{
-		QProcess::startDetached( QStringLiteral("reboot") );
-	}
-	else
-	{
-		// Gnome reboot
-		QProcess::startDetached( QStringLiteral("dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot") );
-		// KDE 4 reboot
-		QProcess::startDetached( QStringLiteral("qdbus org.kde.ksmserver /KSMServer logout 0 1 0") );
-		// KDE 5 reboot
-		QProcess::startDetached( QStringLiteral("dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:1 int32:1") );
-		// Xfce reboot
-		QProcess::startDetached( QStringLiteral("xfce4-session-logout --reboot") );
-		// generic reboot via consolekit
-		QProcess::startDetached( QStringLiteral("dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart") );
-	}
 #endif
 }
 

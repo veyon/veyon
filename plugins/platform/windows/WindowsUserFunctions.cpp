@@ -27,17 +27,18 @@
 #include <wtsapi32.h>
 #include <lm.h>
 
+
 static QString querySessionInformation( DWORD sessionId, WTS_INFO_CLASS infoClass )
 {
 	QString result;
 	LPTSTR pBuffer = NULL;
 	DWORD dwBufferLen;
 	if( WTSQuerySessionInformation(
-					WTS_CURRENT_SERVER_HANDLE,
-					sessionId,
-					infoClass,
-					&pBuffer,
-					&dwBufferLen ) )
+				WTS_CURRENT_SERVER_HANDLE,
+				sessionId,
+				infoClass,
+				&pBuffer,
+				&dwBufferLen ) )
 	{
 		result = QString::fromWCharArray( pBuffer );
 	}
@@ -174,8 +175,8 @@ QStringList WindowsUserFunctions::loggedOnUsers()
 		LPTSTR userBuffer = nullptr;
 		DWORD bytesReturned = 0;
 		if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionInfo[session].SessionId, WTSUserName,
-		                                &userBuffer, &bytesReturned ) == false ||
-		        userBuffer == nullptr )
+										&userBuffer, &bytesReturned ) == false ||
+				userBuffer == nullptr )
 		{
 			continue;
 		}
@@ -252,7 +253,7 @@ QStringList WindowsUserFunctions::domainUserGroups()
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			    groupList += QString::fromUtf16( (const ushort *) groupInfos[i].grpi0_name );
+			groupList += QString::fromUtf16( (const ushort *) groupInfos[i].grpi0_name );
 		}
 
 		if( entriesRead < totalEntries )
@@ -283,7 +284,7 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 	DWORD totalEntries = 0;
 
 	if( NetUserGetGroups( (LPCWSTR) dc.utf16(), (LPCWSTR) username.utf16(), 0, &outBuffer, MAX_PREFERRED_LENGTH,
-	                      &entriesRead, &totalEntries ) == NERR_Success )
+						  &entriesRead, &totalEntries ) == NERR_Success )
 	{
 		const GROUP_USERS_INFO_0* groupUsersInfo = (GROUP_USERS_INFO_0 *) outBuffer;
 
@@ -291,7 +292,7 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			    groupList += QString::fromUtf16( (const ushort *) groupUsersInfo[i].grui0_name );
+			groupList += QString::fromUtf16( (const ushort *) groupUsersInfo[i].grui0_name );
 		}
 
 		if( entriesRead < totalEntries )
@@ -327,7 +328,7 @@ QStringList WindowsUserFunctions::localUserGroups()
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			    groupList += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
+			groupList += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
 		}
 
 		if( entriesRead < totalEntries )
@@ -356,7 +357,7 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 	DWORD totalEntries = 0;
 
 	if( NetUserGetLocalGroups( nullptr, (LPCWSTR) username.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
-	                           &entriesRead, &totalEntries ) == NERR_Success )
+							   &entriesRead, &totalEntries ) == NERR_Success )
 	{
 		const LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
 
@@ -364,7 +365,7 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			    groupList += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
+			groupList += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
 		}
 
 		if( entriesRead < totalEntries )

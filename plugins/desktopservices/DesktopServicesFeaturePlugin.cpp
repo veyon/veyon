@@ -37,6 +37,7 @@
 #include "LocalSystem.h"
 #include "DesktopServicesFeaturePlugin.h"
 #include "RunProgramDialog.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
 
 
@@ -170,19 +171,9 @@ void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& program )
 {
 	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching program" << program;
 
-	LocalSystem::User user( VeyonCore::platform().userFunctions().currentUser() );
-	LocalSystem::Process proc( LocalSystem::Process::findProcessId( QString(), -1, &user ) );
-	QString desktop = LocalSystem::Desktop::activeDesktop().name();
-
-#ifdef VEYON_BUILD_WIN32
-	LocalSystem::Process::Handle hProcess = proc.runAsUser( program, desktop );
-	if( hProcess )
-	{
-		CloseHandle( hProcess );
-	}
-#else
-	proc.runAsUser( program, desktop );
-#endif
+	VeyonCore::platform().coreFunctions().runProgramAsUser( program,
+															VeyonCore::platform().userFunctions().currentUser(),
+															VeyonCore::platform().coreFunctions().activeDesktopName() );
 }
 
 

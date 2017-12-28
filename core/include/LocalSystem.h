@@ -39,102 +39,11 @@ class QWidget;
 
 namespace LocalSystem
 {
-
-	class VEYON_CORE_EXPORT Desktop
-	{
-	public:
-		Desktop( const QString &name = QString() );
-		Desktop( const Desktop &desktop );
-
-		const QString &name() const
-		{
-			return m_name;
-		}
-
-		bool isActive() const
-		{
-			return name() == activeDesktop().name();
-		}
-
-		static Desktop activeDesktop();
-		static Desktop screenLockDesktop();
-
-
-	private:
-		QString m_name;
-	} ;
-
-	class VEYON_CORE_EXPORT User
-	{
-	public:
-#ifdef VEYON_BUILD_WIN32
-		typedef PSID Token;
-#else
-		typedef int Token;
-#endif
-		User( const QString &name, const QString &domain = QString() );
-		User( Token token );
-		User( const User &user );
-		~User();
-
-		const Token &userToken() const
-		{
-			return m_userToken;
-		}
-
-		Token userToken()
-		{
-			return m_userToken;
-		}
-
-		const QString &name() const
-		{
-			return m_name;
-		}
-
-		const QString &domain() const
-		{
-			return m_domain;
-		}
-
-	private:
-		void lookupNameAndDomain();
-
-		Token m_userToken;
-		QString m_name;
-		QString m_domain;
-
-	} ;
-
 	class VEYON_CORE_EXPORT Process
 	{
 	public:
-#ifdef VEYON_BUILD_WIN32
-		typedef HANDLE Handle;
-#else
-		typedef int Handle;
-#endif
-		Process( int pid = -1 );
-		~Process();
-
-		static int findProcessId( const QString &processName,
-									int sessionId = -1,
-									const User *processOwner = NULL );
-
-		User *getProcessOwner();
-
-		Handle processHandle()
-		{
-			return m_processHandle;
-		}
-
-		Handle runAsUser( const QString &proc,
-									const QString &desktop = QString() );
 		static bool isRunningAsAdmin();
 		static bool runAsAdmin( const QString &proc, const QString &parameters );
-
-	private:
-		Handle m_processHandle;
 
 	} ;
 

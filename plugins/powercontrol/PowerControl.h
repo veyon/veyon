@@ -30,8 +30,6 @@
 namespace PowerControl
 {
 	void broadcastWOLPacket( QString macAddress );
-	void powerDown();
-	void reboot();
 }
 
 #endif

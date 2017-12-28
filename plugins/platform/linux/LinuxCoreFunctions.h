@@ -37,6 +37,15 @@ public:
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
+	void reboot() override;
+	void powerDown() override;
+
+	QString activeDesktopName() override;
+
+	bool runProgramAsUser( const QString& program, const QString& username,
+						   const QString& desktop = QString() ) override;
+
+
 };
 
 #endif // LINUX_CORE_FUNCTIONS_H

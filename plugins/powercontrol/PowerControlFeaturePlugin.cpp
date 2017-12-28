@@ -26,6 +26,7 @@
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
+#include "PlatformCoreFunctions.h"
 #include "PowerControl.h"
 #include "PowerControlFeaturePlugin.h"
 #include "VeyonConfiguration.h"
@@ -128,11 +129,11 @@ bool PowerControlFeaturePlugin::handleServiceFeatureMessage( const FeatureMessag
 {
 	if( message.featureUid() == m_powerDownFeature.uid() )
 	{
-		PowerControl::powerDown();
+		VeyonCore::platform().coreFunctions().powerDown();
 	}
 	else if( message.featureUid() == m_rebootFeature.uid() )
 	{
-		PowerControl::reboot();
+		VeyonCore::platform().coreFunctions().reboot();
 	}
 	else
 	{

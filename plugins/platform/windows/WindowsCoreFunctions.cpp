@@ -25,9 +25,15 @@
 #include <QDir>
 
 #include <shlobj.h>
+#include <userenv.h>
+#include <wtsapi32.h>
 
 #include "WindowsCoreFunctions.h"
 #include "XEventLog.h"
+
+
+#define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
+#define SHUTDOWN_REASON SHTDN_REASON_MAJOR_OTHER
 
 
 static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
@@ -42,6 +48,55 @@ static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
 	}
 
 	return result;
+}
+
+
+
+
+static DWORD findProcessId( const QString& userName )
+{
+	DWORD sidLen = SECURITY_MAX_SID_SIZE;
+	char userSID[SECURITY_MAX_SID_SIZE];
+	wchar_t domainName[MAX_PATH];
+	domainName[0] = 0;
+	DWORD domainLen = MAX_PATH;
+	SID_NAME_USE sidNameUse;
+
+	if( LookupAccountName( nullptr,		// system name
+						   (LPCWSTR) userName.utf16(),
+						   userSID,
+						   &sidLen,
+						   domainName,
+						   &domainLen,
+						   &sidNameUse ) == false )
+	{
+		qCritical( "Could not look up SID structure" );
+		return -1;
+	}
+
+	PWTS_PROCESS_INFO processInfo;
+	DWORD processCount = 0;
+
+	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
+	{
+		return -1;
+	}
+
+	DWORD pid = -1;
+
+	for( DWORD proc = 0; proc < processCount; ++proc )
+	{
+		if( processInfo[proc].ProcessId > 0 &&
+				EqualSid( processInfo[proc].pUserSid, userSID ) )
+		{
+			pid = processInfo[proc].ProcessId;
+			break;
+		}
+	}
+
+	WTSFreeMemory( processInfo );
+
+	return pid;
 }
 
 
@@ -99,4 +154,155 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 	{
 		m_eventLog->Write( wtype, (wchar_t*) message.utf16() );
 	}
+}
+
+
+
+void WindowsCoreFunctions::reboot()
+{
+	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
+	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+}
+
+
+
+void WindowsCoreFunctions::powerDown()
+{
+	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
+	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+}
+
+
+
+QString WindowsCoreFunctions::activeDesktopName()
+{
+	QString desktopName;
+
+	HDESK desktopHandle = OpenInputDesktop( 0, true, DESKTOP_READOBJECTS );
+
+	wchar_t inputDesktopName[256];
+	inputDesktopName[0] = 0;
+	if( GetUserObjectInformation( desktopHandle, UOI_NAME, inputDesktopName,
+								  sizeof( inputDesktopName ) / sizeof( wchar_t ), nullptr ) )
+	{
+		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName ) );
+	}
+	CloseDesktop( desktopHandle );
+
+	return desktopName;
+}
+
+
+
+bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
+											 const QString& username,
+											 const QString& desktop )
+{
+	enablePrivilege( QString::fromWCharArray( SE_ASSIGNPRIMARYTOKEN_NAME ), true );
+	enablePrivilege( QString::fromWCharArray( SE_INCREASE_QUOTA_NAME ), true );
+
+	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false,
+												findProcessId( username ) );
+
+	HANDLE userProcessToken = nullptr;
+	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "OpenProcessToken()" << GetLastError();
+		return false;
+	}
+
+	LPVOID userEnvironment = nullptr;
+	if( CreateEnvironmentBlock( &userEnvironment, userProcessToken, false ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "CreateEnvironmentBlock()" << GetLastError();
+		return false;
+	}
+
+	PWSTR profileDir = nullptr;
+	if( SHGetKnownFolderPath( FOLDERID_Profile, 0, userProcessToken, &profileDir ) != S_OK )
+	{
+		qCritical() << Q_FUNC_INFO << "SHGetKnownFolderPath()" << GetLastError();
+		return false;
+	}
+
+	if( ImpersonateLoggedOnUser( userProcessToken ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "ImpersonateLoggedOnUser()" << GetLastError();
+		return false;
+	}
+
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+	ZeroMemory( &si, sizeof( STARTUPINFO ) );
+	si.cb = sizeof( STARTUPINFO );
+	if( !desktop.isEmpty() )
+	{
+		si.lpDesktop = (LPWSTR) desktop.utf16();
+	}
+
+	HANDLE newToken = nullptr;
+
+	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
+					  SecurityImpersonation, TokenPrimary, &newToken );
+
+	if( CreateProcessAsUser(
+				newToken,			// client's access token
+				nullptr,			  // file to execute
+				(LPWSTR) program.utf16(),	 // command line
+				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
+				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
+				false,			 // handles are not inheritable
+				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
+				userEnvironment,			  // pointer to new environment block
+				profileDir,			  // name of current directory
+				&si,			   // pointer to STARTUPINFO structure
+				&pi				// receives information about new process
+				) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
+		return false;
+	}
+
+	CoTaskMemFree( profileDir );
+	DestroyEnvironmentBlock( userEnvironment );
+
+	CloseHandle( newToken );
+	RevertToSelf();
+	CloseHandle( userProcessToken );
+
+	CloseHandle( userProcessHandle );
+
+	CloseHandle( pi.hProcess );
+
+	return true;
+}
+
+
+
+bool WindowsCoreFunctions::enablePrivilege( const QString& privilegeName, bool enable )
+{
+	HANDLE token;
+	TOKEN_PRIVILEGES tokenPrivileges;
+	LUID luid;
+
+	if( !OpenProcessToken( GetCurrentProcess(),
+						   TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &token ) )
+	{
+		return false;
+	}
+
+	if( !LookupPrivilegeValue( nullptr, (LPWSTR) privilegeName.utf16(), &luid ) )
+	{
+		return false;
+	}
+
+	tokenPrivileges.PrivilegeCount = 1;
+	tokenPrivileges.Privileges[0].Luid = luid;
+	tokenPrivileges.Privileges[0].Attributes = enable ? SE_PRIVILEGE_ENABLED : 0;
+
+	bool ret = AdjustTokenPrivileges( token, false, &tokenPrivileges, 0, nullptr, nullptr );
+
+	CloseHandle( token );
+
+	return ret;
 }

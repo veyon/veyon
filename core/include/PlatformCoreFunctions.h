@@ -38,6 +38,15 @@ public:
 	virtual void initNativeLoggingSystem( const QString& appName ) = 0;
 	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
 
+	virtual void reboot() = 0;
+	virtual void powerDown() = 0;
+
+	virtual QString activeDesktopName() = 0;
+
+	virtual bool runProgramAsUser( const QString& program,
+								   const QString& username,
+								   const QString& desktop ) = 0;
+
 };
 
 #endif // PLATFORM_CORE_FUNCTIONS_H
