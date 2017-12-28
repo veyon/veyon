@@ -121,7 +121,7 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 
 
 
-QString WindowsUserFunctions::loggedOnUser()
+QString WindowsUserFunctions::currentUser()
 {
 	auto sessionId = WTSGetActiveConsoleSessionId();
 

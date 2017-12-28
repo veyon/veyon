@@ -37,7 +37,7 @@ public:
 	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
 	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
 
-	virtual QString loggedOnUser() = 0;
+	virtual QString currentUser() = 0;
 	virtual QStringList loggedOnUsers() = 0;
 
 };

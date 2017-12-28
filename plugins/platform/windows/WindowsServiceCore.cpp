@@ -48,7 +48,7 @@ public:
 	{
 		stop();
 
-		qInfo() << "Starting server for user" << VeyonCore::platform().userFunctions().loggedOnUser();
+		qInfo() << "Starting server for user" << VeyonCore::platform().userFunctions().currentUser();
 		// run with the same user as winlogon.exe does
 		m_subProcessHandle =
 				LocalSystem::Process(

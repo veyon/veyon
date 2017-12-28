@@ -40,7 +40,7 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	ui->username->setText( VeyonCore::platform().userFunctions().loggedOnUser() );
+	ui->username->setText( VeyonCore::platform().userFunctions().currentUser() );
 
 	if( ui->username->text().isEmpty() == false )
 	{

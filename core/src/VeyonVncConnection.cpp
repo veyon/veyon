@@ -832,7 +832,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 	}
 	else
 	{
-		authReplyMessage.write( VeyonCore::platform().userFunctions().loggedOnUser() );
+		authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
 	}
 
 	authReplyMessage.send();

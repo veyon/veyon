@@ -170,7 +170,7 @@ void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& program )
 {
 	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching program" << program;
 
-	LocalSystem::User user( VeyonCore::platform().userFunctions().loggedOnUser() );
+	LocalSystem::User user( VeyonCore::platform().userFunctions().currentUser() );
 	LocalSystem::Process proc( LocalSystem::Process::findProcessId( QString(), -1, &user ) );
 	QString desktop = LocalSystem::Desktop::activeDesktop().name();
 

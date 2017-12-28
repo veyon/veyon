@@ -37,7 +37,7 @@ public:
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
 
-	QString loggedOnUser() override;
+	QString currentUser() override;
 	QStringList loggedOnUsers() override;
 
 private:

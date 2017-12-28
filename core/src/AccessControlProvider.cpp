@@ -88,7 +88,7 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 	{
 		auto action = processAccessControlRules( accessingUser,
 												 accessingComputer,
-												 VeyonCore::platform().userFunctions().loggedOnUser(),
+												 VeyonCore::platform().userFunctions().currentUser(),
 												 QHostInfo::localHostName(),
 												 connectedUsers );
 		switch( action )
@@ -175,7 +175,7 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	{
 		if( rule.action() == AccessControlRule::ActionDeny &&
 				matchConditions( rule, QString(), QString(),
-								 VeyonCore::platform().userFunctions().loggedOnUser(),
+								 VeyonCore::platform().userFunctions().currentUser(),
 								 QHostInfo::localHostName(),
 								 QStringList() ) )
 		{

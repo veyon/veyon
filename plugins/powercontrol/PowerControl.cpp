@@ -168,7 +168,7 @@ void powerDown()
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
 #else
-	if( VeyonCore::platform().userFunctions().loggedOnUser() == QStringLiteral("root") )
+	if( VeyonCore::platform().userFunctions().currentUser() == QStringLiteral("root") )
 	{
 		QProcess::startDetached( QStringLiteral("poweroff") );
 	}
@@ -197,7 +197,7 @@ void reboot()
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
 #else
-	if( VeyonCore::platform().userFunctions().loggedOnUser() == QStringLiteral("root") )
+	if( VeyonCore::platform().userFunctions().currentUser() == QStringLiteral("root") )
 	{
 		QProcess::startDetached( QStringLiteral("reboot") );
 	}

@@ -190,7 +190,7 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 
 
 
-QString LinuxUserFunctions::loggedOnUser()
+QString LinuxUserFunctions::currentUser()
 {
 	QString username;
 

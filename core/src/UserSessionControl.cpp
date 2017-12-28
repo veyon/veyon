@@ -181,7 +181,7 @@ void UserSessionControl::queryUserInformation()
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
 	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
-		const auto userName = VeyonCore::platform().userFunctions().loggedOnUser();
+		const auto userName = VeyonCore::platform().userFunctions().currentUser();
 		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userName );
 		m_userDataLock.lockForWrite();
 		m_userName = userName;

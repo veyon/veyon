@@ -38,7 +38,7 @@ AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	ui->localUserLineEdit->setText( VeyonCore::platform().userFunctions().loggedOnUser() );
+	ui->localUserLineEdit->setText( VeyonCore::platform().userFunctions().currentUser() );
 	ui->localComputerLineEdit->setText( QHostInfo::localHostName() );
 }
 
