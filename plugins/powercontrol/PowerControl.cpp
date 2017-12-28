@@ -23,13 +23,7 @@
  */
 
 #include "VeyonCore.h"
-
-#include <QProcess>
-
 #include "PowerControl.h"
-#include "LocalSystem.h"
-#include "PlatformCoreFunctions.h"
-#include "PlatformUserFunctions.h"
 
 #ifdef VEYON_HAVE_UNISTD_H
 #include <unistd.h>
@@ -50,9 +44,6 @@
 #ifdef VEYON_HAVE_ERRNO_H
 #include <errno.h>
 #endif
-
-#include "VeyonConfiguration.h"
-#include "Logger.h"
 
 
 namespace PowerControl
