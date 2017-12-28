@@ -27,7 +27,7 @@
 
 #include "AccessControlRulesTestDialog.h"
 #include "AccessControlProvider.h"
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 #include "ui_AccessControlRulesTestDialog.h"
 
@@ -38,7 +38,7 @@ AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	ui->localUserLineEdit->setText( VeyonCore::platform().userInfoFunctions().loggedOnUser() );
+	ui->localUserLineEdit->setText( VeyonCore::platform().userFunctions().loggedOnUser() );
 	ui->localComputerLineEdit->setText( QHostInfo::localHostName() );
 }
 

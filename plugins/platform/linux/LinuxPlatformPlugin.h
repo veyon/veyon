@@ -30,7 +30,7 @@
 #include "LinuxCoreFunctions.h"
 #include "LinuxNetworkFunctions.h"
 #include "LinuxServiceFunctions.h"
-#include "LinuxUserInfoFunctions.h"
+#include "LinuxUserFunctions.h"
 
 class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
 {
@@ -91,16 +91,16 @@ public:
 		return m_linuxServiceFunctions;
 	}
 
-	PlatformUserInfoFunctions& userInfoFunctions() override
+	PlatformUserFunctions& userFunctions() override
 	{
-		return m_linuxUserInfoFunctions;
+		return m_linuxUserFunctions;
 	}
 
 private:
 	LinuxCoreFunctions m_linuxCoreFunctions;
 	LinuxNetworkFunctions m_linuxNetworkFunctions;
 	LinuxServiceFunctions m_linuxServiceFunctions;
-	LinuxUserInfoFunctions m_linuxUserInfoFunctions;
+	LinuxUserFunctions m_linuxUserFunctions;
 
 };
 

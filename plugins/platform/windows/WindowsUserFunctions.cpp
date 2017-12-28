@@ -1,5 +1,5 @@
 /*
- * WindowsUserInfoFunctions.cpp - implementation of WindowsUserInfoFunctions class
+ * WindowsUserFunctions.cpp - implementation of WindowsUserFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,7 +22,7 @@
  *
  */
 
-#include "WindowsUserInfoFunctions.h"
+#include "WindowsUserFunctions.h"
 
 #include <wtsapi32.h>
 #include <lm.h>
@@ -48,7 +48,7 @@ static QString querySessionInformation( DWORD sessionId, WTS_INFO_CLASS infoClas
 
 
 
-QString WindowsUserInfoFunctions::fullName( const QString& username )
+QString WindowsUserFunctions::fullName( const QString& username )
 {
 	QString fullName;
 
@@ -87,7 +87,7 @@ QString WindowsUserInfoFunctions::fullName( const QString& username )
 
 
 
-QStringList WindowsUserInfoFunctions::userGroups( bool queryDomainGroups )
+QStringList WindowsUserFunctions::userGroups( bool queryDomainGroups )
 {
 	auto groupList = localUserGroups();
 
@@ -104,7 +104,7 @@ QStringList WindowsUserInfoFunctions::userGroups( bool queryDomainGroups )
 
 
 
-QStringList WindowsUserInfoFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
+QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
 	auto groupList = localGroupsOfUser( username );
 
@@ -121,7 +121,7 @@ QStringList WindowsUserInfoFunctions::groupsOfUser( const QString& username, boo
 
 
 
-QString WindowsUserInfoFunctions::loggedOnUser()
+QString WindowsUserFunctions::loggedOnUser()
 {
 	auto sessionId = WTSGetActiveConsoleSessionId();
 
@@ -152,7 +152,7 @@ QString WindowsUserInfoFunctions::loggedOnUser()
 
 
 
-QStringList WindowsUserInfoFunctions::loggedOnUsers()
+QStringList WindowsUserFunctions::loggedOnUsers()
 {
 	QStringList users;
 
@@ -196,7 +196,7 @@ QStringList WindowsUserInfoFunctions::loggedOnUsers()
 
 
 
-QString WindowsUserInfoFunctions::domainController()
+QString WindowsUserFunctions::domainController()
 {
 	QString dcName;
 	LPBYTE outBuffer = nullptr;
@@ -217,7 +217,7 @@ QString WindowsUserInfoFunctions::domainController()
 
 
 
-QStringList WindowsUserInfoFunctions::domainUserGroups()
+QStringList WindowsUserFunctions::domainUserGroups()
 {
 	const auto dc = domainController();
 
@@ -255,7 +255,7 @@ QStringList WindowsUserInfoFunctions::domainUserGroups()
 
 
 
-QStringList WindowsUserInfoFunctions::domainGroupsOfUser( const QString& username )
+QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 {
 	const auto dc = domainController();
 
@@ -294,7 +294,7 @@ QStringList WindowsUserInfoFunctions::domainGroupsOfUser( const QString& usernam
 
 
 
-QStringList WindowsUserInfoFunctions::localUserGroups()
+QStringList WindowsUserFunctions::localUserGroups()
 {
 	QStringList groupList;
 
@@ -330,7 +330,7 @@ QStringList WindowsUserInfoFunctions::localUserGroups()
 
 
 
-QStringList WindowsUserInfoFunctions::localGroupsOfUser( const QString& username )
+QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 {
 	QStringList groupList;
 

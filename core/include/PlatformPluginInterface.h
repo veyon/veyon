@@ -30,7 +30,7 @@
 class PlatformCoreFunctions;
 class PlatformNetworkFunctions;
 class PlatformServiceFunctions;
-class PlatformUserInfoFunctions;
+class PlatformUserFunctions;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -40,7 +40,7 @@ public:
 	virtual PlatformCoreFunctions& coreFunctions() = 0;
 	virtual PlatformNetworkFunctions& networkFunctions() = 0;
 	virtual PlatformServiceFunctions& serviceFunctions() = 0;
-	virtual PlatformUserInfoFunctions& userInfoFunctions() = 0;
+	virtual PlatformUserFunctions& userFunctions() = 0;
 
 };
 

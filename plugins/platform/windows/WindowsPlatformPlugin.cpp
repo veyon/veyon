@@ -30,7 +30,7 @@ WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
     m_windowsCoreFunctions(),
     m_windowsNetworkFunctions(),
 	m_windowsServiceFunctions(),
-    m_windowsUserInfoFunctions()
+    m_windowsUserFunctions()
 {
 }
 

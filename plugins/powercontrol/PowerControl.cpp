@@ -37,7 +37,7 @@
 
 #include "PowerControl.h"
 #include "LocalSystem.h"
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 #ifdef VEYON_HAVE_UNISTD_H
 #include <unistd.h>
@@ -168,7 +168,7 @@ void powerDown()
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
 #else
-	if( VeyonCore::platform().userInfoFunctions().loggedOnUser() == QStringLiteral("root") )
+	if( VeyonCore::platform().userFunctions().loggedOnUser() == QStringLiteral("root") )
 	{
 		QProcess::startDetached( QStringLiteral("poweroff") );
 	}
@@ -197,7 +197,7 @@ void reboot()
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	LocalSystem::enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), false );
 #else
-	if( VeyonCore::platform().userInfoFunctions().loggedOnUser() == QStringLiteral("root") )
+	if( VeyonCore::platform().userFunctions().loggedOnUser() == QStringLiteral("root") )
 	{
 		QProcess::startDetached( QStringLiteral("reboot") );
 	}

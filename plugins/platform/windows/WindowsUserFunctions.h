@@ -1,5 +1,5 @@
 /*
- * WindowsUserInfoFunctions.h - declaration of WindowsUserInfoFunctions class
+ * WindowsUserFunctions.h - declaration of WindowsUserFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,14 +22,14 @@
  *
  */
 
-#ifndef WINDOWS_USER_INFO_FUNCTIONS_H
-#define WINDOWS_USER_INFO_FUNCTIONS_H
+#ifndef WINDOWS_USER_FUNCTIONS_H
+#define WINDOWS_USER_FUNCTIONS_H
 
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 // clazy:exclude=copyable-polymorphic
 
-class WindowsUserInfoFunctions : public PlatformUserInfoFunctions
+class WindowsUserFunctions : public PlatformUserFunctions
 {
 public:
 	QString fullName( const QString& username ) override;
@@ -50,4 +50,4 @@ private:
 
 };
 
-#endif // WINDOWS_USER_INFO_FUNCTIONS_H
+#endif // WINDOWS_USER_FUNCTIONS_H

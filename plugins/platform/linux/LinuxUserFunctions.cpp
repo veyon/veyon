@@ -1,5 +1,5 @@
 /*
- * LinuxUserInfoFunctions.cpp - implementation of LinuxUserInfoFunctions class
+ * LinuxUserFunctions.cpp - implementation of LinuxUserFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -24,13 +24,13 @@
 
 #include <QProcess>
 
-#include "LinuxUserInfoFunctions.h"
+#include "LinuxUserFunctions.h"
 #include "LocalSystem.h"
 
 #include <pwd.h>
 
 
-QString LinuxUserInfoFunctions::fullName( const QString& username )
+QString LinuxUserFunctions::fullName( const QString& username )
 {
 	auto pw_entry = getpwnam( VeyonCore::stripDomain( username ).toUtf8().constData() );
 
@@ -53,7 +53,7 @@ QString LinuxUserInfoFunctions::fullName( const QString& username )
 
 
 
-QStringList LinuxUserInfoFunctions::userGroups( bool queryDomainGroups )
+QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 {
 	Q_UNUSED(queryDomainGroups);
 
@@ -160,7 +160,7 @@ QStringList LinuxUserInfoFunctions::userGroups( bool queryDomainGroups )
 
 
 
-QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
+QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
 	Q_UNUSED(queryDomainGroups);
 
@@ -190,7 +190,7 @@ QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username, bool 
 
 
 
-QString LinuxUserInfoFunctions::loggedOnUser()
+QString LinuxUserFunctions::loggedOnUser()
 {
 	QString username;
 
@@ -231,7 +231,7 @@ QString LinuxUserInfoFunctions::loggedOnUser()
 
 
 
-QStringList LinuxUserInfoFunctions::loggedOnUsers()
+QStringList LinuxUserFunctions::loggedOnUsers()
 {
 	QStringList users;
 

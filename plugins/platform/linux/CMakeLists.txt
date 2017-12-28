@@ -5,13 +5,13 @@ BUILD_PLUGIN(linux-platform
 	LinuxCoreFunctions.cpp
 	LinuxNetworkFunctions.cpp
 	LinuxServiceFunctions.cpp
-	LinuxUserInfoFunctions.cpp
+	LinuxUserFunctions.cpp
 	MOCFILES
 	LinuxPlatformPlugin.h
 	LinuxCoreFunctions.h
 	LinuxNetworkFunctions.h
 	LinuxServiceFunctions.h
-	LinuxUserInfoFunctions.h
+	LinuxUserFunctions.h
 	COTIRE
 )
 

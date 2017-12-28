@@ -1,5 +1,5 @@
 /*
- * PlatformUserInfoFunctions.h - interface class for platform plugins
+ * PlatformUserFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,14 +22,14 @@
  *
  */
 
-#ifndef PLATFORM_USER_INFO_FUNCTIONS_H
-#define PLATFORM_USER_INFO_FUNCTIONS_H
+#ifndef PLATFORM_USER_FUNCTIONS_H
+#define PLATFORM_USER_FUNCTIONS_H
 
 #include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class PlatformUserInfoFunctions
+class PlatformUserFunctions
 {
 public:
 	virtual QString fullName( const QString& username ) = 0;
@@ -42,4 +42,4 @@ public:
 
 };
 
-#endif // PLATFORM_USER_INFO_FUNCTIONS_H
+#endif // PLATFORM_USER_FUNCTIONS_H

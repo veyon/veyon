@@ -31,7 +31,7 @@
 #include "VeyonCore.h"
 #include "LocalSystem.h"
 #include "PlatformPluginInterface.h"
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 
 AccessControlProvider::AccessControlProvider() :
@@ -88,7 +88,7 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 	{
 		auto action = processAccessControlRules( accessingUser,
 												 accessingComputer,
-												 VeyonCore::platform().userInfoFunctions().loggedOnUser(),
+												 VeyonCore::platform().userFunctions().loggedOnUser(),
 												 QHostInfo::localHostName(),
 												 connectedUsers );
 		switch( action )
@@ -175,7 +175,7 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	{
 		if( rule.action() == AccessControlRule::ActionDeny &&
 				matchConditions( rule, QString(), QString(),
-								 VeyonCore::platform().userInfoFunctions().loggedOnUser(),
+								 VeyonCore::platform().userFunctions().loggedOnUser(),
 								 QHostInfo::localHostName(),
 								 QStringList() ) )
 		{
@@ -246,7 +246,7 @@ bool AccessControlProvider::isLocalUser( const QString &accessingUser, const QSt
 
 bool AccessControlProvider::isNoUserLoggedOn() const
 {
-	return VeyonCore::platform().userInfoFunctions().loggedOnUsers().isEmpty();
+	return VeyonCore::platform().userFunctions().loggedOnUsers().isEmpty();
 }
 
 

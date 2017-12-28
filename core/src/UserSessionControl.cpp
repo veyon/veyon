@@ -32,7 +32,7 @@
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonRfbExt.h"
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 
 UserSessionControl::UserSessionControl( QObject* parent ) :
@@ -181,8 +181,8 @@ void UserSessionControl::queryUserInformation()
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
 	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
-		const auto userName = VeyonCore::platform().userInfoFunctions().loggedOnUser();
-		const auto userFullName = VeyonCore::platform().userInfoFunctions().fullName( userName );
+		const auto userName = VeyonCore::platform().userFunctions().loggedOnUser();
+		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userName );
 		m_userDataLock.lockForWrite();
 		m_userName = userName;
 		m_userFullName = userFullName;

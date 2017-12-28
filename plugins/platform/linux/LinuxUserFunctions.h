@@ -1,5 +1,5 @@
 /*
- * LinuxUserInfoFunctions.h - declaration of LinuxUserInfoFunctions class
+ * LinuxUserFunctions.h - declaration of LinuxUserFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,14 +22,14 @@
  *
  */
 
-#ifndef LINUX_USER_INFO_FUNCTIONS_H
-#define LINUX_USER_INFO_FUNCTIONS_H
+#ifndef LINUX_USER_FUNCTIONS_H
+#define LINUX_USER_FUNCTIONS_H
 
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class LinuxUserInfoFunctions : public PlatformUserInfoFunctions
+class LinuxUserFunctions : public PlatformUserFunctions
 {
 public:
 	QString fullName( const QString& username ) override;
@@ -37,7 +37,7 @@ public:
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
 
-	QString loggedOnUser() override;
+	QString currentUser() override;
 	QStringList loggedOnUsers() override;
 
 private:
@@ -46,4 +46,4 @@ private:
 	};
 };
 
-#endif // LINUX_USER_INFO_FUNCTIONS_H
+#endif // LINUX_USER_FUNCTIONS_H

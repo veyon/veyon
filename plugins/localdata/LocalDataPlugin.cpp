@@ -26,7 +26,7 @@
 #include "LocalDataNetworkObjectDirectory.h"
 #include "LocalDataPlugin.h"
 #include "PlatformPluginInterface.h"
-#include "PlatformUserInfoFunctions.h"
+#include "PlatformUserFunctions.h"
 
 LocalDataPlugin::LocalDataPlugin( QObject* parent ) :
 	QObject( parent ),
@@ -58,14 +58,14 @@ QStringList LocalDataPlugin::users()
 
 QStringList LocalDataPlugin::userGroups( bool queryDomainGroups )
 {
-	return VeyonCore::platform().userInfoFunctions().userGroups( queryDomainGroups );
+	return VeyonCore::platform().userFunctions().userGroups( queryDomainGroups );
 }
 
 
 
 QStringList LocalDataPlugin::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
-	return VeyonCore::platform().userInfoFunctions().groupsOfUser( username, queryDomainGroups );
+	return VeyonCore::platform().userFunctions().groupsOfUser( username, queryDomainGroups );
 }
 
 
