@@ -618,32 +618,6 @@ bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 
 
 
-void logonUser( const QString & _uname, const QString & _passwd,
-						const QString & _domain )
-{
-	// TODO
-}
-
-
-
-void logoutUser()
-{
-#ifdef VEYON_BUILD_WIN32
-	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
-#else
-	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
-	QProcess::startDetached( QStringLiteral( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" ) );
-	// KDE 4 logout
-	QProcess::startDetached( QStringLiteral( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ) );
-	// KDE 5 logout
-	QProcess::startDetached( QStringLiteral( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" ) );
-	// Xfce logout
-	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
-#endif
-}
-
-
-
 QString Path::expand( QString path )
 {
 	QString p = QDTNS( path.replace( QStringLiteral( "$HOME" ), QDir::homePath() ).

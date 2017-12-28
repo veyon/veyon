@@ -40,6 +40,9 @@ public:
 	QString currentUser() override;
 	QStringList loggedOnUsers() override;
 
+	void logon( const QString& username, const QString& password ) override;
+	void logout() override;
+
 private:
 	enum {
 		WhoProcessTimeout = 3000

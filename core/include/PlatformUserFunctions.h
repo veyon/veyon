@@ -40,6 +40,9 @@ public:
 	virtual QString currentUser() = 0;
 	virtual QStringList loggedOnUsers() = 0;
 
+	virtual void logon( const QString& username, const QString& password ) = 0;
+	virtual void logout() = 0;
+
 };
 
 #endif // PLATFORM_USER_FUNCTIONS_H

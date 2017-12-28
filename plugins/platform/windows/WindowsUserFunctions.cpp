@@ -196,6 +196,23 @@ QStringList WindowsUserFunctions::loggedOnUsers()
 
 
 
+void WindowsUserFunctions::logon( const QString& username, const QString& password )
+{
+	Q_UNUSED(username);
+	Q_UNUSED(password);
+
+	// TODO
+}
+
+
+
+void WindowsUserFunctions::logout()
+{
+	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
+}
+
+
+
 QString WindowsUserFunctions::domainController()
 {
 	QString dcName;

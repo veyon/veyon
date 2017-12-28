@@ -153,10 +153,6 @@ namespace LocalSystem
 	} ;
 
 
-	void VEYON_CORE_EXPORT logonUser( const QString & _uname, const QString & _pw,
-						const QString & _domain );
-	void VEYON_CORE_EXPORT logoutUser();
-
 #ifdef VEYON_BUILD_WIN32
 	BOOL VEYON_CORE_EXPORT enablePrivilege( const QString& privilegeName, bool enable );
 	HWND VEYON_CORE_EXPORT getHWNDForWidget( const QWidget* widget );

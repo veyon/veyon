@@ -28,7 +28,6 @@
 
 #include "UserSessionControl.h"
 #include "FeatureWorkerManager.h"
-#include "LocalSystem.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonRfbExt.h"
@@ -154,7 +153,7 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 	}
 	else if( m_userLogoutFeature.uid() == message.featureUid() )
 	{
-		LocalSystem::logoutUser();
+		VeyonCore::platform().userFunctions().logout();
 	}
 
 	return false;

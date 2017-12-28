@@ -256,3 +256,27 @@ QStringList LinuxUserFunctions::loggedOnUsers()
 
 	return users;
 }
+
+
+
+void LinuxUserFunctions::logon( const QString& username, const QString& password )
+{
+	Q_UNUSED(username);
+	Q_UNUSED(password);
+
+	// TODO
+}
+
+
+
+void LinuxUserFunctions::logout()
+{
+	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
+	QProcess::startDetached( QStringLiteral( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" ) );
+	// KDE 4 logout
+	QProcess::startDetached( QStringLiteral( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ) );
+	// KDE 5 logout
+	QProcess::startDetached( QStringLiteral( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" ) );
+	// Xfce logout
+	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
+}
