@@ -24,6 +24,7 @@
 
 #include <QDir>
 #include <QProcess>
+#include <QWidget>
 
 #include "LinuxCoreFunctions.h"
 #include "PlatformUserFunctions.h"
@@ -100,6 +101,14 @@ void LinuxCoreFunctions::powerDown()
 		// generic shutdown via consolekit
 		QProcess::startDetached( QStringLiteral("dbus-send --system --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop") );
 	}
+}
+
+
+
+void LinuxCoreFunctions::raiseWindow( QWidget* widget )
+{
+	widget->activateWindow();
+	widget->raise();
 }
 
 

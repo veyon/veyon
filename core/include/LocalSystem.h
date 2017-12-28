@@ -61,14 +61,6 @@ namespace LocalSystem
 												QString baseDir = QString() );
 	} ;
 
-
-#ifdef VEYON_BUILD_WIN32
-	BOOL VEYON_CORE_EXPORT enablePrivilege( const QString& privilegeName, bool enable );
-	HWND VEYON_CORE_EXPORT getHWNDForWidget( const QWidget* widget );
-#endif
-
-	void VEYON_CORE_EXPORT activateWindow( QWidget * _window );
-
 }
 
 #endif

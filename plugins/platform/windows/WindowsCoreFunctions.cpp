@@ -23,6 +23,8 @@
  */
 
 #include <QDir>
+#include <QWindow>
+#include <qpa/qplatformnativeinterface.h>
 
 #include <shlobj.h>
 #include <userenv.h>
@@ -170,6 +172,43 @@ void WindowsCoreFunctions::powerDown()
 {
 	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+}
+
+
+
+static QWindow* windowForWidget( const QWidget* widget )
+{
+	QWindow* window = widget->windowHandle();
+	if( window )
+	{
+		return window;
+	}
+
+	const QWidget* nativeParent = widget->nativeParentWidget();
+	if( nativeParent )
+	{
+		return nativeParent->windowHandle();
+	}
+
+	return 0;
+}
+
+
+
+void WindowsCoreFunctions::raiseWindow( QWidget* widget )
+{
+	widget->activateWindow();
+	widget->raise();
+
+	QWindow* window = windowForWidget( widget );
+	if( window )
+	{
+		QPlatformNativeInterface* interfacep = QGuiApplication::platformNativeInterface();
+		auto windowHandle = static_cast<HWND>( interfacep->nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
+
+		SetWindowPos( windowHandle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
+		SetWindowPos( windowHandle, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
+	}
 }
 
 

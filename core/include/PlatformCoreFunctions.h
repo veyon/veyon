@@ -41,6 +41,8 @@ public:
 	virtual void reboot() = 0;
 	virtual void powerDown() = 0;
 
+	virtual void raiseWindow( QWidget* widget ) = 0;
+
 	virtual QString activeDesktopName() = 0;
 
 	virtual bool runProgramAsUser( const QString& program,

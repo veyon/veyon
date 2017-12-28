@@ -267,55 +267,5 @@ QString Path::publicKeyPath( VeyonCore::UserRoles role, QString baseDir )
 }
 
 
-
-
-#ifdef VEYON_BUILD_WIN32
-#endif
-
-
-#ifdef VEYON_BUILD_WIN32
-static QWindow* windowForWidget( const QWidget* widget )
-{
-	QWindow* window = widget->windowHandle();
-	if( window )
-	{
-		return window;
-	}
-
-	const QWidget* nativeParent = widget->nativeParentWidget();
-	if( nativeParent )
-	{
-		return nativeParent->windowHandle();
-	}
-
-	return 0;
-}
-
-
-HWND getHWNDForWidget(const QWidget* widget )
-{
-	QWindow* window = windowForWidget( widget );
-	if( window )
-	{
-		QPlatformNativeInterface* interfacep = QGuiApplication::platformNativeInterface();
-		return static_cast<HWND>( interfacep->nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
-	}
-	return 0;
-}
-#endif
-
-
-void activateWindow( QWidget* w )
-{
-	w->activateWindow();
-	w->raise();
-#ifdef VEYON_BUILD_WIN32
-	SetWindowPos( getHWNDForWidget(w), HWND_TOPMOST, 0, 0, 0, 0,
-						SWP_NOMOVE | SWP_NOSIZE );
-	SetWindowPos( getHWNDForWidget(w), HWND_NOTOPMOST, 0, 0, 0, 0,
-						SWP_NOMOVE | SWP_NOSIZE );
-#endif
-}
-
 } // end of namespace LocalSystem
 

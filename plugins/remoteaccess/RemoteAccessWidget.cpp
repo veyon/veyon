@@ -26,7 +26,7 @@
 #include "VeyonCoreConnection.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
-#include "LocalSystem.h"
+#include "PlatformCoreFunctions.h"
 #include "ToolButton.h"
 #include "Screenshot.h"
 
@@ -298,7 +298,8 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface& computer
 					this, SLOT( updateSize() ) );
 
 	showMaximized();
-	LocalSystem::activateWindow( this );
+	VeyonCore::platform().coreFunctions().raiseWindow( this );
+
 	showNormal();
 
 	move( 0, 0 );

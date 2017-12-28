@@ -29,8 +29,8 @@
 
 #include "DemoClient.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "LockWidget.h"
+#include "PlatformCoreFunctions.h"
 #include "VncView.h"
 
 
@@ -81,7 +81,7 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 		m_toplevel->show();
 	}
 
-	LocalSystem::activateWindow( m_toplevel );
+	VeyonCore::platform().coreFunctions().raiseWindow( m_toplevel );
 }
 
 

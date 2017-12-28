@@ -29,7 +29,7 @@
 
 #include "DesktopAccessDialog.h"
 #include "FeatureWorkerManager.h"
-#include "LocalSystem.h"
+#include "PlatformCoreFunctions.h"
 
 
 DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
@@ -174,7 +174,7 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QSt
 	m.setEscapeButton( m.button( QMessageBox::No ) );
 	m.setDefaultButton( neverBtn );
 
-	LocalSystem::activateWindow( &m );
+	VeyonCore::platform().coreFunctions().raiseWindow( &m );
 
 	const auto result = m.exec();
 

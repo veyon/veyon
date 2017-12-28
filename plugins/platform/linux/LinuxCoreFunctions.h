@@ -40,6 +40,8 @@ public:
 	void reboot() override;
 	void powerDown() override;
 
+	void raiseWindow( QWidget* widget ) override;
+
 	QString activeDesktopName() override;
 
 	bool runProgramAsUser( const QString& program, const QString& username,

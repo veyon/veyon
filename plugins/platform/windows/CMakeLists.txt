@@ -28,5 +28,6 @@ BUILD_PLUGIN(windows-platform
 )
 
 INCLUDE_DIRECTORIES(${ultravnc_DIR}/addon/ms-logon/authSSP)
+INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
 
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32)

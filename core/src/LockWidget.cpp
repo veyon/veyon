@@ -24,7 +24,7 @@
 #include <veyonconfig.h>
 
 #include "LockWidget.h"
-#include "LocalSystem.h"
+#include "PlatformCoreFunctions.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -69,7 +69,7 @@ LockWidget::LockWidget( Mode mode, QWidget* parent ) :
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( qApp->desktop()->size() );
-	LocalSystem::activateWindow( this );
+	VeyonCore::platform().coreFunctions().raiseWindow( this );
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 	grabMouse();
