@@ -43,6 +43,7 @@ public:
 	void logon( const QString& username, const QString& password ) override;
 	void logout() override;
 
+	bool authenticate( const QString& username, const QString& password ) override;
 
 private:
 	enum {

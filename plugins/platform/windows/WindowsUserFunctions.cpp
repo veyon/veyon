@@ -27,6 +27,8 @@
 #include <wtsapi32.h>
 #include <lm.h>
 
+#include "authSSP.h"
+
 
 static QString querySessionInformation( DWORD sessionId, WTS_INFO_CLASS infoClass )
 {
@@ -210,6 +212,27 @@ void WindowsUserFunctions::logon( const QString& username, const QString& passwo
 void WindowsUserFunctions::logout()
 {
 	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
+}
+
+
+
+bool WindowsUserFunctions::authenticate( const QString& username, const QString& password )
+{
+	QString domain;
+	QString user;
+
+	const auto userNameParts = username.split( '\\' );
+	if( userNameParts.count() == 2 )
+	{
+		domain = userNameParts[0];
+		user = userNameParts[1];
+	}
+	else
+	{
+		user = username;
+	}
+
+	return SSPLogonUser( (LPTSTR) domain.utf16(), (LPTSTR) user.utf16(), (LPTSTR) password.utf16() );
 }
 
 

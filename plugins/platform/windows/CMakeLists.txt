@@ -12,6 +12,8 @@ BUILD_PLUGIN(windows-platform
 	WindowsUserFunctions.cpp
 	SasEventListener.cpp
 	XEventLog.cpp
+	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
+	${ultravnc_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp
 	MOCFILES
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
@@ -24,5 +26,7 @@ BUILD_PLUGIN(windows-platform
 	XEventLog.h
 	COTIRE
 )
+
+INCLUDE_DIRECTORIES(${ultravnc_DIR}/addon/ms-logon/authSSP)
 
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32)

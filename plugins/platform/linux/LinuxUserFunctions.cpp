@@ -280,3 +280,28 @@ void LinuxUserFunctions::logout()
 	// Xfce logout
 	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
 }
+
+
+
+bool LinuxUserFunctions::authenticate( const QString& username, const QString& password )
+{
+	QProcess p;
+	p.start( QStringLiteral( "veyon-auth-helper" ) );
+	p.waitForStarted();
+
+	QDataStream ds( &p );
+	ds << VeyonCore::stripDomain( username );
+	ds << password;
+
+	p.closeWriteChannel();
+	p.waitForFinished();
+
+	if( p.exitCode() != 0 )
+	{
+		qCritical() << "VeyonAuthHelper failed:" << p.readAll().trimmed();
+		return false;
+	}
+
+	qDebug( "User authenticated successfully" );
+	return true;
+}

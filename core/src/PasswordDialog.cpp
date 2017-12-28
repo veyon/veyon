@@ -22,14 +22,11 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QMessageBox>
 #include <QPushButton>
 
 #include "PasswordDialog.h"
 #include "PlatformUserFunctions.h"
-#include "LogonAuthentication.h"
 
 #include "ui_PasswordDialog.h"
 
@@ -89,7 +86,7 @@ AuthenticationCredentials PasswordDialog::credentials() const
 
 void PasswordDialog::accept()
 {
-	if( LogonAuthentication::authenticateUser( credentials() ) == false )
+	if( VeyonCore::platform().userFunctions().authenticate( username(), password() ) == false )
 	{
 		QMessageBox::critical( window(),
 							   tr( "Authentication error" ),

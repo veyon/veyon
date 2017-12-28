@@ -29,8 +29,8 @@
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "KeyFileAssistant.h"
-#include "LogonAuthentication.h"
 #include "PasswordDialog.h"
+#include "PlatformUserFunctions.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_AuthenticationConfigurationPage.h"
@@ -108,18 +108,15 @@ void AuthenticationConfigurationPage::testLogonAuthentication()
 	PasswordDialog dlg( this );
 	if( dlg.exec() )
 	{
-		bool result = LogonAuthentication::authenticateUser( dlg.credentials() );
-		if( result )
+		if( VeyonCore::platform().userFunctions().authenticate( dlg.username(), dlg.password() ) )
 		{
 			QMessageBox::information( this, tr( "Logon authentication test" ),
-							tr( "Authentication with provided credentials "
-								"was successful." ) );
+							tr( "Authentication with provided credentials was successful." ) );
 		}
 		else
 		{
 			QMessageBox::critical( this, tr( "Logon authentication test" ),
-							tr( "Authentication with provided credentials "
-								"failed!" ) );
+							tr( "Authentication with provided credentials failed!" ) );
 		}
 	}
 }

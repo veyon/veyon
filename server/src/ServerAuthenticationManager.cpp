@@ -24,13 +24,13 @@
 
 #include <QHostAddress>
 
-#include "ServerAuthenticationManager.h"
 #include "AuthenticationCredentials.h"
+#include "ServerAuthenticationManager.h"
 #include "CryptoCore.h"
-#include "VeyonConfiguration.h"
 #include "LocalSystem.h"
-#include "LogonAuthentication.h"
+#include "PlatformUserFunctions.h"
 #include "VariantArrayMessage.h"
+#include "VeyonConfiguration.h"
 
 
 ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
@@ -217,11 +217,10 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 			return VncServerClient::AuthFinishedFail;
 		}
 
-		AuthenticationCredentials credentials;
-		credentials.setLogonUsername( client->username() );
-		credentials.setLogonPassword( QString::fromUtf8( decryptedPassword.toByteArray() ) );
+		qInfo() << "ServerAuthenticationManager::performLogonAuthentication(): authenticating user" << client->username();
 
-		if( LogonAuthentication::authenticateUser( credentials ) )
+		if( VeyonCore::platform().userFunctions().authenticate( client->username(),
+																QString::fromUtf8( decryptedPassword.toByteArray() ) ) )
 		{
 			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;

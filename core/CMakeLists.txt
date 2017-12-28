@@ -40,14 +40,6 @@ ENDIF()
 FILE(APPEND ${QT_TRANSLATIONS_QRC} "</qresource></RCC>")
 
 
-IF(VEYON_BUILD_WIN32)
-	SET(WIN32_AUTHSSP_SOURCES
-${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
-${ultravnc_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp)
-ELSE()
-	SET(WIN32_AUTHSSP_SOURCES "")
-ENDIF()
-
 SET(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/cursor.c
 	${libvncserver_DIR}/libvncclient/listen.c
@@ -63,7 +55,7 @@ QT5_ADD_RESOURCES(veyoncore_RCC_out ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc ${CMAKE
 
 IF(VEYON_BUILD_WIN32)
 	LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32 -linterception)
-	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ultravnc_DIR}/addon/ms-logon/authSSP)
+	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
 	ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
 ENDIF(VEYON_BUILD_WIN32)
 
