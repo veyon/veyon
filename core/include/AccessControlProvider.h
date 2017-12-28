@@ -77,6 +77,7 @@ private:
 
 	QList<AccessControlRule> m_accessControlRules;
 	AccessControlDataBackendInterface* m_dataBackend;
+	bool m_queryDomainGroups;
 
 } ;
 

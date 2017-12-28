@@ -96,6 +96,7 @@ public slots:
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
 	void setAccessControlDataBackend( QUuid );
+	void setDomainGroupsForAccessControlEnabled( bool );
 	void setAccessRestrictedToUserGroups( bool );
 	void setAccessControlRulesProcessingEnabled( bool );
 	void setAuthorizedUserGroups( const QStringList& );

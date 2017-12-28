@@ -36,7 +36,8 @@
 
 AccessControlProvider::AccessControlProvider() :
 	m_accessControlRules(),
-	m_dataBackend( VeyonCore::accessControlDataBackendManager().configuredBackend() )
+	m_dataBackend( VeyonCore::accessControlDataBackendManager().configuredBackend() ),
+	m_queryDomainGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() )
 {
 	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
@@ -52,7 +53,7 @@ AccessControlProvider::AccessControlProvider() :
 
 QStringList AccessControlProvider::userGroups() const
 {
-	auto userGroupList = m_dataBackend->userGroups();
+	auto userGroupList = m_dataBackend->userGroups( m_queryDomainGroups );
 
 	std::sort( userGroupList.begin(), userGroupList.end() );
 
@@ -121,7 +122,7 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 {
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
-	return intersects( m_dataBackend->groupsOfUser( accessingUser ).toSet(),
+	return intersects( m_dataBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet(),
 						VeyonCore::config().authorizedUserGroups().toSet() );
 }
 
@@ -194,10 +195,10 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 	if( groupNameRX.isValid() )
 	{
-		return m_dataBackend->groupsOfUser( user ).indexOf( QRegExp( groupName ) ) >= 0;
+		return m_dataBackend->groupsOfUser( user, m_queryDomainGroups ).indexOf( QRegExp( groupName ) ) >= 0;
 	}
 
-	return m_dataBackend->groupsOfUser( user ).contains( groupName );
+	return m_dataBackend->groupsOfUser( user, m_queryDomainGroups ).contains( groupName );
 }
 
 
@@ -211,8 +212,8 @@ bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QStr
 
 bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo ) const
 {
-	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne );
-	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne );
+	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne, m_queryDomainGroups );
+	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne, m_queryDomainGroups );
 
 	return intersects( userOneGroups.toSet(), userTwoGroups.toSet() );
 }

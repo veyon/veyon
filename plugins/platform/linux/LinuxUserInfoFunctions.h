@@ -34,8 +34,8 @@ class LinuxUserInfoFunctions : public PlatformUserInfoFunctions
 public:
 	QString fullName( const QString& username ) override;
 
-	QStringList userGroups() override;
-	QStringList groupsOfUser( const QString& username ) override;
+	QStringList userGroups( bool queryDomainGroups ) override;
+	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
 
 	QString loggedOnUser() override;
 	QStringList loggedOnUsers() override;

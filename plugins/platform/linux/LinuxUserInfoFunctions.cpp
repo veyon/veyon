@@ -53,8 +53,10 @@ QString LinuxUserInfoFunctions::fullName( const QString& username )
 
 
 
-QStringList LinuxUserInfoFunctions::userGroups()
+QStringList LinuxUserInfoFunctions::userGroups( bool queryDomainGroups )
 {
+	Q_UNUSED(queryDomainGroups);
+
 	QStringList groupList;
 
 	QProcess getentProcess;
@@ -158,8 +160,10 @@ QStringList LinuxUserInfoFunctions::userGroups()
 
 
 
-QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username )
+QStringList LinuxUserInfoFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
 {
+	Q_UNUSED(queryDomainGroups);
+
 	QStringList groupList;
 
 	const auto strippedUsername = VeyonCore::stripDomain( username );

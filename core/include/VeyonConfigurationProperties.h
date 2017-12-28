@@ -90,6 +90,7 @@
 
 #define FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
 	OP( VeyonConfiguration, VeyonCore::config(), UUID, accessControlDataBackend, setAccessControlDataBackend, "DataBackend", "AccessControl");		\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, domainGroupsForAccessControlEnabled, setDomainGroupsForAccessControlEnabled, "DomainGroupsEnabled", "AccessControl");		\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\
 	OP( VeyonConfiguration, VeyonCore::config(), STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\

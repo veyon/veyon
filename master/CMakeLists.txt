@@ -28,4 +28,8 @@ IF(VEYON_BUILD_WIN32)
 	SET_TARGET_PROPERTIES(veyon-master PROPERTIES LINK_FLAGS -mwindows)
 ENDIF(VEYON_BUILD_WIN32)
 
+IF(VEYON_BUILD_LINUX)
+	XDG_INSTALL(${CMAKE_CURRENT_BINARY_DIR}/data/veyon-master.desktop ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.xpm ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.png ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.svg)
+ENDIF()
+
 COTIRE_VEYON(veyon-master)
