@@ -23,40 +23,11 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include <QDir>
-#include <QProcess>
-#include <QWidget>
-#include <QHostInfo>
-
-#ifdef VEYON_BUILD_WIN32
-
-#include <QGuiApplication>
-#include <qpa/qplatformnativeinterface.h>
-
-#include <shlobj.h>
-#include <wtsapi32.h>
-#include <userenv.h>
-
-#endif
-
-
-#ifdef VEYON_HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#ifdef VEYON_HAVE_PWD_H
-#include <pwd.h>
-#endif
 
 #include "VeyonConfiguration.h"
 #include "LocalSystem.h"
-#include "Logger.h"
 #include "PlatformCoreFunctions.h"
-#include "PlatformUserFunctions.h"
-
-
 
 
 namespace LocalSystem
