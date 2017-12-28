@@ -32,8 +32,8 @@
 class WindowsUserInfoFunctions : public PlatformUserInfoFunctions
 {
 public:
-	QStringList userGroups( bool queryDomainGroups );
-	QStringList groupsOfUser( const QString& username, bool queryDomainGroups );
+	QStringList userGroups( bool queryDomainGroups ) override;
+	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
 
 	QStringList loggedOnUsers() override;
 
