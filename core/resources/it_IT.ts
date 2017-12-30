@@ -858,7 +858,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>Directory dell'oggetto di rete</translation>
+        <translation>Directory dell&apos;oggetto di rete</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1303,7 +1303,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found: %1</source>
-        <translate>La base DN LDAP e' stata ricercata con successo. Sono state trovate le seguenti voci: %1</translate>
+        <translate>La base DN LDAP e&apos; stata ricercata con successo. Sono state trovate le seguenti voci: %1</translate>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
@@ -1311,7 +1311,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter. %1</source>
-        <translate>Impossibile interrogare la base DN tramite contesti di denominazione. Si prega di controllare il parametro dell'attributo del contesto di denominazione.</translate>
+        <translate>Impossibile interrogare la base DN tramite contesti di denominazione. Si prega di controllare il parametro dell&apos;attributo del contesto di denominazione.</translate>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1410,7 +1410,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translate>Inserisci il DN di un computer il cui indirizzo MAC e' da ricercare</translate>
+        <translate>Inserisci il DN di un computer il cui indirizzo MAC e&apos; da ricercare</translate>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -1451,7 +1451,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translate>Non e' stato possibile trovare un utente con il nome &quot;%1&quot;. Controlla il nome utente o il parametro di alberatura utenti.</translate>
+        <translate>Non e&apos; stato possibile trovare un utente con il nome &quot;%1&quot;. Controlla il nome utente o il parametro di alberatura utenti.</translate>
     </message>
     <message>
         <source>Enter host name</source>
@@ -1475,7 +1475,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translate>Non e' stato possibile trovare un computer con il nome host &quot;%1&quot;. Controlla il nome host o il parametro di alberatura computer.</translate>
+        <translate>Non e&apos; stato possibile trovare un computer con il nome host &quot;%1&quot;. Controlla il nome host o il parametro di alberatura computer.</translate>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -1491,7 +1491,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translate>Non e' stato possibile ricercare nome host per l'indirizzo IP %1. Controlla le impostazioni del tuo server DNS.</translate>
+        <translate>Non e&apos; stato possibile ricercare nome host per l&apos;indirizzo IP %1. Controlla le impostazioni del tuo server DNS.</translate>
     </message>
     <message>
         <source>computers</source>
@@ -1511,7 +1511,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation>Il %1 e' stato interrogato con successo e sono state trovate %2 voci.</translation>
+        <translation>Il %1 e&apos; stato interrogato con successo e sono state trovate %2 voci.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.%3</source>
@@ -1651,7 +1651,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translate>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container di computer come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e' necessario che tu configuri questo attributo.</translate>
+        <translate>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container di computer come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e&apos; necessario che tu configuri questo attributo.</translate>
     </message>
     <message>
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
@@ -1941,7 +1941,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Quando si riscontrano bug o altri comportamenti scorretti in Veyon e' importante informare gli sviluppatori, cosicche' il bug venga risolto nelle versioni future. Questa pagina ti permette di inviare un report di un bug facilmente.</translation>
+        <translation>Quando si riscontrano bug o altri comportamenti scorretti in Veyon e&apos; importante informare gli sviluppatori, cosicche&apos; il bug venga risolto nelle versioni future. Questa pagina ti permette di inviare un report di un bug facilmente.</translation>
     </message>
     <message>
         <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
@@ -1996,11 +1996,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Un archivio di report bug %1 e' stato salvato in %2. Include %3 log file e informazioni sul tuo sistema operativo. Puoi allegarlo al bug report.</translation>
+        <translation>Un archivio di report bug %1 e&apos; stato salvato in %2. Include %3 log file e informazioni sul tuo sistema operativo. Puoi allegarlo al bug report.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>La configurazione locale backend ha riportato che la configurazione non e' salvabile! Si prega di eseguire il configuratore %1 con privilegi maggiori.</translation>
+        <translation>La configurazione locale backend ha riportato che la configurazione non e&apos; salvabile! Si prega di eseguire il configuratore %1 con privilegi maggiori.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
@@ -2008,7 +2008,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Nessun file di chiave di autenticazione e' stato trovato o i correnti sono antiquati. Si prega di creare un nuovi file di chiave usandi il Configuratore %1. In alternativa, imposta l'autenticazione di accesso usando il Configuratore %1. Altrimenti non sarai in grado ad accedere ai computer usando %1.</translation>
+        <translation>Nessun file di chiave di autenticazione e&apos; stato trovato o i correnti sono antiquati. Si prega di creare un nuovi file di chiave usandi il Configuratore %1. In alternativa, imposta l&apos;autenticazione di accesso usando il Configuratore %1. Altrimenti non sarai in grado ad accedere ai computer usando %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2016,7 +2016,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>Secondo la configurazione locale non ti e' permesso accedere ai computer nella rete. Si prega di effettuare il login con un account diverso o lasciar controllare al tuo amministatore di sistema la configurazione locale.</translation>
+        <translation>Secondo la configurazione locale non ti e&apos; permesso accedere ai computer nella rete. Si prega di effettuare il login con un account diverso o lasciar controllare al tuo amministatore di sistema la configurazione locale.</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2028,7 +2028,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translate>La funzionalità &quot;%1&quot; e' ancora attiva. Arrestala prima di chiudere %2.</translate>
+        <translate>La funzionalità &quot;%1&quot; e&apos; ancora attiva. Arrestala prima di chiudere %2.</translate>
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
@@ -2071,7 +2071,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>Funzionalita' sul doppio clic del computer:</translation>
+        <translation>Funzionalita&apos; sul doppio clic del computer:</translation>
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
@@ -2079,15 +2079,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Features</source>
-        <translate>Funzionalita'</translate>
+        <translate>Funzionalita&apos;</translate>
     </message>
     <message>
         <source>All features</source>
-        <translate>Tutte le funzionalita'</translate>
+        <translate>Tutte le funzionalita&apos;</translate>
     </message>
     <message>
         <source>Disabled features</source>
-        <translate>Funzionalita' disabilitate</translate>
+        <translate>Funzionalita&apos; disabilitate</translate>
     </message>
     <message>
         <source>Perform access control at program start</source>
@@ -2099,7 +2099,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translate><&lt;nessuna funzionalita'&gt;</translate>
+        <translate><&lt;nessuna funzionalita&apos;&gt;</translate>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
@@ -2115,7 +2115,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation>Applicare la modalita' selezionata per i client computer</translation>
+        <translation>Applicare la modalita&apos; selezionata per i client computer</translation>
     </message>
     <message>
         <source>Only show current room</source>
@@ -2123,7 +2123,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translate>Consenti l'&apos;aggiunta di stanze manualmente</translate>
+        <translate>Consenti l&apos;&apos;aggiunta di stanze manualmente</translate>
     </message>
     <message>
         <source>Hide local computer</source>
@@ -2143,7 +2143,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Always open at start</source>
-        <translate>Apri sempre all'avvio</translate>
+        <translate>Apri sempre all&apos;avvio</translate>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
@@ -2162,11 +2162,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translate>Modalita' di monitoraggio integrata</translate>
+        <translate>Modalita&apos; di monitoraggio integrata</translate>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translate>Questa e' la modalita' di default e ti consente di monitorare tutti i computer in una o piu' stanze</translate>
+        <translate>Questa e&apos; la modalita&apos; di default e ti consente di monitorare tutti i computer in una o piu&apos; stanze</translate>
     </message>
 </context>
 <context>
@@ -2298,15 +2298,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translate>Non e' stato possibile contattare il Service Control Manager (hai i permessi necessari?) - il servizio &apos;%1&apos; non e' stato arrestato.</translate>
+        <translate>Non e&apos; stato possibile contattare il Service Control Manager (hai i permessi necessari?) - il servizio &apos;%1&apos; non e&apos; stato arrestato.</translate>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be started.</source>
-        <translate>Il servizio &apos;%1;apos non puo' essere avviato</translate>
+        <translate>Il servizio &apos;%1;apos non puo&apos; essere avviato</translate>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translate>Non e' stato possibile contattare il Service Control Manager (hai i permessi necessari?) - il servizio &apos;%1&apos; non e' stato avviato.</translate>
+        <translate>Non e&apos; stato possibile contattare il Service Control Manager (hai i permessi necessari?) - il servizio &apos;%1&apos; non e&apos; stato avviato.</translate>
     </message>
 </context>
 <context>
@@ -2475,7 +2475,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translate>Non e' stato possibile effettuare una screenshot in quanto la directory %1 non esiste e non e' stato possibile crearla.</translate>
+        <translate>Non e&apos; stato possibile effettuare una screenshot in quanto la directory %1 non esiste e non e&apos; stato possibile crearla.</translate>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2529,7 +2529,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translate>Tutte le screenshot da te effettuate sono elencate qui. Puoi effettuare screenshot cliccando l'elemento &quot;Screenshot&quot; nel menu di un computer. Le screenshot possono essere gestite utilizzando i pulsanti qui sotto.</translate>
+        <translate>Tutte le screenshot da te effettuate sono elencate qui. Puoi effettuare screenshot cliccando l&apos;elemento &quot;Screenshot&quot; nel menu di un computer. Le screenshot possono essere gestite utilizzando i pulsanti qui sotto.</translate>
     </message>
     <message>
         <source>Computer:</source>
@@ -2616,7 +2616,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Feature manager port</source>
-        <translate>Porta manager funzionalita'</translate>
+        <translate>Porta manager funzionalita&apos;</translate>
     </message>
     <message>
         <source>Primary service port</source>
@@ -2859,7 +2859,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>Non usare l'estensione X Damage</translation>
+        <translation>Non usare l&apos;estensione X Damage</translation>
     </message>
 </context>
 </TS>
