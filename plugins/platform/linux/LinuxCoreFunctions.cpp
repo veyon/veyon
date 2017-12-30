@@ -63,7 +63,7 @@ void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Log
 
 void LinuxCoreFunctions::reboot()
 {
-	if( VeyonCore::platform().userFunctions().currentUser() == QStringLiteral("root") )
+	if( isRunningAsAdmin() )
 	{
 		QProcess::startDetached( QStringLiteral("reboot") );
 	}
@@ -86,7 +86,7 @@ void LinuxCoreFunctions::reboot()
 
 void LinuxCoreFunctions::powerDown()
 {
-	if( VeyonCore::platform().userFunctions().currentUser() == QStringLiteral("root") )
+	if( isRunningAsAdmin() )
 	{
 		QProcess::startDetached( QStringLiteral("poweroff") );
 	}
