@@ -42,4 +42,6 @@ bool LinuxNetworkFunctions::configureFirewallException( const QString& applicati
 	Q_UNUSED(applicationPath)
 	Q_UNUSED(description)
 	Q_UNUSED(enabled)
+
+	return true;
 }
