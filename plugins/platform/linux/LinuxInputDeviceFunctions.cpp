@@ -74,6 +74,15 @@ void LinuxInputDeviceFunctions::disableInputDevices()
 
 
 
+bool LinuxInputDeviceFunctions::configureSoftwareSAS( bool enabled )
+{
+	Q_UNUSED(enabled);
+
+	return true;
+}
+
+
+
 void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 {
 	if( m_origKeyTable )

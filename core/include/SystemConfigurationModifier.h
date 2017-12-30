@@ -32,7 +32,6 @@ class VEYON_CORE_EXPORT SystemConfigurationModifier
 {
 public:
 	static bool enableFirewallException( bool enabled );
-	static bool enableSoftwareSAS( bool enabled );
 
 } ;
 

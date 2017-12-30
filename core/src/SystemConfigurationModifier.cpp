@@ -23,17 +23,9 @@
  *
  */
 
-#include <veyonconfig.h>
-
-#ifdef VEYON_BUILD_WIN32
-#include <windows.h>
-#endif
-
-#include "FeatureWorkerManager.h"
 #include "SystemConfigurationModifier.h"
 #include "Filesystem.h"
 #include "PlatformNetworkFunctions.h"
-
 
 bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 {
@@ -41,37 +33,4 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 
 	return network.configureFirewallException( VeyonCore::filesystem().serverFilePath(), QStringLiteral("Veyon Server"), enabled ) &&
 			network.configureFirewallException( VeyonCore::filesystem().workerFilePath(), QStringLiteral("Veyon Worker"), enabled );
-}
-
-
-
-bool SystemConfigurationModifier::enableSoftwareSAS( bool enabled )
-{
-#ifdef VEYON_BUILD_WIN32
-	HKEY hkLocal, hkLocalKey;
-	DWORD dw;
-	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
-						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
-						0, REG_NONE, REG_OPTION_NON_VOLATILE,
-						KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
-	{
-		return false;
-	}
-
-	if( RegOpenKeyEx( hkLocal,
-					  L"System",
-					  0, KEY_WRITE | KEY_READ,
-					  &hkLocalKey ) != ERROR_SUCCESS )
-	{
-		RegCloseKey( hkLocal );
-		return false;
-	}
-
-	LONG pref = enabled ? 1 : 0;
-	RegSetValueEx( hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref) );
-	RegCloseKey( hkLocalKey );
-	RegCloseKey( hkLocal );
-#endif
-
-	return true;
 }

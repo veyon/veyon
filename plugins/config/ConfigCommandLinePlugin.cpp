@@ -30,6 +30,7 @@
 #include "Configuration/JsonStore.h"
 #include "Configuration/LocalStore.h"
 #include "ConfigCommandLinePlugin.h"
+#include "PlatformInputDeviceFunctions.h"
 #include "SystemConfigurationModifier.h"
 #include "VeyonServiceControl.h"
 
@@ -287,7 +288,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguratio
 		return operationError( tr( "Could not change the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( SystemConfigurationModifier::enableSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
+	if( VeyonCore::platform().inputDeviceFunctions().configureSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
 	{
 		return operationError( tr( "Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!" ) );
 	}

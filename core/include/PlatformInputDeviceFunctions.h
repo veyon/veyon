@@ -35,6 +35,8 @@ public:
 	virtual void enableInputDevices() = 0;
 	virtual void disableInputDevices() = 0;
 
+	virtual bool configureSoftwareSAS( bool enabled ) = 0;
+
 };
 
 #endif // PLATFORM_INPUT_DEVICE_FUNCTIONS_H

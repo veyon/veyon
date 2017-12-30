@@ -35,6 +35,7 @@
 #include "Filesystem.h"
 #include "Logger.h"
 #include "MainWindow.h"
+#include "PlatformInputDeviceFunctions.h"
 #include "SystemConfigurationModifier.h"
 #include "VeyonServiceControl.h"
 
@@ -62,7 +63,7 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 			tr( "Could not change the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() ) );
 	}
 
-	if( !SystemConfigurationModifier::enableSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) )
+	if( VeyonCore::platform().inputDeviceFunctions().configureSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
 	{
 		configApplyError(
 			tr( "Could not change the setting for SAS generation by software. "

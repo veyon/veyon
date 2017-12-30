@@ -40,6 +40,8 @@ public:
 	void enableInputDevices() override;
 	void disableInputDevices() override;
 
+	bool configureSoftwareSAS( bool enabled ) override;
+
 private:
 	void enableInterception();
 	void disableInterception();
