@@ -26,7 +26,7 @@
 
 #include <QTime>
 
-#include "VeyonCore.h"
+#include "Filesystem.h"
 #include "WindowsServiceCore.h"
 #include "SasEventListener.h"
 #include "PlatformUserFunctions.h"
@@ -143,7 +143,7 @@ public:
 
 		qInfo() << "Starting server for user" << VeyonCore::platform().userFunctions().currentUser();
 
-		m_subProcessHandle = runProgramAsSystem( VeyonCore::serverFilePath(), sessionId );
+		m_subProcessHandle = runProgramAsSystem( VeyonCore::filesystem().serverFilePath(), sessionId );
 		if( m_subProcessHandle == nullptr )
 		{
 			qCritical( "Failed to start server!" );

@@ -326,16 +326,6 @@ QString VeyonCore::userRoleName( VeyonCore::UserRole role )
 
 
 
-QString VeyonCore::serverFilePath()
-{
-	return QDir::toNativeSeparators(
-				QCoreApplication::applicationDirPath() +
-				QDir::separator() +
-				QStringLiteral("veyon-server" VEYON_EXECUTABLE_SUFFIX) );
-}
-
-
-
 QString VeyonCore::stripDomain( const QString& username )
 {
 	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")

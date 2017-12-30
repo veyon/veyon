@@ -163,3 +163,13 @@ QString Filesystem::publicKeyPath( VeyonCore::UserRoles role, QString baseDir ) 
 
 	return QDir::toNativeSeparators( d );
 }
+
+
+
+QString Filesystem::serverFilePath() const
+{
+	return QDir::toNativeSeparators(
+				QCoreApplication::applicationDirPath() +
+				QDir::separator() +
+				QStringLiteral("veyon-server" VEYON_EXECUTABLE_SUFFIX) );
+}

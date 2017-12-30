@@ -24,6 +24,7 @@
 
 #include <QProcess>
 
+#include "Filesystem.h"
 #include "LinuxServiceFunctions.h"
 
 bool LinuxServiceFunctions::isRegistered(const QString &name)
@@ -53,7 +54,7 @@ bool LinuxServiceFunctions::stop( const QString& name )
 
 
 bool LinuxServiceFunctions::install( const QString& name, const QString& filePath,
-									 StartMode startMode, const QString& displayName )
+                                     StartMode startMode, const QString& displayName )
 {
 	Q_UNUSED(name)
 	Q_UNUSED(filePath)
@@ -100,5 +101,5 @@ bool LinuxServiceFunctions::runAsService( const QString& name, std::function<voi
 
 void LinuxServiceFunctions::manageServerInstances()
 {
-	QProcess::execute( VeyonCore::serverFilePath() );
+	QProcess::execute( VeyonCore::filesystem().serverFilePath() );
 }

@@ -101,7 +101,6 @@ public:
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
 
-	static QString serverFilePath();
 	static QString stripDomain( const QString& username );
 
 	static Filesystem& filesystem()
