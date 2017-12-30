@@ -22,12 +22,8 @@
  *
  */
 
-#include "VeyonCore.h"
-
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtCore/QLocale>
-#include <QtCore/QTranslator>
+#include <QLocale>
+#include <QTranslator>
 #include <QAbstractButton>
 #include <QAction>
 #include <QApplication>
@@ -37,15 +33,12 @@
 
 #include "AccessControlDataBackendManager.h"
 #include "VeyonConfiguration.h"
-#include "VeyonRfbExt.h"
 #include "Filesystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
 #include "PluginManager.h"
-
-#include "rfb/rfbclient.h"
 
 VeyonCore *VeyonCore::s_instance = nullptr;
 

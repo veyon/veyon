@@ -25,6 +25,8 @@
 #ifndef WINDOWS_SERVICE_H
 #define WINDOWS_SERVICE_H
 
+#include <windows.h>
+
 #include "VeyonCore.h"
 
 class WindowsServiceControl : public QObject

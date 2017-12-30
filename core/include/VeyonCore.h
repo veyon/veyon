@@ -25,15 +25,6 @@
 #ifndef VEYON_CORE_H
 #define VEYON_CORE_H
 
-#include <veyonconfig.h>
-
-#ifdef VEYON_BUILD_WIN32
-#include <winsock2.h>
-#include <windows.h>
-#endif
-
-#include "rfb/rfbproto.h"
-
 #include <QtEndian>
 #include <QString>
 #include <QDebug>

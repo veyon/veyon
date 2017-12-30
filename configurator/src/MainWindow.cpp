@@ -22,6 +22,12 @@
  *
  */
 
+#include <veyonconfig.h>
+
+#ifdef VEYON_BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include <QDir>
 #include <QProcess>
 #include <QCloseEvent>

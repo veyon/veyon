@@ -23,14 +23,14 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
 #include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "VncServer.h"
 #include "VncServerPluginInterface.h"
+
+#include "rfb/rfbproto.h"
 
 
 VncServer::VncServer( QObject* parent ) :

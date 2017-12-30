@@ -22,6 +22,8 @@
  *
  */
 
+#include <veyonconfig.h>
+
 #include <QDir>
 
 #include "VeyonConfiguration.h"

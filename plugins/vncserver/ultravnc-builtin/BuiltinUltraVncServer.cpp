@@ -22,6 +22,8 @@
  *
  */
 
+#include <windows.h>
+
 #include <QCoreApplication>
 
 #include "BuiltinUltraVncServer.h"
@@ -133,7 +135,7 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 
 
 BuiltinUltraVncServer::BuiltinUltraVncServer() :
-    m_configuration()
+	m_configuration()
 {
 	vncServerInstance = this;
 

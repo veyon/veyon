@@ -22,6 +22,8 @@
  *
  */
 
+#include <veyonconfig.h>
+
 #include <QDesktopServices>
 #include <QFile>
 

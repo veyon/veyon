@@ -22,6 +22,8 @@
  *
  */
 
+#include <windows.h>
+
 #include "SasEventListener.h"
 
 SasEventListener::SasEventListener()

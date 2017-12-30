@@ -28,8 +28,6 @@
 #ifndef VEYON_VNC_CONNECTION_H
 #define VEYON_VNC_CONNECTION_H
 
-#include "VeyonCore.h"
-
 #include <QMutex>
 #include <QQueue>
 #include <QReadWriteLock>
@@ -38,9 +36,10 @@
 #include <QWaitCondition>
 #include <QImage>
 
+#include "rfb/rfbproto.h"
+
 #include "RfbVeyonAuth.h"
 #include "SocketDevice.h"
-
 
 class MessageEvent	// clazy:exclude=copyable-polymorphic
 {
@@ -223,8 +222,7 @@ private:
 	static void hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp );
 	static void hookCutText( rfbClient *cl, const char *text, int textlen );
 	static void hookOutputHandler( const char *format, ... );
-	static int8_t hookHandleVeyonMessage( rfbClient *cl,
-						rfbServerToClientMsg *msg );
+	static int8_t hookHandleVeyonMessage( rfbClient *cl, rfbServerToClientMsg *msg );
 	static void framebufferCleanup( void* framebuffer );
 
 	bool m_serviceReachable;

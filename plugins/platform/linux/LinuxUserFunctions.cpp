@@ -27,6 +27,7 @@
 #include "LinuxUserFunctions.h"
 
 #include <pwd.h>
+#include <unistd.h>
 
 
 QString LinuxUserFunctions::fullName( const QString& username )

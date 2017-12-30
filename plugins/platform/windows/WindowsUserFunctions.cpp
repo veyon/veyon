@@ -22,10 +22,12 @@
  *
  */
 
-#include "WindowsUserFunctions.h"
-
+#include <winsock2.h>
+#include <windows.h>
 #include <wtsapi32.h>
 #include <lm.h>
+
+#include "WindowsUserFunctions.h"
 
 #include "authSSP.h"
 

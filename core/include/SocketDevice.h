@@ -25,9 +25,7 @@
 #ifndef SOCKET_DEVICE_H
 #define SOCKET_DEVICE_H
 
-#include <QtCore/QIODevice>
-
-#include "VeyonCore.h"
+#include <QIODevice>
 
 class SocketDevice : public QIODevice
 {

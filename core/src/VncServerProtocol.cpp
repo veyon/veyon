@@ -22,17 +22,16 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include <QHostAddress>
 #include <QTcpSocket>
-
-#include "rfb/rfbproto.h"
 
 #include "AuthenticationCredentials.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
+
+#include "rfb/rfbproto.h"
+
 
 
 VncServerProtocol::VncServerProtocol( QTcpSocket* socket,

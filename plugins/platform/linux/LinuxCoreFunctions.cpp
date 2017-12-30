@@ -28,6 +28,8 @@
 #include <QStandardPaths>
 #include <QWidget>
 
+#include <unistd.h>
+
 #include "LinuxCoreFunctions.h"
 #include "PlatformUserFunctions.h"
 

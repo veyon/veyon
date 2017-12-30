@@ -22,6 +22,8 @@
  *
  */
 
+#include <veyonconfig.h>
+
 #include <QCoreApplication>
 #include <QDir>
 

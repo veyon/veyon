@@ -27,6 +27,8 @@
 
 #include <QRect>
 
+#include "rfb/rfbproto.h"
+
 #include "VeyonCore.h"
 
 class QBuffer;

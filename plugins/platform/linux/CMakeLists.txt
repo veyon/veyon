@@ -14,4 +14,3 @@ BUILD_PLUGIN(linux-platform
 	LinuxUserFunctions.h
 	COTIRE
 )
-

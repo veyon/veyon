@@ -27,8 +27,11 @@
 
 #include <QPointer>
 
+#include "rfb/rfbproto.h"
+
 #include "VeyonCore.h"
 #include "VeyonVncConnection.h"
+
 
 class FeatureMessage;
 

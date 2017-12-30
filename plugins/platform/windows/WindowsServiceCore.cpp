@@ -22,6 +22,7 @@
  *
  */
 
+#include <windows.h>
 #include <wtsapi32.h>
 
 #include <QTime>

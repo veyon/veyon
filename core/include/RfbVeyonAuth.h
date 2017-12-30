@@ -26,8 +26,6 @@
 #ifndef RFB_VEYON_AUTH_H
 #define RFB_VEYON_AUTH_H
 
-#include <QObject>
-
 #include "VeyonCore.h"
 #include "VeyonRfbExt.h"
 
