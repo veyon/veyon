@@ -89,7 +89,7 @@ static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 	PROCESS_INFORMATION pi;
 	ZeroMemory( &si, sizeof( STARTUPINFO ) );
 	si.cb = sizeof( STARTUPINFO );
-	si.lpDesktop = (LPWSTR) u"winsta0\\default";
+	si.lpDesktop = (LPWSTR) L"winsta0\\default";
 
 	HANDLE newToken = nullptr;
 
@@ -219,13 +219,13 @@ bool WindowsServiceCore::runAsService()
 		{ (LPWSTR) m_name.utf16(), serviceMainStatic },
 		{ nullptr, nullptr }
 	} ;
-	
+
 	if( !StartServiceCtrlDispatcher( dispatchTable ) )
 	{
 		qCritical( "WindowsServiceCore::runAsService(): StartServiceCtrlDispatcher failed." );
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -234,25 +234,25 @@ bool WindowsServiceCore::runAsService()
 void WindowsServiceCore::manageServerInstances()
 {
 	VeyonServerProcess veyonServerProcess;
-	
+
 	HANDLE hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
 										 L"Global\\SessionEventUltra" );
 	ResetEvent( hShutdownEvent );
-	
+
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;
 	DWORD oldSessionId = SESSION_INVALID;
-	
+
 	QTime lastServiceStart;
-	
+
 	do
 	{
 		bool sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
-		
+
 		const DWORD sessionId = WTSGetActiveConsoleSessionId();
 		if( oldSessionId != sessionId || sessionChanged )
 		{
 			qInfo( "Session ID changed from %d to %d", (int) oldSessionId, (int) sessionId );
-			
+
 			if( oldSessionId != SESSION_INVALID || sessionChanged )
 			{
 				// workaround for situations where service is stopped
@@ -262,9 +262,9 @@ void WindowsServiceCore::manageServerInstances()
 					SetEvent( hShutdownEvent );
 				}
 				while( lastServiceStart.elapsed() < 10000 && veyonServerProcess.isRunning() );
-				
+
 				veyonServerProcess.stop();
-				
+
 				Sleep( 5000 );
 			}
 			if( sessionId != SESSION_INVALID || sessionChanged )
@@ -272,7 +272,7 @@ void WindowsServiceCore::manageServerInstances()
 				veyonServerProcess.start( sessionId );
 				lastServiceStart.restart();
 			}
-			
+
 			oldSessionId = sessionId;
 		}
 		else if( veyonServerProcess.isRunning() == false )
@@ -282,12 +282,12 @@ void WindowsServiceCore::manageServerInstances()
 			lastServiceStart.restart();
 		}
 	} while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT );
-	
+
 	qInfo( "Service shutdown" );
-	
+
 	SetEvent( hShutdownEvent );
 	veyonServerProcess.stop();
-	
+
 	CloseHandle( hShutdownEvent );
 }
 
@@ -297,7 +297,7 @@ void WindowsServiceCore::serviceMainStatic( DWORD argc, LPWSTR* argv )
 {
 	Q_UNUSED(argc)
 	Q_UNUSED(argv)
-	
+
 	instance()->serviceMain();
 }
 
@@ -313,40 +313,40 @@ DWORD WindowsServiceCore::serviceCtrlStatic(DWORD ctrlCode, DWORD eventType, LPV
 void WindowsServiceCore::serviceMain()
 {
 	DWORD context = 1;
-	
+
 	m_statusHandle = RegisterServiceCtrlHandlerEx( (LPCWSTR) m_name.utf16(), serviceCtrlStatic, &context );
-	
+
 	if( m_statusHandle == 0 )
 	{
 		return;
 	}
-	
+
 	memset( &m_status, 0, sizeof( m_status ) );
 	m_status.dwServiceType = SERVICE_WIN32 | SERVICE_INTERACTIVE_PROCESS;
-	
+
 	if( reportStatus( SERVICE_START_PENDING, NO_ERROR, 15000 ) == false )
 	{
 		reportStatus( SERVICE_STOPPED, 0, 0 );
 		return;
 	}
-	
+
 	m_stopServiceEvent = CreateEvent( 0, FALSE, FALSE, 0 );
-	
+
 	if( reportStatus( SERVICE_RUNNING, NO_ERROR, 0 ) == false )
 	{
 		return;
 	}
-	
+
 	SasEventListener sasEventListener;
 	sasEventListener.start();
-	
+
 	m_serviceMainEntry();
-	
+
 	CloseHandle( m_stopServiceEvent );
-	
+
 	sasEventListener.stop();
 	sasEventListener.wait( SasEventListener::WaitPeriod );
-	
+
 	// Tell the service manager that we've stopped.
 	reportStatus( SERVICE_STOPPED, 0, 0 );
 }
@@ -357,7 +357,7 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 {
 	Q_UNUSED(eventData)
 	Q_UNUSED(context)
-	
+
 	// What control code have we been sent?
 	switch( ctrlCode )
 	{
@@ -367,11 +367,11 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 		m_status.dwCurrentState = SERVICE_STOP_PENDING;
 		SetEvent( m_stopServiceEvent );
 		break;
-		
+
 	case SERVICE_CONTROL_INTERROGATE:
 		// Service control manager just wants to know our state
 		break;
-		
+
 	case SERVICE_CONTROL_SESSIONCHANGE:
 		switch( eventType )
 		{
@@ -385,15 +385,15 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 			break;
 		}
 		break;
-		
+
 	default:
 		// Control code not recognised
 		break;
 	}
-	
+
 	// Tell the control manager what we're up to.
 	reportStatus( m_status.dwCurrentState, NO_ERROR, 0 );
-	
+
 	return NO_ERROR;
 }
 
@@ -404,7 +404,7 @@ bool WindowsServiceCore::reportStatus( DWORD state, DWORD exitCode, DWORD waitHi
 {
 	static DWORD checkpoint = 1;
 	bool result = true;
-	
+
 	// If we're in the start state then we don't want the control manager
 	// sending us control messages because they'll confuse us.
 	if( state == SERVICE_START_PENDING )
@@ -415,12 +415,12 @@ bool WindowsServiceCore::reportStatus( DWORD state, DWORD exitCode, DWORD waitHi
 	{
 		m_status.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN | SERVICE_ACCEPT_SESSIONCHANGE;
 	}
-	
+
 	// Save the new status we've been given
 	m_status.dwCurrentState = state;
 	m_status.dwWin32ExitCode = exitCode;
 	m_status.dwWaitHint = waitHint;
-	
+
 	// Update the checkpoint variable to let the SCM know that we
 	// haven't died if requests take a long time
 	if( ( state == SERVICE_RUNNING ) || ( state == SERVICE_STOPPED ) )
@@ -431,14 +431,14 @@ bool WindowsServiceCore::reportStatus( DWORD state, DWORD exitCode, DWORD waitHi
 	{
 		m_status.dwCheckPoint = checkpoint++;
 	}
-	
+
 	qDebug( "Reporting service status: %d", (int) state );
-	
+
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( m_statusHandle, &m_status ) ) )
 	{
 		qCritical( "WindowsServiceCore::reportStatus(...): SetServiceStatus failed." );
 	}
-	
+
 	return result;
 }
