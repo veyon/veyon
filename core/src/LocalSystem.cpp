@@ -34,66 +34,6 @@ namespace LocalSystem
 {
 
 
-bool Process::isRunningAsAdmin()
-{
-#ifdef VEYON_BUILD_WIN32
-	BOOL runningAsAdmin = false;
-	PSID adminGroupSid = NULL;
-
-	// allocate and initialize a SID of the administrators group.
-	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
-	if( AllocateAndInitializeSid(
-		&NtAuthority,
-		2,
-		SECURITY_BUILTIN_DOMAIN_RID,
-		DOMAIN_ALIAS_RID_ADMINS,
-		0, 0, 0, 0, 0, 0,
-		&adminGroupSid ) )
-	{
-		// determine whether the SID of administrators group is enabled in
-		// the primary access token of the process.
-		CheckTokenMembership( NULL, adminGroupSid, &runningAsAdmin );
-	}
-
-	if( adminGroupSid )
-	{
-		FreeSid( adminGroupSid );
-	}
-
-	return runningAsAdmin;
-#else
-	return true;
-#endif
-}
-
-
-
-
-bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
-{
-#ifdef VEYON_BUILD_WIN32
-	SHELLEXECUTEINFO sei = { sizeof(sei) };
-	sei.lpVerb = L"runas";
-	sei.lpFile = (LPWSTR) appPath.utf16();
-	sei.hwnd = GetForegroundWindow();
-	sei.lpParameters = (LPWSTR) parameters.utf16();
-	sei.nShow = SW_NORMAL;
-
-	if( !ShellExecuteEx( &sei ) )
-	{
-		if( GetLastError() == ERROR_CANCELLED )
-		{
-			// the user refused the elevation - do nothing
-		}
-		return false;
-	}
-#endif
-
-	return true;
-}
-
-
-
 QString Path::expand( QString path )
 {
 	QString p = QDTNS( path.replace( QStringLiteral( "$HOME" ), QDir::homePath() ).

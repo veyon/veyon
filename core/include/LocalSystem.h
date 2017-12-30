@@ -39,15 +39,6 @@ class QWidget;
 
 namespace LocalSystem
 {
-	class VEYON_CORE_EXPORT Process
-	{
-	public:
-		static bool isRunningAsAdmin();
-		static bool runAsAdmin( const QString &proc, const QString &parameters );
-
-	} ;
-
-
 	class VEYON_CORE_EXPORT Path
 	{
 	public:

@@ -30,26 +30,8 @@
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "MainWindow.h"
-#include "LocalSystem.h"
+#include "PlatformCoreFunctions.h"
 #include "Logger.h"
-
-
-bool checkPrivileges( int argc, char **argv )
-{
-	// make sure to run as admin
-	if( LocalSystem::Process::isRunningAsAdmin() == false )
-	{
-		QCoreApplication app( argc, argv );
-		QStringList args = app.arguments();
-		args.removeFirst();
-		LocalSystem::Process::runAsAdmin(
-				QCoreApplication::applicationFilePath(),
-				args.join( " " ) );
-		return false;
-	}
-
-	return true;
-}
 
 
 
@@ -152,16 +134,19 @@ bool parseRole( QStringListIterator& argIt )
 
 int main( int argc, char **argv )
 {
-	if( checkPrivileges( argc, argv ) == false )
-	{
-		return 0;
-	}
-
 	VeyonCore::setupApplicationParameters();
 
 	QApplication app( argc, argv );
 
 	VeyonCore core( &app, "Configurator" );
+
+	// make sure to run as admin
+	if( VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
+	{
+		VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
+																 app.arguments().mid( 1 ) );
+		return 0;
+	}
 
 	ConfiguratorCore::silent = app.arguments().contains( "-quiet" ) ||
 						app.arguments().contains( "-silent" ) ||

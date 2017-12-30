@@ -24,6 +24,8 @@
 
 #include <QDir>
 #include <QProcess>
+#include <QProcessEnvironment>
+#include <QStandardPaths>
 #include <QWidget>
 
 #include "LinuxCoreFunctions.h"
@@ -116,6 +118,34 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget )
 QString LinuxCoreFunctions::activeDesktopName()
 {
 	return QString();
+}
+
+
+
+bool LinuxCoreFunctions::isRunningAsAdmin() const
+{
+	return getuid() == 0 || geteuid() == 0;
+}
+
+
+
+bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
+{
+	const auto commandLine = QStringList( program ) + parameters;
+
+	const auto desktop = QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_CURRENT_DESKTOP") );
+	if( desktop == QStringLiteral("KDE") &&
+	        QStandardPaths::findExecutable( QStringLiteral("kdesudo") ).isEmpty() == false )
+	{
+		return QProcess::execute( QStringLiteral("kdesudo"), commandLine ) == 0;
+	}
+
+	if( QStandardPaths::findExecutable( QStringLiteral("gksudo") ).isEmpty() == false )
+	{
+		return QProcess::execute( QStringLiteral("gksudo"), commandLine ) == 0;
+	}
+
+	return QProcess::execute( QStringLiteral("pkexec"), commandLine );
 }
 
 

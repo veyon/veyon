@@ -44,8 +44,11 @@ public:
 
 	QString activeDesktopName() override;
 
+	bool isRunningAsAdmin() const override;
+	bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) override;
+
 	bool runProgramAsUser( const QString& program, const QString& username,
-						   const QString& desktop = QString() ) override;
+	                       const QString& desktop = QString() ) override;
 
 
 };

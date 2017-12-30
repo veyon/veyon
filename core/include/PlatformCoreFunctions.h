@@ -45,6 +45,9 @@ public:
 
 	virtual QString activeDesktopName() = 0;
 
+	virtual bool isRunningAsAdmin() const = 0;
+	virtual bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) = 0;
+
 	virtual bool runProgramAsUser( const QString& program,
 								   const QString& username,
 								   const QString& desktop ) = 0;

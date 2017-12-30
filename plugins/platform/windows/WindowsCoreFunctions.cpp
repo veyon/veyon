@@ -233,6 +233,55 @@ QString WindowsCoreFunctions::activeDesktopName()
 
 
 
+bool WindowsCoreFunctions::isRunningAsAdmin() const
+{
+	BOOL runningAsAdmin = false;
+	PSID adminGroupSid = nullptr;
+
+	// allocate and initialize a SID of the administrators group.
+	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
+	if( AllocateAndInitializeSid(
+		&NtAuthority,
+		2,
+		SECURITY_BUILTIN_DOMAIN_RID,
+		DOMAIN_ALIAS_RID_ADMINS,
+		0, 0, 0, 0, 0, 0,
+		&adminGroupSid ) )
+	{
+		// determine whether the SID of administrators group is enabled in
+		// the primary access token of the process.
+		CheckTokenMembership( nullptr, adminGroupSid, &runningAsAdmin );
+	}
+
+	if( adminGroupSid )
+	{
+		FreeSid( adminGroupSid );
+	}
+
+	return runningAsAdmin;
+}
+
+
+
+bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
+{
+	SHELLEXECUTEINFO sei = { sizeof(sei) };
+	sei.lpVerb = L"runas";
+	sei.lpFile = (LPWSTR) program.utf16();
+	sei.hwnd = GetForegroundWindow();
+	sei.lpParameters = (LPWSTR) parameters.join( ' ' ).utf16();
+	sei.nShow = SW_NORMAL;
+
+	if( ShellExecuteEx( &sei ) == false )
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
+
 bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 											 const QString& username,
 											 const QString& desktop )
