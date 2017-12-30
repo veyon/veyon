@@ -89,6 +89,7 @@ public:
 
 private:
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
+	static void broadcastWOLPacket( QString macAddress );
 
 	Feature m_powerOnFeature;
 	Feature m_rebootFeature;

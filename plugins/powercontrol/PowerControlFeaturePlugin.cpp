@@ -23,11 +23,11 @@
  */
 
 #include <QMessageBox>
+#include <QUdpSocket>
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "PlatformCoreFunctions.h"
-#include "PowerControl.h"
 #include "PowerControlFeaturePlugin.h"
 #include "VeyonConfiguration.h"
 
@@ -80,7 +80,7 @@ bool PowerControlFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
-			PowerControl::broadcastWOLPacket( controlInterface->computer().macAddress() );
+			broadcastWOLPacket( controlInterface->computer().macAddress() );
 		}
 	}
 	else
@@ -175,4 +175,49 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 	}
 
 	return false;
+}
+
+
+
+void PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
+{
+	const int MAC_SIZE = 6;
+	unsigned char mac[MAC_SIZE];
+
+	if( macAddress.isEmpty() )
+	{
+		return;
+	}
+
+	const auto originalMacAddress = macAddress;
+
+	// remove all possible delimiters
+	macAddress.replace( ':', QStringLiteral("") );
+	macAddress.replace( '-', QStringLiteral("") );
+	macAddress.replace( '.', QStringLiteral("") );
+
+	if( sscanf( macAddress.toUtf8().constData(),
+				"%2x%2x%2x%2x%2x%2x",
+				(unsigned int *) &mac[0],
+				(unsigned int *) &mac[1],
+				(unsigned int *) &mac[2],
+				(unsigned int *) &mac[3],
+				(unsigned int *) &mac[4],
+				(unsigned int *) &mac[5] ) != MAC_SIZE )
+	{
+		qWarning() << "PowerControlFeaturePlugin::broadcastWOLPacket(): invalid MAC address" << originalMacAddress;
+		return;
+	}
+
+	QByteArray datagram( MAC_SIZE*17, 0xff );
+
+	for( int i = 1; i < 17; ++i )
+	{
+		for(int j = 0; j < MAC_SIZE; ++j )
+		{
+			datagram[i*MAC_SIZE+j] = mac[j];
+		}
+	}
+
+	QUdpSocket().writeDatagram( datagram, QHostAddress::Broadcast, 9 );
 }
