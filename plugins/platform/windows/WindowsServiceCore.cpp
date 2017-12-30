@@ -28,7 +28,6 @@
 
 #include "VeyonCore.h"
 #include "WindowsServiceCore.h"
-#include "LocalSystem.h"
 #include "SasEventListener.h"
 #include "PlatformUserFunctions.h"
 #include "WindowsCoreFunctions.h"

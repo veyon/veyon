@@ -29,7 +29,6 @@
 #include "MainWindow.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCoreConnection.h"
-#include "LocalSystem.h"
 #include "Logger.h"
 
 

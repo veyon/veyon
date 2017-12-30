@@ -25,8 +25,8 @@
 #include <QFileDialog>
 #include <QLineEdit>
 
+#include "Filesystem.h"
 #include "FileSystemBrowser.h"
-#include "LocalSystem.h"
 
 
 QString FileSystemBrowser::exec( const QString &path,
@@ -36,7 +36,7 @@ QString FileSystemBrowser::exec( const QString &path,
 	QString browsePath = path;
 	if( m_expandPath )
 	{
-		browsePath = LocalSystem::Path::expand( browsePath );
+		browsePath = VeyonCore::filesystem().expandPath( browsePath );
 	}
 
 	switch( m_browseMode )
@@ -68,7 +68,7 @@ QString FileSystemBrowser::exec( const QString &path,
 		case ExistingDirectory:
 			chosenPath = QFileDialog::getExistingDirectory( nullptr, title,
 								browsePath,
-		                		QFileDialog::ShowDirsOnly |
+								QFileDialog::ShowDirsOnly |
 									QFileDialog::DontResolveSymlinks );
 			break;
 		case ExistingFile:
@@ -87,7 +87,7 @@ QString FileSystemBrowser::exec( const QString &path,
 	{
 		if( m_shrinkPath )
 		{
-			return LocalSystem::Path::shrink( chosenPath );
+			return VeyonCore::filesystem().shrinkPath( chosenPath );
 		}
 		return chosenPath;
 	}

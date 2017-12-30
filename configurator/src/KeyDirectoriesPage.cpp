@@ -22,11 +22,11 @@
  *
  */
 
-#include <QtCore/QFileInfo>
+#include <QFileInfo>
 
+#include "Filesystem.h"
 #include "KeyFileAssistant.h"
 #include "KeyDirectoriesPage.h"
-#include "LocalSystem.h"
 #include "ui_KeyFileAssistant.h"
 
 
@@ -60,7 +60,7 @@ bool KeyDirectoriesPage::isComplete() const
 			m_ui->exportPublicKey->isChecked() )
 	{
 		if( m_ui->publicKeyDir->text().isEmpty() ||
-				!QFileInfo( LocalSystem::Path::expand( m_ui->publicKeyDir->text() ) ).isDir() )
+				!QFileInfo( VeyonCore::filesystem().expandPath( m_ui->publicKeyDir->text() ) ).isDir() )
 		{
 			return false;
 		}
@@ -68,7 +68,7 @@ bool KeyDirectoriesPage::isComplete() const
 	else if( m_ui->modeImportPublicKey->isChecked() )
 	{
 		if( m_ui->publicKeyDir->text().isEmpty() ||
-				!QFileInfo( LocalSystem::Path::expand( m_ui->publicKeyDir->text() ) ).isFile() )
+				!QFileInfo( VeyonCore::filesystem().expandPath( m_ui->publicKeyDir->text() ) ).isFile() )
 		{
 			return false;
 		}
@@ -77,7 +77,7 @@ bool KeyDirectoriesPage::isComplete() const
 	if( m_ui->useCustomDestDir->isChecked() )
 	{
 		if( m_ui->destDirEdit->text().isEmpty() ||
-				!QFileInfo( LocalSystem::Path::expand( m_ui->destDirEdit->text() ) ).isDir() )
+				!QFileInfo( VeyonCore::filesystem().expandPath( m_ui->destDirEdit->text() ) ).isDir() )
 		{
 			return false;
 		}

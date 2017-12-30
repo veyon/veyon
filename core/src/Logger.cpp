@@ -28,8 +28,8 @@
 #include <QFile>
 
 #include "VeyonConfiguration.h"
+#include "Filesystem.h"
 #include "Logger.h"
-#include "LocalSystem.h"
 #include "PlatformCoreFunctions.h"
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
@@ -89,7 +89,7 @@ Logger::~Logger()
 
 void Logger::initLogFile()
 {
-	QString logPath = LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() );
+	QString logPath = VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() );
 
 	if( !QDir( logPath ).exists() )
 	{

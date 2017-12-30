@@ -27,11 +27,11 @@
 
 #include "KeyFileAssistant.h"
 #include "CryptoCore.h"
+#include "Filesystem.h"
 #include "FileSystemBrowser.h"
 #include "ConfiguratorCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
-#include "LocalSystem.h"
 #include "Logger.h"
 #include "ui_KeyFileAssistant.h"
 
@@ -46,9 +46,9 @@ KeyFileAssistant::KeyFileAssistant() :
 	m_ui->directoriesPage->setUi( m_ui );
 
 	// init destination directory line edit
-	QDir d( LocalSystem::Path::expand( VeyonCore::config().privateKeyBaseDir() ) );
+	QDir d( VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() ) );
 	d.cdUp();
-	m_ui->destDirEdit->setText( QDTNS( d.absolutePath() ) );
+	m_ui->destDirEdit->setText( QDir::toNativeSeparators( d.absolutePath() ) );
 
 	connect( m_ui->openDestDir, &QAbstractButton::clicked, this, &KeyFileAssistant::openDestDir );
 	connect( m_ui->openPubKeyDir, &QAbstractButton::clicked, this, &KeyFileAssistant::openPubKeyDir );
@@ -115,8 +115,8 @@ void KeyFileAssistant::accept()
 	QString destDir;
 	if( m_ui->useCustomDestDir->isChecked() ||
 				// trap the case public and private key path are equal
-				LocalSystem::Path::publicKeyPath( role ) ==
-					LocalSystem::Path::privateKeyPath( role ) )
+				VeyonCore::filesystem().publicKeyPath( role ) ==
+					VeyonCore::filesystem().privateKeyPath( role ) )
 	{
 		destDir = m_ui->destDirEdit->text();
 	}
@@ -127,8 +127,8 @@ void KeyFileAssistant::accept()
 		{
 			if( m_ui->exportPublicKey->isChecked() )
 			{
-				QFile src( LocalSystem::Path::publicKeyPath( role, destDir ) );
-				QFile dst( QDTNS( m_ui->publicKeyDir->text() +
+				QFile src( VeyonCore::filesystem().publicKeyPath( role, destDir ) );
+				QFile dst( QDir::toNativeSeparators( m_ui->publicKeyDir->text() +
 										"/veyon_public_key.key.txt" ) );
 				if( dst.exists() )
 				{
@@ -151,8 +151,8 @@ void KeyFileAssistant::accept()
 			}
 			QMessageBox::information( this, tr( "Access key creation" ),
 				tr( "Access keys were created and written successfully to %1 and %2." ).
-					arg( LocalSystem::Path::privateKeyPath( role, destDir ),
-						 LocalSystem::Path::publicKeyPath( role, destDir ) ) );
+					arg( VeyonCore::filesystem().privateKeyPath( role, destDir ),
+						 VeyonCore::filesystem().publicKeyPath( role, destDir ) ) );
 		}
 		else
 		{
@@ -176,7 +176,7 @@ void KeyFileAssistant::accept()
 		}
 		QMessageBox::information( this, tr( "Public key import" ),
 				tr( "The public key was successfully imported to %1." ).
-					arg( LocalSystem::Path::publicKeyPath( role, destDir ) ) );
+					arg( VeyonCore::filesystem().publicKeyPath( role, destDir ) ) );
 	}
 
 	QWizard::accept();

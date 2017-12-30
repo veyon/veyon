@@ -28,7 +28,6 @@
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "VeyonRfbExt.h"
-#include "LocalSystem.h"
 #include "Logger.h"
 #include "NetworkObjectDirectory.h"
 
@@ -87,14 +86,14 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setFirewallExceptionEnabled( true );
 	c.setSoftwareSASEnabled( true );
 
-	c.setUserConfigurationDirectory( QDTNS( QStringLiteral( "$APPDATA/Config" ) ) );
-	c.setScreenshotDirectory( QDTNS( QStringLiteral( "$APPDATA/Screenshots" ) ) );
+	c.setUserConfigurationDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Config" ) ) );
+	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%$APPDATA%/Screenshots" ) ) );
 
 	c.setKeyAuthenticationEnabled( true );
 	c.setLogonAuthenticationEnabled( true );
 
-	c.setPrivateKeyBaseDir( QDTNS( QStringLiteral( "$GLOBALAPPDATA/keys/private" ) ) );
-	c.setPublicKeyBaseDir( QDTNS( QStringLiteral( "$GLOBALAPPDATA/keys/public" ) ) );
+	c.setPrivateKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ) );
+	c.setPublicKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ) );
 
 	c.setAuthorizedUserGroups( QStringList() );
 

@@ -26,10 +26,10 @@
 #include <QMessageBox>
 
 #include "GeneralConfigurationPage.h"
+#include "Filesystem.h"
 #include "FileSystemBrowser.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PluginManager.h"
 #include "VeyonServiceControl.h"
@@ -139,7 +139,7 @@ void GeneralConfigurationPage::clearLogFiles()
 	}
 
 	bool success = true;
-	QDir d( LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() ) );
+	QDir d( VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() ) );
 	const auto localLogFiles = d.entryList( QStringList() << "Veyon*.log" );
 	for( const auto& f : localLogFiles )
 	{

@@ -41,7 +41,6 @@
 #include "MonitoringMode.h"
 #include "ToolButton.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "MasterCore.h"
 #include "UserConfig.h"
 

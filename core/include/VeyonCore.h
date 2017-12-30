@@ -54,11 +54,12 @@ class QWidget;
 class AccessControlDataBackendManager;
 class AuthenticationCredentials;
 class CryptoCore;
-class VeyonConfiguration;
+class Filesystem;
 class Logger;
 class PlatformPluginInterface;
 class PlatformPluginManager;
 class PluginManager;
+class VeyonConfiguration;
 
 class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
@@ -103,6 +104,11 @@ public:
 	static QString serverFilePath();
 	static QString stripDomain( const QString& username );
 
+	static Filesystem& filesystem()
+	{
+		return *( instance()->m_filesystem );
+	}
+
 	typedef enum UserRoles
 	{
 		RoleNone,
@@ -130,6 +136,7 @@ public:
 private:
 	static VeyonCore* s_instance;
 
+	Filesystem* m_filesystem;
 	VeyonConfiguration* m_config;
 	Logger* m_logger;
 	AuthenticationCredentials* m_authenticationCredentials;

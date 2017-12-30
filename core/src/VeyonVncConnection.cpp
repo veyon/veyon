@@ -37,7 +37,6 @@
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonVncConnection.h"
-#include "LocalSystem.h"
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
 

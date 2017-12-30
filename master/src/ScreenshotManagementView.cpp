@@ -27,10 +27,10 @@
 #include <QFileSystemModel>
 #include <QScrollArea>
 
+#include "Filesystem.h"
 #include "ScreenshotManagementView.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
-#include "LocalSystem.h"
 #include "Screenshot.h"
 
 #include "ui_ScreenshotManagementView.h"
@@ -43,12 +43,11 @@ ScreenshotManagementView::ScreenshotManagementView( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	LocalSystem::Path::ensurePathExists( VeyonCore::config().screenshotDirectory() );
+	VeyonCore::filesystem().ensurePathExists( VeyonCore::config().screenshotDirectory() );
 
 	m_fsModel.setNameFilters( { QStringLiteral("*.png") } );
 	m_fsModel.setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
-	m_fsModel.setRootPath( LocalSystem::Path::expand(
-									VeyonCore::config().screenshotDirectory() ) );
+	m_fsModel.setRootPath( VeyonCore::filesystem().expandPath( VeyonCore::config().screenshotDirectory() ) );
 
 	ui->list->setModel( &m_fsModel );
 	ui->list->setRootIndex( m_fsModel.index( m_fsModel.rootPath() ) );

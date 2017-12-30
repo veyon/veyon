@@ -32,9 +32,8 @@
 #include "VeyonConfiguration.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
-#include "LocalSystem.h"
 #include "Logger.h"
-
+#include "Filesystem.h"
 
 Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
 	QObject( parent ),
@@ -67,9 +66,8 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
-	const QString dir = LocalSystem::Path::expand(
-									VeyonCore::config().screenshotDirectory() );
-	if( !LocalSystem::Path::ensurePathExists( dir ) )
+	const QString dir = VeyonCore::filesystem().expandPath( VeyonCore::config().screenshotDirectory() );
+	if( VeyonCore::filesystem().ensurePathExists( dir ) == false )
 	{
 		QString msg = tr( "Could not take a screenshot as directory %1 "
 								"doesn't exist and couldn't be "

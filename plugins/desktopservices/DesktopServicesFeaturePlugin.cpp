@@ -34,7 +34,6 @@
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
-#include "LocalSystem.h"
 #include "DesktopServicesFeaturePlugin.h"
 #include "RunProgramDialog.h"
 #include "PlatformCoreFunctions.h"

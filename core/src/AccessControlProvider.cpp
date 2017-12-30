@@ -29,7 +29,6 @@
 #include "AccessControlProvider.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
-#include "LocalSystem.h"
 #include "PlatformPluginInterface.h"
 #include "PlatformUserFunctions.h"
 

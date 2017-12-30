@@ -32,11 +32,11 @@
 #include "Configuration/LocalStore.h"
 
 #include "AboutDialog.h"
+#include "Filesystem.h"
 #include "FileSystemBrowser.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "ConfiguratorCore.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "MainWindow.h"
 #include "PluginManager.h"
 
@@ -295,7 +295,7 @@ void MainWindow::generateBugReportArchive()
 
 
 	// compress all log files and encode them as base64
-	const QStringList paths( { LocalSystem::Path::expand( VeyonCore::config().logFileDirectory() ),
+	const QStringList paths( { VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() ),
 #ifdef VEYON_BUILD_WIN32
 	"C:\\Windows\\Temp"
 #else
@@ -323,7 +323,7 @@ void MainWindow::generateBugReportArchive()
 			tr( "An %1 bug report archive has been saved to %2. "
 				"It includes %3 log files and information about your "
 				"operating system. You can attach it to a bug report." ).arg(
-				VeyonCore::applicationName(), QDTNS( outfile ), VeyonCore::applicationName() ) );
+				VeyonCore::applicationName(), QDir::toNativeSeparators( outfile ), VeyonCore::applicationName() ) );
 }
 
 

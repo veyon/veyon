@@ -28,7 +28,6 @@
 #include "AccessControlProvider.h"
 #include "DesktopAccessDialog.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "VariantArrayMessage.h"
 
 

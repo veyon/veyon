@@ -32,7 +32,7 @@
 #include "CryptoCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
-#include "LocalSystem.h"
+#include "Filesystem.h"
 #include "Logger.h"
 #include "MainWindow.h"
 #include "SystemConfigurationModifier.h"
@@ -80,11 +80,11 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 
 bool ConfiguratorCore::createKeyPair( VeyonCore::UserRole role, const QString &destDir )
 {
-	QString privateKeyFileName = LocalSystem::Path::privateKeyPath( role, destDir );
-	QString publicKeyFileName = LocalSystem::Path::publicKeyPath( role, destDir );
+	QString privateKeyFileName = VeyonCore::filesystem().privateKeyPath( role, destDir );
+	QString publicKeyFileName = VeyonCore::filesystem().publicKeyPath( role, destDir );
 
-	LocalSystem::Path::ensurePathExists( QFileInfo( privateKeyFileName ).path() );
-	LocalSystem::Path::ensurePathExists( QFileInfo( publicKeyFileName ).path() );
+	VeyonCore::filesystem().ensurePathExists( QFileInfo( privateKeyFileName ).path() );
+	VeyonCore::filesystem().ensurePathExists( QFileInfo( publicKeyFileName ).path() );
 
 	qInfo() << "ConfiguratorCore: creating new key pair in" << privateKeyFileName << "and" << publicKeyFileName;
 
@@ -161,9 +161,9 @@ bool ConfiguratorCore::importPublicKey( VeyonCore::UserRole role, const QString&
 		return false;
 	}
 
-	QString destinationPublicKeyPath = LocalSystem::Path::publicKeyPath( role, destDir );
+	QString destinationPublicKeyPath = VeyonCore::filesystem().publicKeyPath( role, destDir );
 
-	LocalSystem::Path::ensurePathExists( QFileInfo( destinationPublicKeyPath ).path() );
+	VeyonCore::filesystem().ensurePathExists( QFileInfo( destinationPublicKeyPath ).path() );
 
 	QFile destFile( destinationPublicKeyPath );
 	if( destFile.exists() )

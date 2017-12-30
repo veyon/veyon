@@ -38,7 +38,7 @@
 #include "AccessControlDataBackendManager.h"
 #include "VeyonConfiguration.h"
 #include "VeyonRfbExt.h"
-#include "LocalSystem.h"
+#include "Filesystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
@@ -67,6 +67,7 @@ void VeyonCore::setupApplicationParameters()
 
 VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
 	QObject( application ),
+	m_filesystem( new Filesystem ),
 	m_config( nullptr ),
 	m_logger( nullptr ),
 	m_authenticationCredentials( nullptr ),
@@ -182,6 +183,9 @@ VeyonCore::~VeyonCore()
 	delete m_config;
 	m_config = nullptr;
 
+	delete m_filesystem;
+	m_filesystem = nullptr;
+
 	s_instance = nullptr;
 }
 
@@ -237,7 +241,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
 			config().isKeyAuthenticationEnabled() )
 	{
-		const QString privKeyFile = LocalSystem::Path::privateKeyPath( userRole() );
+		const QString privKeyFile = VeyonCore::filesystem().privateKeyPath( userRole() );
 		qDebug() << "Loading private key" << privKeyFile << "for role" << userRole();
 		if( m_authenticationCredentials->loadPrivateKey( privKeyFile ) )
 		{

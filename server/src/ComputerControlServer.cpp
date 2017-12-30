@@ -30,7 +30,6 @@
 #include "ComputerControlClient.h"
 #include "FeatureMessage.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "SystemTrayIcon.h"
 
 

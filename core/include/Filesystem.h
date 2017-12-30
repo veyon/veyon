@@ -1,7 +1,7 @@
 /*
- * LocalSystem.h - misc. platform-specific stuff
+ * Filesystem.h - filesystem related query and manipulation functions
  *
- * Copyright (c) 2006-2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,36 +22,22 @@
  *
  */
 
-#ifndef LOCAL_SYSTEM_H
-#define LOCAL_SYSTEM_H
+#ifndef FILESYSTEM_H
+#define FILESYSTEM_H
 
 #include "VeyonCore.h"
 
-#ifdef VEYON_BUILD_WIN32
-#include <windef.h>
-#endif
-
-#define QDTNS(x)	QDir::toNativeSeparators(x)
-
-class QWidget;
-
 // clazy:excludeall=rule-of-three
 
-namespace LocalSystem
+class VEYON_CORE_EXPORT Filesystem
 {
-	class VEYON_CORE_EXPORT Path
-	{
-	public:
-		static QString expand( QString path );
-		static QString shrink( QString path );
-		static bool ensurePathExists( const QString &path );
+public:
+	QString expandPath( QString path ) const;
+	QString shrinkPath( QString path ) const;
+	bool ensurePathExists( const QString &path ) const;
 
-		static QString privateKeyPath( VeyonCore::UserRoles role,
-												QString baseDir = QString() );
-		static QString publicKeyPath( VeyonCore::UserRoles role,
-												QString baseDir = QString() );
-	} ;
-
-}
+	QString privateKeyPath( VeyonCore::UserRoles role, QString baseDir = QString() ) const;
+	QString publicKeyPath( VeyonCore::UserRoles role, QString baseDir = QString() ) const;
+};
 
 #endif

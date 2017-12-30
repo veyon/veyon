@@ -30,8 +30,8 @@
 
 #include "Configuration/JsonStore.h"
 #include "Configuration/Object.h"
+#include "Filesystem.h"
 #include "VeyonConfiguration.h"
-#include "LocalSystem.h"
 #include "PlatformCoreFunctions.h"
 
 
@@ -183,11 +183,11 @@ QString JsonStore::configurationFilePath() const
 		break;
 	}
 
-	base = LocalSystem::Path::expand( base );
+	base = VeyonCore::filesystem().expandPath( base );
 
-	LocalSystem::Path::ensurePathExists( base );
+	VeyonCore::filesystem().ensurePathExists( base );
 
-	return QDTNS( base + QDir::separator() + configurationNameFromScope() + ".json" );
+	return QDir::toNativeSeparators( base + QDir::separator() + configurationNameFromScope() + ".json" );
 }
 
 }

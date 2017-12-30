@@ -27,7 +27,7 @@
 #include "AuthenticationCredentials.h"
 #include "ServerAuthenticationManager.h"
 #include "CryptoCore.h"
-#include "LocalSystem.h"
+#include "Filesystem.h"
 #include "PlatformUserFunctions.h"
 #include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
@@ -151,9 +151,9 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 		// under which the client claims to run
 		const QByteArray signature = message.read().toByteArray();
 
-		qDebug() << "Loading public key" << LocalSystem::Path::publicKeyPath( urole ) << "for role" << urole;
+		qDebug() << "Loading public key" << VeyonCore::filesystem().publicKeyPath( urole ) << "for role" << urole;
 		// (publicKeyPath does range-checking of urole)
-		CryptoCore::PublicKey publicKey( LocalSystem::Path::publicKeyPath( urole ) );
+		CryptoCore::PublicKey publicKey( VeyonCore::filesystem().publicKeyPath( urole ) );
 
 		if( publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) )
 		{
