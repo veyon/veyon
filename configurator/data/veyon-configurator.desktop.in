@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Version=1.0
 Type=Application
-Exec=pkexec @CMAKE_INSTALL_PREFIX@/bin/veyon-configurator
+Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-configurator
 Icon=veyon-configurator
 Terminal=false
 Name=Veyon Configurator
