@@ -26,11 +26,12 @@
 
 
 WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_windowsCoreFunctions(),
-    m_windowsNetworkFunctions(),
+	QObject( parent ),
+	m_windowsCoreFunctions(),
+	m_windowsInputDeviceFunctions(),
+	m_windowsNetworkFunctions(),
 	m_windowsServiceFunctions(),
-    m_windowsUserFunctions()
+	m_windowsUserFunctions()
 {
 }
 

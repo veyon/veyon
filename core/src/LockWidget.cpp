@@ -25,6 +25,7 @@
 
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformInputDeviceFunctions.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -50,9 +51,10 @@ static int __ss_val[3];
 LockWidget::LockWidget( Mode mode, QWidget* parent ) :
 	QWidget( parent, Qt::X11BypassWindowManagerHint ),
 	m_background(),
-	m_mode( mode ),
-	m_inputDeviceBlocker()
+	m_mode( mode )
 {
+	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
+
 	switch( mode )
 	{
 	case Black:
@@ -94,6 +96,8 @@ LockWidget::LockWidget( Mode mode, QWidget* parent ) :
 
 LockWidget::~LockWidget()
 {
+	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
+
 #ifdef VEYON_BUILD_WIN32
 	// revert screensaver-settings
 	for( int x = 0; x < 3; ++x )

@@ -5,6 +5,7 @@ ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
 BUILD_PLUGIN(windows-platform
 	WindowsPlatformPlugin.cpp
 	WindowsCoreFunctions.cpp
+	WindowsInputDeviceFunctions.cpp
 	WindowsNetworkFunctions.cpp
 	WindowsServiceControl.cpp
 	WindowsServiceCore.cpp
@@ -17,6 +18,7 @@ BUILD_PLUGIN(windows-platform
 	MOCFILES
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
+	WindowsInputDeviceFunctions.h
 	WindowsNetworkFunctions.h
 	WindowsServiceControl.h
 	WindowsServiceCore.h

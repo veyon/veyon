@@ -1,7 +1,7 @@
 /*
- * InputDeviceBlocker.h - class for blocking all input devices
+ * WindowsInputDeviceFunctions.h - declaration of WindowsInputDeviceFunctions class
  *
- * Copyright (c) 2016-2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,59 +22,35 @@
  *
  */
 
-#ifndef INPUT_DEVICE_BLOCKER_H
-#define INPUT_DEVICE_BLOCKER_H
+#ifndef WINDOWS_INPUT_DEVICE_FUNCTIONS_H
+#define WINDOWS_INPUT_DEVICE_FUNCTIONS_H
 
-#include "VeyonCore.h"
-
-#ifdef VEYON_BUILD_WIN32
 #include <interception.h>
-#endif
 
-#include <QByteArray>
-#include <QMutex>
+#include "PlatformInputDeviceFunctions.h"
 
-// clazy:excludeall=rule-of-three
+// clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT InputDeviceBlocker
+class WindowsInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
-	InputDeviceBlocker( bool enable = true );
-	~InputDeviceBlocker();
+	WindowsInputDeviceFunctions();
+	~WindowsInputDeviceFunctions();
 
-	void setEnabled( bool on );
-	bool isEnabled() const
-	{
-		return m_enabled;
-	}
-
+	void enableInputDevices() override;
+	void disableInputDevices() override;
 
 private:
 	void enableInterception();
 	void disableInterception();
 	void stopHIDService();
 	void restoreHIDService();
-	void setEmptyKeyMapTable();
-	void restoreKeyMapTable();
 
-	static QMutex s_refCntMutex;
-	static int s_refCnt;
-
-	bool m_enabled;
+	bool m_inputDevicesDisabled;
+	InterceptionContext m_interceptionContext;
 	QString m_hidServiceName;
 	bool m_hidServiceActivated;
-#ifdef VEYON_BUILD_LINUX
-	void* m_origKeyTable;
-	int m_keyCodeMin;
-	int m_keyCodeMax;
-	int m_keyCodeCount;
-	int m_keySymsPerKeyCode;
-#endif
-#ifdef VEYON_BUILD_WIN32
-	InterceptionContext m_interceptionContext;
-#endif
 
-} ;
+};
 
-#endif
-
+#endif // WINDOWS_INPUT_DEVICE_FUNCTIONS_H

@@ -28,6 +28,7 @@
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "LinuxCoreFunctions.h"
+#include "LinuxInputDeviceFunctions.h"
 #include "LinuxNetworkFunctions.h"
 #include "LinuxServiceFunctions.h"
 #include "LinuxUserFunctions.h"
@@ -81,6 +82,11 @@ public:
 		return m_linuxCoreFunctions;
 	}
 
+	PlatformInputDeviceFunctions& inputDeviceFunctions() override
+	{
+		return m_linuxInputDeviceFunctions;
+	}
+
 	PlatformNetworkFunctions& networkFunctions() override
 	{
 		return m_linuxNetworkFunctions;
@@ -98,6 +104,7 @@ public:
 
 private:
 	LinuxCoreFunctions m_linuxCoreFunctions;
+	LinuxInputDeviceFunctions m_linuxInputDeviceFunctions;
 	LinuxNetworkFunctions m_linuxNetworkFunctions;
 	LinuxServiceFunctions m_linuxServiceFunctions;
 	LinuxUserFunctions m_linuxUserFunctions;

@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * LinuxInputDeviceFunctions.h - declaration of LinuxInputDeviceFunctions class
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,21 +22,33 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef LINUX_INPUT_DEVICE_FUNCTIONS_H
+#define LINUX_INPUT_DEVICE_FUNCTIONS_H
 
+#include "PlatformInputDeviceFunctions.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_linuxCoreFunctions(),
-    m_linuxInputDeviceFunctions(),
-    m_linuxNetworkFunctions(),
-    m_linuxServiceFunctions(),
-    m_linuxUserFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class LinuxInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
-}
+public:
+	LinuxInputDeviceFunctions();
+	~LinuxInputDeviceFunctions();
 
+	void enableInputDevices() override;
+	void disableInputDevices() override;
 
+private:
+	void setEmptyKeyMapTable();
+	void restoreKeyMapTable();
 
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+	bool m_inputDevicesDisabled;
+	void* m_origKeyTable;
+	int m_keyCodeMin;
+	int m_keyCodeMax;
+	int m_keyCodeCount;
+	int m_keySymsPerKeyCode;
+
+};
+
+#endif // LINUX_INPUT_DEVICE_FUNCTIONS_H

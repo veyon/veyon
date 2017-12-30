@@ -1,5 +1,5 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * PlatformInputDeviceFunctions.h - interface class for platform plugins
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,21 +22,19 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef PLATFORM_INPUT_DEVICE_FUNCTIONS_H
+#define PLATFORM_INPUT_DEVICE_FUNCTIONS_H
 
+#include "PlatformPluginInterface.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-    QObject( parent ),
-    m_linuxCoreFunctions(),
-    m_linuxInputDeviceFunctions(),
-    m_linuxNetworkFunctions(),
-    m_linuxServiceFunctions(),
-    m_linuxUserFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class PlatformInputDeviceFunctions
 {
-}
+public:
+	virtual void enableInputDevices() = 0;
+	virtual void disableInputDevices() = 0;
 
+};
 
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+#endif // PLATFORM_INPUT_DEVICE_FUNCTIONS_H

@@ -28,6 +28,7 @@
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "WindowsCoreFunctions.h"
+#include "WindowsInputDeviceFunctions.h"
 #include "WindowsNetworkFunctions.h"
 #include "WindowsServiceFunctions.h"
 #include "WindowsUserFunctions.h"
@@ -76,9 +77,14 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
-	WindowsCoreFunctions& coreFunctions() override
+	PlatformCoreFunctions& coreFunctions() override
 	{
 		return m_windowsCoreFunctions;
+	}
+
+	PlatformInputDeviceFunctions& inputDeviceFunctions() override
+	{
+		return m_windowsInputDeviceFunctions;
 	}
 
 	PlatformNetworkFunctions& networkFunctions() override
@@ -98,6 +104,7 @@ public:
 
 private:
 	WindowsCoreFunctions m_windowsCoreFunctions;
+	WindowsInputDeviceFunctions m_windowsInputDeviceFunctions;
 	WindowsNetworkFunctions m_windowsNetworkFunctions;
 	WindowsServiceFunctions m_windowsServiceFunctions;
 	WindowsUserFunctions m_windowsUserFunctions;

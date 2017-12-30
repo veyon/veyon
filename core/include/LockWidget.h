@@ -28,7 +28,6 @@
 #include <QPixmap>
 
 #include "VeyonCore.h"
-#include "InputDeviceBlocker.h"
 
 
 class VEYON_CORE_EXPORT LockWidget : public QWidget
@@ -51,7 +50,6 @@ private:
 
 	QPixmap m_background;
 	Mode m_mode;
-	InputDeviceBlocker m_inputDeviceBlocker;
 
 } ;
 
