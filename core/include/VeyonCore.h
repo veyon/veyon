@@ -86,6 +86,11 @@ public:
 		return *( instance()->m_platformPlugin );
 	}
 
+	static Filesystem& filesystem()
+	{
+		return *( instance()->m_filesystem );
+	}
+
 	static void setupApplicationParameters();
 	bool initAuthentication( int credentialTypes );
 
@@ -93,11 +98,6 @@ public:
 	static void enforceBranding( QWidget* topLevelWidget );
 
 	static QString stripDomain( const QString& username );
-
-	static Filesystem& filesystem()
-	{
-		return *( instance()->m_filesystem );
-	}
 
 	typedef enum UserRoles
 	{
