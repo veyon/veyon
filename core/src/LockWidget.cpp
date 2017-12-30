@@ -21,8 +21,6 @@
  *  USA.
  */
 
-#include <veyonconfig.h>
-
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformInputDeviceFunctions.h"
@@ -30,22 +28,6 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QPainter>
-
-
-#ifdef VEYON_BUILD_WIN32
-
-#include <windows.h>
-
-static const UINT __ss_get_list[] = { SPI_GETLOWPOWERTIMEOUT,
-						SPI_GETPOWEROFFTIMEOUT,
-						SPI_GETSCREENSAVETIMEOUT };
-static const UINT __ss_set_list[] = { SPI_SETLOWPOWERTIMEOUT,
-						SPI_SETPOWEROFFTIMEOUT,
-						SPI_SETSCREENSAVETIMEOUT };
-static int __ss_val[3];
-
-#endif
-
 
 
 LockWidget::LockWidget( Mode mode, QWidget* parent ) :
@@ -81,34 +63,18 @@ LockWidget::LockWidget( Mode mode, QWidget* parent ) :
 
 	QCursor::setPos( mapToGlobal( QPoint( 0, 0 ) ) );
 
-#ifdef VEYON_BUILD_WIN32
-	// disable screensaver
-	for( int x = 0; x < 3; ++x )
-	{
-		SystemParametersInfo( __ss_get_list[x], 0, &__ss_val[x], 0 );
-		SystemParametersInfo( __ss_set_list[x], 0, NULL, 0 );
-	}
-#endif
+	VeyonCore::platform().coreFunctions().disableScreenSaver();
 }
-
 
 
 
 LockWidget::~LockWidget()
 {
 	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
-
-#ifdef VEYON_BUILD_WIN32
-	// revert screensaver-settings
-	for( int x = 0; x < 3; ++x )
-	{
-		SystemParametersInfo( __ss_set_list[x], __ss_val[x], NULL, 0 );
-	}
-#endif
+	VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
 
 	QGuiApplication::restoreOverrideCursor();
 }
-
 
 
 
@@ -132,4 +98,3 @@ void LockWidget::paintEvent( QPaintEvent * )
 			break;
 	}
 }
-

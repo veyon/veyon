@@ -116,6 +116,19 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget )
 }
 
 
+void LinuxCoreFunctions::disableScreenSaver()
+{
+	// TODO
+}
+
+
+
+void LinuxCoreFunctions::restoreScreenSaverSettings()
+{
+	// TODO
+}
+
+
 
 QString LinuxCoreFunctions::activeDesktopName()
 {

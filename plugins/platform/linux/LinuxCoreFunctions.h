@@ -42,6 +42,9 @@ public:
 
 	void raiseWindow( QWidget* widget ) override;
 
+	void disableScreenSaver() override;
+	void restoreScreenSaverSettings() override;
+
 	QString activeDesktopName() override;
 
 	bool isRunningAsAdmin() const override;

@@ -43,6 +43,9 @@ public:
 
 	virtual void raiseWindow( QWidget* widget ) = 0;
 
+	virtual void disableScreenSaver() = 0;
+	virtual void restoreScreenSaverSettings() = 0;
+
 	virtual QString activeDesktopName() = 0;
 
 	virtual bool isRunningAsAdmin() const = 0;

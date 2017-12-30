@@ -37,6 +37,23 @@
 #define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
 #define SHUTDOWN_REASON SHTDN_REASON_MAJOR_OTHER
 
+static const int screenSaverSettingsCount = 3;
+static const UINT screenSaverSettingsGetList[screenSaverSettingsCount] =
+{
+	SPI_GETLOWPOWERTIMEOUT,
+	SPI_GETPOWEROFFTIMEOUT,
+	SPI_GETSCREENSAVETIMEOUT
+};
+
+static const UINT screenSaverSettingsSetList[screenSaverSettingsCount] =
+{
+	SPI_SETLOWPOWERTIMEOUT,
+	SPI_SETPOWEROFFTIMEOUT,
+	SPI_SETSCREENSAVETIMEOUT
+};
+
+static int screenSaverSettings[screenSaverSettingsCount];
+
 
 static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
 {
@@ -51,7 +68,6 @@ static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
 
 	return result;
 }
-
 
 
 
@@ -208,6 +224,27 @@ void WindowsCoreFunctions::raiseWindow( QWidget* widget )
 
 		SetWindowPos( windowHandle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
 		SetWindowPos( windowHandle, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
+	}
+}
+
+
+
+void WindowsCoreFunctions::disableScreenSaver()
+{
+	for( int i = 0; i < screenSaverSettingsCount; ++i )
+	{
+		SystemParametersInfo( screenSaverSettingsGetList[i], 0, &screenSaverSettings[i], 0 );
+		SystemParametersInfo( screenSaverSettingsSetList[i], 0, nullptr, 0 );
+	}
+}
+
+
+
+void WindowsCoreFunctions::restoreScreenSaverSettings()
+{
+	for( int i = 0; i < screenSaverSettingsCount; ++i )
+	{
+		SystemParametersInfo( screenSaverSettingsSetList[i], screenSaverSettings[i], nullptr, 0 );
 	}
 }
 
