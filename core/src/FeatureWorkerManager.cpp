@@ -31,6 +31,7 @@
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
+#include "Filesystem.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 
@@ -74,14 +75,6 @@ FeatureWorkerManager::~FeatureWorkerManager()
 
 
 
-QString FeatureWorkerManager::workerProcessFilePath()
-{
-	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-worker" VEYON_EXECUTABLE_SUFFIX) );
-}
-
-
-
 void FeatureWorkerManager::startWorker( const Feature& feature )
 {
 	if( thread() != QThread::currentThread() )
@@ -102,8 +95,8 @@ void FeatureWorkerManager::startWorker( const Feature& feature )
 			 worker.process, &QProcess::deleteLater );
 
 	qDebug() << "Starting worker for feature" << feature.displayName() << feature.uid();
-	worker.process->start( workerProcessFilePath(),	{ feature.uid().toString(),
-													  QString::number( VeyonCore::config().featureWorkerManagerPort() ) } );
+	worker.process->start( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString(),
+																	   QString::number( VeyonCore::config().featureWorkerManagerPort() ) } );
 
 	m_workersMutex.lock();
 	m_workers[feature.uid()] = worker;

@@ -33,6 +33,7 @@ class WindowsNetworkFunctions : public PlatformNetworkFunctions
 {
 public:
 	bool ping( const QString& hostAddress ) override;
+	bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) override;
 
 };
 

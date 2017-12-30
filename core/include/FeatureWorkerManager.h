@@ -42,8 +42,6 @@ public:
 	FeatureWorkerManager( FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
-	static QString workerProcessFilePath();
-
 	Q_INVOKABLE void startWorker( const Feature& feature );
 	Q_INVOKABLE void stopWorker( const Feature& feature );
 

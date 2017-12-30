@@ -34,3 +34,12 @@ bool LinuxNetworkFunctions::ping( const QString& hostAddress )
 
 	return pingProcess.exitCode() == 0;
 }
+
+
+
+bool LinuxNetworkFunctions::configureFirewallException( const QString& applicationPath, const QString& description, bool enabled )
+{
+	Q_UNUSED(applicationPath)
+	Q_UNUSED(description)
+	Q_UNUSED(enabled)
+}

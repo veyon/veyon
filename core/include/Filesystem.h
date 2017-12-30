@@ -40,6 +40,7 @@ public:
 	QString publicKeyPath( VeyonCore::UserRoles role, QString baseDir = QString() ) const;
 
 	QString serverFilePath() const;
+	QString workerFilePath() const;
 
 };
 
