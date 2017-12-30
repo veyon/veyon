@@ -25,12 +25,45 @@
 
 #include "SystemConfigurationModifier.h"
 #include "Filesystem.h"
+#include "PlatformInputDeviceFunctions.h"
 #include "PlatformNetworkFunctions.h"
+#include "VeyonConfiguration.h"
+#include "VeyonServiceControl.h"
 
-bool SystemConfigurationModifier::enableFirewallException( bool enabled )
+
+bool SystemConfigurationModifier::applyConfiguration()
 {
+	// update Veyon Service configuration
+	if( VeyonServiceControl().setAutostart( VeyonCore::config().autostartService() ) == false )
+	{
+		m_errorString =  tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() );
+		return false;
+	}
+
 	auto& network = VeyonCore::platform().networkFunctions();
 
-	return network.configureFirewallException( VeyonCore::filesystem().serverFilePath(), QStringLiteral("Veyon Server"), enabled ) &&
-			network.configureFirewallException( VeyonCore::filesystem().workerFilePath(), QStringLiteral("Veyon Worker"), enabled );
+	if( network.configureFirewallException( VeyonCore::filesystem().serverFilePath(),
+											QStringLiteral("Veyon Server"),
+											VeyonCore::config().isFirewallExceptionEnabled() ) == false )
+	{
+		m_errorString = tr( "Could not configure the firewall configuration for the %1 Server." ).arg( VeyonCore::applicationName() );
+		return false;
+	}
+
+	if( network.configureFirewallException( VeyonCore::filesystem().workerFilePath(),
+											QStringLiteral("Veyon Worker"),
+											VeyonCore::config().isFirewallExceptionEnabled() ) == false )
+	{
+		m_errorString = tr( "Could not configure the firewall configuration for the %1 Worker." ).arg( VeyonCore::applicationName() );
+		return false;
+	}
+
+	if( VeyonCore::platform().inputDeviceFunctions().configureSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
+	{
+		m_errorString =  tr( "Could not change the setting for SAS generation by software. "
+							 "Sending Ctrl+Alt+Del via remote control will not work!" );
+		return false;
+	}
+
+	return true;
 }

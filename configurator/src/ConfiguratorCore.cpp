@@ -35,9 +35,7 @@
 #include "Filesystem.h"
 #include "Logger.h"
 #include "MainWindow.h"
-#include "PlatformInputDeviceFunctions.h"
 #include "SystemConfigurationModifier.h"
-#include "VeyonServiceControl.h"
 
 // static data initialization
 bool ConfiguratorCore::silent = false;
@@ -48,26 +46,12 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 	// merge configuration
 	VeyonCore::config() += c;
 
-	// update Veyon Service configuration
-	VeyonServiceControl serviceControl;
-	if( serviceControl.setAutostart( VeyonCore::config().autostartService() ) == false )
-	{
-		configApplyError(
-			tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() ) );
-	}
+	SystemConfigurationModifier sysConfig;
 
-	if( !SystemConfigurationModifier::enableFirewallException(
-							VeyonCore::config().isFirewallExceptionEnabled() ) )
+	if( sysConfig.applyConfiguration() == false )
 	{
-		configApplyError(
-			tr( "Could not change the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() ) );
-	}
-
-	if( VeyonCore::platform().inputDeviceFunctions().configureSoftwareSAS( VeyonCore::config().isSoftwareSASEnabled() ) == false )
-	{
-		configApplyError(
-			tr( "Could not change the setting for SAS generation by software. "
-				"Sending Ctrl+Alt+Del via remote control will not work!" ) );
+		configApplyError( sysConfig.errorString() );
+		return false;
 	}
 
 	// write global configuration

@@ -28,10 +28,19 @@
 
 #include "VeyonCore.h"
 
-class VEYON_CORE_EXPORT SystemConfigurationModifier
+class VEYON_CORE_EXPORT SystemConfigurationModifier : public QObject
 {
+	Q_OBJECT
 public:
-	static bool enableFirewallException( bool enabled );
+	bool applyConfiguration();
+
+	const QString& errorString() const
+	{
+		return m_errorString;
+	}
+
+private:
+	QString m_errorString;
 
 } ;
 
