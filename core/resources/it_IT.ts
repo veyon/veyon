@@ -1173,7 +1173,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Object attributes</source>
-        <translation>Attributi degli oggetti<translation>
+        <translation>Attributi degli oggetti</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
