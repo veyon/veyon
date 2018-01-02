@@ -195,7 +195,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>El computador de acceso es localhot</translation>
+        <translation>El computador de acceso es localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -386,7 +386,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Error de autentificacion</translation>
+        <translation>Error de autenticación</translation>
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
@@ -686,7 +686,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Dar una demostración por transmisión a pantalla</translation>
+        <translation>Dar una demostración por difusión de pantalla</translation>
     </message>
     <message>
         <source>Demo server</source>
