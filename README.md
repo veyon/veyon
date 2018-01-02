@@ -134,6 +134,9 @@ production systems) by running the following command as root:
 
 	make install
 
+### Arch linux
+
+A PKGBUILD can be found in the [AUR](https://aur.archlinux.org/packages/veyon/).
 
 ## Join development
 
