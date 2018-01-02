@@ -1126,7 +1126,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>p.ej. dc=example,dc=org</translation>
+        <translation>v.g. dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -1134,7 +1134,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation>p.ej. namingContexts o defaultNamingContext</translation>
+        <translation>v.g. namingContexts o defaultNamingContext</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1150,7 +1150,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>p.ej. OU=Groups</translation>
+        <translation>v.g. OU=Groups</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -1158,11 +1158,11 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>p.ej. OU=Users</translation>
+        <translation>v.g. OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>p.ej. OU=Computers</translation>
+        <translation>v.g. OU=Computers</translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -1186,7 +1186,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation>p.ej. member o memberUid</translation>
+        <translation>v.g. member o memberUid</translation>
     </message>
     <message>
         <source>User login attribute</source>
@@ -1194,7 +1194,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation>p.ej. dNSHostName</translation>
+        <translation>v.g. dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
@@ -1206,11 +1206,11 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation>p.ej. uid o sAMAccountName</translation>
+        <translation>v.g. uid o sAMAccountName</translation>
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Nombres de equipo almacenados como nombres de dominio totalmente calificados (FQDN, p.ej. myhost.example.org)</translation>
+        <translation>Nombres de equipo almacenados como nombres de dominio totalmente calificados (FQDN, v.g. myhost.example.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1222,7 +1222,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=group</source>
-        <translation>p.ej. objectClass=group</translation>
+        <translation>v.g. objectClass=group</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
@@ -1230,7 +1230,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=person</source>
-        <translation>p.ej. objectClass=person</translation>
+        <translation>v.g. objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1574,15 +1574,15 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=computer</source>
-        <translation>p.ej. objectClass=equipo</translation>
+        <translation>v.g. objectClass=equipo</translation>
     </message>
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>p.ej. objectClass=sala or objectClass=aula</translation>
+        <translation>v.g. objectClass=sala or objectClass=aula</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>p.ej. sala o aula</translation>
+        <translation>v.g. sala o aula</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -1634,7 +1634,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation>p.ej. objectClass=container o objectClass=organizationalUnit</translation>
+        <translation>v.g. objectClass=container o objectClass=organizationalUnit</translation>
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
@@ -1658,7 +1658,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation>p.ej. nombre o descripción</translation>
+        <translation>v.g. nombre o descripción</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
@@ -2469,7 +2469,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>p.ej. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation>v.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
@@ -2735,7 +2735,7 @@ Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Utilice esta función para enviar un mensaje de texto a todos los usuarios, p.ej., para asignarles nuevas tareas.</translation>
+        <translation>Utilice esta función para enviar un mensaje de texto a todos los usuarios, v.g., para asignarles nuevas tareas.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
