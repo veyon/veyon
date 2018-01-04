@@ -1,10 +1,17 @@
+FIND_PACKAGE(Qt5DBus REQUIRED)
+FIND_PACKAGE(PkgConfig QUIET)
+pkg_check_modules(procps REQUIRED libprocps)
+
 INCLUDE(BuildPlugin)
+
+INCLUDE_DIRECTORIES(${procps_INCLUDE_DIRS})
 
 BUILD_PLUGIN(linux-platform
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
 	LinuxInputDeviceFunctions.cpp
 	LinuxNetworkFunctions.cpp
+	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
 	LinuxUserFunctions.cpp
 	MOCFILES
@@ -12,10 +19,14 @@ BUILD_PLUGIN(linux-platform
 	LinuxCoreFunctions.h
 	LinuxInputDeviceFunctions.h
 	LinuxNetworkFunctions.h
+	LinuxServiceCore.h
 	LinuxServiceFunctions.h
 	LinuxUserFunctions.h
 	COTIRE
 )
 
-TARGET_LINK_LIBRARIES(linux-platform ${X11_LIBRARIES})
-
+TARGET_LINK_LIBRARIES(linux-platform
+	${X11_LIBRARIES}
+	Qt5::DBus
+	${procps_LDFLAGS}
+	)
