@@ -6,7 +6,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 SET(CMAKE_BUILD_TYPE relwithdebinfo)
 
 IF(COMMAND CMAKE_POLICY)
-	CMAKE_POLICY(SET CMP0009 NEW)
+    CMAKE_POLICY(SET CMP0009 NEW)
 	CMAKE_POLICY(SET CMP0020 NEW)
 ENDIF()
 
@@ -22,8 +22,8 @@ INCLUDE(CotireVeyon)
 FIND_PACKAGE(Git)
 
 IF(GIT_FOUND)
-	EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
+		            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 					OUTPUT_STRIP_TRAILING_WHITESPACE
 					OUTPUT_VARIABLE VERSION_STRING)
 	STRING(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
@@ -32,12 +32,12 @@ IF(GIT_FOUND)
 
 	# determine build number to use in NSIS installer and resource files
 	EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" describe --tags
-					COMMAND cut -d "-" -f2
+		            COMMAND cut -d "-" -f2
 					WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 					OUTPUT_STRIP_TRAILING_WHITESPACE
 					OUTPUT_VARIABLE VERSION_BUILD)
 	IF(NOT VERSION_BUILD GREATER 0)
-		SET(VERSION_BUILD 0)
+	    SET(VERSION_BUILD 0)
 	ENDIF()
 
 	# Get list of all committers from git history, ordered by number of commits.
@@ -46,9 +46,9 @@ IF(GIT_FOUND)
 	# this file for version 3.0.2, the command is:
 	#   git shortlog -sne v3.0.2 | cut -c8-
 	IF(NOT CONTRIBUTORS)
-		SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
+	    SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
 		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -sne
-						COMMAND cut -c8-
+			            COMMAND cut -c8-
 						COMMAND grep -v root
 						OUTPUT_FILE "${CONTRIBUTORS}"
 						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
@@ -60,13 +60,13 @@ ENDIF()
 
 # can't retrieve version information as not building from Git repository?
 IF(NOT VERSION_STRING)
-	SET(VERSION_MAJOR 4)
+    SET(VERSION_MAJOR 4)
 	SET(VERSION_MINOR 0)
 	SET(VERSION_PATCH 3)
 	SET(VERSION_BUILD 0)
 	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 ELSE()
-	# remove leading character from tag name
+    # remove leading character from tag name
 	STRING(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
 ENDIF()
 
@@ -75,11 +75,11 @@ INCLUDE(DetectMachine)
 
 # check for pthreads and TLS support
 IF(WIN32)
-	SET(VEYON_HAVE_LIBPTHREAD true)
+    SET(VEYON_HAVE_LIBPTHREAD true)
 ELSE(WIN32)
     FIND_PACKAGE(Threads)
 	IF(CMAKE_USE_PTHREADS_INIT)
-		SET(VEYON_HAVE_LIBPTHREAD true)
+	    SET(VEYON_HAVE_LIBPTHREAD true)
 	ENDIF(CMAKE_USE_PTHREADS_INIT)
 ENDIF(WIN32)
 
@@ -128,7 +128,7 @@ CHECK_INCLUDE_FILES(linux/videodev2.h VEYON_HAVE_LINUX_VIDEODEV2_H)
 CHECK_INCLUDE_FILES(ws2tcpip.h VEYON_HAVE_WS2TCPIP_H)
 
 IF(VEYON_BUILD_LINUX)
-	FIND_PACKAGE(PAM REQUIRED)
+    FIND_PACKAGE(PAM REQUIRED)
 	INCLUDE(XdgInstall)
 ENDIF()
 
@@ -136,7 +136,7 @@ SET(CMAKE_REQUIRED_LIBRARIES "-lm")
 
 SET(FUNCS dup2 floor ftime geteuid gethostbyname gethostname getpwnam getpwuid getspnam gettimeofday getuid grantpt inet_ntoa initgroups memcmp memcpy memmove memset mkfifo mmap fork pow putenv select seteuid setpgrp setsid setutxent socket strchr strdup strerror strpbrk strrchr strstr uname waitpid)
 FOREACH(_func ${FUNCS})
-	STRING(TOUPPER "${_func}" fuc)
+    STRING(TOUPPER "${_func}" fuc)
 	CHECK_FUNCTION_EXISTS(${_func} VEYON_HAVE_${fuc})
 ENDFOREACH(_func ${FUNCS})
 
@@ -158,9 +158,9 @@ FIND_PACKAGE(JPEG REQUIRED)
 FIND_PACKAGE(LZO REQUIRED)
 FIND_PACKAGE(QCA REQUIRED)
 IF(VEYON_BUILD_WIN32)
-	SET(OPENSSL_LIBRARIES -L${MINGW_PREFIX}/bin -leay32)
+    SET(OPENSSL_LIBRARIES -L${MINGW_PREFIX}/bin -leay32)
 ELSE(VEYON_BUILD_WIN32)
-	FIND_PACKAGE(OpenSSL REQUIRED)
+    FIND_PACKAGE(OpenSSL REQUIRED)
 ENDIF(VEYON_BUILD_WIN32)
 FIND_PACKAGE(PNG)
 
@@ -183,33 +183,33 @@ FIND_PACKAGE(Sasl2)
 
 # find X libraries
 IF(VEYON_BUILD_WIN32)
-	ADD_DEFINITIONS(-DLIBVNCSERVER_NEED_INADDR_T)
+    ADD_DEFINITIONS(-DLIBVNCSERVER_NEED_INADDR_T)
 ELSE()
-	FIND_PACKAGE(X11 REQUIRED)
+    FIND_PACKAGE(X11 REQUIRED)
 
 	SET(CMAKE_REQUIRED_LIBRARIES ${X11_LIBRARIES} ${X11_XTest_LIB})
 	SET(VEYON_HAVE_X11 TRUE)
 
 	IF(X11_XShm_FOUND)
-		SET(VEYON_HAVE_XSHM TRUE)
+	    SET(VEYON_HAVE_XSHM TRUE)
 	ENDIF(X11_XShm_FOUND)
 	IF(X11_XTest_FOUND)
-		SET(VEYON_HAVE_XTEST TRUE)
+	    SET(VEYON_HAVE_XTEST TRUE)
 	ENDIF(X11_XTest_FOUND)
 	IF(X11_Xinerama_FOUND)
-		SET(VEYON_HAVE_LIBXINERAMA TRUE)
+	    SET(VEYON_HAVE_LIBXINERAMA TRUE)
 	ENDIF(X11_Xinerama_FOUND)
 	IF(X11_Xrandr_FOUND)
-		SET(VEYON_HAVE_LIBXRANDR TRUE)
+	    SET(VEYON_HAVE_LIBXRANDR TRUE)
 	ENDIF(X11_Xrandr_FOUND)
 	IF(X11_Xi2_FOUND)
-		SET(VEYON_HAVE_LIBXI2 TRUE)
+	    SET(VEYON_HAVE_LIBXI2 TRUE)
 	ENDIF()
 	IF(X11_Xfixes_FOUND)
-		SET(VEYON_HAVE_LIBXFIXES TRUE)
+	    SET(VEYON_HAVE_LIBXFIXES TRUE)
 	ENDIF(X11_Xfixes_FOUND)
 	IF(X11_Xdamage_FOUND)
-		SET(VEYON_HAVE_LIBXDAMAGE TRUE)
+	    SET(VEYON_HAVE_LIBXDAMAGE TRUE)
 	ENDIF(X11_Xdamage_FOUND)
 
 	CHECK_FUNCTION_EXISTS(XReadScreen VEYON_HAVE_SOLARIS_XREADSCREEN)
@@ -220,7 +220,7 @@ ELSE()
 	CHECK_INCLUDE_FILES(X11/extensions/readdisplay.h VEYON_HAVE_IRIX_XREADDISPLAY)
 	CHECK_INCLUDE_FILES(X11/XKBlib.h VEYON_HAVE_XKBLIB_H)
 	IF(VEYON_HAVE_XKBLIB_H)
-		CHECK_FUNCTION_EXISTS(XkbSelectEvents VEYON_HAVE_XKEYBOARD)
+	    CHECK_FUNCTION_EXISTS(XkbSelectEvents VEYON_HAVE_XKEYBOARD)
 	ENDIF(VEYON_HAVE_XKBLIB_H)
 	SET(VEYON_HAVE_LIBCRYPT FALSE)
 ENDIF()
@@ -234,35 +234,35 @@ SET(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/config.h)
 
 SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc server/veyon-server.rc service/veyon-service.rc master/data/veyon-master.desktop master/veyon-master.rc configurator/data/veyon-configurator.desktop configurator/data/io.veyon.veyon-configurator.policy configurator/veyon-configurator.rc ctl/veyon-ctl.rc worker/veyon-worker.rc)
 FOREACH(f ${IN_FILES})
-	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
 
 FILE(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
 IF(${VEYONCONFIG} IS_NEWER_THAN ${RFBCONFIG})
-	EXECUTE_PROCESS(COMMAND sed -e "s/VEYON_/LIBVNCSERVER_/g" INPUT_FILE ${VEYONCONFIG} OUTPUT_FILE ${RFBCONFIG})
+    EXECUTE_PROCESS(COMMAND sed -e "s/VEYON_/LIBVNCSERVER_/g" INPUT_FILE ${VEYONCONFIG} OUTPUT_FILE ${RFBCONFIG})
 ENDIF(${VEYONCONFIG} IS_NEWER_THAN ${RFBCONFIG})
 
 IF(${VEYONCONFIG} IS_NEWER_THAN ${X11VNC_CONFIG})
-	EXECUTE_PROCESS(COMMAND sed -e "s/VEYON_//g" INPUT_FILE ${VEYONCONFIG} OUTPUT_FILE ${X11VNC_CONFIG})
+    EXECUTE_PROCESS(COMMAND sed -e "s/VEYON_//g" INPUT_FILE ${VEYONCONFIG} OUTPUT_FILE ${X11VNC_CONFIG})
 ENDIF()
 
 IF(VEYON_BUILD_WIN32)
-	ADD_DEFINITIONS(-D_WIN32_WINNT=0x0600)
+    ADD_DEFINITIONS(-D_WIN32_WINNT=0x0600)
 ENDIF()
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 ${CXXFLAGS}")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall ${CFLAGS}")
 IF(VEYON_BUILD_WIN32)
-	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-attributes -Wno-pragmas")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-attributes -Wno-pragmas")
 ELSE()
-	SET(OPENSSL_LIBRARIES ${OPENSSL_LIBRARIES} -lcrypto)
+    SET(OPENSSL_LIBRARIES ${OPENSSL_LIBRARIES} -lcrypto)
 ENDIF(VEYON_BUILD_WIN32)
 
 ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBZ)
 ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBJPEG)
 ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBSSL)
 IF(PNG_FOUND)
-	ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBPNG)
+    ADD_DEFINITIONS(-DLIBVNCSERVER_HAVE_LIBPNG)
 ENDIF(PNG_FOUND)
 
 ADD_DEFINITIONS(-DQT_DEPRECATED_WARNINGS -DQT_DISABLE_DEPRECATED_BEFORE=0x050600)
@@ -306,7 +306,7 @@ FILE(GLOB_RECURSE veyon_SOURCES ${CMAKE_SOURCE_DIR}/*.cpp ${CMAKE_SOURCE_DIR}/*.
 STRING(REGEX REPLACE "${CMAKE_SOURCE_DIR}/3rdparty[^;]+;?" "" veyon_SOURCES "${veyon_SOURCES}")
 
 FOREACH(_ts_file ${veyon_LOCALES})
-	STRING(REPLACE "${CMAKE_SOURCE_DIR}/core/resources/" "" _ts_target "${_ts_file}")
+    STRING(REPLACE "${CMAKE_SOURCE_DIR}/core/resources/" "" _ts_target "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_target "${_ts_target}")
 	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${Qt5_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/core/include -locations none -no-obsolete ${veyon_SOURCES} -ts ${_ts_file})
@@ -319,12 +319,12 @@ ENDFOREACH(_ts_file ${veyon_LOCALES})
 
 ADD_CUSTOM_TARGET(update-locales)
 FOREACH(_item ${ts_targets})
-	ADD_DEPENDENCIES(update-locales ${_item})
+    ADD_DEPENDENCIES(update-locales ${_item})
 ENDFOREACH(_item ${ts_targets})
 
 ADD_CUSTOM_TARGET(GenerateTranslationFiles)
 FOREACH(_item ${qm_targets})
-	ADD_DEPENDENCIES(GenerateTranslationFiles ${_item})
+    ADD_DEPENDENCIES(GenerateTranslationFiles ${_item})
 ENDFOREACH(_item ${qm_targets})
 
 
@@ -333,16 +333,16 @@ ENDFOREACH(_item ${qm_targets})
 #
 
 IF(WIN32)
-	SET(InterceptionZip ${CMAKE_BINARY_DIR}/Interception.zip)
+    SET(InterceptionZip ${CMAKE_BINARY_DIR}/Interception.zip)
 	SET(InterceptionInstaller ${CMAKE_BINARY_DIR}/install-interception.exe)
 	IF (NOT EXISTS "${MY_DOWNLOAD_PATH}")
-		FILE(DOWNLOAD "https://github.com/oblitum/Interception/releases/download/v1.0.1/Interception.zip" ${InterceptionZip} SHOW_PROGRESS EXPECTED_HASH SHA256=e9da708d334d1b5d9369ddb57dc8b63b2da1f5fe3ce9d14a24aa95d140d1bfbe)
+	    FILE(DOWNLOAD "https://github.com/oblitum/Interception/releases/download/v1.0.1/Interception.zip" ${InterceptionZip} SHOW_PROGRESS EXPECTED_HASH SHA256=e9da708d334d1b5d9369ddb57dc8b63b2da1f5fe3ce9d14a24aa95d140d1bfbe)
 	ENDIF()
 
 	SET(TMP "veyon-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
 
 	ADD_CUSTOM_TARGET(win-nsi
-			COMMAND make
+		    COMMAND make
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
 			COMMAND unzip -j -d ${TMP} ${InterceptionZip} Interception/command\ line\ installer/install-interception.exe
