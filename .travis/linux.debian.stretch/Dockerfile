@@ -11,6 +11,7 @@ RUN \
 		zlib1g-dev \
 		libssl-dev \
 		libpam0g-dev \
+		libprocps-dev \
 		libldap2-dev \
 		libsasl2-dev \
 		liblzo2-dev \

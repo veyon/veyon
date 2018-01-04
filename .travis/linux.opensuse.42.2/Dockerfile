@@ -10,6 +10,7 @@ RUN \
 		zlib-devel \
 		libpng16-devel \
 		libopenssl-devel \
+		procps-devel \
 		pam-devel lzo-devel \
 		libqca-qt5-devel libqca-qt5-plugins \
 		openldap2-devel cyrus-sasl-devel

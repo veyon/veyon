@@ -12,6 +12,7 @@ RUN \
 		libpng-devel \
 		openssl-devel \
 		pam-devel \
+		procps-devel \
 		lzo-devel \
 		qca-qt5-devel qca-qt5-ossl \
 		openldap-devel
