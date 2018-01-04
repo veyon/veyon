@@ -34,11 +34,17 @@
 QString Filesystem::expandPath( QString path ) const
 {
 	const auto p = QDir::toNativeSeparators( path.replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
+											 replace( QStringLiteral( "$HOME" ), QDir::homePath() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
+											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
 											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().coreFunctions().personalAppDataPath() ).
+											 replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().coreFunctions().personalAppDataPath() ).
 											 replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().coreFunctions().globalAppDataPath() ).
+											 replace( QStringLiteral( "$GLOBALAPPDATA" ), VeyonCore::platform().coreFunctions().globalAppDataPath() ).
 											 replace( QStringLiteral( "%TMP%" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "%TEMP%" ), QDir::tempPath() ) );
+											 replace( QStringLiteral( "$TMP" ), QDir::tempPath() ).
+											 replace( QStringLiteral( "%TEMP%" ), QDir::tempPath() ).
+											 replace( QStringLiteral( "$TEMP" ), QDir::tempPath() ) );
 
 	// remove duplicate directory separators - however skip the first two chars
 	// as they might specify an UNC path on Windows
