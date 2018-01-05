@@ -24,22 +24,17 @@
 
 #include <veyonconfig.h>
 
-#ifdef VEYON_BUILD_WIN32
-#include <windows.h>
-#endif
-
 #include <QDir>
 #include <QProcess>
 #include <QCloseEvent>
 #include <QFileDialog>
+#include <QPushButton>
 #include <QMessageBox>
 
 #include "Configuration/JsonStore.h"
 #include "Configuration/LocalStore.h"
 
 #include "AboutDialog.h"
-#include "Filesystem.h"
-#include "FileSystemBrowser.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "ConfiguratorCore.h"
 #include "VeyonConfiguration.h"
@@ -76,8 +71,6 @@ MainWindow::MainWindow( QWidget* parent ) :
 	{
 		page->connectWidgetsToProperties();
 	}
-
-	connect( ui->generateBugReportArchive, &QPushButton::clicked, this, &MainWindow::generateBugReportArchive );
 
 	connect( ui->buttonBox, &QDialogButtonBox::clicked, this, &MainWindow::resetOrApply );
 
@@ -212,124 +205,6 @@ void MainWindow::resetConfiguration()
 		Configuration::LocalStore( Configuration::LocalStore::System ).clear();
 		reset( false );
 	}
-}
-
-
-
-
-void MainWindow::generateBugReportArchive()
-{
-	FileSystemBrowser fsb( FileSystemBrowser::SaveFile );
-	fsb.setShrinkPath( false );
-	fsb.setExpandPath( false );
-	QString outfile = fsb.exec( QDir::homePath(),
-								tr( "Save bug report archive" ),
-								tr( "%1 bug report (*.json)" ).arg( VeyonCore::applicationName() ) );
-	if( outfile.isEmpty() )
-	{
-		return;
-	}
-
-	if( !outfile.endsWith( ".json" ) )
-	{
-		outfile += ".json";
-	}
-
-	Configuration::JsonStore bugReportJson( Configuration::Store::BugReportArchive, outfile );
-	Configuration::Object obj( &bugReportJson );
-
-
-	// retrieve some basic system information
-
-#ifdef VEYON_BUILD_WIN32
-
-	OSVERSIONINFOEX ovi;
-	ovi.dwOSVersionInfoSize = sizeof( ovi );
-	GetVersionEx( (LPOSVERSIONINFO) &ovi );
-
-	QString os = "Windows %1 SP%2 (%3.%4.%5)";
-	switch( QSysInfo::windowsVersion() )
-	{
-	case QSysInfo::WV_NT: os = os.arg( "NT 4.0" ); break;
-	case QSysInfo::WV_2000: os = os.arg( "2000" ); break;
-	case QSysInfo::WV_XP: os = os.arg( "XP" ); break;
-	case QSysInfo::WV_VISTA: os = os.arg( "Vista" ); break;
-	case QSysInfo::WV_WINDOWS7: os = os.arg( "7" ); break;
-	case QSysInfo::WV_WINDOWS8: os = os.arg( "8" ); break;
-	case QSysInfo::WV_WINDOWS8_1: os = os.arg( "8.1" ); break;
-	case QSysInfo::WV_WINDOWS10: os = os.arg( "10" ); break;
-	default: os = os.arg( "<unknown>" );
-	}
-
-	os = os.arg( ovi.wServicePackMajor ).
-			arg( ovi.dwMajorVersion ).
-			arg( ovi.dwMinorVersion ).
-			arg( ovi.dwBuildNumber );
-
-	const QString machineInfo =
-		QProcessEnvironment::systemEnvironment().value( "PROCESSOR_IDENTIFIER" );
-
-#elif defined( VEYON_BUILD_LINUX )
-
-	QFile f( "/etc/lsb-release" );
-	f.open( QFile::ReadOnly );
-
-	const QString os = "Linux\n" + f.readAll().trimmed();
-
-	QProcess p;
-	p.start( "uname", QStringList() << "-a" );
-	p.waitForFinished();
-	const QString machineInfo = p.readAll().trimmed();
-
-#endif
-
-#ifdef VEYON_HOST_X86
-	const QString buildType = "x86";
-#elif defined( VEYON_HOST_X86_64 )
-	const QString buildType = "x86_64";
-#else
-	const QString buildType = "unknown";
-#endif
-	obj.setValue( "OS", os, "General" );
-	obj.setValue( "MachineInfo", machineInfo, "General" );
-	obj.setValue( "BuildType", buildType, "General" );
-	obj.setValue( "Version", VEYON_VERSION, "General" );
-
-
-	// add current Veyon configuration
-	obj.addSubObject( &VeyonCore::config(), "Configuration" );
-
-
-	// compress all log files and encode them as base64
-	const QStringList paths( { VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() ),
-#ifdef VEYON_BUILD_WIN32
-	"C:\\Windows\\Temp"
-#else
-	"/tmp"
-#endif
-		} );
-
-	for( const QString &p : paths )
-	{
-		QDir d( p );
-		const auto entries = d.entryList( QStringList() << "Veyon*.log" );
-		for( const auto& f : entries )
-		{
-			QFile logfile( d.absoluteFilePath( f ) );
-			logfile.open( QFile::ReadOnly );
-			QByteArray data = qCompress( logfile.readAll() ).toBase64();
-			obj.setValue( QFileInfo( logfile ).baseName(), data, "LogFiles" );
-		}
-	}
-
-	// write the file
-	obj.flushStore();
-
-	QMessageBox::information( this, tr( "%1 bug report archive saved" ).arg( VeyonCore::applicationName() ),
-			tr( "An %1 bug report archive has been saved to %2. "
-				"It includes %3 log files and information about your "
-				"operating system. You can attach it to a bug report." ).arg(
-				VeyonCore::applicationName(), QDir::toNativeSeparators( outfile ), VeyonCore::applicationName() ) );
 }
 
 

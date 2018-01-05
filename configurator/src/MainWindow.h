@@ -50,7 +50,6 @@ private slots:
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
 	void resetConfiguration();
-	void generateBugReportArchive();
 	void aboutVeyon();
 
 
