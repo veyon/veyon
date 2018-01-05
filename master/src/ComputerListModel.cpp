@@ -333,5 +333,5 @@ QString ComputerListModel::activeFeatures( const Computer& computer ) const
 
 	featureNames.removeAll( QString() );
 
-	return featureNames.join( ", " );
+	return featureNames.join( QStringLiteral(", ") );
 }

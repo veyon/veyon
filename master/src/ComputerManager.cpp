@@ -314,7 +314,7 @@ void ComputerManager::initNetworkObjectLayer()
 
 		for( const auto& address : qAsConst( m_localHostAddresses ) )
 		{
-			localHostNames.append( address.toString() );
+			localHostNames.append( address.toString() ); // clazy:exclude=reserve-candidates
 		}
 
 		qDebug() << "ComputerManager::initNetworkObjectLayer(): excluding local computer via" << localHostNames;
