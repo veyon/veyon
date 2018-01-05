@@ -37,9 +37,6 @@
 #include "MainWindow.h"
 #include "SystemConfigurationModifier.h"
 
-// static data initialization
-bool ConfiguratorCore::silent = false;
-
 
 bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 {
@@ -171,7 +168,7 @@ bool ConfiguratorCore::importPublicKey( VeyonCore::UserRole role, const QString&
 void ConfiguratorCore::informationMessage( const QString &title, const QString &msg )
 {
 	qInfo() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
-	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
+	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 	{
 		QMessageBox::information( nullptr, title, msg );
 	}
@@ -182,7 +179,7 @@ void ConfiguratorCore::informationMessage( const QString &title, const QString &
 void ConfiguratorCore::criticalMessage( const QString &title, const QString &msg )
 {
 	qCritical() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
-	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
+	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 	{
 		QMessageBox::critical( nullptr, title, msg );
 	}

@@ -148,10 +148,6 @@ int main( int argc, char **argv )
 		return 0;
 	}
 
-	ConfiguratorCore::silent = app.arguments().contains( "-quiet" ) ||
-						app.arguments().contains( "-silent" ) ||
-						app.arguments().contains( "-q" );
-
 	if( checkWritableConfiguration() == false )
 	{
 		return -1;

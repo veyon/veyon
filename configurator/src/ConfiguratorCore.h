@@ -42,8 +42,6 @@ public:
 	static void informationMessage( const QString &title, const QString &msg );
 	static void criticalMessage( const QString &title, const QString &msg );
 
-	static bool silent;
-
 private:
 	static void configApplyError( const QString &msg );
 
