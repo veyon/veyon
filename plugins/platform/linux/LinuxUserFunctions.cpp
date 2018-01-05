@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDataStream>
 #include <QProcess>
 
 #include "LinuxUserFunctions.h"
