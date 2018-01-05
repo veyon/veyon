@@ -31,6 +31,8 @@
 	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer" ); \
 	OP( ExternalVncServerConfiguration, m_configuration, STRING, password, setPassword, "Password", "ExternalVncServer" );
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class ExternalVncServerConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT

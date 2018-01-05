@@ -35,7 +35,7 @@ class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterf
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ExternalVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
-	ExternalVncServer();
+	ExternalVncServer( QObject* parent = nullptr );
 	~ExternalVncServer() override;
 
 	Plugin::Uid uid() const override

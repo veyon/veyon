@@ -28,8 +28,9 @@
 
 #include "ui_ExternalVncServerConfigurationWidget.h"
 
-ExternalVncServerConfigurationWidget::ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration ) :
-	QWidget(),
+ExternalVncServerConfigurationWidget::ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration,
+																			QWidget* parent ) :
+	QWidget( parent),
 	ui( new Ui::ExternalVncServerConfigurationWidget ),
 	m_configuration( configuration )
 {

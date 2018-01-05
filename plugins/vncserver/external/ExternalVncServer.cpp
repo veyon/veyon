@@ -29,7 +29,8 @@
 #include "ExternalVncServerConfigurationWidget.h"
 
 
-ExternalVncServer::ExternalVncServer() :
+ExternalVncServer::ExternalVncServer( QObject* parent ) :
+	QObject( parent ),
 	m_configuration()
 {
 	// sanitize configuration
