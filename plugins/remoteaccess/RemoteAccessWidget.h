@@ -33,6 +33,8 @@ class VeyonCoreConnection;
 class RemoteAccessWidget;
 class ToolButton;
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class RemoteAccessWidgetToolBar : public QWidget
 {
 	Q_OBJECT

@@ -50,15 +50,15 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parren
 	m_showHideTimeLine(),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
-	m_icon( QPixmap( ":/resources/icon128.png" ).scaled( QSize( 48, 48 ), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
-	m_viewOnlyButton( new ToolButton( QPixmap( ":/remoteaccess/kmag.png" ), tr( "View only" ), tr( "Remote control" ) ) ),
-	m_sendShortcutButton( new ToolButton( QPixmap( ":/remoteaccess/preferences-desktop-keyboard.png" ), tr( "Send shortcut" ) ) ),
-	m_screenshotButton( new ToolButton( QPixmap( ":/remoteaccess/camera-photo.png" ), tr( "Screenshot" ) ) ),
-	m_fullScreenButton( new ToolButton( QPixmap( ":/remoteaccess/view-fullscreen.png" ), tr( "Fullscreen" ), tr( "Window" ) ) ),
-	m_quitButton( new ToolButton( QPixmap( ":/remoteaccess/application-exit.png" ), tr( "Quit" ) ) )
+	m_icon( QPixmap( QStringLiteral(":/resources/icon128.png") ).scaled( QSize( 48, 48 ), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
+	m_viewOnlyButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) ),
+	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
+	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
+	m_fullScreenButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/view-fullscreen.png") ), tr( "Fullscreen" ), tr( "Window" ) ) ),
+	m_quitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Quit" ) ) )
 {
 	QPalette pal = palette();
-	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
+	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/resources/toolbar-background.png") ) );
 	setPalette( pal );
 
 	setAttribute( Qt::WA_NoSystemBackground, true );
@@ -219,7 +219,7 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 		QString dots;
 		for( int i = 0; i < ( m_iconStateTimeLine.currentTime() / 120 ) % 6; ++i )
 		{
-			dots += ".";
+			dots += '.';
 		}
 		p.drawText( 64, 40, tr( "Connecting %1" ).arg( dots ) );
 	}

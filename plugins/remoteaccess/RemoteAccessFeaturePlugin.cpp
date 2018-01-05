@@ -46,9 +46,9 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 	m_customComputer(),
 	m_customComputerControlInterface( m_customComputer ),
 	m_commands( {
-{ "view", m_remoteViewFeature.displayName() },
-{ "control", m_remoteControlFeature.displayName() },
-{ "help", tr( "Show help about command" ) },
+{ QStringLiteral("view"), m_remoteViewFeature.displayName() },
+{ QStringLiteral("control"), m_remoteControlFeature.displayName() },
+{ QStringLiteral("help"), tr( "Show help about command" ) },
 				} )
 {
 }
@@ -241,12 +241,12 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 
 CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( const QStringList& arguments )
 {
-	if( arguments.value( 0 ) == "view" )
+	if( arguments.value( 0 ) == QStringLiteral("view") )
 	{
 		printf( "\nremoteaccess view <host>\n\n" );
 		return NoResult;
 	}
-	else if( arguments.value( 0 ) == "control" )
+	else if( arguments.value( 0 ) == QStringLiteral("control") )
 	{
 		printf( "\nremoteaccess control <host>\n}n" );
 		return NoResult;
