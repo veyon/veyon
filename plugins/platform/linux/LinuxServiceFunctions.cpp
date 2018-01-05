@@ -28,6 +28,8 @@
 
 bool LinuxServiceFunctions::isRegistered(const QString &name)
 {
+	qCritical( "Querying service registration is not supported on this platform.");
+
 	return false;
 }
 
@@ -62,7 +64,8 @@ bool LinuxServiceFunctions::install( const QString& name, const QString& filePat
 	Q_UNUSED(startMode)
 	Q_UNUSED(displayName)
 
-	// TODO
+	qCritical( "Registering services is not supported on this platform.");
+
 	return false;
 }
 
@@ -72,7 +75,8 @@ bool LinuxServiceFunctions::uninstall( const QString& name )
 {
 	Q_UNUSED(name)
 
-	// TODO
+	qCritical( "Unregistering services is not supported on this platform.");
+
 	return false;
 }
 
