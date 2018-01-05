@@ -1,7 +1,7 @@
 /*
  * WindowsServiceFunctions.h - declaration of WindowsServiceFunctions class
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -32,12 +32,14 @@
 class WindowsServiceFunctions : public PlatformServiceFunctions
 {
 public:
+	QString veyonServiceName() const override;
+
 	bool isRegistered( const QString& name ) override;
 	bool isRunning( const QString& name ) override;
 	bool start( const QString& name ) override;
 	bool stop( const QString& name ) override;
 	bool install( const QString& name, const QString& filePath,
-				  StartMode startMode, const QString& displayName ) override;
+	              StartMode startMode, const QString& displayName ) override;
 	bool uninstall( const QString& name ) override;
 	bool setStartMode( const QString& name, StartMode startMode ) override;
 	bool runAsService( const QString& name, std::function<void(void)> serviceMain ) override;

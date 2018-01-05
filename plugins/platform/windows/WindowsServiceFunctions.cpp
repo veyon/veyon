@@ -1,7 +1,7 @@
 /*
  * WindowsServiceFunctions.cpp - implementation of WindowsServiceFunctions class
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -25,6 +25,13 @@
 #include "WindowsServiceFunctions.h"
 #include "WindowsServiceControl.h"
 #include "WindowsServiceCore.h"
+
+
+QString WindowsServiceFunctions::veyonServiceName() const
+{
+	return QStringLiteral("VeyonService");
+}
+
 
 
 bool WindowsServiceFunctions::isRegistered( const QString& name )
@@ -56,7 +63,7 @@ bool WindowsServiceFunctions::stop( const QString& name )
 
 
 bool WindowsServiceFunctions::install( const QString& name, const QString& filePath,
-									   StartMode startMode, const QString& displayName )
+                                       StartMode startMode, const QString& displayName )
 {
 	return WindowsServiceControl( name ).install( filePath, displayName ) &&
 	        setStartMode( name, startMode );
