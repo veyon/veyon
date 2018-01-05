@@ -31,9 +31,10 @@
 
 
 FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& featureManager,
-																const Feature::Uid& featureUid,
-																int featureWorkerManagerPort ) :
-	QObject(),
+																Feature::Uid featureUid,
+																int featureWorkerManagerPort,
+																QObject* parent ) :
+	QObject( parent ),
 	m_featureManager( featureManager ),
 	m_socket( this ),
 	m_featureUid( featureUid )

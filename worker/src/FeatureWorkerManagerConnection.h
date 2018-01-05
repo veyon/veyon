@@ -36,8 +36,9 @@ class FeatureWorkerManagerConnection : public QObject
 	Q_OBJECT
 public:
 	FeatureWorkerManagerConnection( FeatureManager& featureManager,
-									const Feature::Uid& featureUid,
-									int featureWorkerManagerPort );
+									Feature::Uid featureUid,
+									int featureWorkerManagerPort,
+								 	QObject* parent = nullptr );
 
 
 private slots:

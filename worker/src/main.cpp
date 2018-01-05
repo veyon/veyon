@@ -52,7 +52,9 @@ int main( int argc, char **argv )
 
 	auto featureUidNoBraces = featureUid;
 
-	VeyonCore core( &app, QStringLiteral( "FeatureWorker-" ) + featureUidNoBraces.replace( "{", "" ).replace( "}", "" ) );
+	VeyonCore core( &app, QStringLiteral( "FeatureWorker-" ) + featureUidNoBraces.
+					replace( QStringLiteral("{"), QStringLiteral("") ).
+					replace( QStringLiteral("}"), QStringLiteral("") ) );
 
 	BuiltinFeatures builtinFeatures;
 	FeatureManager featureManager;
