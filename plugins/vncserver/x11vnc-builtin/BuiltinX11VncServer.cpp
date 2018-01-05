@@ -31,7 +31,8 @@
 extern "C" int x11vnc_main( int argc, char * * argv );
 
 
-BuiltinX11VncServer::BuiltinX11VncServer() :
+BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
+	QObject( parent ),
 	m_configuration()
 {
 }
@@ -64,12 +65,12 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 
 	if( extraArguments.isEmpty() == false )
 	{
-		cmdline.append( extraArguments.split( " " ) );
+		cmdline.append( extraArguments.split( ' ' ) );
 	}
 
 	if( m_configuration.isXDamageDisabled() )
 	{
-		cmdline.append( "-noxdamage" );
+		cmdline.append( QStringLiteral("-noxdamage") );
 	}
 	else
 	{
@@ -77,9 +78,11 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 		const auto systemEnv = QProcess::systemEnvironment();
 		for( const auto& s : systemEnv )
 		{
-			if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) || s.startsWith( "LTSP_CLIENT_MAC=" ) )
+			if( s.startsWith( QStringLiteral("NXSESSIONID=") ) ||
+					s.startsWith( QStringLiteral("X2GO_SESSION=") ) ||
+					s.startsWith( QStringLiteral("LTSP_CLIENT_MAC=") ) )
 			{
-				cmdline.append( "-noxdamage" );
+				cmdline.append( QStringLiteral("-noxdamage") );
 			}
 		}
 	}

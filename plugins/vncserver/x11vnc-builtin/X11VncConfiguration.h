@@ -31,6 +31,8 @@
 	OP( X11VncConfiguration, m_configuration, BOOL, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc" );	\
 	OP( X11VncConfiguration, m_configuration, STRING, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc" );
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class X11VncConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT

@@ -28,8 +28,8 @@
 
 #include "ui_X11VncConfigurationWidget.h"
 
-X11VncConfigurationWidget::X11VncConfigurationWidget( X11VncConfiguration& configuration ) :
-	QWidget(),
+X11VncConfigurationWidget::X11VncConfigurationWidget( X11VncConfiguration& configuration, QWidget* parent  ) :
+	QWidget( parent ),
 	ui( new Ui::X11VncConfigurationWidget ),
 	m_configuration( configuration )
 {

@@ -35,7 +35,7 @@ class BuiltinX11VncServer : public QObject, VncServerPluginInterface, PluginInte
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinX11VncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
-	BuiltinX11VncServer();
+	BuiltinX11VncServer( QObject* parent = nullptr );
 	~BuiltinX11VncServer() override;
 
 	Plugin::Uid uid() const override
