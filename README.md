@@ -53,14 +53,7 @@ for information on how to use Veyon.
 
 First grab the latest sources by cloning the Git repository and fetching all submodules:
 
-	git clone  --recursive  https://github.com/veyon/veyon.git  &&  cd veyon
-
-Alternatively, you can do it step by step as follow:
-
-	git clone https://github.com/veyon/veyon.git
-	cd veyon
-	git submodule update --init
-
+	git clone --recursive https://github.com/veyon/veyon.git && cd veyon
 
 
 ### Installing dependencies
