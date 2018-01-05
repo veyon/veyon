@@ -49,14 +49,14 @@
 #include "ui_MainWindow.h"
 
 
-MainWindow::MainWindow() :
-	QMainWindow(),
+MainWindow::MainWindow( QWidget* parent ) :
+	QMainWindow( parent ),
 	ui( new Ui::MainWindow ),
 	m_configChanged( false )
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), VEYON_VERSION ) );
+	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), QStringLiteral(VEYON_VERSION) ) );
 
 	loadConfigurationPagePlugins();
 
@@ -185,9 +185,9 @@ void MainWindow::saveSettingsToFile()
 											QDir::homePath(), tr( "JSON files (*.json)" ) );
 	if( !fileName.isEmpty() )
 	{
-		if( !fileName.endsWith( ".json", Qt::CaseInsensitive ) )
+		if( !fileName.endsWith( QStringLiteral(".json"), Qt::CaseInsensitive ) )
 		{
-			fileName += ".json";
+			fileName += QStringLiteral(".json");
 		}
 
 		bool configChangedPrevious = m_configChanged;

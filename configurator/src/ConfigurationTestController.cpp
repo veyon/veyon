@@ -36,7 +36,7 @@ int ConfigurationTestController::run()
 {
 	const QString command = testArgument( 0 ).toLower();
 
-	if( command == "checkaccess" )
+	if( command == QStringLiteral("checkaccess") )
 	{
 		switch( AccessControlProvider().checkAccess( testArgument( 1 ), testArgument( 2 ),
 													 QStringList( testArgument( 3 ) ) ) )
@@ -47,7 +47,7 @@ int ConfigurationTestController::run()
 		default: printf( "[TEST]: CheckAccess: FAIL\n" ); return -1;
 		}
 	}
-	else if( command == "authorizedgroups" )
+	else if( command == QStringLiteral("authorizedgroups") )
 	{
 		if( AccessControlProvider().processAuthorizedGroups( testArgument( 1 ) ) )
 		{
@@ -59,7 +59,7 @@ int ConfigurationTestController::run()
 		}
 		return 0;
 	}
-	else if( command == "accesscontrolrules" )
+	else if( command == QStringLiteral("accesscontrolrules") )
 	{
 		switch( AccessControlProvider().processAccessControlRules( testArgument( 1 ), testArgument( 2 ),
 																   testArgument( 3 ), testArgument( 4 ),
@@ -72,7 +72,7 @@ int ConfigurationTestController::run()
 		default: printf( "[TEST]: AccessControlRules: FAIL\n" ); return -1;
 		}
 	}
-	else if( command == "isaccessdeniedbylocalstate" )
+	else if( command == QStringLiteral("isaccessdeniedbylocalstate") )
 	{
 		if( AccessControlProvider().isAccessToLocalComputerDenied() )
 		{

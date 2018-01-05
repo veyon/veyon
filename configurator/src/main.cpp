@@ -67,7 +67,7 @@ int importPublicKey( QStringListIterator& argIt )
 	if( !argIt.hasNext() )
 	{
 		QStringList l =
-			QDir::current().entryList( QStringList() << "*.key.txt",
+			QDir::current().entryList( QStringList() << QStringLiteral("*.key.txt"),
 										QDir::Files | QDir::Readable );
 		if( l.size() != 1 )
 		{
@@ -105,15 +105,15 @@ bool parseRole( QStringListIterator& argIt )
 	if( argIt.hasNext() )
 	{
 		const QString role = argIt.next();
-		if( role == "teacher" )
+		if( role == QStringLiteral("teacher") )
 		{
 			VeyonCore::instance()->setUserRole( VeyonCore::RoleTeacher );
 		}
-		else if( role == "admin" )
+		else if( role == QStringLiteral("admin") )
 		{
 			VeyonCore::instance()->setUserRole( VeyonCore::RoleAdmin );
 		}
-		else if( role == "supporter" )
+		else if( role == QStringLiteral("supporter") )
 		{
 			VeyonCore::instance()->setUserRole( VeyonCore::RoleSupporter );
 		}
@@ -138,7 +138,7 @@ int main( int argc, char **argv )
 
 	QApplication app( argc, argv );
 
-	VeyonCore core( &app, "Configurator" );
+	VeyonCore core( &app, QStringLiteral("Configurator") );
 
 	// make sure to run as admin
 	if( VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
@@ -161,22 +161,22 @@ int main( int argc, char **argv )
 	{
 		const QString a = argIt.next().toLower();
 
-		if( a == "-role" )
+		if( a == QStringLiteral("-role") )
 		{
 			if( parseRole( argIt ) == false )
 			{
 				return -1;
 			}
 		}
-		else if( a == "-createkeypair" )
+		else if( a == QStringLiteral("-createkeypair") )
 		{
 			return createKeyPair( argIt );
 		}
-		else if( a == "-importpublickey" || a == "-i" )
+		else if( a == QStringLiteral("-importpublickey") || a == QStringLiteral("-i") )
 		{
 			return importPublicKey( argIt );
 		}
-		else if( a == "-test" )
+		else if( a == QStringLiteral("-test") )
 		{
 			return ConfigurationTestController( app.arguments().mid( 2 ) ).run();
 		}
