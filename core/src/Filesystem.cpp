@@ -24,6 +24,7 @@
 
 #include <veyonconfig.h>
 
+#include <QCoreApplication>
 #include <QDir>
 
 #include "VeyonConfiguration.h"
