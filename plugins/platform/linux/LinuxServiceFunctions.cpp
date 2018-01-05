@@ -35,21 +35,21 @@ bool LinuxServiceFunctions::isRegistered(const QString &name)
 
 bool LinuxServiceFunctions::isRunning( const QString& name )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("status"), name } ) == 0;
+	return systemctl( { QStringLiteral("status"), name } ) == 0;
 }
 
 
 
 bool LinuxServiceFunctions::start( const QString& name )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("start"), name } ) == 0;
+	return systemctl( { QStringLiteral("start"), name } ) == 0;
 }
 
 
 
 bool LinuxServiceFunctions::stop( const QString& name )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), { QStringLiteral("stop"), name } ) == 0;
+	return systemctl( { QStringLiteral("stop"), name } ) == 0;
 }
 
 
@@ -104,4 +104,11 @@ void LinuxServiceFunctions::manageServerInstances()
 {
 	LinuxServiceCore serviceCore;
 	serviceCore.run();
+}
+
+
+
+int LinuxServiceFunctions::systemctl( const QStringList& arguments )
+{
+	return QProcess::execute( QStringLiteral("systemctl"), arguments );
 }
