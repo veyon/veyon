@@ -111,7 +111,7 @@ private:
 
 	bool readMessage( qint64 size );
 
-	bool handleRect( QBuffer& buffer, const rfbFramebufferUpdateRectHeader& rectHeader );
+	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader rectHeader );
 	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
 	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
 	bool handleRectEncodingHextile( QBuffer& buffer,
@@ -120,7 +120,7 @@ private:
 	bool handleRectEncodingZlib( QBuffer& buffer );
 	bool handleRectEncodingZRLE( QBuffer& buffer );
 
-	static bool isPseudoEncoding( const rfbFramebufferUpdateRectHeader& header );
+	static bool isPseudoEncoding( rfbFramebufferUpdateRectHeader header );
 
 	QTcpSocket* m_socket;
 	State m_state;

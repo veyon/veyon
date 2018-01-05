@@ -28,6 +28,8 @@
 
 #include "VeyonCore.h"
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class VEYON_CORE_EXPORT SystemConfigurationModifier : public QObject
 {
 	Q_OBJECT

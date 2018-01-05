@@ -527,7 +527,7 @@ bool VncClientProtocol::readMessage( qint64 size )
 
 
 
-bool VncClientProtocol::handleRect( QBuffer& buffer, const rfbFramebufferUpdateRectHeader& rectHeader )
+bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader rectHeader )
 {
 	const int width = rectHeader.r.w;
 	const int height = rectHeader.r.h;
@@ -748,7 +748,7 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 
 
 
-bool VncClientProtocol::isPseudoEncoding( const rfbFramebufferUpdateRectHeader& header )
+bool VncClientProtocol::isPseudoEncoding( rfbFramebufferUpdateRectHeader header )
 {
 	switch( header.encoding )
 	{

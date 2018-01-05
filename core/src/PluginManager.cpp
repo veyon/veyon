@@ -121,7 +121,7 @@ QString PluginManager::pluginName( Plugin::Uid pluginUid ) const
 void PluginManager::initPluginSearchPath()
 {
 	QDir dir( QCoreApplication::applicationDirPath() );
-	if( dir.cd( VEYON_PLUGIN_DIR ) )
+	if( dir.cd( QStringLiteral(VEYON_PLUGIN_DIR) ) )
 	{
 		const auto pluginSearchPath = dir.absolutePath();
 		qDebug() << "Adding plugin search path" << pluginSearchPath;

@@ -52,6 +52,8 @@ class PlatformPluginManager;
 class PluginManager;
 class VeyonConfiguration;
 
+// clazy:excludeall=ctor-missing-parent-argument
+
 class VEYON_CORE_EXPORT VeyonCore : public QObject
 {
 	Q_OBJECT
