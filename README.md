@@ -53,9 +53,14 @@ for information on how to use Veyon.
 
 First grab the latest sources by cloning the Git repository and fetching all submodules:
 
+	git clone  --recursive  https://github.com/veyon/veyon.git  &&  cd veyon
+
+Alternatively, you can do it step by step as follow:
+
 	git clone https://github.com/veyon/veyon.git
 	cd veyon
 	git submodule update --init
+
 
 
 ### Installing dependencies
@@ -82,7 +87,7 @@ As root you can run
 
 Requirements for RedHat-based distributions:
 
-- Build tools: gcc-c++ make cmake
+- Build tools: gcc-c++ make cmake rpm-build
 - Qt5: qt5-devel
 - X11: libXtst-devel
 - libjpeg: libjpeg-turbo-devel
@@ -95,7 +100,7 @@ Requirements for RedHat-based distributions:
 
 As root you can run
 
-	dnf install gcc-c++ make cmake qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
+	dnf install gcc-c++ make cmake rpm-build qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
              openssl-devel pam-devel lzo-devel qca-devel qca-qt5-devel openldap-devel libgsasl
 
 
@@ -118,10 +123,6 @@ If some requirements are not fullfilled, CMake will inform you about it and
 you will have to install the missing software before continuing.
 
 You can now generate a package (.deb or .rpm depending what system you are in).
-
-On Fedora, this requires an additional dependency (rpm-build) which can be installed by running
-
-	dnf install rpm-build
 
 For generating a package you can run
 
