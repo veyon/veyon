@@ -101,7 +101,7 @@ bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFu
 
 
 
-bool LinuxServiceFunctions::runAsService( const QString& name, std::function<void(void)> serviceMain )
+bool LinuxServiceFunctions::runAsService( const QString& name, const std::function<void(void)>& serviceMain )
 {
 	Q_UNUSED(name);
 

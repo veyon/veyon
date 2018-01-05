@@ -42,7 +42,7 @@ public:
 				  StartMode startMode, const QString& displayName) override;
 	bool uninstall( const QString& name ) override;
 	bool setStartMode( const QString& name, StartMode startMode ) override;
-	bool runAsService( const QString& name, std::function<void(void)> serviceMain ) override;
+	bool runAsService( const QString& name, const std::function<void(void)>& serviceMain ) override;
 	void manageServerInstances() override;
 
 private:
