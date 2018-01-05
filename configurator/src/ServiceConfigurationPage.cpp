@@ -1,7 +1,7 @@
 /*
  * ServiceConfigurationPage.cpp - page for configuring service application
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -126,13 +126,8 @@ void ServiceConfigurationPage::updateServiceControl()
 {
 	bool running = VeyonServiceControl( this ).isServiceRunning();
 
-#ifdef VEYON_BUILD_WIN32
 	ui->startService->setEnabled( !running );
 	ui->stopService->setEnabled( running );
-#else
-	ui->startService->setEnabled( false );
-	ui->stopService->setEnabled( false );
-#endif
 	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
 }
 
