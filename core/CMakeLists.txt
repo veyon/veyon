@@ -75,7 +75,12 @@ TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Gui
 	Qt5::Network
 	Qt5::Widgets
+	${ZLIB_LIBRARIES}
+	${JPEG_LIBRARIES}
+	${PNG_LIBRARIES}
 	${LZO_LIBRARIES}
+	${QCA_LIBRARY}
+	${OPENSSL_LIBRARIES}
 	)
 
 ADD_DEPENDENCIES(veyon-core GenerateTranslationFiles)
