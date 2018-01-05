@@ -23,6 +23,7 @@
  */
 
 #include <QDBusReply>
+#include <QEventLoop>
 #include <QProcess>
 
 #include <proc/readproc.h>
@@ -39,9 +40,9 @@ LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 					QDBusConnection::systemBus() )
 {
 	QDBusConnection::systemBus().connect( m_loginManager.service(), m_loginManager.path(), m_loginManager.interface(),
-										 "SessionNew", this, SLOT(startServer(QString, QDBusObjectPath)) );
+										 QStringLiteral("SessionNew"), this, SLOT(startServer(QString, QDBusObjectPath)) );
 	QDBusConnection::systemBus().connect( m_loginManager.service(), m_loginManager.path(), m_loginManager.interface(),
-										 "SessionRemoved", this, SLOT(stopServer(QString, QDBusObjectPath)) );
+										 QStringLiteral("SessionRemoved"), this, SLOT(stopServer(QString, QDBusObjectPath)) );
 }
 
 
@@ -55,7 +56,9 @@ LinuxServiceCore::~LinuxServiceCore()
 
 void LinuxServiceCore::run()
 {
-	for( auto s : listSessions() )
+	const auto sessions = listSessions();
+
+	for( const auto& s : sessions )
 	{
 		startServer( s, QDBusObjectPath( s ) );
 	}
@@ -66,7 +69,7 @@ void LinuxServiceCore::run()
 
 
 
-void LinuxServiceCore::startServer( QString sessionId, QDBusObjectPath sessionObjectPath )
+void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath )
 {
 	Q_UNUSED( sessionId );
 
@@ -97,7 +100,7 @@ void LinuxServiceCore::startServer( QString sessionId, QDBusObjectPath sessionOb
 
 
 
-void LinuxServiceCore::stopServer( QString sessionId, QDBusObjectPath sessionObjectPath )
+void LinuxServiceCore::stopServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath )
 {
 	Q_UNUSED( sessionId );
 
@@ -120,7 +123,7 @@ QStringList LinuxServiceCore::listSessions()
 {
 	QStringList sessions;
 
-	const QDBusReply<QDBusArgument> reply = m_loginManager.call("ListSessions");
+	const QDBusReply<QDBusArgument> reply = m_loginManager.call( QStringLiteral("ListSessions") );
 
 	if( reply.isValid() )
 	{

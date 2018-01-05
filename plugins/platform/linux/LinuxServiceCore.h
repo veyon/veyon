@@ -40,8 +40,8 @@ public:
 	void run();
 
 private slots:
-	void startServer( QString sessionId, QDBusObjectPath sessionObjectPath );
-	void stopServer( QString sessionId, QDBusObjectPath sessionObjectPath );
+	void startServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath );
+	void stopServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath );
 
 private:
 	typedef struct {
