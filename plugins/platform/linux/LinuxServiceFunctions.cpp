@@ -80,11 +80,12 @@ bool LinuxServiceFunctions::uninstall( const QString& name )
 
 bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
 {
-	Q_UNUSED(name)
-	Q_UNUSED(startMode)
+	if( startMode == StartModeAuto )
+	{
+		return systemctl( { QStringLiteral("enable"), name } ) == 0;
+	}
 
-	// TODO
-	return false;
+	return systemctl( { QStringLiteral("disable"), name } ) == 0;
 }
 
 
