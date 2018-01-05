@@ -294,8 +294,6 @@ ADD_SUBDIRECTORY(ctl)
 ADD_SUBDIRECTORY(worker)
 ADD_SUBDIRECTORY(plugins)
 
-INSTALL()
-
 #
 # rules for building localizations
 #
