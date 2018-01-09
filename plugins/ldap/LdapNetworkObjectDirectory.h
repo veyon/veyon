@@ -27,25 +27,31 @@
 
 #include <QHash>
 
+#include "LdapDirectory.h"
 #include "NetworkObjectDirectory.h"
-
-class LdapConfiguration;
-class LdapDirectory;
 
 class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent );
+	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parent );
 
 	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
+	QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name ) override;
+	NetworkObject queryParent( const NetworkObject& object ) override;
+
 private slots:
 	void update() override;
-	void updateComputerRoom( LdapDirectory& ldapDirectory, const QString& computerRoom );
+	void updateComputerRoom( const QString& computerRoom );
 
 private:
-	const LdapConfiguration& m_configuration;
+	QList<NetworkObject> queryGroups( const QString& name );
+	QList<NetworkObject> queryHosts( const QString& name );
+
+	NetworkObject computerToObject( const QString& computerDn, bool populateMacAddres );
+
+	LdapDirectory m_ldapDirectory;
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 

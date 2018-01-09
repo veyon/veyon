@@ -22,14 +22,15 @@
  *
  */
 
-#include "LdapNetworkObjectDirectory.h"
 #include "LdapConfiguration.h"
 #include "LdapDirectory.h"
+#include "LdapNetworkObjectDirectory.h"
 
 
-LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration& configuration, QObject* parent ) :
+LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration,
+														QObject* parent ) :
 	NetworkObjectDirectory( parent ),
-	m_configuration( configuration )
+	m_ldapDirectory( ldapConfiguration )
 {
 	update();
 }
@@ -53,11 +54,41 @@ QList<NetworkObject> LdapNetworkObjectDirectory::objects(const NetworkObject &pa
 
 
 
+QList<NetworkObject> LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+{
+	switch( type )
+	{
+	case NetworkObject::Group: return queryGroups( name );
+	case NetworkObject::Host: return queryHosts( name );
+	default: break;
+	}
+
+	return {};
+}
+
+
+
+NetworkObject LdapNetworkObjectDirectory::queryParent( const NetworkObject& object )
+{
+	switch( object.type() )
+	{
+	case NetworkObject::Host:
+		return NetworkObject( NetworkObject::Group,
+							  m_ldapDirectory.computerRoomsOfComputer( object.directoryAddress() ).value( 0 ) );
+	case NetworkObject::Group:
+		return NetworkObject::Root;
+	default:
+		break;
+	}
+
+	return NetworkObject::None;
+}
+
+
+
 void LdapNetworkObjectDirectory::update()
 {
-	LdapDirectory ldapDirectory( m_configuration );
-
-	const auto computerRooms = ldapDirectory.computerRooms();
+	const auto computerRooms = m_ldapDirectory.computerRooms();
 	const NetworkObject rootObject( NetworkObject::Root );
 
 	for( const auto& computerRoom : qAsConst( computerRooms ) )
@@ -71,7 +102,7 @@ void LdapNetworkObjectDirectory::update()
 			emit objectsInserted();
 		}
 
-		updateComputerRoom( ldapDirectory, computerRoom );
+		updateComputerRoom( computerRoom );
 	}
 
 	int index = 0;
@@ -93,36 +124,21 @@ void LdapNetworkObjectDirectory::update()
 
 
 
-void LdapNetworkObjectDirectory::updateComputerRoom( LdapDirectory& ldapDirectory, const QString &computerRoom )
+void LdapNetworkObjectDirectory::updateComputerRoom( const QString &computerRoom )
 {
 	const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
 	QList<NetworkObject>& computerRoomObjects = m_objects[computerRoomObject]; // clazy:exclude=detaching-member
 
-	QStringList computers = ldapDirectory.computerRoomMembers( computerRoom );
+	const auto computers = m_ldapDirectory.computerRoomMembers( computerRoom );
 
-	bool hasMacAddressAttribute = ( m_configuration.ldapComputerMacAddressAttribute().count() > 0 );
+	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().ldapComputerMacAddressAttribute().count() > 0 );
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
-		QString computerHostName = ldapDirectory.computerHostName( computer );
-		if( computerHostName.isEmpty() )
-		{
-			continue;
-		}
+		const NetworkObject computerObject = computerToObject( computer, hasMacAddressAttribute );
 
-		QString computerMacAddress;
-		if( hasMacAddressAttribute )
-		{
-			computerMacAddress = ldapDirectory.computerMacAddress( computer );
-		}
-
-		const NetworkObject computerObject( NetworkObject::Host,
-											computerHostName,
-											computerHostName,
-											computerMacAddress,
-											computer );
-
-		if( computerRoomObjects.contains( computerObject ) == false )
+		if( computerObject.type() == NetworkObject::Host &&
+				computerRoomObjects.contains( computerObject ) == false )
 		{
 			emit objectsAboutToBeInserted( computerRoomObject, computerRoomObjects.count(), 1 );
 			computerRoomObjects += computerObject;
@@ -145,4 +161,61 @@ void LdapNetworkObjectDirectory::updateComputerRoom( LdapDirectory& ldapDirector
 			++index;
 		}
 	}
+}
+
+
+
+QList<NetworkObject> LdapNetworkObjectDirectory::queryGroups( const QString& name )
+{
+	const auto groups = m_ldapDirectory.computerRooms( name );
+
+	QList<NetworkObject> groupObjects;
+	groupObjects.reserve( groups.size() );
+
+	for( const auto& group : groups )
+	{
+		groupObjects.append( NetworkObject( NetworkObject::Group, group ) );
+	}
+
+	return groupObjects;
+}
+
+
+
+QList<NetworkObject> LdapNetworkObjectDirectory::queryHosts( const QString& name )
+{
+	const auto computers = m_ldapDirectory.computers( name );
+
+	QList<NetworkObject> hostObjects;
+	hostObjects.reserve( computers.size() );
+
+	for( const auto& computer : computers )
+	{
+		hostObjects.append( computerToObject( computer, false ) );
+	}
+
+	return hostObjects;
+}
+
+
+
+NetworkObject LdapNetworkObjectDirectory::computerToObject( const QString& computerDn, bool populateMacAddres )
+{
+	const auto computerHostName = m_ldapDirectory.computerHostName( computerDn );
+	if( computerHostName.isEmpty() )
+	{
+		return NetworkObject::None;
+	}
+
+	QString computerMacAddress;
+	if( populateMacAddres )
+	{
+		computerMacAddress = m_ldapDirectory.computerMacAddress( computerDn );
+	}
+
+	return NetworkObject( NetworkObject::Host,
+						  computerHostName,
+						  computerHostName,
+						  computerMacAddress,
+						  computerDn );
 }
