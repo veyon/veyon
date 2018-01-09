@@ -27,13 +27,13 @@
 #include "UserGroupsBackendManager.h"
 
 
-UserGroupsBackendManager::UserGroupsBackendManager( PluginManager& pluginManager, QObject* parent ) :
+UserGroupsBackendManager::UserGroupsBackendManager( QObject* parent ) :
 	QObject( parent ),
 	m_backends(),
 	m_defaultBackend( nullptr ),
 	m_configuredBackend( nullptr )
 {
-	for( auto pluginObject : qAsConst( pluginManager.pluginObjects() ) )
+	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto userGroupsBackendInterface = qobject_cast<UserGroupsBackendInterface *>( pluginObject );

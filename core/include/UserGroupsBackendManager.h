@@ -31,7 +31,7 @@ class VEYON_CORE_EXPORT UserGroupsBackendManager : public QObject
 {
 	Q_OBJECT
 public:
-	UserGroupsBackendManager( PluginManager& pluginManager, QObject* parent = nullptr );
+	UserGroupsBackendManager( QObject* parent = nullptr );
 
 	QMap<Plugin::Uid, QString> availableBackends();
 
@@ -42,7 +42,7 @@ public:
 
 	void reloadConfiguration();
 
-private:	
+private:
 	QMap<Plugin::Uid, UserGroupsBackendInterface *> m_backends;
 	UserGroupsBackendInterface* m_defaultBackend;
 	UserGroupsBackendInterface* m_configuredBackend;
