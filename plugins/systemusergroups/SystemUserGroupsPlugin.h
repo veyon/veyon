@@ -1,7 +1,7 @@
 /*
- * LocalDataPlugin.h - declaration of LocalDataPlugin class
+ * SystemUserGroupsPlugin.h - declaration of SystemUserGroupsPlugin class
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,28 +22,23 @@
  *
  */
 
-#ifndef LOCAL_DATA_PLUGIN_H
-#define LOCAL_DATA_PLUGIN_H
+#ifndef SYSTEM_USER_GROUPS_PLUGIN_H
+#define SYSTEM_USER_GROUPS_PLUGIN_H
 
-#include "ConfigurationPagePluginInterface.h"
-#include "LocalDataConfiguration.h"
-#include "NetworkObjectDirectoryPluginInterface.h"
+#include "UserGroupsBackendInterface.h"
 
-class LocalDataPlugin : public QObject,
-		PluginInterface,
-		NetworkObjectDirectoryPluginInterface,
-		ConfigurationPagePluginInterface
+class SystemUserGroupsPlugin : public QObject, PluginInterface, UserGroupsBackendInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.LocalData")
-	Q_INTERFACES(PluginInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.SystemUserGroups")
+	Q_INTERFACES(PluginInterface UserGroupsBackendInterface)
 public:
-	LocalDataPlugin( QObject* paren = nullptr );
-	virtual ~LocalDataPlugin();
+	SystemUserGroupsPlugin( QObject* paren = nullptr );
+	virtual ~SystemUserGroupsPlugin();
 
 	Plugin::Uid uid() const override
 	{
-		return "14bacaaa-ebe5-449c-b881-5b382f952571";
+		return "2917cdeb-ac13-4099-8715-20368254a367";
 	}
 
 	QString version() const override
@@ -53,12 +48,12 @@ public:
 
 	QString name() const override
 	{
-		return QStringLiteral( "LocalData" );
+		return QStringLiteral( "SystemUserGroups" );
 	}
 
 	QString description() const override
 	{
-		return tr( "Backends which use local data" );
+		return tr( "User groups backend for system user groups" );
 	}
 
 	QString vendor() const override
@@ -76,18 +71,16 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
-	QString directoryName() const override
+	QString userGroupsBackendName() const override
 	{
-		return tr( "Default (store objects in local configuration)" );
+		return tr( "Default (system user groups)" );
 	}
 
-	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
+	void reloadConfiguration() override;
 
-	ConfigurationPage* createConfigurationPage() override;
-
-private:
-	LocalDataConfiguration m_configuration;
+	QStringList userGroups( bool queryDomainGroups ) override;
+	QStringList groupsOfUser( const QString& username,  bool queryDomainGroups ) override;
 
 };
 
-#endif // LOCAL_DATA_PLUGIN_H
+#endif // SYSTEM_USER_GROUPS_PLUGIN_H

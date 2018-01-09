@@ -1,7 +1,7 @@
 /*
- * ConfigCommandLinePlugin.cpp - implementation of ConfigCommandLinePlugin class
+ * SystemUserGroupsPlugin.cpp - implementation of SystemUserGroupsPlugin class
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,32 +22,38 @@
  *
  */
 
-#include "LocalDataConfigurationPage.h"
-#include "LocalDataNetworkObjectDirectory.h"
-#include "LocalDataPlugin.h"
+#include "SystemUserGroupsPlugin.h"
+#include "PlatformPluginInterface.h"
+#include "PlatformUserFunctions.h"
 
-LocalDataPlugin::LocalDataPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_configuration()
+
+SystemUserGroupsPlugin::SystemUserGroupsPlugin( QObject* parent ) :
+	QObject( parent )
 {
 }
 
 
 
-LocalDataPlugin::~LocalDataPlugin()
+SystemUserGroupsPlugin::~SystemUserGroupsPlugin()
 {
 }
 
 
 
-NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* parent )
+void SystemUserGroupsPlugin::reloadConfiguration()
 {
-	return new LocalDataNetworkObjectDirectory( m_configuration, parent );
 }
 
 
 
-ConfigurationPage *LocalDataPlugin::createConfigurationPage()
+QStringList SystemUserGroupsPlugin::userGroups( bool queryDomainGroups )
 {
-	return new LocalDataConfigurationPage( m_configuration );
+	return VeyonCore::platform().userFunctions().userGroups( queryDomainGroups );
+}
+
+
+
+QStringList SystemUserGroupsPlugin::groupsOfUser( const QString& username, bool queryDomainGroups )
+{
+	return VeyonCore::platform().userFunctions().groupsOfUser( username, queryDomainGroups );
 }
