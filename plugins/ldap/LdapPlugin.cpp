@@ -117,28 +117,6 @@ QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainG
 
 
 
-QStringList LdapPlugin::allRooms()
-{
-	return ldapDirectory().computerRooms();
-}
-
-
-
-QStringList LdapPlugin::roomsOfComputer( const QString& computerName )
-{
-	const QString computerDn = ldapDirectory().computerObjectFromHost( computerName );
-
-	if( computerDn.isEmpty() )
-	{
-		qWarning() << "LdapPlugin::roomsOfComputer(): empty computer DN for computer" << computerName;
-		return QStringList();
-	}
-
-	return ldapDirectory().computerRoomsOfComputer( computerDn );
-}
-
-
-
 ConfigurationPage *LdapPlugin::createConfigurationPage()
 {
 	return new LdapConfigurationPage( m_configuration );

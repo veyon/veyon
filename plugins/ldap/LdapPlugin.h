@@ -110,8 +110,6 @@ public:
 
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
-	QStringList allRooms() override;
-	QStringList roomsOfComputer( const QString& computerName ) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 

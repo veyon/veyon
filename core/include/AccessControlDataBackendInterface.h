@@ -39,9 +39,6 @@ public:
 	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
 	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
 
-	virtual QStringList allRooms() = 0;
-	virtual QStringList roomsOfComputer( const QString& computerName ) = 0;
-
 };
 
 typedef QList<AccessControlDataBackendInterface> AccessControlDataBackendInterfaceList;

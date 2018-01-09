@@ -62,65 +62,6 @@ QStringList LocalDataPlugin::groupsOfUser( const QString& username, bool queryDo
 
 
 
-QStringList LocalDataPlugin::allRooms()
-{
-	QStringList rooms;
-
-	const auto networkObjects = m_configuration.networkObjects();
-	for( const auto& networkObjectValue : networkObjects )
-	{
-		const NetworkObject networkObject( networkObjectValue.toObject() );
-		if( networkObject.type() == NetworkObject::Group )
-		{
-			rooms.append( networkObject.name() ); // clazy:exclude=reserve-candidates
-		}
-	}
-
-	return rooms;
-}
-
-
-
-QStringList LocalDataPlugin::roomsOfComputer( const QString& computerName )
-{
-	auto networkObjects = m_configuration.networkObjects();
-
-	NetworkObject computerObject;
-
-	// search for computer object
-	for( auto networkObjectValue : networkObjects )
-	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
-		if( networkObject.type() == NetworkObject::Host &&
-				networkObject.hostAddress().toLower() == computerName.toLower() )
-		{
-			computerObject = networkObject;
-			break;
-		}
-	}
-
-	// return empty list if computer not found
-	if( computerObject.type() != NetworkObject::Host )
-	{
-		return QStringList();
-	}
-
-	// search for corresponding group whose UID matches parent UID of computer object
-	for( auto networkObjectValue : networkObjects )
-	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
-		if( networkObject.type() == NetworkObject::Group &&
-				networkObject.uid() == networkObject.parentUid() )
-		{
-			return QStringList( { networkObject.name() } );
-		}
-	}
-
-	return QStringList();
-}
-
-
-
 NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* parent )
 {
 	return new LocalDataNetworkObjectDirectory( m_configuration, parent );
