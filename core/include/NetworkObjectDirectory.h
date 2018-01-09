@@ -43,6 +43,9 @@ public:
 
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) = 0;
 
+	virtual QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name = QString() ) = 0;
+	virtual NetworkObject queryParent( const NetworkObject& object ) = 0;
+
 public slots:
 	virtual void update() = 0;
 
