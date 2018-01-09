@@ -39,6 +39,11 @@ public:
 	LdapDirectory( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
 	~LdapDirectory() override;
 
+	const LdapConfiguration& configuration() const
+	{
+		return m_configuration;
+	}
+
 	bool isConnected() const;
 	bool isBound() const;
 
