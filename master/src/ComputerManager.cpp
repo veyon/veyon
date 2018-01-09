@@ -34,6 +34,7 @@
 #include "FeatureManager.h"
 #include "VeyonConfiguration.h"
 #include "NetworkObject.h"
+#include "NetworkObjectDirectory.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "NetworkObjectFilterProxyModel.h"
 #include "NetworkObjectOverlayDataModel.h"
@@ -50,8 +51,7 @@ ComputerManager::ComputerManager( UserConfig& config,
 	m_config( config ),
 	m_featureManager( featureManager ),
 	m_builtinFeatures( builtinFeatures ),
-	m_networkObjectDirectoryManager( new NetworkObjectDirectoryManager() ),
-	m_networkObjectDirectory( m_networkObjectDirectoryManager->createDirectory( this ) ),
+	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
 	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),

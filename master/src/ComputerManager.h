@@ -32,7 +32,6 @@ class QHostAddress;
 class BuiltinFeatures;
 class FeatureManager;
 class NetworkObjectDirectory;
-class NetworkObjectDirectoryManager;
 class NetworkObjectFilterProxyModel;
 class NetworkObjectOverlayDataModel;
 class UserConfig;
@@ -116,7 +115,6 @@ private:
 	FeatureManager& m_featureManager;
 	BuiltinFeatures& m_builtinFeatures;
 
-	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 	NetworkObjectDirectory* m_networkObjectDirectory;
 	QAbstractItemModel* m_networkObjectModel;
 	NetworkObjectOverlayDataModel* m_networkObjectOverlayDataModel;
