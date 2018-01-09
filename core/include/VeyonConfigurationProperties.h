@@ -89,7 +89,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
 
 #define FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
-	OP( VeyonConfiguration, VeyonCore::config(), UUID, accessControlDataBackend, setAccessControlDataBackend, "DataBackend", "AccessControl");		\
+	OP( VeyonConfiguration, VeyonCore::config(), UUID, userGroupsBackend, setUserGroupsBackend, "UserGroupsBackend", "AccessControl");		\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, domainGroupsForAccessControlEnabled, setDomainGroupsForAccessControlEnabled, "DomainGroupsEnabled", "AccessControl");		\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl");	\

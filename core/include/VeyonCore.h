@@ -42,7 +42,7 @@
 class QCoreApplication;
 class QWidget;
 
-class AccessControlDataBackendManager;
+class UserGroupsBackendManager;
 class AuthenticationCredentials;
 class CryptoCore;
 class Filesystem;
@@ -84,9 +84,9 @@ public:
 		return *( instance()->m_platformPlugin );
 	}
 
-	static AccessControlDataBackendManager& accessControlDataBackendManager()
+	static UserGroupsBackendManager& userGroupsBackendManager()
 	{
-		return *( instance()->m_accessControlDataBackendManager );
+		return *( instance()->m_userGroupsBackendManager );
 	}
 
 	static NetworkObjectDirectoryManager& networkObjectDirectoryManager()
@@ -142,7 +142,7 @@ private:
 	PluginManager* m_pluginManager;
 	PlatformPluginManager* m_platformPluginManager;
 	PlatformPluginInterface* m_platformPlugin;
-	AccessControlDataBackendManager* m_accessControlDataBackendManager;
+	UserGroupsBackendManager* m_userGroupsBackendManager;
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 
 	QString m_applicationName;

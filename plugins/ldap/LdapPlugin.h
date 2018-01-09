@@ -25,18 +25,18 @@
 #ifndef LDAP_PLUGIN_H
 #define LDAP_PLUGIN_H
 
-#include "AccessControlDataBackendInterface.h"
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "LdapConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
+#include "UserGroupsBackendInterface.h"
 
 class LdapDirectory;
 
 class LdapPlugin : public QObject, PluginInterface,
 		CommandLinePluginInterface,
 		NetworkObjectDirectoryPluginInterface,
-		AccessControlDataBackendInterface,
+		UserGroupsBackendInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
@@ -44,7 +44,7 @@ class LdapPlugin : public QObject, PluginInterface,
 	Q_INTERFACES(PluginInterface
 				 CommandLinePluginInterface
 				 NetworkObjectDirectoryPluginInterface
-				 AccessControlDataBackendInterface
+				 UserGroupsBackendInterface
 				 ConfigurationPagePluginInterface)
 public:
 	LdapPlugin( QObject* parent = nullptr );
@@ -101,7 +101,7 @@ public:
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
 
-	QString accessControlDataBackendName() const override
+	QString userGroupsBackendName() const override
 	{
 		return tr( "LDAP (load users/groups and computers/rooms from LDAP/AD)" );
 	}

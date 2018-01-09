@@ -1,5 +1,5 @@
 /*
- * AccessControlDataBackendManager.h - header file for AccessControlDataBackendManager
+ * UserGroupsBackendManager.h - header file for UserGroupsBackendManager
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
-#define ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
+#ifndef USER_GROUPS_BACKEND_MANAGER_H
+#define USER_GROUPS_BACKEND_MANAGER_H
 
-#include "AccessControlDataBackendInterface.h"
+#include "UserGroupsBackendInterface.h"
 
-class VEYON_CORE_EXPORT AccessControlDataBackendManager : public QObject
+class VEYON_CORE_EXPORT UserGroupsBackendManager : public QObject
 {
 	Q_OBJECT
 public:
-	AccessControlDataBackendManager( PluginManager& pluginManager, QObject* parent = nullptr );
+	UserGroupsBackendManager( PluginManager& pluginManager, QObject* parent = nullptr );
 
 	QMap<Plugin::Uid, QString> availableBackends();
 
-	AccessControlDataBackendInterface* configuredBackend()
+	UserGroupsBackendInterface* configuredBackend()
 	{
 		return m_configuredBackend;
 	}
@@ -43,10 +43,10 @@ public:
 	void reloadConfiguration();
 
 private:	
-	QMap<Plugin::Uid, AccessControlDataBackendInterface *> m_backends;
-	AccessControlDataBackendInterface* m_defaultBackend;
-	AccessControlDataBackendInterface* m_configuredBackend;
+	QMap<Plugin::Uid, UserGroupsBackendInterface *> m_backends;
+	UserGroupsBackendInterface* m_defaultBackend;
+	UserGroupsBackendInterface* m_configuredBackend;
 
 };
 
-#endif // ACCESS_CONTROL_DATA_BACKEND_MANAGER_H
+#endif // USER_GROUPS_BACKEND_MANAGER_H

@@ -25,20 +25,20 @@
 #ifndef LOCAL_DATA_PLUGIN_H
 #define LOCAL_DATA_PLUGIN_H
 
-#include "AccessControlDataBackendInterface.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "LocalDataConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
+#include "UserGroupsBackendInterface.h"
 
 class LocalDataPlugin : public QObject,
 		PluginInterface,
-		AccessControlDataBackendInterface,
+		UserGroupsBackendInterface,
 		NetworkObjectDirectoryPluginInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.LocalData")
-	Q_INTERFACES(PluginInterface AccessControlDataBackendInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(PluginInterface UserGroupsBackendInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
 public:
 	LocalDataPlugin( QObject* paren = nullptr );
 	virtual ~LocalDataPlugin();
@@ -78,7 +78,7 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
-	QString accessControlDataBackendName() const override
+	QString userGroupsBackendName() const override
 	{
 		return tr( "Default (local users/groups and computers/rooms from configuration)" );
 	}

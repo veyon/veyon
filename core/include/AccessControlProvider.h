@@ -27,7 +27,7 @@
 
 #include "AccessControlRule.h"
 
-class AccessControlDataBackendInterface;
+class UserGroupsBackendInterface;
 class NetworkObject;
 class NetworkObjectDirectory;
 
@@ -81,7 +81,7 @@ private:
 	static QStringList objectNames( const QList<NetworkObject>& objects );
 
 	QList<AccessControlRule> m_accessControlRules;
-	AccessControlDataBackendInterface* m_dataBackend;
+	UserGroupsBackendInterface* m_userGroupsBackend;
 	NetworkObjectDirectory* m_networkObjectDirectory;
 	bool m_queryDomainGroups;
 

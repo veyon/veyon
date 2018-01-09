@@ -38,7 +38,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="accessControlDataBackend"/>
+         <widget class="QComboBox" name="userGroupsBackend"/>
         </item>
        </layout>
       </item>

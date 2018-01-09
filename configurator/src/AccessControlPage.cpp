@@ -32,7 +32,7 @@
 #include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
-#include "AccessControlDataBackendManager.h"
+#include "UserGroupsBackendManager.h"
 
 #include "ui_AccessControlPage.h"
 
@@ -44,19 +44,19 @@ AccessControlPage::AccessControlPage() :
 {
 	ui->setupUi(this);
 
-	if( VeyonCore::accessControlDataBackendManager().configuredBackend() == nullptr )
+	if( VeyonCore::userGroupsBackendManager().configuredBackend() == nullptr )
 	{
 		QMessageBox::critical( this,
 							   tr( "Missing access control data backend" ),
-							   tr( "No default access control backend plugin was found. "
+							   tr( "No default user groups plugin was found. "
 								   "Please check your installation!" ) );
-		qFatal( "AccessControlPage: missing default access control data backend" );
+		qFatal( "AccessControlPage: missing default user groups backend" );
 	}
 
-	const auto backends = VeyonCore::accessControlDataBackendManager().availableBackends();
+	const auto backends = VeyonCore::userGroupsBackendManager().availableBackends();
 	for( auto it = backends.constBegin(), end = backends.constEnd(); it != end; ++it )
 	{
-		ui->accessControlDataBackend->addItem( it.value(), it.key() );
+		ui->userGroupsBackend->addItem( it.value(), it.key() );
 	}
 
 	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
@@ -95,7 +95,7 @@ void AccessControlPage::connectWidgetsToProperties()
 
 void AccessControlPage::applyConfiguration()
 {
-	VeyonCore::accessControlDataBackendManager().reloadConfiguration();
+	VeyonCore::userGroupsBackendManager().reloadConfiguration();
 
 	resetWidgets();
 }
@@ -142,7 +142,7 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	const auto groups = VeyonCore::accessControlDataBackendManager().configuredBackend()->userGroups(
+	const auto groups = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroups(
 				VeyonCore::config().domainGroupsForAccessControlEnabled() );
 
 	for( const auto& group : groups )

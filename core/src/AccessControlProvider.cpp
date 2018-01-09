@@ -25,7 +25,7 @@
 #include <QDebug>
 #include <QHostInfo>
 
-#include "AccessControlDataBackendManager.h"
+#include "UserGroupsBackendManager.h"
 #include "AccessControlProvider.h"
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectDirectoryManager.h"
@@ -37,7 +37,7 @@
 
 AccessControlProvider::AccessControlProvider() :
 	m_accessControlRules(),
-	m_dataBackend( VeyonCore::accessControlDataBackendManager().configuredBackend() ),
+	m_userGroupsBackend( VeyonCore::userGroupsBackendManager().configuredBackend() ),
 	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
 	m_queryDomainGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() )
 {
@@ -55,7 +55,7 @@ AccessControlProvider::AccessControlProvider() :
 
 QStringList AccessControlProvider::userGroups() const
 {
-	auto userGroupList = m_dataBackend->userGroups( m_queryDomainGroups );
+	auto userGroupList = m_userGroupsBackend->userGroups( m_queryDomainGroups );
 
 	std::sort( userGroupList.begin(), userGroupList.end() );
 
@@ -145,7 +145,7 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 {
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
-	return intersects( m_dataBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet(),
+	return intersects( m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet(),
 						VeyonCore::config().authorizedUserGroups().toSet() );
 }
 
@@ -218,10 +218,10 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 	if( groupNameRX.isValid() )
 	{
-		return m_dataBackend->groupsOfUser( user, m_queryDomainGroups ).indexOf( QRegExp( groupName ) ) >= 0;
+		return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).indexOf( QRegExp( groupName ) ) >= 0;
 	}
 
-	return m_dataBackend->groupsOfUser( user, m_queryDomainGroups ).contains( groupName );
+	return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).contains( groupName );
 }
 
 
@@ -236,8 +236,8 @@ bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QStr
 
 bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo ) const
 {
-	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne, m_queryDomainGroups );
-	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne, m_queryDomainGroups );
+	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_queryDomainGroups );
+	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userOne, m_queryDomainGroups );
 
 	return intersects( userOneGroups.toSet(), userTwoGroups.toSet() );
 }

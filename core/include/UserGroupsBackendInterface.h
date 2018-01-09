@@ -1,5 +1,5 @@
 /*
- * AccessControlDataBackendInterface.h - interface for an AccessControlDataBackend
+ * UserGroupsBackendInterface.h - interface for a UserGroupsBackend
  *
  * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,17 +22,17 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_DATA_BACKEND_INTERFACE_H
-#define ACCESS_CONTROL_DATA_BACKEND_INTERFACE_H
+#ifndef USER_GROUPS_BACKEND_INTERFACE_H
+#define USER_GROUPS_BACKEND_INTERFACE_H
 
 #include "PluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class AccessControlDataBackendInterface
+class UserGroupsBackendInterface
 {
 public:
-	virtual QString accessControlDataBackendName() const = 0;
+	virtual QString userGroupsBackendName() const = 0;
 
 	virtual void reloadConfiguration() = 0;
 
@@ -41,10 +41,10 @@ public:
 
 };
 
-typedef QList<AccessControlDataBackendInterface> AccessControlDataBackendInterfaceList;
+typedef QList<UserGroupsBackendInterface> UserGroupsBackendInterfaceList;
 
-#define AccessControlDataBackendInterface_iid "org.veyon.Veyon.Plugins.AccessControlDataBackendInterface"
+#define UserGroupsBackendInterface_iid "org.veyon.Veyon.Plugins.UserGroupsBackendInterface"
 
-Q_DECLARE_INTERFACE(AccessControlDataBackendInterface, AccessControlDataBackendInterface_iid)
+Q_DECLARE_INTERFACE(UserGroupsBackendInterface, UserGroupsBackendInterface_iid)
 
-#endif // ACCESS_CONTROL_DATA_BACKEND_INTERFACE_H
+#endif // USER_GROUPS_BACKEND_INTERFACE_H

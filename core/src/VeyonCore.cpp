@@ -31,7 +31,7 @@
 #include <QLabel>
 #include <QWizardPage>
 
-#include "AccessControlDataBackendManager.h"
+#include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
 #include "Logger.h"
@@ -69,7 +69,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_pluginManager( nullptr ),
 	m_platformPluginManager( nullptr ),
 	m_platformPlugin( nullptr ),
-	m_accessControlDataBackendManager( nullptr ),
+	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_userRole( RoleTeacher )
@@ -150,7 +150,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	// load all other plugins
 	m_pluginManager->loadPlugins();
 
-	m_accessControlDataBackendManager = new AccessControlDataBackendManager( *m_pluginManager );
+	m_userGroupsBackendManager = new UserGroupsBackendManager( *m_pluginManager );
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
 }
 
@@ -158,8 +158,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 VeyonCore::~VeyonCore()
 {
-	delete m_accessControlDataBackendManager;
-	m_accessControlDataBackendManager = nullptr;
+	delete m_userGroupsBackendManager;
+	m_userGroupsBackendManager = nullptr;
 
 	delete m_authenticationCredentials;
 	m_authenticationCredentials = nullptr;
