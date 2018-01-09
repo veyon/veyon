@@ -25,6 +25,7 @@
 #include "LocalDataConfiguration.h"
 #include "LocalDataNetworkObjectDirectory.h"
 
+
 LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory( const LocalDataConfiguration& configuration, QObject* parent ) :
 	NetworkObjectDirectory( parent ),
 	m_configuration( configuration )
@@ -47,6 +48,49 @@ QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObje
 	}
 
 	return QList<NetworkObject>();
+}
+
+
+
+QList<NetworkObject> LocalDataNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+{
+	const auto networkObjects = m_configuration.networkObjects();
+
+	QList<NetworkObject> objects;
+
+	// search for corresponding group whose UID matches parent UID of computer object
+	for( const auto& networkObjectValue : networkObjects )
+	{
+		NetworkObject networkObject( networkObjectValue.toObject() );
+
+		if( ( type == NetworkObject::None || networkObject.type() == type ) &&
+				( name.isEmpty() || networkObject.name().compare( name, Qt::CaseInsensitive ) == 0 ) )
+		{
+			objects.append( networkObject );
+		}
+	}
+
+	return objects;
+}
+
+
+
+NetworkObject LocalDataNetworkObjectDirectory::queryParent( const NetworkObject& object )
+{
+	const auto networkObjects = m_configuration.networkObjects();
+	const auto parentUid = object.parentUid();
+
+	for( const auto& networkObjectValue : networkObjects )
+	{
+		NetworkObject networkObject( networkObjectValue.toObject() );
+
+		if( networkObject.uid() == parentUid )
+		{
+			return networkObject;
+		}
+	}
+
+	return NetworkObject();
 }
 
 

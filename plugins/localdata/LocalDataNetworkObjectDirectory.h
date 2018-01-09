@@ -39,6 +39,9 @@ public:
 
 	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
+	QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name ) override;
+	NetworkObject queryParent( const NetworkObject& object ) override;
+
 	void update() override;
 
 private:
