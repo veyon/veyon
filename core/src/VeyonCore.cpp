@@ -35,6 +35,7 @@
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
 #include "Logger.h"
+#include "NetworkObjectDirectoryManager.h"
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
@@ -66,9 +67,10 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_authenticationCredentials( nullptr ),
 	m_cryptoCore( nullptr ),
 	m_pluginManager( nullptr ),
-	m_accessControlDataBackendManager( nullptr ),
 	m_platformPluginManager( nullptr ),
 	m_platformPlugin( nullptr ),
+	m_accessControlDataBackendManager( nullptr ),
+	m_networkObjectDirectoryManager( nullptr ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_userRole( RoleTeacher )
 {
@@ -149,6 +151,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_pluginManager->loadPlugins();
 
 	m_accessControlDataBackendManager = new AccessControlDataBackendManager( *m_pluginManager );
+	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
 }
 
 

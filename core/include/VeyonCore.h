@@ -47,6 +47,7 @@ class AuthenticationCredentials;
 class CryptoCore;
 class Filesystem;
 class Logger;
+class NetworkObjectDirectoryManager;
 class PlatformPluginInterface;
 class PlatformPluginManager;
 class PluginManager;
@@ -78,14 +79,19 @@ public:
 		return *( instance()->m_pluginManager );
 	}
 
+	static PlatformPluginInterface& platform()
+	{
+		return *( instance()->m_platformPlugin );
+	}
+
 	static AccessControlDataBackendManager& accessControlDataBackendManager()
 	{
 		return *( instance()->m_accessControlDataBackendManager );
 	}
 
-	static PlatformPluginInterface& platform()
+	static NetworkObjectDirectoryManager& networkObjectDirectoryManager()
 	{
-		return *( instance()->m_platformPlugin );
+		return *( instance()->m_networkObjectDirectoryManager );
 	}
 
 	static Filesystem& filesystem()
@@ -134,9 +140,10 @@ private:
 	AuthenticationCredentials* m_authenticationCredentials;
 	CryptoCore* m_cryptoCore;
 	PluginManager* m_pluginManager;
-	AccessControlDataBackendManager* m_accessControlDataBackendManager;
 	PlatformPluginManager* m_platformPluginManager;
 	PlatformPluginInterface* m_platformPlugin;
+	AccessControlDataBackendManager* m_accessControlDataBackendManager;
+	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 
 	QString m_applicationName;
 	UserRole m_userRole;
