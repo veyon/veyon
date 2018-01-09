@@ -27,6 +27,8 @@
 
 #include "AccessControlDataBackendManager.h"
 #include "AccessControlProvider.h"
+#include "NetworkObjectDirectory.h"
+#include "NetworkObjectDirectoryManager.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "PlatformPluginInterface.h"
@@ -36,6 +38,7 @@
 AccessControlProvider::AccessControlProvider() :
 	m_accessControlRules(),
 	m_dataBackend( VeyonCore::accessControlDataBackendManager().configuredBackend() ),
+	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
 	m_queryDomainGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() )
 {
 	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
@@ -63,9 +66,30 @@ QStringList AccessControlProvider::userGroups() const
 
 QStringList AccessControlProvider::rooms() const
 {
-	auto roomList = m_dataBackend->allRooms();
+	auto roomList = objectNames( m_networkObjectDirectory->queryObjects( NetworkObject::Group ) );
 
 	std::sort( roomList.begin(), roomList.end() );
+
+	return roomList;
+}
+
+
+
+QStringList AccessControlProvider::roomsOfComputer( const QString& computer ) const
+{
+	const auto computers = m_networkObjectDirectory->queryObjects( NetworkObject::Host, computer );
+	if( computers.isEmpty() )
+	{
+		return {};
+	}
+
+	QStringList roomList;
+	roomList.reserve( computers.size() );
+
+	for( auto computer : computers )
+	{
+		roomList.append( m_networkObjectDirectory->queryParent( computer ).name() );
+	}
 
 	return roomList;
 }
@@ -204,7 +228,8 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QString &roomName ) const
 {
-	return m_dataBackend->roomsOfComputer( computer ).contains( roomName );
+
+	return roomsOfComputer( computer ).contains( roomName );
 }
 
 
@@ -221,8 +246,8 @@ bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QSt
 
 bool AccessControlProvider::isLocatedInSameRoom( const QString &computerOne, const QString &computerTwo ) const
 {
-	const auto computerOneRooms = m_dataBackend->roomsOfComputer( computerOne );
-	const auto computerTwoRooms = m_dataBackend->roomsOfComputer( computerTwo );
+	const auto computerOneRooms = roomsOfComputer( computerOne );
+	const auto computerTwoRooms = roomsOfComputer( computerTwo );
 
 	return intersects( computerOneRooms.toSet(), computerTwoRooms.toSet() );
 }
@@ -388,4 +413,19 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	}
 
 	return true;
+}
+
+
+
+QStringList AccessControlProvider::objectNames( const QList<NetworkObject>& objects )
+{
+	QStringList nameList;
+	nameList.reserve( objects.size() );
+
+	for( const auto& object : objects )
+	{
+		nameList.append( object.name() );
+	}
+
+	return nameList;
 }

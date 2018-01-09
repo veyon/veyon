@@ -28,6 +28,8 @@
 #include "AccessControlRule.h"
 
 class AccessControlDataBackendInterface;
+class NetworkObject;
+class NetworkObjectDirectory;
 
 class VEYON_CORE_EXPORT AccessControlProvider
 {
@@ -43,6 +45,7 @@ public:
 
 	QStringList userGroups() const;
 	QStringList rooms() const;
+	QStringList roomsOfComputer( const QString& computer ) const;
 
 	AccessResult checkAccess( const QString& accessingUser, const QString& accessingComputer,
 							  const QStringList& connectedUsers );
@@ -75,8 +78,11 @@ private:
 						  const QString& localUser, const QString& localComputer,
 						  const QStringList& connectedUsers ) const;
 
+	static QStringList objectNames( const QList<NetworkObject>& objects );
+
 	QList<AccessControlRule> m_accessControlRules;
 	AccessControlDataBackendInterface* m_dataBackend;
+	NetworkObjectDirectory* m_networkObjectDirectory;
 	bool m_queryDomainGroups;
 
 } ;
