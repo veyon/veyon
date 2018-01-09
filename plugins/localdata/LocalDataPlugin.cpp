@@ -48,14 +48,6 @@ void LocalDataPlugin::reloadConfiguration()
 
 
 
-QStringList LocalDataPlugin::users()
-{
-	// TODO
-	return QStringList();
-}
-
-
-
 QStringList LocalDataPlugin::userGroups( bool queryDomainGroups )
 {
 	return VeyonCore::platform().userFunctions().userGroups( queryDomainGroups );

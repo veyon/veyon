@@ -89,13 +89,6 @@ void LdapPlugin::reloadConfiguration()
 
 
 
-QStringList LdapPlugin::users()
-{
-	return ldapDirectory().users();
-}
-
-
-
 QStringList LdapPlugin::userGroups( bool queryDomainGroups )
 {
 	Q_UNUSED(queryDomainGroups);
