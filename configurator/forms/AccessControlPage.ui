@@ -33,7 +33,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Data backend:</string>
+           <string>User groups backend:</string>
           </property>
          </widget>
         </item>

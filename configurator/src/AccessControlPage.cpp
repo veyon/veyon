@@ -47,7 +47,7 @@ AccessControlPage::AccessControlPage() :
 	if( VeyonCore::userGroupsBackendManager().configuredBackend() == nullptr )
 	{
 		QMessageBox::critical( this,
-							   tr( "Missing access control data backend" ),
+							   tr( "Missing user groups backend" ),
 							   tr( "No default user groups plugin was found. "
 								   "Please check your installation!" ) );
 		qFatal( "AccessControlPage: missing default user groups backend" );
