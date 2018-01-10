@@ -28,7 +28,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QPluginLoader>
-#include <QVersionNumber>
 
 #include "PluginManager.h"
 #include "VeyonConfiguration.h"
@@ -75,7 +74,9 @@ void PluginManager::upgradePlugins()
 		const auto currentPluginVersion = pluginInterface->version();
 		if( currentPluginVersion > previousPluginVersion )
 		{
-			qDebug() << "Upgrading plugin" << pluginInterface->name() << "from" << previousPluginVersion << "to" << currentPluginVersion;
+			qDebug() << "Upgrading plugin" << pluginInterface->name()
+					 << "from" << previousPluginVersion.toString()
+					 << "to" << currentPluginVersion.toString();
 			pluginInterface->upgrade( previousPluginVersion );
 		}
 

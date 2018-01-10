@@ -26,7 +26,6 @@
 #define PLUGIN_INTERFACE_H
 
 #include <QObject>
-#include <QVersionNumber>
 
 #include "VeyonCore.h"
 #include "Plugin.h"
