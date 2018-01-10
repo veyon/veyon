@@ -35,17 +35,14 @@ public:
 
 	QMap<Plugin::Uid, QString> availableBackends();
 
-	UserGroupsBackendInterface* configuredBackend()
-	{
-		return m_configuredBackend;
-	}
+	UserGroupsBackendInterface* accessControlBackend();
 
 	void reloadConfiguration();
 
 private:
 	QMap<Plugin::Uid, UserGroupsBackendInterface *> m_backends;
 	UserGroupsBackendInterface* m_defaultBackend;
-	UserGroupsBackendInterface* m_configuredBackend;
+	UserGroupsBackendInterface* m_accessControlBackend;
 
 };
 

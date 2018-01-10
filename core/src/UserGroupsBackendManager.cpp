@@ -31,7 +31,7 @@ UserGroupsBackendManager::UserGroupsBackendManager( QObject* parent ) :
 	QObject( parent ),
 	m_backends(),
 	m_defaultBackend( nullptr ),
-	m_configuredBackend( nullptr )
+	m_accessControlBackend( nullptr )
 {
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
@@ -73,12 +73,24 @@ QMap<Plugin::Uid, QString> UserGroupsBackendManager::availableBackends()
 
 
 
+UserGroupsBackendInterface* UserGroupsBackendManager::accessControlBackend()
+{
+	if( m_accessControlBackend == nullptr )
+	{
+		reloadConfiguration();
+	}
+
+	return m_accessControlBackend;
+}
+
+
+
 void UserGroupsBackendManager::reloadConfiguration()
 {
-	m_configuredBackend = m_backends.value( VeyonCore::config().userGroupsBackend() );
+	m_accessControlBackend = m_backends.value( VeyonCore::config().accessControlUserGroupsBackend() );
 
-	if( m_configuredBackend == nullptr )
+	if( m_accessControlBackend == nullptr )
 	{
-		m_configuredBackend = m_defaultBackend;
+		m_accessControlBackend = m_defaultBackend;
 	}
 }

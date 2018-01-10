@@ -95,7 +95,7 @@ public slots:
 	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
-	void setUserGroupsBackend( QUuid );
+	void setAccessControlUserGroupsBackend( QUuid );
 	void setDomainGroupsForAccessControlEnabled( bool );
 	void setAccessRestrictedToUserGroups( bool );
 	void setAccessControlRulesProcessingEnabled( bool );
