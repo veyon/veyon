@@ -1,5 +1,5 @@
 /*
- * LocalDataConfigurationPage.cpp - implementation of LocalDataConfigurationPage
+ * DefaultNetworkObjectDirectoryConfigurationPage.cpp - implementation of DefaultNetworkObjectDirectoryConfigurationPage
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,16 +22,16 @@
  *
  */
 
-#include "LocalDataConfiguration.h"
-#include "LocalDataConfigurationPage.h"
+#include "DefaultNetworkObjectDirectoryConfiguration.h"
+#include "DefaultNetworkObjectDirectoryConfigurationPage.h"
 #include "Configuration/UiMapping.h"
 #include "NetworkObjectModel.h"
 
-#include "ui_LocalDataConfigurationPage.h"
+#include "ui_DefaultNetworkObjectDirectoryConfigurationPage.h"
 
-LocalDataConfigurationPage::LocalDataConfigurationPage( LocalDataConfiguration& configuration, QWidget* parent ) :
+DefaultNetworkObjectDirectoryConfigurationPage::DefaultNetworkObjectDirectoryConfigurationPage( DefaultNetworkObjectDirectoryConfiguration& configuration, QWidget* parent ) :
 	ConfigurationPage( parent ),
-	ui(new Ui::LocalDataConfigurationPage),
+	ui(new Ui::DefaultNetworkObjectDirectoryConfigurationPage),
 	m_configuration( configuration )
 {
 	ui->setupUi(this);
@@ -39,19 +39,19 @@ LocalDataConfigurationPage::LocalDataConfigurationPage( LocalDataConfiguration& 
 	populateRooms();
 
 	connect( ui->roomTableWidget, &QTableWidget::currentItemChanged,
-			 this, &LocalDataConfigurationPage::populateComputers );
+			 this, &DefaultNetworkObjectDirectoryConfigurationPage::populateComputers );
 }
 
 
 
-LocalDataConfigurationPage::~LocalDataConfigurationPage()
+DefaultNetworkObjectDirectoryConfigurationPage::~DefaultNetworkObjectDirectoryConfigurationPage()
 {
 	delete ui;
 }
 
 
 
-void LocalDataConfigurationPage::resetWidgets()
+void DefaultNetworkObjectDirectoryConfigurationPage::resetWidgets()
 {
 	populateRooms();
 
@@ -60,19 +60,19 @@ void LocalDataConfigurationPage::resetWidgets()
 
 
 
-void LocalDataConfigurationPage::connectWidgetsToProperties()
+void DefaultNetworkObjectDirectoryConfigurationPage::connectWidgetsToProperties()
 {
 }
 
 
 
-void LocalDataConfigurationPage::applyConfiguration()
+void DefaultNetworkObjectDirectoryConfigurationPage::applyConfiguration()
 {
 }
 
 
 
-void LocalDataConfigurationPage::addRoom()
+void DefaultNetworkObjectDirectoryConfigurationPage::addRoom()
 {
 	auto networkObjects = m_configuration.networkObjects();
 
@@ -89,7 +89,7 @@ void LocalDataConfigurationPage::addRoom()
 
 
 
-void LocalDataConfigurationPage::updateRoom()
+void DefaultNetworkObjectDirectoryConfigurationPage::updateRoom()
 {
 	auto currentRoomIndex = ui->roomTableWidget->currentIndex();
 	if( currentRoomIndex.isValid() == false )
@@ -119,7 +119,7 @@ void LocalDataConfigurationPage::updateRoom()
 
 
 
-void LocalDataConfigurationPage::removeRoom()
+void DefaultNetworkObjectDirectoryConfigurationPage::removeRoom()
 {
 	const auto currentRoomUid = currentRoomObject().uid();
 	auto networkObjects = m_configuration.networkObjects();
@@ -144,7 +144,7 @@ void LocalDataConfigurationPage::removeRoom()
 
 
 
-void LocalDataConfigurationPage::addComputer()
+void DefaultNetworkObjectDirectoryConfigurationPage::addComputer()
 {
 	auto currentRoomUid = currentRoomObject().uid();
 	if( currentRoomUid.isNull() )
@@ -170,7 +170,7 @@ void LocalDataConfigurationPage::addComputer()
 
 
 
-void LocalDataConfigurationPage::updateComputer()
+void DefaultNetworkObjectDirectoryConfigurationPage::updateComputer()
 {
 	auto currentComputerIndex = ui->computerTableWidget->currentIndex();
 	if( currentComputerIndex.isValid() == false )
@@ -200,7 +200,7 @@ void LocalDataConfigurationPage::updateComputer()
 
 
 
-void LocalDataConfigurationPage::removeComputer()
+void DefaultNetworkObjectDirectoryConfigurationPage::removeComputer()
 {
 	const auto currentComputerUid = currentComputerObject().uid();
 	auto networkObjects = m_configuration.networkObjects();
@@ -225,7 +225,7 @@ void LocalDataConfigurationPage::removeComputer()
 
 
 
-void LocalDataConfigurationPage::populateRooms()
+void DefaultNetworkObjectDirectoryConfigurationPage::populateRooms()
 {
 	ui->roomTableWidget->setUpdatesEnabled( false );
 	ui->roomTableWidget->clear();
@@ -250,7 +250,7 @@ void LocalDataConfigurationPage::populateRooms()
 
 
 
-void LocalDataConfigurationPage::populateComputers()
+void DefaultNetworkObjectDirectoryConfigurationPage::populateComputers()
 {
 	auto parentUid = currentRoomObject().uid();
 
@@ -284,7 +284,7 @@ void LocalDataConfigurationPage::populateComputers()
 
 
 
-NetworkObject LocalDataConfigurationPage::currentRoomObject() const
+NetworkObject DefaultNetworkObjectDirectoryConfigurationPage::currentRoomObject() const
 {
 	const auto selectedRoom = ui->roomTableWidget->currentItem();
 	if( selectedRoom )
@@ -303,7 +303,7 @@ NetworkObject LocalDataConfigurationPage::currentRoomObject() const
 
 
 
-NetworkObject LocalDataConfigurationPage::currentComputerObject() const
+NetworkObject DefaultNetworkObjectDirectoryConfigurationPage::currentComputerObject() const
 {
 	const int row = ui->computerTableWidget->currentRow();
 	if( row >= 0 )

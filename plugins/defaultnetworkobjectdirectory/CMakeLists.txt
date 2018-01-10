@@ -1,0 +1,18 @@
+INCLUDE(BuildPlugin)
+
+BUILD_PLUGIN(defaultnetworkobjectdirectory
+	DefaultNetworkObjectDirectoryPlugin.cpp
+	DefaultNetworkObjectDirectoryConfiguration.cpp
+	DefaultNetworkObjectDirectoryConfigurationPage.cpp
+	DefaultNetworkObjectDirectory.cpp
+	MOCFILES
+	DefaultNetworkObjectDirectoryPlugin.h
+	DefaultNetworkObjectDirectoryConfiguration.h
+	DefaultNetworkObjectDirectoryConfigurationPage.h
+	DefaultNetworkObjectDirectory.h
+	RESOURCES
+	defaultnetworkobjectdirectory.qrc
+	FORMS
+	DefaultNetworkObjectDirectoryConfigurationPage.ui
+	COTIRE
+)

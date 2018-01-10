@@ -1,5 +1,5 @@
 /*
- * LocalDataConfigurationPage.h - header for the LocalDataConfigurationPage class
+ * DefaultNetworkObjectDirectoryConfigurationPage.h - header for the DefaultNetworkObjectDirectoryConfigurationPage class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,24 +22,24 @@
  *
  */
 
-#ifndef LOCAL_DATA_CONFIGURATION_PAGE_H
-#define LOCAL_DATA_CONFIGURATION_PAGE_H
+#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_PAGE_H
+#define DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_PAGE_H
 
 #include "ConfigurationPage.h"
 #include "NetworkObject.h"
 
 namespace Ui {
-class LocalDataConfigurationPage;
+class DefaultNetworkObjectDirectoryConfigurationPage;
 }
 
-class LocalDataConfiguration;
+class DefaultNetworkObjectDirectoryConfiguration;
 
-class LocalDataConfigurationPage : public ConfigurationPage
+class DefaultNetworkObjectDirectoryConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	LocalDataConfigurationPage( LocalDataConfiguration& configuration, QWidget* parent = nullptr );
-	~LocalDataConfigurationPage();
+	DefaultNetworkObjectDirectoryConfigurationPage( DefaultNetworkObjectDirectoryConfiguration& configuration, QWidget* parent = nullptr );
+	~DefaultNetworkObjectDirectoryConfigurationPage();
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;
@@ -60,10 +60,10 @@ private:
 	NetworkObject currentRoomObject() const;
 	NetworkObject currentComputerObject() const;
 
-	Ui::LocalDataConfigurationPage *ui;
+	Ui::DefaultNetworkObjectDirectoryConfigurationPage *ui;
 
-	LocalDataConfiguration& m_configuration;
+	DefaultNetworkObjectDirectoryConfiguration& m_configuration;
 
 };
 
-#endif // LOCAL_DATA_CONFIGURATION_PAGE_H
+#endif // DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_PAGE_H

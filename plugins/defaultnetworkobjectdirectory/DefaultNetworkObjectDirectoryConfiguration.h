@@ -1,5 +1,5 @@
 /*
- * LocalDataConfiguration.h - configuration values for LocalData plugin
+ * DefaultNetworkObjectDirectoryConfiguration.h - configuration values for DefaultNetworkObjectDirectory plugin
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,23 +22,23 @@
  *
  */
 
-#ifndef LOCAL_DATA_CONFIGURATION_H
-#define LOCAL_DATA_CONFIGURATION_H
+#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_H
+#define DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_H
 
 #include "Configuration/Proxy.h"
 
-#define FOREACH_LOCAL_DATA_CONFIG_PROPERTY(OP) \
-	OP( LocalDataConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "LocalData" );	\
+#define FOREACH_DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP) \
+	OP( DefaultNetworkObjectDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "DefaultNetworkObjectDirectory" );	\
 
 // clazy:excludeall=ctor-missing-parent-argument
 
-class LocalDataConfiguration : public Configuration::Proxy
+class DefaultNetworkObjectDirectoryConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT
 public:
-	LocalDataConfiguration();
+	DefaultNetworkObjectDirectoryConfiguration();
 
-	FOREACH_LOCAL_DATA_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
+	FOREACH_DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
 public slots:
 	void setNetworkObjects( const QJsonArray& );

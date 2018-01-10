@@ -22,11 +22,11 @@
  *
  */
 
-#include "LocalDataConfigurationPage.h"
-#include "LocalDataNetworkObjectDirectory.h"
-#include "LocalDataPlugin.h"
+#include "DefaultNetworkObjectDirectoryConfigurationPage.h"
+#include "DefaultNetworkObjectDirectory.h"
+#include "DefaultNetworkObjectDirectoryPlugin.h"
 
-LocalDataPlugin::LocalDataPlugin( QObject* parent ) :
+DefaultNetworkObjectDirectoryPlugin::DefaultNetworkObjectDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration()
 {
@@ -34,20 +34,20 @@ LocalDataPlugin::LocalDataPlugin( QObject* parent ) :
 
 
 
-LocalDataPlugin::~LocalDataPlugin()
+DefaultNetworkObjectDirectoryPlugin::~DefaultNetworkObjectDirectoryPlugin()
 {
 }
 
 
 
-NetworkObjectDirectory *LocalDataPlugin::createNetworkObjectDirectory( QObject* parent )
+NetworkObjectDirectory *DefaultNetworkObjectDirectoryPlugin::createNetworkObjectDirectory( QObject* parent )
 {
-	return new LocalDataNetworkObjectDirectory( m_configuration, parent );
+	return new DefaultNetworkObjectDirectory( m_configuration, parent );
 }
 
 
 
-ConfigurationPage *LocalDataPlugin::createConfigurationPage()
+ConfigurationPage *DefaultNetworkObjectDirectoryPlugin::createConfigurationPage()
 {
-	return new LocalDataConfigurationPage( m_configuration );
+	return new DefaultNetworkObjectDirectoryConfigurationPage( m_configuration );
 }

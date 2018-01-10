@@ -1,5 +1,5 @@
 /*
- * LocalDataNetworkObjectDirectory.h - NetworkObjects from VeyonConfiguration
+ * DefaultNetworkObjectDirectory.h - NetworkObjects from VeyonConfiguration
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#ifndef LOCAL_DATA_NETWORK_OBJECT_DIRECTORY_H
-#define LOCAL_DATA_NETWORK_OBJECT_DIRECTORY_H
+#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_H
+#define DEFAULT_NETWORK_OBJECT_DIRECTORY_H
 
 #include <QHash>
 
 #include "NetworkObjectDirectory.h"
 
-class LocalDataConfiguration;
+class DefaultNetworkObjectDirectoryConfiguration;
 
-class LocalDataNetworkObjectDirectory : public NetworkObjectDirectory
+class DefaultNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	LocalDataNetworkObjectDirectory( const LocalDataConfiguration& configuration, QObject* parent );
+	DefaultNetworkObjectDirectory( const DefaultNetworkObjectDirectoryConfiguration& configuration, QObject* parent );
 
 	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
@@ -47,8 +47,8 @@ public:
 private:
 	void updateRoom( const NetworkObject& roomObject );
 
-	const LocalDataConfiguration& m_configuration;
+	const DefaultNetworkObjectDirectoryConfiguration& m_configuration;
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 
-#endif // LOCAL_DATA_NETWORK_OBJECT_DIRECTORY_H
+#endif // DEFAULT_NETWORK_OBJECT_DIRECTORY_H

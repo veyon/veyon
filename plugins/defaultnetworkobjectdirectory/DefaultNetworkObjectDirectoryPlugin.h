@@ -1,5 +1,5 @@
 /*
- * LocalDataPlugin.h - declaration of LocalDataPlugin class
+ * DefaultNetworkObjectDirectoryPlugin.h - declaration of DefaultNetworkObjectDirectoryPlugin class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,24 +22,24 @@
  *
  */
 
-#ifndef LOCAL_DATA_PLUGIN_H
-#define LOCAL_DATA_PLUGIN_H
+#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_PLUGIN_H
+#define DEFAULT_NETWORK_OBJECT_DIRECTORY_PLUGIN_H
 
 #include "ConfigurationPagePluginInterface.h"
-#include "LocalDataConfiguration.h"
+#include "DefaultNetworkObjectDirectoryConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
-class LocalDataPlugin : public QObject,
+class DefaultNetworkObjectDirectoryPlugin : public QObject,
 		PluginInterface,
 		NetworkObjectDirectoryPluginInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.LocalData")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.DefaultNetworkObjectDirectory")
 	Q_INTERFACES(PluginInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
 public:
-	LocalDataPlugin( QObject* paren = nullptr );
-	virtual ~LocalDataPlugin();
+	DefaultNetworkObjectDirectoryPlugin( QObject* paren = nullptr );
+	virtual ~DefaultNetworkObjectDirectoryPlugin();
 
 	Plugin::Uid uid() const override
 	{
@@ -48,17 +48,17 @@ public:
 
 	QString version() const override
 	{
-		return QStringLiteral( "1.0" );
+		return QStringLiteral( "1.1" );
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "LocalData" );
+		return QStringLiteral( "DefaultNetworkObjectDirectory" );
 	}
 
 	QString description() const override
 	{
-		return tr( "Backends which use local data" );
+		return tr( "Network object directory which stores objects in local configuration" );
 	}
 
 	QString vendor() const override
@@ -86,8 +86,8 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	LocalDataConfiguration m_configuration;
+	DefaultNetworkObjectDirectoryConfiguration m_configuration;
 
 };
 
-#endif // LOCAL_DATA_PLUGIN_H
+#endif // DEFAULT_NETWORK_OBJECT_DIRECTORY_PLUGIN_H

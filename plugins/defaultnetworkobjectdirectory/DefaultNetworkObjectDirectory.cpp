@@ -1,5 +1,5 @@
 /*
- * LocalDataNetworkObjectDirectory.cpp - NetworkObjects from VeyonConfiguration
+ * DefaultNetworkObjectDirectory.cpp - NetworkObjects from VeyonConfiguration
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,11 +22,11 @@
  *
  */
 
-#include "LocalDataConfiguration.h"
-#include "LocalDataNetworkObjectDirectory.h"
+#include "DefaultNetworkObjectDirectoryConfiguration.h"
+#include "DefaultNetworkObjectDirectory.h"
 
 
-LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory( const LocalDataConfiguration& configuration, QObject* parent ) :
+DefaultNetworkObjectDirectory::DefaultNetworkObjectDirectory( const DefaultNetworkObjectDirectoryConfiguration& configuration, QObject* parent ) :
 	NetworkObjectDirectory( parent ),
 	m_configuration( configuration )
 {
@@ -34,7 +34,7 @@ LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory( const LocalDat
 
 
 
-QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObject& parent )
+QList<NetworkObject> DefaultNetworkObjectDirectory::objects( const NetworkObject& parent )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
@@ -51,7 +51,7 @@ QList<NetworkObject> LocalDataNetworkObjectDirectory::objects( const NetworkObje
 
 
 
-QList<NetworkObject> LocalDataNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+QList<NetworkObject> DefaultNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
@@ -74,7 +74,7 @@ QList<NetworkObject> LocalDataNetworkObjectDirectory::queryObjects( NetworkObjec
 
 
 
-NetworkObject LocalDataNetworkObjectDirectory::queryParent( const NetworkObject& object )
+NetworkObject DefaultNetworkObjectDirectory::queryParent( const NetworkObject& object )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 	const auto parentUid = object.parentUid();
@@ -94,7 +94,7 @@ NetworkObject LocalDataNetworkObjectDirectory::queryParent( const NetworkObject&
 
 
 
-void LocalDataNetworkObjectDirectory::update()
+void DefaultNetworkObjectDirectory::update()
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
@@ -141,7 +141,7 @@ void LocalDataNetworkObjectDirectory::update()
 
 
 
-void LocalDataNetworkObjectDirectory::updateRoom( const NetworkObject& roomObject )
+void DefaultNetworkObjectDirectory::updateRoom( const NetworkObject& roomObject )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 

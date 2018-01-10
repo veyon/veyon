@@ -1,5 +1,5 @@
 /*
- * LocalDataConfiguration.cpp - configuration values for LocalData plugin
+ * DefaultNetworkObjectDirectoryConfiguration.cpp - configuration values for DefaultNetworkObjectDirectory plugin
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -23,13 +23,13 @@
  */
 
 #include "VeyonConfiguration.h"
-#include "LocalDataConfiguration.h"
+#include "DefaultNetworkObjectDirectoryConfiguration.h"
 
 
-LocalDataConfiguration::LocalDataConfiguration() :
+DefaultNetworkObjectDirectoryConfiguration::DefaultNetworkObjectDirectoryConfiguration() :
 	Configuration::Proxy( &VeyonCore::config() )
 {
 }
 
 
-FOREACH_LOCAL_DATA_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
+FOREACH_DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
