@@ -1,7 +1,7 @@
 /*
  * GeneralConfigurationPage.cpp - configuration page with general settings
  *
- * Copyright (c) 2016-2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2016-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

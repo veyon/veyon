@@ -1,7 +1,7 @@
 /*
  * VeyonVncConnection.cpp - implementation of VeyonVncConnection class
  *
- * Copyright (c) 2008-2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2008-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

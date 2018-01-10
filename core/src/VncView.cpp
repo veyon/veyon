@@ -1,7 +1,7 @@
 /*
  * VncView.cpp - VNC viewer widget
  *
- * Copyright (c) 2006-2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2006-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * X11VncConfiguration.cpp - x11vnc-specific configuration values
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * VeyonServerProtocol.h - header file for the VeyonServerProtocol class
  *
- * Copyright (c) 2017 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
