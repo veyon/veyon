@@ -30,7 +30,6 @@ LocalDataNetworkObjectDirectory::LocalDataNetworkObjectDirectory( const LocalDat
 	NetworkObjectDirectory( parent ),
 	m_configuration( configuration )
 {
-	update();
 }
 
 

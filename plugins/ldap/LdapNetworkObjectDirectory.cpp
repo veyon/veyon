@@ -32,7 +32,6 @@ LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration&
 	NetworkObjectDirectory( parent ),
 	m_ldapDirectory( ldapConfiguration )
 {
-	update();
 }
 
 
