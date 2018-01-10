@@ -6,8 +6,8 @@
    <string>Rooms &amp; computers</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="localdata.qrc">
-    <normaloff>:/localdata/application-msonenote.png</normaloff>:/localdata/application-msonenote.png</iconset>
+   <iconset resource="defaultnetworkobjectdirectory.qrc">
+    <normaloff>:/defaultnetworkobjectdirectory/application-msonenote.png</normaloff>:/defaultnetworkobjectdirectory/application-msonenote.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="1,3">
    <property name="topMargin">
@@ -93,8 +93,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="localdata.qrc">
-         <normaloff>:/localdata/list-add.png</normaloff>:/localdata/list-add.png</iconset>
+        <iconset resource="defaultnetworkobjectdirectory.qrc">
+         <normaloff>:/defaultnetworkobjectdirectory/list-add.png</normaloff>:/defaultnetworkobjectdirectory/list-add.png</iconset>
        </property>
       </widget>
      </item>
@@ -107,8 +107,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="localdata.qrc">
-         <normaloff>:/localdata/edit-delete.png</normaloff>:/localdata/edit-delete.png</iconset>
+        <iconset resource="defaultnetworkobjectdirectory.qrc">
+         <normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</iconset>
        </property>
       </widget>
      </item>
@@ -138,8 +138,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="localdata.qrc">
-         <normaloff>:/localdata/list-add.png</normaloff>:/localdata/list-add.png</iconset>
+        <iconset resource="defaultnetworkobjectdirectory.qrc">
+         <normaloff>:/defaultnetworkobjectdirectory/list-add.png</normaloff>:/defaultnetworkobjectdirectory/list-add.png</iconset>
        </property>
       </widget>
      </item>
@@ -152,8 +152,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="localdata.qrc">
-         <normaloff>:/localdata/edit-delete.png</normaloff>:/localdata/edit-delete.png</iconset>
+        <iconset resource="defaultnetworkobjectdirectory.qrc">
+         <normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</iconset>
        </property>
       </widget>
      </item>
@@ -175,7 +175,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="localdata.qrc"/>
+  <include location="defaultnetworkobjectdirectory.qrc"/>
  </resources>
  <connections>
   <connection>

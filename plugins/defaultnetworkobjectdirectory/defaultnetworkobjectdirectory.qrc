@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/defaultnetworkobjectdirectory" >
+        <file>application-msonenote.png</file>
+        <file>list-add.png</file>
+        <file>edit-delete.png</file>
+    </qresource>
+</RCC>
