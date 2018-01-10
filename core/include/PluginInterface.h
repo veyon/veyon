@@ -30,6 +30,8 @@
 #include "VeyonCore.h"
 #include "Plugin.h"
 
+class QVersionNumber;
+
 // clazy:excludeall=copyable-polymorphic
 
 class VEYON_CORE_EXPORT PluginInterface
@@ -45,7 +47,7 @@ public:
 	{
 		return Plugin::NoFlags;
 	}
-	virtual void upgrade( const QString& oldVersion )
+	virtual void upgrade( const QVersionNumber& oldVersion )
 	{
 		Q_UNUSED(oldVersion)
 	}

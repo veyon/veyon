@@ -149,6 +149,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	// load all other plugins
 	m_pluginManager->loadPlugins();
+	m_pluginManager->upgradePlugins();
 
 	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );

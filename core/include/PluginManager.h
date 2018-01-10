@@ -38,6 +38,7 @@ public:
 
 	void loadPlatformPlugins();
 	void loadPlugins();
+	void upgradePlugins();
 
 	const PluginInterfaceList& pluginInterfaces() const
 	{

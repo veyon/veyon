@@ -53,6 +53,7 @@ public:
 	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
 	// macro expansion :-(
 public slots:
+	void setPluginVersions( const QJsonObject& );
 	void setApplicationName( const QString& );
 	void setUiLanguage( const QString& );
 	void setHighDPIScalingEnabled( bool );

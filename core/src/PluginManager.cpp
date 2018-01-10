@@ -28,8 +28,10 @@
 #include <QDebug>
 #include <QDir>
 #include <QPluginLoader>
+#include <QVersionNumber>
 
 #include "PluginManager.h"
+#include "VeyonConfiguration.h"
 
 
 PluginManager::PluginManager( QObject* parent ) :
@@ -54,6 +56,33 @@ void PluginManager::loadPlugins()
 	loadPlugins( QStringLiteral("*" VEYON_SHARED_LIBRARY_SUFFIX) );
 
 	emit pluginsLoaded();
+}
+
+
+
+void PluginManager::upgradePlugins()
+{
+	auto versions = VeyonCore::config().pluginVersions();
+
+	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
+	{
+		const auto pluginUid = pluginInterface->uid().toString();
+		auto previousPluginVersion = QVersionNumber::fromString( versions.value( pluginUid ).toString() );
+		if( previousPluginVersion.isNull() )
+		{
+			previousPluginVersion = QVersionNumber( 1, 0 );
+		}
+		const auto pluginVersion = QVersionNumber::fromString( pluginInterface->version() );
+		if( pluginVersion > previousPluginVersion )
+		{
+			qDebug() << "Upgrading plugin" << pluginInterface->name() << "from" << previousPluginVersion << "to" << pluginVersion;
+			pluginInterface->upgrade( previousPluginVersion );
+		}
+
+		versions[pluginUid] = pluginVersion.toString();
+	}
+
+	VeyonCore::config().setPluginVersions( versions );
 }
 
 

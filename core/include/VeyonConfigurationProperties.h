@@ -26,6 +26,9 @@
 #ifndef VEYON_CONFIGURATION_PROPERTIES_H
 #define VEYON_CONFIGURATION_PROPERTIES_H
 
+#define FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)		\
+	OP( VeyonConfiguration, VeyonCore::config(), JSONOBJECT, pluginVersions, setPluginVersions, "PluginVersions", "Core" );			\
+
 #define FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, applicationName, setApplicationName, "ApplicationName", "UI" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
@@ -97,6 +100,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), JSONARRAY, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
 #define FOREACH_VEYON_CONFIG_PROPERTY(OP)				\
+	FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)			\
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)			\
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(OP)			\
