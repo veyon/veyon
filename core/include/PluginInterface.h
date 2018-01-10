@@ -26,11 +26,10 @@
 #define PLUGIN_INTERFACE_H
 
 #include <QObject>
+#include <QVersionNumber>
 
 #include "VeyonCore.h"
 #include "Plugin.h"
-
-class QVersionNumber;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -38,7 +37,7 @@ class VEYON_CORE_EXPORT PluginInterface
 {
 public:
 	virtual Plugin::Uid uid() const = 0;
-	virtual QString version() const = 0;
+	virtual QVersionNumber version() const = 0;
 	virtual QString name() const = 0;
 	virtual QString description() const = 0;
 	virtual QString vendor() const = 0;

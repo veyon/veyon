@@ -42,9 +42,9 @@ public:
 		return "4122e8ca-b617-4e36-b851-8e050ed2d82e";
 	}
 
-	QString version() const override
+	QVersionNumber version() const override
 	{
-		return QStringLiteral("1.0");
+		return QVersionNumber( 1, 0 );
 	}
 
 	QString name() const override

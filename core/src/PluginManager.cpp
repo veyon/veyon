@@ -72,14 +72,14 @@ void PluginManager::upgradePlugins()
 		{
 			previousPluginVersion = QVersionNumber( 1, 0 );
 		}
-		const auto pluginVersion = QVersionNumber::fromString( pluginInterface->version() );
-		if( pluginVersion > previousPluginVersion )
+		const auto currentPluginVersion = pluginInterface->version();
+		if( currentPluginVersion > previousPluginVersion )
 		{
-			qDebug() << "Upgrading plugin" << pluginInterface->name() << "from" << previousPluginVersion << "to" << pluginVersion;
+			qDebug() << "Upgrading plugin" << pluginInterface->name() << "from" << previousPluginVersion << "to" << currentPluginVersion;
 			pluginInterface->upgrade( previousPluginVersion );
 		}
 
-		versions[pluginUid] = pluginVersion.toString();
+		versions[pluginUid] = currentPluginVersion.toString();
 	}
 
 	VeyonCore::config().setPluginVersions( versions );
