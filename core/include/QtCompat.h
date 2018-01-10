@@ -41,6 +41,9 @@ static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
 #if QT_VERSION >= 0x050600
 #include <QVersionNumber>
 #else
+
+// taken from qtbase/src/corelib/tools/qversionnumber.h
+
 class QVersionNumber
 {
     /*
