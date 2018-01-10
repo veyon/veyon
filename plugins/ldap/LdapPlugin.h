@@ -67,7 +67,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Configure LDAP/AD integration of Veyon at command line" );
+		return tr( "Provide LDAP/AD integration for Veyon" );
 	}
 
 	QString vendor() const override
@@ -103,7 +103,7 @@ public:
 
 	QString userGroupsBackendName() const override
 	{
-		return tr( "LDAP (load users/groups and computers/rooms from LDAP/AD)" );
+		return tr( "LDAP (load computers and rooms from LDAP/AD)" );
 	}
 
 	void reloadConfiguration() override;
