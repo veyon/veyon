@@ -28,14 +28,24 @@
 #include "VeyonCore.h"
 #include "NetworkObjectDirectory.h"
 
+
 NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
-	QObject( parent )
+	QObject( parent ),
+	m_updateTimer( new QTimer( this ) )
 {
-	if( VeyonCore::config().networkObjectDirectoryUpdateInterval() >= MinimumUpdateInterval )
+	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
+}
+
+
+
+void NetworkObjectDirectory::setUpdateInterval( int interval )
+{
+	if( interval >= MinimumUpdateInterval )
 	{
-		// create and start directory update timer
-		auto t = new QTimer( this );
-		connect( t, &QTimer::timeout, this, &NetworkObjectDirectory::update );
-		t->start( VeyonCore::config().networkObjectDirectoryUpdateInterval() * 1000 );
+		m_updateTimer->start( interval );
+	}
+	else
+	{
+		m_updateTimer->stop();
 	}
 }

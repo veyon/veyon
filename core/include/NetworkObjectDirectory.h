@@ -29,6 +29,8 @@
 
 #include "NetworkObject.h"
 
+class QTimer;
+
 class VEYON_CORE_EXPORT NetworkObjectDirectory : public QObject
 {
 	Q_OBJECT
@@ -41,6 +43,8 @@ public:
 
 	NetworkObjectDirectory( QObject* parent );
 
+	void setUpdateInterval( int interval );
+
 	virtual QList<NetworkObject> objects( const NetworkObject& parent ) = 0;
 
 	virtual QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name = QString() ) = 0;
@@ -48,6 +52,9 @@ public:
 
 public slots:
 	virtual void update() = 0;
+
+private:
+	QTimer* m_updateTimer;
 
 signals:
 	void objectsAboutToBeInserted( const NetworkObject& parent, int index, int count );

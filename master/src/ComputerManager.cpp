@@ -299,6 +299,7 @@ void ComputerManager::initRooms()
 void ComputerManager::initNetworkObjectLayer()
 {
 	m_networkObjectDirectory->update();
+	m_networkObjectDirectory->setUpdateInterval( VeyonCore::config().networkObjectDirectoryUpdateInterval() );
 	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
 	m_networkObjectFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
 	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
