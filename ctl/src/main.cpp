@@ -101,21 +101,13 @@ int main( int argc, char **argv )
 
 			if( arguments.count() > 2 )
 			{
-				QString command = arguments[2];
+				const auto command = arguments[2];
 
-				if( commands.contains( command ) &&
-						QMetaObject::invokeMethod( it.value(),
-												   QStringLiteral( "handle_%1" ).arg( command ).toUtf8().constData(),
-												   Qt::DirectConnection,
-												   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
-												   Q_ARG( QStringList, arguments.mid( 3 ) ) ) )
-				{
-					// runResult contains result
-				}
-				else
-				{
-					runResult = it.key()->runCommand( arguments.mid( 2 ) );
-				}
+				QMetaObject::invokeMethod( it.value(),
+										   QStringLiteral( "handle_%1" ).arg( command ).toUtf8().constData(),
+										   Qt::DirectConnection,
+										   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
+										   Q_ARG( QStringList, arguments.mid( 3 ) ) );
 			}
 			else
 			{
