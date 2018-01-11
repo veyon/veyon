@@ -29,6 +29,8 @@
 
 #define FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(OP) \
 	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory" );	\
+	/* legacy properties required for upgrade */ \
+	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, localDataNetworkObjects, setLocalDataNetworkObjects, "NetworkObjects", "LocalData" );	\
 
 // clazy:excludeall=ctor-missing-parent-argument
 
@@ -42,6 +44,7 @@ public:
 
 public slots:
 	void setNetworkObjects( const QJsonArray& );
+	void setLocalDataNetworkObjects( const QJsonArray& );
 
 } ;
 

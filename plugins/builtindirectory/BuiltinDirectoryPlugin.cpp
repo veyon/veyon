@@ -40,6 +40,18 @@ BuiltinDirectoryPlugin::~BuiltinDirectoryPlugin()
 
 
 
+void BuiltinDirectoryPlugin::upgrade( const QVersionNumber& oldVersion )
+{
+	if( oldVersion < QVersionNumber( 1, 1 ) &&
+			m_configuration.localDataNetworkObjects().isEmpty() == false )
+	{
+		m_configuration.setNetworkObjects( m_configuration.localDataNetworkObjects() );
+		m_configuration.setLocalDataNetworkObjects( QJsonArray() );
+	}
+}
+
+
+
 NetworkObjectDirectory *BuiltinDirectoryPlugin::createNetworkObjectDirectory( QObject* parent )
 {
 	return new BuiltinDirectory( m_configuration, parent );

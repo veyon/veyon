@@ -76,6 +76,8 @@ public:
 		return Plugin::ProvidesDefaultImplementation;
 	}
 
+	void upgrade( const QVersionNumber& oldVersion ) override;
+
 	QString directoryName() const override
 	{
 		return tr( "Builtin (computers and rooms in local configuration)" );
