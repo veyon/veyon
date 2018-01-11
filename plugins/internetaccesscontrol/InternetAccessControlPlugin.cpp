@@ -77,14 +77,6 @@ QString InternetAccessControlPlugin::commandHelp( const QString& command ) const
 
 
 
-CommandLinePluginInterface::RunResult InternetAccessControlPlugin::runCommand( const QStringList& arguments )
-{
-	// all commands are handled as slots so if we land here an unsupported command has been called
-	return InvalidCommand;
-}
-
-
-
 ConfigurationPage *InternetAccessControlPlugin::createConfigurationPage()
 {
 	return new InternetAccessControlConfigurationPage( m_configuration );

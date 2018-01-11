@@ -46,14 +46,6 @@ ServiceControlPlugin::~ServiceControlPlugin()
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlPlugin::runCommand( const QStringList& arguments )
-{
-	// all commands are handled as slots so if we land here an unsupported command has been called
-	return InvalidCommand;
-}
-
-
-
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( const QStringList& arguments )
 {
 	VeyonServiceControl serviceControl;

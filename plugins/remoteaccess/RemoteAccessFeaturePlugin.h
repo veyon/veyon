@@ -103,8 +103,6 @@ public:
 
 	QString commandHelp( const QString& command ) const override;
 
-	RunResult runCommand( const QStringList& arguments ) override;
-
 private slots:
 	CommandLinePluginInterface::RunResult handle_view( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_control( const QStringList& arguments );

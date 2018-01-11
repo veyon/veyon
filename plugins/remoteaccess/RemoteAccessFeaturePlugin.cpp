@@ -184,13 +184,6 @@ QString RemoteAccessFeaturePlugin::commandHelp( const QString& command ) const
 
 
 
-CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::runCommand( const QStringList& arguments )
-{
-	return InvalidCommand;
-}
-
-
-
 CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( const QStringList& arguments )
 {
 	if( arguments.count() < 1 )

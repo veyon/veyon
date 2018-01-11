@@ -86,8 +86,6 @@ public:
 		return m_commands.value( command );
 	}
 
-	RunResult runCommand( const QStringList& arguments ) override;
-
 public slots:
 	CommandLinePluginInterface::RunResult handle_register( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_unregister( const QStringList& arguments );

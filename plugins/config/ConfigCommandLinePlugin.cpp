@@ -69,14 +69,6 @@ QString ConfigCommandLinePlugin::commandHelp( const QString& command ) const
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::runCommand( const QStringList& arguments )
-{
-	// all commands are handled as slots so if we land here an unsupported commands has been called
-	return InvalidCommand;
-}
-
-
-
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( const QStringList& arguments )
 {
 	// clear global configuration

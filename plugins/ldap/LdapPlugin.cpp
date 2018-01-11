@@ -66,14 +66,6 @@ QString LdapPlugin::commandHelp( const QString& command ) const
 
 
 
-CommandLinePluginInterface::RunResult LdapPlugin::runCommand( const QStringList& arguments )
-{
-	// all commands are handled as slots so if we land here an unsupported command has been called
-	return InvalidCommand;
-}
-
-
-
 NetworkObjectDirectory *LdapPlugin::createNetworkObjectDirectory( QObject* parent )
 {
 	return new LdapNetworkObjectDirectory( m_configuration, parent );

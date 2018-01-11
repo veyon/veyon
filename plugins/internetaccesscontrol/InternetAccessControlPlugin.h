@@ -89,7 +89,6 @@ public:
 
 	QStringList commands() const override;
 	QString commandHelp( const QString& command ) const override;
-	RunResult runCommand( const QStringList& arguments ) override;
 
 	const FeatureList& featureList() const override
 	{

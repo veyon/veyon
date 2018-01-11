@@ -92,7 +92,6 @@ public:
 
 	QStringList commands() const override;
 	QString commandHelp( const QString& command ) const override;
-	RunResult runCommand( const QStringList& arguments ) override;
 
 	QString directoryName() const override
 	{
