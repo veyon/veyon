@@ -1,5 +1,5 @@
 /*
- * DefaultNetworkObjectDirectoryConfiguration.cpp - configuration values for DefaultNetworkObjectDirectory plugin
+ * BuiltinDirectoryConfiguration.h - configuration values for BuiltinDirectory plugin
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,14 +22,27 @@
  *
  */
 
-#include "VeyonConfiguration.h"
-#include "DefaultNetworkObjectDirectoryConfiguration.h"
+#ifndef BUILTIN_DIRECTORY_CONFIGURATION_H
+#define BUILTIN_DIRECTORY_CONFIGURATION_H
 
+#include "Configuration/Proxy.h"
 
-DefaultNetworkObjectDirectoryConfiguration::DefaultNetworkObjectDirectoryConfiguration() :
-	Configuration::Proxy( &VeyonCore::config() )
+#define FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(OP) \
+	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory" );	\
+
+// clazy:excludeall=ctor-missing-parent-argument
+
+class BuiltinDirectoryConfiguration : public Configuration::Proxy
 {
-}
+	Q_OBJECT
+public:
+	BuiltinDirectoryConfiguration();
 
+	FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
-FOREACH_DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
+public slots:
+	void setNetworkObjects( const QJsonArray& );
+
+} ;
+
+#endif

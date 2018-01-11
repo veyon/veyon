@@ -1,5 +1,5 @@
 /*
- * DefaultNetworkObjectDirectory.h - NetworkObjects from VeyonConfiguration
+ * BuiltinDirectory.h - NetworkObjects from VeyonConfiguration
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_H
-#define DEFAULT_NETWORK_OBJECT_DIRECTORY_H
+#ifndef BUILTIN_DIRECTORY_H
+#define BUILTIN_DIRECTORY_H
 
 #include <QHash>
 
 #include "NetworkObjectDirectory.h"
 
-class DefaultNetworkObjectDirectoryConfiguration;
+class BuiltinDirectoryConfiguration;
 
-class DefaultNetworkObjectDirectory : public NetworkObjectDirectory
+class BuiltinDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	DefaultNetworkObjectDirectory( const DefaultNetworkObjectDirectoryConfiguration& configuration, QObject* parent );
+	BuiltinDirectory( const BuiltinDirectoryConfiguration& configuration, QObject* parent );
 
 	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
@@ -47,8 +47,8 @@ public:
 private:
 	void updateRoom( const NetworkObject& roomObject );
 
-	const DefaultNetworkObjectDirectoryConfiguration& m_configuration;
+	const BuiltinDirectoryConfiguration& m_configuration;
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 
-#endif // DEFAULT_NETWORK_OBJECT_DIRECTORY_H
+#endif // BUILTIN_DIRECTORY_H

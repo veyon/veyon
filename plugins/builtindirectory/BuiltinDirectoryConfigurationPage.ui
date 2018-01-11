@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DefaultNetworkObjectDirectoryConfigurationPage</class>
- <widget class="QWidget" name="DefaultNetworkObjectDirectoryConfigurationPage">
+ <class>BuiltinDirectoryConfigurationPage</class>
+ <widget class="QWidget" name="BuiltinDirectoryConfigurationPage">
   <property name="windowTitle">
    <string>Rooms &amp; computers</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="defaultnetworkobjectdirectory.qrc">
-    <normaloff>:/defaultnetworkobjectdirectory/application-msonenote.png</normaloff>:/defaultnetworkobjectdirectory/application-msonenote.png</iconset>
+   <iconset resource="builtindirectory.qrc">
+    <normaloff>:/builtindirectory/application-msonenote.png</normaloff>:/builtindirectory/application-msonenote.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="1,3">
    <property name="topMargin">
@@ -53,7 +53,7 @@
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
+     <attribute name="horizontalHeaderBuiltinSectionSize">
       <number>200</number>
      </attribute>
      <attribute name="horizontalHeaderMinimumSectionSize">
@@ -93,8 +93,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="defaultnetworkobjectdirectory.qrc">
-         <normaloff>:/defaultnetworkobjectdirectory/list-add.png</normaloff>:/defaultnetworkobjectdirectory/list-add.png</iconset>
+        <iconset resource="builtindirectory.qrc">
+         <normaloff>:/builtindirectory/list-add.png</normaloff>:/builtindirectory/list-add.png</iconset>
        </property>
       </widget>
      </item>
@@ -107,8 +107,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="defaultnetworkobjectdirectory.qrc">
-         <normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</iconset>
+        <iconset resource="builtindirectory.qrc">
+         <normaloff>:/builtindirectory/edit-delete.png</normaloff>:/builtindirectory/edit-delete.png</iconset>
        </property>
       </widget>
      </item>
@@ -138,8 +138,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="defaultnetworkobjectdirectory.qrc">
-         <normaloff>:/defaultnetworkobjectdirectory/list-add.png</normaloff>:/defaultnetworkobjectdirectory/list-add.png</iconset>
+        <iconset resource="builtindirectory.qrc">
+         <normaloff>:/builtindirectory/list-add.png</normaloff>:/builtindirectory/list-add.png</iconset>
        </property>
       </widget>
      </item>
@@ -152,8 +152,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="defaultnetworkobjectdirectory.qrc">
-         <normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</normaloff>:/defaultnetworkobjectdirectory/edit-delete.png</iconset>
+        <iconset resource="builtindirectory.qrc">
+         <normaloff>:/builtindirectory/edit-delete.png</normaloff>:/builtindirectory/edit-delete.png</iconset>
        </property>
       </widget>
      </item>
@@ -175,13 +175,13 @@
   </layout>
  </widget>
  <resources>
-  <include location="defaultnetworkobjectdirectory.qrc"/>
+  <include location="builtindirectory.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>addComputerButton</sender>
    <signal>clicked()</signal>
-   <receiver>DefaultNetworkObjectDirectoryConfigurationPage</receiver>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
    <slot>addComputer()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -197,7 +197,7 @@
   <connection>
    <sender>removeComputerButton</sender>
    <signal>clicked()</signal>
-   <receiver>DefaultNetworkObjectDirectoryConfigurationPage</receiver>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
    <slot>removeComputer()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -213,7 +213,7 @@
   <connection>
    <sender>removeRoomButton</sender>
    <signal>clicked()</signal>
-   <receiver>DefaultNetworkObjectDirectoryConfigurationPage</receiver>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
    <slot>removeRoom()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -229,7 +229,7 @@
   <connection>
    <sender>addRoomButton</sender>
    <signal>clicked()</signal>
-   <receiver>DefaultNetworkObjectDirectoryConfigurationPage</receiver>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
    <slot>addRoom()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -245,7 +245,7 @@
   <connection>
    <sender>roomTableWidget</sender>
    <signal>cellChanged(int,int)</signal>
-   <receiver>DefaultNetworkObjectDirectoryConfigurationPage</receiver>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
    <slot>updateRoom()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -261,7 +261,7 @@
   <connection>
    <sender>computerTableWidget</sender>
    <signal>cellChanged(int,int)</signal>
-   <receiver>DefaultNetworkObjectDirectoryConfigurationPage</receiver>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
    <slot>updateComputer()</slot>
    <hints>
     <hint type="sourcelabel">

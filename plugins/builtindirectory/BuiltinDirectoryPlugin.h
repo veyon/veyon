@@ -1,5 +1,5 @@
 /*
- * DefaultNetworkObjectDirectoryPlugin.h - declaration of DefaultNetworkObjectDirectoryPlugin class
+ * BuiltinDirectoryPlugin.h - declaration of BuiltinDirectoryPlugin class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,24 +22,24 @@
  *
  */
 
-#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_PLUGIN_H
-#define DEFAULT_NETWORK_OBJECT_DIRECTORY_PLUGIN_H
+#ifndef BUILTIN_DIRECTORY_PLUGIN_H
+#define BUILTIN_DIRECTORY_PLUGIN_H
 
 #include "ConfigurationPagePluginInterface.h"
-#include "DefaultNetworkObjectDirectoryConfiguration.h"
+#include "BuiltinDirectoryConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
-class DefaultNetworkObjectDirectoryPlugin : public QObject,
+class BuiltinDirectoryPlugin : public QObject,
 		PluginInterface,
 		NetworkObjectDirectoryPluginInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.DefaultNetworkObjectDirectory")
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinDirectory")
 	Q_INTERFACES(PluginInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
 public:
-	DefaultNetworkObjectDirectoryPlugin( QObject* paren = nullptr );
-	virtual ~DefaultNetworkObjectDirectoryPlugin();
+	BuiltinDirectoryPlugin( QObject* paren = nullptr );
+	virtual ~BuiltinDirectoryPlugin();
 
 	Plugin::Uid uid() const override
 	{
@@ -53,7 +53,7 @@ public:
 
 	QString name() const override
 	{
-		return QStringLiteral( "DefaultNetworkObjectDirectory" );
+		return QStringLiteral( "BuiltinDirectory" );
 	}
 
 	QString description() const override
@@ -78,7 +78,7 @@ public:
 
 	QString directoryName() const override
 	{
-		return tr( "Default (store objects in local configuration)" );
+		return tr( "Builtin (computers and rooms in local configuration)" );
 	}
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
@@ -86,8 +86,8 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	DefaultNetworkObjectDirectoryConfiguration m_configuration;
+	BuiltinDirectoryConfiguration m_configuration;
 
 };
 
-#endif // DEFAULT_NETWORK_OBJECT_DIRECTORY_PLUGIN_H
+#endif // BUILTIN_DIRECTORY_PLUGIN_H

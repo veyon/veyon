@@ -1,5 +1,5 @@
 /*
- * DefaultNetworkObjectDirectory.cpp - NetworkObjects from VeyonConfiguration
+ * BuiltinDirectory.cpp - NetworkObjects from VeyonConfiguration
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,11 +22,11 @@
  *
  */
 
-#include "DefaultNetworkObjectDirectoryConfiguration.h"
-#include "DefaultNetworkObjectDirectory.h"
+#include "BuiltinDirectoryConfiguration.h"
+#include "BuiltinDirectory.h"
 
 
-DefaultNetworkObjectDirectory::DefaultNetworkObjectDirectory( const DefaultNetworkObjectDirectoryConfiguration& configuration, QObject* parent ) :
+BuiltinDirectory::BuiltinDirectory( const BuiltinDirectoryConfiguration& configuration, QObject* parent ) :
 	NetworkObjectDirectory( parent ),
 	m_configuration( configuration )
 {
@@ -34,7 +34,7 @@ DefaultNetworkObjectDirectory::DefaultNetworkObjectDirectory( const DefaultNetwo
 
 
 
-QList<NetworkObject> DefaultNetworkObjectDirectory::objects( const NetworkObject& parent )
+QList<NetworkObject> BuiltinDirectory::objects( const NetworkObject& parent )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
@@ -51,7 +51,7 @@ QList<NetworkObject> DefaultNetworkObjectDirectory::objects( const NetworkObject
 
 
 
-QList<NetworkObject> DefaultNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+QList<NetworkObject> BuiltinDirectory::queryObjects( NetworkObject::Type type, const QString& name )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
@@ -74,7 +74,7 @@ QList<NetworkObject> DefaultNetworkObjectDirectory::queryObjects( NetworkObject:
 
 
 
-NetworkObject DefaultNetworkObjectDirectory::queryParent( const NetworkObject& object )
+NetworkObject BuiltinDirectory::queryParent( const NetworkObject& object )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 	const auto parentUid = object.parentUid();
@@ -94,7 +94,7 @@ NetworkObject DefaultNetworkObjectDirectory::queryParent( const NetworkObject& o
 
 
 
-void DefaultNetworkObjectDirectory::update()
+void BuiltinDirectory::update()
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
@@ -141,7 +141,7 @@ void DefaultNetworkObjectDirectory::update()
 
 
 
-void DefaultNetworkObjectDirectory::updateRoom( const NetworkObject& roomObject )
+void BuiltinDirectory::updateRoom( const NetworkObject& roomObject )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 

@@ -1,5 +1,5 @@
 /*
- * DefaultNetworkObjectDirectoryConfigurationPage.h - header for the DefaultNetworkObjectDirectoryConfigurationPage class
+ * BuiltinDirectoryConfigurationPage.h - header for the BuiltinDirectoryConfigurationPage class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,24 +22,24 @@
  *
  */
 
-#ifndef DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_PAGE_H
-#define DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_PAGE_H
+#ifndef BUILTIN_DIRECTORY_CONFIGURATION_PAGE_H
+#define BUILTIN_DIRECTORY_CONFIGURATION_PAGE_H
 
 #include "ConfigurationPage.h"
 #include "NetworkObject.h"
 
 namespace Ui {
-class DefaultNetworkObjectDirectoryConfigurationPage;
+class BuiltinDirectoryConfigurationPage;
 }
 
-class DefaultNetworkObjectDirectoryConfiguration;
+class BuiltinDirectoryConfiguration;
 
-class DefaultNetworkObjectDirectoryConfigurationPage : public ConfigurationPage
+class BuiltinDirectoryConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	DefaultNetworkObjectDirectoryConfigurationPage( DefaultNetworkObjectDirectoryConfiguration& configuration, QWidget* parent = nullptr );
-	~DefaultNetworkObjectDirectoryConfigurationPage();
+	BuiltinDirectoryConfigurationPage( BuiltinDirectoryConfiguration& configuration, QWidget* parent = nullptr );
+	~BuiltinDirectoryConfigurationPage();
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;
@@ -60,10 +60,10 @@ private:
 	NetworkObject currentRoomObject() const;
 	NetworkObject currentComputerObject() const;
 
-	Ui::DefaultNetworkObjectDirectoryConfigurationPage *ui;
+	Ui::BuiltinDirectoryConfigurationPage *ui;
 
-	DefaultNetworkObjectDirectoryConfiguration& m_configuration;
+	BuiltinDirectoryConfiguration& m_configuration;
 
 };
 
-#endif // DEFAULT_NETWORK_OBJECT_DIRECTORY_CONFIGURATION_PAGE_H
+#endif // BUILTIN_DIRECTORY_CONFIGURATION_PAGE_H

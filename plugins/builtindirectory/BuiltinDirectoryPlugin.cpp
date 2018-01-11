@@ -22,11 +22,11 @@
  *
  */
 
-#include "DefaultNetworkObjectDirectoryConfigurationPage.h"
-#include "DefaultNetworkObjectDirectory.h"
-#include "DefaultNetworkObjectDirectoryPlugin.h"
+#include "BuiltinDirectoryConfigurationPage.h"
+#include "BuiltinDirectory.h"
+#include "BuiltinDirectoryPlugin.h"
 
-DefaultNetworkObjectDirectoryPlugin::DefaultNetworkObjectDirectoryPlugin( QObject* parent ) :
+BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration()
 {
@@ -34,20 +34,20 @@ DefaultNetworkObjectDirectoryPlugin::DefaultNetworkObjectDirectoryPlugin( QObjec
 
 
 
-DefaultNetworkObjectDirectoryPlugin::~DefaultNetworkObjectDirectoryPlugin()
+BuiltinDirectoryPlugin::~BuiltinDirectoryPlugin()
 {
 }
 
 
 
-NetworkObjectDirectory *DefaultNetworkObjectDirectoryPlugin::createNetworkObjectDirectory( QObject* parent )
+NetworkObjectDirectory *BuiltinDirectoryPlugin::createNetworkObjectDirectory( QObject* parent )
 {
-	return new DefaultNetworkObjectDirectory( m_configuration, parent );
+	return new BuiltinDirectory( m_configuration, parent );
 }
 
 
 
-ConfigurationPage *DefaultNetworkObjectDirectoryPlugin::createConfigurationPage()
+ConfigurationPage *BuiltinDirectoryPlugin::createConfigurationPage()
 {
-	return new DefaultNetworkObjectDirectoryConfigurationPage( m_configuration );
+	return new BuiltinDirectoryConfigurationPage( m_configuration );
 }

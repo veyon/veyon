@@ -1,5 +1,5 @@
+ADD_SUBDIRECTORY(builtindirectory)
 ADD_SUBDIRECTORY(config)
-ADD_SUBDIRECTORY(defaultnetworkobjectdirectory)
 ADD_SUBDIRECTORY(demo)
 ADD_SUBDIRECTORY(desktopservices)
 ADD_SUBDIRECTORY(internetaccesscontrol)

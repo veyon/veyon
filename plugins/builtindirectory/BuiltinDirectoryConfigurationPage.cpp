@@ -1,5 +1,5 @@
 /*
- * DefaultNetworkObjectDirectoryConfigurationPage.cpp - implementation of DefaultNetworkObjectDirectoryConfigurationPage
+ * BuiltinDirectoryConfigurationPage.cpp - implementation of BuiltinDirectoryConfigurationPage
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,16 +22,16 @@
  *
  */
 
-#include "DefaultNetworkObjectDirectoryConfiguration.h"
-#include "DefaultNetworkObjectDirectoryConfigurationPage.h"
+#include "BuiltinDirectoryConfiguration.h"
+#include "BuiltinDirectoryConfigurationPage.h"
 #include "Configuration/UiMapping.h"
 #include "NetworkObjectModel.h"
 
-#include "ui_DefaultNetworkObjectDirectoryConfigurationPage.h"
+#include "ui_BuiltinDirectoryConfigurationPage.h"
 
-DefaultNetworkObjectDirectoryConfigurationPage::DefaultNetworkObjectDirectoryConfigurationPage( DefaultNetworkObjectDirectoryConfiguration& configuration, QWidget* parent ) :
+BuiltinDirectoryConfigurationPage::BuiltinDirectoryConfigurationPage( BuiltinDirectoryConfiguration& configuration, QWidget* parent ) :
 	ConfigurationPage( parent ),
-	ui(new Ui::DefaultNetworkObjectDirectoryConfigurationPage),
+	ui(new Ui::BuiltinDirectoryConfigurationPage),
 	m_configuration( configuration )
 {
 	ui->setupUi(this);
@@ -39,19 +39,19 @@ DefaultNetworkObjectDirectoryConfigurationPage::DefaultNetworkObjectDirectoryCon
 	populateRooms();
 
 	connect( ui->roomTableWidget, &QTableWidget::currentItemChanged,
-			 this, &DefaultNetworkObjectDirectoryConfigurationPage::populateComputers );
+			 this, &BuiltinDirectoryConfigurationPage::populateComputers );
 }
 
 
 
-DefaultNetworkObjectDirectoryConfigurationPage::~DefaultNetworkObjectDirectoryConfigurationPage()
+BuiltinDirectoryConfigurationPage::~BuiltinDirectoryConfigurationPage()
 {
 	delete ui;
 }
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::resetWidgets()
+void BuiltinDirectoryConfigurationPage::resetWidgets()
 {
 	populateRooms();
 
@@ -60,19 +60,19 @@ void DefaultNetworkObjectDirectoryConfigurationPage::resetWidgets()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::connectWidgetsToProperties()
+void BuiltinDirectoryConfigurationPage::connectWidgetsToProperties()
 {
 }
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::applyConfiguration()
+void BuiltinDirectoryConfigurationPage::applyConfiguration()
 {
 }
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::addRoom()
+void BuiltinDirectoryConfigurationPage::addRoom()
 {
 	auto networkObjects = m_configuration.networkObjects();
 
@@ -89,7 +89,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::addRoom()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::updateRoom()
+void BuiltinDirectoryConfigurationPage::updateRoom()
 {
 	auto currentRoomIndex = ui->roomTableWidget->currentIndex();
 	if( currentRoomIndex.isValid() == false )
@@ -119,7 +119,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::updateRoom()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::removeRoom()
+void BuiltinDirectoryConfigurationPage::removeRoom()
 {
 	const auto currentRoomUid = currentRoomObject().uid();
 	auto networkObjects = m_configuration.networkObjects();
@@ -144,7 +144,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::removeRoom()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::addComputer()
+void BuiltinDirectoryConfigurationPage::addComputer()
 {
 	auto currentRoomUid = currentRoomObject().uid();
 	if( currentRoomUid.isNull() )
@@ -170,7 +170,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::addComputer()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::updateComputer()
+void BuiltinDirectoryConfigurationPage::updateComputer()
 {
 	auto currentComputerIndex = ui->computerTableWidget->currentIndex();
 	if( currentComputerIndex.isValid() == false )
@@ -200,7 +200,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::updateComputer()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::removeComputer()
+void BuiltinDirectoryConfigurationPage::removeComputer()
 {
 	const auto currentComputerUid = currentComputerObject().uid();
 	auto networkObjects = m_configuration.networkObjects();
@@ -225,7 +225,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::removeComputer()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::populateRooms()
+void BuiltinDirectoryConfigurationPage::populateRooms()
 {
 	ui->roomTableWidget->setUpdatesEnabled( false );
 	ui->roomTableWidget->clear();
@@ -250,7 +250,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::populateRooms()
 
 
 
-void DefaultNetworkObjectDirectoryConfigurationPage::populateComputers()
+void BuiltinDirectoryConfigurationPage::populateComputers()
 {
 	auto parentUid = currentRoomObject().uid();
 
@@ -284,7 +284,7 @@ void DefaultNetworkObjectDirectoryConfigurationPage::populateComputers()
 
 
 
-NetworkObject DefaultNetworkObjectDirectoryConfigurationPage::currentRoomObject() const
+NetworkObject BuiltinDirectoryConfigurationPage::currentRoomObject() const
 {
 	const auto selectedRoom = ui->roomTableWidget->currentItem();
 	if( selectedRoom )
@@ -303,7 +303,7 @@ NetworkObject DefaultNetworkObjectDirectoryConfigurationPage::currentRoomObject(
 
 
 
-NetworkObject DefaultNetworkObjectDirectoryConfigurationPage::currentComputerObject() const
+NetworkObject BuiltinDirectoryConfigurationPage::currentComputerObject() const
 {
 	const int row = ui->computerTableWidget->currentRow();
 	if( row >= 0 )
