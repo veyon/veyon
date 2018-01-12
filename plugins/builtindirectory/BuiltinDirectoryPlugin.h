@@ -25,18 +25,25 @@
 #ifndef BUILTIN_DIRECTORY_PLUGIN_H
 #define BUILTIN_DIRECTORY_PLUGIN_H
 
+#include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "BuiltinDirectoryConfiguration.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
+class NetworkObject;
+
 class BuiltinDirectoryPlugin : public QObject,
 		PluginInterface,
 		NetworkObjectDirectoryPluginInterface,
-		ConfigurationPagePluginInterface
+		ConfigurationPagePluginInterface,
+		CommandLinePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinDirectory")
-	Q_INTERFACES(PluginInterface NetworkObjectDirectoryPluginInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(PluginInterface
+				 NetworkObjectDirectoryPluginInterface
+				 ConfigurationPagePluginInterface
+				 CommandLinePluginInterface)
 public:
 	BuiltinDirectoryPlugin( QObject* paren = nullptr );
 	virtual ~BuiltinDirectoryPlugin();
@@ -87,8 +94,31 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
+	QString commandLineModuleName() const override
+	{
+		return QStringLiteral( "networkobjects" );
+	}
+
+	QString commandLineModuleHelp() const override
+	{
+		return tr( "Commands for managing the builtin network object directory" );
+	}
+
+	QStringList commands() const override;
+	QString commandHelp( const QString& command ) const override;
+
+public slots:
+	CommandLinePluginInterface::RunResult handle_clear( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_import( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
+
 private:
+	void listObjects( const QJsonArray& objects, const NetworkObject& parent );
+	static QString dumpNetworkObject( const NetworkObject& object );
+
 	BuiltinDirectoryConfiguration m_configuration;
+	QMap<QString, QString> m_commands;
 
 };
 

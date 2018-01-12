@@ -28,7 +28,13 @@
 
 BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
-	m_configuration()
+	m_configuration(),
+	m_commands( {
+{ "clear", tr( "Clear all rooms and computers" ) },
+{ "list", tr( "List all rooms and computers" ) },
+{ "import", tr( "Import objects from given file" ) },
+{ "export", tr( "Export objects to given file" ) },
+				} )
 {
 }
 
@@ -62,4 +68,87 @@ NetworkObjectDirectory *BuiltinDirectoryPlugin::createNetworkObjectDirectory( QO
 ConfigurationPage *BuiltinDirectoryPlugin::createConfigurationPage()
 {
 	return new BuiltinDirectoryConfigurationPage( m_configuration );
+}
+
+
+
+QStringList BuiltinDirectoryPlugin::commands() const
+{
+	return m_commands.keys();
+}
+
+
+
+QString BuiltinDirectoryPlugin::commandHelp( const QString& command ) const
+{
+	return m_commands.value( command );
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( const QStringList& arguments )
+{
+	m_configuration.setNetworkObjects( {} );
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const QStringList& arguments )
+{
+	listObjects( m_configuration.networkObjects(), NetworkObject::None );
+
+	return Successful;
+}
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( const QStringList& arguments )
+{
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( const QStringList& arguments )
+{
+	return Successful;
+}
+
+
+
+void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const NetworkObject& parent )
+{
+	for( const auto& networkObjectValue : objects )
+	{
+		const NetworkObject networkObject( networkObjectValue.toObject() );
+
+		if( parent.type() == NetworkObject::None ||
+				networkObject.parentUid() == networkObject.uid() )
+		{
+			printf( "%s\n", qUtf8Printable( dumpNetworkObject( networkObject ) ) );
+			listObjects( objects, networkObject );
+		}
+	}
+}
+
+
+
+QString BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
+{
+	switch( object.type() )
+	{
+	case NetworkObject::Group:
+		return tr( "Room \"%1\"" ).arg( object.name() );
+	case NetworkObject::Host:
+		return QChar('\t') +
+				tr( "Computer \"%1\" (host address: \"%2\" MAC address:\"%3\")" ).
+				arg( object.name() ).
+				arg( object.hostAddress() ).
+				arg( object.macAddress() );
+	default:
+		break;
+	}
+
+	return tr( "Unclassified object \"%1\" with ID \"%2\"" ).arg( object.name() ).arg( object.uid().toString() );
 }
