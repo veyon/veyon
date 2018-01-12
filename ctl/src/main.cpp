@@ -103,11 +103,15 @@ int main( int argc, char **argv )
 			{
 				const auto command = arguments[2];
 
-				QMetaObject::invokeMethod( it.value(),
-										   QStringLiteral( "handle_%1" ).arg( command ).toUtf8().constData(),
-										   Qt::DirectConnection,
-										   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
-										   Q_ARG( QStringList, arguments.mid( 3 ) ) );
+				if( command != QStringLiteral("help") ||
+						arguments.count() > 3 )
+				{
+					QMetaObject::invokeMethod( it.value(),
+											   QStringLiteral( "handle_%1" ).arg( command ).toUtf8().constData(),
+											   Qt::DirectConnection,
+											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
+											   Q_ARG( QStringList, arguments.mid( 3 ) ) );
+				}
 			}
 			else
 			{
@@ -118,6 +122,8 @@ int main( int argc, char **argv )
 
 			switch( runResult )
 			{
+			case CommandLinePluginInterface::NoResult:
+				return 0;
 			case CommandLinePluginInterface::Successful:
 				qInfo( "%s", qPrintable( VeyonCore::tr( "[OK]" ) ) );
 				return 0;
@@ -125,16 +131,7 @@ int main( int argc, char **argv )
 				qInfo( "%s", qPrintable( VeyonCore::tr( "[FAIL]" ) ) );
 				return -1;
 			case CommandLinePluginInterface::InvalidCommand:
-				if( arguments.contains( QStringLiteral("help") ) == false )
-				{
-					qCritical( "%s", qPrintable( VeyonCore::tr( "Invalid command!" ) ) );
-				}
-				qCritical( "%s", qPrintable( VeyonCore::tr( "Available commands:" ) ) );
-				for( const auto& command : commands )
-				{
-					qCritical( "    %s - %s", qPrintable( command ),
-							   qPrintable( it.key()->commandHelp( command ) ) );
-				}
+				qCritical( "%s", qPrintable( VeyonCore::tr( "Invalid command!" ) ) );
 				return -1;
 			case CommandLinePluginInterface::InvalidArguments:
 				qCritical( "%s", qPrintable( VeyonCore::tr( "Invalid arguments given" ) ) );
@@ -144,8 +141,14 @@ int main( int argc, char **argv )
 							   VeyonCore::tr( "Not enough arguments given - "
 											  "use \"%1 help\" for more information" ).arg( module ) ) );
 				return -1;
-			case CommandLinePluginInterface::NoResult:
-				return 0;
+			case CommandLinePluginInterface::Unknown:
+				qCritical( "%s", qPrintable( VeyonCore::tr( "Available commands:" ) ) );
+				for( const auto& command : commands )
+				{
+					qCritical( "    %s - %s", qPrintable( command ),
+							   qPrintable( it.key()->commandHelp( command ) ) );
+				}
+				return -1;
 			default:
 				qCritical( "%s", qPrintable( VeyonCore::tr( "Unknown result!" ) ) );
 				return -1;
