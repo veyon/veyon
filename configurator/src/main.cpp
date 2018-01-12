@@ -23,6 +23,7 @@
  */
 
 #include <QApplication>
+#include <QMessageBox>
 #include <QDir>
 
 #include "ConfigurationTestController.h"
@@ -143,9 +144,17 @@ int main( int argc, char **argv )
 	// make sure to run as admin
 	if( VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
 	{
-		VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
-																 app.arguments().mid( 1 ) );
-		return 0;
+		if( VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
+																 app.arguments().mid( 1 ) ) )
+		{
+			return 0;
+		}
+
+		QMessageBox::warning( nullptr, ConfiguratorCore::tr( "Insufficient privileges" ),
+							  ConfiguratorCore::tr( "Could not start with administrative privileges. "
+													"Please make sure a sudo-like program is installed "
+													"for your desktop environment! The program will "
+													"be run with normal user privileges.") );
 	}
 
 	if( checkWritableConfiguration() == false )
