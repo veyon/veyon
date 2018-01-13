@@ -32,11 +32,11 @@
 #include <QMessageBox>
 
 #include "Configuration/JsonStore.h"
-#include "Configuration/LocalStore.h"
 
 #include "AboutDialog.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "ConfiguratorCore.h"
+#include "ConfigurationManager.h"
 #include "VeyonConfiguration.h"
 #include "MainWindow.h"
 #include "PluginManager.h"
@@ -202,7 +202,7 @@ void MainWindow::resetConfiguration()
 								  "all settings to their defaults?" ), QMessageBox::Yes | QMessageBox::No, QMessageBox::No ) ==
 			QMessageBox::Yes )
 	{
-		Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+		ConfigurationManager().clearConfiguration();
 		reset( false );
 	}
 }

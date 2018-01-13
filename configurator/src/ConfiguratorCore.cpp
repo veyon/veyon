@@ -27,7 +27,6 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
-#include "Configuration/LocalStore.h"
 #include "ConfiguratorCore.h"
 #include "CryptoCore.h"
 #include "VeyonConfiguration.h"
@@ -43,17 +42,14 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 	// merge configuration
 	VeyonCore::config() += c;
 
-	ConfigurationManager sysConfig;
+	ConfigurationManager configurationManager;
 
-	if( sysConfig.applyConfiguration() == false )
+	if( configurationManager.saveConfiguration() == false ||
+			configurationManager.applyConfiguration() == false )
 	{
-		configApplyError( sysConfig.errorString() );
+		configApplyError( configurationManager.errorString() );
 		return false;
 	}
-
-	// write global configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &VeyonCore::config() );
 
 	return true;
 }
