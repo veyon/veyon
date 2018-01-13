@@ -22,7 +22,6 @@
  *
  */
 
-#include "Configuration/LocalStore.h"
 #include "VeyonConfiguration.h"
 #include "InternetAccessControlPlugin.h"
 #include "InternetAccessControlConfigurationPage.h"
