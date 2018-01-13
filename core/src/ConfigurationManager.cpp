@@ -22,6 +22,7 @@
  *
  */
 
+#include "Configuration/LocalStore.h"
 #include "ConfigurationManager.h"
 #include "Filesystem.h"
 #include "PlatformInputDeviceFunctions.h"
@@ -30,10 +31,26 @@
 #include "VeyonServiceControl.h"
 
 
+
+ConfigurationManager::ConfigurationManager( QObject* parent ) :
+	QObject( parent ),
+	m_configuration( VeyonCore::config() )
+{
+}
+
+
+
+bool ConfigurationManager::clearConfiguration()
+{
+	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+}
+
+
+
 bool ConfigurationManager::applyConfiguration()
 {
 	// update Veyon Service configuration
-	if( VeyonServiceControl().setAutostart( VeyonCore::config().autostartService() ) == false )
+	if( VeyonServiceControl().setAutostart( m_configuration.autostartService() ) == false )
 	{
 		m_errorString =  tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() );
 		return false;
@@ -43,7 +60,7 @@ bool ConfigurationManager::applyConfiguration()
 
 	if( network.configureFirewallException( VeyonCore::filesystem().serverFilePath(),
 											QStringLiteral("Veyon Server"),
-											VeyonCore::config().isFirewallExceptionEnabled() ) == false )
+											m_configuration.isFirewallExceptionEnabled() ) == false )
 	{
 		m_errorString = tr( "Could not configure the firewall configuration for the %1 Server." ).arg( VeyonCore::applicationName() );
 		return false;
@@ -51,7 +68,7 @@ bool ConfigurationManager::applyConfiguration()
 
 	if( network.configureFirewallException( VeyonCore::filesystem().workerFilePath(),
 											QStringLiteral("Veyon Worker"),
-											VeyonCore::config().isFirewallExceptionEnabled() ) == false )
+											m_configuration.isFirewallExceptionEnabled() ) == false )
 	{
 		m_errorString = tr( "Could not configure the firewall configuration for the %1 Worker." ).arg( VeyonCore::applicationName() );
 		return false;
@@ -63,6 +80,17 @@ bool ConfigurationManager::applyConfiguration()
 							 "Sending Ctrl+Alt+Del via remote control will not work!" );
 		return false;
 	}
+
+	return true;
+}
+
+
+
+bool ConfigurationManager::saveConfiguration()
+{
+	// write global configuration
+	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	localStore.flush( &m_configuration );
 
 	return true;
 }

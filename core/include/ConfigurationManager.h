@@ -27,13 +27,19 @@
 
 #include "VeyonCore.h"
 
+class VeyonConfiguration;
+
 // clazy:excludeall=ctor-missing-parent-argument
 
 class VEYON_CORE_EXPORT ConfigurationManager : public QObject
 {
 	Q_OBJECT
 public:
+	ConfigurationManager( QObject* parent = nullptr );
+
+	bool clearConfiguration();
 	bool applyConfiguration();
+	bool saveConfiguration();
 
 	const QString& errorString() const
 	{
@@ -41,6 +47,7 @@ public:
 	}
 
 private:
+	VeyonConfiguration& m_configuration;
 	QString m_errorString;
 
 } ;
