@@ -35,7 +35,7 @@
 #include "Filesystem.h"
 #include "Logger.h"
 #include "MainWindow.h"
-#include "SystemConfigurationModifier.h"
+#include "ConfigurationManager.h"
 
 
 bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
@@ -43,7 +43,7 @@ bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
 	// merge configuration
 	VeyonCore::config() += c;
 
-	SystemConfigurationModifier sysConfig;
+	ConfigurationManager sysConfig;
 
 	if( sysConfig.applyConfiguration() == false )
 	{

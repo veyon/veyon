@@ -1,6 +1,5 @@
 /*
- * SystemConfigurationModifier.cpp - class for easy modification of Veyon-related
- *                                   settings in the operating system
+ * ConfigurationManager.cpp - class for managing Veyon's configuration
  *
  * Copyright (c) 2010-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -23,7 +22,7 @@
  *
  */
 
-#include "SystemConfigurationModifier.h"
+#include "ConfigurationManager.h"
 #include "Filesystem.h"
 #include "PlatformInputDeviceFunctions.h"
 #include "PlatformNetworkFunctions.h"
@@ -31,7 +30,7 @@
 #include "VeyonServiceControl.h"
 
 
-bool SystemConfigurationModifier::applyConfiguration()
+bool ConfigurationManager::applyConfiguration()
 {
 	// update Veyon Service configuration
 	if( VeyonServiceControl().setAutostart( VeyonCore::config().autostartService() ) == false )

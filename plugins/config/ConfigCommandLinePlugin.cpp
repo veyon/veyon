@@ -30,7 +30,7 @@
 #include "Configuration/JsonStore.h"
 #include "Configuration/LocalStore.h"
 #include "ConfigCommandLinePlugin.h"
-#include "SystemConfigurationModifier.h"
+#include "ConfigurationManager.h"
 
 
 ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
@@ -266,7 +266,7 @@ void ConfigCommandLinePlugin::listConfiguration( const VeyonConfiguration::DataM
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguration()
 {
-	SystemConfigurationModifier sysConfig;
+	ConfigurationManager sysConfig;
 
 	if( sysConfig.applyConfiguration() == false )
 	{

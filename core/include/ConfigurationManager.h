@@ -1,6 +1,5 @@
 /*
- * SystemConfigurationModifier.h - class for easy modification of Veyon-related
- *                                 settings in the operating system
+ * ConfigurationManager.h - class for managing Veyon's configuration
  *
  * Copyright (c) 2010-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -23,14 +22,14 @@
  *
  */
 
-#ifndef SYSTEM_CONFIGURATION_MODIFIER_H
-#define SYSTEM_CONFIGURATION_MODIFIER_H
+#ifndef CONFIGURATION_MANAGER_H
+#define CONFIGURATION_MANAGER_H
 
 #include "VeyonCore.h"
 
 // clazy:excludeall=ctor-missing-parent-argument
 
-class VEYON_CORE_EXPORT SystemConfigurationModifier : public QObject
+class VEYON_CORE_EXPORT ConfigurationManager : public QObject
 {
 	Q_OBJECT
 public:
