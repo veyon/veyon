@@ -28,7 +28,6 @@
 #include <QJsonDocument>
 
 #include "Configuration/JsonStore.h"
-#include "Configuration/LocalStore.h"
 #include "ConfigCommandLinePlugin.h"
 #include "ConfigurationManager.h"
 
@@ -71,8 +70,7 @@ QString ConfigCommandLinePlugin::commandHelp( const QString& command ) const
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( const QStringList& arguments )
 {
-	// clear global configuration
-	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+	ConfigurationManager().clearConfiguration();
 
 	return Successful;
 }
@@ -266,16 +264,13 @@ void ConfigCommandLinePlugin::listConfiguration( const VeyonConfiguration::DataM
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::applyConfiguration()
 {
-	ConfigurationManager sysConfig;
+	ConfigurationManager configurationManager;
 
-	if( sysConfig.applyConfiguration() == false )
+	if( configurationManager.saveConfiguration() == false ||
+			configurationManager.applyConfiguration() == false )
 	{
-		return operationError( sysConfig.errorString() );
+		return operationError( configurationManager.errorString() );
 	}
-
-	// write global configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &VeyonCore::config() );
 
 	return Successful;
 }
