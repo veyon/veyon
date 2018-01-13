@@ -25,6 +25,8 @@
 #include "BuiltinDirectoryConfigurationPage.h"
 #include "BuiltinDirectory.h"
 #include "BuiltinDirectoryPlugin.h"
+#include "ConfigurationManager.h"
+
 
 BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
@@ -89,6 +91,7 @@ QString BuiltinDirectoryPlugin::commandHelp( const QString& command ) const
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( const QStringList& arguments )
 {
 	m_configuration.setNetworkObjects( {} );
+	ConfigurationManager().saveConfiguration();
 
 	return Successful;
 }
