@@ -22,7 +22,7 @@
  *
  */
 
-#include "Configuration/LocalStore.h"
+#include "ConfigurationManager.h"
 #include "VeyonConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
 #include "LdapPlugin.h"
@@ -153,8 +153,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 	m_configuration.setLdapQueryNamingContext( false );
 
 	// write configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &VeyonCore::config() );
+	ConfigurationManager().saveConfiguration();
 
 	return Successful;
 }
