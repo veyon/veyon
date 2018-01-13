@@ -34,7 +34,6 @@ class ConfiguratorCore : public QObject
 	Q_OBJECT
 public:
 	static bool applyConfiguration( const VeyonConfiguration &config );
-	static int clearConfiguration();
 
 	static bool createKeyPair( VeyonCore::UserRole role, const QString &destDir );
 	static bool importPublicKey( VeyonCore::UserRole role, const QString &pubKey, const QString &destDir );

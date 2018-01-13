@@ -187,19 +187,6 @@ void ConfiguratorCore::criticalMessage( const QString &title, const QString &msg
 
 
 
-int ConfiguratorCore::clearConfiguration()
-{
-	// clear global configuration
-	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
-
-	informationMessage( tr( "Configuration cleared" ),
-						tr( "The local configuration has been cleared successfully." ) );
-
-	return 0;
-}
-
-
-
 void ConfiguratorCore::configApplyError( const QString &msg )
 {
 	criticalMessage( tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ), msg );
