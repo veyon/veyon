@@ -144,7 +144,7 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 
 
 
-void LocalStore::flush( Object *obj )
+void LocalStore::flush( const Object *obj )
 {
 	auto s = createSettingsObject();
 	// clear previously saved items

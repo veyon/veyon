@@ -126,7 +126,7 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 
 
 
-void JsonStore::flush( Object* obj )
+void JsonStore::flush( const Object* obj )
 {
 	QFile outfile( configurationFilePath() );
 	if( !outfile.open( QIODevice::WriteOnly | QIODevice::Truncate ) )
