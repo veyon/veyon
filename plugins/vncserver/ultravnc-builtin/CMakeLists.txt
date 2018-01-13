@@ -77,7 +77,7 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/rdr/ZlibInStream.cxx
 	)
 
-ADD_DEFINITIONS(-DULTRAVNC_VEYON_SUPPORT)
+ADD_DEFINITIONS(-DULTRAVNC_VEYON_SUPPORT -D_WIN32_WINNT=0x0600)
 
 IF(VEYON_BUILD_WIN64)
     ADD_DEFINITIONS(-D_X64)
@@ -98,6 +98,6 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	FORMS UltraVncConfigurationWidget.ui)
 
 TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
-SET_TARGET_PROPERTIES(builtin-ultravnc-server PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unknown-pragmas -Wno-strict-aliasing -Wno-terminate -Wno-format-zero-length -fexceptions")
+SET_TARGET_PROPERTIES(builtin-ultravnc-server PROPERTIES COMPILE_FLAGS "-Wno-attributes -Wno-write-strings -Wno-pragmas -Wno-unknown-pragmas -Wno-strict-aliasing -Wno-terminate -Wno-format-zero-length -fexceptions")
 SET_SOURCE_FILES_PROPERTIES(${ultravnc_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations")
 COTIRE_VEYON(builtin-ultravnc-server)
