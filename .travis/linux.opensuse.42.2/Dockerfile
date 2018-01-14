@@ -8,7 +8,7 @@ RUN \
 		libXtst-devel libXrandr-devel libXinerama-devel \
 		libjpeg8-devel \
 		zlib-devel \
-		libpng16-devel \
+		libpng16-devel libpng16-compat-devel \
 		libopenssl-devel \
 		procps-devel \
 		pam-devel lzo-devel \
