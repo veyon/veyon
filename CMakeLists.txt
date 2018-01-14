@@ -156,7 +156,12 @@ FIND_PACKAGE(PNG REQUIRED)
 FIND_PACKAGE(JPEG REQUIRED)
 FIND_PACKAGE(LZO REQUIRED)
 FIND_PACKAGE(QCA REQUIRED)
+
+# FindOpenSSL.cmake in recent versions of CMake will only find the DLLs instead
+# of the import libraries if CYGWIN is not set
+SET(CYGWIN TRUE)
 FIND_PACKAGE(OpenSSL REQUIRED)
+UNSET(CYGWIN)
 
 # libraries and functions for LDAP support
 FIND_PACKAGE(Ldap REQUIRED)
