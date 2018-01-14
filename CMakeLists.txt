@@ -339,7 +339,6 @@ IF(WIN32)
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
 			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*
-			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
