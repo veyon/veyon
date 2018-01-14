@@ -4,7 +4,7 @@ set -e
 
 SRC=$1
 BUILD=$2
-CPUS=$(cat /proc/cpuinfo | grep bogo | wc -l)
+CPUS=$(nproc)
 
 mkdir -p $BUILD
 cd $BUILD
@@ -12,7 +12,7 @@ cd $BUILD
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr $SRC
 
 echo Building on $CPUS CPUs
-make -j$((CPUS+1))
+make -j$((CPUS))
 
 fakeroot make package
 
