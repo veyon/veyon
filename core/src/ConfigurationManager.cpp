@@ -43,6 +43,8 @@ ConfigurationManager::ConfigurationManager( QObject* parent ) :
 bool ConfigurationManager::clearConfiguration()
 {
 	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+
+	return true;
 }
 
 
