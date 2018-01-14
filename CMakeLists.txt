@@ -15,7 +15,6 @@ INCLUDE(CheckCSourceCompiles)
 INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(CheckSymbolExists)
-INCLUDE(FindPkgConfig)
 INCLUDE(GNUInstallDirs)
 INCLUDE(CotireVeyon)
 
