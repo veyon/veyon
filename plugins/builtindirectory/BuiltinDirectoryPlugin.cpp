@@ -102,7 +102,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const
 {
 	listObjects( m_configuration.networkObjects(), NetworkObject::None );
 
-	return Successful;
+	return NoResult;
 }
 
 
