@@ -32,6 +32,7 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration(),
 	m_commands( {
+{ "help", tr( "Show help for specific command" ) },
 { "clear", tr( "Clear all rooms and computers" ) },
 { "list", tr( "List all rooms and computers" ) },
 { "import", tr( "Import objects from given file" ) },
@@ -84,6 +85,23 @@ QStringList BuiltinDirectoryPlugin::commands() const
 QString BuiltinDirectoryPlugin::commandHelp( const QString& command ) const
 {
 	return m_commands.value( command );
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const QStringList& arguments )
+{
+	const auto command = arguments.value( 0 );
+
+	if( command == QStringLiteral("import") )
+	{
+		printf( "\nimport <file> [-d <delimiter>] [-r <room column>] [-n <name column>] "
+				"[-h <host address column>] [-m <MAC address column>]\n\n" );
+
+		return NoResult;
+	}
+
+	return InvalidArguments;
 }
 
 
