@@ -29,6 +29,7 @@
 #include <QDir>
 #include <QPluginLoader>
 
+#include "Logger.h"
 #include "PluginManager.h"
 #include "VeyonConfiguration.h"
 
@@ -36,7 +37,8 @@
 PluginManager::PluginManager( QObject* parent ) :
 	QObject( parent ),
 	m_pluginInterfaces(),
-	m_pluginObjects()
+	m_pluginObjects(),
+	m_noDebugMessages( qEnvironmentVariableIsSet( Logger::logLevelEnvironmentVariable() ) )
 {
 	initPluginSearchPath();
 }
@@ -154,7 +156,10 @@ void PluginManager::initPluginSearchPath()
 	if( dir.cd( QStringLiteral(VEYON_PLUGIN_DIR) ) )
 	{
 		const auto pluginSearchPath = dir.absolutePath();
-		qDebug() << "Adding plugin search path" << pluginSearchPath;
+		if( m_noDebugMessages == false )
+		{
+			qDebug() << "Adding plugin search path" << pluginSearchPath;
+		}
 		QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
 	}
 }
@@ -172,7 +177,10 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 		if( pluginObject && pluginInterface &&
 				m_pluginInterfaces.contains( pluginInterface ) == false )
 		{
-			qDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
+			if( m_noDebugMessages == false )
+			{
+				qDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
+			}
 			m_pluginInterfaces += pluginInterface;	// clazy:exclude=reserve-candidates
 			m_pluginObjects += pluginObject;		// clazy:exclude=reserve-candidates
 		}

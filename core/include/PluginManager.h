@@ -69,6 +69,7 @@ private:
 
 	PluginInterfaceList m_pluginInterfaces;
 	QObjectList m_pluginObjects;
+	bool m_noDebugMessages;
 
 signals:
 	void pluginsLoaded();
