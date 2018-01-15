@@ -60,8 +60,8 @@ MainWindow::MainWindow( QWidget* parent ) :
 
 	// if local configuration is incomplete, re-enable the apply button
 	if( VeyonConfiguration(
-			Configuration::Store::LocalBackend ).data().size() <
-										VeyonCore::config().data().size() )
+				Configuration::Store::LocalBackend ).data().size() <
+			VeyonCore::config().data().size() )
 	{
 		configurationChanged();
 	}
@@ -159,7 +159,7 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 void MainWindow::loadSettingsFromFile()
 {
 	QString fileName = QFileDialog::getOpenFileName( this, tr( "Load settings from file" ),
-											QDir::homePath(), tr( "JSON files (*.json)" ) );
+													 QDir::homePath(), tr( "JSON files (*.json)" ) );
 	if( !fileName.isEmpty() )
 	{
 		// write current configuration to output file
@@ -175,7 +175,7 @@ void MainWindow::loadSettingsFromFile()
 void MainWindow::saveSettingsToFile()
 {
 	QString fileName = QFileDialog::getSaveFileName( this, tr( "Save settings to file" ),
-											QDir::homePath(), tr( "JSON files (*.json)" ) );
+													 QDir::homePath(), tr( "JSON files (*.json)" ) );
 	if( !fileName.isEmpty() )
 	{
 		if( !fileName.endsWith( QStringLiteral(".json"), Qt::CaseInsensitive ) )
@@ -265,10 +265,10 @@ void MainWindow::closeEvent( QCloseEvent *closeEvent )
 {
 	if( m_configChanged &&
 			QMessageBox::question( this, tr( "Unsaved settings" ),
-									tr( "There are unsaved settings. "
-										"Quit anyway?" ),
-									QMessageBox::Yes | QMessageBox::No ) !=
-															QMessageBox::Yes )
+								   tr( "There are unsaved settings. "
+									   "Quit anyway?" ),
+								   QMessageBox::Yes | QMessageBox::No ) !=
+			QMessageBox::Yes )
 	{
 		closeEvent->ignore();
 		return;
