@@ -56,6 +56,11 @@ public:
 	Logger( const QString &appName );
 	~Logger();
 
+	static const char* logLevelEnvironmentVariable()
+	{
+		return "VEYON_LOG_LEVEL";
+	}
+
 	static void log( LogLevel ll, const QString &msg );
 	static void log( LogLevel ll, const char *format, ... );
 
