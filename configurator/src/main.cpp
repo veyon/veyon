@@ -41,10 +41,11 @@ bool checkWritableConfiguration()
 	if( !VeyonConfiguration().isStoreWritable() &&
 			VeyonCore::config().logLevel() < Logger::LogLevelDebug )
 	{
-		ConfiguratorCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
-			MainWindow::tr( "The local configuration backend reported that the "
-							"configuration is not writable! Please run the %1 "
-							"Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
+		QMessageBox::critical( nullptr,
+							   MainWindow::tr( "Configuration not writable" ),
+							   MainWindow::tr( "The local configuration backend reported that the "
+											   "configuration is not writable! Please run the %1 "
+											   "Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
 		return false;
 	}
 

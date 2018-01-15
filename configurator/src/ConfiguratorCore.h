@@ -33,16 +33,8 @@ class ConfiguratorCore : public QObject
 {
 	Q_OBJECT
 public:
-	static bool applyConfiguration( const VeyonConfiguration &config );
-
 	static bool createKeyPair( VeyonCore::UserRole role, const QString &destDir );
 	static bool importPublicKey( VeyonCore::UserRole role, const QString &pubKey, const QString &destDir );
-
-	static void informationMessage( const QString &title, const QString &msg );
-	static void criticalMessage( const QString &title, const QString &msg );
-
-private:
-	static void configApplyError( const QString &msg );
 
 };
 

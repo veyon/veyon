@@ -22,38 +22,14 @@
  *
  */
 
-#include <QApplication>
 #include <QFile>
 #include <QFileInfo>
-#include <QMessageBox>
 
 #include "ConfiguratorCore.h"
 #include "CryptoCore.h"
 #include "VeyonConfiguration.h"
-#include "VeyonCore.h"
 #include "Filesystem.h"
 #include "Logger.h"
-#include "MainWindow.h"
-#include "ConfigurationManager.h"
-
-
-bool ConfiguratorCore::applyConfiguration( const VeyonConfiguration &c )
-{
-	// merge configuration
-	VeyonCore::config() += c;
-
-	ConfigurationManager configurationManager;
-
-	if( configurationManager.saveConfiguration() == false ||
-			configurationManager.applyConfiguration() == false )
-	{
-		configApplyError( configurationManager.errorString() );
-		return false;
-	}
-
-	return true;
-}
-
 
 
 bool ConfiguratorCore::createKeyPair( VeyonCore::UserRole role, const QString &destDir )
@@ -157,33 +133,4 @@ bool ConfiguratorCore::importPublicKey( VeyonCore::UserRole role, const QString&
 
 	// now try to copy it
 	return publicKey.toPEMFile( destinationPublicKeyPath );
-}
-
-
-
-void ConfiguratorCore::informationMessage( const QString &title, const QString &msg )
-{
-	qInfo() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
-	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
-	{
-		QMessageBox::information( nullptr, title, msg );
-	}
-}
-
-
-
-void ConfiguratorCore::criticalMessage( const QString &title, const QString &msg )
-{
-	qCritical() << title.toUtf8().constData() << ":" << msg.toUtf8().constData();
-	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
-	{
-		QMessageBox::critical( nullptr, title, msg );
-	}
-}
-
-
-
-void ConfiguratorCore::configApplyError( const QString &msg )
-{
-	criticalMessage( tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ), msg );
 }

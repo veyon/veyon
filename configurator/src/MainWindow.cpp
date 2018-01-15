@@ -117,7 +117,7 @@ void MainWindow::reset( bool onlyUI )
 
 void MainWindow::apply()
 {
-	if( ConfiguratorCore::applyConfiguration( VeyonCore::config() ) )
+	if( applyConfiguration() )
 	{
 		const auto pages = findChildren<ConfigurationPage *>();
 		for( auto page : pages )
@@ -212,6 +212,26 @@ void MainWindow::resetConfiguration()
 void MainWindow::aboutVeyon()
 {
 	AboutDialog( this ).exec();
+}
+
+
+
+bool MainWindow::applyConfiguration()
+{
+	ConfigurationManager configurationManager;
+
+	if( configurationManager.saveConfiguration() == false ||
+			configurationManager.applyConfiguration() == false )
+	{
+		qCritical() << Q_FUNC_INFO << configurationManager.errorString().toUtf8().constData();
+
+		QMessageBox::critical( nullptr,
+							   tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ),
+							   configurationManager.errorString() );
+		return false;
+	}
+
+	return true;
 }
 
 

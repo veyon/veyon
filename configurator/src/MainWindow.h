@@ -54,6 +54,7 @@ private slots:
 
 
 private:
+	bool applyConfiguration();
 	void loadConfigurationPagePlugins();
 
 	void closeEvent( QCloseEvent *closeEvent ) override;
