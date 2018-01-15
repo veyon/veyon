@@ -25,7 +25,6 @@
 #include <veyonconfig.h>
 
 #include <QApplication>
-#include <QProcessEnvironment>
 
 #include <openssl/crypto.h>
 
@@ -40,7 +39,7 @@ int main( int argc, char **argv )
 
 #ifdef VEYON_BUILD_LINUX
 	// do not create graphical application if DISPLAY is not available
-	if( QProcessEnvironment::systemEnvironment().contains( QStringLiteral("DISPLAY") ) == false )
+	if( qEnvironmentVariableIsSet( "DISPLAY" ) == false )
 	{
 		app = new QCoreApplication( argc, argv );
 	}
