@@ -30,6 +30,7 @@
 #include <openssl/crypto.h>
 
 #include "CommandLinePluginInterface.h"
+#include "Logger.h"
 #include "PluginManager.h"
 
 
@@ -74,6 +75,12 @@ int main( int argc, char **argv )
 			printf( "OpenSSL: %s\n", SSLeay_version(SSLEAY_VERSION) );
 			return 0;
 		}
+	}
+
+	// disable logging at all in order to avoid clobbering
+	if( qEnvironmentVariableIsEmpty( Logger::logLevelEnvironmentVariable() ) )
+	{
+		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( Logger::LogLevelNothing ) );
 	}
 
 	VeyonCore* core = new VeyonCore( app, QStringLiteral("Control") );
