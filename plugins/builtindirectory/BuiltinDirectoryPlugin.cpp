@@ -145,7 +145,7 @@ void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const Netwo
 		const NetworkObject networkObject( networkObjectValue.toObject() );
 
 		if( parent.type() == NetworkObject::None ||
-				networkObject.parentUid() == networkObject.uid() )
+				networkObject.parentUid() == parent.uid() )
 		{
 			printf( "%s\n", qUtf8Printable( dumpNetworkObject( networkObject ) ) );
 			listObjects( objects, networkObject );
