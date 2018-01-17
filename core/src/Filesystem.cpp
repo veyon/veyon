@@ -139,6 +139,26 @@ bool Filesystem::ensurePathExists( const QString &path ) const
 
 
 
+QString Filesystem::privateKeyPath( const QString& name ) const
+{
+	const auto d = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() ) +
+			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
+
+	return QDir::toNativeSeparators( d );
+}
+
+
+
+QString Filesystem::publicKeyPath( const QString& name ) const
+{
+	const auto d = VeyonCore::filesystem().expandPath( VeyonCore::config().publicKeyBaseDir() ) +
+			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
+
+	return QDir::toNativeSeparators( d );
+}
+
+
+
 QString Filesystem::privateKeyPath( VeyonCore::UserRoles role, QString baseDir ) const
 {
 	if( baseDir.isEmpty() )
