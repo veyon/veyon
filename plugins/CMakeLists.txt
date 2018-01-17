@@ -1,3 +1,4 @@
+ADD_SUBDIRECTORY(authkeys)
 ADD_SUBDIRECTORY(builtindirectory)
 ADD_SUBDIRECTORY(config)
 ADD_SUBDIRECTORY(demo)
