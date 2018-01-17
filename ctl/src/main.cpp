@@ -53,13 +53,6 @@ int main( int argc, char **argv )
 
 	const auto arguments = app->arguments();
 
-	if( arguments.count() < 2 )
-	{
-		qCritical( "ERROR: not enough arguments - please specify a command" );
-
-		return -1;
-	}
-
 	if( arguments.count() == 2 )
 	{
 		if( arguments.last() == QStringLiteral("-v") || arguments.last() == QStringLiteral("--version") )
@@ -95,7 +88,7 @@ int main( int argc, char **argv )
 		}
 	}
 
-	const auto module = arguments[1];
+	const auto module = arguments.value( 1 );
 
 	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
 	{
@@ -103,21 +96,30 @@ int main( int argc, char **argv )
 
 		if( it.key()->commandLineModuleName() == module )
 		{
-			CommandLinePluginInterface::RunResult runResult = CommandLinePluginInterface::Unknown;
+			auto runResult = CommandLinePluginInterface::Unknown;
 
 			if( arguments.count() > 2 )
 			{
-				const auto command = arguments[2];
-
-				if( command != QStringLiteral("help") ||
-						arguments.count() > 3 )
+				const auto handler = QStringLiteral( "handle_%1(QStringList)" ).arg( arguments[2] );
+				if( it.value()->metaObject()->indexOfMethod( handler.toUtf8().constData() ) >= 0 )
 				{
 					QMetaObject::invokeMethod( it.value(),
-											   QStringLiteral( "handle_%1" ).arg( command ).toUtf8().constData(),
+											   QStringLiteral( "handle_%1" ).arg( arguments[2] ).toUtf8().constData(),
 											   Qt::DirectConnection,
 											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
 											   Q_ARG( QStringList, arguments.mid( 3 ) ) );
 				}
+				else if( arguments[2] != QStringLiteral("help") )
+				{
+					runResult = CommandLinePluginInterface::InvalidCommand;
+				}
+			}
+			else if( it.value()->metaObject()->indexOfMethod("handle_main()") >= 0 )
+			{
+				QMetaObject::invokeMethod( it.value(),
+										   "handle_main",
+										   Qt::DirectConnection,
+										   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult) );
 			}
 			else
 			{
@@ -138,7 +140,7 @@ int main( int argc, char **argv )
 				return -1;
 			case CommandLinePluginInterface::InvalidCommand:
 				qCritical( "%s", qPrintable( VeyonCore::tr( "Invalid command!" ) ) );
-				return -1;
+				break;
 			case CommandLinePluginInterface::InvalidArguments:
 				qCritical( "%s", qPrintable( VeyonCore::tr( "Invalid arguments given" ) ) );
 				return -1;
@@ -148,17 +150,20 @@ int main( int argc, char **argv )
 											  "use \"%1 help\" for more information" ).arg( module ) ) );
 				return -1;
 			case CommandLinePluginInterface::Unknown:
-				qCritical( "%s", qPrintable( VeyonCore::tr( "Available commands:" ) ) );
-				for( const auto& command : commands )
-				{
-					qCritical( "    %s - %s", qPrintable( command ),
-							   qPrintable( it.key()->commandHelp( command ) ) );
-				}
-				return -1;
+				break;
 			default:
 				qCritical( "%s", qPrintable( VeyonCore::tr( "Unknown result!" ) ) );
 				return -1;
 			}
+
+			qInfo( "%s", qPrintable( VeyonCore::tr( "Available commands:" ) ) );
+			for( const auto& command : commands )
+			{
+				qInfo( "    %s - %s",
+					   qPrintable( command ),
+					   qPrintable( it.key()->commandHelp( command ) ) );
+			}
+			return -1;
 		}
 	}
 
@@ -173,7 +178,7 @@ int main( int argc, char **argv )
 	}
 	else
 	{
-		qCritical( "%s", qPrintable( VeyonCore::tr( "Module not found - available modules are:" ) ) );
+		qCritical( "%s", qPrintable( VeyonCore::tr( "No module specified or module not found - available modules are:" ) ) );
 	}
 
 	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
