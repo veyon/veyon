@@ -118,10 +118,23 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( cons
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const QStringList& arguments )
 {
-	listObjects( m_configuration.networkObjects(), NetworkObject::None );
+	if( arguments.isEmpty() )
+	{
+		listObjects( m_configuration.networkObjects(), NetworkObject::None );
+	}
+	else
+	{
+		const auto parents = BuiltinDirectory( m_configuration, this ).queryObjects( NetworkObject::Group, arguments.first() );
+
+		for( const auto& parent : parents )
+		{
+			listObjects( m_configuration.networkObjects(), parent );
+		}
+	}
 
 	return NoResult;
 }
+
 
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( const QStringList& arguments )
