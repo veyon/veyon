@@ -1,5 +1,11 @@
 INCLUDE(BuildPlugin)
 
+IF(VEYON_X11VNC_EXTERNAL)
+
+ADD_DEFINITIONS(-DVEYON_X11VNC_EXTERNAL)
+
+ELSE()
+
 ADD_DEFINITIONS(-DLIBVNCSERVER_PACKAGE_STRING="Veyon ${VERSION}")
 ADD_DEFINITIONS(-DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=3)
 INCLUDE_DIRECTORIES(${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${3rdparty_DIR} ${x11vnc_DIR}/src)
@@ -33,19 +39,23 @@ SET(libvncserver_SOURCES
 	${libvncserver_DIR}/common/turbojpeg.c
 	${libvncserver_DIR}/common/vncauth.c)
 
+SET(x11vnc_SOURCES x11vnc-veyon.c ${x11vnc_DIR}/src/appshare.c)
+
+ENDIF()
+
 BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfiguration.cpp
 	X11VncConfigurationWidget.cpp
-	x11vnc-veyon.c
-	${x11vnc_DIR}/src/appshare.c
 	${libvncserver_SOURCES}
+	${x11vnc_SOURCES}
 	MOCFILES
 	BuiltinX11VncServer.h
 	X11VncConfigurationWidget.h
 	X11VncConfiguration.h
 	FORMS X11VncConfigurationWidget.ui)
 
+IF(NOT VEYON_X11VNC_EXTERNAL)
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	-lpthread
 	${X11_LIBRARIES}
@@ -55,3 +65,4 @@ TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	${X11_Xdamage_LIB}
 	${X11_Xrandr_LIB}
 	${X11_Xi2_LIB})
+ENDIF()
