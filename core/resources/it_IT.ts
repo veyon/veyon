@@ -2319,7 +2319,7 @@ Nota: se l&apos;errore coinvolge sia un computer master che client, allegare arc
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Non è stato possibile contattare la Gestione controllo servizi (disponi dei diritti sufficienti?) - il servizio %1 & apos; non è stato fermato.</translation>
+        <translation>Non è stato possibile contattare la Gestione controllo servizi (disponi dei diritti sufficienti?) - il servizio %1 &apos; non è stato fermato.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be started.</source>
