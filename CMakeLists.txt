@@ -73,6 +73,8 @@ ENDIF()
 
 INCLUDE(DetectMachine)
 
+SET(VEYON_CORE_INCLUDE_DIR core/include)
+
 IF(VEYON_BUILD_LINUX)
 	FIND_PACKAGE(PAM REQUIRED)
 	INCLUDE(XdgInstall)
@@ -149,7 +151,6 @@ ENDIF()
 ### END: libvncclient configuration
 
 # configure files for Veyon
-SET(VEYON_CORE_INCLUDE_DIR core/include)
 SET(VEYONCONFIG ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h)
 
 SET(IN_FILES ${VEYON_CORE_INCLUDE_DIR}/veyonconfig.h nsis/veyon.nsi core/builddata.qrc service/veyon-service.rc master/data/veyon-master.desktop master/veyon-master.rc configurator/data/veyon-configurator.desktop configurator/data/io.veyon.veyon-configurator.policy configurator/veyon-configurator.rc ctl/veyon-ctl.rc worker/veyon-worker.rc)
