@@ -24,6 +24,8 @@
 
 #include <QCoreApplication>
 #include <QProcess>
+#include <QTemporaryFile>
+#include <QThread>
 
 #include "BuiltinX11VncServer.h"
 #include "X11VncConfigurationWidget.h"
@@ -54,8 +56,7 @@ QWidget* BuiltinX11VncServer::configurationWidget()
 
 void BuiltinX11VncServer::run( int serverPort, const QString& password )
 {
-	QStringList cmdline = { "-passwd", password,
-							"-localhost",
+	QStringList cmdline = { "-localhost",
 							"-nosel",			// do not exchange clipboard-contents
 							"-nosetclipboard",	// do not exchange clipboard-contents
 							"-rfbport", QString::number( serverPort ) // set port at which the VNC server should listen
@@ -87,6 +88,39 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 		}
 	}
 
+#ifdef VEYON_X11VNC_EXTERNAL
+	QTemporaryFile tempFile;
+	if( tempFile.open() == false )
+	{
+		qCritical() << Q_FUNC_INFO << "Could not create temporary file!";
+		return;
+	}
+	tempFile.write( password.toLocal8Bit() );
+	tempFile.close();
+
+	cmdline.append( QStringLiteral("-passwdfile") );
+	cmdline.append( QStringLiteral("rm:") + tempFile.fileName() );
+	cmdline.append( QStringLiteral("-forever") );
+	cmdline.append( QStringLiteral("-shared") );
+	cmdline.append( QStringLiteral("-nocmds") );
+	cmdline.append( QStringLiteral("-noremote") );
+
+	QProcess x11vnc;
+	x11vnc.setProcessChannelMode( QProcess::ForwardedChannels );
+	x11vnc.start( QStringLiteral("x11vnc"), cmdline );
+	if( x11vnc.waitForStarted() == false )
+	{
+		qCritical() << "Could not start external x11vnc:" << x11vnc.errorString();
+		qCritical() << "Please make sure x11vnc is installed and installation directory is in PATH!";
+		QThread::msleep( 5000 );
+	}
+	else
+	{
+		x11vnc.waitForFinished( -1 );
+	}
+#else
+	cmdline.append( { "-passwd", password } );
+
 	// build new C-style command line array based on cmdline-QStringList
 	const auto appArguments = QCoreApplication::arguments();
 	auto argv = new char *[cmdline.size()+1];
@@ -102,4 +136,5 @@ void BuiltinX11VncServer::run( int serverPort, const QString& password )
 
 	// run x11vnc-server
 	x11vnc_main( argc, argv );
+#endif
 }

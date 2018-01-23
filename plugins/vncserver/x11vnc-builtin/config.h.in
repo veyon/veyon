@@ -1,0 +1,305 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#cmakedefine HAVE_ARPA_INET_H 1
+
+/* Avahi/mDNS client build environment present */
+#cmakedefine HAVE_AVAHI 1
+
+/* Define to 1 if you have the `crypt' function. */
+#cmakedefine HAVE_CRYPT 1
+
+/* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
+#cmakedefine HAVE_DOPRNT 1
+
+/* DPMS extension build environment present */
+#cmakedefine HAVE_DPMS 1
+
+/* Define to 1 if you have the <endian.h> header file. */
+#cmakedefine HAVE_ENDIAN_H 1
+
+/* FBPM extension build environment present */
+#cmakedefine HAVE_FBPM 1
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#cmakedefine HAVE_FCNTL_H 1
+
+/* Define to 1 if you have the `fork' function. */
+#cmakedefine HAVE_FORK 1
+
+/* Define to 1 if you have the `ftime' function. */
+#cmakedefine HAVE_FTIME 1
+
+/* Define to 1 if you have the `geteuid' function. */
+#cmakedefine HAVE_GETEUID 1
+
+/* Define to 1 if you have the `gethostbyname' function. */
+#cmakedefine HAVE_GETHOSTBYNAME 1
+
+/* Define to 1 if you have the `gethostname' function. */
+#cmakedefine HAVE_GETHOSTNAME 1
+
+/* Define to 1 if you have the `getpwnam' function. */
+#cmakedefine HAVE_GETPWNAM 1
+
+/* Define to 1 if you have the `getpwuid' function. */
+#cmakedefine HAVE_GETPWUID 1
+
+/* Define to 1 if you have the `getspnam' function. */
+#cmakedefine HAVE_GETSPNAM 1
+
+/* Define to 1 if you have the `gettimeofday' function. */
+#cmakedefine HAVE_GETTIMEOFDAY 1
+
+/* Define to 1 if you have the `getuid' function. */
+#cmakedefine HAVE_GETUID 1
+
+/* Define to 1 if you have the `grantpt' function. */
+#cmakedefine HAVE_GRANTPT 1
+
+/* Define to 1 if you have the `inet_ntoa' function. */
+#cmakedefine HAVE_INET_NTOA 1
+
+/* Define to 1 if you have the `initgroups' function. */
+#cmakedefine HAVE_INITGROUPS 1
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#cmakedefine HAVE_INTTYPES_H 1
+
+/* IRIX XReadDisplay available */
+#cmakedefine HAVE_IRIX_XREADDISPLAY 1
+
+/* libcrypt library present */
+#cmakedefine HAVE_LIBCRYPT 1
+
+/* openssl libcrypto library present */
+#cmakedefine HAVE_LIBCRYPTO 1
+
+/* Define to 1 if you have the `cygipc' library (-lcygipc). */
+#cmakedefine HAVE_LIBCYGIPC 1
+
+/* Define to 1 if you have the `nsl' library (-lnsl). */
+#cmakedefine HAVE_LIBNSL 1
+
+/* Define to 1 if you have the `socket' library (-lsocket). */
+#cmakedefine HAVE_LIBSOCKET 1
+
+/* openssl libssl library present */
+#cmakedefine HAVE_LIBSSL 1
+
+/* XCOMPOSITE extension build environment present */
+#cmakedefine HAVE_LIBXCOMPOSITE 1
+
+/* Xcursor library build environment present */
+#cmakedefine HAVE_LIBXCURSOR 1
+
+/* XDAMAGE extension build environment present */
+#cmakedefine HAVE_LIBXDAMAGE 1
+
+/* XFIXES extension build environment present */
+#cmakedefine HAVE_LIBXFIXES 1
+
+/* XINERAMA extension build environment present */
+#cmakedefine HAVE_LIBXINERAMA 1
+
+/* XRANDR extension build environment present */
+#cmakedefine HAVE_LIBXRANDR 1
+
+/* DEC-XTRAP extension build environment present */
+#cmakedefine HAVE_LIBXTRAP 1
+
+/* linux fb device build environment present */
+#cmakedefine HAVE_LINUX_FB_H 1
+
+/* linux/input.h present */
+#cmakedefine HAVE_LINUX_INPUT_H 1
+
+/* linux uinput device build environment present */
+#cmakedefine HAVE_LINUX_UINPUT_H 1
+
+/* video4linux build environment present */
+#cmakedefine HAVE_LINUX_VIDEODEV_H 1
+
+/* build MacOS X native display support */
+#cmakedefine HAVE_MACOSX_NATIVE_DISPLAY 1
+
+/* MacOS X OpenGL present */
+#cmakedefine HAVE_MACOSX_OPENGL_H 1
+
+/* Define to 1 if you have the `memmove' function. */
+#cmakedefine HAVE_MEMMOVE 1
+
+/* Define to 1 if you have the <memory.h> header file. */
+#cmakedefine HAVE_MEMORY_H 1
+
+/* Define to 1 if you have the `memset' function. */
+#cmakedefine HAVE_MEMSET 1
+
+/* Define to 1 if you have the `mkfifo' function. */
+#cmakedefine HAVE_MKFIFO 1
+
+/* Define to 1 if you have the `mmap' function. */
+#cmakedefine HAVE_MMAP 1
+
+/* Define to 1 if you have the <netdb.h> header file. */
+#cmakedefine HAVE_NETDB_H 1
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#cmakedefine HAVE_NETINET_IN_H 1
+
+/* Define to 1 if you have the <pwd.h> header file. */
+#cmakedefine HAVE_PWD_H 1
+
+/* RECORD extension build environment present */
+#cmakedefine HAVE_RECORD 1
+
+/* Define to 1 if you have the `select' function. */
+#cmakedefine HAVE_SELECT 1
+
+/* Define to 1 if you have the `setegid' function. */
+#cmakedefine HAVE_SETEGID 1
+
+/* Define to 1 if you have the `seteuid' function. */
+#cmakedefine HAVE_SETEUID 1
+
+/* Define to 1 if you have the `setgid' function. */
+#cmakedefine HAVE_SETGID 1
+
+/* Define to 1 if you have the `setpgrp' function. */
+#cmakedefine HAVE_SETPGRP 1
+
+/* Define to 1 if you have the `setsid' function. */
+#cmakedefine HAVE_SETSID 1
+
+/* Define to 1 if you have the `setuid' function. */
+#cmakedefine HAVE_SETUID 1
+
+/* Define to 1 if you have the `setutxent' function. */
+#cmakedefine HAVE_SETUTXENT 1
+
+/* Define to 1 if you have the `shmat' function. */
+#cmakedefine HAVE_SHMAT 1
+
+/* Define to 1 if you have the `socket' function. */
+#cmakedefine HAVE_SOCKET 1
+
+/* Solaris XReadScreen available */
+#cmakedefine HAVE_SOLARIS_XREADSCREEN 1
+
+/* Define to 1 if `stat' has the bug that it succeeds when given the
+   zero-length file name argument. */
+#cmakedefine HAVE_STAT_EMPTY_STRING_BUG 1
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#cmakedefine HAVE_STDINT_H 1
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#cmakedefine HAVE_STDLIB_H 1
+
+/* Define to 1 if you have the `strchr' function. */
+#cmakedefine HAVE_STRCHR 1
+
+/* Define to 1 if you have the `strcspn' function. */
+#cmakedefine HAVE_STRCSPN 1
+
+/* Define to 1 if you have the `strdup' function. */
+#cmakedefine HAVE_STRDUP 1
+
+/* Define to 1 if you have the `strerror' function. */
+#cmakedefine HAVE_STRERROR 1
+
+/* Define to 1 if you have the `strftime' function. */
+#cmakedefine HAVE_STRFTIME 1
+
+/* Define to 1 if you have the <strings.h> header file. */
+#cmakedefine HAVE_STRINGS_H 1
+
+/* Define to 1 if you have the <string.h> header file. */
+#cmakedefine HAVE_STRING_H 1
+
+/* Define to 1 if you have the `strstr' function. */
+#cmakedefine HAVE_STRSTR 1
+
+/* Define to 1 if you have the <syslog.h> header file. */
+#cmakedefine HAVE_SYSLOG_H 1
+
+/* Define to 1 if you have the <sys/endian.h> header file. */
+#cmakedefine HAVE_SYS_ENDIAN_H 1
+
+/* Define to 1 if you have the <sys/ioctl.h> header file. */
+#cmakedefine HAVE_SYS_IOCTL_H 1
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#cmakedefine HAVE_SYS_SOCKET_H 1
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#cmakedefine HAVE_SYS_STAT_H 1
+
+/* Define to 1 if you have the <sys/stropts.h> header file. */
+#cmakedefine HAVE_SYS_STROPTS_H 1
+
+/* Define to 1 if you have the <sys/timeb.h> header file. */
+#cmakedefine HAVE_SYS_TIMEB_H 1
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#cmakedefine HAVE_SYS_TIME_H 1
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#cmakedefine HAVE_SYS_TYPES_H 1
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#cmakedefine HAVE_SYS_WAIT_H 1
+
+/* Define to 1 if you have the <termios.h> header file. */
+#cmakedefine HAVE_TERMIOS_H 1
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#cmakedefine HAVE_UNISTD_H 1
+
+/* Define to 1 if you have the <utmpx.h> header file. */
+#cmakedefine HAVE_UTMPX_H 1
+
+/* Define to 1 if you have the `vfork' function. */
+#cmakedefine HAVE_VFORK 1
+
+/* Define to 1 if you have the <vfork.h> header file. */
+#cmakedefine HAVE_VFORK_H 1
+
+/* Define to 1 if you have the `vprintf' function. */
+#cmakedefine HAVE_VPRINTF 1
+
+/* Define to 1 if you have the `waitpid' function. */
+#cmakedefine HAVE_WAITPID 1
+
+/* Define to 1 if `fork' works. */
+#cmakedefine HAVE_WORKING_FORK 1
+
+/* Define to 1 if `vfork' works. */
+#cmakedefine HAVE_WORKING_VFORK 1
+
+/* Define to 1 if you have the <ws2tcpip.h> header file. */
+#cmakedefine HAVE_WS2TCPIP_H 1
+
+/* X11 build environment present */
+#cmakedefine HAVE_X11 1
+
+/* open ssl X509_print_ex_fp available */
+#cmakedefine HAVE_X509_PRINT_EX_FP 1
+
+/* XI2 available */
+#cmakedefine HAVE_XI2 1
+
+/* XKEYBOARD extension build environment present */
+#cmakedefine HAVE_XKEYBOARD 1
+
+/* MIT-SHM extension build environment present */
+#cmakedefine HAVE_XSHM 1
+
+/* XTEST extension build environment present */
+#cmakedefine HAVE_XTEST 1
+
+/* XTEST extension has XTestGrabControl */
+#cmakedefine HAVE_XTESTGRABCONTROL 1
+
+/* Version number of package */
+#define VERSION "@VERSION_STRING@"

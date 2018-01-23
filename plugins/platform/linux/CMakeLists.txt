@@ -1,3 +1,4 @@
+FIND_PACKAGE(X11 REQUIRED)
 FIND_PACKAGE(Qt5DBus REQUIRED)
 FIND_PACKAGE(PkgConfig QUIET)
 pkg_check_modules(procps REQUIRED libprocps)
