@@ -186,3 +186,5 @@ TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	${X11_Xrandr_LIB}
 	${X11_Xi2_LIB})
 ENDIF()
+
+SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers")
