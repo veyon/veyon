@@ -177,7 +177,7 @@ BUILD_PLUGIN(builtin-x11vnc-server
 
 IF(NOT VEYON_X11VNC_EXTERNAL)
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
-	-lpthread
+	Threads::Threads
 	${X11_LIBRARIES}
 	${X11_XTest_LIB}
 	${X11_Xfixes_LIB}
