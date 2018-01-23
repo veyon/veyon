@@ -10,9 +10,6 @@
 #cmakedefine VEYON_BUILD_WIN32 1
 #cmakedefine VEYON_BUILD_APPLE 1
 
-#cmakedefine VEYON_HOST_X86 1
-#cmakedefine VEYON_HOST_X86_64 1
-
 #cmakedefine VEYON_HAVE_ARPA_INET_H 1
 #cmakedefine VEYON_HAVE_ERRNO_H 1
 #cmakedefine VEYON_HAVE_NETINET_IN_H 1
