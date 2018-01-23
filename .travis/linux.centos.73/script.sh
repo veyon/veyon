@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 source scl_source enable devtoolset-6
+alias cmake=/usr/bin/cmake3
 
 /veyon/.travis/common/linux-build.sh /veyon /build
 
