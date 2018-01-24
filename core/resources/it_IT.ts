@@ -43,7 +43,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Supporta il progetto Veyon con una donazione</translation>
     </message>
 </context>
 <context>
@@ -147,6 +147,10 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa confiugurazione.</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Abilitare l&apos;utilizzo di gruppi di dominio</translation>
     </message>
 </context>
 <context>
@@ -433,6 +437,10 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <source>Host/IP address: %1</source>
         <translation>Host/indirizzo IP: %1</translation>
     </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Funzioni attive: %1</translation>
+    </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
@@ -568,7 +576,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>Leggi e stampa i valori di configurazione delle chiavi date</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
@@ -645,7 +653,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervallo del Key frame</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -858,7 +866,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Directory dell&apos;oggetto di rete</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -894,11 +902,11 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>Ruotare i file di registro</translation>
     </message>
     <message>
         <source>x</source>
@@ -906,7 +914,11 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source> seconds</source>
-        <translation>secondi</translation>
+        <translation> secondi</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation>Scrivi nel sistema di log del sistema operativo</translation>
     </message>
 </context>
 <context>
@@ -1141,7 +1153,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Object trees</source>
-        <translation type="unfinished"/>
+        <translation>Alberatura oggetti</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -1165,7 +1177,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Group tree</source>
-        <translation type="unfinished"/>
+        <translation>Alberatura gruppi</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
@@ -1173,7 +1185,7 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Object attributes</source>
-        <translation type="unfinished"/>
+        <translation>Attributi degli oggetti</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -1181,35 +1193,35 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo del nome del computer host</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"/>
+        <translation>Per esempio membro o membroUid</translation>
     </message>
     <message>
         <source>User login attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo del login utente</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation type="unfinished"/>
+        <translation>Per esempio dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo dell&apos;indirizzo MAC del computer</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo del gruppo del membro</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"/>
+        <translation>Per esempio uid o sAMAccountName</translation>
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>I nomi degli host sono salvati come nomi di dominio completi (FQDN, per esempio myhost.exaple.org)</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1217,19 +1229,19 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation type="unfinished"/>
+        <translation>Filtro per oggetti opzionale</translation>
     </message>
     <message>
         <source>e.g. objectClass=group</source>
-        <translation type="unfinished"/>
+        <translation>Per esempio objectClass=group</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation type="unfinished"/>
+        <translation>Filtro per gruppo utenti</translation>
     </message>
     <message>
         <source>e.g. objectClass=person</source>
-        <translation type="unfinished"/>
+        <translation>Per esempio objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1241,15 +1253,15 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Group member identification</source>
-        <translation type="unfinished"/>
+        <translation>Identificazione membro del gruppo</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"/>
+        <translation>Nome distinto (Samba/AD)</translation>
     </message>
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Attributo configurato per login utente o nome host computer (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1285,38 +1297,41 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <translation>Collegato correttamente al server LDAP ed eseguito un binding LDAP. Le impostazioni LDAP di base sono configurate correttamente.</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>Test LDAP base DN fallito</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile interrogare il DN base configurato. Si prega di verificare il parametro DN di base.
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>Test LDAP base DN riuscito</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>La base LDAP DN è stata interrogata con successo. Sono state trovate le seguenti voci:
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>Test per contesto nominazione LDAP fallito</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile interrogare il DN di base tramite contesti di denominazione. Si prega di verificare il parametro dell&apos;attributo del contesto di denominazione.
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>Test di contesto di denominazione LDAP riuscito</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
@@ -1326,15 +1341,15 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>user tree</source>
-        <translation type="unfinished"/>
+        <translation>albero utenti</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation type="unfinished"/>
+        <translation>albero gruppi</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation type="unfinished"/>
+        <translation>albero computer</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -1394,339 +1409,347 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Hai configurato gli hostname dei computer per essere salvati come semplici hostname senza un dominio, ma hai inserito un hostname che ha come parte del suo nome un dominio</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation type="unfinished"/>
+        <translation>oggetti computer</translation>
     </message>
     <message>
         <source>computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>attributi hostname computer</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il DN del computer</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il DN di un computer il cui indirizzo MAC e&apos; da ricercare</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>indirizzi MAC computer</translation>
     </message>
     <message>
         <source>computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>attributo indirizzo MAC computer</translation>
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>utenti</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>gruppi di utenti</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>gruppi computer</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Si prega di inserire un nome utente di accesso di appartenenza al gruppo da interrogare:</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation type="unfinished"/>
+        <translation>gruppi di utenti</translation>
     </message>
     <message>
         <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>attributo di login utente o attributo di appartenenza a gruppo</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>Utente non trovato</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Non e&apos; stato possibile trovare un utente con il nome &quot;%1&quot;. Controlla il nome utente o il parametro di alberatura utenti.</translation>
     </message>
     <message>
         <source>Enter host name</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci nome host</translation>
     </message>
     <message>
         <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci un nome host di un computer di cui devi ricercare appartenenze ai gruppi:</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>gruppi di computer</translation>
     </message>
     <message>
         <source>computer host name attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>attributo nome host computer o attributo appartenenza gruppo</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation type="unfinished"/>
+        <translation>Computer non trovato</translation>
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Non e&apos; stato possibile trovare un computer con il nome host &quot;%1&quot;. Controlla il nome host o il parametro di alberatura computer.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci indirizzo IP del computer</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>Si prega di inserire un indirizzo IP del computer da risolvere a un oggetto computer:</translation>
     </message>
     <message>
         <source>Host name lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>Ricerca nome host fallita</translation>
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>Non e&apos; stato possibile ricercare nome host per l&apos;indirizzo IP %1. Controlla le impostazioni del tuo server DNS.</translation>
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>computer</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>Test %1 LDAP fallito</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile interrogare qualsiasi voce nella %1 configurata. Si prega di verificare il parametro &amp;1.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>Test %1 LDAP completato con successo</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>Il %1 e&apos; stato interrogato con successo e sono state trovate %2 voci.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile interrogare qualsiasi %1. Si prega di verificare il parametro %2 oppure inserire il nome di un oggetto esistente.
+
+%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 sono stati interrogati con successo:
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>Test filtro LDAP falllito</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile interrogare qualsiasi %1 usando il filtro configurato. Si prega di verificare il filtro LPAP per %1.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>Test filtro LDAP completato con successo</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 sono stati interrogati con successo usando il filtro configurato.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(solo se diverso dall&apos;albero gruppo)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Albero gruppo computer</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>albero gruppo computer</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>Filtra per computer</translation>
     </message>
     <message>
         <source>e.g. objectClass=computer</source>
-        <translation type="unfinished"/>
+        <translation>e.g. objectClass=computer</translation>
     </message>
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation type="unfinished"/>
+        <translation>e.g. objectClass=room o objectClass=computerLab</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>e.g. room o computerLab</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
-        <translation type="unfinished"/>
+        <translation>Elenca tutti i membri di una stanza computer</translation>
     </message>
     <message>
         <source>List all computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Lista di tutte le stanze computer</translation>
     </message>
     <message>
         <source>Enter computer room name</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci nome stanza computer</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il nome di una stanza computer (wildcards consentite):</translation>
     </message>
     <message>
         <source>computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>stanze computer</translation>
     </message>
     <message>
         <source>computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>attributo stanza computer</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Si prega di inserire il nome della stanza computer di cui interrogarne i membri:</translation>
     </message>
     <message>
         <source>computer room members</source>
-        <translation type="unfinished"/>
+        <translation>membri stanza computer</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
+        <translation>filtro gruppo computer o aggregazione membri di stanza computer</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Stanze computer</translation>
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>Test integrazione</translation>
     </message>
     <message>
         <source>Computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributi stanza computer</translation>
     </message>
     <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation type="unfinished"/>
+        <translation>e.g. objectClass=container o objectClass=organizationalUnit</translation>
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
-        <translation type="unfinished"/>
+        <translation>Aggrega i computer in una stanza tramite:</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Gruppi computer</translation>
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Attributi stanze computer in oggetti computer</translation>
     </message>
     <message>
         <source>Test not applicable</source>
-        <translation type="unfinished"/>
+        <translation>Test non applicabile</translation>
     </message>
     <message>
         <source>Computer room name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attributo nome stanza computer</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation type="unfinished"/>
+        <translation>es. nome o descrizione</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Filtra per contenitori computer</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Contenitoru computer o OUs</translation>
     </message>
     <message>
         <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
+        <translation>Per favore cambia le impostazioni della stanza computer per usare i gruppi di computer o i container di computer come stanze di computer. In seguito gli attributi impostati invece del nome comune dei gruppi di computer o degli oggetti container saranno ricercati. Altrimenti non e&apos; necessario che tu configuri questo attributo.</translation>
     </message>
     <message>
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
+        <translation>Per favore cambia qui sotto le impostazioni di questa stanza computer per usare i container di computer come stanze di computer. Altrimenti non serve che tu configuri questo filtro</translation>
     </message>
 </context>
 <context>
     <name>LdapDirectory</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>Descrizione errore LDAP: %1</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>Configura integrazione LDAP/AD di Veyon via riga di comando</translation>
     </message>
     <message>
         <source>LDAP (load objects from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (carica oggetti da LDAP/AD)</translation>
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (carica utenti/gruppi e computer/stanze da LDAP/AD)</translation>
     </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"/>
+        <translation>Configura automaticamente la base DN tramite contesto di denominazione</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>Interrogare oggetti dalla directory LDAP</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Mostra aiuto sul comando</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
+        <translation>Comandi per la configurazione ed il testing dell&apos;integrazione LDAP/AD</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin che implementa funzioni astratte per la piattaforma Linux.</translation>
     </message>
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
     <message>
         <source>Local data</source>
-        <translation type="unfinished"/>
+        <translation>Dati locali</translation>
     </message>
     <message>
         <source>Network objects</source>
-        <translation type="unfinished"/>
+        <translation>Oggetti di rete</translation>
     </message>
     <message>
         <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>Stanze</translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Computer</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1734,54 +1757,54 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>Indirizzo host/IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC address</translation>
+        <translation>indirizzo MAC</translation>
     </message>
     <message>
         <source>Add new room</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi nuova stanza</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi stanza selezionata</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi nuovo computer</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi il computer selezionato</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>Nuova stanza</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Nuovo computer</translation>
     </message>
     <message>
         <source>Rooms &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Stanze &amp; computer</translation>
     </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
     <message>
         <source>Backends which use local data</source>
-        <translation type="unfinished"/>
+        <translation>Backend che usano dati locali</translation>
     </message>
     <message>
         <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Default (utenti/gruppi locali e computer/stanze dalla configurazione)</translation>
     </message>
     <message>
         <source>Default (store objects in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Default (salva oggetti nella configurazione locale)</translation>
     </message>
 </context>
 <context>
@@ -1795,15 +1818,15 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Disabilita tooltip dei palloncini</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Mostra solamente le icone</translation>
     </message>
 </context>
 <context>
@@ -1942,32 +1965,32 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione Veyon</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation type="unfinished"/>
+        <translation>Quando si riscontrano bug o altri comportamenti scorretti in Veyon e&apos; importante informare gli sviluppatori, cosicche&apos; il bug venga risolto nelle versioni future. Questa pagina ti permette di inviare un report di un bug facilmente.</translation>
     </message>
     <message>
         <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation type="unfinished"/>
+        <translation>Vai su &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;Veyon issue tracker&lt;/a&gt;, crea un nuovo problema, descrivi con hai fatto nello step 3) e allega il file salvato nello step 4).&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Servizio</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Principale</translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation type="unfinished"/>
+        <translation>Controllo accessi</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -1975,11 +1998,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automatico</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Stanze computer</translation>
     </message>
     <message>
         <source>About</source>
@@ -1987,35 +2010,35 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 Configuratore %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>File JSON (*.json)</translation>
     </message>
     <message>
         <source>%1 bug report (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>%1 bug report (*.json)</translation>
     </message>
     <message>
         <source>%1 bug report archive saved</source>
-        <translation type="unfinished"/>
+        <translation>%1 archivio bug report salvato</translation>
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation type="unfinished"/>
+        <translation>Un archivio di report bug %1 e&apos; stato salvato in %2. Include %3 log file e informazioni sul tuo sistema operativo. Puoi allegarlo al bug report.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>La configurazione locale backend ha riportato che la configurazione non e&apos; salvabile! Si prega di eseguire il configuratore %1 con privilegi maggiori.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
-        <translation type="unfinished"/>
+        <translation>Controllo Master %1</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
+        <translation>Nessun file di chiave di autenticazione e&apos; stato trovato o i correnti sono antiquati. Si prega di creare un nuovi file di chiave usandi il Configuratore %1. In alternativa, imposta l&apos;autenticazione di accesso usando il Configuratore %1. Altrimenti non sarai in grado ad accedere ai computer usando %1.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2023,43 +2046,43 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Secondo la configurazione locale non ti e&apos; permesso accedere ai computer nella rete. Si prega di effettuare il login con un account diverso o lasciar controllare al tuo amministatore di sistema la configurazione locale.</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Catture dello schermo</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>Funzione attiva</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation type="unfinished"/>
+        <translation>La funzionalità &quot;%1&quot; e&apos; ancora attiva. Arrestala prima di chiudere %2.</translation>
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Segnalare bug in Veyon</translation>
     </message>
     <message>
         <source>Bug reporting</source>
-        <translation type="unfinished"/>
+        <translation>Segnalazione bug</translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>Reimposta configurazione</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi veramente reimpostare la configurazione locale e riportare tutte le impostazioni valori originali?</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Cerca utenti e computer</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
+        <translation>Sistema dimensione ottimale</translation>
     </message>
 </context>
 <context>
@@ -2074,43 +2097,43 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione utente</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Funzionalita&apos; sul doppio clic del computer:</translation>
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation type="unfinished"/>
+        <translation>All&apos;avvio, passa automaticamente alla stanza attuale</translation>
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Funzionalita&apos;</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Tutte le funzionalita&apos;</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Funzionalita&apos; disabilitate</translation>
     </message>
     <message>
         <source>Perform access control at program start</source>
-        <translation type="unfinished"/>
+        <translation>Esegui controllo degli accessi all&apos;avvio del programma</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Catture dello schermo</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;nessuna funzionalita&apos;&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
-        <translation type="unfinished"/>
+        <translation>Adatta automaticamente la miniatura del computer all&apos;avvio</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2118,69 +2141,69 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Comportamento</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>Applicare la modalita&apos; selezionata per i client computer</translation>
     </message>
     <message>
         <source>Only show current room</source>
-        <translation type="unfinished"/>
+        <translation>Mostra solamente la stanza attuale</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation type="unfinished"/>
+        <translation>Consenti l&apos;&apos;aggiunta di stanze manualmente</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi il computer locale</translation>
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi le stanze vuote</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi il campo filtri computer</translation>
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Gestione computer</translation>
     </message>
     <message>
         <source>Always open at start</source>
-        <translation type="unfinished"/>
+        <translation>Apri sempre all&apos;avvio</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>Azioni come il riavvio o lo spegnimetno dei computer</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>Mostra avviso di conferma per azioni potenzialmente dannose</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Monitoraggio</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Modalita&apos; di monitoraggio integrata</translation>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation type="unfinished"/>
+        <translation>Questa e&apos; la modalita&apos; di default e ti consente di monitorare tutti i computer in una o piu&apos; stanze</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Room/Computer</source>
-        <translation type="unfinished"/>
+        <translation>Stanza/Computer</translation>
     </message>
 </context>
 <context>
@@ -2195,19 +2218,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Logon Veyon</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Errore di autenticazione</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>Logon fallito con le credenziali fornite. Riprova!</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il tuo username e password per accedere ai computer</translation>
     </message>
 </context>
 <context>
@@ -2218,7 +2241,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Premi questo bottone per accendere tutti i computer. In questo modo non devi accendere ogni computer a mano.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2226,7 +2249,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Clicca questo bottone per riavviare tutti i computer.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2234,27 +2257,27 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Clicca questo bottone per spegnere tutti i computer. In questo modo non devi spegnere ogni computer a mano.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>Accendi/spegni o riavvia un computer</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Conferma riavvio</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Conferma spegnimento</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi veramente riavviare i computer selezionati?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi veramente spegnere il computer selezionato?</translation>
     </message>
 </context>
 <context>
@@ -2305,57 +2328,57 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation type="unfinished"/>
+        <translation>Non e&apos; stato possibile contattare il Service Control Manager (hai i permessi necessari?) - il servizio &apos;%1&apos; non e&apos; stato arrestato.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be started.</source>
-        <translation type="unfinished"/>
+        <translation>Il servizio &apos;%1;apos non puo&apos; essere avviato</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation type="unfinished"/>
+        <translation>Non e&apos; stato possibile contattare il Service Control Manager (hai i permessi necessari?) - il servizio &apos;%1&apos; non e&apos; stato avviato.</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Vista remota</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>Apri una vista remota per un computer senza interazione</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Controlla</translation>
+        <translation>Controllo remoto</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Apri una finestra di controllo remoto per un computer</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Accesso remoto</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>Vista o controllo remoto di un computer</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci l&apos;hostname o l&apos;indirizzo IP del computer al quale vuoi accedere:</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>Mostra aiuto per i comandi</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>Accesso Remoto %1</translation>
     </message>
 </context>
 <context>
@@ -2370,7 +2393,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Invia scorciatoia</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2386,35 +2409,35 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Canc</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -2426,121 +2449,121 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot</translation>
     </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation type="unfinished"/>
+        <translation>Selezione stanza</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>inserisci filtro di ricerca...</translation>
     </message>
 </context>
 <context>
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci i programmi o i comandi da eseguire nei computer selezionati. Puoi separare programmi/comandi multipli andando a capo.</translation>
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Esegui programmi</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>es. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Blocca</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Sbloccca</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Blocca schermo e dispositivi di input di un computer</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>Per richiamare la completa attenzione di tutti gli utenti, puoi bloccare i loro computer utilizzando questo pulsante. In questo modo tutti i dispositivi di input saranno bloccati e gli schermi saranno colorati di nero.</translation>
     </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>sconosciuto</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"/>
+        <translation>Non e&apos; stato possibile effettuare una screenshot in quanto la directory %1 non esiste e non e&apos; stato possibile crearla.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>Usa questa funzione per fare una screenshot dei computer selezionati.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot eseguiti</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Screenshot di %1 computer sono stati effettuati con successo.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>Effettua screenshot dei computer e salvali in locale.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Utente:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Data:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Ora:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Mostra</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Elimina</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>Tutte le screenshot da te effettuate sono elencate qui. Puoi effettuare screenshot cliccando l&apos;elemento &quot;Screenshot&quot; nel menu di un computer. Le screenshot possono essere gestite utilizzando i pulsanti qui sotto.</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Computer</translation>
     </message>
 </context>
 <context>
@@ -2579,7 +2602,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation type="unfinished"/>
+        <translation>Abilita generazione SAS via software (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Network</source>
@@ -2599,23 +2622,23 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>Porta interna server VNC</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Server VNC</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Plugin:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Riavvia Servizio %1</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Tutte le impostazioni sono state salvate. Per farle funzionare, il servizio %1 deve essere riavviato. Riavviarlo ora?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -2623,80 +2646,80 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation type="unfinished"/>
+        <translation>Porta manager funzionalita&apos;</translation>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation type="unfinished"/>
+        <translation>Porta servizio primario</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Avviando Servizio %1</translation>
     </message>
     <message>
         <source>Stopping %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Arrestando Servizio %1</translation>
     </message>
     <message>
         <source>Registering %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Registrando Servizio %1</translation>
     </message>
     <message>
         <source>Unregistering %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Annullamento della registrazione Servizio %1</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>Servizio in esecuzione</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>Servizio non in esecuzione</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Configura e controlla il servizio Veyon</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Registra Servizio Veyon</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Annullamento della registrazione del Servizio Veyon</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Avvia Servizio Veyon</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Arresta Servizio Veyon</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Riavvia Servizio Veyon</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Stato del query del Servizio Veyon</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Comandi per configurare e controllare il Servizio Veyon</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Icona barra di sistema</translation>
     </message>
 </context>
 <context>
@@ -2718,7 +2741,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>Utilizza questa funzione per inviare un messaggio di testo a tutti gli utenti. Ad esempio per assegnargli nuovi compiti.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -2726,7 +2749,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Invia un messaggio ad un utente</translation>
     </message>
 </context>
 <context>
@@ -2745,11 +2768,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione del server UltraVNC integrato</translation>
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Abilita supporto monitor doppio</translation>
     </message>
 </context>
 <context>
@@ -2760,14 +2783,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile salvare le tue impostazioni personali. Controlla il percorso file di configurazione utente utilizzando il Configuratore %1</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>Controllo sessione utente</translation>
     </message>
     <message>
         <source>Logout user</source>
@@ -2775,98 +2798,98 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Clicca questo pulsante per far fare logout a tutti gli utenti da tutti i computer</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>Conferma logout utente</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi veramente far fare logout agli utenti selezionati?</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[FALLITO]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>Comando non valido!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>Comandi disponibili:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>Argomenti dati non validi</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation type="unfinished"/>
+        <translation>Non sono stati dati abbastanza argomenti - usa &quot;%1 help&quot; per maggiori informazioni</translation>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Risultato sconosciuto!</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Moduli disponibili:</translation>
     </message>
     <message>
         <source>Module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Modulo non trovato - i moduli disponibili sono:</translation>
     </message>
 </context>
 <context>
     <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>L&apos;autenticazione di VNC non è riuscita -effettuati numerosi tentativi</translation>
+        <translation>L&apos;autenticazione di VNC non è riuscita in quanto sono stati effettuati troppi tentativi.</translation>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation>L&apos;autenticazione di VNC non è riuscita</translation>
+        <translation>L&apos;autenticazione di VNC non è riuscita.</translation>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation>Il server VNC ha chiuso la connessione</translation>
+        <translation>Il server VNC ha chiuso la connessione.</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Connessione con %1 ...</translation>
+        <translation>Connessione a %1 ...</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin che implementa funzioni astratte per la piattaforma Windows</translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione del server x11vnc integrata</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>Parametri per x11vnc personalizzati:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>Non usare l&apos;estensione X Damage</translation>
     </message>
 </context>
 </TS>

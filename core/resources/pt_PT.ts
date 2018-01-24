@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Acerca</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -11,19 +11,19 @@
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Licença</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Acerca de Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Colaboradores</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Versão:</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -39,6 +39,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>About %1 %2</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Suporta o projecto Veyon com um donativo</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlPage</name>
@@ -48,15 +52,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Permite acesso a todos os utilizadores autenticados (por defeito)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Teste</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>Restringe o acesso a membros de um determinado grupo de utilizadores</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -140,6 +144,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -341,7 +349,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Teste</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -425,6 +433,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Host/IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active features: %1</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -902,6 +914,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source> seconds</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
@@ -1102,7 +1118,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Teste</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1752,6 +1768,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>New computer</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
@@ -1955,7 +1975,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Acerca de Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1967,7 +1987,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Acerca</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>

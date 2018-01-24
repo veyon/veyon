@@ -148,6 +148,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Вказаному користувачеві заборонено доступ до комп’ютерів з цими налаштуваннями.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Увімкнути використання груп доменів</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -432,6 +436,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Host/IP address: %1</source>
         <translation>Вузол/IP-адреса: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Задіяні можливості: %1</translation>
     </message>
 </context>
 <context>
@@ -907,6 +915,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source> seconds</source>
         <translation> секунд</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation>Записувати до журналу операційної системи</translation>
     </message>
 </context>
 <context>

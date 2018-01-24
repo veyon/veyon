@@ -43,7 +43,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Steun het Veyon project met een gift</translation>
     </message>
 </context>
 <context>
@@ -147,6 +147,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>De opgegeven gebruiker is niet toegestaan om toegang tot computers te krijgen met deze configuratie.</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -432,6 +436,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source>Host/IP address: %1</source>
         <translation>Host/IP adres: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -907,6 +915,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source> seconds</source>
         <translation>seconden</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1476,7 +1488,7 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Kon de computer met de naam &quot;% 1&quot; niet vinden. Kontroleer de computernaam in de PC of AD computerbenaming.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -1484,7 +1496,7 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>Voer het IP-adres van een computer in dat moet worden omgezet naar een computerobject:</translation>
     </message>
     <message>
         <source>Host name lookup failed</source>
@@ -1492,7 +1504,7 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>Kan de hostnaam niet opzoeken voor IP-adres %1. Kontroleer uw server DNS-instellingen.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -1506,7 +1518,7 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Kan geen gegevens opvragen van %1. Kontroleer van %1 de instelling %2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -1514,19 +1526,23 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>De %1  is met succes opgevraagd en %2 ingaven zijn gevonden.</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Kon geen gegevens van %1 opvragen. Kontroleer de instelling %2 of voer de naam in van een bestaand object.
+
+%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 zijn succesvol opgevraagd. 
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
@@ -1536,43 +1552,45 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Kon geen %1 opvragen met behulp van de ingestelde filter. Kontroleer de LDAP-filter op %1.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP-filtertest geslaagd</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 zijn met succes opgevraagd gebruikmakend van de ingestelde filter.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(Alleen als verschillend van groep-structuur)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>Computer groep structuur</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>computer groep structuur </translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>Filter voor computers</translation>
     </message>
     <message>
         <source>e.g. objectClass=computer</source>
-        <translation type="unfinished"/>
+        <translation>bv. objectClass=computer</translation>
     </message>
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation type="unfinished"/>
+        <translation>bv. objectClass=lokaal of objectClass=computerlabo</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>bv. lokaal of computerlabo</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -1584,11 +1602,11 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Enter computer room name</source>
-        <translation type="unfinished"/>
+        <translation>Geef de computerlokaalnaam in.</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Geef de naam van een computerlokaal in (wildcards toegelaten):</translation>
     </message>
     <message>
         <source>computer rooms</source>
@@ -1600,15 +1618,15 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>Voer de naam van een computerzaal in waarvan de gebruikers worden opgevraagd:</translation>
     </message>
     <message>
         <source>computer room members</source>
-        <translation type="unfinished"/>
+        <translation>computerlokaal gebruikers</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
+        <translation>computer groep filter of computerlokaalgebruiker samenstelling</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -1616,19 +1634,19 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>Intregatietests</translation>
     </message>
     <message>
         <source>Computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>Computerlokaal eigenschap</translation>
     </message>
     <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation type="unfinished"/>
+        <translation>bv. objectClass=container of objectClass=organizationalUnit</translation>
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
-        <translation type="unfinished"/>
+        <translation>Verzamelde computers in een lokaal via:</translation>
     </message>
     <message>
         <source>Computer groups</source>
@@ -1636,7 +1654,7 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Computerlokaal instelling in computer objects</translation>
     </message>
     <message>
         <source>Test not applicable</source>
@@ -1644,27 +1662,27 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Computer room name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Instelling computerlokaalnaam</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation type="unfinished"/>
+        <translation>bv. naam of beschrijving</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Filter voor computer containers</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Computer containers of OUs</translation>
     </message>
     <message>
         <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
+        <translation>Wijzig de computerlokaalinstellingen om groepen of containers te gebruiken als computerlokalen. Dan worden de gespecifieerde gegevens opgevraagd, ipv. de gemeenschappelijke namen van de computergroepen of containers.  Anderzijds dient u deze instelling niet te configureren.</translation>
     </message>
     <message>
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
+        <translation>Wijzig hieronder de computerlokaalinstellingen voor het gebruik van computercontainers als computerlokalen. Anderzijds moet u deze instellingen niet configureren.</translation>
     </message>
 </context>
 <context>
@@ -1678,23 +1696,23 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     <name>LdapPlugin</name>
     <message>
         <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>Configureer LDAP/AD integratie van Veyon in command line</translation>
     </message>
     <message>
         <source>LDAP (load objects from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (laad objecten van LDAP/AD)</translation>
     </message>
     <message>
         <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (laad gebruikers/groepen en computers/lokalen van LDAP/AD)</translation>
     </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"/>
+        <translation>Automatiseer de base DN dmv. naamgevingscontext</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>Objecten opvragen uit LDAP directory</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1702,14 +1720,14 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
+        <translation>Commando&apos;s voor het configureren en testen van LDAP/AD-integratie</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Plugin uitvoering van abstracte functies voor Linux</translation>
     </message>
 </context>
 <context>
@@ -1768,22 +1786,22 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Rooms &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Lokalen &amp; computers</translation>
     </message>
 </context>
 <context>
     <name>LocalDataPlugin</name>
     <message>
         <source>Backends which use local data</source>
-        <translation type="unfinished"/>
+        <translation>Backends die gebruik maken van lokale gegevens</translation>
     </message>
     <message>
         <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Default (lokale gebruikers/groepen en computers/lokalen van configuratie)</translation>
     </message>
     <message>
         <source>Default (store objects in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Default (bewaar objecten in lokale configuratie)</translation>
     </message>
 </context>
 <context>
@@ -1950,14 +1968,19 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation type="unfinished"/>
+        <translation>Wanneer u softwarefouten tegenkomt in Veyon is het belangrijk dat u de ontwikkelaars hiervan informeert. Zodoende worden deze fouten in toekomstige releases opgelost. Deze pagina laat u toe om een foutrapport gemakkelijk in te dienen.
+
+Is de fout niet herhalend of blijvend sla stap 1 tot 3 over.</translation>
     </message>
     <message>
         <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation type="unfinished"/>
+        <translation>Ga naar de 1 Veyon probleemzoeker 1, creëer een nieuw probleem, beschrijf wat je deed in stap 3 en voeg uw bewaarde bestand toe in stap 4. 2
+3
+4
+Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrapporten van beide computers toe.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -1965,7 +1988,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Master</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -1977,7 +2000,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -1989,7 +2012,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 Configuratie %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
@@ -1997,27 +2020,27 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>%1 bug report (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>%1 fout report (*.json)</translation>
     </message>
     <message>
         <source>%1 bug report archive saved</source>
-        <translation type="unfinished"/>
+        <translation>%1 foutrapport archief bewaard</translation>
     </message>
     <message>
         <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation type="unfinished"/>
+        <translation>Een %1 foutrapport archief is bewaard in %2. Het bevat %3 logbestanden en info van uw Operating System. U kan het toevoegen aan een foutrapport.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>De lokale backend configuratie rapporteert dat de configuratie niet-schrijfbaar is. Start de %1 configurator met admin of hogere previleges.</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
-        <translation type="unfinished"/>
+        <translation>%1 Master Control</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
+        <translation>Er werden geen verificatiesleutels gevonden of de huidige zijn verlopen. Maak nieuwe sleutelbestanden aan, of als alternatief stel logon verificatie in, met de %1 configurator. U krijgt geen toegang tot computers, gebruikmakend van %1, indien u niet een van beide gebruikt.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2025,7 +2048,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Volgens de lokale instellingen hebt u geen toelating tot de computers in het netwerk. Login met een ander gebruikersaccount of laat uw systeemadministrator de lokale instellingen nazien.</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2033,19 +2056,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>Functie actief</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation type="unfinished"/>
+        <translation>Het programma %1 is nog steeds actief. Stop het alvorens %2 af te sluiten.</translation>
     </message>
     <message>
         <source>Reporting bugs in Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Foutmeldingen in Veyon</translation>
     </message>
     <message>
         <source>Bug reporting</source>
-        <translation type="unfinished"/>
+        <translation>Fout reportering</translation>
     </message>
     <message>
         <source>Reset configuration</source>
@@ -2080,7 +2103,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Functie op de computer bij double click:</translation>
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
@@ -2100,7 +2123,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Perform access control at program start</source>
-        <translation type="unfinished"/>
+        <translation>voer toegangscontrole bij opstart uit</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2108,11 +2131,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
-        <translation type="unfinished"/>
+        <translation>Automatische grootte instelling van de miniatuur computerafbeeldingen bij opstart</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2124,7 +2147,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>Forceer de geselecteerde mode voor client computers</translation>
     </message>
     <message>
         <source>Only show current room</source>
@@ -2144,7 +2167,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>Verberg computerfilter</translation>
     </message>
     <message>
         <source>Computer management</source>
@@ -2152,22 +2175,22 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Always open at start</source>
-        <translation type="unfinished"/>
+        <translation>Altijd zichtbaar bij start</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>Acties zoals herstarten of uitschakelen van computers</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>Bevestiging dialoogvenster voor potentieel gevaarlijke acties weergeven</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Toezicht</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -2175,7 +2198,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation type="unfinished"/>
+        <translation>Dit is de standaardmodus die u toezicht geeft over alle computers in een of meerdere lokalen.</translation>
     </message>
 </context>
 <context>
@@ -2197,7 +2220,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon inloggen</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -2209,7 +2232,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>Geef uw gebruikersnaam en paswoord in om toegang tot de computers te krijgen.</translation>
     </message>
 </context>
 <context>
@@ -2244,19 +2267,19 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Bevestig heropstart</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Bevestig uischakelen</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Wilt u werkelijk de geselecteerde computers heropstarten?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Wilt u werkelijk de geselecteerde computers uitschakelen?</translation>
     </message>
 </context>
 <context>
@@ -2267,7 +2290,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation type="unfinished"/>
+        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet geregistreerd.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -2303,11 +2326,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation type="unfinished"/>
+        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet ongeregistreerd.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation type="unfinished"/>
+        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet gestopt.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be started.</source>
@@ -2315,7 +2338,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation type="unfinished"/>
+        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet gestart.</translation>
     </message>
 </context>
 <context>
@@ -2751,7 +2774,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>Schakel tweede monitor in</translation>
     </message>
 </context>
 <context>
@@ -2781,11 +2804,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>Bevestig uitloggen gebruiker</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Wilt u werkelijk de geselecteerde gebruikers uitloggen?</translation>
     </message>
 </context>
 <context>
@@ -2853,7 +2876,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Uitvoering plugin abstracte functies voor Windows</translation>
     </message>
 </context>
 <context>

@@ -148,6 +148,10 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Avec cette configuration, l&apos;utilisateur spécifié n&apos;est pas autorisé à accéder aux ordinateurs.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Activer l&apos;utilisation des groupes de domaine</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -432,6 +436,10 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <message>
         <source>Host/IP address: %1</source>
         <translation>Adresse de l&apos;hôte / IP: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Fonctionnalités activées: %1</translation>
     </message>
 </context>
 <context>
@@ -907,6 +915,10 @@ Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans u
     <message>
         <source> seconds</source>
         <translation> secondes</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation>Écrire dans le système de journalisation du système d&apos;exploitation</translation>
     </message>
 </context>
 <context>
