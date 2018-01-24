@@ -150,6 +150,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>El usuario especificado no puede acceder a los equipos con esta configuración.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -434,6 +438,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Host/IP address: %1</source>
         <translation>Equipo/Dirección IP: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -909,6 +917,10 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source> seconds</source>
         <translation> segundos</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

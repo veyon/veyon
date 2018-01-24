@@ -148,6 +148,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 거부 됨.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -432,6 +436,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Host/IP address: %1</source>
         <translation>호스트/IP 주소: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -908,6 +916,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source> seconds</source>
         <translation>초</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

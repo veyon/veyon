@@ -148,6 +148,10 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Bu yapılandırmayla, belirtilen kullanıcının bilgisayarlara erişmesine izin verilmemiştir.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Alan adı kümelerinin kullanımını etkinleştir</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -177,7 +181,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Tüm koşulları tersine çevir (&quot;is/has&quot; [-dır], &quot;is/has not&quot; [...değildir] olarak yorumlanır)</translation>
     </message>
     <message>
         <source>Conditions</source>
@@ -205,7 +209,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Eğer birden çok koşul etkinse, kuralın uygulanması için her koşulun yerine getirilmesi gerekiyorsa (mantıksal VE). Eğer birden çok koşulun yalnızca birinin yerine getirilmesi gerekiyorsa (mantıksal VEYA) lütfen çoğul erişim denetimi kuralları oluşturun.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -432,6 +436,10 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <message>
         <source>Host/IP address: %1</source>
         <translation>Ana makine/IP adresi: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Etkin özellikler: %1</translation>
     </message>
 </context>
 <context>
@@ -908,6 +916,10 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <source> seconds</source>
         <translation>saniye</translation>
     </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation>İşletim sisteminin günlükleme sistemine yaz</translation>
+    </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
@@ -1124,7 +1136,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>örn. dc=ornek,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -1200,7 +1212,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>Küme üyesi özniteliği</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
@@ -1240,7 +1252,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Group member identification</source>
-        <translation>Küme üyeliği kimliği</translation>
+        <translation>Küme üyesi kimliği</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
@@ -1364,7 +1376,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>küme üyesi özniteliği</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -1388,11 +1400,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana makine adlarını, tam nitelikli alan adlarıyla (FQDN) depolanmasını ayarladınız ancak ana makine adını alan adı olmadan girdiniz.</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana makine adlarınını, alan adsız yalın ana makine adıyla depolanmasını ayarladınız. Ancak alan adı bölümü olan bir ana makine adı girdiniz.</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -1416,7 +1428,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar MAC adresi özniteliği</translation>
     </message>
     <message>
         <source>users</source>
@@ -1502,7 +1514,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırılmış %1&apos;de hiçbir girdi sorgulanamadı. Lütfen %1 parametresini gözden geçirin.</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -1530,21 +1542,23 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP süzgeç sınaması başarısız</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırılmış süzgeç kullanılarak herhangi bir %1 sorgulanamadı. Lütfen %1 için LDAP süzgecini denetleyin.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP süzgeç sınaması başarılı</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırılmış süzgeç kullanılarak %1 %2 başarıyla sorgulandı.</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
@@ -1608,7 +1622,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
+        <translation>bilgisayar kümesi süzgeci veya bilgisayar odası üye yığını</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -1628,7 +1642,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
-        <translation type="unfinished"/>
+        <translation>Odadaki bilgisayarları şununla kümele:</translation>
     </message>
     <message>
         <source>Computer groups</source>
@@ -1694,7 +1708,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>LDAP dizininden nesneleri sorgula</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1702,14 +1716,14 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
+        <translation>LDAP/AD tümelemesini yapılandırmak ve sınamak için komutlar</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti, Linux platformu için soyut işlevleri yerine getirir</translation>
     </message>
 </context>
 <context>
@@ -1832,7 +1846,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Genel&quot; bölümündeki günlük dosyalarını temizleyin.</translation>
     </message>
     <message>
         <source>2)</source>
@@ -1840,7 +1854,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Genel&quot; bölümündeki günlükleme düzeyini &quot;Hata ayıklama iletileri ve diğer her şey&quot; olarak belirleyin.</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1848,7 +1862,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation type="unfinished"/>
+        <translation>Hataya veya yanlış davranışa yol açan eylemleri yineleyin.</translation>
     </message>
     <message>
         <source>4)</source>
@@ -1856,7 +1870,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation type="unfinished"/>
+        <translation>Takip eden düğmeye tıklayın ve dosyayı bilinen bir konuma kaydedin.</translation>
     </message>
     <message>
         <source>Generate bug report archive</source>
@@ -1950,14 +1964,19 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation type="unfinished"/>
+        <translation>Veyon&apos;da hata veya yanlış davranışlarla karşılaştığınızda bunlar hakkında geliştiricileri bilgilendirmeniz önemlidir, böylece hatalar gelecek sürümlerde giderilebilir. Bu sayfa yararlı bir hata bildirimini kolayca göndermenizi sağlar.
+
+Eğer hata yeniden üretilebilir değilse adım 1) - 3)&apos;ü atlayın.</translation>
     </message>
     <message>
         <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon sorun takipçisine&lt;/a&gt; gidin, yeni bir sorun oluşturun, adım 3)&apos;te ne yaptığınızı anlatın ve adım 4)&apos;te kaydettiğiniz dosyayı iliştirin.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Not: eğer hata hem ana hem de istemci bilgisayarı kapsıyorsa, her iki bilgisayar için hata bildirim arşivini iliştirin.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2853,7 +2872,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti, Windows platformu için soyut işlevleri yerine getirir</translation>
     </message>
 </context>
 <context>

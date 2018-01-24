@@ -148,6 +148,10 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Pengguna yang ditentukan tidak diizinkan mengakses komputer dengan konfigurasi ini.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -432,6 +436,10 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     <message>
         <source>Host/IP address: %1</source>
         <translation>Host/Alamat IP: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -906,6 +914,10 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source> seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
 </context>

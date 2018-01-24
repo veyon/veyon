@@ -15,40 +15,42 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>关于 Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>贡献者</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>版本：</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>主页：</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>当前语言还未翻译（或者是英文母语）。
+
+如果您对翻译 Veyon 感兴趣，或者想改进当前的翻译，请联系 Veyon 开发者！</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>关于 %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>捐赠 Veyon 项目</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>计算机访问控制</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
@@ -144,6 +146,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -429,6 +435,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Host/IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active features: %1</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -904,6 +914,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source> seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1963,7 +1977,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>关于 Veyon</translation>
     </message>
     <message>
         <source>Auto</source>

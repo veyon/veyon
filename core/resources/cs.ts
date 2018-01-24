@@ -148,6 +148,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Zadanému uživateli není umožněn přístup k počítačům s tímto nastavením.</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Používat doménové skupiny</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -432,6 +436,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Host/IP address: %1</source>
         <translation>Stroj / IP adresa: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -907,6 +915,10 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source> seconds</source>
         <translation> sekund</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation>Zapisovat do systému záznamu událostí operačního systému</translation>
     </message>
 </context>
 <context>

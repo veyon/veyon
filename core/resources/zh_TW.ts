@@ -148,6 +148,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>不允許指定的使用者以這個組態存取電腦。</translation>
     </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
@@ -432,6 +436,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Host/IP address: %1</source>
         <translation>主機/IP 位址: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -907,6 +915,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source> seconds</source>
         <translation>秒</translation>
+    </message>
+    <message>
+        <source>Write to logging system of operating system</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
