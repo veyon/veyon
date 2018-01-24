@@ -71,7 +71,33 @@ ELSE()
 ENDIF()
 
 
-INCLUDE(DetectMachine)
+# set up basic platform variables
+IF(WIN32)
+	SET(VEYON_BUILD_WIN32 1)
+ELSE(WIN32)
+	IF(APPLE)
+		SET(VEYON_BUILD_APPLE 1)
+	ELSE(APPLE)
+		SET(VEYON_BUILD_LINUX 1)
+	ENDIF(APPLE)
+ENDIF(WIN32)
+
+IF(WIN64)
+	SET(VEYON_BUILD_WIN64 TRUE)
+ENDIF(WIN64)
+
+# set up library and plugin path variables
+IF(CMAKE_INSTALL_LIBDIR)
+	SET(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
+ELSE(CMAKE_INSTALL_LIBDIR)
+	SET(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
+ENDIF(CMAKE_INSTALL_LIBDIR)
+
+IF(WIN32)
+	SET(VEYON_PLUGIN_DIR "plugins")
+ELSE()
+	SET(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
+ENDIF()
 
 SET(VEYON_CORE_INCLUDE_DIR core/include)
 
@@ -284,7 +310,7 @@ MESSAGE("\n"
 "* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
 "* Library & plugin directory  : ${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
-"* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
+"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 )
 
