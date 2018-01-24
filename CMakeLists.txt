@@ -101,11 +101,6 @@ ENDIF()
 
 SET(VEYON_CORE_INCLUDE_DIR core/include)
 
-IF(VEYON_BUILD_LINUX)
-    FIND_PACKAGE(PAM REQUIRED)
-	INCLUDE(XdgInstall)
-ENDIF()
-
 # find required Qt5 modules
 FIND_PACKAGE(Qt5Core REQUIRED)
 FIND_PACKAGE(Qt5Concurrent REQUIRED)
@@ -114,7 +109,6 @@ FIND_PACKAGE(Qt5Widgets REQUIRED)
 FIND_PACKAGE(Qt5Network REQUIRED)
 FIND_PACKAGE(Qt5LinguistTools REQUIRED)
 
-
 # find required libraries
 FIND_PACKAGE(ZLIB REQUIRED)
 FIND_PACKAGE(PNG REQUIRED)
@@ -122,12 +116,17 @@ FIND_PACKAGE(JPEG REQUIRED)
 FIND_PACKAGE(LZO REQUIRED)
 FIND_PACKAGE(QCA REQUIRED)
 
-
 # FindOpenSSL.cmake in recent versions of CMake will only find the DLLs instead
 # of the import libraries if CYGWIN is not set
 SET(CYGWIN TRUE)
 FIND_PACKAGE(OpenSSL REQUIRED)
 UNSET(CYGWIN)
+
+# find Linux-specific packages
+IF(VEYON_BUILD_LINUX)
+    FIND_PACKAGE(PAM REQUIRED)
+	INCLUDE(XdgInstall)
+ENDIF()
 
 
 ### BEGIN: libvncclient configuration
