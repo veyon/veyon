@@ -208,6 +208,8 @@ SET(qm_targets "")
 FILE(GLOB_RECURSE veyon_SOURCES ${CMAKE_SOURCE_DIR}/*.cpp ${CMAKE_SOURCE_DIR}/*.h ${CMAKE_SOURCE_DIR}/*.ui)
 STRING(REGEX REPLACE "${CMAKE_SOURCE_DIR}/3rdparty[^;]+;?" "" veyon_SOURCES "${veyon_SOURCES}")
 
+ADD_CUSTOM_TARGET(download-translations)
+
 FOREACH(_ts_file ${veyon_LOCALES})
 	STRING(REPLACE "${CMAKE_SOURCE_DIR}/core/resources/" "" _ts_target "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
@@ -216,8 +218,17 @@ FOREACH(_ts_file ${veyon_LOCALES})
 	# add command and target for generating/updating QM file if TS file is newer or no QM file exists yet
 	ADD_CUSTOM_COMMAND(OUTPUT ${_qm_file} COMMAND ${Qt5_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file} DEPENDS ${_ts_file})
 	ADD_CUSTOM_TARGET(${_qm_target} ALL DEPENDS ${_qm_file})
+
 	LIST(APPEND ts_targets "${_ts_target}")
 	LIST(APPEND qm_targets "${_qm_target}")
+
+	# add target for downloading translation file from Transifex
+	STRING(REPLACE ".ts" "" _translation "${_ts_target}")
+	IF(NOT ${_translation} STREQUAL "veyon")
+		SET(_download_translation_target "download-${_translation}")
+		ADD_CUSTOM_TARGET(${_download_translation_target} COMMAND curl --user api:$ENV{TRANSIFEX_API_TOKEN} -o ${_ts_file} -X GET "https://www.transifex.com/api/2/project/veyon/resource/veyonts/translation/${_translation}/?mode=default\\&file")
+		ADD_DEPENDENCIES(download-translations ${_download_translation_target})
+	ENDIF()
 ENDFOREACH(_ts_file ${veyon_LOCALES})
 
 ADD_CUSTOM_TARGET(update-locales)
