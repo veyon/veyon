@@ -14,4 +14,5 @@ RUN \
 		pam-devel \
 		lzo-devel \
 		qca-qt5-devel qca-qt5-ossl \
-		openldap-devel
+		openldap-devel && \
+	ln -s /usr/bin/cmake3 /usr/bin/cmake
