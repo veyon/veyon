@@ -1,6 +1,6 @@
 !define DLLDIR "@MINGW_PREFIX@/bin"
 !define DLLDIR_LIB "@MINGW_PREFIX@/lib"
-!define DLLDIR_GCC "/usr/lib/gcc/@CMAKE_SYSTEM_PROCESSOR@-w64-mingw32/5.3-win32"
+!define DLLDIR_GCC "/usr/lib/gcc/@MINGW_TARGET@/@COMPILER_VERSION_MAJOR_MINOR@-win32"
 !if "@CMAKE_SYSTEM_PROCESSOR@" == "x86_64"
    !define DLL_GCC "libgcc_s_seh-1.dll"
 !else
