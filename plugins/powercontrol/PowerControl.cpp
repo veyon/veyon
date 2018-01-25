@@ -68,7 +68,7 @@ namespace PowerControl
 
 void broadcastWOLPacket( QString macAddress )
 {
-	const int PORT_NUM = 65535;
+	const int PORT_NUM = 9;
 	const int MAC_SIZE = 6;
 	const int OUTBUF_SIZE = MAC_SIZE*17;
 	unsigned char mac[MAC_SIZE];
