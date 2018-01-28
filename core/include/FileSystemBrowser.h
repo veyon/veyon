@@ -1,7 +1,7 @@
 /*
  * FileSystemBrowser.h - a wrapper class for easily browsing the file system
  *
- * Copyright (c) 2010 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2010-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -25,11 +25,11 @@
 #ifndef FILE_SYSTEM_BROWSER_H
 #define FILE_SYSTEM_BROWSER_H
 
-#include <QtCore/QString>
+#include "VeyonCore.h"
 
 class QLineEdit;
 
-class FileSystemBrowser
+class VEYON_CORE_EXPORT FileSystemBrowser
 {
 public:
 	enum BrowseModes
