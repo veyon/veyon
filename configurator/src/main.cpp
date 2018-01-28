@@ -36,24 +36,6 @@
 
 
 
-bool checkWritableConfiguration()
-{
-	if( !VeyonConfiguration().isStoreWritable() &&
-			VeyonCore::config().logLevel() < Logger::LogLevelDebug )
-	{
-		QMessageBox::critical( nullptr,
-							   MainWindow::tr( "Configuration not writable" ),
-							   MainWindow::tr( "The local configuration backend reported that the "
-											   "configuration is not writable! Please run the %1 "
-											   "Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
-		return false;
-	}
-
-	return true;
-}
-
-
-
 int main( int argc, char **argv )
 {
 	VeyonCore::setupApplicationParameters();
@@ -78,8 +60,14 @@ int main( int argc, char **argv )
 													"be run with normal user privileges.") );
 	}
 
-	if( checkWritableConfiguration() == false )
+	if( !VeyonConfiguration().isStoreWritable() &&
+			VeyonCore::config().logLevel() < Logger::LogLevelDebug )
 	{
+		QMessageBox::critical( nullptr,
+							   MainWindow::tr( "Configuration not writable" ),
+							   MainWindow::tr( "The local configuration backend reported that the "
+											   "configuration is not writable! Please run the %1 "
+											   "Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
 		return -1;
 	}
 
