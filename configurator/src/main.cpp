@@ -54,86 +54,6 @@ bool checkWritableConfiguration()
 
 
 
-int createKeyPair( QStringListIterator& argIt )
-{
-	const QString destDir = argIt.hasNext() ? argIt.next() : QString();
-	ConfiguratorCore::createKeyPair( VeyonCore::instance()->userRole(), destDir );
-	return 0;
-}
-
-
-
-int importPublicKey( QStringListIterator& argIt )
-{
-	QString pubKeyFile;
-	if( !argIt.hasNext() )
-	{
-		QStringList l =
-			QDir::current().entryList( QStringList() << QStringLiteral("*.key.txt"),
-										QDir::Files | QDir::Readable );
-		if( l.size() != 1 )
-		{
-			qCritical( "Please specify location of the public key "
-						"to import" );
-			return -1;
-		}
-		pubKeyFile = QDir::currentPath() + QDir::separator() +
-											l.first();
-		qWarning() << "No public key file specified. Trying to import "
-						"the public key file found at" << pubKeyFile;
-	}
-	else
-	{
-		pubKeyFile = argIt.next();
-	}
-
-	if( ConfiguratorCore::importPublicKey( VeyonCore::instance()->userRole(),
-										   pubKeyFile,
-										   QString() ) == false )
-	{
-		qInfo( "Public key import failed" );
-		return -1;
-	}
-
-	qInfo( "Public key successfully imported" );
-
-	return 0;
-}
-
-
-
-bool parseRole( QStringListIterator& argIt )
-{
-	if( argIt.hasNext() )
-	{
-		const QString role = argIt.next();
-		if( role == QStringLiteral("teacher") )
-		{
-			VeyonCore::instance()->setUserRole( VeyonCore::RoleTeacher );
-		}
-		else if( role == QStringLiteral("admin") )
-		{
-			VeyonCore::instance()->setUserRole( VeyonCore::RoleAdmin );
-		}
-		else if( role == QStringLiteral("supporter") )
-		{
-			VeyonCore::instance()->setUserRole( VeyonCore::RoleSupporter );
-		}
-	}
-	else
-	{
-		qCritical( "-role needs an argument:\n"
-			"	teacher\n"
-			"	admin\n"
-			"	supporter\n\n" );
-		return false;
-	}
-
-	return true;
-}
-
-
-
 int main( int argc, char **argv )
 {
 	VeyonCore::setupApplicationParameters();
@@ -171,22 +91,7 @@ int main( int argc, char **argv )
 	{
 		const QString a = argIt.next().toLower();
 
-		if( a == QStringLiteral("-role") )
-		{
-			if( parseRole( argIt ) == false )
-			{
-				return -1;
-			}
-		}
-		else if( a == QStringLiteral("-createkeypair") )
-		{
-			return createKeyPair( argIt );
-		}
-		else if( a == QStringLiteral("-importpublickey") || a == QStringLiteral("-i") )
-		{
-			return importPublicKey( argIt );
-		}
-		else if( a == QStringLiteral("-test") )
+		if( a == QStringLiteral("-test") )
 		{
 			return ConfigurationTestController( app.arguments().mid( 2 ) ).run();
 		}
