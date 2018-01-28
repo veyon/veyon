@@ -22,23 +22,19 @@
  *
  */
 
-#include <QDir>
-#include <QFileInfo>
-
 #include "AuthKeysCommandLinePlugin.h"
-#include "CryptoCore.h"
-#include "Filesystem.h"
-#include "VeyonConfiguration.h"
+#include "AuthKeysManager.h"
 
 
 AuthKeysCommandLinePlugin::AuthKeysCommandLinePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
 { "create", tr( "Create new authentication key pair" ) },
-{ "delete", tr( "Delete authentication key pair" ) },
-{ "list", tr( "List authentication key pairs" ) },
+{ "delete", tr( "Delete authentication keys" ) },
+{ "list", tr( "List authentication keys" ) },
 { "import", tr( "Import public or private key" ) },
 { "export", tr( "Export public or private key" ) },
+{ "extract", tr( "Extract public key from existing private key" ) },
 				} )
 {
 }
@@ -72,80 +68,100 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_create( 
 		return NotEnoughArguments;
 	}
 
-	const auto name = arguments.first();
-	if( QRegExp( "\\w+").exactMatch( name ) == false )
+	AuthKeysManager manager;
+	if( manager.createKeyPair( arguments.first() ) == false )
 	{
-		printf( "%s\n", qPrintable( tr( "Name contains invalid characters!" ) ) );
-
-		return InvalidArguments;
-	}
-
-	QString privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
-	QString publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
-
-	VeyonCore::filesystem().ensurePathExists( QFileInfo( privateKeyFileName ).path() );
-	VeyonCore::filesystem().ensurePathExists( QFileInfo( publicKeyFileName ).path() );
-
-	printf( "%s\n", qPrintable( tr( "Creating new key pair in %1 and %2" ).
-								arg( privateKeyFileName, publicKeyFileName ) ) );
-
-	CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
-	CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
-
-	if( privateKey.isNull() || publicKey.isNull() )
-	{
-		printf( "%s\n", qPrintable( tr( "Failed to create public or private key!" ) ) );
+		error( manager.resultMessage() );
 
 		return Failed;
 	}
 
-	QFile privateKeyFile( privateKeyFileName );
-	QFile publicKeyFile( publicKeyFileName );
-
-	if( privateKeyFile.exists() || publicKeyFile.exists() )
-	{
-		if( arguments.contains( QStringLiteral( "-f" ) ) == false )
-		{
-			printf( "%s\n", qPrintable( tr( "Private and/or public key file already exist! "
-											"Please pass \"-f\" to force overwriting them." ) ) );
-			return Failed;
-		}
-
-		privateKeyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
-		privateKeyFile.remove();
-
-		publicKeyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
-		publicKeyFile.remove();
-	}
-
-	if( privateKey.toPEMFile( privateKeyFileName ) == false )
-	{
-		printf( "%s\n", qPrintable( tr( "Failed to save private key!" ) ) );
-
-		return Failed;
-	}
-
-	if( publicKey.toPEMFile( publicKeyFileName ) == false )
-	{
-		printf( "%s\n", qPrintable( tr( "Failed to save public key!" ) ) );
-
-		return Failed;
-	}
-
-	privateKeyFile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
-	publicKeyFile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
-
-	printf( "%s\n\n\n", qPrintable( tr( "Newly created key pair has been saved to \n\n%1\n\nand\n\n%2" ).
-									arg( privateKeyFileName, publicKeyFileName ) ) );
-	printf( "%s\n", qPrintable( tr( "For now the private key file is only readable by root and members of group root "
-									"(except you ran this command as non-root)." ) ) );
-	printf( "%s\n\n", qPrintable( tr( "It's recommended to change the ownership of the private key so that the file is\n"
-									  "readable by all members of a special group to which all users belong who are\n"
-									  "allowed to use Veyon." ) ) );
+	info( manager.resultMessage() );
 
 	return Successful;
 }
 
+
+
+CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_delete( const QStringList& arguments )
+{
+	if( arguments.size() < 1 )
+	{
+		return NotEnoughArguments;
+	}
+
+	const auto nameAndType = arguments.first().split( '/' );
+	const auto name = nameAndType.value( 0 );
+	const auto type = nameAndType.value( 1 );
+
+	AuthKeysManager manager;
+	if( manager.deleteKey( name, type ) == false )
+	{
+		error( manager.resultMessage() );
+
+		return Failed;
+	}
+
+	info( manager.resultMessage() );
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_export( const QStringList& arguments )
+{
+	if( arguments.size() < 2 )
+	{
+		return NotEnoughArguments;
+	}
+
+	const auto nameAndType = arguments[0].split( '/' );
+	const auto outputFile = arguments[1];
+
+	const auto name = nameAndType.value( 0 );
+	const auto type = nameAndType.value( 1 );
+
+	AuthKeysManager manager;
+	if( manager.exportKey( name, type, outputFile ) == false )
+	{
+		error( manager.resultMessage() );
+
+		return Failed;
+	}
+
+	info( manager.resultMessage() );
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_import( const QStringList& arguments )
+{
+	if( arguments.size() < 2 )
+	{
+		return NotEnoughArguments;
+	}
+
+	const auto nameAndType = arguments[0].split( '/' );
+	const auto inputFile = arguments[1];
+
+	const auto name = nameAndType.value( 0 );
+	const auto type = nameAndType.value( 1 );
+
+	AuthKeysManager manager;
+	if( manager.importKey( name, type, inputFile ) == false )
+	{
+		error( manager.resultMessage() );
+
+		return Failed;
+	}
+
+	info( manager.resultMessage() );
+
+	return Successful;
+}
 
 
 
@@ -153,28 +169,34 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_list( co
 {
 	Q_UNUSED(arguments)
 
-	QMap<QString, QStringList> keyNames;
+	const auto keys = AuthKeysManager().listKeys();
 
-	const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
-	const auto privateKeys = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
-
-	for( const auto& privateKey : privateKeys )
+	for( const auto& key : keys )
 	{
-		keyNames[privateKey] += tr( "private" );
-	}
-
-	const auto publicKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().publicKeyBaseDir() );
-	const auto publicKeys = QDir( publicKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
-
-	for( const auto& publicKey : publicKeys )
-	{
-		keyNames[publicKey] += tr( "public" );
-	}
-
-	for( auto it = keyNames.begin(), end = keyNames.end(); it != end; ++it )
-	{
-		printf( "%s: %s\n", qPrintable( it.key() ), qPrintable( it.value().join('+') ) );
+		print( key );
 	}
 
 	return NoResult;
+}
+
+
+
+CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_extract( const QStringList& arguments )
+{
+	if( arguments.isEmpty() )
+	{
+		return NotEnoughArguments;
+	}
+
+	AuthKeysManager manager;
+	if( manager.extractPublicFromPrivateKey( arguments.first() ) == false )
+	{
+		error( manager.resultMessage() );
+
+		return Failed;
+	}
+
+	info( manager.resultMessage() );
+
+	return Successful;
 }

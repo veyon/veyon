@@ -25,9 +25,10 @@
 #ifndef AUTH_KEYS_COMMAND_LINE_PLUGIN_H
 #define AUTH_KEYS_COMMAND_LINE_PLUGIN_H
 
+#include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
 
-class AuthKeysCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
+class AuthKeysCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface, CommandLineIO
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.AuthKeysCommandLineInterface")
@@ -81,7 +82,11 @@ public:
 
 public slots:
 	CommandLinePluginInterface::RunResult handle_create( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_delete( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_import( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_extract( const QStringList& arguments );
 
 private:
 	QMap<QString, QString> m_commands;
