@@ -195,7 +195,49 @@ SET(libvncserver_SOURCES
 	${libvncserver_DIR}/common/turbojpeg.c
 	${libvncserver_DIR}/common/vncauth.c)
 
-SET(x11vnc_SOURCES x11vnc-veyon.c ${x11vnc_DIR}/src/appshare.c)
+SET(x11vnc_SOURCES x11vnc-veyon.c
+	${x11vnc_DIR}/src/appshare.c
+	${x11vnc_DIR}/src/avahi.c
+	${x11vnc_DIR}/src/rates.c
+	${x11vnc_DIR}/src/cleanup.c
+	${x11vnc_DIR}/src/remote.c
+	${x11vnc_DIR}/src/pointer.c
+	${x11vnc_DIR}/src/userinput.c
+	${x11vnc_DIR}/src/unixpw.c
+	${x11vnc_DIR}/src/gui.c
+	${x11vnc_DIR}/src/xkb_bell.c
+	${x11vnc_DIR}/src/xinerama.c
+	${x11vnc_DIR}/src/solid.c
+	${x11vnc_DIR}/src/selection.c
+	${x11vnc_DIR}/src/xrandr.c
+	${x11vnc_DIR}/src/win_utils.c
+	${x11vnc_DIR}/src/cursor.c
+	${x11vnc_DIR}/src/screen.c
+	${x11vnc_DIR}/src/xevents.c
+	${x11vnc_DIR}/src/help.c
+	${x11vnc_DIR}/src/inet.c
+	${x11vnc_DIR}/src/sslcmds.c
+	${x11vnc_DIR}/src/xwrappers.c
+	${x11vnc_DIR}/src/scan.c
+	${x11vnc_DIR}/src/options.c
+	${x11vnc_DIR}/src/user.c
+	${x11vnc_DIR}/src/util.c
+	${x11vnc_DIR}/src/x11vnc_defs.c
+	${x11vnc_DIR}/src/xrecord.c
+	${x11vnc_DIR}/src/8to24.c
+	${x11vnc_DIR}/src/xdamage.c
+	${x11vnc_DIR}/src/keyboard.c
+	${x11vnc_DIR}/src/connections.c
+	${x11vnc_DIR}/src/sslhelper.c
+	${x11vnc_DIR}/src/linuxfb.c
+	${x11vnc_DIR}/src/v4l.c
+	${x11vnc_DIR}/src/macosx.c
+	${x11vnc_DIR}/src/macosxCG.c
+	${x11vnc_DIR}/src/macosxCGP.c
+	${x11vnc_DIR}/src/macosxCGS.c
+	${x11vnc_DIR}/src/xi2_devices.c
+	${x11vnc_DIR}/src/uinput.c
+)
 
 ENDIF()
 
