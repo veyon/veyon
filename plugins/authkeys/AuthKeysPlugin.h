@@ -1,5 +1,5 @@
 /*
- * AuthKeysCommandLinePlugin.h - declaration of AuthKeysCommandLinePlugin class
+ * AuthKeysPlugin.h - declaration of AuthKeysPlugin class
  *
  * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,20 @@
  *
  */
 
-#ifndef AUTH_KEYS_COMMAND_LINE_PLUGIN_H
-#define AUTH_KEYS_COMMAND_LINE_PLUGIN_H
+#ifndef AUTH_KEYS_PLUGIN_H
+#define AUTH_KEYS_PLUGIN_H
 
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
 
-class AuthKeysCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface, CommandLineIO
+class AuthKeysPlugin : public QObject, CommandLinePluginInterface, PluginInterface, CommandLineIO
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.AuthKeysCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	AuthKeysCommandLinePlugin( QObject* parent = nullptr );
-	~AuthKeysCommandLinePlugin() override;
+	AuthKeysPlugin( QObject* parent = nullptr );
+	~AuthKeysPlugin() override;
 
 	Plugin::Uid uid() const override
 	{

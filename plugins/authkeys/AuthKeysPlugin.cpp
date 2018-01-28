@@ -1,5 +1,5 @@
 /*
- * AuthKeysCommandLinePlugin.cpp - implementation of AuthKeysCommandLinePlugin class
+ * AuthKeysPlugin.cpp - implementation of AuthKeysPlugin class
  *
  * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,11 +22,11 @@
  *
  */
 
-#include "AuthKeysCommandLinePlugin.h"
+#include "AuthKeysPlugin.h"
 #include "AuthKeysManager.h"
 
 
-AuthKeysCommandLinePlugin::AuthKeysCommandLinePlugin( QObject* parent ) :
+AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
 { "create", tr( "Create new authentication key pair" ) },
@@ -41,27 +41,27 @@ AuthKeysCommandLinePlugin::AuthKeysCommandLinePlugin( QObject* parent ) :
 
 
 
-AuthKeysCommandLinePlugin::~AuthKeysCommandLinePlugin()
+AuthKeysPlugin::~AuthKeysPlugin()
 {
 }
 
 
 
-QStringList AuthKeysCommandLinePlugin::commands() const
+QStringList AuthKeysPlugin::commands() const
 {
 	return m_commands.keys();
 }
 
 
 
-QString AuthKeysCommandLinePlugin::commandHelp( const QString& command ) const
+QString AuthKeysPlugin::commandHelp( const QString& command ) const
 {
 	return m_commands.value( command );
 }
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_create( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_create( const QStringList& arguments )
 {
 	if( arguments.isEmpty() )
 	{
@@ -83,7 +83,7 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_create( 
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_delete( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_delete( const QStringList& arguments )
 {
 	if( arguments.size() < 1 )
 	{
@@ -109,7 +109,7 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_delete( 
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_export( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStringList& arguments )
 {
 	if( arguments.size() < 2 )
 	{
@@ -137,7 +137,7 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_export( 
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_import( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStringList& arguments )
 {
 	if( arguments.size() < 2 )
 	{
@@ -165,7 +165,7 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_import( 
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_list( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_list( const QStringList& arguments )
 {
 	Q_UNUSED(arguments)
 
@@ -181,7 +181,7 @@ CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_list( co
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysCommandLinePlugin::handle_extract( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_extract( const QStringList& arguments )
 {
 	if( arguments.isEmpty() )
 	{

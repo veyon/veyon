@@ -1,9 +1,9 @@
 INCLUDE(BuildPlugin)
 
 BUILD_PLUGIN(authkeys
-	AuthKeysCommandLinePlugin.cpp
+	AuthKeysPlugin.cpp
 	AuthKeysManager.cpp
 	MOCFILES
-	AuthKeysCommandLinePlugin.h
+	AuthKeysPlugin.h
 	AuthKeysManager.h
 )
