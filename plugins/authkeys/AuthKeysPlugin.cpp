@@ -22,6 +22,7 @@
  *
  */
 
+#include "AuthKeysConfigurationPage.h"
 #include "AuthKeysPlugin.h"
 #include "AuthKeysManager.h"
 
@@ -57,6 +58,13 @@ QStringList AuthKeysPlugin::commands() const
 QString AuthKeysPlugin::commandHelp( const QString& command ) const
 {
 	return m_commands.value( command );
+}
+
+
+
+ConfigurationPage* AuthKeysPlugin::createConfigurationPage()
+{
+	return new AuthKeysConfigurationPage();
 }
 
 

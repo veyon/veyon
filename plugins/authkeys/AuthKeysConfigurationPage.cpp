@@ -1,5 +1,5 @@
 /*
- * AuthenticationConfigurationPage.cpp - implementation of the authentication configuration page
+ * AuthKeysConfigurationPage.cpp - implementation of the authentication configuration page
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -24,70 +24,56 @@
 
 #include <QMessageBox>
 
-#include "AuthenticationConfigurationPage.h"
+#include "AuthKeysConfigurationPage.h"
 #include "FileSystemBrowser.h"
-#include "VeyonCore.h"
 #include "VeyonConfiguration.h"
-#include "KeyFileAssistant.h"
-#include "PasswordDialog.h"
-#include "PlatformUserFunctions.h"
 #include "Configuration/UiMapping.h"
 
-#include "ui_AuthenticationConfigurationPage.h"
+#include "ui_AuthKeysConfigurationPage.h"
 
 
-AuthenticationConfigurationPage::AuthenticationConfigurationPage() :
+AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	ConfigurationPage(),
-	ui(new Ui::AuthenticationConfigurationPage)
+	ui(new Ui::AuthKeysConfigurationPage)
 {
 	ui->setupUi(this);
 
 #define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
+			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationPage::name );
 
 	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
-
-	CONNECT_BUTTON_SLOT( launchKeyFileAssistant );
-	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 }
 
 
-AuthenticationConfigurationPage::~AuthenticationConfigurationPage()
+AuthKeysConfigurationPage::~AuthKeysConfigurationPage()
 {
 	delete ui;
 }
 
 
 
-void AuthenticationConfigurationPage::resetWidgets()
+void AuthKeysConfigurationPage::resetWidgets()
 {
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
 
-void AuthenticationConfigurationPage::connectWidgetsToProperties()
+void AuthKeysConfigurationPage::connectWidgetsToProperties()
 {
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
 
 
-void AuthenticationConfigurationPage::applyConfiguration()
+void AuthKeysConfigurationPage::applyConfiguration()
 {
 }
 
 
 
-void AuthenticationConfigurationPage::launchKeyFileAssistant()
-{
-	KeyFileAssistant().exec();
-}
-
-
-
-void AuthenticationConfigurationPage::openPublicKeyBaseDir()
+void AuthKeysConfigurationPage::openPublicKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 												exec( ui->publicKeyBaseDir );
@@ -95,28 +81,8 @@ void AuthenticationConfigurationPage::openPublicKeyBaseDir()
 
 
 
-void AuthenticationConfigurationPage::openPrivateKeyBaseDir()
+void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 												exec( ui->privateKeyBaseDir );
-}
-
-
-
-void AuthenticationConfigurationPage::testLogonAuthentication()
-{
-	PasswordDialog dlg( this );
-	if( dlg.exec() )
-	{
-		if( VeyonCore::platform().userFunctions().authenticate( dlg.username(), dlg.password() ) )
-		{
-			QMessageBox::information( this, tr( "Logon authentication test" ),
-							tr( "Authentication with provided credentials was successful." ) );
-		}
-		else
-		{
-			QMessageBox::critical( this, tr( "Logon authentication test" ),
-							tr( "Authentication with provided credentials failed!" ) );
-		}
-	}
 }

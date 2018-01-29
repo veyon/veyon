@@ -27,12 +27,19 @@
 
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
+#include "ConfigurationPagePluginInterface.h"
 
-class AuthKeysPlugin : public QObject, CommandLinePluginInterface, PluginInterface, CommandLineIO
+class AuthKeysPlugin : public QObject,
+        CommandLinePluginInterface,
+        PluginInterface,
+        CommandLineIO,
+        ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.AuthKeysCommandLineInterface")
-	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.AuthKeys")
+	Q_INTERFACES(PluginInterface
+	             CommandLinePluginInterface
+	             ConfigurationPagePluginInterface)
 public:
 	AuthKeysPlugin( QObject* parent = nullptr );
 	~AuthKeysPlugin() override;
@@ -79,6 +86,8 @@ public:
 
 	QStringList commands() const override;
 	QString commandHelp( const QString& command ) const override;
+
+	ConfigurationPage* createConfigurationPage() override;
 
 public slots:
 	CommandLinePluginInterface::RunResult handle_create( const QStringList& arguments );

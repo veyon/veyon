@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AuthenticationConfigurationPage</class>
- <widget class="QWidget" name="AuthenticationConfigurationPage">
+ <class>AuthKeysConfigurationPage</class>
+ <widget class="QWidget" name="AuthKeysConfigurationPage">
   <property name="windowTitle">
-   <string notr="true">Form</string>
+   <string notr="true">Key authentication</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../core/core.qrc">
+    <normaloff>:/resources/application-x-pem-key.png</normaloff>:/resources/application-x-pem-key.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
@@ -103,7 +107,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
+           <iconset resource="../../configurator/veyon-configurator.qrc">
             <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
           </property>
          </widget>
@@ -114,7 +118,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
+           <iconset resource="../../configurator/veyon-configurator.qrc">
             <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
           </property>
          </widget>
@@ -127,7 +131,7 @@
          <string>Launch key file assistant</string>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
+         <iconset>
           <normaloff>:/resources/tools-wizard.png</normaloff>:/resources/tools-wizard.png</iconset>
         </property>
        </widget>
@@ -149,45 +153,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="logonManagement">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="title">
-      <string>Logon authentication</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <property name="horizontalSpacing">
-       <number>10</number>
-      </property>
-      <item row="0" column="1">
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>209</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="testLogonAuthentication">
-        <property name="text">
-         <string>Test</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -203,7 +168,11 @@
   </layout>
  </widget>
  <resources>
-  <include location="../veyon-configurator.qrc"/>
+  <include location="../../core/core.qrc"/>
+  <include location="../../core/core.qrc"/>
+  <include location="../../core/core.qrc"/>
+  <include location="../../configurator/veyon-configurator.qrc"/>
+  <include location="../../configurator/veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -219,22 +188,6 @@
     <hint type="destinationlabel">
      <x>228</x>
      <y>188</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>isLogonAuthenticationEnabled</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>logonManagement</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>201</x>
-     <y>130</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>244</x>
-     <y>437</y>
     </hint>
    </hints>
   </connection>

@@ -1,5 +1,5 @@
 /*
- * AuthenticationConfigurationPage.h - header for the AuthenticationConfigurationPage class
+ * AuthKeysConfigurationPage.h - header for the AuthKeysConfigurationPage class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,21 +22,21 @@
  *
  */
 
-#ifndef AUTHENTICATION_CONFIGURATION_PAGE_H
-#define AUTHENTICATION_CONFIGURATION_PAGE_H
+#ifndef AUTH_KEYS_CONFIGURATION_PAGE_H
+#define AUTH_KEYS_CONFIGURATION_PAGE_H
 
 #include "ConfigurationPage.h"
 
 namespace Ui {
-class AuthenticationConfigurationPage;
+class AuthKeysConfigurationPage;
 }
 
-class AuthenticationConfigurationPage : public ConfigurationPage
+class AuthKeysConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	AuthenticationConfigurationPage();
-	~AuthenticationConfigurationPage() override;
+	AuthKeysConfigurationPage();
+	~AuthKeysConfigurationPage() override;
 
 	void resetWidgets() override;
 	void connectWidgetsToProperties() override;
@@ -45,11 +45,9 @@ public:
 private slots:
 	void openPublicKeyBaseDir();
 	void openPrivateKeyBaseDir();
-	void launchKeyFileAssistant();
-	void testLogonAuthentication();
 
 private:
-	Ui::AuthenticationConfigurationPage *ui;
+	Ui::AuthKeysConfigurationPage *ui;
 };
 
-#endif // AUTHENTICATION_CONFIGURATION_PAGE_H
+#endif // AUTH_KEYS_CONFIGURATION_PAGE_H

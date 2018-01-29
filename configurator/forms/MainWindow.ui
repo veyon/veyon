@@ -12,156 +12,143 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="0" column="1">
-     <widget class="QStackedWidget" name="configPages">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
-      <widget class="ServiceConfigurationPage" name="serviceConfigurationPage"/>
-      <widget class="MasterConfigurationPage" name="masterConfigurationPage"/>
-      <widget class="AuthenticationConfigurationPage" name="authenticationConfigurationPage"/>
-      <widget class="AccessControlPage" name="accessControlPage"/>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QListWidget" name="pageSelector">
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>48</width>
-        <height>48</height>
-       </size>
-      </property>
-      <property name="textElideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <property name="spacing">
-       <number>4</number>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
-      <property name="uniformItemSizes">
-       <bool>true</bool>
-      </property>
-      <property name="currentRow">
-       <number>0</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>General</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/configure-shortcuts.png</normaloff>:/resources/configure-shortcuts.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Service</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/application-x-sharedlib.png</normaloff>:/resources/application-x-sharedlib.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Master</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/application-x-ms-dos-executable.png</normaloff>:/resources/application-x-ms-dos-executable.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Authentication</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/folder-publicshare.png</normaloff>:/resources/folder-publicshare.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Access control</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/application-x-pem-key.png</normaloff>:/resources/application-x-pem-key.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QDialogButtonBox" name="buttonBox">
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Apply|QDialogButtonBox::Reset</set>
-      </property>
-      <property name="centerButtons">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
+	 <widget class="QStackedWidget" name="configPages">
+	  <property name="currentIndex">
+	   <number>0</number>
+	  </property>
+	  <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
+	  <widget class="ServiceConfigurationPage" name="serviceConfigurationPage"/>
+	  <widget class="MasterConfigurationPage" name="masterConfigurationPage"/>
+	  <widget class="AccessControlPage" name="accessControlPage"/>
+	 </widget>
+	</item>
+	<item row="0" column="0">
+	 <widget class="QListWidget" name="pageSelector">
+	  <property name="verticalScrollBarPolicy">
+	   <enum>Qt::ScrollBarAsNeeded</enum>
+	  </property>
+	  <property name="horizontalScrollBarPolicy">
+	   <enum>Qt::ScrollBarAlwaysOff</enum>
+	  </property>
+	  <property name="sizeAdjustPolicy">
+	   <enum>QAbstractScrollArea::AdjustToContents</enum>
+	  </property>
+	  <property name="iconSize">
+	   <size>
+	    <width>48</width>
+		<height>48</height>
+		</size>
+	  </property>
+	  <property name="textElideMode">
+	   <enum>Qt::ElideNone</enum>
+	  </property>
+	  <property name="spacing">
+	   <number>4</number>
+	  </property>
+	  <property name="viewMode">
+	   <enum>QListView::ListMode</enum>
+	  </property>
+	  <property name="uniformItemSizes">
+	   <bool>true</bool>
+	  </property>
+	  <property name="currentRow">
+	   <number>-1</number>
+	  </property>
+	  <item>
+	   <property name="text">
+	    <string>General</string>
+		</property>
+	   <property name="icon">
+	    <iconset resource="../veyon-configurator.qrc">
+		 <normaloff>:/resources/configure-shortcuts.png</normaloff>:/resources/configure-shortcuts.png</iconset>
+		</property>
+	   <property name="flags">
+	    <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+		</property>
+	  </item>
+	  <item>
+	   <property name="text">
+	    <string>Service</string>
+		</property>
+	   <property name="icon">
+	    <iconset resource="../veyon-configurator.qrc">
+		 <normaloff>:/resources/application-x-sharedlib.png</normaloff>:/resources/application-x-sharedlib.png</iconset>
+		</property>
+	   <property name="flags">
+	    <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+		</property>
+	  </item>
+	  <item>
+	   <property name="text">
+	    <string>Master</string>
+		</property>
+	   <property name="icon">
+	    <iconset resource="../veyon-configurator.qrc">
+		 <normaloff>:/resources/application-x-ms-dos-executable.png</normaloff>:/resources/application-x-ms-dos-executable.png</iconset>
+		</property>
+	   <property name="flags">
+	    <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+		</property>
+	  </item>
+	  <item>
+	   <property name="text">
+	    <string>Access control</string>
+		</property>
+	   <property name="icon">
+	    <iconset resource="../veyon-configurator.qrc">
+		 <normaloff>:/resources/network-vpn.png</normaloff>:/resources/network-vpn.png</iconset>
+		</property>
+	   <property name="flags">
+	    <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+		</property>
+	  </item>
+	 </widget>
+	</item>
+	<item row="2" column="1">
+	 <widget class="QDialogButtonBox" name="buttonBox">
+	  <property name="standardButtons">
+	   <set>QDialogButtonBox::Apply|QDialogButtonBox::Reset</set>
+	  </property>
+	  <property name="centerButtons">
+	   <bool>true</bool>
+	  </property>
+	 </widget>
+	</item>
+	<item row="1" column="0" colspan="2">
+	 <widget class="Line" name="line">
+	  <property name="orientation">
+	   <enum>Qt::Horizontal</enum>
+	  </property>
+	 </widget>
+	</item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1294</width>
-     <height>35</height>
-    </rect>
+	 <x>0</x>
+	 <y>0</y>
+	 <width>572</width>
+	 <height>36</height>
+	</rect>
    </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="actionLoadSettings"/>
-    <addaction name="actionSaveSettings"/>
-    <addaction name="separator"/>
-    <addaction name="actionResetConfiguration"/>
-    <addaction name="separator"/>
-    <addaction name="actionQuit"/>
+	 <string>&amp;File</string>
+	</property>
+	<addaction name="actionLoadSettings"/>
+	<addaction name="actionSaveSettings"/>
+	<addaction name="separator"/>
+	<addaction name="actionResetConfiguration"/>
+	<addaction name="separator"/>
+	<addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="actionAboutVeyon"/>
-    <addaction name="actionAboutQt"/>
+	 <string>&amp;Help</string>
+	</property>
+	<addaction name="actionAboutVeyon"/>
+	<addaction name="actionAboutQt"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Help"/>
@@ -177,7 +164,7 @@
   <action name="actionSaveSettings">
    <property name="icon">
     <iconset resource="../veyon-configurator.qrc">
-     <normaloff>:/resources/document-save.png</normaloff>:/resources/document-save.png</iconset>
+	 <normaloff>:/resources/document-save.png</normaloff>:/resources/document-save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save settings into file</string>
@@ -192,7 +179,7 @@
   <action name="actionLoadSettings">
    <property name="icon">
     <iconset resource="../veyon-configurator.qrc">
-     <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+	 <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
    </property>
    <property name="text">
     <string>L&amp;oad settings from file</string>
@@ -204,7 +191,7 @@
   <action name="actionAboutVeyon">
    <property name="icon">
     <iconset resource="../../core/core.qrc">
-     <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
+	 <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
    </property>
    <property name="text">
     <string>About Veyon</string>
@@ -217,8 +204,8 @@
   </action>
   <action name="actionResetConfiguration">
    <property name="icon">
-    <iconset resource="../veyon-configurator.qrc">
-     <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+    <iconset resource="../../master/master.qrc">
+	 <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
    </property>
    <property name="text">
     <string>Reset configuration</string>
@@ -250,16 +237,10 @@
    <header>ServiceConfigurationPage.h</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>AuthenticationConfigurationPage</class>
-   <extends>QWidget</extends>
-   <header>AuthenticationConfigurationPage.h</header>
-   <container>1</container>
-  </customwidget>
  </customwidgets>
  <resources>
-  <include location="../veyon-configurator.qrc"/>
   <include location="../../core/core.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -269,13 +250,13 @@
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>301</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>502</x>
-     <y>301</y>
-    </hint>
+	 <x>108</x>
+	 <y>301</y>
+	</hint>
+	<hint type="destinationlabel">
+	 <x>502</x>
+	 <y>301</y>
+	</hint>
    </hints>
   </connection>
   <connection>
@@ -285,13 +266,13 @@
    <slot>aboutVeyon()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>357</x>
-     <y>282</y>
-    </hint>
+	 <x>-1</x>
+	 <y>-1</y>
+	</hint>
+	<hint type="destinationlabel">
+	 <x>357</x>
+	 <y>282</y>
+	</hint>
    </hints>
   </connection>
   <connection>
@@ -301,13 +282,13 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>357</x>
-     <y>282</y>
-    </hint>
+	 <x>-1</x>
+	 <y>-1</y>
+	</hint>
+	<hint type="destinationlabel">
+	 <x>357</x>
+	 <y>282</y>
+	</hint>
    </hints>
   </connection>
   <connection>
@@ -317,13 +298,13 @@
    <slot>resetConfiguration()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>680</x>
-     <y>426</y>
-    </hint>
+	 <x>-1</x>
+	 <y>-1</y>
+	</hint>
+	<hint type="destinationlabel">
+	 <x>680</x>
+	 <y>426</y>
+	</hint>
    </hints>
   </connection>
  </connections>

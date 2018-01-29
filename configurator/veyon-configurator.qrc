@@ -11,10 +11,9 @@
         <file>resources/go-down.png</file>
         <file>resources/go-next.png</file>
         <file>resources/go-previous.png</file>
-        <file>resources/tools-wizard.png</file>
+        <file>resources/network-vpn.png</file>
         <file>resources/configure-shortcuts.png</file>
         <file>resources/application-x-ms-dos-executable.png</file>
-        <file>resources/folder-publicshare.png</file>
         <file>resources/application-x-sharedlib.png</file>
         <file>resources/list-add.png</file>
         <file>resources/list-remove.png</file>

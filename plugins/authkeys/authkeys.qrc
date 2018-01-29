@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="/authkeys" >
+    </qresource>
+</RCC>
