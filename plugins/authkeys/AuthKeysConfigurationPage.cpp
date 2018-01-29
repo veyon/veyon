@@ -118,7 +118,11 @@ void AuthKeysConfigurationPage::createKeyPair()
 
 void AuthKeysConfigurationPage::deleteKey()
 {
-	const auto nameAndType = m_keyListModel.data( ui->keyList->currentIndex() ).toString().split('/');
+	const auto title = tr( "Delete authentication key" );
+	const auto currentIndex = ui->keyList->currentIndex();
+	const auto data = m_keyListModel.data( currentIndex, Qt::DisplayRole );
+	const auto nameAndType = data.toString().split('/');
+
 	if( nameAndType.size() > 1 )
 	{
 		const auto name = nameAndType[0];
@@ -127,9 +131,13 @@ void AuthKeysConfigurationPage::deleteKey()
 		AuthKeysManager authKeysManager;
 		const auto success = authKeysManager.deleteKey( name, type );
 
-		showResultMessage( success, tr( "Create key pair" ), authKeysManager.resultMessage() );
+		showResultMessage( success, title, authKeysManager.resultMessage() );
 
 		reloadKeyList();
+	}
+	else
+	{
+		QMessageBox::critical( this, title, tr( "Please select a key to delete!" ) );
 	}
 }
 
