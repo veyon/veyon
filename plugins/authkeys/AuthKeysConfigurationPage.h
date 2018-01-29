@@ -25,6 +25,8 @@
 #ifndef AUTH_KEYS_CONFIGURATION_PAGE_H
 #define AUTH_KEYS_CONFIGURATION_PAGE_H
 
+#include <QStringListModel>
+
 #include "ConfigurationPage.h"
 
 namespace Ui {
@@ -45,9 +47,18 @@ public:
 private slots:
 	void openPublicKeyBaseDir();
 	void openPrivateKeyBaseDir();
+	void createKeyPair();
+	void deleteKey();
+	void importKey();
+	void exportKey();
+	void reloadKeyList();
 
 private:
+	void showResultMessage( bool success, const QString& title, const QString& message );
+
 	Ui::AuthKeysConfigurationPage *ui;
+	QStringListModel m_keyListModel;
+
 };
 
 #endif // AUTH_KEYS_CONFIGURATION_PAGE_H

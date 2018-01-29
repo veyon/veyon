@@ -22,9 +22,11 @@
  *
  */
 
+#include <QInputDialog>
 #include <QMessageBox>
 
 #include "AuthKeysConfigurationPage.h"
+#include "AuthKeysManager.h"
 #include "FileSystemBrowser.h"
 #include "VeyonConfiguration.h"
 #include "Configuration/UiMapping.h"
@@ -34,7 +36,8 @@
 
 AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	ConfigurationPage(),
-	ui(new Ui::AuthKeysConfigurationPage)
+	ui(new Ui::AuthKeysConfigurationPage),
+	m_keyListModel( this )
 {
 	ui->setupUi(this);
 
@@ -43,6 +46,14 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 
 	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
+	CONNECT_BUTTON_SLOT( createKeyPair );
+	CONNECT_BUTTON_SLOT( deleteKey );
+	CONNECT_BUTTON_SLOT( importKey );
+	CONNECT_BUTTON_SLOT( exportKey );
+
+	ui->keyList->setModel( &m_keyListModel );
+
+	reloadKeyList();
 }
 
 
@@ -84,5 +95,80 @@ void AuthKeysConfigurationPage::openPublicKeyBaseDir()
 void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->privateKeyBaseDir );
+			exec( ui->privateKeyBaseDir );
+}
+
+
+
+void AuthKeysConfigurationPage::createKeyPair()
+{
+	const auto keyName = QInputDialog::getText( this, tr( "Key name" ), tr( "Please enter the name of the user group or role for which to create a key pair:") );
+	if( keyName.isEmpty() == false )
+	{
+		AuthKeysManager authKeysManager;
+		const auto success = authKeysManager.createKeyPair( keyName );
+
+		showResultMessage( success, tr( "Create key pair" ), authKeysManager.resultMessage() );
+
+		reloadKeyList();
+	}
+}
+
+
+
+void AuthKeysConfigurationPage::deleteKey()
+{
+	const auto nameAndType = m_keyListModel.data( ui->keyList->currentIndex() ).toString().split('/');
+	if( nameAndType.size() > 1 )
+	{
+		const auto name = nameAndType[0];
+		const auto type = nameAndType[1];
+
+		AuthKeysManager authKeysManager;
+		const auto success = authKeysManager.deleteKey( name, type );
+
+		showResultMessage( success, tr( "Create key pair" ), authKeysManager.resultMessage() );
+
+		reloadKeyList();
+	}
+}
+
+
+
+void AuthKeysConfigurationPage::importKey()
+{
+
+}
+
+
+
+void AuthKeysConfigurationPage::exportKey()
+{
+
+}
+
+
+
+void AuthKeysConfigurationPage::reloadKeyList()
+{
+	m_keyListModel.setStringList( AuthKeysManager().listKeys() );
+}
+
+
+
+void AuthKeysConfigurationPage::showResultMessage( bool success, const QString& title, const QString& message )
+{
+	if( message.isEmpty() )
+	{
+		return;
+	}
+
+	if( success )
+	{
+		QMessageBox::information( this, title, message );
+	}
+	else
+	{
+		QMessageBox::critical( this, title, message );
+	}
 }
