@@ -91,9 +91,33 @@ CHECK_INCLUDE_FILES(vfork.h HAVE_VFORK_H)
 
 FIND_PACKAGE(X11 REQUIRED)
 
-SET(CMAKE_REQUIRED_LIBRARIES ${X11_LIBRARIES} ${X11_XTest_LIB})
+IF(NOT X11_XTest_FOUND)
+	MESSAGE(FATAL_ERROR "XTest library or headers not found - please install libxtst-dev or libXtst-devel")
+ENDIF()
+
+IF(NOT X11_Xrandr_FOUND)
+	MESSAGE(FATAL_ERROR "Xrandr library or headers not found - please install libxrandr-dev or libXrandr-devel")
+ENDIF()
+
+IF(NOT X11_Xinerama_FOUND)
+	MESSAGE(FATAL_ERROR "Xinerama library or headers not found - please install libxinerama-dev or libXinerama-devel")
+ENDIF()
+
+IF(NOT X11_Xdamage_FOUND)
+	MESSAGE(FATAL_ERROR "Xdamage library or headers not found - please install libxdamage-dev or libXdamage-devel")
+ENDIF()
+
+IF(NOT X11_Xfixes_FOUND)
+	MESSAGE(FATAL_ERROR "Xfixes library or headers not found - please install libxfixes-dev or libXfixes-devel")
+ENDIF()
+
 SET(HAVE_X11 TRUE)
+SET(HAVE_XTEST TRUE)
 SET(HAVE_LIBSSL TRUE)
+SET(HAVE_LIBXINERAMA TRUE)
+SET(HAVE_LIBXRANDR TRUE)
+SET(HAVE_LIBXDAMAGE TRUE)
+SET(HAVE_LIBXFIXES TRUE)
 
 IF(X11_XShm_FOUND)
     SET(HAVE_XSHM TRUE)
@@ -101,40 +125,10 @@ ELSE()
 	MESSAGE("WARNING: XShm library or headers not found - building VNC server without XShm support")
 ENDIF()
 
-IF(X11_XTest_FOUND)
-    SET(HAVE_XTEST TRUE)
-ELSE()
-	MESSAGE("WARNING: XTest library or headers not found - building VNC server without XTest support")
-ENDIF()
-
-IF(X11_Xinerama_FOUND)
-    SET(HAVE_LIBXINERAMA TRUE)
-ELSE()
-	MESSAGE("WARNING: Xinerama library or headers not found - building VNC server without Xinerama support")
-ENDIF()
-
-IF(X11_Xrandr_FOUND)
-    SET(HAVE_LIBXRANDR TRUE)
-ELSE()
-	MESSAGE("WARNING: Xrandr library or headers not found - building VNC server without Xrandr support")
-ENDIF()
-
 IF(X11_Xi2_FOUND)
     SET(HAVE_LIBXI2 TRUE)
 ELSE()
 	MESSAGE("WARNING: Xi2 library or headers not found - building VNC server without Xi2 support")
-ENDIF()
-
-IF(X11_Xfixes_FOUND)
-    SET(HAVE_LIBXFIXES TRUE)
-ELSE()
-	MESSAGE("WARNING: Xfixes library or headers not found - building VNC server without Xfixes support")
-ENDIF()
-
-IF(X11_Xdamage_FOUND)
-    SET(HAVE_LIBXDAMAGE TRUE)
-ELSE()
-	MESSAGE("WARNING: Xdamage library or headers not found - building VNC server without Xdamage support")
 ENDIF()
 
 IF(X11_Xcomposite_FOUND)
@@ -262,9 +256,25 @@ TARGET_LINK_LIBRARIES(builtin-x11vnc-server
 	${X11_Xinerama_LIB}
 	${X11_Xdamage_LIB}
 	${X11_Xrandr_LIB}
-	${X11_Xcomposite_LIB}
-	${X11_Xcursor_LIB}
-	${X11_Xi2_LIB})
+)
+
+IF(X11_XShm_FOUND)
+TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_XShm_LIB})
 ENDIF()
+
+IF(X11_Xcomposite_FOUND)
+TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_Xcomposite_LIB})
+ENDIF()
+
+IF(X11_Xcursor_FOUND)
+TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_Xcursor_LIB})
+ENDIF()
+
+IF(X11_Xi2_FOUND)
+TARGET_LINK_LIBRARIES(builtin-x11vnc-server ${X11_Xi2_LIB})
+ENDIF()
+
+ENDIF()
+
 
 SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers")
