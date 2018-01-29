@@ -306,6 +306,8 @@ QStringList AuthKeysManager::listKeys()
 		}
 	}
 
+	std::sort( keys.begin(), keys.end() );
+
 	return keys;
 }
 
