@@ -89,8 +89,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setUserConfigurationDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Config" ) ) );
 	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%$APPDATA%/Screenshots" ) ) );
 
-	c.setKeyAuthenticationEnabled( true );
-	c.setLogonAuthenticationEnabled( true );
+	c.setAuthenticationMethod( VeyonCore::LogonAuthentication );
 
 	c.setPrivateKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ) );
 	c.setPublicKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ) );
