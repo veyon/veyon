@@ -58,5 +58,9 @@
     <file>resources/watch15.png</file>
     <file>resources/watch16.png</file>
     <file>resources/toolbar-background.png</file>
+    <file>resources/document-open.png</file>
+    <file>resources/document-save.png</file>
+    <file>resources/edit-delete.png</file>
+    <file>resources/help-about.png</file>
   </qresource>
 </RCC>
