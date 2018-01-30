@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>GeneralConfigurationPage</class>
  <widget class="QWidget" name="GeneralConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>724</width>
-    <height>918</height>
-   </rect>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
    <property name="topMargin">
     <number>0</number>
@@ -89,7 +81,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
+           <iconset resource="../../core/core.qrc">
             <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
           </property>
          </widget>
@@ -270,7 +262,7 @@
            <string>Clear all log files</string>
           </property>
           <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
+           <iconset resource="../../core/core.qrc">
             <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
           </property>
          </widget>
@@ -323,6 +315,36 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Authentication</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Method:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="authenticationMethod">
+        <item>
+         <property name="text">
+          <string>Logon authentication</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Key file authentication</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -339,6 +361,7 @@
  </widget>
  <resources>
   <include location="../veyon-configurator.qrc"/>
+  <include location="../../core/core.qrc"/>
  </resources>
  <connections>
   <connection>
