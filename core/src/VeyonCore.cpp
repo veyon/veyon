@@ -211,7 +211,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 	bool success = false;
 
 	if( credentialTypes & AuthenticationCredentials::UserLogon &&
-			config().isLogonAuthenticationEnabled() )
+			config().authenticationMethod() == LogonAuthentication )
 	{
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
@@ -236,7 +236,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 	}
 
 	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
-			config().isKeyAuthenticationEnabled() )
+			config().authenticationMethod() == KeyFileAuthentication )
 	{
 		const QString privKeyFile = VeyonCore::filesystem().privateKeyPath( userRole() );
 		qDebug() << "Loading private key" << privKeyFile << "for role" << userRole();

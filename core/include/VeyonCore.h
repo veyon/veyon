@@ -131,6 +131,13 @@ public:
 		m_userRole = userRole;
 	}
 
+	typedef enum AuthenticationMethods
+	{
+		LogonAuthentication,
+		KeyFileAuthentication,
+		AuthenticationMethodCount
+	} AuthenticationMethod;
+
 private:
 	static VeyonCore* s_instance;
 

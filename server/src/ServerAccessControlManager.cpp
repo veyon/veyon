@@ -48,7 +48,7 @@ void ServerAccessControlManager::addClient( VncServerClient* client )
 {
 	switch( client->authType() )
 	{
-	case RfbVeyonAuth::DSA:
+	case RfbVeyonAuth::KeyFile:
 	case RfbVeyonAuth::Logon:
 		performAccessControl( client );
 		break;

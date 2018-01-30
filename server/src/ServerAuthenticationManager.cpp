@@ -50,12 +50,12 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 
 	authTypes.append( RfbVeyonAuth::HostWhiteList );
 
-	if( VeyonCore::config().isKeyAuthenticationEnabled() )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
 	{
-		authTypes.append( RfbVeyonAuth::DSA );
+		authTypes.append( RfbVeyonAuth::KeyFile );
 	}
 
-	if( VeyonCore::config().isLogonAuthenticationEnabled() )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::LogonAuthentication )
 	{
 		authTypes.append( RfbVeyonAuth::Logon );
 	}
@@ -92,7 +92,7 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 		break;
 
 		// authentication via DSA-challenge/-response
-	case RfbVeyonAuth::DSA:
+	case RfbVeyonAuth::KeyFile:
 		client->setAuthState( performKeyAuthentication( client, message ) );
 		break;
 

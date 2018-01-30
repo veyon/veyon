@@ -45,7 +45,7 @@ public:
 		HostWhiteList,
 
 		// client has to sign some data to verify it's authority
-		DSA,
+		KeyFile,
 
 		// authentication is performed using given username and password
 		Logon,

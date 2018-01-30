@@ -86,8 +86,9 @@
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, confirmDangerousActions, setConfirmDangerousActions, "ConfirmDangerousActions", "Master" );	\
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
-	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
-	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), INT, authenticationMethod, setAuthenticationMethod, "Method", "Authentication" );	\
+
+#define FOREACH_VEYON_KEY_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
 
@@ -111,6 +112,7 @@
 	FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP)	\
 	FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP)	\
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP)	\
+	FOREACH_VEYON_KEY_AUTHENTICATION_CONFIG_PROPERTY(OP)	\
 	FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(OP)	\
 
 #endif

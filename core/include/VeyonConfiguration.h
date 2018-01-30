@@ -92,8 +92,7 @@ public slots:
 	void setEnforceSelectedModeForClients( bool );
 	void setOpenComputerManagementAtStart( bool );
 	void setConfirmDangerousActions( bool );
-	void setKeyAuthenticationEnabled( bool );
-	void setLogonAuthenticationEnabled( bool );
+	void setAuthenticationMethod( int );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
 	void setAccessControlUserGroupsBackend( QUuid );

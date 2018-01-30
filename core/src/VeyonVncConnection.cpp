@@ -306,7 +306,7 @@ VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
 	m_frameBufferInitialized( false ),
 	m_frameBufferValid( false ),
 	m_cl( nullptr ),
-	m_veyonAuthType( RfbVeyonAuth::DSA ),
+	m_veyonAuthType( RfbVeyonAuth::Logon ),
 	m_quality( DefaultQuality ),
 	m_port( -1 ),
 	m_terminateTimer( this ),
@@ -325,9 +325,9 @@ VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
 
 	connect( &m_terminateTimer, &QTimer::timeout, this, &VeyonVncConnection::terminate );
 
-	if( VeyonCore::config().isLogonAuthenticationEnabled() )
+	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
 	{
-		m_veyonAuthType = RfbVeyonAuth::Logon;
+		m_veyonAuthType = RfbVeyonAuth::KeyFile;
 	}
 }
 
@@ -841,7 +841,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 
 	switch( chosenAuthType )
 	{
-	case RfbVeyonAuth::DSA:
+	case RfbVeyonAuth::KeyFile:
 		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::PrivateKey ) )
 		{
 			VariantArrayMessage challengeReceiveMessage( &socketDevice );
