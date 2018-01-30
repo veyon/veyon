@@ -54,6 +54,7 @@ private slots:
 	void reloadKeyList();
 
 private:
+	QString selectedKey() const;
 	void showResultMessage( bool success, const QString& title, const QString& message );
 
 	Ui::AuthKeysConfigurationPage *ui;

@@ -3,7 +3,7 @@
  <class>AuthKeysConfigurationPage</class>
  <widget class="QWidget" name="AuthKeysConfigurationPage">
   <property name="windowTitle">
-   <string notr="true">Key authentication</string>
+   <string>Authentication keys</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../core/core.qrc">
@@ -193,10 +193,6 @@
  </widget>
  <resources>
   <include location="../../core/core.qrc"/>
-  <include location="../../core/core.qrc"/>
-  <include location="../../core/core.qrc"/>
-  <include location="../../configurator/veyon-configurator.qrc"/>
-  <include location="../../configurator/veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -22,6 +22,7 @@
  *
  */
 
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 
@@ -102,7 +103,8 @@ void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
 
 void AuthKeysConfigurationPage::createKeyPair()
 {
-	const auto keyName = QInputDialog::getText( this, tr( "Key name" ), tr( "Please enter the name of the user group or role for which to create a key pair:") );
+	const auto keyName = QInputDialog::getText( this, tr( "Authentication key name" ),
+												tr( "Please enter the name of the user group or role for which to create an authentication key pair:") );
 	if( keyName.isEmpty() == false )
 	{
 		AuthKeysManager authKeysManager;
@@ -119,25 +121,27 @@ void AuthKeysConfigurationPage::createKeyPair()
 void AuthKeysConfigurationPage::deleteKey()
 {
 	const auto title = tr( "Delete authentication key" );
-	const auto currentIndex = ui->keyList->currentIndex();
-	const auto data = m_keyListModel.data( currentIndex, Qt::DisplayRole );
-	const auto nameAndType = data.toString().split('/');
+
+	const auto nameAndType = selectedKey().split('/');
 
 	if( nameAndType.size() > 1 )
 	{
 		const auto name = nameAndType[0];
 		const auto type = nameAndType[1];
 
-		AuthKeysManager authKeysManager;
-		const auto success = authKeysManager.deleteKey( name, type );
+		if( QMessageBox::question( this, title, tr( "Do you really want to delete authentication key \"%1/%2\"?" ).arg( name, type ) ) )
+		{
+			AuthKeysManager authKeysManager;
+			const auto success = authKeysManager.deleteKey( name, type );
 
-		showResultMessage( success, title, authKeysManager.resultMessage() );
+			showResultMessage( success, title, authKeysManager.resultMessage() );
 
-		reloadKeyList();
+			reloadKeyList();
+		}
 	}
 	else
 	{
-		QMessageBox::critical( this, title, tr( "Please select a key to delete!" ) );
+		showResultMessage( false, title, tr( "Please select a key to delete!" ) );
 	}
 }
 
@@ -145,14 +149,57 @@ void AuthKeysConfigurationPage::deleteKey()
 
 void AuthKeysConfigurationPage::importKey()
 {
+	const auto title = tr( "Import authentication key" );
 
+	const auto inputFile = QFileDialog::getOpenFileName( this, title );
+	if( inputFile.isEmpty() )
+	{
+		return;
+	}
+
+	const auto keyName = QInputDialog::getText( this, tr( "Authentication key name" ),
+												tr( "Please enter the name of the user group or role for which to import the authentication key:") );
+	if( keyName.isEmpty() )
+	{
+		return;
+	}
+
+	AuthKeysManager authKeysManager;
+	const auto keyType = authKeysManager.detectKeyType( inputFile );
+	const auto success = authKeysManager.importKey( keyName, keyType, inputFile );
+
+	showResultMessage( success, title, authKeysManager.resultMessage() );
+
+	reloadKeyList();
 }
 
 
 
 void AuthKeysConfigurationPage::exportKey()
 {
+	const auto title = tr( "Export authentication key" );
 
+	const auto nameAndType = selectedKey().split('/');
+
+	if( nameAndType.size() > 1 )
+	{
+		const auto name = nameAndType[0];
+		const auto type = nameAndType[1];
+
+		const auto outputFile = QFileDialog::getSaveFileName( this, title, QDir::homePath() + QDir::separator() +
+															  QStringLiteral("%1_%2_key.pem").arg( name, type ) );
+		if( outputFile.isEmpty() == false )
+		{
+			AuthKeysManager authKeysManager;
+			const auto success = authKeysManager.exportKey( name, type, outputFile );
+
+			showResultMessage( success, title, authKeysManager.resultMessage() );
+		}
+	}
+	else
+	{
+		showResultMessage( false, title, tr( "Please select a key to export!" ) );
+	}
 }
 
 
@@ -160,6 +207,15 @@ void AuthKeysConfigurationPage::exportKey()
 void AuthKeysConfigurationPage::reloadKeyList()
 {
 	m_keyListModel.setStringList( AuthKeysManager().listKeys() );
+}
+
+
+
+QString AuthKeysConfigurationPage::selectedKey() const
+{
+	const auto currentIndex = ui->keyList->currentIndex();
+
+	return m_keyListModel.data( currentIndex, Qt::DisplayRole ).toString();
 }
 
 
