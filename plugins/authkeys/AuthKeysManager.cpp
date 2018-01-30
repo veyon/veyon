@@ -398,6 +398,25 @@ bool AuthKeysManager::writePublicKeyFile( const CryptoCore::PublicKey& publicKey
 
 
 
+QString AuthKeysManager::detectKeyType( const QString& keyFile )
+{
+	const auto privateKey = CryptoCore::PrivateKey( keyFile );
+	if( privateKey.isNull() == false && privateKey.isPrivate()  )
+	{
+		return m_keyTypePrivate;
+	}
+
+	const auto publicKey = CryptoCore::PublicKey( keyFile );
+	if( publicKey.isNull() == false && publicKey.isPublic()  )
+	{
+		return m_keyTypePublic;
+	}
+
+	return QString();
+}
+
+
+
 QString AuthKeysManager::keyFilePathFromType( const QString& name, const QString& type ) const
 {
 	if( type == m_keyTypePrivate )
