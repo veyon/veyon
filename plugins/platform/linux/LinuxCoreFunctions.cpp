@@ -22,7 +22,6 @@
  *
  */
 
-#include <QDir>
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QStandardPaths>
@@ -32,20 +31,6 @@
 
 #include "LinuxCoreFunctions.h"
 #include "PlatformUserFunctions.h"
-
-
-QString LinuxCoreFunctions::personalAppDataPath() const
-{
-	return QDir::homePath() + QDir::separator() + QStringLiteral(".veyon");
-}
-
-
-
-QString LinuxCoreFunctions::globalAppDataPath() const
-{
-	return QStringLiteral( "/etc/veyon/" );
-}
-
 
 
 void LinuxCoreFunctions::initNativeLoggingSystem( const QString& appName )
@@ -150,7 +135,7 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 
 	const auto desktop = QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_CURRENT_DESKTOP") );
 	if( desktop == QStringLiteral("KDE") &&
-	        QStandardPaths::findExecutable( QStringLiteral("kdesudo") ).isEmpty() == false )
+			QStandardPaths::findExecutable( QStringLiteral("kdesudo") ).isEmpty() == false )
 	{
 		return QProcess::execute( QStringLiteral("kdesudo"), commandLine ) == 0;
 	}

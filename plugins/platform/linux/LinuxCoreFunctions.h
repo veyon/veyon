@@ -32,8 +32,6 @@
 class LinuxCoreFunctions : public PlatformCoreFunctions
 {
 public:
-	QString personalAppDataPath() const override;
-	QString globalAppDataPath() const override;
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
@@ -51,8 +49,7 @@ public:
 	bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) override;
 
 	bool runProgramAsUser( const QString& program, const QString& username,
-	                       const QString& desktop = QString() ) override;
-
+						   const QString& desktop = QString() ) override;
 
 };
 

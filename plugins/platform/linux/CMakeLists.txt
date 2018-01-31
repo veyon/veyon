@@ -10,6 +10,7 @@ INCLUDE_DIRECTORIES(${procps_INCLUDE_DIRS})
 BUILD_PLUGIN(linux-platform
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
+	LinuxFilesystemFunctions.cpp
 	LinuxInputDeviceFunctions.cpp
 	LinuxNetworkFunctions.cpp
 	LinuxServiceCore.cpp
@@ -18,6 +19,7 @@ BUILD_PLUGIN(linux-platform
 	MOCFILES
 	LinuxPlatformPlugin.h
 	LinuxCoreFunctions.h
+	LinuxFilesystemFunctions.h
 	LinuxInputDeviceFunctions.h
 	LinuxNetworkFunctions.h
 	LinuxServiceCore.h

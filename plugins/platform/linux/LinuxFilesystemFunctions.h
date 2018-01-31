@@ -1,7 +1,7 @@
 /*
- * LinuxPlatformPlugin.cpp - implementation of LinuxPlatformPlugin class
+ * LinuxFilesystemFunctions.h - declaration of LinuxFilesystemFunctions class
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,22 +22,22 @@
  *
  */
 
-#include "LinuxPlatformPlugin.h"
+#ifndef LINUX_FILESYSTEM_FUNCTIONS_H
+#define LINUX_FILESYSTEM_FUNCTIONS_H
 
+#include "PlatformFilesystemFunctions.h"
 
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_linuxCoreFunctions(),
-	m_linuxFilesystemFunctions(),
-	m_linuxInputDeviceFunctions(),
-	m_linuxNetworkFunctions(),
-	m_linuxServiceFunctions(),
-	m_linuxUserFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class LinuxFilesystemFunctions : public PlatformFilesystemFunctions
 {
-}
+public:
+	QString personalAppDataPath() const override;
+	QString globalAppDataPath() const override;
 
+	bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) override;
+	bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) override;
 
+};
 
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}
+#endif // LINUX_FILESYSTEM_FUNCTIONS_H
