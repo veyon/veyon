@@ -25,6 +25,8 @@
 #ifndef WINDOWS_CORE_FUNCTIONS_H
 #define WINDOWS_CORE_FUNCTIONS_H
 
+#include <windows.h>
+
 #include "PlatformCoreFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -57,7 +59,7 @@ public:
 						   const QString& username,
 						   const QString& desktop ) override;
 
-	static bool enablePrivilege( const QString& privilegeName, bool enable );
+	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 
 private:
 	CXEventLog* m_eventLog;

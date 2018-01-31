@@ -147,7 +147,7 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 
 void WindowsCoreFunctions::reboot()
 {
-	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
+	enablePrivilege( SE_SHUTDOWN_NAME, true );
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 }
 
@@ -155,7 +155,7 @@ void WindowsCoreFunctions::reboot()
 
 void WindowsCoreFunctions::powerDown()
 {
-	enablePrivilege( QString::fromWCharArray( SE_SHUTDOWN_NAME ), true );
+	enablePrivilege( SE_SHUTDOWN_NAME, true );
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 }
 
@@ -292,8 +292,8 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 											 const QString& username,
 											 const QString& desktop )
 {
-	enablePrivilege( QString::fromWCharArray( SE_ASSIGNPRIMARYTOKEN_NAME ), true );
-	enablePrivilege( QString::fromWCharArray( SE_INCREASE_QUOTA_NAME ), true );
+	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
+	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 
 	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false,
 												findProcessId( username ) );
@@ -373,7 +373,7 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 
 
 
-bool WindowsCoreFunctions::enablePrivilege( const QString& privilegeName, bool enable )
+bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 {
 	HANDLE token;
 	TOKEN_PRIVILEGES tokenPrivileges;
@@ -385,7 +385,7 @@ bool WindowsCoreFunctions::enablePrivilege( const QString& privilegeName, bool e
 		return false;
 	}
 
-	if( !LookupPrivilegeValue( nullptr, (LPWSTR) privilegeName.utf16(), &luid ) )
+	if( !LookupPrivilegeValue( nullptr, privilegeName, &luid ) )
 	{
 		return false;
 	}

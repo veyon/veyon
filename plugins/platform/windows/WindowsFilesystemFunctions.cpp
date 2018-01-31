@@ -78,12 +78,12 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 		return false;
 	}
 
-	WindowsCoreFunctions::enablePrivilege( QString::fromWCharArray(SE_TAKE_OWNERSHIP_NAME), true );
+	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, true );
 
 	const auto result = SetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT,
 											  OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
 
-	WindowsCoreFunctions::enablePrivilege( QString::fromWCharArray(SE_TAKE_OWNERSHIP_NAME), false );
+	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, false );
 
 	if( result != ERROR_SUCCESS )
 	{

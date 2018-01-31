@@ -198,8 +198,8 @@ WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(
 	s_instance = this;
 
 	// enable privileges required to create process with access token from other process
-	WindowsCoreFunctions::enablePrivilege( QString::fromWCharArray( SE_ASSIGNPRIMARYTOKEN_NAME ), true );
-	WindowsCoreFunctions::enablePrivilege( QString::fromWCharArray( SE_INCREASE_QUOTA_NAME ), true );
+	WindowsCoreFunctions::enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
+	WindowsCoreFunctions::enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 }
 
 
