@@ -204,13 +204,32 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_list( const QStringList& arguments )
 {
-	Q_UNUSED(arguments)
+	bool showDetails = ( arguments.value( 0 ) == QStringLiteral("details") );
 
-	const auto keys = AuthKeysManager().listKeys();
+	AuthKeysManager manager;
+	const auto keys = manager.listKeys();
 
 	for( const auto& key : keys )
 	{
-		print( key );
+		if( showDetails )
+		{
+			const auto nameAndType = key.split( '/' );
+			const auto name = nameAndType.value( 0 );
+			const auto type = nameAndType.value( 1 );
+			const auto assignedGroup = manager.assignedGroup( name, type );
+
+			if( assignedGroup.isEmpty() )
+			{
+				error( manager.resultMessage() );
+				return Failed;
+			}
+
+			print( QStringLiteral("%1: assigned group=\"%2\"").arg( key, assignedGroup ) );
+		}
+		else
+		{
+			print( key );
+		}
 	}
 
 	return NoResult;
