@@ -30,7 +30,7 @@
 AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ "assign", tr( "Assign authentication key to user group" ) },
+{ "assigngroup", tr( "Assign authentication key to user group" ) },
 { "create", tr( "Create new authentication key pair" ) },
 { "delete", tr( "Delete authentication key" ) },
 { "list", tr( "List authentication keys" ) },
@@ -70,7 +70,7 @@ ConfigurationPage* AuthKeysPlugin::createConfigurationPage()
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_assign( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_assigngroup( const QStringList& arguments )
 {
 	if( arguments.size() < 2 )
 	{
@@ -84,7 +84,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_assign( const QStri
 	const auto ownerGroup = arguments[1];
 
 	AuthKeysManager manager;
-	if( manager.assignKey( name, type, ownerGroup ) == false )
+	if( manager.setAssignedGroup( name, type, ownerGroup ) == false )
 	{
 		error( manager.resultMessage() );
 

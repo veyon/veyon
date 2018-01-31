@@ -30,16 +30,16 @@
 #include "ConfigurationPagePluginInterface.h"
 
 class AuthKeysPlugin : public QObject,
-        CommandLinePluginInterface,
-        PluginInterface,
-        CommandLineIO,
-        ConfigurationPagePluginInterface
+		CommandLinePluginInterface,
+		PluginInterface,
+		CommandLineIO,
+		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.AuthKeys")
 	Q_INTERFACES(PluginInterface
-	             CommandLinePluginInterface
-	             ConfigurationPagePluginInterface)
+				 CommandLinePluginInterface
+				 ConfigurationPagePluginInterface)
 public:
 	AuthKeysPlugin( QObject* parent = nullptr );
 	~AuthKeysPlugin() override;
@@ -90,7 +90,7 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 public slots:
-	CommandLinePluginInterface::RunResult handle_assign( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_assigngroup( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_create( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_delete( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );

@@ -61,34 +61,6 @@ bool AuthKeysManager::isKeyNameValid( const QString& name )
 
 
 
-bool AuthKeysManager::assignKey( const QString& name, const QString& type, const QString& group )
-{
-	if( checkKey( name, type ) == false )
-	{
-		return false;
-	}
-
-	const auto keyFileName = keyFilePathFromType( name, type );
-
-	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, group ) == false )
-	{
-		m_resultMessage = tr( "Failed to set owner of key file \"%1\" to \"%2\"." ).
-				arg( keyFileName, group ) + ' ' + m_checkPermissions;
-		return false;
-	}
-
-	if( VeyonCore::platform().filesystemFunctions().
-			setFileOwnerGroupPermissions( keyFileName, QFile::ReadOwner | QFile::ReadGroup ) == false )
-	{
-		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"." ).arg( keyFileName ) + ' ' + m_checkPermissions;
-		return false;
-	}
-
-	return true;
-}
-
-
-
 bool AuthKeysManager::createKeyPair( const QString& name )
 {
 	if( isKeyNameValid( name ) == false)
@@ -408,6 +380,34 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 	}
 
 	return QString();
+}
+
+
+
+bool AuthKeysManager::setAssignedGroup( const QString& name, const QString& type, const QString& group )
+{
+	if( checkKey( name, type ) == false )
+	{
+		return false;
+	}
+
+	const auto keyFileName = keyFilePathFromType( name, type );
+
+	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, group ) == false )
+	{
+		m_resultMessage = tr( "Failed to set owner of key file \"%1\" to \"%2\"." ).
+				arg( keyFileName, group ) + ' ' + m_checkPermissions;
+		return false;
+	}
+
+	if( VeyonCore::platform().filesystemFunctions().
+			setFileOwnerGroupPermissions( keyFileName, QFile::ReadOwner | QFile::ReadGroup ) == false )
+	{
+		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"." ).arg( keyFileName ) + ' ' + m_checkPermissions;
+		return false;
+	}
+
+	return true;
 }
 
 
