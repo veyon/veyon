@@ -77,10 +77,19 @@ bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const
 bool LinuxFilesystemFunctions::setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions )
 {
 	QFile file( filePath );
+
 	auto currentPermissions = file.permissions();
+
 	for( auto permissionFlag : { QFile::ReadGroup, QFile::WriteGroup, QFile::ExeGroup } )
 	{
-		currentPermissions.setFlag( permissionFlag, permissions & permissionFlag );
+		if( permissions & permissionFlag )
+		{
+			currentPermissions |= permissionFlag;
+		}
+		else
+		{
+			currentPermissions &= ~permissionFlag;
+		}
 	}
 
 	return QFile( filePath ).setPermissions( permissions );
