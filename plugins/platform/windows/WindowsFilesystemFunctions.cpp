@@ -62,6 +62,37 @@ QString WindowsFilesystemFunctions::globalAppDataPath() const
 
 
 
+QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
+{
+	PSID ownerSID = nullptr;
+	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
+
+	const auto secInfoResult = GetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
+													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	if( secInfoResult != ERROR_SUCCESS )
+	{
+		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
+		return QString();
+	}
+
+	wchar_t name[PATH_MAX];
+	DWORD nameSize = 0;
+	DWORD domainLen = 0;
+	SID_NAME_USE sidNameUse;
+
+	const auto lookupSidResult = LookupAccountSid( nullptr, ownerSID, name, &nameSize,
+												   nullptr, &domainLen, &sidNameUse );
+	if( lookupSidResult != ERROR_SUCCESS )
+	{
+		qCritical() << Q_FUNC_INFO << "LookupAccountSid() failed:" << lookupSidResult;
+		return QString();
+	}
+
+	return QString::fromWCharArray( name );
+}
+
+
+
 bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE;
@@ -97,21 +128,11 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 
 bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions )
 {
-	auto fileHandle = CreateFile( (LPWSTR) filePath.utf16(), GENERIC_READ, FILE_SHARE_READ, nullptr,
-								  OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr );
-
-	if( fileHandle == INVALID_HANDLE_VALUE )
-	{
-		const auto errorCode = GetLastError();
-		qCritical() << Q_FUNC_INFO << "CreateFile() failed:" << errorCode;
-		return false;
-	}
-
 	PSID ownerSID = nullptr;
 	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
 
-	const auto secInfoResult = GetSecurityInfo( fileHandle, SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-												&ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	const auto secInfoResult = GetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
+													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;

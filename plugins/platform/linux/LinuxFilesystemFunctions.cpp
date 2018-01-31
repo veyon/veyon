@@ -45,6 +45,13 @@ QString LinuxFilesystemFunctions::globalAppDataPath() const
 
 
 
+QString LinuxFilesystemFunctions::fileOwnerGroup( const QString& filePath )
+{
+	return QFileInfo( filePath ).group();
+}
+
+
+
 bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
 {
 	struct stat statBuffer;

@@ -37,6 +37,7 @@ public:
 	virtual QString personalAppDataPath() const = 0;
 	virtual QString globalAppDataPath() const = 0;
 
+	virtual QString fileOwnerGroup( const QString& filePath ) = 0;
 	virtual bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) = 0;
 	virtual bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) = 0;
 
