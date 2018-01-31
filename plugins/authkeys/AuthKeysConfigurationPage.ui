@@ -58,9 +58,6 @@ Technically the client sends a challenge (random data) for which the master has 
    </item>
    <item>
     <widget class="QGroupBox" name="keyManagement">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
      <property name="title">
       <string>Key file directories</string>
      </property>
