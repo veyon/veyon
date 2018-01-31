@@ -90,6 +90,7 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 public slots:
+	CommandLinePluginInterface::RunResult handle_assign( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_create( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_delete( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
