@@ -29,6 +29,7 @@
 #include "CommandLineIO.h"
 #include "CryptoCore.h"
 #include "Filesystem.h"
+#include "PlatformFilesystemFunctions.h"
 #include "VeyonConfiguration.h"
 
 
@@ -56,6 +57,34 @@ AuthKeysManager::~AuthKeysManager()
 bool AuthKeysManager::isKeyNameValid( const QString& name )
 {
 	return QRegExp( "\\w+").exactMatch( name );
+}
+
+
+
+bool AuthKeysManager::assignKey( const QString& name, const QString& type, const QString& ownerGroup )
+{
+	if( checkKey( name, type ) == false )
+	{
+		return false;
+	}
+
+	const auto keyFileName = keyFilePathFromType( name, type );
+
+	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, ownerGroup ) == false )
+	{
+		m_resultMessage = tr( "Failed to set owner of key file \"%1\" to \"%2\"." ).
+				arg( keyFileName, ownerGroup ) + ' ' + m_checkPermissions;
+		return false;
+	}
+
+	if( VeyonCore::platform().filesystemFunctions().
+			setFileOwnerGroupPermissions( keyFileName, QFile::ReadOwner | QFile::ReadGroup ) == false )
+	{
+		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"." ).arg( keyFileName ) + ' ' + m_checkPermissions;
+		return false;
+	}
+
+	return true;
 }
 
 

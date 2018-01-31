@@ -41,6 +41,7 @@ public:
 
 	static bool isKeyNameValid( const QString& name );
 
+	bool assignKey( const QString& name, const QString& type, const QString& ownerGroup );
 	bool createKeyPair( const QString& name );
 	bool deleteKey( const QString& name, const QString& type );
 	bool exportKey( const QString& name, const QString& type, const QString& outputFile );
