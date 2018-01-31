@@ -61,7 +61,7 @@ bool AuthKeysManager::isKeyNameValid( const QString& name )
 
 
 
-bool AuthKeysManager::assignKey( const QString& name, const QString& type, const QString& ownerGroup )
+bool AuthKeysManager::assignKey( const QString& name, const QString& type, const QString& group )
 {
 	if( checkKey( name, type ) == false )
 	{
@@ -70,10 +70,10 @@ bool AuthKeysManager::assignKey( const QString& name, const QString& type, const
 
 	const auto keyFileName = keyFilePathFromType( name, type );
 
-	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, ownerGroup ) == false )
+	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, group ) == false )
 	{
 		m_resultMessage = tr( "Failed to set owner of key file \"%1\" to \"%2\"." ).
-				arg( keyFileName, ownerGroup ) + ' ' + m_checkPermissions;
+				arg( keyFileName, group ) + ' ' + m_checkPermissions;
 		return false;
 	}
 
@@ -412,7 +412,19 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 
 
 
-bool AuthKeysManager::checkKey( const QString& name, const QString& type )
+QString AuthKeysManager::assignedGroup( const QString& name, const QString& type )
+{
+	if( checkKey( name, type, false ) == false )
+	{
+		return QString();
+	}
+
+	return VeyonCore::platform().filesystemFunctions().fileOwnerGroup( keyFilePathFromType( name, type ) );
+}
+
+
+
+bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
 	if( isKeyNameValid( name ) == false )
 	{
@@ -436,7 +448,7 @@ bool AuthKeysManager::checkKey( const QString& name, const QString& type )
 		return false;
 	}
 
-	if( keyFileInfo.isReadable() == false )
+	if( checkIsReadable && keyFileInfo.isReadable() == false )
 	{
 		m_resultMessage = tr( "Failed to read key file." ) + " " + m_checkPermissions;
 		return false;

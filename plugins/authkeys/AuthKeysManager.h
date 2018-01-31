@@ -41,7 +41,7 @@ public:
 
 	static bool isKeyNameValid( const QString& name );
 
-	bool assignKey( const QString& name, const QString& type, const QString& ownerGroup );
+	bool assignKey( const QString& name, const QString& type, const QString& group );
 	bool createKeyPair( const QString& name );
 	bool deleteKey( const QString& name, const QString& type );
 	bool exportKey( const QString& name, const QString& type, const QString& outputFile );
@@ -54,8 +54,10 @@ public:
 
 	QString detectKeyType( const QString& keyFile );
 
+	QString assignedGroup( const QString& name, const QString& type );
+
 private:
-	bool checkKey( const QString& name, const QString& type );
+	bool checkKey( const QString& name, const QString& type, bool checkIsReadable = true );
 
 	QString keyFilePathFromType( const QString& name, const QString& type ) const;
 	bool setKeyFilePermissions( const QString& name, const QString& type ) const;
