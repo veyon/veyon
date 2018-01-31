@@ -28,6 +28,7 @@
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
 #include "WindowsCoreFunctions.h"
+#include "WindowsFilesystemFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsNetworkFunctions.h"
 #include "WindowsServiceFunctions.h"
@@ -82,6 +83,11 @@ public:
 		return m_windowsCoreFunctions;
 	}
 
+	PlatformFilesystemFunctions& filesystemFunctions() override
+	{
+		return m_windowsFilesystemFunctions;
+	}
+
 	PlatformInputDeviceFunctions& inputDeviceFunctions() override
 	{
 		return m_windowsInputDeviceFunctions;
@@ -104,6 +110,7 @@ public:
 
 private:
 	WindowsCoreFunctions m_windowsCoreFunctions;
+	WindowsFilesystemFunctions m_windowsFilesystemFunctions;
 	WindowsInputDeviceFunctions m_windowsInputDeviceFunctions;
 	WindowsNetworkFunctions m_windowsNetworkFunctions;
 	WindowsServiceFunctions m_windowsServiceFunctions;

@@ -22,7 +22,6 @@
  *
  */
 
-#include <QDir>
 #include <QWindow>
 #include <qpa/qplatformnativeinterface.h>
 
@@ -53,22 +52,6 @@ static const UINT screenSaverSettingsSetList[screenSaverSettingsCount] =
 };
 
 static int screenSaverSettings[screenSaverSettingsCount];
-
-
-static QString windowsConfigPath( REFKNOWNFOLDERID folderId )
-{
-	QString result;
-
-	wchar_t* path = nullptr;
-	if( SHGetKnownFolderPath( folderId, KF_FLAG_DEFAULT, nullptr, &path ) == S_OK )
-	{
-		result = QString::fromWCharArray( path );
-		CoTaskMemFree( path );
-	}
-
-	return result;
-}
-
 
 
 static DWORD findProcessId( const QString& userName )
@@ -129,20 +112,6 @@ WindowsCoreFunctions::WindowsCoreFunctions() :
 WindowsCoreFunctions::~WindowsCoreFunctions()
 {
 	delete m_eventLog;
-}
-
-
-
-QString WindowsCoreFunctions::personalAppDataPath() const
-{
-	return windowsConfigPath( FOLDERID_RoamingAppData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();
-}
-
-
-
-QString WindowsCoreFunctions::globalAppDataPath() const
-{
-	return windowsConfigPath( FOLDERID_ProgramData ) + QDir::separator() + QStringLiteral("Veyon") + QDir::separator();
 }
 
 
@@ -278,12 +247,12 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 	// allocate and initialize a SID of the administrators group.
 	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
 	if( AllocateAndInitializeSid(
-		&NtAuthority,
-		2,
-		SECURITY_BUILTIN_DOMAIN_RID,
-		DOMAIN_ALIAS_RID_ADMINS,
-		0, 0, 0, 0, 0, 0,
-		&adminGroupSid ) )
+				&NtAuthority,
+				2,
+				SECURITY_BUILTIN_DOMAIN_RID,
+				DOMAIN_ALIAS_RID_ADMINS,
+				0, 0, 0, 0, 0, 0,
+				&adminGroupSid ) )
 	{
 		// determine whether the SID of administrators group is enabled in
 		// the primary access token of the process.

@@ -1,5 +1,5 @@
 /*
- * WindowsPlatformPlugin.cpp - implementation of WindowsPlatformPlugin class
+ * WindowsFilesystemFunctions.h - declaration of WindowsFilesystemFunctions class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,22 +22,22 @@
  *
  */
 
-#include "WindowsPlatformPlugin.h"
+#ifndef WINDOWS_FILESYSTEM_FUNCTIONS_H
+#define WINDOWS_FILESYSTEM_FUNCTIONS_H
 
+#include "PlatformFilesystemFunctions.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_windowsCoreFunctions(),
-	m_windowsFilesystemFunctions(),
-	m_windowsInputDeviceFunctions(),
-	m_windowsNetworkFunctions(),
-	m_windowsServiceFunctions(),
-	m_windowsUserFunctions()
+// clazy:excludeall=copyable-polymorphic
+
+class WindowsFilesystemFunctions : public PlatformFilesystemFunctions
 {
-}
+public:
+	QString personalAppDataPath() const override;
+	QString globalAppDataPath() const override;
 
+	bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) override;
+	bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) override;
 
+};
 
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
-}
+#endif // WINDOWS_FILESYSTEM_FUNCTIONS_H
