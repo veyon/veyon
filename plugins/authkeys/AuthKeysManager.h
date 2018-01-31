@@ -54,6 +54,8 @@ public:
 	QString detectKeyType( const QString& keyFile );
 
 private:
+	bool checkKey( const QString& name, const QString& type );
+
 	QString keyFilePathFromType( const QString& name, const QString& type ) const;
 	bool setKeyFilePermissions( const QString& name, const QString& type ) const;
 	bool setPrivateKeyFilePermissions( const QString& fileName ) const;

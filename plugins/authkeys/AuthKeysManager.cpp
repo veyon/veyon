@@ -104,25 +104,12 @@ bool AuthKeysManager::createKeyPair( const QString& name )
 
 bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
 {
-	if( isKeyNameValid( name ) == false)
+	if( checkKey( name, type ) == false )
 	{
-		m_resultMessage = m_invalidKeyName;
 		return false;
 	}
 
 	const auto keyFileName = keyFilePathFromType( name, type );
-
-	if( keyFileName.isEmpty() )
-	{
-		m_resultMessage = m_invalidKeyType;
-		return false;
-	}
-
-	if( QFileInfo( keyFileName ).exists() == false )
-	{
-		m_resultMessage = m_keyDoesNotExist;
-		return false;
-	}
 
 	QFile keyFile( keyFileName );
 	keyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
@@ -150,33 +137,12 @@ bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
 
 bool AuthKeysManager::exportKey( const QString& name, const QString& type, const QString& outputFile )
 {
-	if( isKeyNameValid( name ) == false)
+	if( checkKey( name, type ) == false )
 	{
-		m_resultMessage = m_invalidKeyName;
 		return false;
 	}
 
 	const auto keyFileName = keyFilePathFromType( name, type );
-
-	if( keyFileName.isEmpty() )
-	{
-		m_resultMessage = m_invalidKeyType;
-		return false;
-	}
-
-	QFileInfo keyFileInfo( keyFileName );
-
-	if( keyFileInfo.exists() == false )
-	{
-		m_resultMessage = m_keyDoesNotExist;
-		return false;
-	}
-
-	if( keyFileInfo.isReadable() == false )
-	{
-		m_resultMessage = tr( "Failed to read key file." ) + " " + m_checkPermissions;
-		return false;
-	}
 
 	if( VeyonCore::filesystem().ensurePathExists( QFileInfo( outputFile ).path() ) == false )
 	{
@@ -413,6 +379,41 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 	}
 
 	return QString();
+}
+
+
+
+bool AuthKeysManager::checkKey( const QString& name, const QString& type )
+{
+	if( isKeyNameValid( name ) == false )
+	{
+		m_resultMessage = m_invalidKeyName;
+		return false;
+	}
+
+	const auto keyFileName = keyFilePathFromType( name, type );
+
+	if( keyFileName.isEmpty() )
+	{
+		m_resultMessage = m_invalidKeyType;
+		return false;
+	}
+
+	QFileInfo keyFileInfo( keyFileName );
+
+	if( keyFileInfo.exists() == false )
+	{
+		m_resultMessage = m_keyDoesNotExist;
+		return false;
+	}
+
+	if( keyFileInfo.isReadable() == false )
+	{
+		m_resultMessage = tr( "Failed to read key file." ) + " " + m_checkPermissions;
+		return false;
+	}
+
+	return true;
 }
 
 
