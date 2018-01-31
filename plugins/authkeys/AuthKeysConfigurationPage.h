@@ -58,6 +58,7 @@ private:
 
 	Ui::AuthKeysConfigurationPage *ui;
 	AuthKeysListModel m_authKeyListModel;
+	const QString m_keyFilesFilter;
 
 };
 

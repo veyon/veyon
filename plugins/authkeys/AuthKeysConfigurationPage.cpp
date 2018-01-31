@@ -38,7 +38,8 @@
 AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::AuthKeysConfigurationPage),
-	m_authKeyListModel( this )
+	m_authKeyListModel( this ),
+	m_keyFilesFilter( tr( "Key files (*.pem)" ) )
 {
 	ui->setupUi(this);
 
@@ -151,7 +152,7 @@ void AuthKeysConfigurationPage::importKey()
 {
 	const auto title = tr( "Import authentication key" );
 
-	const auto inputFile = QFileDialog::getOpenFileName( this, title );
+	const auto inputFile = QFileDialog::getOpenFileName( this, title, QString(), m_keyFilesFilter );
 	if( inputFile.isEmpty() )
 	{
 		return;
@@ -187,7 +188,8 @@ void AuthKeysConfigurationPage::exportKey()
 		const auto type = nameAndType[1];
 
 		const auto outputFile = QFileDialog::getSaveFileName( this, title, QDir::homePath() + QDir::separator() +
-															  QStringLiteral("%1_%2_key.pem").arg( name, type ) );
+															  QStringLiteral("%1_%2_key.pem").arg( name, type ),
+															  m_keyFilesFilter );
 		if( outputFile.isEmpty() == false )
 		{
 			AuthKeysManager authKeysManager;
