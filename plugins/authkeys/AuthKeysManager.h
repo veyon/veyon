@@ -53,8 +53,8 @@ public:
 
 	QString detectKeyType( const QString& keyFile );
 
-	bool setAssignedGroup( const QString& name, const QString& type, const QString& group );
-	QString assignedGroup( const QString& name, const QString& type );
+	bool setAssignedGroup( const QString& key, const QString& group );
+	QString assignedGroup( const QString& key );
 
 private:
 	bool checkKey( const QString& name, const QString& type, bool checkIsReadable = true );

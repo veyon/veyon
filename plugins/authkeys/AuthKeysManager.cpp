@@ -384,8 +384,12 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 
 
 
-bool AuthKeysManager::setAssignedGroup( const QString& name, const QString& type, const QString& group )
+bool AuthKeysManager::setAssignedGroup( const QString& key, const QString& group )
 {
+	const auto nameAndType = key.split( '/' );
+	const auto name = nameAndType.value( 0 );
+	const auto type = nameAndType.value( 1 );
+
 	if( checkKey( name, type ) == false )
 	{
 		return false;
@@ -412,8 +416,12 @@ bool AuthKeysManager::setAssignedGroup( const QString& name, const QString& type
 
 
 
-QString AuthKeysManager::assignedGroup( const QString& name, const QString& type )
+QString AuthKeysManager::assignedGroup( const QString& key )
 {
+	const auto nameAndType = key.split( '/' );
+	const auto name = nameAndType.value( 0 );
+	const auto type = nameAndType.value( 1 );
+
 	if( checkKey( name, type, false ) == false )
 	{
 		return QString();

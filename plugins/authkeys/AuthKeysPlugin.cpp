@@ -77,14 +77,11 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_assigngroup( const 
 		return NotEnoughArguments;
 	}
 
-	const auto nameAndType = arguments[0].split( '/' );
-	const auto name = nameAndType.value( 0 );
-	const auto type = nameAndType.value( 1 );
-
+	const auto key = arguments[0];
 	const auto ownerGroup = arguments[1];
 
 	AuthKeysManager manager;
-	if( manager.setAssignedGroup( name, type, ownerGroup ) == false )
+	if( manager.setAssignedGroup( key, ownerGroup ) == false )
 	{
 		error( manager.resultMessage() );
 
@@ -213,10 +210,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_list( const QString
 	{
 		if( showDetails )
 		{
-			const auto nameAndType = key.split( '/' );
-			const auto name = nameAndType.value( 0 );
-			const auto type = nameAndType.value( 1 );
-			const auto assignedGroup = manager.assignedGroup( name, type );
+			const auto assignedGroup = manager.assignedGroup( key );
 
 			if( assignedGroup.isEmpty() )
 			{
