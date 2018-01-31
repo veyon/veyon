@@ -25,8 +25,7 @@
 #ifndef AUTH_KEYS_CONFIGURATION_PAGE_H
 #define AUTH_KEYS_CONFIGURATION_PAGE_H
 
-#include <QStringListModel>
-
+#include "AuthKeysListModel.h"
 #include "ConfigurationPage.h"
 
 namespace Ui {
@@ -58,7 +57,7 @@ private:
 	void showResultMessage( bool success, const QString& title, const QString& message );
 
 	Ui::AuthKeysConfigurationPage *ui;
-	QStringListModel m_keyListModel;
+	AuthKeysListModel m_authKeyListModel;
 
 };
 

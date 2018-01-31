@@ -38,7 +38,7 @@
 AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::AuthKeysConfigurationPage),
-	m_keyListModel( this )
+	m_authKeyListModel( this )
 {
 	ui->setupUi(this);
 
@@ -52,7 +52,7 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	CONNECT_BUTTON_SLOT( importKey );
 	CONNECT_BUTTON_SLOT( exportKey );
 
-	ui->keyList->setModel( &m_keyListModel );
+	ui->keyList->setModel( &m_authKeyListModel );
 
 	reloadKeyList();
 }
@@ -206,7 +206,7 @@ void AuthKeysConfigurationPage::exportKey()
 
 void AuthKeysConfigurationPage::reloadKeyList()
 {
-	m_keyListModel.setStringList( AuthKeysManager().listKeys() );
+	m_authKeyListModel.reload();
 }
 
 
@@ -215,7 +215,7 @@ QString AuthKeysConfigurationPage::selectedKey() const
 {
 	const auto currentIndex = ui->keyList->currentIndex();
 
-	return m_keyListModel.data( currentIndex, Qt::DisplayRole ).toString();
+	return m_authKeyListModel.data( currentIndex, AuthKeysListModel::KeyNameRole ).toString();
 }
 
 
