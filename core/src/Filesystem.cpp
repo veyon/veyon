@@ -29,7 +29,7 @@
 
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
-#include "PlatformCoreFunctions.h"
+#include "PlatformFilesystemFunctions.h"
 
 
 QString Filesystem::expandPath( QString path ) const
@@ -38,10 +38,10 @@ QString Filesystem::expandPath( QString path ) const
 											 replace( QStringLiteral( "$HOME" ), QDir::homePath() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
 											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
-											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().coreFunctions().personalAppDataPath() ).
-											 replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().coreFunctions().personalAppDataPath() ).
-											 replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().coreFunctions().globalAppDataPath() ).
-											 replace( QStringLiteral( "$GLOBALAPPDATA" ), VeyonCore::platform().coreFunctions().globalAppDataPath() ).
+											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
+											 replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
+											 replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
+											 replace( QStringLiteral( "$GLOBALAPPDATA" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
 											 replace( QStringLiteral( "%TMP%" ), QDir::tempPath() ).
 											 replace( QStringLiteral( "$TMP" ), QDir::tempPath() ).
 											 replace( QStringLiteral( "%TEMP%" ), QDir::tempPath() ).
@@ -75,8 +75,8 @@ QString Filesystem::shrinkPath( QString path ) const
 	path = QDir::toNativeSeparators( path );
 
 	const QString envVar( QStringLiteral( "%%1%" ) + QDir::separator() );
-	const auto personalAppDataPath = VeyonCore::platform().coreFunctions().personalAppDataPath();
-	const auto globalAppDataPath = VeyonCore::platform().coreFunctions().globalAppDataPath();
+	const auto personalAppDataPath = VeyonCore::platform().filesystemFunctions().personalAppDataPath();
+	const auto globalAppDataPath = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
 
 	if( path.startsWith( personalAppDataPath ) )
 	{

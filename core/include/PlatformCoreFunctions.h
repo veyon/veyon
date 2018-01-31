@@ -25,6 +25,8 @@
 #ifndef PLATFORM_CORE_FUNCTIONS_H
 #define PLATFORM_CORE_FUNCTIONS_H
 
+#include <QFile>
+
 #include "Logger.h"
 #include "PlatformPluginInterface.h"
 
@@ -33,8 +35,6 @@
 class PlatformCoreFunctions
 {
 public:
-	virtual QString personalAppDataPath() const = 0;
-	virtual QString globalAppDataPath() const = 0;
 	virtual void initNativeLoggingSystem( const QString& appName ) = 0;
 	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
 
