@@ -36,8 +36,8 @@ public:
 	enum Columns {
 		ColumnKeyName,
 		ColumnKeyType,
-		ColumnOwnerGroup,
 		ColumnKeyPairID,
+		ColumnOwnerGroup,
 		ColumnCount
 	};
 
