@@ -125,7 +125,7 @@ void AuthKeysConfigurationPage::createKeyPair()
 
 void AuthKeysConfigurationPage::deleteKey()
 {
-	const auto title = tr( "Delete authentication key" );
+	const auto title = ui->deleteKey->text();
 
 	const auto nameAndType = selectedKey().split('/');
 
@@ -155,7 +155,7 @@ void AuthKeysConfigurationPage::deleteKey()
 
 void AuthKeysConfigurationPage::importKey()
 {
-	const auto title = tr( "Import authentication key" );
+	const auto title = ui->importKey->text();
 
 	const auto inputFile = QFileDialog::getOpenFileName( this, title, QString(), m_keyFilesFilter );
 	if( inputFile.isEmpty() )
@@ -183,7 +183,7 @@ void AuthKeysConfigurationPage::importKey()
 
 void AuthKeysConfigurationPage::exportKey()
 {
-	const auto title = tr( "Export authentication key" );
+	const auto title = ui->exportKey->text();
 
 	const auto nameAndType = selectedKey().split('/');
 
