@@ -56,6 +56,8 @@ public:
 	bool setAssignedGroup( const QString& key, const QString& group );
 	QString assignedGroup( const QString& key );
 
+	QString keyPairId( const QString& key );
+
 private:
 	bool checkKey( const QString& name, const QString& type, bool checkIsReadable = true );
 

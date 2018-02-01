@@ -432,6 +432,36 @@ QString AuthKeysManager::assignedGroup( const QString& key )
 
 
 
+QString AuthKeysManager::keyPairId( const QString& key )
+{
+	const auto nameAndType = key.split( '/' );
+	const auto name = nameAndType.value( 0 );
+	const auto type = nameAndType.value( 1 );
+
+	if( checkKey( name, type ) == false )
+	{
+		return QString();
+	}
+
+	const auto keyFileName = keyFilePathFromType( name, type );
+
+	const auto privateKey = CryptoCore::PrivateKey( keyFileName );
+	if( privateKey.isNull() == false && privateKey.isPrivate()  )
+	{
+		return QStringLiteral("%1").arg( qHash( privateKey.toPublicKey().toDER() ), 8, 16, QLatin1Char('0') );
+	}
+
+	const auto publicKey = CryptoCore::PublicKey( keyFileName );
+	if( publicKey.isNull() == false && publicKey.isPublic()  )
+	{
+		return QStringLiteral("%1").arg( qHash( publicKey.toDER() ), 8, 16, QLatin1Char('0') );
+	}
+
+	return QString();
+}
+
+
+
 bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
 	if( isKeyNameValid( name ) == false )
