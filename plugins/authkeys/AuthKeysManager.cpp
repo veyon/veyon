@@ -411,6 +411,8 @@ bool AuthKeysManager::setAssignedGroup( const QString& key, const QString& group
 		return false;
 	}
 
+	m_resultMessage = tr( "Key \"%1\" has been assigned to user group \"%2\" successfully." ).arg( key, group );
+
 	return true;
 }
 
