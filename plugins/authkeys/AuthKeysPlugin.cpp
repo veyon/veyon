@@ -201,29 +201,13 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_list( const QStringList& arguments )
 {
-	bool showDetails = ( arguments.value( 0 ) == QStringLiteral("details") );
-
-	AuthKeysManager manager;
-	const auto keys = manager.listKeys();
-
-	for( const auto& key : keys )
+	if( arguments.value( 0 ) == QStringLiteral("details") )
 	{
-		if( showDetails )
-		{
-			const auto accessGroup = manager.accessGroup( key );
-
-			if( accessGroup.isEmpty() )
-			{
-				error( manager.resultMessage() );
-				return Failed;
-			}
-
-			print( QStringLiteral("%1: access group=\"%2\"").arg( key, accessGroup ) );
-		}
-		else
-		{
-			print( key );
-		}
+		printAuthKeyTable();
+	}
+	else
+	{
+		printAuthKeyList();
 	}
 
 	return NoResult;
@@ -249,4 +233,59 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_extract( const QStr
 	info( manager.resultMessage() );
 
 	return Successful;
+}
+
+
+
+void AuthKeysPlugin::printAuthKeyTable()
+{
+	AuthKeysTableModel tableModel;
+	tableModel.reload();
+
+	printAuthKeyTableSeparatorRow();
+	printAuthKeyTableRow( tr("NAME"), tr("TYPE"), tr("PAIR ID"), tr("ACCESS GROUP") );
+	printAuthKeyTableSeparatorRow();
+
+	for( int i = 0; i < tableModel.rowCount( QModelIndex() ); ++i )
+	{
+		printAuthKeyTableRow( authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyName ),
+							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyType ),
+							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyPairID ),
+							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnAccessGroup ) );
+	}
+
+	printAuthKeyTableSeparatorRow();
+}
+
+
+
+QString AuthKeysPlugin::authKeysTableData( const AuthKeysTableModel& tableModel, int row, int column )
+{
+	return tableModel.data( tableModel.index( row, column ), Qt::DisplayRole ).toString();
+}
+
+
+
+void AuthKeysPlugin::printAuthKeyTableRow( const QString& name, const QString& type, const QString& pairId, const QString& accessGroup )
+{
+	printf( "|%-20s|%-7s|%-8s|%-32s|\n", qPrintable(name), qPrintable(type), qPrintable(pairId), qPrintable(accessGroup) );
+}
+
+
+
+void AuthKeysPlugin::printAuthKeyTableSeparatorRow()
+{
+	printAuthKeyTableRow( "--------------------", "-------", "--------", "--------------------------------" );
+}
+
+
+
+void AuthKeysPlugin::printAuthKeyList()
+{
+	const auto keys = AuthKeysManager().listKeys();
+
+	for( const auto& key : keys )
+	{
+		print( key );
+	}
 }
