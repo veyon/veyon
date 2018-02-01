@@ -37,7 +37,7 @@ public:
 		ColumnKeyName,
 		ColumnKeyType,
 		ColumnOwnerGroup,
-		ColumnKeyID,
+		ColumnKeyPairID,
 		ColumnCount
 	};
 
