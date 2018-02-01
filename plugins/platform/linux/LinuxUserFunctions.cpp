@@ -74,7 +74,6 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	}
 
 	const QStringList ignoredGroups( {
-	    "root",
 	    "daemon",
 	    "bin",
 	    "tty",
@@ -105,7 +104,6 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	    "sasl",
 	    "plugdev",
 	    "games",
-	    "users",
 	    "nogroup",
 	    "libuuid",
 	    "syslog",
@@ -145,6 +143,7 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	    "systemd-network",
 	    "systemd-resolve",
 	    "systemd-timesync",
+	    "utempter",
 	    "uuidd",
 	                           } );
 
