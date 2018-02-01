@@ -25,7 +25,7 @@
 #ifndef AUTH_KEYS_CONFIGURATION_PAGE_H
 #define AUTH_KEYS_CONFIGURATION_PAGE_H
 
-#include "AuthKeysListModel.h"
+#include "AuthKeysTableModel.h"
 #include "ConfigurationPage.h"
 
 namespace Ui {
@@ -50,14 +50,14 @@ private slots:
 	void deleteKey();
 	void importKey();
 	void exportKey();
-	void reloadKeyList();
+	void reloadKeyTable();
 
 private:
 	QString selectedKey() const;
 	void showResultMessage( bool success, const QString& title, const QString& message );
 
 	Ui::AuthKeysConfigurationPage *ui;
-	AuthKeysListModel m_authKeyListModel;
+	AuthKeysTableModel m_authKeyTableModel;
 	const QString m_keyFilesFilter;
 
 };

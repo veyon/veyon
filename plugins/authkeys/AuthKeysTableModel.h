@@ -1,5 +1,5 @@
 /*
- * AuthKeysListModel.h - declaration of AuthKeysListModel class
+ * AuthKeysTableModel.h - declaration of AuthKeysTableModel class
  *
  * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,28 +22,39 @@
  *
  */
 
-#ifndef AUTH_KEYS_LIST_MODEL_H
-#define AUTH_KEYS_LIST_MODEL_H
+#ifndef AUTH_KEYS_TABLE_MODEL_H
+#define AUTH_KEYS_TABLE_MODEL_H
 
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 
 class AuthKeysManager;
 
-class AuthKeysListModel : public QAbstractListModel
+class AuthKeysTableModel : public QAbstractTableModel
 {
 	Q_OBJECT
 public:
-	enum {
-		KeyNameRole = Qt::UserRole
+	enum Columns {
+		ColumnKeyName,
+		ColumnKeyType,
+		ColumnOwnerGroup,
+		ColumnKeyID,
+		ColumnCount
 	};
 
-	AuthKeysListModel( QObject* parent = nullptr );
-	virtual ~AuthKeysListModel();
+	AuthKeysTableModel( QObject* parent = nullptr );
+	virtual ~AuthKeysTableModel();
 
 	void reload();
 
+	const QString& key( int row ) const
+	{
+		return m_keys[row];
+	}
+
+	int columnCount( const QModelIndex& parent ) const override;
 	int rowCount( const QModelIndex& parent ) const override;
 	QVariant data( const QModelIndex& index, int role ) const override;
+	QVariant headerData( int section, Qt::Orientation orientation, int role ) const override;
 
 private:
 	AuthKeysManager* m_manager;
@@ -51,4 +62,4 @@ private:
 
 };
 
-#endif // AUTH_KEYS_LIST_MODEL_H
+#endif // AUTH_KEYS_TABLE_MODEL_H

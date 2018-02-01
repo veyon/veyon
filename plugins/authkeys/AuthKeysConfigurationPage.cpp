@@ -38,7 +38,7 @@
 AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::AuthKeysConfigurationPage),
-	m_authKeyListModel( this ),
+	m_authKeyTableModel( this ),
 	m_keyFilesFilter( tr( "Key files (*.pem)" ) )
 {
 	ui->setupUi(this);
@@ -53,9 +53,9 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	CONNECT_BUTTON_SLOT( importKey );
 	CONNECT_BUTTON_SLOT( exportKey );
 
-	ui->keyList->setModel( &m_authKeyListModel );
+	reloadKeyTable();
 
-	reloadKeyList();
+	ui->keyTable->setModel( &m_authKeyTableModel );
 }
 
 
@@ -113,7 +113,7 @@ void AuthKeysConfigurationPage::createKeyPair()
 
 		showResultMessage( success, tr( "Create key pair" ), authKeysManager.resultMessage() );
 
-		reloadKeyList();
+		reloadKeyTable();
 	}
 }
 
@@ -130,14 +130,15 @@ void AuthKeysConfigurationPage::deleteKey()
 		const auto name = nameAndType[0];
 		const auto type = nameAndType[1];
 
-		if( QMessageBox::question( this, title, tr( "Do you really want to delete authentication key \"%1/%2\"?" ).arg( name, type ) ) )
+		if( QMessageBox::question( this, title, tr( "Do you really want to delete authentication key \"%1/%2\"?" ).arg( name, type ) ) ==
+				QMessageBox::Yes )
 		{
 			AuthKeysManager authKeysManager;
 			const auto success = authKeysManager.deleteKey( name, type );
 
 			showResultMessage( success, title, authKeysManager.resultMessage() );
 
-			reloadKeyList();
+			reloadKeyTable();
 		}
 	}
 	else
@@ -171,7 +172,7 @@ void AuthKeysConfigurationPage::importKey()
 
 	showResultMessage( success, title, authKeysManager.resultMessage() );
 
-	reloadKeyList();
+	reloadKeyTable();
 }
 
 
@@ -206,18 +207,23 @@ void AuthKeysConfigurationPage::exportKey()
 
 
 
-void AuthKeysConfigurationPage::reloadKeyList()
+void AuthKeysConfigurationPage::reloadKeyTable()
 {
-	m_authKeyListModel.reload();
+	m_authKeyTableModel.reload();
+	ui->keyTable->resizeColumnsToContents();
 }
 
 
 
 QString AuthKeysConfigurationPage::selectedKey() const
 {
-	const auto currentIndex = ui->keyList->currentIndex();
+	const auto row = ui->keyTable->currentIndex().row();
+	if( row >= 0 && row < m_authKeyTableModel.rowCount(QModelIndex() ) )
+	{
+		return m_authKeyTableModel.key( row );
+	}
 
-	return m_authKeyListModel.data( currentIndex, AuthKeysListModel::KeyNameRole ).toString();
+	return QString();
 }
 
 

@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>AuthKeysConfigurationPage</class>
  <widget class="QWidget" name="AuthKeysConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1098</width>
+    <height>822</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Authentication keys</string>
   </property>
@@ -127,10 +135,16 @@ Technically the client sends a challenge (random data) for which the master has 
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QListView" name="keyList">
+       <widget class="QTableView" name="keyTable">
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
         </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
        </widget>
       </item>
       <item>
@@ -184,6 +198,8 @@ Technically the client sends a challenge (random data) for which the master has 
   </layout>
  </widget>
  <resources>
+  <include location="../../core/core.qrc"/>
+  <include location="../../core/core.qrc"/>
   <include location="../../core/core.qrc"/>
  </resources>
  <connections/>
