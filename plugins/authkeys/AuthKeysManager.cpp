@@ -442,7 +442,7 @@ QString AuthKeysManager::keyPairId( const QString& key )
 
 	if( checkKey( name, type ) == false )
 	{
-		return QString();
+		return tr("<N/A>");
 	}
 
 	const auto keyFileName = keyFilePathFromType( name, type );
@@ -459,7 +459,7 @@ QString AuthKeysManager::keyPairId( const QString& key )
 		return QStringLiteral("%1").arg( qHash( publicKey.toDER() ), 8, 16, QLatin1Char('0') );
 	}
 
-	return QString();
+	return QStringLiteral("???");
 }
 
 
