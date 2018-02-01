@@ -102,10 +102,10 @@ QVariant AuthKeysTableModel::headerData( int section, Qt::Orientation orientatio
 
 	switch( section )
 	{
-	case ColumnKeyName: return tr( "Key name" );
-	case ColumnKeyType: return tr( "Key type" );
+	case ColumnKeyName: return tr( "Name" );
+	case ColumnKeyType: return tr( "Type" );
 	case ColumnOwnerGroup: return tr( "Owner group");
-	case ColumnKeyID: return QString( "Key ID");
+	case ColumnKeyPairID: return QString( "Pair ID");
 	default:
 		break;
 	}
