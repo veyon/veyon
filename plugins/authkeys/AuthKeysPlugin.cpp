@@ -30,13 +30,13 @@
 AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ "assigngroup", tr( "Assign authentication key to user group" ) },
 { "create", tr( "Create new authentication key pair" ) },
 { "delete", tr( "Delete authentication key" ) },
 { "list", tr( "List authentication keys" ) },
 { "import", tr( "Import public or private key" ) },
 { "export", tr( "Export public or private key" ) },
 { "extract", tr( "Extract public key from existing private key" ) },
+{ "setaccessgroup", tr( "Set user group allowed to access a key" ) },
 				} )
 {
 }
@@ -70,7 +70,7 @@ ConfigurationPage* AuthKeysPlugin::createConfigurationPage()
 
 
 
-CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_assigngroup( const QStringList& arguments )
+CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_setaccessgroup( const QStringList& arguments )
 {
 	if( arguments.size() < 2 )
 	{
@@ -78,10 +78,10 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_assigngroup( const 
 	}
 
 	const auto key = arguments[0];
-	const auto ownerGroup = arguments[1];
+	const auto accessGroup = arguments[1];
 
 	AuthKeysManager manager;
-	if( manager.setAssignedGroup( key, ownerGroup ) == false )
+	if( manager.setAccessGroup( key, accessGroup ) == false )
 	{
 		error( manager.resultMessage() );
 
@@ -210,15 +210,15 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_list( const QString
 	{
 		if( showDetails )
 		{
-			const auto assignedGroup = manager.assignedGroup( key );
+			const auto accessGroup = manager.accessGroup( key );
 
-			if( assignedGroup.isEmpty() )
+			if( accessGroup.isEmpty() )
 			{
 				error( manager.resultMessage() );
 				return Failed;
 			}
 
-			print( QStringLiteral("%1: assigned group=\"%2\"").arg( key, assignedGroup ) );
+			print( QStringLiteral("%1: access group=\"%2\"").arg( key, accessGroup ) );
 		}
 		else
 		{

@@ -50,7 +50,7 @@ private slots:
 	void deleteKey();
 	void importKey();
 	void exportKey();
-	void assignOwnerGroup();
+	void setAccessGroup();
 	void reloadKeyTable();
 
 private:

@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>AuthKeysConfigurationPage</class>
  <widget class="QWidget" name="AuthKeysConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>521</width>
-    <height>528</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Authentication keys</string>
   </property>
@@ -181,9 +173,9 @@ Technically the client sends a challenge (random data) for which the master has 
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="assignOwnerGroup">
+         <widget class="QPushButton" name="setAccessGroup">
           <property name="text">
-           <string>Assign owner group</string>
+           <string>Set access group</string>
           </property>
          </widget>
         </item>

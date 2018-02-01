@@ -384,7 +384,7 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 
 
 
-bool AuthKeysManager::setAssignedGroup( const QString& key, const QString& group )
+bool AuthKeysManager::setAccessGroup( const QString& key, const QString& group )
 {
 	const auto nameAndType = key.split( '/' );
 	const auto name = nameAndType.value( 0 );
@@ -411,14 +411,14 @@ bool AuthKeysManager::setAssignedGroup( const QString& key, const QString& group
 		return false;
 	}
 
-	m_resultMessage = tr( "Key \"%1\" has been assigned to user group \"%2\" successfully." ).arg( key, group );
+	m_resultMessage = tr( "Key \"%1\" is now accessible by user group \"%2\"." ).arg( key, group );
 
 	return true;
 }
 
 
 
-QString AuthKeysManager::assignedGroup( const QString& key )
+QString AuthKeysManager::accessGroup( const QString& key )
 {
 	const auto nameAndType = key.split( '/' );
 	const auto name = nameAndType.value( 0 );

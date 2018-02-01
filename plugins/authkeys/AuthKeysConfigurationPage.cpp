@@ -53,7 +53,7 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	CONNECT_BUTTON_SLOT( deleteKey );
 	CONNECT_BUTTON_SLOT( importKey );
 	CONNECT_BUTTON_SLOT( exportKey );
-	CONNECT_BUTTON_SLOT( assignOwnerGroup );
+	CONNECT_BUTTON_SLOT( setAccessGroup );
 
 	reloadKeyTable();
 
@@ -211,25 +211,26 @@ void AuthKeysConfigurationPage::exportKey()
 
 
 
-void AuthKeysConfigurationPage::assignOwnerGroup()
+void AuthKeysConfigurationPage::setAccessGroup()
 {
-	const auto title = ui->assignOwnerGroup->text();
+	const auto title = ui->setAccessGroup->text();
 
 	const auto key = selectedKey();
 
 	if( key.isEmpty() == false )
 	{
 		const auto userGroups = VeyonCore::platform().userFunctions().userGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() );
-		const auto currentGroup = AuthKeysManager().assignedGroup( key );
+		const auto currentGroup = AuthKeysManager().accessGroup( key );
 
 		bool ok = false;
-		const auto selectedGroup = QInputDialog::getItem( this, title, tr( "Please select a user group which to assign key \"%1\":" ).arg( key ),
+		const auto selectedGroup = QInputDialog::getItem( this, title,
+														  tr( "Please select a user group which to grant access to key \"%1\":" ).arg( key ),
 														  userGroups, userGroups.indexOf( currentGroup ), true, &ok );
 
 		if( ok && selectedGroup.isEmpty() == false )
 		{
 			AuthKeysManager manager;
-			const auto success = manager.setAssignedGroup( key, selectedGroup );
+			const auto success = manager.setAccessGroup( key, selectedGroup );
 
 			showResultMessage( success, title, manager.resultMessage() );
 
@@ -238,7 +239,7 @@ void AuthKeysConfigurationPage::assignOwnerGroup()
 	}
 	else
 	{
-		showResultMessage( false, title, tr( "Please select a key which to assign to a user group!" ) );
+		showResultMessage( false, title, tr( "Please select a key which to set the access group for!" ) );
 	}
 }
 

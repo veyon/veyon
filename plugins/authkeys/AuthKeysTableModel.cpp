@@ -83,7 +83,7 @@ QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
 	{
 	case ColumnKeyName: return key.split( '/' ).value( 0 );
 	case ColumnKeyType: return key.split( '/' ).value( 1 );
-	case ColumnOwnerGroup: return m_manager->assignedGroup( key );
+	case ColumnAccessGroup: return m_manager->accessGroup( key );
 	case ColumnKeyPairID: return m_manager->keyPairId( key );
 	default: break;
 	}
@@ -104,7 +104,7 @@ QVariant AuthKeysTableModel::headerData( int section, Qt::Orientation orientatio
 	{
 	case ColumnKeyName: return tr( "Name" );
 	case ColumnKeyType: return tr( "Type" );
-	case ColumnOwnerGroup: return tr( "Owner group");
+	case ColumnAccessGroup: return tr( "Access group");
 	case ColumnKeyPairID: return QString( "Pair ID");
 	default:
 		break;
