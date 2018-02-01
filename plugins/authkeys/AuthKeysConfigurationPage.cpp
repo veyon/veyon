@@ -29,6 +29,7 @@
 #include "AuthKeysConfigurationPage.h"
 #include "AuthKeysManager.h"
 #include "FileSystemBrowser.h"
+#include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "Configuration/UiMapping.h"
 
@@ -52,6 +53,7 @@ AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	CONNECT_BUTTON_SLOT( deleteKey );
 	CONNECT_BUTTON_SLOT( importKey );
 	CONNECT_BUTTON_SLOT( exportKey );
+	CONNECT_BUTTON_SLOT( assignOwnerGroup );
 
 	reloadKeyTable();
 
@@ -69,6 +71,8 @@ AuthKeysConfigurationPage::~AuthKeysConfigurationPage()
 void AuthKeysConfigurationPage::resetWidgets()
 {
 	FOREACH_VEYON_KEY_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
+	reloadKeyTable();
 }
 
 
@@ -202,6 +206,39 @@ void AuthKeysConfigurationPage::exportKey()
 	else
 	{
 		showResultMessage( false, title, tr( "Please select a key to export!" ) );
+	}
+}
+
+
+
+void AuthKeysConfigurationPage::assignOwnerGroup()
+{
+	const auto title = ui->assignOwnerGroup->text();
+
+	const auto key = selectedKey();
+
+	if( key.isEmpty() == false )
+	{
+		const auto userGroups = VeyonCore::platform().userFunctions().userGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() );
+		const auto currentGroup = AuthKeysManager().assignedGroup( key );
+
+		bool ok = false;
+		const auto selectedGroup = QInputDialog::getItem( this, title, tr( "Please select a user group which to assign key \"%1\":" ).arg( key ),
+														  userGroups, userGroups.indexOf( currentGroup ), true, &ok );
+
+		if( ok && selectedGroup.isEmpty() == false )
+		{
+			AuthKeysManager manager;
+			const auto success = manager.setAssignedGroup( key, selectedGroup );
+
+			showResultMessage( success, title, manager.resultMessage() );
+
+			reloadKeyTable();
+		}
+	}
+	else
+	{
+		showResultMessage( false, title, tr( "Please select a key which to assign to a user group!" ) );
 	}
 }
 

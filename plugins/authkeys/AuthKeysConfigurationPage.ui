@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1098</width>
-    <height>822</height>
+    <width>521</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -142,6 +142,9 @@ Technically the client sends a challenge (random data) for which the master has 
         <property name="selectionBehavior">
          <enum>QAbstractItemView::SelectRows</enum>
         </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <attribute name="verticalHeaderVisible">
          <bool>false</bool>
         </attribute>
@@ -152,28 +155,35 @@ Technically the client sends a challenge (random data) for which the master has 
         <item>
          <widget class="QPushButton" name="createKeyPair">
           <property name="text">
-           <string>Create</string>
+           <string>Create key pair</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="deleteKey">
           <property name="text">
-           <string>Delete</string>
+           <string>Delete key</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="importKey">
           <property name="text">
-           <string>Import</string>
+           <string>Import key</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="exportKey">
           <property name="text">
-           <string>Export</string>
+           <string>Export key</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="assignOwnerGroup">
+          <property name="text">
+           <string>Assign owner group</string>
           </property>
          </widget>
         </item>
