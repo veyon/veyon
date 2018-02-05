@@ -101,11 +101,11 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_extract( const QStringList& arguments );
 
 private:
-	void printAuthKeyTable();
+	static void printAuthKeyTable();
 	static QString authKeysTableData( const AuthKeysTableModel& tableModel, int row, int column );
 	static void printAuthKeyTableRow( const QString& name, const QString& type, const QString& pairId, const QString& accessGroup );
 	static void printAuthKeyTableSeparatorRow();
-	void printAuthKeyList();
+	static void printAuthKeyList();
 
 	QMap<QString, QString> m_commands;
 
