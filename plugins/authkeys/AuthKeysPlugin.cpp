@@ -184,10 +184,15 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 	}
 
 	const auto nameAndType = arguments[0].split( '/' );
-	const auto inputFile = arguments[1];
-
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
+
+	auto inputFile = arguments.value( 1 );
+
+	if( inputFile.isEmpty() )
+	{
+		inputFile = AuthKeysManager::exportedKeyFileName( name, type );
+	}
 
 	AuthKeysManager manager;
 	if( manager.importKey( name, type, inputFile ) == false )
