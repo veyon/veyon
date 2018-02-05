@@ -145,16 +145,21 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_delete( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStringList& arguments )
 {
-	if( arguments.size() < 2 )
+	if( arguments.size() < 1 )
 	{
 		return NotEnoughArguments;
 	}
 
 	const auto nameAndType = arguments[0].split( '/' );
-	const auto outputFile = arguments[1];
-
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
+
+	auto outputFile = arguments.value( 1 );
+
+	if( outputFile.isEmpty() )
+	{
+		outputFile = AuthKeysManager::exportedKeyFileName( name, type );
+	}
 
 	AuthKeysManager manager;
 	if( manager.exportKey( name, type, outputFile ) == false )
