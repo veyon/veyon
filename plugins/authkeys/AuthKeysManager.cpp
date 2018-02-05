@@ -464,6 +464,13 @@ QString AuthKeysManager::keyPairId( const QString& key )
 
 
 
+QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString& type )
+{
+	return QStringLiteral("%1_%2_key.pem").arg( name, type );
+}
+
+
+
 bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
 	if( isKeyNameValid( name ) == false )

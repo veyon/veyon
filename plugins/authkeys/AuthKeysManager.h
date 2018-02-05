@@ -58,6 +58,8 @@ public:
 
 	QString keyPairId( const QString& key );
 
+	static QString exportedKeyFileName( const QString& name, const QString& type );
+
 private:
 	bool checkKey( const QString& name, const QString& type, bool checkIsReadable = true );
 
