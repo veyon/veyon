@@ -193,7 +193,7 @@ void AuthKeysConfigurationPage::exportKey()
 		const auto type = nameAndType[1];
 
 		const auto outputFile = QFileDialog::getSaveFileName( this, title, QDir::homePath() + QDir::separator() +
-															  QStringLiteral("%1_%2_key.pem").arg( name, type ),
+															  AuthKeysManager::exportedKeyFileName( name, type ),
 															  m_keyFilesFilter );
 		if( outputFile.isEmpty() == false )
 		{
