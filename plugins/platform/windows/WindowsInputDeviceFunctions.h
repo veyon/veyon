@@ -45,12 +45,14 @@ public:
 private:
 	void enableInterception();
 	void disableInterception();
+	void initHIDServiceStatus();
 	void stopHIDService();
 	void restoreHIDService();
 
 	bool m_inputDevicesDisabled;
 	InterceptionContext m_interceptionContext;
 	QString m_hidServiceName;
+	bool m_hidServiceStatusInitialized;
 	bool m_hidServiceActivated;
 
 };

@@ -38,10 +38,11 @@ static int interception_is_any( InterceptionDevice device )
 
 
 WindowsInputDeviceFunctions::WindowsInputDeviceFunctions() :
-	m_inputDevicesDisabled( false ),
-	m_interceptionContext( nullptr ),
-	m_hidServiceName( QStringLiteral("hidserv") ),
-	m_hidServiceActivated( VeyonCore::platform().serviceFunctions().isRunning( m_hidServiceName ) )
+    m_inputDevicesDisabled( false ),
+    m_interceptionContext( nullptr ),
+    m_hidServiceName( QStringLiteral("hidserv") ),
+    m_hidServiceStatusInitialized( false ),
+    m_hidServiceActivated( false )
 {
 }
 
@@ -137,6 +138,17 @@ void WindowsInputDeviceFunctions::disableInterception()
 
 
 
+void WindowsInputDeviceFunctions::initHIDServiceStatus()
+{
+	if( m_hidServiceStatusInitialized == false )
+	{
+		m_hidServiceActivated = VeyonCore::platform().serviceFunctions().isRunning( m_hidServiceName );
+		m_hidServiceStatusInitialized = true;
+	}
+}
+
+
+
 void WindowsInputDeviceFunctions::restoreHIDService()
 {
 	if( m_hidServiceActivated )
@@ -149,6 +161,8 @@ void WindowsInputDeviceFunctions::restoreHIDService()
 
 void WindowsInputDeviceFunctions::stopHIDService()
 {
+	initHIDServiceStatus();
+
 	if( m_hidServiceActivated )
 	{
 		VeyonCore::platform().serviceFunctions().stop( m_hidServiceName );
