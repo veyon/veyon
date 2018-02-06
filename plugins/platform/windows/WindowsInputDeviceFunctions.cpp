@@ -89,17 +89,17 @@ bool WindowsInputDeviceFunctions::configureSoftwareSAS(bool enabled)
 	HKEY hkLocal, hkLocalKey;
 	DWORD dw;
 	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
-						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
-						0, REG_NONE, REG_OPTION_NON_VOLATILE,
-						KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
+	                    L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+	                    0, REG_NONE, REG_OPTION_NON_VOLATILE,
+	                    KEY_READ, NULL, &hkLocal, &dw ) != ERROR_SUCCESS)
 	{
 		return false;
 	}
 
 	if( RegOpenKeyEx( hkLocal,
-					  L"System",
-					  0, KEY_WRITE | KEY_READ,
-					  &hkLocalKey ) != ERROR_SUCCESS )
+	                  L"System",
+	                  0, KEY_WRITE | KEY_READ,
+	                  &hkLocalKey ) != ERROR_SUCCESS )
 	{
 		RegCloseKey( hkLocal );
 		return false;
@@ -120,8 +120,8 @@ void WindowsInputDeviceFunctions::enableInterception()
 	m_interceptionContext = interception_create_context();
 
 	interception_set_filter( m_interceptionContext,
-							 interception_is_any,
-							 INTERCEPTION_FILTER_KEY_ALL | INTERCEPTION_FILTER_MOUSE_ALL );
+	                         interception_is_any,
+	                         INTERCEPTION_FILTER_KEY_ALL | INTERCEPTION_FILTER_MOUSE_ALL );
 }
 
 

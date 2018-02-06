@@ -39,16 +39,16 @@
 static const int screenSaverSettingsCount = 3;
 static const UINT screenSaverSettingsGetList[screenSaverSettingsCount] =
 {
-	SPI_GETLOWPOWERTIMEOUT,
-	SPI_GETPOWEROFFTIMEOUT,
-	SPI_GETSCREENSAVETIMEOUT
+    SPI_GETLOWPOWERTIMEOUT,
+    SPI_GETPOWEROFFTIMEOUT,
+    SPI_GETSCREENSAVETIMEOUT
 };
 
 static const UINT screenSaverSettingsSetList[screenSaverSettingsCount] =
 {
-	SPI_SETLOWPOWERTIMEOUT,
-	SPI_SETPOWEROFFTIMEOUT,
-	SPI_SETSCREENSAVETIMEOUT
+    SPI_SETLOWPOWERTIMEOUT,
+    SPI_SETPOWEROFFTIMEOUT,
+    SPI_SETSCREENSAVETIMEOUT
 };
 
 static int screenSaverSettings[screenSaverSettingsCount];
@@ -64,12 +64,12 @@ static DWORD findProcessId( const QString& userName )
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr,		// system name
-						   (LPCWSTR) userName.utf16(),
-						   userSID,
-						   &sidLen,
-						   domainName,
-						   &domainLen,
-						   &sidNameUse ) == false )
+	                       (LPCWSTR) userName.utf16(),
+	                       userSID,
+	                       &sidLen,
+	                       domainName,
+	                       &domainLen,
+	                       &sidNameUse ) == false )
 	{
 		qCritical( "Could not look up SID structure" );
 		return -1;
@@ -88,7 +88,7 @@ static DWORD findProcessId( const QString& userName )
 	for( DWORD proc = 0; proc < processCount; ++proc )
 	{
 		if( processInfo[proc].ProcessId > 0 &&
-				EqualSid( processInfo[proc].pUserSid, userSID ) )
+		        EqualSid( processInfo[proc].pUserSid, userSID ) )
 		{
 			pid = processInfo[proc].ProcessId;
 			break;
@@ -103,7 +103,7 @@ static DWORD findProcessId( const QString& userName )
 
 
 WindowsCoreFunctions::WindowsCoreFunctions() :
-	m_eventLog( nullptr )
+    m_eventLog( nullptr )
 {
 }
 
@@ -228,7 +228,7 @@ QString WindowsCoreFunctions::activeDesktopName()
 	wchar_t inputDesktopName[256];
 	inputDesktopName[0] = 0;
 	if( GetUserObjectInformation( desktopHandle, UOI_NAME, inputDesktopName,
-								  sizeof( inputDesktopName ) / sizeof( wchar_t ), nullptr ) )
+	                              sizeof( inputDesktopName ) / sizeof( wchar_t ), nullptr ) )
 	{
 		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName ) );
 	}
@@ -247,12 +247,12 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 	// allocate and initialize a SID of the administrators group.
 	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
 	if( AllocateAndInitializeSid(
-				&NtAuthority,
-				2,
-				SECURITY_BUILTIN_DOMAIN_RID,
-				DOMAIN_ALIAS_RID_ADMINS,
-				0, 0, 0, 0, 0, 0,
-				&adminGroupSid ) )
+	            &NtAuthority,
+	            2,
+	            SECURITY_BUILTIN_DOMAIN_RID,
+	            DOMAIN_ALIAS_RID_ADMINS,
+	            0, 0, 0, 0, 0, 0,
+	            &adminGroupSid ) )
 	{
 		// determine whether the SID of administrators group is enabled in
 		// the primary access token of the process.
@@ -289,14 +289,14 @@ bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStr
 
 
 bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
-											 const QString& username,
-											 const QString& desktop )
+                                             const QString& username,
+                                             const QString& desktop )
 {
 	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 
 	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false,
-												findProcessId( username ) );
+	                                            findProcessId( username ) );
 
 	HANDLE userProcessToken = nullptr;
 	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
@@ -337,21 +337,21 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 	HANDLE newToken = nullptr;
 
 	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
-					  SecurityImpersonation, TokenPrimary, &newToken );
+	                  SecurityImpersonation, TokenPrimary, &newToken );
 
 	if( CreateProcessAsUser(
-				newToken,			// client's access token
-				nullptr,			  // file to execute
-				(LPWSTR) program.utf16(),	 // command line
-				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
-				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
-				false,			 // handles are not inheritable
-				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
-				userEnvironment,			  // pointer to new environment block
-				profileDir,			  // name of current directory
-				&si,			   // pointer to STARTUPINFO structure
-				&pi				// receives information about new process
-				) == false )
+	            newToken,			// client's access token
+	            nullptr,			  // file to execute
+	            (LPWSTR) program.utf16(),	 // command line
+	            nullptr,			  // pointer to process SECURITY_ATTRIBUTES
+	            nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
+	            false,			 // handles are not inheritable
+	            CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
+	            userEnvironment,			  // pointer to new environment block
+	            profileDir,			  // name of current directory
+	            &si,			   // pointer to STARTUPINFO structure
+	            &pi				// receives information about new process
+	            ) == false )
 	{
 		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
 		return false;
@@ -380,7 +380,7 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 	LUID luid;
 
 	if( !OpenProcessToken( GetCurrentProcess(),
-						   TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &token ) )
+	                       TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &token ) )
 	{
 		return false;
 	}
