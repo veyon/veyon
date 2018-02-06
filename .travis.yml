@@ -13,6 +13,8 @@ matrix:
         - env: TARGET_OS=centos.73
         - env: TARGET_OS=fedora.26
         - env: TARGET_OS=opensuse.42.3
+before_install:
+    - docker build -t veyon-build ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
 script:
     - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
     - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} /bin/sh /veyon/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
