@@ -202,9 +202,9 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	}
 
 	const auto result = SetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT,
-											  DACL_SECURITY_INFORMATION, nullptr, nullptr, acl, nullptr );
+	                                          DACL_SECURITY_INFORMATION, nullptr, nullptr, acl, nullptr );
 
-	if( result != ERROR_ACCESS_DENIED )
+	if( result != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "SetNamedSecurityInfo() failed:" << result;
 	}
