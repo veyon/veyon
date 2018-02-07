@@ -68,27 +68,40 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
 
 	const auto secInfoResult = GetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	                                                 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
 		return QString();
 	}
 
-	wchar_t name[PATH_MAX];
 	DWORD nameSize = 0;
-	DWORD domainLen = 0;
-	SID_NAME_USE sidNameUse;
+	DWORD domainSize = 0;
+	SID_NAME_USE sidNameUse = SidTypeUnknown;
 
-	const auto lookupSidResult = LookupAccountSid( nullptr, ownerSID, name, &nameSize,
-												   nullptr, &domainLen, &sidNameUse );
-	if( lookupSidResult != ERROR_SUCCESS )
+	LookupAccountSid( nullptr, ownerSID, nullptr, &nameSize, nullptr, &domainSize, &sidNameUse );
+
+	if( nameSize == 0 || domainSize == 0)
 	{
-		qCritical() << Q_FUNC_INFO << "LookupAccountSid() failed:" << lookupSidResult;
+		qCritical() << Q_FUNC_INFO << "Failed to retrieve buffer sizes:" << GetLastError();
 		return QString();
 	}
 
-	return QString::fromWCharArray( name );
+	wchar_t* name = new wchar_t[nameSize];
+	wchar_t* domain = new wchar_t[domainSize];
+
+	if( LookupAccountSid( nullptr, ownerSID, name, &nameSize, domain, &domainSize, &sidNameUse ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "LookupAccountSid() (2) failed:" << GetLastError();
+		return QString();
+	}
+
+	const auto owner = QStringLiteral("%1\\%2").arg( QString::fromWCharArray( domain ), QString::fromWCharArray( name ) );
+
+	delete[] name;
+	delete[] domain;
+
+	return owner;
 }
 
 
