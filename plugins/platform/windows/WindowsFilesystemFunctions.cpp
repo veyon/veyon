@@ -110,29 +110,29 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE;
 	char ownerGroupSID[SECURITY_MAX_SID_SIZE];
-	wchar_t domainName[MAX_PATH];
-	domainName[0] = 0;
-	DWORD domainLen = MAX_PATH;
+	wchar_t domain[PATH_MAX];
+	domain[0] = 0;
+	DWORD domainLen = PATH_MAX;
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr, (LPCWSTR) ownerGroup.utf16(), ownerGroupSID, &sidLen,
-						   domainName, &domainLen, &sidNameUse ) == false )
+	                       domain, &domainLen, &sidNameUse ) == false )
 	{
-		qCritical( "Could not look up SID structure" );
+		qCritical() << "Could not look up SID structure:" << GetLastError();
 		return false;
 	}
 
 	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, true );
 
 	const auto result = SetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT,
-											  OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
-
-	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, false );
+	                                          OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
 
 	if( result != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "SetNamedSecurityInfo() failed:" << result;
 	}
+
+	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, false );
 
 	return result == ERROR_SUCCESS;
 }
@@ -145,7 +145,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
 
 	const auto secInfoResult = GetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	                                                 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
@@ -155,7 +155,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	PSID adminSID = nullptr;
 	SID_IDENTIFIER_AUTHORITY SIDAuthNT = SECURITY_NT_AUTHORITY;
 	if( AllocateAndInitializeSid( &SIDAuthNT, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
-								  0, 0, 0, 0, 0, 0, &adminSID ) == false )
+	                              0, 0, 0, 0, 0, 0, &adminSID ) == false )
 	{
 		return false;
 	}
