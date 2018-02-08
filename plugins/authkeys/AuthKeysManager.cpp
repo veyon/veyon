@@ -54,16 +54,9 @@ AuthKeysManager::~AuthKeysManager()
 
 
 
-bool AuthKeysManager::isKeyNameValid( const QString& name )
-{
-	return QRegExp( "\\w+").exactMatch( name );
-}
-
-
-
 bool AuthKeysManager::createKeyPair( const QString& name )
 {
-	if( isKeyNameValid( name ) == false)
+	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
@@ -172,7 +165,7 @@ bool AuthKeysManager::exportKey( const QString& name, const QString& type, const
 
 bool AuthKeysManager::importKey( const QString& name, const QString& type, const QString& inputFile )
 {
-	if( isKeyNameValid( name ) == false)
+	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
@@ -282,7 +275,7 @@ QStringList AuthKeysManager::listKeys()
 
 bool AuthKeysManager::extractPublicFromPrivateKey( const QString& name )
 {
-	if( isKeyNameValid( name ) == false)
+	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
@@ -473,7 +466,7 @@ QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString
 
 bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
-	if( isKeyNameValid( name ) == false )
+	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false )
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;

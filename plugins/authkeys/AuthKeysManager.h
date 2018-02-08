@@ -39,8 +39,6 @@ public:
 		return m_resultMessage;
 	}
 
-	static bool isKeyNameValid( const QString& name );
-
 	bool createKeyPair( const QString& name );
 	bool deleteKey( const QString& name, const QString& type );
 	bool exportKey( const QString& name, const QString& type, const QString& outputFile );
