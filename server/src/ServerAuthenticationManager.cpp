@@ -144,18 +144,20 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 
 	case VncServerClient::AuthChallenge:
 	{
-		// get user role
-		const VeyonCore::UserRoles urole = static_cast<VeyonCore::UserRoles>( message.read().toInt() );
+		// get authentication key name
+		const auto authKeyName = message.read().toString();
 
 		// now try to verify received signed data using public key of the user
 		// under which the client claims to run
 		const QByteArray signature = message.read().toByteArray();
 
-		qDebug() << "Loading public key" << VeyonCore::filesystem().publicKeyPath( urole ) << "for role" << urole;
-		// (publicKeyPath does range-checking of urole)
-		CryptoCore::PublicKey publicKey( VeyonCore::filesystem().publicKeyPath( urole ) );
+		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath( authKeyName );
 
-		if( publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) )
+		qDebug() << "ServerAuthenticationManager: loading public key" << publicKeyPath;
+		CryptoCore::PublicKey publicKey( publicKeyPath );
+
+		if( publicKey.isNull() == false && publicKey.isPublic() &&
+				publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) )
 		{
 			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;
