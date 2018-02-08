@@ -147,7 +147,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
 
 	const auto secInfoResult = GetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-	                                                 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
@@ -157,7 +157,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	PSID adminSID = nullptr;
 	SID_IDENTIFIER_AUTHORITY SIDAuthNT = SECURITY_NT_AUTHORITY;
 	if( AllocateAndInitializeSid( &SIDAuthNT, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
-	                              0, 0, 0, 0, 0, 0, &adminSID ) == false )
+								  0, 0, 0, 0, 0, 0, &adminSID ) == false )
 	{
 		return false;
 	}
@@ -204,7 +204,8 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	}
 
 	const auto result = SetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT,
-	                                          DACL_SECURITY_INFORMATION, nullptr, nullptr, acl, nullptr );
+											  DACL_SECURITY_INFORMATION | PROTECTED_DACL_SECURITY_INFORMATION,
+											  nullptr, nullptr, acl, nullptr );
 
 	if( result != ERROR_SUCCESS )
 	{
