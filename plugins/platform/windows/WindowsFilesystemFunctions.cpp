@@ -116,16 +116,17 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr, (LPCWSTR) ownerGroup.utf16(), ownerGroupSID, &sidLen,
-	                       domain, &domainLen, &sidNameUse ) == false )
+						   domain, &domainLen, &sidNameUse ) == false )
 	{
 		qCritical() << "Could not look up SID structure:" << GetLastError();
 		return false;
 	}
 
 	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, true );
+	WindowsCoreFunctions::enablePrivilege( SE_RESTORE_NAME, true );
 
 	const auto result = SetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT,
-	                                          OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
+											  OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
 
 	if( result != ERROR_SUCCESS )
 	{
@@ -133,6 +134,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 	}
 
 	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, false );
+	WindowsCoreFunctions::enablePrivilege( SE_RESTORE_NAME, false );
 
 	return result == ERROR_SUCCESS;
 }
