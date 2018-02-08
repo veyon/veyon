@@ -314,13 +314,20 @@ QString VeyonCore::stripDomain( const QString& username )
 
 
 
+bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
+{
+	return QRegExp( "\\w+" ).exactMatch( authKeyName );
+}
+
+
+
 bool VeyonCore::initKeyFileAuthentication()
 {
 	auto authKeyName = QProcessEnvironment::systemEnvironment().value( QStringLiteral("VEYON_AUTH_KEY_NAME") );
 
 	if( authKeyName.isEmpty() == false )
 	{
-		if( QRegExp( "\\w+").exactMatch( authKeyName ) &&
+		if( isAuthenticationKeyNameValid( authKeyName ) &&
 				m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
 		{
 			m_authenticationKeyName = authKeyName;

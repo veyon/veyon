@@ -112,6 +112,8 @@ public:
 		return m_authenticationKeyName;
 	}
 
+	static bool isAuthenticationKeyNameValid( const QString& authKeyName );
+
 	typedef enum AuthenticationMethods
 	{
 		LogonAuthentication,
