@@ -67,8 +67,8 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	PSID ownerSID = nullptr;
 	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
 
-	const auto secInfoResult = GetNamedSecurityInfo( (LPWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-	                                                 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	const auto secInfoResult = GetNamedSecurityInfo( (LPCWSTR) filePath.utf16(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
+													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		qCritical() << Q_FUNC_INFO << "GetSecurityInfo() failed:" << secInfoResult;
