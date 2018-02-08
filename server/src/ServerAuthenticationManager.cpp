@@ -147,6 +147,12 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 		// get authentication key name
 		const auto authKeyName = message.read().toString();
 
+		if( VeyonCore::isAuthenticationKeyNameValid( authKeyName ) == false )
+		{
+			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): invalid auth key name!" );
+			return VncServerClient::AuthFinishedFail;
+		}
+
 		// now try to verify received signed data using public key of the user
 		// under which the client claims to run
 		const QByteArray signature = message.read().toByteArray();
