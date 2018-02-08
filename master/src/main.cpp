@@ -29,12 +29,8 @@
 #include "MainWindow.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCoreConnection.h"
-#include "Logger.h"
 
 
-QSplashScreen * splashScreen = nullptr;
-
-// good old main-function... initializes qt-app and starts Veyon
 int main( int argc, char * * argv )
 {
 	VeyonCore::setupApplicationParameters();
@@ -43,42 +39,6 @@ int main( int argc, char * * argv )
 	app.connect( &app, &QApplication::lastWindowClosed, &QApplication::quit );
 
 	VeyonCore core( &app, QStringLiteral("Master") );
-
-	// parse arguments
-	QStringListIterator arg_it( QCoreApplication::arguments() );
-	arg_it.next();
-
-	while( argc > 1 && arg_it.hasNext() )
-	{
-		const QString & a = arg_it.next();
-		if( a == QStringLiteral("-role") )
-		{
-			if( arg_it.hasNext() )
-			{
-				const QString role = arg_it.next();
-				if( role == QStringLiteral("teacher") )
-				{
-					core.setUserRole( VeyonCore::RoleTeacher );
-				}
-				else if( role == QStringLiteral("admin") )
-				{
-					core.setUserRole( VeyonCore::RoleAdmin );
-				}
-				else if( role == QStringLiteral("supporter") )
-				{
-					core.setUserRole( VeyonCore::RoleSupporter );
-				}
-			}
-			else
-			{
-				printf( "-role needs an argument:\n"
-					"	teacher\n"
-					"	admin\n"
-					"	supporter\n\n" );
-				return -1;
-			}
-		}
-	}
 
 	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/resources/splash.png") ) );
 	splashScreen.show();
@@ -99,9 +59,7 @@ int main( int argc, char * * argv )
 
 	mainWindow.show();
 
-	ilog( Info, "Exec" );
+	qInfo( "Master: running" );
 
-	// let's rock!!
 	return app.exec();
 }
-
