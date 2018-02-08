@@ -107,28 +107,9 @@ public:
 
 	static QString stripDomain( const QString& username );
 
-	typedef enum UserRoles
+	const QString& authenticationKeyName() const
 	{
-		RoleNone,
-		RoleTeacher,
-		RoleAdmin,
-		RoleSupporter,
-		RoleOther,
-		RoleCount
-	} UserRole;
-
-	Q_ENUM(UserRole)
-
-	static QString userRoleName( UserRole role );
-
-	UserRole userRole()
-	{
-		return m_userRole;
-	}
-
-	void setUserRole( UserRole userRole )
-	{
-		m_userRole = userRole;
+		return m_authenticationKeyName;
 	}
 
 	typedef enum AuthenticationMethods
@@ -139,6 +120,8 @@ public:
 	} AuthenticationMethod;
 
 private:
+	bool initKeyFileAuthentication();
+
 	static VeyonCore* s_instance;
 
 	Filesystem* m_filesystem;
@@ -153,7 +136,7 @@ private:
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 
 	QString m_applicationName;
-	UserRole m_userRole;
+	QString m_authenticationKeyName;
 
 };
 

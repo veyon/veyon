@@ -159,42 +159,6 @@ QString Filesystem::publicKeyPath( const QString& name ) const
 
 
 
-QString Filesystem::privateKeyPath( VeyonCore::UserRoles role, QString baseDir ) const
-{
-	if( baseDir.isEmpty() )
-	{
-		baseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
-	}
-	else
-	{
-		baseDir += QDir::separator() + QStringLiteral( "private" );
-	}
-
-	const auto d = baseDir + QDir::separator() + VeyonCore::userRoleName( role ) + QDir::separator() + QStringLiteral( "key" );
-
-	return QDir::toNativeSeparators( d );
-}
-
-
-
-QString Filesystem::publicKeyPath( VeyonCore::UserRoles role, QString baseDir ) const
-{
-	if( baseDir.isEmpty() )
-	{
-		baseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().publicKeyBaseDir() );
-	}
-	else
-	{
-		baseDir += QDir::separator() + QStringLiteral( "public" );
-	}
-
-	const auto d = baseDir + QDir::separator() + VeyonCore::userRoleName( role ) + QDir::separator() + QStringLiteral( "key" );
-
-	return QDir::toNativeSeparators( d );
-}
-
-
-
 QString Filesystem::serverFilePath() const
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +

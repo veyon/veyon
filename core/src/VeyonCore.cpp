@@ -27,8 +27,10 @@
 #include <QAbstractButton>
 #include <QAction>
 #include <QApplication>
+#include <QDir>
 #include <QGroupBox>
 #include <QLabel>
+#include <QProcessEnvironment>
 #include <QWizardPage>
 
 #include "UserGroupsBackendManager.h"
@@ -72,7 +74,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
-	m_userRole( RoleTeacher )
+	m_authenticationKeyName()
 {
 	Q_ASSERT( application != nullptr );
 
@@ -238,16 +240,7 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
 			config().authenticationMethod() == KeyFileAuthentication )
 	{
-		const QString privKeyFile = VeyonCore::filesystem().privateKeyPath( userRole() );
-		qDebug() << "Loading private key" << privKeyFile << "for role" << userRole();
-		if( m_authenticationCredentials->loadPrivateKey( privKeyFile ) )
-		{
-			success = true;
-		}
-		else
-		{
-			success = false;
-		}
+		success = initKeyFileAuthentication();
 	}
 
 	return success;
@@ -307,22 +300,6 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 
 
 
-QString VeyonCore::userRoleName( VeyonCore::UserRole role )
-{
-	static const char *userRoleNames[] =
-	{
-		"none",
-		"teacher",
-		"admin",
-		"supporter",
-		"other"
-	} ;
-
-	return userRoleNames[role];
-}
-
-
-
 QString VeyonCore::stripDomain( const QString& username )
 {
 	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
@@ -333,4 +310,37 @@ QString VeyonCore::stripDomain( const QString& username )
 	}
 
 	return username;
+}
+
+
+
+bool VeyonCore::initKeyFileAuthentication()
+{
+	auto authKeyName = QProcessEnvironment::systemEnvironment().value( QStringLiteral("VEYON_AUTH_KEY_NAME") );
+
+	if( authKeyName.isEmpty() == false )
+	{
+		if( QRegExp( "\\w+").exactMatch( authKeyName ) &&
+				m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
+		{
+			m_authenticationKeyName = authKeyName;
+		}
+	}
+	else
+	{
+		// try to auto-detect private key file by searching for readable file
+		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
+		const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
+
+		for( const auto& privateKeyDir : privateKeyDirs )
+		{
+			if( m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( privateKeyDir ) ) )
+			{
+				m_authenticationKeyName = privateKeyDir;
+				return true;
+			}
+		}
+	}
+
+	return false;
 }

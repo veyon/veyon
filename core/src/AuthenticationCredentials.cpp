@@ -74,6 +74,8 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 
 bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
 {
+	qDebug() << "AuthenticationCredentials: loading private key" << privateKeyFile;
+
 	if( privateKeyFile.isEmpty() )
 	{
 		return false;
@@ -81,5 +83,5 @@ bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
 
 	m_privateKey = CryptoCore::PrivateKey( privateKeyFile );
 
-	return m_privateKey.isNull() == false;
+	return m_privateKey.isNull() == false && m_privateKey.isPrivate();
 }

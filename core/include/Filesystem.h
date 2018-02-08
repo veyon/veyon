@@ -39,9 +39,6 @@ public:
 	QString privateKeyPath( const QString& name ) const;
 	QString publicKeyPath( const QString& name ) const;
 
-	QString privateKeyPath( VeyonCore::UserRoles role, QString baseDir = QString() ) const;
-	QString publicKeyPath( VeyonCore::UserRoles role, QString baseDir = QString() ) const;
-
 	QString serverFilePath() const;
 	QString workerFilePath() const;
 

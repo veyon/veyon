@@ -865,7 +865,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
 
 			VariantArrayMessage challengeResponseMessage( &socketDevice );
-			challengeResponseMessage.write( VeyonCore::instance()->userRole() );
+			challengeResponseMessage.write( VeyonCore::instance()->authenticationKeyName() );
 			challengeResponseMessage.write( signature );
 			challengeResponseMessage.send();
 		}
