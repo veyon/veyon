@@ -169,15 +169,8 @@ bool MainWindow::initAuthentication()
 		return true;
 	}
 
-	if( VeyonCore::instance()->userRole() != VeyonCore::RoleTeacher )
-	{
-		VeyonCore::instance()->setUserRole( VeyonCore::RoleTeacher );
-		return initAuthentication();
-	}
-
 	// if we have logon credentials, assume they are fine and continue
-	if( VeyonCore::authenticationCredentials().hasCredentials(
-									AuthenticationCredentials::UserLogon ) )
+	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
 	{
 		return true;
 	}
