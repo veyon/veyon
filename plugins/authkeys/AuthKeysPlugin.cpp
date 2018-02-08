@@ -229,7 +229,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStri
 
 CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStringList& arguments )
 {
-	if( arguments.size() < 2 )
+	if( arguments.size() < 1 )
 	{
 		return NotEnoughArguments;
 	}
