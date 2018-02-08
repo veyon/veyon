@@ -35,7 +35,6 @@
 
 #include "AboutDialog.h"
 #include "ConfigurationPagePluginInterface.h"
-#include "ConfiguratorCore.h"
 #include "ConfigurationManager.h"
 #include "VeyonConfiguration.h"
 #include "MainWindow.h"

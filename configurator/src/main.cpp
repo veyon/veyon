@@ -27,7 +27,6 @@
 #include <QDir>
 
 #include "ConfigurationTestController.h"
-#include "ConfiguratorCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "MainWindow.h"
@@ -48,16 +47,16 @@ int main( int argc, char **argv )
 	if( VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
 	{
 		if( VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
-																 app.arguments().mid( 1 ) ) )
+																	 app.arguments().mid( 1 ) ) )
 		{
 			return 0;
 		}
 
-		QMessageBox::warning( nullptr, ConfiguratorCore::tr( "Insufficient privileges" ),
-							  ConfiguratorCore::tr( "Could not start with administrative privileges. "
-													"Please make sure a sudo-like program is installed "
-													"for your desktop environment! The program will "
-													"be run with normal user privileges.") );
+		QMessageBox::warning( nullptr, MainWindow::tr( "Insufficient privileges" ),
+							  MainWindow::tr( "Could not start with administrative privileges. "
+											  "Please make sure a sudo-like program is installed "
+											  "for your desktop environment! The program will "
+											  "be run with normal user privileges.") );
 	}
 
 	if( !VeyonConfiguration().isStoreWritable() &&
