@@ -547,6 +547,9 @@ void VeyonVncConnection::establishConnection()
 		}
 		else
 		{
+			// rfbInitClient() calls rfbClientCleanup() when failed
+			m_cl = nullptr;
+
 			// guess reason why connection failed
 			if( m_serviceReachable == false )
 			{
@@ -676,9 +679,10 @@ void VeyonVncConnection::handleConnection()
 
 void VeyonVncConnection::closeConnection()
 {
-	if( m_state == Connected && m_cl )
+	if( m_cl )
 	{
 		rfbClientCleanup( m_cl );
+		m_cl = nullptr;
 	}
 
 	setState( Disconnected );
