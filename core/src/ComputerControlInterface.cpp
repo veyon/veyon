@@ -56,6 +56,9 @@ ComputerControlInterface::~ComputerControlInterface()
 
 void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures )
 {
+	// make sure we do not leak
+	stop();
+
 	m_scaledScreenSize = scaledScreenSize;
 	m_builtinFeatures = builtinFeatures;
 
@@ -66,9 +69,10 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		m_vncConnection->setQuality( VeyonVncConnection::ThumbnailQuality );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 		m_vncConnection->setFramebufferUpdateInterval( FramebufferUpdateInterval );
-		m_vncConnection->start();
 
 		m_coreConnection = new VeyonCoreConnection( m_vncConnection );
+
+		m_vncConnection->start();
 
 		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
 		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete ,this, &ComputerControlInterface::updateUser );
