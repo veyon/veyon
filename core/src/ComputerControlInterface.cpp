@@ -56,6 +56,9 @@ ComputerControlInterface::~ComputerControlInterface()
 
 void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures )
 {
+	// make sure we do not leak
+	stop();
+
 	m_scaledScreenSize = scaledScreenSize;
 	m_builtinFeatures = builtinFeatures;
 
