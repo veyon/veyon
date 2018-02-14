@@ -44,7 +44,8 @@ int main( int argc, char **argv )
 	VeyonCore core( &app, QStringLiteral("Configurator") );
 
 	// make sure to run as admin
-	if( VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
+	if( qEnvironmentVariableIntValue( "VEYON_CONFIGURATOR_NO_ELEVATION" ) == 0 &&
+			VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false )
 	{
 		if( VeyonCore::platform().coreFunctions().runProgramAsAdmin( QCoreApplication::applicationFilePath(),
 																	 app.arguments().mid( 1 ) ) )
