@@ -150,7 +150,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>도메인 그룹 사용 허용</translation>
     </message>
 </context>
 <context>
@@ -439,7 +439,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>활성화된 기능들: %1</translation>
     </message>
 </context>
 <context>
@@ -919,7 +919,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>운영체계의 로깅시스템에 기록</translation>
     </message>
 </context>
 <context>

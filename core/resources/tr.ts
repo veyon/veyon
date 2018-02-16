@@ -489,7 +489,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Öntanımlı ağ nesnesi dizini eklentisi bulunamadı. Lütfen kurulumunuzu denetleyin veya %1 Yapılandırıcı aracılığıyla başka bir ağ nesnesi dizini eklentisi yapılandırın.</translation>
+        <translation>Öntanımlı ağ nesnesi dizini eklentisi bulunamadı. Lütfen kurulumunuzu gözden geçirin veya %1 Yapılandırıcı aracılığıyla başka bir ağ nesnesi dizini eklentisi yapılandırın.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
@@ -576,7 +576,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>Verilen anahtar için yapılandırma değerini oku ve çıktıla</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
@@ -906,7 +906,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>Günlük dosyalarını döndür</translation>
     </message>
     <message>
         <source>x</source>
@@ -1128,11 +1128,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
-        <translation type="unfinished"/>
+        <translation>Durağan temel DN</translation>
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
@@ -1140,11 +1140,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN&apos;yi adlandırma bağlamına göre keşfet</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
+        <translation>örn. namingContexts veya defaultNamingContext</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1188,7 +1188,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation type="unfinished"/>
+        <translation>örn. hwAddress</translation>
     </message>
     <message>
         <source>Computer host name attribute</source>
@@ -1196,7 +1196,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"/>
+        <translation>örn. member veya memberUid</translation>
     </message>
     <message>
         <source>User login attribute</source>
@@ -1204,7 +1204,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation type="unfinished"/>
+        <translation>örn. dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
@@ -1216,11 +1216,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"/>
+        <translation>örn. uid veya sAMAccountName</translation>
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Ana makine adları, tam nitelikli alan adları (FQDN, örn. makinem.ornek.org) olarak depolandı.</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -1232,7 +1232,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. objectClass=group</source>
-        <translation type="unfinished"/>
+        <translation>örn. objectClass=group</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
@@ -1240,7 +1240,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. objectClass=person</source>
-        <translation type="unfinished"/>
+        <translation>örn. objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1256,11 +1256,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"/>
+        <translation>Ayırt edilen ad (Samba/AD)</translation>
     </message>
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı girişi veya bilgisayar ana makine adı için yapılandırılmış öznitelik (OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -1300,39 +1300,43 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP temel DN sınaması başarısız</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırılmış temel DN sorgulanamadı. Lütfen temel DN parametresini gözden geçirin.
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP temel DN sınaması başarılı</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP temel DN&apos;si başarıyla sorgulandı. Şu girdiler bulundu:
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP adlandırma bağlamı sınaması başarısız</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN, adlandırma bağlamları aracılığıyla sorgulanamadı. Lütfen adlandırma bağlamı özniteliği parametresini gözden geçirin.
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP adlandırma bağlamı sınaması başarılı</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP adlandırma bağlamı başarıyla sorgulandı. Şu temel DN bulundu:
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
@@ -1416,7 +1420,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar DN&apos;sini gir</translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
@@ -1514,7 +1518,9 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation>Yapılandırılmış %1&apos;de hiçbir girdi sorgulanamadı. Lütfen %1 parametresini gözden geçirin.</translation>
+        <translation>Yapılandırılmış %1&apos;de hiçbir girdi sorgulanamadı. Lütfen %1 parametresini gözden geçirin.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -1528,7 +1534,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation>Herhangi bir %1 sorgulanamadı. Lütfen %2 parametresini denetleyin veya var olan bir nesnenin adını girin.
+        <translation>Herhangi bir %1 sorgulanamadı. Lütfen %2 parametresini gözden geçirin veya var olan bir nesnenin adını girin.
 
 %3</translation>
     </message>
@@ -1578,15 +1584,15 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. objectClass=computer</source>
-        <translation type="unfinished"/>
+        <translation>örn. objectClass=computer</translation>
     </message>
     <message>
         <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation type="unfinished"/>
+        <translation>örn. objectClass=room veya objectClass=computerLab</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>örn. room veya computerLab</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -1638,7 +1644,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation type="unfinished"/>
+        <translation>örn. objectClass=container veya objectClass=organizationalUnit</translation>
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
@@ -1704,7 +1710,7 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN&apos;yi adlandırma bağlamı aracılığıyla kendiliğinden yapılandır</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
@@ -1826,11 +1832,11 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation type="unfinished"/>
+        <translation>Ana Pencere</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>Araç çubuğu</translation>
     </message>
     <message>
         <source>General</source>

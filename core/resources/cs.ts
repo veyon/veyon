@@ -439,7 +439,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Aktivní funkce: %1</translation>
     </message>
 </context>
 <context>

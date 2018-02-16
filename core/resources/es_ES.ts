@@ -152,7 +152,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar el uso de grupos de dominio</translation>
     </message>
 </context>
 <context>
@@ -441,7 +441,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Características activas: %1</translation>
     </message>
 </context>
 <context>
@@ -920,7 +920,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>Escribir en el sistema de registro del sistema operativo</translation>
     </message>
 </context>
 <context>
