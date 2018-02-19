@@ -37,6 +37,8 @@ public:
 	VncServer( QObject* parent = nullptr );
 	virtual ~VncServer();
 
+	void prepare();
+
 	int serverPort() const;
 
 	QString password() const;

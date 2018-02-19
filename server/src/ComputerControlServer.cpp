@@ -77,6 +77,7 @@ ComputerControlServer::~ComputerControlServer()
 
 void ComputerControlServer::start()
 {
+	m_vncServer.prepare();
 	m_vncServer.start();
 	m_vncProxyServer.start( m_vncServer.serverPort(), m_vncServer.password() );
 }

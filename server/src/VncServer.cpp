@@ -82,6 +82,18 @@ VncServer::~VncServer()
 
 
 
+void VncServer::prepare()
+{
+	qDebug(Q_FUNC_INFO);
+
+	if( m_pluginInterface )
+	{
+		m_pluginInterface->prepareServer();
+	}
+}
+
+
+
 int VncServer::serverPort() const
 {
 	if( m_pluginInterface && m_pluginInterface->configuredServerPort() > 0 )
