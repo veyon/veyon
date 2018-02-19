@@ -178,15 +178,10 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 	if( QDesktopServices::openUrl( url ) == false )
 	{
 		qWarning() << "DesktopServicesFeaturePlugin: could not open URL" << url
-				   << "via QDesktopServices - trying native approach";
-		QString launcher;
-#ifdef VEYON_BUILD_LINUX
-		launcher = QStringLiteral("xdg-open ");
-#elif defined(VEYON_BUILD_WIN32)
-		launcher = QStringLiteral("explorer ");
-#else
-#warning unsupported platform
-#endif
-		runProgramAsUser( launcher + url.toString() );
+				   << "via QDesktopServices - trying native generic URL handler";
+
+		runProgramAsUser( QStringLiteral("%1 %2").arg(
+							  VeyonCore::platform().coreFunctions().genericUrlHandler(),
+							  url.toString() ) );
 	}
 }
