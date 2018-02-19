@@ -55,6 +55,12 @@ QWidget* ExternalVncServer::configurationWidget()
 
 
 
+void ExternalVncServer::prepareServer()
+{
+}
+
+
+
 void ExternalVncServer::runServer( int serverPort, const QString& password )
 {
 	Q_UNUSED(serverPort);

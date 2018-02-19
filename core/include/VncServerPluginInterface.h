@@ -37,6 +37,8 @@ public:
 	 */
 	virtual QWidget* configurationWidget() = 0;
 
+	virtual void prepareServer() = 0;
+
 	/*!
 	 * \brief Run the VNC server and make it listen at given port and use given password - function has to block
 	 * \param serverPort the port the VNC server should listen at

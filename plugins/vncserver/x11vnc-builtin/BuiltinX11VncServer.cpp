@@ -54,6 +54,12 @@ QWidget* BuiltinX11VncServer::configurationWidget()
 
 
 
+void BuiltinX11VncServer::prepareServer()
+{
+}
+
+
+
 void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 {
 	QStringList cmdline = { "-localhost",

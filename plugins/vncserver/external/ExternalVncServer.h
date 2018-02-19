@@ -75,6 +75,8 @@ public:
 
 	QWidget* configurationWidget() override;
 
+	void prepareServer() override;
+
 	void runServer( int serverPort, const QString& password ) override;
 
 	int configuredServerPort() override;

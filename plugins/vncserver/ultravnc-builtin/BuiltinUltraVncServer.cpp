@@ -138,10 +138,6 @@ BuiltinUltraVncServer::BuiltinUltraVncServer() :
     m_configuration()
 {
 	vncServerInstance = this;
-
-	// initialize global instance handler and main thread ID
-	hAppInstance = GetModuleHandle( NULL );
-	mainthreadId = GetCurrentThreadId();
 }
 
 
@@ -156,6 +152,15 @@ BuiltinUltraVncServer::~BuiltinUltraVncServer()
 QWidget* BuiltinUltraVncServer::configurationWidget()
 {
 	return new UltraVncConfigurationWidget( m_configuration );
+}
+
+
+
+void BuiltinUltraVncServer::prepareServer()
+{
+	// initialize global instance handler and main thread ID
+	hAppInstance = GetModuleHandle( nullptr );
+	mainthreadId = GetCurrentThreadId();
 }
 
 
