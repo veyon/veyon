@@ -122,7 +122,7 @@ void VncServer::run()
 			VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_pluginInterface->configuredPassword() );
 		}
 
-		m_pluginInterface->run( serverPort(), password() );
+		m_pluginInterface->runServer( serverPort(), password() );
 
 		qDebug() << Q_FUNC_INFO << "finished";
 	}

@@ -42,7 +42,7 @@ public:
 	 * \param serverPort the port the VNC server should listen at
 	 * \param password the password to be used for VNC authentication
 	 */
-	virtual void run( int serverPort, const QString& password ) = 0;
+	virtual void runServer( int serverPort, const QString& password ) = 0;
 
 	virtual int configuredServerPort() = 0;
 

@@ -135,7 +135,7 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 
 
 BuiltinUltraVncServer::BuiltinUltraVncServer() :
-	m_configuration()
+    m_configuration()
 {
 	vncServerInstance = this;
 
@@ -160,7 +160,7 @@ QWidget* BuiltinUltraVncServer::configurationWidget()
 
 
 
-void BuiltinUltraVncServer::run( int serverPort, const QString& password )
+void BuiltinUltraVncServer::runServer( int serverPort, const QString& password )
 {
 	m_serverPort = serverPort;
 	m_password = password;

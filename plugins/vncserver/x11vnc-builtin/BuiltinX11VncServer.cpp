@@ -54,7 +54,7 @@ QWidget* BuiltinX11VncServer::configurationWidget()
 
 
 
-void BuiltinX11VncServer::run( int serverPort, const QString& password )
+void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 {
 	QStringList cmdline = { "-localhost",
 							"-nosel",			// do not exchange clipboard-contents
