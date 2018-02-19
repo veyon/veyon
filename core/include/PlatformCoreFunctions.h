@@ -55,6 +55,8 @@ public:
 								   const QString& username,
 								   const QString& desktop ) = 0;
 
+	virtual QString genericUrlHandler() const = 0;
+
 };
 
 #endif // PLATFORM_CORE_FUNCTIONS_H

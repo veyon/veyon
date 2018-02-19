@@ -59,6 +59,8 @@ public:
 						   const QString& username,
 						   const QString& desktop ) override;
 
+	QString genericUrlHandler() const override;
+
 	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 
 private:

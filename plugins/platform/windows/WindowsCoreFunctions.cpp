@@ -373,6 +373,13 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 
 
 
+QString WindowsCoreFunctions::genericUrlHandler() const
+{
+	return QStringLiteral( "explorer" );
+}
+
+
+
 bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 {
 	HANDLE token;

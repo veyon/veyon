@@ -51,6 +51,8 @@ public:
 	bool runProgramAsUser( const QString& program, const QString& username,
 						   const QString& desktop = QString() ) override;
 
+	QString genericUrlHandler() const override;
+
 };
 
 #endif // LINUX_CORE_FUNCTIONS_H

@@ -157,3 +157,10 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 
 	return QProcess::startDetached( program );
 }
+
+
+
+QString LinuxCoreFunctions::genericUrlHandler() const
+{
+	return QStringLiteral( "xdg-open" );
+}
