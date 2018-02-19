@@ -86,6 +86,7 @@ ENDIF(VEYON_BUILD_WIN64)
 
 BUILD_PLUGIN(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
+	LogoffEventFilter.cpp
 	UltraVncConfiguration.cpp
 	UltraVncConfigurationWidget.cpp
 	ultravnc.cpp
@@ -93,6 +94,7 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	${ultravnc_SOURCES}
 	MOCFILES
 	BuiltinUltraVncServer.h
+	LogoffEventFilter.h
 	UltraVncConfigurationWidget.h
 	UltraVncConfiguration.h
 	FORMS UltraVncConfigurationWidget.ui)

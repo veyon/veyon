@@ -27,6 +27,7 @@
 #include <QCoreApplication>
 
 #include "BuiltinUltraVncServer.h"
+#include "LogoffEventFilter.h"
 #include "UltraVncConfiguration.h"
 #include "UltraVncConfigurationWidget.h"
 
@@ -135,7 +136,8 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 
 
 BuiltinUltraVncServer::BuiltinUltraVncServer() :
-    m_configuration()
+	m_configuration(),
+	m_logoffEventFilter( nullptr )
 {
 	vncServerInstance = this;
 }
@@ -144,6 +146,11 @@ BuiltinUltraVncServer::BuiltinUltraVncServer() :
 
 BuiltinUltraVncServer::~BuiltinUltraVncServer()
 {
+	if( m_logoffEventFilter )
+	{
+		delete m_logoffEventFilter;
+	}
+
 	vncServerInstance = nullptr;
 }
 
@@ -161,6 +168,8 @@ void BuiltinUltraVncServer::prepareServer()
 	// initialize global instance handler and main thread ID
 	hAppInstance = GetModuleHandle( nullptr );
 	mainthreadId = GetCurrentThreadId();
+
+	m_logoffEventFilter = new LogoffEventFilter;
 }
 
 

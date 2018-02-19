@@ -28,6 +28,8 @@
 #include "UltraVncConfiguration.h"
 #include "VncServerPluginInterface.h"
 
+class LogoffEventFilter;
+
 class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
 	Q_OBJECT
@@ -108,6 +110,8 @@ private:
 
 	int m_serverPort;
 	QString m_password;
+
+	LogoffEventFilter* m_logoffEventFilter;
 
 };
 
