@@ -151,13 +151,7 @@ void GeneralConfigurationPage::clearLogFiles()
 		}
 	}
 
-#ifdef VEYON_BUILD_WIN32
-	d = QDir( "C:\\Windows\\Temp" );
-#else
-	d = QDir( "/tmp" );
-#endif
-
-	const auto globalLogFiles = d.entryList( QStringList() << "Veyon*.log" );
+	const auto globalLogFiles = QDir::temp().entryList( QStringList() << "Veyon*.log" );
 	for( const auto& f : globalLogFiles )
 	{
 		if( f != "VeyonConfigurator.log" )
