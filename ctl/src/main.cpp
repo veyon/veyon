@@ -37,7 +37,7 @@ int main( int argc, char **argv )
 {
 	QCoreApplication* app = nullptr;
 
-#ifdef VEYON_BUILD_LINUX
+#ifdef Q_OS_LINUX
 	// do not create graphical application if DISPLAY is not available
 	if( qEnvironmentVariableIsSet( "DISPLAY" ) == false )
 	{
