@@ -1,7 +1,7 @@
 /*
- * PlatformInputDeviceFunctions.h - interface class for platform plugins
+ * LinuxKeyboardShortcutTrapper.h - dummy KeyboardShortcutTrapper implementation 
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,25 +22,29 @@
  *
  */
 
-#ifndef PLATFORM_INPUT_DEVICE_FUNCTIONS_H
-#define PLATFORM_INPUT_DEVICE_FUNCTIONS_H
+#ifndef LINUX_KEYBOARD_SHORTCUT_TRAPPER_H
+#define LINUX_KEYBOARD_SHORTCUT_TRAPPER_H
 
-#include "PlatformPluginInterface.h"
+#include "KeyboardShortcutTrapper.h"
 
-// clazy:excludeall=copyable-polymorphic
-
-class KeyboardShortcutTrapper;
-
-class PlatformInputDeviceFunctions
+class LinuxKeyboardShortcutTrapper : public KeyboardShortcutTrapper
 {
+	Q_OBJECT
 public:
-	virtual void enableInputDevices() = 0;
-	virtual void disableInputDevices() = 0;
+	LinuxKeyboardShortcutTrapper( QObject* parent = nullptr ) :
+	    KeyboardShortcutTrapper( parent )
+	{
+	}
 
-	virtual KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) = 0;
+	~LinuxKeyboardShortcutTrapper() override
+	{
+	}
 
-	virtual bool configureSoftwareSAS( bool enabled ) = 0;
+	void setEnabled( bool on ) override
+	{
+		Q_UNUSED(on);
+	}
 
-};
+} ;
 
-#endif // PLATFORM_INPUT_DEVICE_FUNCTIONS_H
+#endif

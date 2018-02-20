@@ -7,6 +7,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsCoreFunctions.cpp
 	WindowsFilesystemFunctions.cpp
 	WindowsInputDeviceFunctions.cpp
+	WindowsKeyboardShortcutTrapper.cpp
 	WindowsNetworkFunctions.cpp
 	WindowsServiceControl.cpp
 	WindowsServiceCore.cpp
@@ -21,6 +22,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsCoreFunctions.h
 	WindowsFilesystemFunctions.h
 	WindowsInputDeviceFunctions.h
+	WindowsKeyboardShortcutTrapper.h
 	WindowsNetworkFunctions.h
 	WindowsServiceControl.h
 	WindowsServiceCore.h

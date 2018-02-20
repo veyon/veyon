@@ -26,8 +26,9 @@
 #include "rfb/keysym.h"
 
 #include "VncView.h"
+#include "PlatformInputDeviceFunctions.h"
+#include "KeyboardShortcutTrapper.h"
 #include "ProgressWidget.h"
-#include "SystemKeyTrapper.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -51,7 +52,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	m_initDone( false ),
 	m_buttonMask( 0 ),
 	m_establishingConnectionWidget( nullptr ),
-	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
+	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( this ) )
 {
 	m_vncConn->setHost( host );
 	m_vncConn->setPort( port );
@@ -77,11 +78,9 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	connect( m_vncConn, &VeyonVncConnection::cursorPosChanged, this, &VncView::updateCursorPos );
 	connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated, this, &VncView::updateCursorShape );
 
-	// forward trapped special keys
-	connect( m_sysKeyTrapper, &SystemKeyTrapper::keyEvent,
-			 m_vncConn, &VeyonVncConnection::keyEvent );
-	connect( m_sysKeyTrapper, &SystemKeyTrapper::keyEvent,
-			 this, &VncView::checkKeyEvent );
+	// handle/forward trapped keyboard shortcuts
+	connect( m_keyboardShortcutTrapper, &KeyboardShortcutTrapper::shortcutTrapped,
+			 this, &VncView::handleShortcut );
 
 
 	// set up background color
@@ -111,7 +110,7 @@ VncView::~VncView()
 	m_vncConn->disconnect( this );
 
 	unpressModifiers();
-	delete m_sysKeyTrapper;
+	delete m_keyboardShortcutTrapper;
 
 	m_vncConn->stop( true );
 }
@@ -166,14 +165,14 @@ void VncView::setViewOnly( bool viewOnly )
 	if( m_viewOnly )
 	{
 		releaseKeyboard();
-		m_sysKeyTrapper->setEnabled( false );
+		m_keyboardShortcutTrapper->setEnabled( false );
 		updateLocalCursor();
 	}
 	else
 	{
 		grabKeyboard();
 		updateLocalCursor();
-		m_sysKeyTrapper->setEnabled( true );
+		m_keyboardShortcutTrapper->setEnabled( true );
 	}
 }
 
@@ -247,19 +246,31 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 
 
 
-
-void VncView::checkKeyEvent( unsigned int key, bool pressed )
+void VncView::handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut )
 {
-	if( key == XK_Super_L )
+	int key = 0;
+
+	switch( shortcut )
 	{
-		if( pressed )
-		{
-			m_mods[key] = true;
-		}
-		else if( m_mods.contains( key ) )
-		{
-			m_mods.remove( key );
-		}
+	case KeyboardShortcutTrapper::SuperKeyDown:
+		m_mods[XK_Super_L] = true;
+		break;
+	case KeyboardShortcutTrapper::SuperKeyUp:
+		m_mods.remove( XK_Super_L );
+		break;
+	case KeyboardShortcutTrapper::AltTab: key = XK_Tab; break;
+	case KeyboardShortcutTrapper::AltEsc: key = XK_Escape; break;
+	case KeyboardShortcutTrapper::AltSpace: key = XK_KP_Space; break;
+	case KeyboardShortcutTrapper::AltF4: key = XK_F4; break;
+	case KeyboardShortcutTrapper::CtrlEsc: key = XK_Escape; break;
+	default:
+		break;
+	}
+
+	if( key )
+	{
+		m_vncConn->keyEvent( key, true );
+		m_vncConn->keyEvent( key, false );
 	}
 }
 
@@ -333,10 +344,8 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 {
 	bool pressed = _ke->type() == QEvent::KeyPress;
 
-#ifdef VEYON_BUILD_LINUX
-	// Starting with Qt 4.2 there's a nice function returning the key-code
-	// of the key-event (platform-dependent) so when operating under Linux/X11,
-	// key-codes are equal to the ones used by RFB protocol
+#ifdef Q_OS_LINUX
+	// on Linux/X11 native key codes are equal to the ones used by RFB protocol
 	int key = _ke->nativeVirtualKey();
 
 	// we do not handle Key_Backtab separately as the Shift-modifier

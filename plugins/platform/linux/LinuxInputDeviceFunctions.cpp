@@ -24,17 +24,18 @@
 
 #include "PlatformServiceFunctions.h"
 #include "LinuxInputDeviceFunctions.h"
+#include "LinuxKeyboardShortcutTrapper.h"
 
 #include <X11/XKBlib.h>
 
 
 LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
-    m_inputDevicesDisabled( false ),
-    m_origKeyTable( nullptr ),
-    m_keyCodeMin( 0 ),
-    m_keyCodeMax( 0 ),
-    m_keyCodeCount( 0 ),
-    m_keySymsPerKeyCode( 0 )
+	m_inputDevicesDisabled( false ),
+	m_origKeyTable( nullptr ),
+	m_keyCodeMin( 0 ),
+	m_keyCodeMax( 0 ),
+	m_keyCodeCount( 0 ),
+	m_keySymsPerKeyCode( 0 )
 {
 }
 
@@ -74,6 +75,13 @@ void LinuxInputDeviceFunctions::disableInputDevices()
 
 
 
+KeyboardShortcutTrapper* LinuxInputDeviceFunctions::createKeyboardShortcutTrapper( QObject* parent )
+{
+	return new LinuxKeyboardShortcutTrapper( parent );
+}
+
+
+
 bool LinuxInputDeviceFunctions::configureSoftwareSAS( bool enabled )
 {
 	Q_UNUSED(enabled);
@@ -95,10 +103,10 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
 
 	m_origKeyTable = XGetKeyboardMapping( display, m_keyCodeMin,
-	                                      m_keyCodeCount, &m_keySymsPerKeyCode );
+										  m_keyCodeCount, &m_keySymsPerKeyCode );
 
 	KeySym* newKeyTable = XGetKeyboardMapping( display, m_keyCodeMin,
-	                                           m_keyCodeCount, &m_keySymsPerKeyCode );
+											   m_keyCodeCount, &m_keySymsPerKeyCode );
 
 	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
 	{
@@ -106,7 +114,7 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	}
 
 	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
-	                        newKeyTable, m_keyCodeCount );
+							newKeyTable, m_keyCodeCount );
 	XFlush( display );
 	XFree( newKeyTable );
 	XCloseDisplay( display );
@@ -119,7 +127,7 @@ void LinuxInputDeviceFunctions::restoreKeyMapTable()
 	Display* display = XOpenDisplay( nullptr );
 
 	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
-	                        static_cast<KeySym *>( m_origKeyTable ), m_keyCodeCount );
+							static_cast<KeySym *>( m_origKeyTable ), m_keyCodeCount );
 
 	XFlush( display );
 	XCloseDisplay( display );

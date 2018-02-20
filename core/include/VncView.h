@@ -29,11 +29,12 @@
 #include <QPointer>
 #include <QWidget>
 
+#include "KeyboardShortcutTrapper.h"
 #include "VeyonVncConnection.h"
 
 class ProgressWidget;
 class RemoteControlWidget;
-class SystemKeyTrapper;
+class KeyboardShortcutTrapper;
 
 class VEYON_CORE_EXPORT VncView : public QWidget
 {
@@ -95,7 +96,7 @@ signals:
 
 
 private slots:
-	void checkKeyEvent( unsigned int key, bool pressed );
+	void handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut );
 	void updateCursorPos( int x, int y );
 	void updateCursorShape( const QPixmap& cursorShape, int xh, int yh );
 	void updateImage( int x, int y, int w, int h );
@@ -142,7 +143,7 @@ private:
 
 	ProgressWidget* m_establishingConnectionWidget;
 
-	SystemKeyTrapper* m_sysKeyTrapper;
+	KeyboardShortcutTrapper* m_keyboardShortcutTrapper;
 
 } ;
 

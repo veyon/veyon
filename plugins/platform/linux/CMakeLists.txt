@@ -21,6 +21,7 @@ BUILD_PLUGIN(linux-platform
 	LinuxCoreFunctions.h
 	LinuxFilesystemFunctions.h
 	LinuxInputDeviceFunctions.h
+	LinuxKeyboardShortcutTrapper.h
 	LinuxNetworkFunctions.h
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h

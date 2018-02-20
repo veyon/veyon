@@ -38,6 +38,8 @@ public:
 	void enableInputDevices() override;
 	void disableInputDevices() override;
 
+	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
+
 	bool configureSoftwareSAS( bool enabled ) override;
 
 private:

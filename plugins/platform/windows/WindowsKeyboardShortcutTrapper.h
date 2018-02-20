@@ -1,8 +1,7 @@
 /*
- * SystemKeyTrapper.h - class for trapping system-keys and -key-sequences
- *                      such as Alt+Ctrl+Del, Alt+Tab etc.
+ * WindowsKeyboardShortcutTrapper.cpp - class for trapping shortcuts on Windows
  *
- * Copyright (c) 2006-2016 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2006-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -23,59 +22,37 @@
  *
  */
 
-#ifndef SYSTEM_KEY_TRAPPER_H
-#define SYSTEM_KEY_TRAPPER_H
+#ifndef WINDOWS_KEYBOARD_SHORTCUT_TRAPPER_H
+#define WINDOWS_KEYBOARD_SHORTCUT_TRAPPER_H
 
-#include <veyonconfig.h>
+#include "KeyboardShortcutTrapper.h"
 
-#include "VeyonRfbExt.h"
+#include <QMutex>
+#include <QTimer>
 
-#include <QtCore/QMutex>
-#include <QtCore/QObject>
-
-
-class SystemKeyTrapper : public QObject
+class WindowsKeyboardShortcutTrapper : public KeyboardShortcutTrapper
 {
 	Q_OBJECT
 public:
-	enum TrappedKeys
-	{
-		None,
-		AltCtrlDel,
-		AltTab,
-		AltEsc,
-		AltSpace,
-		AltF4,
-		CtrlEsc,
-		SuperKeyDown,
-		SuperKeyUp
-	} ;
+	WindowsKeyboardShortcutTrapper( QObject* parent = nullptr );
+	~WindowsKeyboardShortcutTrapper() override;
 
+	void setEnabled( bool on ) override;
 
-	SystemKeyTrapper( bool enable = true, QObject* parent = nullptr );
-	~SystemKeyTrapper() override;
-
-	void setEnabled( bool on );
-	bool isEnabled() const
-	{
-		return m_enabled;
-	}
-
+private slots:
+	void forwardTrappedShortcuts();
 
 private:
+	enum {
+		PollTimerInterval = 10
+	};
+
 	static QMutex s_refCntMutex;
 	static int s_refCnt;
 
 	bool m_enabled;
-
-private slots:
-	void checkForTrappedKeys();
-
-
-signals:
-	void keyEvent( unsigned int, bool );
+	QTimer m_pollTimer;
 
 } ;
 
 #endif
-

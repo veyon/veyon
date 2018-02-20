@@ -1,7 +1,7 @@
 /*
- * PlatformInputDeviceFunctions.h - interface class for platform plugins
+ * KeyboardShortcutTrapper.h - class for trapping system-wide keyboard shortcuts
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2006-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,25 +22,38 @@
  *
  */
 
-#ifndef PLATFORM_INPUT_DEVICE_FUNCTIONS_H
-#define PLATFORM_INPUT_DEVICE_FUNCTIONS_H
+#ifndef KEYBOARD_SHORTCUT_TRAPPER_H
+#define KEYBOARD_SHORTCUT_TRAPPER_H
 
-#include "PlatformPluginInterface.h"
+#include "VeyonCore.h"
 
-// clazy:excludeall=copyable-polymorphic
-
-class KeyboardShortcutTrapper;
-
-class PlatformInputDeviceFunctions
+class VEYON_CORE_EXPORT KeyboardShortcutTrapper : public QObject
 {
+	Q_OBJECT
 public:
-	virtual void enableInputDevices() = 0;
-	virtual void disableInputDevices() = 0;
+	enum Shortcut
+	{
+		NoShortcut,
+		AltTab,
+		AltEsc,
+		AltSpace,
+		AltF4,
+		CtrlEsc,
+		SuperKeyDown,
+		SuperKeyUp
+	} ;
+	Q_ENUM(Shortcut)
 
-	virtual KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) = 0;
+	KeyboardShortcutTrapper( QObject* parent = nullptr ) :
+		QObject( parent )
+	{
+	}
 
-	virtual bool configureSoftwareSAS( bool enabled ) = 0;
+	virtual void setEnabled( bool on ) = 0;
 
-};
+signals:
+	void shortcutTrapped( Shortcut );
 
-#endif // PLATFORM_INPUT_DEVICE_FUNCTIONS_H
+} ;
+
+#endif
