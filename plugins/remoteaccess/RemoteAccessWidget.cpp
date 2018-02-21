@@ -1,7 +1,7 @@
 /*
  *  RemoteAccessWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2016 Tobias Junghans <tobydox@users.sf.net>
+ *  Copyright (c) 2006-2018 Tobias Junghans <tobydox@users.sf.net>
  *
  *  This file is part of Veyon - http://veyon.io
  *
@@ -21,6 +21,14 @@
  *  USA.
  */
 
+#include <QBitmap>
+#include <QLayout>
+#include <QMenu>
+#include <QPainter>
+#include <QPaintEvent>
+
+#include "rfb/keysym.h"
+
 #include "RemoteAccessWidget.h"
 #include "VncView.h"
 #include "VeyonCoreConnection.h"
@@ -29,18 +37,6 @@
 #include "PlatformCoreFunctions.h"
 #include "ToolButton.h"
 #include "Screenshot.h"
-
-#include "rfb/rfbclient.h"
-
-#include <math.h>
-
-#include <QMenu>
-#include <QtCore/QTimer>
-#include <QtGui/QBitmap>
-#include <QLayout>
-#include <QtGui/QPainter>
-#include <QPaintEvent>
-
 
 
 // toolbar for remote-control-widget
