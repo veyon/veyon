@@ -1,4 +1,4 @@
-# Veyon - Free and Open Source computer monitoring and classroom management
+# Veyon - Virtual Eye On Networks
 
 [![Build status](https://img.shields.io/travis/veyon/veyon.svg)](https://travis-ci.org/veyon/veyon)
 [![Latest stable release](https://img.shields.io/github/release/veyon/veyon.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
