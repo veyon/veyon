@@ -64,6 +64,9 @@ ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
 ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_MOC_out} ${veyoncore_UIC_out} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES} ${WIN32_AUTHSSP_SOURCES})
 
+SET_SOURCE_FILES_PROPERTIES(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-variable -Wno-unused-label -Wno-maybe-uninitialized -Wno-misleading-indentation -Wno-pointer-sign -Wno-int-in-bool-context")
+
+
 IF(VEYON_BUILD_WIN32)
 	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
 	INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
