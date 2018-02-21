@@ -5,7 +5,6 @@ FILE(GLOB veyoncore_INCLUDES
 FILE(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
-						${libvncserver_DIR}/common/d3des.c
 )
 
 FILE(GLOB veyoncore_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)
@@ -46,7 +45,9 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/libvncclient/rfbproto.c
 	${libvncserver_DIR}/libvncclient/sockets.c
 	${libvncserver_DIR}/libvncclient/tls_none.c
-	${libvncserver_DIR}/libvncclient/vncviewer.c)
+	${libvncserver_DIR}/libvncclient/vncviewer.c
+	${libvncserver_DIR}/common/d3des.c
+	${libvncserver_DIR}/common/turbojpeg.c)
 
 
 QT5_WRAP_CPP(veyoncore_MOC_out ${veyoncore_INCLUDES})
