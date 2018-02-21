@@ -54,20 +54,17 @@ QT5_WRAP_CPP(veyoncore_MOC_out ${veyoncore_INCLUDES})
 QT5_WRAP_UI(veyoncore_UIC_out ${veyoncore_UI})
 QT5_ADD_RESOURCES(veyoncore_RCC_out ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc ${CMAKE_CURRENT_BINARY_DIR}/qttranslations.qrc)
 
-IF(VEYON_BUILD_WIN32)
-	LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32 -linterception)
-	ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
-ENDIF(VEYON_BUILD_WIN32)
-
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
-ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_MOC_out} ${veyoncore_UIC_out} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES} ${WIN32_AUTHSSP_SOURCES})
+ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_MOC_out} ${veyoncore_UIC_out} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES})
 
 SET_SOURCE_FILES_PROPERTIES(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-variable -Wno-unused-label -Wno-maybe-uninitialized -Wno-misleading-indentation -Wno-pointer-sign -Wno-int-in-bool-context")
 
 
 IF(VEYON_BUILD_WIN32)
+	# add Windows Socket library required by libvncclient
+	TARGET_LINK_LIBRARIES(veyon-core -lws2_32)
 	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
 	INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
 ELSE()
