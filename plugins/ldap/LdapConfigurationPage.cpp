@@ -124,14 +124,14 @@ void LdapConfigurationPage::testBaseDn()
 		{
 			QMessageBox::critical( this, tr( "LDAP base DN test failed"),
 								   tr( "Could not query the configured base DN. "
-									   "Please check the base DN parameter.\n"
+									   "Please check the base DN parameter.\n\n"
 									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 		}
 		else
 		{
 			QMessageBox::information( this, tr( "LDAP base DN test successful" ),
 							tr( "The LDAP base DN has been queried successfully. "
-								"The following entries were found:\n%1" ).
+								"The following entries were found:\n\n%1" ).
 									  arg( entries.join('\n') ) );
 		}
 	}
@@ -152,7 +152,7 @@ void LdapConfigurationPage::testNamingContext()
 		{
 			QMessageBox::critical( this, tr( "LDAP naming context test failed"),
 								   tr( "Could not query the base DN via naming contexts. "
-									   "Please check the naming context attribute parameter.\n"
+									   "Please check the naming context attribute parameter.\n\n"
 									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 		}
 		else
@@ -568,7 +568,7 @@ bool LdapConfigurationPage::testBind( bool quiet )
 	{
 		QMessageBox::critical( this, tr( "LDAP connection failed"),
 							   tr( "Could not connect to the LDAP server. "
-								   "Please check the server parameters. "
+								   "Please check the server parameters.\n\n"
 								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 	}
 	else if( ldapDirectory.isBound() == false )
@@ -576,7 +576,7 @@ bool LdapConfigurationPage::testBind( bool quiet )
 		QMessageBox::critical( this, tr( "LDAP bind failed"),
 							   tr( "Could not bind to the LDAP server. "
 								   "Please check the server parameters "
-								   "and bind credentials. "
+								   "and bind credentials.\n\n"
 								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 	}
 	else if( quiet == false )
