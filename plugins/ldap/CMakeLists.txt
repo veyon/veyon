@@ -17,8 +17,6 @@ SET(LDAP_FOUND TRUE)
 
 FIND_PACKAGE(Sasl2)
 
-ADD_DEFINITIONS(-DUNICODE -D_UNICODE)
-
 SET(kldap_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/kldap/src)
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/kldap/src/kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
 
