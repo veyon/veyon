@@ -13,5 +13,5 @@ RUN \
 		procps-devel \
 		pam-devel lzo-devel \
 		libqca-qt5-devel libqca-qt5-plugins \
-		openldap2-devel cyrus-sasl-devel
+		openldap2-devel
 
