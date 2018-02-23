@@ -1,3 +1,5 @@
+INCLUDE(WindowsBuildHelpers)
+
 FILE(GLOB master_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB master_UI ${CMAKE_CURRENT_SOURCE_DIR}/forms/*.ui)
@@ -6,26 +8,14 @@ QT5_WRAP_CPP(master_MOC_out ${master_INCLUDES})
 QT5_WRAP_UI(master_UIC_out ${master_UI})
 QT5_ADD_RESOURCES(master_RCC_out ${QRC_FILE})
 
-IF(VEYON_BUILD_WIN32)
-	SET(WINRC "${CMAKE_CURRENT_BINARY_DIR}/veyon-master-rc.obj")
-	ADD_CUSTOM_COMMAND(OUTPUT ${WINRC}
-						COMMAND ${WINDRES}
-							-I${CMAKE_CURRENT_SOURCE_DIR}
-							-o${WINRC}
-							-i${CMAKE_CURRENT_BINARY_DIR}/veyon-master.rc
-						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/veyon-master.rc)
-
-ENDIF(VEYON_BUILD_WIN32)
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-ADD_EXECUTABLE(veyon-master ${master_UIC_out} ${master_SOURCES} ${master_INCLUDES} ${master_MOC_out} ${master_RCC_out} ${WINRC})
+ADD_EXECUTABLE(veyon-master ${master_UIC_out} ${master_SOURCES} ${master_INCLUDES} ${master_MOC_out} ${master_RCC_out})
 TARGET_LINK_LIBRARIES(veyon-master veyon-core)
 
-INSTALL(TARGETS veyon-master RUNTIME DESTINATION bin)
+ADD_WINDOWS_RESOURCE(veyon-master)
+MAKE_GRAPHICAL_APP(veyon-master)
 
-IF(VEYON_BUILD_WIN32)
-	SET_TARGET_PROPERTIES(veyon-master PROPERTIES LINK_FLAGS -mwindows)
-ENDIF(VEYON_BUILD_WIN32)
+INSTALL(TARGETS veyon-master RUNTIME DESTINATION bin)
 
 IF(VEYON_BUILD_LINUX)
 	XDG_INSTALL(${CMAKE_CURRENT_BINARY_DIR}/data/veyon-master.desktop ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.xpm ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.png ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-master.svg)

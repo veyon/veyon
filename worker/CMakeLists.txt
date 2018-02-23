@@ -1,26 +1,17 @@
+INCLUDE(WindowsBuildHelpers)
+
 FILE(GLOB worker_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB worker_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 QT5_WRAP_CPP(worker_MOC_out ${worker_INCLUDES})
 
-IF(VEYON_BUILD_WIN32)
-	SET(WINRC "${CMAKE_CURRENT_BINARY_DIR}/veyon-worker-rc.obj")
-	ADD_CUSTOM_COMMAND(OUTPUT ${WINRC}
-						COMMAND ${WINDRES}
-							-I${CMAKE_CURRENT_SOURCE_DIR}
-							-o${WINRC}
-							-i${CMAKE_CURRENT_BINARY_DIR}/veyon-worker.rc
-						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/veyon-worker.rc)
-ENDIF(VEYON_BUILD_WIN32)
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-ADD_EXECUTABLE(veyon-worker ${worker_UIC_out} ${worker_SOURCES} ${worker_INCLUDES} ${worker_MOC_out} ${WINRC})
+ADD_EXECUTABLE(veyon-worker ${worker_UIC_out} ${worker_SOURCES} ${worker_INCLUDES} ${worker_MOC_out})
 TARGET_LINK_LIBRARIES(veyon-worker veyon-core Qt5::Network)
 
-INSTALL(TARGETS veyon-worker RUNTIME DESTINATION bin)
+ADD_WINDOWS_RESOURCE(veyon-worker)
+MAKE_GRAPHICAL_APP(veyon-worker)
 
-IF(VEYON_BUILD_WIN32)
-	SET_TARGET_PROPERTIES(veyon-worker PROPERTIES LINK_FLAGS -mwindows)
-ENDIF(VEYON_BUILD_WIN32)
+INSTALL(TARGETS veyon-worker RUNTIME DESTINATION bin)
 
 COTIRE_VEYON(veyon-worker)
