@@ -651,7 +651,20 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		{
 			d->server.setAuth( KLDAP::LdapServer::Anonymous );
 		}
-		d->server.setSecurity( KLDAP::LdapServer::None );
+
+		const auto security = static_cast<LdapConfiguration::ConnectionSecurity>( m_configuration.ldapConnectionSecurity() );
+		switch( security )
+		{
+		case LdapConfiguration::ConnectionSecurityTLS:
+			d->server.setSecurity( KLDAP::LdapServer::TLS );
+			break;
+		case LdapConfiguration::ConnectionSecuritySSL:
+			d->server.setSecurity( KLDAP::LdapServer::SSL );
+			break;
+		default:
+			d->server.setSecurity( KLDAP::LdapServer::None );
+			break;
+		}
 	}
 
 	if( d->reconnect() == false )
