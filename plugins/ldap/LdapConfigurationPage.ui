@@ -32,58 +32,7 @@
           <string>General</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_15">
-          <item row="2" column="1" colspan="2">
-           <widget class="QLineEdit" name="ldapBindDn">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_27">
-            <property name="text">
-             <string>LDAP server and port</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QLineEdit" name="ldapBindPassword">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="ldapServerHost"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="text">
-             <string>Bind DN</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QSpinBox" name="ldapServerPort">
-            <property name="maximum">
-             <number>65536</number>
-            </property>
-            <property name="value">
-             <number>389</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>Bind password</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="3">
+          <item row="2" column="0" colspan="3">
            <layout class="QHBoxLayout" name="horizontalLayout_12">
             <item>
              <widget class="QRadioButton" name="ldapAnonymousBind">
@@ -133,6 +82,83 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Bind DN</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QSpinBox" name="ldapServerPort">
+            <property name="maximum">
+             <number>65536</number>
+            </property>
+            <property name="value">
+             <number>389</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Bind password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="ldapServerHost"/>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QLineEdit" name="ldapBindPassword">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>LDAP server and port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QLineEdit" name="ldapBindDn">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Connection security</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QComboBox" name="ldapConnectionSecurity">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>TLS</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SSL</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </widget>
