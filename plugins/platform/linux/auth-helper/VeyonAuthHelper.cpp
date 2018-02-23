@@ -91,8 +91,6 @@ int main()
 	if( err == PAM_SUCCESS )
 	{
 		pam_open_session( pamh, PAM_SILENT );
-		pam_end( pamh, err );
-		return 0;
 	}
 	else
 	{
@@ -104,5 +102,5 @@ int main()
 	delete[] pam_username;
 	delete[] pam_password;
 
-	return -1;
+	return err == PAM_SUCCESS ? 0 : -1;
 }
