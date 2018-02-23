@@ -30,6 +30,7 @@
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
 	OP( LdapConfiguration, m_configuration, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, INT, ldapConnectionSecurity, setLdapConnectionSecurity, "ConnectionSecurity", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
@@ -62,6 +63,14 @@ class LdapConfiguration : public Configuration::Proxy
 {
 	Q_OBJECT
 public:
+	enum ConnectionSecurity
+	{
+		ConnectionSecurityNone,
+		ConnectionSecurityTLS,
+		ConnectionSecuritySSL,
+		ConnectionSecurityCount,
+	};
+
 	LdapConfiguration( QObject* parent = nullptr );
 
 	FOREACH_LDAP_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
@@ -69,6 +78,7 @@ public:
 public slots:
 	void setLdapServerHost( const QString& );
 	void setLdapServerPort( int );
+	void setLdapConnectionSecurity( int );
 	void setLdapUseBindCredentials( bool );
 	void setLdapBindDn( const QString& );
 	void setLdapBindPassword( const QString& );
