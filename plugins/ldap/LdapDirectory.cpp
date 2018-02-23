@@ -168,15 +168,25 @@ public:
 		return distinguishedNames;
 	}
 
+	QString ldapErrorString() const
+	{
+		if( connection.handle() == nullptr )
+		{
+			return connection.connectionError();
+		}
+
+		return connection.ldapErrorString();
+	}
+
 	QString ldapErrorDescription() const
 	{
-		QString errorString = connection.ldapErrorString();
+		const auto errorString = ldapErrorString();
 		if( errorString.isEmpty() == false )
 		{
 			return LdapDirectory::tr( "LDAP error description: %1" ).arg( errorString );
 		}
 
-		return QString();
+		return LdapDirectory::tr( "No LDAP error description available");
 	}
 
 	bool reconnect()
@@ -188,7 +198,7 @@ public:
 
 		if( connection.connect() != 0 )
 		{
-			qWarning() << "LDAP connect failed:" << ldapErrorDescription();
+			qWarning() << "LDAP connect failed:" << ldapErrorString();
 			return false;
 		}
 
@@ -197,7 +207,7 @@ public:
 		operation.setConnection( connection );
 		if( operation.bind_s() != 0 )
 		{
-			qWarning() << "LDAP bind failed:" << ldapErrorDescription();
+			qWarning() << "LDAP bind failed:" << ldapErrorString();
 			return false;
 		}
 
