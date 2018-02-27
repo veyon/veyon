@@ -78,30 +78,30 @@ STRING(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COM
 
 # set up basic platform variables
 IF(WIN32)
-	SET(VEYON_BUILD_WIN32 1)
+    SET(VEYON_BUILD_WIN32 1)
 ELSE(WIN32)
-	IF(APPLE)
-		SET(VEYON_BUILD_APPLE 1)
+    IF(APPLE)
+	    SET(VEYON_BUILD_APPLE 1)
 	ELSE(APPLE)
-		SET(VEYON_BUILD_LINUX 1)
+	    SET(VEYON_BUILD_LINUX 1)
 	ENDIF(APPLE)
 ENDIF(WIN32)
 
 IF(WIN64)
-	SET(VEYON_BUILD_WIN64 TRUE)
+    SET(VEYON_BUILD_WIN64 TRUE)
 ENDIF(WIN64)
 
 # set up library and plugin path variables
 IF(CMAKE_INSTALL_LIBDIR)
-	SET(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
+    SET(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
 ELSE(CMAKE_INSTALL_LIBDIR)
-	SET(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
+    SET(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
 ENDIF(CMAKE_INSTALL_LIBDIR)
 
 IF(WIN32)
-	SET(VEYON_PLUGIN_DIR "plugins")
+    SET(VEYON_PLUGIN_DIR "plugins")
 ELSE()
-	SET(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
+    SET(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
 ENDIF()
 
 SET(VEYON_CORE_INCLUDE_DIR core/include)
@@ -164,12 +164,12 @@ SET(LIBVNCSERVER_HAVE_LIBSSL TRUE)
 SET(LIBVNCSERVER_IPv6 TRUE)
 
 IF(VEYON_BUILD_WIN32)
-	SET(LIBVNCSERVER_NEED_INADDR_T TRUE)
+    SET(LIBVNCSERVER_NEED_INADDR_T TRUE)
 ENDIF()
 
 FILE(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb)
 IF(NOT VEYON_BUILD_LINUX OR VEYON_X11VNC_EXTERNAL)
-	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_BINARY_DIR}/${VEYON_CORE_INCLUDE_DIR}/rfb/rfbconfig.h @ONLY)
 ENDIF()
 
 ### END: libvncclient configuration
@@ -241,7 +241,7 @@ FOREACH(_ts_file ${veyon_LOCALES})
 	# add target for downloading translation file from Transifex
 	STRING(REPLACE ".ts" "" _translation "${_ts_target}")
 	IF(NOT ${_translation} STREQUAL "veyon")
-		SET(_download_translation_target "download-${_translation}")
+	    SET(_download_translation_target "download-${_translation}")
 		ADD_CUSTOM_TARGET(${_download_translation_target} COMMAND curl --user api:$ENV{TRANSIFEX_API_TOKEN} -o ${_ts_file} -X GET "https://www.transifex.com/api/2/project/veyon/resource/veyonts/translation/${_translation}/?mode=default\\&file")
 		ADD_DEPENDENCIES(download-translations ${_download_translation_target})
 	ENDIF()
@@ -275,9 +275,9 @@ IF(WIN32)
 	SET(DLLDIR_LIB "${MINGW_PREFIX}/lib")
 	SET(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${COMPILER_VERSION_MAJOR_MINOR}-win32")
 	IF(VEYON_BUILD_WIN64)
-		SET(DLL_GCC "libgcc_s_seh-1.dll")
+	    SET(DLL_GCC "libgcc_s_seh-1.dll")
 	ELSE()
-		SET(DLL_GCC "libgcc_s_sjlj-1.dll")
+	    SET(DLL_GCC "libgcc_s_sjlj-1.dll")
 	ENDIF()
 
 	ADD_CUSTOM_TARGET(win-nsi
