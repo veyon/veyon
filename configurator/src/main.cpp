@@ -24,7 +24,6 @@
 
 #include <QApplication>
 #include <QMessageBox>
-#include <QDir>
 
 #include "ConfigurationTestController.h"
 #include "VeyonConfiguration.h"
