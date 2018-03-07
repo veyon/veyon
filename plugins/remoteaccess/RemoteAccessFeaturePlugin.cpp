@@ -68,10 +68,8 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 
 bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 													const ComputerControlInterfaceList& computerControlInterfaces,
-													ComputerControlInterface& localComputerControlInterface,
 													QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
 	// determine which computer to access and ask if neccessary
@@ -125,11 +123,9 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 
 bool RemoteAccessFeaturePlugin::stopMasterFeature( const Feature& feature,
 												   const ComputerControlInterfaceList& computerControlInterfaces,
-												   ComputerControlInterface& localComputerControlInterface,
 												   QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

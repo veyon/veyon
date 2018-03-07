@@ -71,12 +71,10 @@ public:
 
 	bool startMasterFeature( const Feature& feature,
 							 const ComputerControlInterfaceList& computerControlInterfaces,
-							 ComputerControlInterface& localComputerControlInterface,
 							 QWidget* parent ) override;
 
 	bool stopMasterFeature( const Feature& feature,
 							const ComputerControlInterfaceList& computerControlInterfaces,
-							ComputerControlInterface& localComputerControlInterface,
 							QWidget* parent ) override;
 
 	bool handleMasterFeatureMessage( const FeatureMessage& message,

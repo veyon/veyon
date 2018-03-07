@@ -73,15 +73,16 @@ DemoFeaturePlugin::~DemoFeaturePlugin()
 
 bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces,
-											ComputerControlInterface& localServiceInterface,
 											QWidget* parent )
 {
 	Q_UNUSED(parent);
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
-		localServiceInterface.sendFeatureMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
-												  addArgument( DemoAccessToken, m_demoAccessToken ) );
+		FeatureMessage featureMessage( m_demoServerFeature.uid(), StartDemoServer );
+		featureMessage.addArgument( DemoAccessToken, m_demoAccessToken );
+
+		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage );
 
 		for( auto computerControlInterface : computerControlInterfaces )
 		{
@@ -101,7 +102,6 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 
 bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 										   const ComputerControlInterfaceList& computerControlInterfaces,
-										   ComputerControlInterface& localComputerControlInterface,
 										   QWidget* parent )
 {
 	Q_UNUSED(parent);
@@ -121,7 +121,8 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 		if( m_demoClientHosts.isEmpty() )
 		{
 			// then we can stop the server
-			localComputerControlInterface.sendFeatureMessage( FeatureMessage( m_demoServerFeature.uid(), StopDemoServer ) );
+			const FeatureMessage featureMessage( m_demoServerFeature.uid(), StopDemoServer );
+			VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage );
 		}
 
 		return true;

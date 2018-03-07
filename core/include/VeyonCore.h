@@ -42,8 +42,8 @@
 class QCoreApplication;
 class QWidget;
 
-class UserGroupsBackendManager;
 class AuthenticationCredentials;
+class ComputerControlInterface;
 class CryptoCore;
 class Filesystem;
 class Logger;
@@ -51,6 +51,7 @@ class NetworkObjectDirectoryManager;
 class PlatformPluginInterface;
 class PlatformPluginManager;
 class PluginManager;
+class UserGroupsBackendManager;
 class VeyonConfiguration;
 
 // clazy:excludeall=ctor-missing-parent-argument
@@ -99,6 +100,11 @@ public:
 		return *( instance()->m_filesystem );
 	}
 
+	static ComputerControlInterface& localComputerControlInterface()
+	{
+		return *( instance()->m_localComputerControlInterface );
+	}
+
 	static void setupApplicationParameters();
 	bool initAuthentication( int credentialTypes );
 
@@ -136,6 +142,8 @@ private:
 	PlatformPluginInterface* m_platformPlugin;
 	UserGroupsBackendManager* m_userGroupsBackendManager;
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
+
+	ComputerControlInterface* m_localComputerControlInterface;
 
 	QString m_applicationName;
 	QString m_authenticationKeyName;

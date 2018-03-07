@@ -51,11 +51,8 @@ const FeatureList &ScreenshotFeaturePlugin::featureList() const
 
 bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
 												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  ComputerControlInterface& localComputerControlInterface,
 												  QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
-
 	if( feature.uid() == m_screenshotFeature.uid() )
 	{
 		for( auto controlInterface : computerControlInterfaces )
@@ -78,11 +75,9 @@ bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
 
 bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
 												 const ComputerControlInterfaceList& computerControlInterfaces,
-												 ComputerControlInterface& localComputerControlInterface,
 												 QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

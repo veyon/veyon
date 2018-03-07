@@ -55,10 +55,8 @@ ScreenLockFeaturePlugin::~ScreenLockFeaturePlugin()
 
 bool ScreenLockFeaturePlugin::startMasterFeature( const Feature& feature,
 												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  ComputerControlInterface& localComputerControlInterface,
 												  QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
 	if( feature == m_screenLockFeature )
@@ -74,10 +72,8 @@ bool ScreenLockFeaturePlugin::startMasterFeature( const Feature& feature,
 
 bool ScreenLockFeaturePlugin::stopMasterFeature( const Feature& feature,
 												 const ComputerControlInterfaceList& computerControlInterfaces,
-												 ComputerControlInterface& localComputerControlInterface,
 												 QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
 	if( feature == m_screenLockFeature )

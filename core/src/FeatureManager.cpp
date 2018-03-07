@@ -119,14 +119,13 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 
 void FeatureManager::startMasterFeature( const Feature& feature,
 										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 ComputerControlInterface& localComputerControlInterface,
 										 QWidget* parent )
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		featureInterface->startMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
+		featureInterface->startMasterFeature( feature, computerControlInterfaces, parent );
 	}
 
 	if( feature.testFlag( Feature::Mode ) )
@@ -142,14 +141,13 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 
 void FeatureManager::stopMasterFeature( const Feature& feature,
 										const ComputerControlInterfaceList& computerControlInterfaces,
-										ComputerControlInterface& localComputerControlInterface,
 										QWidget* parent )
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		featureInterface->stopMasterFeature( feature, computerControlInterfaces, localComputerControlInterface, parent );
+		featureInterface->stopMasterFeature( feature, computerControlInterfaces, parent );
 	}
 
 	for( auto controlInterface : computerControlInterfaces )

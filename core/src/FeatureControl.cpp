@@ -55,12 +55,10 @@ bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& co
 
 bool FeatureControl::startMasterFeature( const Feature& feature,
 										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 ComputerControlInterface& localComputerControlInterface,
 										 QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
 	return false;
@@ -70,11 +68,9 @@ bool FeatureControl::startMasterFeature( const Feature& feature,
 
 bool FeatureControl::stopMasterFeature( const Feature& feature,
 										const ComputerControlInterfaceList& computerControlInterfaces,
-										ComputerControlInterface& localComputerControlInterface,
 										QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

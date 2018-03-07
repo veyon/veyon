@@ -55,11 +55,9 @@ public:
 
 	void startMasterFeature( const Feature& feature,
 							 const ComputerControlInterfaceList& computerControlInterfaces,
-							 ComputerControlInterface& localComputerControlInterface,
 							 QWidget* parent );
 	void stopMasterFeature( const Feature& feature,
 							const ComputerControlInterfaceList& computerControlInterfaces,
-							ComputerControlInterface& localComputerControlInterface,
 							QWidget* parent );
 
 public slots:

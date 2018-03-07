@@ -79,11 +79,9 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 bool SystemTrayIcon::startMasterFeature( const Feature& feature,
 										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 ComputerControlInterface& localComputerControlInterface,
 										 QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 
@@ -94,11 +92,9 @@ bool SystemTrayIcon::startMasterFeature( const Feature& feature,
 
 bool SystemTrayIcon::stopMasterFeature( const Feature& feature,
 										const ComputerControlInterfaceList& computerControlInterfaces,
-										ComputerControlInterface& localComputerControlInterface,
 										QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

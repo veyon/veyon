@@ -53,11 +53,6 @@ public:
 		return *m_featureManager;
 	}
 
-	ComputerControlInterface& localComputerControlInterface()
-	{
-		return m_localComputerControlInterface;
-	}
-
 	UserConfig& userConfig()
 	{
 		return *m_userConfig;
@@ -91,8 +86,6 @@ private:
 	BuiltinFeatures* m_builtinFeatures;
 	FeatureManager* m_featureManager;
 	const FeatureList m_features;
-	Computer m_localComputer;
-	ComputerControlInterface m_localComputerControlInterface;
 	UserConfig* m_userConfig;
 	ComputerManager* m_computerManager;
 

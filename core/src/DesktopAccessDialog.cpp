@@ -82,11 +82,9 @@ void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 
 bool DesktopAccessDialog::startMasterFeature( const Feature& feature,
 											  const ComputerControlInterfaceList& computerControlInterfaces,
-											  ComputerControlInterface& localComputerControlInterface,
 											  QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 
@@ -108,11 +106,9 @@ bool DesktopAccessDialog::handleMasterFeatureMessage( const FeatureMessage& mess
 
 bool DesktopAccessDialog::stopMasterFeature( const Feature& feature,
 											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 ComputerControlInterface& localComputerControlInterface,
 											 QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

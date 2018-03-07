@@ -53,11 +53,8 @@ const FeatureList &TextMessageFeaturePlugin::featureList() const
 
 bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 												   const ComputerControlInterfaceList& computerControlInterfaces,
-												   ComputerControlInterface& localComputerControlInterface,
 												   QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
-
 	if( feature.uid() != m_textMessageFeature.uid() )
 	{
 		return false;
@@ -83,11 +80,9 @@ bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 
 bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
 												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  ComputerControlInterface& localComputerControlInterface,
 												  QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

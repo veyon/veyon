@@ -50,7 +50,6 @@ public:
 	 */
 	virtual bool startMasterFeature( const Feature& feature,
 									 const ComputerControlInterfaceList& computerControlInterfaces,
-									 ComputerControlInterface& localComputerControlInterface,
 									 QWidget* parent ) = 0;
 
 	/*!
@@ -61,7 +60,6 @@ public:
 	 */
 	virtual bool stopMasterFeature( const Feature& feature,
 									const ComputerControlInterfaceList& computerControlInterfaces,
-									ComputerControlInterface& localComputerControlInterface,
 									QWidget* parent ) = 0;
 
 	/*!

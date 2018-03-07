@@ -56,11 +56,8 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 
 bool DesktopServicesFeaturePlugin::startMasterFeature( const Feature& feature,
 													   const ComputerControlInterfaceList& computerControlInterfaces,
-													   ComputerControlInterface& localComputerControlInterface,
 													   QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
-
 	if( m_features.contains( feature ) == false )
 	{
 		return false;
@@ -102,11 +99,9 @@ bool DesktopServicesFeaturePlugin::startMasterFeature( const Feature& feature,
 
 bool DesktopServicesFeaturePlugin::stopMasterFeature( const Feature& feature,
 													  const ComputerControlInterfaceList& computerControlInterfaces,
-													  ComputerControlInterface& localComputerControlInterface,
 													  QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

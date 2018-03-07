@@ -22,8 +22,6 @@
  *
  */
 
-#include <QHostAddress>
-
 #include "MasterCore.h"
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
@@ -41,8 +39,6 @@ MasterCore::MasterCore( QObject* parent ) :
 	m_builtinFeatures( new BuiltinFeatures() ),
 	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
-	m_localComputer( NetworkObject::Uid::createUuid(), QStringLiteral("localhost"), QHostAddress( QHostAddress::LocalHost ).toString() ),
-	m_localComputerControlInterface( m_localComputer ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
 	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
@@ -56,10 +52,10 @@ MasterCore::MasterCore( QObject* parent ) :
 				 this, &MasterCore::enforceDesignatedMode );
 	}
 
-	connect( &m_localComputerControlInterface, &ComputerControlInterface::featureMessageReceived,
+	connect( &VeyonCore::localComputerControlInterface(), &ComputerControlInterface::featureMessageReceived,
 			 m_featureManager, &FeatureManager::handleMasterFeatureMessage );
 
-	m_localComputerControlInterface.start( QSize(), m_builtinFeatures );
+	VeyonCore::localComputerControlInterface().start( QSize(), m_builtinFeatures );
 }
 
 
@@ -92,21 +88,18 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 		{
 			const Feature& monitoringModeFeature = m_builtinFeatures->monitoringMode().feature();
 
-			m_featureManager->startMasterFeature( monitoringModeFeature, computerControlInterfaces,
-												  m_localComputerControlInterface, parent );
+			m_featureManager->startMasterFeature( monitoringModeFeature, computerControlInterfaces, parent );
 			m_currentMode = monitoringModeFeature.uid();
 		}
 		else
 		{
-			m_featureManager->startMasterFeature( feature, computerControlInterfaces,
-												  m_localComputerControlInterface, parent );
+			m_featureManager->startMasterFeature( feature, computerControlInterfaces, parent );
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		m_featureManager->startMasterFeature( feature, computerControlInterfaces,
-											  m_localComputerControlInterface, parent );
+		m_featureManager->startMasterFeature( feature, computerControlInterfaces, parent );
 	}
 }
 
@@ -134,15 +127,13 @@ void MasterCore::enforceDesignatedMode( int computerIndex )
 		{
 			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != designatedModeFeature )
 			{
-				featureManager().stopMasterFeature( currentFeature, { computerControlInterface },
-													m_localComputerControlInterface, nullptr );
+				featureManager().stopMasterFeature( currentFeature, { computerControlInterface }, nullptr );
 			}
 		}
 
 		if( designatedModeFeature != m_builtinFeatures->monitoringMode().feature() )
 		{
-			featureManager().startMasterFeature( designatedModeFeature, { computerControlInterface },
-												 m_localComputerControlInterface, nullptr );
+			featureManager().startMasterFeature( designatedModeFeature, { computerControlInterface }, nullptr );
 		}
 	}
 }
@@ -156,8 +147,7 @@ void MasterCore::stopAllModeFeatures( const ComputerControlInterfaceList& comput
 	{
 		if( feature.testFlag( Feature::Mode ) )
 		{
-			m_featureManager->stopMasterFeature( feature, computerControlInterfaces,
-												 m_localComputerControlInterface, parent );
+			m_featureManager->stopMasterFeature( feature, computerControlInterfaces, parent );
 		}
 	}
 }

@@ -206,8 +206,7 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 			activeFeatures( computerControlInterfaces ).contains( feature.uid().toString() ) )
 	{
 		// then stop it
-		m_masterCore->featureManager().stopMasterFeature( feature, computerControlInterfaces,
-														  m_masterCore->localComputerControlInterface(), topLevelWidget() );
+		m_masterCore->featureManager().stopMasterFeature( feature, computerControlInterfaces, topLevelWidget() );
 	}
 	else
 	{
@@ -218,14 +217,12 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 			{
 				if( currentFeature.testFlag( Feature::Mode ) && currentFeature != feature )
 				{
-					m_masterCore->featureManager().stopMasterFeature( currentFeature, computerControlInterfaces,
-																	  m_masterCore->localComputerControlInterface(), topLevelWidget() );
+					m_masterCore->featureManager().stopMasterFeature( currentFeature, computerControlInterfaces, topLevelWidget() );
 				}
 			}
 		}
 
-		m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces,
-														   m_masterCore->localComputerControlInterface(), topLevelWidget() );
+		m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces, topLevelWidget() );
 	}
 }
 

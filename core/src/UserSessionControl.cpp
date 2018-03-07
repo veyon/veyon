@@ -73,11 +73,8 @@ bool UserSessionControl::getUserSessionInfo( const ComputerControlInterfaceList&
 
 bool UserSessionControl::startMasterFeature( const Feature& feature,
 											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 ComputerControlInterface& localComputerControlInterface,
 											 QWidget* parent )
 {
-	Q_UNUSED(localComputerControlInterface);
-
 	if( confirmFeatureExecution( feature, parent ) == false )
 	{
 		return false;
@@ -96,11 +93,9 @@ bool UserSessionControl::startMasterFeature( const Feature& feature,
 
 bool UserSessionControl::stopMasterFeature( const Feature& feature,
 											const ComputerControlInterfaceList& computerControlInterfaces,
-											ComputerControlInterface& localComputerControlInterface,
 											QWidget* parent )
 {
 	Q_UNUSED(feature);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(computerControlInterfaces);
 	Q_UNUSED(parent);
 

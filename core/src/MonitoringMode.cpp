@@ -39,12 +39,10 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 bool MonitoringMode::startMasterFeature( const Feature& feature,
 										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 ComputerControlInterface& localComputerControlInterface,
 										 QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
 	return false;
@@ -54,12 +52,10 @@ bool MonitoringMode::startMasterFeature( const Feature& feature,
 
 bool MonitoringMode::stopMasterFeature( const Feature& feature,
 										const ComputerControlInterfaceList& computerControlInterfaces,
-										ComputerControlInterface& localComputerControlInterface,
 										QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(localComputerControlInterface);
 	Q_UNUSED(parent);
 
 	return false;
