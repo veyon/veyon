@@ -60,7 +60,7 @@ bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
 	{
 		for( auto controlInterface : computerControlInterfaces )
 		{
-			Screenshot().take( *controlInterface );
+			Screenshot().take( controlInterface );
 
 		}
 
@@ -92,7 +92,7 @@ bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool ScreenshotFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-														  ComputerControlInterface& computerControlInterface )
+														  ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);

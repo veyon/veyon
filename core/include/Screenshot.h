@@ -24,6 +24,7 @@
 #ifndef SCREENSHOT_H
 #define SCREENSHOT_H
 
+#include "ComputerControlInterface.h"
 #include "VeyonCore.h"
 
 #include <QImage>
@@ -37,7 +38,7 @@ class VEYON_CORE_EXPORT Screenshot : public QObject
 public:
 	Screenshot( const QString &fileName = QString(), QObject* parent = nullptr );
 
-	void take( const ComputerControlInterface& computerControlInterface );
+	void take( ComputerControlInterface::Pointer computerControlInterface );
 
 	bool isValid() const
 	{

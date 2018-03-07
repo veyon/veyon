@@ -98,7 +98,7 @@ public:
 							 QWidget* parent ) override;
 
 	bool handleMasterFeatureMessage( const FeatureMessage& message,
-									 ComputerControlInterface& computerControlInterface ) override;
+									 ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool stopMasterFeature( const Feature& feature,
 							const ComputerControlInterfaceList& computerControlInterfaces,

@@ -43,8 +43,6 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 							tr( "Open a remote control window for a computer." ),
 							QStringLiteral(":/remoteaccess/krdc.png") ),
 	m_features( { m_remoteViewFeature, m_remoteControlFeature } ),
-	m_customComputer(),
-	m_customComputerControlInterface( m_customComputer ),
 	m_commands( {
 { QStringLiteral("view"), m_remoteViewFeature.displayName() },
 { QStringLiteral("control"), m_remoteControlFeature.displayName() },
@@ -77,7 +75,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 	Q_UNUSED(parent);
 
 	// determine which computer to access and ask if neccessary
-	ComputerControlInterface* remoteAccessComputer = nullptr;
+	ComputerControlInterface::Pointer remoteAccessComputer = nullptr;
 
 	if( ( feature.uid() == m_remoteViewFeature.uid() ||
 		  feature.uid() == m_remoteControlFeature.uid() ) &&
@@ -90,8 +88,9 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 			return false;
 		}
 
-		m_customComputer.setHostAddress( hostName );
-		remoteAccessComputer = &m_customComputerControlInterface;
+		Computer customComputer;
+		customComputer.setHostAddress( hostName );
+		remoteAccessComputer = ComputerControlInterface::Pointer::create( customComputer );
 	}
 	else
 	{
@@ -108,13 +107,13 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 
 	if( feature.uid() == m_remoteViewFeature.uid() )
 	{
-		new RemoteAccessWidget( *remoteAccessComputer, true );
+		new RemoteAccessWidget( remoteAccessComputer, true );
 
 		return true;
 	}
 	else if( feature.uid() == m_remoteControlFeature.uid() )
 	{
-		new RemoteAccessWidget( *remoteAccessComputer, false );
+		new RemoteAccessWidget( remoteAccessComputer, false );
 
 		return true;
 	}
@@ -140,7 +139,7 @@ bool RemoteAccessFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool RemoteAccessFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-															ComputerControlInterface& computerControlInterface )
+															ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -199,7 +198,7 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( co
 	Computer remoteComputer;
 	remoteComputer.setHostAddress( arguments.first() );
 
-	new RemoteAccessWidget( remoteComputer, true );
+	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), true );
 
 	qApp->exec();
 
@@ -223,7 +222,7 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 	Computer remoteComputer;
 	remoteComputer.setHostAddress( arguments.first() );
 
-	new RemoteAccessWidget( remoteComputer, false );
+	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), false );
 
 	qApp->exec();
 

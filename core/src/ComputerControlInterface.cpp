@@ -31,7 +31,7 @@
 #include "UserSessionControl.h"
 
 
-ComputerControlInterface::ComputerControlInterface( const Computer &computer,
+ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 													QObject* parent ) :
 	QObject( parent ),
 	m_computer( computer ),
@@ -50,6 +50,13 @@ ComputerControlInterface::ComputerControlInterface( const Computer &computer,
 ComputerControlInterface::~ComputerControlInterface()
 {
 	stop();
+}
+
+
+
+ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
+{
+	return Pointer( this, []( ComputerControlInterface* ) { } );
 }
 
 
@@ -225,7 +232,7 @@ void ComputerControlInterface::updateUser()
 	{
 		if( user().isEmpty() )
 		{
-			m_builtinFeatures->userSessionControl().getUserSessionInfo( ComputerControlInterfaceList( { this } ) );
+			m_builtinFeatures->userSessionControl().getUserSessionInfo( { weakPointer() } );
 		}
 	}
 	else
@@ -240,7 +247,7 @@ void ComputerControlInterface::updateActiveFeatures()
 {
 	if( m_vncConnection && m_coreConnection && state() == Connected )
 	{
-		m_builtinFeatures->featureControl().queryActiveFeatures( ComputerControlInterfaceList( { this } ) );
+		m_builtinFeatures->featureControl().queryActiveFeatures( { weakPointer() } );
 	}
 	else
 	{
@@ -252,5 +259,5 @@ void ComputerControlInterface::updateActiveFeatures()
 
 void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
 {
-	emit featureMessageReceived( message, *this );
+	emit featureMessageReceived( message, weakPointer() );
 }

@@ -116,7 +116,7 @@ bool DesktopServicesFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool DesktopServicesFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-															   ComputerControlInterface& computerControlInterface )
+															   ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);

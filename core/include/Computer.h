@@ -26,9 +26,8 @@
 #define COMPUTER_H
 
 #include <QString>
-#include <QList>
+#include <QVector>
 
-#include "ComputerControlInterface.h"
 #include "NetworkObject.h"
 
 // clazy:excludeall=rule-of-three
@@ -36,7 +35,6 @@
 class VEYON_CORE_EXPORT Computer
 {
 public:
-	Computer( const Computer& other );
 	Computer( NetworkObject::Uid networkObjectUid = 0,
 			  const QString& name = QString(),
 			  const QString& hostAddress = QString(),
@@ -98,16 +96,6 @@ public:
 		return m_room;
 	}
 
-	const ComputerControlInterface& controlInterface() const
-	{
-		return m_controlInterface;
-	}
-
-	ComputerControlInterface& controlInterface()
-	{
-		return m_controlInterface;
-	}
-
 private:
 	NetworkObject::Uid m_networkObjectUid;
 	QString m_name;
@@ -115,10 +103,8 @@ private:
 	QString m_macAddress;
 	QString m_room;
 
-	ComputerControlInterface m_controlInterface;
-
 };
 
-typedef QList<Computer> ComputerList;
+typedef QVector<Computer> ComputerList;
 
 #endif // COMPUTER_H

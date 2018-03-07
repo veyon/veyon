@@ -25,7 +25,7 @@
 #ifndef COMPUTER_MANAGER_H
 #define COMPUTER_MANAGER_H
 
-#include "Computer.h"
+#include "ComputerControlInterface.h"
 #include "CheckableItemProxyModel.h"
 
 class QHostAddress;
@@ -56,17 +56,10 @@ public:
 		return m_computerTreeModel;
 	}
 
-	ComputerList& computerList()
+	const ComputerControlInterfaceList& computerControlInterfaces() const
 	{
-		return m_computerList;
+		return m_computerControlInterfaces;
 	}
-
-	const ComputerList& computerList() const
-	{
-		return m_computerList;
-	}
-
-	ComputerControlInterfaceList computerControlInterfaces();
 
 	void updateComputerScreenSize();
 
@@ -106,8 +99,8 @@ private:
 	ComputerList getCheckedComputers( const QModelIndex& parent );
 	QSize computerScreenSize() const;
 
-	void startComputerControlInterface( Computer& computer, int index );
-	void updateUser( Computer& computer );
+	void startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, int index );
+	void updateUser( ComputerControlInterface::Pointer controlInterface );
 
 	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
@@ -123,7 +116,7 @@ private:
 
 	QStringList m_currentRooms;
 	QStringList m_roomFilterList;
-	ComputerList m_computerList;
+	ComputerControlInterfaceList m_computerControlInterfaces;
 
 	QStringList m_localHostNames;
 	QList<QHostAddress> m_localHostAddresses;

@@ -29,13 +29,13 @@
 #include <QObject>
 #include <QSize>
 
+#include "Computer.h"
 #include "Feature.h"
 #include "VeyonCore.h"
 
 class QImage;
 
 class BuiltinFeatures;
-class Computer;
 class FeatureMessage;
 class VeyonVncConnection;
 class VeyonCoreConnection;
@@ -44,6 +44,8 @@ class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 {
 	Q_OBJECT
 public:
+	typedef QSharedPointer<ComputerControlInterface> Pointer;
+
 	typedef enum States
 	{
 		Disconnected,
@@ -58,6 +60,8 @@ public:
 
 	ComputerControlInterface( const Computer& computer, QObject* parent = nullptr );
 	~ComputerControlInterface() override;
+
+	Pointer weakPointer();
 
 	void start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures );
 	void stop();
@@ -134,7 +138,7 @@ private:
 		FramebufferUpdateInterval = 1000,
 	};
 
-	const Computer& m_computer;
+	Computer m_computer;
 
 	State m_state;
 	QString m_user;
@@ -150,12 +154,12 @@ private:
 	bool m_screenUpdated;
 
 signals:
-	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface& );
+	void featureMessageReceived( const FeatureMessage&, ComputerControlInterface::Pointer );
 	void userChanged();
 	void activeFeaturesChanged();
 
 };
 
-typedef QList<ComputerControlInterface *> ComputerControlInterfaceList;
+typedef QVector<ComputerControlInterface::Pointer> ComputerControlInterfaceList;
 
 #endif // COMPUTER_CONTROL_INTERFACE_H

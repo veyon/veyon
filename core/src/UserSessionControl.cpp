@@ -110,11 +110,11 @@ bool UserSessionControl::stopMasterFeature( const Feature& feature,
 
 
 bool UserSessionControl::handleMasterFeatureMessage( const FeatureMessage& message,
-													 ComputerControlInterface& computerControlInterface )
+													 ComputerControlInterface::Pointer computerControlInterface )
 {
 	if( message.featureUid() == m_userSessionInfoFeature.uid() )
 	{
-		computerControlInterface.setUser( message.argument( UserName ).toString() );
+		computerControlInterface->setUser( message.argument( UserName ).toString() );
 
 		return true;
 	}

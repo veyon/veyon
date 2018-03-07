@@ -77,7 +77,7 @@ public:
 							 QWidget* parent ) override;
 
 	bool handleMasterFeatureMessage( const FeatureMessage& message,
-									 ComputerControlInterface& computerControlInterface ) override;
+									 ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool stopMasterFeature( const Feature& feature,
 							const ComputerControlInterfaceList& computerControlInterfaces,
@@ -114,8 +114,6 @@ private:
 	Feature m_remoteViewFeature;
 	Feature m_remoteControlFeature;
 	FeatureList m_features;
-	Computer m_customComputer;
-	ComputerControlInterface m_customComputerControlInterface;
 	QMap<QString, QString> m_commands;
 
 };

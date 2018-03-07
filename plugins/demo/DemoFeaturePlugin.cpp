@@ -133,7 +133,7 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 bool DemoFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-													ComputerControlInterface& computerControlInterface )
+													ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);

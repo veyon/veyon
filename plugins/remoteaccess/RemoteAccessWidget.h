@@ -24,11 +24,12 @@
 #ifndef REMOTE_ACCESS_WIDGET_H
 #define REMOTE_ACCESS_WIDGET_H
 
+#include "ComputerControlInterface.h"
+
 #include <QTimeLine>
 #include <QWidget>
 
 class VncView;
-class ComputerControlInterface;
 class VeyonCoreConnection;
 class RemoteAccessWidget;
 class ToolButton;
@@ -85,7 +86,7 @@ class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidget( const ComputerControlInterface& computerControlInterface, bool _view_only = false );
+	RemoteAccessWidget( ComputerControlInterface::Pointer computerControlInterface, bool _view_only = false );
 	~RemoteAccessWidget() override;
 
 
@@ -107,7 +108,7 @@ private slots:
 
 
 private:
-	const ComputerControlInterface& m_computerControlInterface;
+	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncView* m_vncView;
 	VeyonCoreConnection* m_coreConnection;
 	RemoteAccessWidgetToolBar* m_toolBar;

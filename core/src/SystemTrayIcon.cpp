@@ -108,7 +108,7 @@ bool SystemTrayIcon::stopMasterFeature( const Feature& feature,
 
 
 bool SystemTrayIcon::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface& computerControlInterface )
+												 ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);

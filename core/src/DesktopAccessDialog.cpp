@@ -96,7 +96,7 @@ bool DesktopAccessDialog::startMasterFeature( const Feature& feature,
 
 
 bool DesktopAccessDialog::handleMasterFeatureMessage( const FeatureMessage& message,
-													  ComputerControlInterface& computerControlInterface )
+													  ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);

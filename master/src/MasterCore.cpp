@@ -114,9 +114,9 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 
 void MasterCore::shutdownComputerControlInterface( int computerIndex )
 {
-	if( computerIndex < m_computerManager->computerList().size() )
+	if( computerIndex < m_computerManager->computerControlInterfaces().size() )
 	{
-		stopAllModeFeatures( { &m_computerManager->computerList()[computerIndex].controlInterface() }, nullptr );
+		stopAllModeFeatures( { m_computerManager->computerControlInterfaces()[computerIndex] }, nullptr );
 	}
 }
 
@@ -124,24 +124,24 @@ void MasterCore::shutdownComputerControlInterface( int computerIndex )
 
 void MasterCore::enforceDesignatedMode( int computerIndex )
 {
-	if( computerIndex < m_computerManager->computerList().size() )
+	if( computerIndex < m_computerManager->computerControlInterfaces().size() )
 	{
-		auto& computerControlInterface = m_computerManager->computerList()[computerIndex].controlInterface();
-		auto designatedModeFeature = m_featureManager->feature( computerControlInterface.designatedModeFeature() );
+		auto computerControlInterface = m_computerManager->computerControlInterfaces()[computerIndex];
+		auto designatedModeFeature = m_featureManager->feature( computerControlInterface->designatedModeFeature() );
 
 		// stop all other active mode feature
 		for( const auto& currentFeature : features() )
 		{
 			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != designatedModeFeature )
 			{
-				featureManager().stopMasterFeature( currentFeature, { &computerControlInterface },
+				featureManager().stopMasterFeature( currentFeature, { computerControlInterface },
 													m_localComputerControlInterface, nullptr );
 			}
 		}
 
 		if( designatedModeFeature != m_builtinFeatures->monitoringMode().feature() )
 		{
-			featureManager().startMasterFeature( designatedModeFeature, { &computerControlInterface },
+			featureManager().startMasterFeature( designatedModeFeature, { computerControlInterface },
 												 m_localComputerControlInterface, nullptr );
 		}
 	}

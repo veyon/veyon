@@ -40,11 +40,11 @@ public:
 					   const FeatureList& masterFeatures,
 					   QObject *parent = nullptr );
 
-	int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+	QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
-	ComputerControlInterface& computerControlInterface( const QModelIndex& index );
+	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index );
 
 private slots:
 	void beginInsertComputer( int index );
@@ -60,14 +60,13 @@ private slots:
 private:
 	void loadIcons();
 	QImage prepareIcon( const QImage& icon );
-	QImage computerDecorationRole( const Computer& computer ) const;
-	QString computerToolTipRole( const Computer& computer ) const;
-	QString computerDisplayRole( const Computer& computer ) const;
-	QString computerStateDescription( const Computer& computer ) const;
-	QString loggedOnUserInformation( const Computer& computer ) const;
-	QString activeFeatures( const Computer& computer ) const;
+	QImage computerDecorationRole( ComputerControlInterface::Pointer controlInterface ) const;
+	QString computerToolTipRole( ComputerControlInterface::Pointer controlInterface ) const;
+	static QString computerDisplayRole( ComputerControlInterface::Pointer controlInterface );
+	static QString computerStateDescription( ComputerControlInterface::Pointer controlInterface );
+	static QString loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface );
+	QString activeFeatures(  ComputerControlInterface::Pointer controlInterface ) const;
 
-	ComputerControlInterface m_dummyControlInterface;
 	ComputerManager& m_manager;
 	const FeatureList m_masterFeatures;
 	QImage m_iconDefault;

@@ -49,9 +49,9 @@ Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
 
 
 
-void Screenshot::take( const ComputerControlInterface& computerControlInterface )
+void Screenshot::take( ComputerControlInterface::Pointer computerControlInterface )
 {
-	QString u = computerControlInterface.user();
+	QString u = computerControlInterface->user();
 	if( u.isEmpty() )
 	{
 		u = tr( "unknown" );
@@ -62,7 +62,7 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 	}
 
 	// construct text
-	QString txt = u + "@" + computerControlInterface.computer().hostAddress() + " " +
+	QString txt = u + "@" + computerControlInterface->computer().hostAddress() + " " +
 			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
@@ -82,7 +82,7 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 	}
 
 	// construct filename
-	m_fileName =  QString( QStringLiteral( "_%1_%2_%3.png" ) ).arg( computerControlInterface.computer().hostAddress(),
+	m_fileName =  QString( QStringLiteral( "_%1_%2_%3.png" ) ).arg( computerControlInterface->computer().hostAddress(),
 						QDate( QDate::currentDate() ).toString( Qt::ISODate ),
 						QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
 					replace( ':', '-' );
@@ -94,7 +94,7 @@ void Screenshot::take( const ComputerControlInterface& computerControlInterface 
 	const int RECT_MARGIN = 10;
 	const int RECT_INNER_MARGIN = 5;
 
-	m_image = QImage( computerControlInterface.screen() );
+	m_image = QImage( computerControlInterface->screen() );
 
 	QPixmap icon( QStringLiteral( ":/resources/icon16.png" ) );
 

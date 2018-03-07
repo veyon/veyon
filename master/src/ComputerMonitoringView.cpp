@@ -107,8 +107,8 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 		computerControlInterfaces.reserve( selectedIndices.size() );
 		for( const auto& index : selectedIndices )
 		{
-			computerControlInterfaces += &( m_computerListModel->computerControlInterface(
-												m_sortFilterProxyModel.mapToSource( index ) ) );
+			computerControlInterfaces.append( m_computerListModel->computerControlInterface(
+												  m_sortFilterProxyModel.mapToSource( index ) ) );
 		}
 	}
 

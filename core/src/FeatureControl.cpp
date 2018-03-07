@@ -84,11 +84,11 @@ bool FeatureControl::stopMasterFeature( const Feature& feature,
 
 
 bool FeatureControl::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface& computerControlInterface )
+												 ComputerControlInterface::Pointer computerControlInterface )
 {
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{
-		computerControlInterface.setActiveFeatures( message.argument( ActiveFeatureList ).toStringList() );
+		computerControlInterface->setActiveFeatures( message.argument( ActiveFeatureList ).toStringList() );
 
 		return true;
 	}

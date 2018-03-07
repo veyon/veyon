@@ -33,7 +33,6 @@ ComputerListModel::ComputerListModel( ComputerManager& manager,
 									  const FeatureList& masterFeatures,
 									  QObject *parent) :
 	QAbstractListModel( parent ),
-	m_dummyControlInterface( Computer() ),
 	m_manager( manager ),
 	m_masterFeatures( masterFeatures ),
 	m_iconDefault(),
@@ -63,45 +62,45 @@ ComputerListModel::ComputerListModel( ComputerManager& manager,
 
 
 
-int ComputerListModel::rowCount(const QModelIndex &parent) const
+int ComputerListModel::rowCount( const QModelIndex& parent ) const
 {
 	if( parent.isValid() )
 	{
 		return 0;
 	}
 
-	return m_manager.computerList().count();
+	return m_manager.computerControlInterfaces().count();
 }
 
 
 
-QVariant ComputerListModel::data(const QModelIndex &index, int role) const
+QVariant ComputerListModel::data( const QModelIndex& index, int role ) const
 {
 	if( index.isValid() == false )
 	{
 		return QVariant();
 	}
 
-	if( index.row() >= m_manager.computerList().count() )
+	if( index.row() >= m_manager.computerControlInterfaces().count() )
 	{
 		qCritical( "ComputerListModel::data(): index out of range!" );
 	}
 
-	const auto& computer = m_manager.computerList()[index.row()];
+	const auto computerControl = m_manager.computerControlInterfaces()[index.row()];
 
 	switch( role )
 	{
 	case Qt::DecorationRole:
-		return computerDecorationRole( computer );
+		return computerDecorationRole( computerControl );
 
 	case Qt::ToolTipRole:
-		return computerToolTipRole( computer );
+		return computerToolTipRole( computerControl );
 
 	case Qt::DisplayRole:
-		return computerDisplayRole( computer );
+		return computerDisplayRole( computerControl );
 
 	case Qt::InitialSortOrderRole:
-		return computer.room() + computer.name();
+		return computerControl->computer().room() + computerControl->computer().name();
 
 	default:
 		break;
@@ -112,15 +111,15 @@ QVariant ComputerListModel::data(const QModelIndex &index, int role) const
 
 
 
-ComputerControlInterface& ComputerListModel::computerControlInterface(const QModelIndex &index)
+ComputerControlInterface::Pointer ComputerListModel::computerControlInterface( const QModelIndex& index )
 {
-	if( index.isValid() == false || index.row() >= m_manager.computerList().count( ) )
+	if( index.isValid() == false || index.row() >= m_manager.computerControlInterfaces().count( ) )
 	{
 		qCritical( "ComputerListModel::computerControlInterface(): invalid ComputerControlInterface requested!" );
-		return m_dummyControlInterface;
+		return nullptr;
 	}
 
-	return m_manager.computerList()[index.row()].controlInterface();
+	return m_manager.computerControlInterfaces()[index.row()];
 }
 
 
@@ -190,16 +189,14 @@ QImage ComputerListModel::prepareIcon(const QImage &icon)
 
 
 
-QImage ComputerListModel::computerDecorationRole( const Computer& computer ) const
+QImage ComputerListModel::computerDecorationRole( ComputerControlInterface::Pointer controlInterface ) const
 {
-	const auto& controlInterface = computer.controlInterface();
-
 	QImage image;
 
-	switch( controlInterface.state() )
+	switch( controlInterface->state() )
 	{
 	case ComputerControlInterface::Connected:
-		image = controlInterface.scaledScreen();
+		image = controlInterface->scaledScreen();
 		if( image.isNull() == false )
 		{
 			return image;
@@ -218,18 +215,18 @@ QImage ComputerListModel::computerDecorationRole( const Computer& computer ) con
 		break;
 	}
 
-	return image.scaled( controlInterface.scaledScreenSize(), Qt::KeepAspectRatio );
+	return image.scaled( controlInterface->scaledScreenSize(), Qt::KeepAspectRatio );
 }
 
 
 
-QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
+QString ComputerListModel::computerToolTipRole( ComputerControlInterface::Pointer controlInterface ) const
 {
-	const QString state( computerStateDescription( computer ) );
-	const QString room( tr( "Room: %1" ).arg( computer.room() ) );
-	const QString host( tr( "Host/IP address: %1" ).arg( computer.hostAddress() ) );
-	const QString user( loggedOnUserInformation( computer ) );
-	const QString features( tr( "Active features: %1" ).arg( activeFeatures( computer ) ) );
+	const QString state( computerStateDescription( controlInterface ) );
+	const QString room( tr( "Room: %1" ).arg( controlInterface->computer().room() ) );
+	const QString host( tr( "Host/IP address: %1" ).arg( controlInterface->computer().hostAddress() ) );
+	const QString user( loggedOnUserInformation( controlInterface ) );
+	const QString features( tr( "Active features: %1" ).arg( activeFeatures( controlInterface ) ) );
 
 	if( user.isEmpty() )
 	{
@@ -241,14 +238,12 @@ QString ComputerListModel::computerToolTipRole( const Computer& computer ) const
 
 
 
-QString ComputerListModel::computerDisplayRole( const Computer& computer ) const
+QString ComputerListModel::computerDisplayRole( ComputerControlInterface::Pointer controlInterface )
 {
-	const auto& controlInterface = computer.controlInterface();
-
-	if( controlInterface.state() == ComputerControlInterface::Connected &&
-			controlInterface.user().isEmpty() == false )
+	if( controlInterface->state() == ComputerControlInterface::Connected &&
+			controlInterface->user().isEmpty() == false )
 	{
-		auto user = controlInterface.user();
+		auto user = controlInterface->user();
 
 		// do we have full name information?
 		QRegExp fullNameRX( "(.*) \\((.*)\\)" );
@@ -264,17 +259,17 @@ QString ComputerListModel::computerDisplayRole( const Computer& computer ) const
 			}
 		}
 
-		return QStringLiteral("%1 - %2").arg( user, computer.name() );
+		return QStringLiteral("%1 - %2").arg( user, controlInterface->computer().name() );
 	}
 
-	return computer.name();
+	return controlInterface->computer().name();
 }
 
 
 
-QString ComputerListModel::computerStateDescription( const Computer& computer ) const
+QString ComputerListModel::computerStateDescription( ComputerControlInterface::Pointer controlInterface )
 {
-	switch( computer.controlInterface().state() )
+	switch( controlInterface->state() )
 	{
 	case ComputerControlInterface::Connected:
 		return tr( "Online and connected" );
@@ -300,18 +295,16 @@ QString ComputerListModel::computerStateDescription( const Computer& computer ) 
 
 
 
-QString ComputerListModel::loggedOnUserInformation( const Computer& computer ) const
+QString ComputerListModel::loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface )
 {
-	const auto& controlInterface = computer.controlInterface();
-
-	if( controlInterface.state() == ComputerControlInterface::Connected )
+	if( controlInterface->state() == ComputerControlInterface::Connected )
 	{
-		if( controlInterface.user().isEmpty() )
+		if( controlInterface->user().isEmpty() )
 		{
 			return tr( "No user logged on" );
 		}
 
-		return tr( "Logged on user: %1" ).arg( controlInterface.user() );
+		return tr( "Logged on user: %1" ).arg( controlInterface->user() );
 	}
 
 	return QString();
@@ -319,13 +312,13 @@ QString ComputerListModel::loggedOnUserInformation( const Computer& computer ) c
 
 
 
-QString ComputerListModel::activeFeatures( const Computer& computer ) const
+QString ComputerListModel::activeFeatures( ComputerControlInterface::Pointer controlInterface ) const
 {
 	QStringList featureNames;
 
 	for( const auto& feature : m_masterFeatures )
 	{
-		if( computer.controlInterface().activeFeatures().contains( feature.uid().toString() ) )
+		if( controlInterface->activeFeatures().contains( feature.uid().toString() ) )
 		{
 			featureNames.append( feature.displayName() );
 		}

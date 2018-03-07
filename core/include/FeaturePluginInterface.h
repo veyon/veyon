@@ -70,7 +70,7 @@ public:
 	 * \param computerControlInterfaces the interface over which the message has been received
 	 */
 	virtual bool handleMasterFeatureMessage( const FeatureMessage& message,
-											 ComputerControlInterface& computerControlInterface ) = 0;
+											 ComputerControlInterface::Pointer computerControlInterface ) = 0;
 
 	/*!
 	 * \brief Handles a received feature message inside service

@@ -75,20 +75,20 @@ public:
 	}
 
 	bool startMasterFeature( const Feature& feature,
-	                         const ComputerControlInterfaceList& computerControlInterfaces,
+							 const ComputerControlInterfaceList& computerControlInterfaces,
 							 ComputerControlInterface& localComputerControlInterface,
 							 QWidget* parent ) override;
 
 	bool stopMasterFeature( const Feature& feature,
-	                        const ComputerControlInterfaceList& computerControlInterfaces,
+							const ComputerControlInterfaceList& computerControlInterfaces,
 							ComputerControlInterface& localComputerControlInterface,
 							QWidget* parent ) override;
 
 	bool handleMasterFeatureMessage( const FeatureMessage& message,
-									 ComputerControlInterface& computerControlInterface ) override;
+									 ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool handleServiceFeatureMessage( const FeatureMessage& message,
-	                                  FeatureWorkerManager& featureWorkerManager ) override;
+									  FeatureWorkerManager& featureWorkerManager ) override;
 
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 

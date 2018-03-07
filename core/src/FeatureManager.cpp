@@ -164,7 +164,7 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 
 
 bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface& computerControlInterface )
+												 ComputerControlInterface::Pointer computerControlInterface )
 {
 	qDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
