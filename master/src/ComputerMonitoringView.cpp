@@ -27,6 +27,7 @@
 #include <QShowEvent>
 #include <QTimer>
 
+#include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
 #include "MasterCore.h"
@@ -41,7 +42,6 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	ui(new Ui::ComputerMonitoringView),
 	m_masterCore( nullptr ),
 	m_featureMenu( new QMenu( this ) ),
-	m_computerListModel( nullptr ),
 	m_sortFilterProxyModel( this )
 {
 	ui->setupUi( this );
@@ -60,8 +60,6 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 ComputerMonitoringView::~ComputerMonitoringView()
 {
 	delete ui;
-
-	delete m_computerListModel;
 }
 
 
@@ -83,15 +81,12 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 		ui->listView->setPalette( pal );
 	}
 
-	// create computer list model and attach it to list view
-	m_computerListModel = new ComputerListModel( m_masterCore->computerManager(),
-												 m_masterCore->features(),
-												 this );
-
-	m_sortFilterProxyModel.setSourceModel( m_computerListModel );
+	// attach computer list model to proxy model
+	m_sortFilterProxyModel.setSourceModel( &m_masterCore->computerControlListModel() );
 	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );
 	m_sortFilterProxyModel.sort( 0 );
 
+	// attach proxy model to view
 	ui->listView->setModel( &m_sortFilterProxyModel );
 }
 
@@ -99,17 +94,16 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 
 ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInterfaces()
 {
+	const auto& computerControlListModel = m_masterCore->computerControlListModel();
 	ComputerControlInterfaceList computerControlInterfaces;
 
-	if( m_computerListModel )
+	const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
+	computerControlInterfaces.reserve( selectedIndices.size() );
+
+	for( const auto& index : selectedIndices )
 	{
-		const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
-		computerControlInterfaces.reserve( selectedIndices.size() );
-		for( const auto& index : selectedIndices )
-		{
-			computerControlInterfaces.append( m_computerListModel->computerControlInterface(
-												  m_sortFilterProxyModel.mapToSource( index ) ) );
-		}
+		const auto sourceIndex = m_sortFilterProxyModel.mapToSource( index );
+		computerControlInterfaces.append( computerControlListModel.computerControlInterface( sourceIndex ) );
 	}
 
 	return computerControlInterfaces;
@@ -152,7 +146,7 @@ void ComputerMonitoringView::setComputerScreenSize( int size )
 	{
 		m_masterCore->userConfig().setMonitoringScreenSize( size );
 
-		m_masterCore->computerManager().updateComputerScreenSize();
+		m_masterCore->computerControlListModel().updateComputerScreenSize();
 
 		ui->listView->setIconSize( QSize( size, size * 9 / 16 ) );
 	}

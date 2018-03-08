@@ -25,8 +25,7 @@
 #ifndef COMPUTER_MONITORING_VIEW_H
 #define COMPUTER_MONITORING_VIEW_H
 
-#include "ComputerListModel.h"
-#include "Feature.h"
+#include "ComputerControlInterface.h"
 
 #include <QSortFilterProxyModel>
 #include <QWidget>
@@ -78,7 +77,6 @@ private:
 
 	MasterCore* m_masterCore;
 	QMenu* m_featureMenu;
-	ComputerListModel* m_computerListModel;
 	QSortFilterProxyModel m_sortFilterProxyModel;
 
 signals:

@@ -27,11 +27,8 @@
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QMessageBox>
-#include <QTimer>
 
-#include "BuiltinFeatures.h"
 #include "ComputerManager.h"
-#include "FeatureManager.h"
 #include "VeyonConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectDirectory.h"
@@ -43,14 +40,9 @@
 #include "UserSessionControl.h"
 
 
-ComputerManager::ComputerManager( UserConfig& config,
-								  FeatureManager& featureManager,
-								  BuiltinFeatures& builtinFeatures,
-								  QObject* parent ) :
+ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
-	m_featureManager( featureManager ),
-	m_builtinFeatures( builtinFeatures ),
 	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
 	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( 1, Qt::DisplayRole, tr( "User" ), this ) ),
@@ -80,11 +72,6 @@ ComputerManager::ComputerManager( UserConfig& config,
 	initNetworkObjectLayer();
 	initRooms();
 	initComputerTreeModel();
-	updateComputerList();
-
-	auto computerScreenUpdateTimer = new QTimer( this );
-	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerManager::updateComputerScreens );
-	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
 }
 
 
@@ -92,18 +79,6 @@ ComputerManager::ComputerManager( UserConfig& config,
 ComputerManager::~ComputerManager()
 {
 	m_config.setCheckedNetworkObjects( m_computerTreeModel->saveStates() );
-}
-
-
-
-void ComputerManager::updateComputerScreenSize()
-{
-	const auto size = computerScreenSize();
-
-	for( auto& controlInterface : m_computerControlInterfaces )
-	{
-		controlInterface->setScaledScreenSize( size );
-	}
 }
 
 
@@ -133,10 +108,10 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 {
 	QStringList lines( tr( "Computer name;Host name;User" ) );
 
-	for( auto& controlInterface : m_computerControlInterfaces )
-	{
-		const auto& computer = controlInterface->computer();
+	const auto computers = selectedComputers( QModelIndex() );
 
+	for( const auto& computer : computers )
+	{
 		QModelIndex networkObjectIndex = findNetworkObject( computer.networkObjectUid() );
 		if( networkObjectIndex.isValid() )
 		{
@@ -144,7 +119,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 			networkObjectIndex = m_networkObjectOverlayDataModel->
 					index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
 			// fetch user
-			QString user = m_networkObjectOverlayDataModel->data( networkObjectIndex ).toString();
+			const auto user = m_networkObjectOverlayDataModel->data( networkObjectIndex ).toString();
 			// create new line with computer and user
 			lines += computer.name() + ";" + computer.hostAddress() + ";" + user; // clazy:exclude=reserve-candidates
 		}
@@ -166,91 +141,16 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 
 
 
-void ComputerManager::reloadComputerList()
+void ComputerManager::updateUser( ComputerControlInterface::Pointer controlInterface )
 {
-	emit computerListAboutToBeReset();
-	const auto computerList = getCheckedComputers( QModelIndex() );
+	auto networkObjectIndex = findNetworkObject( controlInterface->computer().networkObjectUid() );
 
-	m_computerControlInterfaces.clear();
-	m_computerControlInterfaces.reserve( computerList.size() );
-
-	int index = 0;
-
-	for( const auto& computer : computerList )
+	if( networkObjectIndex.isValid() )
 	{
-		const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
-		m_computerControlInterfaces.append( controlInterface );
-		startComputerControlInterface( controlInterface, index );
-		++index;
-	}
-
-	emit computerListReset();
-}
-
-
-
-void ComputerManager::updateComputerList()
-{
-	const auto newComputerList = getCheckedComputers( QModelIndex() );
-
-	int index = 0;
-
-	for( auto it = m_computerControlInterfaces.begin(); it != m_computerControlInterfaces.end(); ) // clazy:exclude=detaching-member
-	{
-		if( newComputerList.contains( (*it)->computer() ) == false )
-		{
-			emit computerAboutToBeRemoved( index );
-			it = m_computerControlInterfaces.erase( it );
-			emit computerRemoved();
-		}
-		else
-		{
-			++it;
-			++index;
-		}
-	}
-
-	index = 0;
-
-	for( const auto& computer : newComputerList )
-	{
-		if( index < m_computerControlInterfaces.count() && m_computerControlInterfaces[index]->computer() != computer )
-		{
-			emit computerAboutToBeInserted( index );
-			const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
-			m_computerControlInterfaces.insert( index, controlInterface );
-			startComputerControlInterface( controlInterface, index );
-			emit computerInserted();
-		}
-		else if( index >= m_computerControlInterfaces.count() )
-		{
-			emit computerAboutToBeInserted( index );
-			const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
-			m_computerControlInterfaces.append( controlInterface );
-			startComputerControlInterface( controlInterface, index ); // clazy:exclude=detaching-member
-			emit computerInserted();
-		}
-
-		++index;
-	}
-}
-
-
-
-void ComputerManager::updateComputerScreens()
-{
-	int index = 0;
-
-	for( auto& controlInterface : m_computerControlInterfaces )
-	{
-		if( controlInterface->hasScreenUpdates() )
-		{
-			controlInterface->clearScreenUpdateFlag();
-
-			emit computerScreenUpdated( index );
-		}
-
-		++index;
+		networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
+		m_networkObjectOverlayDataModel->setData( networkObjectIndex,
+												  controlInterface->user(),
+												  Qt::DisplayRole );
 	}
 }
 
@@ -346,16 +246,16 @@ void ComputerManager::initComputerTreeModel()
 	m_computerTreeModel->loadStates( checkedNetworkObjects );
 
 	connect( computerTreeModel(), &QAbstractItemModel::modelReset,
-			 this, &ComputerManager::reloadComputerList );
+			 this, &ComputerManager::computerSelectionReset );
 	connect( computerTreeModel(), &QAbstractItemModel::layoutChanged,
-			 this, &ComputerManager::reloadComputerList );
+			 this, &ComputerManager::computerSelectionReset );
 
 	connect( computerTreeModel(), &QAbstractItemModel::dataChanged,
-			 this, &ComputerManager::updateComputerList );
+			 this, &ComputerManager::computerSelectionChanged );
 	connect( computerTreeModel(), &QAbstractItemModel::rowsInserted,
-			 this, &ComputerManager::updateComputerList );
+			 this, &ComputerManager::computerSelectionChanged );
 	connect( computerTreeModel(), &QAbstractItemModel::rowsRemoved,
-			 this, &ComputerManager::updateComputerList );
+			 this, &ComputerManager::computerSelectionChanged );
 }
 
 
@@ -445,7 +345,7 @@ ComputerList ComputerManager::getComputersInRoom( const QString& roomName, const
 
 
 
-ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
+ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 {
 	QAbstractItemModel* model = computerTreeModel();
 
@@ -472,7 +372,7 @@ ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 		switch( objectType )
 		{
 		case NetworkObject::Group:
-			computers += getCheckedComputers( entryIndex );
+			computers += selectedComputers( entryIndex );
 			break;
 		case NetworkObject::Host:
 			computers += Computer( model->data( entryIndex, NetworkObjectModel::UidRole ).toUuid(),
@@ -486,48 +386,6 @@ ComputerList ComputerManager::getCheckedComputers(const QModelIndex &parent)
 	}
 
 	return computers;
-}
-
-
-
-QSize ComputerManager::computerScreenSize() const
-{
-	return QSize( m_config.monitoringScreenSize(),
-				  m_config.monitoringScreenSize() * 9 / 16 );
-}
-
-
-
-void ComputerManager::startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, int index )
-{
-	controlInterface->start( computerScreenSize(), &m_builtinFeatures );
-
-	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived,
-			 &m_featureManager, &FeatureManager::handleMasterFeatureMessage );
-
-	connect( controlInterface.data(), &ComputerControlInterface::activeFeaturesChanged,
-			 this, [=] () { emit activeFeaturesOfComputerChanged( index ); } );
-
-	// pass weak pointer to lambda function as otherwise the original shared pointer
-	// gets referenced once more all the time and thus the object never gets deleted
-	auto controlInterfaceWeakRef = controlInterface->weakPointer();
-	connect( controlInterface.data(), &ComputerControlInterface::userChanged,
-			 this, [=] () { updateUser( controlInterfaceWeakRef ); } );
-}
-
-
-
-void ComputerManager::updateUser( ComputerControlInterface::Pointer controlInterface )
-{
-	auto networkObjectIndex = findNetworkObject( controlInterface->computer().networkObjectUid() );
-
-	if( networkObjectIndex.isValid() )
-	{
-		networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
-		m_networkObjectOverlayDataModel->setData( networkObjectIndex,
-												  controlInterface->user(),
-												  Qt::DisplayRole );
-	}
 }
 
 

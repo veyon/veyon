@@ -24,6 +24,7 @@
 
 #include "MasterCore.h"
 #include "BuiltinFeatures.h"
+#include "ComputerControlListModel.h"
 #include "FeatureManager.h"
 #include "VeyonVncConnection.h"
 #include "VeyonConfiguration.h"
@@ -40,15 +41,16 @@ MasterCore::MasterCore( QObject* parent ) :
 	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
-	m_computerManager( new ComputerManager( *m_userConfig, *m_featureManager, *m_builtinFeatures, this ) ),
+	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
+	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
 {
-	connect( m_computerManager, &ComputerManager::computerAboutToBeRemoved,
+	connect( m_computerControlListModel, &ComputerControlListModel::rowAboutToBeRemoved,
 			 this, &MasterCore::shutdownComputerControlInterface );
 
 	if( VeyonCore::config().enforceSelectedModeForClients() )
 	{
-		connect( m_computerManager, &ComputerManager::activeFeaturesOfComputerChanged,
+		connect( m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
 				 this, &MasterCore::enforceDesignatedMode );
 	}
 
@@ -62,7 +64,7 @@ MasterCore::MasterCore( QObject* parent ) :
 
 MasterCore::~MasterCore()
 {
-	stopAllModeFeatures( m_computerManager->computerControlInterfaces(), nullptr );
+	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces(), nullptr );
 
 	delete m_computerManager;
 
@@ -78,7 +80,7 @@ MasterCore::~MasterCore()
 
 void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 {
-	const auto computerControlInterfaces = m_computerManager->computerControlInterfaces();
+	const auto computerControlInterfaces = m_computerControlListModel->computerControlInterfaces();
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
@@ -105,35 +107,36 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 
 
 
-void MasterCore::shutdownComputerControlInterface( int computerIndex )
+void MasterCore::shutdownComputerControlInterface( const QModelIndex& index )
 {
-	if( computerIndex < m_computerManager->computerControlInterfaces().size() )
+	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
+	if( controlInterface )
 	{
-		stopAllModeFeatures( { m_computerManager->computerControlInterfaces()[computerIndex] }, nullptr );
+		stopAllModeFeatures( { controlInterface }, nullptr );
 	}
 }
 
 
 
-void MasterCore::enforceDesignatedMode( int computerIndex )
+void MasterCore::enforceDesignatedMode( const QModelIndex& index )
 {
-	if( computerIndex < m_computerManager->computerControlInterfaces().size() )
+	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
+	if( controlInterface )
 	{
-		auto computerControlInterface = m_computerManager->computerControlInterfaces()[computerIndex];
-		auto designatedModeFeature = m_featureManager->feature( computerControlInterface->designatedModeFeature() );
+		auto designatedModeFeature = m_featureManager->feature( controlInterface->designatedModeFeature() );
 
 		// stop all other active mode feature
 		for( const auto& currentFeature : features() )
 		{
 			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != designatedModeFeature )
 			{
-				featureManager().stopMasterFeature( currentFeature, { computerControlInterface }, nullptr );
+				featureManager().stopMasterFeature( currentFeature, { controlInterface }, nullptr );
 			}
 		}
 
 		if( designatedModeFeature != m_builtinFeatures->monitoringMode().feature() )
 		{
-			featureManager().startMasterFeature( designatedModeFeature, { computerControlInterface }, nullptr );
+			featureManager().startMasterFeature( designatedModeFeature, { controlInterface }, nullptr );
 		}
 	}
 }

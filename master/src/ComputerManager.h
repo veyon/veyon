@@ -25,12 +25,10 @@
 #ifndef COMPUTER_MANAGER_H
 #define COMPUTER_MANAGER_H
 
-#include "ComputerControlInterface.h"
 #include "CheckableItemProxyModel.h"
+#include "ComputerControlInterface.h"
 
 class QHostAddress;
-class BuiltinFeatures;
-class FeatureManager;
 class NetworkObjectDirectory;
 class NetworkObjectFilterProxyModel;
 class NetworkObjectOverlayDataModel;
@@ -40,10 +38,7 @@ class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager( UserConfig& config,
-					 FeatureManager& featureManager,
-					 BuiltinFeatures& builtinFeatures,
-					 QObject* parent );
+	ComputerManager( UserConfig& config, QObject* parent );
 	~ComputerManager() override;
 
 	QAbstractItemModel* networkObjectModel()
@@ -56,57 +51,32 @@ public:
 		return m_computerTreeModel;
 	}
 
-	const ComputerControlInterfaceList& computerControlInterfaces() const
-	{
-		return m_computerControlInterfaces;
-	}
-
-	void updateComputerScreenSize();
+	ComputerList selectedComputers( const QModelIndex& parent );
 
 	void addRoom( const QString& room );
 	void removeRoom( const QString& room );
 
 	bool saveComputerAndUsersList( const QString& fileName );
 
+	void updateUser( ComputerControlInterface::Pointer controlInterface );
+
 signals:
-	void computerListAboutToBeReset();
-	void computerListReset();
-
-	void computerAboutToBeInserted( int index );
-	void computerInserted();
-
-	void computerAboutToBeRemoved( int index );
-	void computerRemoved();
-
-	void computerScreenUpdated( int index );
-	void activeFeaturesOfComputerChanged( int index );
-
-public slots:
-	void reloadComputerList();
-	void updateComputerList();
-
-	void updateComputerScreens();
+	void computerSelectionReset();
+	void computerSelectionChanged();
 
 private:
 	void initRooms();
 	void initNetworkObjectLayer();
 	void initComputerTreeModel();
 	void updateRoomFilterList();
+
 	QString findRoomOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent );
 
 	ComputerList getComputersInRoom( const QString& roomName, const QModelIndex& parent = QModelIndex() );
 
-	ComputerList getCheckedComputers( const QModelIndex& parent );
-	QSize computerScreenSize() const;
-
-	void startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, int index );
-	void updateUser( ComputerControlInterface::Pointer controlInterface );
-
 	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
 	UserConfig& m_config;
-	FeatureManager& m_featureManager;
-	BuiltinFeatures& m_builtinFeatures;
 
 	NetworkObjectDirectory* m_networkObjectDirectory;
 	QAbstractItemModel* m_networkObjectModel;
@@ -116,7 +86,6 @@ private:
 
 	QStringList m_currentRooms;
 	QStringList m_roomFilterList;
-	ComputerControlInterfaceList m_computerControlInterfaces;
 
 	QStringList m_localHostNames;
 	QList<QHostAddress> m_localHostAddresses;

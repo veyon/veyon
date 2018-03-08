@@ -1,5 +1,5 @@
 /*
- * ComputerListModel.h - data model for computer objects
+ * ComputerControlListModel.h - data model for computer control objects
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,42 +22,50 @@
  *
  */
 
-#ifndef COMPUTER_LIST_MODEL_H
-#define COMPUTER_LIST_MODEL_H
+#ifndef COMPUTER_CONTROL_LIST_MODEL_H
+#define COMPUTER_CONTROL_LIST_MODEL_H
 
 #include <QAbstractListModel>
 #include <QImage>
 
 #include "ComputerControlInterface.h"
 
-class ComputerManager;
+class MasterCore;
 
-class ComputerListModel : public QAbstractListModel
+class ComputerControlListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	ComputerListModel( ComputerManager& manager,
-					   const FeatureList& masterFeatures,
-					   QObject *parent = nullptr );
+	ComputerControlListModel( MasterCore* masterCore, QObject *parent = nullptr );
 
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
 
 	QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
-	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index );
+	void updateComputerScreenSize();
+
+	const ComputerControlInterfaceList& computerControlInterfaces() const
+	{
+		return m_computerControlInterfaces;
+	}
+
+	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
+
+signals:
+	void rowAboutToBeRemoved( QModelIndex );
+	void activeFeaturesChanged( QModelIndex );
 
 private slots:
-	void beginInsertComputer( int index );
-	void endInsertComputer();
-
-	void beginRemoveComputer( int index );
-	void endRemoveComputer();
-
 	void reload();
+	void update();
 
-	void updateComputerScreen( int index );
+	void updateComputerScreens();
 
 private:
+	void startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, QModelIndex index );
+
+	QSize computerScreenSize() const;
+
 	void loadIcons();
 	QImage prepareIcon( const QImage& icon );
 	QImage computerDecorationRole( ComputerControlInterface::Pointer controlInterface ) const;
@@ -67,11 +75,13 @@ private:
 	static QString loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface );
 	QString activeFeatures(  ComputerControlInterface::Pointer controlInterface ) const;
 
-	ComputerManager& m_manager;
-	const FeatureList m_masterFeatures;
+	MasterCore* m_masterCore;
+
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;
 	QImage m_iconDemoMode;
+
+	ComputerControlInterfaceList m_computerControlInterfaces;
 
 };
 

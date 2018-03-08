@@ -31,9 +31,12 @@
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 
+class QModelIndex;
+
 class BuiltinFeatures;
-class FeatureManager;
+class ComputerControlListModel;
 class ComputerManager;
+class FeatureManager;
 class UserConfig;
 
 class MasterCore : public QObject
@@ -63,6 +66,11 @@ public:
 		return *m_computerManager;
 	}
 
+	ComputerControlListModel& computerControlListModel()
+	{
+		return *m_computerControlListModel;
+	}
+
 	const FeatureList& features() const
 	{
 		return m_features;
@@ -76,8 +84,8 @@ public:
 
 public slots:
 	void runFeature( const Feature& feature, QWidget* parent );
-	void shutdownComputerControlInterface( int computerIndex );
-	void enforceDesignatedMode( int computerIndex );
+	void shutdownComputerControlInterface( const QModelIndex& index );
+	void enforceDesignatedMode( const QModelIndex& index );
 	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
 
 private:
@@ -88,6 +96,7 @@ private:
 	const FeatureList m_features;
 	UserConfig* m_userConfig;
 	ComputerManager* m_computerManager;
+	ComputerControlListModel* m_computerControlListModel;
 
 	Feature::Uid m_currentMode;
 
