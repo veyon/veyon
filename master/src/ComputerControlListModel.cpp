@@ -118,10 +118,10 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 ComputerControlInterface::Pointer ComputerControlListModel::computerControlInterface( const QModelIndex& index ) const
 {
-	if( index.isValid() == false || index.row() >= m_computerControlInterfaces.count( ) )
+	if( index.isValid() == false || index.row() >= m_computerControlInterfaces.count() )
 	{
 		qCritical( "ComputerListModel::computerControlInterface(): invalid ComputerControlInterface requested!" );
-		return nullptr;
+		return ComputerControlInterface::Pointer();
 	}
 
 	return m_computerControlInterfaces[index.row()];
