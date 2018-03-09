@@ -26,7 +26,7 @@
 #include "BuiltinDirectory.h"
 
 
-BuiltinDirectory::BuiltinDirectory( const BuiltinDirectoryConfiguration& configuration, QObject* parent ) :
+BuiltinDirectory::BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent ) :
 	NetworkObjectDirectory( parent ),
 	m_configuration( configuration )
 {
@@ -96,6 +96,8 @@ NetworkObject BuiltinDirectory::queryParent( const NetworkObject& object )
 
 void BuiltinDirectory::update()
 {
+	m_configuration.reloadFromStore();
+
 	const auto networkObjects = m_configuration.networkObjects();
 
 	const NetworkObject rootObject( NetworkObject::Root );
@@ -157,11 +159,16 @@ void BuiltinDirectory::updateRoom( const NetworkObject& roomObject )
 		{
 			computerUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
-			if( computerObjects.contains( networkObject ) == false )
+			int index = computerObjects.indexOf( networkObject );
+			if( index < 0 )
 			{
 				emit objectsAboutToBeInserted( roomObject, computerObjects.count(), 1 );
 				computerObjects += networkObject; // clazy:exclude=reserve-candidates
 				emit objectsInserted();
+			}
+			else
+			{
+				computerObjects.replace( index, networkObject );
 			}
 		}
 	}

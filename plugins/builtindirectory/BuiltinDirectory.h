@@ -35,7 +35,7 @@ class BuiltinDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	BuiltinDirectory( const BuiltinDirectoryConfiguration& configuration, QObject* parent );
+	BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent );
 
 	QList<NetworkObject> objects( const NetworkObject& parent ) override;
 
@@ -47,7 +47,7 @@ public:
 private:
 	void updateRoom( const NetworkObject& roomObject );
 
-	const BuiltinDirectoryConfiguration& m_configuration;
+	BuiltinDirectoryConfiguration& m_configuration;
 	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 
