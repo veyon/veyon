@@ -238,13 +238,19 @@ void MainWindow::closeEvent( QCloseEvent* event )
 
 void MainWindow::keyPressEvent( QKeyEvent* event )
 {
-	if( event->key() == Qt::Key_F11 )
+	switch( event->key() )
 	{
+	case Qt::Key_F5:
+		m_masterCore.computerManager().reload();
+		event->accept();
+		break;
+	case Qt::Key_F11:
 		QWidget::setWindowState( QWidget::windowState() ^ Qt::WindowFullScreen );
-	}
-	else
-	{
+		event->accept();
+		break;
+	default:
 		QMainWindow::keyPressEvent( event );
+		break;
 	}
 }
 
