@@ -42,7 +42,7 @@ void NetworkObjectDirectory::setUpdateInterval( int interval )
 {
 	if( interval >= MinimumUpdateInterval )
 	{
-		m_updateTimer->start( interval );
+		m_updateTimer->start( interval*1000 );
 	}
 	else
 	{
