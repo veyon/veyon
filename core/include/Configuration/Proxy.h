@@ -64,6 +64,11 @@ public:
 		m_object->removeValue( key, parentKey );
 	}
 
+	void reloadFromStore()
+	{
+		m_object->reloadFromStore();
+	}
+
 private:
 	Object* m_object;
 
