@@ -73,7 +73,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 	Q_UNUSED(parent);
 
 	// determine which computer to access and ask if neccessary
-	ComputerControlInterface::Pointer remoteAccessComputer = nullptr;
+	ComputerControlInterface::Pointer remoteAccessComputer;
 
 	if( ( feature.uid() == m_remoteViewFeature.uid() ||
 		  feature.uid() == m_remoteControlFeature.uid() ) &&
@@ -98,7 +98,7 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 		}
 	}
 
-	if( remoteAccessComputer == nullptr )
+	if( remoteAccessComputer.isNull() )
 	{
 		return false;
 	}
