@@ -172,6 +172,8 @@ QJsonArray CheckableItemProxyModel::saveStates()
 
 void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 {
+	emit beginResetModel();
+
 	m_checkStates.clear();
 
 	for( const auto& item : data )
@@ -185,4 +187,6 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 			setData( indexList.first(), Qt::Checked, Qt::CheckStateRole );
 		}
 	}
+
+	emit endResetModel();
 }
