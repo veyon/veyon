@@ -51,12 +51,14 @@ public:
 
 	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
 
+public slots:
+	void reload();
+
 signals:
 	void rowAboutToBeRemoved( QModelIndex );
 	void activeFeaturesChanged( QModelIndex );
 
 private slots:
-	void reload();
 	void update();
 
 	void updateComputerScreens();

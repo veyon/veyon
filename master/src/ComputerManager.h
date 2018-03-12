@@ -51,8 +51,6 @@ public:
 		return m_computerTreeModel;
 	}
 
-	void reload();
-
 	ComputerList selectedComputers( const QModelIndex& parent );
 
 	void addRoom( const QString& room );

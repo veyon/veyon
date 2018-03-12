@@ -34,11 +34,14 @@
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
+#include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "ComputerManagementView.h"
 #include "ScreenshotManagementView.h"
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
+#include "NetworkObjectDirectory.h"
+#include "NetworkObjectDirectoryManager.h"
 #include "ToolButton.h"
 #include "VeyonConfiguration.h"
 #include "MasterCore.h"
@@ -241,7 +244,8 @@ void MainWindow::keyPressEvent( QKeyEvent* event )
 	switch( event->key() )
 	{
 	case Qt::Key_F5:
-		m_masterCore.computerManager().reload();
+		VeyonCore::networkObjectDirectoryManager().configuredDirectory()->update();
+		m_masterCore.computerControlListModel().reload();
 		event->accept();
 		break;
 	case Qt::Key_F11:

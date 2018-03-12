@@ -83,15 +83,6 @@ ComputerManager::~ComputerManager()
 
 
 
-void ComputerManager::reload()
-{
-	auto checkedObjects = m_computerTreeModel->saveStates();
-	m_networkObjectDirectory->update();
-	m_computerTreeModel->loadStates( checkedObjects );
-}
-
-
-
 void ComputerManager::addRoom( const QString& room )
 {
 	m_roomFilterList.append( room );
