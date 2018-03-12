@@ -166,9 +166,10 @@ void BuiltinDirectory::updateRoom( const NetworkObject& roomObject )
 				computerObjects += networkObject; // clazy:exclude=reserve-candidates
 				emit objectsInserted();
 			}
-			else
+			else if( computerObjects[index].exactMatch( networkObject ) == false )
 			{
 				computerObjects.replace( index, networkObject );
+				emit objectChanged( roomObject, index );
 			}
 		}
 	}
