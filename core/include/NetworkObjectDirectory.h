@@ -61,6 +61,7 @@ signals:
 	void objectsInserted();
 	void objectsAboutToBeRemoved( const NetworkObject& parent, int index, int count );
 	void objectsRemoved();
+	void objectChanged( const NetworkObject& parent, int index );
 
 };
 
