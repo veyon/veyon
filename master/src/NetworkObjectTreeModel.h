@@ -54,7 +54,11 @@ private slots:
 	void beginRemoveObjects( const NetworkObject& parent, int index, int count );
 	void endRemoveObjects();
 
+	void updateObject( const NetworkObject& parent, int index );
+
 private:
+	QModelIndex objectIndex( const NetworkObject& parent, int row ) const;
+
 	NetworkObjectDirectory* m_directory;
 
 };

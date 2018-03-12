@@ -39,6 +39,9 @@ NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* director
 			 this, &NetworkObjectTreeModel::beginRemoveObjects );
 	connect( m_directory, &NetworkObjectDirectory::objectsRemoved,
 			 this, &NetworkObjectTreeModel::endRemoveObjects );
+
+	connect( m_directory, &NetworkObjectDirectory::objectChanged,
+			 this, &NetworkObjectTreeModel::updateObject );
 }
 
 
@@ -211,4 +214,39 @@ void NetworkObjectTreeModel::beginRemoveObjects(const NetworkObject &parent, int
 void NetworkObjectTreeModel::endRemoveObjects()
 {
 	endRemoveRows();
+}
+
+
+
+void NetworkObjectTreeModel::updateObject( const NetworkObject& parent, int row )
+{
+	const auto index = objectIndex( parent, row );
+
+	emit dataChanged( index, index );
+}
+
+
+
+QModelIndex NetworkObjectTreeModel::objectIndex( const NetworkObject& parent, int row ) const
+{
+	if( parent.type() == NetworkObject::Root )
+	{
+		return index( row, 0 );
+	}
+	else if( parent.type() == NetworkObject::Group )
+	{
+		int groupIndex = 0;
+		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
+		for( const auto& groupObject : rootObjects )
+		{
+			if( groupObject == parent )
+			{
+				auto parentIndex = createIndex( groupIndex, 0 );
+				return index( row, 0, parentIndex );
+			}
+			++groupIndex;
+		}
+	}
+
+	return QModelIndex();
 }
