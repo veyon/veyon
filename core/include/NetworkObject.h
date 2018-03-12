@@ -58,6 +58,7 @@ public:
 	NetworkObject& operator=( const NetworkObject& other );
 
 	bool operator ==( const NetworkObject& other ) const;
+	bool exactMatch( const NetworkObject& other ) const;
 
 	const Uid& uid() const
 	{

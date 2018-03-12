@@ -107,6 +107,19 @@ bool NetworkObject::operator ==( const NetworkObject& other ) const
 
 
 
+bool NetworkObject::exactMatch( const NetworkObject& other ) const
+{
+	return uid() == other.uid() &&
+			type() == other.type() &&
+			name() == other.name() &&
+			hostAddress() == other.hostAddress() &&
+			macAddress() == other.macAddress() &&
+			directoryAddress() == other.directoryAddress() &&
+			parentUid() == other.parentUid();
+}
+
+
+
 QJsonObject NetworkObject::toJson() const
 {
 	QJsonObject json;
