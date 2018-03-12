@@ -32,34 +32,25 @@
 #include "NetworkObjectDirectory.h"
 
 
-VeyonConfiguration::VeyonConfiguration(
-									Configuration::Store::Backend backend ) :
-	Configuration::Object( backend, Configuration::Store::System )
+VeyonConfiguration::VeyonConfiguration() :
+	Configuration::Object( Configuration::Store::LocalBackend,
+						   Configuration::Store::System,
+						   defaultConfiguration() )
 {
 }
 
 
 
-VeyonConfiguration::VeyonConfiguration( Configuration::Store *store ) :
+VeyonConfiguration::VeyonConfiguration( Configuration::Store* store ) :
 	Configuration::Object( store )
 {
 }
 
 
 
-VeyonConfiguration::VeyonConfiguration( const VeyonConfiguration &ref ) :
-	Configuration::Object( Configuration::Store::NoBackend,
-							Configuration::Store::System )
-{
-	*this += ref;	// copy data
-}
-
-
-
-
 VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 {
-	VeyonConfiguration c( Configuration::Store::NoBackend );
+	VeyonConfiguration c( nullptr );
 
 	c.setApplicationName( QString() );
 	c.setHighDPIScalingEnabled( false );
@@ -102,4 +93,3 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 
 
 FOREACH_VEYON_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
-

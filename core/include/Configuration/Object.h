@@ -44,13 +44,14 @@ class VEYON_CORE_EXPORT Object : public QObject
 public:
 	typedef QMap<QString, QVariant> DataMap;
 
-	Object( Store::Backend backend, Store::Scope scope );
-	Object( Store *store );
-	Object( const Object & );
+	Object();
+	Object( Store::Backend backend, Store::Scope scope, const Object& defaults );
+	Object( Store* store );
+	Object( const Object& );
 	~Object() override;
 
-	Object &operator=( const Object &ref );
-	Object &operator+=( const Object &ref );
+	Object& operator=( const Object& ref );
+	Object& operator+=( const Object& ref );
 
 	bool hasValue( const QString& key, const QString& parentKey = QString() ) const;
 
@@ -58,9 +59,9 @@ public:
 
 	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );
 
-	void removeValue( const QString &key, const QString &parentKey );
+	void removeValue( const QString& key, const QString& parentKey );
 
-	void addSubObject( Object *obj, const QString &parentKey );
+	void addSubObject( Object* obj, const QString& parentKey );
 
 	void reloadFromStore()
 	{
@@ -99,6 +100,8 @@ signals:
 
 
 private:
+	static Store* createStore( Store::Backend backend, Store::Scope scope );
+
 	Configuration::Store *m_store;
 	bool m_customStore;
 	DataMap m_data;

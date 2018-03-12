@@ -94,8 +94,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
 	m_platformPlugin = m_platformPluginManager->platformPlugin();
 
-	m_config = new VeyonConfiguration( VeyonConfiguration::defaultConfiguration() );
-	*m_config += VeyonConfiguration( Configuration::Store::LocalBackend );
+	m_config = new VeyonConfiguration();
 
 	m_logger = new Logger( appComponentName );
 

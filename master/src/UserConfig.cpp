@@ -31,8 +31,8 @@
 FOREACH_PERSONAL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
 
 
-UserConfig::UserConfig(Configuration::Store::Backend backend) :
-	Configuration::Object( backend, Configuration::Store::User )
+UserConfig::UserConfig( Configuration::Store::Backend backend ) :
+	Configuration::Object( backend, Configuration::Store::User, Configuration::Object() )
 {
 	if( isStoreWritable() == false )
 	{

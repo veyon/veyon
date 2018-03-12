@@ -58,9 +58,7 @@ MainWindow::MainWindow( QWidget* parent ) :
 	reset( true );
 
 	// if local configuration is incomplete, re-enable the apply button
-	if( VeyonConfiguration(
-				Configuration::Store::LocalBackend ).data().size() <
-			VeyonCore::config().data().size() )
+	if( VeyonConfiguration().data().size() < VeyonCore::config().data().size() )
 	{
 		configurationChanged();
 	}
@@ -96,9 +94,8 @@ void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )
 	{
-		VeyonCore::config().clear();
-		VeyonCore::config() += VeyonConfiguration::defaultConfiguration();
-		VeyonCore::config() += VeyonConfiguration( Configuration::Store::LocalBackend );
+		VeyonCore::config() = VeyonConfiguration::defaultConfiguration();
+		VeyonCore::config().reloadFromStore();
 	}
 
 	const auto pages = findChildren<ConfigurationPage *>();

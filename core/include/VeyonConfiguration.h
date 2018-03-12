@@ -39,10 +39,8 @@ class VEYON_CORE_EXPORT VeyonConfiguration : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	VeyonConfiguration( Configuration::Store::Backend backend =
-										Configuration::Store::LocalBackend );
-	VeyonConfiguration( Configuration::Store *store );
-	VeyonConfiguration( const VeyonConfiguration &ref );
+	VeyonConfiguration();
+	VeyonConfiguration( Configuration::Store* store );
 
 	static VeyonConfiguration defaultConfiguration();
 
