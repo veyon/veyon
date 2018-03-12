@@ -64,7 +64,7 @@ QModelIndex NetworkObjectTreeModel::index(int row, int column, const QModelIndex
 
 
 
-QModelIndex NetworkObjectTreeModel::parent(const QModelIndex &index) const
+QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 {
 	// parent ID set?
 	if( index.internalId() > 0 )
@@ -78,7 +78,7 @@ QModelIndex NetworkObjectTreeModel::parent(const QModelIndex &index) const
 
 
 
-int NetworkObjectTreeModel::rowCount(const QModelIndex &parent) const
+int NetworkObjectTreeModel::rowCount( const QModelIndex& parent ) const
 {
 	if( !parent.isValid() )
 	{
@@ -98,14 +98,14 @@ int NetworkObjectTreeModel::rowCount(const QModelIndex &parent) const
 
 
 
-int NetworkObjectTreeModel::columnCount(const QModelIndex &parent) const
+int NetworkObjectTreeModel::columnCount( const QModelIndex& parent ) const
 {
 	return 1;
 }
 
 
 
-QVariant NetworkObjectTreeModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant NetworkObjectTreeModel::headerData( int section, Qt::Orientation orientation, int role ) const
 {
 	if( section == 0 && orientation == Qt::Horizontal && role == Qt::DisplayRole )
 	{
@@ -117,7 +117,7 @@ QVariant NetworkObjectTreeModel::headerData(int section, Qt::Orientation orienta
 
 
 
-QVariant NetworkObjectTreeModel::data(const QModelIndex &index, int role) const
+QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) const
 {
 	if( index.isValid() == false )
 	{
@@ -156,7 +156,7 @@ QVariant NetworkObjectTreeModel::data(const QModelIndex &index, int role) const
 
 
 
-void NetworkObjectTreeModel::beginInsertObjects( const NetworkObject &parent, int index, int count )
+void NetworkObjectTreeModel::beginInsertObjects( const NetworkObject& parent, int index, int count )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
@@ -187,7 +187,7 @@ void NetworkObjectTreeModel::endInsertObjects()
 
 
 
-void NetworkObjectTreeModel::beginRemoveObjects(const NetworkObject &parent, int index, int count)
+void NetworkObjectTreeModel::beginRemoveObjects( const NetworkObject& parent, int index, int count )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
