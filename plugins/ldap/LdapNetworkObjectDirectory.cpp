@@ -36,7 +36,7 @@ LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration&
 
 
 
-QList<NetworkObject> LdapNetworkObjectDirectory::objects(const NetworkObject &parent)
+QList<NetworkObject> LdapNetworkObjectDirectory::objects( const NetworkObject& parent )
 {
 	if( parent.type() == NetworkObject::Root )
 	{
@@ -123,7 +123,7 @@ void LdapNetworkObjectDirectory::update()
 
 
 
-void LdapNetworkObjectDirectory::updateComputerRoom( const QString &computerRoom )
+void LdapNetworkObjectDirectory::updateComputerRoom( const QString& computerRoom )
 {
 	const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
 	QList<NetworkObject>& computerRoomObjects = m_objects[computerRoomObject]; // clazy:exclude=detaching-member
@@ -134,14 +134,23 @@ void LdapNetworkObjectDirectory::updateComputerRoom( const QString &computerRoom
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
-		const NetworkObject computerObject = computerToObject( computer, hasMacAddressAttribute );
+		const auto computerObject = computerToObject( computer, hasMacAddressAttribute );
+		if( computerObject.type() != NetworkObject::Host )
+		{
+			continue;
+		}
 
-		if( computerObject.type() == NetworkObject::Host &&
-				computerRoomObjects.contains( computerObject ) == false )
+		const auto index = computerRoomObjects.indexOf( computerObject );
+		if( index < 0 )
 		{
 			emit objectsAboutToBeInserted( computerRoomObject, computerRoomObjects.count(), 1 );
-			computerRoomObjects += computerObject;
+			computerRoomObjects += computerObject; // clazy:exclude=reserve-candidates
 			emit objectsInserted();
+		}
+		else if( computerRoomObjects[index].exactMatch( computerObject ) == false )
+		{
+			computerRoomObjects.replace( index, computerObject );
+			emit objectChanged( computerRoomObject, index );
 		}
 	}
 
