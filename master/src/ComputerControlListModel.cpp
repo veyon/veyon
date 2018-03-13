@@ -30,6 +30,7 @@
 #include "FeatureManager.h"
 #include "MasterCore.h"
 #include "UserConfig.h"
+#include "VeyonConfiguration.h"
 
 
 ComputerControlListModel::ComputerControlListModel( MasterCore* masterCore, QObject* parent ) :
@@ -48,7 +49,7 @@ ComputerControlListModel::ComputerControlListModel( MasterCore* masterCore, QObj
 
 	auto computerScreenUpdateTimer = new QTimer( this );
 	connect( computerScreenUpdateTimer, &QTimer::timeout, this, &ComputerControlListModel::updateComputerScreens );
-	computerScreenUpdateTimer->start( 1000 );		// TODO: replace constant
+	computerScreenUpdateTimer->start( VeyonCore::config().computerMonitoringUpdateInterval() );
 
 	reload();
 }
