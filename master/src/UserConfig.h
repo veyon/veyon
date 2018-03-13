@@ -43,7 +43,6 @@ public:
 	OP( UserConfig, MasterCore::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, STRING, windowState, setWindowState, "WindowState", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, STRING, backgroundColor, setBackgroundColor, "BackgroundColor", "UI" );	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -56,7 +55,6 @@ public slots:
 	void setNoToolTips( bool );
 	void setWindowState( const QString& );
 	void setWindowGeometry( const QString& );
-	void setBackgroundColor( const QString& );
 
 } ;
 
