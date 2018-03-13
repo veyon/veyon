@@ -79,6 +79,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 
 	c.setUserConfigurationDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Config" ) ) );
 	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%$APPDATA%/Screenshots" ) ) );
+	c.setComputerMonitoringBackgroundColor( Qt::white );
 
 	c.setAuthenticationMethod( VeyonCore::LogonAuthentication );
 
