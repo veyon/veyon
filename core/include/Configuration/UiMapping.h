@@ -26,6 +26,7 @@
 #define CONFIGURATION_UI_MAPPING_H
 
 #include <QCheckBox>
+#include <QColorDialog>
 #include <QComboBox>
 #include <QGroupBox>
 #include <QLineEdit>
@@ -67,6 +68,14 @@ template<class Config>
 inline void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QLineEdit* widget )
 {
 	widget->setText( (config->*getter)() );
+}
+
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QColor (Config::*getter)() const, QPushButton* widget )
+{
+	auto palette = widget->palette();
+	palette.setColor( QPalette::Button, (config->*getter)() );
+	widget->setPalette( palette );
 }
 
 template<class Config>
@@ -134,6 +143,21 @@ template<class Config>
 inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QLineEdit* widget )
 {
 	QObject::connect( widget, &QLineEdit::textChanged, config, setter );
+}
+
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QColor& ), QPushButton* widget )
+{
+	QObject::connect( widget, &QAbstractButton::clicked, config, [=]() {
+		auto palette = widget->palette();
+		QColorDialog d( widget->palette().color( QPalette::Button ), widget );
+		if( d.exec() )
+		{
+			(config->*setter)( d.selectedColor() );
+			palette.setColor( QPalette::Button, d.selectedColor() );
+			widget->setPalette( palette );
+		}
+	} );
 }
 
 template<class Config>

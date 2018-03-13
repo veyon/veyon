@@ -25,7 +25,7 @@
 #ifndef CONFIGURATION_OBJECT_H
 #define CONFIGURATION_OBJECT_H
 
-#include <QObject>
+#include <QColor>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QUuid>
@@ -158,6 +158,13 @@ private:
 			return value( key, parentKey ).toUuid();			\
 		}
 
+#define DECLARE_CONFIG_COLOR_PROPERTY(get,key,parentKey)\
+	public:											\
+		QColor get() const					\
+		{											\
+			return value( key, parentKey ).value<QColor>();			\
+		}
+
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
 			DECLARE_CONFIG_##type##_PROPERTY(get,QStringLiteral(key),QStringLiteral(parentKey))
 
@@ -200,6 +207,12 @@ private:
 
 #define IMPLEMENT_CONFIG_SET_UUID_PROPERTY(className,set,key,parentKey)	\
 		void className::set( QUuid val )									\
+		{																\
+			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_COLOR_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QColor& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
