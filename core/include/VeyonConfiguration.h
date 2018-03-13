@@ -78,6 +78,8 @@ public slots:
 	void setLocalConnectOnly( bool );
 	void setUserConfigurationDirectory( const QString & );
 	void setScreenshotDirectory( const QString & );
+	void setComputerMonitoringUpdateInterval( int );
+	void setComputerMonitoringBackgroundColor( const QColor& );
 	void setAccessControlForMasterEnabled( bool );
 	void setAutoAdjustGridSize( bool );
 	void setAutoSwitchToCurrentRoom( bool );
