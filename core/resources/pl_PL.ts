@@ -52,7 +52,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Zezwól na dostęp wszystkim uwierzytelnionym użytkownikom (domyślne)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -132,7 +132,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Dostęp zabroniony</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -155,7 +155,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Edytuj reguły kontroli dostępu</translation>
     </message>
     <message>
         <source>General</source>
@@ -163,7 +163,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>Wprowadź tutaj skróconą nazwę reguły.</translation>
     </message>
     <message>
         <source>Rule name:</source>
@@ -211,19 +211,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Akcja</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Zezwól na dostęp.</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Odmów dostępu.</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Poproś zalogowanego użytkownika o dostęp</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -239,23 +239,23 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik lokalny (zalogowany)</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Lokalny komputer</translation>
+        <translation>Komputer lokalny</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Zawsze stosuj regułę i ignoruj warunki</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Brak zalogowanych użytkowników.</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>Komputer który chce uzyskać dostęp jest w tym samym pokoju co komputer lokalny</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -266,7 +266,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Test reguł kontroli dostępu</translation>
     </message>
     <message>
         <source>Accessing user:</source>
@@ -310,34 +310,34 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Wynik testu</translation>
     </message>
 </context>
 <context>
     <name>AuthenticationConfigurationPage</name>
     <message>
         <source>Authentication methods</source>
-        <translation type="unfinished"/>
+        <translation>Metody uwierzytelniania</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie z użyciem loginu</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie z użyciem klucza</translation>
     </message>
     <message>
         <source>Access key management</source>
-        <translation type="unfinished"/>
+        <translation>Zarządzanie kluczami dostępu</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Katalog z plikami kluczy publicznych</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Katalog z plikami kluczy prywatnych</translation>
     </message>
     <message>
         <source>...</source>
@@ -345,7 +345,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom kreator generowania kluczy</translation>
     </message>
     <message>
         <source>Test</source>
@@ -357,25 +357,25 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie z podanymi poświadczeniami przebiegło pomyślnie.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie z podanymi poświadczeniami nie powiodło się</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation type="unfinished"/>
+        <translation>Wbudowany serwer VNC (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation type="unfinished"/>
+        <translation>Wbudowany serwer VNC (x11vnc)</translation>
     </message>
 </context>
 <context>
@@ -386,11 +386,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Błąd uwierzytelnienia</translation>
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik %1 (IP: %2) próbował uzyskać dostęp do tego komputera ale jego uwierzytelnienie nie powiodło się!</translation>
     </message>
 </context>
 <context>
@@ -405,35 +405,35 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>Nawiązywanie połączenia</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Brak zalogowanych użytkowników.</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation type="unfinished"/>
+        <translation>Zalogowano użytkownika: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation type="unfinished"/>
+        <translation>Komputer nie połączony z siecią lub wyłączony</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Usługa jest  niedostępna lub nie uruchomiona </translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation type="unfinished"/>
+        <translation>Uwierzytelnienie nie powiodło się lub dostęp jest zabroniony</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Rozłączono</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Host/adres IP: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
@@ -444,7 +444,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Zarządzanie komputerem</translation>
     </message>
     <message>
         <source>Add room</source>
@@ -452,7 +452,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz listę komputerów/użytkowników</translation>
     </message>
     <message>
         <source>Select output filename</source>
@@ -460,7 +460,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>pliki CSV (*csv)</translation>
     </message>
     <message>
         <source>File error</source>
@@ -468,18 +468,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisać listy komputerów i użytkowników w %1! Sprawdź prawa dostępu do pliku</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź komputer</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -566,11 +566,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation type="unfinished"/>
+        <translation>Zaimportuj konfiguracje z podanego pliku</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation type="unfinished"/>
+        <translation>Wyeksportuj konfiguracje do podanego pliku</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
@@ -655,7 +655,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>Limit pamięci</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
@@ -732,15 +732,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom program</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz stronę WWW</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Przyciśnij ten przycisk żeby otworzyć stronę WWW na wszystkich komputerach</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -752,29 +752,29 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Przyciśnij ten przycisk żeby uruchomić program na wszystkich komputerach</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Zewnętrzny serwer VNC</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja zewnętrznego serwera VNC</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>Port:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Hasło:</translation>
     </message>
 </context>
 <context>
@@ -788,15 +788,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>Interfejs użytkownika:</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>Język:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>Użyj systemowych ustawień językowych</translation>
     </message>
     <message>
         <source>Enable high DPI scaling</source>
@@ -804,15 +804,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Logowanie</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"/>
+        <translation>Katalog plików dziennika logowania</translation>
     </message>
     <message>
         <source>...</source>
@@ -820,31 +820,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Log level</source>
-        <translation type="unfinished"/>
+        <translation>Poziom logowania</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"/>
+        <translation>Nic</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation type="unfinished"/>
+        <translation>Tylko komunikaty o błędach krytycznych</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation type="unfinished"/>
+        <translation>Błędy i komunikaty o błędach krytycznych</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation type="unfinished"/>
+        <translation>Ostrzeżenia i błedy</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation type="unfinished"/>
+        <translation>Informacje, ostrzeżenia i błędy</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation type="unfinished"/>
+        <translation>Komunikaty debugowania i wszystkie pozostałe</translation>
     </message>
     <message>
         <source>Limit log file size</source>
@@ -892,7 +892,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Błąd</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -951,7 +951,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished"/>
+        <translation>Nauczyciel</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
@@ -979,7 +979,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Podsumowanie</translation>
     </message>
     <message>
         <source>The following actions will be taken:</source>
@@ -1047,7 +1047,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Public key import</source>
-        <translation type="unfinished"/>
+        <translation>Import klucza publicznego</translation>
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
@@ -1055,7 +1055,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Klucz publiczny został poprawnie zaimportowany do %1</translation>
     </message>
     <message>
         <source>Veyon Access Key Assistant</source>
@@ -1090,7 +1090,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Ustawienia podstawowe</translation>
     </message>
     <message>
         <source>General</source>
@@ -1142,7 +1142,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>Ustawienia środowiska</translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -1675,6 +1675,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP error description: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1716,14 +1720,6 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Sale</translation>
@@ -2118,7 +2114,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>Ustawienia podstawowe</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -2150,7 +2146,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>Zarządzanie komputerem</translation>
     </message>
     <message>
         <source>Always open at start</source>
@@ -2203,7 +2199,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Błąd uwierzytelnienia</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -2862,7 +2858,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja wbudowanego serwera x11vnc</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>

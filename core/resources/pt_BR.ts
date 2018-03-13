@@ -1693,6 +1693,10 @@ A parte pública da chave é usada nos computadores cliente para verificar que q
         <source>LDAP error description: %1</source>
         <translation>Descrição de erro LDAP: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1734,14 +1738,6 @@ A parte pública da chave é usada nos computadores cliente para verificar que q
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Dados locais</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Objetos de rede</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Salas</translation>

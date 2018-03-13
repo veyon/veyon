@@ -1693,6 +1693,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP error description: %1</source>
         <translation>LDAP 에러 설명: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1734,14 +1738,6 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>로컬 데이터</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>네트워크 개체</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>교실</translation>

@@ -1693,6 +1693,10 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
         <source>LDAP error description: %1</source>
         <translation>LDAP hata açıklaması: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1734,14 +1738,6 @@ Genel anahtar parçası, istemci bilgisayarlarda gelen herhangi bir bağlantı i
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Yerel veri</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Ağ nesneleri</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Odalar</translation>
