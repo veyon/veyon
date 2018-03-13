@@ -34,7 +34,7 @@
              <string>...</string>
             </property>
             <property name="icon">
-             <iconset resource="../veyon-configurator.qrc">
+             <iconset resource="../../core/core.qrc">
               <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
             </property>
            </widget>
@@ -65,7 +65,7 @@
              <string>...</string>
             </property>
             <property name="icon">
-             <iconset resource="../veyon-configurator.qrc">
+             <iconset resource="../../core/core.qrc">
               <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
             </property>
            </widget>
@@ -74,56 +74,101 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_3">
+        <widget class="QGroupBox" name="groupBox_4">
          <property name="title">
-          <string>Behaviour</string>
+          <string>User interface</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-          <item row="5" column="1">
-           <widget class="QComboBox" name="computerDoubleClickFeature"/>
-          </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="enforceSelectedModeForClients">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Enforce selected mode for client computers</string>
+             <string>Background color</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>Feature on computer double click:</string>
+             <string>Thumbnail update interval</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QCheckBox" name="autoAdjustGridSize">
-            <property name="text">
-             <string>Automatically adjust computer thumbnail size at start</string>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="computerMonitoringUpdateInterval">
+            <property name="suffix">
+             <string> ms</string>
+            </property>
+            <property name="minimum">
+             <number>500</number>
+            </property>
+            <property name="maximum">
+             <number>60000</number>
+            </property>
+            <property name="singleStep">
+             <number>500</number>
+            </property>
+            <property name="value">
+             <number>1000</number>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
-            <property name="text">
-             <string>Automatically switch to current room at start</string>
-            </property>
-           </widget>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
           </item>
-          <item row="0" column="0" colspan="2">
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Behaviour</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Program start</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
            <widget class="QCheckBox" name="accessControlForMasterEnabled">
             <property name="text">
              <string>Perform access control at program start</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="2">
-           <widget class="QCheckBox" name="confirmDangerousActions">
-            <property name="toolTip">
-             <string>Actions such as rebooting or powering down computers</string>
-            </property>
+          <item>
+           <widget class="QCheckBox" name="autoSwitchToCurrentRoom">
             <property name="text">
-             <string>Show confirmation dialog for potential dangerous actions</string>
+             <string>Automatically switch to current room at start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="autoAdjustGridSize">
+            <property name="text">
+             <string>Automatically adjust computer thumbnail size at start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="openComputerManagementAtStart">
+            <property name="text">
+             <string>Automatically open computer management</string>
             </property>
            </widget>
           </item>
@@ -136,13 +181,6 @@
           <string>Computer management</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <widget class="QCheckBox" name="openComputerManagementAtStart">
-            <property name="text">
-             <string>Always open at start</string>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QCheckBox" name="onlyCurrentRoomVisible">
             <property name="text">
@@ -185,7 +223,43 @@
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Modes and features</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="enforceSelectedModeForClients">
+            <property name="text">
+             <string>Enforce selected mode for client computers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QCheckBox" name="confirmDangerousActions">
+            <property name="toolTip">
+             <string>Actions such as rebooting or powering down computers</string>
+            </property>
+            <property name="text">
+             <string>Show confirmation dialog for potential dangerous actions</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="computerDoubleClickFeature"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Feature on computer double click:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -292,24 +366,27 @@
   <tabstop>screenshotDirectory</tabstop>
   <tabstop>openUserConfigurationDirectory</tabstop>
   <tabstop>openScreenshotDirectory</tabstop>
+  <tabstop>computerMonitoringUpdateInterval</tabstop>
+  <tabstop>computerMonitoringBackgroundColor</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSwitchToCurrentRoom</tabstop>
   <tabstop>autoAdjustGridSize</tabstop>
-  <tabstop>enforceSelectedModeForClients</tabstop>
-  <tabstop>confirmDangerousActions</tabstop>
-  <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>openComputerManagementAtStart</tabstop>
   <tabstop>onlyCurrentRoomVisible</tabstop>
   <tabstop>manualRoomAdditionAllowed</tabstop>
   <tabstop>localComputerHidden</tabstop>
   <tabstop>emptyRoomsHidden</tabstop>
   <tabstop>computerFilterHidden</tabstop>
+  <tabstop>enforceSelectedModeForClients</tabstop>
+  <tabstop>confirmDangerousActions</tabstop>
+  <tabstop>computerDoubleClickFeature</tabstop>
   <tabstop>allFeaturesListWidget</tabstop>
   <tabstop>disableFeatureButton</tabstop>
   <tabstop>enableFeatureButton</tabstop>
   <tabstop>disabledFeaturesListWidget</tabstop>
  </tabstops>
  <resources>
+  <include location="../../core/core.qrc"/>
   <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
