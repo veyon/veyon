@@ -26,9 +26,10 @@
 #include "ComputerControlInterface.h"
 #include "Computer.h"
 #include "FeatureControl.h"
-#include "VeyonVncConnection.h"
-#include "VeyonCoreConnection.h"
 #include "UserSessionControl.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCoreConnection.h"
+#include "VeyonVncConnection.h"
 
 
 ComputerControlInterface::ComputerControlInterface( const Computer& computer,
@@ -75,7 +76,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		m_vncConnection->setHost( m_computer.hostAddress() );
 		m_vncConnection->setQuality( VeyonVncConnection::ThumbnailQuality );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
-		m_vncConnection->setFramebufferUpdateInterval( FramebufferUpdateInterval );
+		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
 
 		m_coreConnection = new VeyonCoreConnection( m_vncConnection );
 
