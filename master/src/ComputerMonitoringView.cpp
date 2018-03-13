@@ -73,13 +73,9 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 
 	m_masterCore = &masterCore;
 
-	const QColor backgroundColor( m_masterCore->userConfig().backgroundColor() );
-	if( backgroundColor.isValid() )
-	{
-		auto pal = ui->listView->palette();
-		pal.setColor( QPalette::Base, backgroundColor );
-		ui->listView->setPalette( pal );
-	}
+	auto palette = ui->listView->palette();
+	palette.setColor( QPalette::Base, VeyonCore::config().computerMonitoringBackgroundColor() );
+	ui->listView->setPalette( palette );
 
 	// attach computer list model to proxy model
 	m_sortFilterProxyModel.setSourceModel( &m_masterCore->computerControlListModel() );
