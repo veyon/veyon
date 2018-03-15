@@ -776,11 +776,11 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 	{
 		if( queryFilter.isEmpty() )
 		{
-			queryFilter = QStringLiteral( "(%1)" ).arg( extraFilter );
+			queryFilter = extraFilter;
 		}
 		else
 		{
-			queryFilter = QStringLiteral( "(&(%1)%2)" ).arg( extraFilter, queryFilter );
+			queryFilter = QStringLiteral( "(&%1%2)" ).arg( extraFilter, queryFilter );
 		}
 	}
 
