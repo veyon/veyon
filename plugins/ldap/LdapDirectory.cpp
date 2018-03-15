@@ -122,7 +122,7 @@ public:
 		return entries;
 	}
 
-	QStringList queryDistinguishedNames( const QString &dn, const QString &filter, KLDAP::LdapUrl::Scope scope )
+	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope )
 	{
 		QStringList distinguishedNames;
 
@@ -268,7 +268,7 @@ public:
 
 
 
-LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl &url, QObject* parent ) :
+LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl& url, QObject* parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),
 	d( new LdapDirectoryPrivate )
@@ -380,7 +380,7 @@ QString LdapDirectory::toFullDn( const QString& relativeDn )
 
 
 
-QStringList LdapDirectory::toRelativeDnList( const QStringList &fullDnList )
+QStringList LdapDirectory::toRelativeDnList( const QStringList& fullDnList )
 {
 	QStringList relativeDnList;
 
@@ -396,7 +396,7 @@ QStringList LdapDirectory::toRelativeDnList( const QStringList &fullDnList )
 
 
 
-QStringList LdapDirectory::users(const QString &filterValue)
+QStringList LdapDirectory::users( const QString& filterValue )
 {
 	return d->queryDistinguishedNames( d->usersDn,
 									   constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter ),
@@ -405,7 +405,7 @@ QStringList LdapDirectory::users(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::groups(const QString &filterValue)
+QStringList LdapDirectory::groups( const QString& filterValue )
 {
 	return d->queryDistinguishedNames( d->groupsDn,
 									   constructQueryFilter( QStringLiteral( "cn" ), filterValue ),
@@ -414,7 +414,7 @@ QStringList LdapDirectory::groups(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::userGroups(const QString &filterValue)
+QStringList LdapDirectory::userGroups( const QString& filterValue )
 {
 	return d->queryDistinguishedNames( d->groupsDn,
 									   constructQueryFilter( QStringLiteral( "cn" ), filterValue, d->userGroupsFilter ),
@@ -427,7 +427,7 @@ QStringList LdapDirectory::userGroups(const QString &filterValue)
  * \param filterValue A filter value which is used to query the host name attribute
  * \return List of DNs of all matching computer objects
  */
-QStringList LdapDirectory::computers(const QString &filterValue)
+QStringList LdapDirectory::computers( const QString& filterValue )
 {
 	return d->queryDistinguishedNames( d->computersDn,
 									   constructQueryFilter( d->computerHostNameAttribute, filterValue, d->computersFilter ),
@@ -436,7 +436,7 @@ QStringList LdapDirectory::computers(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::computerGroups(const QString &filterValue)
+QStringList LdapDirectory::computerGroups( const QString& filterValue )
 {
 	return d->queryDistinguishedNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 									   constructQueryFilter( QStringLiteral( "cn" ), filterValue, d->computerGroupsFilter ) ,
@@ -445,7 +445,7 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::computerRooms(const QString &filterValue)
+QStringList LdapDirectory::computerRooms( const QString& filterValue )
 {
 	QStringList computerRooms;
 
@@ -480,14 +480,14 @@ QStringList LdapDirectory::computerRooms(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::groupMembers(const QString &groupDn)
+QStringList LdapDirectory::groupMembers( const QString& groupDn )
 {
 	return d->queryAttributes( groupDn, d->groupMemberAttribute );
 }
 
 
 
-QStringList LdapDirectory::groupsOfUser(const QString &userDn)
+QStringList LdapDirectory::groupsOfUser( const QString& userDn )
 {
 	const auto userId = groupMemberUserIdentification( userDn );
 
@@ -498,7 +498,7 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 
 
 
-QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
+QStringList LdapDirectory::groupsOfComputer( const QString& computerDn )
 {
 	const auto computerId = groupMemberComputerIdentification( computerDn );
 
@@ -509,7 +509,7 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 
 
 
-QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
+QStringList LdapDirectory::computerRoomsOfComputer( const QString& computerDn )
 {
 	if( d->computerRoomMembersByAttribute )
 	{
@@ -530,14 +530,14 @@ QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 
 
 
-QString LdapDirectory::userLoginName(const QString &userDn)
+QString LdapDirectory::userLoginName( const QString& userDn )
 {
 	return d->queryAttributes( userDn, d->userLoginAttribute ).value( 0 );
 }
 
 
 
-QString LdapDirectory::groupName(const QString &groupDn)
+QString LdapDirectory::groupName( const QString& groupDn )
 {
 	return d->queryAttributes( groupDn,
 							   QStringLiteral( "cn" ),
@@ -548,7 +548,7 @@ QString LdapDirectory::groupName(const QString &groupDn)
 
 
 
-QString LdapDirectory::computerHostName(const QString &computerDn)
+QString LdapDirectory::computerHostName( const QString& computerDn )
 {
 	if( computerDn.isEmpty() )
 	{
@@ -560,7 +560,7 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 
 
 
-QString LdapDirectory::computerMacAddress(const QString &computerDn)
+QString LdapDirectory::computerMacAddress( const QString& computerDn )
 {
 	if( computerDn.isEmpty() )
 	{
@@ -572,7 +572,7 @@ QString LdapDirectory::computerMacAddress(const QString &computerDn)
 
 
 
-QString LdapDirectory::groupMemberUserIdentification(const QString &userDn)
+QString LdapDirectory::groupMemberUserIdentification( const QString& userDn )
 {
 	if( d->identifyGroupMembersByNameAttribute )
 	{
@@ -584,7 +584,7 @@ QString LdapDirectory::groupMemberUserIdentification(const QString &userDn)
 
 
 
-QString LdapDirectory::groupMemberComputerIdentification(const QString &computerDn)
+QString LdapDirectory::groupMemberComputerIdentification( const QString& computerDn )
 {
 	if( d->identifyGroupMembersByNameAttribute )
 	{
@@ -596,7 +596,7 @@ QString LdapDirectory::groupMemberComputerIdentification(const QString &computer
 
 
 
-QStringList LdapDirectory::computerRoomMembers(const QString &computerRoomName)
+QStringList LdapDirectory::computerRoomMembers( const QString& computerRoomName )
 {
 	if( d->computerRoomMembersByAttribute )
 	{
@@ -789,7 +789,7 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 
 
 
-QString LdapDirectory::escapeFilterValue( QString filterValue )
+QString LdapDirectory::escapeFilterValue( const QString& filterValue )
 {
 	return filterValue.replace( QStringLiteral("\\"), QStringLiteral("\\\\") )
 			.replace( QStringLiteral("("), QStringLiteral("\\(") )
@@ -798,7 +798,7 @@ QString LdapDirectory::escapeFilterValue( QString filterValue )
 
 
 
-QString LdapDirectory::hostToLdapFormat(const QString &host)
+QString LdapDirectory::hostToLdapFormat( const QString& host )
 {
 	QHostAddress hostAddress( host );
 
@@ -848,7 +848,7 @@ QString LdapDirectory::hostToLdapFormat(const QString &host)
 
 
 
-QString LdapDirectory::computerObjectFromHost(const QString &host)
+QString LdapDirectory::computerObjectFromHost( const QString& host )
 {
 	QString hostName = hostToLdapFormat( host );
 	if( hostName.isEmpty() )
