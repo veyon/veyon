@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QApplication>
 
 #include <openssl/crypto.h>
@@ -57,12 +55,12 @@ int main( int argc, char **argv )
 	{
 		if( arguments.last() == QStringLiteral("-v") || arguments.last() == QStringLiteral("--version") )
 		{
-			printf( "%s\n", VEYON_VERSION );
+			printf( "%s\n", qPrintable( VeyonCore::version() ) );
 			return 0;
 		}
 		else if( arguments.last() == QStringLiteral("about") )
 		{
-			printf( "Veyon: %s (%s)\n", VEYON_VERSION, __DATE__ );
+			printf( "Veyon: %s (%s)\n", qPrintable( VeyonCore::version() ), __DATE__ );
 			printf( "Qt: %s (built against %s/%s)\n", qVersion(), QT_VERSION_STR, qPrintable( QSysInfo::buildAbi() ) );
 			printf( "OpenSSL: %s\n", SSLeay_version(SSLEAY_VERSION) );
 			return 0;

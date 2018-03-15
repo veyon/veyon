@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QDir>
 #include <QProcess>
 #include <QCloseEvent>
@@ -50,7 +48,7 @@ MainWindow::MainWindow( QWidget* parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), QStringLiteral(VEYON_VERSION) ) );
+	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), VeyonCore::version() ) );
 
 	loadConfigurationPagePlugins();
 

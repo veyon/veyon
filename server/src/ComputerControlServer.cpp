@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QCoreApplication>
 #include <QHostInfo>
 
@@ -52,7 +50,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 					  this )
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
-				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), QStringLiteral(VEYON_VERSION),
+				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
 					QHostInfo::localHostName(),
 					QString::number( VeyonCore::config().primaryServicePort() ) ),
 				m_featureWorkerManager );

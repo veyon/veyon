@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
@@ -47,14 +45,14 @@ PluginManager::PluginManager( QObject* parent ) :
 
 void PluginManager::loadPlatformPlugins()
 {
-	loadPlugins( QStringLiteral("*-platform" VEYON_SHARED_LIBRARY_SUFFIX) );
+	loadPlugins( QStringLiteral("*-platform") + VeyonCore::sharedLibrarySuffix() );
 }
 
 
 
 void PluginManager::loadPlugins()
 {
-	loadPlugins( QStringLiteral("*" VEYON_SHARED_LIBRARY_SUFFIX) );
+	loadPlugins( QStringLiteral("*") + VeyonCore::sharedLibrarySuffix() );
 
 	emit pluginsLoaded();
 }
@@ -153,7 +151,7 @@ QString PluginManager::pluginName( Plugin::Uid pluginUid ) const
 void PluginManager::initPluginSearchPath()
 {
 	QDir dir( QCoreApplication::applicationDirPath() );
-	if( dir.cd( QStringLiteral(VEYON_PLUGIN_DIR) ) )
+	if( dir.cd( VeyonCore::pluginDir() ) )
 	{
 		const auto pluginSearchPath = dir.absolutePath();
 		if( m_noDebugMessages == false )

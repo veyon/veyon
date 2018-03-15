@@ -65,6 +65,11 @@ public:
 
 	static VeyonCore* instance();
 
+	static QString version();
+	static QString pluginDir();
+	static QString executableSuffix();
+	static QString sharedLibrarySuffix();
+
 	static VeyonConfiguration& config()
 	{
 		return *( instance()->m_config );

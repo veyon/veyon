@@ -22,6 +22,8 @@
  *
  */
 
+#include <veyonconfig.h>
+
 #include <QLocale>
 #include <QTranslator>
 #include <QAbstractButton>
@@ -205,6 +207,33 @@ VeyonCore* VeyonCore::instance()
 	return s_instance;
 }
 
+
+
+QString VeyonCore::version()
+{
+	return QStringLiteral( VEYON_VERSION );
+}
+
+
+
+QString VeyonCore::pluginDir()
+{
+	return QStringLiteral( VEYON_PLUGIN_DIR );
+}
+
+
+
+QString VeyonCore::executableSuffix()
+{
+	return QStringLiteral( VEYON_EXECUTABLE_SUFFIX );
+}
+
+
+
+QString VeyonCore::sharedLibrarySuffix()
+{
+	return QStringLiteral( VEYON_SHARED_LIBRARY_SUFFIX );
+}
 
 
 

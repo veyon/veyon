@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QDesktopServices>
 #include <QFile>
 
@@ -39,9 +37,9 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "About %1 %2" ).arg( VeyonCore::applicationName(), QStringLiteral( VEYON_VERSION ) ) );
+	setWindowTitle( tr( "About %1 %2" ).arg( VeyonCore::applicationName(), VeyonCore::version() ) );
 
-	ui->versionLabel->setText( QStringLiteral( VEYON_VERSION ) );
+	ui->versionLabel->setText( VeyonCore::version() );
 
 	QFile authors( QStringLiteral( ":/CONTRIBUTORS" ) );
 	authors.open( QFile::ReadOnly );

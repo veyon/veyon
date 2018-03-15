@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QCoreApplication>
 #include <QDir>
 
@@ -59,7 +57,7 @@ QString VeyonServiceControl::filePath()
 	return QDir::toNativeSeparators(
 				QCoreApplication::applicationDirPath() +
 				QDir::separator() +
-				QStringLiteral("veyon-service" VEYON_EXECUTABLE_SUFFIX) );
+				QStringLiteral("veyon-service") + VeyonCore::executableSuffix() );
 }
 
 

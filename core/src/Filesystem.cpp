@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QCoreApplication>
 #include <QDir>
 
@@ -162,7 +160,7 @@ QString Filesystem::publicKeyPath( const QString& name ) const
 QString Filesystem::serverFilePath() const
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-server" VEYON_EXECUTABLE_SUFFIX) );
+									 QStringLiteral("veyon-server" ) + VeyonCore::executableSuffix() );
 }
 
 
@@ -170,5 +168,5 @@ QString Filesystem::serverFilePath() const
 QString Filesystem::workerFilePath() const
 {
 	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-worker" VEYON_EXECUTABLE_SUFFIX) );
+									 QStringLiteral("veyon-worker" ) + VeyonCore::executableSuffix() );
 }

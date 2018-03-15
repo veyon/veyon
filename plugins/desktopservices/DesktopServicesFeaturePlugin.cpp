@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QDesktopServices>
 #include <QInputDialog>
 #include <QUrl>
