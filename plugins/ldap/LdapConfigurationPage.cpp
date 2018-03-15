@@ -81,9 +81,9 @@ LdapConfigurationPage::~LdapConfigurationPage()
 void LdapConfigurationPage::resetWidgets()
 {
 	// sanitize configuration
-	if( m_configuration.ldapServerPort() <= 0 )
+	if( m_configuration.serverPort() <= 0 )
 	{
-		m_configuration.setLdapServerPort( 389 );
+		m_configuration.setServerPort( 389 );
 	}
 
 	FOREACH_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
@@ -289,7 +289,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 										  tr( "Please enter a computer host name to query:") );
 	if( computerName.isEmpty() == false )
 	{
-		if( m_configuration.ldapComputerHostNameAsFQDN() &&
+		if( m_configuration.computerHostNameAsFQDN() &&
 				computerName.contains( '.' ) == false )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
@@ -298,7 +298,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 									   "a host name without domain." ) );
 			return;
 		}
-		else if( m_configuration.ldapComputerHostNameAsFQDN() == false &&
+		else if( m_configuration.computerHostNameAsFQDN() == false &&
 				 computerName.contains( '.') )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
@@ -360,7 +360,7 @@ void LdapConfigurationPage::testComputerRoomAttribute()
 
 void LdapConfigurationPage::testComputerRoomNameAttribute()
 {
-	if( m_configuration.ldapComputerRoomMembersByAttribute() )
+	if( m_configuration.computerRoomMembersByAttribute() )
 	{
 		QMessageBox::information( this, tr( "Test not applicable" ),
 								  tr( "Please change the computer room settings to use computer groups "
@@ -426,7 +426,7 @@ void LdapConfigurationPage::testComputerGroupsFilter()
 
 void LdapConfigurationPage::testComputerContainersFilter()
 {
-	if( m_configuration.ldapComputerRoomMembersByContainer() == false )
+	if( m_configuration.computerRoomMembersByContainer() == false )
 	{
 		QMessageBox::information( this, tr( "Test not applicable" ),
 								  tr( "Please change the computer room settings below to use computer containers "

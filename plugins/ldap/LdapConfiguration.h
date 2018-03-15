@@ -28,35 +28,35 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
-	OP( LdapConfiguration, m_configuration, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, INT, ldapConnectionSecurity, setLdapConnectionSecurity, "ConnectionSecurity", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapNamingContextAttribute, setLdapNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerGroupTree, setLdapComputerGroupTree, "ComputerGroupTree", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerHostNameAsFQDN, setLdapComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerMacAddressAttribute, setLdapComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerRoomNameAttribute, setLdapComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputersFilter, setLdapComputersFilter, "ComputersFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerContainersFilter, setLdapComputerContainersFilter, "ComputerContainersFilter", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerRoomMembersByContainer, setLdapComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, BOOL, ldapComputerRoomMembersByAttribute, setLdapComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, ldapComputerRoomAttribute, setLdapComputerRoomAttribute, "ComputerRoomAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, serverHost, setServerHost, "ServerHost", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, bindPassword, setBindPassword, "BindPassword", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, queryNamingContext, setQueryNamingContext, "QueryNamingContext", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, baseDn, setBaseDn, "BaseDN", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, namingContextAttribute, setNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, userTree, setUserTree, "UserTree", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, groupTree, setGroupTree, "GroupTree", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerTree, setComputerTree, "ComputerTree", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerGroupTree, setComputerGroupTree, "ComputerGroupTree", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, recursiveSearchOperations, setRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, userLoginAttribute, setUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, groupMemberAttribute, setGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerHostNameAttribute, setComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerHostNameAsFQDN, setComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerMacAddressAttribute, setComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerRoomNameAttribute, setComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, usersFilter, setUsersFilter, "UsersFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, userGroupsFilter, setUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computersFilter, setComputersFilter, "ComputersFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, identifyGroupMembersByNameAttribute, setIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerGroupsFilter, setComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerContainersFilter, setComputerContainersFilter, "ComputerContainersFilter", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByContainer, setComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByAttribute, setComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, computerRoomAttribute, setComputerRoomAttribute, "ComputerRoomAttribute", "LDAP" );	\
 
 
 class LdapConfiguration : public Configuration::Proxy
@@ -76,35 +76,35 @@ public:
 	FOREACH_LDAP_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
 public slots:
-	void setLdapServerHost( const QString& );
-	void setLdapServerPort( int );
-	void setLdapConnectionSecurity( int );
-	void setLdapUseBindCredentials( bool );
-	void setLdapBindDn( const QString& );
-	void setLdapBindPassword( const QString& );
-	void setLdapBaseDn( const QString& );
-	void setLdapQueryNamingContext( bool );
-	void setLdapNamingContextAttribute( const QString& );
-	void setLdapUserTree( const QString& );
-	void setLdapGroupTree( const QString& );
-	void setLdapComputerTree( const QString& );
-	void setLdapComputerGroupTree( const QString& );
-	void setLdapRecursiveSearchOperations( bool );
-	void setLdapUserLoginAttribute( const QString& );
-	void setLdapGroupMemberAttribute( const QString& );
-	void setLdapComputerHostNameAttribute( const QString& );
-	void setLdapComputerHostNameAsFQDN( bool );
-	void setLdapComputerMacAddressAttribute( const QString& );
-	void setLdapComputerRoomNameAttribute( const QString& );
-	void setLdapUsersFilter( const QString& );
-	void setLdapUserGroupsFilter( const QString& );
-	void setLdapComputersFilter( const QString& );
-	void setLdapIdentifyGroupMembersByNameAttribute( bool );
-	void setLdapComputerGroupsFilter( const QString& );
-	void setLdapComputerContainersFilter( const QString& );
-	void setLdapComputerRoomMembersByContainer( bool );
-	void setLdapComputerRoomMembersByAttribute( bool );
-	void setLdapComputerRoomAttribute( const QString& );
+	void setServerHost( const QString& );
+	void setServerPort( int );
+	void setConnectionSecurity( int );
+	void setUseBindCredentials( bool );
+	void setBindDn( const QString& );
+	void setBindPassword( const QString& );
+	void setBaseDn( const QString& );
+	void setQueryNamingContext( bool );
+	void setNamingContextAttribute( const QString& );
+	void setUserTree( const QString& );
+	void setGroupTree( const QString& );
+	void setComputerTree( const QString& );
+	void setComputerGroupTree( const QString& );
+	void setRecursiveSearchOperations( bool );
+	void setUserLoginAttribute( const QString& );
+	void setGroupMemberAttribute( const QString& );
+	void setComputerHostNameAttribute( const QString& );
+	void setComputerHostNameAsFQDN( bool );
+	void setComputerMacAddressAttribute( const QString& );
+	void setComputerRoomNameAttribute( const QString& );
+	void setUsersFilter( const QString& );
+	void setUserGroupsFilter( const QString& );
+	void setComputersFilter( const QString& );
+	void setIdentifyGroupMembersByNameAttribute( bool );
+	void setComputerGroupsFilter( const QString& );
+	void setComputerContainersFilter( const QString& );
+	void setComputerRoomMembersByContainer( bool );
+	void setComputerRoomMembersByAttribute( bool );
+	void setComputerRoomAttribute( const QString& );
 
 } ;
 

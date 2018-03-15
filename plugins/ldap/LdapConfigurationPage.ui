@@ -35,7 +35,7 @@
           <item row="2" column="0" colspan="3">
            <layout class="QHBoxLayout" name="horizontalLayout_12">
             <item>
-             <widget class="QRadioButton" name="ldapAnonymousBind">
+             <widget class="QRadioButton" name="anonymousBind">
               <property name="text">
                <string>Anonymous bind</string>
               </property>
@@ -48,7 +48,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="ldapUseBindCredentials">
+             <widget class="QRadioButton" name="useBindCredentials">
               <property name="text">
                <string>Use bind credentials</string>
               </property>
@@ -91,7 +91,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QSpinBox" name="ldapServerPort">
+           <widget class="QSpinBox" name="serverPort">
             <property name="maximum">
              <number>65536</number>
             </property>
@@ -108,10 +108,10 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="ldapServerHost"/>
+           <widget class="QLineEdit" name="serverHost"/>
           </item>
           <item row="4" column="1" colspan="2">
-           <widget class="QLineEdit" name="ldapBindPassword">
+           <widget class="QLineEdit" name="bindPassword">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -128,7 +128,7 @@
            </widget>
           </item>
           <item row="3" column="1" colspan="2">
-           <widget class="QLineEdit" name="ldapBindDn">
+           <widget class="QLineEdit" name="bindDn">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -142,7 +142,7 @@
            </widget>
           </item>
           <item row="1" column="1" colspan="2">
-           <widget class="QComboBox" name="ldapConnectionSecurity">
+           <widget class="QComboBox" name="connectionSecurity">
             <item>
              <property name="text">
               <string>None</string>
@@ -181,7 +181,7 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QRadioButton" name="ldapIsFixedBaseDn">
+           <widget class="QRadioButton" name="isFixedBaseDn">
             <property name="text">
              <string>Fixed base DN</string>
             </property>
@@ -194,14 +194,14 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="ldapBaseDn">
+           <widget class="QLineEdit" name="baseDn">
             <property name="placeholderText">
              <string>e.g. dc=example,dc=org</string>
             </property>
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QRadioButton" name="ldapQueryNamingContext">
+           <widget class="QRadioButton" name="queryNamingContext">
             <property name="text">
              <string>Discover base DN by naming context</string>
             </property>
@@ -211,7 +211,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="ldapNamingContextAttribute">
+           <widget class="QLineEdit" name="namingContextAttribute">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -264,7 +264,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_21">
           <item row="0" column="1">
-           <widget class="QLineEdit" name="ldapUserTree">
+           <widget class="QLineEdit" name="userTree">
             <property name="placeholderText">
              <string>e.g. OU=Users</string>
             </property>
@@ -278,7 +278,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="ldapGroupTree">
+           <widget class="QLineEdit" name="groupTree">
             <property name="placeholderText">
              <string>e.g. OU=Groups</string>
             </property>
@@ -296,7 +296,7 @@
            </widget>
           </item>
           <item row="4" column="0" colspan="3">
-           <widget class="QCheckBox" name="ldapRecursiveSearchOperations">
+           <widget class="QCheckBox" name="recursiveSearchOperations">
             <property name="text">
              <string>Perform recursive search operations in object trees</string>
             </property>
@@ -357,14 +357,14 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="ldapComputerTree">
+           <widget class="QLineEdit" name="computerTree">
             <property name="placeholderText">
              <string>e.g. OU=Computers</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="ldapComputerGroupTree">
+           <widget class="QLineEdit" name="computerGroupTree">
             <property name="placeholderText">
              <string>(only if different from group tree)</string>
             </property>
@@ -380,14 +380,14 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_22">
           <item row="1" column="1">
-           <widget class="QLineEdit" name="ldapGroupMemberAttribute">
+           <widget class="QLineEdit" name="groupMemberAttribute">
             <property name="placeholderText">
              <string>e.g. member or memberUid</string>
             </property>
            </widget>
           </item>
           <item row="6" column="1">
-           <widget class="QLineEdit" name="ldapComputerRoomNameAttribute">
+           <widget class="QLineEdit" name="computerRoomNameAttribute">
             <property name="placeholderText">
              <string>e.g. name or description</string>
             </property>
@@ -459,7 +459,7 @@
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="QLineEdit" name="ldapComputerRoomAttribute">
+           <widget class="QLineEdit" name="computerRoomAttribute">
             <property name="placeholderText">
              <string>e.g. room or computerLab</string>
             </property>
@@ -484,7 +484,7 @@
            </widget>
           </item>
           <item row="3" column="0" colspan="3">
-           <widget class="QCheckBox" name="ldapComputerHostNameAsFQDN">
+           <widget class="QCheckBox" name="computerHostNameAsFQDN">
             <property name="text">
              <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
             </property>
@@ -498,14 +498,14 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="ldapUserLoginAttribute">
+           <widget class="QLineEdit" name="userLoginAttribute">
             <property name="placeholderText">
              <string>e.g. uid or sAMAccountName</string>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="ldapComputerMacAddressAttribute">
+           <widget class="QLineEdit" name="computerMacAddressAttribute">
             <property name="placeholderText">
              <string>e.g. hwAddress</string>
             </property>
@@ -530,7 +530,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="ldapComputerHostNameAttribute">
+           <widget class="QLineEdit" name="computerHostNameAttribute">
             <property name="placeholderText">
              <string>e.g. dNSHostName</string>
             </property>
@@ -584,21 +584,21 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="ldapComputersFilter">
+           <widget class="QLineEdit" name="computersFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=computer</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="ldapUserGroupsFilter">
+           <widget class="QLineEdit" name="userGroupsFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=group</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="ldapUsersFilter">
+           <widget class="QLineEdit" name="usersFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=person</string>
             </property>
@@ -659,7 +659,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="ldapComputerGroupsFilter">
+           <widget class="QLineEdit" name="computerGroupsFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=room or objectClass=computerLab</string>
             </property>
@@ -673,7 +673,7 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="ldapComputerContainersFilter">
+           <widget class="QLineEdit" name="computerContainersFilter">
             <property name="placeholderText">
              <string>e.g. objectClass=container or objectClass=organizationalUnit</string>
             </property>
@@ -700,7 +700,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_14">
           <item>
-           <widget class="QRadioButton" name="ldapIdentifyGroupMembersByDN">
+           <widget class="QRadioButton" name="identifyGroupMembersByDN">
             <property name="text">
              <string>Distinguished name (Samba/AD)</string>
             </property>
@@ -713,7 +713,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="ldapIdentifyGroupMembersByNameAttribute">
+           <widget class="QRadioButton" name="identifyGroupMembersByNameAttribute">
             <property name="text">
              <string>Configured attribute for user login or computer host name (OpenLDAP)</string>
             </property>
@@ -739,7 +739,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="ldapComputerRoomMembersByGroups">
+           <widget class="QRadioButton" name="computerRoomMembersByGroups">
             <property name="text">
              <string>Computer groups</string>
             </property>
@@ -752,7 +752,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="ldapComputerRoomMembersByContainer">
+           <widget class="QRadioButton" name="computerRoomMembersByContainer">
             <property name="text">
              <string>Computer containers or OUs</string>
             </property>
@@ -762,7 +762,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="ldapComputerRoomMembersByAttribute">
+           <widget class="QRadioButton" name="computerRoomMembersByAttribute">
             <property name="text">
              <string>Computer room attribute in computer objects</string>
             </property>
@@ -873,56 +873,56 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>ldapServerHost</tabstop>
-  <tabstop>ldapServerPort</tabstop>
-  <tabstop>ldapAnonymousBind</tabstop>
-  <tabstop>ldapUseBindCredentials</tabstop>
+  <tabstop>serverHost</tabstop>
+  <tabstop>serverPort</tabstop>
+  <tabstop>anonymousBind</tabstop>
+  <tabstop>useBindCredentials</tabstop>
   <tabstop>testBindInteractively</tabstop>
-  <tabstop>ldapBindDn</tabstop>
-  <tabstop>ldapBindPassword</tabstop>
-  <tabstop>ldapIsFixedBaseDn</tabstop>
-  <tabstop>ldapBaseDn</tabstop>
+  <tabstop>bindDn</tabstop>
+  <tabstop>bindPassword</tabstop>
+  <tabstop>isFixedBaseDn</tabstop>
+  <tabstop>baseDn</tabstop>
   <tabstop>testBaseDn</tabstop>
-  <tabstop>ldapQueryNamingContext</tabstop>
-  <tabstop>ldapNamingContextAttribute</tabstop>
+  <tabstop>queryNamingContext</tabstop>
+  <tabstop>namingContextAttribute</tabstop>
   <tabstop>testNamingContext</tabstop>
-  <tabstop>ldapUserTree</tabstop>
-  <tabstop>ldapGroupTree</tabstop>
-  <tabstop>ldapComputerTree</tabstop>
-  <tabstop>ldapComputerGroupTree</tabstop>
+  <tabstop>userTree</tabstop>
+  <tabstop>groupTree</tabstop>
+  <tabstop>computerTree</tabstop>
+  <tabstop>computerGroupTree</tabstop>
   <tabstop>testUserTree</tabstop>
   <tabstop>testGroupTree</tabstop>
   <tabstop>testComputerTree</tabstop>
   <tabstop>testComputerGroupTree</tabstop>
-  <tabstop>ldapRecursiveSearchOperations</tabstop>
-  <tabstop>ldapUserLoginAttribute</tabstop>
-  <tabstop>ldapGroupMemberAttribute</tabstop>
-  <tabstop>ldapComputerHostNameAttribute</tabstop>
-  <tabstop>ldapComputerHostNameAsFQDN</tabstop>
-  <tabstop>ldapComputerMacAddressAttribute</tabstop>
-  <tabstop>ldapComputerRoomAttribute</tabstop>
-  <tabstop>ldapComputerRoomNameAttribute</tabstop>
+  <tabstop>recursiveSearchOperations</tabstop>
+  <tabstop>userLoginAttribute</tabstop>
+  <tabstop>groupMemberAttribute</tabstop>
+  <tabstop>computerHostNameAttribute</tabstop>
+  <tabstop>computerHostNameAsFQDN</tabstop>
+  <tabstop>computerMacAddressAttribute</tabstop>
+  <tabstop>computerRoomAttribute</tabstop>
+  <tabstop>computerRoomNameAttribute</tabstop>
   <tabstop>testUserLoginAttribute</tabstop>
   <tabstop>testGroupMemberAttribute</tabstop>
   <tabstop>testComputerHostNameAttribute</tabstop>
   <tabstop>testComputerMacAddressAttribute</tabstop>
   <tabstop>testComputerRoomAttribute</tabstop>
   <tabstop>testComputerRoomNameAttribute</tabstop>
-  <tabstop>ldapUsersFilter</tabstop>
-  <tabstop>ldapUserGroupsFilter</tabstop>
-  <tabstop>ldapComputersFilter</tabstop>
-  <tabstop>ldapComputerGroupsFilter</tabstop>
-  <tabstop>ldapComputerContainersFilter</tabstop>
+  <tabstop>usersFilter</tabstop>
+  <tabstop>userGroupsFilter</tabstop>
+  <tabstop>computersFilter</tabstop>
+  <tabstop>computerGroupsFilter</tabstop>
+  <tabstop>computerContainersFilter</tabstop>
   <tabstop>testUsersFilter</tabstop>
   <tabstop>testUserGroupsFilter</tabstop>
   <tabstop>testComputersFilter</tabstop>
   <tabstop>testComputerGroupsFilter</tabstop>
   <tabstop>testComputerContainersFilter</tabstop>
-  <tabstop>ldapIdentifyGroupMembersByDN</tabstop>
-  <tabstop>ldapIdentifyGroupMembersByNameAttribute</tabstop>
-  <tabstop>ldapComputerRoomMembersByGroups</tabstop>
-  <tabstop>ldapComputerRoomMembersByContainer</tabstop>
-  <tabstop>ldapComputerRoomMembersByAttribute</tabstop>
+  <tabstop>identifyGroupMembersByDN</tabstop>
+  <tabstop>identifyGroupMembersByNameAttribute</tabstop>
+  <tabstop>computerRoomMembersByGroups</tabstop>
+  <tabstop>computerRoomMembersByContainer</tabstop>
+  <tabstop>computerRoomMembersByAttribute</tabstop>
   <tabstop>testGroupsOfUser</tabstop>
   <tabstop>testGroupsOfComputer</tabstop>
   <tabstop>testComputerObjectByIpAddress</tabstop>
@@ -934,9 +934,9 @@
  </resources>
  <connections>
   <connection>
-   <sender>ldapUseBindCredentials</sender>
+   <sender>useBindCredentials</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapBindPassword</receiver>
+   <receiver>bindPassword</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -950,9 +950,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapUseBindCredentials</sender>
+   <sender>useBindCredentials</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapBindDn</receiver>
+   <receiver>bindDn</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -966,7 +966,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapIsFixedBaseDn</sender>
+   <sender>isFixedBaseDn</sender>
    <signal>toggled(bool)</signal>
    <receiver>testBaseDn</receiver>
    <slot>setEnabled(bool)</slot>
@@ -982,9 +982,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapQueryNamingContext</sender>
+   <sender>queryNamingContext</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapNamingContextAttribute</receiver>
+   <receiver>namingContextAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -998,9 +998,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapIsFixedBaseDn</sender>
+   <sender>isFixedBaseDn</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapBaseDn</receiver>
+   <receiver>baseDn</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1014,7 +1014,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapQueryNamingContext</sender>
+   <sender>queryNamingContext</sender>
    <signal>toggled(bool)</signal>
    <receiver>testNamingContext</receiver>
    <slot>setEnabled(bool)</slot>

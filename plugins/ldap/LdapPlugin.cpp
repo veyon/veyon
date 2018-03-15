@@ -60,11 +60,11 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 			return QStringLiteral("(%1)").arg( filter );
 		};
 
-		m_configuration.setLdapComputerContainersFilter( upgradeFilter( m_configuration.ldapComputerContainersFilter() ) );
-		m_configuration.setLdapComputerGroupsFilter( upgradeFilter( m_configuration.ldapComputerGroupsFilter() ) );
-		m_configuration.setLdapComputersFilter( upgradeFilter( m_configuration.ldapComputersFilter() ) );
-		m_configuration.setLdapUserGroupsFilter( upgradeFilter( m_configuration.ldapUserGroupsFilter() ) );
-		m_configuration.setLdapUsersFilter( upgradeFilter( m_configuration.ldapUsersFilter() ) );
+		m_configuration.setComputerContainersFilter( upgradeFilter( m_configuration.computerContainersFilter() ) );
+		m_configuration.setComputerGroupsFilter( upgradeFilter( m_configuration.computerGroupsFilter() ) );
+		m_configuration.setComputersFilter( upgradeFilter( m_configuration.computersFilter() ) );
+		m_configuration.setUserGroupsFilter( upgradeFilter( m_configuration.userGroupsFilter() ) );
+		m_configuration.setUsersFilter( upgradeFilter( m_configuration.usersFilter() ) );
 	}
 }
 
@@ -153,7 +153,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 	}
 	else
 	{
-		m_configuration.setLdapNamingContextAttribute( namingContextAttribute );
+		m_configuration.setNamingContextAttribute( namingContextAttribute );
 	}
 
 	LdapDirectory ldapDirectory( m_configuration, ldapUrl );
@@ -167,8 +167,8 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 
 	qInfo() << "Configuring" << baseDn << "as base DN and disabling naming context queries.";
 
-	m_configuration.setLdapBaseDn( baseDn );
-	m_configuration.setLdapQueryNamingContext( false );
+	m_configuration.setBaseDn( baseDn );
+	m_configuration.setQueryNamingContext( false );
 
 	// write configuration
 	ConfigurationManager().saveConfiguration();

@@ -638,13 +638,13 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	}
 	else
 	{
-		d->server.setHost( m_configuration.ldapServerHost() );
-		d->server.setPort( m_configuration.ldapServerPort() );
+		d->server.setHost( m_configuration.serverHost() );
+		d->server.setPort( m_configuration.serverPort() );
 
-		if( m_configuration.ldapUseBindCredentials() )
+		if( m_configuration.useBindCredentials() )
 		{
-			d->server.setBindDn( m_configuration.ldapBindDn() );
-			d->server.setPassword( m_configuration.ldapBindPassword() );
+			d->server.setBindDn( m_configuration.bindDn() );
+			d->server.setPassword( m_configuration.bindPassword() );
 			d->server.setAuth( KLDAP::LdapServer::Simple );
 		}
 		else
@@ -652,7 +652,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 			d->server.setAuth( KLDAP::LdapServer::Anonymous );
 		}
 
-		const auto security = static_cast<LdapConfiguration::ConnectionSecurity>( m_configuration.ldapConnectionSecurity() );
+		const auto security = static_cast<LdapConfiguration::ConnectionSecurity>( m_configuration.connectionSecurity() );
 		switch( security )
 		{
 		case LdapConfiguration::ConnectionSecurityTLS:
@@ -672,7 +672,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		return false;
 	}
 
-	d->namingContextAttribute = m_configuration.ldapNamingContextAttribute();
+	d->namingContextAttribute = m_configuration.namingContextAttribute();
 
 	if( d->namingContextAttribute.isEmpty() )
 	{
@@ -681,30 +681,30 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	}
 
 	// query base DN via naming context if configured
-	if( m_configuration.ldapQueryNamingContext() )
+	if( m_configuration.queryNamingContext() )
 	{
 		d->baseDn = queryNamingContext();
 	}
 	else
 	{
 		// use the configured base DN
-		d->baseDn = m_configuration.ldapBaseDn();
+		d->baseDn = m_configuration.baseDn();
 	}
 
-	d->usersDn = constructSubDn( m_configuration.ldapUserTree(), d->baseDn );
-	d->groupsDn = constructSubDn( m_configuration.ldapGroupTree(), d->baseDn );
-	d->computersDn = constructSubDn( m_configuration.ldapComputerTree(), d->baseDn );
+	d->usersDn = constructSubDn( m_configuration.userTree(), d->baseDn );
+	d->groupsDn = constructSubDn( m_configuration.groupTree(), d->baseDn );
+	d->computersDn = constructSubDn( m_configuration.computerTree(), d->baseDn );
 
-	if( m_configuration.ldapComputerGroupTree().isEmpty() == false )
+	if( m_configuration.computerGroupTree().isEmpty() == false )
 	{
-		d->computerGroupsDn = constructSubDn( m_configuration.ldapComputerGroupTree(), d->baseDn );
+		d->computerGroupsDn = constructSubDn( m_configuration.computerGroupTree(), d->baseDn );
 	}
 	else
 	{
 		d->computerGroupsDn.clear();
 	}
 
-	if( m_configuration.ldapRecursiveSearchOperations() )
+	if( m_configuration.recursiveSearchOperations() )
 	{
 		d->defaultSearchScope = KLDAP::LdapUrl::Sub;
 	}
@@ -713,28 +713,28 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		d->defaultSearchScope = KLDAP::LdapUrl::One;
 	}
 
-	d->userLoginAttribute = m_configuration.ldapUserLoginAttribute();
-	d->groupMemberAttribute = m_configuration.ldapGroupMemberAttribute();
-	d->computerHostNameAttribute = m_configuration.ldapComputerHostNameAttribute();
-	d->computerHostNameAsFQDN = m_configuration.ldapComputerHostNameAsFQDN();
-	d->computerMacAddressAttribute = m_configuration.ldapComputerMacAddressAttribute();
-	d->computerRoomNameAttribute = m_configuration.ldapComputerRoomNameAttribute();
+	d->userLoginAttribute = m_configuration.userLoginAttribute();
+	d->groupMemberAttribute = m_configuration.groupMemberAttribute();
+	d->computerHostNameAttribute = m_configuration.computerHostNameAttribute();
+	d->computerHostNameAsFQDN = m_configuration.computerHostNameAsFQDN();
+	d->computerMacAddressAttribute = m_configuration.computerMacAddressAttribute();
+	d->computerRoomNameAttribute = m_configuration.computerRoomNameAttribute();
 	if( d->computerRoomNameAttribute.isEmpty() )
 	{
 		d->computerRoomNameAttribute = QStringLiteral("cn");
 	}
 
-	d->usersFilter = m_configuration.ldapUsersFilter();
-	d->userGroupsFilter = m_configuration.ldapUserGroupsFilter();
-	d->computersFilter = m_configuration.ldapComputersFilter();
-	d->computerGroupsFilter = m_configuration.ldapComputerGroupsFilter();
-	d->computerParentsFilter = m_configuration.ldapComputerContainersFilter();
+	d->usersFilter = m_configuration.usersFilter();
+	d->userGroupsFilter = m_configuration.userGroupsFilter();
+	d->computersFilter = m_configuration.computersFilter();
+	d->computerGroupsFilter = m_configuration.computerGroupsFilter();
+	d->computerParentsFilter = m_configuration.computerContainersFilter();
 
-	d->identifyGroupMembersByNameAttribute = m_configuration.ldapIdentifyGroupMembersByNameAttribute();
+	d->identifyGroupMembersByNameAttribute = m_configuration.identifyGroupMembersByNameAttribute();
 
-	d->computerRoomMembersByContainer = m_configuration.ldapComputerRoomMembersByContainer();
-	d->computerRoomMembersByAttribute = m_configuration.ldapComputerRoomMembersByAttribute();
-	d->computerRoomAttribute = m_configuration.ldapComputerRoomAttribute();
+	d->computerRoomMembersByContainer = m_configuration.computerRoomMembersByContainer();
+	d->computerRoomMembersByAttribute = m_configuration.computerRoomMembersByAttribute();
+	d->computerRoomAttribute = m_configuration.computerRoomAttribute();
 
 	return true;
 }
@@ -791,7 +791,8 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 
 QString LdapDirectory::escapeFilterValue( const QString& filterValue )
 {
-	return filterValue.replace( QStringLiteral("\\"), QStringLiteral("\\\\") )
+	return QString( filterValue )
+			.replace( QStringLiteral("\\"), QStringLiteral("\\\\") )
 			.replace( QStringLiteral("("), QStringLiteral("\\(") )
 			.replace( QStringLiteral(")"), QStringLiteral("\\)") );
 }

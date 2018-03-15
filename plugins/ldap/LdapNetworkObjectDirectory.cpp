@@ -130,7 +130,7 @@ void LdapNetworkObjectDirectory::updateComputerRoom( const QString& computerRoom
 
 	const auto computers = m_ldapDirectory.computerRoomMembers( computerRoom );
 
-	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().ldapComputerMacAddressAttribute().count() > 0 );
+	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().computerMacAddressAttribute().count() > 0 );
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
