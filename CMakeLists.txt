@@ -47,15 +47,14 @@ IF(GIT_FOUND)
 	# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead. For instance, to generate
 	# this file for version 3.0.2, the command is:
 	#   git shortlog -sne v3.0.2 | cut -c8-
-	IF(NOT CONTRIBUTORS)
-	    SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
+	SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
+	IF(NOT EXISTS "${CONTRIBUTORS}")
 		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -sne
 			            COMMAND cut -c8-
 						COMMAND grep -v root
 						OUTPUT_FILE "${CONTRIBUTORS}"
 						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 						TIMEOUT 10)
-		FILE(RELATIVE_PATH CONTRIBUTORS ${CMAKE_BINARY_DIR}/core ${CONTRIBUTORS})
 	ENDIF()
 
 ENDIF()
