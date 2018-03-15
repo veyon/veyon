@@ -52,6 +52,24 @@ LdapPlugin::~LdapPlugin()
 
 
 
+void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
+{
+	if( oldVersion < QVersionNumber( 1, 1 ) )
+	{
+		const auto upgradeFilter = []( const QString& filter ) {
+			return QStringLiteral("(%1)").arg( filter );
+		};
+
+		m_configuration.setLdapComputerContainersFilter( upgradeFilter( m_configuration.ldapComputerContainersFilter() ) );
+		m_configuration.setLdapComputerGroupsFilter( upgradeFilter( m_configuration.ldapComputerGroupsFilter() ) );
+		m_configuration.setLdapComputersFilter( upgradeFilter( m_configuration.ldapComputersFilter() ) );
+		m_configuration.setLdapUserGroupsFilter( upgradeFilter( m_configuration.ldapUserGroupsFilter() ) );
+		m_configuration.setLdapUsersFilter( upgradeFilter( m_configuration.ldapUsersFilter() ) );
+	}
+}
+
+
+
 QStringList LdapPlugin::commands() const
 {
 	return m_commands.keys();

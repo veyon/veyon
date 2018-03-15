@@ -80,6 +80,8 @@ public:
 		return QStringLiteral( "Tobias Junghans" );
 	}
 
+	void upgrade( const QVersionNumber& oldVersion ) override;
+
 	QString commandLineModuleName() const override
 	{
 		return QStringLiteral( "ldap" );
