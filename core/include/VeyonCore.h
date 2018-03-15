@@ -80,6 +80,11 @@ public:
 		return *( instance()->m_authenticationCredentials );
 	}
 
+	static CryptoCore& cryptoCore()
+	{
+		return *( instance()->m_cryptoCore );
+	}
+
 	static PluginManager& pluginManager()
 	{
 		return *( instance()->m_pluginManager );
