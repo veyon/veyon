@@ -45,7 +45,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 0 );
+		return QVersionNumber( 1, 1 );
 	}
 
 	QString name() const override
@@ -73,6 +73,8 @@ public:
 		return Plugin::NoFlags;
 	}
 
+	void upgrade( const QVersionNumber& oldVersion ) override;
+
 	QWidget* configurationWidget() override;
 
 	void prepareServer() override;
@@ -84,6 +86,10 @@ public:
 	QString configuredPassword() override;
 
 private:
+	enum {
+		MaximumPlaintextPasswordLength = 64
+	};
+
 	ExternalVncServerConfiguration m_configuration;
 
 };
