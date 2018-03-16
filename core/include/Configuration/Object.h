@@ -165,6 +165,17 @@ private:
 			return value( key, parentKey ).value<QColor>();			\
 		}
 
+#define DECLARE_CONFIG_PASSWORD_PROPERTY(get,key,parentKey)\
+	public:											\
+		QString get() const					\
+		{											\
+			return VeyonCore::cryptoCore().decryptPassword( value( key, parentKey ).toString() );	\
+		}	\
+		QString get##Plain() const					\
+		{											\
+			return value( key, parentKey ).toString().toUtf8();			\
+		}	\
+
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
 			DECLARE_CONFIG_##type##_PROPERTY(get,QStringLiteral(key),QStringLiteral(parentKey))
 
@@ -215,6 +226,12 @@ private:
 		void className::set( const QColor& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
+		}
+
+#define IMPLEMENT_CONFIG_SET_PASSWORD_PROPERTY(className,set,key,parentKey)	\
+		void className::set( const QString& val )									\
+		{																\
+			setValue( key, VeyonCore::cryptoCore().encryptPassword( val.toUtf8() ), parentKey );			\
 		}
 
 #define IMPLEMENT_CONFIG_SET_PROPERTY(className, config,type, get, set, key, parentKey)	\
