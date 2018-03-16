@@ -121,6 +121,10 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
+	enum {
+		MaximumPlaintextPasswordLength = 64
+	};
+
 	LdapDirectory& ldapDirectory();
 
 	LdapConfiguration m_configuration;

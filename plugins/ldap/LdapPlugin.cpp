@@ -70,6 +70,13 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 		m_configuration.setComputersFilter( upgradeFilter( m_configuration.computersFilter() ) );
 		m_configuration.setUserGroupsFilter( upgradeFilter( m_configuration.userGroupsFilter() ) );
 		m_configuration.setUsersFilter( upgradeFilter( m_configuration.usersFilter() ) );
+
+		// bind password not encrypted yet?
+		if( m_configuration.bindPasswordPlain().size() < MaximumPlaintextPasswordLength )
+		{
+			// setting it again will encrypt it
+			m_configuration.setBindPassword( m_configuration.bindPasswordPlain() );
+		}
 	}
 }
 
