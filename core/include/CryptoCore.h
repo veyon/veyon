@@ -31,7 +31,7 @@
 
 // clazy:excludeall=rule-of-three
 
-class CryptoCore
+class VEYON_CORE_EXPORT CryptoCore
 {
 public:
 	typedef QCA::KeyGenerator KeyGenerator;
@@ -50,10 +50,14 @@ public:
 	CryptoCore();
 	~CryptoCore();
 
-	static QByteArray VEYON_CORE_EXPORT generateChallenge();
+	static QByteArray generateChallenge();
+
+	QString encryptPassword( const QString& password ) const;
+	QString decryptPassword( const QString& encryptedPassword ) const;
 
 private:
 	QCA::Initializer m_qcaInitializer;
+	PrivateKey m_defaultPrivateKey;
 
 };
 

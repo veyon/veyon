@@ -26,9 +26,9 @@
 
 #include "CryptoCore.h"
 
-
 CryptoCore::CryptoCore() :
-	m_qcaInitializer()
+	m_qcaInitializer(),
+	m_defaultPrivateKey()
 {
 	const auto features = QCA::supportedFeatures();
 
@@ -39,6 +39,8 @@ CryptoCore::CryptoCore() :
 		qFatal( "CryptoCore: RSA not supported! Please install a QCA plugin which provides RSA support "
 				"(e.g. packages such as libqca-qt5-2-plugins or qca-qt5-ossl)." );
 	}
+
+	m_defaultPrivateKey = PrivateKey::fromPEMFile( ":/resources/default-pkey.pem" );
 }
 
 
@@ -67,4 +69,28 @@ QByteArray CryptoCore::generateChallenge()
 	BN_free( challengeBigNum );
 
 	return chall;
+}
+
+
+
+QString CryptoCore::encryptPassword( const QString& password ) const
+{
+	return m_defaultPrivateKey.toPublicKey().encrypt( password.toUtf8(), DefaultEncryptionAlgorithm ).toByteArray().toHex();
+}
+
+
+
+QString CryptoCore::decryptPassword( const QString& encryptedPassword ) const
+{
+	SecureArray decryptedPassword;
+
+	if( PrivateKey( m_defaultPrivateKey ).decrypt( QByteArray::fromHex( encryptedPassword.toUtf8() ),
+												   &decryptedPassword, DefaultEncryptionAlgorithm ) )
+	{
+		return decryptedPassword.toByteArray();
+	}
+
+	qCritical("CryptoCore: failed to decrypt password!" );
+
+	return QString();
 }
