@@ -62,5 +62,6 @@
     <file>resources/document-save.png</file>
     <file>resources/edit-delete.png</file>
     <file>resources/help-about.png</file>
+    <file>resources/default-pkey.pem</file>
   </qresource>
 </RCC>
