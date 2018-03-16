@@ -88,6 +88,7 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_get( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_set( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_unset( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_upgrade( const QStringList& arguments );
 
 private:
 	void listConfiguration( const VeyonConfiguration::DataMap &map,

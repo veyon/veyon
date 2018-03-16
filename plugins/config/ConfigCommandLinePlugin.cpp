@@ -42,6 +42,7 @@ ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
 { "get", tr( "Read and output configuration value for given key" ) },
 { "set", tr( "Write given value to given configuration key" ) },
 { "unset", tr( "Unset (remove) given configuration key" ) },
+{ "upgrade", tr( "Upgrade and save configuration of program and plugins" ) },
 				} )
 {
 }
@@ -229,6 +230,16 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( con
 
 	VeyonCore::config().removeValue( key, parentKey );
 
+	return applyConfiguration();
+}
+
+
+
+CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_upgrade( const QStringList& arguments )
+{
+	Q_UNUSED(arguments);
+
+	// upgrade already happened while loading plugins so only save upgraded configuration
 	return applyConfiguration();
 }
 
