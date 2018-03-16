@@ -586,21 +586,21 @@
           <item row="2" column="1">
            <widget class="QLineEdit" name="computersFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=computer</string>
+             <string>e.g. (objectClass=computer)</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
            <widget class="QLineEdit" name="userGroupsFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=group</string>
+             <string>e.g. (objectClass=group)</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="usersFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=person</string>
+             <string>e.g. (objectClass=person)</string>
             </property>
            </widget>
           </item>
@@ -661,7 +661,7 @@
           <item row="3" column="1">
            <widget class="QLineEdit" name="computerGroupsFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=room or objectClass=computerLab</string>
+             <string>e.g. (objectClass=room) or (objectClass=computerLab)</string>
             </property>
            </widget>
           </item>
@@ -675,7 +675,7 @@
           <item row="4" column="1">
            <widget class="QLineEdit" name="computerContainersFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=container or objectClass=organizationalUnit</string>
+             <string>e.g. (objectClass=container) or (objectClass=organizationalUnit)</string>
             </property>
            </widget>
           </item>
