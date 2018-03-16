@@ -57,7 +57,12 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 	if( oldVersion < QVersionNumber( 1, 1 ) )
 	{
 		const auto upgradeFilter = []( const QString& filter ) {
-			return QStringLiteral("(%1)").arg( filter );
+			if( filter.startsWith( '(' ) == false )
+			{
+				return QStringLiteral("(%1)").arg( filter );
+			}
+			// already upgraded or special filter so don't touch
+			return filter;
 		};
 
 		m_configuration.setComputerContainersFilter( upgradeFilter( m_configuration.computerContainersFilter() ) );
