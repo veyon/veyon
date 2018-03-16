@@ -26,6 +26,7 @@
 #define LDAP_CONFIGURATION_H
 
 #include "Configuration/Proxy.h"
+#include "CryptoCore.h"
 
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
 	OP( LdapConfiguration, m_configuration, STRING, serverHost, setServerHost, "ServerHost", "LDAP" );	\
@@ -33,7 +34,7 @@
 	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, bindPassword, setBindPassword, "BindPassword", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, PASSWORD, bindPassword, setBindPassword, "BindPassword", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, queryNamingContext, setQueryNamingContext, "QueryNamingContext", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, baseDn, setBaseDn, "BaseDN", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, namingContextAttribute, setNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
