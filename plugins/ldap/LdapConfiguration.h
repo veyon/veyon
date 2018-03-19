@@ -32,6 +32,8 @@
 	OP( LdapConfiguration, m_configuration, STRING, serverHost, setServerHost, "ServerHost", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, INT, tlsVerifyMode, setTLSVerifyMode, "TLSVerifyMode", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, tlsCustomCACertificate, setTLSCustomCACertificate, "TLSCustomCACertificate", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, PASSWORD, bindPassword, setBindPassword, "BindPassword", "LDAP" );	\
@@ -72,6 +74,13 @@ public:
 		ConnectionSecurityCount,
 	};
 
+	enum TLSVerifyMode
+	{
+		TLSVerifyNever,
+		TLSVerifyGlobalCerts,
+		TLSVerifyCustomCert,
+		TLSVerifyModeCount
+	};
 	LdapConfiguration( QObject* parent = nullptr );
 
 	FOREACH_LDAP_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
@@ -80,6 +89,8 @@ public slots:
 	void setServerHost( const QString& );
 	void setServerPort( int );
 	void setConnectionSecurity( int );
+	void setTLSVerifyMode( int );
+	void setTLSCustomCACertificate( const QString& );
 	void setUseBindCredentials( bool );
 	void setBindDn( const QString& );
 	void setBindPassword( const QString& );
