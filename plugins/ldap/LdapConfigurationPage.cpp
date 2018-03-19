@@ -67,6 +67,10 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress );
 	CONNECT_BUTTON_SLOT( testComputerRoomMembers );
 	CONNECT_BUTTON_SLOT( testComputerRooms );
+
+	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCustomCACertificate, [=]() {
+		ui->tlsCustomCACertificate->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapConfiguration::TLSVerifyCustomCert );
+	} );
 }
 
 

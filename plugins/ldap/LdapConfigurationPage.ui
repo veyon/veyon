@@ -134,14 +134,59 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Connection security</string>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Connection security</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="2" column="1">
+           <widget class="QPlainTextEdit" name="tlsCustomCACertificate">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string notr="true">-----BEGIN CERTIFICATE .....</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="2">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Custom CA certificate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="tlsVerifyMode">
+            <item>
+             <property name="text">
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Global CA certificates</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Custom CA certificate</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Certificate verification</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
            <widget class="QComboBox" name="connectionSecurity">
             <item>
              <property name="text">
@@ -158,6 +203,13 @@
               <string>SSL</string>
              </property>
             </item>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Security mode</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -880,6 +932,9 @@
   <tabstop>testBindInteractively</tabstop>
   <tabstop>bindDn</tabstop>
   <tabstop>bindPassword</tabstop>
+  <tabstop>connectionSecurity</tabstop>
+  <tabstop>tlsVerifyMode</tabstop>
+  <tabstop>tlsCustomCACertificate</tabstop>
   <tabstop>isFixedBaseDn</tabstop>
   <tabstop>baseDn</tabstop>
   <tabstop>testBaseDn</tabstop>
