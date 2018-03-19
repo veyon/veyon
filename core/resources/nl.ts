@@ -1691,6 +1691,10 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <source>LDAP error description: %1</source>
         <translation>LDAP foutbeschrijving: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1732,14 +1736,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Lokale data</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Netwerk objecten</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Lokalen</translation>

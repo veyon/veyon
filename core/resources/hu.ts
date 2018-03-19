@@ -1691,6 +1691,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>LDAP error description: %1</source>
         <translation>LDAP hiba leírása: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1732,14 +1736,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Helyi adat</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Hálózati objektumok</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Szobák</translation>

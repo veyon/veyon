@@ -1693,6 +1693,10 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
         <source>LDAP error description: %1</source>
         <translation>Description de l&apos;erreur LDAP: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1734,14 +1738,6 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Données locales</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Objets réseau</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Salles</translation>

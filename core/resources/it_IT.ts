@@ -1694,6 +1694,10 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
         <source>LDAP error description: %1</source>
         <translation>Descrizione errore LDAP: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1735,14 +1739,6 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Dati locali</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Oggetti di rete</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Stanze</translation>

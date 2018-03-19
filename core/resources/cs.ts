@@ -439,7 +439,7 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Aktivní funkce: %1</translation>
     </message>
 </context>
 <context>
@@ -1693,6 +1693,10 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <source>LDAP error description: %1</source>
         <translation>Popis LDAP chyby: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Není k dispozici žádný popis LDAP chyby</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1734,14 +1738,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Místní data</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Síťové objekty</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Místnosti</translation>

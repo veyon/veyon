@@ -150,7 +150,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>도메인 그룹 사용 허용</translation>
     </message>
 </context>
 <context>
@@ -439,7 +439,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>활성화된 기능들: %1</translation>
     </message>
 </context>
 <context>
@@ -919,7 +919,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>운영체계의 로깅시스템에 기록</translation>
     </message>
 </context>
 <context>
@@ -1693,6 +1693,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP error description: %1</source>
         <translation>LDAP 에러 설명: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1734,14 +1738,6 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>로컬 데이터</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>네트워크 개체</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>교실</translation>

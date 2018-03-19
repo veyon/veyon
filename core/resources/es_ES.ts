@@ -152,7 +152,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar el uso de grupos de dominio</translation>
     </message>
 </context>
 <context>
@@ -441,7 +441,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Características activas: %1</translation>
     </message>
 </context>
 <context>
@@ -920,7 +920,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>Escribir en el sistema de registro del sistema operativo</translation>
     </message>
 </context>
 <context>
@@ -1695,6 +1695,10 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
         <source>LDAP error description: %1</source>
         <translation>Descripción del error LDAP: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1736,14 +1740,6 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Datos locales</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Objetos de red</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Aulas</translation>

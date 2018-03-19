@@ -15,19 +15,19 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>حول فيون</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>المساهمون</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>نسخة:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>الموقع الإلكتروني:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -37,22 +37,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>حول %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>دعم مشروع فيون بالتبرع</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>التحكم في الوصول إلى الكمبيوتر</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>منح حق الوصول إلى كل مستخدم تمت مصادقته (افتراضي)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -60,15 +60,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>تقييد الدخول إلى أعضاء مجموعات مستخدمين معينة</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>قواعد التحكم في الوصول إلى العمليات</translation>
     </message>
     <message>
         <source>Data backend:</source>
-        <translation type="unfinished"/>
+        <translation>البيانات الخلفية:</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -183,15 +183,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>حالات</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>هو عضو في المجموعة</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>هل موجود بالغرفة</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -1675,6 +1675,10 @@ The public key part is used on the client computers to verify that any incoming 
         <source>LDAP error description: %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1716,14 +1720,6 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Rooms</source>
         <translation type="unfinished"/>
@@ -1975,7 +1971,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>حول Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2753,7 +2749,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>تمكين دعم الشاشة المزدوجة</translation>
     </message>
 </context>
 <context>
@@ -2764,14 +2760,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>تعذر حفظ إعداداتك الشخصية! الرجاء التحقق من مسار ملف ضبط المستخدم باستخدام٪ 1 مكون.</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>التحكم في جلسة عمل المستخدم</translation>
     </message>
     <message>
         <source>Logout user</source>
@@ -2779,34 +2775,34 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>انقر على هذا الزر لتسجيل الخروج من المستخدمين من جميع أجهزة الكمبيوتر.</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد خروج المستخدم</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>هل تريد حقا تسجيل الخروج من المستخدمين المحددين؟</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[حسنا]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[فشل]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>أمر خاطئ!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>الأوامر المتاحة:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -2818,7 +2814,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>نتيجة غير معروفة!</translation>
     </message>
     <message>
         <source>Available modules:</source>

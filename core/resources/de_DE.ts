@@ -1691,6 +1691,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>LDAP error description: %1</source>
         <translation>LDAP-Fehlerbeschreibung: %1</translation>
     </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Keine LDAP-Fehlerbeschreibung verfügbar</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -1732,14 +1736,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 </context>
 <context>
     <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Local data</source>
-        <translation>Lokale Daten</translation>
-    </message>
-    <message>
-        <source>Network objects</source>
-        <translation>Netzwerkobjekte</translation>
-    </message>
     <message>
         <source>Rooms</source>
         <translation>Räume</translation>
