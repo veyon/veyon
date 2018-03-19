@@ -30,6 +30,7 @@
 #include <QComboBox>
 #include <QGroupBox>
 #include <QLineEdit>
+#include <QPlainTextEdit>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QSpinBox>
@@ -68,6 +69,12 @@ template<class Config>
 inline void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QLineEdit* widget )
 {
 	widget->setText( (config->*getter)() );
+}
+
+template<class Config>
+inline void initWidgetFromProperty( Config* config, QString (Config::*getter)() const, QPlainTextEdit* widget )
+{
+	widget->setPlainText( (config->*getter)() );
 }
 
 template<class Config>
@@ -143,6 +150,13 @@ template<class Config>
 inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QLineEdit* widget )
 {
 	QObject::connect( widget, &QLineEdit::textChanged, config, setter );
+}
+
+template<class Config>
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QString& ), QPlainTextEdit* widget )
+{
+	QObject::connect( widget, &QPlainTextEdit::textChanged, config, [=]() {
+		(config->*setter)( widget->toPlainText() ); } );
 }
 
 template<class Config>
