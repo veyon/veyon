@@ -667,6 +667,11 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		}
 	}
 
+	if( m_configuration.connectionSecurity() != LdapConfiguration::ConnectionSecurityNone )
+	{
+		initTLS();
+	}
+
 	if( d->reconnect() == false )
 	{
 		return false;
@@ -737,6 +742,38 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->computerRoomAttribute = m_configuration.computerRoomAttribute();
 
 	return true;
+}
+
+
+
+void LdapDirectory::initTLS()
+{
+	static const char* ldapTLSReqCert = "LDAPTLS_REQCERT";
+	static const char* ldapTLSCACert = "LDAPTLS_CACERT";
+
+	qunsetenv( ldapTLSReqCert );
+	qunsetenv( ldapTLSCACert );
+
+	switch( m_configuration.tlsVerifyMode() )
+	{
+	case LdapConfiguration::TLSVerifyDefault:
+		// use system defaults so don't set any options
+		break;
+	case LdapConfiguration::TLSVerifyNever:
+		qputenv( ldapTLSReqCert, "never" );
+		break;
+	case LdapConfiguration::TLSVerifyGlobalCerts:
+		qputenv( ldapTLSReqCert, "hard" );
+		break;
+	case LdapConfiguration::TLSVerifyCustomCert:
+		qputenv( ldapTLSReqCert, "hard" );
+		qputenv( ldapTLSCACert, m_configuration.tlsCACertificateFile().toUtf8() );
+		break;
+	default:
+		qCritical( "LdapDirectory: invalid TLS verify mode specified!" );
+		qputenv( ldapTLSReqCert, "hard" );
+		break;
+	}
 }
 
 

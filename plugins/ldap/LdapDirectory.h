@@ -89,6 +89,7 @@ public:
 
 private:
 	bool reconnect( const QUrl& url );
+	void initTLS();
 
 	static QString constructSubDn( const QString& subtree, const QString& baseDn );
 
