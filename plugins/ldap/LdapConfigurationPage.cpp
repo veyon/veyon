@@ -22,6 +22,7 @@
  *
  */
 
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 
@@ -68,8 +69,10 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testComputerRoomMembers );
 	CONNECT_BUTTON_SLOT( testComputerRooms );
 
-	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCustomCACertificate, [=]() {
-		ui->tlsCustomCACertificate->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapConfiguration::TLSVerifyCustomCert );
+	CONNECT_BUTTON_SLOT( browseCACertificateFile );
+
+	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=]() {
+		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapConfiguration::TLSVerifyCustomCert );
 	} );
 }
 
@@ -557,7 +560,19 @@ void LdapConfigurationPage::testComputerRooms()
 	LdapDirectory ldapDirectory( m_configuration );
 	reportLdapObjectQueryResults( tr( "computer rooms" ),
 									  tr( "computer group filter or computer room member aggregation" ),
-									  ldapDirectory.computerRooms(), ldapDirectory );
+								  ldapDirectory.computerRooms(), ldapDirectory );
+}
+
+
+
+void LdapConfigurationPage::browseCACertificateFile()
+{
+	auto caCertFile = QFileDialog::getOpenFileName( this, tr( "Custom CA certificate file" ), QString(),
+													tr( "Certificate files (*.pem)" ) );
+	if( caCertFile.isEmpty() == false )
+	{
+		ui->tlsCACertificateFile->setText( caCertFile );
+	}
 }
 
 

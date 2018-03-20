@@ -33,7 +33,7 @@
 	OP( LdapConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, INT, tlsVerifyMode, setTLSVerifyMode, "TLSVerifyMode", "LDAP" );	\
-	OP( LdapConfiguration, m_configuration, STRING, tlsCustomCACertificate, setTLSCustomCACertificate, "TLSCustomCACertificate", "LDAP" );	\
+	OP( LdapConfiguration, m_configuration, STRING, tlsCACertificateFile, setTLSCACertificateFile, "TLSCACertificateFile", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP" );	\
 	OP( LdapConfiguration, m_configuration, PASSWORD, bindPassword, setBindPassword, "BindPassword", "LDAP" );	\
@@ -76,6 +76,7 @@ public:
 
 	enum TLSVerifyMode
 	{
+		TLSVerifyDefault,
 		TLSVerifyNever,
 		TLSVerifyGlobalCerts,
 		TLSVerifyCustomCert,
@@ -90,7 +91,7 @@ public slots:
 	void setServerPort( int );
 	void setConnectionSecurity( int );
 	void setTLSVerifyMode( int );
-	void setTLSCustomCACertificate( const QString& );
+	void setTLSCACertificateFile( const QString& );
 	void setUseBindCredentials( bool );
 	void setBindDn( const QString& );
 	void setBindPassword( const QString& );

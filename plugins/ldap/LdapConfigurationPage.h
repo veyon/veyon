@@ -70,6 +70,8 @@ private slots:
 	void testComputerRoomMembers();
 	void testComputerRooms();
 
+	void browseCACertificateFile();
+
 private:
 	bool testBindQuietly()
 	{
