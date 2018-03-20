@@ -201,7 +201,8 @@ protected:
 private:
 	enum {
 		InitialFrameBufferTimeout = 15000,	/**< A server has to send an initial framebuffer within given timeout in ms */
-		ThreadTerminationTimeout = 10000
+		ThreadTerminationTimeout = 10000,
+		MessageWaitTimeout = 500,
 	};
 
 	void establishConnection();

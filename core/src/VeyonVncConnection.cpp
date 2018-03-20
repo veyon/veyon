@@ -26,6 +26,7 @@
  */
 
 #include <QBitmap>
+#include <QElapsedTimer>
 #include <QHostAddress>
 #include <QMutexLocker>
 #include <QPixmap>
@@ -600,34 +601,17 @@ void VeyonVncConnection::handleConnection()
 {
 	QMutex sleeperMutex;
 
-	QTime connectionTime;
-	connectionTime.restart();
+	QElapsedTimer updateTimer;
+	QElapsedTimer connectionTime;
 
-	QTime lastFullUpdateTime;
-	lastFullUpdateTime.restart();
+	connectionTime.start();
 
 	// Main VNC event loop
 	while( isInterruptionRequested() == false )
 	{
-		if( m_frameBufferValid == false )
-		{
-			// initial framebuffer timeout exceeded?
-			if( connectionTime.elapsed() < InitialFrameBufferTimeout )
-			{
-				// not yet so again request initial full framebuffer update
-				SendFramebufferUpdateRequest( m_cl, 0, 0,
-											  framebufferSize().width(), framebufferSize().height(),
-											  false );
-			}
-			else
-			{
-				qDebug( "VeyonVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
-				// no so disconnect and try again
-				break;
-			}
-		}
+		updateTimer.start();
 
-		const int i = WaitForMessage( m_cl, 500 );
+		const int i = WaitForMessage( m_cl, MessageWaitTimeout );
 		if( isInterruptionRequested() || i < 0 )
 		{
 			break;
@@ -637,10 +621,7 @@ void VeyonVncConnection::handleConnection()
 			// handle all available messages
 			bool handledOkay = true;
 			do {
-				if( !HandleRFBServerMessage( m_cl ) )
-				{
-					handledOkay = false;
-				}
+				handledOkay &= HandleRFBServerMessage( m_cl );
 			} while( handledOkay && WaitForMessage( m_cl, 0 ) );
 
 			if( handledOkay == false )
@@ -649,24 +630,34 @@ void VeyonVncConnection::handleConnection()
 			}
 		}
 
-		// ensure that we're not missing updates due to slow update rate therefore
-		// regularly request full updates
-		if( m_framebufferUpdateInterval > 0 &&
-					lastFullUpdateTime.elapsed() > 10*m_framebufferUpdateInterval )
+		if( m_frameBufferValid == false )
 		{
-			SendFramebufferUpdateRequest( m_cl, 0, 0,
-										  framebufferSize().width(), framebufferSize().height(),
-										  false );
-			lastFullUpdateTime.restart();
+			// initial framebuffer timeout exceeded?
+			if( connectionTime.hasExpired( InitialFrameBufferTimeout ) )
+			{
+				// no so disconnect and try again
+				qDebug( "VeyonVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
+				break;
+			}
+			else
+			{
+				// not yet so again request initial full framebuffer update
+				SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), false );
+			}
+		}
+		else
+		{
+			SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), true );
 		}
 
 		sendEvents();
 
-		if( m_framebufferUpdateInterval > 0 && isInterruptionRequested() == false )
+		auto remainingUpdateInterval = m_framebufferUpdateInterval - updateTimer.elapsed();
+
+		if( remainingUpdateInterval > 0 && isInterruptionRequested() == false )
 		{
 			sleeperMutex.lock();
-			m_updateIntervalSleeper.wait( &sleeperMutex,
-												m_framebufferUpdateInterval );
+			m_updateIntervalSleeper.wait( &sleeperMutex, remainingUpdateInterval );
 			sleeperMutex.unlock();
 		}
 	}
