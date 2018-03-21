@@ -78,7 +78,6 @@ public:
 	{
 		TLSVerifyDefault,
 		TLSVerifyNever,
-		TLSVerifyGlobalCerts,
 		TLSVerifyCustomCert,
 		TLSVerifyModeCount
 	};

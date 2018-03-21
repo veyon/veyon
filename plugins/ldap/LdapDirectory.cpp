@@ -756,9 +756,6 @@ void LdapDirectory::initTLS()
 	case LdapConfiguration::TLSVerifyNever:
 		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertNever );
 		break;
-	case LdapConfiguration::TLSVerifyGlobalCerts:
-		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertTry );
-		break;
 	case LdapConfiguration::TLSVerifyCustomCert:
 		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertHard );
 		d->server.setTLSCACertFile( m_configuration.tlsCACertificateFile() );
