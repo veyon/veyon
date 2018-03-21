@@ -143,58 +143,47 @@
           <string>Connection security</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Custom CA certificate file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item row="1" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>TLS certificate verification</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="2" column="1">
            <widget class="QLineEdit" name="tlsCACertificateFile">
             <property name="enabled">
              <bool>false</bool>
             </property>
            </widget>
           </item>
-          <item row="3" column="2">
-           <widget class="QToolButton" name="browseCACertificateFile">
-            <property name="icon">
-             <iconset resource="../../core/core.qrc">
-              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
+          <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
              <string>Security mode</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="3">
-           <widget class="QLabel" name="label_4">
-            <property name="font">
-             <font>
-              <italic>true</italic>
-             </font>
-            </property>
-            <property name="text">
-             <string>Important: security options require a program restart to fully take effect. Please make sure to test the bind settings again after restarting the program.</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
+          <item row="1" column="1" colspan="2">
+           <widget class="QComboBox" name="tlsVerifyMode">
+            <item>
+             <property name="text">
+              <string>System defaults</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Never (insecure!)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Custom CA certificate file</string>
+             </property>
+            </item>
            </widget>
           </item>
-          <item row="1" column="1" colspan="2">
+          <item row="0" column="1" colspan="2">
            <widget class="QComboBox" name="connectionSecurity">
             <item>
              <property name="text">
@@ -213,28 +202,19 @@
             </item>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="QComboBox" name="tlsVerifyMode">
-            <item>
-             <property name="text">
-              <string>System defaults</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Never</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Global CA certificates</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Custom CA certificate file</string>
-             </property>
-            </item>
+          <item row="2" column="2">
+           <widget class="QToolButton" name="browseCACertificateFile">
+            <property name="icon">
+             <iconset resource="../../core/core.qrc">
+              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Custom CA certificate file</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -1131,9 +1111,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
-  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="computerGroupingGroup"/>
+  <buttongroup name="groupMemberMatchingGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
  </buttongroups>
 </ui>
