@@ -748,30 +748,24 @@ bool LdapDirectory::reconnect( const QUrl &url )
 
 void LdapDirectory::initTLS()
 {
-	static const char* ldapTLSReqCert = "LDAPTLS_REQCERT";
-	static const char* ldapTLSCACert = "LDAPTLS_CACERT";
-
-	qunsetenv( ldapTLSReqCert );
-	qunsetenv( ldapTLSCACert );
-
 	switch( m_configuration.tlsVerifyMode() )
 	{
 	case LdapConfiguration::TLSVerifyDefault:
-		// use system defaults so don't set any options
+		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertDefault );
 		break;
 	case LdapConfiguration::TLSVerifyNever:
-		qputenv( ldapTLSReqCert, "never" );
+		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertNever );
 		break;
 	case LdapConfiguration::TLSVerifyGlobalCerts:
-		qputenv( ldapTLSReqCert, "hard" );
+		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertTry );
 		break;
 	case LdapConfiguration::TLSVerifyCustomCert:
-		qputenv( ldapTLSReqCert, "hard" );
-		qputenv( ldapTLSCACert, m_configuration.tlsCACertificateFile().toUtf8() );
+		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertHard );
+		d->server.setTLSCACertFile( m_configuration.tlsCACertificateFile() );
 		break;
 	default:
 		qCritical( "LdapDirectory: invalid TLS verify mode specified!" );
-		qputenv( ldapTLSReqCert, "hard" );
+		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertDefault );
 		break;
 	}
 }
