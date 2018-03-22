@@ -33,6 +33,7 @@ ScreenLockFeaturePlugin::ScreenLockFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_screenLockFeature( Feature::Mode | Feature::AllComponents,
 						 Feature::Uid( "ccb535a2-1d24-4cc1-a709-8b47d2b2ac79" ),
+						 Feature::Uid(),
 						 tr( "Lock" ), tr( "Unlock" ),
 						 tr( "To reclaim all user's full attention you can lock "
 							 "their computers using this button. "

@@ -58,6 +58,7 @@ public:
 
 	Feature( Flags flags,
 			 Uid uid,
+			 Uid parentUid,
 			 const QString& displayName,
 			 const QString& displayNameActive,
 			 const QString& description,
@@ -65,6 +66,7 @@ public:
 			 const QKeySequence& shortcut = QKeySequence() ) :
 		m_flags( flags ),
 		m_uid( uid ),
+		m_parentUid( parentUid ),
 		m_displayName( displayName ),
 		m_displayNameActive( displayNameActive ),
 		m_description( description ),
@@ -76,6 +78,7 @@ public:
 	Feature( Uid uid = Uid() ) :
 		m_flags( NoFlags ),
 		m_uid( uid ),
+		m_parentUid( QUuid() ),
 		m_displayName(),
 		m_displayNameActive(),
 		m_description(),
@@ -87,6 +90,7 @@ public:
 	Feature( const Feature& other ) :
 		m_flags( other.flags() ),
 		m_uid( other.uid() ),
+		m_parentUid( other.parentUid() ),
 		m_displayName( other.displayName() ),
 		m_displayNameActive( other.displayNameActive() ),
 		m_description( other.description() ),
@@ -101,6 +105,7 @@ public:
 	{
 		m_flags = other.flags();
 		m_uid = other.uid();
+		m_parentUid = other.parentUid();
 		m_displayName = other.displayName();
 		m_displayNameActive = other.displayNameActive();
 		m_description = other.description();
@@ -133,6 +138,11 @@ public:
 	const Uid& uid() const
 	{
 		return m_uid;
+	}
+
+	const Uid& parentUid() const
+	{
+		return m_parentUid;
 	}
 
 	const QString& displayName() const
@@ -168,6 +178,7 @@ private:
 
 	Flags m_flags;
 	Uid m_uid;
+	Uid m_parentUid;
 	QString m_displayName;
 	QString m_displayNameActive;
 	QString m_description;

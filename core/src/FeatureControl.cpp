@@ -32,6 +32,7 @@ FeatureControl::FeatureControl( QObject* parent ) :
 	QObject( parent ),
 	m_featureControlFeature( Feature( Feature::Service | Feature::Worker | Feature::Builtin,
 									  Feature::Uid( "a0a96fba-425d-414a-aaf4-352b76d7c4f3" ),
+									  Feature::Uid(),
 									  tr( "Feature control" ), QString(), QString() ) ),
 	m_features( { m_featureControlFeature } )
 {

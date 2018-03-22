@@ -33,6 +33,7 @@ ScreenshotFeaturePlugin::ScreenshotFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_screenshotFeature( Feature( Feature::Action | Feature::Master,
 								  Feature::Uid( "d5ee3aac-2a87-4d05-b827-0c20344490bd" ),
+								  Feature::Uid(),
 								  tr( "Screenshot" ), QString(),
 								  tr( "Use this function to take a screenshot of selected computers." ),
 								  QStringLiteral(":/screenshot/camera-photo.png") ) ),
