@@ -28,10 +28,13 @@
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 
+#include "Feature.h"
+
 class QButtonGroup;
 class MasterCore;
 class ComputerManagementView;
 class ScreenshotManagementView;
+class ToolButton;
 
 namespace Ui {
 class MainWindow;
@@ -65,6 +68,7 @@ private slots:
 
 private:
 	void addFeaturesToToolBar();
+	void addSubFeaturesToToolButton( ToolButton* button, Feature::Uid parentFeatureUid );
 	void addFeaturesToSystemTrayMenu();
 
 	void updateModeButtonGroup();

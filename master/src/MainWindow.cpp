@@ -334,7 +334,37 @@ void MainWindow::addFeaturesToToolBar()
 			btn->setCheckable( true );
 			m_modeGroup->addButton( btn, qHash( feature.uid() ) );
 		}
+
+		addSubFeaturesToToolButton( btn, feature.uid() );
 	}
+}
+
+
+
+void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid parentFeatureUid )
+{
+	const auto subFeatures = m_masterCore.subFeatures( parentFeatureUid );
+
+	if( subFeatures.isEmpty() )
+	{
+		return;
+	}
+
+	auto menu = new QMenu( button );
+
+	for( const auto& subFeature : subFeatures )
+	{
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), subFeature.shortcut() );
+		connect( action, &QAction::triggered, this, [=] () { m_masterCore.runFeature( subFeature, this ); } );
+#else
+		menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
+						 [=]() { m_masterCore.runFeature( subFeature, this ); }, subFeature.shortcut() );
+#endif
+	}
+
+	button->setMenu( menu );
 }
 
 
