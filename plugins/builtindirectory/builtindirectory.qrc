@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/builtindirectory" >
         <file>application-msonenote.png</file>
-        <file>list-add.png</file>
-        <file>edit-delete.png</file>
     </qresource>
 </RCC>

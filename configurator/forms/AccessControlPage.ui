@@ -229,7 +229,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
+         <iconset resource="../../core/core.qrc">
           <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
         </property>
        </widget>
@@ -243,8 +243,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/list-remove.png</normaloff>:/resources/list-remove.png</iconset>
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
         </property>
        </widget>
       </item>
@@ -337,6 +337,7 @@
  </tabstops>
  <resources>
   <include location="../veyon-configurator.qrc"/>
+  <include location="../../core/core.qrc"/>
  </resources>
  <connections>
   <connection>

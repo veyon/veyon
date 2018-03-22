@@ -4,7 +4,6 @@
         <file>resources/help-about.png</file>
         <file>resources/media-playback-start.png</file>
         <file>resources/media-playback-stop.png</file>
-        <file>resources/edit-delete.png</file>
         <file>resources/go-up.png</file>
         <file>resources/go-down.png</file>
         <file>resources/go-next.png</file>
@@ -13,8 +12,6 @@
         <file>resources/configure-shortcuts.png</file>
         <file>resources/application-x-ms-dos-executable.png</file>
         <file>resources/application-x-sharedlib.png</file>
-        <file>resources/list-add.png</file>
-        <file>resources/list-remove.png</file>
         <file>resources/document-edit.png</file>
         <file>resources/vcs-conflicting.png</file>
         <file>resources/vcs-normal.png</file>

@@ -60,6 +60,7 @@
     <file>resources/toolbar-background.png</file>
     <file>resources/document-open.png</file>
     <file>resources/document-save.png</file>
+    <file>resources/list-add.png</file>
     <file>resources/edit-delete.png</file>
     <file>resources/help-about.png</file>
     <file>resources/default-pkey.pem</file>
