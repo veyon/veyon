@@ -1,5 +1,5 @@
 /*
- * LdapConfigurationPage.cpp - implementation of the access control page
+ * LdapConfigurationPage.cpp - implementation of the LdapConfigurationPage class
  *
  * Copyright (c) 2016-2018 Tobias Junghans <tobydox@users.sf.net>
  *
