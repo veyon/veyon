@@ -78,6 +78,31 @@ MasterCore::~MasterCore()
 
 
 
+FeatureList MasterCore::subFeatures( Feature::Uid parentFeatureUid ) const
+{
+	FeatureList features;
+
+	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
+	const auto pluginUids = VeyonCore::pluginManager().pluginUids();
+
+	for( const auto& pluginUid : pluginUids )
+	{
+		for( const auto& feature : m_featureManager->features( pluginUid ) )
+		{
+			if( feature.testFlag( Feature::Master ) &&
+					feature.parentUid() == parentFeatureUid &&
+					disabledFeatures.contains( parentFeatureUid.toString() ) == false )
+			{
+				features += feature;
+			}
+		}
+	}
+
+	return features;
+}
+
+
+
 void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 {
 	const auto computerControlInterfaces = m_computerControlListModel->computerControlInterfaces();
@@ -170,6 +195,7 @@ FeatureList MasterCore::featureList() const
 		{
 			if( feature.testFlag( Feature::Master ) &&
 					feature.testFlag( Feature::Mode ) &&
+					feature.parentUid().isNull() &&
 					disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;
@@ -183,6 +209,7 @@ FeatureList MasterCore::featureList() const
 		{
 			if( feature.testFlag( Feature::Master ) &&
 					feature.testFlag( Feature::Mode ) == false &&
+					feature.parentUid().isNull() &&
 					disabledFeatures.contains( feature.uid().toString() ) == false )
 			{
 				features += feature;

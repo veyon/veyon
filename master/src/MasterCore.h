@@ -76,6 +76,8 @@ public:
 		return m_features;
 	}
 
+	FeatureList subFeatures( Feature::Uid parentFeatureUid ) const;
+
 	const Feature::Uid& currentMode() const
 	{
 		return m_currentMode;
