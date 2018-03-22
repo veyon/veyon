@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DesktopServicesConfigurationPage</class>
+ <widget class="QWidget" name="DesktopServicesConfigurationPage">
+  <property name="windowTitle">
+   <string>Desktop services</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="desktopservices.qrc">
+    <normaloff>:/desktopservices/preferences-desktop-launch-feedback.png</normaloff>:/desktopservices/preferences-desktop-launch-feedback.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Predefined programs</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" rowspan="3">
+       <widget class="QTableWidget" name="programTable">
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>150</number>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Path</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="addProgramButton">
+        <property name="toolTip">
+         <string>Add new program</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="removeProgramButton">
+        <property name="toolTip">
+         <string>Remove selected room</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>25</width>
+          <height>161</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Predefined websites</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QPushButton" name="addWebsiteButton">
+        <property name="toolTip">
+         <string>Add new program</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="removeWebsiteButton">
+        <property name="toolTip">
+         <string>Remove selected room</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0" rowspan="3">
+       <widget class="QTableWidget" name="websiteTable">
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>150</number>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>URL</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../core/core.qrc"/>
+  <include location="desktopservices.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>addProgramButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DesktopServicesConfigurationPage</receiver>
+   <slot>addProgram()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeProgramButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DesktopServicesConfigurationPage</receiver>
+   <slot>removeProgram()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addWebsiteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DesktopServicesConfigurationPage</receiver>
+   <slot>addWebsite()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>317</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeWebsiteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DesktopServicesConfigurationPage</receiver>
+   <slot>removeWebsite()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>347</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>programTable</sender>
+   <signal>cellChanged(int,int)</signal>
+   <receiver>DesktopServicesConfigurationPage</receiver>
+   <slot>updateProgram()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>148</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>websiteTable</sender>
+   <signal>cellActivated(int,int)</signal>
+   <receiver>DesktopServicesConfigurationPage</receiver>
+   <slot>updateWebsite()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>148</x>
+     <y>401</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>165</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addProgram()</slot>
+  <slot>removeProgram()</slot>
+  <slot>addWebsite()</slot>
+  <slot>removeWebsite()</slot>
+  <slot>updateProgram()</slot>
+  <slot>updateWebsite()</slot>
+ </slots>
+</ui>

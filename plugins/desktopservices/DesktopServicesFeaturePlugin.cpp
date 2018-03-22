@@ -28,6 +28,7 @@
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
+#include "DesktopServicesConfigurationPage.h"
 #include "DesktopServicesFeaturePlugin.h"
 #include "RunProgramDialog.h"
 #include "PlatformCoreFunctions.h"
@@ -36,6 +37,7 @@
 
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
+	m_configuration(),
 	m_runProgramFeature( Feature::Action | Feature::AllComponents,
 						 Feature::Uid( "da9ca56a-b2ad-4fff-8f8a-929b2927b442" ),
 						 Feature::Uid(),
@@ -48,7 +50,9 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 						  tr( "Open website" ), QString(),
 						  tr( "Click this button to open a website on all computers." ),
 						  QStringLiteral(":/desktopservices/internet-web-browser.png") ),
-	m_features( { m_runProgramFeature, m_openWebsiteFeature } )
+	m_predefinedProgramsFeatures( predefinedPrograms() ),
+	m_predefinedWebsitesFeatures( predefinedWebsites() ),
+	m_features( FeatureList( { m_runProgramFeature, m_openWebsiteFeature } ) + m_predefinedProgramsFeatures + m_predefinedWebsitesFeatures )
 {
 }
 
@@ -90,6 +94,18 @@ bool DesktopServicesFeaturePlugin::startMasterFeature( const Feature& feature,
 			sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ).
 								addArgument( WebsiteUrlArgument, url ), computerControlInterfaces );
 		}
+	}
+	else if( m_predefinedProgramsFeatures.contains( feature ) )
+	{
+		sendFeatureMessage( FeatureMessage( m_runProgramFeature.uid(), FeatureMessage::DefaultCommand ).
+							addArgument( ProgramsArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+
+	}
+	else if( m_predefinedWebsitesFeatures.contains( feature ) )
+	{
+		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
+							addArgument( ProgramsArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+
 	}
 
 	return true;
@@ -157,6 +173,14 @@ bool DesktopServicesFeaturePlugin::handleWorkerFeatureMessage( const FeatureMess
 
 
 
+ConfigurationPage* DesktopServicesFeaturePlugin::createConfigurationPage()
+{
+	return new DesktopServicesConfigurationPage( m_configuration );
+
+}
+
+
+
 void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& program )
 {
 	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching program" << program;
@@ -179,4 +203,62 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 							  VeyonCore::platform().coreFunctions().genericUrlHandler(),
 							  url.toString() ) );
 	}
+}
+
+
+
+FeatureList DesktopServicesFeaturePlugin::predefinedPrograms() const
+{
+	const auto programs = m_configuration.predefinedPrograms();
+
+	FeatureList programFeatures;
+	programFeatures.reserve( programs.size() );
+
+	for( const auto program : programs )
+	{
+		const auto programObject = DesktopServiceObject( program.toObject() );
+		programFeatures.append( Feature( Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
+										 programObject.name(), programObject.name(),
+										 tr("Run program \"%1\"").arg( programObject.name() ) ) );
+	}
+
+	return programFeatures;
+}
+
+
+
+FeatureList DesktopServicesFeaturePlugin::predefinedWebsites() const
+{
+	const auto websites = m_configuration.predefinedWebsites();
+
+	FeatureList websiteFeatures;
+	websiteFeatures.reserve( websites.size() );
+
+	for( const auto website : websites )
+	{
+		const auto websiteObject = DesktopServiceObject( website.toObject() );
+		websiteFeatures.append( Feature( Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
+										 websiteObject.name(), websiteObject.name(),
+										 tr("Open website \"%1\"").arg( websiteObject.name() ) ) );
+	}
+
+	return websiteFeatures;
+}
+
+
+
+QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFeatureUid ) const
+{
+	const auto services = m_configuration.predefinedPrograms() + m_configuration.predefinedWebsites();
+
+	for( const auto service : services )
+	{
+		const auto serviceObject = DesktopServiceObject( service.toObject() );
+		if( serviceObject.uid() == subFeatureUid )
+		{
+			return serviceObject.path();
+		}
+	}
+
+	return QString();
 }

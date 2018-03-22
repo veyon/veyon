@@ -25,21 +25,26 @@
 #ifndef DESKTOP_SERVICES_FEATURE_PLUGIN_H
 #define DESKTOP_SERVICES_FEATURE_PLUGIN_H
 
-#include "Feature.h"
+#include "ConfigurationPagePluginInterface.h"
+#include "DesktopServicesConfiguration.h"
 #include "FeaturePluginInterface.h"
 
-class DesktopServicesFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
+class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
+		FeaturePluginInterface,
+		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeaturePluginInterface")
-	Q_INTERFACES(PluginInterface FeaturePluginInterface)
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.DesktopServices")
+	Q_INTERFACES(PluginInterface
+				 FeaturePluginInterface
+				 ConfigurationPagePluginInterface)
 public:
 	DesktopServicesFeaturePlugin( QObject* parent = nullptr );
 	~DesktopServicesFeaturePlugin() override {}
 
 	Plugin::Uid uid() const override
 	{
-		return "a54ee018-42bf-4569-90c7-0d8470125ccf";
+		return QStringLiteral("a54ee018-42bf-4569-90c7-0d8470125ccf");
 	}
 
 	QVersionNumber version() const override
@@ -88,18 +93,29 @@ public:
 
 	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
 
+	ConfigurationPage* createConfigurationPage() override;
+
 private:
 	void runProgramAsUser( const QString& program );
 	void openWebsite( const QUrl& url );
+
+	FeatureList predefinedPrograms() const;
+	FeatureList predefinedWebsites() const;
+
+	QString predefinedServicePath( Feature::Uid subFeatureUid ) const;
 
 	enum Arguments {
 		ProgramsArgument,
 		WebsiteUrlArgument
 	};
 
-	Feature m_runProgramFeature;
-	Feature m_openWebsiteFeature;
-	FeatureList m_features;
+	DesktopServicesConfiguration m_configuration;
+
+	const Feature m_runProgramFeature;
+	const Feature m_openWebsiteFeature;
+	const FeatureList m_predefinedProgramsFeatures;
+	const FeatureList m_predefinedWebsitesFeatures;
+	const FeatureList m_features;
 
 };
 
