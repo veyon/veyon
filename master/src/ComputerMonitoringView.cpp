@@ -292,6 +292,23 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 			label = feature.displayNameActive();
 		}
 
+		const auto subFeatures = m_masterCore->subFeatures( feature.uid() );
+
+		if( subFeatures.isEmpty() )
+		{
+			addFeatureToMenu( feature, label );
+		}
+		else
+		{
+			addSubFeaturesToMenu( feature, subFeatures, label );
+		}
+	}
+}
+
+
+
+void ComputerMonitoringView::addFeatureToMenu( const Feature& feature, const QString& label )
+{
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
 		auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), label );
@@ -300,6 +317,25 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 		m_featureMenu->addAction( QIcon( feature.iconUrl() ),
 								  label,
 								  this, [=] () { runFeature( feature ); } );
+#endif
+}
+
+
+
+void ComputerMonitoringView::addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label )
+{
+	auto menu = m_featureMenu->addMenu( QIcon( parentFeature.iconUrl() ), label );
+
+	for( const auto& subFeature : subFeatures )
+	{
+#if QT_VERSION < 0x050600
+#warning Building legacy compat code for unsupported version of Qt
+		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName() );
+		action->setShortcut( subFeature.shortcut() );
+		connect( action, &QAction::triggered, this, [=] () { runFeature( subFeature ); } );
+#else
+		menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
+						 [=]() { runFeature( subFeature ); }, subFeature.shortcut() );
 #endif
 	}
 }

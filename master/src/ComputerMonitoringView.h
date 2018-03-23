@@ -72,6 +72,8 @@ private:
 	FeatureUidList activeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 
 	void populateFeatureMenu( const FeatureUidList& activeFeatures );
+	void addFeatureToMenu( const Feature& feature, const QString& label );
+	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );
 
 	Ui::ComputerMonitoringView *ui;
 
