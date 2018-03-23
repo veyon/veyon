@@ -367,6 +367,7 @@ void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid pa
 	}
 
 	button->setMenu( menu );
+	button->setPopupMode( ToolButton::InstantPopup );
 }
 
 
