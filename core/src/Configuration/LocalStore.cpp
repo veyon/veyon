@@ -59,7 +59,7 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 	for( const auto& k : childKeys )
 	{
 		QString stringValue = s->value( k ).toString();
-		QRegExp jsonValueRX( "@JsonValue(\\(.*\\))" );
+		QRegExp jsonValueRX( QStringLiteral("@JsonValue(\\(.*\\))") );
 
 		if( jsonValueRX.indexIn( stringValue ) == 0 )
 		{
@@ -112,7 +112,7 @@ static QString serializeJsonValue( const QJsonValue& jsonValue )
 		qCritical( "LocalStore: trying to save unknown JSON value type %d!", (int) jsonValue.type() );
 	}
 
-	return "@JsonValue(" + QJsonDocument( jsonObject ).toJson( QJsonDocument::Compact ).toBase64() + ")";
+	return QStringLiteral("@JsonValue(%1)").arg( QString( QJsonDocument( jsonObject ).toJson( QJsonDocument::Compact ).toBase64() ) );
 }
 
 
