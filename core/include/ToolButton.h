@@ -44,8 +44,9 @@ public:
 
 	ToolButton( const QIcon& icon,
 				const QString& label,
-				const QString & altLabel,
-				const QString & description );
+				const QString& altLabel,
+				const QString& description,
+				const QKeySequence& shortcut );
 	~ToolButton() override;
 
 	static void setIconOnlyMode( bool enabled );

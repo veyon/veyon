@@ -69,10 +69,11 @@ ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
 
 
 
-ToolButton::ToolButton(const QIcon &icon,
-					   const QString &label,
-					   const QString &altLabel,
-					   const QString &description) :
+ToolButton::ToolButton( const QIcon& icon,
+						const QString& label,
+						const QString& altLabel,
+						const QString& description,
+						const QKeySequence& shortcut ) :
 	m_pixmap( icon.pixmap( 128, 128 ) ),
 	m_smallPixmap( icon.pixmap( 32, 32 ) ),
 	m_mouseOver( false ),
@@ -80,6 +81,8 @@ ToolButton::ToolButton(const QIcon &icon,
 	m_altLabel( altLabel ),
 	m_descr( description )
 {
+	setShortcut( shortcut );
+
 	setAttribute( Qt::WA_NoSystemBackground, true );
 
 	updateSize();
