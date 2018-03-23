@@ -145,9 +145,19 @@ public:
 		return m_parentUid;
 	}
 
+	void setParentUid( Uid uid )
+	{
+		m_parentUid = uid;
+	}
+
 	const QString& displayName() const
 	{
 		return m_displayName;
+	}
+
+	void setDisplayName( const QString& displayName )
+	{
+		m_displayName = displayName;
 	}
 
 	const QString& displayNameActive() const
@@ -163,6 +173,11 @@ public:
 	const QString& iconUrl() const
 	{
 		return m_iconUrl;
+	}
+
+	void setIconUrl( const QString& iconUrl )
+	{
+		m_iconUrl = iconUrl;
 	}
 
 	const QKeySequence& shortcut() const
