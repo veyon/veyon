@@ -209,17 +209,25 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 
 FeatureList DesktopServicesFeaturePlugin::predefinedPrograms() const
 {
+	FeatureList programFeatures;
+
 	const auto programs = m_configuration.predefinedPrograms();
 
-	FeatureList programFeatures;
-	programFeatures.reserve( programs.size() );
-
-	for( const auto program : programs )
+	if( programs.size() > 0 )
 	{
-		const auto programObject = DesktopServiceObject( program.toObject() );
-		programFeatures.append( Feature( Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
-										 programObject.name(), programObject.name(),
-										 tr("Run program \"%1\"").arg( programObject.name() ) ) );
+		programFeatures.reserve( programs.size() + 1 );
+
+		for( const auto program : programs )
+		{
+			const auto programObject = DesktopServiceObject( program.toObject() );
+			programFeatures.append( Feature( Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
+											 programObject.name(), QString(), tr("Run program \"%1\"").arg( programObject.name() ) ) );
+		}
+
+		auto primaryFeature = m_runProgramFeature;
+		primaryFeature.setParentUid( m_runProgramFeature.uid() );
+		primaryFeature.setDisplayName( tr("Custom program") );
+		programFeatures.append( primaryFeature );
 	}
 
 	return programFeatures;
@@ -229,17 +237,26 @@ FeatureList DesktopServicesFeaturePlugin::predefinedPrograms() const
 
 FeatureList DesktopServicesFeaturePlugin::predefinedWebsites() const
 {
+	FeatureList websiteFeatures;
+
 	const auto websites = m_configuration.predefinedWebsites();
 
-	FeatureList websiteFeatures;
-	websiteFeatures.reserve( websites.size() );
-
-	for( const auto website : websites )
+	if( websites.size() > 0 )
 	{
-		const auto websiteObject = DesktopServiceObject( website.toObject() );
-		websiteFeatures.append( Feature( Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
-										 websiteObject.name(), websiteObject.name(),
-										 tr("Open website \"%1\"").arg( websiteObject.name() ) ) );
+		websiteFeatures.reserve( websites.size() + 1 );
+
+		for( const auto website : websites )
+		{
+			const auto websiteObject = DesktopServiceObject( website.toObject() );
+			websiteFeatures.append( Feature( Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
+											 websiteObject.name(), QString(),
+											 tr("Open website \"%1\"").arg( websiteObject.name() ) ) );
+		}
+
+		auto primaryFeature = m_openWebsiteFeature;
+		primaryFeature.setParentUid( m_openWebsiteFeature.uid() );
+		primaryFeature.setDisplayName( tr("Custom website") );
+		websiteFeatures.append( primaryFeature );
 	}
 
 	return websiteFeatures;
