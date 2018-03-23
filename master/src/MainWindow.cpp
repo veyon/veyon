@@ -319,10 +319,11 @@ void MainWindow::addFeaturesToToolBar()
 {
 	for( const auto& feature : m_masterCore.features() )
 	{
-		ToolButton* btn = new ToolButton( feature.iconUrl(),
+		ToolButton* btn = new ToolButton( QIcon( feature.iconUrl() ),
 										  feature.displayName(),
 										  feature.displayNameActive(),
-										  feature.description() );
+										  feature.description(),
+										  feature.shortcut() );
 		connect( btn, &QToolButton::clicked, this, [=] () {
 			m_masterCore.runFeature( feature, this );
 			updateModeButtonGroup();
