@@ -21,17 +21,16 @@
  * Boston, MA 02111-1307, USA.
  *
  */
- 
 
-#include <QtCore/QTimer>
+#include <QTimer>
 #include <QAction>
 #include <QApplication>
-#include <QtGui/QBitmap>
+#include <QBitmap>
 #include <QDesktopWidget>
 #include <QLabel>
 #include <QLayout>
-#include <QtGui/QLinearGradient>
-#include <QtGui/QPainter>
+#include <QLinearGradient>
+#include <QPainter>
 #include <QToolBar>
 
 #include "ToolButton.h"
@@ -42,31 +41,6 @@ const int ROUNDED = 2000;
 
 bool ToolButton::s_toolTipsDisabled = false;
 bool ToolButton::s_iconOnlyMode = false;
-
-
-ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
-				const QString & _alt_label,
-				const QString & _desc, QObject * _receiver, 
-				const char * _slot ) :
-	QToolButton(),
-	m_pixmap( pixmap ),
-	m_smallPixmap( pixmap.scaled( 32, 32, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
-	m_mouseOver( false ),
-	m_label( _label ),
-	m_altLabel( _alt_label ),
-	m_descr( _desc )
-{
-	setAttribute( Qt::WA_NoSystemBackground, true );
-
-	updateSize();
-
-	if( _receiver != nullptr && _slot != nullptr )
-	{
-		connect( this, SIGNAL( clicked() ), _receiver, _slot );
-	}
-
-}
-
 
 
 ToolButton::ToolButton( const QIcon& icon,

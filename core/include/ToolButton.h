@@ -37,16 +37,11 @@ class VEYON_CORE_EXPORT ToolButton : public QToolButton
 {
 	Q_OBJECT
 public:
-	ToolButton( const QPixmap & _pixmap, const QString & _label,
-				const QString & _alt_label = QString(),
-				const QString & _desc = QString(), QObject * _receiver = nullptr,
-				const char * _slot = nullptr );
-
 	ToolButton( const QIcon& icon,
 				const QString& label,
-				const QString& altLabel,
-				const QString& description,
-				const QKeySequence& shortcut );
+				const QString& altLabel = QString(),
+				const QString& description = QString(),
+				const QKeySequence& shortcut = QKeySequence() );
 	~ToolButton() override;
 
 	static void setIconOnlyMode( bool enabled );
