@@ -40,7 +40,7 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return "2ad98ccb-e9a5-43ef-8c4c-876ac5efbcb1";
+		return QStringLiteral("2ad98ccb-e9a5-43ef-8c4c-876ac5efbcb1");
 	}
 
 	QVersionNumber version() const override
