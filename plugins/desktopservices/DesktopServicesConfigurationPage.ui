@@ -251,7 +251,7 @@
   </connection>
   <connection>
    <sender>websiteTable</sender>
-   <signal>cellActivated(int,int)</signal>
+   <signal>cellChanged(int,int)</signal>
    <receiver>DesktopServicesConfigurationPage</receiver>
    <slot>updateWebsite()</slot>
    <hints>
