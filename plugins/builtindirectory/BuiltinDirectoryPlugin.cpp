@@ -124,7 +124,11 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( const QStringList& arguments )
 {
 	m_configuration.setNetworkObjects( {} );
-	ConfigurationManager().saveConfiguration();
+	if( ConfigurationManager().saveConfiguration() == false )
+	{
+		CommandLineIO::error( tr( "Could not save configuration!" ) );
+		return Failed;
+	}
 
 	return Successful;
 }
