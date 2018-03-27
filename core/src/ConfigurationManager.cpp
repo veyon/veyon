@@ -92,7 +92,11 @@ bool ConfigurationManager::saveConfiguration()
 {
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
-	localStore.flush( &m_configuration );
+	if( localStore.isWritable() == false )
+	{
+		return false;
+	}
 
+	localStore.flush( &m_configuration );
 	return true;
 }
