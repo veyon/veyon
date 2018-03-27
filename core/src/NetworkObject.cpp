@@ -44,7 +44,7 @@ NetworkObject::NetworkObject( const NetworkObject& other ) :
 
 
 NetworkObject::NetworkObject( NetworkObject::Type type,
-							  const QString& name,
+							  const Name& name,
 							  const QString& hostAddress,
 							  const QString& macAddress,
 							  const QString& directoryAddress,

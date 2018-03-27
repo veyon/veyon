@@ -34,6 +34,7 @@ class VEYON_CORE_EXPORT NetworkObject
 {
 public:
 	typedef QUuid Uid;
+	typedef QString Name;
 
 	typedef enum Types
 	{
@@ -46,7 +47,7 @@ public:
 
 	NetworkObject( const NetworkObject& other );
 	NetworkObject( Type type = None,
-				   const QString& name = QString(),
+				   const Name& name = Name(),
 				   const QString& hostAddress = QString(),
 				   const QString& macAddress = QString(),
 				   const QString& directoryAddress = QString(),
@@ -80,12 +81,12 @@ public:
 		return m_type;
 	}
 
-	const QString& name() const
+	const Name& name() const
 	{
 		return m_name;
 	}
 
-	void setName( const QString& name )
+	void setName( const Name& name )
 	{
 		m_name = name;
 	}
