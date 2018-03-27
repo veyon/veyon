@@ -60,6 +60,11 @@ public:
 	bool operator ==( const NetworkObject& other ) const;
 	bool exactMatch( const NetworkObject& other ) const;
 
+	bool isValid() const
+	{
+		return type() != None;
+	}
+
 	const Uid& uid() const
 	{
 		return m_uid;
