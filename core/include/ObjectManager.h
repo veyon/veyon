@@ -97,6 +97,34 @@ public:
 		}
 	}
 
+	T findByUid( typename T::Uid uid )
+	{
+		for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+		{
+			T currentObject( it->toObject() );
+			if( currentObject.uid() == uid )
+			{
+				return currentObject;
+			}
+		}
+
+		return T();
+	}
+
+	T findByName( const typename T::Name& name )
+	{
+		for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+		{
+			T currentObject( it->toObject() );
+			if( T( it->toObject() ).name() == name )
+			{
+				return currentObject;
+			}
+		}
+
+		return T();
+	}
+
 private:
 	QJsonArray m_objects;
 
