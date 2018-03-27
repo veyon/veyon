@@ -26,6 +26,7 @@
 #include "BuiltinDirectoryConfigurationPage.h"
 #include "Configuration/UiMapping.h"
 #include "NetworkObjectModel.h"
+#include "ObjectManager.h"
 
 #include "ui_BuiltinDirectoryConfigurationPage.h"
 
@@ -74,13 +75,10 @@ void BuiltinDirectoryConfigurationPage::applyConfiguration()
 
 void BuiltinDirectoryConfigurationPage::addRoom()
 {
-	auto networkObjects = m_configuration.networkObjects();
-
-	networkObjects.append( NetworkObject( NetworkObject::Group, tr( "New room" ),
-										  QString(), QString(), QString(), QUuid::createUuid() ).
-						   toJson() );
-
-	m_configuration.setNetworkObjects( networkObjects );
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.add( NetworkObject( NetworkObject::Group, tr( "New room" ),
+											QString(), QString(), QString(), QUuid::createUuid() ) );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateRooms();
 
@@ -97,20 +95,9 @@ void BuiltinDirectoryConfigurationPage::updateRoom()
 		return;
 	}
 
-	const auto updatedRoomObject = currentRoomObject();
-	auto networkObjects = m_configuration.networkObjects();
-
-	for( auto it = networkObjects.begin(); it != networkObjects.end(); ++it )
-	{
-		NetworkObject networkObject( it->toObject() );
-		if( networkObject.uid() == updatedRoomObject.uid() )
-		{
-			*it = updatedRoomObject.toJson();
-			break;
-		}
-	}
-
-	m_configuration.setNetworkObjects( networkObjects );
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.update( currentRoomObject() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateRooms();
 
@@ -121,23 +108,9 @@ void BuiltinDirectoryConfigurationPage::updateRoom()
 
 void BuiltinDirectoryConfigurationPage::removeRoom()
 {
-	const auto currentRoomUid = currentRoomObject().uid();
-	auto networkObjects = m_configuration.networkObjects();
-
-	for( auto it = networkObjects.begin(); it != networkObjects.end(); )
-	{
-		NetworkObject networkObject( it->toObject() );
-		if( networkObject.uid() == currentRoomUid )
-		{
-			it = networkObjects.erase( it );
-		}
-		else
-		{
-			++it;
-		}
-	}
-
-	m_configuration.setNetworkObjects( networkObjects );
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.remove( currentRoomObject() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateRooms();
 }
@@ -152,16 +125,12 @@ void BuiltinDirectoryConfigurationPage::addComputer()
 		return;
 	}
 
-	auto networkObjects = m_configuration.networkObjects();
-
-	NetworkObject networkObject( NetworkObject::Host, tr( "New computer" ),
-								 QString(), QString(), QString(),
-								 QUuid::createUuid(),
-								 currentRoomUid );
-
-	networkObjects.append( networkObject.toJson() );
-
-	m_configuration.setNetworkObjects( networkObjects );
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.add( NetworkObject( NetworkObject::Host, tr( "New computer" ),
+											QString(), QString(), QString(),
+											QUuid::createUuid(),
+											currentRoomUid ) );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
 
@@ -178,20 +147,9 @@ void BuiltinDirectoryConfigurationPage::updateComputer()
 		return;
 	}
 
-	const auto currentComputer = currentComputerObject();
-	auto networkObjects = m_configuration.networkObjects();
-
-	for( auto it = networkObjects.begin(); it != networkObjects.end(); ++it )
-	{
-		NetworkObject networkObject( it->toObject() );
-		if( networkObject.uid() == currentComputer.uid() )
-		{
-			*it = currentComputer.toJson();
-			break;
-		}
-	}
-
-	m_configuration.setNetworkObjects( networkObjects );
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.update( currentComputerObject() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
 
@@ -202,23 +160,9 @@ void BuiltinDirectoryConfigurationPage::updateComputer()
 
 void BuiltinDirectoryConfigurationPage::removeComputer()
 {
-	const auto currentComputerUid = currentComputerObject().uid();
-	auto networkObjects = m_configuration.networkObjects();
-
-	for( auto it = networkObjects.begin(); it != networkObjects.end(); )
-	{
-		NetworkObject networkObject( it->toObject() );
-		if( networkObject.uid() == currentComputerUid )
-		{
-			it = networkObjects.erase( it );
-		}
-		else
-		{
-			++it;
-		}
-	}
-
-	m_configuration.setNetworkObjects( networkObjects );
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.remove( currentComputerObject() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
 }
