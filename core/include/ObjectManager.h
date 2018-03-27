@@ -59,13 +59,35 @@ public:
 		}
 	}
 
-	void remove( const T& object )
+	void remove( const T& object, bool recursive = false )
 	{
+		if( recursive )
+		{
+			removeChildren( object );
+		}
+
 		for( auto it = m_objects.begin(); it != m_objects.end(); )
 		{
 			T currentObject( it->toObject() );
 			if( currentObject.uid() == object.uid() )
 			{
+				it = m_objects.erase( it );
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
+
+	void removeChildren( const T& object )
+	{
+		for( auto it = m_objects.begin(); it != m_objects.end(); )
+		{
+			T currentObject( it->toObject() );
+			if( currentObject.parentUid() == object.uid() )
+			{
+				removeChildren( currentObject );
 				it = m_objects.erase( it );
 			}
 			else
