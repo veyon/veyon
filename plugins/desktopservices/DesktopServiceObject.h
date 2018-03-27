@@ -57,6 +57,11 @@ public:
 		return m_uid;
 	}
 
+	Uid parentUid() const
+	{
+		return Uid();
+	}
+
 	Type type() const
 	{
 		return m_type;
