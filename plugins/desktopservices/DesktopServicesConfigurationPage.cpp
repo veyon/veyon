@@ -24,6 +24,7 @@
 
 #include "DesktopServicesConfiguration.h"
 #include "DesktopServicesConfigurationPage.h"
+#include "ObjectManager.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_DesktopServicesConfigurationPage.h"
@@ -133,7 +134,9 @@ void DesktopServicesConfigurationPage::removeWebsite()
 void DesktopServicesConfigurationPage::addServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type,
 														 const QString& name, QJsonArray& objects )
 {
-	objects.append( DesktopServiceObject( type, name ).toJson() );
+	ObjectManager<DesktopServiceObject> objectManager( objects );
+	objectManager.add( DesktopServiceObject( type, name ) );
+	objects = objectManager.objects();
 
 	loadObjects( objects, tableWidget );
 
@@ -150,17 +153,9 @@ void DesktopServicesConfigurationPage::updateServiceObject( QTableWidget* tableW
 		return;
 	}
 
-	const auto updatedServiceObject = currentServiceObject( tableWidget, type );
-
-	for( auto it = objects.begin(); it != objects.end(); ++it )
-	{
-		DesktopServiceObject serviceObject( it->toObject() );
-		if( serviceObject.uid() == updatedServiceObject.uid() )
-		{
-			*it = updatedServiceObject.toJson();
-			break;
-		}
-	}
+	ObjectManager<DesktopServiceObject> objectManager( objects );
+	objectManager.update( currentServiceObject( tableWidget, type ) );
+	objects = objectManager.objects();
 
 	loadObjects( objects, tableWidget );
 
@@ -171,19 +166,9 @@ void DesktopServicesConfigurationPage::updateServiceObject( QTableWidget* tableW
 
 void DesktopServicesConfigurationPage::removeServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type, QJsonArray& objects )
 {
-	const auto currentServiceObjectUid = currentServiceObject( tableWidget, type ).uid();
-
-	for( auto it = objects.begin(); it != objects.end(); )
-	{
-		if( DesktopServiceObject( it->toObject() ).uid() == currentServiceObjectUid )
-		{
-			it = objects.erase( it );
-		}
-		else
-		{
-			++it;
-		}
-	}
+	ObjectManager<DesktopServiceObject> objectManager( objects );
+	objectManager.remove( currentServiceObject( tableWidget, type ) );
+	objects = objectManager.objects();
 
 	loadObjects( objects, tableWidget );
 }
