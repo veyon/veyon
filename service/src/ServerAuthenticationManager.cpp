@@ -194,11 +194,9 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 		{
 			return VncServerClient::AuthPassword;
 		}
-		else
-		{
-			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
-			return VncServerClient::AuthFinishedFail;
-		}
+
+		qDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
+		return VncServerClient::AuthFinishedFail;
 	}
 
 	case VncServerClient::AuthPassword:
