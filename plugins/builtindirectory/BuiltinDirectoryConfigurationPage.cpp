@@ -109,7 +109,7 @@ void BuiltinDirectoryConfigurationPage::updateRoom()
 void BuiltinDirectoryConfigurationPage::removeRoom()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.remove( currentRoomObject() );
+	objectManager.remove( currentRoomObject(), true );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateRooms();
