@@ -38,7 +38,7 @@ DesktopServiceObject::DesktopServiceObject( const DesktopServiceObject& other ) 
 
 
 DesktopServiceObject::DesktopServiceObject( DesktopServiceObject::Type type,
-											const QString& name,
+											const Name& name,
 											const QString& path,
 											Uid uid ) :
 	m_type( type ),

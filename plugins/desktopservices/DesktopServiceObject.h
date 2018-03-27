@@ -34,6 +34,7 @@ class DesktopServiceObject
 {
 public:
 	typedef QUuid Uid;
+	typedef QString Name;
 
 	typedef enum Types
 	{
@@ -45,7 +46,7 @@ public:
 
 	DesktopServiceObject( const DesktopServiceObject& other );
 	DesktopServiceObject( Type type = None,
-						  const QString& name = QString(),
+						  const Name& name = QString(),
 						  const QString& path = QString(),
 						  Uid uid = Uid() );
 	DesktopServiceObject( const QJsonObject& jsonObject );
@@ -67,7 +68,7 @@ public:
 		return m_type;
 	}
 
-	const QString& name() const
+	const Name& name() const
 	{
 		return m_name;
 	}
