@@ -265,7 +265,7 @@ IF(WIN32)
     SET(InterceptionZip ${CMAKE_BINARY_DIR}/Interception.zip)
 	SET(InterceptionInstaller ${CMAKE_BINARY_DIR}/install-interception.exe)
 	IF (NOT EXISTS "${MY_DOWNLOAD_PATH}")
-	    FILE(DOWNLOAD "https://github.com/oblitum/Interception/releases/download/v1.0.1/Interception.zip" ${InterceptionZip} SHOW_PROGRESS EXPECTED_HASH SHA256=e9da708d334d1b5d9369ddb57dc8b63b2da1f5fe3ce9d14a24aa95d140d1bfbe)
+	    FILE(DOWNLOAD "https://github.com/oblitum/Interception/releases/download/v1.0.1/Interception.zip" ${InterceptionZip} SHOW_PROGRESS EXPECTED_HASH SHA256=ad038963d6413055765128b0b931f6e765147c9916dba79e65d872b261f9af10)
 	ENDIF()
 
 	SET(TMP "veyon-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
