@@ -28,9 +28,10 @@
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "BuiltinDirectoryConfiguration.h"
+#include "NetworkObject.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
-class NetworkObject;
+class QFile;
 
 class BuiltinDirectoryPlugin : public QObject,
 		PluginInterface,
@@ -117,6 +118,10 @@ public slots:
 private:
 	void listObjects( const QJsonArray& objects, const NetworkObject& parent );
 	static QString dumpNetworkObject( const NetworkObject& object );
+
+	bool importFile( QFile& inputFile, const QString& regExWithVariables, const QString& room );
+	NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room );
+	static QStringList fileImportVariables();
 
 	BuiltinDirectoryConfiguration m_configuration;
 	QMap<QString, QString> m_commands;

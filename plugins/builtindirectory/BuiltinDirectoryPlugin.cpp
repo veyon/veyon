@@ -22,10 +22,14 @@
  *
  */
 
+#include <QFile>
+
 #include "BuiltinDirectoryConfigurationPage.h"
 #include "BuiltinDirectory.h"
 #include "BuiltinDirectoryPlugin.h"
+#include "CommandLineIO.h"
 #include "ConfigurationManager.h"
+#include "ObjectManager.h"
 
 
 BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
@@ -95,8 +99,19 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 	if( command == QStringLiteral("import") )
 	{
-		printf( "\nimport <file> [-d <delimiter>] [-r <room column>] [-n <name column>] "
-				"[-h <host address column>] [-m <MAC address column>]\n\n" );
+		CommandLineIO::print( tr("\nUSAGE\n\n%1 import <file> [room <room>] [format <format-string-with-variables>] "
+								 "[regex <regular-expression-with-variables>]\n\n"
+								 "Valid variables: %name% %host% %mac% %room%\n\n"
+								 "Examples:\n\n"
+								 "* Import simple CSV file to a single room:\n\n"
+								 "    %1 import computers.csv room \"Room 01\" format \"%name%;%host%;%mac%\"\n\n"
+								 "* Import CSV file with room name in first column:\n\n"
+								 "    %1 import computers-with-rooms.csv format \"%room%,%name%,%mac%\"\n\n"
+								 "* Import text file with with key/value pairs using regular expressions:\n\n"
+								 "    %1 import hostlist.txt room \"Room 01\" regex \"^NAME:(%name%:.*)\\s+HOST:(%host%:.*)$\"\n\n"
+								 "* Import arbitrarily formatted data:\n\n"
+								 "    %1 import data.txt regex '^\"(%room%:[^\"]+)\";\"(%host%:[a-z\\d\\.]+)\".*$'\n").
+							  arg( commandLineModuleName() ) );
 
 		return NoResult;
 	}
@@ -139,7 +154,86 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( const QStringList& arguments )
 {
-	return Successful;
+	if( arguments.count() < 3 )
+	{
+		return NotEnoughArguments;
+	}
+
+	const auto inputFileName = arguments.first();
+	QFile inputFile( inputFileName );
+
+	if( inputFile.exists() == false )
+	{
+		CommandLineIO::error( tr( "File \"%1\" does not exist!" ).arg( inputFileName ) );
+		return Failed;
+	}
+	else if( inputFile.open( QFile::ReadOnly | QFile::Text ) == false )
+	{
+		CommandLineIO::error( tr( "Can't open file \"%1\" for reading!" ).arg( inputFileName ) );
+		return Failed;
+	}
+
+	QString room;
+	QString formatString;
+	QString regularExpression;
+
+	for( int i = 1; i < arguments.count(); i += 2 )
+	{
+		if( i+1 >= arguments.count() )
+		{
+			return NotEnoughArguments;
+		}
+
+		const auto key = arguments[i];
+		const auto value = arguments[i+1];
+		if( key == QStringLiteral("room") )
+		{
+			room = value;
+		}
+		else if( key == QStringLiteral("format") )
+		{
+			formatString = value;
+		}
+		else if( key == QStringLiteral("regex") )
+		{
+			regularExpression = value;
+		}
+		else
+		{
+			CommandLineIO::error( tr( "Unknown argument \"%1\"." ).arg( key ) );
+			return InvalidArguments;
+		}
+	}
+
+	if( formatString.isEmpty() == false )
+	{
+		regularExpression = formatString;
+
+		for( const auto& var : fileImportVariables() )
+		{
+			regularExpression.replace( var, QStringLiteral("(%1:[^\\n\\r]*)").arg( var ) );
+		}
+	}
+
+	if( regularExpression.isEmpty() == false )
+	{
+		if( importFile( inputFile, regularExpression, room ) )
+		{
+			if( ConfigurationManager().saveConfiguration() )
+			{
+				return Successful;
+			}
+
+			CommandLineIO::error( tr( "Could not save configuration!" ) );
+			return Failed;
+		}
+
+		return Failed;
+	}
+
+	CommandLineIO::error( "No format string or regular expression specified!" );
+
+	return InvalidArguments;
 }
 
 
@@ -185,4 +279,116 @@ QString BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
 	}
 
 	return tr( "Unclassified object \"%1\" with ID \"%2\"" ).arg( object.name() ).arg( object.uid().toString() );
+}
+
+
+
+bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
+										 const QString& regExWithVariables,
+										 const QString& room )
+{
+	int lineCount = 0;
+	QMap<QString, QList<NetworkObject> > networkObjects;
+	while( inputFile.atEnd() == false )
+	{
+		++lineCount;
+
+		QString targetRoom = room;
+
+		const auto line = inputFile.readLine();
+		const auto networkObject = toNetworkObject( line, regExWithVariables, targetRoom );
+
+		if( networkObject.isValid() )
+		{
+			networkObjects[targetRoom].append( networkObject );
+		}
+		else
+		{
+			CommandLineIO::error( tr( "Error while parsing line %1." ).arg( lineCount ) );
+			return false;
+		}
+	}
+
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+
+	for( auto it = networkObjects.constBegin(), end = networkObjects.constEnd(); it != end; ++it )
+	{
+		auto parentRoom = objectManager.findByName( it.key() );
+		if( parentRoom.isValid() == false )
+		{
+			parentRoom = NetworkObject( NetworkObject::Group, it.key() );
+			objectManager.add( parentRoom );
+		}
+
+		for( const NetworkObject& networkObject : qAsConst(it.value()) )
+		{
+			objectManager.add( NetworkObject( networkObject.type(),
+											  networkObject.name(),
+											  networkObject.hostAddress(),
+											  networkObject.macAddress(),
+											  QString(), NetworkObject::Uid(),
+											  parentRoom.uid() ) );
+		}
+	}
+
+	m_configuration.setNetworkObjects( objectManager.objects() );
+
+	return true;
+}
+
+
+
+NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room )
+{
+	QStringList variables;
+	QRegExp varDetectionRX( "\\((%\\w+%):[^)]+\\)" );
+	int pos = 0;
+
+	while( ( pos = varDetectionRX.indexIn( regExWithVariables, pos ) ) != -1 )
+	{
+		variables.append( varDetectionRX.cap(1) );
+		pos += varDetectionRX.matchedLength();
+	}
+
+	QString rxString = regExWithVariables;
+	for( const auto& var : qAsConst(variables) )
+	{
+		rxString.replace( QStringLiteral("%1:").arg( var ), QString() );
+	}
+
+	QRegExp rx( rxString );
+	if( rx.indexIn( line ) != -1 )
+	{
+		const auto roomIndex = variables.indexOf( QStringLiteral("%room%") );
+		const auto nameIndex = variables.indexOf( QStringLiteral("%name%") );
+		const auto hostIndex = variables.indexOf( QStringLiteral("%host%") );
+		const auto macIndex = variables.indexOf( QStringLiteral("%mac%") );
+
+		if( room.isEmpty() && roomIndex != -1 )
+		{
+			room = rx.cap( 1 + roomIndex ).trimmed();
+		}
+		auto name = ( nameIndex != -1 ) ? rx.cap( 1 + nameIndex ).trimmed() : QString();
+		auto host = ( hostIndex != -1 ) ? rx.cap( 1 + hostIndex ).trimmed() : QString();
+		auto mac = ( macIndex != -1 ) ? rx.cap( 1 + macIndex ).trimmed() : QString();
+
+		if( host.isEmpty() )
+		{
+			host = name;
+		}
+		else if( name.isEmpty() )
+		{
+			name = host;
+		}
+		return NetworkObject( NetworkObject::Host, name, host, mac );
+	}
+
+	return NetworkObject::None;
+}
+
+
+
+QStringList BuiltinDirectoryPlugin::fileImportVariables()
+{
+	return { "%room%", "%name%", "%host%", "%mac%" };
 }
