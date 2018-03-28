@@ -22,6 +22,7 @@
  *
  */
 
+#include "CommandLineIO.h"
 #include "ConfigurationManager.h"
 #include "VeyonConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
@@ -184,7 +185,12 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 	m_configuration.setQueryNamingContext( false );
 
 	// write configuration
-	ConfigurationManager().saveConfiguration();
+	ConfigurationManager configurationManager;
+	if( configurationManager.saveConfiguration() == false )
+	{
+		CommandLineIO::error( configurationManager.errorString() );
+		return Failed;
+	}
 
 	return Successful;
 }
