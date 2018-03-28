@@ -94,6 +94,7 @@ bool ConfigurationManager::saveConfiguration()
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
 	if( localStore.isWritable() == false )
 	{
+		m_errorString = tr( "Configuration is not writable. Please check your permissions!" );
 		return false;
 	}
 
