@@ -122,6 +122,8 @@ private:
 	static QString listNetworkObject( const NetworkObject& object );
 	static QString networkObjectTypeName( const NetworkObject& object );
 
+	CommandLinePluginInterface::RunResult saveConfiguration();
+
 	bool importFile( QFile& inputFile, const QString& regExWithVariables, const QString& room );
 	NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room );
 	static QStringList fileImportVariables();

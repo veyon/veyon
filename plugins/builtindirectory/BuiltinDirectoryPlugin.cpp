@@ -126,14 +126,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( cons
 {
 	m_configuration.setNetworkObjects( {} );
 
-	ConfigurationManager configurationManager;
-	if( configurationManager.saveConfiguration() == false )
-	{
-		CommandLineIO::error( configurationManager.errorString() );
-		return Failed;
-	}
-
-	return Successful;
+	return saveConfiguration();
 }
 
 
@@ -249,15 +242,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 	{
 		if( importFile( inputFile, regularExpression, room ) )
 		{
-			ConfigurationManager configurationManager;
-
-			if( configurationManager.saveConfiguration() )
-			{
-				return Successful;
-			}
-
-			CommandLineIO::error( configurationManager.errorString() );
-			return Failed;
+			return saveConfiguration();
 		}
 
 		return Failed;
@@ -340,6 +325,20 @@ QString BuiltinDirectoryPlugin::networkObjectTypeName( const NetworkObject& obje
 	}
 
 	return tr( "Invalid" );
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::saveConfiguration()
+{
+	ConfigurationManager configurationManager;
+	if( configurationManager.saveConfiguration() == false )
+	{
+		CommandLineIO::error( configurationManager.errorString() );
+		return Failed;
+	}
+
+	return Successful;
 }
 
 
