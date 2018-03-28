@@ -38,7 +38,7 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	m_commands( {
 { "help", tr( "Show help for specific command" ) },
 { "clear", tr( "Clear all rooms and computers" ) },
-{ "dump", tr( "Dump all rooms and computers" ) },
+{ "dump", tr( "Dump all or individual rooms and computers" ) },
 { "list", tr( "List all rooms and computers" ) },
 { "remove", tr( "Remove a room or computer" ) },
 { "import", tr( "Import objects from given file" ) },
@@ -134,8 +134,6 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( cons
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const QStringList& arguments )
 {
-	Q_UNUSED(arguments);
-
 	CommandLineIO::TableHeader tableHeader( { tr("Object UID"), tr("Parent UID"), tr("Type"), tr("Name"), tr("Host address"), tr("MAC address") } );
 	CommandLineIO::TableRows tableRows;
 
@@ -143,9 +141,16 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const
 
 	tableRows.reserve( objects.size() );
 
-	for( const auto& networkObjectValue : objects )
+	if( arguments.isEmpty() )
 	{
-		tableRows.append( dumpNetworkObject( networkObjectValue.toObject() ) );
+		for( const auto& networkObjectValue : objects )
+		{
+			tableRows.append( dumpNetworkObject( networkObjectValue.toObject() ) );
+		}
+	}
+	else
+	{
+		tableRows.append( dumpNetworkObject( findNetworkObject( arguments.first() ) ) );
 	}
 
 	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );
