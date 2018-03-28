@@ -351,6 +351,13 @@ QString VeyonCore::stripDomain( const QString& username )
 
 
 
+QString VeyonCore::formattedUuid( QUuid uuid )
+{
+	return uuid.toString().remove( QLatin1Char('{') ).remove( QLatin1Char('}') );
+}
+
+
+
 bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 {
 	return QRegExp( "\\w+" ).exactMatch( authKeyName );

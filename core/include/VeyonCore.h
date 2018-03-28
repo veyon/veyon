@@ -122,6 +122,7 @@ public:
 	static void enforceBranding( QWidget* topLevelWidget );
 
 	static QString stripDomain( const QString& username );
+	static QString formattedUuid( QUuid uuid );
 
 	const QString& authenticationKeyName() const
 	{
