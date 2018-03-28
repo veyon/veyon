@@ -156,7 +156,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const
 
 	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );
 
-	return Successful;
+	return NoResult;
 }
 
 
