@@ -37,6 +37,7 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	m_configuration(),
 	m_commands( {
 { "help", tr( "Show help for specific command" ) },
+{ "add", tr( "Add a room or computer" ) },
 { "clear", tr( "Clear all rooms and computers" ) },
 { "dump", tr( "Dump all or individual rooms and computers" ) },
 { "list", tr( "List all rooms and computers" ) },
@@ -119,6 +120,49 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	}
 
 	return InvalidArguments;
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const QStringList& arguments )
+{
+	if( arguments.count() < 2 )
+	{
+		return NotEnoughArguments;
+	}
+
+	NetworkObject object;
+
+	const auto type = arguments[0];
+	const auto name = arguments[1];
+
+	if( type == QStringLiteral("room") )
+	{
+		object = NetworkObject( NetworkObject::Group, name );
+	}
+	else if( type == QStringLiteral("computer") )
+	{
+		auto hostAddress = arguments.value( 2 );
+		if( hostAddress.isEmpty() )
+		{
+			hostAddress = name;
+		}
+		const auto macAddress = arguments.value( 3 );
+		const auto parent = findNetworkObject( arguments.value( 4 ) );
+		object = NetworkObject( NetworkObject::Host, name, hostAddress, macAddress,
+								QString(), NetworkObject::Uid(), parent.isValid() ? parent.uid() : NetworkObject::Uid() );
+	}
+	else
+	{
+		CommandLineIO::error( tr("Invalid type specified. Valid values are \"room\" or \"computer\"." ) );
+		return Failed;
+	}
+
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.add( object );
+	m_configuration.setNetworkObjects( objectManager.objects() );
+
+	return saveConfiguration();
 }
 
 

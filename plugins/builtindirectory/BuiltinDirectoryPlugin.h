@@ -110,6 +110,7 @@ public:
 
 public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_add( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_clear( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_dump( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
