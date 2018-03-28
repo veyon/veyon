@@ -124,9 +124,11 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( const QStringList& arguments )
 {
 	m_configuration.setNetworkObjects( {} );
-	if( ConfigurationManager().saveConfiguration() == false )
+
+	ConfigurationManager configurationManager;
+	if( configurationManager.saveConfiguration() == false )
 	{
-		CommandLineIO::error( tr( "Could not save configuration!" ) );
+		CommandLineIO::error( configurationManager.errorString() );
 		return Failed;
 	}
 
@@ -223,12 +225,14 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 	{
 		if( importFile( inputFile, regularExpression, room ) )
 		{
-			if( ConfigurationManager().saveConfiguration() )
+			ConfigurationManager configurationManager;
+
+			if( configurationManager.saveConfiguration() )
 			{
 				return Successful;
 			}
 
-			CommandLineIO::error( tr( "Could not save configuration!" ) );
+			CommandLineIO::error( configurationManager.errorString() );
 			return Failed;
 		}
 
