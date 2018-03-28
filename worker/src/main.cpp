@@ -50,11 +50,7 @@ int main( int argc, char **argv )
 		qFatal( "Invalid feature UID given" );
 	}
 
-	auto featureUidNoBraces = featureUid;
-
-	VeyonCore core( &app, QStringLiteral( "FeatureWorker-" ) + featureUidNoBraces.
-					replace( QStringLiteral("{"), QStringLiteral("") ).
-					replace( QStringLiteral("}"), QStringLiteral("") ) );
+	VeyonCore core( &app, QStringLiteral( "FeatureWorker-" ) + VeyonCore::formattedUuid( featureUid ) );
 
 	BuiltinFeatures builtinFeatures;
 	FeatureManager featureManager;
