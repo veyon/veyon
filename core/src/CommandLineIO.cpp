@@ -43,3 +43,70 @@ void CommandLineIO::error( const QString& message )
 {
 	printf( "[ERROR] %s\n", qPrintable( message ) );
 }
+
+
+
+void CommandLineIO::printTable( const CommandLineIO::Table& table, char horizontal, char vertical, char corner )
+{
+	// determine column count
+	int columnCount = table.first.size();
+	for( const auto& row : table.second )
+	{
+		columnCount = qMax( columnCount, row.size() );
+	}
+
+	// determine maximum width for each column
+	QVector<int> columnWidths( columnCount );
+	for( int col = 0; col < table.first.size(); ++col )
+	{
+		columnWidths[col] = qMax( columnWidths[col], table.first[col].size()+2 );
+	}
+
+	for( const auto& row : table.second )
+	{
+		for( int col = 0; col < row.size(); ++col )
+		{
+			columnWidths[col] = qMax( columnWidths[col], row[col].size()+2 );
+		}
+	}
+
+	printTableRuler( columnWidths, horizontal, corner );
+	printTableRow( columnWidths, vertical, table.first );
+	printTableRuler( columnWidths, horizontal, corner );
+
+	for( const auto& row : table.second )
+	{
+		printTableRow( columnWidths, vertical, row );
+	}
+
+	printTableRuler( columnWidths, horizontal, corner );
+}
+
+
+
+void CommandLineIO::printTableRuler( const CommandLineIO::TableColumnWidths& columnWidths, char horizontal, char corner )
+{
+	printf( "%c", corner );
+	for( const auto& width : columnWidths )
+	{
+		for( int i = 0; i < width; ++i )
+		{
+			printf( "%c", horizontal );
+		}
+		printf( "%c", corner );
+	}
+	printf( "\n" );
+}
+
+
+
+void CommandLineIO::printTableRow( const TableColumnWidths& columnWidths, char vertical, const TableRow& row )
+{
+	printf( "%c", vertical );
+	for( int col = 0; col < columnWidths.size(); ++col )
+	{
+		const auto cell = row.value( col );
+		printf( " %s%c", qPrintable( cell + QString( columnWidths[col] - cell.size() - 1, ' ' ) ), vertical );
+	}
+	printf( "\n" );
+}

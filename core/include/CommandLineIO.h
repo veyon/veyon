@@ -32,9 +32,21 @@
 class VEYON_CORE_EXPORT CommandLineIO
 {
 public:
+	typedef QString TableCell;
+	typedef QList<TableCell> TableHeader;
+	typedef QList<TableCell> TableRow;
+	typedef QVector<TableRow> TableRows;
+	typedef QVector<int> TableColumnWidths;
+	typedef QPair<TableHeader, TableRows> Table;
+
 	static void print( const QString& message );
 	static void info( const QString& message );
 	static void error( const QString& message );
+	static void printTable( const Table& table, char horizontal = '-', char vertical = '|', char corner = '+' );
+
+private:
+	static void printTableRuler( const TableColumnWidths& columnWidths, char horizontal, char corner );
+	static void printTableRow( const TableColumnWidths& columnWidths, char vertical, const TableRow& row );
 
 } ;
 
