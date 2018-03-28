@@ -97,7 +97,7 @@ public:
 		}
 	}
 
-	T findByUid( typename T::Uid uid )
+	T findByUid( typename T::Uid uid ) const
 	{
 		for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
 		{
@@ -111,7 +111,7 @@ public:
 		return T();
 	}
 
-	T findByName( const typename T::Name& name )
+	T findByName( const typename T::Name& name ) const
 	{
 		for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
 		{
