@@ -40,6 +40,7 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 { "clear", tr( "Clear all rooms and computers" ) },
 { "dump", tr( "Dump all rooms and computers" ) },
 { "list", tr( "List all rooms and computers" ) },
+{ "remove", tr( "Remove a room or computer" ) },
 { "import", tr( "Import objects from given file" ) },
 { "export", tr( "Export objects to given file" ) },
 				} )
@@ -171,6 +172,31 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_list( const
 	}
 
 	return NoResult;
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_remove( const QStringList& arguments )
+{
+	if( arguments.isEmpty() )
+	{
+		return NotEnoughArguments;
+	}
+
+	const auto object = findNetworkObject( arguments.first() );
+
+	if( object.isValid() )
+	{
+		ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+		objectManager.remove( object, true );
+		m_configuration.setNetworkObjects( objectManager.objects() );
+
+		return saveConfiguration();
+	}
+
+	CommandLineIO::error( tr( "Specified object not found." ) );
+
+	return Failed;
 }
 
 
@@ -394,6 +420,20 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	return true;
+}
+
+
+
+NetworkObject BuiltinDirectoryPlugin::findNetworkObject( const QString& uidOrName ) const
+{
+	const ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+
+	if( QUuid( uidOrName ).isNull() )
+	{
+		return objectManager.findByName( uidOrName );
+	}
+
+	return objectManager.findByUid( uidOrName );
 }
 
 

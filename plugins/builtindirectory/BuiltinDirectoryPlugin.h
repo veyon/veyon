@@ -113,6 +113,7 @@ public slots:
 	CommandLinePluginInterface::RunResult handle_clear( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_dump( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_remove( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_import( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
 
@@ -125,7 +126,10 @@ private:
 	CommandLinePluginInterface::RunResult saveConfiguration();
 
 	bool importFile( QFile& inputFile, const QString& regExWithVariables, const QString& room );
+
+	NetworkObject findNetworkObject( const QString& uidOrName ) const;
 	NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room );
+
 	static QStringList fileImportVariables();
 
 	BuiltinDirectoryConfiguration m_configuration;
