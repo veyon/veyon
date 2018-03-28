@@ -38,6 +38,7 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	m_commands( {
 { "help", tr( "Show help for specific command" ) },
 { "clear", tr( "Clear all rooms and computers" ) },
+{ "dump", tr( "Dump all rooms and computers" ) },
 { "list", tr( "List all rooms and computers" ) },
 { "import", tr( "Import objects from given file" ) },
 { "export", tr( "Export objects to given file" ) },
@@ -131,6 +132,29 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( cons
 		CommandLineIO::error( configurationManager.errorString() );
 		return Failed;
 	}
+
+	return Successful;
+}
+
+
+
+CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const QStringList& arguments )
+{
+	Q_UNUSED(arguments);
+
+	CommandLineIO::TableHeader tableHeader( { tr("Object UID"), tr("Parent UID"), tr("Type"), tr("Name"), tr("Host address"), tr("MAC address") } );
+	CommandLineIO::TableRows tableRows;
+
+	const auto objects = m_configuration.networkObjects();
+
+	tableRows.reserve( objects.size() );
+
+	for( const auto& networkObjectValue : objects )
+	{
+		tableRows.append( dumpNetworkObject( networkObjectValue.toObject() ) );
+	}
+
+	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );
 
 	return Successful;
 }
@@ -262,7 +286,7 @@ void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const Netwo
 		if( ( parent.type() == NetworkObject::None && networkObject.parentUid().isNull() ) ||
 				networkObject.parentUid() == parent.uid() )
 		{
-			printf( "%s\n", qUtf8Printable( dumpNetworkObject( networkObject ) ) );
+			printf( "%s\n", qUtf8Printable( listNetworkObject( networkObject ) ) );
 			listObjects( objects, networkObject );
 		}
 	}
@@ -270,7 +294,19 @@ void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const Netwo
 
 
 
-QString BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
+QStringList BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
+{
+	return { VeyonCore::formattedUuid( object.uid() ),
+				VeyonCore::formattedUuid( object.parentUid() ),
+				networkObjectTypeName( object ),
+				object.name(),
+				object.hostAddress(),
+				object.macAddress() };
+}
+
+
+
+QString BuiltinDirectoryPlugin::listNetworkObject( const NetworkObject& object )
 {
 	switch( object.type() )
 	{
@@ -287,6 +323,23 @@ QString BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
 	}
 
 	return tr( "Unclassified object \"%1\" with ID \"%2\"" ).arg( object.name() ).arg( object.uid().toString() );
+}
+
+
+
+QString BuiltinDirectoryPlugin::networkObjectTypeName( const NetworkObject& object )
+{
+	switch( object.type() )
+	{
+	case NetworkObject::None: return tr( "None" );
+	case NetworkObject::Group: return tr( "Room" );
+	case NetworkObject::Host: return tr( "Computer" );
+	case NetworkObject::Root: return tr( "Root");
+	default:
+		break;
+	}
+
+	return tr( "Invalid" );
 }
 
 

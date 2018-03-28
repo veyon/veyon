@@ -111,13 +111,16 @@ public:
 public slots:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_clear( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_dump( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_list( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_import( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_export( const QStringList& arguments );
 
 private:
 	void listObjects( const QJsonArray& objects, const NetworkObject& parent );
-	static QString dumpNetworkObject( const NetworkObject& object );
+	static QStringList dumpNetworkObject( const NetworkObject& object );
+	static QString listNetworkObject( const NetworkObject& object );
+	static QString networkObjectTypeName( const NetworkObject& object );
 
 	bool importFile( QFile& inputFile, const QString& regExWithVariables, const QString& room );
 	NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room );
