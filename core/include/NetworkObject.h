@@ -58,7 +58,7 @@ public:
 
 	NetworkObject& operator=( const NetworkObject& other );
 
-	bool operator ==( const NetworkObject& other ) const;
+	bool operator==( const NetworkObject& other ) const;
 	bool exactMatch( const NetworkObject& other ) const;
 
 	bool isValid() const

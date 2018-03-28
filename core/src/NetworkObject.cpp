@@ -100,7 +100,7 @@ NetworkObject& NetworkObject::operator=( const NetworkObject& other )
 
 
 
-bool NetworkObject::operator ==( const NetworkObject& other ) const
+bool NetworkObject::operator==( const NetworkObject& other ) const
 {
 	return uid() == other.uid();
 }
