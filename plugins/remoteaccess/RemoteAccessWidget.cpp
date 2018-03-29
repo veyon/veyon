@@ -40,9 +40,9 @@
 
 
 // toolbar for remote-control-widget
-RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parrent, bool viewOnly ) :
-	QWidget( parrent ),
-	m_parent( parrent ),
+RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly ) :
+	QWidget( parent ),
+	m_parent( parent ),
 	m_showHideTimeLine(),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
@@ -68,12 +68,12 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parren
 	m_fullScreenButton->setChecked( false );
 
 	connect( m_viewOnlyButton, &ToolButton::toggled, this, &RemoteAccessWidgetToolBar::updateControls );
-	connect( m_viewOnlyButton, &QAbstractButton::toggled, parrent, &RemoteAccessWidget::toggleViewOnly );
-	connect( m_fullScreenButton, &QAbstractButton::toggled, parrent, &RemoteAccessWidget::toggleFullScreen );
-	connect( m_screenshotButton, &QAbstractButton::clicked, parrent, &RemoteAccessWidget::takeScreenshot );
-	connect( m_quitButton, &QAbstractButton::clicked, parrent, &QWidget::close );
+	connect( m_viewOnlyButton, &QAbstractButton::toggled, parent, &RemoteAccessWidget::toggleViewOnly );
+	connect( m_fullScreenButton, &QAbstractButton::toggled, parent, &RemoteAccessWidget::toggleFullScreen );
+	connect( m_screenshotButton, &QAbstractButton::clicked, parent, &RemoteAccessWidget::takeScreenshot );
+	connect( m_quitButton, &QAbstractButton::clicked, parent, &QWidget::close );
 
-	auto vncView = parrent->m_vncView;
+	auto vncView = parent->m_vncView;
 
 	auto shortcutMenu = new QMenu();
 #if QT_VERSION < 0x050600
