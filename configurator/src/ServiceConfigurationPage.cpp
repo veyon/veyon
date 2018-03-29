@@ -149,9 +149,7 @@ void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
 
 void ServiceConfigurationPage::populateVncServerPluginComboBox()
 {
-	PluginManager pluginManager;
-
-	for( auto pluginObject : qAsConst( pluginManager.pluginObjects() ) )
+	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
