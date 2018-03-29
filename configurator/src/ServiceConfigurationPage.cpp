@@ -49,8 +49,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	auto serviceUpdateTimer = new QTimer( this );
 	serviceUpdateTimer->start( 2000 );
 
-	connect( serviceUpdateTimer, SIGNAL( timeout() ),
-			 this, SLOT( updateServiceControl() ) );
+	connect( serviceUpdateTimer, &QTimer::timeout, this, &ServiceConfigurationPage::updateServiceControl );
 }
 
 
