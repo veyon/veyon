@@ -445,8 +445,11 @@ void VeyonVncConnection::setHost( const QString &host )
 
 void VeyonVncConnection::setPort( int port )
 {
-	QMutexLocker locker( &m_mutex );
-	m_port = port;
+	if( port >= 0 )
+	{
+		QMutexLocker locker( &m_mutex );
+		m_port = port;
+	}
 }
 
 
