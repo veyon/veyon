@@ -43,12 +43,6 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 {
 	ui->setupUi(this);
 
-#define CONNECT_BUTTON_SLOT(name) \
-	connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
-
-	CONNECT_BUTTON_SLOT( startService );
-	CONNECT_BUTTON_SLOT( stopService );
-
 	updateServiceControl();
 	populateVncServerPluginComboBox();
 

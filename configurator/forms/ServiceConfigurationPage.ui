@@ -265,8 +265,42 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>startService</sender>
+   <signal>clicked()</signal>
+   <receiver>ServiceConfigurationPage</receiver>
+   <slot>startService()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>207</x>
+     <y>234</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stopService</sender>
+   <signal>clicked()</signal>
+   <receiver>ServiceConfigurationPage</receiver>
+   <slot>stopService()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>342</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>207</x>
+     <y>234</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>updateVncServerPluginConfigurationWidget()</slot>
+  <slot>startService()</slot>
+  <slot>stopService()</slot>
  </slots>
 </ui>
