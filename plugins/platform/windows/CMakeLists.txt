@@ -1,6 +1,6 @@
 INCLUDE(BuildPlugin)
 
-ADD_DEFINITIONS(-DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0600)
+ADD_DEFINITIONS(-DULTRAVNC_VEYON_SUPPORT -DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0600)
 
 BUILD_PLUGIN(windows-platform
 	WindowsPlatformPlugin.cpp
@@ -37,3 +37,5 @@ INCLUDE_DIRECTORIES(${ultravnc_DIR}/addon/ms-logon/authSSP)
 INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS})
 
 TARGET_LINK_LIBRARIES(windows-platform -lwtsapi32 -lnetapi32 -luserenv -linterception)
+
+SET_TARGET_PROPERTIES(windows-platform PROPERTIES COMPILE_FLAGS "-Wno-unknown-pragmas")
