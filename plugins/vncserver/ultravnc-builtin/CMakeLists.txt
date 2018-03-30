@@ -68,6 +68,8 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/Dtwinver.cpp
 	${ultravnc_DIR}/winvnc/winvnc/uvncUiAccess.cpp
 	${ultravnc_DIR}/winvnc/winvnc/blankmonitor.cpp
+	${ultravnc_DIR}/winvnc/winvnc/ScreenCapture.cpp
+	${ultravnc_DIR}/winvnc/winvnc/DeskdupEngine.cpp
 	${ultravnc_DIR}/winvnc/omnithread/nt.cpp
 	${ultravnc_DIR}/DSMPlugin/DSMPlugin.cpp
 	${ultravnc_DIR}/common/Clipboard.cpp
@@ -75,6 +77,8 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/rfb/dh.cpp
 	${ultravnc_DIR}/rdr/ZlibOutStream.cxx
 	${ultravnc_DIR}/rdr/ZlibInStream.cxx
+	ultravnc.cpp
+	vncntlm.cpp
 	)
 
 ADD_DEFINITIONS(-DULTRAVNC_VEYON_SUPPORT -D_INTERNALLIB -D_WIN32_WINNT=0x0600)
@@ -89,8 +93,6 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	LogoffEventFilter.cpp
 	UltraVncConfiguration.cpp
 	UltraVncConfigurationWidget.cpp
-	ultravnc.cpp
-	vncntlm.cpp
 	${ultravnc_SOURCES}
 	MOCFILES
 	BuiltinUltraVncServer.h
@@ -100,6 +102,5 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	FORMS UltraVncConfigurationWidget.ui)
 
 TARGET_LINK_LIBRARIES(builtin-ultravnc-server -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
-SET_TARGET_PROPERTIES(builtin-ultravnc-server PROPERTIES COMPILE_FLAGS "-Wno-attributes -Wno-write-strings -Wno-pragmas -Wno-unknown-pragmas -Wno-strict-aliasing -Wno-terminate -Wno-format-zero-length -fexceptions")
-SET_SOURCE_FILES_PROPERTIES(${ultravnc_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations")
+SET_SOURCE_FILES_PROPERTIES(${ultravnc_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-comments -Wno-attributes -Wno-terminate -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-function -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-conversion-null -Wno-format-zero-length -Wno-sign-compare -fexceptions")
 COTIRE_VEYON(builtin-ultravnc-server)

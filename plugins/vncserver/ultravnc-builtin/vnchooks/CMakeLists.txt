@@ -10,7 +10,7 @@ ADD_LIBRARY(vnchooks MODULE
 				${ultravnc_DIR}/winvnc/vnchooks/SharedData.cpp
 				${VH_WINRC})
 SET_TARGET_PROPERTIES(vnchooks PROPERTIES PREFIX "")
-SET_TARGET_PROPERTIES(vnchooks PROPERTIES COMPILE_FLAGS "-Wno-write-strings")
+SET_TARGET_PROPERTIES(vnchooks PROPERTIES COMPILE_FLAGS "-Wno-write-strings -Wno-unused-variable -Wno-unknown-pragmas")
 SET_TARGET_PROPERTIES(vnchooks PROPERTIES LINK_FLAGS -Wl,-export-all-symbols)
 TARGET_LINK_LIBRARIES(vnchooks -ladvapi32)
 
