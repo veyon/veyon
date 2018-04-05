@@ -290,7 +290,7 @@ IF(WIN32)
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
 			COMMAND cp ${DLLDIR}/libjpeg-62.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libpng16-16.dll ${TMP}
-			COMMAND cp ${DLLDIR}/libeay32.dll ${DLLDIR}/libssl32.dll ${TMP}
+			COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libqca-qt5.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libldap.dll ${DLLDIR}/liblber.dll ${TMP}
 			COMMAND cp ${DLLDIR}/interception.dll ${TMP}
