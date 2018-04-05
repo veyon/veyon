@@ -63,16 +63,6 @@ ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyon
 
 SET_SOURCE_FILES_PROPERTIES(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-variable -Wno-unused-label -Wno-maybe-uninitialized -Wno-misleading-indentation -Wno-pointer-sign -Wno-int-in-bool-context")
 
-
-IF(VEYON_BUILD_WIN32)
-	# add Windows Socket library required by libvncclient
-	TARGET_LINK_LIBRARIES(veyon-core -lws2_32)
-	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
-	INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
-ELSE()
-	INSTALL(TARGETS veyon-core LIBRARY DESTINATION ${VEYON_LIB_DIR})
-ENDIF(VEYON_BUILD_WIN32)
-
 TARGET_LINK_LIBRARIES(veyon-core
 	Qt5::Concurrent
 	Qt5::Gui
@@ -85,6 +75,15 @@ TARGET_LINK_LIBRARIES(veyon-core
 	${QCA_LIBRARY}
 	${OPENSSL_LIBRARIES}
 	)
+
+IF(VEYON_BUILD_WIN32)
+	# add Windows Socket library required by libvncclient
+	TARGET_LINK_LIBRARIES(veyon-core -lws2_32)
+	SET_TARGET_PROPERTIES(veyon-core PROPERTIES PREFIX "")
+	INSTALL(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
+ELSE()
+	INSTALL(TARGETS veyon-core LIBRARY DESTINATION ${VEYON_LIB_DIR})
+ENDIF(VEYON_BUILD_WIN32)
 
 ADD_DEPENDENCIES(veyon-core GenerateTranslationFiles)
 
