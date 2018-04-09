@@ -96,6 +96,9 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case Qt::InitialSortOrderRole:
 		return computerControl->computer().room() + computerControl->computer().name();
 
+	case UidRole:
+		return computerControl->computer().networkObjectUid();
+
 	default:
 		break;
 	}

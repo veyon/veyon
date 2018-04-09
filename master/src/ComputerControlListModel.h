@@ -36,7 +36,11 @@ class ComputerControlListModel : public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	ComputerControlListModel( MasterCore* masterCore, QObject *parent = nullptr );
+	enum {
+		UidRole = Qt::UserRole
+	};
+
+	ComputerControlListModel( MasterCore* masterCore, QObject* parent = nullptr );
 
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
 
