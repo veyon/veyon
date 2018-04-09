@@ -75,6 +75,11 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
 	ui->statusBar->addWidget( ui->spacerLabel3 );
+	ui->statusBar->addWidget( ui->autoPlaceComputersButton );
+	ui->statusBar->addWidget( ui->useCustomComputerPlacementButton );
+	ui->statusBar->addWidget( ui->spacerLabel4 );
+	ui->statusBar->addWidget( ui->alignComputersButton );
+	ui->statusBar->addWidget( ui->spacerLabel5 );
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
@@ -127,6 +132,13 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 
 	ui->gridSizeSlider->setValue( size );
 	ui->computerMonitoringView->setComputerScreenSize( size );
+
+	// initialize computer placement controls
+	ui->useCustomComputerPlacementButton->setChecked( m_masterCore.userConfig().useCustomComputerPositions() );
+	connect( ui->useCustomComputerPlacementButton, &QToolButton::toggled,
+			 ui->computerMonitoringView, &ComputerMonitoringView::setUseCustomComputerPositions );
+	connect( ui->alignComputersButton, &QToolButton::clicked,
+			 ui->computerMonitoringView, &ComputerMonitoringView::alignComputers );
 
 
 	// create the main toolbar
