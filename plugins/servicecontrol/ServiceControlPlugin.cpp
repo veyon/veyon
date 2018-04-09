@@ -22,6 +22,7 @@
  *
  */
 
+#include "CommandLineIO.h"
 #include "ServiceControlPlugin.h"
 #include "VeyonServiceControl.h"
 
@@ -98,11 +99,11 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_status( const
 {
 	if( VeyonServiceControl().isServiceRunning() )
 	{
-		printf( "%s\n", qUtf8Printable( tr( "Service is running" ) ) );
+		CommandLineIO::print( tr( "Service is running" ) );
 	}
 	else
 	{
-		printf( "%s\n", qUtf8Printable( tr( "Service is not running" ) ) );
+		CommandLineIO::print( tr( "Service is not running" ) );
 	}
 
 	return NoResult;
