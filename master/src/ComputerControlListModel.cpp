@@ -414,3 +414,31 @@ QString ComputerControlListModel::activeFeatures( ComputerControlInterface::Poin
 
 	return featureNames.join( QStringLiteral(", ") );
 }
+
+
+
+Qt::ItemFlags ComputerControlListModel::flags( const QModelIndex& index ) const
+{
+	auto defaultFlags = QAbstractListModel::flags( index );
+
+	if( index.isValid() )
+	{
+		 return Qt::ItemIsDragEnabled | defaultFlags;
+	}
+
+	return Qt::ItemIsDropEnabled | Qt::ItemIsDragEnabled | defaultFlags;
+}
+
+
+
+Qt::DropActions ComputerControlListModel::supportedDragActions() const
+{
+	return Qt::MoveAction;
+}
+
+
+
+Qt::DropActions ComputerControlListModel::supportedDropActions() const
+{
+	return Qt::MoveAction;
+}

@@ -55,6 +55,12 @@ public:
 
 	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
 
+	Qt::ItemFlags flags( const QModelIndex& index ) const override;
+
+	Qt::DropActions supportedDragActions() const override;
+	Qt::DropActions supportedDropActions() const override;
+
+
 public slots:
 	void reload();
 
