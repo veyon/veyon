@@ -27,9 +27,21 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QListView" name="listView">
+    <widget class="FlexibleListView" name="listView">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
+     </property>
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::DropOnly</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::MoveAction</enum>
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::ExtendedSelection</enum>
@@ -42,9 +54,6 @@
      </property>
      <property name="resizeMode">
       <enum>QListView::Adjust</enum>
-     </property>
-     <property name="layoutMode">
-      <enum>QListView::Batched</enum>
      </property>
      <property name="spacing">
       <number>16</number>
@@ -62,6 +71,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FlexibleListView</class>
+   <extends>QListView</extends>
+   <header>FlexibleListView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

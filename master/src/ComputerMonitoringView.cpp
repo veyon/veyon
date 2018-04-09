@@ -46,6 +46,8 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
+	ui->listView->setUidRole( ComputerControlListModel::UidRole );
+
 	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
 
 	connect( ui->listView, &QListView::doubleClicked,
@@ -59,6 +61,12 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 
 ComputerMonitoringView::~ComputerMonitoringView()
 {
+	if( m_masterCore )
+	{
+		m_masterCore->userConfig().setComputerPositions( ui->listView->savePositions() );
+		m_masterCore->userConfig().setUseCustomComputerPositions( ui->listView->flexible() );
+	}
+
 	delete ui;
 }
 
@@ -84,6 +92,10 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 
 	// attach proxy model to view
 	ui->listView->setModel( &m_sortFilterProxyModel );
+
+	// load custom positions
+	ui->listView->loadPositions( m_masterCore->userConfig().computerPositions() );
+	ui->listView->setFlexible( m_masterCore->userConfig().useCustomComputerPositions() );
 }
 
 
@@ -182,6 +194,20 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 
 
 
+void ComputerMonitoringView::setUseCustomComputerPositions( bool enabled )
+{
+	ui->listView->setFlexible( enabled );
+}
+
+
+
+void ComputerMonitoringView::alignComputers()
+{
+	ui->listView->alignToGrid();
+}
+
+
+
 void ComputerMonitoringView::runFeature( const Feature& feature )
 {
 	if( m_masterCore == nullptr )
@@ -215,6 +241,7 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 		m_masterCore->featureManager().startMasterFeature( feature, computerControlInterfaces, topLevelWidget() );
 	}
 }
+
 
 
 

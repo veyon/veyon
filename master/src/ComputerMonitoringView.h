@@ -59,6 +59,8 @@ public slots:
 	void setSearchFilter( const QString& searchFilter );
 	void setComputerScreenSize( int size );
 	void autoAdjustComputerScreenSize();
+	void setUseCustomComputerPositions( bool enabled );
+	void alignComputers();
 
 private slots:
 	void runDoubleClickFeature( const QModelIndex& index );
