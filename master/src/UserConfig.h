@@ -37,6 +37,8 @@ public:
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
 	OP( UserConfig, MasterCore::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI" );	\
+	OP( UserConfig, MasterCore::userConfig, BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
 	OP( UserConfig, MasterCore::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
 	OP( UserConfig, MasterCore::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" );	\
@@ -49,6 +51,8 @@ public:
 
 public slots:
 	void setCheckedNetworkObjects( const QJsonArray& );
+	void setComputerPositions( const QJsonArray& );
+	void setUseCustomComputerPositions( bool );
 	void setMonitoringScreenSize( int );
 	void setDefaultRole( int );
 	void setToolButtonIconOnlyMode( bool );
