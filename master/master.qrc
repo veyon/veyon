@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/" >
+    <qresource prefix="/">
         <file>resources/zoom-fit-best.png</file>
         <file>resources/camera-photo.png</file>
         <file>resources/preferences-desktop-display.png</file>
@@ -10,5 +10,8 @@
         <file>resources/splash.png</file>
         <file>resources/applications-education.png</file>
         <file>resources/edit-find.png</file>
+        <file>resources/align-grid.png</file>
+        <file>resources/exchange-positions-zorder.png</file>
+        <file>resources/view-sort-ascending.png</file>
     </qresource>
 </RCC>
