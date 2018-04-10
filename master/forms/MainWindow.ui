@@ -326,8 +326,6 @@
  </customwidgets>
  <resources>
   <include location="../../core/core.qrc"/>
-  <include location="../../core/core.qrc"/>
-  <include location="../master.qrc"/>
   <include location="../master.qrc"/>
  </resources>
  <connections>
