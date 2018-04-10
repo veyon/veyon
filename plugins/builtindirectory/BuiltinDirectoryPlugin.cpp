@@ -374,7 +374,7 @@ QString BuiltinDirectoryPlugin::listNetworkObject( const NetworkObject& object )
 		return tr( "Room \"%1\"" ).arg( object.name() );
 	case NetworkObject::Host:
 		return QChar('\t') +
-				tr( "Computer \"%1\" (host address: \"%2\" MAC address:\"%3\")" ).
+				tr( "Computer \"%1\" (host address: \"%2\" MAC address: \"%3\")" ).
 				arg( object.name() ).
 				arg( object.hostAddress() ).
 				arg( object.macAddress() );
