@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -33,7 +35,7 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Deutsche Übersetzung von Tobias Doerffel.</translation>
+        <translation>Deutsche Übersetzung von Tobias Junghans.</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -65,10 +67,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Process access control rules</source>
         <translation>Zugriffskontrollregeln abarbeiten</translation>
-    </message>
-    <message>
-        <source>Data backend:</source>
-        <translation>Datenbackend:</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +113,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Gewählte Regel bearbeiten</translation>
     </message>
     <message>
-        <source>Missing access control data backend</source>
-        <translation>Fehlendes Backend für Zugriffskontrolldaten</translation>
-    </message>
-    <message>
-        <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Es wurde kein Standard-Backendplugin für Zugriffskontrolldaten gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Benutzername eingeben</translation>
     </message>
@@ -149,6 +139,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Enable usage of domain groups</source>
         <translation>Verwendung von Domaingruppen aktivieren</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Benutzergruppen-Backend:</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Fehlendes Benutzergruppen-Backend</translation>
+    </message>
+    <message>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Es wurde kein Benutzergruppen-Plugin gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
     </message>
 </context>
 <context>
@@ -314,22 +316,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthenticationConfigurationPage</name>
+    <name>AuthKeysConfigurationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Authentifizierungsmethoden</translation>
+        <source>Authentication keys</source>
+        <translation>Authentifizierungsschlüssel</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Anmelde-Authentifizierung</translation>
+        <source>Introduction</source>
+        <translation>Einführung</translation>
     </message>
     <message>
-        <source>Key file authentication</source>
-        <translation>Schlüsseldatei-Authentifizierung</translation>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key. A private key allows users on the master computer to access client computers. It is important that only authorized users have read access to the private key file. The public key is used on client computers to authenticate incoming connection request.
+
+Technically the client sends a challenge (random data) for which the master has to create a cryptographic signature using the private key. The signature is sent back to the client which can verify the validity of the signature using the corresponding public key.</source>
+        <translation>Ein Authentifizierungsschlüsselpaar besteht aus zwei mit einander gekoppelten kryptografischen Schlüsseln, einem privaten und einem öffentlichen Schlüssel. Ein privater Schlüssel erlaubt es Benutzern auf dem Master-Computer, auf Client-Computer zuzugreifen. Es ist wichtig, dass nur autorisierte Benutzer Lesezugriff auf die private Schlüsseldatei haben. Der öffentliche Schlüssel wird auf den Client-Computern genutzt, um eingehende Verbindungsanfragen zu authentifizieren.
+
+Aus technischer Sicht sendet der Client eine Challenge (Zufallsdaten), für die der Master mit Hilfe des privaten Schlüssels eine kryptografische Signatur erstellen muss. Diese Signatur wird an den Client zurückgesendet, der die Gültigkeit der Signatur mit Hilfe des zugehörigen öffentlichen Schlüssels überprüfen kann.</translation>
     </message>
     <message>
-        <source>Access key management</source>
-        <translation>Schlüsselverwaltung</translation>
+        <source>Key file directories</source>
+        <translation>Schlüsseldateiverzeichnis</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -344,24 +350,539 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>...</translation>
     </message>
     <message>
-        <source>Launch key file assistant</source>
-        <translation>Schlüsseldatei-Assistent starten</translation>
+        <source>Available authentication keys</source>
+        <translation>Verfügbare Authentifizierungsschlüssel</translation>
     </message>
     <message>
-        <source>Test</source>
-        <translation>Testen</translation>
+        <source>Create key pair</source>
+        <translation>Schlüsselpaar erzeugen</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Test der Anmelde-Authentifizierung</translation>
+        <source>Delete key</source>
+        <translation>Schlüssel löschen</translation>
     </message>
     <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Die Authentifizierung mit den angegebenen Anmeldedaten war erfolgreich.</translation>
+        <source>Import key</source>
+        <translation>Schlüssel importieren</translation>
     </message>
     <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>Die Authentifizierung mit den angegebenen Anmeldedaten ist fehlgeschlagen!</translation>
+        <source>Export key</source>
+        <translation>Schlüssel exportieren</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Zugriffsgruppe setzen</translation>
+    </message>
+    <message>
+        <source>Key files (*.pem)</source>
+        <translation>Schlüsseldateien (*.pem)</translation>
+    </message>
+    <message>
+        <source>Authentication key name</source>
+        <translation>Authentifizierungsschlüsselname</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
+        <translation>Bitte geben Sie den Namen der Benutzergruppe oder -rolle ein, für die ein Authentifizierungsschlüsselpaar erzeugt werden soll:</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
+        <translation>Möchten Sie den Authentifizierungsschlüssel &quot;%1/%2&quot; wirklich löschen?</translation>
+    </message>
+    <message>
+        <source>Please select a key to delete!</source>
+        <translation>Bitte wählen Sie den zu löschenden Schlüssel!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
+        <translation>Bitte geben Sie den Namen der Benutzergruppe oder -rolle ein, für die ein Authentifizierungsschlüssel importiert werden soll:</translation>
+    </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation>Bitte wählen Sie den zu exportierenden Schlüssel!</translation>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation>Bitte wählen Sie eine Benutzergruppe, der der Zugriff auf den Schlüssel &quot;%1&quot; gewährt werden soll:</translation>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation>Bitte wählen Sie den Schlüssel, für den die Zugriffsgruppe gesetzt werden soll!</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysManager</name>
+    <message>
+        <source>Please check your permissions.</source>
+        <translation>Bitte überprüfen Sie Ihre Berechtigungen.</translation>
+    </message>
+    <message>
+        <source>Key name contains invalid characters!</source>
+        <translation>Schlüsselname enthält ungültige Zeichen!</translation>
+    </message>
+    <message>
+        <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Ungültiger Schlüsseltyp angegeben. Bitte geben Sie &quot;%1&quot; oder &quot;%2&quot; an.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
+        <translation>Der angegebene Schlüssel existiert nicht! Bitte benutzen Sie den &quot;list&quot;-Befehl, um alle installierten Schlüssel anzuzeigen.</translation>
+    </message>
+    <message>
+        <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
+        <translation>Ein oder mehrere Schlüsseldateien existieren bereits! Bitte löschen Sie diese mit Hilfe des &quot;delete&quot;-Befehls.</translation>
+    </message>
+    <message>
+        <source>Creating new key pair for &quot;%1&quot;</source>
+        <translation>Erzeuge neues Schlüsselpaar für &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Failed to create public or private key!</source>
+        <translation>Erzeugung des öffentlichen oder privaten Schlüssels fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
+        <translation>Das neu erzeugte Schlüsselpaar wurde nach &quot;%1&quot; und &quot;%2&quot; gespeichert.</translation>
+    </message>
+    <message>
+        <source>Could not remove key file &quot;%1&quot;!</source>
+        <translation>Die Schlüsseldatei &quot;%1&quot; konnte nicht gelöscht werden!</translation>
+    </message>
+    <message>
+        <source>Could not remove key file directory &quot;%1&quot;!</source>
+        <translation>Das Schlüsseldateiverzeichnis &quot;%1&quot; konnte nicht gelöscht werden!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for output file.</source>
+        <translation>Erzeugung des Verzeichnisses für die Ausgabedatei fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; already exists.</source>
+        <translation>Datei &quot;%1&quot; existiert bereits.</translation>
+    </message>
+    <message>
+        <source>Failed to write output file.</source>
+        <translation>Schreiben der Ausgabedatei fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
+        <translation>Der Schlüssel &quot;%1/%2&quot; wurde erfolgreich nach &quot;%3&quot; exportiert.</translation>
+    </message>
+    <message>
+        <source>Failed read input file.</source>
+        <translation>Lesen der Eingabedatei fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid private key!</source>
+        <translation>Die Datei &quot;%1&quot; enthält keinen gültigen privaten Schlüssel!</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid public key!</source>
+        <translation>Die Datei &quot;%1&quot; enthält keinen gültigen öffentlichen Schlüssel!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for key file.</source>
+        <translation>Erzeugung des Verzeichnisses für Schlüsseldatei fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Failed to write key file &quot;%1&quot;.</source>
+        <translation>Schreiben der Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;!</source>
+        <translation>Setzen der Berechtigungen für Schlüsseldatei &quot;%1&quot; fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
+        <translation>Der Schlüssel &quot;%1/%2&quot; wurde erfolgreich importiert. Bitte überprüfen Sie die Dateiberechtigungen von &quot;%3&quot;, um unerlaubten Zugriff zu verhindern.</translation>
+    </message>
+    <message>
+        <source>Failed to convert private key to public key</source>
+        <translation>Konvertierung des privaten Schlüssels in einen öffentlichen Schlüssel fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for private key file &quot;%1&quot;.</source>
+        <translation>Erzeugung des Verzeichnisses für die private Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Failed to save private key in file &quot;%1&quot;!</source>
+        <translation>Speichern des privaten Schlüssels in Datei &quot;%1&quot; fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
+        <translation>Setzen der Berechtigungen für private Schlüsseldatei &quot;%1&quot; fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for public key file &quot;%1&quot;.</source>
+        <translation>Erzeugung des Verzeichnisses für die öffentliche Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Failed to save public key in file &quot;%1&quot;!</source>
+        <translation>Speichern des öffentlichen Schlüssels in Datei &quot;%1&quot; fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
+        <translation>Setzen der Berechtigungen für öffentliche Schlüsseldatei &quot;%1&quot; fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation>Setzen des Besitzers der Schlüsseldatei &quot;%1&quot; auf &quot;%2&quot; fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;.</source>
+        <translation>Setzen der Berechtigungen für Schlüsseldatei &quot;%1&quot; fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
+        <translation>Die Benutzergruppe &quot;%2&quot; kann nun auf den Schlüssel &quot;%1&quot; zugreifen.</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/V&gt;</translation>
+    </message>
+    <message>
+        <source>Failed to read key file.</source>
+        <translation>Lesen der Schlüsseldatei fehlgeschlagen.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysPlugin</name>
+    <message>
+        <source>Create new authentication key pair</source>
+        <translation>Neues Authentifizierungsschlüsselpaar erzeugen</translation>
+    </message>
+    <message>
+        <source>Delete authentication key</source>
+        <translation>Authentifizierungsschlüssel löschen</translation>
+    </message>
+    <message>
+        <source>List authentication keys</source>
+        <translation>Authentifizierungsschlüssel auflisten</translation>
+    </message>
+    <message>
+        <source>Import public or private key</source>
+        <translation>Öffentlichen oder privaten Schlüssel importieren</translation>
+    </message>
+    <message>
+        <source>Export public or private key</source>
+        <translation>Öffentlichen oder privaten Schlüssel exportieren</translation>
+    </message>
+    <message>
+        <source>Extract public key from existing private key</source>
+        <translation>Öffentlichen Schlüssel aus bestehendem privaten Schlüssel extrahieren</translation>
+    </message>
+    <message>
+        <source>Set user group allowed to access a key</source>
+        <translation>Benutzergruppe setzen, die auf einen Schlüssel zugreifen darf</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>SCHLÜSSEL</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>ZUGRIFFSGRUPPE</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Dieser Befehl passt die Dateizugriffsberechtigungen auf den Schlüssel &lt;SCHLÜSSEL&gt; so an, dass nur die Benutzergruppe &lt;ZUGRIFFSGRUPPE&gt; Lesezugriff darauf hat.</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NAME</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
+        <translation>Dieser Befehl löscht den Authentifizierungsschlüssel &lt;SCHLÜSSEL&gt; aus dem konfigurierten Schlüsselverzeichnis. Bitte beachten Sie, dass ein Schlüssel nicht wiederhergestellt werden kann, sobald er gelöscht wurde.</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>DATEI</translation>
+    </message>
+    <message>
+        <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation>Dieser Befehl exportiert den Authentifizierungsschlüssel &lt;SCHLÜSEL&gt; nach &lt;DATEI&gt;. Wenn &lt;DATEI&gt; nicht angegeben wird, wird der Dateiname aus Name und Typ von &lt;SCHLÜSSEL&gt; abgeleitet.</translation>
+    </message>
+    <message>
+        <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation>Dieser Befehl importiert den Authentifizierungsschlüssel &lt;SCHLÜSSEL&gt; aus &lt;DATEI&gt;. Wenn &lt;DATEI&gt; nicht angeben wird, wird der Dateiname aus Name und Typ von &lt;SCHLÜSSEL&gt; abgeleitet.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
+        <translation>Dieser Befehl extrahiert den öffentlichen Schlüsselteil aus dem privaten Schlüssel &lt;SCHLÜSSEL&gt; und speichert ihn als den zugehörigen öffentlichen Schlüssel.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll!</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TYP</translation>
+    </message>
+    <message>
+        <source>PAIR ID</source>
+        <translation>PAAR-ID</translation>
+    </message>
+    <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation>Kommandozeilenunterstützung zur Verwaltung von Authentifizierungsschlüsseln</translation>
+    </message>
+    <message>
+        <source>Commands for managing authentication keys</source>
+        <translation>Befehle zur Verwaltung von Authentifizierungsschlüsseln</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
+        <translation>Dieser Befehl erzeugt ein neues Authentifizierungsschlüsselpaar mit name &lt;NAME&gt; und speichert privaten und öffentlichen Schlüssel im konfigurierten Schlüsselverzeichnis.</translation>
+    </message>
+    <message>
+        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation>Dieser Befehl listet alle verfügbaren Authentifizierungsschlüssel im konfigurierten Schlüsselverzeichnis auf. Wenn die Option &quot;%1&quot; angegeben wird, wird stattdessen eine Tabelle mit Schlüsseldetails ausgegeben. Einige Details können fehlen, wenn auf einen Schlüssel nicht zugegriffen werden kann, z.B. aufgrund fehlender Leserechte.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Access group</source>
+        <translation>Zugriffsgruppe</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfigurationPage</name>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Räume &amp; Computer</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Räume</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Computer</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Hostadresse/IP</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-Adresse</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Neuen Raum hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Gewählten Raum entfernen</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Neuen Computer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Gewählten Computer entfernen</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Neuer Raum</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Neuer Computer</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Hilfe für bestimmten Befehl anzeigen</translation>
+    </message>
+    <message>
+        <source>Add a room or computer</source>
+        <translation>Einen Raum oder Computer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Clear all rooms and computers</source>
+        <translation>Alle Räume und Computer löschen</translation>
+    </message>
+    <message>
+        <source>Dump all or individual rooms and computers</source>
+        <translation>Alle oder einzelne Räume und Computer anzeigen</translation>
+    </message>
+    <message>
+        <source>List all rooms and computers</source>
+        <translation>Alle Räume und Computer auflisten</translation>
+    </message>
+    <message>
+        <source>Remove a room or computer</source>
+        <translation>Einen Raum oder Computer löschen</translation>
+    </message>
+    <message>
+        <source>Import objects from given file</source>
+        <translation>Objekte aus angegebener Datei importieren</translation>
+    </message>
+    <message>
+        <source>Export objects to given file</source>
+        <translation>Objekte in angegebene Datei exportieren</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</source>
+        <translation>
+VERWENDUNG
+
+%1 import &lt;DATEI&gt; [room &lt;RAUM&gt;] [format &lt;FORMATSTRING-MIT-VARIABLEN&gt;] [regex &lt;REGULÄRER-AUSRUCK-MIT-VARIABLEN&gt;]
+
+Gültige Variablen: %name% %host% %mac% %room%
+
+Beispiele:
+
+* Einfache CSV-Datei für einzelnen Raum importieren:
+
+    %1 import computers.csv room &quot;Raum 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* CSV-Datei mit Raumname in erster Spalte importieren:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Textdatei mit Schlüssel/Wert-Paaren mit Hilfe von regulären Ausdrücken importieren:
+
+    %1 import hostlist.txt room &quot;Raum 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Beliebig formatierte Daten importieren:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Netzwerkobjektverzeichnis, das Objekte in lokaler Konfiguration speichert</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and rooms in local configuration)</source>
+        <translation>Eingebaut (Computer und Räume in lokaler Konfiguration)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Befehle zur Verwaltung des eingebauten Netzwerkobjektverzeichnisses</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Ungültiger Typ angegeben. Gültige Werte sind &quot;%1&quot; oder &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Object UID</source>
+        <translation>Objekt-UID</translation>
+    </message>
+    <message>
+        <source>Parent UID</source>
+        <translation>Eltern-UID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Hostadresse</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-Adresse</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Angegebenes Objekt nicht gefunden.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Datei &quot;%1 existiert nicht!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Datei &quot;%1&quot; kann nicht zum Lesen geöffnet werden!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Unbekanntes Argument &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Room &quot;%1&quot;</source>
+        <translation>Raum &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Computer &quot;%1&quot; (Hostadresse: %2 MAC-Adresse: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Unbestimmtes Object &quot;%1&quot; mit ID &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>Room</source>
+        <translation>Raum</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Computer</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Wurzel</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Ungültig</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Fehler beim Parsen von Zeile %1.</translation>
     </message>
 </context>
 <context>
@@ -379,25 +900,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>ComputerControlServer</name>
-    <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Dienst %2 auf %3:%4</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Authentifizierungsfehler</translation>
-    </message>
-    <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Der Benutzer %1 (IP: %2) hat versucht, auf diesen Computer zuzugreifen, konnte sicher aber nicht erfolgreich authentifizieren!</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerListModel</name>
+    <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
         <translation>Raum: %1</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Host-/IP-Adresse: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Aktive Funktionen: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -406,14 +920,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Establishing connection</source>
         <translation>Verbindung wird hergestellt</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Kein Benutzer angemeldet</translation>
-    </message>
-    <message>
-        <source>Logged on user: %1</source>
-        <translation>Angemeldeter Benutzer: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -432,12 +938,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Nicht verbunden</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host-/IP-Adresse: %1</translation>
+        <source>No user logged on</source>
+        <translation>Kein Benutzer angemeldet</translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation>Aktive Funktionen: %1</translation>
+        <source>Logged on user: %1</source>
+        <translation>Angemeldeter Benutzer: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Dienst %2 auf %3:%4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authentifizierungsfehler</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Der Benutzer %1 (IP: %2) hat versucht, auf diesen Computer zuzugreifen, konnte sicher aber nicht erfolgreich authentifizieren!</translation>
     </message>
 </context>
 <context>
@@ -525,22 +1046,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Bitte geben Sie einen gültigen Wert ein.</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Das Serviceargument für den %1-Dienst konnte nicht geändert werden.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Die Firewallkonfiguration für den %1-Dienst konnte nicht geändert werden.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
-    </message>
-    <message>
         <source>Configure Veyon at command line</source>
         <translation>Veyon auf der Kommandozeile konfigurieren</translation>
     </message>
@@ -588,44 +1093,32 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Commands for managing the configuration of Veyon</source>
         <translation>Befehle zur Verwaltung der Veyon-Konfiguration</translation>
     </message>
+    <message>
+        <source>Upgrade and save configuration of program and plugins</source>
+        <translation>Konfiguration von Programm und Plugins aktualisieren und speichern</translation>
+    </message>
 </context>
 <context>
-    <name>ConfiguratorCore</name>
+    <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
         <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Das Serviceargument für den %1-Dienst konnte nicht geändert werden.</translation>
+        <source>Could not configure the firewall configuration for the %1 Server.</source>
+        <translation>Die Firewall-Einstellungen für den %1 Server konnten nicht geändert werden.</translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Die Firewallkonfiguration für den %1-Dienst konnte nicht geändert werden.</translation>
+        <source>Could not configure the firewall configuration for the %1 Worker.</source>
+        <translation>Die Firewall-Einstellungen für den %1 Worker konnten nicht geändert werden.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
         <translation>Die Einstellung für die SAS-Generation in Software konnte nicht geändert werden. Das Senden von Strg+Alt-Entf über Fernzugriff wird nicht funktionieren!</translation>
     </message>
     <message>
-        <source>Overwrite keys</source>
-        <translation>Schlüssel überschreiben</translation>
-    </message>
-    <message>
-        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Einige der Schlüsseldateien existieren bereits. Wenn Sie diese mit neu generierten Schlüsseln ersetzen, müssen Sie die öffentlichen Schlüssel auf allen Computern ebenfalls aktualisieren. Möchten Sie fortfahren?</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Konfiguration gelöscht</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>Die lokale Konfiguration wurde erfolgreich gelöscht.</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>Konfiguration ist nicht schreibbar. Bitte überprüfen Sie Ihre Berechtigungen!</translation>
     </message>
 </context>
 <context>
@@ -729,6 +1222,53 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DesktopServicesConfigurationPage</name>
+    <message>
+        <source>Desktop services</source>
+        <translation>Desktopdienste</translation>
+    </message>
+    <message>
+        <source>Predefined programs</source>
+        <translation>Vordefinierte Programme</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Pfad</translation>
+    </message>
+    <message>
+        <source>Add new program</source>
+        <translation>Neues Programm hinzufügen</translation>
+    </message>
+    <message>
+        <source>Predefined websites</source>
+        <translation>Vordefinierte Websites</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <source>New program</source>
+        <translation>Neues Programm</translation>
+    </message>
+    <message>
+        <source>New website</source>
+        <translation>Neue Website</translation>
+    </message>
+    <message>
+        <source>Remove selected program</source>
+        <translation>Ausgewähltes Programm entfernen</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Ausgewählte Website entfernen</translation>
+    </message>
+</context>
+<context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
@@ -753,6 +1293,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Klicken Sie auf diesen Button, um Programme auf allen Computern zu starten.</translation>
+    </message>
+    <message>
+        <source>Run program &quot;%1&quot;</source>
+        <translation>Programm &quot;%1&quot; ausführen</translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Benutzerdefiniertes Programm</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Website &quot;%1&quot; öffnen</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Benutzerdefinierte Website</translation>
     </message>
 </context>
 <context>
@@ -859,10 +1415,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Nach Standardfehlerausgabe loggen</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>In Windows-Ereignisanzeige loggen</translation>
-    </message>
-    <message>
         <source>Network object directory</source>
         <translation>Netzwerkobjektverzeichnis</translation>
     </message>
@@ -918,172 +1470,94 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Write to logging system of operating system</source>
         <translation>In Ereignisprotokollierung des Betriebssystems schreiben</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authentifizierung</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Methode:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Anmelde-Authentifizierung</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Schlüsseldatei-Authentifizierung</translation>
+    </message>
 </context>
 <context>
-    <name>KeyFileAssistant</name>
+    <name>InternetAccessControlConfigurationPage</name>
     <message>
-        <source>How does it work?</source>
-        <translation>Wie funktioniert&apos;s?</translation>
+        <source>Internet access control</source>
+        <translation>Internetzugriffskontrolle</translation>
     </message>
     <message>
-        <source>Assistant mode</source>
-        <translation>Assistentmodus</translation>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Bitte wählen Sie, ob neue Schlüssel erzeugt oder ein öffentlicher Schlüssel auf einen Client importiert werden soll.</translation>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlDummy</name>
+    <message>
+        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
+        <translation>Dies ist ein Dummy-Backend ohne Einfluss auf den Internetzugriff. Bitte wählen Sie ein funktrionales Backend, das für Ihr Betriebssystem und Ihre Umgebung geeignet ist. Besuchen Sie &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; für weitere Informationen über den Bezug zusätzlicher Backend-Plugins.</translation>
     </message>
     <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>Neue Schlüssel erzeugen (Master-Computer)</translation>
+        <source>Internet access control not available</source>
+        <translation>Internetzugriffskontrolle nicht verfügbar</translation>
     </message>
     <message>
-        <source>Import public key (client computer)</source>
-        <translation>Öffentlichen Schlüssel importieren (Client-Computer)</translation>
+        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
+        <translation>Es wurde kein Backend zur Internetzugriffskontrolle konfiguriert. Bitte nutzen Sie den Veyon Configurator um die Konfiguration zu ändern.</translation>
     </message>
     <message>
-        <source>Select user role</source>
-        <translation>Benutzerrolle auswählen</translation>
+        <source>Dummy backend for internet access control</source>
+        <translation>Dummy-Backend für Internetzugriffssteuerung</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlPlugin</name>
+    <message>
+        <source>Block access to the internet</source>
+        <translation>Zugriff auf das Internet blockieren</translation>
     </message>
     <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Bitte wählen Sie eine Benutzerrolle, für die die Schlüssel erzeugt oder importiert werden sollen:</translation>
+        <source>Allow access to the internet</source>
+        <translation>Zugriff auf das Internet erlauben</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Lehrer</translation>
+        <source>Show help about command</source>
+        <translation>Hilfe über Befehl anzeigen</translation>
     </message>
     <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Benutzerrollen erlauben die gleichzeitige Verwendung von mehreren Zugriffsschlüsseln. Beispielsweise können verschiedene Lehrerschlüssel für jeden Klassenraum eingerichtet werden, während die Zugriffsschlüssel für den Support schulweit einmalig sind.</translation>
+        <source>Block internet</source>
+        <translation>Internet sperren</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Verzeichnisse</translation>
+        <source>Click this button to block access to the internet.</source>
+        <translation>Klicken Sie auf diesen Button, um den Zugriff auf das Internet zu sperren.</translation>
     </message>
     <message>
-        <source>Export public key part (master computer)</source>
-        <translation>Öffentlichen Schlüssel exportieren (Mastercomputer)</translation>
+        <source>Unblock internet</source>
+        <translation>Internet freigeben</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
+        <source>Click this button to allow access to the internet.</source>
+        <translation>Klicken Sie auf diesen Button, um den Zugriff auf das Internet wieder freizugeben.</translation>
     </message>
     <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>Benutzerdefiniertes Zielverzeichnis für Zugriffsschlüssel verwenden</translation>
+        <source>Control access to the internet</source>
+        <translation>Internetzugriff steuern</translation>
     </message>
     <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Bitte geben Sie den Ort des öffentlichen Zugriffsschlüssels an, der importiert werden soll.</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>Zusammenfassung</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>Die folgenden Aktionen werden durchgeführt:</translation>
-    </message>
-    <message>
-        <source>• Create new access keys</source>
-        <translation>• Neue Zugriffsschlüssel erzeugen</translation>
-    </message>
-    <message>
-        <source>• Import public access key from</source>
-        <translation>• Öffentlichen Zugriffsschlüssel exportieren aus</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;unbekannt&gt;</translation>
-    </message>
-    <message>
-        <source>• Write access key(s) to</source>
-        <translation>• Zugriffsschlüssel schreiben nach</translation>
-    </message>
-    <message>
-        <source>• Export public key to</source>
-        <translation>• Öffentlichen Schlüssel exportieren nach</translation>
-    </message>
-    <message>
-        <source>• Configure for user role</source>
-        <translation>• Konfigurieren für Benutzerrolle</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>Verzeichnis wählen, in welches der öffentliche Schlüssel exportiert werden soll</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>Schlüsseldateien (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>Ungültiger öffentlicher Schlüssel</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>Zielverzeichnis auswählen</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>Erstellung des Zugriffschlüssels</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>Konnte bereits existierende Datei %1 nicht löschen.</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Der Export des öffentlichen Zugriffsschlüssels von %1 nach %2 ist fehlgeschlagen.</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Zugriffsschlüssel wurden erfolgreich erstellt und nach %1 und %2 geschrieben.</translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Beim erstellen der Zugriffsschlüssel ist ein Fehler aufgetreten. Sie sind wahrscheinlich nicht berechtigt, in die gewählten Verzeichnisse zu schreiben.</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>Import des öffentlichen Schlüssels</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Beim importieren des öffentlichen Zugriffsschlüssels ist ein Fehler aufgetreten. Sie sind wahrscheinlich nicht berechtigt, den Quellschlüssel zu lesen oder die Zieldatei zu schreiben.</translation>
-    </message>
-    <message>
-        <source>The public key was successfully imported to %1.</source>
-        <translation>Der öffentliche Schlüssel wurde erfolgreich nach %1 importiert.</translation>
-    </message>
-    <message>
-        <source>Veyon Access Key Assistant</source>
-        <translation>Veyon-Zugriffsschlüssel-Assistent</translation>
-    </message>
-    <message>
-        <source>Create/import Veyon access keys</source>
-        <translation>Veyon-Zugriffschlüssel erzeugen/importieren</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>Dieser Assistent wird Ihnen helfen, Veyon-Zugriffsschlüssel zu erzeugen oder importieren.</translation>
-    </message>
-    <message>
-        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Veyon-Zugriffsschlüssel bestehen aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
-
-Mit Hilfe des privaten Schlüssels können Benutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Benutzer Lesezugriff auf die private Schlüsseldatei besitzen.
-
-Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>Die gewählte Datei beinhaltet keinen gültigen öffentlichen Veyon-Zugriffsschlüssel!</translation>
+        <source>Commands for controlling access to the internet</source>
+        <translation>Befehle zur Steuerung des Internetzugriffs</translation>
     </message>
 </context>
 <context>
@@ -1229,16 +1703,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Optionale Objektfilter</translation>
     </message>
     <message>
-        <source>e.g. objectClass=group</source>
-        <translation>z.B. objectClass=group</translation>
-    </message>
-    <message>
         <source>Filter for user groups</source>
         <translation>Filter für Benutzergruppen</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=person</source>
-        <translation>z.B. objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1277,16 +1743,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>LDAP-Verbindung fehlgeschlagen</translation>
     </message>
     <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Es konnte keine Verbindung zum LDAP-Server hergestellt werden. Bitte überprüfen Sie die Server-Parameter. %1</translation>
-    </message>
-    <message>
         <source>LDAP bind failed</source>
         <translation>LDAP-Bind fehlgeschlagen</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Bind zum LDAP-Server ist fehlgeschlagen. Bitte überprüfen Sie die Server-Parameter und Bind-Zugangsdaten. %1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
@@ -1301,30 +1759,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>LDAP-Base-DN-Test fehlgeschlagen</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-%1</source>
-        <translation>Die konfigurierte Base-DN konnte nicht abgefragt werden. Bitte überprüfen Sie den Base-DN-Parameter.
-%1</translation>
-    </message>
-    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP-Base-DN-erfolgreich getestet</translation>
     </message>
     <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-%1</source>
-        <translation>Die LDAP-Base-DN wurde erfolgreich abgefragt. Die folgenden Einträge wurden gefunden:
-%1</translation>
-    </message>
-    <message>
         <source>LDAP naming context test failed</source>
         <translation>LDAP-Naming-Context-Test fehlgeschlagen</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-%1</source>
-        <translation>Die konfigurierte Base-DN konnte über Naming-Contexts nicht abgefragt werden. Bitte überprüfen Sie den Parameter für das Naming-Context-Attribut.
-%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1581,14 +2021,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Filter für Computer</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computer</source>
-        <translation>z.B. objectClass=computer</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>z.B. objectClass=room oder objectClass=computerLab</translation>
-    </message>
-    <message>
         <source>e.g. room or computerLab</source>
         <translation>z.B. room oder computerLab</translation>
     </message>
@@ -1641,10 +2073,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Attribut Computerraum</translation>
     </message>
     <message>
-        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation>z.B. objectClass=container oder objectClass=organizationalUnit</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room via:</source>
         <translation>Computer in einem Raum gruppieren über:</translation>
     </message>
@@ -1684,6 +2112,106 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation>Bitte ändern Sie die Computerraumeinstellungen unterhalb, so dass Computercontainer als Computerräume verwendet werden. Andernfalls müssen Sie diesen Filter nicht konfigurieren.</translation>
     </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Verbindungssicherheit</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>TLS-Zertifikatsüberprüfung</translation>
+    </message>
+    <message>
+        <source>Security mode</source>
+        <translation>Sicherheitsmodus</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Systemstandard</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Nie (unsicher!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Benutzerdefinierte CA-Zertifikatsdatei</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>z.B. (objectClass=computer)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>z.B. (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>z.B. (objectClass=person)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>z.B. (objectClass=room) oder (objectClass=computerLab)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>z.B. (objectClass=container) oder (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Die konfigurierte Base-DN konnte nicht abgefragt werden. Bitte überprüfen Sie den Base-DN-Parameter.
+
+%1</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>Die LDAP-Base-DN wurde erfolgreich abgefragt. Die folgenden Einträge wurden gefunden:
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Die Base-DN konnte nicht mittels Naming-Contexts abgefragt werden. Bitte überprüfen Sie den Naming-Context-Attribut-Parameter.
+
+%1</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Zertifikatsdateien (*.pem)</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Verbindung zum LDAP-Server konnte nicht hergestellt werden. Bitte überprüfen Sie die Servereinstellungen.
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Bind zum LDAP-Server fehlgeschlagen. Bitte überprüfen Sie die Serverparameter und Bind-Zugangsdaten.
+
+%1</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1699,16 +2227,8 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
 <context>
     <name>LdapPlugin</name>
     <message>
-        <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation>LDAP/AD-Integration von Veyon auf der Kommandozeile konfigurieren</translation>
-    </message>
-    <message>
         <source>LDAP (load objects from LDAP/AD)</source>
         <translation>LDAP (Objekte aus LDAP/AD laden)</translation>
-    </message>
-    <message>
-        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation>LDAP (Benutzer/Gruppen und Computer/Räume aus LDAP/AD laden)</translation>
     </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -1726,78 +2246,20 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Befehle zum Konfigurieren und Testen der LDAP-/AD-Integration</translation>
     </message>
+    <message>
+        <source>Provide LDAP/AD integration for Veyon</source>
+        <translation>LDAP/AD-Anbindung für Veyon</translation>
+    </message>
+    <message>
+        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <translation>LDAP (Computer und Räume aus LDAP/AD laden)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Linux-Plattform</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Rooms</source>
-        <translation>Räume</translation>
-    </message>
-    <message>
-        <source>Computers</source>
-        <translation>Computer</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <source>Host address/IP</source>
-        <translation>Hostadresse/IP</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC-Adresse</translation>
-    </message>
-    <message>
-        <source>Add new room</source>
-        <translation>Neuen Raum hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Gewählten Raum entfernen</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Neuen Computer hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Gewählten Computer entfernen</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Neuer Raum</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Neuer Computer</translation>
-    </message>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Räume &amp; Computer</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataPlugin</name>
-    <message>
-        <source>Backends which use local data</source>
-        <translation>Backends zur Verwendung lokaler Daten</translation>
-    </message>
-    <message>
-        <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation>Standard (lokale Benutzer/Gruppen und Computer/Räume aus Konfiguration)</translation>
-    </message>
-    <message>
-        <source>Default (store objects in local configuration)</source>
-        <translation>Standard (Objekte in lokaler Konfiguration speichern)</translation>
     </message>
 </context>
 <context>
@@ -1835,50 +2297,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>General</source>
         <translation>Allgemein</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Authentifizierung</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Löschen Sie die Logdateien im Abschnitt &quot;Allgemein&quot;.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Setzen Sie den Loglevel im Abschnitt &quot;Allgemein&quot; auf &quot;Debugmeldungen und alles andere&quot;.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Wiederholen Sie die Handlungen, die den Fehler oder das Fehlverhalten hevorrufen.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Klicken Sie auf den folgenden Knopf und speichern die Datei an eine bekannte Stelle.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Fehlerberichtsarchiv erstellen</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1945,10 +2363,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Einstellungen in Datei speichern</translation>
     </message>
     <message>
-        <source>Save bug report archive</source>
-        <translation>Fehlerberichtsarchiv speichern</translation>
-    </message>
-    <message>
         <source>Unsaved settings</source>
         <translation>Ungespeicherte Einstellungen</translation>
     </message>
@@ -1959,24 +2373,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Veyon Configurator</source>
         <translation>Veyon Configurator</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Wenn Sie auf Fehler oder andere Fehlverhalten in Veyon stoßen ist es wichtig, die Entwickler darüber zu informieren, so dass die Fehler in zukünftigen Releases korrigiert werden können. Diese Seite ermöglicht es Ihnen, mühelos einen hilfreichen Fehlerbericht zu verfassen.
-
-Überspringen Sie die Schritte 1) - 3), wenn der Fehler nicht reproduzierbar ist.</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Gehen Sie zur&lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon-Fehlerdatenbank&lt;/a&gt;, verfassen einen neuen Fehler, beschreiben, was Sie in Schritt 3) getan haben und hängen die Datei an, die Sie in Schritt 4) erzeugt haben.&amp;lt;/p&amp;gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie bitte ein Fehlerberichtsarchiv für beide Computer an.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2015,18 +2411,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>JSON-Dateien (*.json)</translation>
     </message>
     <message>
-        <source>%1 bug report (*.json)</source>
-        <translation>%1-Fehlerbericht (*.json)</translation>
-    </message>
-    <message>
-        <source>%1 bug report archive saved</source>
-        <translation>%1-Fehlerberichtsarchiv gespeichert</translation>
-    </message>
-    <message>
-        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Ein %1-Fehlerberichtsarchiv wurde unter %2 gespeichert. Es beinhaltet %3-Logdateien und Informationen über Ihr Betriebssystem. Sie können es an einen Fehlerbericht anhängen.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
     </message>
@@ -2059,14 +2443,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
     </message>
     <message>
-        <source>Reporting bugs in Veyon</source>
-        <translation>Fehler in Veyon berichten</translation>
-    </message>
-    <message>
-        <source>Bug reporting</source>
-        <translation>Fehlerbericht</translation>
-    </message>
-    <message>
         <source>Reset configuration</source>
         <translation>Konfiguration zurücksetzen</translation>
     </message>
@@ -2081,6 +2457,26 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Adjust optimal size</source>
         <translation>Optimale Größe einstellen</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Computer an Gitter ausrichten</translation>
+    </message>
+    <message>
+        <source>Use custom computer placement</source>
+        <translation>Benutzerdefinierte Computeranordnung verwenden</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Configurator</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Ungenügende Rechte</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Programmstart mit administrativen Rechten nicht möglich. Bitte stellen Sie sicher, dass ein sudo-ähnliches Programm für Ihre Desktop-Umgebung installiert ist! Das Programm wird nun mit normalen Benutzerrechten ausgeführt.</translation>
     </message>
 </context>
 <context>
@@ -2170,16 +2566,40 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Computerverwaltung</translation>
     </message>
     <message>
-        <source>Always open at start</source>
-        <translation>Beim Start immer öffnen</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Aktionen wie Computer neustarten oder ausschalten</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
         <translation>Bestätigungsdialog für potentiell gefährliche Aktionen anzeigen</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Benutzeroberfläche</translation>
+    </message>
+    <message>
+        <source>Background color</source>
+        <translation>Hintergrundfarbe</translation>
+    </message>
+    <message>
+        <source>Thumbnail update interval</source>
+        <translation>Aktualisierungsintervall Vorschaubilder</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Programmstart</translation>
+    </message>
+    <message>
+        <source>Automatically open computer management</source>
+        <translation>Computerverwaltung automatisch öffnen</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Modi und Funktionen</translation>
     </message>
 </context>
 <context>
@@ -2276,65 +2696,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Möchten Sie wirklich die gewählten Computer herunterfahren?</translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht registriert.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; is already registered.</source>
-        <translation>Der Dienst &apos;%1&apos; ist bereits registriert.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>Der Dienst &apos;%1&apos; wurde erfolgreich registriert.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>Der Dienst &apos;%1&apos; konnte nicht gestoppt werden.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>Der Dienst &apos;%1&apos; wurde entfernt.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Der Dienst &apos;%1&apos; ist nicht registriert und kann daher nicht entfernt werden.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>Der Dienst &apos;%1&apos; konnte nicht entfernt werden.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>Der Dienst &apos;%1&apos; wurde nicht gefunden.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht entfernt.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht beendet.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>Der Dienst &apos;%1&apos; konnte nicht gestartet werden.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht gestartet.</translation>
     </message>
 </context>
 <context>
@@ -2583,10 +2944,6 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Dienst starten</translation>
     </message>
     <message>
-        <source>Additional arguments</source>
-        <translation>Zusätzliche Argumente</translation>
-    </message>
-    <message>
         <source>Stopped</source>
         <translation>Beendet</translation>
     </message>
@@ -2654,20 +3011,24 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting %1 Service</source>
-        <translation>Starte %1-Dienst</translation>
+        <source>Starting service %1</source>
+        <translation>Starte Dienst %1</translation>
     </message>
     <message>
-        <source>Stopping %1 Service</source>
-        <translation>Beende %1-Dienst</translation>
+        <source>Stopping service %1</source>
+        <translation>Beende Dienst %1</translation>
     </message>
     <message>
-        <source>Registering %1 Service</source>
-        <translation>Registriere %1-Dienst</translation>
+        <source>Registering service %1</source>
+        <translation>Registriere Dienst %1</translation>
     </message>
     <message>
-        <source>Unregistering %1 Service</source>
-        <translation>Deregistriere %1-Dienst</translation>
+        <source>Unregistering service %1</source>
+        <translation>Deregistriere Dienst %1</translation>
+    </message>
+    <message>
+        <source>Service control</source>
+        <translation>Dienststeuerung</translation>
     </message>
 </context>
 <context>
@@ -2714,10 +3075,40 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     </message>
 </context>
 <context>
+    <name>ShellCommandLinePlugin</name>
+    <message>
+        <source>Run command file</source>
+        <translation>Befehlsdatei ausführen</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Datei &quot;%1 existiert nicht!</translation>
+    </message>
+    <message>
+        <source>Commands for shell functionalities</source>
+        <translation>Befehle für Shellfunktionalitäten</translation>
+    </message>
+    <message>
+        <source>Interactive shell and script execution for Veyon Control</source>
+        <translation>Interaktive Shell und Scriptausführung für Veyon Control</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
         <translation>Icon im Infobereich</translation>
+    </message>
+</context>
+<context>
+    <name>SystemUserGroupsPlugin</name>
+    <message>
+        <source>User groups backend for system user groups</source>
+        <translation>Benutzergruppenbackend für Systembenutzergruppen</translation>
+    </message>
+    <message>
+        <source>Default (system user groups)</source>
+        <translation>Standard (Systembenutzergruppen)</translation>
     </message>
 </context>
 <context>
@@ -2842,8 +3233,15 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
         <translation>Verfügbare Module:</translation>
     </message>
     <message>
-        <source>Module not found - available modules are:</source>
-        <translation>Modul nicht gefunden - verfügbare Module sind:</translation>
+        <source>No module specified or module not found - available modules are:</source>
+        <translation>Kein Modul angegeben oder Modul nicht gefunden - verfügbare Module sind:</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonServiceControl</name>
+    <message>
+        <source>Veyon Service</source>
+        <translation>Veyon-Dienst</translation>
     </message>
 </context>
 <context>
@@ -2873,6 +3271,37 @@ Hinweis: wenn der Fehler einen Master- und Client-Computer betrifft, hängen Sie
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsServiceControl</name>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
+        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; ist bereits installiert.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
+        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; konnte nicht installiert werden.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
+        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde erfolgreich installiert.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; konnte nicht deinstalliert werden.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde erfolgreich deinstalliert.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>WindowsServiceControl: der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
+        <translation>WindowsServiceControl: der Dienst &quot;%1&quot; wurde nicht gefunden.</translation>
     </message>
 </context>
 <context>
