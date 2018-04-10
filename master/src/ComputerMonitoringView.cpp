@@ -166,9 +166,11 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 {
 	int size = ui->listView->iconSize().width();
 
-	if( ui->listView->verticalScrollBar()->isVisible() )
+	if( ui->listView->verticalScrollBar()->isVisible() ||
+			ui->listView->horizontalScrollBar()->isVisible() )
 	{
-		while( ui->listView->verticalScrollBar()->isVisible() &&
+		while( ( ui->listView->verticalScrollBar()->isVisible() ||
+				 ui->listView->horizontalScrollBar()->isVisible() ) &&
 			   size > MinimumComputerScreenSize )
 		{
 			size -= 10;
@@ -179,6 +181,7 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 	else
 	{
 		while( ui->listView->verticalScrollBar()->isVisible() == false &&
+			   ui->listView->horizontalScrollBar()->isVisible() == false &&
 			   size < MaximumComputerScreenSize )
 		{
 			size += 10;
