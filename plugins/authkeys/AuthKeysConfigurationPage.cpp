@@ -256,7 +256,7 @@ void AuthKeysConfigurationPage::reloadKeyTable()
 QString AuthKeysConfigurationPage::selectedKey() const
 {
 	const auto row = ui->keyTable->currentIndex().row();
-	if( row >= 0 && row < m_authKeyTableModel.rowCount(QModelIndex() ) )
+	if( row >= 0 && row < m_authKeyTableModel.rowCount() )
 	{
 		return m_authKeyTableModel.key( row );
 	}
