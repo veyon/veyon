@@ -303,19 +303,20 @@ void AuthKeysPlugin::printAuthKeyTable()
 	AuthKeysTableModel tableModel;
 	tableModel.reload();
 
-	printAuthKeyTableSeparatorRow();
-	printAuthKeyTableRow( tr("NAME"), tr("TYPE"), tr("PAIR ID"), tr("ACCESS GROUP") );
-	printAuthKeyTableSeparatorRow();
+	CommandLineIO::TableHeader tableHeader( { tr("NAME"), tr("TYPE"), tr("PAIR ID"), tr("ACCESS GROUP") } );
+	CommandLineIO::TableRows tableRows;
 
-	for( int i = 0; i < tableModel.rowCount( QModelIndex() ); ++i )
+	tableRows.reserve( tableModel.rowCount() );
+
+	for( int i = 0; i < tableModel.rowCount(); ++i )
 	{
-		printAuthKeyTableRow( authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyName ),
+		tableRows.append( { authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyName ),
 							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyType ),
 							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnKeyPairID ),
-							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnAccessGroup ) );
+							  authKeysTableData( tableModel, i, AuthKeysTableModel::ColumnAccessGroup ) } );
 	}
 
-	printAuthKeyTableSeparatorRow();
+	CommandLineIO::printTable( CommandLineIO::Table( tableHeader, tableRows ) );
 }
 
 
@@ -323,20 +324,6 @@ void AuthKeysPlugin::printAuthKeyTable()
 QString AuthKeysPlugin::authKeysTableData( const AuthKeysTableModel& tableModel, int row, int column )
 {
 	return tableModel.data( tableModel.index( row, column ), Qt::DisplayRole ).toString();
-}
-
-
-
-void AuthKeysPlugin::printAuthKeyTableRow( const QString& name, const QString& type, const QString& pairId, const QString& accessGroup )
-{
-	printf( "|%-20s|%-7s|%-8s|%-32s|\n", qPrintable(name), qPrintable(type), qPrintable(pairId), qPrintable(accessGroup) );
-}
-
-
-
-void AuthKeysPlugin::printAuthKeyTableSeparatorRow()
-{
-	printAuthKeyTableRow( "--------------------", "-------", "--------", "--------------------------------" );
 }
 
 
