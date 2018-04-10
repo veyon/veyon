@@ -244,51 +244,12 @@
        <property name="checkable">
         <bool>true</bool>
        </property>
-       <attribute name="buttonGroup">
-        <string notr="true">buttonGroup_2</string>
-       </attribute>
-      </widget>
-      <widget class="QToolButton" name="autoPlaceComputersButton">
-       <property name="geometry">
-        <rect>
-         <x>890</x>
-         <y>570</y>
-         <width>69</width>
-         <height>37</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>Place computers automatically</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/view-sort-ascending.png</normaloff>:/resources/view-sort-ascending.png</iconset>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-       <attribute name="buttonGroup">
-        <string notr="true">buttonGroup_2</string>
-       </attribute>
       </widget>
       <widget class="QLabel" name="spacerLabel4">
        <property name="geometry">
         <rect>
-         <x>1030</x>
+         <x>1110</x>
          <y>570</y>
-         <width>99</width>
-         <height>30</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="spacerLabel5">
-       <property name="geometry">
-        <rect>
-         <x>1160</x>
-         <y>580</y>
          <width>99</width>
          <height>30</height>
         </rect>
@@ -371,6 +332,5 @@
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>

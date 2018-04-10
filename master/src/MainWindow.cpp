@@ -75,11 +75,9 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
 	ui->statusBar->addWidget( ui->spacerLabel3 );
-	ui->statusBar->addWidget( ui->autoPlaceComputersButton );
 	ui->statusBar->addWidget( ui->useCustomComputerPlacementButton );
-	ui->statusBar->addWidget( ui->spacerLabel4 );
 	ui->statusBar->addWidget( ui->alignComputersButton );
-	ui->statusBar->addWidget( ui->spacerLabel5 );
+	ui->statusBar->addWidget( ui->spacerLabel4 );
 	ui->statusBar->addWidget( ui->aboutButton );
 
 	// create all views
