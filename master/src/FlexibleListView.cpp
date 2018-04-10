@@ -147,6 +147,11 @@ void FlexibleListView::restorePositions()
 {
 	auto m = model();
 
+	if( m == nullptr )
+	{
+		return;
+	}
+
 	for( int i = 0, count = m->rowCount(); i < count; ++i )
 	{
 		const auto index = m->index( i, 0 );
@@ -163,7 +168,7 @@ void FlexibleListView::restorePositions()
 
 void FlexibleListView::updatePositions()
 {
-	if( movement() == QListView::Free )
+	if( movement() == QListView::Free && model() )
 	{
 		auto m = model();
 
