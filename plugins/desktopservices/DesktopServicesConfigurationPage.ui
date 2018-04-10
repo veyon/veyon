@@ -59,7 +59,7 @@
       <item row="1" column="1">
        <widget class="QPushButton" name="removeProgramButton">
         <property name="toolTip">
-         <string>Remove selected room</string>
+         <string>Remove selected program</string>
         </property>
         <property name="text">
          <string/>
@@ -109,7 +109,7 @@
       <item row="1" column="1">
        <widget class="QPushButton" name="removeWebsiteButton">
         <property name="toolTip">
-         <string>Remove selected room</string>
+         <string>Remove selected website</string>
         </property>
         <property name="text">
          <string/>
