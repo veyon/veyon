@@ -78,7 +78,7 @@ void FlexibleListView::alignToGrid()
 {
 	auto m = model();
 
-	const QSizeF gridSize( rectForIndex( m->index( 0, 0 ) ).size() );
+	const QSizeF gridSize = effectiveGridSize();
 
 	for( int i = 0, count = m->rowCount(); i < count; ++i )
 	{
@@ -178,4 +178,22 @@ void FlexibleListView::updatePositions()
 			}
 		}
 	}
+}
+
+
+
+QSizeF FlexibleListView::effectiveGridSize() const
+{
+	auto m = model();
+
+	if( m && m->rowCount() > 0 )
+	{
+		return rectForIndex( m->index( 0, 0 ) ).size();
+	}
+	else if( iconSize().isEmpty() == false )
+	{
+		return iconSize();
+	}
+
+	return QSizeF( 1, 1 );
 }

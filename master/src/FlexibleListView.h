@@ -52,6 +52,8 @@ private:
 	void updatePositions();
 
 private:
+	QSizeF effectiveGridSize() const;
+
 	int m_uidRole;
 	QHash<QUuid, QPoint> m_positions;
 
