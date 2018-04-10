@@ -53,7 +53,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Provide interactive shell and script execution for Veyon Control" );
+		return tr( "Interactive shell and script execution for Veyon Control" );
 	}
 
 	QString vendor() const override

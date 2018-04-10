@@ -81,7 +81,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 						 "user group <ACCESS GROUP> has read access to it." ) } ) },
 		{ QStringLiteral("create"),
 		  QStringList( { QStringLiteral("<%1>").arg( tr("NAME") ),
-						 tr( "This command creates a new key authentication key pair with name <NAME> and saves private and "
+						 tr( "This command creates a new authentication key pair with name <NAME> and saves private and "
 						 "public key to the configured key directories." ) } ) },
 		{ QStringLiteral("delete"),
 		  QStringList( { QStringLiteral("<%1>").arg( tr("KEY") ),
@@ -99,7 +99,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 		  QStringList( { QStringLiteral("[details]"),
 						 tr( "This command lists all available authentication keys in the configured key directory. "
 						 "If the option \"%1\" is specified a table with key details will be displayed instead. "
-						 "Some details might be missing if key is not accessible e.g. due to the lack of read permissions." ).arg( "details" ) } ) },
+						 "Some details might be missing if a key is not accessible e.g. due to the lack of read permissions." ).arg( "details" ) } ) },
 		{ QStringLiteral("extract"),
 		  QStringList( { QStringLiteral("<%1>").arg( tr("KEY") ),
 						 tr( "This command extracts the public key part from the private key <KEY> and saves it as the "

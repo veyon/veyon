@@ -1,5 +1,5 @@
 /*
- * ConfigCommandLinePlugin.cpp - implementation of ConfigCommandLinePlugin class
+ * BuiltinDirectoryPlugin.cpp - implementation of BuiltinDirectoryPlugin class
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -102,8 +102,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 	if( command == QStringLiteral("import") )
 	{
-		CommandLineIO::print( tr("\nUSAGE\n\n%1 import <file> [room <room>] [format <format-string-with-variables>] "
-								 "[regex <regular-expression-with-variables>]\n\n"
+		CommandLineIO::print( tr("\nUSAGE\n\n%1 import <FILE> [room <ROOM>] [format <FORMAT-STRING-WITH-VARIABLES>] "
+								 "[regex <REGULAR-EXPRESSION-WITH-VARIABLES>]\n\n"
 								 "Valid variables: %name% %host% %mac% %room%\n\n"
 								 "Examples:\n\n"
 								 "* Import simple CSV file to a single room:\n\n"
@@ -154,7 +154,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 	}
 	else
 	{
-		CommandLineIO::error( tr("Invalid type specified. Valid values are \"room\" or \"computer\"." ) );
+		CommandLineIO::error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).arg("computer", "room") );
 		return Failed;
 	}
 
