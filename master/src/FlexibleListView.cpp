@@ -78,8 +78,6 @@ void FlexibleListView::alignToGrid()
 {
 	auto m = model();
 
-	const QSizeF gridSize = effectiveGridSize();
-
 	for( int i = 0, count = m->rowCount(); i < count; ++i )
 	{
 		const auto index = m->index( i, 0 );
@@ -87,9 +85,9 @@ void FlexibleListView::alignToGrid()
 
 		if( uid.isNull() == false && m_positions.contains( uid ) )
 		{
-			m_positions[uid] = QPoint( static_cast<int>( qRound( m_positions[uid].x() / gridSize.width() ) * gridSize.width() ),
-									   static_cast<int>( qRound( m_positions[uid].y() / gridSize.height() ) * gridSize.height() ) );
-			setPositionForIndex( m_positions[uid], index );
+			m_positions[uid] = QPointF( qMax<int>( 0, qRound( m_positions[uid].x() ) ),
+										qMax<int>( 0, qRound( m_positions[uid].y() ) ) );
+			setPositionForIndex( toItemPosition( m_positions[uid] ), index );
 		}
 	}
 }
@@ -124,7 +122,7 @@ void FlexibleListView::loadPositions( const QJsonArray& data )
 		const QUuid uid( object["uid"].toString() );
 		if( uid.isNull() == false )
 		{
-			m_positions[uid] = QPoint( object["x"].toInt(), object["y"].toInt() );
+			m_positions[uid] = QPointF( object["x"].toDouble(), object["y"].toDouble() );
 		}
 	}
 }
@@ -159,7 +157,7 @@ void FlexibleListView::restorePositions()
 
 		if( uid.isNull() == false && m_positions.contains( uid ) )
 		{
-			setPositionForIndex( m_positions[uid], index );
+			setPositionForIndex( toItemPosition( m_positions[uid] ), index );
 		}
 	}
 }
@@ -179,7 +177,7 @@ void FlexibleListView::updatePositions()
 
 			if( uid.isNull() == false )
 			{
-				m_positions[uid] = rectForIndex( index ).topLeft();
+				m_positions[uid] = toGridPoint( rectForIndex( index ).topLeft() );
 			}
 		}
 	}
@@ -193,12 +191,32 @@ QSizeF FlexibleListView::effectiveGridSize() const
 
 	if( m && m->rowCount() > 0 )
 	{
-		return rectForIndex( m->index( 0, 0 ) ).size();
+		return rectForIndex( m->index( 0, 0 ) ).size() + QSize( spacing(), spacing() );
 	}
 	else if( iconSize().isEmpty() == false )
 	{
-		return iconSize();
+		return iconSize() + QSize( spacing(), spacing() );
 	}
 
-	return QSizeF( 1, 1 );
+	return QSizeF( spacing() + 1, spacing() + 1 );
+}
+
+
+
+QPointF FlexibleListView::toGridPoint( const QPoint& pos ) const
+{
+	const auto gridSize = effectiveGridSize();
+
+	return QPointF( ( pos.x() - spacing() ) / gridSize.width(),
+					( pos.y() - spacing() ) / gridSize.height() );
+}
+
+
+
+QPoint FlexibleListView::toItemPosition( const QPointF& gridPoint ) const
+{
+	const auto gridSize = effectiveGridSize();
+
+	return QPoint( spacing() + qMax<int>( 0, gridPoint.x() * gridSize.width() ),
+				   spacing() + qMax<int>( 0, gridPoint.y() * gridSize.height() ) );
 }

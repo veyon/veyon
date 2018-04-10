@@ -53,9 +53,11 @@ private:
 
 private:
 	QSizeF effectiveGridSize() const;
+	QPointF toGridPoint( const QPoint& pos ) const;
+	QPoint toItemPosition( const QPointF& gridPoint ) const;
 
 	int m_uidRole;
-	QHash<QUuid, QPoint> m_positions;
+	QHash<QUuid, QPointF> m_positions;
 
 };
 
