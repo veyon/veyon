@@ -137,6 +137,8 @@ Section "Veyon Service"
 SectionIn RO
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\veyon-ctl.exe" service unregister'
+Delete "$INSTDIR\plugins\*.dll"
+RmDir /r "$INSTDIR\plugins"
 SetOverwrite on
 SetOutPath "$INSTDIR"
 # core components
