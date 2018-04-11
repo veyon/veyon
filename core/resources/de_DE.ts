@@ -1224,10 +1224,6 @@ Beispiele:
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
-        <source>Desktop services</source>
-        <translation>Desktopdienste</translation>
-    </message>
-    <message>
         <source>Predefined programs</source>
         <translation>Vordefinierte Programme</translation>
     </message>
@@ -1266,6 +1262,10 @@ Beispiele:
     <message>
         <source>Remove selected website</source>
         <translation>Ausgewählte Website entfernen</translation>
+    </message>
+    <message>
+        <source>Programs &amp; websites</source>
+        <translation>Programme &amp; Websites</translation>
     </message>
 </context>
 <context>
@@ -2227,10 +2227,6 @@ Beispiele:
 <context>
     <name>LdapPlugin</name>
     <message>
-        <source>LDAP (load objects from LDAP/AD)</source>
-        <translation>LDAP (Objekte aus LDAP/AD laden)</translation>
-    </message>
-    <message>
         <source>Auto-configure the base DN via naming context</source>
         <translation>Basis-DN mittels Naming-Context automatisch konfigurieren</translation>
     </message>
@@ -2253,6 +2249,10 @@ Beispiele:
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
         <translation>LDAP (Computer und Räume aus LDAP/AD laden)</translation>
+    </message>
+    <message>
+        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <translation>LDAP (Benutzer und Gruppen aus LDAP/AD laden)</translation>
     </message>
 </context>
 <context>
