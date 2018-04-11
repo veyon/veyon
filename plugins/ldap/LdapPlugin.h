@@ -97,14 +97,14 @@ public:
 
 	QString directoryName() const override
 	{
-		return tr( "LDAP (load objects from LDAP/AD)" );
+		return tr( "LDAP (load computers and rooms from LDAP/AD)" );
 	}
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
 
 	QString userGroupsBackendName() const override
 	{
-		return tr( "LDAP (load computers and rooms from LDAP/AD)" );
+		return tr( "LDAP (load users and groups from LDAP/AD)" );
 	}
 
 	void reloadConfiguration() override;
