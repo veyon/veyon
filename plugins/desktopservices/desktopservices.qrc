@@ -2,5 +2,6 @@
     <qresource prefix="/desktopservices" >
         <file>internet-web-browser.png</file>
         <file>preferences-desktop-launch-feedback.png</file>
+        <file>desktop-services.png</file>
     </qresource>
 </RCC>

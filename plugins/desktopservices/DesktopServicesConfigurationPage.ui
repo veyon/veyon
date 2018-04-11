@@ -3,11 +3,11 @@
  <class>DesktopServicesConfigurationPage</class>
  <widget class="QWidget" name="DesktopServicesConfigurationPage">
   <property name="windowTitle">
-   <string>Desktop services</string>
+   <string>Programs &amp; websites</string>
   </property>
   <property name="windowIcon">
    <iconset resource="desktopservices.qrc">
-    <normaloff>:/desktopservices/preferences-desktop-launch-feedback.png</normaloff>:/desktopservices/preferences-desktop-launch-feedback.png</iconset>
+    <normaloff>:/desktopservices/desktop-services.png</normaloff>:/desktopservices/desktop-services.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -166,6 +166,8 @@
  </widget>
  <resources>
   <include location="../../core/core.qrc"/>
+  <include location="../../core/core.qrc"/>
+  <include location="desktopservices.qrc"/>
   <include location="desktopservices.qrc"/>
  </resources>
  <connections>
