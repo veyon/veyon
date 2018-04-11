@@ -1697,7 +1697,7 @@ La parte de clave pública se utiliza en los equipos cliente para verificar que 
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>No hay descripción de error de LDAP disponible</translation>
     </message>
 </context>
 <context>

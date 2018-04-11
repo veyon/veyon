@@ -1693,7 +1693,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>LDAP hiba leírása nem érhető el</translation>
     </message>
 </context>
 <context>

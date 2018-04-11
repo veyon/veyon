@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Splošno</translation>
+        <translation>Vizitka</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -2833,11 +2833,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation>VNC avtentifikacija spodletela.</translation>
+        <translation>VNC avtentikacija spodletela.</translation>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation>VNC server je zaprl povezavo.</translation>
+        <translation>VNC strežnik je prekinil povezavo.</translation>
     </message>
 </context>
 <context>

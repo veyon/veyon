@@ -33,9 +33,9 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>La langue actuelle n&apos;est pas encore traduite (ou anglais natal) .
+        <translation>Veyon est actuellement traduit dans votre langue natale .
 
-Si vous êtes intéressé pour traduire Veyon dans votre langue natale ou dans une autre langue, ou si vous souhaitez améliorer la traduction existante, merci de contacter l&apos;équipe des développeurs de Veyon !</translation>
+Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, ou si vous souhaitez améliorer la traduction existante, merci de contacter l&apos;équipe des développeurs de Veyon !</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -1695,7 +1695,7 @@ Le fichier de clé publique est utilisé sur les ordinateurs clients pour vérif
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>Aucune description de l&apos;erreur LDAP disponible</translation>
     </message>
 </context>
 <context>
