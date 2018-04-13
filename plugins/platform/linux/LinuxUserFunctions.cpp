@@ -23,8 +23,10 @@
  */
 
 #include <QDataStream>
+#include <QDBusReply>
 #include <QProcess>
 
+#include "LinuxCoreFunctions.h"
 #include "LinuxUserFunctions.h"
 
 #include <pwd.h>
@@ -271,14 +273,25 @@ void LinuxUserFunctions::logon( const QString& username, const QString& password
 
 void LinuxUserFunctions::logout()
 {
-	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
-	QProcess::startDetached( QStringLiteral( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" ) );
-	// KDE 4 logout
-	QProcess::startDetached( QStringLiteral( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ) );
-	// KDE 5 logout
-	QProcess::startDetached( QStringLiteral( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" ) );
+	// logout via common session managers
+	LinuxCoreFunctions::kdeSessionManager()->asyncCall( QStringLiteral("logout"), 0, 3, 2 );
+	LinuxCoreFunctions::gnomeSessionManager()->asyncCall( QStringLiteral("Logout"), 2 ); //  2 = forced mode (don't wait for unresponsive processes)
+	LinuxCoreFunctions::mateSessionManager()->asyncCall( QStringLiteral("Logout"), 2 ); //  2 = forced mode (don't wait for unresponsive processes)
+
 	// Xfce logout
 	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
+
+	// LXDE logout
+	QProcess::startDetached( QStringLiteral("kill -TERM %1").
+							 arg( QProcessEnvironment::systemEnvironment().value( QStringLiteral("_LXSESSION_PID") ).toInt() ) );
+
+	// terminate session via systemd
+	LinuxCoreFunctions::systemdLoginManager()->asyncCall( QStringLiteral("TerminateSession"),
+														  QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_SESSION_ID") ) );
+
+	// close session via ConsoleKit as a last resort
+	LinuxCoreFunctions::consoleKitManager()->asyncCall( QStringLiteral("CloseSession"),
+														QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_SESSION_COOKIE") ) );
 }
 
 

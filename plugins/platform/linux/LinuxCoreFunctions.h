@@ -25,6 +25,8 @@
 #ifndef LINUX_CORE_FUNCTIONS_H
 #define LINUX_CORE_FUNCTIONS_H
 
+#include <QDBusInterface>
+
 #include "PlatformCoreFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -52,6 +54,15 @@ public:
 						   const QString& desktop = QString() ) override;
 
 	QString genericUrlHandler() const override;
+
+	typedef QSharedPointer<QDBusInterface> DBusInterfacePointer;
+
+	static DBusInterfacePointer kdeSessionManager();
+	static DBusInterfacePointer gnomeSessionManager();
+	static DBusInterfacePointer mateSessionManager();
+	static DBusInterfacePointer xfcePowerManager();
+	static DBusInterfacePointer systemdLoginManager();
+	static DBusInterfacePointer consoleKitManager();
 
 };
 
