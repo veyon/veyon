@@ -122,5 +122,6 @@ void LinuxServiceFunctions::manageServerInstances()
 
 int LinuxServiceFunctions::systemctl( const QStringList& arguments )
 {
-	return QProcess::execute( QStringLiteral("systemctl"), arguments );
+	return QProcess::execute( QStringLiteral("systemctl"),
+							  QStringList( { QStringLiteral("--no-pager"), QStringLiteral("-q") } ) + arguments );
 }
