@@ -183,7 +183,7 @@ int LinuxServiceCore::getSessionLeaderPid( const QString& session )
 		return -1;
 	}
 
-	return leader.toUInt();
+	return leader.toInt();
 }
 
 

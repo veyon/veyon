@@ -42,8 +42,8 @@ VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
 
 bool VariantArrayMessage::send()
 {
-	MessageSize messageSize = qToBigEndian<MessageSize>( m_buffer.size() );
-	m_ioDevice->write( (const char *) &messageSize, sizeof(messageSize) );
+	MessageSize messageSize = qToBigEndian<MessageSize>( static_cast<MessageSize>( m_buffer.size() ) );
+	m_ioDevice->write( reinterpret_cast<const char *>( &messageSize ), sizeof(messageSize) );
 	m_ioDevice->write( m_buffer.data() );
 
 	return true;
@@ -55,7 +55,7 @@ bool VariantArrayMessage::isReadyForReceive()
 {
 	MessageSize messageSize;
 
-	if( m_ioDevice->peek( (char *) &messageSize, sizeof(messageSize) ) == sizeof(messageSize) )
+	if( m_ioDevice->peek( reinterpret_cast<char *>( &messageSize ), sizeof(messageSize) ) == sizeof(messageSize) )
 	{
 		messageSize = qFromBigEndian(messageSize);
 
@@ -71,7 +71,7 @@ bool VariantArrayMessage::receive()
 {
 	MessageSize messageSize;
 
-	if( m_ioDevice->read( (char *) &messageSize, sizeof(messageSize) ) != sizeof(messageSize) )
+	if( m_ioDevice->read( reinterpret_cast<char *>( &messageSize ), sizeof(messageSize) ) != sizeof(messageSize) )
 	{
 		qWarning( "VariantArrayMessage::receive(): could not read message size!" );
 		return false;
@@ -80,7 +80,7 @@ bool VariantArrayMessage::receive()
 	messageSize = qFromBigEndian(messageSize);
 
 	const auto data = m_ioDevice->read( messageSize );
-	if( data.size() != (int) messageSize )
+	if( data.size() != static_cast<int>( messageSize ) )
 	{
 		qWarning( "VariantArrayMessage::receive(): could not read message data!" );
 		return false;

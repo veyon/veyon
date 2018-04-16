@@ -65,7 +65,7 @@ QByteArray CryptoCore::generateChallenge()
 	// generate a random challenge
 	BN_rand( challengeBigNum, ChallengeSize * 8, 0, 0 );
 	QByteArray chall( BN_num_bytes( challengeBigNum ), 0 );
-	BN_bn2bin( challengeBigNum, (unsigned char *) chall.data() );
+	BN_bn2bin( challengeBigNum, reinterpret_cast<unsigned char *>( chall.data() ) );
 	BN_free( challengeBigNum );
 
 	return chall;

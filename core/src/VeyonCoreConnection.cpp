@@ -64,7 +64,7 @@ private:
 
 
 static rfbClientProtocolExtension * __veyonProtocolExt = nullptr;
-static void * VeyonCoreConnectionTag = (void *) PortOffsetVncServer; // an unique ID
+static void* VeyonCoreConnectionTag = reinterpret_cast<void *>( PortOffsetVncServer ); // an unique ID
 
 
 
@@ -122,7 +122,7 @@ void VeyonCoreConnection::initNewClient( rfbClient *cl )
 
 rfbBool VeyonCoreConnection::handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 {
-	auto coreConnection = (VeyonCoreConnection *) rfbClientGetClientData( client, VeyonCoreConnectionTag );
+	auto coreConnection = reinterpret_cast<VeyonCoreConnection *>( rfbClientGetClientData( client, VeyonCoreConnectionTag ) );
 	if( coreConnection )
 	{
 		return coreConnection->handleServerMessage( client, msg->type );
@@ -159,9 +159,8 @@ bool VeyonCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
 	{
 		qCritical( "VeyonCoreConnection::handleServerMessage(): "
 				"unknown message type %d from server. Closing "
-				"connection. Will re-open it later.", (int) msg );
-		return false;
+				"connection. Will re-open it later.", static_cast<int>( msg ) );
 	}
 
-	return true;
+	return false;
 }

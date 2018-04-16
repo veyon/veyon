@@ -176,19 +176,19 @@ void ToolButton::paintEvent( QPaintEvent * _pe )
 
 	if( active )
 	{
-		outlinebrush.setColorAt(0.0f, shadow);
-		outlinebrush.setColorAt(1.0f, highlight);
-		brush.setColorAt(0.0f, sunken);
+		outlinebrush.setColorAt( 0.0, shadow );
+		outlinebrush.setColorAt( 1.0, highlight );
+		brush.setColorAt( 0.0, sunken );
 		painter.setPen(Qt::NoPen);
 	}
 	else
 	{
-		outlinebrush.setColorAt(1.0f, shadow);
-		outlinebrush.setColorAt(0.0f, highlight);
-		brush.setColorAt(0.0f, normal1);
+		outlinebrush.setColorAt( 1.0, shadow );
+		outlinebrush.setColorAt( 0.0, highlight );
+		brush.setColorAt( 0.0, normal1 );
 		if( m_mouseOver == false )
 		{
-			brush.setColorAt(1.0f, normal2);
+			brush.setColorAt( 1.0, normal2 );
 		}
 		painter.setPen(QPen(outlinebrush, 1));
 	}
