@@ -102,10 +102,10 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
 	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
 
-	m_origKeyTable = XGetKeyboardMapping( display, m_keyCodeMin,
+	m_origKeyTable = XGetKeyboardMapping( display, static_cast<KeyCode>( m_keyCodeMin ),
 										  m_keyCodeCount, &m_keySymsPerKeyCode );
 
-	KeySym* newKeyTable = XGetKeyboardMapping( display, m_keyCodeMin,
+	KeySym* newKeyTable = XGetKeyboardMapping( display, static_cast<KeyCode>( m_keyCodeMin ),
 											   m_keyCodeCount, &m_keySymsPerKeyCode );
 
 	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
