@@ -170,6 +170,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( const QStringList& arguments )
 {
+	Q_UNUSED(arguments);
+
 	m_configuration.setNetworkObjects( {} );
 
 	return saveConfiguration();
@@ -308,7 +310,9 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 	{
 		regularExpression = formatString;
 
-		for( const auto& var : fileImportVariables() )
+		const auto variables = fileImportVariables();
+
+		for( const auto& var : variables )
 		{
 			regularExpression.replace( var, QStringLiteral("(%1:[^\\n\\r]*)").arg( var ) );
 		}
@@ -324,7 +328,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 		return Failed;
 	}
 
-	CommandLineIO::error( "No format string or regular expression specified!" );
+	CommandLineIO::error( tr("No format string or regular expression specified!") );
 
 	return InvalidArguments;
 }
@@ -333,6 +337,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( const QStringList& arguments )
 {
+	Q_UNUSED(arguments);
+
 	return Successful;
 }
 
