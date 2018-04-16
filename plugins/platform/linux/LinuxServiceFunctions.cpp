@@ -33,8 +33,10 @@ QString LinuxServiceFunctions::veyonServiceName() const
 
 
 
-bool LinuxServiceFunctions::isRegistered(const QString &name)
+bool LinuxServiceFunctions::isRegistered( const QString& name )
 {
+	Q_UNUSED(name);
+
 	qCritical( "Querying service registration is not supported on this platform.");
 
 	return false;

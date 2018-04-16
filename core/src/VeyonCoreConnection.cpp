@@ -42,7 +42,7 @@ public:
 	{
 	}
 
-	void fire( rfbClient *client ) override
+	void fire( rfbClient* client ) override
 	{
 		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
 				 << "command" << m_featureMessage.command()
@@ -134,7 +134,7 @@ rfbBool VeyonCoreConnection::handleVeyonMessage( rfbClient* client, rfbServerToC
 
 
 
-bool VeyonCoreConnection::handleServerMessage( rfbClient *client, uint8_t msg )
+bool VeyonCoreConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 {
 	if( msg == rfbVeyonFeatureMessage )
 	{

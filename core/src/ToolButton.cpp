@@ -71,9 +71,9 @@ ToolButton::~ToolButton()
 
 
 
-void ToolButton::setIconOnlyMode( bool _enabled )
+void ToolButton::setIconOnlyMode( bool enabled )
 {
-	s_iconOnlyMode = _enabled;
+	s_iconOnlyMode = enabled;
 	const auto toolButtons = QApplication::activeWindow()->findChildren<ToolButton *>();
 	for( auto toolButton : toolButtons )
 	{
@@ -83,16 +83,16 @@ void ToolButton::setIconOnlyMode( bool _enabled )
 
 
 
-void ToolButton::addTo( QToolBar * _tb )
+void ToolButton::addTo( QToolBar* toolBar )
 {
-	QAction * a = _tb->addWidget( this );
-	a->setText( m_label );
+	auto action = toolBar->addWidget( this );
+	action->setText( m_label );
 }
 
 
 
 
-void ToolButton::enterEvent( QEvent * _e )
+void ToolButton::enterEvent( QEvent* event )
 {
 	m_mouseOver = true;
 	if( !s_toolTipsDisabled && !m_label.isEmpty() && !m_descr.isEmpty() )
@@ -129,33 +129,33 @@ void ToolButton::enterEvent( QEvent * _e )
 		tbt->show();
 	}
 
-	QToolButton::enterEvent( _e );
+	QToolButton::enterEvent( event );
 }
 
 
 
 
-void ToolButton::leaveEvent( QEvent * _e )
+void ToolButton::leaveEvent( QEvent* event )
 {
 	if( checkForLeaveEvent() )
 	{
-		QToolButton::leaveEvent( _e );
+		QToolButton::leaveEvent( event );
 	}
 }
 
 
 
 
-void ToolButton::mousePressEvent( QMouseEvent * _me )
+void ToolButton::mousePressEvent( QMouseEvent* event )
 {
 	emit mouseLeftButton();
-	QToolButton::mousePressEvent( _me );
+	QToolButton::mousePressEvent( event );
 }
 
 
 
 
-void ToolButton::paintEvent( QPaintEvent * _pe )
+void ToolButton::paintEvent( QPaintEvent* )
 {
 	const bool active = isDown() || isChecked();
 
@@ -303,7 +303,7 @@ QSize ToolButtonTip::sizeHint() const
 
 
 
-void ToolButtonTip::paintEvent( QPaintEvent * _pe )
+void ToolButtonTip::paintEvent( QPaintEvent* )
 {
 	QPainter p( this );
 	p.drawImage( 0, 0, m_bg );
@@ -399,5 +399,3 @@ void ToolButtonTip::updateMask()
 
 	setMask( b );
 }
-
-
