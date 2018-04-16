@@ -154,7 +154,8 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_add( const 
 	}
 	else
 	{
-		CommandLineIO::error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).arg("computer", "room") );
+		CommandLineIO::error( tr("Invalid type specified. Valid values are \"%1\" or \"%2\"." ).
+							  arg( QStringLiteral("computer"), QStringLiteral("room") ) );
 		return Failed;
 	}
 

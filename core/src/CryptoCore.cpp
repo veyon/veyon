@@ -40,7 +40,7 @@ CryptoCore::CryptoCore() :
 				"(e.g. packages such as libqca-qt5-2-plugins or qca-qt5-ossl)." );
 	}
 
-	m_defaultPrivateKey = PrivateKey::fromPEMFile( ":/resources/default-pkey.pem" );
+	m_defaultPrivateKey = PrivateKey::fromPEMFile( QStringLiteral(":/resources/default-pkey.pem") );
 }
 
 
