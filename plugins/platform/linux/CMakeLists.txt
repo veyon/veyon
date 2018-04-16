@@ -21,6 +21,7 @@ BUILD_PLUGIN(linux-platform
 	MOCFILES
 	LinuxPlatformPlugin.h
 	LinuxCoreFunctions.h
+	LinuxDesktopIntegration.h
 	LinuxFilesystemFunctions.h
 	LinuxInputDeviceFunctions.h
 	LinuxKeyboardShortcutTrapper.h

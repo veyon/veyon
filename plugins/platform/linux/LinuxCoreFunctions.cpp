@@ -31,6 +31,7 @@
 #include <unistd.h>
 
 #include "LinuxCoreFunctions.h"
+#include "LinuxDesktopIntegration.h"
 #include "PlatformUserFunctions.h"
 
 
@@ -57,7 +58,10 @@ void LinuxCoreFunctions::reboot()
 	}
 	else
 	{
-		kdeSessionManager()->asyncCall( QStringLiteral("logout"), 0, 1, 2 );
+		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
+										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
+										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownTypeReboot ),
+										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownModeForceNow ) );
 		gnomeSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
 		mateSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
 		xfcePowerManager()->asyncCall( QStringLiteral("Reboot") );
@@ -76,7 +80,10 @@ void LinuxCoreFunctions::powerDown()
 	}
 	else
 	{
-		kdeSessionManager()->asyncCall( QStringLiteral("logout"), 0, 2, 2 );
+		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
+										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
+										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownTypeHalt ),
+										static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownModeForceNow ) );
 		gnomeSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
 		mateSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
 		xfcePowerManager()->asyncCall( QStringLiteral("Shutdown") );

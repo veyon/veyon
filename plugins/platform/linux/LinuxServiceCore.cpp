@@ -40,9 +40,9 @@ LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 					QDBusConnection::systemBus() )
 {
 	QDBusConnection::systemBus().connect( m_loginManager.service(), m_loginManager.path(), m_loginManager.interface(),
-										 QStringLiteral("SessionNew"), this, SLOT(startServer(QString, QDBusObjectPath)) );
+										 QStringLiteral("SessionNew"), this, SLOT(startServer(QString,QDBusObjectPath)) );
 	QDBusConnection::systemBus().connect( m_loginManager.service(), m_loginManager.path(), m_loginManager.interface(),
-										 QStringLiteral("SessionRemoved"), this, SLOT(stopServer(QString, QDBusObjectPath)) );
+										 QStringLiteral("SessionRemoved"), this, SLOT(stopServer(QString,QDBusObjectPath)) );
 }
 
 

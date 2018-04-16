@@ -27,6 +27,7 @@
 #include <QProcess>
 
 #include "LinuxCoreFunctions.h"
+#include "LinuxDesktopIntegration.h"
 #include "LinuxUserFunctions.h"
 
 #include <pwd.h>
@@ -274,9 +275,14 @@ void LinuxUserFunctions::logon( const QString& username, const QString& password
 void LinuxUserFunctions::logout()
 {
 	// logout via common session managers
-	LinuxCoreFunctions::kdeSessionManager()->asyncCall( QStringLiteral("logout"), 0, 3, 2 );
-	LinuxCoreFunctions::gnomeSessionManager()->asyncCall( QStringLiteral("Logout"), 2 ); //  2 = forced mode (don't wait for unresponsive processes)
-	LinuxCoreFunctions::mateSessionManager()->asyncCall( QStringLiteral("Logout"), 2 ); //  2 = forced mode (don't wait for unresponsive processes)
+	LinuxCoreFunctions::kdeSessionManager()->asyncCall( QStringLiteral("logout"),
+														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownConfirmNo ),
+														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownTypeLogout ),
+														static_cast<int>( LinuxDesktopIntegration::KDE::ShutdownModeForceNow ) );
+	LinuxCoreFunctions::gnomeSessionManager()->asyncCall( QStringLiteral("Logout"),
+														  static_cast<int>( LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE ) );
+	LinuxCoreFunctions::mateSessionManager()->asyncCall( QStringLiteral("Logout"),
+														 static_cast<int>( LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE ) );
 
 	// Xfce logout
 	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout") );
