@@ -27,6 +27,7 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 
+#include "CommandLineIO.h"
 #include "Configuration/JsonStore.h"
 #include "ConfigCommandLinePlugin.h"
 #include "ConfigurationManager.h"
@@ -71,19 +72,26 @@ QString ConfigCommandLinePlugin::commandHelp( const QString& command ) const
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_clear( const QStringList& arguments )
 {
-	ConfigurationManager().clearConfiguration();
+	Q_UNUSED(arguments);
 
-	return Successful;
+	if( ConfigurationManager().clearConfiguration() )
+	{
+		return Successful;
+	}
+
+	return Failed;
 }
 
 
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_list( const QStringList& arguments )
 {
+	Q_UNUSED(arguments);
+
 	// clear global configuration
 	listConfiguration( VeyonCore::config().data(), QString() );
 
-	return Successful;
+	return NoResult;
 }
 
 
@@ -163,7 +171,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 		return operationError( tr( "Specified key does not exist in current configuration!" ) );
 	}
 
-	printf( "%s\n", qUtf8Printable( printableConfigurationValue( VeyonCore::config().value( key, parentKey ) ) ) );
+	CommandLineIO::print( printableConfigurationValue( VeyonCore::config().value( key, parentKey ) ) );
 
 	return NoResult;
 }
@@ -318,7 +326,7 @@ QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& va
 
 CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::operationError( const QString& message )
 {
-	qCritical( "%s", qUtf8Printable( message ) );
+	CommandLineIO::error( message );
 
 	return Failed;
 }
