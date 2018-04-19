@@ -10,7 +10,7 @@ export CXX=g++-6
 cd /build
 
 # add distribution name to file name
-rename '.x86_64' '.opensuse-42.2.x86_64' /build/*.rpm
+rename '.x86_64' '.opensuse-42.3.x86_64' /build/*.rpm
 
 # show dependencies
 rpm -qpR *.rpm
