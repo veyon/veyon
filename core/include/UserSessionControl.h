@@ -27,15 +27,15 @@
 
 #include <QReadWriteLock>
 
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
 class QThread;
 class QTimer;
 
-class VEYON_CORE_EXPORT UserSessionControl : public QObject, public FeaturePluginInterface, public PluginInterface
+class VEYON_CORE_EXPORT UserSessionControl : public QObject, public FeatureProviderInterface, public PluginInterface
 {
 	Q_OBJECT
-	Q_INTERFACES(FeaturePluginInterface PluginInterface)
+	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
 	UserSessionControl( QObject* parent = nullptr );
 	~UserSessionControl() override;

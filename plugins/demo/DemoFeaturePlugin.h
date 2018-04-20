@@ -27,16 +27,16 @@
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
 class DemoServer;
 class DemoClient;
 
-class DemoFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface, ConfigurationPagePluginInterface
+class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.PluginFeatureInterface")
-	Q_INTERFACES(PluginInterface FeaturePluginInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
 	DemoFeaturePlugin( QObject* parent = nullptr );
 	~DemoFeaturePlugin() override;

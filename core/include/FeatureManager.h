@@ -28,7 +28,7 @@
 #include <QObject>
 
 #include "Feature.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 #include "ComputerControlInterface.h"
 #include "Plugin.h"
 
@@ -69,7 +69,7 @@ private:
 	FeatureList m_features;
 	FeatureList m_emptyFeatureList;
 	QObjectList m_pluginObjects;
-	FeaturePluginInterfaceList m_featurePluginInterfaces;
+	FeatureProviderInterfaceList m_featurePluginInterfaces;
 	Feature m_dummyFeature;
 
 

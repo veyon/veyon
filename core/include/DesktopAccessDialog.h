@@ -27,12 +27,12 @@
 
 class QTimer;
 
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
-class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeaturePluginInterface, public PluginInterface
+class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeatureProviderInterface, public PluginInterface
 {
 	Q_OBJECT
-	Q_INTERFACES(FeaturePluginInterface PluginInterface)
+	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
 	typedef enum Choices
 	{

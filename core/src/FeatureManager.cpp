@@ -47,7 +47,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
-		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
+		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
 
 		if( featurePluginInterface )
 		{
@@ -67,7 +67,7 @@ const FeatureList& FeatureManager::features( Plugin::Uid pluginUid ) const
 	for( auto pluginObject : m_pluginObjects )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
+		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
 
 		if( pluginInterface && featurePluginInterface && pluginInterface->uid() == pluginUid )
 		{
@@ -103,7 +103,7 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 	for( auto pluginObject : m_pluginObjects )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto featurePluginInterface = qobject_cast<FeaturePluginInterface *>( pluginObject );
+		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
 
 		if( pluginInterface && featurePluginInterface &&
 				featurePluginInterface->featureList().contains( feature ) )

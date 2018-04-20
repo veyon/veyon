@@ -27,20 +27,20 @@
 
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 #include "InternetAccessControlConfiguration.h"
 
 class InternetAccessControlBackendInterface;
 
 class InternetAccessControlPlugin : public QObject, PluginInterface,
-		FeaturePluginInterface,
+		FeatureProviderInterface,
 		CommandLinePluginInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.InternetAccessControl")
 	Q_INTERFACES(PluginInterface
-				 FeaturePluginInterface
+				 FeatureProviderInterface
 				 CommandLinePluginInterface
 				 ConfigurationPagePluginInterface)
 public:

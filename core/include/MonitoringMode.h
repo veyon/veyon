@@ -25,12 +25,12 @@
 #ifndef MONITORING_MODE_H
 #define MONITORING_MODE_H
 
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
-class MonitoringMode : public QObject, FeaturePluginInterface, PluginInterface
+class MonitoringMode : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_INTERFACES(FeaturePluginInterface PluginInterface)
+	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
 	MonitoringMode( QObject* parent = nullptr );
 

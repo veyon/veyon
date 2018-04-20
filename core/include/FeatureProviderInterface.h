@@ -1,5 +1,5 @@
 /*
- * FeaturePluginInterface.h - interface class for feature plugins
+ * FeatureProviderInterface.h - interface class for feature plugins
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef FEATURE_PLUGIN_INTERFACE_H
-#define FEATURE_PLUGIN_INTERFACE_H
+#ifndef FEATURE_PROVIDER_INTERFACE_H
+#define FEATURE_PROVIDER_INTERFACE_H
 
 #include "ComputerControlInterface.h"
 #include "FeatureMessage.h"
@@ -34,7 +34,7 @@ class FeatureWorkerManager;
 
 // clazy:excludeall=copyable-polymorphic
 
-class VEYON_CORE_EXPORT FeaturePluginInterface
+class VEYON_CORE_EXPORT FeatureProviderInterface
 {
 public:
 	/*!
@@ -98,10 +98,10 @@ protected:
 
 };
 
-typedef QList<FeaturePluginInterface *> FeaturePluginInterfaceList;
+typedef QList<FeatureProviderInterface *> FeatureProviderInterfaceList;
 
-#define FeaturePluginInterface_iid "org.veyon.Veyon.Plugins.FeaturePluginInterface"
+#define FeatureProviderInterface_iid "io.veyon.Veyon.FeatureProviderInterface"
 
-Q_DECLARE_INTERFACE(FeaturePluginInterface, FeaturePluginInterface_iid)
+Q_DECLARE_INTERFACE(FeatureProviderInterface, FeatureProviderInterface_iid)
 
-#endif // FEATURE_PLUGIN_INTERFACE_H
+#endif // FEATURE_PROVIDER_INTERFACE_H

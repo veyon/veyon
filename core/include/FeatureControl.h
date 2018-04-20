@@ -25,12 +25,12 @@
 #ifndef FEATURE_CONTROL_H
 #define FEATURE_CONTROL_H
 
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
-class VEYON_CORE_EXPORT FeatureControl : public QObject, public FeaturePluginInterface, public PluginInterface
+class VEYON_CORE_EXPORT FeatureControl : public QObject, public FeatureProviderInterface, public PluginInterface
 {
 	Q_OBJECT
-	Q_INTERFACES(FeaturePluginInterface PluginInterface)
+	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
 	FeatureControl( QObject* parent = nullptr );
 	~FeatureControl() override;

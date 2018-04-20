@@ -26,15 +26,15 @@
 #define REMOTE_ACCESS_FEATURE_PLUGIN_H
 
 #include "Computer.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 #include "CommandLinePluginInterface.h"
 
 
-class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, FeaturePluginInterface, PluginInterface
+class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.RemoteAccess")
-	Q_INTERFACES(PluginInterface FeaturePluginInterface CommandLinePluginInterface)
+	Q_INTERFACES(PluginInterface FeatureProviderInterface CommandLinePluginInterface)
 public:
 	RemoteAccessFeaturePlugin( QObject* parent = nullptr );
 	~RemoteAccessFeaturePlugin() override;

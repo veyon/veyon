@@ -26,13 +26,13 @@
 #define TEXT_MESSAGE_FEATURE_PLUGIN_H
 
 #include "Feature.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
-class TextMessageFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
+class TextMessageFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeaturePluginInterface")
-	Q_INTERFACES(PluginInterface FeaturePluginInterface)
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeatureProviderInterface")
+	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	TextMessageFeaturePlugin( QObject* parent = nullptr );
 	~TextMessageFeaturePlugin() override {}

@@ -27,16 +27,16 @@
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DesktopServicesConfiguration.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
 class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
-		FeaturePluginInterface,
+		FeatureProviderInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.DesktopServices")
 	Q_INTERFACES(PluginInterface
-				 FeaturePluginInterface
+				 FeatureProviderInterface
 				 ConfigurationPagePluginInterface)
 public:
 	DesktopServicesFeaturePlugin( QObject* parent = nullptr );

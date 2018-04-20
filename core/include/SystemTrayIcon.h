@@ -25,14 +25,14 @@
 #ifndef SYSTEM_TRAY_ICON_H
 #define SYSTEM_TRAY_ICON_H
 
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
 class QSystemTrayIcon;
 
-class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeaturePluginInterface, public PluginInterface
+class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeatureProviderInterface, public PluginInterface
 {
 	Q_OBJECT
-	Q_INTERFACES(FeaturePluginInterface PluginInterface)
+	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
 	SystemTrayIcon( QObject* parent = nullptr );
 	~SystemTrayIcon() override {}

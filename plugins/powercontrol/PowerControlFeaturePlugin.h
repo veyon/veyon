@@ -26,13 +26,13 @@
 #define POWER_CONTROL_FEATURE_PLUGIN_H
 
 #include "Feature.h"
-#include "FeaturePluginInterface.h"
+#include "FeatureProviderInterface.h"
 
-class PowerControlFeaturePlugin : public QObject, FeaturePluginInterface, PluginInterface
+class PowerControlFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeaturePluginInterface")
-	Q_INTERFACES(PluginInterface FeaturePluginInterface)
+	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeatureProviderInterface")
+	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	PowerControlFeaturePlugin( QObject* parent = nullptr );
 	~PowerControlFeaturePlugin() override {}
