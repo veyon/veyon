@@ -50,9 +50,9 @@ const FeatureList &ScreenshotFeaturePlugin::featureList() const
 
 
 
-bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
-												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  QWidget* parent )
+bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+											const ComputerControlInterfaceList& computerControlInterfaces,
+											QWidget* parent )
 {
 	if( feature.uid() == m_screenshotFeature.uid() )
 	{
@@ -74,9 +74,9 @@ bool ScreenshotFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
-												 const ComputerControlInterfaceList& computerControlInterfaces,
-												 QWidget* parent )
+bool ScreenshotFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+										   const ComputerControlInterfaceList& computerControlInterfaces,
+										   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -87,8 +87,8 @@ bool ScreenshotFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool ScreenshotFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-														  ComputerControlInterface::Pointer computerControlInterface )
+bool ScreenshotFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+													ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -98,8 +98,8 @@ bool ScreenshotFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& 
 
 
 
-bool ScreenshotFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-														   FeatureWorkerManager& featureWorkerManager )
+bool ScreenshotFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+													FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(featureWorkerManager);
@@ -109,7 +109,7 @@ bool ScreenshotFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 
 
 
-bool ScreenshotFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool ScreenshotFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

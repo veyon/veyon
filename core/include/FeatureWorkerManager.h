@@ -34,12 +34,13 @@
 #include "FeatureMessage.h"
 
 class FeatureManager;
+class VeyonServerInterface;
 
 class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureWorkerManager( FeatureManager& featureManager, QObject* parent = nullptr );
+	FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
 	Q_INVOKABLE void startWorker( const Feature& feature );
@@ -58,6 +59,7 @@ private slots:
 	void sendPendingMessages();
 
 private:
+	VeyonServerInterface& m_server;
 	FeatureManager& m_featureManager;
 	QTcpServer m_tcpServer;
 

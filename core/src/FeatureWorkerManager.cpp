@@ -35,8 +35,9 @@
 
 // clazy:excludeall=detaching-member
 
-FeatureWorkerManager::FeatureWorkerManager( FeatureManager& featureManager, QObject* parent ) :
+FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent ) :
 	QObject( parent ),
+	m_server( server ),
 	m_featureManager( featureManager ),
 	m_tcpServer( this )
 {
@@ -93,8 +94,7 @@ void FeatureWorkerManager::startWorker( const Feature& feature )
 			 worker.process, &QProcess::deleteLater );
 
 	qDebug() << "Starting worker for feature" << feature.displayName() << feature.uid();
-	worker.process->start( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString(),
-																	   QString::number( VeyonCore::config().featureWorkerManagerPort() ) } );
+	worker.process->start( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString() } );
 
 	m_workersMutex.lock();
 	m_workers[feature.uid()] = worker;
@@ -220,7 +220,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		if( message.command() >= 0 )
 		{
-			m_featureManager.handleServiceFeatureMessage( message, *this );
+			m_featureManager.handleFeatureMessage( m_server, message, *this );
 		}
 
 	}

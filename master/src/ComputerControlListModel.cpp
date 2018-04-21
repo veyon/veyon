@@ -231,8 +231,10 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 {
 	controlInterface->start( computerScreenSize(), &m_masterCore->builtinFeatures() );
 
-	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived,
-			 &m_masterCore->featureManager(), &FeatureManager::handleMasterFeatureMessage );
+	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived, this,
+			 [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
+		m_masterCore->featureManager().handleFeatureMessage( *m_masterCore, featureMessage, computerControlInterface );
+	} );
 
 	connect( controlInterface.data(), &ComputerControlInterface::activeFeaturesChanged,
 			 this, [=] () { emit activeFeaturesChanged( index ); } );

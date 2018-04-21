@@ -34,11 +34,12 @@
 #include "RfbVeyonAuth.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
+#include "VeyonServerInterface.h"
 #include "VncProxyServer.h"
 #include "VncProxyConnectionFactory.h"
 #include "VncServer.h"
 
-class ComputerControlServer : public QObject, VncProxyConnectionFactory
+class ComputerControlServer : public QObject, VncProxyConnectionFactory, VeyonServerInterface
 {
 	Q_OBJECT
 public:

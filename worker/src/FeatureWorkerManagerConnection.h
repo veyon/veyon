@@ -30,14 +30,15 @@
 #include "Feature.h"
 
 class FeatureManager;
+class VeyonWorkerInterface;
 
 class FeatureWorkerManagerConnection : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureWorkerManagerConnection( FeatureManager& featureManager,
+	FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
+									FeatureManager& featureManager,
 									Feature::Uid featureUid,
-									int featureWorkerManagerPort,
 								 	QObject* parent = nullptr );
 
 
@@ -46,6 +47,7 @@ private slots:
 	void receiveMessage();
 
 private:
+	VeyonWorkerInterface& m_worker;
 	FeatureManager& m_featureManager;
 	QTcpSocket m_socket;
 	Feature::Uid m_featureUid;

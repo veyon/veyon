@@ -30,11 +30,12 @@
 #include "VeyonConfiguration.h"
 
 
-FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& featureManager,
+FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
+																FeatureManager& featureManager,
 																Feature::Uid featureUid,
-																int featureWorkerManagerPort,
 																QObject* parent ) :
 	QObject( parent ),
+	m_worker( worker ),
 	m_featureManager( featureManager ),
 	m_socket( this ),
 	m_featureUid( featureUid )
@@ -48,7 +49,7 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( FeatureManager& 
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
-	m_socket.connectToHost( QHostAddress::LocalHost, featureWorkerManagerPort );
+	m_socket.connectToHost( QHostAddress::LocalHost, VeyonCore::config().featureWorkerManagerPort() );
 }
 
 
@@ -70,7 +71,7 @@ void FeatureWorkerManagerConnection::receiveMessage()
 	{
 		if( featureMessage.receive() )
 		{
-			m_featureManager.handleWorkerFeatureMessage( featureMessage );
+			m_featureManager.handleFeatureMessage( m_worker, featureMessage );
 		}
 	}
 }

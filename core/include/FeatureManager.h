@@ -53,17 +53,19 @@ public:
 
 	Plugin::Uid pluginUid( const Feature& feature ) const;
 
-	void startMasterFeature( const Feature& feature,
-							 const ComputerControlInterfaceList& computerControlInterfaces,
-							 QWidget* parent );
-	void stopMasterFeature( const Feature& feature,
-							const ComputerControlInterfaceList& computerControlInterfaces,
-							QWidget* parent );
+	void startFeature( VeyonMasterInterface& master,
+					   const Feature& feature,
+					   const ComputerControlInterfaceList& computerControlInterfaces,
+					   QWidget* parent );
+	void stopFeature( VeyonMasterInterface& master,
+					  const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces,
+					  QWidget* parent );
 
 public slots:
-	bool handleMasterFeatureMessage( const FeatureMessage& message, ComputerControlInterface::Pointer computerControlInterface );
-	bool handleServiceFeatureMessage( const FeatureMessage& message, FeatureWorkerManager& featureWorkerManager );
-	bool handleWorkerFeatureMessage( const FeatureMessage& message );
+	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message, ComputerControlInterface::Pointer computerControlInterface );
+	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message, FeatureWorkerManager& featureWorkerManager );
+	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message );
 
 private:
 	FeatureList m_features;

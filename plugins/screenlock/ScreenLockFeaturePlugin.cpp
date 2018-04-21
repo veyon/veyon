@@ -54,9 +54,9 @@ ScreenLockFeaturePlugin::~ScreenLockFeaturePlugin()
 
 
 
-bool ScreenLockFeaturePlugin::startMasterFeature( const Feature& feature,
-												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  QWidget* parent )
+bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+											const ComputerControlInterfaceList& computerControlInterfaces,
+											QWidget* parent )
 {
 	Q_UNUSED(parent);
 
@@ -71,9 +71,9 @@ bool ScreenLockFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool ScreenLockFeaturePlugin::stopMasterFeature( const Feature& feature,
-												 const ComputerControlInterfaceList& computerControlInterfaces,
-												 QWidget* parent )
+bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+										   const ComputerControlInterfaceList& computerControlInterfaces,
+										   QWidget* parent )
 {
 	Q_UNUSED(parent);
 
@@ -88,8 +88,8 @@ bool ScreenLockFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool ScreenLockFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-														  ComputerControlInterface::Pointer computerControlInterface )
+bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+													ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -99,8 +99,8 @@ bool ScreenLockFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& 
 
 
 
-bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-														   FeatureWorkerManager& featureWorkerManager )
+bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+													FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
@@ -121,7 +121,7 @@ bool ScreenLockFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage&
 
 
 
-bool ScreenLockFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{

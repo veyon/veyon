@@ -1,7 +1,7 @@
 /*
- * main.cpp - main file for Veyon Feature Worker
+ * VeyonMasterInterface.h - interface class for VeyonMaster
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,29 +22,13 @@
  *
  */
 
-#include <QApplication>
+#ifndef VEYON_MASTER_INTERFACE_H
+#define VEYON_MASTER_INTERFACE_H
 
-#include "VeyonWorker.h"
-
-
-int main( int argc, char **argv )
+class VeyonMasterInterface
 {
-	QApplication app( argc, argv );
+public:
 
-	const auto arguments = app.arguments();
+};
 
-	if( arguments.count() < 2 )
-	{
-		qFatal( "Not enough arguments (feature)" );
-	}
-
-	const auto featureUid = arguments[1];
-	if( QUuid( featureUid ).isNull() )
-	{
-		qFatal( "Invalid feature UID given" );
-	}
-
-	VeyonWorker worker( featureUid );
-
-	return app.exec();
-}
+#endif

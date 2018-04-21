@@ -68,9 +68,9 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 
 
 
-bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
-													const ComputerControlInterfaceList& computerControlInterfaces,
-													QWidget* parent )
+bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+											  const ComputerControlInterfaceList& computerControlInterfaces,
+											  QWidget* parent )
 {
 	Q_UNUSED(parent);
 
@@ -123,9 +123,9 @@ bool RemoteAccessFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool RemoteAccessFeaturePlugin::stopMasterFeature( const Feature& feature,
-												   const ComputerControlInterfaceList& computerControlInterfaces,
-												   QWidget* parent )
+bool RemoteAccessFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+											 const ComputerControlInterfaceList& computerControlInterfaces,
+											 QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -136,8 +136,8 @@ bool RemoteAccessFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool RemoteAccessFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-															ComputerControlInterface::Pointer computerControlInterface )
+bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+													  ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -147,8 +147,8 @@ bool RemoteAccessFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage
 
 
 
-bool RemoteAccessFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-															 FeatureWorkerManager& featureWorkerManager )
+bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+													  FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(featureWorkerManager);
@@ -158,7 +158,7 @@ bool RemoteAccessFeaturePlugin::handleServiceFeatureMessage( const FeatureMessag
 
 
 
-bool RemoteAccessFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

@@ -1,7 +1,7 @@
 /*
- * main.cpp - main file for Veyon Feature Worker
+ * VeyonWorker.h - basic implementation of Veyon Worker
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -22,29 +22,24 @@
  *
  */
 
-#include <QApplication>
+#ifndef VEYON_WORKER_H
+#define VEYON_WORKER_H
 
-#include "VeyonWorker.h"
+#include "BuiltinFeatures.h"
+#include "FeatureManager.h"
+#include "FeatureWorkerManagerConnection.h"
+#include "VeyonWorkerInterface.h"
 
-
-int main( int argc, char **argv )
+class VeyonWorker : public VeyonWorkerInterface
 {
-	QApplication app( argc, argv );
+public:
+	VeyonWorker( const QString& featureUid );
 
-	const auto arguments = app.arguments();
+private:
+	VeyonCore m_core;
+	BuiltinFeatures m_builtinFeatures;
+	FeatureManager m_featureManager;
 
-	if( arguments.count() < 2 )
-	{
-		qFatal( "Not enough arguments (feature)" );
-	}
+} ;
 
-	const auto featureUid = arguments[1];
-	if( QUuid( featureUid ).isNull() )
-	{
-		qFatal( "Invalid feature UID given" );
-	}
-
-	VeyonWorker worker( featureUid );
-
-	return app.exec();
-}
+#endif

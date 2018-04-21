@@ -52,9 +52,9 @@ const FeatureList &TextMessageFeaturePlugin::featureList() const
 
 
 
-bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
-												   const ComputerControlInterfaceList& computerControlInterfaces,
-												   QWidget* parent )
+bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+											 const ComputerControlInterfaceList& computerControlInterfaces,
+											 QWidget* parent )
 {
 	if( feature.uid() != m_textMessageFeature.uid() )
 	{
@@ -79,9 +79,9 @@ bool TextMessageFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
-												  const ComputerControlInterfaceList& computerControlInterfaces,
-												  QWidget* parent )
+bool TextMessageFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+											const ComputerControlInterfaceList& computerControlInterfaces,
+											QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -92,8 +92,8 @@ bool TextMessageFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool TextMessageFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-														   ComputerControlInterface::Pointer computerControlInterface )
+bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+													 ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -103,8 +103,8 @@ bool TextMessageFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage&
 
 
 
-bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-															FeatureWorkerManager& featureWorkerManager )
+bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+													 FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_textMessageFeature.uid() == message.featureUid() )
 	{
@@ -123,7 +123,7 @@ bool TextMessageFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage
 
 
 
-bool TextMessageFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{

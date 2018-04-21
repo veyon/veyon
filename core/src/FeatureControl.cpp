@@ -54,9 +54,9 @@ bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& co
 
 
 
-bool FeatureControl::startMasterFeature( const Feature& feature,
-										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 QWidget* parent )
+bool FeatureControl::startFeature( VeyonMasterInterface& master, const Feature& feature,
+								   const ComputerControlInterfaceList& computerControlInterfaces,
+								   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -67,9 +67,9 @@ bool FeatureControl::startMasterFeature( const Feature& feature,
 
 
 
-bool FeatureControl::stopMasterFeature( const Feature& feature,
-										const ComputerControlInterfaceList& computerControlInterfaces,
-										QWidget* parent )
+bool FeatureControl::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+								  const ComputerControlInterfaceList& computerControlInterfaces,
+								  QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -80,8 +80,8 @@ bool FeatureControl::stopMasterFeature( const Feature& feature,
 
 
 
-bool FeatureControl::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface::Pointer computerControlInterface )
+bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+										   ComputerControlInterface::Pointer computerControlInterface )
 {
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{
@@ -95,8 +95,8 @@ bool FeatureControl::handleMasterFeatureMessage( const FeatureMessage& message,
 
 
 
-bool FeatureControl::handleServiceFeatureMessage( const FeatureMessage& message,
-												  FeatureWorkerManager& featureWorkerManager )
+bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+										   FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(featureWorkerManager);
 
@@ -117,7 +117,7 @@ bool FeatureControl::handleServiceFeatureMessage( const FeatureMessage& message,
 
 
 
-bool FeatureControl::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool FeatureControl::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

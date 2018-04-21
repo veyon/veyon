@@ -55,7 +55,9 @@ MasterCore::MasterCore( QObject* parent ) :
 	}
 
 	connect( &VeyonCore::localComputerControlInterface(), &ComputerControlInterface::featureMessageReceived,
-			 m_featureManager, &FeatureManager::handleMasterFeatureMessage );
+			 this, [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
+			 m_featureManager->handleFeatureMessage( *this, featureMessage, computerControlInterface );
+	} );
 
 	VeyonCore::localComputerControlInterface().start( QSize(), m_builtinFeatures );
 }
@@ -115,18 +117,18 @@ void MasterCore::runFeature( const Feature& feature, QWidget* parent )
 		{
 			const Feature& monitoringModeFeature = m_builtinFeatures->monitoringMode().feature();
 
-			m_featureManager->startMasterFeature( monitoringModeFeature, computerControlInterfaces, parent );
+			m_featureManager->startFeature( *this, monitoringModeFeature, computerControlInterfaces, parent );
 			m_currentMode = monitoringModeFeature.uid();
 		}
 		else
 		{
-			m_featureManager->startMasterFeature( feature, computerControlInterfaces, parent );
+			m_featureManager->startFeature( *this, feature, computerControlInterfaces, parent );
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		m_featureManager->startMasterFeature( feature, computerControlInterfaces, parent );
+		m_featureManager->startFeature( *this, feature, computerControlInterfaces, parent );
 	}
 }
 
@@ -155,13 +157,13 @@ void MasterCore::enforceDesignatedMode( const QModelIndex& index )
 		{
 			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != designatedModeFeature )
 			{
-				featureManager().stopMasterFeature( currentFeature, { controlInterface }, nullptr );
+				featureManager().stopFeature( *this, currentFeature, { controlInterface }, nullptr );
 			}
 		}
 
 		if( designatedModeFeature != m_builtinFeatures->monitoringMode().feature() )
 		{
-			featureManager().startMasterFeature( designatedModeFeature, { controlInterface }, nullptr );
+			featureManager().startFeature( *this, designatedModeFeature, { controlInterface }, nullptr );
 		}
 	}
 }
@@ -175,7 +177,7 @@ void MasterCore::stopAllModeFeatures( const ComputerControlInterfaceList& comput
 	{
 		if( feature.testFlag( Feature::Mode ) )
 		{
-			m_featureManager->stopMasterFeature( feature, computerControlInterfaces, parent );
+			m_featureManager->stopFeature( *this, feature, computerControlInterfaces, parent );
 		}
 	}
 }

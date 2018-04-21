@@ -38,9 +38,9 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 
 
-bool MonitoringMode::startMasterFeature( const Feature& feature,
-										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 QWidget* parent )
+bool MonitoringMode::startFeature( VeyonMasterInterface& master, const Feature& feature,
+								   const ComputerControlInterfaceList& computerControlInterfaces,
+								   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -51,9 +51,9 @@ bool MonitoringMode::startMasterFeature( const Feature& feature,
 
 
 
-bool MonitoringMode::stopMasterFeature( const Feature& feature,
-										const ComputerControlInterfaceList& computerControlInterfaces,
-										QWidget* parent )
+bool MonitoringMode::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+								  const ComputerControlInterfaceList& computerControlInterfaces,
+								  QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -64,8 +64,8 @@ bool MonitoringMode::stopMasterFeature( const Feature& feature,
 
 
 
-bool MonitoringMode::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface::Pointer computerControlInterface )
+bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+										   ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -75,8 +75,8 @@ bool MonitoringMode::handleMasterFeatureMessage( const FeatureMessage& message,
 
 
 
-bool MonitoringMode::handleServiceFeatureMessage( const FeatureMessage& message,
-												  FeatureWorkerManager& featureWorkerManager )
+bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+										   FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(featureWorkerManager);
@@ -86,7 +86,7 @@ bool MonitoringMode::handleServiceFeatureMessage( const FeatureMessage& message,
 
 
 
-bool MonitoringMode::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool MonitoringMode::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

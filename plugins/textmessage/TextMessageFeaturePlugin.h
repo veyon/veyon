@@ -69,21 +69,21 @@ public:
 
 	const FeatureList& featureList() const override;
 
-	bool startMasterFeature( const Feature& feature,
-							 const ComputerControlInterfaceList& computerControlInterfaces,
-							 QWidget* parent ) override;
+	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
+					   const ComputerControlInterfaceList& computerControlInterfaces,
+					   QWidget* parent ) override;
 
-	bool stopMasterFeature( const Feature& feature,
-							const ComputerControlInterfaceList& computerControlInterfaces,
-							QWidget* parent ) override;
+	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces,
+					  QWidget* parent ) override;
 
-	bool handleMasterFeatureMessage( const FeatureMessage& message,
-									 ComputerControlInterface::Pointer computerControlInterface ) override;
+	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
-	bool handleServiceFeatureMessage( const FeatureMessage& message,
-									  FeatureWorkerManager& featureWorkerManager ) override;
+	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+							   FeatureWorkerManager& featureWorkerManager ) override;
 
-	bool handleWorkerFeatureMessage( const FeatureMessage& message ) override;
+	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
 	enum Commands {

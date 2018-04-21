@@ -78,9 +78,9 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 
-bool SystemTrayIcon::startMasterFeature( const Feature& feature,
-										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 QWidget* parent )
+bool SystemTrayIcon::startFeature( VeyonMasterInterface& master, const Feature& feature,
+								   const ComputerControlInterfaceList& computerControlInterfaces,
+								   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -91,9 +91,9 @@ bool SystemTrayIcon::startMasterFeature( const Feature& feature,
 
 
 
-bool SystemTrayIcon::stopMasterFeature( const Feature& feature,
-										const ComputerControlInterfaceList& computerControlInterfaces,
-										QWidget* parent )
+bool SystemTrayIcon::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+								  const ComputerControlInterfaceList& computerControlInterfaces,
+								  QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -104,8 +104,8 @@ bool SystemTrayIcon::stopMasterFeature( const Feature& feature,
 
 
 
-bool SystemTrayIcon::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface::Pointer computerControlInterface )
+bool SystemTrayIcon::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+										   ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -115,8 +115,8 @@ bool SystemTrayIcon::handleMasterFeatureMessage( const FeatureMessage& message,
 
 
 
-bool SystemTrayIcon::handleServiceFeatureMessage( const FeatureMessage& message,
-												  FeatureWorkerManager& featureWorkerManager )
+bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+										   FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_systemTrayIconFeature.uid() == message.featureUid() )
 	{
@@ -136,7 +136,7 @@ bool SystemTrayIcon::handleServiceFeatureMessage( const FeatureMessage& message,
 
 
 
-bool SystemTrayIcon::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( message.featureUid() != m_systemTrayIconFeature.uid() )
 	{

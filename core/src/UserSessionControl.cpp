@@ -73,9 +73,9 @@ bool UserSessionControl::getUserSessionInfo( const ComputerControlInterfaceList&
 
 
 
-bool UserSessionControl::startMasterFeature( const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+bool UserSessionControl::startFeature( VeyonMasterInterface& master, const Feature& feature,
+									   const ComputerControlInterfaceList& computerControlInterfaces,
+									   QWidget* parent )
 {
 	if( confirmFeatureExecution( feature, parent ) == false )
 	{
@@ -93,9 +93,9 @@ bool UserSessionControl::startMasterFeature( const Feature& feature,
 
 
 
-bool UserSessionControl::stopMasterFeature( const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces,
-											QWidget* parent )
+bool UserSessionControl::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+									  const ComputerControlInterfaceList& computerControlInterfaces,
+									  QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -106,8 +106,8 @@ bool UserSessionControl::stopMasterFeature( const Feature& feature,
 
 
 
-bool UserSessionControl::handleMasterFeatureMessage( const FeatureMessage& message,
-													 ComputerControlInterface::Pointer computerControlInterface )
+bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+											   ComputerControlInterface::Pointer computerControlInterface )
 {
 	if( message.featureUid() == m_userSessionInfoFeature.uid() )
 	{
@@ -121,8 +121,8 @@ bool UserSessionControl::handleMasterFeatureMessage( const FeatureMessage& messa
 
 
 
-bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& message,
-													  FeatureWorkerManager& featureWorkerManager )
+bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+											   FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(featureWorkerManager);
 
@@ -158,7 +158,7 @@ bool UserSessionControl::handleServiceFeatureMessage( const FeatureMessage& mess
 
 
 
-bool UserSessionControl::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool UserSessionControl::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

@@ -30,6 +30,7 @@
 #include "Feature.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
+#include "VeyonMasterInterface.h"
 
 class QModelIndex;
 
@@ -39,7 +40,7 @@ class ComputerManager;
 class FeatureManager;
 class UserConfig;
 
-class MasterCore : public QObject
+class MasterCore : public QObject, public VeyonMasterInterface
 {
 	Q_OBJECT
 public:

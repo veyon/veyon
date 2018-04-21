@@ -163,9 +163,9 @@ void InternetAccessControlPlugin::initBackend()
 
 
 
-bool InternetAccessControlPlugin::startMasterFeature( const Feature& feature,
-													  const ComputerControlInterfaceList& computerControlInterfaces,
-													  QWidget* parent )
+bool InternetAccessControlPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+												const ComputerControlInterfaceList& computerControlInterfaces,
+												QWidget* parent )
 {
 	if( m_features.contains( feature ) == false )
 	{
@@ -179,9 +179,9 @@ bool InternetAccessControlPlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool InternetAccessControlPlugin::stopMasterFeature( const Feature& feature,
-													 const ComputerControlInterfaceList& computerControlInterfaces,
-													 QWidget* parent )
+bool InternetAccessControlPlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+											   const ComputerControlInterfaceList& computerControlInterfaces,
+											   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -192,8 +192,8 @@ bool InternetAccessControlPlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool InternetAccessControlPlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-															  ComputerControlInterface::Pointer computerControlInterface )
+bool InternetAccessControlPlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+														ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -203,8 +203,8 @@ bool InternetAccessControlPlugin::handleMasterFeatureMessage( const FeatureMessa
 
 
 
-bool InternetAccessControlPlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-															   FeatureWorkerManager& featureWorkerManager )
+bool InternetAccessControlPlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+														FeatureWorkerManager& featureWorkerManager )
 {
 	if( message.featureUid() == m_blockInternetFeature.uid() )
 	{
@@ -222,7 +222,7 @@ bool InternetAccessControlPlugin::handleServiceFeatureMessage( const FeatureMess
 
 
 
-bool InternetAccessControlPlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool InternetAccessControlPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

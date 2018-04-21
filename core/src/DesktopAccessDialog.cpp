@@ -81,9 +81,9 @@ void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 
 
 
-bool DesktopAccessDialog::startMasterFeature( const Feature& feature,
-											  const ComputerControlInterfaceList& computerControlInterfaces,
-											  QWidget* parent )
+bool DesktopAccessDialog::startFeature( VeyonMasterInterface& master, const Feature& feature,
+										const ComputerControlInterfaceList& computerControlInterfaces,
+										QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -94,8 +94,8 @@ bool DesktopAccessDialog::startMasterFeature( const Feature& feature,
 
 
 
-bool DesktopAccessDialog::handleMasterFeatureMessage( const FeatureMessage& message,
-													  ComputerControlInterface::Pointer computerControlInterface )
+bool DesktopAccessDialog::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+												ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -105,9 +105,9 @@ bool DesktopAccessDialog::handleMasterFeatureMessage( const FeatureMessage& mess
 
 
 
-bool DesktopAccessDialog::stopMasterFeature( const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+bool DesktopAccessDialog::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+									   const ComputerControlInterfaceList& computerControlInterfaces,
+									   QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -118,8 +118,8 @@ bool DesktopAccessDialog::stopMasterFeature( const Feature& feature,
 
 
 
-bool DesktopAccessDialog::handleServiceFeatureMessage( const FeatureMessage& message,
-													   FeatureWorkerManager& featureWorkerManager )
+bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+												FeatureWorkerManager& featureWorkerManager )
 {
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 			message.command() == ReportDesktopAccessChoice )
@@ -140,7 +140,7 @@ bool DesktopAccessDialog::handleServiceFeatureMessage( const FeatureMessage& mes
 
 
 
-bool DesktopAccessDialog::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( message.featureUid() != m_desktopAccessDialogFeature.uid() ||
 			message.command() != RequestDesktopAccess )

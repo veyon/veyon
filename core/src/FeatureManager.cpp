@@ -117,15 +117,16 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 
 
 
-void FeatureManager::startMasterFeature( const Feature& feature,
-										 const ComputerControlInterfaceList& computerControlInterfaces,
-										 QWidget* parent )
+void FeatureManager::startFeature( VeyonMasterInterface& master,
+								   const Feature& feature,
+								   const ComputerControlInterfaceList& computerControlInterfaces,
+								   QWidget* parent )
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		featureInterface->startMasterFeature( feature, computerControlInterfaces, parent );
+		featureInterface->startFeature( master, feature, computerControlInterfaces, parent );
 	}
 
 	if( feature.testFlag( Feature::Mode ) )
@@ -139,15 +140,16 @@ void FeatureManager::startMasterFeature( const Feature& feature,
 
 
 
-void FeatureManager::stopMasterFeature( const Feature& feature,
-										const ComputerControlInterfaceList& computerControlInterfaces,
-										QWidget* parent )
+void FeatureManager::stopFeature( VeyonMasterInterface& master,
+								  const Feature& feature,
+								  const ComputerControlInterfaceList& computerControlInterfaces,
+								  QWidget* parent )
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		featureInterface->stopMasterFeature( feature, computerControlInterfaces, parent );
+		featureInterface->stopFeature( master, feature, computerControlInterfaces, parent );
 	}
 
 	for( auto controlInterface : computerControlInterfaces )
@@ -161,8 +163,8 @@ void FeatureManager::stopMasterFeature( const Feature& feature,
 
 
 
-bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
-												 ComputerControlInterface::Pointer computerControlInterface )
+bool FeatureManager::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+										   ComputerControlInterface::Pointer computerControlInterface )
 {
 	qDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
@@ -173,7 +175,7 @@ bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleMasterFeatureMessage( message, computerControlInterface ) )
+		if( featureInterface->handleFeatureMessage( master, message, computerControlInterface ) )
 		{
 			handled = true;
 		}
@@ -184,8 +186,8 @@ bool FeatureManager::handleMasterFeatureMessage( const FeatureMessage& message,
 
 
 
-bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
-												  FeatureWorkerManager& featureWorkerManager )
+bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+										   FeatureWorkerManager& featureWorkerManager )
 {
 	qDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
@@ -203,7 +205,7 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleServiceFeatureMessage( message, featureWorkerManager ) )
+		if( featureInterface->handleFeatureMessage( server, message, featureWorkerManager ) )
 		{
 			handled = true;
 		}
@@ -214,7 +216,7 @@ bool FeatureManager::handleServiceFeatureMessage( const FeatureMessage& message,
 
 
 
-bool FeatureManager::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	qDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
@@ -225,7 +227,7 @@ bool FeatureManager::handleWorkerFeatureMessage( const FeatureMessage& message )
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleWorkerFeatureMessage( message ) )
+		if( featureInterface->handleFeatureMessage( worker, message ) )
 		{
 			handled = true;
 		}

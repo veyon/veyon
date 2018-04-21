@@ -30,6 +30,10 @@
 #include "Feature.h"
 #include "PluginInterface.h"
 
+class VeyonMasterInterface;
+class VeyonServerInterface;
+class VeyonWorkerInterface;
+
 class FeatureWorkerManager;
 
 // clazy:excludeall=copyable-polymorphic
@@ -48,9 +52,10 @@ public:
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 * \param parent a pointer to the main window instance
 	 */
-	virtual bool startMasterFeature( const Feature& feature,
-									 const ComputerControlInterfaceList& computerControlInterfaces,
-									 QWidget* parent ) = 0;
+	virtual bool startFeature( VeyonMasterInterface& master,
+							   const Feature& feature,
+							   const ComputerControlInterfaceList& computerControlInterfaces,
+							   QWidget* parent ) = 0;
 
 	/*!
 	 * \brief Stops a feature on master side for given computer control interfaces
@@ -58,31 +63,35 @@ public:
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 * \param parent a pointer to the main window instance
 	 */
-	virtual bool stopMasterFeature( const Feature& feature,
-									const ComputerControlInterfaceList& computerControlInterfaces,
-									QWidget* parent ) = 0;
+	virtual bool stopFeature( VeyonMasterInterface& master,
+							  const Feature& feature,
+							  const ComputerControlInterfaceList& computerControlInterfaces,
+							  QWidget* parent ) = 0;
 
 	/*!
 	 * \brief Handles a received feature message inside master
 	 * \param message the message which has been received and needs to be handled
 	 * \param computerControlInterfaces the interface over which the message has been received
 	 */
-	virtual bool handleMasterFeatureMessage( const FeatureMessage& message,
-											 ComputerControlInterface::Pointer computerControlInterface ) = 0;
+	virtual bool handleFeatureMessage( VeyonMasterInterface& master,
+									   const FeatureMessage& message,
+									   ComputerControlInterface::Pointer computerControlInterface ) = 0;
 
 	/*!
-	 * \brief Handles a received feature message inside service
+	 * \brief Handles a received feature message inside server
 	 * \param message the message which has been received and needs to be handled
 	 * \param featureWorkerManager a reference to a FeatureWorkerManager which can be used for starting/stopping workers and communicating with them
 	 */
-	virtual bool handleServiceFeatureMessage( const FeatureMessage& message,
-											  FeatureWorkerManager& featureWorkerManager ) = 0;
+	virtual bool handleFeatureMessage( VeyonServerInterface& server,
+									   const FeatureMessage& message,
+									   FeatureWorkerManager& featureWorkerManager ) = 0;
 
 	/*!
 	 * \brief Handles a received feature message inside worker
 	 * \param message the message which has been received and needs to be handled
 	 */
-	virtual bool handleWorkerFeatureMessage( const FeatureMessage& message ) = 0;
+	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker,
+									   const FeatureMessage& message ) = 0;
 
 protected:
 	bool sendFeatureMessage( const FeatureMessage& message,

@@ -58,9 +58,9 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 
 
 
-bool DesktopServicesFeaturePlugin::startMasterFeature( const Feature& feature,
-													   const ComputerControlInterfaceList& computerControlInterfaces,
-													   QWidget* parent )
+bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+												 const ComputerControlInterfaceList& computerControlInterfaces,
+												 QWidget* parent )
 {
 	if( m_features.contains( feature ) == false )
 	{
@@ -113,9 +113,9 @@ bool DesktopServicesFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool DesktopServicesFeaturePlugin::stopMasterFeature( const Feature& feature,
-													  const ComputerControlInterfaceList& computerControlInterfaces,
-													  QWidget* parent )
+bool DesktopServicesFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+												const ComputerControlInterfaceList& computerControlInterfaces,
+												QWidget* parent )
 {
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
@@ -126,8 +126,8 @@ bool DesktopServicesFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool DesktopServicesFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-															   ComputerControlInterface::Pointer computerControlInterface )
+bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+														 ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -137,8 +137,8 @@ bool DesktopServicesFeaturePlugin::handleMasterFeatureMessage( const FeatureMess
 
 
 
-bool DesktopServicesFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-																FeatureWorkerManager& featureWorkerManager )
+bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+														 FeatureWorkerManager& featureWorkerManager )
 {
 	Q_UNUSED(featureWorkerManager);
 
@@ -164,7 +164,7 @@ bool DesktopServicesFeaturePlugin::handleServiceFeatureMessage( const FeatureMes
 
 
 
-bool DesktopServicesFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(message);
 

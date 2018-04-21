@@ -39,7 +39,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	m_failedAuthHosts(),
 	m_builtinFeatures(),
 	m_featureManager(),
-	m_featureWorkerManager( m_featureManager ),
+	m_featureWorkerManager( *this, m_featureManager ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
 	m_vncServer(),
@@ -111,7 +111,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive();
 
-	return m_featureManager.handleServiceFeatureMessage( featureMessage, m_featureWorkerManager );
+	return m_featureManager.handleFeatureMessage( *this, featureMessage, m_featureWorkerManager );
 }
 
 

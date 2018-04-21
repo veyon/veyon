@@ -74,9 +74,9 @@ DemoFeaturePlugin::~DemoFeaturePlugin()
 
 
 
-bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces,
-											QWidget* parent )
+bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
+									  const ComputerControlInterfaceList& computerControlInterfaces,
+									  QWidget* parent )
 {
 	Q_UNUSED(parent);
 
@@ -103,9 +103,9 @@ bool DemoFeaturePlugin::startMasterFeature( const Feature& feature,
 
 
 
-bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
-										   const ComputerControlInterfaceList& computerControlInterfaces,
-										   QWidget* parent )
+bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+									 const ComputerControlInterfaceList& computerControlInterfaces,
+									 QWidget* parent )
 {
 	Q_UNUSED(parent);
 
@@ -136,8 +136,8 @@ bool DemoFeaturePlugin::stopMasterFeature( const Feature& feature,
 
 
 
-bool DemoFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& message,
-													ComputerControlInterface::Pointer computerControlInterface )
+bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+											  ComputerControlInterface::Pointer computerControlInterface )
 {
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
@@ -147,8 +147,8 @@ bool DemoFeaturePlugin::handleMasterFeatureMessage( const FeatureMessage& messag
 
 
 
-bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& message,
-													 FeatureWorkerManager& featureWorkerManager )
+bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
+											  FeatureWorkerManager& featureWorkerManager )
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
@@ -195,7 +195,7 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 		QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
 		if( socket == nullptr )
 		{
-			qCritical( "DemoFeaturePlugin::handleServiceFeatureMessage(): socket is NULL!" );
+			qCritical( "DemoFeaturePlugin::handleFeatureMessage( VeyonServer& server,): socket is NULL!" );
 			return false;
 		}
 
@@ -221,7 +221,7 @@ bool DemoFeaturePlugin::handleServiceFeatureMessage( const FeatureMessage& messa
 
 
 
-bool DemoFeaturePlugin::handleWorkerFeatureMessage( const FeatureMessage& message )
+bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
