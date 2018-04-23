@@ -193,6 +193,20 @@ QString LinuxServiceCore::getSessionDisplay( const QString& session )
 
 
 
+QString LinuxServiceCore::getSessionId( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Id") ).toString();
+}
+
+
+
+QString LinuxServiceCore::getSessionSeat( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Seat") ).toString();
+}
+
+
+
 QProcessEnvironment LinuxServiceCore::getSessionEnvironment( int sessionLeaderPid )
 {
 	QProcessEnvironment sessionEnv;
