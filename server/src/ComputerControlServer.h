@@ -67,6 +67,11 @@ public:
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
+	FeatureWorkerManager& featureWorkerManager() override
+	{
+		return m_featureWorkerManager;
+	}
+
 
 private:
 	void showAuthenticationErrorMessage( const QString& host, const QString& user );

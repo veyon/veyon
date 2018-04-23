@@ -30,6 +30,7 @@
 #include "DesktopAccessDialog.h"
 #include "FeatureWorkerManager.h"
 #include "PlatformCoreFunctions.h"
+#include "VeyonServerInterface.h"
 
 
 DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
@@ -117,17 +118,14 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonMasterInterface& master, co
 
 
 
-bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-												FeatureWorkerManager& featureWorkerManager )
+bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 			message.command() == ReportDesktopAccessChoice )
 	{
 		m_choice = static_cast<Choice>( message.argument( ChoiceArgument ).toInt() );
 
-		featureWorkerManager.stopWorker( m_desktopAccessDialogFeature );
+		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature );
 
 		m_abortTimer->stop();
 

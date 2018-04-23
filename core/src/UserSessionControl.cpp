@@ -124,11 +124,9 @@ bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, con
 
 
 
-bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-											   FeatureWorkerManager& featureWorkerManager )
+bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	Q_UNUSED(server);
-	Q_UNUSED(featureWorkerManager);
 
 	if( m_userSessionInfoFeature.uid() == message.featureUid() )
 	{

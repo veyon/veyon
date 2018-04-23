@@ -29,6 +29,7 @@
 #include "FeatureWorkerManager.h"
 #include "ComputerControlInterface.h"
 #include "VeyonMasterInterface.h"
+#include "VeyonServerInterface.h"
 
 
 TextMessageFeaturePlugin::TextMessageFeaturePlugin( QObject* parent ) :
@@ -103,19 +104,16 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& maste
 
 
 
-bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-													 FeatureWorkerManager& featureWorkerManager )
+bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-
 	if( m_textMessageFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
-		if( featureWorkerManager.isWorkerRunning( m_textMessageFeature ) == false )
+		if( server.featureWorkerManager().isWorkerRunning( m_textMessageFeature ) == false )
 		{
-			featureWorkerManager.startWorker( m_textMessageFeature );
+			server.featureWorkerManager().startWorker( m_textMessageFeature );
 		}
-		featureWorkerManager.sendMessage( message );
+		server.featureWorkerManager().sendMessage( message );
 
 		return true;
 	}

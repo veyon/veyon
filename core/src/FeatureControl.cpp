@@ -26,6 +26,7 @@
 #include "FeatureWorkerManager.h"
 #include "VeyonCore.h"
 #include "VeyonRfbExt.h"
+#include "VeyonServerInterface.h"
 
 
 FeatureControl::FeatureControl( QObject* parent ) :
@@ -95,16 +96,12 @@ bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 
 
-bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-										   FeatureWorkerManager& featureWorkerManager )
+bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-	Q_UNUSED(featureWorkerManager);
-
 	if( m_featureControlFeature.uid() == message.featureUid() )
 	{
 		FeatureMessage reply( message.featureUid(), message.command() );
-		reply.addArgument( ActiveFeatureList, featureWorkerManager.runningWorkers() );
+		reply.addArgument( ActiveFeatureList, server.featureWorkerManager().runningWorkers() );
 
 		char rfbMessageType = rfbVeyonFeatureMessage;
 		message.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );

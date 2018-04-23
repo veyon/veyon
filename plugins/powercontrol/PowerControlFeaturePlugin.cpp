@@ -122,8 +122,7 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& mast
 
 
 
-bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-													  FeatureWorkerManager& featureWorkerManager )
+bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	Q_UNUSED(server);
 

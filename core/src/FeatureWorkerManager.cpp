@@ -220,7 +220,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		if( message.command() >= 0 )
 		{
-			m_featureManager.handleFeatureMessage( m_server, message, *this );
+			m_featureManager.handleFeatureMessage( m_server, message );
 		}
 
 	}

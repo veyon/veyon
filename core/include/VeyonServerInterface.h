@@ -25,9 +25,12 @@
 #ifndef VEYON_SERVER_INTERFACE_H
 #define VEYON_SERVER_INTERFACE_H
 
+class FeatureWorkerManager;
+
 class VeyonServerInterface
 {
 public:
+	virtual FeatureWorkerManager& featureWorkerManager() = 0;
 
 };
 

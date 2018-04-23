@@ -81,8 +81,7 @@ public:
 	 * \param featureWorkerManager a reference to a FeatureWorkerManager which can be used for starting/stopping workers and communicating with them
 	 */
 	virtual bool handleFeatureMessage( VeyonServerInterface& server,
-									   const FeatureMessage& message,
-									   FeatureWorkerManager& featureWorkerManager ) = 0;
+									   const FeatureMessage& message ) = 0;
 
 	/*!
 	 * \brief Handles a received feature message inside worker

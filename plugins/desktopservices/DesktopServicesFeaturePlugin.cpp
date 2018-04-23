@@ -137,11 +137,9 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& m
 
 
 
-bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-														 FeatureWorkerManager& featureWorkerManager )
+bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	Q_UNUSED(server);
-	Q_UNUSED(featureWorkerManager);
 
 	if( message.featureUid() == m_runProgramFeature.uid() )
 	{

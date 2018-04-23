@@ -99,12 +99,10 @@ bool ScreenshotFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master
 
 
 
-bool ScreenshotFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-													FeatureWorkerManager& featureWorkerManager )
+bool ScreenshotFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	Q_UNUSED(server);
 	Q_UNUSED(message);
-	Q_UNUSED(featureWorkerManager);
 
 	return false;
 }

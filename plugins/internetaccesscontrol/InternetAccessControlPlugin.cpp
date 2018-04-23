@@ -204,8 +204,7 @@ bool InternetAccessControlPlugin::handleFeatureMessage( VeyonMasterInterface& ma
 
 
 
-bool InternetAccessControlPlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-														FeatureWorkerManager& featureWorkerManager )
+bool InternetAccessControlPlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	Q_UNUSED(server);
 

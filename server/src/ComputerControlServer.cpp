@@ -111,7 +111,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 	featureMessage.receive();
 
-	return m_featureManager.handleFeatureMessage( *this, featureMessage, m_featureWorkerManager );
+	return m_featureManager.handleFeatureMessage( *this, featureMessage );
 }
 
 

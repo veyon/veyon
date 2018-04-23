@@ -27,6 +27,7 @@
 #include "ScreenLockFeaturePlugin.h"
 #include "FeatureWorkerManager.h"
 #include "LockWidget.h"
+#include "VeyonServerInterface.h"
 
 
 ScreenLockFeaturePlugin::ScreenLockFeaturePlugin( QObject* parent ) :
@@ -98,21 +99,18 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master
 
 
 
-bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-													FeatureWorkerManager& featureWorkerManager )
+bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
-		if( featureWorkerManager.isWorkerRunning( m_screenLockFeature ) == false &&
+		if( server.featureWorkerManager().isWorkerRunning( m_screenLockFeature ) == false &&
 				message.command() != StopLockCommand )
 		{
-			featureWorkerManager.startWorker( m_screenLockFeature );
+			server.featureWorkerManager().startWorker( m_screenLockFeature );
 		}
 
 		// forward message to worker
-		featureWorkerManager.sendMessage( message );
+		server.featureWorkerManager().sendMessage( message );
 
 		return true;
 	}

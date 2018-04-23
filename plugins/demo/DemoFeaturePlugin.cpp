@@ -33,6 +33,7 @@
 #include "DemoServer.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonConfiguration.h"
+#include "VeyonServerInterface.h"
 #include "Logger.h"
 
 
@@ -146,22 +147,19 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, cons
 
 
 
-bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-											  FeatureWorkerManager& featureWorkerManager )
+bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
-		if( featureWorkerManager.isWorkerRunning( m_demoServerFeature ) == false )
+		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature ) == false )
 		{
-			featureWorkerManager.startWorker( m_demoServerFeature );
+			server.featureWorkerManager().startWorker( m_demoServerFeature );
 		}
 
 		if( message.command() == StartDemoServer )
 		{
 			// add VNC server password to message
-			featureWorkerManager.
+			server.featureWorkerManager().
 					sendMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
 								 addArgument( VncServerPort, VeyonCore::config().vncServerPort() ).
 								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword() ).
@@ -170,7 +168,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 		else
 		{
 			// forward message to worker
-			featureWorkerManager.sendMessage( message );
+			server.featureWorkerManager().sendMessage( message );
 		}
 
 		return true;
@@ -181,16 +179,16 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 		// if a demo server is started, it's likely that the demo accidentally was
 		// started on master computer as well therefore we deny starting a demo on
 		// hosts on which a demo server is running - exception: debug mode
-		if( featureWorkerManager.isWorkerRunning( m_demoServerFeature ) &&
+		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature ) &&
 				VeyonCore::config().logLevel() < Logger::LogLevelDebug )
 		{
 			return false;
 		}
 
-		if( featureWorkerManager.isWorkerRunning( message.featureUid() ) == false &&
+		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
 				message.command() != StopDemoClient )
 		{
-			featureWorkerManager.startWorker( message.featureUid() );
+			server.featureWorkerManager().startWorker( message.featureUid() );
 		}
 
 		QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
@@ -206,12 +204,12 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 			FeatureMessage startDemoClientMessage( message.featureUid(), message.command() );
 			startDemoClientMessage.addArgument( DemoAccessToken, message.argument( DemoAccessToken ) );
 			startDemoClientMessage.addArgument( DemoServerHost, socket->peerAddress().toString() );
-			featureWorkerManager.sendMessage( startDemoClientMessage );
+			server.featureWorkerManager().sendMessage( startDemoClientMessage );
 		}
 		else
 		{
 			// forward message to worker
-			featureWorkerManager.sendMessage( message );
+			server.featureWorkerManager().sendMessage( message );
 		}
 
 		return true;

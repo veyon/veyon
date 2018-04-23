@@ -184,8 +184,7 @@ bool FeatureManager::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 
 
-bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-										   FeatureWorkerManager& featureWorkerManager )
+bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	qDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
@@ -203,7 +202,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server, const F
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		if( featureInterface->handleFeatureMessage( server, message, featureWorkerManager ) )
+		if( featureInterface->handleFeatureMessage( server, message ) )
 		{
 			handled = true;
 		}

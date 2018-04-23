@@ -29,6 +29,7 @@
 #include "FeatureWorkerManager.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
+#include "VeyonServerInterface.h"
 
 
 SystemTrayIcon::SystemTrayIcon( QObject* parent ) :
@@ -114,20 +115,17 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 
 
-bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-										   FeatureWorkerManager& featureWorkerManager )
+bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-
 	if( m_systemTrayIconFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
-		if( featureWorkerManager.isWorkerRunning( m_systemTrayIconFeature ) == false )
+		if( server.featureWorkerManager().isWorkerRunning( m_systemTrayIconFeature ) == false )
 		{
-			featureWorkerManager.startWorker( m_systemTrayIconFeature );
+			server.featureWorkerManager().startWorker( m_systemTrayIconFeature );
 		}
 
-		featureWorkerManager.sendMessage( message );
+		server.featureWorkerManager().sendMessage( message );
 
 		return true;
 	}

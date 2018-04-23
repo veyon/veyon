@@ -146,12 +146,10 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& mast
 
 
 
-bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
-													  FeatureWorkerManager& featureWorkerManager )
+bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	Q_UNUSED(server);
 	Q_UNUSED(message);
-	Q_UNUSED(featureWorkerManager);
 
 	return false;
 }
