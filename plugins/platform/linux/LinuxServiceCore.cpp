@@ -86,7 +86,9 @@ void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectP
 
 	if( sessionEnvironment.isEmpty() == false )
 	{
-		qInfo() << "Starting server for new session" << session;
+		qInfo() << "Starting server for new session" << session
+				<< "with ID" << getSessionId( session )
+				<< "at seat" << getSessionSeat( session );
 
 		auto process = new QProcess( this );
 		process->setProcessEnvironment( sessionEnvironment );
