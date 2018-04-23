@@ -464,6 +464,20 @@ QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString
 
 
 
+QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
+{
+	QRegExp rx( QStringLiteral("^(.*)_(.*)_key.pem$") );
+
+	if( rx.indexIn( QFileInfo( keyFile ).fileName() ) == 0 )
+	{
+		return rx.cap( 1 );
+	}
+
+	return QString();
+}
+
+
+
 bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
 {
 	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false )
