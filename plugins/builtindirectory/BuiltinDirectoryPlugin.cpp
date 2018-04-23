@@ -118,8 +118,22 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 		return NoResult;
 	}
+	else if( command == QStringLiteral("export") )
+	{
+		CommandLineIO::print( tr("\nUSAGE\n\n%1 export <FILE> [room <ROOM>] [format <FORMAT-STRING-WITH-VARIABLES>] "
+								 "Valid variables: %type% %name% %host% %mac% %room%\n\n"
+								 "Examples:\n\n"
+								 "* Export all objects to a CSV file:\n\n"
+								 "    %1 export objects.csv format \"%type%;%name%;%host%;%mac%\"\n\n"
+								 "* Export all computers in a room to a CSV file:\n\n"
+								 "    %1 export computers.csv room \"Room 01\" format \"%name%;%host%;%mac%\"\n\n").
+							  arg( commandLineModuleName() ) );
 
-	return InvalidArguments;
+		return NoResult;
+	}
+
+
+	return Unknown;
 }
 
 
@@ -337,9 +351,60 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( const QStringList& arguments )
 {
-	Q_UNUSED(arguments);
+	if( arguments.count() < 3 )
+	{
+		return NotEnoughArguments;
+	}
 
-	return Successful;
+	const auto outputFileName = arguments.first();
+	QFile outputFile( outputFileName );
+
+	if( outputFile.open( QFile::WriteOnly | QFile::Truncate | QFile::Text ) == false )
+	{
+		CommandLineIO::error( tr( "Can't open file \"%1\" for writing!" ).arg( outputFileName ) );
+		return Failed;
+	}
+
+	QString room;
+	QString formatString;
+
+	for( int i = 1; i < arguments.count(); i += 2 )
+	{
+		if( i+1 >= arguments.count() )
+		{
+			return NotEnoughArguments;
+		}
+
+		const auto key = arguments[i];
+		const auto value = arguments[i+1];
+		if( key == QStringLiteral("room") )
+		{
+			room = value;
+		}
+		else if( key == QStringLiteral("format") )
+		{
+			formatString = value;
+		}
+		else
+		{
+			CommandLineIO::error( tr( "Unknown argument \"%1\"." ).arg( key ) );
+			return InvalidArguments;
+		}
+	}
+
+	if( formatString.isEmpty() == false )
+	{
+		if( exportFile( outputFile, formatString, room ) )
+		{
+			return Successful;
+		}
+
+		return Failed;
+	}
+
+	CommandLineIO::error( tr("No format string specified!") );
+
+	return InvalidArguments;
 }
 
 
@@ -480,6 +545,52 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 
 
 
+bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& formatString, const QString& room )
+{
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+
+	const auto networkObjects = objectManager.objects();
+
+	NetworkObject roomObject;
+	if( room.isEmpty() == false )
+	{
+		roomObject = objectManager.findByName( room );
+	}
+
+	QStringList lines;
+	lines.reserve( networkObjects.count() );
+
+	for( auto it = networkObjects.constBegin(), end = networkObjects.constEnd(); it != end; ++it )
+	{
+		const NetworkObject networkObject( it->toObject() );
+
+		QString currentRoom = room;
+
+		if( roomObject.isValid() )
+		{
+			if( networkObject.parentUid() != roomObject.uid() )
+			{
+				continue;
+			}
+		}
+		else
+		{
+			currentRoom = objectManager.findByUid( networkObject.parentUid() ).name();
+		}
+
+		lines.append( toFormattedString( networkObject, formatString, currentRoom ) );
+	}
+
+	// append empty string to generate final newline at end of file
+	lines += QString();
+
+	outputFile.write( lines.join( QStringLiteral("\r\n") ).toUtf8() );
+
+	return true;
+}
+
+
+
 NetworkObject BuiltinDirectoryPlugin::findNetworkObject( const QString& uidOrName ) const
 {
 	const ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
@@ -540,6 +651,20 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 	}
 
 	return NetworkObject::None;
+}
+
+
+
+QString BuiltinDirectoryPlugin::toFormattedString( const NetworkObject& networkObject,
+												   const QString& formatString,
+												   const QString& room )
+{
+	return QString( formatString ).
+			replace( QStringLiteral("%room%"), room ).
+			replace( QStringLiteral("%name%"), networkObject.name() ).
+			replace( QStringLiteral("%host%"), networkObject.hostAddress() ).
+			replace( QStringLiteral("%mac%"), networkObject.macAddress() ).
+			replace( QStringLiteral("%type%"), networkObjectTypeName( networkObject ) );
 }
 
 

@@ -127,9 +127,12 @@ private:
 	CommandLinePluginInterface::RunResult saveConfiguration();
 
 	bool importFile( QFile& inputFile, const QString& regExWithVariables, const QString& room );
+	bool exportFile( QFile& outputFile, const QString& formatString, const QString& room );
 
 	NetworkObject findNetworkObject( const QString& uidOrName ) const;
-	NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room );
+
+	static NetworkObject toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room );
+	static QString toFormattedString( const NetworkObject& networkObject, const QString& formatString, const QString& room );
 
 	static QStringList fileImportVariables();
 
