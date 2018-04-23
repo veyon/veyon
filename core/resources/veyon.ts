@@ -326,12 +326,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key. A private key allows users on the master computer to access client computers. It is important that only authorized users have read access to the private key file. The public key is used on client computers to authenticate incoming connection request.
-
-Technically the client sends a challenge (random data) for which the master has to create a cryptographic signature using the private key. The signature is sent back to the client which can verify the validity of the signature using the corresponding public key.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Key file directories</source>
         <translation type="unfinished"></translation>
     </message>
@@ -405,6 +399,33 @@ Technically the client sends a challenge (random data) for which the master has 
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -856,6 +877,37 @@ Examples:
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Export all objects to a CSV file:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export all computers in a room to a CSV file:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
