@@ -26,16 +26,51 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>An authentication key pair consist of two coupled cryptographic keys, a private and a public key. A private key allows users on the master computer to access client computers. It is important that only authorized users have read access to the private key file. The public key is used on client computers to authenticate incoming connection request.
-
-Technically the client sends a challenge (random data) for which the master has to create a cryptographic signature using the private key. The signature is sent back to the client which can verify the validity of the signature using the corresponding public key.</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::PlainText</enum>
+         <string>Please perform the following steps to set up key file authentication:</string>
         </property>
         <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>1) Create a key pair on the master computer.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>2) Set an access group whose members should be allowed to access other computers.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>3) Export the public key and import it on all client computers with the same name.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</string>
+        </property>
+        <property name="openExternalLinks">
          <bool>true</bool>
         </property>
        </widget>
@@ -128,6 +163,12 @@ Technically the client sends a challenge (random data) for which the master has 
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QTableView" name="keyTable">
+        <property name="toolTip">
+         <string>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</string>
+        </property>
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
         </property>
@@ -203,8 +244,6 @@ Technically the client sends a challenge (random data) for which the master has 
   </layout>
  </widget>
  <resources>
-  <include location="../../core/core.qrc"/>
-  <include location="../../core/core.qrc"/>
   <include location="../../core/core.qrc"/>
  </resources>
  <connections/>
