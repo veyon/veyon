@@ -119,14 +119,13 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 
 void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces,
-								   QWidget* parent )
+								   const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		featureInterface->startFeature( master, feature, computerControlInterfaces, parent );
+		featureInterface->startFeature( master, feature, computerControlInterfaces );
 	}
 
 	if( feature.testFlag( Feature::Mode ) )
@@ -142,14 +141,13 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 
 void FeatureManager::stopFeature( VeyonMasterInterface& master,
 								  const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces,
-								  QWidget* parent )
+								  const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
-		featureInterface->stopFeature( master, feature, computerControlInterfaces, parent );
+		featureInterface->stopFeature( master, feature, computerControlInterfaces );
 	}
 
 	for( auto controlInterface : computerControlInterfaces )

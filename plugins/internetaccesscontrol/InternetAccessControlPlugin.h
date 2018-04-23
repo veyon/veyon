@@ -96,12 +96,10 @@ public:
 	}
 
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces,
-					   QWidget* parent ) override;
+					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
 	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces,
-					  QWidget* parent ) override;
+					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 							   ComputerControlInterface::Pointer computerControlInterface ) override;

@@ -25,9 +25,12 @@
 #ifndef VEYON_MASTER_INTERFACE_H
 #define VEYON_MASTER_INTERFACE_H
 
+class QWidget;
+
 class VeyonMasterInterface
 {
 public:
+	virtual QWidget* mainWindow() = 0;
 
 };
 

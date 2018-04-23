@@ -30,7 +30,7 @@
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "ComputerMonitoringView.h"
-#include "MasterCore.h"
+#include "VeyonMaster.h"
 #include "FeatureManager.h"
 #include "VeyonConfiguration.h"
 #include "UserConfig.h"
@@ -40,7 +40,7 @@
 ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 	QWidget(parent),
 	ui(new Ui::ComputerMonitoringView),
-	m_masterCore( nullptr ),
+	m_master( nullptr ),
 	m_featureMenu( new QMenu( this ) ),
 	m_sortFilterProxyModel( this )
 {
@@ -61,10 +61,10 @@ ComputerMonitoringView::ComputerMonitoringView( QWidget *parent ) :
 
 ComputerMonitoringView::~ComputerMonitoringView()
 {
-	if( m_masterCore )
+	if( m_master )
 	{
-		m_masterCore->userConfig().setComputerPositions( ui->listView->savePositions() );
-		m_masterCore->userConfig().setUseCustomComputerPositions( ui->listView->flexible() );
+		m_master->userConfig().setComputerPositions( ui->listView->savePositions() );
+		m_master->userConfig().setUseCustomComputerPositions( ui->listView->flexible() );
 	}
 
 	delete ui;
@@ -72,21 +72,21 @@ ComputerMonitoringView::~ComputerMonitoringView()
 
 
 
-void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
+void ComputerMonitoringView::setVeyonMaster( VeyonMaster& masterCore )
 {
-	if( m_masterCore )
+	if( m_master )
 	{
 		return;
 	}
 
-	m_masterCore = &masterCore;
+	m_master = &masterCore;
 
 	auto palette = ui->listView->palette();
 	palette.setColor( QPalette::Base, VeyonCore::config().computerMonitoringBackgroundColor() );
 	ui->listView->setPalette( palette );
 
 	// attach computer list model to proxy model
-	m_sortFilterProxyModel.setSourceModel( &m_masterCore->computerControlListModel() );
+	m_sortFilterProxyModel.setSourceModel( &m_master->computerControlListModel() );
 	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );
 	m_sortFilterProxyModel.sort( 0 );
 
@@ -94,15 +94,15 @@ void ComputerMonitoringView::setMasterCore( MasterCore& masterCore )
 	ui->listView->setModel( &m_sortFilterProxyModel );
 
 	// load custom positions
-	ui->listView->loadPositions( m_masterCore->userConfig().computerPositions() );
-	ui->listView->setFlexible( m_masterCore->userConfig().useCustomComputerPositions() );
+	ui->listView->loadPositions( m_master->userConfig().computerPositions() );
+	ui->listView->setFlexible( m_master->userConfig().useCustomComputerPositions() );
 }
 
 
 
 ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInterfaces()
 {
-	const auto& computerControlListModel = m_masterCore->computerControlListModel();
+	const auto& computerControlListModel = m_master->computerControlListModel();
 	ComputerControlInterfaceList computerControlInterfaces;
 
 	const auto selectedIndices = ui->listView->selectionModel()->selectedIndexes();
@@ -128,7 +128,7 @@ void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
 
 void ComputerMonitoringView::runDoubleClickFeature( const QModelIndex& index )
 {
-	const Feature& feature = m_masterCore->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
+	const Feature& feature = m_master->featureManager().feature( VeyonCore::config().computerDoubleClickFeature() );
 
 	if( index.isValid() && feature.isValid() )
 	{
@@ -150,11 +150,11 @@ void ComputerMonitoringView::showContextMenu( QPoint pos )
 
 void ComputerMonitoringView::setComputerScreenSize( int size )
 {
-	if( m_masterCore )
+	if( m_master )
 	{
-		m_masterCore->userConfig().setMonitoringScreenSize( size );
+		m_master->userConfig().setMonitoringScreenSize( size );
 
-		m_masterCore->computerControlListModel().updateComputerScreenSize();
+		m_master->computerControlListModel().updateComputerScreenSize();
 
 		ui->listView->setIconSize( QSize( size, size * 9 / 16 ) );
 	}
@@ -192,7 +192,7 @@ void ComputerMonitoringView::autoAdjustComputerScreenSize()
 		setComputerScreenSize( size-20 );
 	}
 
-	emit computerScreenSizeAdjusted( m_masterCore->userConfig().monitoringScreenSize() );
+	emit computerScreenSizeAdjusted( m_master->userConfig().monitoringScreenSize() );
 }
 
 
@@ -213,7 +213,7 @@ void ComputerMonitoringView::alignComputers()
 
 void ComputerMonitoringView::runFeature( const Feature& feature )
 {
-	if( m_masterCore == nullptr )
+	if( m_master == nullptr )
 	{
 		return;
 	}
@@ -225,23 +225,23 @@ void ComputerMonitoringView::runFeature( const Feature& feature )
 			activeFeatures( computerControlInterfaces ).contains( feature.uid().toString() ) )
 	{
 		// then stop it
-		m_masterCore->featureManager().stopFeature( *m_masterCore, feature, computerControlInterfaces, topLevelWidget() );
+		m_master->featureManager().stopFeature( *m_master, feature, computerControlInterfaces );
 	}
 	else
 	{
 		// stop all other active mode feature
 		if( feature.testFlag( Feature::Mode ) )
 		{
-			for( const auto& currentFeature : m_masterCore->features() )
+			for( const auto& currentFeature : m_master->features() )
 			{
 				if( currentFeature.testFlag( Feature::Mode ) && currentFeature != feature )
 				{
-					m_masterCore->featureManager().stopFeature( *m_masterCore, currentFeature, computerControlInterfaces, topLevelWidget() );
+					m_master->featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
 				}
 			}
 		}
 
-		m_masterCore->featureManager().startFeature( *m_masterCore, feature, computerControlInterfaces, topLevelWidget() );
+		m_master->featureManager().startFeature( *m_master, feature, computerControlInterfaces );
 	}
 }
 
@@ -269,7 +269,7 @@ void ComputerMonitoringView::wheelEvent( QWheelEvent* event )
 											ui->listView->iconSize().width() + event->angleDelta().y() / 8,
 											MaximumComputerScreenSize ) );
 
-		emit computerScreenSizeAdjusted( m_masterCore->userConfig().monitoringScreenSize() );
+		emit computerScreenSizeAdjusted( m_master->userConfig().monitoringScreenSize() );
 
 		event->accept();
 	}
@@ -303,9 +303,9 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 
 	m_featureMenu->clear();
 
-	for( const auto& feature : m_masterCore->features() )
+	for( const auto& feature : m_master->features() )
 	{
-		Plugin::Uid pluginUid = m_masterCore->featureManager().pluginUid( feature );
+		Plugin::Uid pluginUid = m_master->featureManager().pluginUid( feature );
 
 		if( previousPluginUid.isNull() == false &&
 				pluginUid != previousPluginUid &&
@@ -322,7 +322,7 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 			label = feature.displayNameActive();
 		}
 
-		const auto subFeatures = m_masterCore->subFeatures( feature.uid() );
+		const auto subFeatures = m_master->subFeatures( feature.uid() );
 
 		if( subFeatures.isEmpty() )
 		{

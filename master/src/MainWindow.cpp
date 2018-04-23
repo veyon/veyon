@@ -44,16 +44,16 @@
 #include "NetworkObjectDirectoryManager.h"
 #include "ToolButton.h"
 #include "VeyonConfiguration.h"
-#include "MasterCore.h"
+#include "VeyonMaster.h"
 #include "UserConfig.h"
 
 #include "ui_MainWindow.h"
 
 
-MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
+MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	QMainWindow( parent ),
 	ui( new Ui::MainWindow ),
-	m_masterCore( masterCore ),
+	m_master( masterCore ),
 	m_modeGroup( new QButtonGroup( this ) ),
 	m_systemTrayIcon( this )
 {
@@ -61,10 +61,10 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 
 	setWindowTitle( QStringLiteral( "%1 Master" ).arg( VeyonCore::applicationName() ) );
 
-	restoreState( QByteArray::fromBase64( m_masterCore.userConfig().windowState().toUtf8() ) );
-	restoreGeometry( QByteArray::fromBase64( m_masterCore.userConfig().windowGeometry().toUtf8() ) );
+	restoreState( QByteArray::fromBase64( m_master.userConfig().windowState().toUtf8() ) );
+	restoreGeometry( QByteArray::fromBase64( m_master.userConfig().windowGeometry().toUtf8() ) );
 
-	ui->computerMonitoringView->setMasterCore( m_masterCore );
+	ui->computerMonitoringView->setVeyonMaster( m_master );
 
 	// add widgets to status bar
 	ui->statusBar->addWidget( ui->computerManagementButton );
@@ -86,7 +86,7 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 
 	ui->centralLayout->addWidget( splitter );
 
-	m_computerManagementView = new ComputerManagementView( m_masterCore.computerManager(), splitter );
+	m_computerManagementView = new ComputerManagementView( m_master.computerManager(), splitter );
 	m_screenshotManagementView = new ScreenshotManagementView( splitter );
 
 	splitter->addWidget( m_computerManagementView );
@@ -123,16 +123,16 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 			 ui->computerMonitoringView, &ComputerMonitoringView::autoAdjustComputerScreenSize );
 
 	int size = ComputerMonitoringView::DefaultComputerScreenSize;
-	if( m_masterCore.userConfig().monitoringScreenSize() >= ComputerMonitoringView::MinimumComputerScreenSize )
+	if( m_master.userConfig().monitoringScreenSize() >= ComputerMonitoringView::MinimumComputerScreenSize )
 	{
-		size = m_masterCore.userConfig().monitoringScreenSize();
+		size = m_master.userConfig().monitoringScreenSize();
 	}
 
 	ui->gridSizeSlider->setValue( size );
 	ui->computerMonitoringView->setComputerScreenSize( size );
 
 	// initialize computer placement controls
-	ui->useCustomComputerPlacementButton->setChecked( m_masterCore.userConfig().useCustomComputerPositions() );
+	ui->useCustomComputerPlacementButton->setChecked( m_master.userConfig().useCustomComputerPositions() );
 	connect( ui->useCustomComputerPlacementButton, &QToolButton::toggled,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setUseCustomComputerPositions );
 	connect( ui->alignComputersButton, &QToolButton::clicked,
@@ -148,7 +148,7 @@ MainWindow::MainWindow( MasterCore &masterCore, QWidget* parent ) :
 	addFeaturesToToolBar();
 	addFeaturesToSystemTrayMenu();
 
-	m_modeGroup->button( qHash( m_masterCore.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
+	m_modeGroup->button( qHash( m_master.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
 
 	// setup system tray icon
 	QIcon icon( QStringLiteral(":/resources/icon16.png") );
@@ -230,9 +230,9 @@ bool MainWindow::initAccessControl()
 
 void MainWindow::closeEvent( QCloseEvent* event )
 {
-	if( m_masterCore.currentMode() != m_masterCore.builtinFeatures().monitoringMode().feature().uid() )
+	if( m_master.currentMode() != m_master.builtinFeatures().monitoringMode().feature().uid() )
 	{
-		const Feature& activeFeature = m_masterCore.featureManager().feature( m_masterCore.currentMode() );
+		const Feature& activeFeature = m_master.featureManager().feature( m_master.currentMode() );
 
 		QMessageBox::information( this, tr( "Feature active" ),
 								  tr( "The feature \"%1\" is still active. Please stop it before closing %2." ).
@@ -241,8 +241,8 @@ void MainWindow::closeEvent( QCloseEvent* event )
 		return;
 	}
 
-	m_masterCore.userConfig().setWindowState( saveState().toBase64() );
-	m_masterCore.userConfig().setWindowGeometry( saveGeometry().toBase64() );
+	m_master.userConfig().setWindowState( saveState().toBase64() );
+	m_master.userConfig().setWindowGeometry( saveGeometry().toBase64() );
 
 	QMainWindow::closeEvent( event );
 }
@@ -255,7 +255,7 @@ void MainWindow::keyPressEvent( QKeyEvent* event )
 	{
 	case Qt::Key_F5:
 		VeyonCore::networkObjectDirectoryManager().configuredDirectory()->update();
-		m_masterCore.computerControlListModel().reload();
+		m_master.computerControlListModel().reload();
 		event->accept();
 		break;
 	case Qt::Key_F11:
@@ -292,7 +292,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason reason
 			QMenu rcm( this );
 			QAction * rc = m.addAction( tr( "Remote control" ) );
 			rc->setMenu( &rcm );
-			for( const auto& computer : qAsConst( m_masterCore.computerManager().computerList() ) )
+			for( const auto& computer : qAsConst( m_master.computerManager().computerList() ) )
 			{
 				rcm.addAction( computer.name() )->setData( computer.hostAddress() );
 			}
@@ -327,7 +327,7 @@ void MainWindow::showAboutDialog()
 
 void MainWindow::addFeaturesToToolBar()
 {
-	for( const auto& feature : m_masterCore.features() )
+	for( const auto& feature : m_master.features() )
 	{
 		ToolButton* btn = new ToolButton( QIcon( feature.iconUrl() ),
 										  feature.displayName(),
@@ -335,7 +335,7 @@ void MainWindow::addFeaturesToToolBar()
 										  feature.description(),
 										  feature.shortcut() );
 		connect( btn, &QToolButton::clicked, this, [=] () {
-			m_masterCore.runFeature( feature, this );
+			m_master.runFeature( feature );
 			updateModeButtonGroup();
 		} );
 		btn->addTo( ui->toolBar );
@@ -354,7 +354,7 @@ void MainWindow::addFeaturesToToolBar()
 
 void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid parentFeatureUid )
 {
-	const auto subFeatures = m_masterCore.subFeatures( parentFeatureUid );
+	const auto subFeatures = m_master.subFeatures( parentFeatureUid );
 
 	if( subFeatures.isEmpty() )
 	{
@@ -369,10 +369,10 @@ void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid pa
 #warning Building legacy compat code for unsupported version of Qt
 		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName() );
 		action->setShortcut( subFeature.shortcut() );
-		connect( action, &QAction::triggered, this, [=] () { m_masterCore.runFeature( subFeature, this ); } );
+		connect( action, &QAction::triggered, this, [=] () { m_master.runFeature( subFeature ); } );
 #else
 		menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
-						 [=]() { m_masterCore.runFeature( subFeature, this ); }, subFeature.shortcut() );
+						 [=]() { m_master.runFeature( subFeature ); }, subFeature.shortcut() );
 #endif
 	}
 
@@ -391,9 +391,9 @@ void MainWindow::addFeaturesToSystemTrayMenu()
 
 void MainWindow::updateModeButtonGroup()
 {
-	const Feature::Uid& monitoringMode = m_masterCore.builtinFeatures().monitoringMode().feature().uid();
+	const Feature::Uid& monitoringMode = m_master.builtinFeatures().monitoringMode().feature().uid();
 
-	if( m_masterCore.currentMode() == monitoringMode )
+	if( m_master.currentMode() == monitoringMode )
 	{
 		m_modeGroup->button( qHash( monitoringMode ) )->setChecked( true );
 	}

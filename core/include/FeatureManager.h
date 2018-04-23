@@ -55,12 +55,10 @@ public:
 
 	void startFeature( VeyonMasterInterface& master,
 					   const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces,
-					   QWidget* parent );
+					   const ComputerControlInterfaceList& computerControlInterfaces );
 	void stopFeature( VeyonMasterInterface& master,
 					  const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces,
-					  QWidget* parent );
+					  const ComputerControlInterfaceList& computerControlInterfaces );
 
 public slots:
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message, ComputerControlInterface::Pointer computerControlInterface );

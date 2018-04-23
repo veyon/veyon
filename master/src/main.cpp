@@ -25,7 +25,7 @@
 #include <QApplication>
 #include <QSplashScreen>
 
-#include "MasterCore.h"
+#include "VeyonMaster.h"
 #include "MainWindow.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCoreConnection.h"
@@ -49,15 +49,12 @@ int main( int argc, char * * argv )
 		return -1;
 	}
 
-	MasterCore masterCore;
-
-	// now create the main-window
-	MainWindow mainWindow( masterCore );
+	VeyonMaster masterCore;
 
 	// hide splash-screen as soon as main-window is shown
-	splashScreen.finish( &mainWindow );
+	splashScreen.finish( masterCore.mainWindow() );
 
-	mainWindow.show();
+	masterCore.mainWindow()->show();
 
 	qInfo( "Master: running" );
 

@@ -28,23 +28,23 @@
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "FeatureManager.h"
-#include "MasterCore.h"
+#include "VeyonMaster.h"
 #include "UserConfig.h"
 #include "VeyonConfiguration.h"
 
 
-ComputerControlListModel::ComputerControlListModel( MasterCore* masterCore, QObject* parent ) :
+ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
 	QAbstractListModel( parent ),
-	m_masterCore( masterCore ),
+	m_master( masterCore ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
 {
 	loadIcons();
 
-	connect( &m_masterCore->computerManager(), &ComputerManager::computerSelectionReset,
+	connect( &m_master->computerManager(), &ComputerManager::computerSelectionReset,
 			 this, &ComputerControlListModel::reload );
-	connect( &m_masterCore->computerManager(), &ComputerManager::computerSelectionChanged,
+	connect( &m_master->computerManager(), &ComputerManager::computerSelectionChanged,
 			 this, &ComputerControlListModel::update );
 
 	auto computerScreenUpdateTimer = new QTimer( this );
@@ -137,7 +137,7 @@ void ComputerControlListModel::reload()
 {
 	beginResetModel();
 
-	const auto computerList = m_masterCore->computerManager().selectedComputers( QModelIndex() );
+	const auto computerList = m_master->computerManager().selectedComputers( QModelIndex() );
 
 	m_computerControlInterfaces.clear();
 	m_computerControlInterfaces.reserve( computerList.size() );
@@ -159,7 +159,7 @@ void ComputerControlListModel::reload()
 
 void ComputerControlListModel::update()
 {
-	const auto newComputerList = m_masterCore->computerManager().selectedComputers( QModelIndex() );
+	const auto newComputerList = m_master->computerManager().selectedComputers( QModelIndex() );
 
 	int row = 0;
 
@@ -229,11 +229,11 @@ void ComputerControlListModel::updateComputerScreens()
 
 void ComputerControlListModel::startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, QModelIndex index )
 {
-	controlInterface->start( computerScreenSize(), &m_masterCore->builtinFeatures() );
+	controlInterface->start( computerScreenSize(), &m_master->builtinFeatures() );
 
 	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived, this,
 			 [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {
-		m_masterCore->featureManager().handleFeatureMessage( *m_masterCore, featureMessage, computerControlInterface );
+		m_master->featureManager().handleFeatureMessage( *m_master, featureMessage, computerControlInterface );
 	} );
 
 	connect( controlInterface.data(), &ComputerControlInterface::activeFeaturesChanged,
@@ -243,16 +243,16 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 	// gets referenced once more all the time and thus the object never gets deleted
 	auto controlInterfaceWeakRef = controlInterface->weakPointer();
 	connect( controlInterface.data(), &ComputerControlInterface::userChanged,
-			 &m_masterCore->computerManager(),
-			 [=] () { m_masterCore->computerManager().updateUser( controlInterfaceWeakRef ); } );
+			 &m_master->computerManager(),
+			 [=] () { m_master->computerManager().updateUser( controlInterfaceWeakRef ); } );
 }
 
 
 
 QSize ComputerControlListModel::computerScreenSize() const
 {
-	return QSize( m_masterCore->userConfig().monitoringScreenSize(),
-				  m_masterCore->userConfig().monitoringScreenSize() * 9 / 16 );
+	return QSize( m_master->userConfig().monitoringScreenSize(),
+				  m_master->userConfig().monitoringScreenSize() * 9 / 16 );
 }
 
 
@@ -404,7 +404,7 @@ QString ComputerControlListModel::activeFeatures( ComputerControlInterface::Poin
 {
 	QStringList featureNames;
 
-	for( const auto& feature : m_masterCore->features() )
+	for( const auto& feature : m_master->features() )
 	{
 		if( controlInterface->activeFeatures().contains( feature.uid().toString() ) )
 		{

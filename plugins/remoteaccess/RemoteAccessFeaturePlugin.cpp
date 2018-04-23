@@ -28,6 +28,7 @@
 #include "AuthenticationCredentials.h"
 #include "RemoteAccessFeaturePlugin.h"
 #include "RemoteAccessWidget.h"
+#include "VeyonMasterInterface.h"
 
 
 RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
@@ -69,11 +70,8 @@ const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 
 
 bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											  const ComputerControlInterfaceList& computerControlInterfaces,
-											  QWidget* parent )
+											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(parent);
-
 	// determine which computer to access and ask if neccessary
 	ComputerControlInterface::Pointer remoteAccessComputer;
 
@@ -81,7 +79,8 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		  feature.uid() == m_remoteControlFeature.uid() ) &&
 			computerControlInterfaces.count() != 1 )
 	{
-		QString hostName = QInputDialog::getText( parent, tr( "Remote access" ),
+		QString hostName = QInputDialog::getText( master.mainWindow(),
+												  tr( "Remote access" ),
 												  tr( "Please enter the hostname or IP address of the computer to access:" ) );
 		if( hostName.isEmpty() )
 		{
@@ -124,12 +123,11 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 
 
 bool RemoteAccessFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -139,6 +137,7 @@ bool RemoteAccessFeaturePlugin::stopFeature( VeyonMasterInterface& master, const
 bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 													  ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -150,6 +149,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& mast
 bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 													  FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
 	Q_UNUSED(message);
 	Q_UNUSED(featureWorkerManager);
 
@@ -160,6 +160,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 
 bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

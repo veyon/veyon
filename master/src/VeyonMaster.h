@@ -1,5 +1,5 @@
 /*
- * MasterCore.h - global instances
+ * VeyonMaster.h - global instances
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -38,14 +38,15 @@ class BuiltinFeatures;
 class ComputerControlListModel;
 class ComputerManager;
 class FeatureManager;
+class MainWindow;
 class UserConfig;
 
-class MasterCore : public QObject, public VeyonMasterInterface
+class VeyonMaster : public QObject, public VeyonMasterInterface
 {
 	Q_OBJECT
 public:
-	MasterCore( QObject* parent = nullptr );
-	~MasterCore() override;
+	VeyonMaster( QObject* parent = nullptr );
+	~VeyonMaster() override;
 
 	BuiltinFeatures& builtinFeatures()
 	{
@@ -84,12 +85,13 @@ public:
 		return m_currentMode;
 	}
 
+	QWidget* mainWindow() override;
 
 public slots:
-	void runFeature( const Feature& feature, QWidget* parent );
+	void runFeature( const Feature& feature );
 	void shutdownComputerControlInterface( const QModelIndex& index );
 	void enforceDesignatedMode( const QModelIndex& index );
-	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent );
+	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 
 private:
 	FeatureList featureList() const;
@@ -100,6 +102,8 @@ private:
 	UserConfig* m_userConfig;
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;
+
+	MainWindow* m_mainWindow;
 
 	Feature::Uid m_currentMode;
 

@@ -55,10 +55,9 @@ ScreenLockFeaturePlugin::~ScreenLockFeaturePlugin()
 
 
 bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces,
-											QWidget* parent )
+											const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(master);
 
 	if( feature == m_screenLockFeature )
 	{
@@ -72,10 +71,9 @@ bool ScreenLockFeaturePlugin::startFeature( VeyonMasterInterface& master, const 
 
 
 bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-										   const ComputerControlInterfaceList& computerControlInterfaces,
-										   QWidget* parent )
+										   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(master);
 
 	if( feature == m_screenLockFeature )
 	{
@@ -91,6 +89,7 @@ bool ScreenLockFeaturePlugin::stopFeature( VeyonMasterInterface& master, const F
 bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 													ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -102,6 +101,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master
 bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 													FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
 		if( featureWorkerManager.isWorkerRunning( m_screenLockFeature ) == false &&
@@ -123,6 +124,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 
 bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
+
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
 		switch( message.command() )

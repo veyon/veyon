@@ -54,8 +54,7 @@ public:
 	 */
 	virtual bool startFeature( VeyonMasterInterface& master,
 							   const Feature& feature,
-							   const ComputerControlInterfaceList& computerControlInterfaces,
-							   QWidget* parent ) = 0;
+							   const ComputerControlInterfaceList& computerControlInterfaces ) = 0;
 
 	/*!
 	 * \brief Stops a feature on master side for given computer control interfaces
@@ -65,8 +64,7 @@ public:
 	 */
 	virtual bool stopFeature( VeyonMasterInterface& master,
 							  const Feature& feature,
-							  const ComputerControlInterfaceList& computerControlInterfaces,
-							  QWidget* parent ) = 0;
+							  const ComputerControlInterfaceList& computerControlInterfaces ) = 0;
 
 	/*!
 	 * \brief Handles a received feature message inside master

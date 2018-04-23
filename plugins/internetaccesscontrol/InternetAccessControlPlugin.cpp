@@ -164,9 +164,10 @@ void InternetAccessControlPlugin::initBackend()
 
 
 bool InternetAccessControlPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-												const ComputerControlInterfaceList& computerControlInterfaces,
-												QWidget* parent )
+												const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
+
 	if( m_features.contains( feature ) == false )
 	{
 		return false;
@@ -180,12 +181,11 @@ bool InternetAccessControlPlugin::startFeature( VeyonMasterInterface& master, co
 
 
 bool InternetAccessControlPlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											   const ComputerControlInterfaceList& computerControlInterfaces,
-											   QWidget* parent )
+											   const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -195,6 +195,7 @@ bool InternetAccessControlPlugin::stopFeature( VeyonMasterInterface& master, con
 bool InternetAccessControlPlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 														ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -206,6 +207,8 @@ bool InternetAccessControlPlugin::handleFeatureMessage( VeyonMasterInterface& ma
 bool InternetAccessControlPlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 														FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( message.featureUid() == m_blockInternetFeature.uid() )
 	{
 	}
@@ -224,6 +227,7 @@ bool InternetAccessControlPlugin::handleFeatureMessage( VeyonServerInterface& se
 
 bool InternetAccessControlPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

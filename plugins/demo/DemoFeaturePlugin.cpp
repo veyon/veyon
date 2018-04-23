@@ -75,10 +75,9 @@ DemoFeaturePlugin::~DemoFeaturePlugin()
 
 
 bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-									  const ComputerControlInterfaceList& computerControlInterfaces,
-									  QWidget* parent )
+									  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(master);
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
@@ -104,10 +103,9 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 
 bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									 const ComputerControlInterfaceList& computerControlInterfaces,
-									 QWidget* parent )
+									 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(master);
 
 	if( feature == m_windowDemoFeature || feature == m_fullscreenDemoFeature )
 	{
@@ -139,6 +137,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 											  ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -150,6 +149,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, cons
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 											  FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
 		if( featureWorkerManager.isWorkerRunning( m_demoServerFeature ) == false )
@@ -223,6 +224,8 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
+
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
 		switch( message.command() )

@@ -36,7 +36,7 @@ namespace Ui {
 class ComputerMonitoringView;
 }
 
-class MasterCore;
+class VeyonMaster;
 
 class ComputerMonitoringView : public QWidget
 {
@@ -51,7 +51,7 @@ public:
 	ComputerMonitoringView( QWidget *parent = nullptr );
 	~ComputerMonitoringView() override;
 
-	void setMasterCore( MasterCore& masterCore );
+	void setVeyonMaster( VeyonMaster& masterCore );
 
 	ComputerControlInterfaceList selectedComputerControlInterfaces();
 
@@ -79,7 +79,7 @@ private:
 
 	Ui::ComputerMonitoringView *ui;
 
-	MasterCore* m_masterCore;
+	VeyonMaster* m_master;
 	QMenu* m_featureMenu;
 	QSortFilterProxyModel m_sortFilterProxyModel;
 

@@ -30,7 +30,7 @@
 
 #include "ComputerControlInterface.h"
 
-class MasterCore;
+class VeyonMaster;
 
 class ComputerControlListModel : public QAbstractListModel
 {
@@ -40,7 +40,7 @@ public:
 		UidRole = Qt::UserRole
 	};
 
-	ComputerControlListModel( MasterCore* masterCore, QObject* parent = nullptr );
+	ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
 
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
 
@@ -87,7 +87,7 @@ private:
 	static QString loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface );
 	QString activeFeatures(  ComputerControlInterface::Pointer controlInterface ) const;
 
-	MasterCore* m_masterCore;
+	VeyonMaster* m_master;
 
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;

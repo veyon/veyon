@@ -30,6 +30,7 @@
 #include "FeatureWorkerManager.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
+#include "VeyonMasterInterface.h"
 #include "VeyonRfbExt.h"
 #include "PlatformUserFunctions.h"
 
@@ -74,10 +75,11 @@ bool UserSessionControl::getUserSessionInfo( const ComputerControlInterfaceList&
 
 
 bool UserSessionControl::startFeature( VeyonMasterInterface& master, const Feature& feature,
-									   const ComputerControlInterfaceList& computerControlInterfaces,
-									   QWidget* parent )
+									   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( confirmFeatureExecution( feature, parent ) == false )
+	Q_UNUSED(master);
+
+	if( confirmFeatureExecution( feature, master.mainWindow() ) == false )
 	{
 		return false;
 	}
@@ -94,12 +96,11 @@ bool UserSessionControl::startFeature( VeyonMasterInterface& master, const Featu
 
 
 bool UserSessionControl::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									  const ComputerControlInterfaceList& computerControlInterfaces,
-									  QWidget* parent )
+									  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -109,6 +110,8 @@ bool UserSessionControl::stopFeature( VeyonMasterInterface& master, const Featur
 bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 											   ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
+
 	if( message.featureUid() == m_userSessionInfoFeature.uid() )
 	{
 		computerControlInterface->setUser( message.argument( UserName ).toString() );
@@ -124,6 +127,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, con
 bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 											   FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
 	Q_UNUSED(featureWorkerManager);
 
 	if( m_userSessionInfoFeature.uid() == message.featureUid() )
@@ -160,6 +164,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, con
 
 bool UserSessionControl::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

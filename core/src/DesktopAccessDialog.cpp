@@ -82,12 +82,23 @@ void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 
 
 bool DesktopAccessDialog::startFeature( VeyonMasterInterface& master, const Feature& feature,
-										const ComputerControlInterfaceList& computerControlInterfaces,
-										QWidget* parent )
+										const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
+
+	return false;
+}
+
+
+
+bool DesktopAccessDialog::stopFeature( VeyonMasterInterface& master, const Feature& feature,
+									   const ComputerControlInterfaceList& computerControlInterfaces )
+{
+	Q_UNUSED(master);
+	Q_UNUSED(feature);
+	Q_UNUSED(computerControlInterfaces);
 
 	return false;
 }
@@ -97,21 +108,9 @@ bool DesktopAccessDialog::startFeature( VeyonMasterInterface& master, const Feat
 bool DesktopAccessDialog::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 												ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
-
-
-
-bool DesktopAccessDialog::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									   const ComputerControlInterfaceList& computerControlInterfaces,
-									   QWidget* parent )
-{
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -121,6 +120,8 @@ bool DesktopAccessDialog::stopFeature( VeyonMasterInterface& master, const Featu
 bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 												FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 			message.command() == ReportDesktopAccessChoice )
 	{
@@ -142,6 +143,8 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, co
 
 bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
+
 	if( message.featureUid() != m_desktopAccessDialogFeature.uid() ||
 			message.command() != RequestDesktopAccess )
 	{

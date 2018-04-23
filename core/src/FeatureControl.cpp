@@ -55,12 +55,11 @@ bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& co
 
 
 bool FeatureControl::startFeature( VeyonMasterInterface& master, const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces,
-								   QWidget* parent )
+								   const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -68,12 +67,11 @@ bool FeatureControl::startFeature( VeyonMasterInterface& master, const Feature& 
 
 
 bool FeatureControl::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces,
-								  QWidget* parent )
+								  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -83,6 +81,8 @@ bool FeatureControl::stopFeature( VeyonMasterInterface& master, const Feature& f
 bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
+
 	if( message.featureUid() == m_featureControlFeature.uid() )
 	{
 		computerControlInterface->setActiveFeatures( message.argument( ActiveFeatureList ).toStringList() );
@@ -98,6 +98,7 @@ bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const F
 bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 										   FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
 	Q_UNUSED(featureWorkerManager);
 
 	if( m_featureControlFeature.uid() == message.featureUid() )
@@ -119,6 +120,7 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const F
 
 bool FeatureControl::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

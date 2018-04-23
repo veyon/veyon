@@ -1,5 +1,5 @@
 /*
- * MasterCore.cpp - management of application-global instances
+ * VeyonMaster.cpp - management of application-global instances
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -22,20 +22,21 @@
  *
  */
 
-#include "MasterCore.h"
+#include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
 #include "FeatureManager.h"
 #include "VeyonVncConnection.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCoreConnection.h"
+#include "MainWindow.h"
 #include "ComputerManager.h"
 #include "MonitoringMode.h"
 #include "UserConfig.h"
 #include "PluginManager.h"
 
 
-MasterCore::MasterCore( QObject* parent ) :
+VeyonMaster::VeyonMaster( QObject* parent ) :
 	QObject( parent ),
 	m_builtinFeatures( new BuiltinFeatures() ),
 	m_featureManager( new FeatureManager() ),
@@ -43,15 +44,16 @@ MasterCore::MasterCore( QObject* parent ) :
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
+	m_mainWindow( nullptr ),
 	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
 {
 	connect( m_computerControlListModel, &ComputerControlListModel::rowAboutToBeRemoved,
-			 this, &MasterCore::shutdownComputerControlInterface );
+			 this, &VeyonMaster::shutdownComputerControlInterface );
 
 	if( VeyonCore::config().enforceSelectedModeForClients() )
 	{
 		connect( m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
-				 this, &MasterCore::enforceDesignatedMode );
+				 this, &VeyonMaster::enforceDesignatedMode );
 	}
 
 	connect( &VeyonCore::localComputerControlInterface(), &ComputerControlInterface::featureMessageReceived,
@@ -60,13 +62,15 @@ MasterCore::MasterCore( QObject* parent ) :
 	} );
 
 	VeyonCore::localComputerControlInterface().start( QSize(), m_builtinFeatures );
+
+	m_mainWindow = new MainWindow( *this );
 }
 
 
 
-MasterCore::~MasterCore()
+VeyonMaster::~VeyonMaster()
 {
-	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces(), nullptr );
+	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces() );
 
 	delete m_computerManager;
 
@@ -80,7 +84,7 @@ MasterCore::~MasterCore()
 
 
 
-FeatureList MasterCore::subFeatures( Feature::Uid parentFeatureUid ) const
+FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
 {
 	FeatureList features;
 
@@ -105,47 +109,54 @@ FeatureList MasterCore::subFeatures( Feature::Uid parentFeatureUid ) const
 
 
 
-void MasterCore::runFeature( const Feature& feature, QWidget* parent )
+QWidget* VeyonMaster::mainWindow()
+{
+	return m_mainWindow;
+}
+
+
+
+void VeyonMaster::runFeature( const Feature& feature )
 {
 	const auto computerControlInterfaces = m_computerControlListModel->computerControlInterfaces();
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
-		stopAllModeFeatures( computerControlInterfaces, parent );
+		stopAllModeFeatures( computerControlInterfaces );
 
 		if( m_currentMode == feature.uid() )
 		{
 			const Feature& monitoringModeFeature = m_builtinFeatures->monitoringMode().feature();
 
-			m_featureManager->startFeature( *this, monitoringModeFeature, computerControlInterfaces, parent );
+			m_featureManager->startFeature( *this, monitoringModeFeature, computerControlInterfaces );
 			m_currentMode = monitoringModeFeature.uid();
 		}
 		else
 		{
-			m_featureManager->startFeature( *this, feature, computerControlInterfaces, parent );
+			m_featureManager->startFeature( *this, feature, computerControlInterfaces );
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		m_featureManager->startFeature( *this, feature, computerControlInterfaces, parent );
+		m_featureManager->startFeature( *this, feature, computerControlInterfaces );
 	}
 }
 
 
 
-void MasterCore::shutdownComputerControlInterface( const QModelIndex& index )
+void VeyonMaster::shutdownComputerControlInterface( const QModelIndex& index )
 {
 	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
 	if( controlInterface )
 	{
-		stopAllModeFeatures( { controlInterface }, nullptr );
+		stopAllModeFeatures( { controlInterface } );
 	}
 }
 
 
 
-void MasterCore::enforceDesignatedMode( const QModelIndex& index )
+void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 {
 	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
 	if( controlInterface )
@@ -157,34 +168,34 @@ void MasterCore::enforceDesignatedMode( const QModelIndex& index )
 		{
 			if( currentFeature.testFlag( Feature::Mode ) && currentFeature != designatedModeFeature )
 			{
-				featureManager().stopFeature( *this, currentFeature, { controlInterface }, nullptr );
+				featureManager().stopFeature( *this, currentFeature, { controlInterface } );
 			}
 		}
 
 		if( designatedModeFeature != m_builtinFeatures->monitoringMode().feature() )
 		{
-			featureManager().startFeature( *this, designatedModeFeature, { controlInterface }, nullptr );
+			featureManager().startFeature( *this, designatedModeFeature, { controlInterface } );
 		}
 	}
 }
 
 
 
-void MasterCore::stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces, QWidget* parent )
+void VeyonMaster::stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	// stop any previously active featues
 	for( const auto& feature : qAsConst( features() ) )
 	{
 		if( feature.testFlag( Feature::Mode ) )
 		{
-			m_featureManager->stopFeature( *this, feature, computerControlInterfaces, parent );
+			m_featureManager->stopFeature( *this, feature, computerControlInterfaces );
 		}
 	}
 }
 
 
 
-FeatureList MasterCore::featureList() const
+FeatureList VeyonMaster::featureList() const
 {
 	FeatureList features;
 

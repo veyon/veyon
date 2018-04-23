@@ -79,12 +79,11 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 bool SystemTrayIcon::startFeature( VeyonMasterInterface& master, const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces,
-								   QWidget* parent )
+								   const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -92,12 +91,11 @@ bool SystemTrayIcon::startFeature( VeyonMasterInterface& master, const Feature& 
 
 
 bool SystemTrayIcon::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces,
-								  QWidget* parent )
+								  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -107,6 +105,7 @@ bool SystemTrayIcon::stopFeature( VeyonMasterInterface& master, const Feature& f
 bool SystemTrayIcon::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -118,6 +117,8 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonMasterInterface& master, const F
 bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 										   FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( m_systemTrayIconFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
@@ -138,6 +139,8 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const F
 
 bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
+
 	if( message.featureUid() != m_systemTrayIconFeature.uid() )
 	{
 		return false;

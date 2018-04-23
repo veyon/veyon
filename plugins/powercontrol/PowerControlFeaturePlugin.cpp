@@ -30,6 +30,7 @@
 #include "PlatformCoreFunctions.h"
 #include "PowerControlFeaturePlugin.h"
 #include "VeyonConfiguration.h"
+#include "VeyonMasterInterface.h"
 
 
 PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
@@ -68,8 +69,7 @@ const FeatureList &PowerControlFeaturePlugin::featureList() const
 
 
 bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											  const ComputerControlInterfaceList& computerControlInterfaces,
-											  QWidget* parent )
+											  const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	if( m_features.contains( feature ) == false )
 	{
@@ -85,7 +85,7 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 	}
 	else
 	{
-		if( confirmFeatureExecution( feature, parent ) == false )
+		if( confirmFeatureExecution( feature, master.mainWindow() ) == false )
 		{
 			return false;
 		}
@@ -99,12 +99,11 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 
 
 bool PowerControlFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -114,6 +113,7 @@ bool PowerControlFeaturePlugin::stopFeature( VeyonMasterInterface& master, const
 bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 													  ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -125,6 +125,8 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& mast
 bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 													  FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( message.featureUid() == m_powerDownFeature.uid() )
 	{
 		VeyonCore::platform().coreFunctions().powerDown();
@@ -145,6 +147,7 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 
 bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

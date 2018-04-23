@@ -36,15 +36,15 @@ public:
 	UserConfig( Configuration::Store::Backend backend );
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
-	OP( UserConfig, MasterCore::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
-	OP( UserConfig, MasterCore::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, STRING, windowState, setWindowState, "WindowState", "UI" );	\
-	OP( UserConfig, MasterCore::userConfig, STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
+	OP( UserConfig, VeyonMaster::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, STRING, windowState, setWindowState, "WindowState", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI" );	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 

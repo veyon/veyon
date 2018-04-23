@@ -28,6 +28,7 @@
 #include "TextMessageDialog.h"
 #include "FeatureWorkerManager.h"
 #include "ComputerControlInterface.h"
+#include "VeyonMasterInterface.h"
 
 
 TextMessageFeaturePlugin::TextMessageFeaturePlugin( QObject* parent ) :
@@ -53,8 +54,7 @@ const FeatureList &TextMessageFeaturePlugin::featureList() const
 
 
 bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces,
-											 QWidget* parent )
+											 const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	if( feature.uid() != m_textMessageFeature.uid() )
 	{
@@ -63,7 +63,7 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 
 	QString textMessage;
 
-	TextMessageDialog( textMessage, qobject_cast<QWidget *>( parent ) ).exec();
+	TextMessageDialog( textMessage, master.mainWindow() ).exec();
 
 	if( textMessage.isEmpty() == false )
 	{
@@ -80,12 +80,11 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 
 
 bool TextMessageFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces,
-											QWidget* parent )
+											const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -95,6 +94,7 @@ bool TextMessageFeaturePlugin::stopFeature( VeyonMasterInterface& master, const 
 bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 													 ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -106,6 +106,8 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& maste
 bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 													 FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
+
 	if( m_textMessageFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
@@ -125,6 +127,8 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serve
 
 bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
+
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{
 		QMessageBox* messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( MessageIcon ).toInt() ),

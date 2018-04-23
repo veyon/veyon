@@ -30,6 +30,7 @@
 #include "ComputerControlInterface.h"
 #include "DesktopServicesConfigurationPage.h"
 #include "DesktopServicesFeaturePlugin.h"
+#include "VeyonMasterInterface.h"
 #include "RunProgramDialog.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
@@ -59,8 +60,7 @@ DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
 
 
 bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-												 const ComputerControlInterfaceList& computerControlInterfaces,
-												 QWidget* parent )
+												 const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	if( m_features.contains( feature ) == false )
 	{
@@ -69,7 +69,7 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 
 	if( feature == m_runProgramFeature )
 	{
-		RunProgramDialog runProgramDialog( parent );
+		RunProgramDialog runProgramDialog( master.mainWindow() );
 
 		if( runProgramDialog.exec() == QDialog::Accepted &&
 				runProgramDialog.programs().isEmpty() == false )
@@ -80,7 +80,7 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 	}
 	else if( feature == m_openWebsiteFeature )
 	{
-		QString urlAddress = QInputDialog::getText( parent,
+		QString urlAddress = QInputDialog::getText( master.mainWindow(),
 													tr( "Open website" ),
 													tr( "Please enter the URL of the website to open:" ) );
 		QUrl url( urlAddress, QUrl::TolerantMode );
@@ -114,12 +114,11 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 
 
 bool DesktopServicesFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-												const ComputerControlInterfaceList& computerControlInterfaces,
-												QWidget* parent )
+												const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -129,6 +128,7 @@ bool DesktopServicesFeaturePlugin::stopFeature( VeyonMasterInterface& master, co
 bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 														 ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -140,6 +140,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& m
 bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 														 FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
 	Q_UNUSED(featureWorkerManager);
 
 	if( message.featureUid() == m_runProgramFeature.uid() )
@@ -166,6 +167,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 
 bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

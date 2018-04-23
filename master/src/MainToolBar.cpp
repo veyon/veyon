@@ -27,7 +27,7 @@
 
 #include "MainToolBar.h"
 #include "MainWindow.h"
-#include "MasterCore.h"
+#include "VeyonMaster.h"
 #include "ToolButton.h"
 #include "UserConfig.h"
 

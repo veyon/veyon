@@ -39,12 +39,11 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 
 bool MonitoringMode::startFeature( VeyonMasterInterface& master, const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces,
-								   QWidget* parent )
+								   const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -52,12 +51,11 @@ bool MonitoringMode::startFeature( VeyonMasterInterface& master, const Feature& 
 
 
 bool MonitoringMode::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces,
-								  QWidget* parent )
+								  const ComputerControlInterfaceList& computerControlInterfaces )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(feature);
 	Q_UNUSED(computerControlInterfaces);
-	Q_UNUSED(parent);
 
 	return false;
 }
@@ -67,6 +65,7 @@ bool MonitoringMode::stopFeature( VeyonMasterInterface& master, const Feature& f
 bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   ComputerControlInterface::Pointer computerControlInterface )
 {
+	Q_UNUSED(master);
 	Q_UNUSED(message);
 	Q_UNUSED(computerControlInterface);
 
@@ -78,6 +77,7 @@ bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const F
 bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message,
 										   FeatureWorkerManager& featureWorkerManager )
 {
+	Q_UNUSED(server);
 	Q_UNUSED(message);
 	Q_UNUSED(featureWorkerManager);
 
@@ -88,6 +88,7 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server, const F
 
 bool MonitoringMode::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
+	Q_UNUSED(worker);
 	Q_UNUSED(message);
 
 	return false;

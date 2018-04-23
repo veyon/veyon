@@ -31,7 +31,7 @@
 #include "Feature.h"
 
 class QButtonGroup;
-class MasterCore;
+class VeyonMaster;
 class ComputerManagementView;
 class ScreenshotManagementView;
 class ToolButton;
@@ -45,15 +45,15 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	MainWindow( MasterCore& masterCore, QWidget* parent = nullptr );
+	MainWindow( VeyonMaster& masterCore, QWidget* parent = nullptr );
 	~MainWindow() override;
 
 	static bool initAuthentication();
 	static bool initAccessControl();
 
-	MasterCore& masterCore()
+	VeyonMaster& masterCore()
 	{
-		return m_masterCore;
+		return m_master;
 	}
 
 
@@ -75,7 +75,7 @@ private:
 
 	Ui::MainWindow* ui;
 
-	MasterCore& m_masterCore;
+	VeyonMaster& m_master;
 
 	QButtonGroup* m_modeGroup;
 
