@@ -25,8 +25,9 @@
 #ifndef LINUX_SERVICE_CORE_H
 #define LINUX_SERVICE_CORE_H
 
-#include <QDBusInterface>
 #include <QProcessEnvironment>
+
+#include "LinuxCoreFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -61,7 +62,7 @@ private:
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
 
-	QDBusInterface m_loginManager;
+	LinuxCoreFunctions::DBusInterfacePointer m_loginManager;
 	QMap<QString, QProcess *> m_serverProcesses;
 
 };

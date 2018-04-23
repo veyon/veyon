@@ -29,19 +29,17 @@
 #include <proc/readproc.h>
 
 #include "Filesystem.h"
+#include "LinuxCoreFunctions.h"
 #include "LinuxServiceCore.h"
 
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 	QObject( parent ),
-	m_loginManager( QStringLiteral("org.freedesktop.login1"),
-					QStringLiteral("/org/freedesktop/login1"),
-					QStringLiteral("org.freedesktop.login1.Manager"),
-					QDBusConnection::systemBus() )
+	m_loginManager( LinuxCoreFunctions::systemdLoginManager() )
 {
-	QDBusConnection::systemBus().connect( m_loginManager.service(), m_loginManager.path(), m_loginManager.interface(),
+	QDBusConnection::systemBus().connect( m_loginManager->service(), m_loginManager->path(), m_loginManager->interface(),
 										 QStringLiteral("SessionNew"), this, SLOT(startServer(QString,QDBusObjectPath)) );
-	QDBusConnection::systemBus().connect( m_loginManager.service(), m_loginManager.path(), m_loginManager.interface(),
+	QDBusConnection::systemBus().connect( m_loginManager->service(), m_loginManager->path(), m_loginManager->interface(),
 										 QStringLiteral("SessionRemoved"), this, SLOT(stopServer(QString,QDBusObjectPath)) );
 }
 
@@ -123,7 +121,7 @@ QStringList LinuxServiceCore::listSessions()
 {
 	QStringList sessions;
 
-	const QDBusReply<QDBusArgument> reply = m_loginManager.call( QStringLiteral("ListSessions") );
+	const QDBusReply<QDBusArgument> reply = m_loginManager->call( QStringLiteral("ListSessions") );
 
 	if( reply.isValid() )
 	{
