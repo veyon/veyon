@@ -164,7 +164,9 @@ void AuthKeysConfigurationPage::importKey()
 	}
 
 	const auto keyName = QInputDialog::getText( this, tr( "Authentication key name" ),
-												tr( "Please enter the name of the user group or role for which to import the authentication key:") );
+												tr( "Please enter the name of the user group or role for which to import the authentication key:"),
+												QLineEdit::Normal,
+												AuthKeysManager::keyNameFromExportedKeyFile( inputFile ) );
 	if( keyName.isEmpty() )
 	{
 		return;
