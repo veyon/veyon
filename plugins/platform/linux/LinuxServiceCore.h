@@ -28,10 +28,11 @@
 #include <QProcessEnvironment>
 
 #include "LinuxCoreFunctions.h"
+#include "PlatformServiceCore.h"
 
 // clazy:excludeall=copyable-polymorphic
 
-class LinuxServiceCore : public QObject
+class LinuxServiceCore : public QObject, PlatformServiceCore
 {
 	Q_OBJECT
 public:

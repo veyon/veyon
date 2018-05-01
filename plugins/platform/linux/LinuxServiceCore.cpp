@@ -31,6 +31,7 @@
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxServiceCore.h"
+#include "VeyonConfiguration.h"
 
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
@@ -82,13 +83,19 @@ void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectP
 	}
 
 	const auto sessionLeader = getSessionLeaderPid( session );
-	const auto sessionEnvironment = getSessionEnvironment( sessionLeader );
+	auto sessionEnvironment = getSessionEnvironment( sessionLeader );
 
 	if( sessionEnvironment.isEmpty() == false )
 	{
 		qInfo() << "Starting server for new session" << session
 				<< "with ID" << getSessionId( session )
 				<< "at seat" << getSessionSeat( session );
+
+		if( VeyonCore::config().isMultiSessionServiceEnabled() )
+		{
+			sessionEnvironment.insert( PlatformServiceCore::sessionIdEnvironmentVariable(),
+									   QString::number( allocateSessionId() ) );
+		}
 
 		auto process = new QProcess( this );
 		process->setProcessEnvironment( sessionEnvironment );
@@ -112,6 +119,7 @@ void LinuxServiceCore::stopServer( const QString& sessionId, const QDBusObjectPa
 
 		auto process = m_serverProcesses[session];
 		process->terminate();
+		freeSessionId( process->processEnvironment().value( PlatformServiceCore::sessionIdEnvironmentVariable() ).toInt() );
 		delete process;
 		m_serverProcesses.remove( session );
 	}
