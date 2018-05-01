@@ -57,6 +57,7 @@ public slots:
 	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
 	void setServiceAutostart( bool );
+	void setMultiSessionServiceEnabled( bool );
 	void setSoftwareSASEnabled( bool );
 	void setLogLevel( int );
 	void setLogToStdErr( bool );
