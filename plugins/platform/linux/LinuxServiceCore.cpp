@@ -74,10 +74,10 @@ void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectP
 
 	const auto session = sessionObjectPath.path();
 
-	qDebug() << getSessionDisplay( session );
+	const auto sessionDisplay = getSessionDisplay( session );
 
 	// do not start server for non-graphical sessions
-	if( getSessionDisplay( session ).isEmpty() )
+	if( sessionDisplay.isEmpty() )
 	{
 		return;
 	}
@@ -89,12 +89,13 @@ void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectP
 	{
 		qInfo() << "Starting server for new session" << session
 				<< "with ID" << getSessionId( session )
+				<< "and display" << sessionDisplay
 				<< "at seat" << getSessionSeat( session );
 
 		if( VeyonCore::config().isMultiSessionServiceEnabled() )
 		{
 			sessionEnvironment.insert( PlatformServiceCore::sessionIdEnvironmentVariable(),
-									   QString::number( allocateSessionId() ) );
+									   QString::number( openSession( sessionDisplay ) ) );
 		}
 
 		auto process = new QProcess( this );
@@ -119,7 +120,7 @@ void LinuxServiceCore::stopServer( const QString& sessionId, const QDBusObjectPa
 
 		auto process = m_serverProcesses[session];
 		process->terminate();
-		freeSessionId( process->processEnvironment().value( PlatformServiceCore::sessionIdEnvironmentVariable() ).toInt() );
+		closeSession( process->processEnvironment().value( PlatformServiceCore::sessionIdEnvironmentVariable() ).toInt() );
 		delete process;
 		m_serverProcesses.remove( session );
 	}

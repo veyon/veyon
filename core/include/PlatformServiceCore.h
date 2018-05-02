@@ -32,15 +32,23 @@
 class VEYON_CORE_EXPORT PlatformServiceCore
 {
 public:
-	static constexpr int SessionIdMax = 99;
+	typedef int SessionId;
 
-	int allocateSessionId();
-	void freeSessionId( int sessionId );
+	enum {
+		SessionIdInvalid = -1,
+		SessionIdMax = 99
+	};
+
+	SessionId openSession( const QVariant& sessionData );
+	void closeSession( SessionId sessionId );
+
+	QVariant sessionDataFromId( SessionId sessionId ) const;
+	SessionId sessionIdFromData( const QVariant& data ) const;
 
 	static QString sessionIdEnvironmentVariable();
 
 private:
-	QList<int> m_sessionIds;
+	QMap<SessionId, QVariant> m_sessions;
 
 };
 

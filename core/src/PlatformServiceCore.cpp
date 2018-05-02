@@ -25,25 +25,39 @@
 #include "PlatformServiceCore.h"
 
 
-int PlatformServiceCore::allocateSessionId()
+PlatformServiceCore::SessionId PlatformServiceCore::openSession( const QVariant& sessionData )
 {
-	for( int i = 0; i <= SessionIdMax; ++i )
+	for( SessionId i = 0; i <= SessionIdMax; ++i )
 	{
-		if( m_sessionIds.contains( i ) == false )
+		if( m_sessions.contains( i ) == false )
 		{
-			m_sessionIds.append( i );
+			m_sessions[i] = sessionData;
 			return i;
 		}
 	}
 
-	return -1;
+	return SessionIdInvalid;
 }
 
 
 
-void PlatformServiceCore::freeSessionId( int sessionId )
+void PlatformServiceCore::closeSession( SessionId sessionId )
 {
-	m_sessionIds.removeAll( sessionId );
+	m_sessions.remove( sessionId );
+}
+
+
+
+QVariant PlatformServiceCore::sessionDataFromId( PlatformServiceCore::SessionId sessionId ) const
+{
+	return m_sessions.value( sessionId );
+}
+
+
+
+PlatformServiceCore::SessionId PlatformServiceCore::sessionIdFromData( const QVariant& data ) const
+{
+	return m_sessions.key( data, SessionIdInvalid );
 }
 
 
