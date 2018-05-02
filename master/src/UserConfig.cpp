@@ -1,6 +1,6 @@
 /*
- * UserConfig.cpp - a Configuration object storing personal settings
- *                      for the Veyon Master Application
+ * UserConfig.cpp - Configuration object storing personal settings
+ *                  for the Veyon Master Application
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
  *
@@ -32,7 +32,7 @@ FOREACH_PERSONAL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
 
 
 UserConfig::UserConfig( Configuration::Store::Backend backend ) :
-	Configuration::Object( backend, Configuration::Store::User, Configuration::Object() )
+	Configuration::Object( backend, Configuration::Store::User, Configuration::Object(), QStringLiteral("VeyonMaster") )
 {
 	if( isStoreWritable() == false )
 	{
