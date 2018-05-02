@@ -187,7 +187,13 @@ QString JsonStore::configurationFilePath() const
 
 	VeyonCore::filesystem().ensurePathExists( base );
 
-	return QDir::toNativeSeparators( base + QDir::separator() + configurationNameFromScope() + ".json" );
+	auto fileNameBase = name();
+	if( fileNameBase.isEmpty() )
+	{
+		fileNameBase = configurationNameFromScope();
+	}
+
+	return QDir::toNativeSeparators( base + QDir::separator() + fileNameBase + ".json" );
 }
 
 }
