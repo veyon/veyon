@@ -4,7 +4,7 @@
 
 cd /build
 
-rename "s/_amd64/-ubuntu-artful_amd64/g" *.deb
+rename "s/_amd64/-ubuntu-bionic_amd64/g" *.deb
 
 dpkg -I *.deb
 
