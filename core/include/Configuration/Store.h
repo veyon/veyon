@@ -53,7 +53,6 @@ public:
 	{
 		User,		// for current user
 		System,		// system-wide (service settings etc.)
-		BugReportArchive
 	} ;
 	typedef Scopes Scope;
 
@@ -84,7 +83,6 @@ public:
 		{
 			case User: return QStringLiteral( "UserConfig" );
 			case System: return QStringLiteral( "SystemConfig" );
-			case BugReportArchive: return QStringLiteral( "BugReportArchive" );
 		}
 
 		return QString();
