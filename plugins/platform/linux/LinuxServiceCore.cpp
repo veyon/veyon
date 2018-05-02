@@ -68,13 +68,13 @@ void LinuxServiceCore::run()
 
 
 
-void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath )
+void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
 {
-	Q_UNUSED( sessionId );
+	Q_UNUSED( login1SessionId );
 
-	const auto session = sessionObjectPath.path();
+	const auto sessionPath = sessionObjectPath.path();
 
-	const auto sessionDisplay = getSessionDisplay( session );
+	const auto sessionDisplay = getSessionDisplay( sessionPath );
 
 	// do not start server for non-graphical sessions
 	if( sessionDisplay.isEmpty() )
@@ -82,47 +82,48 @@ void LinuxServiceCore::startServer( const QString& sessionId, const QDBusObjectP
 		return;
 	}
 
-	const auto sessionLeader = getSessionLeaderPid( session );
+	const auto sessionLeader = getSessionLeaderPid( sessionPath );
 	auto sessionEnvironment = getSessionEnvironment( sessionLeader );
 
 	if( sessionEnvironment.isEmpty() == false )
 	{
-		qInfo() << "Starting server for new session" << session
-				<< "with ID" << getSessionId( session )
-				<< "and display" << sessionDisplay
-				<< "at seat" << getSessionSeat( session );
+		const auto seat = getSessionSeat( sessionPath );
+
+		qInfo() << "Starting server for new session" << sessionPath
+				<< "with display" << sessionDisplay
+				<< "at seat" << seat.path;
 
 		if( VeyonCore::config().isMultiSessionServiceEnabled() )
 		{
 			sessionEnvironment.insert( PlatformServiceCore::sessionIdEnvironmentVariable(),
-									   QString::number( openSession( sessionDisplay ) ) );
+									   QString::number( openSession( QStringList( { sessionPath, sessionDisplay, seat.path } ) ) ) );
 		}
 
 		auto process = new QProcess( this );
 		process->setProcessEnvironment( sessionEnvironment );
 		process->start( VeyonCore::filesystem().serverFilePath() );
 
-		m_serverProcesses[session] = process;
+		m_serverProcesses[sessionPath] = process;
 	}
 }
 
 
 
-void LinuxServiceCore::stopServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath )
+void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
 {
-	Q_UNUSED( sessionId );
+	Q_UNUSED( login1SessionId );
 
-	const auto session = sessionObjectPath.path();
+	const auto sessionPath = sessionObjectPath.path();
 
-	if( m_serverProcesses.contains( session ) )
+	if( m_serverProcesses.contains( sessionPath ) )
 	{
-		qInfo() << "Stopping server for removed session" << session;
+		qInfo() << "Stopping server for removed session" << sessionPath;
 
-		auto process = m_serverProcesses[session];
+		auto process = m_serverProcesses[sessionPath];
 		process->terminate();
 		closeSession( process->processEnvironment().value( PlatformServiceCore::sessionIdEnvironmentVariable() ).toInt() );
 		delete process;
-		m_serverProcesses.remove( session );
+		m_serverProcesses.remove( sessionPath );
 	}
 }
 
@@ -211,9 +212,17 @@ QString LinuxServiceCore::getSessionId( const QString& session )
 
 
 
-QString LinuxServiceCore::getSessionSeat( const QString& session )
+LinuxServiceCore::LoginDBusSessionSeat LinuxServiceCore::getSessionSeat( const QString& session )
 {
-	return getSessionProperty( session, QStringLiteral("Seat") ).toString();
+	const auto seatArgument = getSessionProperty( session, QStringLiteral("Seat") ).value<QDBusArgument>();
+
+	LoginDBusSessionSeat seat;
+	seatArgument.beginStructure();
+	seatArgument >> seat.id;
+	seatArgument >> seat.path;
+	seatArgument.endStructure();
+
+	return seat;
 }
 
 

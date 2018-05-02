@@ -42,8 +42,8 @@ public:
 	void run();
 
 private slots:
-	void startServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath );
-	void stopServer( const QString& sessionId, const QDBusObjectPath& sessionObjectPath );
+	void startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
+	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 
 private:
 	typedef struct {
@@ -54,6 +54,11 @@ private:
 		QDBusObjectPath path;
 	} LoginDBusSession;
 
+	typedef struct {
+		QString id;
+		QString path;
+	} LoginDBusSessionSeat;
+
 	QStringList listSessions();
 
 	static QVariant getSessionProperty( const QString& session, const QString& property );
@@ -61,7 +66,7 @@ private:
 	static int getSessionLeaderPid( const QString& session );
 	static QString getSessionDisplay( const QString& session );
 	static QString getSessionId( const QString& session );
-	static QString getSessionSeat( const QString& session );
+	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
 
