@@ -72,6 +72,8 @@ VeyonMaster::~VeyonMaster()
 {
 	stopAllModeFeatures( m_computerControlListModel->computerControlInterfaces() );
 
+	delete m_mainWindow;
+
 	delete m_computerManager;
 
 	m_userConfig->flushStore();
