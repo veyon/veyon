@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>ServiceConfigurationPage</class>
  <widget class="QWidget" name="ServiceConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>632</width>
-    <height>803</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
@@ -104,6 +96,10 @@
       </item>
       <item row="2" column="0" colspan="5">
        <widget class="QCheckBox" name="isMultiSessionServiceEnabled">
+        <property name="toolTip">
+         <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</string>
+        </property>
         <property name="text">
          <string>Multi session support (experimental)</string>
         </property>
@@ -261,7 +257,6 @@
   <tabstop>localConnectOnly</tabstop>
  </tabstops>
  <resources>
-  <include location="../veyon-configurator.qrc"/>
   <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
