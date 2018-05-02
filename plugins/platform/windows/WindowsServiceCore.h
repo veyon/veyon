@@ -25,9 +25,9 @@
 #ifndef WINDOWS_SERVICE_CORE_H
 #define WINDOWS_SERVICE_CORE_H
 
-#include "VeyonCore.h"
+#include "PlatformServiceCore.h"
 
-class WindowsServiceCore
+class WindowsServiceCore : public PlatformServiceCore
 {
 public:
 	WindowsServiceCore( const QString& name, std::function<void(void)> serviceMainEntry );
