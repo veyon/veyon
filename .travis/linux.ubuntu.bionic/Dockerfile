@@ -1,4 +1,4 @@
-FROM ubuntu:artful
+FROM ubuntu:bionic
 MAINTAINER Tobias Junghans <tobydox@users.sf.net>
 
 RUN \
