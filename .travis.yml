@@ -11,7 +11,7 @@ matrix:
         - env: TARGET_OS=cross.win32
         - env: TARGET_OS=cross.win64
         - env: TARGET_OS=centos.73
-        - env: TARGET_OS=fedora.26
+        - env: TARGET_OS=fedora.27
         - env: TARGET_OS=opensuse.42.3
 before_install:
     - docker build -t veyon-build ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
