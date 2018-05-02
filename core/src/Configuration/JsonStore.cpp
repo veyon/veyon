@@ -172,7 +172,7 @@ QString JsonStore::configurationFilePath() const
 	switch( scope() )
 	{
 	case User:
-		base = VeyonConfiguration::defaultConfiguration().userConfigurationDirectory();
+		base = VeyonCore::config().userConfigurationDirectory();
 		break;
 	case System:
 		base = LocalSystem::Path::systemConfigDataPath();
