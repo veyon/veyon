@@ -90,6 +90,16 @@ public:
 		return QString();
 	}
 
+	void setName( const QString& name )
+	{
+		m_name = name;
+	}
+
+	const QString& name() const
+	{
+		return m_name;
+	}
+
 	virtual void load( Object *obj ) = 0;
 	virtual void flush( const Object *obj ) = 0;
 	virtual bool isWritable() const = 0;
@@ -99,6 +109,7 @@ public:
 private:
 	const Backend m_backend;
 	const Scope m_scope;
+	QString m_name;
 
 } ;
 

@@ -40,11 +40,13 @@ Object::Object() :
 
 
 
-Object::Object( Store::Backend backend, Store::Scope scope, const Object& defaults ) :
+Object::Object( Store::Backend backend, Store::Scope scope, const Object& defaults, const QString& storeName ) :
 	m_store( createStore( backend, scope ) ),
 	m_customStore( false ),
 	m_data( defaults.data() )
 {
+	m_store->setName( storeName );
+
 	reloadFromStore();
 }
 
