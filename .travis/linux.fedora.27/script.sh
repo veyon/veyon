@@ -7,7 +7,7 @@ set -e
 cd /build
 
 # add distribution name to file name
-rename '.x86_64' '.fc26.x86_64' *.rpm
+rename '.x86_64' '.fc27.x86_64' *.rpm
 
 # show dependencies
 rpm -qpR *.rpm
