@@ -25,7 +25,7 @@
 #include <windows.h>
 #include <wtsapi32.h>
 
-#include <QTime>
+#include <QElapsedTimer>
 
 #include "Filesystem.h"
 #include "WindowsServiceCore.h"
@@ -242,7 +242,7 @@ void WindowsServiceCore::manageServerInstances()
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;
 	DWORD oldSessionId = SESSION_INVALID;
 
-	QTime lastServiceStart;
+	QElapsedTimer lastServiceStart;
 
 	do
 	{
