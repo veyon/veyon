@@ -89,18 +89,16 @@ static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 	PROCESS_INFORMATION pi;
 	ZeroMemory( &si, sizeof( STARTUPINFO ) );
 	si.cb = sizeof( STARTUPINFO );
-	si.lpDesktop = (LPWSTR) L"winsta0\\default";
+	si.lpDesktop = WindowsCoreFunctions::toWCharArray( QStringLiteral("winsta0\\default") );
 
 	HANDLE newToken = nullptr;
 
 	DuplicateTokenEx( processToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
-	auto commandLine = new wchar_t[program.size()+1];
-	program.toWCharArray( commandLine );
-	commandLine[program.size()] = 0;
+	auto commandLine = WindowsCoreFunctions::toWCharArray( program );
 
-	if( CreateProcessAsUser(
+	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token
 				nullptr,			  // file to execute
 				commandLine,	 // command line
@@ -112,13 +110,16 @@ static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 				nullptr,			  // name of current directory
 				&si,			   // pointer to STARTUPINFO structure
 				&pi				// receives information about new process
-				) == false )
+				);
+
+	delete[] si.lpDesktop;
+	delete[] commandLine;
+
+	if( createProcessResult == false )
 	{
 		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
 		return nullptr;
 	}
-
-	delete[] commandLine;
 
 	CloseHandle( newToken );
 	RevertToSelf();
