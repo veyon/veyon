@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de_DE" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -326,14 +324,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Einführung</translation>
     </message>
     <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key. A private key allows users on the master computer to access client computers. It is important that only authorized users have read access to the private key file. The public key is used on client computers to authenticate incoming connection request.
-
-Technically the client sends a challenge (random data) for which the master has to create a cryptographic signature using the private key. The signature is sent back to the client which can verify the validity of the signature using the corresponding public key.</source>
-        <translation>Ein Authentifizierungsschlüsselpaar besteht aus zwei mit einander gekoppelten kryptografischen Schlüsseln, einem privaten und einem öffentlichen Schlüssel. Ein privater Schlüssel erlaubt es Benutzern auf dem Master-Computer, auf Client-Computer zuzugreifen. Es ist wichtig, dass nur autorisierte Benutzer Lesezugriff auf die private Schlüsseldatei haben. Der öffentliche Schlüssel wird auf den Client-Computern genutzt, um eingehende Verbindungsanfragen zu authentifizieren.
-
-Aus technischer Sicht sendet der Client eine Challenge (Zufallsdaten), für die der Master mit Hilfe des privaten Schlüssels eine kryptografische Signatur erstellen muss. Diese Signatur wird an den Client zurückgesendet, der die Gültigkeit der Signatur mit Hilfe des zugehörigen öffentlichen Schlüssels überprüfen kann.</translation>
-    </message>
-    <message>
         <source>Key file directories</source>
         <translation>Schlüsseldateiverzeichnis</translation>
     </message>
@@ -408,6 +398,33 @@ Aus technischer Sicht sendet der Client eine Challenge (Zufallsdaten), für die 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Bitte wählen Sie den Schlüssel, für den die Zugriffsgruppe gesetzt werden soll!</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -592,6 +609,10 @@ Aus technischer Sicht sendet der Client eine Challenge (Zufallsdaten), für die 
         <translation>NAME</translation>
     </message>
     <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
+        <translation>Dieser Befehl erzeugt ein neues Authentifizierungsschlüsselpaar mit name &lt;NAME&gt; und speichert privaten und öffentlichen Schlüssel im konfigurierten Schlüsselverzeichnis.</translation>
+    </message>
+    <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
         <translation>Dieser Befehl löscht den Authentifizierungsschlüssel &lt;SCHLÜSSEL&gt; aus dem konfigurierten Schlüsselverzeichnis. Bitte beachten Sie, dass ein Schlüssel nicht wiederhergestellt werden kann, sobald er gelöscht wurde.</translation>
     </message>
@@ -606,6 +627,10 @@ Aus technischer Sicht sendet der Client eine Challenge (Zufallsdaten), für die 
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>Dieser Befehl importiert den Authentifizierungsschlüssel &lt;SCHLÜSSEL&gt; aus &lt;DATEI&gt;. Wenn &lt;DATEI&gt; nicht angeben wird, wird der Dateiname aus Name und Typ von &lt;SCHLÜSSEL&gt; abgeleitet.</translation>
+    </message>
+    <message>
+        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation>Dieser Befehl listet alle verfügbaren Authentifizierungsschlüssel im konfigurierten Schlüsselverzeichnis auf. Wenn die Option &quot;%1&quot; angegeben wird, wird stattdessen eine Tabelle mit Schlüsseldetails ausgegeben. Einige Details können fehlen, wenn auf einen Schlüssel nicht zugegriffen werden kann, z.B. aufgrund fehlender Leserechte.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
@@ -630,14 +655,6 @@ Aus technischer Sicht sendet der Client eine Challenge (Zufallsdaten), für die 
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Befehle zur Verwaltung von Authentifizierungsschlüsseln</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Dieser Befehl erzeugt ein neues Authentifizierungsschlüsselpaar mit name &lt;NAME&gt; und speichert privaten und öffentlichen Schlüssel im konfigurierten Schlüsselverzeichnis.</translation>
-    </message>
-    <message>
-        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Dieser Befehl listet alle verfügbaren Authentifizierungsschlüssel im konfigurierten Schlüsselverzeichnis auf. Wenn die Option &quot;%1&quot; angegeben wird, wird stattdessen eine Tabelle mit Schlüsseldetails ausgegeben. Einige Details können fehlen, wenn auf einen Schlüssel nicht zugegriffen werden kann, z.B. aufgrund fehlender Leserechte.</translation>
     </message>
 </context>
 <context>
@@ -764,7 +781,7 @@ Examples:
 
 * Import arbitrarily formatted data:
 
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
         <translation>
 VERWENDUNG
@@ -791,18 +808,6 @@ Beispiele:
 
     %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
 </translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>Netzwerkobjektverzeichnis, das Objekte in lokaler Konfiguration speichert</translation>
-    </message>
-    <message>
-        <source>Builtin (computers and rooms in local configuration)</source>
-        <translation>Eingebaut (Computer und Räume in lokaler Konfiguration)</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>Befehle zur Verwaltung des eingebauten Netzwerkobjektverzeichnisses</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -883,6 +888,49 @@ Beispiele:
     <message>
         <source>Error while parsing line %1.</source>
         <translation>Fehler beim Parsen von Zeile %1.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Netzwerkobjektverzeichnis, das Objekte in lokaler Konfiguration speichert</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and rooms in local configuration)</source>
+        <translation>Eingebaut (Computer und Räume in lokaler Konfiguration)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Befehle zur Verwaltung des eingebauten Netzwerkobjektverzeichnisses</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Export all objects to a CSV file:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export all computers in a room to a CSV file:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1224,6 +1272,10 @@ Beispiele:
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
+        <source>Programs &amp; websites</source>
+        <translation>Programme &amp; Websites</translation>
+    </message>
+    <message>
         <source>Predefined programs</source>
         <translation>Vordefinierte Programme</translation>
     </message>
@@ -1240,8 +1292,16 @@ Beispiele:
         <translation>Neues Programm hinzufügen</translation>
     </message>
     <message>
+        <source>Remove selected program</source>
+        <translation>Ausgewähltes Programm entfernen</translation>
+    </message>
+    <message>
         <source>Predefined websites</source>
         <translation>Vordefinierte Websites</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Ausgewählte Website entfernen</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1254,18 +1314,6 @@ Beispiele:
     <message>
         <source>New website</source>
         <translation>Neue Website</translation>
-    </message>
-    <message>
-        <source>Remove selected program</source>
-        <translation>Ausgewähltes Programm entfernen</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>Ausgewählte Website entfernen</translation>
-    </message>
-    <message>
-        <source>Programs &amp; websites</source>
-        <translation>Programme &amp; Websites</translation>
     </message>
 </context>
 <context>
@@ -3085,12 +3133,12 @@ Beispiele:
         <translation>Datei &quot;%1 existiert nicht!</translation>
     </message>
     <message>
-        <source>Commands for shell functionalities</source>
-        <translation>Befehle für Shellfunktionalitäten</translation>
-    </message>
-    <message>
         <source>Interactive shell and script execution for Veyon Control</source>
         <translation>Interaktive Shell und Scriptausführung für Veyon Control</translation>
+    </message>
+    <message>
+        <source>Commands for shell functionalities</source>
+        <translation>Befehle für Shellfunktionalitäten</translation>
     </message>
 </context>
 <context>

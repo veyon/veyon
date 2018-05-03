@@ -1,86 +1,87 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fa" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation>درباره</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"/>
+        <translation>ترجمه</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>مجوز</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>درباره ویون</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>همکاران</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>نسخه:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>وب سایت:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>زبان فعلی هنوز ترجمه نشده است (یا زبان مادری انگلیسی).
+اگر شما علاقه مند به ترجمه Veyon به زبان محلی خود یا زبان دیگری هستید یا مایل به بهبود ترجمه های موجود هستید، لطفا با یک توسعه دهنده Veyon تماس بگیرید!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>درباره %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>پشتیبانی پروژه ویون با کمک مالی</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>کنترل دسترسی کامپیوتر</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به هر کاربر معتبر (به طور پیش فرض) را تأیید کنید</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>تست</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به اعضای گروه های کاربر خاص را محدود کنید</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>قوانین کنترل دسترسی کنترل فرآیند</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>گروه های کاربری مجاز برای دسترسی به کامپیوتر</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>لطفا گروه هایی را که اعضای شما مجاز به دسترسی به کامپیوتر در شبکه ویون شما هستند، اضافه کنید.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>گروه های کاربری مجاز</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>تمام گروه ها</translation>
     </message>
     <message>
         <source>...</source>
@@ -88,55 +89,55 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>قوانین کنترل دسترسی</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>اضافه کردن قانون کنترل دسترسی</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>حذف قانون کنترل دسترسی</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>پایین بردن قانون انتخاب شده</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>بالا بردن قانون انتخاب شده</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>ویرایش قانون انتخاب شده</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>نام کاربری را وارد کنید</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک نام کاربری ورود به سیستم که مجوزهای دسترسی برای تست را دارد وارد کنید:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی مجاز است</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>کاربر مورد نظر مجاز است به این پیکربندی دسترسی پیدا کند.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی غیرمجاز است</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>کاربر مورد نظر مجاز نیست به این پیکربندی دسترسی پیدا کند.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>استفاده از گروههای دامنه را فعال کنید</translation>
     </message>
     <message>
         <source>User groups backend:</source>
@@ -155,27 +156,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>ویرایش قانون کنترل دسترسی </translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation>عمومی</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>یک نام کوتاه برای این قانون بنویسید</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>نام قانون:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>اینجا توضیحی برای این قانون وارد کنید</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>شرح قانون:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -183,134 +184,134 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>شرایط</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>عضو گروه است</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>در اتاق قرار دارد</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کامپیوتر میزبان محلی است</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کاربر به کاربر وارد شده است</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کاربر در حال حاضر اتصال است</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>اگر بیشتر از یک شرایط فعال شود، هر شرایط باید برای تطابق قوانین (منطقی AND) مطابقت داشته باشد. اگر فقط یکی از شرایط چندگانه برای برآورده شدن باشد (منطقی OR)، لطفا قوانین کنترل دسترسی چندگانه ایجاد کنید.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>اقدام</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>اجازه دسترسی</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی غیرمجاز</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>از کاربر خواسته شده برای مجوز وارد شوید</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>هیچکدام (قانون غیرفعال شده است)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کاربر</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کامپیوتر</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>محلی (وارد سیستم) کاربر</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>کامپیوتر محلی</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>همیشه قوانین را فراموش کنید و شرایط را نادیده بگیرید</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>هیچ کاربری وارد نشده است</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کامپیوتر در همان اتاق به عنوان کامپیوتر محلی واقع شده است</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به کاربر دارای یک یا چند گروه مشترک با کاربر محلی (وارد شده) است</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>تست قوانین کنترل دسترسی </translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی کاربر:</translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>کامپیوتر محلی:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی کامپیوتر</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>برای تست تنظیمات پیکربندی شده، لطفا اطلاعات کاربر و رایانه زیر را وارد کنید.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>کاربر محلی:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>کاربران متصل :</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به سناریو داده شده مجاز است.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به سناریو داده شده ممنوع است.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی به سناریو داده شده نیاز به اجازه ورود کاربر دارد.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>خطا: اقدام ناشناخته</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>نتیجه تست</translation>
     </message>
 </context>
 <context>
@@ -329,11 +330,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>دایرکتوری پایگاه داده کلید عمومی</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>فایل پایگاه داده فایل خصوصی</translation>
     </message>
     <message>
         <source>...</source>
@@ -913,209 +914,209 @@ Examples:
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation type="unfinished"/>
+        <translation>سرور داخلی  vnc   (ultravnc)   </translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation type="unfinished"/>
+        <translation>سرور داخلی vnc (x11vnc)</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation type="unfinished"/>
+        <translation>اتاق: %1</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>میزبان / آدرس آی پی :٪ 1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>ویژگی های فعال:٪ 1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>آنلاین و متصل</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>برقراری ارتباط</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation type="unfinished"/>
+        <translation>کامپیوتر آفلاین یا خاموش است</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>سرویس غیر قابل دسترس یا در حال اجرا نیست</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation type="unfinished"/>
+        <translation>تأیید اعتبار ناموفق بود یا دسترسی به آن ممنوع شد</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>قطع شده</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>هیچ کاربری وارد نشده است</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation type="unfinished"/>
+        <translation>کاربر وارد شده:٪ 1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
+        <translation>٪ 1 سرویس٪ 2 در٪ 3:٪ 4</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Autentiseringsfel</translation>
+        <translation>خطا احراز هویت</translation>
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>کاربر٪ 1 (IP:٪ 2) سعی در دسترسی به این رایانه داشت، اما با موفقیت تایید نشد!</translation>
     </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>مدیریت کامپیوتر</translation>
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>اضافه کردن اتاق</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>ذخیره لیست کامپیوتر / کاربران</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>انتخاب نام فایل خروجی</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>فایل های csv (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>فایل خطا</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>لیست کامپیوتر و کاربران را به٪ 1 نمی توان نوشت! لطفا مجوز دسترسی به فایل را بررسی کنید.</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>جستجوی رایانه </translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>کاربر</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>گم شده پلاگین دایرکتوری شیء شبکه</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>هیچ پلاگین دایرکتوری شیء پیش فرض شبکه یافت نشد. لطفا نصب خود را بررسی کنید یا یک پایگاه داده دایرکتوری شیء شبکه دیگر را از طریق٪ 1 Configurator پیکربندی کنید.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation type="unfinished"/>
+        <translation>نام کامپیوتر؛ نام میزبان؛ کاربر</translation>
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation type="unfinished"/>
+        <translation>بازیابی اتاق ناموفق است</translation>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation type="unfinished"/>
+        <translation>اتاق مورد نظر این کامپیوتر را نمیتوان تعیین کرد. این نشان دهنده یک مشکل با پیکربندی سیستم است. همه اتاقها به جای آن در مدیریت کامپیوتر نمایش داده می شوند.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک فایل پیکربندی موجود برای وارد کردن را مشخص کنید</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation type="unfinished"/>
+        <translation>لطفا نام فایل معتبر را برای تنظیم پیکربندی مشخص کنید.</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک کلید معتبر را مشخص کنید</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>کلید مشخص در پیکربندی فعلی وجود ندارد!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک مقدار معتبر را مشخص کنید.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>پیکربندی Veyon در خط فرمان</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>فایل خروجی قابل نوشتن نیست!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>دایرکتوری خروجی قابل نوشتن نیست!</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>فایل پیکربندی قابل خواندن نیست!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation type="unfinished"/>
+        <translation>پاک کردن پیکربندی Veyon در سراسر سیستم</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation type="unfinished"/>
+        <translation>لیست تمام کلید های پیکربندی و مقادیر</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation type="unfinished"/>
+        <translation>وارد نمودن پیکربندی از فایل داده شده</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation type="unfinished"/>
+        <translation>ذخیره پیکربندی به فایل داده شده</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>خواندن و خروجی مقدار پیکربندی برای کلید داده شده</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>مقدار داده شده به کلید پیکربندی داده شده را بنویسید</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>رها کردن (حذف) کلید تنظیمات داده شده</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>دستورات برای مدیریت پیکربندی Veyon</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
@@ -1126,7 +1127,7 @@ Examples:
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>ویژگی Property Autostart برای سرویس٪ 1 قابل تغییر نیست.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
@@ -1138,7 +1139,7 @@ Examples:
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
+        <translation>تنظیمات نسل SAS توسط نرم افزار امکان پذیر نیست. ارسال Ctrl + Alt + Del از طریق کنترل از راه دور کار نخواهد کرد!</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
@@ -1149,14 +1150,14 @@ Examples:
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation type="unfinished"/>
+        <translation>نمایش%1 </translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>نمایش سرور</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1164,85 +1165,85 @@ Examples:
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ام اس</translation>
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>فاصله فریم کلیدی</translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>محدودیت حافظه</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>استفاده از Multithreading (تجربی)</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>مگابایت</translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>به روز رسانی فاصله</translation>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation>اس</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Demo i helskärm</translation>
+        <translation>نمایش تمام صفحه</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>توقف نمایش تمام صفحه</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Demo i fönster</translation>
+        <translation>نمایش پنجره </translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>نمایش توسط پخش روی صفحه نمایش</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>نمایش سرور</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>در این حالت صفحه نمایش شما در حالت تمام صفحه در تمام رایانه ها نمایش داده می شود در حالی که دستگاه های ورودی کاربران قفل می شوند</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>در این حالت صفحه شما در یک پنجره در همه رایانه ها نمایش داده می شود. کاربران می توانند در صورت نیاز به پنجره های دیگر تغییر دهند.</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation type="unfinished"/>
+        <translation>پنجره دسترسی به دسک تاپ</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation type="unfinished"/>
+        <translation>تأیید دسترسی به دسکتاپ</translation>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Aldrig för denna session</translation>
+        <translation> این جلسه برگزار نشود</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Alltid för denna session</translation>
+        <translation>این جلسه برگزار شود</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation>کاربر٪ 1 در کامپیوتر٪ 2 میخواهد به دسکتاپ شما دسترسی پیدا کند. آیا می خواهید دسترسی را اعطا کنید؟</translation>
     </message>
 </context>
 <context>
@@ -1296,27 +1297,27 @@ Examples:
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>اجرای برنامه</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>وبسایت را باز کنید</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>برای باز کردن یک وب سایت روی تمام رایانه ها ، روی این دکمه کلیک کنید.</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا نشانی اینترنتی وبسایت را باز کنید:</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
+        <translation>شروع برنامه ها و خدمات در دسکتاپ کاربر</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>برای اجرای یک برنامه روی تمام رایانه ها روی این دکمه کلیک کنید.</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
@@ -1339,60 +1340,60 @@ Examples:
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>سرور خارجی VNC</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>پیکربندی سرور خارجی VNC</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>پورت</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>رمز</translation>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation type="unfinished"/>
+        <translation>کنترل ویژگی</translation>
     </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation>رابط کاربری</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>زبان</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>از تنظیمات زبان سیستم استفاده کنید</translation>
     </message>
     <message>
         <source>Enable high DPI scaling</source>
-        <translation type="unfinished"/>
+        <translation>فعال سازی دی پی آی بالا </translation>
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>ویون</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation>Loggning</translation>
+        <translation>ورود به سیستم</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Loggfilskatalog</translation>
+        <translation>دایرکتوری فایل ثبت فعالیت</translation>
     </message>
     <message>
         <source>...</source>
@@ -1400,43 +1401,43 @@ Examples:
     </message>
     <message>
         <source>Log level</source>
-        <translation>Loggnivå</translation>
+        <translation>سطح ورود</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Ingenting</translation>
+        <translation>هیچ چی</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Endast kritiska meddelanden</translation>
+        <translation>فقط پیام های بحرانی</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Fel och kritiska meddelanden</translation>
+        <translation>خطاها و پیام های بحرانی</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Varningar och fel</translation>
+        <translation>هشدارها و خطاها</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Information, varningar och fel</translation>
+        <translation>اطلاعات، هشدارها و خطاها</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Felsökningsmeddelanden och allting annat</translation>
+        <translation>پیام های اشکال زدایی و هر چیز دیگری</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Begränsa storlek på loggfil</translation>
+        <translation>محدود کردن اندازه فایل ورودی</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Töm alla loggfiler</translation>
+        <translation>پاک کردن تمام ثبت فعالیت</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation type="unfinished"/>
+        <translation>ثبت گزارش به خروجی استاندارد خطا</translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -1476,7 +1477,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>مگابایت</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1496,7 +1497,7 @@ Examples:
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Autentisering</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Method:</source>
@@ -1504,11 +1505,11 @@ Examples:
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"/>
+        <translation>ورود احراز هویت شده ها</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"/>
+        <translation> فایل کلید احراز هویت</translation>
     </message>
 </context>
 <context>
@@ -1557,7 +1558,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>نمایش راهنما در مورد این فرمان</translation>
     </message>
     <message>
         <source>Block internet</source>
@@ -1596,7 +1597,7 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation>عمومی</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1620,7 +1621,7 @@ Examples:
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>تست</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1813,7 +1814,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>نوشتن نام کاربری</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2241,7 +2242,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>نمایش راهنما در مورد این فرمان</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2271,7 +2272,7 @@ Examples:
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation>skärmlås</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2293,55 +2294,55 @@ Examples:
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation>Huvudfönster</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>verktygsrad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation>عمومی</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Arkiv</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hjälp</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>A&amp;vsluta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation>&amp;Spara inställningar till fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>Spara inställningar till fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>&amp;Läs in inställningar från fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Om Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -2349,31 +2350,31 @@ Examples:
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fjärrstyrning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Avsluta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Konfigurationen är inte skrivbar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Läs in inställningar från fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Spara inställningar till fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Osparade inställningar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Det finns osparade inställningar. Avsluta ändå?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -2393,7 +2394,7 @@ Examples:
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>درباره ویون</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2405,7 +2406,7 @@ Examples:
     </message>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation>درباره</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2429,7 +2430,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>دسترسی غیرمجاز است</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2437,7 +2438,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>عکس های گرفته شده </translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2449,7 +2450,7 @@ Examples:
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>تنظیم مجدد پیکربندی</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -2473,7 +2474,7 @@ Examples:
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation type="unfinished"/>
+        <translation>%1تنظیم کننده</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
@@ -2488,7 +2489,7 @@ Examples:
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>فهرست راهنما</translation>
     </message>
     <message>
         <source>...</source>
@@ -2496,7 +2497,7 @@ Examples:
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>پیکربندی کاربران </translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2524,7 +2525,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>عکس های گرفته شده </translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2556,11 +2557,11 @@ Examples:
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>مخفی کردن کامپیوتر محلی</translation>
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation type="unfinished"/>
+        <translation>پنهان نمودن اتاق های خالی</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2568,7 +2569,7 @@ Examples:
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>مدیریت کامپیوتر</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
@@ -2580,7 +2581,7 @@ Examples:
     </message>
     <message>
         <source>User interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation>رابط کاربری</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -2592,7 +2593,7 @@ Examples:
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ام اس</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2615,7 +2616,7 @@ Examples:
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>ساخته شده در حالت نظارت</translation>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
@@ -2633,11 +2634,11 @@ Examples:
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Användarnamn</translation>
+        <translation>نام کاربری</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Lösenord</translation>
+        <translation>رمز</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -2645,7 +2646,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>خطا احراز هویت</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -2660,7 +2661,7 @@ Examples:
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Starta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -2668,7 +2669,7 @@ Examples:
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Starta om</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -2676,7 +2677,7 @@ Examples:
     </message>
     <message>
         <source>Power down</source>
-        <translation>Stäng av</translation>
+        <translation>خاموش</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -2715,7 +2716,7 @@ Examples:
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fjärrstyrning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -2731,11 +2732,11 @@ Examples:
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا نام میزبان یا آدرس آی پی کامپیوتر را وارد کنید:</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>نمایش راهنما در مورد این فرمان</translation>
     </message>
 </context>
 <context>
@@ -2749,11 +2750,11 @@ Examples:
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Visa endast</translation>
+        <translation>فقط مشاهده</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fjärrstyrning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -2761,15 +2762,15 @@ Examples:
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Helskärm</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Window</source>
-        <translation>Fönster</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Avsluta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -2793,11 +2794,11 @@ Examples:
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>ویندوز</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>فهرست</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
@@ -2805,11 +2806,11 @@ Examples:
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>Ansluter %1</translation>
+        <translation>اتصال٪ 1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Ansluten.</translation>
+        <translation>متصل شد.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2820,7 +2821,7 @@ Examples:
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation type="unfinished"/>
+        <translation>انتخاب اتاق</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2846,11 +2847,11 @@ Examples:
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>قفل</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>گشودن</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -2888,77 +2889,77 @@ Examples:
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>عکسبرداری از صفحه مانیتور</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>تصاویری از رایانه٪ 1 با موفقیت انجام شده است.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>عکسبرداری  از رایانه های شبکه و ذخیره آنها در محلی مناسب.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>کاربر</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>تاریخ</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>زمان</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>نمایش</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>حذف</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>تمام عکسهای گرفته شده توسط شما در اینجا فهرست شده است. شما می توانید عکس ها را با کلیک روی آیتم &quot;Screenshot&quot; در منوی بالایی یک کامپیوتر بگیرید. تصاویر را می توان با استفاده از دکمه های زیر مدیریت کرد.</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>کامپیوتر</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation>عمومی</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Automatisk start</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Dölj aktivitetsikonen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Starta tjänst</translation>
+        <translation>سرویس فعال شد</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Stoppad</translation>
+        <translation>متوقف شده</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Stoppa tjänst</translation>
+        <translation>سرویس متوقف شد</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>Tillstånd:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -2966,51 +2967,51 @@ Examples:
     </message>
     <message>
         <source>Network</source>
-        <translation>Nätverk</translation>
+        <translation>شبکه</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>Serverport för demo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Aktivera brandväggsundantag</translation>
+        <translation>اضافه کردن استثنا به دیوار آتش</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation type="unfinished"/>
+        <translation>اجازه ارتباط فقط برای کامپیوتر محلی</translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>پورت سرور VNC داخلی</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>سرور vnc </translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>پلاگین :</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>راه اندازی مجدد٪ 1 سرویس</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>تمام تنظیمات با موفقیت ذخیره شدند. برای به تأخیر انداختن سرویس٪ 1 باید مجددا راه اندازی شود. دوباره راه اندازی کنید؟</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation>Kör</translation>
+        <translation>در حال اجرا</translation>
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation type="unfinished"/>
+        <translation>پورت مدیریت ویژگی</translation>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation type="unfinished"/>
+        <translation>پورت خدمات اصلی</translation>
     </message>
 </context>
 <context>
@@ -3040,43 +3041,43 @@ Examples:
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>سرویس در حال اجرا است</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>سرویس اجرا نمی شود</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>پیکربندی و کنترل سرویس ویون</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>ثبت سرویس های ویون</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>عدم ثبت سرویس های ویون</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>شروع سرویس ویون</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>توقف سرویس ویون</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>راه اندازی  مجدد سرویس ویون</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>بررسی وضعیت سرویس ویون</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>شامل فرمان هایی برای پیکربندی و کنترل سرویس ویون</translation>
     </message>
 </context>
 <context>
@@ -3102,7 +3103,7 @@ Examples:
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>آیکن کنار ساعت</translation>
     </message>
 </context>
 <context>
@@ -3120,45 +3121,45 @@ Examples:
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Skicka textmeddelande</translation>
+        <translation>ارسال پیام متنی</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>از فیلد زیر برای تایپ پیام خود استفاده کنید که به تمامی کاربران انتخاب شده ارسال می شود.</translation>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Textmeddelande</translation>
+        <translation>پیام متنی</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>برای ارسال یک پیام متنی به همه کاربران از این تابع استفاده کنید، برای مثال آنها را به وظایف جدید اختصاص دهید.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished"/>
+        <translation>پیام از معلم</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>ارسال یک پیام به یک کاربر</translation>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Aktivera fångst av flerskiktade fönster (semi-transparant)</translation>
+        <translation>ضبط کردن پنجره های لایه ای (نیمه شفاف) را فعال کنید</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"/>
+        <translation>نظرسنجی تمام صفحه (این را در پیشفرض فعال کنید)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Låg precision (turboläge)</translation>
+        <translation>دقت پایین (حالت توربو)</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
@@ -3166,76 +3167,76 @@ Examples:
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>پشتیبانی دو مانیتور را فعال کنید.</translation>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation>Ingen skrivåtkomst</translation>
+        <translation>عدم دسترسی نوشتن</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>تنظیمات شخصی شما ذخیره نشد لطفا مسیر پرونده پیکربندی کاربر را با استفاده از پیکربندی ٪ 1 بررسی کنید.</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>کنترل جلسه کاربر</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation>Logga ut användare</translation>
+        <translation>خروج از کاربر</translation>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>برای خروج از کاربران از همه رایانه ها، روی این دکمه کلیک کنید.</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>خروج کاربر مورد تایید است.</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>آیا واقعا می خواهید از کاربران انتخاب شده خارج شوید؟</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[تایید]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[عدم موفقیت]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>دستور نا معتبر!</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>دستورات موجود:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>استدلال های نامعتبر داده شده است.</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation type="unfinished"/>
+        <translation>استدلال های کافی نیست - برای اطلاعات بیشتر از &quot;٪ 1 کمک&quot; استفاده کنید</translation>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>نتیجه ناشناخته!</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>ماژول های موجود:</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -3253,29 +3254,29 @@ Examples:
     <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC-autentisering misslyckades på grund av för många autentiseringsförsök.</translation>
+        <translation>احراز هویت VNC به دلیل تلاش های احراز هویت بسیار زیاد انجام نشد.</translation>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation>VNC-autentisering misslyckades.</translation>
+        <translation>احراز هویت VNC شکست خورد.</translation>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation>VNC-servern stängde anslutningen.</translation>
+        <translation>VNC سرور اتصال را بسته است.</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Etablerar anslutning till %1...</translation>
+        <translation>ایجاد اتصال به٪ 1 ...</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>پلاگین اجرای توابع انتزاعی برای پلت فرم ویندوز</translation>
     </message>
 </context>
 <context>
@@ -3313,15 +3314,15 @@ Examples:
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>x11vnc پیکربندی داخلی سرور</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>پارامترهای x11vnc سفارشی:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>از X Damage extension استفاده نکنید</translation>
     </message>
 </context>
 </TS>

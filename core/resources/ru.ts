@@ -69,10 +69,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Правила контроля доступа к процессу</translation>
     </message>
     <message>
-        <source>Data backend:</source>
-        <translation>Бэкэнд данных:</translation>
-    </message>
-    <message>
         <source>User groups authorized for computer access</source>
         <translation>Группы пользователей, разрешенные для доступа к компьютеру</translation>
     </message>
@@ -117,14 +113,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Редактировать выделенное правило</translation>
     </message>
     <message>
-        <source>Missing access control data backend</source>
-        <translation>Отсутствует контроль доступа бэкэнда данных</translation>
-    </message>
-    <message>
-        <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Не обнаружен плагин бэкэнда для контроля доступа по умолчанию. Проверьте корректность установки!</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Введите имя пользователя</translation>
     </message>
@@ -150,6 +138,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -316,22 +316,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthenticationConfigurationPage</name>
+    <name>AuthKeysConfigurationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Методы аутентификации</translation>
+        <source>Authentication keys</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Аутентификация при входе в систему</translation>
+        <source>Introduction</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Key file authentication</source>
-        <translation>Аутентификация с помощью ключа доступа</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Управление ключами доступа</translation>
+        <source>Key file directories</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -346,24 +342,573 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>...</translation>
     </message>
     <message>
-        <source>Launch key file assistant</source>
-        <translation>Запустить помощник операций с ключём доступа</translation>
+        <source>Available authentication keys</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Test</source>
-        <translation>Тестировать</translation>
+        <source>Create key pair</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Тестирование аутентификации входа в систему</translation>
+        <source>Delete key</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Аутентификация учётных данных прошла успешно.</translation>
+        <source>Import key</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>При прохождении аутентификации учётных данных возникли ошибки!</translation>
+        <source>Export key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key files (*.pem)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication key name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a key to delete!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysManager</name>
+    <message>
+        <source>Please check your permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key name contains invalid characters!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Creating new key pair for &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create public or private key!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not remove key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not remove key file directory &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for output file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to write output file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed read input file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid private key!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid public key!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for key file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to write key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to convert private key to public key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for private key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to save private key in file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for public key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to save public key in file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to read key file.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysPlugin</name>
+    <message>
+        <source>Create new authentication key pair</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete authentication key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import public or private key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export public or private key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Extract public key from existing private key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Set user group allowed to access a key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PAIR ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <source>Access group</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfigurationPage</name>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Комнаты и компьютеры</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Комнаты</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Компьютеры</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Адрес хоста/IP</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-адрес</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Добавить новую комнату</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Удалить выделенную комнату</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Добавить новый компьютер</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Удалить выбранный компьютер</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Новая комната</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Новый компьютер</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Clear all rooms and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dump all or individual rooms and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all rooms and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a room or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import objects from given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export objects to given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-адрес</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin (computers and rooms in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Export all objects to a CSV file:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export all computers in a room to a CSV file:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -381,25 +926,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>ComputerControlServer</name>
-    <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Служба %2 в %3:%4</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Ошибка аутенфикации</translation>
-    </message>
-    <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Пользователь %1 (IP: %2) попытался получить доступ к этому компьютеру, но не смог успешно пройти аутентификацию!</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerListModel</name>
+    <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
         <translation>Комната: %1</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Хост / IP-адрес: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
@@ -408,14 +946,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Establishing connection</source>
         <translation>Установка соединения</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Пользователь не вошел</translation>
-    </message>
-    <message>
-        <source>Logged on user: %1</source>
-        <translation>Вход в систему под пользователем: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -434,12 +964,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Отключено</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Хост / IP-адрес: %1</translation>
+        <source>No user logged on</source>
+        <translation>Пользователь не вошел</translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <source>Logged on user: %1</source>
+        <translation>Вход в систему под пользователем: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Служба %2 в %3:%4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Ошибка аутенфикации</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Пользователь %1 (IP: %2) попытался получить доступ к этому компьютеру, но не смог успешно пройти аутентификацию!</translation>
     </message>
 </context>
 <context>
@@ -527,22 +1072,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Укажите действительное значение.</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Не удалось изменить свойство автозапуска для службы %1.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Не удалось изменить параметры для службы %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Невозможно изменить настройки брандмауэра для службы %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Не удалось изменить параметр для программного создания SAS. Удалённой отправки Ctrl+Alt+Del не будет!</translation>
-    </message>
-    <message>
         <source>Configure Veyon at command line</source>
         <translation>Настройка Veyon в командной строке</translation>
     </message>
@@ -590,44 +1119,32 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Commands for managing the configuration of Veyon</source>
         <translation>Команды для управления настройками Veyon</translation>
     </message>
+    <message>
+        <source>Upgrade and save configuration of program and plugins</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>ConfiguratorCore</name>
+    <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
         <translation>Не удалось изменить свойство автозапуска для службы %1.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Не удалось изменить параметры для службы %1 .</translation>
+        <source>Could not configure the firewall configuration for the %1 Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Невозможно изменить настройки брандмауэра для службы %1 .</translation>
+        <source>Could not configure the firewall configuration for the %1 Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
         <translation>Не удалось изменить параметр для программного создания SAS. Удалённой отправки Ctrl+Alt+Del не будет! </translation>
     </message>
     <message>
-        <source>Overwrite keys</source>
-        <translation>Перезаписать ключи</translation>
-    </message>
-    <message>
-        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Некоторые из файлов ключей уже существуют. Если вы замените их вновь, вам придется также обновить открытые ключи на всех компьютерах. Хотите продолжить выполнение этого действия?</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Конфигурация очищена</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>Локальная конфигурация была успешно очищена.</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Конфигуратор %1</translation>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -731,6 +1248,53 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DesktopServicesConfigurationPage</name>
+    <message>
+        <source>Programs &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined programs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New website</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
@@ -755,6 +1319,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Нажмите эту кнопку для запуска программы на всех компьютерах.</translation>
+    </message>
+    <message>
+        <source>Run program &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -861,10 +1441,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Обычное журналирование</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Журналирование в системный журнал событий</translation>
-    </message>
-    <message>
         <source>Network object directory</source>
         <translation>Каталог сетевых объектов</translation>
     </message>
@@ -920,172 +1496,94 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Аутентификация</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Аутентификация при входе в систему</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Аутентификация с помощью ключа доступа</translation>
+    </message>
 </context>
 <context>
-    <name>KeyFileAssistant</name>
+    <name>InternetAccessControlConfigurationPage</name>
     <message>
-        <source>How does it work?</source>
-        <translation>Как он работает?</translation>
+        <source>Internet access control</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Assistant mode</source>
-        <translation>Режим работы помощника</translation>
+        <source>Settings</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Пожалуйста, выберите, нужно ли создавать новые ключи доступа или импортировать уже существующий открытый ключ на клиентскую машину.</translation>
+        <source>Backend:</source>
+        <translation>Бэкэнд:</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlDummy</name>
+    <message>
+        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>Создать новые ключи доступа (главный компьютер)</translation>
+        <source>Internet access control not available</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Import public key (client computer)</source>
-        <translation>Импортировать открытый ключ (для клиентских машин)</translation>
+        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select user role</source>
-        <translation>Выберите роль пользователя</translation>
+        <source>Dummy backend for internet access control</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlPlugin</name>
+    <message>
+        <source>Block access to the internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Пожалуйста, выберите роль пользователя, который будет создавать или импортировать ключи доступа:</translation>
+        <source>Allow access to the internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Учитель</translation>
+        <source>Show help about command</source>
+        <translation>Показать помощь по команде</translation>
     </message>
     <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Роли пользователей позволяют использовать несколько ключей доступа одновременно. Например, можно создать различные ключи доступа учителям для каждого класса, а ключи доступа для технической поддержки будут одинаковы для всего учебного заведения.</translation>
+        <source>Block internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Каталоги</translation>
+        <source>Click this button to block access to the internet.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Export public key part (master computer)</source>
-        <translation>Экспортировать открытый ключ (главный компьютер)</translation>
+        <source>Unblock internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
+        <source>Click this button to allow access to the internet.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>Использовать пользовательский каталог для хранения ключей доступа</translation>
+        <source>Control access to the internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Пожалуйста, укажите расположение открытого ключа доступа для его импорта</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>Основная информация</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>Будут выполнены следующие действия:</translation>
-    </message>
-    <message>
-        <source>• Create new access keys</source>
-        <translation>• Создать новые ключи доступа</translation>
-    </message>
-    <message>
-        <source>• Import public access key from</source>
-        <translation>• Импортировать открытый ключ доступа из</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;неизвестный&gt;</translation>
-    </message>
-    <message>
-        <source>• Write access key(s) to</source>
-        <translation>• Записать ключ(и) доступа в</translation>
-    </message>
-    <message>
-        <source>• Export public key to</source>
-        <translation>• Экспортировать открытый ключ в</translation>
-    </message>
-    <message>
-        <source>• Configure for user role</source>
-        <translation>• Настроить роль пользователя</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>Выберите каталог, в который будет осуществлён экспорт открытого ключа</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>Файлы ключей (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>Неправильный формат открытого ключа</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>Выберите каталог назначения</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>Создание ключа доступа</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>Не удаётся удалить ранее существующий файл %1.</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Ошибка экспорта открытых ключей доступа из %1 в %2.</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Ключи доступа были успешно созданы в %1 и %2.</translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Произошла ошибка при создании ключей доступа. Возможно у выбранного каталога установлен запрет на запись.</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>Импорт открытого ключа</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Произошла ошибка при импорте открытого ключа доступа. Возможно у файла, содержащего исходный ключ, установлен запрет на чтение или существует запрет на запись в каталоге, содержащем ключи (конечном каталоге).</translation>
-    </message>
-    <message>
-        <source>The public key was successfully imported to %1.</source>
-        <translation>Открытый ключ был успешно импортирован в %1.</translation>
-    </message>
-    <message>
-        <source>Veyon Access Key Assistant</source>
-        <translation>Помощник операций с ключём доступа к Veyon</translation>
-    </message>
-    <message>
-        <source>Create/import Veyon access keys</source>
-        <translation>Создать/импортировать ключи доступа к Veyon</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>Помощник поможет Вам создать или импортировать ключи доступа к Veyon</translation>
-    </message>
-    <message>
-        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Ключи доступа к Veyon состоят из двух частей - закрытого и открытого ключа.
-
-С помощью закрытого ключа пользователи главного компьютера смогут получить доступ к клиентским компьютерам. Обязательно необходимо убедиться, что только авторизованные пользователи имеют доступ на чтение файла, содержащего закрытый ключ.
-
-Открытый ключ используется на клиентских компьютерах для проверки, что все входящие запросы посылаются главным компьютером.</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>Выбранный файл не содержит открытый ключ доступа к Veyon!</translation>
+        <source>Commands for controlling access to the internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1231,16 +1729,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Опциональные фильтры объектов</translation>
     </message>
     <message>
-        <source>e.g. objectClass=group</source>
-        <translation>например, objectClass=group</translation>
-    </message>
-    <message>
         <source>Filter for user groups</source>
         <translation>Фильтр для групп пользователей</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=person</source>
-        <translation>например, objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1279,16 +1769,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Неудачная попытка установить LDAP-соединение</translation>
     </message>
     <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Не удалось установить соединение с сервером LDAP. Пожалуйста, проверьте, правильно ли указаны параметры сервера. %1</translation>
-    </message>
-    <message>
         <source>LDAP bind failed</source>
         <translation>Ошибка привязки к LDAP</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Не удалось привязаться к серверу LDAP. Пожалуйста, проверьте, правильно ли указаны параметры сервера и регистрационные данные привязки. %1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
@@ -1303,30 +1785,12 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Не удалось пройти проверку корневого DN LDAP</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-%1</source>
-        <translation>Не удалось получить по запросу настроенный корневой DN. Пожалуйста, проверьте, правильно ли указан параметр корневого DN.
-%1</translation>
-    </message>
-    <message>
         <source>LDAP base DN test successful</source>
         <translation>Успешная проверка корневого DN LDAP</translation>
     </message>
     <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-%1</source>
-        <translation>Успешно определён корневой DN LDAP. Выявлены следующие записи: 
-%1</translation>
-    </message>
-    <message>
         <source>LDAP naming context test failed</source>
         <translation>Не удалось пройти проверку контекста именования LDAP</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-%1</source>
-        <translation>Не удалось определить корневой DN с помощью контекстов именования. Пожалуйста, проверьте, правильно ли указан атрибут контекста именования.
-%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1583,14 +2047,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Фильтр для компьютеров</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computer</source>
-        <translation>например, objectClass=computer</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>например, objectClass=room или objectClass=computerLab</translation>
-    </message>
-    <message>
         <source>e.g. room or computerLab</source>
         <translation>например, room или computerLab</translation>
     </message>
@@ -1643,10 +2099,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Атрибут компьютерной комнаты</translation>
     </message>
     <message>
-        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation>например, objectClass=container или objectClass=organizationalUnit</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room via:</source>
         <translation>Собирать компьютеры в комнату на основе:</translation>
     </message>
@@ -1686,6 +2138,96 @@ The public key part is used on the client computers to verify that any incoming 
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation>Пожалуйста, измените следующие параметры компьютерной комнаты, чтобы использовать контейнеры компьютеров как компьютерные комнаты. Если потребности в такой настройке нет, то не определяйте этот фильтр.</translation>
     </message>
+    <message>
+        <source>Connection security</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Security mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1700,18 +2242,6 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LdapPlugin</name>
-    <message>
-        <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation>Настройка интеграции Veyon с LDAP/AD из командной строки</translation>
-    </message>
-    <message>
-        <source>LDAP (load objects from LDAP/AD)</source>
-        <translation>LDAP (загружать объекты с LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation>LDAP (загружать пользователей/группы и компьютеры/комнаты с LDAP/AD)</translation>
-    </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
         <translation>Автоматическое конфигурирование базового DN через контекст имён</translation>
@@ -1728,78 +2258,24 @@ The public key part is used on the client computers to verify that any incoming 
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Команды для конфигурирования и тестирования интеграции LDAP/AD</translation>
     </message>
+    <message>
+        <source>Provide LDAP/AD integration for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Плагин, который реализует абстрактные функции на платформе Linux</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Rooms</source>
-        <translation>Комнаты</translation>
-    </message>
-    <message>
-        <source>Computers</source>
-        <translation>Компьютеры</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Имя</translation>
-    </message>
-    <message>
-        <source>Host address/IP</source>
-        <translation>Адрес хоста/IP</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC-адрес</translation>
-    </message>
-    <message>
-        <source>Add new room</source>
-        <translation>Добавить новую комнату</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Удалить выделенную комнату</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Добавить новый компьютер</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Удалить выбранный компьютер</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Новая комната</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Новый компьютер</translation>
-    </message>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Комнаты и компьютеры</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataPlugin</name>
-    <message>
-        <source>Backends which use local data</source>
-        <translation>Бэкэнды, которые используют локальные данные</translation>
-    </message>
-    <message>
-        <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation>По умолчанию (локальные пользователи/группы и компьютеры/комнаты из настроек)</translation>
-    </message>
-    <message>
-        <source>Default (store objects in local configuration)</source>
-        <translation>По умолчанию (хранить объекты в локальных настройках)</translation>
     </message>
 </context>
 <context>
@@ -1837,50 +2313,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>General</source>
         <translation>Главное</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Аутентификация</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Очистите файлы журналов в разделе &quot;Общие настройки&quot;.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>В разделе &quot;Общие настройки&quot; установите уровень журналирования в &quot;Все сообщения вместе с отладочной информацией&quot;.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Повторите действия, ведущие к ошибке или неправильному поведению программы.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Нажмите следующую кнопку и сохраните файл</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Создать архив, содержащий отчёт об ошибке</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1947,10 +2379,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Сохранить настройки в файл</translation>
     </message>
     <message>
-        <source>Save bug report archive</source>
-        <translation>Сохранить архив, содержащий отчёт об ошибках</translation>
-    </message>
-    <message>
         <source>Unsaved settings</source>
         <translation>Несохранённые настройки</translation>
     </message>
@@ -1961,24 +2389,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Veyon Configurator</source>
         <translation>Конфигуратор Veyon</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>При возникновении ошибки или другого неожиданного поведения Veyon желательно сообщить об этом разработчикам. В этом случае ошибки могут быть исправлены в будущих версиях. На этой странице можно создать отчёт об ошибке.
-
-Если ошибка повторно не воспроизводится, пропустите шаг 1) - 3).</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Откройте &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;трекер ошибок Veyon&lt;/a&gt;, откройте новую запись с ошибкой, опишите шаги, приводящие к ней (шаг 3) и прикрепите файл с отладочной информацией (шаг 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Замечание: Если ошибка возникает на главном компьютере и клиентском компьютере одновременно, отправьте оба отчёта об ошибке.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2017,18 +2427,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Файлы JSON (*.json)</translation>
     </message>
     <message>
-        <source>%1 bug report (*.json)</source>
-        <translation>отчёт об ошибках %1 (*.json)</translation>
-    </message>
-    <message>
-        <source>%1 bug report archive saved</source>
-        <translation>Архив отчёта об ошибках в %1 сохранён</translation>
-    </message>
-    <message>
-        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Заархивированное сообщение об ошибке %1 было сохранено в %2. Оно включает в себя файлы журналов %3 и информацию о вашей операционной системе. Вы можете прикрепить его к сообщению об ошибке.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Локальный сервер сообщил, что конфигурация защищена от записи. Запустите конфигуратор %1 с более высокими привилегиями.</translation>
     </message>
@@ -2061,14 +2459,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Функция &quot;%1&quot; всё ещё активна. Пожалуйста, остановите её перед закрытием %2.</translation>
     </message>
     <message>
-        <source>Reporting bugs in Veyon</source>
-        <translation>Отправка багов в Veyon</translation>
-    </message>
-    <message>
-        <source>Bug reporting</source>
-        <translation>Отправка багов</translation>
-    </message>
-    <message>
         <source>Reset configuration</source>
         <translation>Сбросить конфигурацию</translation>
     </message>
@@ -2083,6 +2473,26 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Adjust optimal size</source>
         <translation>Скорректировать оптимальный размер</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom computer placement</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Конфигуратор %1</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2172,16 +2582,40 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation> Управление компьютером</translation>
     </message>
     <message>
-        <source>Always open at start</source>
-        <translation>Всегда открывать при старте</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Действия, в частности, перезагрузка и выключение компьютеров</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
         <translation>Показывать окно подтверждения для потенциально опасных действий</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Интерфейс пользователя</translation>
+    </message>
+    <message>
+        <source>Background color</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail update interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2278,65 +2712,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Вы действительно хотите выключить выбранный компьютер?</translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Не удалось зарегистрировать службу &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - служба &apos;%1&apos; не зарегистрирована.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; is already registered.</source>
-        <translation>Служба &apos;%1&apos; уже зарегистрирована.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>Службу &apos;%1&apos; невозможно зарегистрировать.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>Служба &apos;%1&apos; была успешно зарегистрирована.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>Службу &apos;%1&apos; невозможно остановить.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>Регистрация службы &apos;%1&apos; была отменена.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Служба &apos;%1&apos; не была зарегистрирована, и поэтому невозможно её отменить.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>Отмена регистрации службы &apos;%1&apos; невозможна.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>Службу &apos;%1&apos; нельзя найти.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - отмена регистрации службы &apos;%1&apos; не выполнена.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - служба &apos;%1&apos; не остановлена.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>Службу &apos;%1&apos; невозможно запустить.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - служба &apos;%1&apos; не запущена.</translation>
     </message>
 </context>
 <context>
@@ -2585,10 +2960,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Запустить сервис</translation>
     </message>
     <message>
-        <source>Additional arguments</source>
-        <translation>Дополнительные параметры</translation>
-    </message>
-    <message>
         <source>Stopped</source>
         <translation>Остановлен</translation>
     </message>
@@ -2656,20 +3027,24 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting %1 Service</source>
-        <translation>Запуск сервиса %1</translation>
+        <source>Starting service %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Stopping %1 Service</source>
-        <translation>Остановка сервиса %1</translation>
+        <source>Stopping service %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Registering %1 Service</source>
-        <translation>Регистрация сервиса %1</translation>
+        <source>Registering service %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Unregistering %1 Service</source>
-        <translation>Отмена регистрация сервиса %1</translation>
+        <source>Unregistering service %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service control</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2716,10 +3091,40 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
+    <name>ShellCommandLinePlugin</name>
+    <message>
+        <source>Run command file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Interactive shell and script execution for Veyon Control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for shell functionalities</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
         <translation>Иконка в системном трее</translation>
+    </message>
+</context>
+<context>
+    <name>SystemUserGroupsPlugin</name>
+    <message>
+        <source>User groups backend for system user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (system user groups)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2844,8 +3249,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Доступные модули:</translation>
     </message>
     <message>
-        <source>Module not found - available modules are:</source>
-        <translation>Модуль не найден - доступные модули:</translation>
+        <source>No module specified or module not found - available modules are:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonServiceControl</name>
+    <message>
+        <source>Veyon Service</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2875,6 +3287,37 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Плагин, который реализует абстрактные функции на платформе Windows</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsServiceControl</name>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1,9 +1,9 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="lv_LV" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Translation</source>
@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Versija:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Mājas lapa:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -159,7 +159,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
@@ -978,7 +978,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Autentiseringsfel</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
@@ -1195,7 +1195,7 @@ Examples:
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Demo i helskärm</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1203,7 +1203,7 @@ Examples:
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Demo i fönster</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1234,11 +1234,11 @@ Examples:
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Aldrig för denna session</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Alltid för denna session</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1368,7 +1368,7 @@ Examples:
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Language:</source>
@@ -1388,11 +1388,11 @@ Examples:
     </message>
     <message>
         <source>Logging</source>
-        <translation>Loggning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Loggfilskatalog</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -1400,39 +1400,39 @@ Examples:
     </message>
     <message>
         <source>Log level</source>
-        <translation>Loggnivå</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Ingenting</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Endast kritiska meddelanden</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Fel och kritiska meddelanden</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Varningar och fel</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Information, varningar och fel</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Felsökningsmeddelanden och allting annat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Begränsa storlek på loggfil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Töm alla loggfiler</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -1496,7 +1496,7 @@ Examples:
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Autentisering</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Method:</source>
@@ -1596,7 +1596,7 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2271,7 +2271,7 @@ Examples:
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation>skärmlås</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2293,27 +2293,27 @@ Examples:
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation>Huvudfönster</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>verktygsrad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Arkiv</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hjälp</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>A&amp;vsluta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2321,11 +2321,11 @@ Examples:
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation>&amp;Spara inställningar till fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>Spara inställningar till fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2333,7 +2333,7 @@ Examples:
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>&amp;Läs in inställningar från fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -2341,7 +2341,7 @@ Examples:
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Om Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -2349,31 +2349,31 @@ Examples:
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fjärrstyrning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Avsluta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Konfigurationen är inte skrivbar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Läs in inställningar från fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Spara inställningar till fil</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Osparade inställningar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Det finns osparade inställningar. Avsluta ändå?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -2405,7 +2405,7 @@ Examples:
     </message>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2580,7 +2580,7 @@ Examples:
     </message>
     <message>
         <source>User interface</source>
-        <translation>Användargränssnitt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Background color</source>
@@ -2633,11 +2633,11 @@ Examples:
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation>Användarnamn</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Password</source>
-        <translation>Lösenord</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -2660,7 +2660,7 @@ Examples:
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation>Starta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -2668,7 +2668,7 @@ Examples:
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Starta om</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -2676,7 +2676,7 @@ Examples:
     </message>
     <message>
         <source>Power down</source>
-        <translation>Stäng av</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -2715,7 +2715,7 @@ Examples:
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fjärrstyrning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -2749,11 +2749,11 @@ Examples:
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Visa endast</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Fjärrstyrning</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -2761,15 +2761,15 @@ Examples:
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Helskärm</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Window</source>
-        <translation>Fönster</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Avsluta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -2805,11 +2805,11 @@ Examples:
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>Ansluter %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Ansluten.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2934,31 +2934,31 @@ Examples:
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Allmänt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Automatisk start</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Dölj aktivitetsikonen</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Starta tjänst</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Stoppad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Stoppa tjänst</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>State:</source>
-        <translation>Tillstånd:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -2966,15 +2966,15 @@ Examples:
     </message>
     <message>
         <source>Network</source>
-        <translation>Nätverk</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation>Serverport för demo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Aktivera brandväggsundantag</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3002,7 +3002,7 @@ Examples:
     </message>
     <message>
         <source>Running</source>
-        <translation>Kör</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3120,7 +3120,7 @@ Examples:
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Skicka textmeddelande</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3131,7 +3131,7 @@ Examples:
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Textmeddelande</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -3150,7 +3150,7 @@ Examples:
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Aktivera fångst av flerskiktade fönster (semi-transparant)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -3158,7 +3158,7 @@ Examples:
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Låg precision (turboläge)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
@@ -3173,7 +3173,7 @@ Examples:
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation>Ingen skrivåtkomst</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
@@ -3188,7 +3188,7 @@ Examples:
     </message>
     <message>
         <source>Logout user</source>
-        <translation>Logga ut användare</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
@@ -3253,22 +3253,22 @@ Examples:
     <name>VeyonVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC-autentisering misslyckades på grund av för många autentiseringsförsök.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation>VNC-autentisering misslyckades.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation>VNC-servern stängde anslutningen.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Etablerar anslutning till %1...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

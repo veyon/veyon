@@ -69,10 +69,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Обробка правил керування доступом</translation>
     </message>
     <message>
-        <source>Data backend:</source>
-        <translation>Модуль обробки даних:</translation>
-    </message>
-    <message>
         <source>User groups authorized for computer access</source>
         <translation>Групи користувачів, які уповноважено для доступу до комп’ютера</translation>
     </message>
@@ -117,14 +113,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Змінити позначене правило</translation>
     </message>
     <message>
-        <source>Missing access control data backend</source>
-        <translation>Не вистачає модуля обробки даних керування доступом</translation>
-    </message>
-    <message>
-        <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Не знайдено типового додатка модуля керування доступом. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Введіть ім’я користувача</translation>
     </message>
@@ -151,6 +139,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Enable usage of domain groups</source>
         <translation>Увімкнути використання груп доменів</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Модуль груп користувачів:</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Не вистачає модуля обробки груп користувачів</translation>
+    </message>
+    <message>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Не знайдено типового додатка груп користувачів. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
     </message>
 </context>
 <context>
@@ -316,22 +316,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>AuthenticationConfigurationPage</name>
+    <name>AuthKeysConfigurationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Способи розпізнавання</translation>
+        <source>Authentication keys</source>
+        <translation>Ключі розпізнавання</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Розпізнавання під час входу</translation>
+        <source>Introduction</source>
+        <translation>Вступ</translation>
     </message>
     <message>
-        <source>Key file authentication</source>
-        <translation>Розпізнавання за файлами ключів</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Керування ключами доступу</translation>
+        <source>Key file directories</source>
+        <translation>Каталоги файлів ключів</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -346,24 +342,614 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>...</translation>
     </message>
     <message>
-        <source>Launch key file assistant</source>
-        <translation>Запустити помічника файлів ключів</translation>
+        <source>Available authentication keys</source>
+        <translation>Доступні ключі розпізнавання</translation>
     </message>
     <message>
-        <source>Test</source>
-        <translation>Перевірити</translation>
+        <source>Create key pair</source>
+        <translation>Створити пару ключів</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Перевірка розпізнавання під час входу</translation>
+        <source>Delete key</source>
+        <translation>Вилучити ключ</translation>
     </message>
     <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Розпізнавання за вказаними реєстраційними даними пройдено.</translation>
+        <source>Import key</source>
+        <translation>Імпорт ключа</translation>
     </message>
     <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>Не вдалося пройти розпізнавання за вказаними реєстраційними даними!</translation>
+        <source>Export key</source>
+        <translation>Експортувати ключ</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Встановити групу доступу</translation>
+    </message>
+    <message>
+        <source>Key files (*.pem)</source>
+        <translation>файли ключів (*.pem)</translation>
+    </message>
+    <message>
+        <source>Authentication key name</source>
+        <translation>Назва ключа для розпізнавання</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
+        <translation>Будь ласка, вкажіть назву групи користувачів або роль, для якої слід створити пару ключів для розпізнавання:</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
+        <translation>Ви справді хочете вилучити ключ розпізнавання «%1/%2»?</translation>
+    </message>
+    <message>
+        <source>Please select a key to delete!</source>
+        <translation>Будь ласка, виберіть ключ для вилучення!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
+        <translation>Будь ласка, вкажіть назву групи користувачів або роль, для якої слід імпортувати ключ розпізнавання:</translation>
+    </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation>Будь ласка, виберіть ключ для експортування!</translation>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation>Будь ласка, виберіть групу користувачів, які слід надати доступу до ключа «%1»:</translation>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation>Будь ласка, виберіть ключ, доступ до якого слід встановити для групи!</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Будь ласка, виконайте такі кроки, щоб налаштувати файл ключа розпізнавання:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Створіть пару ключів на основному комп&apos;ютері.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Встановіть групу доступу, учасникам якої буде дозволено доступу до інших комп&apos;ютерів.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Експортуйте відкритий ключ і імпортуйте його на всіх клієнтські комп&apos;ютери із однаковою назвою.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Будь ласка, ознайомтеся із &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Підручником із адміністрування Veyon&lt;/a&gt;, щоб дізнатися більше.</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Пара ключів для розпізнавання складається із поєднаних між собою криптографічних ключів, закритого і відкритого. За допомогою закритого ключа користувачі на основному комп&apos;ютері можуть отримувати доступу до клієнтських комп&apos;ютерів. Важливо, щоб право на читання файла закритого ключа мали лише уповноважені на це користувачі. Відкритий ключ використовується на клієнтських комп&apos;ютерах для розпізнавання вхідних запитів щодо з&apos;єднання.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysManager</name>
+    <message>
+        <source>Please check your permissions.</source>
+        <translation>Будь ласка, переконайтеся, що маєте належні права доступу.</translation>
+    </message>
+    <message>
+        <source>Key name contains invalid characters!</source>
+        <translation>У назві ключа містяться некоректні символи!</translation>
+    </message>
+    <message>
+        <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Вказано некоректний тип ключа! Будь ласка, вкажіть «%1» або «%2».</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
+        <translation>Вказаного ключа не існує! Будь ласка, скористайтеся командою «list» для перегляду списку усіх встановлених ключів.</translation>
+    </message>
+    <message>
+        <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
+        <translation>Один або декілька ключів вже існують! Будь ласка, вилучіть їх за допомогою команди «delete».</translation>
+    </message>
+    <message>
+        <source>Creating new key pair for &quot;%1&quot;</source>
+        <translation>Створюємо нову пару ключів для «%1»</translation>
+    </message>
+    <message>
+        <source>Failed to create public or private key!</source>
+        <translation>Не вдалося створити відкритий або закритий ключ!</translation>
+    </message>
+    <message>
+        <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
+        <translation>Новостворену пару ключів було збережено до «%1» і «%2».</translation>
+    </message>
+    <message>
+        <source>Could not remove key file &quot;%1&quot;!</source>
+        <translation>Не вдалося вилучити файл ключа «%1»!</translation>
+    </message>
+    <message>
+        <source>Could not remove key file directory &quot;%1&quot;!</source>
+        <translation>Не вдалося вилучити каталог файла ключа «%1»!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for output file.</source>
+        <translation>Не вдалося створити каталог для файла виведення даних.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; already exists.</source>
+        <translation>Файл «%1» вже існує.</translation>
+    </message>
+    <message>
+        <source>Failed to write output file.</source>
+        <translation>Не вдалося виконати запис до файла виведення.</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
+        <translation>Ключ «%1/%2» було успішно експортовано до «%3».</translation>
+    </message>
+    <message>
+        <source>Failed read input file.</source>
+        <translation>Не вдалося прочитати файл вхідних даних.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid private key!</source>
+        <translation>У файлі «%1» не міститься коректного закритого ключа!</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid public key!</source>
+        <translation>У файлі «%1» не міститься коректного відкритого ключа!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for key file.</source>
+        <translation>Не вдалося створити каталог для файла ключа.</translation>
+    </message>
+    <message>
+        <source>Failed to write key file &quot;%1&quot;.</source>
+        <translation>Не вдалося записати файл ключа «%1».</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;!</source>
+        <translation>Не вдалося встановити права доступу до файла ключа «%1»!</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
+        <translation>Ключ «%1/%2» було успішно імпортовано. Будь ласка, перевірте права доступу до файла «%3», щоб запобігти неуповноваженому доступу.</translation>
+    </message>
+    <message>
+        <source>Failed to convert private key to public key</source>
+        <translation>Не вдалося перетворити закритий ключ на відкритий</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for private key file &quot;%1&quot;.</source>
+        <translation>Не вдалося створити каталог для файла закритого ключа «%1».</translation>
+    </message>
+    <message>
+        <source>Failed to save private key in file &quot;%1&quot;!</source>
+        <translation>Не вдалося зберегти закритий ключ до файла «%1»!</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
+        <translation>Не вдалося встановити права доступу до файла закритого ключа «%1»!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for public key file &quot;%1&quot;.</source>
+        <translation>Не вдалося створити каталог для файла відкритого ключа «%1».</translation>
+    </message>
+    <message>
+        <source>Failed to save public key in file &quot;%1&quot;!</source>
+        <translation>Не вдалося зберегти відкритий ключ до файла «%1»!</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
+        <translation>Не вдалося встановити права доступу до файла відкритого ключа «%1»!</translation>
+    </message>
+    <message>
+        <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation>Не вдалося встановити власника файла ключа «%1» у значення «%2».</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;.</source>
+        <translation>Не вдалося встановити права доступу до файла ключа «%1».</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
+        <translation>Ключ «%1» тепер є доступним для групи користувачів «%2».</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;н/д&gt;</translation>
+    </message>
+    <message>
+        <source>Failed to read key file.</source>
+        <translation>Не вдалося прочитати файл ключа.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysPlugin</name>
+    <message>
+        <source>Create new authentication key pair</source>
+        <translation>Створити нову пару ключів для розпізнавання</translation>
+    </message>
+    <message>
+        <source>Delete authentication key</source>
+        <translation>Вилучити ключ розпізнавання</translation>
+    </message>
+    <message>
+        <source>List authentication keys</source>
+        <translation>Вивести список ключів розпізнавання</translation>
+    </message>
+    <message>
+        <source>Import public or private key</source>
+        <translation>Імпортувати відкритий або закритий ключ</translation>
+    </message>
+    <message>
+        <source>Export public or private key</source>
+        <translation>Експортувати відкритий або закритий ключ</translation>
+    </message>
+    <message>
+        <source>Extract public key from existing private key</source>
+        <translation>Видобути відкритий ключ із наявного закритого ключа</translation>
+    </message>
+    <message>
+        <source>Set user group allowed to access a key</source>
+        <translation>Встановити групу користувачів, які матимуть доступ до ключа</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>КЛЮЧ</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>ГРУПА ДОСТУПУ</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Ця команда коригує права доступу до файла &lt;КЛЮЧ&gt; так, що право на читання цього файла отримують лише учасники групи &lt;ГРУПА ДОСТУПУ&gt;.</translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>НАЗВА</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
+        <translation>Ця команда створює нову пару ключів для розпізнавання із назвою &lt;НАЗВА&gt; і зберігає закритий і відкритий ключі до налаштованих каталогів ключів.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
+        <translation>Ця команда вилучає ключ розпізнавання &lt;КЛЮЧ&gt; із налаштованого каталогу ключів. Будь ласка, зауважте, що після вилучення ключ не можна буде відновити.</translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>ФАЙЛ</translation>
+    </message>
+    <message>
+        <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation>Ця команда експортує ключ розпізнавання &lt;КЛЮЧ&gt; до файла &lt;ФАЙЛ&gt;. Якщо файл &lt;ФАЙЛ&gt; не вказано, його назву буде побудовано на основі даних щодо назви і типу ключа &lt;КЛЮЧ&gt;.</translation>
+    </message>
+    <message>
+        <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation>Ця команда імпортує ключ розпізнавання &lt;КЛЮЧ&gt; з файла &lt;ФАЙЛ&gt; Якщо файл &lt;ФАЙЛ&gt; не вказано, його назву буде побудовано на основі даних щодо назви і типу ключа &lt;КЛЮЧ&gt;.</translation>
+    </message>
+    <message>
+        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation>Ця команда виводить список усіх доступних ключів розпізнавання у налаштованому каталозі ключів. Якщо вказано параметр «%1», замість списку буде виведено таблицю із подробицями щодо ключів. Деякі параметри ключа може бути не показано, якщо доступ до ключа обмежено, наприклад через брак прав на читання файла ключа.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
+        <translation>Ця команда видобуває частину, пов&apos;язану із відкритим ключем, з закритого ключа &lt;КЛЮЧ&gt; і зберігає її до відповідного файла відкритого ключа.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку!</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>ТИП</translation>
+    </message>
+    <message>
+        <source>PAIR ID</source>
+        <translation>ІД ПАРИ</translation>
+    </message>
+    <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation>Підтримка керування ключами розпізнавання у командному рядку</translation>
+    </message>
+    <message>
+        <source>Commands for managing authentication keys</source>
+        <translation>Команди для керування ключами розпізнавання</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <source>Access group</source>
+        <translation>Група доступу</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfigurationPage</name>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Класи і комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Класи</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Адреса/IP вузла</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-адреса</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Додати новий клас</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Вилучити позначений клас</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Додати новий комп’ютер</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Вилучити позначений комп’ютер</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Новий клас</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Новий комп’ютер</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Показати довідку щодо певної команди</translation>
+    </message>
+    <message>
+        <source>Add a room or computer</source>
+        <translation>Додати клас або комп&apos;ютер</translation>
+    </message>
+    <message>
+        <source>Clear all rooms and computers</source>
+        <translation>Вилучити усі записи класів і комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Dump all or individual rooms and computers</source>
+        <translation>Створити дамп усіх або окремих класів і комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>List all rooms and computers</source>
+        <translation>Вивести список усіх класів і комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Remove a room or computer</source>
+        <translation>Вилучити запис класу або комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Import objects from given file</source>
+        <translation>Імпортувати об&apos;єкти із вказаного файла</translation>
+    </message>
+    <message>
+        <source>Export objects to given file</source>
+        <translation>Експортувати об&apos;єкти до вказаного файла</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+КОРИСТУВАННЯ
+
+%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАС&gt;] [format &lt;РЯДОК ФОРМАТУВАННЯ ЗІ ЗМІННИМИ&gt;] [regex &lt;ФОРМАЛЬНИЙ ВИРАЗ ЗІ ЗМІННИМИ&gt;]
+
+Можливі змінні: %name% %host% %mac% %room%
+
+Приклади:
+
+* Імпортувати простий файл CSV до одного запису класу:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Імпортувати файл CSV із назвою класу у першому стовпчику:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Імпортувати текстовий файл із парами ключ-значення за допомогою формальних виразів:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Імпортувати дані у довільному форматуванні:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Вказано некоректний тип. Коректними є значення «%1» і «%2».</translation>
+    </message>
+    <message>
+        <source>Object UID</source>
+        <translation>UID об&apos;єкта</translation>
+    </message>
+    <message>
+        <source>Parent UID</source>
+        <translation>Батьківський UID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Адреса вузла</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-адреса</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Вказаного об&apos;єкта не знайдено.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Файла «%1» не існує!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Не вдалося відкрити файл «%1» для читання!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Невідомий аргумент «%1».</translation>
+    </message>
+    <message>
+        <source>Room &quot;%1&quot;</source>
+        <translation>Клас «%1»</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Комп&apos;ютер «%1» (адреса вузла: «%2» MAC-адреса: «%3»)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Некласифікований об&apos;єкт «%1» із ідентифікатором «%2»</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>Room</source>
+        <translation>Клас</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Комп&apos;ютер</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Корінь</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Некоректний</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Помилка під час обробки рядка %1.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Каталог об&apos;єктів мережі, де зберігаються об&apos;єкти у локальній конфігурації</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and rooms in local configuration)</source>
+        <translation>Вбудоване (комп&apos;ютери і класи у локальних налаштуваннях)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Команди для керування каталогом вбудованих об&apos;єктів мережі</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Export all objects to a CSV file:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export all computers in a room to a CSV file:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</source>
+        <translation>
+КОРИСТУВАННЯ
+
+%1 export &lt;ФАЙЛ&gt; [room &lt;КЛАС&gt;] [format &lt;РЯДОК ФОРМАТУВАННЯ ЗІ ЗМІННИМИ&gt;]
+
+Можливі змінні: %type% %name% %host% %mac% %room%
+
+Приклади:
+
+* Експортувати усі об&apos;єкти до файла CSV:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Експортувати усі записи комп&apos;ютерів у класі до файла CSV:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Немає рядка форматування або не вказано формальний вираз!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Не вдалося відкрити файл «%1» для запису!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Не вказано рядок формату!</translation>
     </message>
 </context>
 <context>
@@ -381,25 +967,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
-    <name>ComputerControlServer</name>
-    <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>Служба %1 %2 о %3:%4</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Помилка розпізнавання</translation>
-    </message>
-    <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Користувач (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти розпізнавання!</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerListModel</name>
+    <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
         <translation>Клас: %1</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Вузол/IP-адреса: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Задіяні можливості: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -408,14 +987,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Establishing connection</source>
         <translation>Встановлюємо з’єднання</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Немає користувачів у системі</translation>
-    </message>
-    <message>
-        <source>Logged on user: %1</source>
-        <translation>Користувач у системі: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -434,12 +1005,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Від’єднано</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Вузол/IP-адреса: %1</translation>
+        <source>No user logged on</source>
+        <translation>Немає користувачів у системі</translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation>Задіяні можливості: %1</translation>
+        <source>Logged on user: %1</source>
+        <translation>Користувач у системі: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>Служба %1 %2 о %3:%4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Помилка розпізнавання</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Користувач (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти розпізнавання!</translation>
     </message>
 </context>
 <context>
@@ -527,22 +1113,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Будь ласка, вкажіть коректне значення.</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Не вдалося змінити параметри служби %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Не вдалося змінити налаштування брандмауера для служби %1.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
-    </message>
-    <message>
         <source>Configure Veyon at command line</source>
         <translation>Налаштувати Veyon з командного рядка</translation>
     </message>
@@ -590,44 +1160,32 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Commands for managing the configuration of Veyon</source>
         <translation>Команди для керування налаштуваннями Veyon</translation>
     </message>
+    <message>
+        <source>Upgrade and save configuration of program and plugins</source>
+        <translation>Оновити і зберегти налаштування програми і додатків</translation>
+    </message>
 </context>
 <context>
-    <name>ConfiguratorCore</name>
+    <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
         <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Не вдалося змінити параметри служби %1.</translation>
+        <source>Could not configure the firewall configuration for the %1 Server.</source>
+        <translation>Не вдалося налаштувати брандмауер для сервера %1.</translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Не вдалося змінити налаштування брандмауера для служби %1.</translation>
+        <source>Could not configure the firewall configuration for the %1 Worker.</source>
+        <translation>Не вдалося налаштувати брандмауер для робочої станції %1.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
         <translation>Не вдалося змінити параметр для програмного створення SAS. Віддалене надсилання Ctrl+Alt+Del не працюватиме!</translation>
     </message>
     <message>
-        <source>Overwrite keys</source>
-        <translation>Перезаписати ключі</translation>
-    </message>
-    <message>
-        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Деякі з файлів ключів вже існують. Якщо ви заміните їх новоствореними, вам доведеться також оновити відкриті ключі на усіх комп’ютерах. Хочете продовжити виконання цієї дії?</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Налаштування скинуто</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>Локальні налаштування було успішно вилучено.</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Засіб налаштовування %1</translation>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>Файл налаштувань непридатний до запису. Будь ласка, перевірте права доступу до нього!</translation>
     </message>
 </context>
 <context>
@@ -731,6 +1289,53 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>DesktopServicesConfigurationPage</name>
+    <message>
+        <source>Programs &amp; websites</source>
+        <translation>Програми і сайти</translation>
+    </message>
+    <message>
+        <source>Predefined programs</source>
+        <translation>Попередньо визначені програми</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Шлях</translation>
+    </message>
+    <message>
+        <source>Add new program</source>
+        <translation>Додати нову програму</translation>
+    </message>
+    <message>
+        <source>Remove selected program</source>
+        <translation>Вилучити позначену програму</translation>
+    </message>
+    <message>
+        <source>Predefined websites</source>
+        <translation>Попередньо визначені сайти</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Вилучити позначений сайт</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>Адреса</translation>
+    </message>
+    <message>
+        <source>New program</source>
+        <translation>Нова програма</translation>
+    </message>
+    <message>
+        <source>New website</source>
+        <translation>Новий сайт</translation>
+    </message>
+</context>
+<context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
@@ -755,6 +1360,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Натисніть цю кнопку, щоб запустити програму на усіх комп’ютерах.</translation>
+    </message>
+    <message>
+        <source>Run program &quot;%1&quot;</source>
+        <translation>Виконати програму «%1»</translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Нетипова програма</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Відкрити сайт «%1»</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Нетиповий сайт</translation>
     </message>
 </context>
 <context>
@@ -861,10 +1482,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Виводити повідомлення до стандартного виводу помилок</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Вести журнал у журналі подій Windows</translation>
-    </message>
-    <message>
         <source>Network object directory</source>
         <translation>Каталог мережевих об’єктів</translation>
     </message>
@@ -920,172 +1537,94 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Write to logging system of operating system</source>
         <translation>Записувати до журналу операційної системи</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Розпізнавання</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Метод:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Розпізнавання під час входу</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Розпізнавання за файлами ключів</translation>
+    </message>
 </context>
 <context>
-    <name>KeyFileAssistant</name>
+    <name>InternetAccessControlConfigurationPage</name>
     <message>
-        <source>How does it work?</source>
-        <translation>Як це працює?</translation>
+        <source>Internet access control</source>
+        <translation>Керування доступом до інтернету</translation>
     </message>
     <message>
-        <source>Assistant mode</source>
-        <translation>Режим помічника</translation>
+        <source>Settings</source>
+        <translation>Параметри</translation>
     </message>
     <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Будь ласка, вкажіть дію: створити ключі доступу чи імпортувати відкритий ключ на клієнтський комп’ютер.</translation>
+        <source>Backend:</source>
+        <translation>Модуль:</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlDummy</name>
+    <message>
+        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
+        <translation>Це фіктивний модуль, який не впливає на доступ до інтернету. Будь ласка, виберіть функціональний модуль, який пасує до вашої операційної системи та середовища. Відвідайте &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;, щоб дізнатися більше про те, як отримати потрібні вам додатки модулів.</translation>
     </message>
     <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>Створити ключі доступу (головний комп’ютер)</translation>
+        <source>Internet access control not available</source>
+        <translation>Керування доступом до інтернету недоступне</translation>
     </message>
     <message>
-        <source>Import public key (client computer)</source>
-        <translation>Імпортувати відкритий ключ (клієнтський комп’ютер)</translation>
+        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
+        <translation>Не налаштовано модуль керування доступом до інтернету. Будь ласка, скористайтеся засобом налаштовування Veyon, щоб змінити налаштування.</translation>
     </message>
     <message>
-        <source>Select user role</source>
-        <translation>Виберіть роль користувача</translation>
+        <source>Dummy backend for internet access control</source>
+        <translation>Фіктивний модуль для керування доступом до інтернету</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlPlugin</name>
+    <message>
+        <source>Block access to the internet</source>
+        <translation>Блокувати доступу до інтернету</translation>
     </message>
     <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Будь ласка, вкажіть роль користувача, для якого слід створити або імпортувати ключі доступу:</translation>
+        <source>Allow access to the internet</source>
+        <translation>Дозволити доступ до інтернету</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Вчитель</translation>
+        <source>Show help about command</source>
+        <translation>Показати довідку щодо команди</translation>
     </message>
     <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>За допомогою визначення ролей користувачів можна використовувати декілька ключів доступу одночасно. Наприклад, можна створити різні ключі доступу вчителів для різних класів, а ключі доступу супроводу будуть однаковими для всієї школи.</translation>
+        <source>Block internet</source>
+        <translation>Блокувати інтернет</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Каталоги</translation>
+        <source>Click this button to block access to the internet.</source>
+        <translation>Натисніть цю кнопку, щоб заблокувати доступ до інтернету.</translation>
     </message>
     <message>
-        <source>Export public key part (master computer)</source>
-        <translation>Експортувати відкритий ключ (головний комп’ютер)</translation>
+        <source>Unblock internet</source>
+        <translation>Розблокувати інтернет</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
+        <source>Click this button to allow access to the internet.</source>
+        <translation>Натисніть цю кнопку, щоб дозволити доступ до інтернету.</translation>
     </message>
     <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>Нетиповий каталог призначення для ключів доступу</translation>
+        <source>Control access to the internet</source>
+        <translation>Керування доступом до інтернету</translation>
     </message>
     <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Будь ласка, вкажіть розташування відкритого ключа доступу для імпортування.</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>Резюме</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>Буде виконано такі дії:</translation>
-    </message>
-    <message>
-        <source>• Create new access keys</source>
-        <translation>• Створено нові ключі доступу</translation>
-    </message>
-    <message>
-        <source>• Import public access key from</source>
-        <translation>• Імпортовано відкритий ключ доступу з</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;невідомо&gt;</translation>
-    </message>
-    <message>
-        <source>• Write access key(s) to</source>
-        <translation>• Записано ключі доступу до</translation>
-    </message>
-    <message>
-        <source>• Export public key to</source>
-        <translation>• Експортовано відкритий ключ до</translation>
-    </message>
-    <message>
-        <source>• Configure for user role</source>
-        <translation>• Налаштовано роль користувача</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>Виберіть каталог для експортування відкритого ключа</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>Файли ключів (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>Некоректний відкритий ключ</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>Виберіть каталог призначення</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>Створення ключа доступу</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>Не вдалося вилучити вже створений файл %1.</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Не вдалося експортувати відкритий ключ доступу з %1 до %2.</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Було успішно створено і записано ключі доступу до %1 і %2.</translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Під час спроби створення ключів доступу сталася помилка. Ймовірно, у вас не має права запису до вказаних каталогів.</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>Імпортування відкритого ключа</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Під час спроби імпортування відкритого ключа доступу сталася помилка. Ймовірно, у вас немає права читання початкового файла ключа або запису файла призначення.</translation>
-    </message>
-    <message>
-        <source>The public key was successfully imported to %1.</source>
-        <translation>Відкритий ключ було успішно імпортовано до %1.</translation>
-    </message>
-    <message>
-        <source>Veyon Access Key Assistant</source>
-        <translation>Помічник ключів доступу Veyon</translation>
-    </message>
-    <message>
-        <source>Create/import Veyon access keys</source>
-        <translation>Створення або імпортування ключів доступу Veyon</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>За допомогою цієї допоміжної програми ви зможете створити або імпортувати ключі доступу Veyon.</translation>
-    </message>
-    <message>
-        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Ключі доступу Veyon складаються з двох пов’язаних між собою частин: закритого і відкритого ключа.
-
-За допомогою закритого ключа користувачі головного комп’ютера зможуть отримувати доступ до клієнтських комп’ютерів. Важливо забезпечити доступність файла закритого ключа лише для уповноважених користувачів.
-
-Відкритий ключ використовується на клієнтських комп’ютерах для перевірки того, чи є уповноваженим на виконання певних дій будь-яке вхідне з’єднання.</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>Вказаний файл не містить коректного відкритого ключа доступу Veyon!</translation>
+        <source>Commands for controlling access to the internet</source>
+        <translation>Команди для керування доступом до інтернету</translation>
     </message>
 </context>
 <context>
@@ -1231,16 +1770,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Додаткові фільтри об’єктів</translation>
     </message>
     <message>
-        <source>e.g. objectClass=group</source>
-        <translation>наприклад, objectClass=group</translation>
-    </message>
-    <message>
         <source>Filter for user groups</source>
         <translation>Фільтрування за групами користувачів</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=person</source>
-        <translation>наприклад, objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1279,16 +1810,8 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Невдала спроба встановити LDAP-з’єднання</translation>
     </message>
     <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Не вдалося встановити з’єднання із сервером LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера. %1</translation>
-    </message>
-    <message>
         <source>LDAP bind failed</source>
         <translation>Помилка прив’язування до LDAP</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Не вдалося прив’язатися до сервера LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера і реєстраційні дані прив’язки. %1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
@@ -1303,30 +1826,12 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Не вдалося пройти перевірку кореневого DN LDAP</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-%1</source>
-        <translation>Не вдалося отримати за запитом налаштований кореневий DN. Будь ласка, перевірте, чи правильно вказано параметр кореневого DN.
-%1</translation>
-    </message>
-    <message>
         <source>LDAP base DN test successful</source>
         <translation>Успішна перевірка кореневого DN LDAP</translation>
     </message>
     <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-%1</source>
-        <translation>Успішно визначено кореневий DN LDAP. Виявлено такі записи:
-%1</translation>
-    </message>
-    <message>
         <source>LDAP naming context test failed</source>
         <translation>Не вдалося пройти перевірку контексту іменування LDAP</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-%1</source>
-        <translation>Не вдалося визначити кореневий DN за допомогою контекстів іменування. Будь ласка, перевірте, чи правильно вказано атрибут контексту іменування.
-%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1583,14 +2088,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Фільтр для комп’ютерів</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computer</source>
-        <translation>наприклад, objectClass=computer</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>наприклад, objectClass=room або objectClass=computerLab</translation>
-    </message>
-    <message>
         <source>e.g. room or computerLab</source>
         <translation>наприклад, room або computerLab</translation>
     </message>
@@ -1643,10 +2140,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Атрибут комп’терного класу</translation>
     </message>
     <message>
-        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation>наприклад, objectClass=container або objectClass=organizationalUnit</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room via:</source>
         <translation>Збирати комп’ютери у клас на основі:</translation>
     </message>
@@ -1686,6 +2179,108 @@ The public key part is used on the client computers to verify that any incoming 
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation>Будь ласка, змініть нижче параметри комп&apos;ютерного класу, щоб використовувати як комп&apos;ютерні класи контейнери комп&apos;ютерів. Якщо потреби у такому налаштуванні немає, не визначайте цей фільтр.</translation>
     </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Захист з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>Перевірка сертифіката TLS</translation>
+    </message>
+    <message>
+        <source>Security mode</source>
+        <translation>Режим захисту</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Типове для системи</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Ніколи (небезпечно!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Нетиповий файл служби сертифікації (CA)</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>наприклад (objectClass=computer)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>наприклад (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>наприклад (objectClass=person)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>наприклад (objectClass=room) або (objectClass=computerLab)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>наприклад (objectClass=container) або (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Не вдалося опитати налаштований базовий DN. Будь ласка, перевірите, чи правильно вказано параметр базового DN.
+
+%1</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>Успішно опитано базовий DN LDAP. Знайдено такі записи:
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Не вдалося опитати базовий DN за контекстами іменування. Будь ласка, перевірите, чи правильно вказано параметр атрибута контексту іменування.
+
+%1</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>файли сертифікатів (*.pem)</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Не вдалося з&apos;єднатися із сервером LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера.
+
+%1
+
+</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Не вдалося прив&apos;язатися до сервера LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера та реєстраційні дані прив&apos;язки.
+
+%1</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1700,18 +2295,6 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LdapPlugin</name>
-    <message>
-        <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation>Налаштовування інтеграції з LDAP/AD Veyon з командного рядка</translation>
-    </message>
-    <message>
-        <source>LDAP (load objects from LDAP/AD)</source>
-        <translation>LDAP (завантажувати об’єкти з LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation>LDAP (завантажувати локальні користувачі або групи і комп’ютери або класи з LDAP/AD)</translation>
-    </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
         <translation>Автоматичне налаштовування базового DN за контекстном назви</translation>
@@ -1728,78 +2311,24 @@ The public key part is used on the client computers to verify that any incoming 
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Команди для налаштовування і тестування інтеграції із LDAP/AD</translation>
     </message>
+    <message>
+        <source>Provide LDAP/AD integration for Veyon</source>
+        <translation>Надає можливості з інтеграції LDAP/AD до Veyon</translation>
+    </message>
+    <message>
+        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <translation>LDAP (завантажити записи комп&apos;ютерів і класів з LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <translation>LDAP (завантажити записи користувачів і груп з LDAP/AD)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Linux</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Rooms</source>
-        <translation>Класи</translation>
-    </message>
-    <message>
-        <source>Computers</source>
-        <translation>Комп&apos;ютери</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <source>Host address/IP</source>
-        <translation>Адреса/IP вузла</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC-адреса</translation>
-    </message>
-    <message>
-        <source>Add new room</source>
-        <translation>Додати новий клас</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Вилучити позначений клас</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Додати новий комп’ютер</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Вилучити позначений комп’ютер</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Новий клас</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Новий комп’ютер</translation>
-    </message>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Класи і комп&apos;ютери</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataPlugin</name>
-    <message>
-        <source>Backends which use local data</source>
-        <translation>Модулі, які використовують локальні дані</translation>
-    </message>
-    <message>
-        <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation>Типове (локальні користувачі або групи і комп’ютери або класи з налаштувань)</translation>
-    </message>
-    <message>
-        <source>Default (store objects in local configuration)</source>
-        <translation>Типове (зберігати об’єкти у локальних налаштуваннях)</translation>
     </message>
 </context>
 <context>
@@ -1837,50 +2366,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>General</source>
         <translation>Загальні</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Розпізнавання</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Спорожніть файли журналів у розділі «Загальні».</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>У розділі «Загальні» встановіть рівень ведення журналу у значення «Діагностичні повідомлення та все інше».</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Повторіть послідовність дій, яка призвела до проблеми або некоректної поведінки.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Натисніть наведену нижче кнопку і збережіть файл до якоїсь з ваших тек.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Створити архів звіту щодо вади</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1947,10 +2432,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Зберегти параметри до файла</translation>
     </message>
     <message>
-        <source>Save bug report archive</source>
-        <translation>Зберегти архів звіту щодо вади</translation>
-    </message>
-    <message>
         <source>Unsaved settings</source>
         <translation>Незбережені параметри</translation>
     </message>
@@ -1961,24 +2442,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Veyon Configurator</source>
         <translation>Засіб налаштовування Veyon</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Якщо у вас виникли проблеми або якісь інші негаразди з Veyon, важливо повідомити про них розробникам, щоб ці проблеми було вирішено у наступних випусках. За допомогою цієї сторінки ви зможете без проблем створити якісний звіт щодо вади.
-
-Якщо ваду не вдається відтворити, пропустіть кроки 1) — 3).</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Перейдіть на сторінку &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;стеження за вадами у Veyon&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Зауваження: якщо ваду виявлено на головному і клієнтському комп’ютерах одночасно, долучіть архіви звітів щодо вади для обох комп’ютерів.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2017,18 +2480,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>файли JSON (*.json)</translation>
     </message>
     <message>
-        <source>%1 bug report (*.json)</source>
-        <translation>звіт щодо вади %1 (*.json)</translation>
-    </message>
-    <message>
-        <source>%1 bug report archive saved</source>
-        <translation>Архів звіту щодо вади у %1 збережено</translation>
-    </message>
-    <message>
-        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Архів звіту щодо вади %1 було збережено до %2. До архіву включено файли журналу %3 та дані щодо вашої операційної системи. Ви можете долучити архів до вашого звіту щодо вади.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування %1 із ширшими правами доступу.</translation>
     </message>
@@ -2061,14 +2512,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Задіяно можливість «%1». Будь ласка, вимкніть її, перш ніж завершувати роботу %2.</translation>
     </message>
     <message>
-        <source>Reporting bugs in Veyon</source>
-        <translation>Звітування щодо вад у Veyon</translation>
-    </message>
-    <message>
-        <source>Bug reporting</source>
-        <translation>Звітування щодо вад</translation>
-    </message>
-    <message>
         <source>Reset configuration</source>
         <translation>Скинути налаштування</translation>
     </message>
@@ -2083,6 +2526,26 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Adjust optimal size</source>
         <translation>Скоригувати оптимальний розмір</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Вирівнювати комп&apos;ютери за ґраткою</translation>
+    </message>
+    <message>
+        <source>Use custom computer placement</source>
+        <translation>Нетипове розташування комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Засіб налаштовування %1</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Недостатні права доступу</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Не вдалося запустити програму із правами доступу адміністратора. Будь ласка, переконайтеся, що у робочому середовищі встановлено sudo-подібну програму! Програму буде запущено із правами доступу звичайного користувача.</translation>
     </message>
 </context>
 <context>
@@ -2172,16 +2635,40 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Керування комп&apos;ютерами</translation>
     </message>
     <message>
-        <source>Always open at start</source>
-        <translation>Завжди відкривати після запуску</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Дії, зокрема перезавантаження та вимикання комп&apos;ютерів</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
         <translation>Показувати вікно підтвердження для потенційно небезпечних дій</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Інтерфейс користувача</translation>
+    </message>
+    <message>
+        <source>Background color</source>
+        <translation>Колір тла</translation>
+    </message>
+    <message>
+        <source>Thumbnail update interval</source>
+        <translation>Інтервал оновлення мініатюри</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Запуск програми</translation>
+    </message>
+    <message>
+        <source>Automatically open computer management</source>
+        <translation>Автоматично відкривати вікно керування комп&apos;ютером</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Режими і можливості</translation>
     </message>
 </context>
 <context>
@@ -2278,65 +2765,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Ви справді хочете вимкнути позначений комп&apos;ютер?</translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Не вдалося зареєструвати службу &apos;%1&apos;.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) - службу «%1» не зареєстровано.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; is already registered.</source>
-        <translation>Службу &apos;%1&apos; вже було зареєстровано.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>Службу &apos;%1&apos; неможливо зареєструвати.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>Службу &apos;%1&apos; було успішно зареєстровано.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>Службу &apos;%1&apos; неможливо зупинити.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>Реєстрацію служби &apos;%1&apos; було скасовано.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Службу &apos;%1&apos; не було зареєстровано і тому її реєстрацію неможливо скасувати.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>Реєстрацію служби &apos;%1&apos; неможливо скасувати.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>Службу &apos;%1&apos; неможливо знайти.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?!) — реєстрацію служби «%1» не було скасовано.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Не вдалося зв’язатися з керуванням службою (можливо, у вас недостатньо прав?) — роботу служби «%1» не було зупинено.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>Не вдалося запустити службу «%1».</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>Не вдалося встановити зв’язок із засобом керування службами (чи є у вас відповідні права доступу?!) — службу «%1» не запущено.</translation>
     </message>
 </context>
 <context>
@@ -2585,10 +3013,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Запустити службу</translation>
     </message>
     <message>
-        <source>Additional arguments</source>
-        <translation>Додаткові параметри</translation>
-    </message>
-    <message>
         <source>Stopped</source>
         <translation>Зупинено</translation>
     </message>
@@ -2656,20 +3080,24 @@ Note: if the bug involves both a master and client computer, attach bug report a
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting %1 Service</source>
+        <source>Starting service %1</source>
         <translation>Запускаємо службу %1</translation>
     </message>
     <message>
-        <source>Stopping %1 Service</source>
+        <source>Stopping service %1</source>
         <translation>Зупиняємо службу %1</translation>
     </message>
     <message>
-        <source>Registering %1 Service</source>
+        <source>Registering service %1</source>
         <translation>Реєструємо службу %1</translation>
     </message>
     <message>
-        <source>Unregistering %1 Service</source>
+        <source>Unregistering service %1</source>
         <translation>Скасовуємо реєстрацію служби %1</translation>
+    </message>
+    <message>
+        <source>Service control</source>
+        <translation>Керування службами</translation>
     </message>
 </context>
 <context>
@@ -2716,10 +3144,40 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
 </context>
 <context>
+    <name>ShellCommandLinePlugin</name>
+    <message>
+        <source>Run command file</source>
+        <translation>Виконати файл команди</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Файла «%1» не існує!</translation>
+    </message>
+    <message>
+        <source>Interactive shell and script execution for Veyon Control</source>
+        <translation>Інтерактивна оболонка і засіб виконання скриптів для Керування Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for shell functionalities</source>
+        <translation>Команди для можливостей оболонки</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
         <translation>Піктограма у системному лотку</translation>
+    </message>
+</context>
+<context>
+    <name>SystemUserGroupsPlugin</name>
+    <message>
+        <source>User groups backend for system user groups</source>
+        <translation>Модуль груп користувачів для груп користувачів системи</translation>
+    </message>
+    <message>
+        <source>Default (system user groups)</source>
+        <translation>Типовий (групи користувачів системи)</translation>
     </message>
 </context>
 <context>
@@ -2844,8 +3302,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Доступні модулі:</translation>
     </message>
     <message>
-        <source>Module not found - available modules are:</source>
-        <translation>Модуль недоступний. Ось список доступних модулів:</translation>
+        <source>No module specified or module not found - available modules are:</source>
+        <translation>Не вказано модуль або модуль не знайдено. Доступні модулі:</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonServiceControl</name>
+    <message>
+        <source>Veyon Service</source>
+        <translation>Служба Veyon</translation>
     </message>
 </context>
 <context>
@@ -2875,6 +3340,37 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Windows</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsServiceControl</name>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
+        <translation>WindowsServiceControl: службу «%1» вже встановлено.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
+        <translation>WindowsServiceControl: не вдалося встановити службу «%1».</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
+        <translation>WindowsServiceControl: службу «%1» успішно встановлено.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>WindowsServiceControl: не вдалося вилучити службу «%1».</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>WindowsServiceControl: службу «%1» успішно вилучено.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>WindowsServiceControl: не вдалося змінити тип запуску служби «%1».</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
+        <translation>WindowsServiceControl: не вдалося знайти службу «%1».</translation>
     </message>
 </context>
 <context>

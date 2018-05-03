@@ -69,10 +69,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Verwerk toegangscontrole regels</translation>
     </message>
     <message>
-        <source>Data backend:</source>
-        <translation>Data backend:</translation>
-    </message>
-    <message>
         <source>User groups authorized for computer access</source>
         <translation>Gebruikersgroepen die bevoegd zijn voor toegang tot de computer</translation>
     </message>
@@ -117,14 +113,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Bewerk de geselecteerde regel</translation>
     </message>
     <message>
-        <source>Missing access control data backend</source>
-        <translation>Ontbrekende toegangsbeheer data backend</translation>
-    </message>
-    <message>
-        <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Er is geen standaard toegangscontrole backend plugin gevonden. Controleer alstublieft uw installatie!</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Voer gebruikersnaam in</translation>
     </message>
@@ -150,6 +138,18 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Enable usage of domain groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No default user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -316,22 +316,18 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
 </context>
 <context>
-    <name>AuthenticationConfigurationPage</name>
+    <name>AuthKeysConfigurationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Verificatiemethoden</translation>
+        <source>Authentication keys</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Aanmeldingsverificatie</translation>
+        <source>Introduction</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Key file authentication</source>
-        <translation>Sleutel bestand authenticatie</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Toegangs sleutelbeheer</translation>
+        <source>Key file directories</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -346,24 +342,573 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>...</translation>
     </message>
     <message>
-        <source>Launch key file assistant</source>
-        <translation>Launch key bestand-assistent</translation>
+        <source>Available authentication keys</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Test</source>
-        <translation>Test</translation>
+        <source>Create key pair</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Login authenticatie test</translation>
+        <source>Delete key</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>Authenticatie met ontvangen aanmeldingsgegevens was succesvol.</translation>
+        <source>Import key</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>Authenticatie met ontvangen aanmeldingsgegevens mislukt!</translation>
+        <source>Export key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key files (*.pem)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication key name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a key to delete!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysManager</name>
+    <message>
+        <source>Please check your permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key name contains invalid characters!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Creating new key pair for &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create public or private key!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not remove key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not remove key file directory &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for output file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to write output file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed read input file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid private key!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid public key!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for key file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to write key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to convert private key to public key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for private key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to save private key in file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to create directory for public key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to save public key in file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to read key file.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysPlugin</name>
+    <message>
+        <source>Create new authentication key pair</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete authentication key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import public or private key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export public or private key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Extract public key from existing private key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Set user group allowed to access a key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>PAIR ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing authentication keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>AuthKeysTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Access group</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfigurationPage</name>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Lokalen &amp; computers</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Lokalen</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Computers</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Host adres/IP</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC adres</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Voeg nieuw lokaal toe</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Verwijder geselecteerd lokaal</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Voeg nieuwe computer toe</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Verwijder geselecteerde computer</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Nieuw lokaal</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Nieuwe computer</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add a room or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Clear all rooms and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dump all or individual rooms and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>List all rooms and computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove a room or computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Import objects from given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Export objects to given file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC adres</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Room</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin (computers and rooms in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Export all objects to a CSV file:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export all computers in a room to a CSV file:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -381,25 +926,18 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
 </context>
 <context>
-    <name>ComputerControlServer</name>
-    <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Service %2 bij %3:%4</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Authenticatie fout</translation>
-    </message>
-    <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Gebruiker% 1 (IP:% 2) probeerde toegang tot deze computer te krijgen maar kon niet succesvol verifiëren!</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerListModel</name>
+    <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
         <translation>Lokaal: %1</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Host/IP adres: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
@@ -408,14 +946,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source>Establishing connection</source>
         <translation>Verbinding aan het maken</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Geen gebruiker ingelogd</translation>
-    </message>
-    <message>
-        <source>Logged on user: %1</source>
-        <translation>Ingelogde gebruiker: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -434,12 +964,27 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Ontkoppeld</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/IP adres: %1</translation>
+        <source>No user logged on</source>
+        <translation>Geen gebruiker ingelogd</translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <source>Logged on user: %1</source>
+        <translation>Ingelogde gebruiker: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Service %2 bij %3:%4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Authenticatie fout</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Gebruiker% 1 (IP:% 2) probeerde toegang tot deze computer te krijgen maar kon niet succesvol verifiëren!</translation>
     </message>
 </context>
 <context>
@@ -527,22 +1072,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Geef alstublief een geldige waarde op.</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Kon de autostart eigenschap niet wijzigen voor de %1 service.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Kan de service argumenten voor de %1 service niet wijzigen.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Kon de firewallconfiguratie voor de %1 service niet wijzigen.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Kon de instelling voor SAS generatie door software niet wijzigen. Het versturen van Ctrl + Alt + Del via bediening op afstand zal niet werken!</translation>
-    </message>
-    <message>
         <source>Configure Veyon at command line</source>
         <translation>Configureer Veyon via opdrachtregel</translation>
     </message>
@@ -590,44 +1119,32 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>Commands for managing the configuration of Veyon</source>
         <translation>Commando&apos;s voor het beheren van de configuratie van Veyon</translation>
     </message>
+    <message>
+        <source>Upgrade and save configuration of program and plugins</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
-    <name>ConfiguratorCore</name>
+    <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
         <translation>Kon de autostart eigenschap niet wijzigen voor de %1 service.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Kon de service argumenten voor de %1 service niet wijzigen.</translation>
+        <source>Could not configure the firewall configuration for the %1 Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Kon de firewallconfiguratie voor de %1 service niet wijzigen.</translation>
+        <source>Could not configure the firewall configuration for the %1 Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
         <translation>Kon de instelling voor SAS generatie door software niet wijzigen. Het versturen van Ctrl + Alt + Del via bediening op afstand zal niet werken!</translation>
     </message>
     <message>
-        <source>Overwrite keys</source>
-        <translation>Overschrijf sleutels</translation>
-    </message>
-    <message>
-        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Sommige sleutelbestanden bestaan al. Als u ze vervangt met nieuw gegenereerde, moet u ook de publieke sleutels op alle computers bijwerken. Wilt u doorgaan?</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Configuratie gewist</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>De lokale configuratie is succesvol gewist.</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -731,6 +1248,53 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
 </context>
 <context>
+    <name>DesktopServicesConfigurationPage</name>
+    <message>
+        <source>Programs &amp; websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined programs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Predefined websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New website</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
@@ -755,6 +1319,22 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Klik op deze knop om een programma op alle computers uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Run program &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -861,10 +1441,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Log naar standaard fout uitgang</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Log naar Windows event log</translation>
-    </message>
-    <message>
         <source>Network object directory</source>
         <translation>Netwerk object map</translation>
     </message>
@@ -920,172 +1496,94 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authenticatie</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Aanmeldingsverificatie</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Sleutel bestand authenticatie</translation>
+    </message>
 </context>
 <context>
-    <name>KeyFileAssistant</name>
+    <name>InternetAccessControlConfigurationPage</name>
     <message>
-        <source>How does it work?</source>
-        <translation>Hoe werkt het?</translation>
+        <source>Internet access control</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Assistant mode</source>
-        <translation>Assistent modus</translation>
+        <source>Settings</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Kies of u een nieuwe toegangssleutels wilt maken of het importeren van een publieke sleutel op een client.</translation>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlDummy</name>
+    <message>
+        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>Nieuwe toegangssleutels maken (master computer)</translation>
+        <source>Internet access control not available</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Import public key (client computer)</source>
-        <translation>Importeer publieke sleutel (client computer)</translation>
+        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select user role</source>
-        <translation>Selecteer gebruikers rol</translation>
+        <source>Dummy backend for internet access control</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlPlugin</name>
+    <message>
+        <source>Block access to the internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Selecteer een gebruikersrol waarvoor u de toegangssleutels wilt maken of importeren:</translation>
+        <source>Allow access to the internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Leraar</translation>
+        <source>Show help about command</source>
+        <translation>Toon hulp over commando</translation>
     </message>
     <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Gebruikersrollen toestaan met behulp van meerdere toegangssleutels in parallel. Zo kunnen er verschillende leraar sleutels voor elke klas zijn, terwijl de toegang tot support sleutels hetzelfde is voor de hele school.</translation>
+        <source>Block internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Directories</translation>
+        <source>Click this button to block access to the internet.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Export public key part (master computer)</source>
-        <translation>Exporteer het publieke sleutel deel (master computer)</translation>
+        <source>Unblock internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
+        <source>Click this button to allow access to the internet.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>Gebruik aangepaste doelmap voor toegangssleutels</translation>
+        <source>Control access to the internet</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Geef de locatie van de publieke toegangssleutel waar die moet worden geimporteerd.</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>Overzicht</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>De volgende acties zullen worden genomen:</translation>
-    </message>
-    <message>
-        <source>• Create new access keys</source>
-        <translation>• Creëer nieuwe toegangssleutels</translation>
-    </message>
-    <message>
-        <source>• Import public access key from</source>
-        <translation>• Importeer openbare sleutel uit</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;onbekend&gt;</translation>
-    </message>
-    <message>
-        <source>• Write access key(s) to</source>
-        <translation>• Toegangssleutel(s) schrijven naar</translation>
-    </message>
-    <message>
-        <source>• Export public key to</source>
-        <translation>• Exporteer openbare sleutel aan</translation>
-    </message>
-    <message>
-        <source>• Configure for user role</source>
-        <translation>• configureer voor de gebruikersrol</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>Selecteer de map waarin u de openbare sleutel wilt exporteren</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>Sleutel bestanden (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>Ongeldig publieke sleutel</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>Selecteer de doelmap</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>Toegangssleutel creatie</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>Kon niet het laatst bestaande bestand %1 verwijderen.</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Mislukt bij het exporteren van publieke sleutel uit %1 naar 2%.</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Toegangssleutels zijn gemaakt en met succes geschreven naar %1 en 2%.</translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Er is een fout opgetreden tijdens het maken van de toegang sleutels. Je bent waarschijnlijk niet bevoegd om te schrijven naar de geselecteerde directories.</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>Publieke sleutel invoer</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Er is een fout opgetreden tijdens het importeren van de openbare sleutel. Je bent waarschijnlijk niet bevoegd om de bron sleutel te lezen of naar de bestemmings bestand te schrijven.</translation>
-    </message>
-    <message>
-        <source>The public key was successfully imported to %1.</source>
-        <translation>De publieke sleutel is succesvol geïmporteerd naar %1.</translation>
-    </message>
-    <message>
-        <source>Veyon Access Key Assistant</source>
-        <translation>Veyon Toegangssleutel Assistent</translation>
-    </message>
-    <message>
-        <source>Create/import Veyon access keys</source>
-        <translation>Creëer/importeer Veyon toegangssleutels</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>Deze assistent helpt u om Veyon-toegangsleutels te maken of te importeren.</translation>
-    </message>
-    <message>
-        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>Veyon toegangsleutels bestaan uit twee delen die samen behoren, een privé- en een publieke sleutel.
-
-Met behulp van het privé-sleuteldeel kunnen gebruikers op de mastercomputer toegang krijgen tot clientcomputers. Het is belangrijk dat alleen geautoriseerde gebruikers leestoegang hebben tot het privé sleutel bestand.
-
-Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren of een inkomend verbindingsverzoek is toegestaan.</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>Het geselecteerde bestand bevat geen geldige publieke Veyon-toegangssleutel!</translation>
+        <source>Commands for controlling access to the internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1231,16 +1729,8 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <translation>Optionele objectfilters</translation>
     </message>
     <message>
-        <source>e.g. objectClass=group</source>
-        <translation>bv. objectClass=group</translation>
-    </message>
-    <message>
         <source>Filter for user groups</source>
         <translation>Filter voor gebruikersgroepen</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=person</source>
-        <translation>bv. objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1279,16 +1769,8 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <translation>LDAP connectie mislukt</translation>
     </message>
     <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Kon geen verbinding maken met de LDAP-server. Controleer alstublieft de serverparameters. %1</translation>
-    </message>
-    <message>
         <source>LDAP bind failed</source>
         <translation>LDAP bind mislukt</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Kon geen verbinding maken met de LDAP-server. Controleer alstublieft de server- en bind-credentials. %1 </translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
@@ -1303,30 +1785,12 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <translation>LDAP base DN test mislukt</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-%1</source>
-        <translation>Kon de geconfigureerde basis DN niet opvragen. Controleer de basis DN parameter.
-%1</translation>
-    </message>
-    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP base DN test gelukt</translation>
     </message>
     <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-%1</source>
-        <translation>De LDAP basis DN is succesvol bevraagd. De volgende vermeldingen werden gevonden:
-%1</translation>
-    </message>
-    <message>
         <source>LDAP naming context test failed</source>
         <translation>LDAP naming context test mislukt</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-%1</source>
-        <translation>Kon de basis DN via naming contexts niet opvragen. Controleer de naming context attribuut parameter.
-%1 </translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1581,14 +2045,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <translation>Filter voor computers</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computer</source>
-        <translation>bv. objectClass=computer</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>bv. objectClass=lokaal of objectClass=computerlabo</translation>
-    </message>
-    <message>
         <source>e.g. room or computerLab</source>
         <translation>bv. lokaal of computerlabo</translation>
     </message>
@@ -1641,10 +2097,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <translation>Computerlokaal eigenschap</translation>
     </message>
     <message>
-        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation>bv. objectClass=container of objectClass=organizationalUnit</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room via:</source>
         <translation>Verzamelde computers in een lokaal via:</translation>
     </message>
@@ -1684,6 +2136,96 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation>Wijzig hieronder de computerlokaalinstellingen voor het gebruik van computercontainers als computerlokalen. Anderzijds moet u deze instellingen niet configureren.</translation>
     </message>
+    <message>
+        <source>Connection security</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Security mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1698,18 +2240,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
 </context>
 <context>
     <name>LdapPlugin</name>
-    <message>
-        <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation>Configureer LDAP/AD integratie van Veyon in command line</translation>
-    </message>
-    <message>
-        <source>LDAP (load objects from LDAP/AD)</source>
-        <translation>LDAP (laad objecten van LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation>LDAP (laad gebruikers/groepen en computers/lokalen van LDAP/AD)</translation>
-    </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
         <translation>Automatiseer de base DN dmv. naamgevingscontext</translation>
@@ -1726,78 +2256,24 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Commando&apos;s voor het configureren en testen van LDAP/AD-integratie</translation>
     </message>
+    <message>
+        <source>Provide LDAP/AD integration for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Plugin uitvoering van abstracte functies voor Linux</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Rooms</source>
-        <translation>Lokalen</translation>
-    </message>
-    <message>
-        <source>Computers</source>
-        <translation>Computers</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <source>Host address/IP</source>
-        <translation>Host adres/IP</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC adres</translation>
-    </message>
-    <message>
-        <source>Add new room</source>
-        <translation>Voeg nieuw lokaal toe</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Verwijder geselecteerd lokaal</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Voeg nieuwe computer toe</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Verwijder geselecteerde computer</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Nieuw lokaal</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Nieuwe computer</translation>
-    </message>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Lokalen &amp; computers</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataPlugin</name>
-    <message>
-        <source>Backends which use local data</source>
-        <translation>Backends die gebruik maken van lokale gegevens</translation>
-    </message>
-    <message>
-        <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation>Default (lokale gebruikers/groepen en computers/lokalen van configuratie)</translation>
-    </message>
-    <message>
-        <source>Default (store objects in local configuration)</source>
-        <translation>Default (bewaar objecten in lokale configuratie)</translation>
     </message>
 </context>
 <context>
@@ -1835,50 +2311,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     <message>
         <source>General</source>
         <translation>Algemeen</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Authenticatie</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Schakel de logbestanden in de &quot;Algemeen&quot; sectie uit.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>In de &quot;Algemeen&quot; sectie stel het logniveau in in &quot;Debug berichten en alle andere&quot;.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Herhaal de acties die leiden tot een bug of wangedrag.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Klik op de onderstaande knop en sla het bestand op een bekende locatie op.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Genereer bug report archief</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1945,10 +2377,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
         <translation>Instellingen opslaan naar bestand</translation>
     </message>
     <message>
-        <source>Save bug report archive</source>
-        <translation>Bewaar bug report archief</translation>
-    </message>
-    <message>
         <source>Unsaved settings</source>
         <translation>Niet-opgeslagen instellingen</translation>
     </message>
@@ -1959,24 +2387,6 @@ Het publieke sleuteldeel wordt gebruikt op de clientcomputers om te controleren 
     <message>
         <source>Veyon Configurator</source>
         <translation>Veyon Configurator</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Wanneer u softwarefouten tegenkomt in Veyon is het belangrijk dat u de ontwikkelaars hiervan informeert. Zodoende worden deze fouten in toekomstige releases opgelost. Deze pagina laat u toe om een foutrapport gemakkelijk in te dienen.
-
-Is de fout niet herhalend of blijvend sla stap 1 tot 3 over.</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Ga naar de 1 Veyon probleemzoeker 1, creëer een nieuw probleem, beschrijf wat je deed in stap 3 en voeg uw bewaarde bestand toe in stap 4. 2
-3
-4
-Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrapporten van beide computers toe.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2015,18 +2425,6 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
         <translation>JSON bestanden (*.json)</translation>
     </message>
     <message>
-        <source>%1 bug report (*.json)</source>
-        <translation>%1 fout report (*.json)</translation>
-    </message>
-    <message>
-        <source>%1 bug report archive saved</source>
-        <translation>%1 foutrapport archief bewaard</translation>
-    </message>
-    <message>
-        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Een %1 foutrapport archief is bewaard in %2. Het bevat %3 logbestanden en info van uw Operating System. U kan het toevoegen aan een foutrapport.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>De lokale backend configuratie rapporteert dat de configuratie niet-schrijfbaar is. Start de %1 configurator met admin of hogere previleges.</translation>
     </message>
@@ -2059,14 +2457,6 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
         <translation>Het programma %1 is nog steeds actief. Stop het alvorens %2 af te sluiten.</translation>
     </message>
     <message>
-        <source>Reporting bugs in Veyon</source>
-        <translation>Foutmeldingen in Veyon</translation>
-    </message>
-    <message>
-        <source>Bug reporting</source>
-        <translation>Fout reportering</translation>
-    </message>
-    <message>
         <source>Reset configuration</source>
         <translation>Reset configuratie</translation>
     </message>
@@ -2081,6 +2471,26 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
     <message>
         <source>Adjust optimal size</source>
         <translation>Pas de optimale grootte aan</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom computer placement</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Configurator</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2170,16 +2580,40 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
         <translation>Computer management</translation>
     </message>
     <message>
-        <source>Always open at start</source>
-        <translation>Altijd zichtbaar bij start</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Acties zoals herstarten of uitschakelen van computers</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
         <translation>Bevestiging dialoogvenster voor potentieel gevaarlijke acties weergeven</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Gebruikersomgeving</translation>
+    </message>
+    <message>
+        <source>Background color</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thumbnail update interval</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2276,65 +2710,6 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Wilt u werkelijk de geselecteerde computers uitschakelen?</translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Niet in staat om dienst &apos;%1&apos; te registreren.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet geregistreerd.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; is already registered.</source>
-        <translation>De service &apos;%1&apos; is al geregistreerd.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>De service &apos;%1&apos; kan niet worden geregistreerd.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>De service &apos;%1&apos; werd met succes geregistreerd.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>De service &apos;%1&apos; kon niet worden gestopt.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>De service &apos;%1&apos; is ongeregistreerd gezet.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>De service &apos;%1&apos; is niet geregistreerd en daarom kan die niet worden ongeregistreerd.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>De service &apos;%1&apos; kon niet ongeregisteerd worden gezet.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>De service &apos;%1&apos; kon niet gevonden worden.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet ongeregistreerd.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet gestopt.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>Service &apos;%1&apos; kon niet gestart worden.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>De Service Control Manager kon niet worden gecontacteerd (hebt u de nodige toegangsrechten?!) - Het programma &apos;%1&apos; was niet gestart.</translation>
     </message>
 </context>
 <context>
@@ -2583,10 +2958,6 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
         <translation>Start service</translation>
     </message>
     <message>
-        <source>Additional arguments</source>
-        <translation>Aanvullende argumenten</translation>
-    </message>
-    <message>
         <source>Stopped</source>
         <translation>Gestopt</translation>
     </message>
@@ -2654,20 +3025,24 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting %1 Service</source>
-        <translation>%1 Service wordt gestart</translation>
+        <source>Starting service %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Stopping %1 Service</source>
-        <translation>%1 Service wordt gestopt</translation>
+        <source>Stopping service %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Registering %1 Service</source>
-        <translation>%1 Service wordt geregistreerd</translation>
+        <source>Registering service %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Unregistering %1 Service</source>
-        <translation>%1 Service aan het onregistreren</translation>
+        <source>Unregistering service %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service control</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2714,10 +3089,40 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
     </message>
 </context>
 <context>
+    <name>ShellCommandLinePlugin</name>
+    <message>
+        <source>Run command file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Interactive shell and script execution for Veyon Control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for shell functionalities</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
         <translation>Systeemvak icoon</translation>
+    </message>
+</context>
+<context>
+    <name>SystemUserGroupsPlugin</name>
+    <message>
+        <source>User groups backend for system user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default (system user groups)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2842,8 +3247,15 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
         <translation>Beschikbare modules:</translation>
     </message>
     <message>
-        <source>Module not found - available modules are:</source>
-        <translation>Module niet gevonden - beschikbare modules zijn:</translation>
+        <source>No module specified or module not found - available modules are:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonServiceControl</name>
+    <message>
+        <source>Veyon Service</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2873,6 +3285,37 @@ Nota: Als de fout geldt voor zowel de master als client computer, voeg foutrappo
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Uitvoering plugin abstracte functies voor Windows</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsServiceControl</name>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

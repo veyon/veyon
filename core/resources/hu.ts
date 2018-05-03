@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation>Honlap:</translation>
+        <translation>Weboldal:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -67,10 +67,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Process access control rules</source>
         <translation>Hozzáférés-vezérlési folyamatokra vonatkozó szabályok</translation>
-    </message>
-    <message>
-        <source>Data backend:</source>
-        <translation>Háttéradat:</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -117,14 +113,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Kijelölt szabály módosítása</translation>
     </message>
     <message>
-        <source>Missing access control data backend</source>
-        <translation>Hiányzik a hozzáférés-vezérlés háttéradata</translation>
-    </message>
-    <message>
-        <source>No default access control backend plugin was found. Please check your installation!</source>
-        <translation>Nincs alapértelmezett hozzáférés-vezérlés háttéradat bővítmény. Kérem, ellenőrizd telepítésed!</translation>
-    </message>
-    <message>
         <source>Enter username</source>
         <translation>Add meg a felhasználónevet</translation>
     </message>
@@ -151,6 +139,18 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Enable usage of domain groups</source>
         <translation>Domain csoportok használatának bekapcsolása</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Felhasználói csoportok háttere:</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Hiányzik a felhasználói csoportok háttere</translation>
+    </message>
+    <message>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Nincs alapértelmezett felhasználóicsoport-bővítmény. Kérem, ellenőrizd telepítésed! </translation>
     </message>
 </context>
 <context>
@@ -316,22 +316,18 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
 </context>
 <context>
-    <name>AuthenticationConfigurationPage</name>
+    <name>AuthKeysConfigurationPage</name>
     <message>
-        <source>Authentication methods</source>
-        <translation>Hitelesítési módok:</translation>
+        <source>Authentication keys</source>
+        <translation>Hitelesítési kulcs</translation>
     </message>
     <message>
-        <source>Logon authentication</source>
-        <translation>Bejelentkezési hitelesítés</translation>
+        <source>Introduction</source>
+        <translation>Bevezetés</translation>
     </message>
     <message>
-        <source>Key file authentication</source>
-        <translation>Kulcsfájl hitelesítés</translation>
-    </message>
-    <message>
-        <source>Access key management</source>
-        <translation>Kulcsfájl-kezelés</translation>
+        <source>Key file directories</source>
+        <translation>Kulcsfájlok mappái</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -346,24 +342,614 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>...</translation>
     </message>
     <message>
-        <source>Launch key file assistant</source>
-        <translation>Kulcsfájl-segéd indítása</translation>
+        <source>Available authentication keys</source>
+        <translation>Elérhető hitelesítési kulcsok</translation>
     </message>
     <message>
-        <source>Test</source>
-        <translation>Tesztelés</translation>
+        <source>Create key pair</source>
+        <translation>Kulcspár létrehozása</translation>
     </message>
     <message>
-        <source>Logon authentication test</source>
-        <translation>Bejelentkezés hitelesítési teszt</translation>
+        <source>Delete key</source>
+        <translation>Kulcs törlése</translation>
     </message>
     <message>
-        <source>Authentication with provided credentials was successful.</source>
-        <translation>A hitelesítés sikeres volt az megadott hitelesítési adatokkal.</translation>
+        <source>Import key</source>
+        <translation>Kulcs importálása</translation>
     </message>
     <message>
-        <source>Authentication with provided credentials failed!</source>
-        <translation>A hitelesítés sikertelen volt az megadott hitelesítési adatokkal!</translation>
+        <source>Export key</source>
+        <translation>Kulcs exportálása</translation>
+    </message>
+    <message>
+        <source>Set access group</source>
+        <translation>Hozzáférési csoport beállítása</translation>
+    </message>
+    <message>
+        <source>Key files (*.pem)</source>
+        <translation>Kulcsfájlok (*.pem)</translation>
+    </message>
+    <message>
+        <source>Authentication key name</source>
+        <translation>Hitelesítési kulcs neve</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
+        <translation>Kérem, add meg a felhasználó csoport vagy szerep nevét, amely számára létrehozod a hitelesítési kulcspárt:</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
+        <translation>Biztos, hogy törli &quot;%1%2&quot; hitelesítési kulcsot?</translation>
+    </message>
+    <message>
+        <source>Please select a key to delete!</source>
+        <translation>Kérem, válaszd ki a törlendő kulcsot!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
+        <translation>Kérem, add meg a felhasználó csoport vagy szerep nevét, amely számára importálod a hitelesítési kulcsot: </translation>
+    </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation>Kérem, válaszd ki az importálandó kulcsot!</translation>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation>Kérem, válassz felhasználó szerepet, amely számára hozzáférést adsz &quot;%1&quot; kulcshoz:</translation>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation>Kérem, válassz egy kulcsot, amelyhez hozzáférési csoportot állítasz be!</translation>
+    </message>
+    <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Kérem, hajtsd végre a következő lépéseket a kulcsfájl-hitelesítés beállításához:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Hozz létre egy kulcspárt a mesterszámítógépen.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Állíts be egy hozzáférési csoportot, amelynek tagjai hozzáférhetnek a többi számítógéphez.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exportáld a nyilvános kulcsot , majd importáld ugyanazon a néven az összes számítógépre.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Kérem, további információkért olvassa le a &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon üzemeltetői leírást &lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>A hitelesítési kulcspár kettő összetartozó kriptográfiai kulcsból áll, egy privát és egy publikus kulcsból.
+A privát kulcs használatával a mester számítógép felhasználói hozzáférhetnek a kliens számítógépekhez. 
+Fontos, hogy csak hitelesített felhasználóknak legyen olvasási hozzáférése a privát kulcsfájlhoz.
+A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcsolatkérések hitelesítéséhez.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysManager</name>
+    <message>
+        <source>Please check your permissions.</source>
+        <translation>Kérem, ellenőrizd a jogosultságaidat.</translation>
+    </message>
+    <message>
+        <source>Key name contains invalid characters!</source>
+        <translation>A kulcs neve érvénytelen karaktereket tartalmaz.</translation>
+    </message>
+    <message>
+        <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Érvénytelen kulcstípus-meghatározás. &quot;%1&quot; vagy &quot;%2&quot; lehetséges.</translation>
+    </message>
+    <message>
+        <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
+        <translation>A megadott kulcs nem létezik! Az összes telepített kulcs listázásához használja a &quot;list&quot; parancsot.</translation>
+    </message>
+    <message>
+        <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
+        <translation>Egy vagy több kulcs már létezik! Kérem, törölje ezeket a &quot;delete&quot; paranccsal.</translation>
+    </message>
+    <message>
+        <source>Creating new key pair for &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; számára új kulcspár létrehozása</translation>
+    </message>
+    <message>
+        <source>Failed to create public or private key!</source>
+        <translation>Publikus vagy privát kulcs importálási hiba!</translation>
+    </message>
+    <message>
+        <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
+        <translation>Az újonnan létrehozott kulcspárt mentettük: &quot;%1&quot; és &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Could not remove key file &quot;%1&quot;!</source>
+        <translation>Nem sikerült eltávolítani &quot;%1&quot; kulcsfájlt!</translation>
+    </message>
+    <message>
+        <source>Could not remove key file directory &quot;%1&quot;!</source>
+        <translation>Nem sikerült eltávolítani &quot;%1&quot; kulcsfájl-mappát!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for output file.</source>
+        <translation>A kimeneti fájl számára a mappa létrehozása sikertelen.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; already exists.</source>
+        <translation>&quot;%1&quot; fájl már létezik.</translation>
+    </message>
+    <message>
+        <source>Failed to write output file.</source>
+        <translation>Kimeneti fájl írási hiba.</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
+        <translation>&quot;%1/%2&quot; kulcsot sikeresen importáltuk ide: &quot;%3&quot;.</translation>
+    </message>
+    <message>
+        <source>Failed read input file.</source>
+        <translation>Bemenet fájl olvasási hiba.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid private key!</source>
+        <translation>&quot;%1&quot; fájl nem tartalmaz valid privát kulcsot!</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not contain a valid public key!</source>
+        <translation>&quot;%1&quot; fájl nem tartalmaz valid publikus kulcsot!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for key file.</source>
+        <translation>A kulcsfájl számára a mappa létrehozása sikertelen.</translation>
+    </message>
+    <message>
+        <source>Failed to write key file &quot;%1&quot;.</source>
+        <translation>&quot;%1&quot; kulcsfájl írása sikertelen.</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;!</source>
+        <translation>&quot;%1&quot; kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
+        <translation>&quot;%1/%2&quot; kulcsot sikeresen importáltuk. Kérem, az illetéktelen hozzáférés elkerülése érdekében ellenőrizd &quot;%3&quot; fájl jogosultsági beállításait.</translation>
+    </message>
+    <message>
+        <source>Failed to convert private key to public key</source>
+        <translation>Privát kulcs importálása publikus kulcsból sikertelen</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for private key file &quot;%1&quot;.</source>
+        <translation>&quot;%1&quot; privát kulcsfájl számára mappa létrehozása sikertelen.</translation>
+    </message>
+    <message>
+        <source>Failed to save private key in file &quot;%1&quot;!</source>
+        <translation>&quot;%1&quot; fájlba a privát kulcsfájl mentése sikertelen!</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
+        <translation>&quot;%1&quot; privát kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+    </message>
+    <message>
+        <source>Failed to create directory for public key file &quot;%1&quot;.</source>
+        <translation>&quot;%1&quot; publikus kulcsfájl számára mappa létrehozása sikertelen.</translation>
+    </message>
+    <message>
+        <source>Failed to save public key in file &quot;%1&quot;!</source>
+        <translation>&quot;%1&quot; fájlba a publikus kulcsfájl mentése sikertelen!</translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
+        <translation>&quot;%1&quot; publikus kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+    </message>
+    <message>
+        <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation>&quot;%1&quot; -&gt; &quot;%2&quot; kulcsfájl tulajdonosának beállítása sikertelen. </translation>
+    </message>
+    <message>
+        <source>Failed to set permissions for key file &quot;%1&quot;.</source>
+        <translation>&quot;%1&quot; kulcsfájl jogosultságainak beállítása sikertelen!</translation>
+    </message>
+    <message>
+        <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
+        <translation>&quot;%2&quot; csoport felhasználói hozzáférhetnek &quot;%1&quot; kulcshoz.</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Failed to read key file.</source>
+        <translation>Kulcsfájl olvasási hiba.</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysPlugin</name>
+    <message>
+        <source>Create new authentication key pair</source>
+        <translation>Új hitelesítési kulcspár létrehozása</translation>
+    </message>
+    <message>
+        <source>Delete authentication key</source>
+        <translation>Hitelesítési kulcs törlése </translation>
+    </message>
+    <message>
+        <source>List authentication keys</source>
+        <translation>Hitelesítési kulcsok felsorolása</translation>
+    </message>
+    <message>
+        <source>Import public or private key</source>
+        <translation>Publikus vagy privát kulcsok importálása</translation>
+    </message>
+    <message>
+        <source>Export public or private key</source>
+        <translation>Publikus vagy privát kulcsok exportálása</translation>
+    </message>
+    <message>
+        <source>Extract public key from existing private key</source>
+        <translation>Publikus kulcs kicsomagolása egy már létező privát kulcsból</translation>
+    </message>
+    <message>
+        <source>Set user group allowed to access a key</source>
+        <translation>Felhasználói csoport hozzáférésének beállítása egy kulcshoz </translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>KULCS</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>HOZZÁFÉRÉSI CSOPORT</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Ez a parancs beállítja a fájlhozzáférési jogosultságot&lt;KEY&gt;értékre, így csak&lt;ACCESS GROUP&gt;felhasználói csoportnak van olvasási hozzáférése a fájlhoz. </translation>
+    </message>
+    <message>
+        <source>NAME</source>
+        <translation>NÉV</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
+        <translation>Ez a parancs egy új &lt;NAME&gt; nevű hitelesítési kulcspárt hoz létre és menti a privát és a publikus kulcsot a beállított kulcskönyvtárakba.</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
+        <translation>Ez a parancs törli &lt;KEY&gt; hitelesítési kulcsot a beállított kulcskönyvtárból. Kérem, figyelj arra, hogy törlés után a kulcs már nem állítható vissza. </translation>
+    </message>
+    <message>
+        <source>FILE</source>
+        <translation>FÁJL</translation>
+    </message>
+    <message>
+        <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation>Ez a parancs exportálja &lt;KEY&gt; hitelesítési kulcsot &lt;FILE&gt; fájlba. Ha &lt;FILE&gt; nincs megadva, akkor &lt;KEY&gt; nevéből és típusából állítunk elő egy nevet.</translation>
+    </message>
+    <message>
+        <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
+        <translation>Ez a parancs importálja &lt;KEY&gt; hitelesítési kulcsot &lt;FILE&gt; fájlból. Ha &lt;FILE&gt; nincs megadva, akkor &lt;KEY&gt; nevéből és típusából állítunk elő egy nevet.</translation>
+    </message>
+    <message>
+        <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation>Ez a parancs a beállított kulcskönyvtárban lévő összes elérhető hitelesítési kulcsot felsorolja. Ha &quot;%1&quot; lehetőség meg van adva, egy, a kulcs részleteit tartalmazó táblázat fog megjelenni. Ha a kulcs nem érhető el, például olvasási jogosultságok hiánya miatt, néhány részlete hiányozhat.</translation>
+    </message>
+    <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
+        <translation>Ez a parancs kicsomagolja a nyilvános kulcsrészt &lt;KEY&gt; privát kulcsból és a megfelelő nyilvános kulcsként menti.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
+    </message>
+    <message>
+        <source>TYPE</source>
+        <translation>TÍPUS</translation>
+    </message>
+    <message>
+        <source>PAIR ID</source>
+        <translation>PÁR ID</translation>
+    </message>
+    <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation>Parancssori támogatás a hitelesítési kulcsok kezeléséhez</translation>
+    </message>
+    <message>
+        <source>Commands for managing authentication keys</source>
+        <translation>Parancsok a hitelesítési kulcsok kezeléséhez</translation>
+    </message>
+</context>
+<context>
+    <name>AuthKeysTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Típus</translation>
+    </message>
+    <message>
+        <source>Access group</source>
+        <translation>Hozzáférési csoport</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryConfigurationPage</name>
+    <message>
+        <source>Rooms &amp; computers</source>
+        <translation>Szobák és számítógépek</translation>
+    </message>
+    <message>
+        <source>Rooms</source>
+        <translation>Szobák</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Számítógépek</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Host address/IP</source>
+        <translation>Kiszolgáló címe/IP-je</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>Fizikai cím</translation>
+    </message>
+    <message>
+        <source>Add new room</source>
+        <translation>Új szoba hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected room</source>
+        <translation>Kiválasztott szoba eltávolítása</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Új számítógép hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Kiválasztott számítógép eltávolítása</translation>
+    </message>
+    <message>
+        <source>New room</source>
+        <translation>Új szoba</translation>
+    </message>
+    <message>
+        <source>New computer</source>
+        <translation>Új számítógép</translation>
+    </message>
+</context>
+<context>
+    <name>BuiltinDirectoryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Konkrét parancsról segítség megjelenítése</translation>
+    </message>
+    <message>
+        <source>Add a room or computer</source>
+        <translation>Szoba vagy számítógép hozzáadása</translation>
+    </message>
+    <message>
+        <source>Clear all rooms and computers</source>
+        <translation>Összes szoba és számítógép törlése</translation>
+    </message>
+    <message>
+        <source>Dump all or individual rooms and computers</source>
+        <translation>Az összes vagy néhány szoba és számítógép mentése</translation>
+    </message>
+    <message>
+        <source>List all rooms and computers</source>
+        <translation>Összes szoba és számítógép felsorolása</translation>
+    </message>
+    <message>
+        <source>Remove a room or computer</source>
+        <translation>Szoba vagy számítógép eltávolítása</translation>
+    </message>
+    <message>
+        <source>Import objects from given file</source>
+        <translation>Objektumok importálása a megadott fájlból</translation>
+    </message>
+    <message>
+        <source>Export objects to given file</source>
+        <translation>Objektumok exportálása a megadott fájlba</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+HASZNÁLATA
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Használható változók: %name% %host% %mac% %room%
+
+Példák:
+
+* Egy egyszerű CSV fájl importálása egy szobába:
+
+    %1 import szamitogepek.csv room &quot;01 szoba&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Az első oszlopban a szobát tartalmazó CSV fájl importálása:
+
+    %1 import szamitogepekSzobakkal.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Reguláris kifejezések megadott kulcs/érték párok importálása:
+
+    %1 import kiszolgaloLista.txt room &quot;01 szoba&quot; regex &quot;^NEV:(%name%:.*)\s+KISZOLGALO:(%host%:.*)$&quot;
+
+* Önkényesen formázott adatok importálása:
+
+    %1 import adat.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Érvénytelen típusmeghatározás. &quot;%1&quot; vagy &quot;%2&quot; lehetséges.</translation>
+    </message>
+    <message>
+        <source>Object UID</source>
+        <translation>Objektum UID</translation>
+    </message>
+    <message>
+        <source>Parent UID</source>
+        <translation>Szülő UID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Típus</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Kiszolgáló címe</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>Fizikai cím</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Az adott objektum nem található.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>&quot;%1&quot; fájl nem létezik!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>&quot;%1&quot; fájl nem nyitható meg olvasásra!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>&quot;%1&quot; ismeretlen argumentum.</translation>
+    </message>
+    <message>
+        <source>Room &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; szoba</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>&quot;%1&quot; számítógép (kiszolgáló címe: &quot;%2&quot; fizikai cím: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Be nem sorolt &quot;%1&quot; objektum, ID: &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Egyik sem</translation>
+    </message>
+    <message>
+        <source>Room</source>
+        <translation>Szoba</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Számítógép</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Root</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Érvénytelen</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>%1. sor feldolgozásakor hiba keletkezett.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>A helyi konfigurációban objektumokat tároló hálózatiobjektum-könyvtár</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and rooms in local configuration)</source>
+        <translation>Beépített (a helyi konfigurációban lévő számítógépek és szobák)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Parancsok a beépített hálózatiobjektum-könyvtárak kezeléséhez</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Export all objects to a CSV file:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export all computers in a room to a CSV file:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</source>
+        <translation>
+HASZNÁLATA
+
+%1  export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Használható változók: %type% %name% %host% %mac% %room%
+
+Példák:
+
+* Az összes objektum exportálása CSV fájlba:
+
+%1 export objektumok.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Egy szoba összes számítógépének exportálása CSV fájlba:
+
+%1 export 01SzobaSzamitogepei.csv room &quot;01 szoba&quot; format &quot;%name%;%host%;%mac%&quot;
+</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Nincs formázott karakterlánc, illetve reguláris kifejezés!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>&quot;%1&quot; fájl nem nyitható meg írásra!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Nincs formázott karakterlánc!</translation>
     </message>
 </context>
 <context>
@@ -381,25 +967,18 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
 </context>
 <context>
-    <name>ComputerControlServer</name>
-    <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 szolgáltatás %2, 3%:%4</translation>
-    </message>
-    <message>
-        <source>Authentication error</source>
-        <translation>Hitelesítési hiba</translation>
-    </message>
-    <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>%1 felhasználó (IP-je: %2) megpróbálta elérni ezt a számítógépet, de nem sikerült hitelesítenie magát!</translation>
-    </message>
-</context>
-<context>
-    <name>ComputerListModel</name>
+    <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
         <translation>Szoba: %1</translation>
+    </message>
+    <message>
+        <source>Host/IP address: %1</source>
+        <translation>Kiszolgáló/IP cím: %1</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Aktív szolgáltatások: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -408,14 +987,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Establishing connection</source>
         <translation>Kapcsolat létesítése</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Egy felhasználó sem jelentkezett be</translation>
-    </message>
-    <message>
-        <source>Logged on user: %1</source>
-        <translation>Bejelentkezett felhasználó: %1</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -434,12 +1005,27 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Kapcsolat megszakadt</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Kiszolgáló/IP cím: %1</translation>
+        <source>No user logged on</source>
+        <translation>Egy felhasználó sem jelentkezett be</translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation>Aktív szolgáltatások: %1</translation>
+        <source>Logged on user: %1</source>
+        <translation>Bejelentkezett felhasználó: %1</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerControlServer</name>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 szolgáltatás %2, 3%:%4</translation>
+    </message>
+    <message>
+        <source>Authentication error</source>
+        <translation>Hitelesítési hiba</translation>
+    </message>
+    <message>
+        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <translation>%1 felhasználó (IP-je: %2) megpróbálta elérni ezt a számítógépet, de nem sikerült hitelesítenie magát!</translation>
     </message>
 </context>
 <context>
@@ -470,7 +1056,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Nem sikerült a számítógép- és a felhasználólista leírása (%1). Ellenőrizd a hozzáférési jogosultságaidat.</translation>
+        <translation>Nem sikerült a számítógép- és a felhasználólista kiírása ide: %1. Ellenőrizd a hozzáférési jogosultságaidat.</translation>
     </message>
     <message>
         <source>Computer search</source>
@@ -527,22 +1113,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Kérem, valós értéket adj meg.</translation>
     </message>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás automatikusan induló tulajdonsága.</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás szolgáltatás-argumentumai.</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás tűzfalbeállításai.</translation>
-    </message>
-    <message>
-        <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>SAS generáció beállítását szoftverrel nem sikerült módosítani. Ctrl+Alt+Del küldése távoli vezérlésről nem fog működni.</translation>
-    </message>
-    <message>
         <source>Configure Veyon at command line</source>
         <translation>Veyon konfigurálása parancssorból</translation>
     </message>
@@ -590,44 +1160,32 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <source>Commands for managing the configuration of Veyon</source>
         <translation>Veyon konfigurálásához parancsok</translation>
     </message>
+    <message>
+        <source>Upgrade and save configuration of program and plugins</source>
+        <translation>A program és bővítmények frissítése és konfigurációjuk mentése</translation>
+    </message>
 </context>
 <context>
-    <name>ConfiguratorCore</name>
+    <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
         <translation>Nem módosítható %1 szolgáltatás automatikusan induló tulajdonsága.</translation>
     </message>
     <message>
-        <source>Could not modify the service arguments for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás szolgáltatás-argumentumai.</translation>
+        <source>Could not configure the firewall configuration for the %1 Server.</source>
+        <translation>Nem sikerült %1 szerver tűzfalbeállításait konfigurálni.</translation>
     </message>
     <message>
-        <source>Could not change the firewall configuration for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás tűzfalbeállításai.</translation>
+        <source>Could not configure the firewall configuration for the %1 Worker.</source>
+        <translation>Nem sikerült %1 munkás tűzfalbeállításait konfigurálni.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
         <translation>SAS generáció beállítását szoftverrel nem sikerült módosítani. Ctrl+Alt+Del küldése távoli vezérlésről nem fog működni.</translation>
     </message>
     <message>
-        <source>Overwrite keys</source>
-        <translation>Kulcsok felülírása</translation>
-    </message>
-    <message>
-        <source>Some of the key files are already existing. If you replace them with newly generated ones you will have to update the public keys on all computers as well. Do you want to continue?</source>
-        <translation>Néhány kulcsfájl már létezik. Ha újonnan generáltra cseréled, akkor az összes számítógépen is le kell cserélned a nyilvános kulcsokat. Biztos, hogy folytatod?</translation>
-    </message>
-    <message>
-        <source>Configuration cleared</source>
-        <translation>Konfigurációt sikeresen törölte</translation>
-    </message>
-    <message>
-        <source>The local configuration has been cleared successfully.</source>
-        <translation>A helyi konfigurációt sikeren törölte.</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Konfigurátor</translation>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>A konfiguráció nem írható. Kérem, ellenőrizd a jogosultságaidat. </translation>
     </message>
 </context>
 <context>
@@ -731,6 +1289,53 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
 </context>
 <context>
+    <name>DesktopServicesConfigurationPage</name>
+    <message>
+        <source>Programs &amp; websites</source>
+        <translation>Programok és weboldalak</translation>
+    </message>
+    <message>
+        <source>Predefined programs</source>
+        <translation>Előre definiált programok</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Megnevezés</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Útvonal</translation>
+    </message>
+    <message>
+        <source>Add new program</source>
+        <translation>Új program hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected program</source>
+        <translation>Kiválasztott program eltávolítása</translation>
+    </message>
+    <message>
+        <source>Predefined websites</source>
+        <translation>Előre definiált weboldal</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Kiválasztott weboldal eltávolítása</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <source>New program</source>
+        <translation>Új program</translation>
+    </message>
+    <message>
+        <source>New website</source>
+        <translation>Új weboldal</translation>
+    </message>
+</context>
+<context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
@@ -755,6 +1360,22 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Click this button to run a program on all computers.</source>
         <translation>Kattints erre a gombra, hogy egy programot futtass az összes számítógépen. </translation>
+    </message>
+    <message>
+        <source>Run program &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; program futtatása</translation>
+    </message>
+    <message>
+        <source>Custom program</source>
+        <translation>Egyéni program</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; weboldal megnyitása </translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Egyéni weboldal</translation>
     </message>
 </context>
 <context>
@@ -861,10 +1482,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Naplózás standard hibakimenetre</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Naplózás a Windows eseménynaplójába</translation>
-    </message>
-    <message>
         <source>Network object directory</source>
         <translation>Hálózati objektum mappa</translation>
     </message>
@@ -920,172 +1537,94 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <source>Write to logging system of operating system</source>
         <translation>Írás az operációs rendszer naplózási rendszerébe</translation>
     </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Hitelesítés</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Módszer:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Bejelentkezési hitelesítés</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Kulcsfájl hitelesítés</translation>
+    </message>
 </context>
 <context>
-    <name>KeyFileAssistant</name>
+    <name>InternetAccessControlConfigurationPage</name>
     <message>
-        <source>How does it work?</source>
-        <translation>Hogyan működik?</translation>
+        <source>Internet access control</source>
+        <translation>Internethozzáférés-vezérlés</translation>
     </message>
     <message>
-        <source>Assistant mode</source>
-        <translation>Segéd mód</translation>
+        <source>Settings</source>
+        <translation>Beállítások</translation>
     </message>
     <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Kérem, válassz, hogy új hozzáférési kulcsot készítesz vagy nyilvános kulcsot importálsz a kliensen.</translation>
+        <source>Backend:</source>
+        <translation>Háttér:</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlDummy</name>
+    <message>
+        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
+        <translation>Ez egy kamu háttér, aminek nincs hatása az internet elérésére. Kérem, válassz egy, az operációs rendszeredhez és a környezethez passzoló, működő hátteret. További háttér bővítmények beszerzésével kapcsolatos információkért látogasd meg a &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; oldalt.</translation>
     </message>
     <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>Új hozzáférési kulcs létrehozása (mester számítógép)</translation>
+        <source>Internet access control not available</source>
+        <translation>Internethozzáférés-vezérlés nem érhető el</translation>
     </message>
     <message>
-        <source>Import public key (client computer)</source>
-        <translation>Nyilvános kulcs importálása (kliens számítógép)</translation>
+        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
+        <translation>Nincs internethozzáféréskezelő-háttér konfigurálva. Kérem, használja a konfiguráció módosításához a Veyon konfigurátort.</translation>
     </message>
     <message>
-        <source>Select user role</source>
-        <translation>Válassz felhasználói szerepet</translation>
+        <source>Dummy backend for internet access control</source>
+        <translation>Internethozzáférés-vezérléshez kamu háttér</translation>
+    </message>
+</context>
+<context>
+    <name>InternetAccessControlPlugin</name>
+    <message>
+        <source>Block access to the internet</source>
+        <translation>Internet-hozzáférés blokkolása</translation>
     </message>
     <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Kérem, válassz felhasználó szerepet, amely számára létrehozod vagy importálod a hozzáférési kulcsokat:</translation>
+        <source>Allow access to the internet</source>
+        <translation>Internet-hozzáférés engedélyezése</translation>
     </message>
     <message>
-        <source>Teacher</source>
-        <translation>Tanár</translation>
+        <source>Show help about command</source>
+        <translation>Parancsról segítség megjelenítése</translation>
     </message>
     <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>A felhasználói szerepek megengedik több hozzáférési kulcs párhuzamos használatát. Például különböző tanári hozzáférési kulcsok lehetnek különböző termekben, miközben az üzemeltetők hozzáférési kulcsai ugyanazok az egész iskolában.</translation>
+        <source>Block internet</source>
+        <translation>Internet blokkolása</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Mappák</translation>
+        <source>Click this button to block access to the internet.</source>
+        <translation>Az internet-hozzáférés blokkolásához kattintson erre a gombra. </translation>
     </message>
     <message>
-        <source>Export public key part (master computer)</source>
-        <translation>Nyilvános kulcsrészlet exportálása (mester számítógép)</translation>
+        <source>Unblock internet</source>
+        <translation>Internet blokkolásának feloldása</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation>...</translation>
+        <source>Click this button to allow access to the internet.</source>
+        <translation>Az internet-hozzáférés engedélyezéséhez kattintson erre a gombra. </translation>
     </message>
     <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>A hozzáférési kulcsoknak egyéni célkönyvtár használata</translation>
+        <source>Control access to the internet</source>
+        <translation>Internethozzáférés-vezérlés</translation>
     </message>
     <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Kérem, add meg az importálandó nyilvános kulcs helyét.</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>Összegzés</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>A következő műveleteket hajtjuk végre:</translation>
-    </message>
-    <message>
-        <source>• Create new access keys</source>
-        <translation>• Új hozzáférési kulcs készítése</translation>
-    </message>
-    <message>
-        <source>• Import public access key from</source>
-        <translation>• Nyilvános hozzáférési kulcs importálása innen:</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;ismeretlen&gt;</translation>
-    </message>
-    <message>
-        <source>• Write access key(s) to</source>
-        <translation>• Hozzáférési kulcs(ok) másolása ide:</translation>
-    </message>
-    <message>
-        <source>• Export public key to</source>
-        <translation>• Publikus kulcs exportálás ide:</translation>
-    </message>
-    <message>
-        <source>• Configure for user role</source>
-        <translation>• Konfigurálása felhasználói szerep számára</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>Válassz mappát, amelyikbe a nyilvános kulcsot exportálod</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>Kulcsfájlok (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>Érvénytelen nyilvános kulcs</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>Válassz célkönyvtárat</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>Hozzáférési kulcs készítése</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>Nem lehet törölni a korábban létező %1 fájlt.</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Nyilvános hozzáférési kulcs exportálása sikertelen (%1 --&gt; %2).</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Hozzáférési kulcsot sikeresen létrehoztad és kiírtad %1 és %2 mappába. </translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Hiba lépett fel a hozzáférési kulcs létrehozásakor. Valószínűleg nincs írási jogosultságod a kiválasztott mappába.</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>Nyilvános kulcs importálása</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Hiba lépett fel a hozzáférési kulcs importálásakor. Valószínűleg nincs olvasási jogosultságod a forráskulcshoz vagy írásai a célfájlhoz.</translation>
-    </message>
-    <message>
-        <source>The public key was successfully imported to %1.</source>
-        <translation>A nyilvános kulcsot sikeresen importáltad %1 mappába.</translation>
-    </message>
-    <message>
-        <source>Veyon Access Key Assistant</source>
-        <translation>Veyon Hozzáférési Kulcssegéd</translation>
-    </message>
-    <message>
-        <source>Create/import Veyon access keys</source>
-        <translation>Veyon hozzáférési kulcs létrehozása/importálása</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import Veyon access keys.</source>
-        <translation>Ez a segéd Veyon hozzáférési kulcsokat segít létrehozni vagy importálni.</translation>
-    </message>
-    <message>
-        <source>Veyon access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>A Veyon hozzáférési kulcsai kettő összetartozó részből állnak, egy privát és egy nyilvános kulcsrészből.
-
-A privát kulcs használatával a mester számítógép felhasználói hozzáférhetnek a kliens számítógépekhez. Fontos, hogy csak hitelesített felhasználóknak legyen olvasási hozzáférése a privát kulcsfájlhoz.
-
-A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcsolat kérés hitelességének ellenőrzéséhez.</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public Veyon access key!</source>
-        <translation>A kiválasztott fájl nem tartalmaz érvényes Veyon hozzáférési kulcsot.</translation>
+        <source>Commands for controlling access to the internet</source>
+        <translation>Internethozzáférés-vezérlés parancsai</translation>
     </message>
 </context>
 <context>
@@ -1231,16 +1770,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Opcionális objektumszűrő</translation>
     </message>
     <message>
-        <source>e.g. objectClass=group</source>
-        <translation>péládul objectClass=group</translation>
-    </message>
-    <message>
         <source>Filter for user groups</source>
         <translation>Felhasználói csoportok szűrője</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=person</source>
-        <translation>például objectClass=person</translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -1279,16 +1810,8 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>LDAP kapcsolat sikertelen</translation>
     </message>
     <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters. %1</source>
-        <translation>Nem sikerült kapcsolódni az LDAP szerverhez. Kérem, ellenőrizzd a szerver paramétereit. %1 </translation>
-    </message>
-    <message>
         <source>LDAP bind failed</source>
         <translation>LDAP kötés sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials. %1</source>
-        <translation>Nem sikerült kötést létrehozni a LDAP szerverrel. Kérem, ellenőrizd a szerver paramétereit vagy a kötést hitelesítő adatokat. %1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
@@ -1303,30 +1826,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>LDAP alap DN teszt sikertelen</translation>
     </message>
     <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-%1</source>
-        <translation>Nem sikerült lekérdezni az konfigurált alap DN-t. Kérem, ellenőrizd az alap DN paramétert.
-%1</translation>
-    </message>
-    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP alap DN teszt sikeres</translation>
     </message>
     <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-%1</source>
-        <translation>Az LDAP alap DN-t sikeresen lekérdeztük. Az alábbi bejegyzéseket találtuk:
-%1</translation>
-    </message>
-    <message>
         <source>LDAP naming context test failed</source>
         <translation>LDAP névmeghatározási teszt sikertelen</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-%1</source>
-        <translation>Nem sikerült névmeghatározással lekérdezni az alap DN-t. Kérem, ellenőrizd a névmeghatározás attribútuma paramétert.
-%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -1518,7 +2023,9 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation>Egy bejegyzést sem sikerült lekérdezni %1 konfigurációban. Kérem, ellenőrizd %1 paramétert.</translation>
+        <translation>Egy bejegyzést sem sikerült lekérdezni %1 konfigurációban. Kérem, ellenőrizd %1 paramétert.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -1581,14 +2088,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Számítógépek szűrője</translation>
     </message>
     <message>
-        <source>e.g. objectClass=computer</source>
-        <translation>például objectClass=computer</translation>
-    </message>
-    <message>
-        <source>e.g. objectClass=room or objectClass=computerLab</source>
-        <translation>például objectClass=szoba vagy objectClass=számítógépLabor</translation>
-    </message>
-    <message>
         <source>e.g. room or computerLab</source>
         <translation>például szoba vagy számítógépLabor</translation>
     </message>
@@ -1641,10 +2140,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Számítógépterem attribútuma</translation>
     </message>
     <message>
-        <source>e.g. objectClass=container or objectClass=organizationalUnit</source>
-        <translation>például objectClass=container vagy objectClass=organizationalUnit</translation>
-    </message>
-    <message>
         <source>Aggregate computers in a room via:</source>
         <translation>Számítógépek aggregálása egy szobába: </translation>
     </message>
@@ -1684,6 +2179,106 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
         <translation>Kérem, cseréld a számítógépterem beállításait alább, hogy a számítógép tárolókat használhassuk számítógéptermekként. Egyéb esetben nem szükséges ennek a szűrőnek konfigurálása.</translation>
     </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Csatlakozási biztonság</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>TLS tanúsítványhitelesítés</translation>
+    </message>
+    <message>
+        <source>Security mode</source>
+        <translation>Biztonságos mód</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Rendszer alapértelmezett értékei</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Semmikor (nem biztonságos!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Egyéni CA tanúsítványfájl</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Egyik sem</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>például (objectClass=computer) </translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>például (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>például (objectClass=person)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>például (objectClass=szoba) vagy (objectClass=számítógépLabor) </translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>például (objectClass=container) vagy (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Nem sikerült lekérdezni az konfigurált alap DN-t. Kérem, ellenőrizd az alap DN paramétert.
+
+%1</translation>
+    </message>
+    <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>Az LDAP alap DN-t sikeresen lekérdeztük. Az alábbi bejegyzéseket találtuk:
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Nem sikerült elnevezési kontextusokból lekérdezni az alap DN-t. Kérem, ellenőrizd az elnevezési kontextusok attribútuma paramétert.
+
+%1</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Tanúsítványfájlok (*.pem)</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Nem sikerült kapcsolódni az LDAP szerverhez. Kérem, ellenőrizd a szerver paramétereit.
+
+%1</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Nem sikerült kötést létrehozni a LDAP szerverrel. Kérem, ellenőrizd a szerver paramétereit és a kötést hitelesítő adatokat.
+
+%1</translation>
+    </message>
 </context>
 <context>
     <name>LdapDirectory</name>
@@ -1693,23 +2288,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>LDAP hiba leírása nem érhető el</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
-    <message>
-        <source>Configure LDAP/AD integration of Veyon at command line</source>
-        <translation>Veyon LDAP/AD integrációjának konfigurálása parancssorból</translation>
-    </message>
-    <message>
-        <source>LDAP (load objects from LDAP/AD)</source>
-        <translation>LDAP (objektumok betöltése LDAP/AD-ból)</translation>
-    </message>
-    <message>
-        <source>LDAP (load users/groups and computers/rooms from LDAP/AD)</source>
-        <translation>LDAP (felhasználók/csoportok és számítógépek/szobák betöltése LDAP/AD-ból)</translation>
-    </message>
     <message>
         <source>Auto-configure the base DN via naming context</source>
         <translation>Alap DN automatikus konfigurálása névmeghatározással</translation>
@@ -1726,78 +2309,24 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>LDAP/AD integráció konfigurálásának és tesztelésének parancsai</translation>
     </message>
+    <message>
+        <source>Provide LDAP/AD integration for Veyon</source>
+        <translation>LDAP/AD integráció biztosítás a Veyon számára</translation>
+    </message>
+    <message>
+        <source>LDAP (load computers and rooms from LDAP/AD)</source>
+        <translation>LDAP (számítógépek és szobák betöltése LDAP/AD-ból)</translation>
+    </message>
+    <message>
+        <source>LDAP (load users and groups from LDAP/AD)</source>
+        <translation>LDAP (felhasználók és csoportok betöltése LDAP/AD-ból)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>A bővítmény absztrakt függvényekkel egészíti ki a Linux platformot</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataConfigurationPage</name>
-    <message>
-        <source>Rooms</source>
-        <translation>Szobák</translation>
-    </message>
-    <message>
-        <source>Computers</source>
-        <translation>Számítógépek</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Megnevezés</translation>
-    </message>
-    <message>
-        <source>Host address/IP</source>
-        <translation>Kiszolgáló címe/IP-je</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>Fizikai cím</translation>
-    </message>
-    <message>
-        <source>Add new room</source>
-        <translation>Új szoba hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected room</source>
-        <translation>Kiválasztott szoba eltávolítása</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Új számítógép hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Kiválasztott számítógép eltávolítása</translation>
-    </message>
-    <message>
-        <source>New room</source>
-        <translation>Új szoba</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Új számítógép</translation>
-    </message>
-    <message>
-        <source>Rooms &amp; computers</source>
-        <translation>Szobák és számítógépek</translation>
-    </message>
-</context>
-<context>
-    <name>LocalDataPlugin</name>
-    <message>
-        <source>Backends which use local data</source>
-        <translation>Helyi adatot használó hátterek</translation>
-    </message>
-    <message>
-        <source>Default (local users/groups and computers/rooms from configuration)</source>
-        <translation>Alapértelmezett (helyi felhasználók/csoportok és számítógépek/szobák a konfigurációból)</translation>
-    </message>
-    <message>
-        <source>Default (store objects in local configuration)</source>
-        <translation>Alapértelmezett (objektumok tárolása helyi konfigurációban)</translation>
     </message>
 </context>
 <context>
@@ -1835,50 +2364,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>General</source>
         <translation>Általános</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Hitelesítés</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Naplófájlok törlése a &quot;Általános&quot; részben</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Az &quot;Általános&quot; részben állítsd a naplózás szintjét &quot;Hibakeresési üzenetek és minden egyéb&quot;-re.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Ismételd meg a hibához vagy a nem megfelelő működéshez vezető műveleteket.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Kattints a következő gombra és mentsd a fájlt egy ismert helyre.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Hibajelentés archívum generálása</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1945,10 +2430,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Beállítások mentése fájlba</translation>
     </message>
     <message>
-        <source>Save bug report archive</source>
-        <translation>Hibajelentés archívum mentése</translation>
-    </message>
-    <message>
         <source>Unsaved settings</source>
         <translation>El nem mentett beállítások</translation>
     </message>
@@ -1959,24 +2440,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Veyon Configurator</source>
         <translation>Veyon Konfigurátor</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in Veyon it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Amikor hibásan vagy nem megfelelő működik a Veyon, fontos, hogy a fejlesztőket tájékoztasd erről, így a következő verziókban ezt a hibát ki tudják majd javítani. Ez az oldal segít, hogy könnyen bejelents egy hibát.
-
-Ha a hiba nem reprodukálható, hagyd ki az 1) - 3) lépéseket.</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon issue tracker&lt;/a&gt;, create a new issue, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Menj a &lt;a href=&quot;https://github.com/Veyon/veyon/issues&quot;&gt;Veyon bejelentéskövetőjébe&lt;/a&gt;, készíts egy új bejelentést, írd le, mit tettél a 3) lépésben és csatold a 4) lépésben elmentett fájlt. &lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mindkét számítógép hibajelentés archívumát csatold.</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2015,18 +2478,6 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
         <translation>JSON fájlok (*.json)</translation>
     </message>
     <message>
-        <source>%1 bug report (*.json)</source>
-        <translation>%1 hibajelentő (*.json)</translation>
-    </message>
-    <message>
-        <source>%1 bug report archive saved</source>
-        <translation>%1 hibajelentő archívumot sikeresen mentette</translation>
-    </message>
-    <message>
-        <source>An %1 bug report archive has been saved to %2. It includes %3 log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>%1 hibajelentő archívumot mentettük %2 mappába. Ez tartalmazz %3 naplófájlt és információ az operációs rendszerről. Ezeket csatolhatod a hibajelentéshez.</translation>
-    </message>
-    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>A helyi konfiguráció háttere azt jelzi, hogy a konfiguráció nem írható. Futtasd %1 Konfigurátort magasabb jogosultságokkal.</translation>
     </message>
@@ -2059,14 +2510,6 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
         <translation>&quot;%1&quot; szolgáltatás még aktív. Kérem, állítsa le, mielőtt %2-t bezárja </translation>
     </message>
     <message>
-        <source>Reporting bugs in Veyon</source>
-        <translation>Hibajelentés a Veyon-ban</translation>
-    </message>
-    <message>
-        <source>Bug reporting</source>
-        <translation>Hibajelentés</translation>
-    </message>
-    <message>
         <source>Reset configuration</source>
         <translation>Konfiguráció alapértelmezettre állítása</translation>
     </message>
@@ -2081,6 +2524,26 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
     <message>
         <source>Adjust optimal size</source>
         <translation>Optimális méretűre állítás</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Számítógépek rácsba illesztése</translation>
+    </message>
+    <message>
+        <source>Use custom computer placement</source>
+        <translation>Egyéni számítógép-elhelyezés használata</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Konfigurátor</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Nem elegendő jogosultság</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Nem sikerült rendszergazdai jogosultsággal indulni. Kérem, ellenőrizd, hogy sudo-típusú program telepítve van az asztali környezetedre. A program normál felhasználói jogosultságokkal fog futni.</translation>
     </message>
 </context>
 <context>
@@ -2170,16 +2633,40 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
         <translation>Számítógép-kezelés</translation>
     </message>
     <message>
-        <source>Always open at start</source>
-        <translation>Induláskor mindig nyíljon meg.</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Műveletek, mint a számítógépek újraindítása vagy kikapcsolása</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
         <translation>Megerősítő párbeszédablak megjelentése potenciálisan veszélyes műveleteknél</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Felhasználói felület</translation>
+    </message>
+    <message>
+        <source>Background color</source>
+        <translation>Háttérszín</translation>
+    </message>
+    <message>
+        <source>Thumbnail update interval</source>
+        <translation>Előképfrissítési időköz</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Program indítása</translation>
+    </message>
+    <message>
+        <source>Automatically open computer management</source>
+        <translation>Számítógép-kezelés automatikus megnyitása</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Módok és szolgáltatások</translation>
     </message>
 </context>
 <context>
@@ -2276,65 +2763,6 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
-    </message>
-</context>
-<context>
-    <name>QApplication</name>
-    <message>
-        <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>&apos;%1&apos; szolgáltatást nem lehet nyilvántartásba venni.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>A Szolgáltatásvezérlés-kezelővel nem sikerült kapcsolatot teremteni (megvannak a szükséges jogosultságaid?!) - &apos;%1&apos; szolgáltatást nem sikerült nyilvántartásba venni. </translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; is already registered.</source>
-        <translation>&apos;%1&apos; szolgáltatás már nyilvántartásba van véve.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>&apos;%1&apos; szolgáltatást nem sikerült nyilvántartásba venni.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; was successfully registered.</source>
-        <translation>&apos;%1&apos; szolgáltatást sikeresen nyilvántartásba vettük.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>&apos;%1&apos; szolgáltatást nem sikerült leállítani.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>&apos;%1&apos; szolgáltatást sikeresen törölte a nyilvántartásból.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>&apos;%1&apos; szolgáltatást korábban nem regisztrálták, ezért most nem lehet törölni a nyilvántartásból.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>&apos;%1&apos; szolgáltatást nem sikerült törölni a nyilvántartásból.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>&apos;%1&apos; szolgáltatás nem található.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>A Szolgáltatásvezérlés-kezelővel nem sikerült kapcsolatot teremteni (megvannak a szükséges jogosultságaid?!) - &apos;%1&apos; szolgáltatást nem sikerült törölni a nyilvántartásból.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>A Szolgáltatásvezérlés-kezelővel nem sikerült kapcsolatot teremteni (megvannak a szükséges jogosultságaid?!) - &apos;%1&apos; szolgáltatást nem sikerült leállítani.</translation>
-    </message>
-    <message>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>&apos;%1&apos; szolgáltatást nem sikerült elindítani.</translation>
-    </message>
-    <message>
-        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>A Szolgáltatásvezérlés-kezelővel nem sikerült kapcsolatot teremteni (megvannak a szükséges jogosultságaid?!) - &apos;%1&apos; szolgáltatást nem sikerült elindítani.</translation>
     </message>
 </context>
 <context>
@@ -2583,10 +3011,6 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
         <translation>Szolgáltatás indítása</translation>
     </message>
     <message>
-        <source>Additional arguments</source>
-        <translation>További argumentumok</translation>
-    </message>
-    <message>
         <source>Stopped</source>
         <translation>Leállítva</translation>
     </message>
@@ -2654,20 +3078,24 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting %1 Service</source>
+        <source>Starting service %1</source>
         <translation>%1 szolgáltatás indítása</translation>
     </message>
     <message>
-        <source>Stopping %1 Service</source>
+        <source>Stopping service %1</source>
         <translation>%1 szolgáltatás leállítása</translation>
     </message>
     <message>
-        <source>Registering %1 Service</source>
+        <source>Registering service %1</source>
         <translation>%1 szolgáltatás nyilvántartásban vétele</translation>
     </message>
     <message>
-        <source>Unregistering %1 Service</source>
+        <source>Unregistering service %1</source>
         <translation>%1 szolgáltatás törlése a nyilvántartásból</translation>
+    </message>
+    <message>
+        <source>Service control</source>
+        <translation>Szolgáltatásvezérlés</translation>
     </message>
 </context>
 <context>
@@ -2714,10 +3142,40 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
     </message>
 </context>
 <context>
+    <name>ShellCommandLinePlugin</name>
+    <message>
+        <source>Run command file</source>
+        <translation>Parancsfájl futtatása</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>&quot;%1&quot; fájl nem létezik!</translation>
+    </message>
+    <message>
+        <source>Interactive shell and script execution for Veyon Control</source>
+        <translation>Interaktív héj és szkriptfuttatás a Veyon vezérlésből</translation>
+    </message>
+    <message>
+        <source>Commands for shell functionalities</source>
+        <translation>Parancsok héjfunkciókhoz</translation>
+    </message>
+</context>
+<context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
         <translation>Rendszer tálcaikon</translation>
+    </message>
+</context>
+<context>
+    <name>SystemUserGroupsPlugin</name>
+    <message>
+        <source>User groups backend for system user groups</source>
+        <translation>Rendszerfelhasználói csoportok esetén a felhasználói csoportok háttere: </translation>
+    </message>
+    <message>
+        <source>Default (system user groups)</source>
+        <translation>Alapértelmezett (rendszerfelhasználói csoportok)</translation>
     </message>
 </context>
 <context>
@@ -2842,8 +3300,15 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
         <translation>Elérhető modulok:</translation>
     </message>
     <message>
-        <source>Module not found - available modules are:</source>
-        <translation>Modul nem található - elérhető modulok:</translation>
+        <source>No module specified or module not found - available modules are:</source>
+        <translation>A modul nincs megadva vagy nem található - az elérhető modulok:</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonServiceControl</name>
+    <message>
+        <source>Veyon Service</source>
+        <translation>Veyon szolgáltatás</translation>
     </message>
 </context>
 <context>
@@ -2873,6 +3338,37 @@ Megjegyzés: ha a hiba mind a mester, mind a kliens számítógépet érinti, mi
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>A bővítmény absztrakt függvényekkel egészíti ki a Windows platformot</translation>
+    </message>
+</context>
+<context>
+    <name>WindowsServiceControl</name>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás már telepítve van.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás nem telepíthető.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatást sikeresen telepítette.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás nem távolítható el.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatást sikeresen eltávolította.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás típusa nem módosítható.</translation>
+    </message>
+    <message>
+        <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
+        <translation>WindowsServiceControl: &quot;%1&quot; szolgáltatás nem található.</translation>
     </message>
 </context>
 <context>
