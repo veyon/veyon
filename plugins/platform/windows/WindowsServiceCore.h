@@ -31,6 +31,7 @@ class WindowsServiceCore : public PlatformServiceCore
 {
 public:
 	WindowsServiceCore( const QString& name, std::function<void(void)> serviceMainEntry );
+	~WindowsServiceCore();
 
 	static WindowsServiceCore* instance();
 
@@ -46,7 +47,7 @@ private:
 	DWORD serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context );
 	bool reportStatus( DWORD state, DWORD exitCode, DWORD waitHint );
 
-	const QString m_name;
+	wchar_t* m_name;
 	std::function<void(void)> m_serviceMainEntry;
 
 	static WindowsServiceCore* s_instance;

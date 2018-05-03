@@ -195,7 +195,7 @@ WindowsServiceCore* WindowsServiceCore::s_instance = nullptr;
 
 
 WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(void)> serviceMainEntry ) :
-	m_name( name ),
+	m_name( WindowsCoreFunctions::toWCharArray( name ) ),
 	m_serviceMainEntry( serviceMainEntry ),
 	m_status(),
 	m_statusHandle( 0 ),
@@ -207,6 +207,13 @@ WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(
 	// enable privileges required to create process with access token from other process
 	WindowsCoreFunctions::enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	WindowsCoreFunctions::enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
+}
+
+
+
+WindowsServiceCore::~WindowsServiceCore()
+{
+	delete[] m_name;
 }
 
 
@@ -223,7 +230,7 @@ WindowsServiceCore *WindowsServiceCore::instance()
 bool WindowsServiceCore::runAsService()
 {
 	SERVICE_TABLE_ENTRY dispatchTable[] = {
-		{ (LPWSTR) m_name.utf16(), serviceMainStatic },
+		{ m_name, serviceMainStatic },
 		{ nullptr, nullptr }
 	} ;
 
@@ -321,7 +328,7 @@ void WindowsServiceCore::serviceMain()
 {
 	DWORD context = 1;
 
-	m_statusHandle = RegisterServiceCtrlHandlerEx( (LPCWSTR) m_name.utf16(), serviceCtrlStatic, &context );
+	m_statusHandle = RegisterServiceCtrlHandlerEx( m_name, serviceCtrlStatic, &context );
 
 	if( m_statusHandle == 0 )
 	{
