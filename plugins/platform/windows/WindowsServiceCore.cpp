@@ -96,10 +96,14 @@ static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 	DuplicateTokenEx( processToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
+	auto commandLine = new wchar_t[program.size()+1];
+	program.toWCharArray( commandLine );
+	commandLine[program.size()] = 0;
+
 	if( CreateProcessAsUser(
 				newToken,			// client's access token
 				nullptr,			  // file to execute
-				(LPWSTR) program.utf16(),	 // command line
+				commandLine,	 // command line
 				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
 				false,			 // handles are not inheritable
@@ -113,6 +117,8 @@ static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
 		return nullptr;
 	}
+
+	delete[] commandLine;
 
 	CloseHandle( newToken );
 	RevertToSelf();
