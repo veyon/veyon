@@ -63,6 +63,8 @@ public:
 
 	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 
+	static wchar_t* toWCharArray( const QString& qstring );
+
 private:
 	CXEventLog* m_eventLog;
 

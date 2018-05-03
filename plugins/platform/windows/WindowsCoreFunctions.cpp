@@ -407,3 +407,14 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 
 	return ret;
 }
+
+
+
+wchar_t* WindowsCoreFunctions::toWCharArray( const QString& qstring )
+{
+	auto wcharArray = new wchar_t[qstring.size()+1];
+	qstring.toWCharArray( wcharArray );
+	wcharArray[qstring.size()] = 0;
+
+	return wcharArray;
+}
