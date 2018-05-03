@@ -27,9 +27,9 @@
 
 #include <shlobj.h>
 #include <userenv.h>
-#include <wtsapi32.h>
 
 #include "WindowsCoreFunctions.h"
+#include "WtsSessionManager.h"
 #include "XEventLog.h"
 
 
@@ -52,54 +52,6 @@ static const UINT screenSaverSettingsSetList[screenSaverSettingsCount] =
 };
 
 static int screenSaverSettings[screenSaverSettingsCount];
-
-
-static DWORD findProcessId( const QString& userName )
-{
-	DWORD sidLen = SECURITY_MAX_SID_SIZE;
-	char userSID[SECURITY_MAX_SID_SIZE];
-	wchar_t domainName[MAX_PATH];
-	domainName[0] = 0;
-	DWORD domainLen = MAX_PATH;
-	SID_NAME_USE sidNameUse;
-
-	if( LookupAccountName( nullptr,		// system name
-						   WindowsCoreFunctions::toConstWCharArray( userName ),
-						   userSID,
-						   &sidLen,
-						   domainName,
-						   &domainLen,
-						   &sidNameUse ) == false )
-	{
-		qCritical( "Could not look up SID structure" );
-		return -1;
-	}
-
-	PWTS_PROCESS_INFO processInfo;
-	DWORD processCount = 0;
-
-	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
-	{
-		return -1;
-	}
-
-	DWORD pid = -1;
-
-	for( DWORD proc = 0; proc < processCount; ++proc )
-	{
-		if( processInfo[proc].ProcessId > 0 &&
-				EqualSid( processInfo[proc].pUserSid, userSID ) )
-		{
-			pid = processInfo[proc].ProcessId;
-			break;
-		}
-	}
-
-	WTSFreeMemory( processInfo );
-
-	return pid;
-}
-
 
 
 WindowsCoreFunctions::WindowsCoreFunctions() :
@@ -297,8 +249,9 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 
-	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false,
-												findProcessId( username ) );
+	auto userProcessId = WtsSessionManager::findProcessId( username );
+
+	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, userProcessId );
 
 	HANDLE userProcessToken = nullptr;
 	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
