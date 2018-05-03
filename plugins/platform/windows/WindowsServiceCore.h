@@ -40,6 +40,9 @@ public:
 	void manageServerInstances();
 
 private:
+	void manageServersForAllSessions();
+	void manageServerForActiveConsoleSession();
+
 	static void WINAPI serviceMainStatic( DWORD argc, LPWSTR* argv );
 	static DWORD WINAPI serviceCtrlStatic( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context );
 
@@ -54,6 +57,7 @@ private:
 	SERVICE_STATUS m_status;
 	SERVICE_STATUS_HANDLE m_statusHandle;
 	HANDLE m_stopServiceEvent;
+	HANDLE m_serverShutdownEvent;
 	QAtomicInt m_sessionChangeEvent;
 
 } ;

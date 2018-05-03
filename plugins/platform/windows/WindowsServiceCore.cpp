@@ -30,6 +30,7 @@
 #include "WindowsServiceCore.h"
 #include "SasEventListener.h"
 #include "PlatformUserFunctions.h"
+#include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WtsSessionManager.h"
 
@@ -166,6 +167,7 @@ WindowsServiceCore::WindowsServiceCore( const QString& name, std::function<void(
 	m_status(),
 	m_statusHandle( 0 ),
 	m_stopServiceEvent( nullptr ),
+	m_serverShutdownEvent( nullptr ),
 	m_sessionChangeEvent( 0 )
 {
 	s_instance = this;
@@ -213,11 +215,71 @@ bool WindowsServiceCore::runAsService()
 
 void WindowsServiceCore::manageServerInstances()
 {
-	VeyonServerProcess veyonServerProcess;
+	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
+	ResetEvent( m_serverShutdownEvent );
 
-	HANDLE hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
-										 L"Global\\SessionEventUltra" );
-	ResetEvent( hShutdownEvent );
+	if( VeyonCore::config().isMultiSessionServiceEnabled() )
+	{
+		manageServersForAllSessions();
+	}
+	else
+	{
+		manageServerForActiveConsoleSession();
+	}
+
+	CloseHandle( m_serverShutdownEvent );
+}
+
+
+
+void WindowsServiceCore::manageServersForAllSessions()
+{
+	QMap<WtsSessionManager::SessionId, VeyonServerProcess*> serverProcesses;
+
+	while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
+	{
+		const auto wtsSessionIds = WtsSessionManager::activeSessions();
+
+		for( auto it = serverProcesses.begin(), end = serverProcesses.end(); it != end; )
+		{
+			if( wtsSessionIds.contains( it.key() ) == false )
+			{
+				delete it.value();
+				it = serverProcesses.erase( it );
+			}
+			else
+			{
+				++it;
+			}
+		}
+
+		for( auto wtsSessionId : wtsSessionIds )
+		{
+			if( serverProcesses.contains( wtsSessionId ) == false )
+			{
+				auto serverProcess = new VeyonServerProcess;
+				serverProcess->start( wtsSessionId );
+
+				serverProcesses[wtsSessionId] = serverProcess;
+			}
+		}
+	}
+
+	qInfo( "Service shutdown" );
+
+	SetEvent( m_serverShutdownEvent );
+
+	for( auto it = serverProcesses.begin(), end = serverProcesses.end(); it != end; ++it )
+	{
+		delete it.value();
+	}
+}
+
+
+
+void WindowsServiceCore::manageServerForActiveConsoleSession()
+{
+	VeyonServerProcess veyonServerProcess;
 
 	auto oldWtsSessionId = WtsSessionManager::InvalidSession;
 
@@ -227,7 +289,7 @@ void WindowsServiceCore::manageServerInstances()
 	{
 		bool sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 
-		const DWORD wtsSessionId = WtsSessionManager::activeConsoleSession();
+		const auto wtsSessionId = WtsSessionManager::activeConsoleSession();
 		if( oldWtsSessionId != wtsSessionId || sessionChanged )
 		{
 			qInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
@@ -238,7 +300,7 @@ void WindowsServiceCore::manageServerInstances()
 				// while it is still starting up
 				do
 				{
-					SetEvent( hShutdownEvent );
+					SetEvent( m_serverShutdownEvent );
 				}
 				while( lastServiceStart.elapsed() < 10000 && veyonServerProcess.isRunning() );
 
@@ -264,10 +326,8 @@ void WindowsServiceCore::manageServerInstances()
 
 	qInfo( "Service shutdown" );
 
-	SetEvent( hShutdownEvent );
+	SetEvent( m_serverShutdownEvent );
 	veyonServerProcess.stop();
-
-	CloseHandle( hShutdownEvent );
 }
 
 
