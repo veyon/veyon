@@ -27,6 +27,7 @@
 #include <wtsapi32.h>
 #include <lm.h>
 
+#include "WindowsCoreFunctions.h"
 #include "WindowsUserFunctions.h"
 
 #include "authSSP.h"
@@ -64,14 +65,16 @@ QString WindowsUserFunctions::fullName( const QString& username )
 	if( nameParts.size() > 1 )
 	{
 		realUsername = nameParts[1];
-		if( NetGetDCName( nullptr, (LPWSTR) nameParts[0].utf16(), &domainController ) != NERR_Success )
+		if( NetGetDCName( nullptr, WindowsCoreFunctions::toConstWCharArray( nameParts[0] ), &domainController ) != NERR_Success )
 		{
 			domainController = nullptr;
 		}
 	}
 
 	LPUSER_INFO_2 buf = nullptr;
-	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR) domainController, (LPWSTR) realUsername.utf16(), 2, (LPBYTE *) &buf );
+	NET_API_STATUS nStatus = NetUserGetInfo( reinterpret_cast<LPCWSTR>( domainController ),
+											 WindowsCoreFunctions::toConstWCharArray( realUsername ),
+											 2, (LPBYTE *) &buf );
 	if( nStatus == NERR_Success && buf != nullptr )
 	{
 		fullName = QString::fromWCharArray( buf->usri2_full_name );
@@ -234,7 +237,17 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 		user = username;
 	}
 
-	return SSPLogonUser( (LPTSTR) domain.utf16(), (LPTSTR) user.utf16(), (LPTSTR) password.utf16() );
+	auto domainWide = WindowsCoreFunctions::toWCharArray( domain );
+	auto userWide = WindowsCoreFunctions::toWCharArray( user );
+	auto passwordWide = WindowsCoreFunctions::toWCharArray( password );
+
+	const auto result = SSPLogonUser( domainWide, userWide, passwordWide );
+
+	delete[] domainWide;
+	delete[] userWide;
+	delete[] passwordWide;
+
+	return result;
 }
 
 
@@ -270,7 +283,7 @@ QStringList WindowsUserFunctions::domainUserGroups()
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetGroupEnum( (LPCWSTR) dc.utf16(), 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, nullptr ) == NERR_Success )
+	if( NetGroupEnum( WindowsCoreFunctions::toConstWCharArray( dc ), 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, nullptr ) == NERR_Success )
 	{
 		const GROUP_INFO_0* groupInfos = (GROUP_INFO_0 *) outBuffer;
 
@@ -308,7 +321,9 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetUserGetGroups( (LPCWSTR) dc.utf16(), (LPCWSTR) username.utf16(), 0, &outBuffer, MAX_PREFERRED_LENGTH,
+	if( NetUserGetGroups( WindowsCoreFunctions::toConstWCharArray( dc ),
+						  WindowsCoreFunctions::toConstWCharArray( username ),
+						  0, &outBuffer, MAX_PREFERRED_LENGTH,
 						  &entriesRead, &totalEntries ) == NERR_Success )
 	{
 		const GROUP_USERS_INFO_0* groupUsersInfo = (GROUP_USERS_INFO_0 *) outBuffer;
@@ -381,7 +396,8 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	if( NetUserGetLocalGroups( nullptr, (LPCWSTR) username.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+	if( NetUserGetLocalGroups( nullptr, WindowsCoreFunctions::toConstWCharArray( username ),
+							   0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
 							   &entriesRead, &totalEntries ) == NERR_Success )
 	{
 		const LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;

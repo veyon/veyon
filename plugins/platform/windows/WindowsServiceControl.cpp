@@ -22,18 +22,20 @@
  *
  */
 
+#include "WindowsCoreFunctions.h"
 #include "WindowsServiceControl.h"
 
+
 WindowsServiceControl::WindowsServiceControl( const QString& name ) :
-    m_name( name ),
-    m_serviceManager( nullptr ),
-    m_serviceHandle( nullptr )
+	m_name( name ),
+	m_serviceManager( nullptr ),
+	m_serviceHandle( nullptr )
 {
 	m_serviceManager = OpenSCManager( nullptr, nullptr, SC_MANAGER_ALL_ACCESS );
 
 	if( m_serviceManager )
 	{
-		m_serviceHandle = OpenService( m_serviceManager, (LPCWSTR) m_name.utf16(), SERVICE_ALL_ACCESS );
+		m_serviceHandle = OpenService( m_serviceManager, WindowsCoreFunctions::toConstWCharArray( m_name ), SERVICE_ALL_ACCESS );
 	}
 	else
 	{
@@ -152,20 +154,20 @@ bool WindowsServiceControl::stop()
 bool WindowsServiceControl::install( const QString& filePath, const QString& displayName  )
 {
 	m_serviceHandle = CreateService(
-	            m_serviceManager,		// SCManager database
-	            (LPCWSTR) m_name.utf16(),	// name of service
-	            (LPCWSTR) displayName.utf16(),// name to display
-	            SERVICE_ALL_ACCESS,	// desired access
-	            SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
-	            // service type
-	            SERVICE_AUTO_START,	// start type
-	            SERVICE_ERROR_NORMAL,	// error control type
-				(LPCWSTR) filePath.utf16(),		// service's binary
-	            NULL,			// no load ordering group
-	            NULL,			// no tag identifier
-	            NULL,			// dependencies
-	            NULL,			// LocalSystem account
-	            NULL );			// no password
+				m_serviceManager,		// SCManager database
+				WindowsCoreFunctions::toConstWCharArray( m_name ),	// name of service
+				WindowsCoreFunctions::toConstWCharArray( displayName ),// name to display
+				SERVICE_ALL_ACCESS,	// desired access
+				SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
+				// service type
+				SERVICE_AUTO_START,	// start type
+				SERVICE_ERROR_NORMAL,	// error control type
+				WindowsCoreFunctions::toConstWCharArray( filePath ),		// service's binary
+				NULL,			// no load ordering group
+				NULL,			// no tag identifier
+				NULL,			// dependencies
+				NULL,			// LocalSystem account
+				NULL );			// no password
 
 	if( m_serviceHandle == nullptr )
 	{
@@ -235,17 +237,17 @@ bool WindowsServiceControl::setStartType( int startType )
 	}
 
 	if( ChangeServiceConfig( m_serviceHandle,
-	                         SERVICE_NO_CHANGE,	// dwServiceType
-	                         startType,
-	                         SERVICE_NO_CHANGE,	// dwErrorControl
-	                         NULL,	// lpBinaryPathName
-	                         NULL,	// lpLoadOrderGroup
-	                         NULL,	// lpdwTagId
-	                         NULL,	// lpDependencies
-	                         NULL,	// lpServiceStartName
-	                         NULL,	// lpPassword
-	                         NULL	// lpDisplayName
-	                         ) == false )
+							 SERVICE_NO_CHANGE,	// dwServiceType
+							 startType,
+							 SERVICE_NO_CHANGE,	// dwErrorControl
+							 NULL,	// lpBinaryPathName
+							 NULL,	// lpLoadOrderGroup
+							 NULL,	// lpdwTagId
+							 NULL,	// lpDependencies
+							 NULL,	// lpServiceStartName
+							 NULL,	// lpPassword
+							 NULL	// lpDisplayName
+							 ) == false )
 	{
 		qCritical( qPrintable( tr( "WindowsServiceControl: the start type of service \"%1\" could not be changed." ).arg( m_name ) ) );
 		return false;

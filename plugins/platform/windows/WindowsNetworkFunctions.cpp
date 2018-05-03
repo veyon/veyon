@@ -30,7 +30,9 @@
 #include <QProcess>
 
 #include "Logger.h"
+#include "WindowsCoreFunctions.h"
 #include "WindowsNetworkFunctions.h"
+
 
 static HRESULT WindowsFirewallInitialize2( INetFwPolicy2** fwPolicy2 )
 {
@@ -245,8 +247,8 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 	}
 
 	bool result = ::configureFirewallException( fwPolicy2,
-												(const wchar_t *) applicationPath.utf16(),
-												(const wchar_t *) description.utf16(),
+												WindowsCoreFunctions::toConstWCharArray( applicationPath ),
+												WindowsCoreFunctions::toConstWCharArray( description ),
 												enabled );
 
 	WindowsFirewallCleanup2( fwPolicy2 );

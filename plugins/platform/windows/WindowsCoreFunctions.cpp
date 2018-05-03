@@ -64,7 +64,7 @@ static DWORD findProcessId( const QString& userName )
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr,		// system name
-						   (LPCWSTR) userName.utf16(),
+						   WindowsCoreFunctions::toConstWCharArray( userName ),
 						   userSID,
 						   &sidLen,
 						   domainName,
@@ -118,7 +118,7 @@ WindowsCoreFunctions::~WindowsCoreFunctions()
 
 void WindowsCoreFunctions::initNativeLoggingSystem( const QString& appName )
 {
-	m_eventLog = new CXEventLog( (wchar_t*) appName.utf16() );
+	m_eventLog = new CXEventLog( toConstWCharArray( appName ) );
 }
 
 
@@ -139,7 +139,7 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 
 	if( wtype > 0 )
 	{
-		m_eventLog->Write( wtype, (wchar_t*) message.utf16() );
+		m_eventLog->Write( wtype, toConstWCharArray( message ) );
 	}
 }
 
@@ -271,11 +271,13 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 
 bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
 {
+	const auto parametersJoined = parameters.join( ' ' );
+
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
 	sei.lpVerb = L"runas";
-	sei.lpFile = (LPWSTR) program.utf16();
+	sei.lpFile = toConstWCharArray( program );
 	sei.hwnd = GetForegroundWindow();
-	sei.lpParameters = (LPWSTR) parameters.join( ' ' ).utf16();
+	sei.lpParameters = toConstWCharArray( parametersJoined );
 	sei.nShow = SW_NORMAL;
 
 	if( ShellExecuteEx( &sei ) == false )
@@ -331,7 +333,7 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 	si.cb = sizeof( STARTUPINFO );
 	if( !desktop.isEmpty() )
 	{
-		si.lpDesktop = (LPWSTR) desktop.utf16();
+		si.lpDesktop = toWCharArray( desktop );
 	}
 
 	HANDLE newToken = nullptr;
@@ -339,10 +341,12 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
-	if( CreateProcessAsUser(
+	auto commandLine = toWCharArray( program );
+
+	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token
 				nullptr,			  // file to execute
-				(LPWSTR) program.utf16(),	 // command line
+				commandLine,	 // command line
 				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
 				false,			 // handles are not inheritable
@@ -351,7 +355,11 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 				profileDir,			  // name of current directory
 				&si,			   // pointer to STARTUPINFO structure
 				&pi				// receives information about new process
-				) == false )
+				);
+
+	delete[] si.lpDesktop;
+
+	if( createProcessResult == false )
 	{
 		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
 		return false;
@@ -417,4 +425,11 @@ wchar_t* WindowsCoreFunctions::toWCharArray( const QString& qstring )
 	wcharArray[qstring.size()] = 0;
 
 	return wcharArray;
+}
+
+
+
+const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
+{
+	return reinterpret_cast<const wchar_t*>( qstring.utf16() );
 }
