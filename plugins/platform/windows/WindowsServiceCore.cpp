@@ -23,7 +23,6 @@
  */
 
 #include <windows.h>
-#include <wtsapi32.h>
 
 #include <QElapsedTimer>
 
@@ -32,45 +31,12 @@
 #include "SasEventListener.h"
 #include "PlatformUserFunctions.h"
 #include "WindowsCoreFunctions.h"
-
-
-static DWORD findWinlogonProcessId( DWORD sessionId )
-{
-	PWTS_PROCESS_INFO processInfo = nullptr;
-	DWORD processCount = 0;
-	DWORD pid = static_cast<DWORD>( -1 );
-
-	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
-	{
-		return pid;
-	}
-
-	const auto processName = QStringLiteral("winlogon.exe");
-
-	for( DWORD proc = 0; proc < processCount; ++proc )
-	{
-		if( processInfo[proc].ProcessId == 0 )
-		{
-			continue;
-		}
-
-		if( processName.compare( QString::fromWCharArray( processInfo[proc].pProcessName ), Qt::CaseInsensitive ) == 0 &&
-				sessionId == processInfo[proc].SessionId )
-		{
-			pid = processInfo[proc].ProcessId;
-			break;
-		}
-	}
-
-	WTSFreeMemory( processInfo );
-
-	return pid;
-}
+#include "WtsSessionManager.h"
 
 
 static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 {
-	auto processHandle = OpenProcess( PROCESS_ALL_ACCESS, false, findWinlogonProcessId( sessionId ) );
+	auto processHandle = OpenProcess( PROCESS_ALL_ACCESS, false, WtsSessionManager::findWinlogonProcessId( sessionId ) );
 
 	HANDLE processToken = nullptr;
 	if( OpenProcessToken( processHandle, MAXIMUM_ALLOWED, &processToken ) == false )
@@ -129,7 +95,6 @@ static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
 
 	return pi.hProcess;
 }
-
 
 
 class VeyonServerProcess
@@ -254,8 +219,7 @@ void WindowsServiceCore::manageServerInstances()
 										 L"Global\\SessionEventUltra" );
 	ResetEvent( hShutdownEvent );
 
-	const DWORD SESSION_INVALID = 0xFFFFFFFF;
-	DWORD oldWtsSessionId = SESSION_INVALID;
+	auto oldWtsSessionId = WtsSessionManager::InvalidSession;
 
 	QElapsedTimer lastServiceStart;
 
@@ -263,12 +227,12 @@ void WindowsServiceCore::manageServerInstances()
 	{
 		bool sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 
-		const DWORD wtsSessionId = WTSGetActiveConsoleSessionId();
+		const DWORD wtsSessionId = WtsSessionManager::activeConsoleSession();
 		if( oldWtsSessionId != wtsSessionId || sessionChanged )
 		{
 			qInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
 
-			if( oldWtsSessionId != SESSION_INVALID || sessionChanged )
+			if( oldWtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
 				// workaround for situations where service is stopped
 				// while it is still starting up
@@ -282,7 +246,7 @@ void WindowsServiceCore::manageServerInstances()
 
 				Sleep( 5000 );
 			}
-			if( wtsSessionId != SESSION_INVALID || sessionChanged )
+			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
 				veyonServerProcess.start( wtsSessionId );
 				lastServiceStart.restart();
