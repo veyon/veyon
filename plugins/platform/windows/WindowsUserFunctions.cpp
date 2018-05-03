@@ -24,34 +24,13 @@
 
 #include <winsock2.h>
 #include <windows.h>
-#include <wtsapi32.h>
 #include <lm.h>
 
 #include "WindowsCoreFunctions.h"
 #include "WindowsUserFunctions.h"
+#include "WtsSessionManager.h"
 
 #include "authSSP.h"
-
-
-static QString querySessionInformation( DWORD sessionId, WTS_INFO_CLASS infoClass )
-{
-	QString result;
-	LPTSTR pBuffer = NULL;
-	DWORD dwBufferLen;
-	if( WTSQuerySessionInformation(
-				WTS_CURRENT_SERVER_HANDLE,
-				sessionId,
-				infoClass,
-				&pBuffer,
-				&dwBufferLen ) )
-	{
-		result = QString::fromWCharArray( pBuffer );
-	}
-	WTSFreeMemory( pBuffer );
-
-	return result;
-}
-
 
 
 QString WindowsUserFunctions::fullName( const QString& username )
@@ -131,10 +110,10 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 
 QString WindowsUserFunctions::currentUser()
 {
-	auto sessionId = WTSGetActiveConsoleSessionId();
+	auto sessionId = WtsSessionManager::activeConsoleSession();
 
-	auto username = querySessionInformation( sessionId, WTSUserName );
-	auto domainName = querySessionInformation( sessionId, WTSDomainName );
+	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfoUserName );
+	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfoDomainName );
 
 	// check whether we just got the name of the local computer
 	if( !domainName.isEmpty() )
@@ -162,44 +141,7 @@ QString WindowsUserFunctions::currentUser()
 
 QStringList WindowsUserFunctions::loggedOnUsers()
 {
-	QStringList users;
-
-	PWTS_SESSION_INFO sessionInfo = nullptr;
-	DWORD sessionCount = 0;
-
-	if( WTSEnumerateSessions( WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessionInfo, &sessionCount ) == false )
-	{
-		return users;
-	}
-
-	for( DWORD session = 0; session < sessionCount; ++session )
-	{
-		if( sessionInfo[session].State != WTSActive )
-		{
-			continue;
-		}
-
-		LPTSTR userBuffer = nullptr;
-		DWORD bytesReturned = 0;
-		if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionInfo[session].SessionId, WTSUserName,
-										&userBuffer, &bytesReturned ) == false ||
-				userBuffer == nullptr )
-		{
-			continue;
-		}
-
-		const auto user = QString::fromWCharArray( userBuffer );
-		if( user.isEmpty() == false && users.contains( user ) == false )
-		{
-			users.append( user );
-		}
-
-		WTSFreeMemory( userBuffer );
-	}
-
-	WTSFreeMemory( sessionInfo );
-
-	return users;
+	return WtsSessionManager::loggedOnUsers();
 }
 
 
