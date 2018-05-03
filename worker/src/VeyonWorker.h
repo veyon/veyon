@@ -27,18 +27,21 @@
 
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
-#include "FeatureWorkerManagerConnection.h"
 #include "VeyonWorkerInterface.h"
 
-class VeyonWorker : public VeyonWorkerInterface
+class FeatureWorkerManagerConnection;
+
+class VeyonWorker : public QObject, VeyonWorkerInterface
 {
+	Q_OBJECT
 public:
-	VeyonWorker( const QString& featureUid );
+	VeyonWorker( const QString& featureUid, QObject* parent = nullptr );
 
 private:
 	VeyonCore m_core;
 	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
+	FeatureWorkerManagerConnection* m_workerManagerConnection;
 
 } ;
 

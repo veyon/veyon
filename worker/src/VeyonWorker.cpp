@@ -24,14 +24,18 @@
 
 #include <QCoreApplication>
 
+#include "FeatureWorkerManagerConnection.h"
 #include "VeyonConfiguration.h"
 #include "VeyonWorker.h"
 
-VeyonWorker::VeyonWorker( const QString& featureUid ) :
+
+VeyonWorker::VeyonWorker( const QString& featureUid, QObject* parent ) :
+	QObject( parent ),
 	m_core( QCoreApplication::instance(),
 			QStringLiteral( "FeatureWorker-" ) + VeyonCore::formattedUuid( featureUid ) ),
 	m_builtinFeatures(),
-	m_featureManager()
+	m_featureManager(),
+	m_workerManagerConnection( nullptr )
 {
 	const Feature* workerFeature = nullptr;
 
@@ -53,7 +57,7 @@ VeyonWorker::VeyonWorker( const QString& featureUid ) :
 		qFatal( "Specified feature is disabled by configuration!" );
 	}
 
-	FeatureWorkerManagerConnection featureWorkerManagerConnection( *this, m_featureManager, featureUid );
+	m_workerManagerConnection = new FeatureWorkerManagerConnection( *this, m_featureManager, featureUid, this );
 
 	qInfo() << "Running worker for feature" << workerFeature->displayName();
 }
