@@ -144,13 +144,14 @@ public:
 		stop();
 	}
 
-	void start( int sessionId )
+	void start( DWORD wtsSessionId )
 	{
 		stop();
 
-		qInfo() << "Starting server for user" << VeyonCore::platform().userFunctions().currentUser();
+		qInfo() << "Starting server for WTS session" << wtsSessionId
+				<< "with user" << VeyonCore::platform().userFunctions().currentUser();
 
-		m_subProcessHandle = runProgramAsSystem( VeyonCore::filesystem().serverFilePath(), sessionId );
+		m_subProcessHandle = runProgramAsSystem( VeyonCore::filesystem().serverFilePath(), wtsSessionId );
 		if( m_subProcessHandle == nullptr )
 		{
 			qCritical( "Failed to start server!" );
@@ -246,7 +247,7 @@ void WindowsServiceCore::manageServerInstances()
 	ResetEvent( hShutdownEvent );
 
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;
-	DWORD oldSessionId = SESSION_INVALID;
+	DWORD oldWtsSessionId = SESSION_INVALID;
 
 	QElapsedTimer lastServiceStart;
 
@@ -254,12 +255,12 @@ void WindowsServiceCore::manageServerInstances()
 	{
 		bool sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 
-		const DWORD sessionId = WTSGetActiveConsoleSessionId();
-		if( oldSessionId != sessionId || sessionChanged )
+		const DWORD wtsSessionId = WTSGetActiveConsoleSessionId();
+		if( oldWtsSessionId != wtsSessionId || sessionChanged )
 		{
-			qInfo( "Session ID changed from %d to %d", (int) oldSessionId, (int) sessionId );
+			qInfo() << "WTS session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
 
-			if( oldSessionId != SESSION_INVALID || sessionChanged )
+			if( oldWtsSessionId != SESSION_INVALID || sessionChanged )
 			{
 				// workaround for situations where service is stopped
 				// while it is still starting up
@@ -273,18 +274,18 @@ void WindowsServiceCore::manageServerInstances()
 
 				Sleep( 5000 );
 			}
-			if( sessionId != SESSION_INVALID || sessionChanged )
+			if( wtsSessionId != SESSION_INVALID || sessionChanged )
 			{
-				veyonServerProcess.start( sessionId );
+				veyonServerProcess.start( wtsSessionId );
 				lastServiceStart.restart();
 			}
 
-			oldSessionId = sessionId;
+			oldWtsSessionId = wtsSessionId;
 		}
 		else if( veyonServerProcess.isRunning() == false )
 		{
-			veyonServerProcess.start( sessionId );
-			oldSessionId = sessionId;
+			veyonServerProcess.start( wtsSessionId );
+			oldWtsSessionId = wtsSessionId;
 			lastServiceStart.restart();
 		}
 	} while( WaitForSingleObject( m_stopServiceEvent, 1000 ) == WAIT_TIMEOUT );
