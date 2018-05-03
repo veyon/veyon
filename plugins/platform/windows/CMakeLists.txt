@@ -13,6 +13,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsServiceCore.cpp
 	WindowsServiceFunctions.cpp
 	WindowsUserFunctions.cpp
+	WtsSessionManager.cpp
 	SasEventListener.cpp
 	XEventLog.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
@@ -28,6 +29,7 @@ BUILD_PLUGIN(windows-platform
 	WindowsServiceCore.h
 	WindowsServiceFunctions.h
 	WindowsUserFunctions.h
+	WtsSessionManager.h
 	SasEventListener.h
 	XEventLog.h
 	COTIRE
