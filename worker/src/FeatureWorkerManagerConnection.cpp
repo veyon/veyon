@@ -49,7 +49,8 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
-	m_socket.connectToHost( QHostAddress::LocalHost, VeyonCore::config().featureWorkerManagerPort() );
+	m_socket.connectToHost( QHostAddress::LocalHost,
+							static_cast<quint16>( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() ) );
 }
 
 
