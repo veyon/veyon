@@ -43,6 +43,9 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 {
 	ui->setupUi(this);
 
+	// TODO: finish multi session support
+	ui->isMultiSessionServiceEnabled->hide();
+
 	updateServiceControl();
 	populateVncServerPluginComboBox();
 
