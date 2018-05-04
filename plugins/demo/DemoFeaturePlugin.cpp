@@ -161,7 +161,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 			// add VNC server password to message
 			server.featureWorkerManager().
 					sendMessage( FeatureMessage( m_demoServerFeature.uid(), StartDemoServer ).
-								 addArgument( VncServerPort, VeyonCore::config().vncServerPort() ).
+								 addArgument( VncServerPort, VeyonCore::config().vncServerPort() + VeyonCore::sessionId() ).
 								 addArgument( VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword() ).
 								 addArgument( DemoAccessToken, message.argument( DemoAccessToken ) ) );
 		}
