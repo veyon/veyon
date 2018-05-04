@@ -35,69 +35,6 @@
 #include "WtsSessionManager.h"
 
 
-static HANDLE runProgramAsSystem( const QString& program, DWORD sessionId )
-{
-	auto processHandle = OpenProcess( PROCESS_ALL_ACCESS, false, WtsSessionManager::findWinlogonProcessId( sessionId ) );
-
-	HANDLE processToken = nullptr;
-	if( OpenProcessToken( processHandle, MAXIMUM_ALLOWED, &processToken ) == false )
-	{
-		qCritical() << Q_FUNC_INFO << "OpenProcessToken()" << GetLastError();
-		return nullptr;
-	}
-
-	if( ImpersonateLoggedOnUser( processToken ) == false )
-	{
-		qCritical() << Q_FUNC_INFO << "ImpersonateLoggedOnUser()" << GetLastError();
-		return nullptr;
-	}
-
-	STARTUPINFO si;
-	PROCESS_INFORMATION pi;
-	ZeroMemory( &si, sizeof( STARTUPINFO ) );
-	si.cb = sizeof( STARTUPINFO );
-	si.lpDesktop = WindowsCoreFunctions::toWCharArray( QStringLiteral("winsta0\\default") );
-
-	HANDLE newToken = nullptr;
-
-	DuplicateTokenEx( processToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
-					  SecurityImpersonation, TokenPrimary, &newToken );
-
-	auto commandLine = WindowsCoreFunctions::toWCharArray( program );
-
-	auto createProcessResult = CreateProcessAsUser(
-				newToken,			// client's access token
-				nullptr,			  // file to execute
-				commandLine,	 // command line
-				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
-				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
-				false,			 // handles are not inheritable
-				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
-				nullptr,			  // pointer to new environment block
-				nullptr,			  // name of current directory
-				&si,			   // pointer to STARTUPINFO structure
-				&pi				// receives information about new process
-				);
-
-	delete[] si.lpDesktop;
-	delete[] commandLine;
-
-	if( createProcessResult == false )
-	{
-		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
-		return nullptr;
-	}
-
-	CloseHandle( newToken );
-	RevertToSelf();
-	CloseHandle( processToken );
-
-	CloseHandle( processHandle );
-
-	return pi.hProcess;
-}
-
-
 class VeyonServerProcess
 {
 public:
@@ -118,7 +55,8 @@ public:
 		qInfo() << "Starting server for WTS session" << wtsSessionId
 				<< "with user" << VeyonCore::platform().userFunctions().currentUser();
 
-		m_subProcessHandle = runProgramAsSystem( VeyonCore::filesystem().serverFilePath(), wtsSessionId );
+		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(),
+																		WtsSessionManager::findWinlogonProcessId( wtsSessionId ) );
 		if( m_subProcessHandle == nullptr )
 		{
 			qCritical( "Failed to start server!" );
