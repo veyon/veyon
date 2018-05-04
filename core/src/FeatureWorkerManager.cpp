@@ -44,7 +44,8 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, Featur
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );
 
-	if( !m_tcpServer.listen( QHostAddress::LocalHost, VeyonCore::config().featureWorkerManagerPort() ) )
+	if( !m_tcpServer.listen( QHostAddress::LocalHost,
+							 static_cast<quint16>( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() ) ) )
 	{
 		qCritical( "FeatureWorkerManager: can't listen on localhost!" );
 	}
@@ -211,7 +212,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 	// set socket information
 	if( m_workers.contains( message.featureUid() ) )
 	{
-		if( m_workers[message.featureUid()].socket == nullptr )
+		if( m_workers[message.featureUid()].socket.isNull() )
 		{
 			m_workers[message.featureUid()].socket = socket;
 		}

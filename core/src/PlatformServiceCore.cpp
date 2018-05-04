@@ -59,10 +59,3 @@ PlatformServiceCore::SessionId PlatformServiceCore::sessionIdFromData( const QVa
 {
 	return m_sessions.key( data, SessionIdInvalid );
 }
-
-
-
-QString PlatformServiceCore::sessionIdEnvironmentVariable()
-{
-	return QStringLiteral("VEYON_SESSION_ID");
-}

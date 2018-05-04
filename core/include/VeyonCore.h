@@ -70,6 +70,8 @@ public:
 	static QString executableSuffix();
 	static QString sharedLibrarySuffix();
 
+	static QString sessionIdEnvironmentVariable();
+
 	static VeyonConfiguration& config()
 	{
 		return *( instance()->m_config );
@@ -117,6 +119,9 @@ public:
 
 	static void setupApplicationParameters();
 	bool initAuthentication( int credentialTypes );
+
+	static bool hasSessionId();
+	static int sessionId();
 
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );

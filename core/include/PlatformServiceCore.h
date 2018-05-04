@@ -45,8 +45,6 @@ public:
 	QVariant sessionDataFromId( SessionId sessionId ) const;
 	SessionId sessionIdFromData( const QVariant& data ) const;
 
-	static QString sessionIdEnvironmentVariable();
-
 private:
 	QMap<SessionId, QVariant> m_sessions;
 

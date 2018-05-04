@@ -43,6 +43,7 @@
 #include "PasswordDialog.h"
 #include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformServiceCore.h"
 #include "PluginManager.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
@@ -98,7 +99,14 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	m_config = new VeyonConfiguration();
 
-	m_logger = new Logger( appComponentName );
+	if( hasSessionId() )
+	{
+		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( sessionId() ) );
+	}
+	else
+	{
+		m_logger = new Logger( appComponentName );
+	}
 
 	QLocale configuredLocale( QLocale::C );
 
@@ -237,6 +245,13 @@ QString VeyonCore::sharedLibrarySuffix()
 
 
 
+QString VeyonCore::sessionIdEnvironmentVariable()
+{
+	return QStringLiteral("VEYON_SESSION_ID");
+}
+
+
+
 bool VeyonCore::initAuthentication( int credentialTypes )
 {
 	if( m_authenticationCredentials )
@@ -281,6 +296,20 @@ bool VeyonCore::initAuthentication( int credentialTypes )
 	}
 
 	return success;
+}
+
+
+
+bool VeyonCore::hasSessionId()
+{
+	return QProcessEnvironment::systemEnvironment().contains( sessionIdEnvironmentVariable() );
+}
+
+
+
+int VeyonCore::sessionId()
+{
+	return QProcessEnvironment::systemEnvironment().value( sessionIdEnvironmentVariable() ).toInt();
 }
 
 
