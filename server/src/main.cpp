@@ -26,7 +26,6 @@
 
 #include "ComputerControlServer.h"
 #include "VeyonConfiguration.h"
-#include "PlatformServiceCore.h"
 
 
 int main( int argc, char **argv )
@@ -34,14 +33,6 @@ int main( int argc, char **argv )
 	QCoreApplication app( argc, argv );
 
 	VeyonCore core( &app, QStringLiteral("Server") );
-
-	const auto sessionId = QProcessEnvironment::systemEnvironment().value( PlatformServiceCore::sessionIdEnvironmentVariable() ).toInt();
-	if( sessionId > 0 )
-	{
-		core.config().setPrimaryServicePort( core.config().primaryServicePort() + sessionId );
-		core.config().setVncServerPort( core.config().vncServerPort() + sessionId );
-		core.config().setFeatureWorkerManagerPort( core.config().featureWorkerManagerPort() + sessionId );
-	}
 
 	auto server = new ComputerControlServer;
 	server->start();

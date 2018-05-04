@@ -98,10 +98,10 @@ int VncServer::serverPort() const
 {
 	if( m_pluginInterface && m_pluginInterface->configuredServerPort() > 0 )
 	{
-		return m_pluginInterface->configuredServerPort();
+		return m_pluginInterface->configuredServerPort() + VeyonCore::sessionId();
 	}
 
-	return VeyonCore::config().vncServerPort();
+	return VeyonCore::config().vncServerPort() + VeyonCore::sessionId();
 }
 
 
