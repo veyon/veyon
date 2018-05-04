@@ -95,8 +95,8 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 		if( VeyonCore::config().isMultiSessionServiceEnabled() )
 		{
-			sessionEnvironment.insert( PlatformServiceCore::sessionIdEnvironmentVariable(),
-									   QString::number( openSession( QStringList( { sessionPath, sessionDisplay, seat.path } ) ) ) );
+			const auto sessionId = openSession( QStringList( { sessionPath, sessionDisplay, seat.path } ) );
+			sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
 		}
 
 		auto process = new QProcess( this );
@@ -121,7 +121,7 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 
 		auto process = m_serverProcesses[sessionPath];
 		process->terminate();
-		closeSession( process->processEnvironment().value( PlatformServiceCore::sessionIdEnvironmentVariable() ).toInt() );
+		closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
 		delete process;
 		m_serverProcesses.remove( sessionPath );
 	}
