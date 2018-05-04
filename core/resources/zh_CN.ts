@@ -632,35 +632,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>此命令从验证密钥 &lt;FILE&gt; 导入 &lt;KEY&gt; 。如果 &lt;FILE&gt; 没有指定名称，将从 &lt;KEY&gt; 的名称和类型创建。</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>此命令列出配置的密钥目录中的所有可用身份验证密钥。 如果指定了选项 &quot;%1&quot; ，则会显示包含密钥详细信息的表格。 如果无法访问密钥，某些细节可能会丢失，例如，没有读取权限。</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation type="unfinished"/>
+        <translation>此命令从私钥 &lt;KEY&gt; 中提取公钥部分并将其保存为相应的公钥。</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>请指定需要显示用法命令！</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TYPE</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>PAIR ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>用于管理认证密钥的命令行支持</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>管理身份验证密钥的命令</translation>
     </message>
 </context>
 <context>
@@ -675,22 +675,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>访问组</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Rooms &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>教室和计算机</translation>
     </message>
     <message>
         <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>教室</translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>计算机</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,7 +698,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>主机 IP 地址</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -706,62 +706,62 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new room</source>
-        <translation type="unfinished"/>
+        <translation>添加新教室</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation type="unfinished"/>
+        <translation>删除选中的教室</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>添加新计算机</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>删除选中的计算机</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>新教室</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>新计算机</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>为指定的命令显示帮助</translation>
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>添加一个新教室或计算机</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>清除所有教室和计算机</translation>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>转储全部或单独的教室和计算机</translation>
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>列出所有教室和计算机</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>移除一个教室或计算机</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>从给定的文件导入对象</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>导出对象到指定的文件</translation>
     </message>
     <message>
         <source>
@@ -789,19 +789,43 @@ Examples:
 
     %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+可用的变量: %name% %host% %mac% %room%
+
+范例:
+
+* 将单纯的 CSV 文件导入单个房间：:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* 导入第一列中带有房间名称的 CSV 文件:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* 使用正则表达式导入导入键/值对文本文件:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* 导入已格式化的数据:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>指定的类型无效，有效值是 &quot;%1&quot; 或 &quot;%2&quot;。</translation>
     </message>
     <message>
         <source>Object UID</source>
-        <translation type="unfinished"/>
+        <translation>对象 UID</translation>
     </message>
     <message>
         <source>Parent UID</source>
-        <translation type="unfinished"/>
+        <translation>Parent UID</translation>
     </message>
     <message>
         <source>Type</source>
@@ -813,7 +837,7 @@ Examples:
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>主机地址</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -821,15 +845,15 @@ Examples:
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>未找到指定的对象。</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>文件 &quot;%1&quot; 不存在！</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>无法打开用于读取的文件 &quot;%1&quot; ！</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
@@ -3018,6 +3042,15 @@ Examples:
         <source>Primary service port</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3093,7 +3126,7 @@ Examples:
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>文件 &quot;%1&quot; 不存在！</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>

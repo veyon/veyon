@@ -3076,6 +3076,16 @@ Examples:
         <source>Primary service port</source>
         <translation>Порт основної служби</translation>
     </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation>Позначення цього пункту призведе до того, що служба запускатиме процес сервера для кожного інтерактивного сеансу на комп&apos;ютері.
+Типово, таке налаштування потрібне для реалізації підтримки термінальних серверів.</translation>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation>Підтримка багатосеансовості (експериментальна)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

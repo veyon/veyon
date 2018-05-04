@@ -3071,6 +3071,15 @@ Příklady:
         <source>Primary service port</source>
         <translation>Port hlavní služby</translation>
     </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

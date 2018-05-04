@@ -3062,6 +3062,15 @@ Examples:
         <source>Primary service port</source>
         <translation>주 서비스 포트</translation>
     </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

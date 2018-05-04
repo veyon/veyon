@@ -3074,6 +3074,15 @@ Példák:
         <source>Primary service port</source>
         <translation>Elsődleges szolgáltatási port</translation>
     </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation>A funkció bekapcsolása esetén a szerver minden egyes számítógépen létrejövő interaktív munkamenethez külön szerverfolyamatot indít.</translation>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation>Több munkamenet támogatása (kísérleti)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>

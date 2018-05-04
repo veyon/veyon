@@ -401,30 +401,32 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Bitte führen Sie die folgenden Schritte durch, um die Schlüsseldatei-Authentifizierung einzurichten:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Schlüsselpaar auf dem Master-Computer erzeugen.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Zugriffsgruppe festlegen, deren Mitgliedern der Zugriff auf andere Computer erlaubt werden soll.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Öffentlichen Schlüssel exportieren und auf allen Client-Computern mit dem selben Namen importieren.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Weitere Informationen entnehmen Sie bitte dem &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon-Administrationshandbuch&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Authentifizierungsschlüsselpaar besteht aus zwei zueinander gehörigen Teilen, einem privaten und einem öffentlichen Schlüsselteil.
+Mit Hilfe des privaten Schlüssels können Nutzer auf dem Mastercomputer auf Clientcomputer zugreifen. Es ist wichtig, dass nur autorisierte Nutzer Lesezugriff auf die private Schlüsseldatei besitzen.
+Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede eingehende Verbindungsanfrage zu prüfen, ob diese autorisiert ist.</translation>
     </message>
 </context>
 <context>
@@ -922,15 +924,15 @@ Examples:
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>Kein Format-String oder regulärer Ausdruck angegeben!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Datei &quot;%1&quot; kann nicht zum Schreiben geöffnet werden!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>Kein Format-String angegeben!</translation>
     </message>
 </context>
 <context>
@@ -3054,6 +3056,15 @@ Examples:
     <message>
         <source>Primary service port</source>
         <translation>Primärer Dienst-Port</translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

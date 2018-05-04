@@ -142,11 +142,11 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan manquants</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
@@ -375,7 +375,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Entrer le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait la création de la paire de clé d&apos;authentification:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -387,7 +387,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Entrez le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait l&apos;import de la clé d&apos;authentification:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -607,7 +607,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Cette commande ajuste les permissions du fichier d&apos;accès vers &lt;KEY&gt; de sorte que seul le groupe d&apos;utilisateurs &lt;ACCESS GROUP&gt; dispose d&apos;un accès en lecture.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -615,11 +615,11 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
+        <translation>Cette commande crée une nouvelle paire de clés d&apos;authentification avec comme nom &lt;NAME&gt; et sauve les clés privée et publique dans le répertoire des clés configuré.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Cette commande supprime la clé d’authentification &lt;KEY&gt; depuis le répertoire de clé configuré. Veuillez noter qu&apos;une clé ne peut pas être récupérée une fois supprimée.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -627,15 +627,15 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Cette commande exporte la clé d&apos;authentification &lt;KEY&gt; vers &lt;FILE&gt;. Si &lt;FILE&gt; n&apos;est pas spécifié un nom sera construit à partir du nom et du type de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Cette commande importe la clé d&apos;authentification &lt;KEY&gt; à partir de &lt;FILE&gt;. Si &lt;FILE&gt; n&apos;est pas spécifié un nom sera construit à partir du nom et du type de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Cette commande liste toutes les clés d&apos;authentification disponibles dans le répertoire des clés configuré. Si l&apos;option &quot;%1&quot; est spécifiée, un tableau avec les détails de la clé sera affiché à la place. Certaines informations peuvent être manquantes si une clé n&apos;est pas accessible ex: en cas d&apos;un manque de permission en lecture.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
@@ -3074,6 +3074,16 @@ Exemples:
     <message>
         <source>Primary service port</source>
         <translation>Port de service primaire</translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation>L&apos;activation de cette option, commandera au service de lancer un processus serveur pour chaque session interactive sur un ordinateur.
+Généralement, ceci est nécessaire pour prendre en charge les serveurs de terminaux.</translation>
+    </message>
+    <message>
+        <source>Multi session support (experimental)</source>
+        <translation>Support multi-session (expérimental)</translation>
     </message>
 </context>
 <context>
