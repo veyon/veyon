@@ -55,9 +55,7 @@ public:
 	bool isRunningAsAdmin() const override;
 	bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) override;
 
-	bool runProgramAsUser( const QString& program,
-						   const QString& username,
-						   const QString& desktop ) override;
+	bool runProgramAsUser( const QString& program, const QString& username, const QString& desktop ) override;
 
 	QString genericUrlHandler() const override;
 
@@ -65,6 +63,8 @@ public:
 
 	static wchar_t* toWCharArray( const QString& qstring );
 	static const wchar_t* toConstWCharArray( const QString& qstring );
+
+	static HANDLE runProgramInSession( const QString& program, DWORD baseProcessId, const QString& desktop = QString() );
 
 private:
 	CXEventLog* m_eventLog;

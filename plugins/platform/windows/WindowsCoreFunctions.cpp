@@ -242,94 +242,16 @@ bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStr
 
 
 
-bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
-											 const QString& username,
-											 const QString& desktop )
+bool WindowsCoreFunctions::runProgramAsUser( const QString& program, const QString& username, const QString& desktop )
 {
-	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
-	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
-
-	auto userProcessId = WtsSessionManager::findProcessId( username );
-
-	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, userProcessId );
-
-	HANDLE userProcessToken = nullptr;
-	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
+	auto processHandle = runProgramInSession( program, WtsSessionManager::findProcessId( username ), desktop );
+	if( processHandle )
 	{
-		qCritical() << Q_FUNC_INFO << "OpenProcessToken()" << GetLastError();
-		return false;
+		CloseHandle( processHandle );
+		return true;
 	}
 
-	LPVOID userEnvironment = nullptr;
-	if( CreateEnvironmentBlock( &userEnvironment, userProcessToken, false ) == false )
-	{
-		qCritical() << Q_FUNC_INFO << "CreateEnvironmentBlock()" << GetLastError();
-		return false;
-	}
-
-	PWSTR profileDir = nullptr;
-	if( SHGetKnownFolderPath( FOLDERID_Profile, 0, userProcessToken, &profileDir ) != S_OK )
-	{
-		qCritical() << Q_FUNC_INFO << "SHGetKnownFolderPath()" << GetLastError();
-		return false;
-	}
-
-	if( ImpersonateLoggedOnUser( userProcessToken ) == false )
-	{
-		qCritical() << Q_FUNC_INFO << "ImpersonateLoggedOnUser()" << GetLastError();
-		return false;
-	}
-
-	STARTUPINFO si;
-	PROCESS_INFORMATION pi;
-	ZeroMemory( &si, sizeof( STARTUPINFO ) );
-	si.cb = sizeof( STARTUPINFO );
-	if( !desktop.isEmpty() )
-	{
-		si.lpDesktop = toWCharArray( desktop );
-	}
-
-	HANDLE newToken = nullptr;
-
-	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
-					  SecurityImpersonation, TokenPrimary, &newToken );
-
-	auto commandLine = toWCharArray( program );
-
-	auto createProcessResult = CreateProcessAsUser(
-				newToken,			// client's access token
-				nullptr,			  // file to execute
-				commandLine,	 // command line
-				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
-				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
-				false,			 // handles are not inheritable
-				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
-				userEnvironment,			  // pointer to new environment block
-				profileDir,			  // name of current directory
-				&si,			   // pointer to STARTUPINFO structure
-				&pi				// receives information about new process
-				);
-
-	delete[] si.lpDesktop;
-
-	if( createProcessResult == false )
-	{
-		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
-		return false;
-	}
-
-	CoTaskMemFree( profileDir );
-	DestroyEnvironmentBlock( userEnvironment );
-
-	CloseHandle( newToken );
-	RevertToSelf();
-	CloseHandle( userProcessToken );
-
-	CloseHandle( userProcessHandle );
-
-	CloseHandle( pi.hProcess );
-
-	return true;
+	return false;
 }
 
 
@@ -385,4 +307,104 @@ wchar_t* WindowsCoreFunctions::toWCharArray( const QString& qstring )
 const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 {
 	return reinterpret_cast<const wchar_t*>( qstring.utf16() );
+}
+
+
+
+HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program, DWORD baseProcessId, const QString& desktop )
+{
+	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
+	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
+
+	const auto userProcessHandle = OpenProcess( PROCESS_ALL_ACCESS, false, baseProcessId );
+
+	HANDLE userProcessToken = nullptr;
+	if( OpenProcessToken( userProcessHandle, MAXIMUM_ALLOWED, &userProcessToken ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "OpenProcessToken()" << GetLastError();
+		CloseHandle( userProcessHandle );
+		return nullptr;
+	}
+
+	LPVOID userEnvironment = nullptr;
+	if( CreateEnvironmentBlock( &userEnvironment, userProcessToken, false ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "CreateEnvironmentBlock()" << GetLastError();
+		CloseHandle( userProcessHandle );
+		CloseHandle( userProcessToken );
+		return nullptr;
+	}
+
+	PWSTR profileDir = nullptr;
+	if( SHGetKnownFolderPath( FOLDERID_Profile, 0, userProcessToken, &profileDir ) != S_OK )
+	{
+		qCritical() << Q_FUNC_INFO << "SHGetKnownFolderPath()" << GetLastError();
+		DestroyEnvironmentBlock( userEnvironment );
+		CloseHandle( userProcessHandle );
+		CloseHandle( userProcessToken );
+		return nullptr;
+	}
+
+	if( ImpersonateLoggedOnUser( userProcessToken ) == false )
+	{
+		qCritical() << Q_FUNC_INFO << "ImpersonateLoggedOnUser()" << GetLastError();
+		CoTaskMemFree( profileDir );
+		DestroyEnvironmentBlock( userEnvironment );
+		CloseHandle( userProcessHandle );
+		CloseHandle( userProcessToken );
+		return nullptr;
+	}
+
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+	ZeroMemory( &si, sizeof( STARTUPINFO ) );
+	si.cb = sizeof( STARTUPINFO );
+	if( desktop.isEmpty() == false )
+	{
+		si.lpDesktop = toWCharArray( desktop );
+	}
+
+	HANDLE newToken = nullptr;
+
+	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
+					  SecurityImpersonation, TokenPrimary, &newToken );
+
+	auto commandLine = toWCharArray( program );
+
+	auto createProcessResult = CreateProcessAsUser(
+				newToken,			// client's access token
+				nullptr,			  // file to execute
+				commandLine,	 // command line
+				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
+				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
+				false,			 // handles are not inheritable
+				CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
+				userEnvironment,			  // pointer to new environment block
+				profileDir,			  // name of current directory
+				&si,			   // pointer to STARTUPINFO structure
+				&pi				// receives information about new process
+				);
+
+	if( createProcessResult == false )
+	{
+		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
+	}
+
+	delete[] si.lpDesktop;
+
+	CoTaskMemFree( profileDir );
+	DestroyEnvironmentBlock( userEnvironment );
+
+	CloseHandle( newToken );
+	RevertToSelf();
+
+	CloseHandle( userProcessToken );
+	CloseHandle( userProcessHandle );
+
+	if( createProcessResult )
+	{
+		return pi.hProcess;
+	}
+
+	return nullptr;
 }
