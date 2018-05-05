@@ -171,7 +171,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 
 	const Computer localComputer( NetworkObject::Uid::createUuid(),
 								  QStringLiteral("localhost"),
-								  QHostAddress( QHostAddress::LocalHost ).toString() );
+								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().primaryServicePort() + sessionId() ) );
 	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
 }
 
