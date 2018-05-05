@@ -299,7 +299,6 @@ IF(WIN32)
 			COMMAND mkdir -p ${TMP}/platforms
 			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${TMP}/platforms
 			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*.dll ${TMP}/platforms/*.dll ${TMP}/crypto/*.dll
-			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
 			COMMAND cp ${CMAKE_SOURCE_DIR}/README.md ${TMP}/README.TXT

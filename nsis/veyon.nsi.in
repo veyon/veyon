@@ -160,11 +160,6 @@ File "crypto/*.dll"
 # Qt platform plugin
 SetOutPath "$INSTDIR\platforms"
 File "platforms/qwindows.dll"
-# contrib files
-SetOutPath "$INSTDIR\contrib"
-File "contrib\*"
-SetOutPath "$INSTDIR\contrib\en-US"
-File "contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
 ExecWait '"$INSTDIR\veyon-ctl.exe" service register'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 1'
@@ -255,7 +250,6 @@ Delete "$INSTDIR\*.url"
 RmDir /r "$INSTDIR\crypto"
 RmDir /r "$INSTDIR\plugins"
 RmDir /r "$INSTDIR\platforms"
-RmDir /r "$INSTDIR\contrib"
 
 RmDir "$INSTDIR"
 
