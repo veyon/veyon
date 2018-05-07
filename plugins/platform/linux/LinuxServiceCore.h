@@ -44,6 +44,8 @@ public:
 private slots:
 	void startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
+	void stopServer( const QString& sessionPath );
+	void stopAllServers();
 
 private:
 	typedef struct {

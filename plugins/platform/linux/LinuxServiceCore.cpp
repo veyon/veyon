@@ -49,7 +49,7 @@ LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 
 LinuxServiceCore::~LinuxServiceCore()
 {
-
+	stopAllServers();
 }
 
 
@@ -118,18 +118,35 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 
 	if( m_serverProcesses.contains( sessionPath ) )
 	{
-		qInfo() << "Stopping server for removed session" << sessionPath;
+		stopServer( sessionPath );
+	}
+}
 
-		auto process = m_serverProcesses[sessionPath];
-		process->terminate();
 
-		if( m_multiSession )
-		{
-			closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
-		}
 
-		delete process;
-		m_serverProcesses.remove( sessionPath );
+void LinuxServiceCore::stopServer( const QString& sessionPath )
+{
+	qInfo() << "Stopping server for removed session" << sessionPath;
+
+	auto process = m_serverProcesses[sessionPath];
+	process->terminate();
+
+	if( m_multiSession )
+	{
+		closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
+	}
+
+	delete process;
+	m_serverProcesses.remove( sessionPath );
+}
+
+
+
+void LinuxServiceCore::stopAllServers()
+{
+	while( m_serverProcesses.isEmpty() == false )
+	{
+		stopServer( m_serverProcesses.firstKey() );
 	}
 }
 
