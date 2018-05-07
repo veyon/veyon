@@ -3074,11 +3074,12 @@ Příklady:
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Zapnutím této volby bude serverový proces spouštěn pro každé z interaktivních sezení na počítači.
+Typicky je toto třeba na terminálových serverech.</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Podpora vícero sezení (experimentální)</translation>
     </message>
 </context>
 <context>

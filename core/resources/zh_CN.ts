@@ -1210,7 +1210,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1470,23 +1470,23 @@ Examples:
     </message>
     <message>
         <source>Network object directory</source>
-        <translation type="unfinished"/>
+        <translation>网络对象文件夹</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>后端：</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <translation>更新频率：</translation>
     </message>
     <message>
         <source>%1 service</source>
-        <translation type="unfinished"/>
+        <translation>%1 服务</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>%1 服务需要停止临时文件夹，以便于移除日志文件，是否继续？</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1506,23 +1506,23 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>轮循日志文件</translation>
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished"/>
+        <translation>秒</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>写入操作系统的日志记录系统</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1530,7 +1530,7 @@ Examples:
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>方法：</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1545,15 +1545,15 @@ Examples:
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>互联网访问控制</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>后端：</translation>
     </message>
 </context>
 <context>

@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -144,15 +144,15 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Backend para grupos de usuarios:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Falta backend para grupos de usuarios</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>No se encontró el plugin por defecto para grupos de usuarios. ¡Por favor, compruebe la instalación!</translation>
     </message>
 </context>
 <context>
@@ -321,15 +321,15 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Claves de autenticación</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Introducción</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Directorios de claves</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -345,79 +345,79 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Claves de autenticación disponibles</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Crear par de claves</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Borrar clave</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Importar clave</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Exportar clave</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Establecer el grupo de acceso</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Archivos de clave (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de la clave de autenticación</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca el nombre del grupo de usuarios o rol para el cual crear un par de claves de autenticación:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente desea eliminar la clave de autenticación &quot;%1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, ¡seleccione clave a eliminar!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca el nombre del grupo de usuarios o rol para el cual importar la clave de autenticación:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, ¡seleccione una clave a exportar!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione un grupo de usuarios al que otorgar acceso a la clave &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>¡Seleccione una clave para configurar el grupo que tenga acceso!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Realice los siguientes pasos para configurar la autenticación de archivos de claves:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Crea un par de llaves en la computadora maestra.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Establezca un grupo con acceso cuyos miembros deberían tener acceso a otras computadoras.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Exporte la clave pública e impórtela en todas las computadoras cliente con el mismo nombre.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -428,18 +428,21 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Un par de claves de autenticación consta de dos claves criptográficas acopladas, una privada y otra pública.
+Una clave privada permite a los usuarios de la computadora maestra acceder a las computadoras cliente.
+Es importante que solo los usuarios autorizados tengan acceso de lectura al archivo de clave privada.
+La clave pública se usa en las computadoras cliente para autenticar la solicitud de conexión entrante.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor compruebe sus permisos.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>¡El nombre de la clave contiene caracteres inválidos!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -447,71 +450,71 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>¡La clave especificada no existe! Utilice el comando &quot;list&quot; para enumerar todas las claves instaladas.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>¡Uno o más archivos de claves ya existen! Por favor, elimínelos utilizando el comando &quot;delete&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Creando un nuevo par de claves para &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se ha podido crear la clave pública o privada!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>El par de claves recién creadas se ha guardado en &quot;%1&quot; y &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudo eliminar el archivo de claves &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudo eliminar el directorio de archivos de claves &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo crear el directorio para el archivo de salida.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo &quot;%1&quot; ya existe.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo escribir el archivo de salida.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Clave &quot;%1/%2&quot; se ha exportado a &quot;%3&quot; exitosamente.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo leer el archivo de entrada.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>¡Archivo &quot;%1&quot; no contiene una clave privada válida!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>¡Archivo &quot;%1&quot; no contiene una clave pública válida!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo crear el directorio para el archivo de clave.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo escribir el archivo de clave &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudieron establecer los permisos para el archivo de clave &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -519,35 +522,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo convertir la clave privada en clave pública</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo crear el directorio para el archivo de clave privada &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudo guardar la clave privada en el archivo &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudieron establecer los permisos para el archivo de clave privada &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo crear el directorio para el archivo de clave pública &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudo guardar la clave pública en el archivo &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudieron establecer los permisos para el archivo de clave pública &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo establecer el propietario del archivo de clave &quot;%1&quot; a &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
@@ -559,7 +562,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -574,31 +577,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar clave de autenticación</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Listas de claves de autenticación</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Importar clave pública o privada</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Exportar clave pública o privada</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Extraer la clave pública de la clave privada existente</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Establecer el grupo de usuarios al que se permite acceder a una clave</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>CLAVE</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
@@ -1253,11 +1256,11 @@ Examples:
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Programas y sitios web</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>Programas predefinidos</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1265,35 +1268,35 @@ Examples:
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Ruta</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Añadir nuevo programa</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar el programa seleccionado</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>Sitios web predefinidos</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar el sitio web seleccionado</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>Nuevo programa</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>Nuevo sitio web</translation>
     </message>
 </context>
 <context>
@@ -1324,19 +1327,19 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Ejecutar el programa &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Programa personalizado</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Abrir sitio web &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Sitio web personalizado</translation>
     </message>
 </context>
 <context>
@@ -1504,7 +1507,7 @@ Examples:
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>Método:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1553,11 +1556,11 @@ Examples:
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear el acceso a internet</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Permitir el acceso a internet</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1565,7 +1568,7 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear internet</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
@@ -1573,7 +1576,7 @@ Examples:
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Desbloquear internet</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -1581,7 +1584,7 @@ Examples:
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Control de acceso a internet</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
@@ -2142,23 +2145,23 @@ Examples:
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Seguridad de conexión</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>Verificación del certificado TLS</translation>
     </message>
     <message>
         <source>Security mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo de seguridad</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Valores por defecto del sistema</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>Nunca (¡inseguro!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2170,11 +2173,11 @@ Examples:
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2597,7 +2600,7 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Color de fondo</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -2609,7 +2612,7 @@ Examples:
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar el programa</translation>
     </message>
     <message>
         <source>Automatically open computer management</source>
@@ -3032,7 +3035,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Soporte de sesiones múltiples (experimental)</translation>
     </message>
 </context>
 <context>
