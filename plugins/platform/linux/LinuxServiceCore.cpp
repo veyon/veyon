@@ -36,7 +36,8 @@
 
 LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 	QObject( parent ),
-	m_loginManager( LinuxCoreFunctions::systemdLoginManager() )
+	m_loginManager( LinuxCoreFunctions::systemdLoginManager() ),
+	m_multiSession( VeyonCore::config().isMultiSessionServiceEnabled() )
 {
 	QDBusConnection::systemBus().connect( m_loginManager->service(), m_loginManager->path(), m_loginManager->interface(),
 										 QStringLiteral("SessionNew"), this, SLOT(startServer(QString,QDBusObjectPath)) );
@@ -93,7 +94,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 				<< "with display" << sessionDisplay
 				<< "at seat" << seat.path;
 
-		if( VeyonCore::config().isMultiSessionServiceEnabled() )
+		if( m_multiSession )
 		{
 			const auto sessionId = openSession( QStringList( { sessionPath, sessionDisplay, seat.path } ) );
 			sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
@@ -121,7 +122,12 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 
 		auto process = m_serverProcesses[sessionPath];
 		process->terminate();
-		closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
+
+		if( m_multiSession )
+		{
+			closeSession( process->processEnvironment().value( VeyonCore::sessionIdEnvironmentVariable() ).toInt() );
+		}
+
 		delete process;
 		m_serverProcesses.remove( sessionPath );
 	}

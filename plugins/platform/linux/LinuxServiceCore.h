@@ -72,6 +72,7 @@ private:
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager;
 	QMap<QString, QProcess *> m_serverProcesses;
+	bool m_multiSession;
 
 };
 
