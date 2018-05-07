@@ -1,7 +1,7 @@
 /*
  * VariantArrayMessage.h - class for sending/receiving a variant array as message
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *

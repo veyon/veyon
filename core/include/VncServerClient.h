@@ -1,7 +1,7 @@
 /*
  * VncServerClient.h - header file for the VncServerClient class
  *
- * Copyright (c) 2017-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2017-2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *

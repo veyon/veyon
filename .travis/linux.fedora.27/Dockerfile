@@ -1,5 +1,5 @@
 FROM fedora:27
-MAINTAINER Tobias Junghans <tobydox@users.sf.net>
+MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
 	yum install -y git gcc-c++ make cmake rpm-build fakeroot \

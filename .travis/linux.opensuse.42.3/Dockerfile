@@ -1,5 +1,5 @@
 FROM opensuse:42.3
-MAINTAINER Tobias Junghans <tobydox@users.sf.net>
+MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
 	zypper addrepo -f http://download.opensuse.org/repositories/devel:tools/openSUSE_Leap_42.3/devel:tools.repo && \

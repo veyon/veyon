@@ -1,5 +1,5 @@
 FROM debian:stretch
-MAINTAINER Tobias Junghans <tobydox@users.sf.net>
+MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
 	apt-get update && \

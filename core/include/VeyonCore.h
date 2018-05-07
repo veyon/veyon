@@ -1,7 +1,7 @@
 /*
  * VeyonCore.h - declaration of VeyonCore class + basic headers
  *
- * Copyright (c) 2006-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2006-2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *

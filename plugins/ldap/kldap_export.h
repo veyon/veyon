@@ -1,7 +1,7 @@
 /*
  * kldap_export.h - definition of symbol visibility macros for kldap
  *
- * Copyright (c) 2016 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2016 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *

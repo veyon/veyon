@@ -1,7 +1,7 @@
 /*
  * DesktopServicesConfigurationPage.h - header for the DesktopServicesConfigurationPage class
  *
- * Copyright (c) 2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * AccessControlRuleListModel.h - data model for access control rules
  *
- * Copyright (c) 2016 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2016 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *

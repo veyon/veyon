@@ -3,9 +3,9 @@ project:
   version: 4.0.90
   copyright: 2004-2018
   author: Tobias Junghans
-  contact: Tobias Junghans <tobydox@users.sf.net>
+  contact: Tobias Junghans <tobydox@veyon.io>
   contributors:
-    - Tobias Junghans <tobydox@users.sf.net>
+    - Tobias Junghans <tobydox@veyon.io>
   description: Virtual Eye On Networks - OpenSource classroom management
   license: GPL-2.0
   category: Education

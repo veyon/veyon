@@ -1,7 +1,7 @@
 /*
  * RunProgramDialog.h - declaration of class RunProgramDialog
  *
- * Copyright (c) 2004-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2004-2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public

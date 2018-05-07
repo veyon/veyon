@@ -1,7 +1,7 @@
 /*
  * LdapDirectory.cpp - class representing the LDAP directory and providing access to directory entries
  *
- * Copyright (c) 2016-2018 Tobias Junghans <tobydox@users.sf.net>
+ * Copyright (c) 2016-2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *
