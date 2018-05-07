@@ -300,7 +300,8 @@ void ComputerMonitoringView::populateFeatureMenu( const FeatureUidList& activeFe
 		previousPluginUid = pluginUid;
 
 		auto label = feature.displayName();
-		if( activeFeatures.contains( feature.uid().toString() ) )
+		if( activeFeatures.contains( feature.uid().toString() ) &&
+				feature.displayNameActive().isEmpty() == false )
 		{
 			label = feature.displayNameActive();
 		}
