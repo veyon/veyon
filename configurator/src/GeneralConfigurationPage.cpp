@@ -47,7 +47,10 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
-	const auto qmFiles = QDir(":/resources/").entryList( QStringList("*.qm") );
+	const auto qmFiles = QDir(":/resources/").entryList( { QStringLiteral("*.qm") } );
+
+	languages.reserve( qmFiles.count() );
+
 	for( const auto& qmFile : qmFiles )
 	{
 		QLocale loc( qmFile );
@@ -55,20 +58,17 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 		{
 			loc = QLocale( QLocale::English );
 		}
-		languages += QString( "%1 - %2 (%3)" ).arg( QLocale::languageToString(loc.language() ),
-													loc.nativeLanguageName(),
-													loc.name() );
+		languages += QStringLiteral( "%1 - %2 (%3)" ).arg( QLocale::languageToString( loc.language() ),
+														   loc.nativeLanguageName(),
+														   loc.name() );
 	}
 
 	std::sort( languages.begin(), languages.end() );
 
 	ui->uiLanguage->addItems( languages );
 
-#define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
-
-	CONNECT_BUTTON_SLOT( openLogFileDirectory );
-	CONNECT_BUTTON_SLOT( clearLogFiles );
+	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
+	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
 
 	populateNetworkObjectDirectories();
 }
@@ -142,19 +142,19 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	bool success = true;
 	QDir d( VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() ) );
-	const auto localLogFiles = d.entryList( QStringList() << "Veyon*.log" );
+	const auto localLogFiles = d.entryList( { QStringLiteral("Veyon*.log") } );
 	for( const auto& f : localLogFiles )
 	{
-		if( f != "VeyonConfigurator.log" )
+		if( f != QStringLiteral("VeyonConfigurator.log") )
 		{
 			success &= d.remove( f );
 		}
 	}
 
-	const auto globalLogFiles = QDir::temp().entryList( QStringList() << "Veyon*.log" );
+	const auto globalLogFiles = QDir::temp().entryList( { QStringLiteral("Veyon*.log") } );
 	for( const auto& f : globalLogFiles )
 	{
-		if( f != "VeyonConfigurator.log" )
+		if( f != QStringLiteral("VeyonConfigurator.log") )
 		{
 			success &= d.remove( f );
 		}
