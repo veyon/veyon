@@ -275,7 +275,7 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 {
 	setWindowTitle( tr( "%1 - %2 Remote Access" ).arg( computerControlInterface->computer().name(),
 													   VeyonCore::applicationName() ) );
-	setWindowIcon( QPixmap( ":/remoteaccess/kmag.png" ) );
+	setWindowIcon( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
