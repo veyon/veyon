@@ -37,7 +37,7 @@
 class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.WindowsPlatform")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.WindowsPlatform")
 	Q_INTERFACES(PluginInterface PlatformPluginInterface)
 public:
 	WindowsPlatformPlugin( QObject* parent = nullptr );

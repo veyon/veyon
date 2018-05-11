@@ -37,7 +37,7 @@
 class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.LinuxPlatform")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.LinuxPlatform")
 	Q_INTERFACES(PluginInterface PlatformPluginInterface)
 public:
 	LinuxPlatformPlugin( QObject* parent = nullptr );

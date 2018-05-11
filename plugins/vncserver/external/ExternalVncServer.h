@@ -32,7 +32,7 @@
 class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ExternalVncServer")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ExternalVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
 	ExternalVncServer( QObject* parent = nullptr );

@@ -32,7 +32,7 @@ class LockWidget;
 class ScreenLockFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.PluginFeatureInterface")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.PluginFeatureInterface")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	ScreenLockFeaturePlugin( QObject* parent = nullptr );

@@ -54,7 +54,7 @@ public:
 
 typedef QList<PluginInterface *> PluginInterfaceList;
 
-#define PluginInterface_iid "org.veyon.Veyon.Plugins.PluginInterface"
+#define PluginInterface_iid "io.veyon.Veyon.Plugins.PluginInterface"
 
 Q_DECLARE_INTERFACE(PluginInterface, PluginInterface_iid)
 

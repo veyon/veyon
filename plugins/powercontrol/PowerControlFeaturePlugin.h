@@ -31,7 +31,7 @@
 class PowerControlFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.FeatureProviderInterface")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FeatureProviderInterface")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	PowerControlFeaturePlugin( QObject* parent = nullptr );

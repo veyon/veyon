@@ -56,7 +56,7 @@ public:
 
 typedef QList<CommandLinePluginInterface *> CommandLinePluginInterfaceList;
 
-#define CommandLinePluginInterface_iid "org.veyon.Veyon.Plugins.CommandLinePluginInterface"
+#define CommandLinePluginInterface_iid "io.veyon.Veyon.Plugins.CommandLinePluginInterface"
 
 Q_DECLARE_INTERFACE(CommandLinePluginInterface, CommandLinePluginInterface_iid)
 

@@ -30,7 +30,7 @@
 class SystemUserGroupsPlugin : public QObject, PluginInterface, UserGroupsBackendInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.SystemUserGroups")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.SystemUserGroups")
 	Q_INTERFACES(PluginInterface UserGroupsBackendInterface)
 public:
 	SystemUserGroupsPlugin( QObject* paren = nullptr );

@@ -35,7 +35,7 @@ class DemoClient;
 class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.PluginFeatureInterface")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.PluginFeatureInterface")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
 	DemoFeaturePlugin( QObject* parent = nullptr );

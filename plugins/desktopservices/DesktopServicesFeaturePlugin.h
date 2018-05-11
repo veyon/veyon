@@ -34,7 +34,7 @@ class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.DesktopServices")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.DesktopServices")
 	Q_INTERFACES(PluginInterface
 				 FeatureProviderInterface
 				 ConfigurationPagePluginInterface)

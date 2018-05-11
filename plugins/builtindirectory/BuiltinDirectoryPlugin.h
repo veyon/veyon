@@ -40,7 +40,7 @@ class BuiltinDirectoryPlugin : public QObject,
 		CommandLinePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.BuiltinDirectory")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.BuiltinDirectory")
 	Q_INTERFACES(PluginInterface
 				 NetworkObjectDirectoryPluginInterface
 				 ConfigurationPagePluginInterface

@@ -30,7 +30,7 @@
 class ShellCommandLinePlugin : public QObject, CommandLinePluginInterface, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.ShellCommandLineInterface")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ShellCommandLineInterface")
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ShellCommandLinePlugin( QObject* parent = nullptr );

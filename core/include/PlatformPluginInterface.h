@@ -50,7 +50,7 @@ public:
 
 typedef QList<PlatformPluginInterface *> PlatformPluginInterfaceList;
 
-#define PlatformPluginInterface_iid "org.veyon.Veyon.Plugins.PlatformPluginInterface"
+#define PlatformPluginInterface_iid "io.veyon.Veyon.Plugins.PlatformPluginInterface"
 
 Q_DECLARE_INTERFACE(PlatformPluginInterface, PlatformPluginInterface_iid)
 

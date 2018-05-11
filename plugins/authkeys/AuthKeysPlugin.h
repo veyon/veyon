@@ -38,7 +38,7 @@ class AuthKeysPlugin : public QObject,
 		ConfigurationPagePluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "org.veyon.Veyon.Plugins.AuthKeys")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.AuthKeys")
 	Q_INTERFACES(PluginInterface
 				 CommandLinePluginInterface
 				 ConfigurationPagePluginInterface)

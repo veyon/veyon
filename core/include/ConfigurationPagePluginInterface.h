@@ -40,7 +40,7 @@ public:
 
 typedef QList<ConfigurationPagePluginInterface> ConfigurationPagePluginInterfaceList;
 
-#define ConfigurationPagePluginInterface_iid "org.veyon.Veyon.Plugins.ConfigurationPagePluginInterface"
+#define ConfigurationPagePluginInterface_iid "io.veyon.Veyon.Plugins.ConfigurationPagePluginInterface"
 
 Q_DECLARE_INTERFACE(ConfigurationPagePluginInterface, ConfigurationPagePluginInterface_iid)
 
