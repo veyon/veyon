@@ -74,6 +74,7 @@
 
 #define FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), INT, computerMonitoringUpdateInterval, setComputerMonitoringUpdateInterval, "ComputerMonitoringUpdateInterval", "Master" );	\
+	OP( VeyonConfiguration, VeyonCore::config(), INT, computerDisplayRoleContent, setComputerDisplayRoleContent, "ComputerDisplayRoleContent", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), COLOR, computerMonitoringBackgroundColor, setComputerMonitoringBackgroundColor, "ComputerMonitoringBackgroundColor", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, accessControlForMasterEnabled, setAccessControlForMasterEnabled, "AccessControlForMasterEnabled", "Master" );	\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, autoAdjustGridSize, setAutoAdjustGridSize, "AutoAdjustGridSize", "Master" );	\

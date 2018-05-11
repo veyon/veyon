@@ -80,6 +80,7 @@ public slots:
 	void setUserConfigurationDirectory( const QString & );
 	void setScreenshotDirectory( const QString & );
 	void setComputerMonitoringUpdateInterval( int );
+	void setComputerDisplayRoleContent( int );
 	void setComputerMonitoringBackgroundColor( const QColor& );
 	void setAccessControlForMasterEnabled( bool );
 	void setAutoAdjustGridSize( bool );
