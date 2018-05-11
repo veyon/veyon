@@ -40,6 +40,13 @@ public:
 		UidRole = Qt::UserRole
 	};
 
+	enum DisplayRoleContent {
+		DisplayUserAndComputerName,
+		DisplayUserName,
+		DisplayComputerName,
+		DisplayRoleContentCount
+	};
+
 	ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
 
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
@@ -82,12 +89,14 @@ private:
 	QImage prepareIcon( const QImage& icon );
 	QImage computerDecorationRole( ComputerControlInterface::Pointer controlInterface ) const;
 	QString computerToolTipRole( ComputerControlInterface::Pointer controlInterface ) const;
-	static QString computerDisplayRole( ComputerControlInterface::Pointer controlInterface );
+	QString computerDisplayRole( ComputerControlInterface::Pointer controlInterface ) const;
 	static QString computerStateDescription( ComputerControlInterface::Pointer controlInterface );
 	static QString loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface );
 	QString activeFeatures(  ComputerControlInterface::Pointer controlInterface ) const;
 
 	VeyonMaster* m_master;
+
+	DisplayRoleContent m_displayRoleContent;
 
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;

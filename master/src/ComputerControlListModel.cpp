@@ -36,6 +36,7 @@
 ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
 	QAbstractListModel( parent ),
 	m_master( masterCore ),
+	m_displayRoleContent( static_cast<DisplayRoleContent>( VeyonCore::config().computerDisplayRoleContent() ) ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
@@ -326,15 +327,16 @@ QString ComputerControlListModel::computerToolTipRole( ComputerControlInterface:
 
 
 
-QString ComputerControlListModel::computerDisplayRole( ComputerControlInterface::Pointer controlInterface )
+QString ComputerControlListModel::computerDisplayRole( ComputerControlInterface::Pointer controlInterface ) const
 {
-	if( controlInterface->state() == ComputerControlInterface::Connected &&
+	if( m_displayRoleContent != DisplayComputerName &&
+			controlInterface->state() == ComputerControlInterface::Connected &&
 			controlInterface->user().isEmpty() == false )
 	{
 		auto user = controlInterface->user();
 
 		// do we have full name information?
-		QRegExp fullNameRX( "(.*) \\((.*)\\)" );
+		QRegExp fullNameRX( QStringLiteral("(.*) \\((.*)\\)") );
 		if( fullNameRX.indexIn( user ) >= 0 )
 		{
 			if( fullNameRX.cap( 2 ).isEmpty() == false )
@@ -347,10 +349,22 @@ QString ComputerControlListModel::computerDisplayRole( ComputerControlInterface:
 			}
 		}
 
-		return QStringLiteral("%1 - %2").arg( user, controlInterface->computer().name() );
+		if( m_displayRoleContent == DisplayUserName )
+		{
+			return user;
+		}
+		else
+		{
+			return QStringLiteral("%1 - %2").arg( user, controlInterface->computer().name() );
+		}
 	}
 
-	return controlInterface->computer().name();
+	if( m_displayRoleContent != DisplayUserName )
+	{
+		return controlInterface->computer().name();
+	}
+
+	return QString();
 }
 
 
