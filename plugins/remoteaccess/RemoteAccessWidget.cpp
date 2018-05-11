@@ -138,11 +138,9 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 
 
-
 RemoteAccessWidgetToolBar::~RemoteAccessWidgetToolBar()
 {
 }
-
 
 
 
@@ -154,7 +152,6 @@ void RemoteAccessWidgetToolBar::appear()
 		m_showHideTimeLine.resume();
 	}
 }
-
 
 
 
@@ -184,7 +181,6 @@ void RemoteAccessWidgetToolBar::leaveEvent( QEvent *event )
 	QTimer::singleShot( 500, this, SLOT( disappear() ) );
 	QWidget::leaveEvent( event );
 }
-
 
 
 
@@ -227,12 +223,10 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 
 
 
-
 void RemoteAccessWidgetToolBar::updateConnectionAnimation()
 {
 	repaint();
 }
-
 
 
 
@@ -244,7 +238,6 @@ void RemoteAccessWidgetToolBar::updatePosition()
 		move( x(), qMax( -height(), -newY ) );
 	}
 }
-
 
 
 
@@ -268,7 +261,6 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 	// we update
 	QTimer::singleShot( 1000, this, SLOT( update() ) );
 }
-
 
 
 
@@ -306,7 +298,6 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 
 
 
-
 RemoteAccessWidget::~RemoteAccessWidget()
 {
 	delete m_coreConnection;
@@ -323,13 +314,11 @@ void RemoteAccessWidget::enterEvent( QEvent* event )
 
 
 
-
 void RemoteAccessWidget::leaveEvent( QEvent* event )
 {
 	m_toolBar->appear();
 	QWidget::leaveEvent( event );
 }
-
 
 
 
@@ -340,7 +329,6 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 
 	QWidget::resizeEvent( event );
 }
-
 
 
 
@@ -379,7 +367,6 @@ void RemoteAccessWidget::toggleFullScreen( bool _on )
 
 
 
-
 void RemoteAccessWidget::toggleViewOnly( bool viewOnly )
 {
 	m_vncView->setViewOnly( viewOnly );
@@ -389,10 +376,7 @@ void RemoteAccessWidget::toggleViewOnly( bool viewOnly )
 
 
 
-
 void RemoteAccessWidget::takeScreenshot()
 {
 	Screenshot().take( m_computerControlInterface );
 }
-
-
