@@ -34,7 +34,6 @@
 #include <QHostAddress>
 #include <QLabel>
 #include <QProcessEnvironment>
-#include <QWizardPage>
 
 #include "ComputerControlInterface.h"
 #include "Filesystem.h"
@@ -287,12 +286,6 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 	for( auto widget : widgets )
 	{
 		widget->setWindowTitle( widget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
-	}
-
-	auto wizardPages = topLevelWidget->findChildren<QWizardPage *>();
-	for( auto wizardPage : wizardPages )
-	{
-		wizardPage->setTitle( wizardPage->title().replace( appName, VeyonCore::applicationName() ) );
 	}
 
 	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
