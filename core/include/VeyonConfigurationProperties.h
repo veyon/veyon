@@ -28,6 +28,7 @@
 
 #define FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)		\
 	OP( VeyonConfiguration, VeyonCore::config(), JSONOBJECT, pluginVersions, setPluginVersions, "PluginVersions", "Core" );			\
+	OP( VeyonConfiguration, VeyonCore::config(), STRING, installationID, setInstallationID, "InstallationID", "Core" );			\
 
 #define FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, applicationName, setApplicationName, "ApplicationName", "UI" );			\

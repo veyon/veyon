@@ -52,6 +52,7 @@ public:
 	// macro expansion :-(
 public slots:
 	void setPluginVersions( const QJsonObject& );
+	void setInstallationID( const QString& );
 	void setApplicationName( const QString& );
 	void setUiLanguage( const QString& );
 	void setHighDPIScalingEnabled( bool );
