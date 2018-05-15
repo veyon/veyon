@@ -338,6 +338,11 @@ void VeyonCore::initConfiguration()
 {
 	m_config = new VeyonConfiguration();
 
+	if( QUuid( config().installationID() ).isNull() )
+	{
+		config().setInstallationID( formattedUuid( QUuid::createUuid() ) );
+	}
+
 	if( config().applicationName().isEmpty() == false )
 	{
 		m_applicationName = config().applicationName();
