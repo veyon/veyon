@@ -88,31 +88,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>قواعد التحكم في الوصول</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>إضافة قاعدة للتحكم في الوصول</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>إزالة قاعدة للتحكم في الوصول</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>نقل القاعدة المحددة لأسفل</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>نقل القاعدة المحددة لأعلى</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>تعديل القاعدة المحددة</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>أدخل اسم المستخدم</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -120,7 +120,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>حق الوصول مسموح</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -128,7 +128,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>حق الوصول ممنوع</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -1557,7 +1557,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>عرض المساعدة حول الأمر</translation>
     </message>
     <message>
         <source>Block internet</source>
@@ -1813,7 +1813,8 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>أدخل اسم المستخدم
+</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2241,7 +2242,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>عرض المساعدة حول الأمر</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2429,7 +2430,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>حق الوصول ممنوع</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2653,7 +2654,7 @@ Examples:
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>يرجى إدخال اسم المستخدم وكلمة المرور من أجل الوصول إلى الحواسيب.</translation>
     </message>
 </context>
 <context>
@@ -2664,7 +2665,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>انقر فوق هذا الزر لتشغيل كل الحواسيب. بهذه الطريقة لا تحتاج إلى تشغيل كل حاسوب يدويا.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2672,7 +2673,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>انقر على هذا الزر لإعادة تشغيل كافة الحواسيب.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2684,30 +2685,30 @@ Examples:
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>إيقاف التشغيل / إعادة تشغيل حاسوب</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>تاكيد إعادة التشغيل</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>تاكيد إيقاف التشغيل</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>هل تريد حقًا إعادة تشغيل الحاسوب المحدد؟</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>هل تريد حقًا إيقاف تشغيل الحاسوب المحدد؟</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>عرض عن بعد</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -2719,15 +2720,15 @@ Examples:
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>افتح نافذة التحكم عن بعد لحاسوب</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>التحكم عن بعد</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>عرض عن بعد أو التحكم في الحاسوب</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
@@ -2735,7 +2736,7 @@ Examples:
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
+        <translation>عرض المساعدة حول الأمر</translation>
     </message>
 </context>
 <context>
@@ -2757,7 +2758,7 @@ Examples:
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>إرسال اختصار</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2797,7 +2798,7 @@ Examples:
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>قائمة</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
@@ -2813,25 +2814,25 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>لقطة شاشة</translation>
     </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation type="unfinished"/>
+        <translation>اختيار الغرفة</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>أدخل مرشح البحث ...</translation>
     </message>
 </context>
 <context>
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
+        <translation>الرجاء إدخال برامج أو أوامر لتشغيلها على الحاسوب (الحواسيب) المحددة. يمكنك فصل العديد من البرامج / الأوامر بواسطة سطر.</translation>
     </message>
     <message>
         <source>Run programs</source>
@@ -2865,7 +2866,7 @@ Examples:
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>غير معروف</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2873,14 +2874,14 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>لقطة شاشة</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>لقطة شاشة</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>

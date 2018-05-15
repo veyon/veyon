@@ -319,11 +319,11 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Chaves de autenticação</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Introdução</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -351,15 +351,15 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Apagar chave</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Importar chave</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Exportar chave</translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -433,11 +433,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor verifique suas permissões.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Chave contém caracteres inválidos!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -477,7 +477,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo &quot;%1&quot; já existe.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -557,7 +557,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -572,19 +572,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Apagar chave de autenticação</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Listar chaves de autenticação</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Importar chave pública ou privada</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Exportar chave pública ou privada</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
@@ -596,7 +596,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>CHAVE</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
@@ -608,7 +608,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NOME</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
@@ -620,7 +620,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ARQUIVO</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -733,7 +733,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar uma sala ou computador</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
@@ -745,11 +745,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Listar todas as salas e computadores</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Remover uma sala ou computador</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -833,7 +833,7 @@ Examples:
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sala &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -849,11 +849,11 @@ Examples:
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>Sala</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Computador</translation>
     </message>
     <message>
         <source>Root</source>
@@ -937,7 +937,7 @@ Examples:
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Funcionalidades ativas: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1267,11 +1267,11 @@ Examples:
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar novo programa</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Remover programa selecionado</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1283,15 +1283,15 @@ Examples:
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>Novo programa</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>Novo website</translation>
     </message>
 </context>
 <context>
@@ -1322,7 +1322,7 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Executar programa &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1502,7 +1502,7 @@ Examples:
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>Método:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1521,7 +1521,7 @@ Examples:
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Configurações</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1551,11 +1551,11 @@ Examples:
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear acesso à internet</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Permitir acesso à Internet</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1563,7 +1563,7 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear internet</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
@@ -1571,7 +1571,7 @@ Examples:
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Desbloquear internet</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -1579,7 +1579,7 @@ Examples:
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Controlar acesso à internet</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
@@ -2168,11 +2168,11 @@ Examples:
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2488,7 +2488,7 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>Privilégios insuficientes</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
@@ -2595,7 +2595,7 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Cor de plano de fundo</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -2607,7 +2607,7 @@ Examples:
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar programa</translation>
     </message>
     <message>
         <source>Automatically open computer management</source>
@@ -2615,7 +2615,7 @@ Examples:
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Modos e funcionalidades</translation>
     </message>
 </context>
 <context>

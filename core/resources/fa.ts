@@ -141,7 +141,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>گروه های کاربر:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -318,7 +318,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>کلیدهای احراز هویت</translation>
     </message>
     <message>
         <source>Introduction</source>

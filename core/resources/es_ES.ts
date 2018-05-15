@@ -421,7 +421,7 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Consulte el &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de Administrador de Veyon&lt;/a&gt; para obtener más información.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -446,7 +446,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>¡Tipo de clave especificada no válida! Especifique &quot;%1&quot; o &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
@@ -518,7 +518,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>La clave &quot;%1/%2&quot; se ha importado correctamente. Verifique los permisos de archivo de &quot;%3&quot; para evitar accesos no autorizados.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -554,11 +554,11 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Error al establecer los permisos para el archivo de clave &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>La clave &quot;%1&quot; ahora es accesible por el grupo de usuarios &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -566,14 +566,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Error al leer el archivo de clave.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>Crear un nuevo par de claves de autenticación</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
@@ -605,63 +605,63 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>GRUPO DE ACCESO</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando ajusta los permisos de acceso a &lt;KEY&gt; de manera que solo el grupo de usuarios &lt;ACCESS GROUP&gt; tenga acceso de lectura a él.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NOMBRE</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando crea un nuevo par de claves de autenticación con nombre&lt;NAME&gt; y guarda la clave privada y pública en los directorios de clave configurados.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando elimina la clave de autenticación &lt;KEY&gt; del directorio de claves configurado. Tenga en cuenta que una clave no se puede recuperar una vez eliminada.</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ARCHIVO</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando exporta la clave de autenticación &lt;KEY&gt; a &lt;FILE&gt;. Si no se especifica &lt;FILE&gt;, se construirá un nombre a partir del nombre y tipo de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando importa la clave de autenticación &lt;KEY&gt; desde &lt;FILE&gt;. Si no se especifica &lt;FILE&gt;, se construirá un nombre a partir del nombre y tipo de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando enumera todas las claves de autenticación disponibles en el directorio de claves configurado. Si se especifica la opción &quot;%1&quot;, se mostrará una tabla con los detalles de las claves. Es posible que falten algunos detalles si no se puede acceder a una clave, p. ej. debido a la falta de permisos de lectura.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando extrae la clave pública asociada a la clave privada &lt;KEY&gt; y la guarda como la clave pública correspondiente.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, ¡especifique el comando sobre el cual mostrar ayuda!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPO</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ID PAR</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Soporte de línea de comando para administrar claves de autenticación</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para administrar claves de autenticación</translation>
     </message>
 </context>
 <context>
@@ -676,7 +676,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Grupo de acceso</translation>
     </message>
 </context>
 <context>
@@ -734,35 +734,35 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar ayuda para un comando específico</translation>
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Añadir aula o equipo</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Borrar todas las aulas y equipos</translation>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Vaciar todo o aulas y equipos individuales</translation>
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Listar todas las aulas y equipos</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar un aula o equipo</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Importar objetos desde un archivo</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Exportar objetos a un archivo</translation>
     </message>
     <message>
         <source>
@@ -790,19 +790,45 @@ Examples:
 
     %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 import &lt;FILE&gt; [room&lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Variables válidas: %name% %host% %mac% %room%
+
+Ejemplos:
+
+* Importar archivo CSV simple a un aula individual:
+
+%1 import equipos.csv room &quot;Aula 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Importar archivo CSV con el nombre del aula en la primera columna:
+
+%1 import equipos-con-aulas.csv &quot; format %room%,%name%,%mac%&quot;
+
+* Importar archivo de texto con pares clave/valor usando expresiones regulares:
+
+%1 import lista-equipos.txt room &quot;Aula 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST: (%host%:.*) $&quot;
+
+* Importar datos formateados arbitrariamente:
+
+%1 import datos.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+
+
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Tipo inválido especificado. Los valores válidos son &quot;%1&quot; o &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Object UID</source>
-        <translation type="unfinished"/>
+        <translation>UID de objeto</translation>
     </message>
     <message>
         <source>Parent UID</source>
-        <translation type="unfinished"/>
+        <translation>UID del padre</translation>
     </message>
     <message>
         <source>Type</source>
@@ -814,7 +840,7 @@ Examples:
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Dirección del equipo</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -822,67 +848,67 @@ Examples:
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Objeto especificado no encontrado.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>¡El archivo &quot;%1&quot; no existe!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se puede abrir el archivo &quot;%1&quot; para leer!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Argumento &quot;%1&quot; desconocido.</translation>
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Aula  &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Computador &quot;%1&quot; (dirección del equipo: &quot;%2&quot; Dirección MAC: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Objeto no clasificado &quot;%1&quot; con ID &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>Aula</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Equipo</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Raíz</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Inválido</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>Error al analizar la línea %1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Directorio de objetos de red que almacena objetos en configuración local</translation>
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Incorporado (equipos y aulas en configuración local)</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para administrar el directorio de objetos de red incorporado</translation>
     </message>
     <message>
         <source>
@@ -901,19 +927,34 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Variables válidas: %type% %name% %host% %mac% %room%
+
+Ejemplos:
+
+* Exportar todos los objetos a un archivo CSV:
+
+%1 export objetos.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Exportar todos los equipos de un aula a un archivo CSV:
+
+%1 export equipos.csv room &quot;Aula 01&quot; format &quot;%name%;%host%;%mac%&quot;</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se especificó ninguna cadena de formato o expresión regular!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se puede abrir el archivo &quot;%1&quot; para escribir!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se especificó una cadena de formato!</translation>
     </message>
 </context>
 <context>
@@ -1126,7 +1167,7 @@ Examples:
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Actualizar y guardar la configuración del programa y los complementos</translation>
     </message>
 </context>
 <context>
@@ -1137,11 +1178,11 @@ Examples:
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo establecer la configuración del cortafuegos para el Servidor %1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo establecer la configuración del cortafuegos para el Worker %1.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1149,7 +1190,7 @@ Examples:
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>La configuración no es escribible. ¡Por favor revise sus permisos!</translation>
     </message>
 </context>
 <context>
@@ -1522,11 +1563,11 @@ Examples:
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Control de acceso a Internet</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Configuración</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1537,19 +1578,19 @@ Examples:
     <name>InternetAccessControlDummy</name>
     <message>
         <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation type="unfinished"/>
+        <translation>Este es el backend ficticio que no tiene ningún efecto en el acceso a internet. Elija un backend funcional adecuado para su sistema operativo y entorno. Visite &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; para obtener más información sobre cómo obtener complementos de backend adicionales.</translation>
     </message>
     <message>
         <source>Internet access control not available</source>
-        <translation type="unfinished"/>
+        <translation>Control de acceso a Internet no disponible</translation>
     </message>
     <message>
         <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"/>
+        <translation>No se configuró ningún backend de control de acceso a Internet. Utilice el Configurador de Veyon para cambiar la configuración.</translation>
     </message>
     <message>
         <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Backend ficticio para el control de acceso a Internet</translation>
     </message>
 </context>
 <context>
@@ -1572,7 +1613,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Haga clic en este botón para bloquear el acceso a internet.</translation>
     </message>
     <message>
         <source>Unblock internet</source>
@@ -1580,7 +1621,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Haga clic en este botón para permitir el acceso a internet.</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
@@ -1588,7 +1629,7 @@ Examples:
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para controlar el acceso a internet</translation>
     </message>
 </context>
 <context>
@@ -2165,11 +2206,11 @@ Examples:
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Archivo de certificado CA personalizado</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2181,57 +2222,67 @@ Examples:
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>v.g. (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>v.g. (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>v.g. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>v.g. (objectClass=room) o (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>v.g. (objectClass=container) o (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar el DN base configurado. Verifique el parámetro base DN.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>El DN base de LDAP se ha consultado con éxito. Se encontraron las siguientes entradas:
+
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo consultar el DN base a través de los contextos de nombres. Verifique el parámetro de atributo de contexto de nombres.
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Archivos de certificado (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo conectar al servidor LDAP. Por favor, revise los parámetros del servidor.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo vincular al servidor LDAP. Verifique los parámetros del servidor y las credenciales de enlace.
+
+%1</translation>
     </message>
 </context>
 <context>
@@ -2265,15 +2316,15 @@ Examples:
     </message>
     <message>
         <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Proporcionar integración LDAP/AD para Veyon</translation>
     </message>
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (cargar equipos y aulas desde LDAP/AD)</translation>
     </message>
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (cargar usuarios y grupos desde LDAP/AD)</translation>
     </message>
 </context>
 <context>
@@ -2481,11 +2532,11 @@ Examples:
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Alinear equipos a la rejilla</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
+        <translation>Usar ubicación de equipos personalizada</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -2493,11 +2544,11 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>Privilegios insuficientes</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo iniciar con privilegios administrativos. ¡Asegúrese de que esté instalado un programa similar a sudo para su entorno de escritorio! El programa se ejecutará con privilegios de usuario normales.</translation>
     </message>
 </context>
 <context>
@@ -2604,7 +2655,7 @@ Examples:
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>Intervalo de actualización de miniaturas</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2616,11 +2667,11 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer management</source>
-        <translation type="unfinished"/>
+        <translation>Automáticamente abre la administración del equipo</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Modos y funciones</translation>
     </message>
 </context>
 <context>
@@ -3031,7 +3082,8 @@ Examples:
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Al habilitar esta opción, el servicio iniciará un proceso de servidor para cada sesión interactiva en un equipo.
+Por lo general, esto es necesario para admitir servidores de terminales.</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
@@ -3042,23 +3094,23 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Iniciando servicio %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Deteniendo servicio %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Registrando servicio %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Eliminando registro de servicio %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>Control de servicio</translation>
     </message>
 </context>
 <context>
@@ -3108,19 +3160,19 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>Ejecutar archivo de comandos</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>¡El archivo &quot;%1&quot; no existe!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Ejecución interactiva de shell y script para el Control de Veyon</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>Comandos para funcionalidades de shell</translation>
     </message>
 </context>
 <context>
@@ -3134,11 +3186,11 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>Backend de grupos de usuarios para grupos de usuarios del sistema</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>Predeterminado (grupos de usuarios del sistema)</translation>
     </message>
 </context>
 <context>
@@ -3264,14 +3316,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>No se especificó ningún módulo o no se encontró el módulo; los módulos disponibles son:</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Servicio Veyon</translation>
     </message>
 </context>
 <context>
@@ -3307,31 +3359,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el servicio &quot;%1&quot; ya está instalado.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el servicio &quot;%1&quot; no se pudo instalar.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el servicio &quot;%1&quot; se ha instalado correctamente.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el servicio &quot;%1&quot; no se pudo desinstalar.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el servicio &quot;%1&quot; se ha desinstalado correctamente.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el tipo de servicio de inicio &quot;%1&quot; no se pudo cambiar.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: el servicio &quot;%1&quot; no se pudo encontrar.</translation>
     </message>
 </context>
 <context>
