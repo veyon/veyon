@@ -51,21 +51,6 @@
 
 VeyonCore* VeyonCore::s_instance = nullptr;
 
-void VeyonCore::setupApplicationParameters()
-{
-	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
-	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
-	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
-
-	if( VeyonConfiguration().isHighDPIScalingEnabled() )
-	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-		QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
-#endif
-	}
-}
-
-
 
 VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponentName ) :
 	QObject( application ),
@@ -85,86 +70,27 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 {
 	Q_ASSERT( application != nullptr );
 
-	setupApplicationParameters();
-
 	s_instance = this;
 
-	// initialize plugin manager and load platform plugins first
-	m_pluginManager = new PluginManager( this );
-	m_pluginManager->loadPlatformPlugins();
+	setupApplicationParameters();
 
-	// initialize platform plugin manager and initialize used platform plugin
-	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
-	m_platformPlugin = m_platformPluginManager->platformPlugin();
+	initPlatformPlugin();
 
-	m_config = new VeyonConfiguration();
+	initConfiguration();
 
-	if( hasSessionId() )
-	{
-		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( sessionId() ) );
-	}
-	else
-	{
-		m_logger = new Logger( appComponentName );
-	}
+	initLogging( appComponentName );
 
-	QLocale configuredLocale( QLocale::C );
+	initLocaleAndTranslation();
 
-	QRegExp localeRegEx( QStringLiteral( "[^(]*\\(([^)]*)\\)") );
-	if( localeRegEx.indexIn( config().uiLanguage() ) == 0 )
-	{
-		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
-	}
-
-	if( configuredLocale.language() != QLocale::English )
-	{
-		auto tr = new QTranslator;
-		if( configuredLocale == QLocale::C ||
-				tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
-		{
-			configuredLocale = QLocale::system();
-			tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
-		}
-
-		QLocale::setDefault( configuredLocale );
-
-		QCoreApplication::installTranslator( tr );
-
-		auto qtTr = new QTranslator;
-#ifdef QT_TRANSLATIONS_DIR
-		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), QStringLiteral( QT_TRANSLATIONS_DIR ) );
-#else
-		qtTr->load( QStringLiteral( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
-#endif
-		QCoreApplication::installTranslator( qtTr );
-	}
-
-	if( configuredLocale.language() == QLocale::Hebrew ||
-		configuredLocale.language() == QLocale::Arabic )
-	{
-		QApplication::setLayoutDirection( Qt::RightToLeft );
-	}
-
-	if( config().applicationName().isEmpty() == false )
-	{
-		m_applicationName = config().applicationName();
-	}
-
-	m_cryptoCore = new CryptoCore;
+	initCryptoCore();
 
 	initAuthentication( AuthenticationCredentials::None );
 
-	// load all other plugins
-	m_pluginManager->loadPlugins();
-	m_pluginManager->upgradePlugins();
+	initPlugins();
 
-	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
-	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
+	initManagers();
 
-	const Computer localComputer( NetworkObject::Uid::createUuid(),
-								  QStringLiteral("localhost"),
-								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().primaryServicePort() + sessionId() ) );
-	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
+	initLocalComputerControlInterface();
 }
 
 
@@ -240,6 +166,22 @@ QString VeyonCore::sharedLibrarySuffix()
 QString VeyonCore::sessionIdEnvironmentVariable()
 {
 	return QStringLiteral("VEYON_SESSION_ID");
+}
+
+
+
+void VeyonCore::setupApplicationParameters()
+{
+	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
+	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
+	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
+
+	if( VeyonConfiguration().isHighDPIScalingEnabled() )
+	{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
+		QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
+#endif
+	}
 }
 
 
@@ -382,6 +324,122 @@ QString VeyonCore::formattedUuid( QUuid uuid )
 bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 {
 	return QRegExp( "\\w+" ).exactMatch( authKeyName );
+}
+
+
+
+void VeyonCore::initPlatformPlugin()
+{
+	// initialize plugin manager and load platform plugins first
+	m_pluginManager = new PluginManager( this );
+	m_pluginManager->loadPlatformPlugins();
+
+	// initialize platform plugin manager and initialize used platform plugin
+	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
+	m_platformPlugin = m_platformPluginManager->platformPlugin();
+}
+
+
+
+void VeyonCore::initConfiguration()
+{
+	m_config = new VeyonConfiguration();
+
+	if( config().applicationName().isEmpty() == false )
+	{
+		m_applicationName = config().applicationName();
+	}
+}
+
+
+
+void VeyonCore::initLogging( const QString& appComponentName )
+{
+	if( hasSessionId() )
+	{
+		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( sessionId() ) );
+	}
+	else
+	{
+		m_logger = new Logger( appComponentName );
+	}
+}
+
+
+
+void VeyonCore::initLocaleAndTranslation()
+{
+	QLocale configuredLocale( QLocale::C );
+
+	QRegExp localeRegEx( QStringLiteral( "[^(]*\\(([^)]*)\\)") );
+	if( localeRegEx.indexIn( config().uiLanguage() ) == 0 )
+	{
+		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
+	}
+
+	if( configuredLocale.language() != QLocale::English )
+	{
+		auto tr = new QTranslator;
+		if( configuredLocale == QLocale::C ||
+				tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
+		{
+			configuredLocale = QLocale::system();
+			tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
+		}
+
+		QLocale::setDefault( configuredLocale );
+
+		QCoreApplication::installTranslator( tr );
+
+		auto qtTr = new QTranslator;
+#ifdef QT_TRANSLATIONS_DIR
+		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), QStringLiteral( QT_TRANSLATIONS_DIR ) );
+#else
+		qtTr->load( QStringLiteral( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
+#endif
+		QCoreApplication::installTranslator( qtTr );
+	}
+
+	if( configuredLocale.language() == QLocale::Hebrew ||
+		configuredLocale.language() == QLocale::Arabic )
+	{
+		QApplication::setLayoutDirection( Qt::RightToLeft );
+	}
+}
+
+
+
+void VeyonCore::initCryptoCore()
+{
+	m_cryptoCore = new CryptoCore;
+}
+
+
+
+void VeyonCore::initPlugins()
+{
+	// load all other (non-platform) plugins
+	m_pluginManager->loadPlugins();
+	m_pluginManager->upgradePlugins();
+}
+
+
+
+void VeyonCore::initManagers()
+{
+	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
+	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
+}
+
+
+
+void VeyonCore::initLocalComputerControlInterface()
+{
+	const Computer localComputer( NetworkObject::Uid::createUuid(),
+								  QStringLiteral("localhost"),
+								  QStringLiteral("%1:%2").arg( QHostAddress( QHostAddress::LocalHost ).toString() ).arg( config().primaryServicePort() + sessionId() ) );
+
+	m_localComputerControlInterface = new ComputerControlInterface( localComputer, this );
 }
 
 

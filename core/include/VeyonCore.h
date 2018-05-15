@@ -144,6 +144,14 @@ public:
 	} AuthenticationMethod;
 
 private:
+	void initPlatformPlugin();
+	void initConfiguration();
+	void initLogging( const QString& appComponentName );
+	void initLocaleAndTranslation();
+	void initCryptoCore();
+	void initPlugins();
+	void initManagers();
+	void initLocalComputerControlInterface();
 	bool initKeyFileAuthentication();
 
 	static VeyonCore* s_instance;
