@@ -150,14 +150,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 		m_applicationName = config().applicationName();
 	}
 
-	// initialize plugin manager and load platform plugins first
-	m_pluginManager = new PluginManager( this );
-	m_pluginManager->loadPlatformPlugins();
-
-	// initialize platform plugin manager and initialize used platform plugin
-	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
-	m_platformPlugin = m_platformPluginManager->platformPlugin();
-
 	m_cryptoCore = new CryptoCore;
 
 	initAuthentication( AuthenticationCredentials::None );
