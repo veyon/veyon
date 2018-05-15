@@ -309,7 +309,11 @@ QString VeyonCore::stripDomain( const QString& username )
 
 QString VeyonCore::formattedUuid( QUuid uuid )
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+	return uuid.toString( QUuid::WithoutBraces );
+#else
 	return uuid.toString().remove( QLatin1Char('{') ).remove( QLatin1Char('}') );
+#endif
 }
 
 
