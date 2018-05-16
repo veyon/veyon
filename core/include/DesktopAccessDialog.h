@@ -25,9 +25,10 @@
 #ifndef DESKTOP_ACCESS_DIALOG_H
 #define DESKTOP_ACCESS_DIALOG_H
 
-class QTimer;
-
 #include "FeatureProviderInterface.h"
+
+class FeatureWorkerManager;
+class QTimer;
 
 class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeatureProviderInterface, public PluginInterface
 {

@@ -28,6 +28,7 @@
 #include "FeatureProviderInterface.h"
 
 class QSystemTrayIcon;
+class FeatureWorkerManager;
 
 class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeatureProviderInterface, public PluginInterface
 {

@@ -34,8 +34,6 @@ class VeyonMasterInterface;
 class VeyonServerInterface;
 class VeyonWorkerInterface;
 
-class FeatureWorkerManager;
-
 // clazy:excludeall=copyable-polymorphic
 
 class VEYON_CORE_EXPORT FeatureProviderInterface
