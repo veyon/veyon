@@ -30,7 +30,6 @@
 #include "SimpleFeatureProvider.h"
 
 class FeatureWorkerManager;
-class QTimer;
 
 class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public SimpleFeatureProvider, public PluginInterface
 {
@@ -126,7 +125,7 @@ private:
 
 	Choice m_choice;
 
-	QTimer* m_abortTimer;
+	QTimer m_abortTimer;
 
 signals:
 	void finished();

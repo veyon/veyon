@@ -41,9 +41,9 @@ DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
 										   tr( "Desktop access dialog" ), QString(), QString() ) ),
 	m_features( { m_desktopAccessDialogFeature } ),
 	m_choice( ChoiceNone ),
-	m_abortTimer( new QTimer( this ) )
+	m_abortTimer( this )
 {
-	m_abortTimer->setSingleShot( true );
+	m_abortTimer.setSingleShot( true );
 }
 
 
@@ -65,8 +65,8 @@ void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, cons
 									   addArgument( UserArgument, user ).
 									   addArgument( HostArgument, host ) );
 
-	connect( m_abortTimer, &QTimer::timeout, this, [=]() { abort( featureWorkerManager ); } );
-	m_abortTimer->start( DialogTimeout );
+	connect( &m_abortTimer, &QTimer::timeout, this, [=]() { abort( featureWorkerManager ); } );
+	m_abortTimer.start( DialogTimeout );
 }
 
 
@@ -91,7 +91,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, co
 
 		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature );
 
-		m_abortTimer->stop();
+		m_abortTimer.stop();
 
 		emit finished();
 
