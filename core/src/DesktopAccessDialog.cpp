@@ -82,42 +82,6 @@ void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 
 
 
-bool DesktopAccessDialog::startFeature( VeyonMasterInterface& master, const Feature& feature,
-										const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool DesktopAccessDialog::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									   const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool DesktopAccessDialog::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-												ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
-
-
-
 bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&

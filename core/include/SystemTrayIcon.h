@@ -25,12 +25,12 @@
 #ifndef SYSTEM_TRAY_ICON_H
 #define SYSTEM_TRAY_ICON_H
 
-#include "FeatureProviderInterface.h"
+#include "SimpleFeatureProvider.h"
 
 class QSystemTrayIcon;
 class FeatureWorkerManager;
 
-class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeatureProviderInterface, public PluginInterface
+class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public SimpleFeatureProvider, public PluginInterface
 {
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
@@ -79,15 +79,6 @@ public:
 	{
 		return m_features;
 	}
-
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
 

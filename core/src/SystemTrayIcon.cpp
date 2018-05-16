@@ -79,42 +79,6 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 
-bool SystemTrayIcon::startFeature( VeyonMasterInterface& master, const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool SystemTrayIcon::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool SystemTrayIcon::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-										   ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
-
-
-
 bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
 	if( m_systemTrayIconFeature.uid() == message.featureUid() )

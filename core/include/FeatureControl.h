@@ -25,9 +25,9 @@
 #ifndef FEATURE_CONTROL_H
 #define FEATURE_CONTROL_H
 
-#include "FeatureProviderInterface.h"
+#include "SimpleFeatureProvider.h"
 
-class VEYON_CORE_EXPORT FeatureControl : public QObject, public FeatureProviderInterface, public PluginInterface
+class VEYON_CORE_EXPORT FeatureControl : public QObject, public SimpleFeatureProvider, public PluginInterface
 {
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
@@ -72,18 +72,10 @@ public:
 		return m_features;
 	}
 
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
 	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
-
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
 	enum Commands

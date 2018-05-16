@@ -55,30 +55,6 @@ bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& co
 
 
 
-bool FeatureControl::startFeature( VeyonMasterInterface& master, const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool FeatureControl::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
 bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   ComputerControlInterface::Pointer computerControlInterface )
 {
@@ -109,16 +85,6 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const F
 
 		return true;
 	}
-
-	return false;
-}
-
-
-
-bool FeatureControl::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
-{
-	Q_UNUSED(worker);
-	Q_UNUSED(message);
 
 	return false;
 }

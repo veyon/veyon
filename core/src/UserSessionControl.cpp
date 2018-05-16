@@ -95,18 +95,6 @@ bool UserSessionControl::startFeature( VeyonMasterInterface& master, const Featu
 
 
 
-bool UserSessionControl::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									  const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
 bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 											   ComputerControlInterface::Pointer computerControlInterface )
 {
@@ -154,16 +142,6 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, con
 	{
 		VeyonCore::platform().userFunctions().logout();
 	}
-
-	return false;
-}
-
-
-
-bool UserSessionControl::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
-{
-	Q_UNUSED(worker);
-	Q_UNUSED(message);
 
 	return false;
 }
