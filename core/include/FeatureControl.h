@@ -88,8 +88,8 @@ private:
 		ActiveFeatureList,
 	};
 
-	Feature m_featureControlFeature;
-	FeatureList m_features;
+	const Feature m_featureControlFeature;
+	const FeatureList m_features;
 
 	FeatureUidList m_activeFeatures;
 

@@ -94,8 +94,8 @@ private:
 		CommandCount
 	};
 
-	Feature m_screenLockFeature;
-	FeatureList m_features;
+	const Feature m_screenLockFeature;
+	const FeatureList m_features;
 
 	LockWidget* m_lockWidget;
 

@@ -86,10 +86,10 @@ private:
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 	static void broadcastWOLPacket( QString macAddress );
 
-	Feature m_powerOnFeature;
-	Feature m_rebootFeature;
-	Feature m_powerDownFeature;
-	FeatureList m_features;
+	const Feature m_powerOnFeature;
+	const Feature m_rebootFeature;
+	const Feature m_powerDownFeature;
+	const FeatureList m_features;
 
 };
 

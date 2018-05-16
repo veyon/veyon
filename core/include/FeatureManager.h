@@ -67,11 +67,10 @@ public slots:
 
 private:
 	FeatureList m_features;
-	FeatureList m_emptyFeatureList;
+	const FeatureList m_emptyFeatureList;
 	QObjectList m_pluginObjects;
 	FeatureProviderInterfaceList m_featurePluginInterfaces;
-	Feature m_dummyFeature;
-
+	const Feature m_dummyFeature;
 
 };
 

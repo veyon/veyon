@@ -106,11 +106,11 @@ private:
 		DemoServerHost,
 	};
 
-	Feature m_fullscreenDemoFeature;
-	Feature m_windowDemoFeature;
-	Feature m_demoServerFeature;
+	const Feature m_fullscreenDemoFeature;
+	const Feature m_windowDemoFeature;
+	const Feature m_demoServerFeature;
+	const FeatureList m_features;
 
-	FeatureList m_features;
 	QString m_demoAccessToken;
 	QStringList m_demoClientHosts;
 

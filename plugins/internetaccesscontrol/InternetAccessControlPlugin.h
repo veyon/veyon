@@ -126,9 +126,9 @@ private:
 
 	QMap<QString, QString> m_commands;
 
-	Feature m_blockInternetFeature;
-	Feature m_unblockInternetFeature;
-	FeatureList m_features;
+	const Feature m_blockInternetFeature;
+	const Feature m_unblockInternetFeature;
+	const FeatureList m_features;
 
 };
 

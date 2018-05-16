@@ -93,8 +93,8 @@ private:
 		FeatureMessageArgumentCount
 	};
 
-	Feature m_textMessageFeature;
-	FeatureList m_features;
+	const Feature m_textMessageFeature;
+	const FeatureList m_features;
 
 };
 

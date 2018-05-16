@@ -75,8 +75,8 @@ public:
 	}
 
 private:
-	Feature m_monitoringModeFeature;
-	FeatureList m_features;
+	const Feature m_monitoringModeFeature;
+	const FeatureList m_features;
 
 };
 

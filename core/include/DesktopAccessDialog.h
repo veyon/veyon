@@ -120,8 +120,8 @@ private:
 		ChoiceArgument
 	};
 
-	Feature m_desktopAccessDialogFeature;
-	FeatureList m_features;
+	const Feature m_desktopAccessDialogFeature;
+	const FeatureList m_features;
 
 	Choice m_choice;
 

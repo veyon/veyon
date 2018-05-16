@@ -106,9 +106,10 @@ private slots:
 private:
 	bool initAuthentication();
 
-	Feature m_remoteViewFeature;
-	Feature m_remoteControlFeature;
-	FeatureList m_features;
+	const Feature m_remoteViewFeature;
+	const Feature m_remoteControlFeature;
+	const FeatureList m_features;
+
 	QMap<QString, QString> m_commands;
 
 };

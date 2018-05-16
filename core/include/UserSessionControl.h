@@ -101,9 +101,9 @@ private:
 	void queryUserInformation();
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
 
-	Feature m_userSessionInfoFeature;
-	Feature m_userLogoutFeature;
-	FeatureList m_features;
+	const Feature m_userSessionInfoFeature;
+	const Feature m_userLogoutFeature;
+	const FeatureList m_features;
 
 	QThread* m_userInfoQueryThread;
 	QTimer* m_userInfoQueryTimer;

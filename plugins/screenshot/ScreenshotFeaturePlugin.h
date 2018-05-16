@@ -83,8 +83,8 @@ public:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
-	Feature m_screenshotFeature;
-	FeatureList m_features;
+	const Feature m_screenshotFeature;
+	const FeatureList m_features;
 
 };
 

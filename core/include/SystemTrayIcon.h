@@ -98,8 +98,8 @@ private:
 		MessageTextArgument
 	};
 
-	Feature m_systemTrayIconFeature;
-	FeatureList m_features;
+	const Feature m_systemTrayIconFeature;
+	const FeatureList m_features;
 
 	QSystemTrayIcon* m_systemTrayIcon;
 
