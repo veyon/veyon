@@ -48,9 +48,9 @@ public:
 
 	/*!
 	 * \brief Start a feature on master side for given computer control interfaces
+	 * \param master a reference to a master instance implementing the VeyonMasterInterface
 	 * \param feature the feature to start
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
-	 * \param parent a pointer to the main window instance
 	 */
 	virtual bool startFeature( VeyonMasterInterface& master,
 							   const Feature& feature,
@@ -58,9 +58,9 @@ public:
 
 	/*!
 	 * \brief Stops a feature on master side for given computer control interfaces
+	 * \param master a reference to a master instance implementing the VeyonMasterInterface
 	 * \param feature the feature to stop
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
-	 * \param parent a pointer to the main window instance
 	 */
 	virtual bool stopFeature( VeyonMasterInterface& master,
 							  const Feature& feature,
@@ -68,6 +68,7 @@ public:
 
 	/*!
 	 * \brief Handles a received feature message inside master
+	 * \param master a reference to a master instance implementing the VeyonMasterInterface
 	 * \param message the message which has been received and needs to be handled
 	 * \param computerControlInterfaces the interface over which the message has been received
 	 */
@@ -77,14 +78,15 @@ public:
 
 	/*!
 	 * \brief Handles a received feature message inside server
+	 * \param server a reference to a server instance implementing the VeyonServerInterface
 	 * \param message the message which has been received and needs to be handled
-	 * \param featureWorkerManager a reference to a FeatureWorkerManager which can be used for starting/stopping workers and communicating with them
 	 */
 	virtual bool handleFeatureMessage( VeyonServerInterface& server,
 									   const FeatureMessage& message ) = 0;
 
 	/*!
 	 * \brief Handles a received feature message inside worker
+	 * \param worker a reference to a worker instance implementing the VeyonWorkerInterface
 	 * \param message the message which has been received and needs to be handled
 	 */
 	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker,
