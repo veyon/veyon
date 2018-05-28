@@ -195,7 +195,14 @@ bool VncProxyConnection::receiveClientMessage()
 			rfbSetEncodingsMsg setEncodingsMessage;
 			if( socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
 			{
-				return forwardDataToServer( sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t) );
+				const auto nEncodings = qFromBigEndian(setEncodingsMessage.nEncodings);
+				if( nEncodings > MAX_ENCODINGS )
+				{
+					qCritical( "VncProxyConnection::receiveClientMessage(): received too many encodings from client" );
+					socket->close();
+					return false;
+				}
+				return forwardDataToServer( sz_rfbSetEncodingsMsg + nEncodings * sizeof(uint32_t) );
 			}
 		}
 		break;
