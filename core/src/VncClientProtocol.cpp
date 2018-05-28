@@ -377,6 +377,9 @@ bool VncClientProtocol::receiveServerInitMessage()
 			return false;
 		}
 
+		static_assert( sizeof(m_pixelFormat) >= sz_rfbPixelFormat );
+		static_assert( sizeof(m_pixelFormat) >= sizeof(message.format) );
+
 		memcpy( &m_pixelFormat, &message.format, sz_rfbPixelFormat );
 
 		if( static_cast<uint32_t>( m_socket->peek( nameLength ).size() ) == nameLength )
