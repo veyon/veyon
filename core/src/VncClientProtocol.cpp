@@ -227,16 +227,22 @@ bool VncClientProtocol::readProtocol()
 {
 	if( m_socket->bytesAvailable() == sz_rfbProtocolVersionMsg )
 	{
-		char protocol[sz_rfbProtocolVersionMsg+1];
-		m_socket->read( protocol, sz_rfbProtocolVersionMsg );
-		protocol[sz_rfbProtocolVersionMsg] = 0;
-
-		int protocolMajor = 0, protocolMinor = 0;
-
-		if( sscanf( protocol, rfbProtocolVersionFormat, &protocolMajor, &protocolMinor ) != 2 ||
-				protocolMajor != 3 || protocolMinor < 7 )
+		char protocol[sz_rfbProtocolVersionMsg];
+		if( m_socket->read( protocol, sz_rfbProtocolVersionMsg ) != sz_rfbProtocolVersionMsg )
 		{
 			qCritical( "VncClientProtocol:::readProtocol(): protocol initialization failed" );
+			m_socket->close();
+
+			return false;
+		}
+
+		QRegExp protocolRX( QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") );
+
+		if( protocolRX.indexIn( QString::fromLatin1( protocol, sz_rfbProtocolVersionMsg ) ) != 0 ||
+			protocolRX.cap( 1 ).toInt() != 3 ||
+			protocolRX.cap( 2 ).toInt() < 7 )
+		{
+			qCritical( "VncClientProtocol:::readProtocol(): invalid protocol version" );
 			m_socket->close();
 
 			return false;
