@@ -377,8 +377,8 @@ bool VncClientProtocol::receiveServerInitMessage()
 			return false;
 		}
 
-		static_assert( sizeof(m_pixelFormat) >= sz_rfbPixelFormat );
-		static_assert( sizeof(m_pixelFormat) >= sizeof(message.format) );
+		static_assert( sizeof(m_pixelFormat) >= sz_rfbPixelFormat, "m_pixelFormat has wrong size" );
+		static_assert( sizeof(m_pixelFormat) >= sizeof(message.format), "m_pixelFormat too small" );
 
 		memcpy( &m_pixelFormat, &message.format, sz_rfbPixelFormat );
 
