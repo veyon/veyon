@@ -42,15 +42,16 @@ extern "C"
  */
 
 static void
-vncEncryptBytes(unsigned char *bytes, const char *passwd)
+vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 {
-	unsigned char key[8];
+	constexpr int KeyLength = 8;
+	unsigned char key[KeyLength];
 	unsigned int i;
 
 	/* key is simply password padded with nulls */
 
-	for (i = 0; i < 8; i++) {
-		if (i < strlen(passwd)) {
+	for (i = 0; i < KeyLength; i++) {
+		if (i < passwd_length) {
 			key[i] = passwd[i];
 		} else {
 			key[i] = 0;
@@ -59,7 +60,7 @@ vncEncryptBytes(unsigned char *bytes, const char *passwd)
 
 	rfbDesKey(key, EN0);
 
-	for (i = 0; i < CHALLENGESIZE; i += 8) {
+	for (i = 0; i < CHALLENGESIZE; i += KeyLength) {
 		rfbDes(bytes+i, bytes+i);
 	}
 }
@@ -307,7 +308,7 @@ bool VncClientProtocol::receiveSecurityChallenge()
 		uint8_t challenge[CHALLENGESIZE];
 		m_socket->read( (char *) challenge, CHALLENGESIZE );
 
-		vncEncryptBytes( challenge, m_vncPassword.constData() );
+		vncEncryptBytes( challenge, m_vncPassword.constData(), m_vncPassword.size() );
 
 		m_socket->write( (const char *) challenge, CHALLENGESIZE );
 
