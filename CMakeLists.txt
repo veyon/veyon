@@ -181,8 +181,8 @@ FOREACH(f ${IN_FILES})
     CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 ${CXXFLAGS}")
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall ${CFLAGS}")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 -fstack-protector-strong ${CXXFLAGS}")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fstack-protector-strong ${CFLAGS}")
 IF(NOT VEYON_BUILD_WIN32)
     SET(SYS_INC SYSTEM)
 ENDIF()
@@ -292,6 +292,7 @@ IF(WIN32)
 			COMMAND cp ${DLLDIR_LIB}/zlib1.dll ${TMP}
 			COMMAND cp ${DLLDIR_LIB}/libwinpthread-1.dll ${TMP}
 			COMMAND cp ${DLLDIR_GCC}/libstdc++-6.dll ${TMP}
+			COMMAND cp ${DLLDIR_GCC}/libssp-0.dll ${TMP}
 			COMMAND cp ${DLLDIR_GCC}/${DLL_GCC} ${TMP}
 			COMMAND mkdir -p ${TMP}/crypto
 			COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${TMP}/crypto
