@@ -210,7 +210,7 @@ bool VncProxyConnection::receiveClientMessage()
 	default:
 		if( m_rfbClientToServerMessageSizes.contains( messageType ) == false )
 		{
-			qCritical( "VncProxyConnection::receiveMessageFromClient(): received unknown message type: %d", (int) messageType );
+			qCritical( "VncProxyConnection::receiveClientMessage(): received unknown message type: %d", (int) messageType );
 			socket->close();
 			return false;
 		}
