@@ -135,7 +135,11 @@ bool VncProxyConnection::forwardDataToClient( qint64 size )
 {
 	if( m_vncServerSocket->bytesAvailable() >= size )
 	{
-		return m_proxyClientSocket->write( m_vncServerSocket->read( size ) ) == size;
+		const auto data = m_vncServerSocket->read( size );
+		if( data.size() == size )
+		{
+			return m_proxyClientSocket->write( data ) == size;
+		}
 	}
 
 	return false;
@@ -147,7 +151,11 @@ bool VncProxyConnection::forwardDataToServer( qint64 size )
 {
 	if( m_proxyClientSocket->bytesAvailable() >= size )
 	{
-		return m_vncServerSocket->write( m_proxyClientSocket->read( size ) ) == size;
+		const auto data = m_proxyClientSocket->read( size );
+		if( data.size() == size )
+		{
+			return m_vncServerSocket->write( data ) == size;
+		}
 	}
 
 	return false;
