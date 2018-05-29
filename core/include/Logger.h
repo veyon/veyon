@@ -62,7 +62,6 @@ public:
 	}
 
 	static void log( LogLevel ll, const QString &msg );
-	static void log( LogLevel ll, const char *format, ... );
 
 
 private:
