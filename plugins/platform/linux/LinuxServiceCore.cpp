@@ -25,6 +25,7 @@
 #include <QDBusReply>
 #include <QEventLoop>
 #include <QProcess>
+#include <QTimer>
 
 #include <proc/readproc.h>
 
@@ -39,10 +40,7 @@ LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
 	m_loginManager( LinuxCoreFunctions::systemdLoginManager() ),
 	m_multiSession( VeyonCore::config().isMultiSessionServiceEnabled() )
 {
-	QDBusConnection::systemBus().connect( m_loginManager->service(), m_loginManager->path(), m_loginManager->interface(),
-										 QStringLiteral("SessionNew"), this, SLOT(startServer(QString,QDBusObjectPath)) );
-	QDBusConnection::systemBus().connect( m_loginManager->service(), m_loginManager->path(), m_loginManager->interface(),
-										 QStringLiteral("SessionRemoved"), this, SLOT(stopServer(QString,QDBusObjectPath)) );
+	connectToLoginManager();
 }
 
 
@@ -65,6 +63,29 @@ void LinuxServiceCore::run()
 
 	QEventLoop eventLoop;
 	eventLoop.exec();
+}
+
+
+
+void LinuxServiceCore::connectToLoginManager()
+{
+	bool success = true;
+
+	const auto service = m_loginManager->service();
+	const auto path = m_loginManager->path();
+	const auto interface = m_loginManager->interface();
+
+	success &= QDBusConnection::systemBus().connect( service, path, interface, QStringLiteral("SessionNew"),
+													 this, SLOT(startServer(QString,QDBusObjectPath)) );
+
+	success &= QDBusConnection::systemBus().connect( service, path, interface, QStringLiteral("SessionRemoved"),
+													 this, SLOT(stopServer(QString,QDBusObjectPath)) );
+
+	if( success == false )
+	{
+		qWarning() << Q_FUNC_INFO << "could not connect to login manager! retrying in" << LoginManagerReconnectInterval << "msecs";
+		QTimer::singleShot( LoginManagerReconnectInterval, this, &LinuxServiceCore::connectToLoginManager );
+	}
 }
 
 

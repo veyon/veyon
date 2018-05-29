@@ -42,12 +42,17 @@ public:
 	void run();
 
 private slots:
+	void connectToLoginManager();
 	void startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
 	void stopServer( const QString& sessionPath );
 	void stopAllServers();
 
 private:
+	enum {
+		LoginManagerReconnectInterval = 3000
+	};
+
 	typedef struct {
 		QString id;
 		quint32 uid;
