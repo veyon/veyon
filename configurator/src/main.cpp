@@ -89,7 +89,7 @@ int main( int argc, char **argv )
 
 	mainWindow->show();
 
-	ilog( Info, "App.Exec" );
+	qInfo( "App.Exec" );
 
 	return app.exec();
 }
