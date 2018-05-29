@@ -32,7 +32,6 @@
 #include "VeyonConfiguration.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
-#include "Logger.h"
 #include "Filesystem.h"
 
 Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
