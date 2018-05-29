@@ -24,7 +24,6 @@
 
 #include "FeatureMessage.h"
 #include "VeyonCoreConnection.h"
-#include "Logger.h"
 #include "SocketDevice.h"
 
 extern "C"
@@ -101,9 +100,9 @@ VeyonCoreConnection::~VeyonCoreConnection()
 
 void VeyonCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
-	if( !m_vncConn )
+	if( m_vncConn == nullptr )
 	{
-		ilog( Error, "VeyonCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
+		qCritical( "VeyonCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
 		return;
 	}
 
