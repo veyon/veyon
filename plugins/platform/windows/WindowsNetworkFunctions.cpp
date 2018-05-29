@@ -29,7 +29,6 @@
 
 #include <QProcess>
 
-#include "Logger.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsNetworkFunctions.h"
 
@@ -43,7 +42,7 @@ static HRESULT WindowsFirewallInitialize2( INetFwPolicy2** fwPolicy2 )
 							IID_INetFwPolicy2, (void**)fwPolicy2 );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "CoCreateInstance() returned" << hr;
 	}
 
 	return hr;
@@ -77,7 +76,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 	hr = fwPolicy2->get_Rules( &pFwRules );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "get_Rules()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "get_Rules() returned" << hr;
 		goto cleanup;
 	}
 
@@ -87,7 +86,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 							IID_INetFwRule, (void**)&pFwRule );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "CoCreateInstance() returned" << hr;
 		goto cleanup;
 	}
 
@@ -112,7 +111,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 	hr = pFwRules->Add( pFwRule );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "Add()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "Add() returned" << hr;
 		goto cleanup;
 	}
 
@@ -150,7 +149,7 @@ static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
 	hr = fwPolicy2->get_Rules( &pFwRules );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "get_Rules()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "get_Rules() returned" << hr;
 		goto cleanup;
 	}
 
@@ -158,7 +157,7 @@ static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
 	hr = pFwRules->Remove( fwBstrRuleName );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "Remove()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "Remove() returned" << hr;
 		goto cleanup;
 	}
 
@@ -196,7 +195,7 @@ static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t*
 				return true;
 			}
 
-			ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
+			qCritical() << Q_FUNC_INFO << "WindowsFirewallAddApp2() returned" << hr;
 			return false;
 		}
 	}
@@ -232,7 +231,7 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 		hr = comInit;
 		if( FAILED( hr ) )
 		{
-			ilog_failedf( "CoInitializeEx()"," 0x%08lx\n", hr );
+			qCritical() << Q_FUNC_INFO << "CoInitializeEx() returned" << hr;
 			return false;
 		}
 	}
@@ -242,7 +241,7 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 	hr = WindowsFirewallInitialize2( &fwPolicy2 );
 	if( FAILED( hr ) )
 	{
-		ilog_failedf( "WindowsFirewallInitialize2()", "0x%08lx\n", hr );
+		qCritical() << Q_FUNC_INFO << "WindowsFirewallInitialize2() returned" << hr;
 		return false;
 	}
 
