@@ -243,7 +243,7 @@ void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext& context,
 
 	if( context.category && strcmp(context.category, "default") != 0 )
 	{
-		log( ll, QString( QStringLiteral( "[%1] " ) ).arg(context.category) + msg );
+		log( ll, QStringLiteral( "[%1] " ).arg(context.category) + msg );
 	}
 	else
 	{
@@ -268,7 +268,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 			if( lastMsgCount )
 			{
 				instance->outputMessage( formatMessage( lastMsgLevel, QStringLiteral( "---" ) ) );
-				instance->outputMessage( formatMessage( lastMsgLevel, QString( QStringLiteral( "Last message repeated %1 times" ) ).arg( lastMsgCount ) ) );
+				instance->outputMessage( formatMessage( lastMsgLevel, QStringLiteral( "Last message repeated %1 times" ).arg( lastMsgCount ) ) );
 				instance->outputMessage( formatMessage( lastMsgLevel, QStringLiteral( "---" ) ) );
 				lastMsgCount = 0;
 			}
