@@ -44,9 +44,9 @@ QString LinuxUserFunctions::fullName( const QString& username )
 
 		// Skip not real users
 		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-		        shell.endsWith( QStringLiteral( "/true" ) ) ||
-		        shell.endsWith( QStringLiteral( "/null" ) ) ||
-		        shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
+				shell.endsWith( QStringLiteral( "/true" ) ) ||
+				shell.endsWith( QStringLiteral( "/null" ) ) ||
+				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
 		{
 			return QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
 		}
@@ -77,78 +77,78 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	}
 
 	const QStringList ignoredGroups( {
-	    "daemon",
-	    "bin",
-	    "tty",
-	    "disk",
-	    "lp",
-	    "mail",
-	    "news",
-	    "uucp",
-	    "man",
-	    "proxy",
-	    "kmem",
-	    "dialout",
-	    "fax",
-	    "voice",
-	    "cdrom",
-	    "tape",
-	    "audio",
-	    "dip",
-	    "www-data",
-	    "backup",
-	    "list",
-	    "irc",
-	    "src",
-	    "gnats",
-	    "shadow",
-	    "utmp",
-	    "video",
-	    "sasl",
-	    "plugdev",
-	    "games",
-	    "nogroup",
-	    "libuuid",
-	    "syslog",
-	    "fuse",
-	    "lpadmin",
-	    "ssl-cert",
-	    "messagebus",
-	    "crontab",
-	    "mlocate",
-	    "avahi-autoipd",
-	    "netdev",
-	    "saned",
-	    "sambashare",
-	    "haldaemon",
-	    "polkituser",
-	    "mysql",
-	    "avahi",
-	    "klog",
-	    "floppy",
-	    "oprofile",
-	    "netdev",
-	    "dirmngr",
-	    "vboxusers",
-	    "bluetooth",
-	    "colord",
-	    "libvirtd",
-	    "nm-openvpn",
-	    "input",
-	    "kvm",
-	    "pulse",
-	    "pulse-access",
-	    "rtkit",
-	    "scanner",
-	    "sddm",
-	    "systemd-bus-proxy",
-	    "systemd-journal",
-	    "systemd-network",
-	    "systemd-resolve",
-	    "systemd-timesync",
-	    "utempter",
-	    "uuidd",
-	                           } );
+		"daemon",
+		"bin",
+		"tty",
+		"disk",
+		"lp",
+		"mail",
+		"news",
+		"uucp",
+		"man",
+		"proxy",
+		"kmem",
+		"dialout",
+		"fax",
+		"voice",
+		"cdrom",
+		"tape",
+		"audio",
+		"dip",
+		"www-data",
+		"backup",
+		"list",
+		"irc",
+		"src",
+		"gnats",
+		"shadow",
+		"utmp",
+		"video",
+		"sasl",
+		"plugdev",
+		"games",
+		"nogroup",
+		"libuuid",
+		"syslog",
+		"fuse",
+		"lpadmin",
+		"ssl-cert",
+		"messagebus",
+		"crontab",
+		"mlocate",
+		"avahi-autoipd",
+		"netdev",
+		"saned",
+		"sambashare",
+		"haldaemon",
+		"polkituser",
+		"mysql",
+		"avahi",
+		"klog",
+		"floppy",
+		"oprofile",
+		"netdev",
+		"dirmngr",
+		"vboxusers",
+		"bluetooth",
+		"colord",
+		"libvirtd",
+		"nm-openvpn",
+		"input",
+		"kvm",
+		"pulse",
+		"pulse-access",
+		"rtkit",
+		"scanner",
+		"sddm",
+		"systemd-bus-proxy",
+		"systemd-journal",
+		"systemd-network",
+		"systemd-resolve",
+		"systemd-timesync",
+		"utempter",
+		"uuidd",
+							   } );
 
 	for( const auto& ignoredGroup : ignoredGroups )
 	{
@@ -180,7 +180,7 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 	{
 		const auto groupComponents = group.split( ':' );
 		if( groupComponents.size() == 4 &&
-		        groupComponents.last().split( ',' ).contains( strippedUsername ) )
+				groupComponents.last().split( ',' ).contains( strippedUsername ) )
 		{
 			groupList += groupComponents.first(); // clazy:exclude=reserve-candidates
 		}
@@ -216,9 +216,9 @@ QString LinuxUserFunctions::currentUser()
 
 		// Skip not real users
 		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-		        shell.endsWith( QStringLiteral( "/true" ) ) ||
-		        shell.endsWith( QStringLiteral( "/null" ) ) ||
-		        shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
+				shell.endsWith( QStringLiteral( "/true" ) ) ||
+				shell.endsWith( QStringLiteral( "/null" ) ) ||
+				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
 		{
 			username = QString::fromUtf8( pw_entry->pw_name );
 		}
