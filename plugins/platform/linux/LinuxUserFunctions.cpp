@@ -197,15 +197,15 @@ QString LinuxUserFunctions::currentUser()
 {
 	QString username;
 
-	char * envUser = getenv( "USER" );
+	const auto envUser = qgetenv( "USER" );
 
 	struct passwd * pw_entry = nullptr;
-	if( envUser )
+	if( envUser.isEmpty() == false )
 	{
 		pw_entry = getpwnam( envUser );
 	}
 
-	if( !pw_entry )
+	if( pw_entry == nullptr )
 	{
 		pw_entry = getpwuid( getuid() );
 	}
@@ -226,7 +226,7 @@ QString LinuxUserFunctions::currentUser()
 
 	if( username.isEmpty() )
 	{
-		return QString::fromUtf8( envUser );
+		return envUser;
 	}
 
 	return username;
