@@ -143,5 +143,12 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 
 	// run x11vnc-server
 	x11vnc_main( argc, argv );
+
+	for( int i = 0; i < argc; ++i )
+	{
+		delete[] argv[i];
+	}
+
+	delete[] argv;
 #endif
 }
