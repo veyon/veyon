@@ -71,7 +71,7 @@ void broadcastWOLPacket( QString macAddress )
 	const int PORT_NUM = 9;
 	const int MAC_SIZE = 6;
 	const int OUTBUF_SIZE = MAC_SIZE*17;
-	unsigned char mac[MAC_SIZE];
+	unsigned int mac[MAC_SIZE];
 	char out_buf[OUTBUF_SIZE];
 
 	if( macAddress.isEmpty() )
@@ -88,12 +88,12 @@ void broadcastWOLPacket( QString macAddress )
 
 	if( sscanf( macAddress.toUtf8().constData(),
 				"%2x%2x%2x%2x%2x%2x",
-				(unsigned int *) &mac[0],
-				(unsigned int *) &mac[1],
-				(unsigned int *) &mac[2],
-				(unsigned int *) &mac[3],
-				(unsigned int *) &mac[4],
-				(unsigned int *) &mac[5] ) != MAC_SIZE )
+				&mac[0],
+				&mac[1],
+				&mac[2],
+				&mac[3],
+				&mac[4],
+				&mac[5] ) != MAC_SIZE )
 	{
 		qWarning() << "PowerControl::broadcastWOLPacket(): invalid MAC address" << originalMacAddress;
 		return;
@@ -101,14 +101,14 @@ void broadcastWOLPacket( QString macAddress )
 
 	for( int i = 0; i < MAC_SIZE; ++i )
 	{
-		out_buf[i] = 0xff;
+		out_buf[i] = static_cast<char>( 0xff );
 	}
 
 	for( int i = 1; i < 17; ++i )
 	{
 		for(int j = 0; j < MAC_SIZE; ++j )
 		{
-			out_buf[i*MAC_SIZE+j] = mac[j];
+			out_buf[i*MAC_SIZE+j] = static_cast<char>( mac[j] );
 		}
 	}
 
