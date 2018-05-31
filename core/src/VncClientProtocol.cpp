@@ -382,7 +382,7 @@ bool VncClientProtocol::receiveServerInitMessage()
 		static_assert( sizeof(m_pixelFormat) >= sz_rfbPixelFormat, "m_pixelFormat has wrong size" );
 		static_assert( sizeof(m_pixelFormat) >= sizeof(message.format), "m_pixelFormat too small" );
 
-		memcpy( &m_pixelFormat, &message.format, sz_rfbPixelFormat );
+		memcpy( &m_pixelFormat, &message.format, sz_rfbPixelFormat ); // Flawfinder: ignore
 
 		if( static_cast<uint32_t>( m_socket->peek( nameLength ).size() ) == nameLength )
 		{
@@ -409,7 +409,7 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 	QByteArray data = m_socket->peek( m_socket->bytesAvailable() );
 
 	QBuffer buffer( &data );
-	buffer.open( QBuffer::ReadOnly );
+	buffer.open( QBuffer::ReadOnly ); // Flawfinder: ignore
 
 	rfbFramebufferUpdateMsg message;
 	if( buffer.read( reinterpret_cast<char *>( &message ), sz_rfbFramebufferUpdateMsg ) != sz_rfbFramebufferUpdateMsg )
