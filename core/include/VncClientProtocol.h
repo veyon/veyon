@@ -56,7 +56,7 @@ public:
 	}
 
 	void start();
-	bool read();
+	bool read();  // Flawfinder: ignore
 
 	const QByteArray& serverInitMessage() const
 	{
@@ -87,7 +87,7 @@ public:
 
 	uint8_t lastMessageType() const
 	{
-		return m_lastMessage.constData()[0];
+		return static_cast<uint8_t>( m_lastMessage.constData()[0] );
 	}
 
 	const QRect& lastUpdatedRect() const
@@ -112,11 +112,11 @@ private:
 	bool readMessage( qint64 size );
 
 	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader rectHeader );
-	bool handleRectEncodingRRE( QBuffer& buffer, int bytesPerPixel );
-	bool handleRectEncodingCoRRE( QBuffer& buffer, int bytesPerPixel );
+	bool handleRectEncodingRRE( QBuffer& buffer, uint bytesPerPixel );
+	bool handleRectEncodingCoRRE( QBuffer& buffer, uint bytesPerPixel );
 	bool handleRectEncodingHextile( QBuffer& buffer,
 									const rfbFramebufferUpdateRectHeader rectHeader,
-									int bytesPerPixel );
+									uint bytesPerPixel );
 	bool handleRectEncodingZlib( QBuffer& buffer );
 	bool handleRectEncodingZRLE( QBuffer& buffer );
 
@@ -131,8 +131,8 @@ private:
 
 	rfbPixelFormat m_pixelFormat;
 
-	int m_framebufferWidth;
-	int m_framebufferHeight;
+	quint16 m_framebufferWidth;
+	quint16 m_framebufferHeight;
 
 	QByteArray m_lastMessage;
 	QRect m_lastUpdatedRect;
