@@ -64,7 +64,7 @@ void VncServerProtocol::start()
 	{
 		char protocol[sz_rfbProtocolVersionMsg+1];
 
-		sprintf( protocol, rfbProtocolVersionFormat, 3, 8 );
+		sprintf( protocol, rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
 
 		m_socket->write( protocol, sz_rfbProtocolVersionMsg );
 
@@ -274,7 +274,7 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 	case VncServerClient::AuthFinishedSuccess:
 	{
 		uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
-		m_socket->write( (char *) &authResult, sizeof(authResult) );
+		m_socket->write( reinterpret_cast<char *>( &authResult ), sizeof(authResult) );
 
 		setState( AccessControl );
 		return true;

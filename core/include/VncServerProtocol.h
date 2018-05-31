@@ -52,12 +52,12 @@ public:
 
 	VncServerProtocol( QTcpSocket* socket,
 					   VncServerClient* client );
-	~VncServerProtocol();
+	virtual ~VncServerProtocol();
 
 	State state() const;
 
 	void start();
-	bool read();
+	bool read(); // Flawfinder: ignore
 
 	void setServerInitMessage( const QByteArray& serverInitMessage )
 	{
