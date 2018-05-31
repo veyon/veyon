@@ -263,10 +263,10 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 	TCHAR szRegPath[] =
 	    _T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
 
-	TCHAR szKey[_MAX_PATH*2];
+	TCHAR szKey[_MAX_PATH*2]; // Flawfinder: ignore
 	memset(szKey, 0, _MAX_PATH*2*sizeof(TCHAR));
-	_tcscpy(szKey, szRegPath);
-	_tcscat(szKey, lpszApp);
+	wcsncpy(szKey, szRegPath, MAX_PATH*2-2);
+	wcsncat(szKey, lpszApp, MAX_PATH*2-2);
 
 	// open the registry event source key
 	DWORD dwResult = 0;
@@ -287,24 +287,16 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 		{
 			// if dll path was specified use that - note that this
 			// must be complete path + dll filename
-			_tcsncpy(szPathName, lpszEventMessageDll, _MAX_PATH*2-2);
+			wcsncpy(szPathName, lpszEventMessageDll, _MAX_PATH*2-2);
 		}
 		else
 		{
 			// use app's directory + "XEventMessage.dll"
 			::GetModuleFileName(NULL, szPathName, MAX_PATH*2-2);
-
-#if 0
-			TCHAR *cp = _tcsrchr(szPathName, _T('\\'));
-			if (cp != NULL)
-				*cp = _T('\0');
-
-			_tcscat(szPathName, _T("\\XEventMessage.dll"));
-#endif
 		}
 
 		::RegSetValueEx(hKey,  _T("EventMessageFile"), 0, REG_SZ,
-		    (const BYTE *) szPathName, (_tcslen(szPathName) + 1)*sizeof(TCHAR));
+		    (const BYTE *) szPathName, (wcslen(szPathName) + 1)*sizeof(TCHAR));
 
 		// === write TypesSupported key ===
 
@@ -416,7 +408,7 @@ void CXEventLog::SetAppName(LPCTSTR lpszApp)
 	if (m_pszAppName)
 	{
 		memset(m_pszAppName, 0, _MAX_PATH*2*sizeof(TCHAR));
-		_tcsncpy(m_pszAppName, lpszApp, _MAX_PATH*2-2);
+		wcsncpy(m_pszAppName, lpszApp, _MAX_PATH*2-2);
 	}
 }
 
