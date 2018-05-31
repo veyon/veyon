@@ -42,11 +42,11 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 	ui->versionLabel->setText( VeyonCore::version() );
 
 	QFile authors( QStringLiteral( ":/CONTRIBUTORS" ) );
-	authors.open( QFile::ReadOnly );
+	authors.open( QFile::ReadOnly ); // Flawfinder: ignore
 	ui->authors->setPlainText( authors.readAll() );
 
 	QFile license( QStringLiteral( ":/COPYING" ) );
-	license.open( QFile::ReadOnly );
+	license.open( QFile::ReadOnly ); // Flawfinder: ignore
 	ui->license->setPlainText( license.readAll() );
 
 	VeyonCore::enforceBranding( this );
