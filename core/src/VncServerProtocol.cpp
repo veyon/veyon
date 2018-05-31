@@ -62,7 +62,7 @@ void VncServerProtocol::start()
 {
 	if( state() == Disconnected )
 	{
-		char protocol[sz_rfbProtocolVersionMsg+1];
+		char protocol[sz_rfbProtocolVersionMsg+1]; // Flawfinder: ignore
 
 		sprintf( protocol, rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
 
@@ -152,7 +152,7 @@ bool VncServerProtocol::readProtocol()
 bool VncServerProtocol::sendSecurityTypes()
 {
 	// send list of supported security types
-	const char securityTypeList[2] = { 1, rfbSecTypeVeyon };
+	const char securityTypeList[2] = { 1, rfbSecTypeVeyon }; // Flawfinder: ignore
 	m_socket->write( securityTypeList, sizeof( securityTypeList ) );
 
 	return true;
