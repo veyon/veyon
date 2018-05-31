@@ -121,8 +121,9 @@ bool VncServerProtocol::readProtocol()
 {
 	if( m_socket->bytesAvailable() == sz_rfbProtocolVersionMsg )
 	{
-		char protocol[sz_rfbProtocolVersionMsg];
-		if( m_socket->read( protocol, sz_rfbProtocolVersionMsg ) != sz_rfbProtocolVersionMsg )
+		const auto protocol = m_socket->read( sz_rfbProtocolVersionMsg );
+
+		if( protocol.size() != sz_rfbProtocolVersionMsg )
 		{
 			qCritical( "VncServerProtocol:::readProtocol(): protocol initialization failed" );
 			m_socket->close();
@@ -131,7 +132,7 @@ bool VncServerProtocol::readProtocol()
 
 		QRegExp protocolRX( QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") );
 
-		if( protocolRX.indexIn( QString::fromLatin1( protocol, sz_rfbProtocolVersionMsg ) ) != 0 )
+		if( protocolRX.indexIn( QString::fromUtf8( protocol ) ) != 0 )
 		{
 			qCritical( "VncServerProtocol:::readProtocol(): invalid protocol version" );
 			m_socket->close();
