@@ -280,7 +280,7 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 
 		// === write EventMessageFile key ===
 
-		TCHAR szPathName[_MAX_PATH*2];
+		TCHAR szPathName[_MAX_PATH*2]; // Flawfinder: ignore
 		memset(szPathName, 0, _MAX_PATH*2*sizeof(TCHAR));
 
 		if (lpszEventMessageDll)
