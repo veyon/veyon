@@ -17,13 +17,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
 //                                  NOTE
-//              Change  C/C++ Precompiled Headers settings to 
+//              Change  C/C++ Precompiled Headers settings to
 //              "Not using precompiled headers" for this file.
 //
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-// this file does not need any MFC 
+// this file does not need any MFC
 //#include "stdafx.h"
 
 // if you are not using MFC, you must have the following three includes:
@@ -36,29 +36,29 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // ctor
-// 
+//
 // Purpose:     Construct CXEventLog object.
-// 
-// Parameters:  lpszApp             - name of app (event log source).  This 
+//
+// Parameters:  lpszApp             - name of app (event log source).  This
 //                                    parameter is optional. If it is not
 //                                    specified, Init() must be called separately.
 //              lpszEventMessageDll - fully-qualified name of event message
-//                                    dll. Includes complete path and file 
+//                                    dll. Includes complete path and file
 //                                    name. Example: "C:\\bin\\MyMessage.dll".
 //                                    This parameter is optional.
-// 
+//
 // Returns:     None
 //
 CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
-					   LPCTSTR lpszEventMessageDll /* = NULL*/)
+                       LPCTSTR lpszEventMessageDll /* = NULL*/)
 {
 #ifdef _DEBUG
 	if ((lpszApp == NULL) || (lpszApp[0] == _T('\0')))
 	{
 		TRACE(_T("=== No app specified in CXEventLog ctor. ")
-			  _T("Be sure to call Init() before calling Write(). ===\n"));
+		      _T("Be sure to call Init() before calling Write(). ===\n"));
 	}
 #endif
 
@@ -71,15 +71,15 @@ CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // dtor
-// 
+//
 // Purpose:     Destroy CXEventLog object.
-// 
+//
 // Parameters:  none
-// 
+//
 // Returns:     none
-// 
+//
 CXEventLog::~CXEventLog()
 {
 	Close();
@@ -89,15 +89,15 @@ CXEventLog::~CXEventLog()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // Close()
-// 
+//
 // Purpose:     Close event log handle.  Called automatically by dtor.
-// 
+//
 // Parameters:  none
-// 
+//
 // Returns:     none
-// 
+//
 void CXEventLog::Close()
 {
 	if (m_hEventLog)
@@ -106,36 +106,36 @@ void CXEventLog::Close()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // GetAppName()
-// 
+//
 // Purpose:     Get name of currently registered app.
-// 
+//
 // Parameters:  none
-// 
+//
 // Returns:     LPTSTR - app name
-// 
+//
 LPTSTR CXEventLog::GetAppName()
 {
 	return m_pszAppName;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // Init()
-// 
+//
 // Purpose:     Initialize the registry for event logging from this app.
 //              Normally Init() is called from ctor.  If default ctor (no args)
 //              is used, then Init() must be called before Write() is called.
 //              Sets class variable m_hEventLog.
-// 
-// Parameters:  lpszApp             - name of app (event log source).  
+//
+// Parameters:  lpszApp             - name of app (event log source).
 //                                    MUST BE SPECIFIED.
 //              lpszEventMessageDll - fully-qualified name of event message
-//                                    dll. Includes complete path and file 
+//                                    dll. Includes complete path and file
 //                                    name. Example: "C:\\bin\\MyMessage.dll".
 //                                    This parameter is optional.
-// 
+//
 // Returns:     BOOL - TRUE = success
 //
 BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /* = NULL*/)
@@ -162,16 +162,16 @@ BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /* = NULL*/)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // Write()
-// 
+//
 // Purpose:     Write string to event log
-// 
+//
 // Parameters:  wType - event type.  See ReportEvent() in MSDN for complete list.
 //              lpszMessage - string to log
-// 
+//
 // Returns:     BOOL - TRUE = success
-// 
+//
 BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 {
 	BOOL bRet = TRUE;
@@ -188,10 +188,10 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 		return FALSE;
 
 	_ASSERTE((wType == EVENTLOG_ERROR_TYPE)       ||
-			 (wType == EVENTLOG_WARNING_TYPE)     ||
-			 (wType == EVENTLOG_INFORMATION_TYPE) ||
-			 (wType == EVENTLOG_AUDIT_SUCCESS)    ||
-			 (wType == EVENTLOG_AUDIT_FAILURE));
+	         (wType == EVENTLOG_WARNING_TYPE)     ||
+	         (wType == EVENTLOG_INFORMATION_TYPE) ||
+	         (wType == EVENTLOG_AUDIT_SUCCESS)    ||
+	         (wType == EVENTLOG_AUDIT_FAILURE));
 
 	// get our user name information
 	PSID pSid = GetUserSid();
@@ -199,14 +199,14 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 	LPCTSTR* lpStrings = &lpszMessage;
 
 	bRet = ::ReportEvent(m_hEventLog,		// event log source handle
-						 wType,				// event type to log
-						 0,					// event category
-						 0x20000001L,		// event identifier (GENERIC_MESSAGE)
-						 pSid,				// user security identifier (optional)
-						 1,					// number of strings to merge with message
-						 0,					// size of binary data, in bytes
-						 lpStrings,			// array of strings to merge with message
-						 NULL);				// address of binary data
+	                     wType,				// event type to log
+	                     0,					// event category
+	                     0x20000001L,		// event identifier (GENERIC_MESSAGE)
+	                     pSid,				// user security identifier (optional)
+	                     1,					// number of strings to merge with message
+	                     0,					// size of binary data, in bytes
+	                     lpStrings,			// array of strings to merge with message
+	                     NULL);				// address of binary data
 
 	if (pSid)
 		HeapFree(GetProcessHeap(), 0, pSid);
@@ -225,9 +225,9 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // RegisterSource() - INTERNAL METHOD
-// 
+//
 // Purpose:     Create entry in registry for message DLL.  This method will
 //              create the following registry keys:
 //                 HKLM
@@ -239,29 +239,29 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 //                                   <app name>
 //                                       EventMessageFile = <complete path to message DLL>
 //                                       TypesSupported   = 0x0000001f (31)
-//                
-//              Note that <app name> is the lpszApp parameter, and 
-//              <complete path to message DLL> is the lpszEventMessageDll 
+//
+//              Note that <app name> is the lpszApp parameter, and
+//              <complete path to message DLL> is the lpszEventMessageDll
 //              parameter.
-//  
-// Parameters:  lpszApp             - name of app (event log source).  
+//
+// Parameters:  lpszApp             - name of app (event log source).
 //              lpszEventMessageDll - fully-qualified name of event message
-//                                    DLL. Includes complete path and file 
+//                                    DLL. Includes complete path and file
 //                                    name. Example: "C:\\bin\\MyMessage.dll".
 //                                    If this parameter is NULL, default is to
 //                                    use exe's path + "XEventMessage.dll".
-// 
+//
 // Returns:     BOOL - TRUE = success
 //
 BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
-								LPCTSTR lpszEventMessageDll)
+                                LPCTSTR lpszEventMessageDll)
 {
 	_ASSERTE((lpszApp != NULL) && (lpszApp[0] != _T('\0')));
 	if (!lpszApp || lpszApp[0] == _T('\0'))
 		return FALSE;
 
-	TCHAR szRegPath[] = 
-		_T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
+	TCHAR szRegPath[] =
+	    _T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
 
 	TCHAR szKey[_MAX_PATH*2];
 	memset(szKey, 0, _MAX_PATH*2*sizeof(TCHAR));
@@ -272,7 +272,7 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 	DWORD dwResult = 0;
 	HKEY hKey = NULL;
 	LONG lRet = ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0, NULL,
-					REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwResult);
+	                REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwResult);
 
 	if (lRet == ERROR_SUCCESS)
 	{
@@ -304,19 +304,19 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 		}
 
 		::RegSetValueEx(hKey,  _T("EventMessageFile"), 0, REG_SZ,
-			(const BYTE *) szPathName, (_tcslen(szPathName) + 1)*sizeof(TCHAR));
+		    (const BYTE *) szPathName, (_tcslen(szPathName) + 1)*sizeof(TCHAR));
 
 		// === write TypesSupported key ===
 
 		// message DLL supports all types
 		DWORD dwSupportedTypes = EVENTLOG_ERROR_TYPE		|
-								 EVENTLOG_WARNING_TYPE		|
-								 EVENTLOG_INFORMATION_TYPE	|
-								 EVENTLOG_AUDIT_SUCCESS		|
-								 EVENTLOG_AUDIT_FAILURE;
+		                         EVENTLOG_WARNING_TYPE		|
+		                         EVENTLOG_INFORMATION_TYPE	|
+		                         EVENTLOG_AUDIT_SUCCESS		|
+		                         EVENTLOG_AUDIT_FAILURE;
 
 		::RegSetValueEx(hKey, _T("TypesSupported"), 0, REG_DWORD,
-			(const BYTE *) &dwSupportedTypes, sizeof(DWORD));
+		    (const BYTE *) &dwSupportedTypes, sizeof(DWORD));
 
 		::RegCloseKey(hKey);
 
@@ -327,16 +327,16 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // GetUserSid() - INTERNAL METHOD
-// 
+//
 // Purpose:     Get SID of current user
-// 
+//
 // Parameters:  none
-// 
+//
 // Returns:     PSID - pointer to alloc'd SID; must be freed by caller.
 //              Example:  HeapFree(GetProcessHeap(), 0, pSid);
-// 
+//
 PSID CXEventLog::GetUserSid()
 {
 	HANDLE       hToken   = NULL;
@@ -344,7 +344,7 @@ PSID CXEventLog::GetUserSid()
 	DWORD        cbti     = 0;
 
 	// get calling thread's access token
-	if (!OpenThreadToken(GetCurrentThread(), TOKEN_QUERY, TRUE,	&hToken)) 
+	if (!OpenThreadToken(GetCurrentThread(), TOKEN_QUERY, TRUE,	&hToken))
 	{
 		if (GetLastError() != ERROR_NO_TOKEN)
 			return NULL;
@@ -355,12 +355,12 @@ PSID CXEventLog::GetUserSid()
 	}
 
 	// get size of the user information in the token
-	if (GetTokenInformation(hToken, TokenUser, NULL, 0, &cbti)) 
+	if (GetTokenInformation(hToken, TokenUser, NULL, 0, &cbti))
 	{
 		// call should have failed due to zero-length buffer.
 		return NULL;
-	} 
-	else 
+	}
+	else
 	{
 		// call should have failed due to zero-length buffer
 		if (GetLastError() != ERROR_INSUFFICIENT_BUFFER)
@@ -395,18 +395,18 @@ PSID CXEventLog::GetUserSid()
 		HeapFree(GetProcessHeap(), 0, ptiUser);
 
 	return psid;
-} 
+}
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // SetAppName() - INTERNAL METHOD
-// 
+//
 // Purpose:     Stores name of current app
-// 
+//
 // Parameters:  lpszApp - app name
-// 
+//
 // Returns:     none
-// 
+//
 void CXEventLog::SetAppName(LPCTSTR lpszApp)
 {
 	if (!lpszApp)
