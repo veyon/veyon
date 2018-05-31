@@ -70,7 +70,7 @@ bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const
 
 	const auto gid = grp->gr_gid;
 
-	if( chown( filePath.toUtf8().constData(), statBuffer.st_uid, gid ) != 0 )
+	if( chown( filePath.toUtf8().constData(), statBuffer.st_uid, gid ) != 0 ) // Flawfinder:ignore
 	{
 		qCritical() << Q_FUNC_INFO << "failed to change owner group of file" << filePath;
 		return false;
