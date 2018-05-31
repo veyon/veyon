@@ -182,7 +182,7 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 void PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 {
 	const int MAC_SIZE = 6;
-	unsigned char mac[MAC_SIZE];
+	unsigned int mac[MAC_SIZE];  // Flawfinder: ignore
 
 	if( macAddress.isEmpty() )
 	{
@@ -192,30 +192,30 @@ void PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 	const auto originalMacAddress = macAddress;
 
 	// remove all possible delimiters
-	macAddress.replace( ':', QStringLiteral("") );
-	macAddress.replace( '-', QStringLiteral("") );
-	macAddress.replace( '.', QStringLiteral("") );
+	macAddress.replace( ':', QString() );
+	macAddress.replace( '-', QString() );
+	macAddress.replace( '.', QString() );
 
 	if( sscanf( macAddress.toUtf8().constData(),
 				"%2x%2x%2x%2x%2x%2x",
-				(unsigned int *) &mac[0],
-				(unsigned int *) &mac[1],
-				(unsigned int *) &mac[2],
-				(unsigned int *) &mac[3],
-				(unsigned int *) &mac[4],
-				(unsigned int *) &mac[5] ) != MAC_SIZE )
+				&mac[0],
+				&mac[1],
+				&mac[2],
+				&mac[3],
+				&mac[4],
+				&mac[5] ) != MAC_SIZE )
 	{
 		qWarning() << "PowerControlFeaturePlugin::broadcastWOLPacket(): invalid MAC address" << originalMacAddress;
 		return;
 	}
 
-	QByteArray datagram( MAC_SIZE*17, 0xff );
+	QByteArray datagram( MAC_SIZE*17, static_cast<char>( 0xff ) );
 
 	for( int i = 1; i < 17; ++i )
 	{
 		for(int j = 0; j < MAC_SIZE; ++j )
 		{
-			datagram[i*MAC_SIZE+j] = mac[j];
+			datagram[i*MAC_SIZE+j] = static_cast<char>( mac[j] );
 		}
 	}
 
