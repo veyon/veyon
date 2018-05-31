@@ -267,7 +267,7 @@ void VeyonVncConnection::hookOutputHandler( const char* format, ... )
 
 void VeyonVncConnection::framebufferCleanup( void *framebuffer )
 {
-	delete[] (uchar *) framebuffer;
+	delete[] static_cast<uchar *>( framebuffer );
 }
 
 
