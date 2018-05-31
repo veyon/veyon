@@ -133,11 +133,12 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 	argv[0] = qstrdup( appArguments.first().toUtf8().constData() );
 	int argc = 1;
 
-	for( QStringList::iterator it = cmdline.begin();
-				it != cmdline.end(); ++it, ++argc )
+	for( auto it = cmdline.begin(), end = cmdline.end(); it != end; ++it, ++argc )
 	{
-		argv[argc] = new char[it->length() + 1];
-		strcpy( argv[argc], it->toUtf8().constData() );
+		const auto len = static_cast<size_t>( it->length() );
+		argv[argc] = new char[len + 1];
+		strncpy( argv[argc], it->toUtf8().constData(), len );
+		argv[argc][len] = 0;
 	}
 
 	// run x11vnc-server
