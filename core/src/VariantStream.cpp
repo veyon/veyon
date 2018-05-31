@@ -32,7 +32,7 @@ VariantStream::VariantStream( QIODevice* ioDevice ) :
 
 
 
-QVariant VariantStream::read()
+QVariant VariantStream::read() // Flawfinder: ignore
 {
 	QVariant v;
 	m_dataStream >> v;

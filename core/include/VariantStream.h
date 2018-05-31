@@ -34,7 +34,7 @@ class VEYON_CORE_EXPORT VariantStream
 public:
 	VariantStream( QIODevice* ioDevice );
 
-	QVariant read();
+	QVariant read(); // Flawfinder: ignore
 
 	void write( const QVariant& v );
 

@@ -45,7 +45,7 @@ public:
 
 	bool receive();
 
-	QVariant read();
+	QVariant read(); // Flawfinder: ignore
 
 	VariantArrayMessage& write( const QVariant& v );
 

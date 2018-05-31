@@ -35,7 +35,7 @@ VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
 {
 	Q_ASSERT( m_ioDevice != nullptr );
 
-	m_buffer.open( QBuffer::ReadWrite );
+	m_buffer.open( QBuffer::ReadWrite ); // Flawfinder: ignore
 }
 
 
@@ -88,16 +88,16 @@ bool VariantArrayMessage::receive()
 
 	m_buffer.close();
 	m_buffer.setData( data );
-	m_buffer.open( QBuffer::ReadOnly );
+	m_buffer.open( QBuffer::ReadOnly ); // Flawfinder: ignore
 
 	return true;
 }
 
 
 
-QVariant VariantArrayMessage::read()
+QVariant VariantArrayMessage::read() // Flawfinder: ignore
 {
-	return m_stream.read();
+	return m_stream.read(); // Flawfinder: ignore
 }
 
 
