@@ -69,14 +69,14 @@ bool FeatureMessage::receive()
 
 		if( message.receive() )
 		{
-			m_featureUid = message.read().toUuid();
+			m_featureUid = message.read().toUuid(); // Flawfinder: ignore
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
-			m_command = static_cast<Command>( message.read().toInt() );
+			m_command = static_cast<Command>( message.read().toInt() ); // Flawfinder: ignore
 #else
-			m_command = message.read().value<Command>();
+			m_command = message.read().value<Command>(); // Flawfinder: ignore
 #endif
-			m_arguments = message.read().toMap();
+			m_arguments = message.read().toMap(); // Flawfinder: ignore
 			return true;
 		}
 
