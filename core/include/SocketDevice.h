@@ -45,7 +45,7 @@ public:
 		m_dispatcher( dispatcher ),
 		m_user( user )
 	{
-		open( ReadWrite | Unbuffered );
+		open( ReadWrite | Unbuffered ); // Flawfinder: ignore
 	}
 
 	Dispatcher dispatcher()
@@ -63,7 +63,7 @@ public:
 		m_user = user;
 	}
 
-	qint64 read( char *buf, qint64 bytes )
+	qint64 read( char *buf, qint64 bytes ) // Flawfinder: ignore
 	{
 		return readData( buf, bytes );
 	}
