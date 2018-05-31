@@ -385,8 +385,8 @@ void VeyonCore::initLocaleAndTranslation()
 		if( configuredLocale == QLocale::C ||
 				tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
 		{
-			configuredLocale = QLocale::system();
-			tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
+			configuredLocale = QLocale::system(); // Flawfinder: ignore
+			tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( QLocale::system().name() ) ); // Flawfinder: ignore
 		}
 
 		QLocale::setDefault( configuredLocale );
