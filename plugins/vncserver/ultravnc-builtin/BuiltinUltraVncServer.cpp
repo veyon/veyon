@@ -43,8 +43,16 @@ extern DWORD mainthreadId;
 
 void ultravnc_veyon_load_password( char* out, int size )
 {
-	QByteArray password = vncServerInstance->password().toUtf8();
-	memcpy( out, password.constData(), std::min<int>( size, password.length() ) );
+	const auto password = vncServerInstance->password().toUtf8();
+
+	if( password.size() == size )
+	{
+		memcpy( out, password.constData(), size ); // Flawfinder: ignore
+	}
+	else
+	{
+		qFatal( "Requested password too short!");
+	}
 }
 
 
