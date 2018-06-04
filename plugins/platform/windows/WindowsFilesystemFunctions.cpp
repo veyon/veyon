@@ -110,8 +110,8 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE;
-	char ownerGroupSID[SECURITY_MAX_SID_SIZE];
-	wchar_t domain[PATH_MAX];
+	char ownerGroupSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
+	wchar_t domain[PATH_MAX]; // Flawfinder: ignore
 	domain[0] = 0;
 	DWORD domainLen = PATH_MAX;
 	SID_NAME_USE sidNameUse;

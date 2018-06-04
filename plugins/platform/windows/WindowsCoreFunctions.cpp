@@ -177,7 +177,7 @@ QString WindowsCoreFunctions::activeDesktopName()
 
 	HDESK desktopHandle = OpenInputDesktop( 0, true, DESKTOP_READOBJECTS );
 
-	wchar_t inputDesktopName[256];
+	wchar_t inputDesktopName[256]; // Flawfinder: ignore
 	inputDesktopName[0] = 0;
 	if( GetUserObjectInformation( desktopHandle, UOI_NAME, inputDesktopName,
 								  sizeof( inputDesktopName ) / sizeof( wchar_t ), nullptr ) )

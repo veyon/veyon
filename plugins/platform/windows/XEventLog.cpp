@@ -52,13 +52,13 @@
 // Returns:     None
 //
 CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
-                       LPCTSTR lpszEventMessageDll /* = NULL*/)
+					   LPCTSTR lpszEventMessageDll /* = NULL*/)
 {
 #ifdef _DEBUG
 	if ((lpszApp == NULL) || (lpszApp[0] == _T('\0')))
 	{
 		TRACE(_T("=== No app specified in CXEventLog ctor. ")
-		      _T("Be sure to call Init() before calling Write(). ===\n"));
+			  _T("Be sure to call Init() before calling Write(). ===\n"));
 	}
 #endif
 
@@ -188,10 +188,10 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 		return FALSE;
 
 	_ASSERTE((wType == EVENTLOG_ERROR_TYPE)       ||
-	         (wType == EVENTLOG_WARNING_TYPE)     ||
-	         (wType == EVENTLOG_INFORMATION_TYPE) ||
-	         (wType == EVENTLOG_AUDIT_SUCCESS)    ||
-	         (wType == EVENTLOG_AUDIT_FAILURE));
+			 (wType == EVENTLOG_WARNING_TYPE)     ||
+			 (wType == EVENTLOG_INFORMATION_TYPE) ||
+			 (wType == EVENTLOG_AUDIT_SUCCESS)    ||
+			 (wType == EVENTLOG_AUDIT_FAILURE));
 
 	// get our user name information
 	PSID pSid = GetUserSid();
@@ -199,14 +199,14 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 	LPCTSTR* lpStrings = &lpszMessage;
 
 	bRet = ::ReportEvent(m_hEventLog,		// event log source handle
-	                     wType,				// event type to log
-	                     0,					// event category
-	                     0x20000001L,		// event identifier (GENERIC_MESSAGE)
-	                     pSid,				// user security identifier (optional)
-	                     1,					// number of strings to merge with message
-	                     0,					// size of binary data, in bytes
-	                     lpStrings,			// array of strings to merge with message
-	                     NULL);				// address of binary data
+						 wType,				// event type to log
+						 0,					// event category
+						 0x20000001L,		// event identifier (GENERIC_MESSAGE)
+						 pSid,				// user security identifier (optional)
+						 1,					// number of strings to merge with message
+						 0,					// size of binary data, in bytes
+						 lpStrings,			// array of strings to merge with message
+						 NULL);				// address of binary data
 
 	if (pSid)
 		HeapFree(GetProcessHeap(), 0, pSid);
@@ -254,25 +254,25 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 // Returns:     BOOL - TRUE = success
 //
 BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
-                                LPCTSTR lpszEventMessageDll)
+								LPCTSTR lpszEventMessageDll)
 {
 	_ASSERTE((lpszApp != NULL) && (lpszApp[0] != _T('\0')));
 	if (!lpszApp || lpszApp[0] == _T('\0'))
 		return FALSE;
 
 	TCHAR szRegPath[] =
-	    _T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
+		_T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
 
 	TCHAR szKey[_MAX_PATH*2]; // Flawfinder: ignore
 	memset(szKey, 0, _MAX_PATH*2*sizeof(TCHAR));
-	wcsncpy(szKey, szRegPath, MAX_PATH*2-2);
-	wcsncat(szKey, lpszApp, MAX_PATH*2-2);
+	wcsncpy(szKey, szRegPath, MAX_PATH*2-2); // Flawfinder: ignore
+	wcsncat(szKey, lpszApp, MAX_PATH*2-2); // Flawfinder: ignore
 
 	// open the registry event source key
 	DWORD dwResult = 0;
 	HKEY hKey = NULL;
 	LONG lRet = ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0, NULL,
-	                REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwResult);
+					REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwResult);
 
 	if (lRet == ERROR_SUCCESS)
 	{
@@ -287,28 +287,28 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 		{
 			// if dll path was specified use that - note that this
 			// must be complete path + dll filename
-			wcsncpy(szPathName, lpszEventMessageDll, _MAX_PATH*2-2);
+			wcsncpy(szPathName, lpszEventMessageDll, _MAX_PATH*2-2);  // Flawfinder: ignore
 		}
 		else
 		{
 			// use app's directory + "XEventMessage.dll"
-			::GetModuleFileName(NULL, szPathName, MAX_PATH*2-2);
+			::GetModuleFileName(nullptr, szPathName, _MAX_PATH*2-2);
 		}
 
 		::RegSetValueEx(hKey,  _T("EventMessageFile"), 0, REG_SZ,
-		    (const BYTE *) szPathName, (wcslen(szPathName) + 1)*sizeof(TCHAR));
+			reinterpret_cast<const BYTE *>( szPathName ), static_cast<DWORD>( (wcslen(szPathName) + 1)*sizeof(TCHAR) ) ); // Flawfinder: ignore
 
 		// === write TypesSupported key ===
 
 		// message DLL supports all types
 		DWORD dwSupportedTypes = EVENTLOG_ERROR_TYPE		|
-		                         EVENTLOG_WARNING_TYPE		|
-		                         EVENTLOG_INFORMATION_TYPE	|
-		                         EVENTLOG_AUDIT_SUCCESS		|
-		                         EVENTLOG_AUDIT_FAILURE;
+								 EVENTLOG_WARNING_TYPE		|
+								 EVENTLOG_INFORMATION_TYPE	|
+								 EVENTLOG_AUDIT_SUCCESS		|
+								 EVENTLOG_AUDIT_FAILURE;
 
 		::RegSetValueEx(hKey, _T("TypesSupported"), 0, REG_DWORD,
-		    (const BYTE *) &dwSupportedTypes, sizeof(DWORD));
+			(const BYTE *) &dwSupportedTypes, sizeof(DWORD));
 
 		::RegCloseKey(hKey);
 
@@ -408,7 +408,6 @@ void CXEventLog::SetAppName(LPCTSTR lpszApp)
 	if (m_pszAppName)
 	{
 		memset(m_pszAppName, 0, _MAX_PATH*2*sizeof(TCHAR));
-		wcsncpy(m_pszAppName, lpszApp, _MAX_PATH*2-2);
+		wcsncpy(m_pszAppName, lpszApp, _MAX_PATH*2-2); // Flawfinder: ignore
 	}
 }
-

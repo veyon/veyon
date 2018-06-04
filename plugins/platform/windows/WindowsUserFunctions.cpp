@@ -118,7 +118,7 @@ QString WindowsUserFunctions::currentUser()
 	// check whether we just got the name of the local computer
 	if( !domainName.isEmpty() )
 	{
-		wchar_t computerName[MAX_PATH];
+		wchar_t computerName[MAX_PATH]; // Flawfinder: ignore
 		DWORD size = MAX_PATH;
 		GetComputerName( computerName, &size );
 

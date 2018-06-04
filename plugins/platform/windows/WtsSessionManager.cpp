@@ -133,9 +133,9 @@ DWORD WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
 
 DWORD WtsSessionManager::findProcessId( const QString& userName )
 {
-	DWORD sidLen = SECURITY_MAX_SID_SIZE;
-	char userSID[SECURITY_MAX_SID_SIZE];
-	wchar_t domainName[MAX_PATH];
+	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
+	char userSID[SECURITY_MAX_SID_SIZE]; // Flawfinder: ignore
+	wchar_t domainName[MAX_PATH]; // Flawfinder: ignore
 	domainName[0] = 0;
 	DWORD domainLen = MAX_PATH;
 	SID_NAME_USE sidNameUse;
