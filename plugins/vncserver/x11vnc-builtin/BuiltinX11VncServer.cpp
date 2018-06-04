@@ -96,7 +96,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 
 #ifdef VEYON_X11VNC_EXTERNAL
 	QTemporaryFile tempFile;
-	if( tempFile.open() == false )
+	if( tempFile.open() == false ) // Flawfinder: ignore
 	{
 		qCritical() << Q_FUNC_INFO << "Could not create temporary file!";
 		return;
@@ -129,7 +129,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 
 	// build new C-style command line array based on cmdline-QStringList
 	const auto appArguments = QCoreApplication::arguments();
-	auto argv = new char *[cmdline.size()+1];
+	auto argv = new char *[cmdline.size()+1]; // Flawfinder: ignore
 	argv[0] = qstrdup( appArguments.first().toUtf8().constData() );
 	int argc = 1;
 
