@@ -1,13 +1,4 @@
-#include <algorithm>
-
 #include "stdhdrs.h"
-#include "VeyonRfbExt.h"
-#include "vsocket.cpp"
-
-// adzm 2010-09
-typedef enum {
-	clientInitShared       = 0x01,
-} rfbClientInitMsgFlags;
 
 /*-----------------------------------------------------------------------------
  * Authentication
@@ -32,8 +23,8 @@ typedef enum {
    server sends 16-bit little-endian challenge length, followed by the challenge
    viewer responds with 16-bit little-endian response length, followed by the response
    this continues until the plugin says to stop the loop. Currently the SecureVNC plugin only
-     does one loop, but this functionality exists in order to implement more complicated handshakes.
- 
+	 does one loop, but this functionality exists in order to implement more complicated handshakes.
+
  If there was a failure, and an error message is available, rfbVncAuthFailedEx (3) is sent followed by the length of the
    error string and then the error string
  If there was a failure, and no error message is available, simply send rfbVncAuthFailed (1)
@@ -49,12 +40,12 @@ typedef enum {
 
  rfbUltraVNC is not being used for anything, although rfbUltraVNC_SecureVNCPlugin has been established somewhat.
  Like a lot of these things, most of the values in the authentication range will end up going unused.
- 
+
  Rather than complicate things further, I hereby declare this scheme: the top 4 bits will define the 'owner'
  of that set of values, and the bottom 4 bits will define the type. All of the values in the RFB 3.8 spec
  can then be covered by 0x0 and 0x1 for the top 4 bits.
 
-                              mask
+							  mask
  RealVNC-approved values:     0x0F
  RealVNC-approved values:     0x1F
  reserved:                    0x2F
@@ -149,7 +140,7 @@ typedef enum {
 
 // adzm - 2010-07 - Extended clipboard support
 #define rfbEncodingExtendedClipboard  0xC0A1E5CE
-  
+
 // adzm 2010-09 - Notify streaming DSM plugin support
 #define rfbEncodingPluginStreaming       0xC0A1E5CF
 
@@ -162,9 +153,9 @@ typedef enum {
 
 // adzm 2010-09 - Notify streaming DSM plugin support
 typedef struct {
-    uint8_t type;			/* always rfbServerCutText */
-    uint8_t pad1;
-    uint16_t flags; // reserved - always 0
+	uint8_t type;			/* always rfbServerCutText */
+	uint8_t pad1;
+	uint16_t flags; // reserved - always 0
 } rfbNotifyPluginStreamingMsg;
 
 #define sz_rfbNotifyPluginStreamingMsg	4
@@ -177,7 +168,7 @@ typedef struct {
 
 
 #define rfbPartialFilePrefix   "!UVNCPFT-\0" // Files are transferred with this prefix, until complete. Must end with "-", does not apply to directory transfers
-#define sz_rfbPartialFilePrefix 9 
+#define sz_rfbPartialFilePrefix 9
 
 // new message for sending server state to client
 
@@ -189,12 +180,12 @@ typedef struct {
 #define rfbIdleInputTimeout             3
 
 typedef struct {
-    uint8_t   type;          /* always rfbServerState */
-    uint8_t pad1;
-    uint8_t pad2;
-    uint8_t pad3;
-    uint32_t  state;         /* state id*/
-    uint32_t  value;         /* state value */ 
+	uint8_t   type;          /* always rfbServerState */
+	uint8_t pad1;
+	uint8_t pad2;
+	uint8_t pad3;
+	uint32_t  state;         /* state id*/
+	uint32_t  value;         /* state value */
 } rfbServerStateMsg;
 
 
@@ -235,10 +226,10 @@ const UINT MENU_STOP_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddStopClient
 const UINT MENU_STOP_ALL_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddStopAllClient.Message");
 const UINT MENU_REPEATER_ID_MSG = RegisterWindowMessage("WinVNC.AddRepeaterID.Message");
 // adzm 2009-07-05 - Tray icon balloon tips
-// adzm 2010-02-10 - Changed this window message (added 2) to prevent receiving the same message from older UltraVNC builds 
+// adzm 2010-02-10 - Changed this window message (added 2) to prevent receiving the same message from older UltraVNC builds
 // which will send this message between processes with process-local pointers to strings as the wParam and lParam
 const UINT MENU_TRAYICON_BALLOON_MSG = RegisterWindowMessage("WinVNC.TrayIconBalloon2.Message");
- 
+
 
 const char *MENU_CLASS_NAME = "WinVNC Tray Icon";
 

@@ -70,6 +70,7 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/blankmonitor.cpp
 	${ultravnc_DIR}/winvnc/winvnc/ScreenCapture.cpp
 	${ultravnc_DIR}/winvnc/winvnc/DeskdupEngine.cpp
+	${ultravnc_DIR}/winvnc/winvnc/vsocket.cpp
 	${ultravnc_DIR}/winvnc/omnithread/nt.cpp
 	${ultravnc_DIR}/DSMPlugin/DSMPlugin.cpp
 	${ultravnc_DIR}/common/Clipboard.cpp
