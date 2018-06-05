@@ -242,6 +242,13 @@ int LinuxServiceCore::getSessionLeaderPid( const QString& session )
 
 
 
+QString LinuxServiceCore::getSessionType( const QString& session )
+{
+	return getSessionProperty( session, QStringLiteral("Type") ).toString();
+}
+
+
+
 QString LinuxServiceCore::getSessionDisplay( const QString& session )
 {
 	return getSessionProperty( session, QStringLiteral("Display") ).toString();
