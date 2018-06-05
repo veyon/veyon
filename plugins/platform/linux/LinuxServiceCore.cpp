@@ -86,6 +86,10 @@ void LinuxServiceCore::connectToLoginManager()
 		qWarning() << Q_FUNC_INFO << "could not connect to login manager! retrying in" << LoginManagerReconnectInterval << "msecs";
 		QTimer::singleShot( LoginManagerReconnectInterval, this, &LinuxServiceCore::connectToLoginManager );
 	}
+	else
+	{
+		qDebug( "LinuxServiceCore: connected to login manager" );
+	}
 }
 
 
