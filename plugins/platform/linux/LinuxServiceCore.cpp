@@ -100,10 +100,10 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	const auto sessionPath = sessionObjectPath.path();
 
-	const auto sessionDisplay = getSessionDisplay( sessionPath );
+	const auto sessionType = getSessionType( sessionPath );
 
 	// do not start server for non-graphical sessions
-	if( sessionDisplay.isEmpty() )
+	if( sessionType != QStringLiteral("x11") )
 	{
 		return;
 	}
@@ -111,26 +111,30 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	const auto sessionLeader = getSessionLeaderPid( sessionPath );
 	auto sessionEnvironment = getSessionEnvironment( sessionLeader );
 
-	if( sessionEnvironment.isEmpty() == false )
+	if( sessionEnvironment.isEmpty() )
 	{
-		const auto seat = getSessionSeat( sessionPath );
-
-		qInfo() << "Starting server for new session" << sessionPath
-				<< "with display" << sessionDisplay
-				<< "at seat" << seat.path;
-
-		if( m_multiSession )
-		{
-			const auto sessionId = openSession( QStringList( { sessionPath, sessionDisplay, seat.path } ) );
-			sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
-		}
-
-		auto process = new QProcess( this );
-		process->setProcessEnvironment( sessionEnvironment );
-		process->start( VeyonCore::filesystem().serverFilePath() );
-
-		m_serverProcesses[sessionPath] = process;
+		qWarning() << "Empty environment for session" << sessionPath << "with leader" << sessionLeader;
+		return;
 	}
+
+	const auto seat = getSessionSeat( sessionPath );
+	const auto display = getSessionDisplay( sessionPath );
+
+	qInfo() << "Starting server for new session" << sessionPath
+			<< "with display" << display
+			<< "at seat" << seat.path;
+
+	if( m_multiSession )
+	{
+		const auto sessionId = openSession( QStringList( { sessionPath, display, seat.path } ) );
+		sessionEnvironment.insert( VeyonCore::sessionIdEnvironmentVariable(), QString::number( sessionId ) );
+	}
+
+	auto process = new QProcess( this );
+	process->setProcessEnvironment( sessionEnvironment );
+	process->start( VeyonCore::filesystem().serverFilePath() );
+
+	m_serverProcesses[sessionPath] = process;
 }
 
 
