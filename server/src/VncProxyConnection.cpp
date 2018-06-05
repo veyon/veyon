@@ -72,7 +72,7 @@ void VncProxyConnection::readFromClient()
 {
 	if( serverProtocol().state() != VncServerProtocol::Running )
 	{
-		while( serverProtocol().read() )
+		while( serverProtocol().read() ) // Flawfinder: ignore
 		{
 		}
 
@@ -100,7 +100,7 @@ void VncProxyConnection::readFromServer()
 {
 	if( clientProtocol().state() != VncClientProtocol::Running )
 	{
-		while( clientProtocol().read() )
+		while( clientProtocol().read() ) // Flawfinder: ignore
 		{
 		}
 
@@ -135,7 +135,7 @@ bool VncProxyConnection::forwardDataToClient( qint64 size )
 {
 	if( m_vncServerSocket->bytesAvailable() >= size )
 	{
-		const auto data = m_vncServerSocket->read( size );
+		const auto data = m_vncServerSocket->read( size ); // Flawfinder: ignore
 		if( data.size() == size )
 		{
 			return m_proxyClientSocket->write( data ) == size;
@@ -151,7 +151,7 @@ bool VncProxyConnection::forwardDataToServer( qint64 size )
 {
 	if( m_proxyClientSocket->bytesAvailable() >= size )
 	{
-		const auto data = m_proxyClientSocket->read( size );
+		const auto data = m_proxyClientSocket->read( size ); // Flawfinder: ignore
 		if( data.size() == size )
 		{
 			return m_vncServerSocket->write( data ) == size;

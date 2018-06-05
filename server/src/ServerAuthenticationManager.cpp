@@ -145,7 +145,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 	case VncServerClient::AuthChallenge:
 	{
 		// get authentication key name
-		const auto authKeyName = message.read().toString();
+		const auto authKeyName = message.read().toString(); // Flawfinder: ignore
 
 		if( VeyonCore::isAuthenticationKeyNameValid( authKeyName ) == false )
 		{
@@ -155,7 +155,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 
 		// now try to verify received signed data using public key of the user
 		// under which the client claims to run
-		const QByteArray signature = message.read().toByteArray();
+		const auto signature = message.read().toByteArray(); // Flawfinder: ignore
 
 		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath( authKeyName );
 
@@ -211,7 +211,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 	{
 		CryptoCore::PrivateKey privateKey = CryptoCore::PrivateKey::fromPEM( client->privateKey() );
 
-		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() );
+		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
 
 		CryptoCore::SecureArray decryptedPassword;
 
@@ -278,8 +278,11 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 		return VncServerClient::AuthToken;
 
 	case VncServerClient::AuthToken:
+	{
+		const auto token = message.read().toString();  // Flawfinder: ignore
+
 		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) &&
-				message.read().toString() == VeyonCore::authenticationCredentials().token() )
+				token == VeyonCore::authenticationCredentials().token() )
 		{
 			qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;
@@ -287,6 +290,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 
 		qDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
 		return VncServerClient::AuthFinishedFail;
+	}
 
 	default:
 		break;
