@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Su Veyon</translation>
+        <translation>Informazioni su Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -142,11 +142,11 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Backend del gruppo utenti:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend dei gruppi utente non presente</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
@@ -197,15 +197,15 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Il computer in accesso è localhost</translation>
+        <translation>Il computer in cui si sta entrando è localhost (computer locale)</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>L&apos;utente in accesso è registrato sull&apos;utente</translation>
+        <translation>L&apos;utente che sta entrando è registrato sull&apos;utente</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>L&apos;utente in accesso è già connesso</translation>
+        <translation>L&apos;utente che sta entrando è già connesso</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -233,11 +233,11 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Accesso all&apos;utente</translation>
+        <translation>L&apos;utente che sta entrando</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Accesso al computer</translation>
+        <translation>Il computer che sta entrando</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -272,7 +272,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Accesso all&apos;utente:</translation>
+        <translation>Utente che sta entrando:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -280,7 +280,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Accesso al computer:</translation>
+        <translation>Computer che sta entrando:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -319,15 +319,15 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Chiavi di autenticazione</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Introduzione</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Cartelle per i file delle chiavi</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -343,47 +343,47 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Chiavi di autenticazione disponibili</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Crea una coppia di chiavi</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Cancella la chiave</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Importa la chiave</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Esporta la chiave</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Imposta il gruppo di accesso</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>File di chiave (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Nome della chiave di autenticazione</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Inserire il nome del gruppo utenti o del ruolo per cui si vuole creare una coppia di chiavi di autenticazione:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi davvero eliminare la chiave di autenticazione %1/%2&quot;?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona la chiave da eliminare! </translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -391,7 +391,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona la chiave da esportare!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -702,15 +702,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new room</source>
-        <translation>Aggiungi nuova stanza</translation>
+        <translation>Aggiungi una nuova stanza</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation>Rimuovi stanza selezionata</translation>
+        <translation>Rimuovi la stanza selezionata</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Aggiungi nuovo computer</translation>
+        <translation>Aggiungi un nuovo computer</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
@@ -945,7 +945,7 @@ Examples:
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>Connessione stabilita</translation>
+        <translation>Connessione in corso</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
@@ -991,19 +991,19 @@ Examples:
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation>Gestione computer</translation>
+        <translation>Gestione del computer</translation>
     </message>
     <message>
         <source>Add room</source>
-        <translation>Aggiungi stanza</translation>
+        <translation>Aggiungi una stanza</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Salvare la lista di computer/utenti</translation>
+        <translation>Salva la lista di computer/utenti</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>Selezionare il nome file d&apos;uscita</translation>
+        <translation>Seleziona il nome del file d&apos;uscita</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
@@ -1011,7 +1011,7 @@ Examples:
     </message>
     <message>
         <source>File error</source>
-        <translation>Errore file</translation>
+        <translation>Errore nel file</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1046,7 +1046,7 @@ Examples:
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Impossibile determinare l&apos;aula a cui questo computer appartiene. Questo indica un problema con la configurazione del sistema. Come alternativa, nella gestione del computer verranno mostrate tutte le aule.</translation>
+        <translation>Impossibile determinare la stanza a cui questo computer appartiene. Questo indica un problema con la configurazione del sistema. Come alternativa, nella gestione del computer verranno mostrate tutte le stanze.</translation>
     </message>
 </context>
 <context>
@@ -1097,11 +1097,11 @@ Examples:
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>Importa configurazione da file.</translation>
+        <translation>Importa una configurazione da file.</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation>Esporta configurazione su file.</translation>
+        <translation>Esporta una configurazione su file.</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>

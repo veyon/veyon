@@ -35,7 +35,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>目前語言尚未翻譯 (或原生英語)。
 
-如果您有興趣翻譯 Veyon 為您的本地或另一種語言或想要改善現有的翻譯，請聯繫 Veyon 開發人員!</translation>
+如果您有興趣翻譯 Veyon 為您的本地或另一種語言或想要改善現有的翻譯，請聯絡 Veyon 開發人員!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -319,7 +319,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>驗證金鑰</translation>
     </message>
     <message>
         <source>Introduction</source>
@@ -343,7 +343,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>可用驗證金鑰</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -371,7 +371,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>驗證金鑰名稱</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -407,15 +407,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) 在主電腦上建立金鑰對。</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) 設定一個存取群組，應該允許其成員存取其它電腦。</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) 匯出公開金鑰並將其匯入到具有相同名稱的所有用戶端電腦上。</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -557,7 +557,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;不適用&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -600,7 +600,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>存取群組</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -608,7 +608,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
@@ -644,7 +644,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>類型</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -652,11 +652,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>管理驗證金鑰的命令列支援</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>管理驗證金鑰的命令</translation>
     </message>
 </context>
 <context>
@@ -671,7 +671,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>存取群組</translation>
     </message>
 </context>
 <context>
@@ -733,11 +733,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>加入教室或電腦</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>清除所有電腦和教室</translation>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
@@ -825,7 +825,7 @@ Examples:
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟檔案 &quot;%1&quot; 來讀取!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
@@ -837,7 +837,7 @@ Examples:
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>電腦 &quot;%1&quot; (主機位址: &quot;%2&quot; MAC 位址: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
@@ -853,7 +853,7 @@ Examples:
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>電腦</translation>
     </message>
     <message>
         <source>Root</source>
@@ -873,11 +873,11 @@ Examples:
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>內建 (在本機組態中電腦和教室)</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>管理內建網路物件目錄的命令</translation>
     </message>
     <message>
         <source>
@@ -904,7 +904,7 @@ Examples:
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟檔案 &quot;%1&quot; 來寫入!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -937,7 +937,7 @@ Examples:
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>可用功能: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1144,7 +1144,7 @@ Examples:
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>組態未寫入，請檢查您的權限!</translation>
     </message>
 </context>
 <context>
@@ -1166,7 +1166,7 @@ Examples:
     </message>
     <message>
         <source> ms</source>
-        <translation>毫秒</translation>
+        <translation> 毫秒</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1190,7 +1190,7 @@ Examples:
     </message>
     <message>
         <source> s</source>
-        <translation> s</translation>
+        <translation> 秒</translation>
     </message>
 </context>
 <context>
@@ -1267,7 +1267,7 @@ Examples:
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>加入新的程式</translation>
     </message>
     <message>
         <source>Remove selected program</source>
@@ -1306,7 +1306,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>按一下此按鈕可以在所有電腦上開啟一個網站。</translation>
+        <translation>按一下這個按鈕可以在所有電腦上開啟一個網站。</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -1318,7 +1318,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation>按一下此按鈕可以在所有電腦上執行一個程式。</translation>
+        <translation>按一下這個按鈕可以在所有電腦上執行一個程式。</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
@@ -1490,7 +1490,7 @@ Examples:
     </message>
     <message>
         <source> seconds</source>
-        <translation>秒</translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1551,11 +1551,11 @@ Examples:
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>封鎖存取 internet</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>允許存取到 internet</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1563,11 +1563,11 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>封鎖 internet</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>按一下這個按鈕以封鎖存取到 internet。</translation>
     </message>
     <message>
         <source>Unblock internet</source>
@@ -1575,15 +1575,15 @@ Examples:
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>按一下這個按鈕以允許存取到 internet。</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>控制存取 internet</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>控制存取 internet 的命令</translation>
     </message>
 </context>
 <context>
@@ -2140,7 +2140,7 @@ Examples:
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>連線安全性</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
@@ -2214,7 +2214,7 @@ Examples:
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>憑證檔 (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2476,7 +2476,7 @@ Examples:
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>將電腦對齊格線</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
@@ -2539,7 +2539,7 @@ Examples:
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
+        <translation>&lt;沒有功能&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
@@ -2595,7 +2595,7 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>背景色</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -2603,7 +2603,7 @@ Examples:
     </message>
     <message>
         <source> ms</source>
-        <translation>毫秒</translation>
+        <translation> 毫秒</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2611,7 +2611,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer management</source>
-        <translation type="unfinished"/>
+        <translation>自動開啟電腦管理</translation>
     </message>
     <message>
         <source>Modes and features</source>
@@ -2675,7 +2675,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>按一下此按鈕以開啟所有電腦的電源。 這種方式，您不需要手動開啟每台電腦電源。</translation>
+        <translation>按一下這個按鈕以開啟所有電腦的電源。 這種方式，您不需要手動開啟每部電腦電源。</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2683,7 +2683,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>按一下此按鈕以重新開機所有電腦。</translation>
+        <translation>按一下這個按鈕以重新開機所有電腦。</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2691,7 +2691,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>按一下此按鈕以關閉所有電腦的電源。 這種方式，您不需要手動關閉每台電腦電源。</translation>
+        <translation>按一下這個按鈕以關閉所有電腦的電源。 這種方式，您不需要手動關閉每部電腦電源。</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -3115,7 +3115,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>殼層功能的命令</translation>
     </message>
 </context>
 <context>
@@ -3212,7 +3212,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation>按一下此按鈕從所有電腦登出使用者。</translation>
+        <translation>按一下這個按鈕從所有電腦登出使用者。</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
@@ -3239,7 +3239,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>可用命令</translation>
+        <translation>可用命令:</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>

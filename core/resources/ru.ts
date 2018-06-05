@@ -138,19 +138,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Включить использование доменных групп</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Группы пользователей:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Отсутствующие группы пользователей</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Не был найден плагин по умолчанию для пользовательских групп. Проверьте свою установку!</translation>
     </message>
 </context>
 <context>
@@ -319,15 +319,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Ключи аутентификации</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Вступление</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Файловый каталог с ключами</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -343,117 +343,120 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Доступные ключи аутентификации</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Создать ключевую пару</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Удалить ключ</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Импорт ключа</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Экспорт ключа</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Установить группу доступа</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Ключевые файлы (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Имя ключа аутентификации</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Введите имя группы пользователей или роли, для которой необходимо создать ключевую пару аутентификации:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Вы действительно хотите удалить ключ аутентификации «%1/%2»?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Выберите ключ для удаления!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Введите имя группы пользователей или роли, для которой необходимо импортировать ключ аутентификации:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Выберите ключ для экспорта!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Выберите группу пользователей, которая предоставит доступ к ключу «%1»:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Выберите ключ, для которого необходимо установить группу доступа!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Для настройки проверки подлинности ключа выполните следующие действия:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Создайте ключевую пару на главном компьютере.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Установите группу доступа, члены которой должны иметь доступ к другим компьютерам.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Экспортируйте открытый ключ и импортируйте его на всех клиентских компьютерах с тем же именем.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Дополнительную информацию см.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;В Руководстве администратора Veyon&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Ключевая пара аутентификации состоит из двух связанных криптографических ключей, частного и открытого ключа. 
+Закрытый ключ позволяет пользователям на главном компьютере обращаться к клиентским компьютерам.
+Важно, чтобы только авторизованные пользователи имели доступ к чтению в файл закрытого ключа.
+Открытый ключ используется на клиентских компьютерах для аутентификации входящего запроса на соединение.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, проверьте свои права доступа.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Имя ключа содержит недопустимые символы!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Указан недопустимый тип ключа! Укажите «%1» или «%2».</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Указанный ключ не существует! Пожалуйста, используйте команду «list», чтобы перечислить все установленные ключи.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Один или несколько ключевых файлов уже существуют! Удалите их, используя команду «удалить».</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Создание новой ключевой пары для «%1»</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>

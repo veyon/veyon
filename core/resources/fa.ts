@@ -145,11 +145,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation> گروه های کاربری فاقد بخش مدیریت</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>هیچ پلاگین گروه کاربر پیش فرض یافت نشد لطفا نصب خود را بررسی کنید!</translation>
     </message>
 </context>
 <context>
@@ -180,7 +180,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>همه شرایط را غیرفعال کنید (&quot;is / has&quot; به عنوان &quot;آیا / ندارد&quot; تفسیر شده است)</translation>
     </message>
     <message>
         <source>Conditions</source>
@@ -322,11 +322,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>معرفی</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>دایرکتوری فایل های کلیدها</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -342,67 +342,67 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>کلیدهای تأیید موجود</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>ایجاد جفت کلید</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>حذف کلید</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>وارد کردن کلید</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>صادرکردن کلید</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>تعیین گروه دسترسی</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>فایل های کلیدی (* .pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>نام کلید تایید</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا نام گروه کاربری یا نقش مورد نظر برای ایجاد یک جفت کلید تأیید اعتبار را وارد کنید:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>آیا واقعا میخواهید کلید تأیید اعتبار «٪ 1 /٪ 2» را حذف کنید؟</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک کلید برای حذف انتخاب کنید!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا نام گروه کاربری یا نقش را برای وارد کردن کلید تأیید اعتبار وارد کنید.</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک کلید برای صدورانتخاب کنید!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک گروه کاربری که برای اعطای دسترسی به کلید &quot;٪ 1&quot; را انتخاب کنید:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>لطفا یک کلید را برای تنظیم گروه دسترسی برای انتخاب کنید!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>لطفا مراحل زیر را برای راه اندازی احراز هویت فایل کلید انجام دهید:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>

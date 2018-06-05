@@ -1750,96 +1750,97 @@ Examples:
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>高级设置</translation>
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation type="unfinished"/>
+        <translation>可选对象过滤器</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation type="unfinished"/>
+        <translation>用户组过滤器</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation type="unfinished"/>
+        <translation>用户过滤器</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation type="unfinished"/>
+        <translation>计算机组过滤器</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation type="unfinished"/>
+        <translation>组成员标识</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
-        <translation type="unfinished"/>
+        <translation>专有名称 (Samba/AD)</translation>
     </message>
     <message>
         <source>Configured attribute for user login or computer host name (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>配置用户登录或计算机主机名属性(OpenLDAP)</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation type="unfinished"/>
+        <translation>列出一个用户的所有组</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation type="unfinished"/>
+        <translation>列出一个计算机的所有组</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation type="unfinished"/>
+        <translation>通过 IP 地址获取计算机对象</translation>
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 连接失败</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 绑定失败</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 绑定成功</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <translation>成功连接到 LDAP 服务器并执行 LDAP 绑定。 基本的 LDAP 设置配置正确。</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 基础 DN 测试失败</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 基础 DN 测试通过</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 命名上下文测试失败</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 命名上下文测试通过</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 命名上下文已成功查询。 发现以下基本 DN：
+%1</translation>
     </message>
     <message>
         <source>user tree</source>
-        <translation type="unfinished"/>
+        <translation>用户树</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation type="unfinished"/>
+        <translation>组树</translation>
     </message>
     <message>
         <source>computer tree</source>
-        <translation type="unfinished"/>
+        <translation>计算机树</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -1847,203 +1848,211 @@ Examples:
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询的用户登录名(允许使用通配符)：</translation>
     </message>
     <message>
         <source>user objects</source>
-        <translation type="unfinished"/>
+        <translation>用户对象</translation>
     </message>
     <message>
         <source>user login attribute</source>
-        <translation type="unfinished"/>
+        <translation>用户登录属性</translation>
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>输入组名称</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询其成员的群组名称：</translation>
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>组成员</translation>
     </message>
     <message>
         <source>group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>组成员属性</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>未找到组</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>找不到名称为 &quot;%1&quot; 的组。 请检查组名称或组树参数。</translation>
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>输入计算机名称</translation>
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询的计算机主机名称：</translation>
     </message>
     <message>
         <source>Invalid host name</source>
-        <translation type="unfinished"/>
+        <translation>错误的主机名</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as fully qualified domain names (FQDN) but entered a host name without domain.</source>
-        <translation type="unfinished"/>
+        <translation>您将计算机主机名配置为存储为完全限定的域名（FQDN），但输入的是没有域的主机名。</translation>
     </message>
     <message>
         <source>You configured computer host names to be stored as simple host names without a domain name but entered a host name with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>您将计算机主机名配置为存储没有域名的简单主机名，但输入了带有域名部分的主机名。</translation>
     </message>
     <message>
         <source>computer objects</source>
-        <translation type="unfinished"/>
+        <translation>计算机对象</translation>
     </message>
     <message>
         <source>computer host name attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机主机名属性</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation type="unfinished"/>
+        <translation>输入计算机 </translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询 MAC 地址的计算机的 DN：</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>计算机 MAC 地址</translation>
     </message>
     <message>
         <source>computer MAC address attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机 MAC 地址属性</translation>
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>用户</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>用户组</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>计算机组</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询的组成员资格的用户登录名：</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation type="unfinished"/>
+        <translation>用户组</translation>
     </message>
     <message>
         <source>user login attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>用户登录属性或者组成员属性</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>未找到用户</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>找不到名称为 &quot;%1&quot; 的用户。 请检查用户名或用户树参数。</translation>
     </message>
     <message>
         <source>Enter host name</source>
-        <translation type="unfinished"/>
+        <translation>输入主机名</translation>
     </message>
     <message>
         <source>Please enter a computer host name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询的组成员的计算机主机名称：</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>计算机组</translation>
     </message>
     <message>
         <source>computer host name attribute or group membership attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机主机名属性或者组成员属性</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation type="unfinished"/>
+        <translation>未找到计算机</translation>
     </message>
     <message>
         <source>Could not find a computer with the host name &quot;%1&quot;. Please check the host name or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>无法找到主机名为 &quot;%1&quot; 的计算机。 请检查主机名或计算机树参数。</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation type="unfinished"/>
+        <translation>输入计算机 IP 地址</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要解析为计算机对象的计算机 IP 地址：</translation>
     </message>
     <message>
         <source>Host name lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>主机名查询失败</translation>
     </message>
     <message>
         <source>Could not lookup host name for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>无法查找 IP 地址为 %1 的主机名。 请检查您的DNS服务器设置。</translation>
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>计算机</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP %1 测试失败</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the %1 parameter.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>无法查询配置的 %1 中的任何条目。 请检查 %1 参数。
+
+%2</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP %1 测试成功</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>已成功查询 %1 ，并找到 %2 个条目。</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the %2 parameter or enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>无法查询任何 %1。 请检查 %2 参数或输入现有对象的名称.
+
+%3</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 查询成功：
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 过滤器测试失败</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>无法使用配置的过滤器查询任何 %1 。 请检查 LDAP 过滤器的 %1 。
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 过滤器测试成功</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
