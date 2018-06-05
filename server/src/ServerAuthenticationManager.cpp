@@ -131,16 +131,12 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 	{
 	case VncServerClient::AuthInit:
 		client->setChallenge( CryptoCore::generateChallenge() );
-		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() )
+		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() == false )
 		{
-			return VncServerClient::AuthChallenge;
-		}
-		else
-		{
-			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): failed to send challenge" );
+			qWarning( "ServerAuthenticationManager::performKeyAuthentication(): failed to send challenge" );
 			return VncServerClient::AuthFinishedFail;
 		}
-		break;
+		return VncServerClient::AuthChallenge;
 
 	case VncServerClient::AuthChallenge:
 	{
@@ -162,18 +158,15 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 		qDebug() << "ServerAuthenticationManager: loading public key" << publicKeyPath;
 		CryptoCore::PublicKey publicKey( publicKeyPath );
 
-		if( publicKey.isNull() == false && publicKey.isPublic() &&
-				publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) )
+		if( publicKey.isNull() || publicKey.isPublic() == false ||
+				publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) == false )
 		{
-			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
-			return VncServerClient::AuthFinishedSuccess;
-		}
-		else
-		{
-			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): FAIL" );
+			qWarning( "ServerAuthenticationManager::performKeyAuthentication(): FAIL" );
 			return VncServerClient::AuthFinishedFail;
 		}
-		break;
+
+		qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
+		return VncServerClient::AuthFinishedSuccess;
 	}
 
 	default:
@@ -247,6 +240,8 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 VncServerClient::AuthState ServerAuthenticationManager::performHostWhitelistAuth( VncServerClient* client,
 																				  VariantArrayMessage& message )
 {
+	Q_UNUSED(message)
+
 	QMutexLocker l( &m_dataMutex );
 
 	if( m_allowedIPs.isEmpty() )
