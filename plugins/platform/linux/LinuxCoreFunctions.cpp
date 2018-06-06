@@ -32,6 +32,7 @@
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
+#include "LinuxUserFunctions.h"
 #include "PlatformUserFunctions.h"
 
 
@@ -152,10 +153,38 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 
 bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString& username, const QString& desktop )
 {
-	Q_UNUSED(username);
 	Q_UNUSED(desktop);
 
-	return QProcess::startDetached( program );
+	class UserProcess : public QProcess {
+	public:
+		UserProcess( uid_t uid ) :
+			m_uid( uid )
+		{
+		}
+
+		void setupChildProcess() override
+		{
+			if( setuid( m_uid ) != 0 )
+			{
+				qFatal( "Could not set UID for child process!" );
+			}
+		}
+
+	private:
+		const uid_t m_uid;
+	};
+
+	const auto uid = LinuxUserFunctions::userIdFromName( username );
+	if( uid <= 0 )
+	{
+		return false;
+	}
+
+	auto process = new UserProcess( uid );
+	process->connect( process, QOverload<int>::of( &QProcess::finished ), &QProcess::deleteLater );
+	process->start( program );
+
+	return true;
 }
 
 
