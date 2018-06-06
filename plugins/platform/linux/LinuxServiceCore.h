@@ -50,7 +50,8 @@ private slots:
 
 private:
 	enum {
-		LoginManagerReconnectInterval = 3000
+		LoginManagerReconnectInterval = 3000,
+		SessionEnvironmentProbingInterval = 1000,
 	};
 
 	typedef struct {

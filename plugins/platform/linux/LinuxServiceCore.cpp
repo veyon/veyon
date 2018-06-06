@@ -96,8 +96,6 @@ void LinuxServiceCore::connectToLoginManager()
 
 void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
 {
-	Q_UNUSED( login1SessionId );
-
 	const auto sessionPath = sessionObjectPath.path();
 
 	const auto sessionType = getSessionType( sessionPath );
@@ -113,7 +111,10 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	if( sessionEnvironment.isEmpty() )
 	{
-		qWarning() << "Empty environment for session" << sessionPath << "with leader" << sessionLeader;
+		qWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
+				   << SessionEnvironmentProbingInterval << "msecs";
+		QTimer::singleShot( SessionEnvironmentProbingInterval, this,
+							[=]() { startServer( login1SessionId, sessionObjectPath ); } );
 		return;
 	}
 
