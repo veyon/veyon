@@ -27,6 +27,8 @@
 
 #include "PlatformUserFunctions.h"
 
+#include <pwd.h>
+
 // clazy:excludeall=copyable-polymorphic
 
 class LinuxUserFunctions : public PlatformUserFunctions
@@ -44,6 +46,8 @@ public:
 	void logout() override;
 
 	bool authenticate( const QString& username, const QString& password ) override;
+
+	static uid_t userIdFromName( const QString& username );
 
 private:
 	enum {
