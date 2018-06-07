@@ -242,9 +242,12 @@ bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStr
 
 
 
-bool WindowsCoreFunctions::runProgramAsUser( const QString& program, const QString& username, const QString& desktop )
+bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
+											 const QStringList& parameters,
+											 const QString& username,
+											 const QString& desktop )
 {
-	auto processHandle = runProgramInSession( program, WtsSessionManager::findProcessId( username ), desktop );
+	auto processHandle = runProgramInSession( program, parameters, WtsSessionManager::findProcessId( username ), desktop );
 	if( processHandle )
 	{
 		CloseHandle( processHandle );
@@ -311,7 +314,10 @@ const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 
 
 
-HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program, DWORD baseProcessId, const QString& desktop )
+HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
+												  const QStringList& parameters,
+												  DWORD baseProcessId,
+												  const QString& desktop )
 {
 	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
@@ -369,11 +375,12 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program, DWORD 
 	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
-	auto commandLine = toWCharArray( program );
+	auto applicationName = toWCharArray( program );
+	auto commandLine = toWCharArray( parameters.join( ' ' ) );
 
 	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token
-				nullptr,			  // file to execute
+				applicationName,			  // file to execute
 				commandLine,	 // command line
 				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
@@ -389,6 +396,9 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program, DWORD 
 	{
 		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
 	}
+
+	delete[] applicationName;
+	delete[] commandLine;
 
 	delete[] si.lpDesktop;
 

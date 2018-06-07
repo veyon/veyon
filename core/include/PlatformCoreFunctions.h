@@ -52,6 +52,7 @@ public:
 	virtual bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) = 0;
 
 	virtual bool runProgramAsUser( const QString& program,
+								   const QStringList& parameters,
 								   const QString& username,
 								   const QString& desktop ) = 0;
 

@@ -50,7 +50,8 @@ public:
 	bool isRunningAsAdmin() const override;
 	bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) override;
 
-	bool runProgramAsUser( const QString& program, const QString& username,
+	bool runProgramAsUser( const QString& program, const QStringList& parameters,
+						   const QString& username,
 						   const QString& desktop = QString() ) override;
 
 	QString genericUrlHandler() const override;

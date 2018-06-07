@@ -55,7 +55,7 @@ public:
 		qInfo() << "Starting server for WTS session" << wtsSessionId
 				<< "with user" << VeyonCore::platform().userFunctions().currentUser();
 
-		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(),
+		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), { },
 																		WtsSessionManager::findWinlogonProcessId( wtsSessionId ) );
 		if( m_subProcessHandle == nullptr )
 		{

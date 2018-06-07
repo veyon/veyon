@@ -151,7 +151,8 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 
 
 
-bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString& username, const QString& desktop )
+bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QStringList& parameters,
+										   const QString& username, const QString& desktop )
 {
 	Q_UNUSED(desktop);
 
@@ -182,7 +183,7 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 
 	auto process = new UserProcess( uid );
 	process->connect( process, QOverload<int>::of( &QProcess::finished ), &QProcess::deleteLater );
-	process->start( program );
+	process->start( program, parameters );
 
 	return true;
 }
