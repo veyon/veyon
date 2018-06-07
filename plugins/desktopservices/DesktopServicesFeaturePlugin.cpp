@@ -181,11 +181,34 @@ ConfigurationPage* DesktopServicesFeaturePlugin::createConfigurationPage()
 
 
 
-void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& program )
+void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& commandLine )
 {
-	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching program" << program;
+	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching" << commandLine;
 
-	VeyonCore::platform().coreFunctions().runProgramAsUser( program,
+	QString program;
+	QStringList parameters;
+
+	// parse command line format "C:\Program Files\..." -foo -bar
+	if( commandLine.startsWith( '"' ) && commandLine.count( '"' ) > 1 )
+	{
+		const auto commandLineSplit = commandLine.split( '"' );
+		program = commandLineSplit.value( 1 );
+		parameters = commandLine.mid( program.size() + 2 ).split( ' ' );
+	}
+	// parse command line format program.exe -foo -bar
+	else if( commandLine.contains( ' ' ) )
+	{
+		const auto commandLineSplit = commandLine.split( ' ' );
+		program = commandLineSplit.first();
+		parameters = commandLineSplit.mid( 1 );
+	}
+	else
+	{
+		// no arguments so use command line as program name
+		program = commandLine;
+	}
+
+	VeyonCore::platform().coreFunctions().runProgramAsUser( program, parameters,
 															VeyonCore::platform().userFunctions().currentUser(),
 															VeyonCore::platform().coreFunctions().activeDesktopName() );
 }

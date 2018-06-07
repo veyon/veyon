@@ -93,7 +93,7 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
-	void runProgramAsUser( const QString& program );
+	void runProgramAsUser( const QString& commandLine );
 	void openWebsite( const QUrl& url );
 
 	FeatureList predefinedPrograms() const;
