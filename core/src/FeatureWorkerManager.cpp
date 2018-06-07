@@ -32,6 +32,8 @@
 #include "Filesystem.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
+#include "PlatformCoreFunctions.h"
+#include "PlatformUserFunctions.h"
 
 // clazy:excludeall=detaching-member
 
@@ -75,7 +77,7 @@ FeatureWorkerManager::~FeatureWorkerManager()
 
 
 
-void FeatureWorkerManager::startWorker( const Feature& feature )
+void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMode workerProcessMode )
 {
 	if( thread() != QThread::currentThread() )
 	{
@@ -88,14 +90,24 @@ void FeatureWorkerManager::startWorker( const Feature& feature )
 
 	Worker worker;
 
-	worker.process = new QProcess;
-	worker.process->setProcessChannelMode( QProcess::ForwardedChannels );
+	if( workerProcessMode == ManagedSystemProcess )
+	{
+		worker.process = new QProcess;
+		worker.process->setProcessChannelMode( QProcess::ForwardedChannels );
 
-	connect( worker.process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
-			 worker.process, &QProcess::deleteLater );
+		connect( worker.process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+				 worker.process, &QProcess::deleteLater );
 
-	qDebug() << "Starting worker for feature" << feature.displayName() << feature.uid();
-	worker.process->start( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString() } );
+		qDebug() << "Starting worker (managed system process) for feature" << feature.displayName() << feature.uid();
+		worker.process->start( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString() } );
+	}
+	else
+	{
+		qDebug() << "Starting worker (unmanaged session process) for feature" << feature.displayName() << feature.uid();
+		VeyonCore::platform().coreFunctions().runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString() },
+																VeyonCore::platform().userFunctions().currentUser(),
+																VeyonCore::platform().coreFunctions().activeDesktopName() );
+	}
 
 	m_workersMutex.lock();
 	m_workers[feature.uid()] = worker;

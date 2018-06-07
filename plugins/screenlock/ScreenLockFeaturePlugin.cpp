@@ -106,7 +106,7 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 		if( server.featureWorkerManager().isWorkerRunning( m_screenLockFeature ) == false &&
 				message.command() != StopLockCommand )
 		{
-			server.featureWorkerManager().startWorker( m_screenLockFeature );
+			server.featureWorkerManager().startWorker( m_screenLockFeature, FeatureWorkerManager::ManagedSystemProcess );
 		}
 
 		// forward message to worker

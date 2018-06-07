@@ -50,7 +50,7 @@ void SystemTrayIcon::setToolTip( const QString& toolTipText,
 {
 	if( featureWorkerManager.isWorkerRunning( m_systemTrayIconFeature ) == false )
 	{
-		featureWorkerManager.startWorker( m_systemTrayIconFeature );
+		featureWorkerManager.startWorker( m_systemTrayIconFeature, FeatureWorkerManager::UnmanagedSessionProcess );
 	}
 
 	FeatureMessage featureMessage( m_systemTrayIconFeature.uid(), SetToolTipCommand );
@@ -67,7 +67,7 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 {
 	if( featureWorkerManager.isWorkerRunning( m_systemTrayIconFeature ) == false )
 	{
-		featureWorkerManager.startWorker( m_systemTrayIconFeature );
+		featureWorkerManager.startWorker( m_systemTrayIconFeature, FeatureWorkerManager::UnmanagedSessionProcess );
 	}
 
 	FeatureMessage featureMessage( m_systemTrayIconFeature.uid(), ShowMessageCommand );
@@ -86,7 +86,7 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const F
 		// forward message to worker
 		if( server.featureWorkerManager().isWorkerRunning( m_systemTrayIconFeature ) == false )
 		{
-			server.featureWorkerManager().startWorker( m_systemTrayIconFeature );
+			server.featureWorkerManager().startWorker( m_systemTrayIconFeature, FeatureWorkerManager::UnmanagedSessionProcess );
 		}
 
 		server.featureWorkerManager().sendMessage( message );

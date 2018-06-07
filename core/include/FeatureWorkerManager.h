@@ -40,10 +40,16 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
+	typedef enum WorkerProcessModes {
+		ManagedSystemProcess,
+		UnmanagedSessionProcess,
+		WorkerProcessModeCount
+	} WorkerProcessMode;
+
 	FeatureWorkerManager( VeyonServerInterface& server, FeatureManager& featureManager, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
-	Q_INVOKABLE void startWorker( const Feature& feature );
+	Q_INVOKABLE void startWorker( const Feature& feature, WorkerProcessMode workerProcessMode );
 	Q_INVOKABLE void stopWorker( const Feature& feature );
 
 	Q_INVOKABLE void sendMessage( const FeatureMessage& message );

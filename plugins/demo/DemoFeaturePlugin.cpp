@@ -153,7 +153,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 	{
 		if( server.featureWorkerManager().isWorkerRunning( m_demoServerFeature ) == false )
 		{
-			server.featureWorkerManager().startWorker( m_demoServerFeature );
+			server.featureWorkerManager().startWorker( m_demoServerFeature, FeatureWorkerManager::ManagedSystemProcess );
 		}
 
 		if( message.command() == StartDemoServer )
@@ -188,7 +188,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
 				message.command() != StopDemoClient )
 		{
-			server.featureWorkerManager().startWorker( message.featureUid() );
+			server.featureWorkerManager().startWorker( message.featureUid(), FeatureWorkerManager::ManagedSystemProcess );
 		}
 
 		QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );

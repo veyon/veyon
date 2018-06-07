@@ -57,7 +57,7 @@ bool DesktopAccessDialog::isBusy( FeatureWorkerManager* featureWorkerManager ) c
 
 void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, const QString& user, const QString& host )
 {
-	featureWorkerManager->startWorker( m_desktopAccessDialogFeature );
+	featureWorkerManager->startWorker( m_desktopAccessDialogFeature, FeatureWorkerManager::ManagedSystemProcess );
 
 	m_choice = ChoiceNone;
 
