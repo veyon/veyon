@@ -376,7 +376,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
 	auto applicationName = toWCharArray( program );
-	auto commandLine = toWCharArray( parameters.join( ' ' ) );
+	auto commandLine = toWCharArray( QStringLiteral("\"%1\" %2").arg( program, parameters.join( ' ' ) ) );
 
 	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token
