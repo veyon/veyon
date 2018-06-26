@@ -84,6 +84,8 @@ void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMod
 
 	stopWorker( feature );
 
+	const auto featureUid = feature.uid().toString();
+
 	Worker worker;
 
 	if( workerProcessMode == ManagedSystemProcess )
@@ -94,13 +96,13 @@ void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMod
 		connect( worker.process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
 				 worker.process, &QProcess::deleteLater );
 
-		qDebug() << "Starting worker (managed system process) for feature" << feature.displayName() << feature.uid();
-		worker.process->start( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString() } );
+		qDebug() << "Starting worker (managed system process) for feature" << feature.displayName() << featureUid;
+		worker.process->start( VeyonCore::filesystem().workerFilePath(), { featureUid } );
 	}
 	else
 	{
-		qDebug() << "Starting worker (unmanaged session process) for feature" << feature.displayName() << feature.uid();
-		VeyonCore::platform().coreFunctions().runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { feature.uid().toString() },
+		qDebug() << "Starting worker (unmanaged session process) for feature" << feature.displayName() << featureUid;
+		VeyonCore::platform().coreFunctions().runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { featureUid },
 																VeyonCore::platform().userFunctions().currentUser(),
 																VeyonCore::platform().coreFunctions().activeDesktopName() );
 	}
