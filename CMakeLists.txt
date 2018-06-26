@@ -282,6 +282,8 @@ IF(WIN32)
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
+			COMMAND mkdir -p ${TMP}/translations
+			COMMAND cp core/*qm ${TMP}/translations/
 			COMMAND cp ${DLLDIR}/libjpeg-62.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libpng16-16.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${TMP}

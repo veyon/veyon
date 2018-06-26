@@ -154,6 +154,9 @@ File "README.TXT"
 # plugins
 SetOutPath "$INSTDIR\plugins"
 File "plugins/*.dll"
+# translations
+SetOutPath "$INSTDIR\translations"
+File "translations/*.qm"
 # QCA plugins
 SetOutPath "$INSTDIR\crypto"
 File "crypto/*.dll"
@@ -250,6 +253,7 @@ Delete "$INSTDIR\*.url"
 RmDir /r "$INSTDIR\crypto"
 RmDir /r "$INSTDIR\plugins"
 RmDir /r "$INSTDIR\platforms"
+RmDir /r "$INSTDIR\translations"
 
 RmDir "$INSTDIR"
 

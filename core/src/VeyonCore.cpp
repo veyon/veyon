@@ -393,12 +393,15 @@ void VeyonCore::initLocaleAndTranslation()
 
 		QCoreApplication::installTranslator( tr );
 
-		auto qtTr = new QTranslator;
 #ifdef QT_TRANSLATIONS_DIR
-		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), QStringLiteral( QT_TRANSLATIONS_DIR ) );
+		const auto qtTranslationDir = QStringLiteral( QT_TRANSLATIONS_DIR );
 #else
-		qtTr->load( QStringLiteral( ":/qttranslations/qt_%1.qm" ).arg( configuredLocale.name() ) );
+		const auto qtTranslationDir = QCoreApplication::applicationDirPath() + QDir::separator() + QStringLiteral("translations");
 #endif
+
+		auto qtTr = new QTranslator;
+		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), qtTranslationDir );
+
 		QCoreApplication::installTranslator( qtTr );
 	}
 
