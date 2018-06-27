@@ -93,15 +93,20 @@ ENDIF(WIN64)
 # set up library and plugin path variables
 IF(CMAKE_INSTALL_LIBDIR)
     SET(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
-ELSE(CMAKE_INSTALL_LIBDIR)
+ELSE()
     SET(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
-ENDIF(CMAKE_INSTALL_LIBDIR)
+ENDIF()
+
+SET(VEYON_INSTALL_DATADIR "${CMAKE_INSTALL_DATADIR}/veyon")
 
 IF(WIN32)
     SET(VEYON_PLUGIN_DIR "plugins")
+    SET(VEYON_TRANSLATIONS_DIR "translations")
 ELSE()
     SET(VEYON_PLUGIN_DIR "../${VEYON_LIB_DIR}")
+    SET(VEYON_TRANSLATIONS_DIR "../share/veyon/translations")
 ENDIF()
+
 
 SET(VEYON_CORE_INCLUDE_DIR core/include)
 
@@ -237,6 +242,8 @@ FOREACH(_ts_file ${veyon_LOCALES})
 	LIST(APPEND ts_targets "${_ts_target}")
 	LIST(APPEND qm_targets "${_qm_target}")
 
+	INSTALL(FILES ${_qm_file} DESTINATION ${VEYON_INSTALL_DATADIR}/translations)
+
 	# add target for downloading translation file from Transifex
 	STRING(REPLACE ".ts" "" _translation "${_ts_target}")
 	IF(NOT ${_translation} STREQUAL "veyon")
@@ -283,7 +290,7 @@ IF(WIN32)
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
 			COMMAND mkdir -p ${TMP}/translations
-			COMMAND cp core/*qm ${TMP}/translations/
+			COMMAND cp ${CMAKE_SOURCE_DIR}/core/resources/*.qm ${CMAKE_BINARY_DIR}/core/*qm ${TMP}/translations/
 			COMMAND cp ${DLLDIR}/libjpeg-62.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libpng16-16.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${TMP}

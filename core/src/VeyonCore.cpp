@@ -148,6 +148,24 @@ QString VeyonCore::pluginDir()
 
 
 
+QString VeyonCore::translationsDirectory()
+{
+	return QCoreApplication::applicationDirPath() + QDir::separator() + VEYON_TRANSLATIONS_DIR;
+}
+
+
+
+QString VeyonCore::qtTranslationsDirectory()
+{
+#ifdef QT_TRANSLATIONS_DIR
+	return QStringLiteral( QT_TRANSLATIONS_DIR );
+#else
+	return translationsDirectory();
+#endif
+}
+
+
+
 QString VeyonCore::executableSuffix()
 {
 	return QStringLiteral( VEYON_EXECUTABLE_SUFFIX );
@@ -381,26 +399,21 @@ void VeyonCore::initLocaleAndTranslation()
 
 	if( configuredLocale.language() != QLocale::English )
 	{
+
 		auto tr = new QTranslator;
 		if( configuredLocale == QLocale::C ||
-				tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
+				tr->load( QStringLiteral( "%1.qm" ).arg( configuredLocale.name() ), translationsDirectory() ) == false )
 		{
 			configuredLocale = QLocale::system(); // Flawfinder: ignore
-			tr->load( QStringLiteral( ":/resources/%1.qm" ).arg( QLocale::system().name() ) ); // Flawfinder: ignore
+			tr->load( QStringLiteral( "%1.qm" ).arg( QLocale::system().name() ), translationsDirectory() ); // Flawfinder: ignore
 		}
 
 		QLocale::setDefault( configuredLocale );
 
 		QCoreApplication::installTranslator( tr );
 
-#ifdef QT_TRANSLATIONS_DIR
-		const auto qtTranslationDir = QStringLiteral( QT_TRANSLATIONS_DIR );
-#else
-		const auto qtTranslationDir = QCoreApplication::applicationDirPath() + QDir::separator() + QStringLiteral("translations");
-#endif
-
 		auto qtTr = new QTranslator;
-		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), qtTranslationDir );
+		qtTr->load( QStringLiteral( "qt_%1.qm" ).arg( configuredLocale.name() ), qtTranslationsDirectory() );
 
 		QCoreApplication::installTranslator( qtTr );
 	}

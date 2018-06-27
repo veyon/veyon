@@ -47,7 +47,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
-	const auto qmFiles = QDir(":/resources/").entryList( { QStringLiteral("*.qm") } );
+	const auto qmFiles = QDir( VeyonCore::translationsDirectory() ).entryList( { QStringLiteral("*.qm") } );
 
 	languages.reserve( qmFiles.count() );
 

@@ -67,6 +67,8 @@ public:
 
 	static QString version();
 	static QString pluginDir();
+	static QString translationsDirectory();
+	static QString qtTranslationsDirectory();
 	static QString executableSuffix();
 	static QString sharedLibrarySuffix();
 
