@@ -319,11 +319,11 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Authenticatie sleutels</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Inleiding</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -371,27 +371,27 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Authenticatie sleutel naam</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Geef de naam van de gebruikers groep of rol waarvoor u een authenticatie sleutelpaar wil maken:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Bent u zeker om met de verwijdering van authenticatiesleutel &quot;%1/%2&quot; door te gaan?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Gelieve de sleutel aan te duiden die u wilt verwijderen!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Geef de naam van de gebruikers groep of rol waarvoor u een authenticatie sleutel wil importeren:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Gelieve de sleutel aan te duiden die u wilt exporteren!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -399,11 +399,11 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Gelieve de sleutel aan te duiden waarvoor u de toegangsgroep wil instellen!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Gelieve volgende stappen te volgen om sleutel authenticatie in te stellen:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -433,7 +433,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Gelieve uw rechten na te kijken.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -457,7 +457,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>Aanmaken van de publieke sleutel of private sleutel is mislukt.</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
@@ -473,15 +473,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Maken van een uitvoermap is mislukt.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Bestand &quot;%1&quot; bestaat reeds.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Schrijven van het uitvoerbestand is mislukt.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -489,7 +489,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Lezen van het invoerbestand is mislukt.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -517,11 +517,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Omzetten van private sleutel naar publieke sleutel is mislukt.</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Maken van de map voor het private sleutelbestand &quot;%1&quot; is mislukt.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -557,11 +557,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Lezen van het sleutelbestand is mislukt.</translation>
     </message>
 </context>
 <context>
@@ -596,11 +596,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>SLEUTEL</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>TOEGANGS GROEP</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -608,7 +608,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NAAM</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
@@ -620,7 +620,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>BESTAND</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -644,11 +644,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TYPE</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>PAIR ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -733,11 +733,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Voeg een lokaal of een computer toe</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Wis alle lokalen en computers</translation>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
@@ -745,11 +745,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Toon alle lokalen en computers</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder een lokaal of een computer</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -833,7 +833,7 @@ Examples:
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lokaal &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -845,15 +845,15 @@ Examples:
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Geen</translation>
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>Lokaal</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Computer</translation>
     </message>
     <message>
         <source>Root</source>
@@ -861,7 +861,7 @@ Examples:
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Ongeldig</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -1283,7 +1283,7 @@ Examples:
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1521,7 +1521,7 @@ Examples:
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -2154,7 +2154,7 @@ Examples:
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>Nooit (onveilig!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2162,15 +2162,15 @@ Examples:
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Geen</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2486,7 +2486,7 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>Onvoldoende toegangsrechten</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
@@ -2593,7 +2593,7 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Achtergrond kleur</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>

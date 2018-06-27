@@ -33,7 +33,7 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>当前语言还未翻译（或者是英文母语）。
+        <translation>当前语言还未翻译(或者是英文母语)。
 
 如果您对翻译 Veyon 感兴趣，或者想改进当前的翻译，请联系 Veyon 开发者！</translation>
     </message>
@@ -857,55 +857,55 @@ Examples:
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>未知参数 &quot;%1&quot;。</translation>
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>教室 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>计算机 &quot;%1&quot; (主机地址: &quot;%2&quot; MAC 地址: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation> ID 为 &quot;%2&quot; 的未分类对象 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>无</translation>
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>教室</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>计算机</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Root</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>无效</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>解析行 %1 时出错。</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>网络对象目录，用于存储本地配置的对象</translation>
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>内置(电脑和教室都在本地配置)</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>管理内置网络对象目录的命令</translation>
     </message>
     <message>
         <source>
@@ -924,72 +924,87 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] 可用变量: %type% %name% %host% %mac% %room%
+
+例如:
+
+* 导出所有对象到一个 CSV 文件:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* 导出一个教室里所有计算机到一个 CSV 文件:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>没有指定格式字符串或正则表达式！</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>不能打开要写入的文件e &quot;%1&quot;！</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>没有指定格式字符串！</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation type="unfinished"/>
+        <translation>内置 VNC 服务 (UltraVNC)</translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation type="unfinished"/>
+        <translation>内置 VNC 服务 (x11vnc)</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation type="unfinished"/>
+        <translation>教室: %1</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>主机/IP 地址: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>激活的功能: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation type="unfinished"/>
+        <translation>在线并已连接</translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation type="unfinished"/>
+        <translation>正在建立连接</translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation type="unfinished"/>
+        <translation>计算机离线或者已关机</translation>
     </message>
     <message>
         <source>Service unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>服务无法访问或未运行</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation type="unfinished"/>
+        <translation>验证失败或访问被拒绝</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>已断开</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -997,14 +1012,14 @@ Examples:
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation type="unfinished"/>
+        <translation>登录用户: %1</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
+        <translation>%1 服务 %2 在 %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1012,201 +1027,201 @@ Examples:
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>用户 %1 (IP: %2) 尝试访问此计算机，但没有通过验证！</translation>
     </message>
 </context>
 <context>
     <name>ComputerManagementView</name>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>计算机管理</translation>
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>添加教室</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>保存计算机/用户列表</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>选择输出文件名</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>CSV 文件 (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>文件错误</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>无法将计算机和用户列表写入 %1！请检查文件访问权限。</translation>
     </message>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>搜索计算机</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>用户</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>缺少网络对象目录插件</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>没有找到默认的网络对象目录插件。请检查您的安装或通过 %1  配置器配置不同的网络对象目录后端。</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
-        <translation type="unfinished"/>
+        <translation>计算机名称;主机名;用户</translation>
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation type="unfinished"/>
+        <translation>教室检测失败</translation>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation type="unfinished"/>
+        <translation>无法确定此计算机所属的教室。这表明系统配置存在问题。所有教室都将显示在计算机管理中。</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommandLinePlugin</name>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>请指定要导入的配置文件。</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation type="unfinished"/>
+        <translation>请为导出的配置指定一个有效的文件名。</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation type="unfinished"/>
+        <translation>请指定一个有效的密钥。</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>指定的密钥在当前配置中不存在！</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation type="unfinished"/>
+        <translation>请指定一个有效的值。</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>在命令行配置 </translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>输出文件不可写！</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>输出目录不可写！</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>配置文件不可读！</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation type="unfinished"/>
+        <translation>清除系统级别 Veyon 配置</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation type="unfinished"/>
+        <translation>列出所有配置密钥和值</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation type="unfinished"/>
+        <translation>从给定的文件导入配置</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation type="unfinished"/>
+        <translation>导出配置到指定的文件</translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation type="unfinished"/>
+        <translation>读取并输出配置值给指定的密钥</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>将给定的值写入给定的配置密钥</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation type="unfinished"/>
+        <translation>取消设置(移除)给定的配置密钥</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>管理 Veyon 配置的命令</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>升级并保存程序和插件的配置</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation type="unfinished"/>
+        <translation>无法修改 %1 服务的自启动属性。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>无法为 %1 服务配置防火墙配置。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>无法为 %1 程序配置防火墙配置。</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
+        <translation>无法通过软件更改 SAS 生成的设置。通过远程控制发送 Ctrl+Alt+Del 将不起作用！</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>配置不可写，请检查您的权限！</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation type="unfinished"/>
+        <translation>%1 演示</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>演示服务</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>可调参数</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>毫秒</translation>
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation type="unfinished"/>
+        <translation>关键帧间隔</translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>内存限制</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>使用多线程(实验)</translation>
     </message>
     <message>
         <source> MB</source>
@@ -1214,11 +1229,11 @@ Examples:
     </message>
     <message>
         <source>Update interval</source>
-        <translation type="unfinished"/>
+        <translation>更新间隔</translation>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation> s</translation>
     </message>
 </context>
 <context>
@@ -1229,7 +1244,7 @@ Examples:
     </message>
     <message>
         <source>Stop demo</source>
-        <translation type="unfinished"/>
+        <translation>停止演示</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1237,26 +1252,26 @@ Examples:
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
+        <translation>通过屏幕广播进行演示</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>演示服务</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，您的屏幕将以全屏模式显示在所有电脑上，用户的输入设备将被锁定。</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，您的屏幕将作为窗口显示在所有计算机中。用户可以根据需要切换到其他窗口。</translation>
     </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation type="unfinished"/>
+        <translation>桌面访问对话框</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
@@ -1272,18 +1287,18 @@ Examples:
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
+        <translation>计算机 %2 的用户r %1 想要访问您的桌面，您是否他的允许访问？</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>程序和网站</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>预定义的程序</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1291,107 +1306,107 @@ Examples:
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>路径</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>添加新程序</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>移除选中的程序</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>预定义的网站</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>移除选定的网站</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>新程序</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>新站点</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>运行程序</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>打开网站</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮，将在所有计算机上打开一个网站</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要打开站点的网址：</translation>
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation type="unfinished"/>
+        <translation>在用户桌面运行程序和服务</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮将在所有计算机上运行一个程序。</translation>
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>运行程序 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>定制程序</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>打开站点 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>定制站点</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation type="unfinished"/>
+        <translation>外部 VNC 服务</translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>外部 VNC 服务配置</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>端口:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>密码:</translation>
     </message>
 </context>
 <context>
     <name>FeatureControl</name>
     <message>
         <source>Feature control</source>
-        <translation type="unfinished"/>
+        <translation>功能控制</translation>
     </message>
 </context>
 <context>
@@ -1406,15 +1421,15 @@ Examples:
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
+        <translation>使用系统语言设置</translation>
     </message>
     <message>
         <source>Enable high DPI scaling</source>
-        <translation type="unfinished"/>
+        <translation>启用高 DPI 缩放</translation>
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1646,7 +1661,7 @@ Examples:
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation type="unfinished"/>
+        <translation>使用绑定的证书</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2056,227 +2071,237 @@ Examples:
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 使用配置的过滤器成功查询。</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(仅当与组树不同时)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>计算机组树</translation>
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>计算机组树</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>计算机过滤器</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>例如：计算机教室或实验室</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
-        <translation type="unfinished"/>
+        <translation>列出计算机教室里的所有成员</translation>
     </message>
     <message>
         <source>List all computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>列出所有的计算机教室</translation>
     </message>
     <message>
         <source>Enter computer room name</source>
-        <translation type="unfinished"/>
+        <translation>输入计算机教室名称</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>请输入计算机房的名称（允许使用通配符）：</translation>
     </message>
     <message>
         <source>computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室</translation>
     </message>
     <message>
         <source>computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室属性</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要查询其成员的计算机机房的名称：</translation>
     </message>
     <message>
         <source>computer room members</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室成员</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
-        <translation type="unfinished"/>
+        <translation>计算机组过滤器或计算机机房成员汇总</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室</translation>
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>集成测试</translation>
     </message>
     <message>
         <source>Computer room attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室属性</translation>
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
-        <translation type="unfinished"/>
+        <translation>通过以下方式在一个房间中聚合计算机：</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>计算机组</translation>
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>计算机对象中的计算机房属性</translation>
     </message>
     <message>
         <source>Test not applicable</source>
-        <translation type="unfinished"/>
+        <translation>测试不适用</translation>
     </message>
     <message>
         <source>Computer room name attribute</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室名称属性</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation type="unfinished"/>
+        <translation>例如：名称或描述</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>用于计算机的过滤器</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>计算机容器或 OU</translation>
     </message>
     <message>
         <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation type="unfinished"/>
+        <translation>请将计算机机房设置改为使用计算机组或计算机容器作为计算机教室。 然后将查询指定的属性而不是计算机组或容器对象的通用名称。 否则，您不需要配置此属性。</translation>
     </message>
     <message>
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation type="unfinished"/>
+        <translation>请更改下面的计算机教室设置，将计算机容器用作计算机教室。 否则，您不需要配置此过滤器。</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>连接安全性</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS 证书验证</translation>
     </message>
     <message>
         <source>Security mode</source>
-        <translation type="unfinished"/>
+        <translation>安全模式</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>系统默认值</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>从不（不安全！）</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>自定义 CA 证书文件</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>无</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>例如 (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>例如 (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>例如 (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>例如 (objectClass=room) 或 (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>例如 (objectClass=container) 或 (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>无法查询配置的基本 DN。 请检查基本 DN 参数
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 基本 DN 已成功查询。 找到以下条目：
+
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>无法通过命名上下文查询基本 DN。 请检查命名上下文属性参数。
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>证书文件 (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>无法连接到 LDAP 服务器。 请检查服务器参数。
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>无法绑定到 LDAP 服务器。 请检查服务器参数并绑定证书。
+
+%1</translation>
     </message>
 </context>
 <context>
     <name>LdapDirectory</name>
     <message>
         <source>LDAP error description: %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP错误描述： %1</translation>
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>没有可用的 LDAP 错误说明</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"/>
+        <translation>通过命名上下文自动配置基本 DN</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>从 LDAP 目录查询对象</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -2284,26 +2309,26 @@ Examples:
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
+        <translation>用于配置和测试 LDAP/AD 集成的命令</translation>
     </message>
     <message>
         <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>为 Veyon 提供 LDAP/AD 集成</translation>
     </message>
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP(从 LDAP/AD 加载计算机和教室)</translation>
     </message>
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP(从 LDAP/AD 加载用户和组)</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>通过插件实现 Linux 平台的抽象函数</translation>
     </message>
 </context>
 <context>
@@ -2317,15 +2342,15 @@ Examples:
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>配置</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
+        <translation>禁用气球浮动提示</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>仅显示图标</translation>
     </message>
 </context>
 <context>
@@ -2416,19 +2441,19 @@ Examples:
     </message>
     <message>
         <source>Veyon Configurator</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 配置器</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>服务</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>主机</translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation type="unfinished"/>
+        <translation>访问控制</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -2436,11 +2461,11 @@ Examples:
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>自动</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>计算机教室</translation>
     </message>
     <message>
         <source>About</source>
@@ -2448,23 +2473,23 @@ Examples:
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 配置器 %2</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>JSON 文件 (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>本地配置后端报告配置不可写入！ 请以更高的权限来运行 %1 配置程序。</translation>
     </message>
     <message>
         <source>%1 Master Control</source>
-        <translation type="unfinished"/>
+        <translation>%1 主控器</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation type="unfinished"/>
+        <translation>没有找到密钥认证文件或者您当前的文件已过期。 请使用 %1 配置程序创建新的密钥文件。 或者使用 %1 配置器设置登录认证。 否则，您将无法使用 %1 访问计算机。</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -2472,55 +2497,55 @@ Examples:
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>根据本地配置，您不允许访问网络中的计算机。 请使用其他帐户登录或让系统管理员检查本地配置。</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>屏幕截图</translation>
     </message>
     <message>
         <source>Feature active</source>
-        <translation type="unfinished"/>
+        <translation>已激活的功能</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation type="unfinished"/>
+        <translation>功能 &quot;%1&quot; 仍处于活动状态。 请在关闭 &quot;%2&quot; 之前停止它。</translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>重置配置</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>你真的想重置本地配置并将所有设置恢复为默认值吗？</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>搜索用户和计算机</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
+        <translation>调整最佳尺寸</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>将计算机图标与网格对齐</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
+        <translation>手动排列计算机图标</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
-        <translation type="unfinished"/>
+        <translation>%1 配置器</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>权限不够</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>无法以管理权限运行。 请确保您的桌面环境安装了类似 sudo 的程序！程序将以普通用户权限运行。</translation>
     </message>
 </context>
 <context>
@@ -2535,43 +2560,43 @@ Examples:
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>用户配置</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>在计算机图标上双击运行的功能：</translation>
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation type="unfinished"/>
+        <translation>在启动时自动切换到当前教室</translation>
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>功能</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>所有功能</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>禁用的功能</translation>
     </message>
     <message>
         <source>Perform access control at program start</source>
-        <translation type="unfinished"/>
+        <translation>在程序启动时执行访问控制</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>屏幕截图</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
-        <translation type="unfinished"/>
+        <translation>在启动时自动调整电脑图标大小</translation>
     </message>
     <message>
         <source>Basic settings</source>
@@ -2579,43 +2604,43 @@ Examples:
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>行为</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
+        <translation>为客户端计算机强制选择模式</translation>
     </message>
     <message>
         <source>Only show current room</source>
-        <translation type="unfinished"/>
+        <translation>仅显示当前教室</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation type="unfinished"/>
+        <translation>允许手动添加教室</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>隐藏本地计算机</translation>
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation type="unfinished"/>
+        <translation>隐藏空教室</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>隐藏计算机过滤器文本框</translation>
     </message>
     <message>
         <source>Computer management</source>
-        <translation type="unfinished"/>
+        <translation>计算机管理</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>比如重新启动或关闭计算机的操作</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potential dangerous actions</source>
-        <translation type="unfinished"/>
+        <translation>显示潜在危险操作的确认对话框</translation>
     </message>
     <message>
         <source>User interface</source>
@@ -2623,49 +2648,49 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>背景色</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>缩略图更新时间</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>毫秒</translation>
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>程序启动</translation>
     </message>
     <message>
         <source>Automatically open computer management</source>
-        <translation type="unfinished"/>
+        <translation>自动打开计算机管理</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>模式和功能</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>监控</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>内置监控模式</translation>
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation type="unfinished"/>
+        <translation>这是默认模式，并允许您监视一个或多个房间中的所有计算机。</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Room/Computer</source>
-        <translation type="unfinished"/>
+        <translation>教室/计算机</translation>
     </message>
 </context>
 <context>
@@ -2680,19 +2705,19 @@ Examples:
     </message>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 登录</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>验证错误</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
+        <translation>使用给定的用户名和密码登录失败。 请再试一次！</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>请输入您的用户名和密码才能访问计算机。</translation>
     </message>
 </context>
 <context>
@@ -2703,7 +2728,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮开启所有电脑。这样您就不必手动启动每台电脑。</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -2711,7 +2736,7 @@ Examples:
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮重启所有电脑。</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -2719,38 +2744,38 @@ Examples:
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮关闭所有电脑。这样您就不必手动关闭每台电脑。</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>打开/关闭电源或重新启动计算机</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>确认重启</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>确认关机</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要重新启动选定的电脑吗？</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要关闭选定的电脑吗？</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>远程桌面</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>非控制模式打开计算机远程视图。</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -2758,19 +2783,19 @@ Examples:
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>打开计算机的远程控制窗口。</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>远程访问</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>远程查看或控制电脑</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>请输入要访问的计算机的主机名或IP地址：</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -2781,7 +2806,7 @@ Examples:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 远程访问</translation>
     </message>
 </context>
 <context>
@@ -2796,7 +2821,7 @@ Examples:
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>发送快捷键</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2812,35 +2837,35 @@ Examples:
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>菜单键</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -2852,121 +2877,121 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>屏幕截图</translation>
     </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation type="unfinished"/>
+        <translation>教室选择</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>输入搜索管理器...</translation>
     </message>
 </context>
 <context>
     <name>RunProgramDialog</name>
     <message>
         <source>Please enter the programs or commands to run on the selected computer(s). You can separate multiple programs/commands by line.</source>
-        <translation type="unfinished"/>
+        <translation>请输入要在所选计算机上运行的程序或命令。 您可以按行分隔多个程序/命令。</translation>
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>运行程序</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>例如 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>锁定</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>解锁</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>锁定计算机屏幕和输入设备</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>要集中所有用户的注意力，您可以使用此按钮锁定他们的计算机。 在这种模式下，所有输入设备都被锁定，屏幕变黑。</translation>
     </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>未知</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"/>
+        <translation>无法截取截图，因为目录 %1 不存在且无法创建。</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>屏幕截图</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>屏幕截图</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>使用此功能截取所选计算机的屏幕截图。</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>已截图</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>%1 计算机屏幕已成功截图。</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>以计算机屏幕截图并将其保存在本地。</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>用户：</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>日期：</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>时间：</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>显示</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>删除</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>这里列出了您抓取的所有屏幕截图。 您可以通过单击计算机上下文菜单中的“屏幕截图”菜单来抓取屏幕截图。 截图可以使用下面的按钮进行管理。</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>计算机：</translation>
     </message>
 </context>
 <context>
@@ -3001,7 +3026,7 @@ Examples:
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation type="unfinished"/>
+        <translation>通过软件启用 SAS 生成（Ctrl + Alt + Del）</translation>
     </message>
     <message>
         <source>Network</source>
@@ -3021,23 +3046,23 @@ Examples:
     </message>
     <message>
         <source>Internal VNC server port</source>
-        <translation type="unfinished"/>
+        <translation>内部 VNC 服务器端口</translation>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>VNC 服务</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>插件：</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>重启 %1 服务</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>所有设置都已成功保存。为了生效，需要重新启动 %1 服务。现在重新启动它？</translation>
     </message>
     <message>
         <source>Running</source>
@@ -3045,93 +3070,94 @@ Examples:
     </message>
     <message>
         <source>Feature manager port</source>
-        <translation type="unfinished"/>
+        <translation>功能管理器端口</translation>
     </message>
     <message>
         <source>Primary service port</source>
-        <translation type="unfinished"/>
+        <translation>主服务端口</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>启用此选项将启动计算机上每一个交互式会话的服务器进程。
+通常这是支持终端服务器所必需的。</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>多会话支持（实验）</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>启动服务 %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>停止服务 %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>注册服务 %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>反注册服务 %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>服务控制</translation>
     </message>
 </context>
 <context>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>服务正在运行</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>服务没有运行</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>配置和控制 Veyon 服务</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>注册 Veyon 服务</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>反注册 Veyon 服务</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>启动 Veyon 服务</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>停止 Veyon 服务</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>重启 Veyon 服务</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>查询 Veyon 服务状态</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>用于配置和控制Veyon服务的命令</translation>
     </message>
 </context>
 <context>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>运行命令文件</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -3139,29 +3165,29 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 控制器的交互式 shell 和脚本运行</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>shell功能的命令</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>系统托盘图标</translation>
     </message>
 </context>
 <context>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>系统用户组的用户组后端</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>默认（系统用户组）</translation>
     </message>
 </context>
 <context>
@@ -3183,7 +3209,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation type="unfinished"/>
+        <translation>使用此功能可向所有用户发送文字信息，例如 为他们分配新任务。</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -3191,7 +3217,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>给一个用户发送消息</translation>
     </message>
 </context>
 <context>
@@ -3210,11 +3236,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>内置 UltraVNC 服务配置</translation>
     </message>
     <message>
         <source>Enable dual monitor support</source>
-        <translation type="unfinished"/>
+        <translation>启用双显示器支持</translation>
     </message>
 </context>
 <context>
@@ -3225,14 +3251,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>无法保存您的个人设置！ 请使用 %1 配置器检查用户配置文件路径。</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControl</name>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
+        <translation>用户会话控制</translation>
     </message>
     <message>
         <source>Logout user</source>
@@ -3240,61 +3266,61 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Click this button to logout users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮所有计算机执行注销命令。</translation>
     </message>
     <message>
         <source>Confirm user logout</source>
-        <translation type="unfinished"/>
+        <translation>确认用户登出/注销</translation>
     </message>
     <message>
         <source>Do you really want to logout the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要注销选定的用户？</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[FAIL]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>无效的命！</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>可用命令：</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>给定的参数无效</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation type="unfinished"/>
+        <translation>没有给出足够的参数 - 使用 &quot;%1 help&quot; 获取更多信息</translation>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>未知的结果！</translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>可用的模块：</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>没有指定的模块或找不到模块 - 可用模块为：</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服务</translation>
     </message>
 </context>
 <context>
@@ -3323,53 +3349,53 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>插件实现 Windows 平台的抽象函数</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl:  服务 &quot;%1&quot; 已经安装。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl:  服务 &quot;%1&quot; 未能安装。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 已成功安装。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 不能被卸载。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 已成功卸载。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 的启动类型无法更改。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服务 &quot;%1&quot; 未能找到。</translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation type="unfinished"/>
+        <translation>内置 x11vnc 服务配置</translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation type="unfinished"/>
+        <translation>定制 x11vnc 参数：</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>不要使用 X Damage 扩展</translation>
     </message>
 </context>
 </TS>

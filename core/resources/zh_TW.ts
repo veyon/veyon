@@ -138,19 +138,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>啟用網域群組使用</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>使用者群組後台:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>缺少使用者群組後台</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>找不到預設的使用者群組外掛件。 請檢查您的安裝!</translation>
     </message>
 </context>
 <context>
@@ -296,15 +296,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>允許在給予場景中存取。</translation>
+        <translation>允許在給予情境中存取。</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>拒絕在給予場景中存取。</translation>
+        <translation>拒絕在給予情境中存取。</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>在給予場景中存取。需要登入使用者的權限。</translation>
+        <translation>在給予情境中存取。需要登入使用者的權限。</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -323,11 +323,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>說明</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>金鑰檔目錄</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -347,27 +347,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>建立金鑰配對</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>刪除金鑰</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>匯入金鑰</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>匯出金鑰</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>設定存取群組</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>金鑰檔 (*. pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -375,35 +375,35 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要為其建立身份驗證金鑰配對的使用者群組或角色的名稱:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要刪除身份驗證金鑰 &quot;%1/%2&quot; 嗎?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>請選擇要刪除的金鑰!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要為其匯入身份驗證金鑰的使用者群組或角色的名稱:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>請選擇要匯出的金鑰!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>請選擇要授予對金鑰 &quot;%1&quot; 存取權限的使用者群組:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>請選擇要為其設定存取群組的金鑰!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>請執行以下步驟以設定金鑰檔身份驗證:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -419,141 +419,144 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>有關詳細資訊，請參閱 &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon 管理員手冊&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>身份驗證金鑰配對由兩個耦合的加密金鑰，一個私有金鑰和一個公開金鑰組成。
+私密金鑰允許主機電腦上的使用者存取用戶端電腦。
+重要的是，只有授權使用者才能對私密金鑰檔進行讀取存取。
+公開金鑰用於用戶端電腦以驗證傳入連線請求。</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>請檢查您的權限。</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>金鑰名稱包含無效字元!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>指定的金鑰類型無效! 請指定 &quot;%1&quot; 或 &quot;%2&quot;。</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>指定的金鑰不存在!請使用 &quot;list&quot; 命令以列出所有安裝的金鑰。</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>一個或多個金鑰檔已經存在! 請使用 &quot;delete&quot; 命令刪除它們。</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>正在建立 &quot;%1&quot; 的金鑰配對</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>建立公用金鑰或私密金鑰失敗!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>新建立的金鑰配對已儲存到 &quot;%1&quot; 和 &quot;%2&quot;。</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>無法移除金鑰檔 &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>無法移除金鑰檔目錄 &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>建立輸出檔案的目錄失敗。</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>檔案 &quot;%1&quot; 已經存在。</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>無法寫入輸出檔案。</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>金鑰 &quot;%1/%2&quot; 已匯出到 &quot;%3&quot; 成功。</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>讀取輸入檔案失敗。</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>檔案 &quot;%1&quot; 不含有效私密金鑰!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>檔案 &quot;%1&quot; 不含有效公開金鑰!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>建立金鑰檔的目錄失敗。</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>寫入金鑰檔 &quot;%1&quot; 失敗。</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>設定金鑰檔 &quot;%1&quot; 的權限失敗!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>金鑰 &quot;%1/%2&quot; 匯入成功。 請檢查 &quot;%3&quot; 的檔案權限以便防止未經授權的存取。</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>將私密金鑰轉換為公開金鑰失敗</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>建立私密金鑰檔 &quot;%1&quot; 的目錄失敗。</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>在檔案 &quot;%1&quot; 中儲存私密金鑰失敗!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>設定私密金鑰檔 &quot;%1&quot; 的權限失敗!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>建立公開金鑰檔 &quot;%1&quot; 的目錄失敗。</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>在檔案 &quot;%1&quot; 中儲存公開金鑰失敗!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>設定公開金鑰檔 &quot;%1&quot; 的權限失敗!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>設定金鑰檔 &quot;%1&quot; 的擁有者為 &quot;%2&quot; 失敗。</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>設定金鑰檔 &quot;%1&quot; 的權限失敗。</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>金鑰 &quot;%1&quot; 現在可由 使用者群組 &quot;%2&quot; 存取。</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -561,42 +564,42 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>讀取金鑰檔失敗。</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>建立新的驗證金鑰配對</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>刪除驗證金鑰</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>列出驗證金鑰</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>匯入公開或私密金鑰</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>匯出公開或私密金鑰</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>從現有私密金鑰擷取公開金鑰</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>設定允許存取金鑰的使用者群組</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>金鑰</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
@@ -604,7 +607,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令將對 &lt;KEY&gt; 的檔案存取權限進行調整，使得只有使用者群組 &lt;ACCESS GROUP&gt; 才具有對其讀取權限。</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -612,35 +615,35 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令建立一個名為 &lt;NAME&gt; 的新驗證金鑰配對，並將私密金鑰和公開金鑰儲存到組態的金鑰目錄中。</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令從組態的金鑰目錄中刪除驗證金鑰 &lt;KEY&gt;。 請注意，金鑰一旦刪除就無法恢復。</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>檔案</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令將驗證金鑰 &lt;KEY&gt; 匯出到 &lt;FILE&gt;。 如果沒有指定 &lt;FILE&gt;，將根據 &lt;KEY&gt; 的名稱和類型構造名稱。</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令從 &lt;FILE&gt; 匯入驗證金鑰 &lt;KEY&gt;。 如果沒有指定 &lt;FILE&gt;，將根據 &lt;KEY&gt; 的名稱和類型構造名稱。</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令列出組態的金鑰目錄中所有可用的驗證金鑰。 如果有指定選項「%1」，則會顯示包含金鑰詳細資料的表格。 如果無法存取金鑰，某些詳細資料可能會遺失，例如: 由於缺乏讀取權限。</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation type="unfinished"/>
+        <translation>這個命令將從私密金鑰 &lt;KEY&gt; 中擷取公開金鑰部分，並將其儲存為相應的公開金鑰。</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>請指定顯示說明的命令!</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -648,7 +651,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>配對 ID</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -729,7 +732,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>顯示指定命令的說明</translation>
     </message>
     <message>
         <source>Add a room or computer</source>
@@ -741,23 +744,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>傾印所有或個別教室和電腦</translation>
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>列出所有教室和電腦</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>移除教室或電腦</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>從給予的檔案匯入物件</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>匯出物件到給予的檔案</translation>
     </message>
     <message>
         <source>
@@ -785,19 +788,43 @@ Examples:
 
     %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %name% %host% %mac% %room%
+
+範例:
+
+* 匯入簡單 CSV 檔到單一教室:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* 匯入教室名稱在首欄的 CSV 檔:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* 匯入文字檔，含使用正則表示式的鍵值/值配對:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* 匯入任意格式化的資料:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Object UID</source>
-        <translation type="unfinished"/>
+        <translation>物件 UID</translation>
     </message>
     <message>
         <source>Parent UID</source>
-        <translation type="unfinished"/>
+        <translation>上層 UID</translation>
     </message>
     <message>
         <source>Type</source>
@@ -809,7 +836,7 @@ Examples:
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>主機位址</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -817,11 +844,11 @@ Examples:
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>找不到指定的物件。</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>檔案 &quot;%1&quot; 不存在!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -829,11 +856,11 @@ Examples:
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>不明引數 &quot;%1&quot;。</translation>
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>教室 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -841,15 +868,15 @@ Examples:
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>ID &quot;%2&quot; 的未分類物件 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>無</translation>
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>教室</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -857,19 +884,19 @@ Examples:
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>根</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>無效</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>分析行 %1 時錯誤。</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>網路物件目錄期存放物件在本機組態</translation>
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
@@ -896,11 +923,26 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+
+範例:
+
+* 匯出所有物件到 CSV 檔:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* 匯出教室中所有電腦到 CSV 檔:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>沒有指定格式字串或正則表達式!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
@@ -908,7 +950,7 @@ Examples:
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>沒有指定格式字串!</translation>
     </message>
 </context>
 <context>
@@ -1121,7 +1163,7 @@ Examples:
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>升級並儲存程式及外掛的組態</translation>
     </message>
 </context>
 <context>
@@ -1132,11 +1174,11 @@ Examples:
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>無法組態 %1 伺服器的防火牆設定。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>無法組態 %1 工人的防火牆設定。</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1251,11 +1293,11 @@ Examples:
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>程式 &amp; 網站</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>預先定義程式</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1263,7 +1305,7 @@ Examples:
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>路徑</translation>
     </message>
     <message>
         <source>Add new program</source>
@@ -1271,27 +1313,27 @@ Examples:
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>移除所選程式</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>預先定義網站</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>移除所選網站</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>新程式</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>新網站</translation>
     </message>
 </context>
 <context>
@@ -1322,19 +1364,19 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>執行程式 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>自訂程式</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>開啟網站 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>自訂網站</translation>
     </message>
 </context>
 <context>
@@ -1494,7 +1536,7 @@ Examples:
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>寫入到作業系統的記錄系統</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1502,7 +1544,7 @@ Examples:
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>方式:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1517,11 +1559,11 @@ Examples:
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Internet 存取控制</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>設定</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1532,19 +1574,19 @@ Examples:
     <name>InternetAccessControlDummy</name>
     <message>
         <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation type="unfinished"/>
+        <translation>這是對 internet 存取沒有影響的虛擬後台。 請選擇適合您的作業系統和環境的功能後台。 訪問 &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; 取得更多關於如何獲得額外後台外掛資訊。</translation>
     </message>
     <message>
         <source>Internet access control not available</source>
-        <translation type="unfinished"/>
+        <translation>Internet 存取控制不可用</translation>
     </message>
     <message>
         <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"/>
+        <translation>沒有組態 internet 存取控制後台。 請使用 Veyon Configurator 變更組態。</translation>
     </message>
     <message>
         <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Internet  存取控制的虛擬後台</translation>
     </message>
 </context>
 <context>
@@ -1571,7 +1613,7 @@ Examples:
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>取消封鎖 internet</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -1634,7 +1676,7 @@ Examples:
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>如 dc=example,dc=org</translation>
+        <translation>例如: dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -1642,7 +1684,7 @@ Examples:
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation>如 namingCoNtexts 或 defaultNamingCoNtext</translation>
+        <translation>例如: namingCoNtexts 或 defaultNamingCoNtext</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -1658,7 +1700,7 @@ Examples:
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>如 OU=群組</translation>
+        <translation>例如: OU=群組</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -1666,11 +1708,11 @@ Examples:
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>如 OU=使用者</translation>
+        <translation>例如: OU=使用者</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>如 OU=電腦</translation>
+        <translation>例如: OU=電腦</translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -1686,7 +1728,7 @@ Examples:
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>如 hwAddress</translation>
+        <translation>例如: hwAddress</translation>
     </message>
     <message>
         <source>Computer host name attribute</source>
@@ -1694,7 +1736,7 @@ Examples:
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation>如 成員或 memberUid</translation>
+        <translation>例如: 成員或 memberUid</translation>
     </message>
     <message>
         <source>User login attribute</source>
@@ -1702,7 +1744,7 @@ Examples:
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation>如 dNSHostName</translation>
+        <translation>例如: dNSHostName</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
@@ -1714,7 +1756,7 @@ Examples:
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation>如 uid 或 sAMAccountName</translation>
+        <translation>例如: uid 或 sAMAccountName</translation>
     </message>
     <message>
         <source>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2048,7 +2090,7 @@ Examples:
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>如 教室或 computerLab</translation>
+        <translation>例如: 教室或 computerLab</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -2144,73 +2186,79 @@ Examples:
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS 憑證驗證</translation>
     </message>
     <message>
         <source>Security mode</source>
-        <translation type="unfinished"/>
+        <translation>安全性模式</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>系統預設值</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>永不 (不安全)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>自訂 CA 憑證檔</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>無</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>例如: (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>例如: (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>例如: (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>例如: (objectClass=room) or (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>例如: (objectClass=container) or (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>無法查詢組態的基礎 DN。 請檢查基礎 DN 參數。
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 基礎 DN 已成功查詢。 找到以下項目:
+
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>無法透過命名內容查詢基礎 DN。 請檢查命名內容屬性參數。
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2220,13 +2268,17 @@ Examples:
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>無法連接到 LDAP 伺服器。 請檢查伺服器參數。
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>無法綁定到 LDAP 伺服器。 請檢查伺服器參數並綁定認證。
+
+%1</translation>
     </message>
 </context>
 <context>
@@ -2237,7 +2289,7 @@ Examples:
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>沒有可用的 LDAP 錯誤描述</translation>
     </message>
 </context>
 <context>
@@ -2260,15 +2312,15 @@ Examples:
     </message>
     <message>
         <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>提供 Veyon 的 LDAP/AD 整合</translation>
     </message>
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (從 LDAP/AD 載入電腦和教室)</translation>
     </message>
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (從 LDAP/AD 載入本機使用者和群組)</translation>
     </message>
 </context>
 <context>
@@ -2456,7 +2508,7 @@ Examples:
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>功能 &quot;%1&quot; 仍活動中。 請先停止它再關閉 %2。</translation>
+        <translation>功能 &quot;%1&quot; 仍使用中。 請先停止它再關閉 %2。</translation>
     </message>
     <message>
         <source>Reset configuration</source>
@@ -2480,7 +2532,7 @@ Examples:
     </message>
     <message>
         <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
+        <translation>使用自訂電腦位置</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -2488,11 +2540,11 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>權限不足</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>無法以管理特權啟動。 請確認為您的桌面環境安裝類似于 sudo 的程式! 程式將以正常使用者特權執行。</translation>
     </message>
 </context>
 <context>
@@ -2599,7 +2651,7 @@ Examples:
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>縮圖更新間隔</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2607,7 +2659,7 @@ Examples:
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>程式啟動</translation>
     </message>
     <message>
         <source>Automatically open computer management</source>
@@ -2615,7 +2667,7 @@ Examples:
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>模式和功能</translation>
     </message>
 </context>
 <context>
@@ -2850,7 +2902,7 @@ Examples:
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>如 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation>例如: &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
 </context>
 <context>
@@ -2989,7 +3041,7 @@ Examples:
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>只允許 localhost 來的連線</translation>
+        <translation>只允許來自 localhost 的連線</translation>
     </message>
     <message>
         <source>Internal VNC server port</source>
@@ -3026,34 +3078,35 @@ Examples:
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>啟用這個選項將使服務為電腦上的每個互動式工作階段啟動伺服器處理程序。
+通常，這是支援終端機伺服器所必需的。</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>多工作階段支援 (實驗性)</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>正在啟動服務 %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>正在停止服務 %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>註冊服務 %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>取消註冊服務 %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>服務控制</translation>
     </message>
 </context>
 <context>
@@ -3103,15 +3156,15 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>執行命令列</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>檔案 &quot;%1&quot; 不存在!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Control 的交互式殼層和指令碼執行</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3129,11 +3182,11 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>系統使用者群組的使用者群組後台</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>預設值 (系統使用者群組)</translation>
     </message>
 </context>
 <context>
@@ -3159,7 +3212,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>來自教師的訊息</translation>
+        <translation>來自老師的訊息</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
@@ -3259,14 +3312,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>未指定模組或找不到模組 - 可用模組為:</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服務</translation>
     </message>
 </context>
 <context>
@@ -3302,31 +3355,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服務 &quot;%1&quot; 已經安裝。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 無法安裝服務 &quot;%1&quot;。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服務 &quot;%1&quot; 安裝成功。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 無法解除安裝服務 &quot;%1&quot;。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 服務 &quot;%1&quot; 解除安裝成功。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 無法變更服務 &quot;%1&quot; 的啟動類型。</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 找不到服務 &quot;%1&quot;。</translation>
     </message>
 </context>
 <context>

@@ -411,7 +411,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) 다른 컴퓨터에 접근을 허용할 멤버가 속한 그룹을 설정하세요.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
@@ -457,7 +457,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>공개 또는 개인 키 생성 실패.</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
@@ -509,7 +509,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>키 화일 &quot;%1&quot;의 권한설정에 실패했습니다!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -517,15 +517,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>개인키를 공개키로 변환하기 실패.</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>개인  키 화일용 폴더 생성 실패. &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>개인키를 화일 &quot;%1&quot;로 저장하는데 실패!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
@@ -545,7 +545,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>키 화일 &quot;%1&quot;의  소유자 권한을 &quot;%2&quot; 화일에 설정하는데 실패했습니다.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
@@ -553,7 +553,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>지금부터 사용자 그룹 &quot;%2&quot;는  키 &quot;%1&quot; 에 접근할 수 있습니다.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -561,7 +561,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>키 화일 읽기 실패.</translation>
     </message>
 </context>
 <context>
@@ -592,7 +592,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>키에 접근을 허용할 유저 그룹을 설정하세요.</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -640,7 +640,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>도움말을 표시할 명령어를 지정하세요</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -652,11 +652,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>명령어 창에서 인증키 조작 지원</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>인증키 조작 명령어들</translation>
     </message>
 </context>
 <context>
@@ -893,15 +893,15 @@ Examples:
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>로컬 설정에 오브젝트를 저장하고 있는 네트워크 오브젝트 폴더</translation>
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>내장 (로컬 설정내의 컴퓨터와 교실)</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>내장 네트워크 오브젝트 폴더를 관리하는 명령어들</translation>
     </message>
     <message>
         <source>
@@ -938,15 +938,15 @@ Examples:
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>형식 문자열 또는 표현식이 지정되지 않음!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>형식 문자열이 지정되지 않음!</translation>
     </message>
 </context>
 <context>
@@ -1159,7 +1159,7 @@ Examples:
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>프로그램과 플러그인의 설정을 업그레이드하고 저장</translation>
     </message>
 </context>
 <context>
@@ -1170,11 +1170,11 @@ Examples:
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>%1 서버용 방화벽 설정을 변경할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>%1 워커용 방화벽 설정을 변경할 수 없습니다.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1182,7 +1182,7 @@ Examples:
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>설정을 쓸수 없습니다. 권한을 점검하기 바랍니다!</translation>
     </message>
 </context>
 <context>
@@ -1290,11 +1290,11 @@ Examples:
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>프로그램과 웹사이트들</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>미리 지정된 프로그램들</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1306,19 +1306,19 @@ Examples:
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>새 프로그램 추가</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>선택한 프로그램 삭제</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>미리 지정된 웹사이트들</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>선택한 웹사이트 삭제</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1326,11 +1326,11 @@ Examples:
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>새 프로그램</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>새 웹사이트</translation>
     </message>
 </context>
 <context>
@@ -1361,19 +1361,19 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>프로그램  &quot;%1&quot; 실행</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>사용자 프로그램</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>웹사이트 &quot;%1&quot; 열기</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>사용자 지정 웹사이트</translation>
     </message>
 </context>
 <context>
@@ -1541,7 +1541,7 @@ Examples:
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>방법:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1556,11 +1556,11 @@ Examples:
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 연결 제어</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>설정</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1575,7 +1575,7 @@ Examples:
     </message>
     <message>
         <source>Internet access control not available</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 허용 제어 항목이 존재하지 않음</translation>
     </message>
     <message>
         <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
@@ -1583,18 +1583,18 @@ Examples:
     </message>
     <message>
         <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 연결제어용 더미 백엔드</translation>
     </message>
 </context>
 <context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 접근 제한</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 접근 허용</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1602,27 +1602,27 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 연결제한</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>클릭하여 인터넷 접근을 제한</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 연결허용</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>클릭하여 인터넷 접근을 허용</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 접근 제어</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 접근 제어용 명령어들</translation>
     </message>
 </context>
 <context>
@@ -2179,27 +2179,27 @@ Examples:
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>연결 보안</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>TLS 인증 검증</translation>
     </message>
     <message>
         <source>Security mode</source>
-        <translation type="unfinished"/>
+        <translation>보안 모드</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>시스템 디폴트</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>거부(보안 안됨)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>사용자 CA 인증 화일</translation>
     </message>
     <message>
         <source>None</source>
@@ -2207,31 +2207,31 @@ Examples:
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>e.g. (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>e.g. (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>e.g. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>e.g. (objectClass=room) or (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>e.g. (objectClass=container) or (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2253,7 +2253,7 @@ Examples:
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>인증화일 (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -2276,7 +2276,7 @@ Examples:
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 에러 설명이 없음</translation>
     </message>
 </context>
 <context>
@@ -2299,15 +2299,15 @@ Examples:
     </message>
     <message>
         <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon용 LDAP/AD  결합을 제공</translation>
     </message>
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (LDAP/AD에서 컴퓨터와 교실을 가져옴)</translation>
     </message>
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
     </message>
 </context>
 <context>
@@ -2515,11 +2515,11 @@ Examples:
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터를 그리드에 맞춤</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
+        <translation>사용자가 정의한 컴퓨터 위치를 사용</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -2527,7 +2527,7 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>권한 부족</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
@@ -2634,11 +2634,11 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>백그라운드 색상</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>썸네일 그림 업데이트 시간간격</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2646,15 +2646,15 @@ Examples:
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>프로그램 시작</translation>
     </message>
     <message>
         <source>Automatically open computer management</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 관리를 자동적으로 열기</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>모드와 기능들</translation>
     </message>
 </context>
 <context>
@@ -3069,30 +3069,30 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>멀티 세션 지원(시험적으로 사용)</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>서비스 %1 시작중</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>서비스 %1 중지중</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>서비스 %1 를 등록중</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>서비스 %1 를 등록 해제중</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>서비스 제어</translation>
     </message>
 </context>
 <context>
@@ -3142,7 +3142,7 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>명령어행 실행</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -3150,11 +3150,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 제어용 대화형 쉘과 스크립트 실행</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>쉘 기능용 명령어들</translation>
     </message>
 </context>
 <context>
@@ -3168,11 +3168,11 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>시스템 유저그룹을 위한 사용자 그룹 백엔드</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>기본 값(시스템 사용자 그룹들)</translation>
     </message>
 </context>
 <context>
@@ -3298,14 +3298,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>모듈이 지정되지 않았거나 찾을 수 없음 - 사용가능한 모듈들은:</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service</translation>
     </message>
 </context>
 <context>
@@ -3341,31 +3341,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 가 이미 설치되어 있음.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 를 설치할 수 없음.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 가 성공적으로 설치됨.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 를 제거할 수 없음.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 가 성공적으로 제거됨.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 의 시작 형태를 변경할 수 없음.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: 서비스 &quot;%1&quot; 를 찾을 수 없음.</translation>
     </message>
 </context>
 <context>
