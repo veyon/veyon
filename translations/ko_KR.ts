@@ -415,18 +415,21 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) 공개키를 내보내고 그키를 같은 이름을 가진 모든 클라이언트 컴퓨터에서 읽어들이기.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>더 자세한 정보는  &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon 관리자 매뉴얼을 참조하세요 &lt;/a&gt; .</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>인증 키는 두 부분으로 구성되어 있습니다, 공개 키 파트와 개인 키 파트.
+개인 키를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다.
+오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는 것이 아주 중요합니다.
+공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
     </message>
 </context>
 <context>
@@ -441,15 +444,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>무효키 형식을 지정했습니다 !  &quot;%1&quot; 또는 &quot;%2&quot;를 지정하세요.</translation>
+        <translation>유효하지 않은 키 형식을 지정했습니다 !  &quot;%1&quot; 또는 &quot;%2&quot;를 지정하세요.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>선택한 키가 존재하지 않음! &quot;list&quot; 명령어를 이용해서 설치된 모든 키 리스트를 보세요.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>하나 또는 그 이상의  키화일들이 이미 존재함!  &quot;delete&quot; 명령어로 그 화일들을 삭제하세요.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
@@ -513,7 +516,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>키 &quot;%1/%2&quot; 를 성공적으로 불러왔습니다. 미승인 접근을 방지하기 위해 &quot;%3&quot; 의 화일 권한을 점검하세요.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -604,7 +607,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 &lt;KEY&gt; 에 대한 화일 접근 권한을 조정하여 유저 그룹 &lt;ACCESS GROUP&gt; 만 읽기 허가를 합니다.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -612,11 +615,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 이름 &lt;NAME&gt; 를 가진 새로운 인증 키 페어를  생성하고 개인키와 공개키를 지정된 키 폴더에 저장합니다.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 키폴더에 설정된 인증키 &lt;KEY&gt;  를 삭제합니다. 이키를 삭제하면 다시 복구할 수 없습니다.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -624,19 +627,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation> 이 명려어는 인증키 &lt;KEY&gt; 를  &lt;FILE&gt;로 내 보냅니다.  만일  &lt;FILE&gt; 이 지정되지 않으면  &lt;KEY&gt;의 이름 과 형식을 이용해서 이름이 생성됩니다 . .</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation> 이 명려어는 인증키 &lt;KEY&gt; 를  &lt;FILE&gt;에서 읽어 들입니다.  만일  &lt;FILE&gt; 이 지정되지 않으면  &lt;KEY&gt; 의 이름 과 형식을 이용해서 이름이 생성됩니다 .</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 설정된 키폴더에 있는 모든 인증키를 리스트해 줍니다. 만일 옵션 &quot;%1&quot;가 지정되면 키 상세 테이블이 대신 표시됩니다. 키가 접근 불가할 경우엔 일부 내용이 누락될 수 있습니다. 즉 e.g. 읽기 권한이 없는 경우등.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation type="unfinished"/>
+        <translation>이 명령어는 개인키 &lt;KEY&gt; 를 통해서 공개키 파트를 추출하여 개인키에 대한 공개키로 저장합니다.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
@@ -788,13 +791,13 @@ Examples:
         <translation>
 사용법
 
-%1 불러오기&lt;FILE&gt; [교실 &lt;ROOM&gt;] [형식&lt;FORMAT-STRING-WITH-VARIABLES&gt;] [정규표현식&lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+%1 import &lt;FILE&gt; [교실&lt;ROOM&gt;] [형식 &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [정규표현식&lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
 
-유효 변수들: %name% %host% %mac% %room%
+유효한 변수들: %name% %host% %mac% %room%
 
 예제:
 
-* 간단한 CSV 화일을 한 교실로 가져오기:
+* 간단한 CSV 화일을 한 교실로 가져오기::
 
     %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
@@ -802,11 +805,11 @@ Examples:
 
     %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
 
-* 정규표현식(regular expressions)을 사용하난 키/값 페어 다음을 이용해서 가져오기 :
+*정규표현식을 사용하는 키/값 페어를 다음을 이용해서 가져오기 ::
 
     %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
 
-* 임의 형식으로 된 데이터 가져오기 :
+* 임의 형식으로 된 데이터 가져오기:
 
     %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
 </translation>
@@ -1571,7 +1574,7 @@ Examples:
     <name>InternetAccessControlDummy</name>
     <message>
         <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation type="unfinished"/>
+        <translation>이것은 인터넷 연결에 아무런 효과가 없는 더미 백엔드입니다. 당신의 환경과 OS에 적합한 작동하는 백엔드를 선택하세요.  어떻게 추가적인 백엔드 플러그인을 얻을 수 있는지 알려면 다음 사이트를 방문하세요 &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; .</translation>
     </message>
     <message>
         <source>Internet access control not available</source>
@@ -1579,7 +1582,7 @@ Examples:
     </message>
     <message>
         <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"/>
+        <translation>인터넷 접근 제어 백엔드가 설정되지 않았습니다. Veyon 설정기에서 설정을 변경하세요.</translation>
     </message>
     <message>
         <source>Dummy backend for internet access control</source>
@@ -2237,19 +2240,23 @@ Examples:
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>설정된 베이스 DN을 찾을 수 없습니다. 베이스 DN 파라메터를 점검하세요.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 베이스 DN 조회 성공. 다음 입력항목이 발견되었습니다:
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>명칭 내용을 통해 베이스 DN 조회를 할 수 없습니다. 명칭 속성 파라메터를 점검하세요.
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2259,13 +2266,17 @@ Examples:
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 서버에 연결할 수 없음. 서버 파라메터를 점검하세요.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP서버와 결합 불가. 결합인자와 서버 파라메터를 점검하세요.
+
+%1</translation>
     </message>
 </context>
 <context>
@@ -2531,7 +2542,7 @@ Examples:
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>관리자 권한으로 시작하지  못했습니다. 데스크탑 환경에 슈퍼유저 프로그램이 설치되었는지 확인하세요. 이 프로그램은 일반 유저 권한으로 실행됩니다.</translation>
     </message>
 </context>
 <context>
@@ -3065,7 +3076,8 @@ Examples:
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>이 옵션을 활성화 시키면 서비스가 컴퓨터의 모든 대화 세션용 서버 프로세스를 실행합니다.
+일반적으로 터미널 서버를 지원하는데 필요합니다.</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
@@ -3376,7 +3388,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>x11vnc 파라메터 확인</translation>
+        <translation>사용자 x11vnc 파라메터 :</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
