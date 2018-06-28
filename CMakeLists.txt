@@ -218,51 +218,7 @@ ADD_SUBDIRECTORY(configurator)
 ADD_SUBDIRECTORY(ctl)
 ADD_SUBDIRECTORY(worker)
 ADD_SUBDIRECTORY(plugins)
-
-#
-# rules for building localizations
-#
-FILE(GLOB veyon_LOCALES core/resources/*.ts)
-SET(ts_targets "")
-SET(qm_targets "")
-FILE(GLOB_RECURSE veyon_SOURCES ${CMAKE_SOURCE_DIR}/*.cpp ${CMAKE_SOURCE_DIR}/*.h ${CMAKE_SOURCE_DIR}/*.ui)
-STRING(REGEX REPLACE "${CMAKE_SOURCE_DIR}/3rdparty[^;]+;?" "" veyon_SOURCES "${veyon_SOURCES}")
-
-ADD_CUSTOM_TARGET(download-translations)
-
-FOREACH(_ts_file ${veyon_LOCALES})
-    STRING(REPLACE "${CMAKE_SOURCE_DIR}/core/resources/" "" _ts_target "${_ts_file}")
-	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
-	STRING(REPLACE ".ts" ".qm" _qm_target "${_ts_target}")
-	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${Qt5_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/core/include -locations none -no-obsolete ${veyon_SOURCES} -ts ${_ts_file})
-	# add command and target for generating/updating QM file if TS file is newer or no QM file exists yet
-	ADD_CUSTOM_COMMAND(OUTPUT ${_qm_file} COMMAND ${Qt5_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file} DEPENDS ${_ts_file})
-	ADD_CUSTOM_TARGET(${_qm_target} ALL DEPENDS ${_qm_file})
-
-	LIST(APPEND ts_targets "${_ts_target}")
-	LIST(APPEND qm_targets "${_qm_target}")
-
-	INSTALL(FILES ${_qm_file} DESTINATION ${VEYON_INSTALL_DATADIR}/translations)
-
-	# add target for downloading translation file from Transifex
-	STRING(REPLACE ".ts" "" _translation "${_ts_target}")
-	IF(NOT ${_translation} STREQUAL "veyon")
-	    SET(_download_translation_target "download-${_translation}")
-		ADD_CUSTOM_TARGET(${_download_translation_target} COMMAND curl --user api:$ENV{TRANSIFEX_API_TOKEN} -o ${_ts_file} -X GET "https://www.transifex.com/api/2/project/veyon/resource/veyonts/translation/${_translation}/?mode=default\\&file")
-		ADD_DEPENDENCIES(download-translations ${_download_translation_target})
-	ENDIF()
-ENDFOREACH(_ts_file ${veyon_LOCALES})
-
-ADD_CUSTOM_TARGET(update-locales)
-FOREACH(_item ${ts_targets})
-    ADD_DEPENDENCIES(update-locales ${_item})
-ENDFOREACH(_item ${ts_targets})
-
-ADD_CUSTOM_TARGET(GenerateTranslationFiles)
-FOREACH(_item ${qm_targets})
-    ADD_DEPENDENCIES(GenerateTranslationFiles ${_item})
-ENDFOREACH(_item ${qm_targets})
-
+ADD_SUBDIRECTORY(translations)
 
 #
 # add target for generating Windows installer
@@ -290,7 +246,7 @@ IF(WIN32)
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
 			COMMAND cp plugins/*/*/*.dll ${TMP}/plugins/
 			COMMAND mkdir -p ${TMP}/translations
-			COMMAND cp ${CMAKE_SOURCE_DIR}/core/resources/*.qm ${CMAKE_BINARY_DIR}/core/*qm ${TMP}/translations/
+			COMMAND cp translations/*qm ${TMP}/translations/
 			COMMAND cp ${DLLDIR}/libjpeg-62.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libpng16-16.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${TMP}
