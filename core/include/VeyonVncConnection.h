@@ -162,9 +162,9 @@ public:
 	void rescaleScreen();
 
 	// authentication
-	static void handleSecTypeVeyon( rfbClient *client );
-	static void handleMsLogonIIAuth( rfbClient *client );
-	static void hookPrepareAuthentication( rfbClient *cl );
+	static void handleSecTypeVeyon( rfbClient* client );
+	static void handleMsLogonIIAuth( rfbClient* client );
+	static void hookPrepareAuthentication( rfbClient* client );
 
 	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 										  SocketDevice::SocketOperation operation, void * user );
@@ -216,14 +216,14 @@ private:
 	void sendEvents();
 
 	// hooks for LibVNCClient
-	static int8_t hookInitFrameBuffer( rfbClient *cl );
-	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
-	static void hookFinishFrameBufferUpdate( rfbClient *cl );
-	static int8_t hookHandleCursorPos( rfbClient *cl, int x, int y );
-	static void hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp );
-	static void hookCutText( rfbClient *cl, const char *text, int textlen );
-	static void hookOutputHandler( const char *format, ... );
-	static int8_t hookHandleVeyonMessage( rfbClient *cl, rfbServerToClientMsg *msg );
+	static int8_t hookInitFrameBuffer( rfbClient* client );
+	static void hookUpdateFB( rfbClient* client, int x, int y, int w, int h );
+	static void hookFinishFrameBufferUpdate( rfbClient* client );
+	static int8_t hookHandleCursorPos( rfbClient* client, int x, int y );
+	static void hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
+	static void hookCutText( rfbClient* client, const char *text, int textlen );
+	static void hookOutputHandler( const char* format, ... );
+	static int8_t hookHandleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 	static void framebufferCleanup( void* framebuffer );
 
 	bool m_serviceReachable;

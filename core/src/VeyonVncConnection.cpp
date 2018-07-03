@@ -43,7 +43,7 @@
 
 extern "C"
 {
-	#include <rfb/rfbclient.h>
+#include <rfb/rfbclient.h>
 }
 
 // clazy:excludeall=copyable-polymorphic
@@ -113,61 +113,61 @@ private:
 
 
 
-rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
+rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 {
-	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr) ;
+	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
 
-	const uint64_t size = (uint64_t) cl->width * cl->height * ( cl->format.bitsPerPixel / 8 );
+	const auto size = static_cast<uint64_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
 
-	cl->frameBuffer = new uint8_t[size];
+	client->frameBuffer = new uint8_t[size];
 
-	memset( cl->frameBuffer, '\0', size );
+	memset( client->frameBuffer, '\0', size );
 
 	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
 	// image copy using the framebuffer gets destroyed
-	t->m_imgLock.lockForWrite();
-	t->m_image = QImage( cl->frameBuffer, cl->width, cl->height, QImage::Format_RGB32, framebufferCleanup, cl->frameBuffer );
-	t->m_imgLock.unlock();
+	connection->m_imgLock.lockForWrite();
+	connection->m_image = QImage( client->frameBuffer, client->width, client->height, QImage::Format_RGB32, framebufferCleanup, client->frameBuffer );
+	connection->m_imgLock.unlock();
 
 	// set up pixel format according to QImage
-	cl->format.bitsPerPixel = 32;
-	cl->format.redShift = 16;
-	cl->format.greenShift = 8;
-	cl->format.blueShift = 0;
-	cl->format.redMax = 0xff;
-	cl->format.greenMax = 0xff;
-	cl->format.blueMax = 0xff;
+	client->format.bitsPerPixel = 32;
+	client->format.redShift = 16;
+	client->format.greenShift = 8;
+	client->format.blueShift = 0;
+	client->format.redMax = 0xff;
+	client->format.greenMax = 0xff;
+	client->format.blueMax = 0xff;
 
-	cl->appData.useRemoteCursor = false;
-	cl->appData.compressLevel = 0;
-	cl->appData.useBGR233 = false;
-	cl->appData.qualityLevel = 9;
-	cl->appData.enableJPEG = false;
+	client->appData.useRemoteCursor = false;
+	client->appData.compressLevel = 0;
+	client->appData.useBGR233 = false;
+	client->appData.qualityLevel = 9;
+	client->appData.enableJPEG = false;
 
-	switch( t->quality() )
+	switch( connection->quality() )
 	{
-		case ScreenshotQuality:
-			cl->appData.encodingsString = "raw";
-			break;
-		case RemoteControlQuality:
-			cl->appData.encodingsString = "copyrect hextile raw";
-			//cl->appData.useRemoteCursor = true;
-			break;
-		case ThumbnailQuality:
-			cl->appData.encodingsString = "zrle ultra "
-							"copyrect hextile zlib "
-							"corre rre raw";
-			cl->appData.compressLevel = 9;
-			cl->appData.qualityLevel = 5;
-			cl->appData.enableJPEG = true;
-			break;
-		default:
-			cl->appData.encodingsString = "zrle ultra copyrect "
-							"hextile zlib corre rre raw";
-			break;
+	case ScreenshotQuality:
+		client->appData.encodingsString = "raw";
+		break;
+	case RemoteControlQuality:
+		client->appData.encodingsString = "copyrect hextile raw";
+		//cl->appData.useRemoteCursor = true;
+		break;
+	case ThumbnailQuality:
+		client->appData.encodingsString = "zrle ultra "
+										  "copyrect hextile zlib "
+										  "corre rre raw";
+		client->appData.compressLevel = 9;
+		client->appData.qualityLevel = 5;
+		client->appData.enableJPEG = true;
+		break;
+	default:
+		client->appData.encodingsString = "zrle ultra copyrect "
+										  "hextile zlib corre rre raw";
+		break;
 	}
 
-	t->m_frameBufferInitialized = true;
+	connection->m_frameBufferInitialized = true;
 
 	return true;
 }
@@ -175,38 +175,37 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient *cl )
 
 
 
-void VeyonVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h )
+void VeyonVncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h )
 {
-	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
+	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
 
-	if( t )
+	if( connection )
 	{
-		emit t->imageUpdated( x, y, w, h );
+		emit connection->imageUpdated( x, y, w, h );
 	}
 }
 
 
 
 
-void VeyonVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
+void VeyonVncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
 {
-	VeyonVncConnection *t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
-
-	if( t )
+	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	if( connection )
 	{
-		t->finishFrameBufferUpdate();
+		connection->finishFrameBufferUpdate();
 	}
 }
 
 
 
 
-rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
+rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient* client, int x, int y )
 {
-	VeyonVncConnection * t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
-	if( t )
+	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	if( connection )
 	{
-		emit t->cursorPosChanged( x, y );
+		emit connection->cursorPosChanged( x, y );
 	}
 
 	return true;
@@ -215,7 +214,7 @@ rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
 
 
 
-void VeyonVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp )
+void VeyonVncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp )
 {
 	if( bpp != 4 )
 	{
@@ -223,27 +222,25 @@ void VeyonVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh, int w, 
 		return;
 	}
 
-	QImage alpha( cl->rcMask, w, h, QImage::Format_Indexed8 );
+	QImage alpha( client->rcMask, w, h, QImage::Format_Indexed8 );
 	alpha.setColorTable( { qRgb(255,255,255), qRgb(0,0,0) } );
 
-	QPixmap cursorShape( QPixmap::fromImage( QImage( cl->rcSource, w, h, QImage::Format_RGB32 ) ) );
+	QPixmap cursorShape( QPixmap::fromImage( QImage( client->rcSource, w, h, QImage::Format_RGB32 ) ) );
 	cursorShape.setMask( QBitmap::fromImage( alpha ) );
 
-	VeyonVncConnection* t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
-	emit t->cursorShapeUpdated( cursorShape, xh, yh );
+	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	emit connection->cursorShapeUpdated( cursorShape, xh, yh );
 }
 
 
 
-void VeyonVncConnection::hookCutText( rfbClient *cl, const char *text,
-										int textlen )
+void VeyonVncConnection::hookCutText( rfbClient* client, const char* text, int textlen )
 {
 	QString cutText = QString::fromUtf8( text, textlen );
 	if( !cutText.isEmpty() )
 	{
-		VeyonVncConnection *t = (VeyonVncConnection *)
-										rfbClientGetClientData( cl, nullptr );
-		emit t->gotCut( cutText );
+		auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+		emit connection->gotCut( cutText );
 	}
 }
 
@@ -265,7 +262,7 @@ void VeyonVncConnection::hookOutputHandler( const char* format, ... )
 
 
 
-void VeyonVncConnection::framebufferCleanup( void *framebuffer )
+void VeyonVncConnection::framebufferCleanup( void* framebuffer )
 {
 	delete[] static_cast<uchar *>( framebuffer );
 }
@@ -273,7 +270,7 @@ void VeyonVncConnection::framebufferCleanup( void *framebuffer )
 
 
 
-VeyonVncConnection::VeyonVncConnection( QObject *parent ) :
+VeyonVncConnection::VeyonVncConnection( QObject* parent ) :
 	QThread( parent ),
 	m_serviceReachable( false ),
 	m_frameBufferInitialized( false ),
@@ -407,7 +404,7 @@ void VeyonVncConnection::setHost( const QString &host )
 		if( rx2.indexIn( m_host ) == 0 )
 		{
 			m_host = rx2.cap( 1 );
-			m_port = rx2.cap( 2 ).toUInt();
+			m_port = rx2.cap( 2 ).toInt();
 		}
 	}
 }
@@ -557,8 +554,7 @@ void VeyonVncConnection::establishConnection()
 			sleeperMutex.lock();
 			if( m_framebufferUpdateInterval > 0 )
 			{
-				m_updateIntervalSleeper.wait( &sleeperMutex,
-												m_framebufferUpdateInterval );
+				m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( m_framebufferUpdateInterval ) );
 			}
 			else
 			{
@@ -632,7 +628,7 @@ void VeyonVncConnection::handleConnection()
 		if( remainingUpdateInterval > 0 && isInterruptionRequested() == false )
 		{
 			sleeperMutex.lock();
-			m_updateIntervalSleeper.wait( &sleeperMutex, remainingUpdateInterval );
+			m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( remainingUpdateInterval ) );
 			sleeperMutex.unlock();
 		}
 	}
@@ -744,7 +740,7 @@ void VeyonVncConnection::clientCut( const QString &text )
 
 
 
-void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
+void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 {
 	SocketDevice socketDevice( libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
@@ -775,13 +771,13 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 		// look whether the VeyonVncConnection recommends a specific
 		// authentication type (e.g. VeyonAuthHostBased when running as
 		// demo client)
-		VeyonVncConnection *t = (VeyonVncConnection *) rfbClientGetClientData( client, nullptr );
+		auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
 
-		if( t != nullptr )
+		if( connection != nullptr )
 		{
 			for( auto authType : authTypes )
 			{
-				if( t->veyonAuthType() == authType )
+				if( connection->veyonAuthType() == authType )
 				{
 					chosenAuthType = authType;
 				}
@@ -888,28 +884,29 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient *client )
 
 
 
-void VeyonVncConnection::hookPrepareAuthentication(rfbClient *cl)
+void VeyonVncConnection::hookPrepareAuthentication( rfbClient* client )
 {
-	VeyonVncConnection* t = (VeyonVncConnection *) rfbClientGetClientData( cl, nullptr );
-
-	// set our internal flag which indicates that we basically have communication with the client
-	// which means that the host is reachable
-	t->m_serviceReachable = true;
+	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	if( connection )
+	{
+		// set our internal flag which indicates that we basically have communication with the client
+		// which means that the host is reachable
+		connection->m_serviceReachable = true;
+	}
 }
-
 
 
 qint64 VeyonVncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
 												   SocketDevice::SocketOperation operation, void* user )
 {
-	rfbClient * cl = (rfbClient *) user;
+	rfbClient* client = static_cast<rfbClient *>( user );
 	switch( operation )
 	{
 	case SocketDevice::SocketOpRead:
-		return ReadFromRFBServer( cl, buffer, bytes ) ? bytes : 0;
+		return ReadFromRFBServer( client, buffer, bytes ) ? bytes : 0;
 
 	case SocketDevice::SocketOpWrite:
-		return WriteToRFBServer( cl, buffer, bytes ) ? bytes : 0;
+		return WriteToRFBServer( client, buffer, bytes ) ? bytes : 0;
 	}
 
 	return 0;
