@@ -131,7 +131,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 		case StartLockCommand:
 			if( m_lockWidget == nullptr )
 			{
-				m_lockWidget = new LockWidget;
+				m_lockWidget = new LockWidget( LockWidget::BackgroundPixmap,
+											   QPixmap( QStringLiteral(":/screenlock/locked-screen-background.png" ) ) );
 			}
 			return true;
 
