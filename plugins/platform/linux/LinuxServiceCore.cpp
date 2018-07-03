@@ -270,7 +270,7 @@ qint64 LinuxServiceCore::getSessionUptimeSeconds( const QString& session )
 		return -1;
 	}
 
-	return QDateTime::currentSecsSinceEpoch() - static_cast<qint64>( timestamp.toLongLong() / ( 1000 * 1000 ) );
+	return QDateTime::currentMSecsSinceEpoch() / 1000 - static_cast<qint64>( timestamp.toLongLong() / ( 1000 * 1000 ) );
 }
 
 
