@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDateTime>
 #include <QDBusReply>
 #include <QEventLoop>
 #include <QProcess>
@@ -247,6 +248,20 @@ int LinuxServiceCore::getSessionLeaderPid( const QString& session )
 	}
 
 	return leader.toInt();
+}
+
+
+
+qint64 LinuxServiceCore::getSessionUptimeSeconds( const QString& session )
+{
+	const auto timestamp = getSessionProperty( session, QStringLiteral("Timestamp") );
+
+	if( timestamp.isNull() )
+	{
+		return -1;
+	}
+
+	return QDateTime::currentSecsSinceEpoch() - static_cast<qint64>( timestamp.toLongLong() / ( 1000 * 1000 ) );
 }
 
 
