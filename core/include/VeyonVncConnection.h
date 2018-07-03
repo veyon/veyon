@@ -63,6 +63,14 @@ public:
 		NumQualityLevels
 	} ;
 
+	typedef enum FramebufferStates
+	{
+		FramebufferInvalid,
+		FramebufferInitialized,
+		FramebufferFirstUpdate,
+		FramebufferValid
+	} FramebufferState;
+
 	enum States
 	{
 		Disconnected,
@@ -139,7 +147,7 @@ public:
 	/** \brief Returns whether framebuffer data is valid, i.e. at least one full FB update received */
 	bool hasValidFrameBuffer() const
 	{
-		return m_frameBufferValid;
+		return m_framebufferState == FramebufferValid;
 	}
 
 	void setScaledSize( QSize s )
@@ -227,8 +235,7 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	bool m_serviceReachable;
-	bool m_frameBufferInitialized;
-	bool m_frameBufferValid;
+	FramebufferState m_framebufferState;
 	rfbClient *m_cl;
 	RfbVeyonAuth::Type m_veyonAuthType;
 	QualityLevels m_quality;

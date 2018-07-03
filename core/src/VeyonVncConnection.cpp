@@ -167,7 +167,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 		break;
 	}
 
-	connection->m_frameBufferInitialized = true;
+	connection->m_framebufferState = FramebufferInitialized;
 
 	return true;
 }
@@ -273,8 +273,7 @@ void VeyonVncConnection::framebufferCleanup( void* framebuffer )
 VeyonVncConnection::VeyonVncConnection( QObject* parent ) :
 	QThread( parent ),
 	m_serviceReachable( false ),
-	m_frameBufferInitialized( false ),
-	m_frameBufferValid( false ),
+	m_framebufferState( FramebufferInvalid ),
 	m_cl( nullptr ),
 	m_veyonAuthType( RfbVeyonAuth::Logon ),
 	m_quality( DefaultQuality ),
@@ -443,7 +442,7 @@ void VeyonVncConnection::rescaleScreen()
 {
 	if( m_image.size().isValid() == false ||
 			m_scaledSize.isNull() ||
-			m_frameBufferValid == false ||
+			hasValidFrameBuffer() == false ||
 			m_scaledScreenNeedsUpdate == false )
 	{
 		return;
@@ -478,8 +477,7 @@ void VeyonVncConnection::establishConnection()
 
 	setState( Connecting );
 
-	m_frameBufferValid = false;
-	m_frameBufferInitialized = false;
+	m_framebufferState = FramebufferInvalid;
 
 	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
@@ -534,7 +532,7 @@ void VeyonVncConnection::establishConnection()
 					setState( ServiceUnreachable );
 				}
 			}
-			else if( m_frameBufferInitialized == false )
+			else if( m_framebufferState == FramebufferInvalid )
 			{
 				setState( AuthenticationFailed );
 			}
@@ -601,24 +599,30 @@ void VeyonVncConnection::handleConnection()
 			}
 		}
 
-		if( m_frameBufferValid == false )
+		switch( m_framebufferState )
 		{
+		case FramebufferInitialized:
 			// initial framebuffer timeout exceeded?
 			if( connectionTime.hasExpired( InitialFrameBufferTimeout ) )
 			{
 				// no so disconnect and try again
 				qDebug( "VeyonVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
-				break;
+				return;
 			}
 			else
 			{
 				// not yet so again request initial full framebuffer update
 				SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), false );
 			}
-		}
-		else
-		{
+			break;
+
+		case FramebufferFirstUpdate:
+			SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), false );
+			break;
+
+		default:
 			SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), true );
+			break;
 		}
 
 		sendEvents();
@@ -665,11 +669,17 @@ void VeyonVncConnection::setState( State state )
 
 void VeyonVncConnection::finishFrameBufferUpdate()
 {
-	if( m_frameBufferValid == false )
+	switch( m_framebufferState )
 	{
-		m_frameBufferValid = true;
-
+	case FramebufferInitialized:
 		emit framebufferSizeChanged( m_image.width(), m_image.height() );
+		m_framebufferState = FramebufferFirstUpdate;
+		break;
+	case FramebufferFirstUpdate:
+		m_framebufferState = FramebufferValid;
+		break;
+	default:
+		break;
 	}
 
 	emit framebufferUpdateComplete();
