@@ -52,6 +52,8 @@ private:
 	enum {
 		LoginManagerReconnectInterval = 3000,
 		SessionEnvironmentProbingInterval = 1000,
+		SessionUptimeSecondsMinimum = 3,
+		SessionUptimeProbingInterval = 1000,
 	};
 
 	typedef struct {

@@ -119,6 +119,15 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
+	const auto sessionUptime = getSessionUptimeSeconds( sessionPath );
+
+	if( sessionUptime >= 0 && sessionUptime < SessionUptimeSecondsMinimum )
+	{
+		qDebug() << "Session" << sessionPath << "too young - retrying in" << SessionUptimeProbingInterval << "msecs";
+		QTimer::singleShot( SessionUptimeProbingInterval, this, [=]() { startServer( login1SessionId, sessionObjectPath ); } );
+		return;
+	}
+
 	const auto seat = getSessionSeat( sessionPath );
 	const auto display = getSessionDisplay( sessionPath );
 
