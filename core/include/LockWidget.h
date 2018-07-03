@@ -37,11 +37,11 @@ public:
 	typedef enum Modes
 	{
 		DesktopVisible,
-		Black,
+		BackgroundPixmap,
 		NoBackground
 	} Mode;
 
-	LockWidget( Mode mode = Black, QWidget* parent = nullptr );
+	LockWidget( Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr );
 	~LockWidget() override;
 
 

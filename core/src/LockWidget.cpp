@@ -30,26 +30,19 @@
 #include <QPainter>
 
 
-LockWidget::LockWidget( Mode mode, QWidget* parent ) :
+LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) :
 	QWidget( parent, Qt::X11BypassWindowManagerHint ),
-	m_background(),
+	m_background( background ),
 	m_mode( mode )
 {
 	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
 
-	switch( mode )
+	if( mode == DesktopVisible )
 	{
-	case Black:
-		m_background = QPixmap( QStringLiteral( ":/resources/locked_bg.png" ) );
-		break;
-	case DesktopVisible:
-		QPixmap::grabWindow( qApp->desktop()->winId() );
-		break;
-	default:
-		break;
+		m_background = QPixmap::grabWindow( qApp->desktop()->winId() );
 	}
 
-	setWindowTitle( tr( "screen lock" ) );
+	setWindowTitle( QString() );
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( qApp->desktop()->size() );
@@ -78,23 +71,25 @@ LockWidget::~LockWidget()
 
 
 
-void LockWidget::paintEvent( QPaintEvent * )
+void LockWidget::paintEvent( QPaintEvent* event )
 {
+	Q_UNUSED(event);
+
 	QPainter p( this );
 	switch( m_mode )
 	{
-		case DesktopVisible:
-			p.drawPixmap( 0, 0, m_background );
-			break;
+	case DesktopVisible:
+		p.drawPixmap( 0, 0, m_background );
+		break;
 
-		case Black:
-			p.fillRect( rect(), QColor( 64, 64, 64 ) );
-			p.drawPixmap( ( width() - m_background.width() ) / 2,
-				( height() - m_background.height() ) / 2,
-								m_background );
-			break;
+	case BackgroundPixmap:
+		p.fillRect( rect(), QColor( 64, 64, 64 ) );
+		p.drawPixmap( ( width() - m_background.width() ) / 2,
+					  ( height() - m_background.height() ) / 2,
+					  m_background );
+		break;
 
-		default:
-			break;
+	default:
+		break;
 	}
 }
