@@ -1,12 +1,12 @@
 [submodule "3rdparty/ultravnc"]
 	path = 3rdparty/ultravnc
-	url = ../ultravnc.git
+	url = https://github.com/veyon/ultravnc.git
 [submodule "3rdparty/kldap"]
 	path = 3rdparty/kldap
-	url = git://anongit.kde.org/kldap.git
+	url = https://anongit.kde.org/kldap.git
 [submodule "3rdparty/libvncserver"]
 	path = 3rdparty/libvncserver
-	url = ../libvncserver.git
+	url = https://github.com/veyon/libvncserver.git
 [submodule "3rdparty/x11vnc"]
 	path = 3rdparty/x11vnc
-	url = ../x11vnc.git
+	url = https://github.com/veyon/x11vnc.git
