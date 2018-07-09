@@ -57,6 +57,8 @@ public slots:
 	void setUiLanguage( const QString& );
 	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
+	void setFailedAuthenticationNotificationsEnabled( bool );
+	void setRemoteConnectionNotificationsEnabled( bool );
 	void setServiceAutostart( bool );
 	void setMultiSessionServiceEnabled( bool );
 	void setSoftwareSASEnabled( bool );

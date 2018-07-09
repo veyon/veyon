@@ -59,6 +59,8 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setNetworkObjectDirectoryUpdateInterval( NetworkObjectDirectory::DefaultUpdateInterval );
 
 	c.setTrayIconHidden( false );
+	c.setFailedAuthenticationNotificationsEnabled( true );
+	c.setRemoteConnectionNotificationsEnabled( false );
 	c.setServiceAutostart( true );
 
 	c.setLogLevel( Logger::LogLevelDefault );

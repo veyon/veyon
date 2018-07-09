@@ -35,8 +35,11 @@
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
 
+
 #define FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, failedAuthenticationNotificationsEnabled, setFailedAuthenticationNotificationsEnabled, "FailedAuthenticationNotifications", "Service" );			\
+	OP( VeyonConfiguration, VeyonCore::config(), BOOL, remoteConnectionNotificationsEnabled, setRemoteConnectionNotificationsEnabled, "RemoteConnectionNotifications", "Service" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isMultiSessionServiceEnabled, setMultiSessionServiceEnabled, "MultiSession", "Service" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Service" );			\
