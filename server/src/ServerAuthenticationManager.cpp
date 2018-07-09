@@ -108,9 +108,16 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 		break;
 	}
 
-	if( client->authState() == VncServerClient::AuthFinishedFail )
+	switch( client->authState() )
 	{
-		emit authenticationError( client->hostAddress(), client->username() );
+	case VncServerClient::AuthFinishedSuccess:
+		emit authenticationDone( AuthResultSuccessful, client->hostAddress(), client->username() );
+		break;
+	case VncServerClient::AuthFinishedFail:
+		emit authenticationDone( AuthResultFailed, client->hostAddress(), client->username() );
+		break;
+	default:
+		break;
 	}
 }
 

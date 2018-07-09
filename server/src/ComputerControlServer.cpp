@@ -58,8 +58,8 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	// make app terminate once the VNC server thread has finished
 	connect( &m_vncServer, &VncServer::finished, QCoreApplication::instance(), &QCoreApplication::quit );
 
-	connect( &m_serverAuthenticationManager, &ServerAuthenticationManager::authenticationError,
-			 this, &ComputerControlServer::showAuthenticationErrorMessage );
+	connect( &m_serverAuthenticationManager, &ServerAuthenticationManager::authenticationDone,
+			 this, &ComputerControlServer::showAuthenticationMessage );
 }
 
 
@@ -116,19 +116,41 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 
 
-void ComputerControlServer::showAuthenticationErrorMessage( const QString& host, const QString& user )
+void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user )
 {
-	qWarning() << "ComputerControlServer: failed authenticating client" << host << user;
-
-	QMutexLocker l( &m_dataMutex );
-
-	if( m_failedAuthHosts.contains( host ) == false )
+	if( result == ServerAuthenticationManager::AuthResultSuccessful )
 	{
-		m_failedAuthHosts += host;
-		m_builtinFeatures.systemTrayIcon().showMessage(
-					tr( "Authentication error" ),
-					tr( "User %1 (IP: %2) tried to access this computer "
-						"but could not authenticate successfully!" ).arg( user, host ),
-					m_featureWorkerManager );
+		qInfo() << "ComputerControlServer: successfully authenticated" << user << "at host" << host;
+
+		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
+		{
+			m_builtinFeatures.systemTrayIcon().showMessage(
+						tr( "Remote connection" ),
+						tr( "User %1 at host %2 is now viewing or controlling your desktop." ).arg( user, host ),
+						m_featureWorkerManager );
+		}
+	}
+	else if( result == ServerAuthenticationManager::AuthResultFailed )
+	{
+		qWarning() << "ComputerControlServer: failed authenticating client" << host << user;
+
+		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
+		{
+			QMutexLocker l( &m_dataMutex );
+
+			if( m_failedAuthHosts.contains( host ) == false )
+			{
+				m_failedAuthHosts += host;
+				m_builtinFeatures.systemTrayIcon().showMessage(
+							tr( "Authentication error" ),
+							tr( "User %1 (IP: %2) tried to access this computer "
+								"but could not authenticate successfully!" ).arg( user, host ),
+							m_featureWorkerManager );
+			}
+		}
+	}
+	else
+	{
+		qCritical() << Q_FUNC_INFO << "Invalid auth result" << result;
 	}
 }

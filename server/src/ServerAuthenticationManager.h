@@ -37,6 +37,12 @@ class ServerAuthenticationManager : public QObject
 {
 	Q_OBJECT
 public:
+	typedef enum AuthResults {
+		AuthResultSuccessful,
+		AuthResultFailed,
+		AuthResultCount
+	} AuthResult;
+
 	ServerAuthenticationManager( QObject* parent );
 
 	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const;
@@ -48,7 +54,7 @@ public:
 
 
 signals:
-	void authenticationError( const QString& host, const QString& user );
+	void authenticationDone( AuthResult result, const QString& host, const QString& user );
 
 private:
 	VncServerClient::AuthState performKeyAuthentication( VncServerClient* client, VariantArrayMessage& message );

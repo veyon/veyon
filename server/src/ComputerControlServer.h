@@ -74,7 +74,7 @@ public:
 
 
 private:
-	void showAuthenticationErrorMessage( const QString& host, const QString& user );
+	void showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user );
 
 	QMutex m_dataMutex;
 	QStringList m_allowedIPs;
