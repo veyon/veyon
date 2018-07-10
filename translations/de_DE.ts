@@ -3060,11 +3060,12 @@ Examples:
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn diese Option aktiviert wird, startet der Dienst einen Serverprozess für jede interaktive Sitzung auf einem Computer.
+Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Unterstützung von Merfachsitzungen (experimentell)</translation>
     </message>
 </context>
 <context>

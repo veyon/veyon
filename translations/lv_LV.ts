@@ -3,23 +3,23 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Par</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"/>
+        <translation>Tulkojumi</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Licenze</translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Par Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Atbalstītāji</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -33,15 +33,17 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Pašreizējā valoda vēl nav pārtulkota.
+
+Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, lūdzu sazinieties ar Veyon veidotājiem.</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Par %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Atbalsti Veyon projektu ar ziedojumu</translation>
     </message>
 </context>
 <context>
@@ -56,7 +58,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tests</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
@@ -72,15 +74,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu pievienojiet grupu, kuras lietotājiem vajadzētu būt autorizētām piekļūt datoriem Jūsu Veyon tīklā.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Autorizētās lietotāju grupas</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>Visas grupas</translation>
     </message>
     <message>
         <source>...</source>
@@ -108,11 +110,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Labot izvēlētās lomas</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi lietotājvārdu</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -120,7 +122,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve atļauta</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -128,7 +130,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve liegta</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -159,7 +161,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
@@ -167,7 +169,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Noteikuma nosaukums:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
@@ -175,7 +177,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Noteikuma apraksts:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -183,7 +185,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Nosacījumi</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -211,19 +213,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Darbības</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Atļaut piekļuvi</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Liegt atļauju</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Vaicāt lietotājam atļauju</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -243,7 +245,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Vietējais dators</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -274,7 +276,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>Vietējais dators:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -286,11 +288,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Vietējie lietotāji:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēgušies lietotāji:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -310,22 +312,22 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Testa rezultāti</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Autorizācijas atslēga</translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Ievads</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgfaila mapes</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -345,19 +347,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Izveidot atslēgu</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Dzēst atslēgu</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Iegult atslēgu</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Izgult atslēgu</translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -365,7 +367,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgu faili (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -475,11 +477,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Fails &quot;%1&quot; jau eksistē.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās izveidot failu.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -487,7 +489,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās nolasīt failu.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -555,7 +557,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -594,11 +596,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>ATSLĒGA</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>PIEKĻUVES GURPA</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -606,7 +608,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>VĀRDS</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
@@ -618,7 +620,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FAILS</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -642,7 +644,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPS</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -661,11 +663,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tips</translation>
     </message>
     <message>
         <source>Access group</source>
@@ -680,15 +682,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>Datorklases</translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Datori</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Host address/IP</source>
@@ -696,31 +698,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>MAC adrese</translation>
     </message>
     <message>
         <source>Add new room</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot jaunu istabu</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation type="unfinished"/>
+        <translation>Izdzēst izvēlēto istabu</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot jaunu datoru</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>Izdzēst izvēlēto datoru</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>Jauna istaba</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Jauns dators</translation>
     </message>
 </context>
 <context>
@@ -731,7 +733,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot istabu vai datoru</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
@@ -747,7 +749,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Izdzēst istabu vai datoru</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -799,11 +801,11 @@ Examples:
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tips</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -811,7 +813,7 @@ Examples:
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>MAC adrese</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -831,7 +833,7 @@ Examples:
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Istaba &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -847,11 +849,11 @@ Examples:
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>Datorklase</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Dators</translation>
     </message>
     <message>
         <source>Root</source>
@@ -927,7 +929,7 @@ Examples:
     <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation type="unfinished"/>
+        <translation>Datorklase: %1</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
@@ -959,7 +961,7 @@ Examples:
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Atslēdzies</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -978,7 +980,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas kļūda</translation>
     </message>
     <message>
         <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
@@ -993,7 +995,7 @@ Examples:
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot istabu</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1009,7 +1011,7 @@ Examples:
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>Faila kļūda</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1024,7 +1026,7 @@ Examples:
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājs</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1164,7 +1166,7 @@ Examples:
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1172,7 +1174,7 @@ Examples:
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>Atmiņas limits</translation>
     </message>
     <message>
         <source>Use multithreading (experimental)</source>
@@ -1180,7 +1182,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1188,7 +1190,7 @@ Examples:
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation>s</translation>
     </message>
 </context>
 <context>
@@ -1257,19 +1259,19 @@ Examples:
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Vārds</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Ceļš</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot jaunu programmu</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Noņemt izvēlēto programmu</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1281,7 +1283,7 @@ Examples:
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New program</source>
@@ -1300,7 +1302,7 @@ Examples:
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>Atvērt vietni</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
@@ -1320,7 +1322,7 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Palaist programmu &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1354,7 +1356,7 @@ Examples:
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Parole:</translation>
     </message>
 </context>
 <context>
@@ -1372,7 +1374,7 @@ Examples:
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>Valodas:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
@@ -1384,15 +1386,15 @@ Examples:
     </message>
     <message>
         <source>Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Žurnalēšana</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"/>
+        <translation>Žurnālfaila mape</translation>
     </message>
     <message>
         <source>...</source>
@@ -1428,7 +1430,7 @@ Examples:
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation type="unfinished"/>
+        <translation>Žurnālfaila izmēra ierobežojums</translation>
     </message>
     <message>
         <source>Clear all log files</source>
@@ -1452,7 +1454,7 @@ Examples:
     </message>
     <message>
         <source>%1 service</source>
-        <translation type="unfinished"/>
+        <translation>%1 pakalpojums</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1468,7 +1470,7 @@ Examples:
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Ķļūda</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -1476,7 +1478,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -1484,11 +1486,11 @@ Examples:
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished"/>
+        <translation>sekundes</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1496,7 +1498,7 @@ Examples:
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācija</translation>
     </message>
     <message>
         <source>Method:</source>
@@ -1519,7 +1521,7 @@ Examples:
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Iestatījumi</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1549,11 +1551,11 @@ Examples:
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Liegt interneta piekļuvi</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Atļaut interneta piekļuvi</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1561,7 +1563,7 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgt internetu</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
@@ -1569,7 +1571,7 @@ Examples:
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēgt internetu</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
@@ -1596,7 +1598,7 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -1620,7 +1622,7 @@ Examples:
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Tests</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1813,7 +1815,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi lietotājvārdu</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1829,7 +1831,7 @@ Examples:
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi grupas nosaukumu</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -1837,7 +1839,7 @@ Examples:
     </message>
     <message>
         <source>group members</source>
-        <translation type="unfinished"/>
+        <translation>grupas dalībnieki</translation>
     </message>
     <message>
         <source>group member attribute</source>
@@ -1845,7 +1847,7 @@ Examples:
     </message>
     <message>
         <source>Group not found</source>
-        <translation type="unfinished"/>
+        <translation>Grupa nav atrasta</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -1853,7 +1855,7 @@ Examples:
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>Ievadi datora nosaukumu</translation>
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
@@ -1897,15 +1899,15 @@ Examples:
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>lietotāji</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>lietotāju grupas</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>datoru grupas</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -1921,7 +1923,7 @@ Examples:
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājs nav atrasts</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
@@ -1969,7 +1971,7 @@ Examples:
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>datori</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2045,7 +2047,7 @@ Examples:
     </message>
     <message>
         <source>List all computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Visu datorklašu saraksts</translation>
     </message>
     <message>
         <source>Enter computer room name</source>
@@ -2057,7 +2059,7 @@ Examples:
     </message>
     <message>
         <source>computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>datorklases</translation>
     </message>
     <message>
         <source>computer room attribute</source>
@@ -2069,7 +2071,7 @@ Examples:
     </message>
     <message>
         <source>computer room members</source>
-        <translation type="unfinished"/>
+        <translation>datorklases lietotāji</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
@@ -2077,7 +2079,7 @@ Examples:
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Datorklases</translation>
     </message>
     <message>
         <source>Integration tests</source>
@@ -2093,7 +2095,7 @@ Examples:
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>Datoru grupas</translation>
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
@@ -2141,7 +2143,7 @@ Examples:
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Sistēmas noklusējums</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
@@ -2301,19 +2303,19 @@ Examples:
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fails</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Palīdzība</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Iziet</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2321,11 +2323,11 @@ Examples:
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Saglabāt iestastījumus failā</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation type="unfinished"/>
+        <translation>Saglabāt iestatījumus failā</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2349,11 +2351,11 @@ Examples:
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta kontrole</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Iziet</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -2381,7 +2383,7 @@ Examples:
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojums</translation>
     </message>
     <message>
         <source>Master</source>
@@ -2393,7 +2395,8 @@ Examples:
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Par Veyon
+</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2401,11 +2404,11 @@ Examples:
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation type="unfinished"/>
+        <translation>Datorklases</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Par</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2429,7 +2432,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuve liegta</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2437,7 +2440,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekranšāviņi</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2461,11 +2464,11 @@ Examples:
     </message>
     <message>
         <source>Adjust optimal size</source>
-        <translation type="unfinished"/>
+        <translation>Pielāgot labākajam izmēram</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Sakārtot datorus režģī</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
@@ -2488,7 +2491,7 @@ Examples:
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Mapes</translation>
     </message>
     <message>
         <source>...</source>
@@ -2508,15 +2511,15 @@ Examples:
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>Iespējas</translation>
     </message>
     <message>
         <source>All features</source>
-        <translation type="unfinished"/>
+        <translation>Visas iespējas</translation>
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgt iespējas</translation>
     </message>
     <message>
         <source>Perform access control at program start</source>
@@ -2524,11 +2527,11 @@ Examples:
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>Ekranšāviņi</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;no feature&gt;</translation>
     </message>
     <message>
         <source>Automatically adjust computer thumbnail size at start</source>
@@ -2560,7 +2563,7 @@ Examples:
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation type="unfinished"/>
+        <translation>Paslēpt tukšos kabinetus</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2592,7 +2595,7 @@ Examples:
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -2633,11 +2636,11 @@ Examples:
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājvārds</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Parole</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -2645,7 +2648,7 @@ Examples:
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas kļūda</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -2660,7 +2663,7 @@ Examples:
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on</source>
-        <translation type="unfinished"/>
+        <translation>Ieslēgt</translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -2668,7 +2671,7 @@ Examples:
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Restartēt</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -2676,7 +2679,7 @@ Examples:
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Izslēgt</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -2688,42 +2691,42 @@ Examples:
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>Apstiprināt restartēšanu</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>Apstriprināt izslēgšanu</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai Tu tiešām vēlies restartēt izvēlētos datorus?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
-        <translation type="unfinished"/>
+        <translation>Vai Tu tiešām vēlies izslēgt izvēlētos datorus?</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Attālināts skats</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>Atvērt attālinātu skatu datoram bez iejaukšanās</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta kontrole</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Atvērt attālinātu kontroles logu datoram</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta piekļuve</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -2742,85 +2745,85 @@ Examples:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 Attālināta piekļuve</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished"/>
+        <translation>Skats tikai</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished"/>
+        <translation>Attālināta kontrole</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Nosūtīt saīsni</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished"/>
+        <translation>Pilnekrāns</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
+        <translation>Logs</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Iziet</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Izvēlne</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēdzas %1</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>Pieslēdzies.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš</translation>
     </message>
 </context>
 <context>
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation type="unfinished"/>
+        <translation>Istabas izvēle</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2835,7 +2838,7 @@ Examples:
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Palaist programmas</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -2846,11 +2849,11 @@ Examples:
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Slēgt</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Atslēgt</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -2865,7 +2868,7 @@ Examples:
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>nezināms</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -2873,14 +2876,14 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2888,7 +2891,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņš veikts</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
@@ -2903,23 +2906,23 @@ Examples:
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>Lietotājs:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>Datums:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Laiks:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Parādīt</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Izdzēst</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2927,34 +2930,34 @@ Examples:
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>Dators:</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"/>
+        <translation>Automātiskā palaišana</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Paslēpt palodzes ikonu</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"/>
+        <translation>Palaist pakalpojumu</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>Apstādināts</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"/>
+        <translation>Apstādināt pakalpojumu</translation>
     </message>
     <message>
         <source>State:</source>
@@ -2966,7 +2969,7 @@ Examples:
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Tīkls</translation>
     </message>
     <message>
         <source>Demo server port</source>
@@ -2994,7 +2997,7 @@ Examples:
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Restartēt %1 pakalpojumu</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3002,7 +3005,7 @@ Examples:
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"/>
+        <translation>Darbojas</translation>
     </message>
     <message>
         <source>Feature manager port</source>
@@ -3026,11 +3029,11 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Palaižas pakalpojums %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Apstājas pakalpojums %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
@@ -3049,11 +3052,11 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControlPlugin</name>
     <message>
         <source>Service is running</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojums darbojas</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation type="unfinished"/>
+        <translation>Pakalpojums nedarbojas</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -3129,7 +3132,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"/>
+        <translation>Nosūtīt teksta ziņojumu</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -3140,7 +3143,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation type="unfinished"/>
+        <translation>Teksta ziņojums</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -3148,11 +3151,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished"/>
+        <translation>Ziņojums no skolotāja</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Nosūtīt ziņojumu lietotājam</translation>
     </message>
 </context>
 <context>
@@ -3216,11 +3219,11 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[FAIL]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
@@ -3240,7 +3243,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Nezināms rezultāts!</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -3255,7 +3258,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon pakalpojums</translation>
     </message>
 </context>
 <context>
@@ -3277,7 +3280,7 @@ Typically this is required to support terminal servers.</source>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation type="unfinished"/>
+        <translation>Veido savienojumu ar %1 ...</translation>
     </message>
 </context>
 <context>

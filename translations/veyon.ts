@@ -983,7 +983,15 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
+        <source>Remote access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2270,13 +2278,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2608,6 +2609,22 @@ Examples:
         <source>Modes and features</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2743,7 +2760,7 @@ Examples:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
+        <source>%1 - %2 Remote Access</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3023,6 +3040,14 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session support (experimental)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3257,21 +3282,6 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
