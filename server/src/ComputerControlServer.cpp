@@ -125,8 +125,8 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
 		{
 			m_builtinFeatures.systemTrayIcon().showMessage(
-						tr( "Remote connection" ),
-						tr( "User %1 at host %2 is now viewing or controlling your desktop." ).arg( user, host ),
+						tr( "Remote access" ),
+						tr( "User \"%1\" at host \"%2\" is now accessing this computer." ).arg( user, host ),
 						m_featureWorkerManager );
 		}
 	}
@@ -143,7 +143,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 				m_failedAuthHosts += host;
 				m_builtinFeatures.systemTrayIcon().showMessage(
 							tr( "Authentication error" ),
-							tr( "User %1 (IP: %2) tried to access this computer "
+							tr( "User \"%1\" at host \"%2\" tried to access this computer "
 								"but could not authenticate successfully!" ).arg( user, host ),
 							m_featureWorkerManager );
 			}
