@@ -1024,8 +1024,16 @@ Examples:
         <translation>Помилка розпізнавання</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Користувач (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти розпізнавання!</translation>
+        <source>Remote access</source>
+        <translation>Віддалений доступ</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation>Зараз доступ до цього комп&apos;ютера має користувач «%1» на вузлі «%2».</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але не зміг пройти розпізнавання!</translation>
     </message>
 </context>
 <context>
@@ -2332,13 +2340,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>блокування екрана</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2670,6 +2671,22 @@ Examples:
         <source>Modes and features</source>
         <translation>Режими і можливості</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>Користувач і назва комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation>Лише ім&apos;я користувача</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>Лише назва комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation>Вміст підпису комп&apos;ютера</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2805,8 +2822,8 @@ Examples:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>Віддалений доступ до %1</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation>%1 — %2, віддалений доступ</translation>
     </message>
 </context>
 <context>
@@ -3086,6 +3103,14 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session support (experimental)</source>
         <translation>Підтримка багатосеансовості (експериментальна)</translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Показувати сповіщення щодо віддаленого з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation>Показувати сповіщення щодо невдалих спроб пройти розпізнавання</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3321,21 +3346,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Служба Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>Перевищення граничної кількості спроб під час розпізнавання у VNC.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>Помилка під час спроби розпізнавання у VNC.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>З’єднання розірвано сервером VNC.</translation>
     </message>
 </context>
 <context>

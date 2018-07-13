@@ -983,8 +983,16 @@ Examples:
         <translation>Erro na autenticação</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Usuário %1 (IP: %2) tentou acessar esse computador mas não conseguiu se autenticar com sucesso!</translation>
+        <source>Remote access</source>
+        <translation>Acesso remoto</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2279,13 +2287,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>bloquear tela</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2617,6 +2618,22 @@ Examples:
         <source>Modes and features</source>
         <translation>Modos e funcionalidades</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2752,8 +2769,8 @@ Examples:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>Acesso Remoto %1</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3032,6 +3049,14 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session support (experimental)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3267,21 +3292,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>A autenticação do VNC falhou devido a muitas tentativas de autenticação.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>A autenticação do VNC falhou.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>O servidor VNC fechou a conexão.</translation>
     </message>
 </context>
 <context>

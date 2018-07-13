@@ -1025,8 +1025,16 @@ Exemples:
         <translation>Erreur d&apos;authentification</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>L&apos;utilisateur %1 (IP: %2) essaye d&apos;accéder à cet ordinateur mais ne réussi pas à s&apos;authentifier !</translation>
+        <source>Remote access</source>
+        <translation>Accès à distance</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; est en train d’accéder à cet ordinateur.</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur mais n&apos;a pas pu s&apos;authentifier avec succès!</translation>
     </message>
 </context>
 <context>
@@ -2331,13 +2339,6 @@ Exemples:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>verrouillage d&apos;écran</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2669,6 +2670,22 @@ Exemples:
         <source>Modes and features</source>
         <translation>Modes et paramétrages</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>Utilisateur et nom d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation>Nom d&apos;utilisateur seulement</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>Nom d&apos;ordinateur seulement</translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation>Contenu de la légende de l&apos;ordinateur</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2804,8 +2821,8 @@ Exemples:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>Accès distant de %1</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation>%1 - %2 Accès distant</translation>
     </message>
 </context>
 <context>
@@ -3085,6 +3102,14 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Multi session support (experimental)</source>
         <translation>Support multi-session (expérimental)</translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Afficher la notification sur la connexion à distance</translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation>Afficher la notification en cas d&apos;échec des tentatives d&apos;authentification</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3320,21 +3345,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Veyon Service</source>
         <translation>Service Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>Erreur d&apos;authentification VNC due à trop de tentatives d&apos;authentification.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>Erreur d&apos;authentification VNC.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>Le serveur VNC a fermé la connexion.</translation>
     </message>
 </context>
 <context>

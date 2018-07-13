@@ -1026,8 +1026,16 @@ Examples:
         <translation>验证错误</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>用户 %1 (IP: %2) 尝试访问此计算机，但没有通过验证！</translation>
+        <source>Remote access</source>
+        <translation>远程访问</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation>&quot;%2&quot; 主机上的用户 &quot;%1&quot; 正在访问这台计算机。</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation>&quot;%2&quot; 主机上的用户 &quot;%1&quot; 试图访问这台计算机，但是没有通过身份验证。</translation>
     </message>
 </context>
 <context>
@@ -2332,13 +2340,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>屏幕锁定</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2670,6 +2671,22 @@ Examples:
         <source>Modes and features</source>
         <translation>模式和功能</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>用户和计算机名称</translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation>仅用户名</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>仅计算机名称</translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation>计算机标题内容</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2805,8 +2822,8 @@ Examples:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>%1 远程访问</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation>%1 - %2 远程访问</translation>
     </message>
 </context>
 <context>
@@ -3086,6 +3103,14 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session support (experimental)</source>
         <translation>多会话支持（实验）</translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>在远程连接上显示通知</translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation>显示尝试身份验证失败的通知</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3321,21 +3346,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon 服务</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC 验证失败，原因为验证次数过多。</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC 验证失败</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC 服务器已关闭连接。</translation>
     </message>
 </context>
 <context>

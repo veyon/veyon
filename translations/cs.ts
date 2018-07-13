@@ -1025,8 +1025,16 @@ Příklady:
         <translation>Chyba ověření</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>Uživatel %1 (IP adresa: %2) se pokusil přistoupit k tomuto počítači ale nebyl schopen se úspěšně ověřit!</translation>
+        <source>Remote access</source>
+        <translation>Vzdálený přístup</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation>Uživatel „%1“ ze stroje „%2“ nyní přistupuje k tomuto počítači.</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation>Uživatel „%1“ ze stroje „%2“ se pokusil přistoupit k tomuto počítači ale nepovedlo se mu ověřit se!</translation>
     </message>
 </context>
 <context>
@@ -2327,13 +2335,6 @@ Příklady:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>uzamčení obrazovky</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2665,6 +2666,22 @@ Příklady:
         <source>Modes and features</source>
         <translation>Režimy a funkce</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>Uživatel a název počítače</translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation>Pouze uživatelské jméno</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>Pouze název počítače</translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation>Obsah titulku počítače</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2800,8 +2817,8 @@ Příklady:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>Vzdálený přístup %1</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation>%1 – %2 vzdálený přístup</translation>
     </message>
 </context>
 <context>
@@ -3081,6 +3098,14 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <source>Multi session support (experimental)</source>
         <translation>Podpora vícero sezení (experimentální)</translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Zobrazovat upozornění na připojení na dálku</translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation>Zobrazovat upozornění při nezdařených pokusech o ověření</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3316,21 +3341,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Veyon Service</source>
         <translation>Služba Veyon</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC se nepodařilo ověřit z důvodu příliš mnoha pokusů o ověření.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>Ověření VNC se nezdařilo.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC server ukončil spojení.</translation>
     </message>
 </context>
 <context>

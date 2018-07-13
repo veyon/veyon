@@ -1024,8 +1024,16 @@ Példák:
         <translation>Hitelesítési hiba</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>%1 felhasználó (IP-je: %2) megpróbálta elérni ezt a számítógépet, de nem sikerült hitelesítenie magát!</translation>
+        <source>Remote access</source>
+        <translation>Távoli elérés</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation>&quot;%1&quot; felhasználó &quot;%2&quot; kiszolgálóról éppen most eléri ezt a számítógépet.</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de sikertelen hitelesítés miatt ez meghiúsult!</translation>
     </message>
 </context>
 <context>
@@ -2330,13 +2338,6 @@ Példák:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>képernyő zárolása</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2668,6 +2669,22 @@ Példák:
         <source>Modes and features</source>
         <translation>Módok és szolgáltatások</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>Felhasználó- és számítógépnév</translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation>Csak felhasználónév</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>Csak számítógépnév</translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation>Számítógép-felirat tartalma</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2803,8 +2820,8 @@ Példák:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>%1 távoli elérés</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation>%1 - %2 távoli hozzáférés</translation>
     </message>
 </context>
 <context>
@@ -3083,6 +3100,14 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session support (experimental)</source>
         <translation>Több munkamenet támogatása (kísérleti)</translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Távoli csatlakozás esetén értesítés megjelenítése</translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation>Sikertelen hitelesítési próbálkozásról értesítés megjelenítése</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3318,21 +3343,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon szolgáltatás</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>VNC hitelesítés túl sok bejelentkezési kísérlet miatt sikertelen.</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC hitelesítés sikertelen.</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC szerver lezárta a kapcsolatot.</translation>
     </message>
 </context>
 <context>

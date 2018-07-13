@@ -1024,8 +1024,16 @@ Examples:
         <translation>인증 에러</translation>
     </message>
     <message>
-        <source>User %1 (IP: %2) tried to access this computer but could not authenticate successfully!</source>
-        <translation>사용자 %1 (IP: %2) 가 이 컴퓨터에 접속하려고 시도하였으나 인증실패</translation>
+        <source>Remote access</source>
+        <translation>원격 접근</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
+        <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결합니다.</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 인증에 성공하지 못했습니다.</translation>
     </message>
 </context>
 <context>
@@ -2329,13 +2337,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LockWidget</name>
-    <message>
-        <source>screen lock</source>
-        <translation>화면 잠금</translation>
-    </message>
-</context>
-<context>
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
@@ -2667,6 +2668,22 @@ Examples:
         <source>Modes and features</source>
         <translation>모드와 기능들</translation>
     </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>사용자 와 컴퓨터 이름</translation>
+    </message>
+    <message>
+        <source>Only user name</source>
+        <translation>전용 사용자 이름</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>전용 컴퓨터 이름</translation>
+    </message>
+    <message>
+        <source>Computer caption content</source>
+        <translation>컴퓨터 캡션 내용</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2802,8 +2819,8 @@ Examples:
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 Remote Access</source>
-        <translation>%1 원격 접근</translation>
+        <source>%1 - %2 Remote Access</source>
+        <translation>%1 - %2 원격 접근</translation>
     </message>
 </context>
 <context>
@@ -3083,6 +3100,14 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session support (experimental)</source>
         <translation>멀티 세션 지원(시험적으로 사용)</translation>
     </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>원격 연결이면 알림 보이기</translation>
+    </message>
+    <message>
+        <source>Show notification on failed authentication attempts</source>
+        <translation>인증시도 실패시 알림 보이기</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3318,21 +3343,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Veyon Service</source>
         <translation>Veyon Service</translation>
-    </message>
-</context>
-<context>
-    <name>VeyonVncConnection</name>
-    <message>
-        <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation>인증시도 회수 과다로 VNC 인증 실패</translation>
-    </message>
-    <message>
-        <source>VNC authentication failed.</source>
-        <translation>VNC 인증 실패</translation>
-    </message>
-    <message>
-        <source>VNC server closed connection.</source>
-        <translation>VNC 서버 연결 끊음</translation>
     </message>
 </context>
 <context>
