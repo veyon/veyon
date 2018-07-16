@@ -108,6 +108,12 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 	}
 
 	const auto sessionLeader = getSessionLeaderPid( sessionPath );
+	if( sessionLeader < 0 )
+	{
+		qCritical() << "No leader available for session" << sessionPath;
+		return;
+	}
+
 	auto sessionEnvironment = getSessionEnvironment( sessionLeader );
 
 	if( sessionEnvironment.isEmpty() )
