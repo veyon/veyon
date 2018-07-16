@@ -127,6 +127,12 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 		return;
 	}
 
+	if( m_multiSession == false && m_serverProcesses.isEmpty() == false )
+	{
+		// make sure no other server is still running
+		stopAllServers();
+	}
+
 	const auto sessionUptime = getSessionUptimeSeconds( sessionPath );
 
 	if( sessionUptime >= 0 && sessionUptime < SessionUptimeSecondsMinimum )
