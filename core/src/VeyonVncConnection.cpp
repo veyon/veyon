@@ -152,7 +152,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 		client->appData.encodingsString = "raw";
 		break;
 	case RemoteControlQuality:
-		// client->appData.useRemoteCursor = true;
+		client->appData.useRemoteCursor = true;
 		break;
 	case ThumbnailQuality:
 		client->appData.compressLevel = 9;
