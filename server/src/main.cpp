@@ -35,7 +35,12 @@ int main( int argc, char **argv )
 	VeyonCore core( &app, QStringLiteral("Server") );
 
 	auto server = new ComputerControlServer;
-	server->start();
+	if( server->start() == false )
+	{
+		qInfo( "Failed to start server" );
+		delete server;
+		return -1;
+	}
 
 	qInfo( "Exec" );
 
