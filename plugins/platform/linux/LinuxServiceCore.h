@@ -51,6 +51,9 @@ private slots:
 private:
 	enum {
 		LoginManagerReconnectInterval = 3000,
+		ServerTerminateTimeout = 3000,
+		ServerStopSleepInterval = 100,
+		ServerKillDelayTime = 1000,
 		SessionEnvironmentProbingInterval = 1000,
 		SessionUptimeSecondsMinimum = 3,
 		SessionUptimeProbingInterval = 1000,

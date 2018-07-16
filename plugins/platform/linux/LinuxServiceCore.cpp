@@ -24,8 +24,10 @@
 
 #include <QDateTime>
 #include <QDBusReply>
+#include <QElapsedTimer>
 #include <QEventLoop>
 #include <QProcess>
+#include <QThread>
 #include <QTimer>
 
 #include <proc/readproc.h>
@@ -176,6 +178,22 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 
 	auto process = m_serverProcesses[sessionPath];
 	process->terminate();
+
+	QElapsedTimer serverStopTimer;
+	serverStopTimer.start();
+
+	while( process->state() != QProcess::NotRunning )
+	{
+		if( serverStopTimer.elapsed() >= ServerTerminateTimeout )
+		{
+			qWarning() << "Server for session" << sessionPath << "still running - killing now";
+			process->kill();
+			QThread::msleep( ServerKillDelayTime );
+			break;
+		}
+
+		QThread::msleep( ServerStopSleepInterval );
+	}
 
 	if( m_multiSession )
 	{
