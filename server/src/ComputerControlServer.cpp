@@ -73,11 +73,17 @@ ComputerControlServer::~ComputerControlServer()
 
 
 
-void ComputerControlServer::start()
+bool ComputerControlServer::start()
 {
+	if( m_vncProxyServer.start( m_vncServer.serverPort(), m_vncServer.password() ) == false )
+	{
+		return false;
+	}
+
 	m_vncServer.prepare();
 	m_vncServer.start();
-	m_vncProxyServer.start( m_vncServer.serverPort(), m_vncServer.password() );
+
+	return true;
 }
 
 

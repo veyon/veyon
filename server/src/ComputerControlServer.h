@@ -46,7 +46,7 @@ public:
 	ComputerControlServer( QObject* parent = nullptr );
 	~ComputerControlServer() override;
 
-	void start();
+	bool start();
 
 	VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
 												  int vncServerPort,
