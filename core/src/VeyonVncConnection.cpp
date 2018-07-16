@@ -138,6 +138,7 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 	client->format.greenMax = 0xff;
 	client->format.blueMax = 0xff;
 
+	client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
 	client->appData.useRemoteCursor = false;
 	client->appData.compressLevel = 0;
 	client->appData.useBGR233 = false;
@@ -147,23 +148,18 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 	switch( connection->quality() )
 	{
 	case ScreenshotQuality:
+		// make sure to use lossless raw encoding
 		client->appData.encodingsString = "raw";
 		break;
 	case RemoteControlQuality:
-		client->appData.encodingsString = "copyrect hextile raw";
-		//cl->appData.useRemoteCursor = true;
+		// client->appData.useRemoteCursor = true;
 		break;
 	case ThumbnailQuality:
-		client->appData.encodingsString = "zrle ultra "
-										  "copyrect hextile zlib "
-										  "corre rre raw";
 		client->appData.compressLevel = 9;
 		client->appData.qualityLevel = 5;
 		client->appData.enableJPEG = true;
 		break;
 	default:
-		client->appData.encodingsString = "zrle ultra copyrect "
-										  "hextile zlib corre rre raw";
 		break;
 	}
 
