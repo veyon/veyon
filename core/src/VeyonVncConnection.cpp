@@ -252,8 +252,7 @@ void VeyonVncConnection::hookOutputHandler( const char* format, ... )
 	va_list args;
 	va_start( args, format );
 
-	QString message;
-	message.vasprintf( format, args ); // Flawfinder: ignore
+	const auto message = QString::asprintf( format, args ); // Flawfinder: ignore
 
 	va_end(args);
 
