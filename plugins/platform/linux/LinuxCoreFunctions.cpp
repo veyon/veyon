@@ -146,7 +146,7 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 		return QProcess::execute( QStringLiteral("gksudo"), commandLine ) == 0;
 	}
 
-	return QProcess::execute( QStringLiteral("pkexec"), commandLine );
+	return QProcess::execute( QStringLiteral("pkexec"), commandLine ) == 0;
 }
 
 
