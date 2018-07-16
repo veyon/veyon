@@ -80,7 +80,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setSoftwareSASEnabled( true );
 
 	c.setUserConfigurationDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Config" ) ) );
-	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%$APPDATA%/Screenshots" ) ) );
+	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Screenshots" ) ) );
 	c.setComputerMonitoringUpdateInterval( 1000 );
 	c.setComputerMonitoringBackgroundColor( Qt::white );
 
