@@ -83,7 +83,7 @@ Requirements for RedHat-based distributions:
 
 - Build tools: gcc-c++ make cmake rpm-build
 - Qt5: qt5-devel
-- X11: libXtst-devel
+- X11: libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel
 - libjpeg: libjpeg-turbo-devel
 - zlib: zlib-devel
 - OpenSSL: openssl-devel
@@ -95,7 +95,8 @@ Requirements for RedHat-based distributions:
 
 As root you can run
 
-	dnf install gcc-c++ make cmake rpm-build qt5-devel libXtst-devel libjpeg-turbo-devel zlib-devel  \
+	dnf install gcc-c++ make cmake rpm-build qt5-devel libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel \
+             libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libjpeg-turbo-devel zlib-devel \
              openssl-devel pam-devel procps-devel lzo-devel qca-devel qca-qt5-devel openldap-devel
 
 
