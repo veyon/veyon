@@ -44,7 +44,7 @@ public:
 					QObject* parent = nullptr );
 	~VncProxyServer() override;
 
-	void start( int vncServerPort, const QString& vncServerPassword );
+	bool start( int vncServerPort, const QString& vncServerPassword );
 	void stop();
 
 	const VncProxyConnectionList& clients() const
