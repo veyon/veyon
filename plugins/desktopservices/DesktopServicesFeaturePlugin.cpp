@@ -289,14 +289,15 @@ FeatureList DesktopServicesFeaturePlugin::predefinedWebsites() const
 
 QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFeatureUid ) const
 {
-	const auto services = m_configuration.predefinedPrograms() + m_configuration.predefinedWebsites();
-
-	for( const auto service : services )
+	for( const auto& services : { m_configuration.predefinedPrograms(), m_configuration.predefinedWebsites() } )
 	{
-		const auto serviceObject = DesktopServiceObject( service.toObject() );
-		if( serviceObject.uid() == subFeatureUid )
+		for( const auto service : services )
 		{
-			return serviceObject.path();
+			const auto serviceObject = DesktopServiceObject( service.toObject() );
+			if( serviceObject.uid() == subFeatureUid )
+			{
+				return serviceObject.path();
+			}
 		}
 	}
 
