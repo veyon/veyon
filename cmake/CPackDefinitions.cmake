@@ -57,6 +57,7 @@ ENDIF()
 SET(CPACK_RPM_PACKAGE_LICENSE "GPLv2")
 SET(CPACK_RPM_PACKAGE_DESCRIPTION "Veyon is an Open Source computer monitoring and classroom management software.
 It enables teachers to view and control computer labs and interact with students." )
+SET(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION /lib)
 
 
 # Generators
