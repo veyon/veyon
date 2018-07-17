@@ -67,7 +67,6 @@ public:
 	{
 		FramebufferInvalid,
 		FramebufferInitialized,
-		FramebufferFirstUpdate,
 		FramebufferValid
 	} FramebufferState;
 
@@ -208,7 +207,6 @@ protected:
 
 private:
 	enum {
-		InitialFrameBufferTimeout = 15000,	/**< A server has to send an initial framebuffer within given timeout in ms */
 		ThreadTerminationTimeout = 10000,
 		MessageWaitTimeout = 500,
 	};
@@ -219,6 +217,7 @@ private:
 
 	void setState( State state );
 
+	bool initFrameBuffer( rfbClient* client );
 	void finishFrameBufferUpdate();
 
 	void sendEvents();

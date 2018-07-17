@@ -116,56 +116,12 @@ private:
 rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 {
 	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
-
-	const auto size = static_cast<uint64_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
-
-	client->frameBuffer = new uint8_t[size];
-
-	memset( client->frameBuffer, '\0', size );
-
-	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
-	// image copy using the framebuffer gets destroyed
-	connection->m_imgLock.lockForWrite();
-	connection->m_image = QImage( client->frameBuffer, client->width, client->height, QImage::Format_RGB32, framebufferCleanup, client->frameBuffer );
-	connection->m_imgLock.unlock();
-
-	// set up pixel format according to QImage
-	client->format.bitsPerPixel = 32;
-	client->format.redShift = 16;
-	client->format.greenShift = 8;
-	client->format.blueShift = 0;
-	client->format.redMax = 0xff;
-	client->format.greenMax = 0xff;
-	client->format.blueMax = 0xff;
-
-	client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
-	client->appData.useRemoteCursor = false;
-	client->appData.compressLevel = 0;
-	client->appData.useBGR233 = false;
-	client->appData.qualityLevel = 9;
-	client->appData.enableJPEG = false;
-
-	switch( connection->quality() )
+	if( connection )
 	{
-	case ScreenshotQuality:
-		// make sure to use lossless raw encoding
-		client->appData.encodingsString = "raw";
-		break;
-	case RemoteControlQuality:
-		client->appData.useRemoteCursor = true;
-		break;
-	case ThumbnailQuality:
-		client->appData.compressLevel = 9;
-		client->appData.qualityLevel = 5;
-		client->appData.enableJPEG = true;
-		break;
-	default:
-		break;
+		return connection->initFrameBuffer( client );
 	}
 
-	connection->m_framebufferState = FramebufferInitialized;
-
-	return true;
+	return false;
 }
 
 
@@ -174,7 +130,6 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 void VeyonVncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h )
 {
 	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
-
 	if( connection )
 	{
 		emit connection->imageUpdated( x, y, w, h );
@@ -640,24 +595,70 @@ void VeyonVncConnection::setState( State state )
 
 
 
-void VeyonVncConnection::finishFrameBufferUpdate()
+bool VeyonVncConnection::initFrameBuffer( rfbClient* client )
 {
-	switch( m_framebufferState )
+	const auto size = static_cast<uint64_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
+
+	client->frameBuffer = new uint8_t[size];
+
+	memset( client->frameBuffer, '\0', size );
+
+	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
+	// image copy using the framebuffer gets destroyed
+	m_imgLock.lockForWrite();
+	m_image = QImage( client->frameBuffer, client->width, client->height, QImage::Format_RGB32, framebufferCleanup, client->frameBuffer );
+	m_imgLock.unlock();
+
+	// set up pixel format according to QImage
+	client->format.bitsPerPixel = 32;
+	client->format.redShift = 16;
+	client->format.greenShift = 8;
+	client->format.blueShift = 0;
+	client->format.redMax = 0xff;
+	client->format.greenMax = 0xff;
+	client->format.blueMax = 0xff;
+
+	client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
+	client->appData.useRemoteCursor = false;
+	client->appData.compressLevel = 0;
+	client->appData.useBGR233 = false;
+	client->appData.qualityLevel = 9;
+	client->appData.enableJPEG = false;
+
+	switch( quality() )
 	{
-	case FramebufferInitialized:
-		emit framebufferSizeChanged( m_image.width(), m_image.height() );
-		m_framebufferState = FramebufferFirstUpdate;
+	case ScreenshotQuality:
+		// make sure to use lossless raw encoding
+		client->appData.encodingsString = "raw";
 		break;
-	case FramebufferFirstUpdate:
-		m_framebufferState = FramebufferValid;
+	case RemoteControlQuality:
+		client->appData.useRemoteCursor = true;
+		break;
+	case ThumbnailQuality:
+		client->appData.compressLevel = 9;
+		client->appData.qualityLevel = 5;
+		client->appData.enableJPEG = true;
 		break;
 	default:
 		break;
 	}
 
+	m_framebufferState = FramebufferInitialized;
+
+	emit framebufferSizeChanged( client->width, client->height );
+
+	return true;
+}
+
+
+
+void VeyonVncConnection::finishFrameBufferUpdate()
+{
+	m_framebufferState = FramebufferValid;
+	m_scaledScreenNeedsUpdate = true;
+
 	emit framebufferUpdateComplete();
 
-	m_scaledScreenNeedsUpdate = true;
 }
 
 
