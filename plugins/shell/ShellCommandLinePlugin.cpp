@@ -26,6 +26,7 @@
 #include <QFile>
 #include <QProcess>
 
+#include "CommandLineIO.h"
 #include "ShellCommandLinePlugin.h"
 
 
@@ -88,7 +89,7 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_run( const 
 	QFile scriptFile( arguments.value( 0 ) );
 	if( scriptFile.exists() == false )
 	{
-		fprintf( stderr, "%s\n", qPrintable( tr( "File \"%1\" does not exist!" ).arg( scriptFile.fileName() ) ) );
+		CommandLineIO::error( tr( "File \"%1\" does not exist!" ).arg( scriptFile.fileName() ) );
 		return Failed;
 	}
 
