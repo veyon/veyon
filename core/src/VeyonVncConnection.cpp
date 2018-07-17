@@ -594,41 +594,19 @@ void VeyonVncConnection::handleConnection()
 			}
 		}
 
-		switch( m_framebufferState )
-		{
-		case FramebufferInitialized:
-			// initial framebuffer timeout exceeded?
-			if( connectionTime.hasExpired( InitialFrameBufferTimeout ) )
-			{
-				// no so disconnect and try again
-				qDebug( "VeyonVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
-				return;
-			}
-			else
-			{
-				// not yet so again request initial full framebuffer update
-				SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), false );
-			}
-			break;
-
-		case FramebufferFirstUpdate:
-			SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), false );
-			break;
-
-		default:
-			SendFramebufferUpdateRequest( m_cl, 0, 0, framebufferSize().width(), framebufferSize().height(), true );
-			break;
-		}
-
 		sendEvents();
 
-		auto remainingUpdateInterval = m_framebufferUpdateInterval - updateTimer.elapsed();
+		const auto remainingUpdateInterval = m_framebufferUpdateInterval - updateTimer.elapsed();
 
-		if( remainingUpdateInterval > 0 && isInterruptionRequested() == false )
+		if( m_framebufferState == FramebufferValid &&
+				remainingUpdateInterval > 0 &&
+				isInterruptionRequested() == false )
 		{
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( remainingUpdateInterval ) );
 			sleeperMutex.unlock();
+
+			SendFramebufferUpdateRequest( m_cl, 0, 0, m_cl->width, m_cl->height, true );
 		}
 	}
 
