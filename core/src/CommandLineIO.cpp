@@ -34,14 +34,14 @@ void CommandLineIO::print( const QString& message )
 
 void CommandLineIO::info( const QString &message )
 {
-	printf( "[INFO] %s\n", qPrintable( message ) );
+	fprintf( stderr, "[INFO] %s\n", qPrintable( message ) );
 }
 
 
 
 void CommandLineIO::error( const QString& message )
 {
-	printf( "[ERROR] %s\n", qPrintable( message ) );
+	fprintf( stderr, "[ERROR] %s\n", qPrintable( message ) );
 }
 
 
