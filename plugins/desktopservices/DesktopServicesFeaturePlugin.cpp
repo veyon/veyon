@@ -104,7 +104,7 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 	else if( m_predefinedWebsitesFeatures.contains( feature ) )
 	{
 		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( ProgramsArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+							addArgument( WebsiteUrlArgument, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
 
 	}
 
