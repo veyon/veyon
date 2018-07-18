@@ -311,24 +311,6 @@ void VncConnection::stop( bool deleteAfterFinished )
 
 
 
-
-void VncConnection::reset( const QString &host )
-{
-	if( m_state != Connected && isRunning() )
-	{
-		setHost( host );
-	}
-	else
-	{
-		stop();
-		setHost( host );
-		start();
-	}
-}
-
-
-
-
 void VncConnection::setHost( const QString &host )
 {
 	QMutexLocker locker( &m_mutex );

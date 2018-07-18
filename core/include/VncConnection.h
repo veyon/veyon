@@ -87,7 +87,7 @@ public:
 
 	QImage image() const;
 	void stop( bool deleteAfterFinished = false );
-	void reset( const QString &host );
+
 	void setHost( const QString &host );
 	void setPort( int port );
 
