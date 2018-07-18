@@ -128,16 +128,6 @@ public:
 
 	void enqueueEvent( MessageEvent *e );
 
-	const rfbClient *getRfbClient() const
-	{
-		return m_cl;
-	}
-
-	rfbClient *getRfbClient()
-	{
-		return m_cl;
-	}
-
 	QSize framebufferSize() const
 	{
 		return m_image.size();
