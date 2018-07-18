@@ -22,6 +22,9 @@
  *
  */
 
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+
 #include <QProcess>
 
 #include "LinuxNetworkFunctions.h"
@@ -42,6 +45,45 @@ bool LinuxNetworkFunctions::configureFirewallException( const QString& applicati
 	Q_UNUSED(applicationPath)
 	Q_UNUSED(description)
 	Q_UNUSED(enabled)
+
+	return true;
+}
+
+
+
+bool LinuxNetworkFunctions::configureSocketKeepalive( int socket, bool enabled, int idleTime, int interval, int probes )
+{
+	int optval;
+	socklen_t optlen = sizeof(optval);
+
+	// Try to set the option active
+	optval = enabled ? 1 : 0;
+	if( setsockopt( socket, SOL_SOCKET, SO_KEEPALIVE, &optval, optlen ) < 0 )
+	{
+		qWarning() << Q_FUNC_INFO << "could not set SO_KEEPALIVE";
+		return false;
+	}
+
+	optval = std::max<int>( 1, idleTime / 1000 );
+	if( setsockopt( socket, IPPROTO_TCP, TCP_KEEPIDLE, &optval, optlen ) < 0 )
+	{
+		qWarning() << Q_FUNC_INFO << "could not set TCP_KEEPIDLE";
+		return false;
+	}
+
+	optval = std::max<int>( 1, interval / 1000 );
+	if( setsockopt( socket, IPPROTO_TCP, TCP_KEEPINTVL, &optval, optlen ) < 0 )
+	{
+		qWarning() << Q_FUNC_INFO << "could not set TCP_KEEPINTVL";
+		return false;
+	}
+
+	optval = probes;
+	if( setsockopt( socket, IPPROTO_TCP, TCP_KEEPCNT, &optval, optlen ) < 0 )
+	{
+		qWarning() << Q_FUNC_INFO << "could not set TCP_KEEPCNT";
+		return false;
+	}
 
 	return true;
 }
