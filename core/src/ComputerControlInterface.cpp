@@ -28,7 +28,7 @@
 #include "FeatureControl.h"
 #include "UserSessionControl.h"
 #include "VeyonConfiguration.h"
-#include "VeyonCoreConnection.h"
+#include "VeyonConnection.h"
 #include "VncConnection.h"
 
 
@@ -40,7 +40,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 	m_user(),
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
-	m_coreConnection( nullptr ),
+	m_connection( nullptr ),
 	m_builtinFeatures( nullptr ),
 	m_screenUpdated( false )
 {
@@ -78,7 +78,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
 
-		m_coreConnection = new VeyonCoreConnection( m_vncConnection );
+		m_connection = new VeyonConnection( m_vncConnection );
 
 		m_vncConnection->start();
 
@@ -90,7 +90,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
 
-		connect( m_coreConnection, &VeyonCoreConnection::featureMessageReceived,
+		connect( m_connection, &VeyonConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
 	}
 	else
@@ -103,10 +103,10 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 
 void ComputerControlInterface::stop()
 {
-	if( m_coreConnection )
+	if( m_connection )
 	{
-		delete m_coreConnection;
-		m_coreConnection = nullptr;
+		delete m_connection;
+		m_connection = nullptr;
 	}
 
 	if( m_vncConnection )
@@ -194,9 +194,9 @@ void ComputerControlInterface::setDesignatedModeFeature( Feature::Uid designated
 
 void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
-	if( m_coreConnection && m_coreConnection->isConnected() )
+	if( m_connection && m_connection->isConnected() )
 	{
-		m_coreConnection->sendFeatureMessage( featureMessage );
+		m_connection->sendFeatureMessage( featureMessage );
 	}
 }
 
@@ -229,7 +229,7 @@ void ComputerControlInterface::updateState()
 
 void ComputerControlInterface::updateUser()
 {
-	if( m_vncConnection && m_coreConnection && state() == Connected )
+	if( m_vncConnection && m_connection && state() == Connected )
 	{
 		if( user().isEmpty() )
 		{
@@ -246,7 +246,7 @@ void ComputerControlInterface::updateUser()
 
 void ComputerControlInterface::updateActiveFeatures()
 {
-	if( m_vncConnection && m_coreConnection && state() == Connected )
+	if( m_vncConnection && m_connection && state() == Connected )
 	{
 		m_builtinFeatures->featureControl().queryActiveFeatures( { weakPointer() } );
 	}

@@ -30,7 +30,7 @@
 #include <QWidget>
 
 class VncView;
-class VeyonCoreConnection;
+class VeyonConnection;
 class RemoteAccessWidget;
 class ToolButton;
 
@@ -110,7 +110,7 @@ private slots:
 private:
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncView* m_vncView;
-	VeyonCoreConnection* m_coreConnection;
+	VeyonConnection* m_connection;
 	RemoteAccessWidgetToolBar* m_toolBar;
 
 	friend class RemoteAccessWidgetToolBar;

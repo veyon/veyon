@@ -28,7 +28,7 @@
 #include "FeatureManager.h"
 #include "VncConnection.h"
 #include "VeyonConfiguration.h"
-#include "VeyonCoreConnection.h"
+#include "VeyonConnection.h"
 #include "MainWindow.h"
 #include "ComputerManager.h"
 #include "MonitoringMode.h"

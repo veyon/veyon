@@ -27,8 +27,6 @@
 
 #include "VeyonMaster.h"
 #include "MainWindow.h"
-#include "VeyonConfiguration.h"
-#include "VeyonCoreConnection.h"
 
 
 int main( int argc, char * * argv )

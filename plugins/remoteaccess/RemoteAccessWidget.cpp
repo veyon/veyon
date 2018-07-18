@@ -31,7 +31,7 @@
 
 #include "RemoteAccessWidget.h"
 #include "VncView.h"
-#include "VeyonCoreConnection.h"
+#include "VeyonConnection.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "PlatformCoreFunctions.h"
@@ -270,7 +270,7 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 	QWidget( nullptr ),
 	m_computerControlInterface( computerControlInterface ),
 	m_vncView( new VncView( computerControlInterface->computer().hostAddress(), -1, this, VncView::RemoteControlMode ) ),
-	m_coreConnection( new VeyonCoreConnection( m_vncView->vncConnection() ) ),
+	m_connection( new VeyonConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteAccessWidgetToolBar( this, viewOnly ) )
 {
 	setWindowTitle( tr( "%1 - %2 Remote Access" ).arg( computerControlInterface->computer().name(),
@@ -300,7 +300,7 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 
 RemoteAccessWidget::~RemoteAccessWidget()
 {
-	delete m_coreConnection;
+	delete m_connection;
 	delete m_vncView;
 }
 
@@ -334,7 +334,7 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 
 void RemoteAccessWidget::checkKeyEvent( int key, bool pressed )
 {
-	if( pressed && key == XK_Escape && !m_coreConnection->isConnected() )
+	if( pressed && key == XK_Escape && !m_connection->isConnected() )
 	{
 		close();
 	}

@@ -1,5 +1,5 @@
 /*
- * VeyonCoreConnection.h - declaration of class VeyonCoreConnection
+ * VeyonConnection.h - declaration of class VeyonConnection
  *
  * Copyright (c) 2008-2016 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef VEYON_CORE_CONNECTION_H
-#define VEYON_CORE_CONNECTION_H
+#ifndef VEYON_CONNECTION_H
+#define VEYON_CONNECTION_H
 
 #include <QPointer>
 
@@ -35,12 +35,12 @@
 
 class FeatureMessage;
 
-class VEYON_CORE_EXPORT VeyonCoreConnection : public QObject
+class VEYON_CORE_EXPORT VeyonConnection : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonCoreConnection( VncConnection *vncConnection );
-	~VeyonCoreConnection() override;
+	VeyonConnection( VncConnection *vncConnection );
+	~VeyonConnection() override;
 
 	VncConnection *vncConnection()
 	{

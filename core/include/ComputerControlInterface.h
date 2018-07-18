@@ -38,7 +38,7 @@ class QImage;
 class BuiltinFeatures;
 class FeatureMessage;
 class VncConnection;
-class VeyonCoreConnection;
+class VeyonConnection;
 
 class VEYON_CORE_EXPORT ComputerControlInterface : public QObject
 {
@@ -144,7 +144,7 @@ private:
 	QSize m_scaledScreenSize;
 
 	VncConnection* m_vncConnection;
-	VeyonCoreConnection* m_coreConnection;
+	VeyonConnection* m_connection;
 	BuiltinFeatures* m_builtinFeatures;
 
 	bool m_screenUpdated;

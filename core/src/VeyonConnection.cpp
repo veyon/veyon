@@ -1,5 +1,5 @@
 /*
- * VeyonCoreConnection.cpp - implementation of VeyonCoreConnection
+ * VeyonConnection.cpp - implementation of VeyonConnection
  *
  * Copyright (c) 2008-2018 Tobias Junghans <tobydox@veyon.io>
  *
@@ -23,7 +23,7 @@
  */
 
 #include "FeatureMessage.h"
-#include "VeyonCoreConnection.h"
+#include "VeyonConnection.h"
 #include "SocketDevice.h"
 
 extern "C"
@@ -63,11 +63,11 @@ private:
 
 
 static rfbClientProtocolExtension * __veyonProtocolExt = nullptr;
-static void* VeyonCoreConnectionTag = reinterpret_cast<void *>( PortOffsetVncServer ); // an unique ID
+static void* VeyonConnectionTag = reinterpret_cast<void *>( PortOffsetVncServer ); // an unique ID
 
 
 
-VeyonCoreConnection::VeyonCoreConnection( VncConnection *vncConn ):
+VeyonConnection::VeyonConnection( VncConnection *vncConn ):
 	m_vncConn( vncConn ),
 	m_user(),
 	m_userHomeDir()
@@ -84,7 +84,7 @@ VeyonCoreConnection::VeyonCoreConnection( VncConnection *vncConn ):
 
 	if (m_vncConn) {
 		connect( m_vncConn, &VncConnection::newClient,
-				this, &VeyonCoreConnection::initNewClient,
+				this, &VeyonConnection::initNewClient,
 				Qt::DirectConnection );
 	}
 }
@@ -92,17 +92,17 @@ VeyonCoreConnection::VeyonCoreConnection( VncConnection *vncConn ):
 
 
 
-VeyonCoreConnection::~VeyonCoreConnection()
+VeyonConnection::~VeyonConnection()
 {
 }
 
 
 
-void VeyonCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
+void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
 	if( m_vncConn == nullptr )
 	{
-		qCritical( "VeyonCoreConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
+		qCritical( "VeyonConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
 		return;
 	}
 
@@ -111,20 +111,20 @@ void VeyonCoreConnection::sendFeatureMessage( const FeatureMessage& featureMessa
 
 
 
-void VeyonCoreConnection::initNewClient( rfbClient *cl )
+void VeyonConnection::initNewClient( rfbClient *cl )
 {
-	rfbClientSetClientData( cl, VeyonCoreConnectionTag, this );
+	rfbClientSetClientData( cl, VeyonConnectionTag, this );
 }
 
 
 
 
-rfbBool VeyonCoreConnection::handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
+rfbBool VeyonConnection::handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 {
-	auto coreConnection = reinterpret_cast<VeyonCoreConnection *>( rfbClientGetClientData( client, VeyonCoreConnectionTag ) );
-	if( coreConnection )
+	auto connection = reinterpret_cast<VeyonConnection *>( rfbClientGetClientData( client, VeyonConnectionTag ) );
+	if( connection )
 	{
-		return coreConnection->handleServerMessage( client, msg->type );
+		return connection->handleServerMessage( client, msg->type );
 	}
 
 	return false;
@@ -133,7 +133,7 @@ rfbBool VeyonCoreConnection::handleVeyonMessage( rfbClient* client, rfbServerToC
 
 
 
-bool VeyonCoreConnection::handleServerMessage( rfbClient* client, uint8_t msg )
+bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 {
 	if( msg == rfbVeyonFeatureMessage )
 	{
@@ -141,12 +141,12 @@ bool VeyonCoreConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 		FeatureMessage featureMessage( &socketDev );
 		if( featureMessage.receive() == false )
 		{
-			qDebug( "VeyonCoreConnection: could not receive feature message" );
+			qDebug( "VeyonConnection: could not receive feature message" );
 
 			return false;
 		}
 
-		qDebug() << "VeyonCoreConnection: received feature message"
+		qDebug() << "VeyonConnection: received feature message"
 				 << featureMessage.command()
 				 << "with arguments" << featureMessage.arguments();
 
@@ -156,7 +156,7 @@ bool VeyonCoreConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 	}
 	else
 	{
-		qCritical( "VeyonCoreConnection::handleServerMessage(): "
+		qCritical( "VeyonConnection::handleServerMessage(): "
 				"unknown message type %d from server. Closing "
 				"connection. Will re-open it later.", static_cast<int>( msg ) );
 	}
