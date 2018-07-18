@@ -504,16 +504,12 @@ void VncConnection::establishConnection()
 void VncConnection::handleConnection()
 {
 	QMutex sleeperMutex;
-
-	QElapsedTimer updateTimer;
-	QElapsedTimer connectionTime;
-
-	connectionTime.start();
+	QElapsedTimer loopTimer;
 
 	// Main VNC event loop
 	while( isInterruptionRequested() == false )
 	{
-		updateTimer.start();
+		loopTimer.start();
 
 		const int i = WaitForMessage( m_cl, MessageWaitTimeout );
 		if( isInterruptionRequested() || i < 0 )
@@ -536,7 +532,7 @@ void VncConnection::handleConnection()
 
 		sendEvents();
 
-		const auto remainingUpdateInterval = m_framebufferUpdateInterval - updateTimer.elapsed();
+		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
 
 		if( m_framebufferState == FramebufferValid &&
 				remainingUpdateInterval > 0 &&
