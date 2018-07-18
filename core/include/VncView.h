@@ -30,7 +30,7 @@
 #include <QWidget>
 
 #include "KeyboardShortcutTrapper.h"
-#include "VeyonVncConnection.h"
+#include "VncConnection.h"
 
 class ProgressWidget;
 class RemoteControlWidget;
@@ -69,7 +69,7 @@ public:
 		return m_viewOnly;
 	}
 
-	VeyonVncConnection* vncConnection()
+	VncConnection* vncConnection()
 	{
 		return m_vncConn;
 	}
@@ -125,7 +125,7 @@ private:
 	void pressKey( unsigned int key );
 	void unpressKey( unsigned int key );
 
-	VeyonVncConnection* m_vncConn;
+	VncConnection* m_vncConn;
 
 	Mode m_mode;
 	QPixmap m_cursorShape;

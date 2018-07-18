@@ -1,5 +1,5 @@
 /*
- * VeyonVncConnection.cpp - implementation of VeyonVncConnection class
+ * VncConnection.cpp - implementation of VncConnection class
  *
  * Copyright (c) 2008-2018 Tobias Junghans <tobydox@veyon.io>
  *
@@ -37,7 +37,7 @@
 #include "PlatformNetworkFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
-#include "VeyonVncConnection.h"
+#include "VncConnection.h"
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
 
@@ -113,9 +113,9 @@ private:
 
 
 
-rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
+rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
 {
-	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 	if( connection )
 	{
 		return connection->initFrameBuffer( client );
@@ -127,9 +127,9 @@ rfbBool VeyonVncConnection::hookInitFrameBuffer( rfbClient* client )
 
 
 
-void VeyonVncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h )
+void VncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h )
 {
-	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 	if( connection )
 	{
 		emit connection->imageUpdated( x, y, w, h );
@@ -139,9 +139,9 @@ void VeyonVncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, i
 
 
 
-void VeyonVncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
+void VncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
 {
-	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 	if( connection )
 	{
 		connection->finishFrameBufferUpdate();
@@ -151,9 +151,9 @@ void VeyonVncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
 
 
 
-rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient* client, int x, int y )
+rfbBool VncConnection::hookHandleCursorPos( rfbClient* client, int x, int y )
 {
-	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 	if( connection )
 	{
 		emit connection->cursorPosChanged( x, y );
@@ -165,11 +165,11 @@ rfbBool VeyonVncConnection::hookHandleCursorPos( rfbClient* client, int x, int y
 
 
 
-void VeyonVncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp )
+void VncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp )
 {
 	if( bpp != 4 )
 	{
-		qWarning( "VeyonVncConnection: bytes per pixel != 4" );
+		qWarning( "VncConnection: bytes per pixel != 4" );
 		return;
 	}
 
@@ -179,18 +179,18 @@ void VeyonVncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int
 	QPixmap cursorShape( QPixmap::fromImage( QImage( client->rcSource, w, h, QImage::Format_RGB32 ) ) );
 	cursorShape.setMask( QBitmap::fromImage( alpha ) );
 
-	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 	emit connection->cursorShapeUpdated( cursorShape, xh, yh );
 }
 
 
 
-void VeyonVncConnection::hookCutText( rfbClient* client, const char* text, int textlen )
+void VncConnection::hookCutText( rfbClient* client, const char* text, int textlen )
 {
 	QString cutText = QString::fromUtf8( text, textlen );
 	if( !cutText.isEmpty() )
 	{
-		auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+		auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 		emit connection->gotCut( cutText );
 	}
 }
@@ -198,7 +198,7 @@ void VeyonVncConnection::hookCutText( rfbClient* client, const char* text, int t
 
 
 
-void VeyonVncConnection::hookOutputHandler( const char* format, ... )
+void VncConnection::hookOutputHandler( const char* format, ... )
 {
 	va_list args;
 	va_start( args, format );
@@ -207,12 +207,12 @@ void VeyonVncConnection::hookOutputHandler( const char* format, ... )
 
 	va_end(args);
 
-	qDebug() << "VeyonVncConnection: VNC message:" << message.trimmed();
+	qDebug() << "VncConnection: VNC message:" << message.trimmed();
 }
 
 
 
-void VeyonVncConnection::framebufferCleanup( void* framebuffer )
+void VncConnection::framebufferCleanup( void* framebuffer )
 {
 	delete[] static_cast<uchar *>( framebuffer );
 }
@@ -220,7 +220,7 @@ void VeyonVncConnection::framebufferCleanup( void* framebuffer )
 
 
 
-VeyonVncConnection::VeyonVncConnection( QObject* parent ) :
+VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
 	m_serviceReachable( false ),
 	m_framebufferState( FramebufferInvalid ),
@@ -242,7 +242,7 @@ VeyonVncConnection::VeyonVncConnection( QObject* parent ) :
 	m_terminateTimer.setSingleShot( true );
 	m_terminateTimer.setInterval( ThreadTerminationTimeout );
 
-	connect( &m_terminateTimer, &QTimer::timeout, this, &VeyonVncConnection::terminate );
+	connect( &m_terminateTimer, &QTimer::timeout, this, &VncConnection::terminate );
 
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
 	{
@@ -252,7 +252,7 @@ VeyonVncConnection::VeyonVncConnection( QObject* parent ) :
 
 
 
-VeyonVncConnection::~VeyonVncConnection()
+VncConnection::~VncConnection()
 {
 	stop();
 
@@ -274,14 +274,14 @@ VeyonVncConnection::~VeyonVncConnection()
 
 
 
-void VeyonVncConnection::stop( bool deleteAfterFinished )
+void VncConnection::stop( bool deleteAfterFinished )
 {
 	if( isRunning() )
 	{
 		if( deleteAfterFinished )
 		{
-			connect( this, &VeyonVncConnection::finished,
-					 this, &VeyonVncConnection::deleteLater );
+			connect( this, &VncConnection::finished,
+					 this, &VncConnection::deleteLater );
 		}
 
 		m_scaledScreen = QImage();
@@ -300,7 +300,7 @@ void VeyonVncConnection::stop( bool deleteAfterFinished )
 #endif
 
 		// stop timer if thread terminates properly before timeout
-		connect( this, &VeyonVncConnection::finished,
+		connect( this, &VncConnection::finished,
 				 &m_terminateTimer, &QTimer::stop );
 	}
 	else if( deleteAfterFinished )
@@ -312,7 +312,7 @@ void VeyonVncConnection::stop( bool deleteAfterFinished )
 
 
 
-void VeyonVncConnection::reset( const QString &host )
+void VncConnection::reset( const QString &host )
 {
 	if( m_state != Connected && isRunning() )
 	{
@@ -329,7 +329,7 @@ void VeyonVncConnection::reset( const QString &host )
 
 
 
-void VeyonVncConnection::setHost( const QString &host )
+void VncConnection::setHost( const QString &host )
 {
 	QMutexLocker locker( &m_mutex );
 	m_host = host;
@@ -361,7 +361,7 @@ void VeyonVncConnection::setHost( const QString &host )
 
 
 
-void VeyonVncConnection::setPort( int port )
+void VncConnection::setPort( int port )
 {
 	if( port >= 0 )
 	{
@@ -372,7 +372,7 @@ void VeyonVncConnection::setPort( int port )
 
 
 
-QImage VeyonVncConnection::image() const
+QImage VncConnection::image() const
 {
 	QReadLocker locker( &m_imgLock );
 	return m_image;
@@ -380,7 +380,7 @@ QImage VeyonVncConnection::image() const
 
 
 
-void VeyonVncConnection::setFramebufferUpdateInterval( int interval )
+void VncConnection::setFramebufferUpdateInterval( int interval )
 {
 	m_framebufferUpdateInterval = interval;
 }
@@ -388,7 +388,7 @@ void VeyonVncConnection::setFramebufferUpdateInterval( int interval )
 
 
 
-void VeyonVncConnection::rescaleScreen()
+void VncConnection::rescaleScreen()
 {
 	if( m_image.size().isValid() == false ||
 			m_scaledSize.isNull() ||
@@ -407,7 +407,7 @@ void VeyonVncConnection::rescaleScreen()
 
 
 
-void VeyonVncConnection::run()
+void VncConnection::run()
 {
 	while( isInterruptionRequested() == false )
 	{
@@ -421,7 +421,7 @@ void VeyonVncConnection::run()
 
 
 
-void VeyonVncConnection::establishConnection()
+void VncConnection::establishConnection()
 {
 	QMutex sleeperMutex;
 
@@ -516,7 +516,7 @@ void VeyonVncConnection::establishConnection()
 
 
 
-void VeyonVncConnection::handleConnection()
+void VncConnection::handleConnection()
 {
 	QMutex sleeperMutex;
 
@@ -570,7 +570,7 @@ void VeyonVncConnection::handleConnection()
 
 
 
-void VeyonVncConnection::closeConnection()
+void VncConnection::closeConnection()
 {
 	if( m_cl )
 	{
@@ -583,7 +583,7 @@ void VeyonVncConnection::closeConnection()
 
 
 
-void VeyonVncConnection::setState( State state )
+void VncConnection::setState( State state )
 {
 	if( state != m_state )
 	{
@@ -595,7 +595,7 @@ void VeyonVncConnection::setState( State state )
 
 
 
-bool VeyonVncConnection::initFrameBuffer( rfbClient* client )
+bool VncConnection::initFrameBuffer( rfbClient* client )
 {
 	const auto size = static_cast<uint64_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
 
@@ -652,7 +652,7 @@ bool VeyonVncConnection::initFrameBuffer( rfbClient* client )
 
 
 
-void VeyonVncConnection::finishFrameBufferUpdate()
+void VncConnection::finishFrameBufferUpdate()
 {
 	m_framebufferState = FramebufferValid;
 	m_scaledScreenNeedsUpdate = true;
@@ -663,7 +663,7 @@ void VeyonVncConnection::finishFrameBufferUpdate()
 
 
 
-void VeyonVncConnection::sendEvents()
+void VncConnection::sendEvents()
 {
 	m_mutex.lock();
 
@@ -686,7 +686,7 @@ void VeyonVncConnection::sendEvents()
 
 
 
-void VeyonVncConnection::enqueueEvent( MessageEvent *e )
+void VncConnection::enqueueEvent( MessageEvent *e )
 {
 	QMutexLocker lock( &m_mutex );
 	if( m_state != Connected )
@@ -700,7 +700,7 @@ void VeyonVncConnection::enqueueEvent( MessageEvent *e )
 
 
 
-void VeyonVncConnection::mouseEvent( int x, int y, int buttonMask )
+void VncConnection::mouseEvent( int x, int y, int buttonMask )
 {
 	enqueueEvent( new PointerClientEvent( x, y, buttonMask ) );
 }
@@ -708,7 +708,7 @@ void VeyonVncConnection::mouseEvent( int x, int y, int buttonMask )
 
 
 
-void VeyonVncConnection::keyEvent( unsigned int key, bool pressed )
+void VncConnection::keyEvent( unsigned int key, bool pressed )
 {
 	enqueueEvent( new KeyClientEvent( key, pressed ) );
 }
@@ -716,7 +716,7 @@ void VeyonVncConnection::keyEvent( unsigned int key, bool pressed )
 
 
 
-void VeyonVncConnection::clientCut( const QString &text )
+void VncConnection::clientCut( const QString &text )
 {
 	enqueueEvent( new ClientCutEvent( text ) );
 }
@@ -724,7 +724,7 @@ void VeyonVncConnection::clientCut( const QString &text )
 
 
 
-void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
+void VncConnection::handleSecTypeVeyon( rfbClient* client )
 {
 	SocketDevice socketDevice( libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
@@ -745,17 +745,17 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 #endif
 	}
 
-	qDebug() << "VeyonVncConnection::handleSecTypeVeyon(): received authentication types:" << authTypes;
+	qDebug() << "VncConnection::handleSecTypeVeyon(): received authentication types:" << authTypes;
 
 	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
 	if( authTypes.count() > 0 )
 	{
 		chosenAuthType = authTypes.first();
 
-		// look whether the VeyonVncConnection recommends a specific
+		// look whether the VncConnection recommends a specific
 		// authentication type (e.g. VeyonAuthHostBased when running as
 		// demo client)
-		auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+		auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 
 		if( connection != nullptr )
 		{
@@ -769,7 +769,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 		}
 	}
 
-	qDebug() << "VeyonVncConnection::handleSecTypeVeyon(): chose authentication type" << chosenAuthType;
+	qDebug() << "VncConnection::handleSecTypeVeyon(): chose authentication type" << chosenAuthType;
 	VariantArrayMessage authReplyMessage( &socketDevice );
 
 	authReplyMessage.write( chosenAuthType );
@@ -800,7 +800,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 
 			if( challenge.size() != CryptoCore::ChallengeSize )
 			{
-				qCritical( "VeyonVncConnection::handleSecTypeVeyon(): challenge size mismatch!" );
+				qCritical( "VncConnection::handleSecTypeVeyon(): challenge size mismatch!" );
 				break;
 			}
 
@@ -808,7 +808,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 			auto key = VeyonCore::authenticationCredentials().privateKey();
 			if( key.isNull() || key.canSign() == false )
 			{
-				qCritical( "VeyonVncConnection::handleSecTypeVeyon(): invalid private key!" );
+				qCritical( "VncConnection::handleSecTypeVeyon(): invalid private key!" );
 				break;
 			}
 
@@ -834,7 +834,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 
 		if( publicKey.canEncrypt() == false )
 		{
-			qCritical( "VeyonVncConnection::handleSecTypeVeyon(): can't encrypt with given public key!" );
+			qCritical( "VncConnection::handleSecTypeVeyon(): can't encrypt with given public key!" );
 			break;
 		}
 
@@ -842,7 +842,7 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
-			qCritical( "VeyonVncConnection::handleSecTypeVeyon(): password encryption failed!" );
+			qCritical( "VncConnection::handleSecTypeVeyon(): password encryption failed!" );
 			break;
 		}
 
@@ -868,9 +868,9 @@ void VeyonVncConnection::handleSecTypeVeyon( rfbClient* client )
 
 
 
-void VeyonVncConnection::hookPrepareAuthentication( rfbClient* client )
+void VncConnection::hookPrepareAuthentication( rfbClient* client )
 {
-	auto connection = static_cast<VeyonVncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 	if( connection )
 	{
 		// set our internal flag which indicates that we basically have communication with the client
@@ -880,7 +880,7 @@ void VeyonVncConnection::hookPrepareAuthentication( rfbClient* client )
 }
 
 
-qint64 VeyonVncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
+qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
 												   SocketDevice::SocketOperation operation, void* user )
 {
 	rfbClient* client = static_cast<rfbClient *>( user );
@@ -900,6 +900,6 @@ qint64 VeyonVncConnection::libvncClientDispatcher( char* buffer, const qint64 by
 
 void handleSecTypeVeyon( rfbClient *client )
 {
-	VeyonVncConnection::hookPrepareAuthentication( client );
-	VeyonVncConnection::handleSecTypeVeyon( client );
+	VncConnection::hookPrepareAuthentication( client );
+	VncConnection::handleSecTypeVeyon( client );
 }

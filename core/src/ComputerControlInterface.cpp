@@ -29,7 +29,7 @@
 #include "UserSessionControl.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCoreConnection.h"
-#include "VeyonVncConnection.h"
+#include "VncConnection.h"
 
 
 ComputerControlInterface::ComputerControlInterface( const Computer& computer,
@@ -72,9 +72,9 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
-		m_vncConnection = new VeyonVncConnection();
+		m_vncConnection = new VncConnection();
 		m_vncConnection->setHost( m_computer.hostAddress() );
-		m_vncConnection->setQuality( VeyonVncConnection::ThumbnailQuality );
+		m_vncConnection->setQuality( VncConnection::ThumbnailQuality );
 		m_vncConnection->setScaledSize( m_scaledScreenSize );
 		m_vncConnection->setFramebufferUpdateInterval( VeyonCore::config().computerMonitoringUpdateInterval() );
 
@@ -82,13 +82,13 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 
 		m_vncConnection->start();
 
-		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
-		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete ,this, &ComputerControlInterface::updateUser );
-		connect( m_vncConnection, &VeyonVncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::updateActiveFeatures );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete ,this, &ComputerControlInterface::updateUser );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::updateActiveFeatures );
 
-		connect( m_vncConnection, &VeyonVncConnection::stateChanged, this, &ComputerControlInterface::updateState );
-		connect( m_vncConnection, &VeyonVncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
-		connect( m_vncConnection, &VeyonVncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
+		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
+		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
+		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
 
 		connect( m_coreConnection, &VeyonCoreConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
@@ -208,12 +208,12 @@ void ComputerControlInterface::updateState()
 	{
 		switch( m_vncConnection->state() )
 		{
-		case VeyonVncConnection::Disconnected: m_state = Disconnected; break;
-		case VeyonVncConnection::Connecting: m_state = Connecting; break;
-		case VeyonVncConnection::Connected: m_state = Connected; break;
-		case VeyonVncConnection::HostOffline: m_state = Offline; break;
-		case VeyonVncConnection::ServiceUnreachable: m_state = ServiceUnreachable; break;
-		case VeyonVncConnection::AuthenticationFailed: m_state = AuthenticationFailed; break;
+		case VncConnection::Disconnected: m_state = Disconnected; break;
+		case VncConnection::Connecting: m_state = Connecting; break;
+		case VncConnection::Connected: m_state = Connected; break;
+		case VncConnection::HostOffline: m_state = Offline; break;
+		case VncConnection::ServiceUnreachable: m_state = ServiceUnreachable; break;
+		case VncConnection::AuthenticationFailed: m_state = AuthenticationFailed; break;
 		default: m_state = Unknown; break;
 		}
 	}

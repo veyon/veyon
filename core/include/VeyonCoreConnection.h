@@ -30,7 +30,7 @@
 #include "rfb/rfbproto.h"
 
 #include "VeyonCore.h"
-#include "VeyonVncConnection.h"
+#include "VncConnection.h"
 
 
 class FeatureMessage;
@@ -39,15 +39,15 @@ class VEYON_CORE_EXPORT VeyonCoreConnection : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonCoreConnection( VeyonVncConnection *vncConnection );
+	VeyonCoreConnection( VncConnection *vncConnection );
 	~VeyonCoreConnection() override;
 
-	VeyonVncConnection *vncConnection()
+	VncConnection *vncConnection()
 	{
 		return m_vncConn;
 	}
 
-	VeyonVncConnection::State state() const
+	VncConnection::State state() const
 	{
 		return m_vncConn->state();
 	}
@@ -81,7 +81,7 @@ private:
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 
 
-	QPointer<VeyonVncConnection> m_vncConn;
+	QPointer<VncConnection> m_vncConn;
 
 	QString m_user;
 	QString m_userHomeDir;

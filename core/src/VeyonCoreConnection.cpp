@@ -47,7 +47,7 @@ public:
 				 << "command" << m_featureMessage.command()
 				 << "arguments" << m_featureMessage.arguments();
 
-		SocketDevice socketDevice( VeyonVncConnection::libvncClientDispatcher, client );
+		SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
 		char messageType = rfbVeyonFeatureMessage;
 		socketDevice.write( &messageType, sizeof(messageType) );
 
@@ -67,7 +67,7 @@ static void* VeyonCoreConnectionTag = reinterpret_cast<void *>( PortOffsetVncSer
 
 
 
-VeyonCoreConnection::VeyonCoreConnection( VeyonVncConnection *vncConn ):
+VeyonCoreConnection::VeyonCoreConnection( VncConnection *vncConn ):
 	m_vncConn( vncConn ),
 	m_user(),
 	m_userHomeDir()
@@ -83,7 +83,7 @@ VeyonCoreConnection::VeyonCoreConnection( VeyonVncConnection *vncConn ):
 	}
 
 	if (m_vncConn) {
-		connect( m_vncConn, &VeyonVncConnection::newClient,
+		connect( m_vncConn, &VncConnection::newClient,
 				this, &VeyonCoreConnection::initNewClient,
 				Qt::DirectConnection );
 	}
@@ -137,7 +137,7 @@ bool VeyonCoreConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 {
 	if( msg == rfbVeyonFeatureMessage )
 	{
-		SocketDevice socketDev( VeyonVncConnection::libvncClientDispatcher, client );
+		SocketDevice socketDev( VncConnection::libvncClientDispatcher, client );
 		FeatureMessage featureMessage( &socketDev );
 		if( featureMessage.receive() == false )
 		{

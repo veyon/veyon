@@ -26,7 +26,7 @@
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
 #include "FeatureManager.h"
-#include "VeyonVncConnection.h"
+#include "VncConnection.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCoreConnection.h"
 #include "MainWindow.h"

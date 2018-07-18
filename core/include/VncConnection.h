@@ -1,5 +1,5 @@
 /*
- * VeyonVncConnection.h - declaration of VeyonVncConnection class
+ * VncConnection.h - declaration of VncConnection class
  *
  * Copyright (c) 2008-2018 Tobias Junghans <tobydox@veyon.io>
  *
@@ -25,8 +25,8 @@
  *
  */
 
-#ifndef VEYON_VNC_CONNECTION_H
-#define VEYON_VNC_CONNECTION_H
+#ifndef VNC_CONNECTION_H
+#define VNC_CONNECTION_H
 
 #include <QMutex>
 #include <QQueue>
@@ -50,7 +50,7 @@ public:
 } ;
 
 
-class VEYON_CORE_EXPORT VeyonVncConnection : public QThread
+class VEYON_CORE_EXPORT VncConnection : public QThread
 {
 	Q_OBJECT
 public:
@@ -82,8 +82,8 @@ public:
 	} ;
 	typedef States State;
 
-	explicit VeyonVncConnection( QObject *parent = nullptr );
-	~VeyonVncConnection() override;
+	explicit VncConnection( QObject *parent = nullptr );
+	~VncConnection() override;
 
 	QImage image() const;
 	void stop( bool deleteAfterFinished = false );

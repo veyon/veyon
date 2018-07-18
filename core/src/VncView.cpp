@@ -39,7 +39,7 @@
 
 VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
-	m_vncConn( new VeyonVncConnection( QCoreApplication::instance() ) ),
+	m_vncConn( new VncConnection( QCoreApplication::instance() ) ),
 	m_mode( mode ),
 	m_cursorShape(),
 	m_cursorX( 0 ),
@@ -59,24 +59,24 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 
 	if( m_mode == DemoMode )
 	{
-		m_vncConn->setQuality( VeyonVncConnection::DefaultQuality );
+		m_vncConn->setQuality( VncConnection::DefaultQuality );
 		m_vncConn->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
 		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( m_vncConn->host() ),
 					QStringLiteral( ":/resources/watch%1.png" ), 16, this );
-		connect( m_vncConn, &VeyonVncConnection::stateChanged,
+		connect( m_vncConn, &VncConnection::stateChanged,
 				 this, &VncView::updateConnectionState );
 	}
 	else if( m_mode == RemoteControlMode )
 	{
-		m_vncConn->setQuality( VeyonVncConnection::RemoteControlQuality );
+		m_vncConn->setQuality( VncConnection::RemoteControlQuality );
 	}
 
-	connect( m_vncConn, &VeyonVncConnection::imageUpdated, this, &VncView::updateImage );
-	connect( m_vncConn, &VeyonVncConnection::framebufferSizeChanged, this, &VncView::updateFramebufferSize );
+	connect( m_vncConn, &VncConnection::imageUpdated, this, &VncView::updateImage );
+	connect( m_vncConn, &VncConnection::framebufferSizeChanged, this, &VncView::updateFramebufferSize );
 
-	connect( m_vncConn, &VeyonVncConnection::cursorPosChanged, this, &VncView::updateCursorPos );
-	connect( m_vncConn, &VeyonVncConnection::cursorShapeUpdated, this, &VncView::updateCursorShape );
+	connect( m_vncConn, &VncConnection::cursorPosChanged, this, &VncView::updateCursorPos );
+	connect( m_vncConn, &VncConnection::cursorShapeUpdated, this, &VncView::updateCursorShape );
 
 	// handle/forward trapped keyboard shortcuts
 	connect( m_keyboardShortcutTrapper, &KeyboardShortcutTrapper::shortcutTrapped,
@@ -818,6 +818,6 @@ void VncView::updateConnectionState()
 {
 	if( m_establishingConnectionWidget )
 	{
-		m_establishingConnectionWidget->setVisible( m_vncConn->state() != VeyonVncConnection::Connected );
+		m_establishingConnectionWidget->setVisible( m_vncConn->state() != VncConnection::Connected );
 	}
 }
