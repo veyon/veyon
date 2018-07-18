@@ -209,6 +209,9 @@ private:
 	enum {
 		ThreadTerminationTimeout = 10000,
 		MessageWaitTimeout = 500,
+		SocketKeepaliveIdleTime = 1000,
+		SocketKeepaliveInterval = 500,
+		SocketKeepaliveCount = 5
 	};
 
 	void establishConnection();

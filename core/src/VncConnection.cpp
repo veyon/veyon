@@ -463,6 +463,9 @@ void VncConnection::establishConnection()
 
 		if( rfbInitClient( m_cl, nullptr, nullptr ) )
 		{
+			VeyonCore::platform().networkFunctions().configureSocketKeepalive( m_cl->sock, true, SocketKeepaliveIdleTime,
+																			   SocketKeepaliveInterval, SocketKeepaliveCount );
+
 			setState( Connected );
 		}
 		else
