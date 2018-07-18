@@ -26,6 +26,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <netfw.h>
+#include <mstcpip.h>
 
 #include <QProcess>
 
@@ -259,4 +260,37 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 	}
 
 	return result;
+}
+
+
+
+bool WindowsNetworkFunctions::configureSocketKeepalive( int socket, bool enabled, int idleTime, int interval, int probes )
+{
+	DWORD optval;
+	DWORD optlen = sizeof(optval);
+
+	optval = enabled ? 1 : 0;
+	if( setsockopt( socket, SOL_SOCKET, SO_KEEPALIVE, reinterpret_cast<const char *>( &optval ), optlen ) != 0 )
+	{
+		int error = WSAGetLastError();
+		qWarning() << Q_FUNC_INFO << "could not set SO_KEEPALIVE" << error;
+		return false;
+	}
+
+	tcp_keepalive keepalive;
+	keepalive.onoff = enabled ? 1 : 0;
+	keepalive.keepalivetime = idleTime;
+	keepalive.keepaliveinterval = interval;
+
+	DWORD bytesReturned = 0;
+
+	if( WSAIoctl( socket, SIO_KEEPALIVE_VALS, &keepalive, sizeof(keepalive), nullptr, 0,
+				  &bytesReturned, nullptr, nullptr ) != 0 )
+	{
+		int error = WSAGetLastError();
+		qWarning() << Q_FUNC_INFO << "could not set keepalive parameters" << error;
+		return false;
+	}
+
+	return true;
 }
