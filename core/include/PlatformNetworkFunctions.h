@@ -40,6 +40,8 @@ public:
 	virtual bool ping( const QString& hostAddress ) = 0;
 	virtual bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) = 0;
 
+	virtual bool configureSocketKeepalive( int socket, bool enabled, int idleTime, int interval, int probes ) = 0;
+
 };
 
 #endif // PLATFORM_NETWORK_FUNCTIONS_H
