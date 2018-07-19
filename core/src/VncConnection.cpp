@@ -57,9 +57,9 @@ public:
 	{
 	}
 
-	void fire( rfbClient *cl ) override
+	void fire( rfbClient* client ) override
 	{
-		SendKeyEvent( cl, m_key, m_pressed );
+		SendKeyEvent( client, m_key, m_pressed );
 	}
 
 private:
@@ -79,9 +79,9 @@ public:
 	{
 	}
 
-	void fire( rfbClient *cl ) override
+	void fire( rfbClient* client ) override
 	{
-		SendPointerEvent( cl, m_x, m_y, m_buttonMask );
+		SendPointerEvent( client, m_x, m_y, m_buttonMask );
 	}
 
 private:
@@ -100,9 +100,9 @@ public:
 	{
 	}
 
-	void fire( rfbClient *cl ) override
+	void fire( rfbClient* client ) override
 	{
-		SendClientCutText( cl, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
+		SendClientCutText( client, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
 	}
 
 private:
@@ -311,7 +311,7 @@ void VncConnection::stop( bool deleteAfterFinished )
 
 
 
-void VncConnection::setHost( const QString &host )
+void VncConnection::setHost( const QString& host )
 {
 	QMutexLocker locker( &m_mutex );
 	m_host = host;
@@ -685,7 +685,7 @@ void VncConnection::sendEvents()
 
 
 
-void VncConnection::enqueueEvent( MessageEvent *e )
+void VncConnection::enqueueEvent( MessageEvent* event)
 {
 	QMutexLocker lock( &m_mutex );
 	if( m_state != Connected )
@@ -693,9 +693,8 @@ void VncConnection::enqueueEvent( MessageEvent *e )
 		return;
 	}
 
-	m_eventQueue.enqueue( e );
+	m_eventQueue.enqueue( event );
 }
-
 
 
 
@@ -706,7 +705,6 @@ void VncConnection::mouseEvent( int x, int y, int buttonMask )
 
 
 
-
 void VncConnection::keyEvent( unsigned int key, bool pressed )
 {
 	enqueueEvent( new KeyClientEvent( key, pressed ) );
@@ -714,12 +712,10 @@ void VncConnection::keyEvent( unsigned int key, bool pressed )
 
 
 
-
-void VncConnection::clientCut( const QString &text )
+void VncConnection::clientCut( const QString& text )
 {
 	enqueueEvent( new ClientCutEvent( text ) );
 }
-
 
 
 
@@ -877,6 +873,7 @@ void VncConnection::hookPrepareAuthentication( rfbClient* client )
 		connection->setControlFlag( ServerReachable, true );
 	}
 }
+
 
 
 qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,

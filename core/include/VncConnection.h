@@ -45,7 +45,7 @@ class MessageEvent	// clazy:exclude=copyable-polymorphic
 {
 public:
 	virtual ~MessageEvent() {}
-	virtual void fire( rfbClient *c ) = 0;
+	virtual void fire( rfbClient* client ) = 0;
 
 } ;
 
@@ -86,9 +86,10 @@ public:
 	~VncConnection() override;
 
 	QImage image() const;
+
 	void stop( bool deleteAfterFinished = false );
 
-	void setHost( const QString &host );
+	void setHost( const QString& host );
 	void setPort( int port );
 
 	State state() const
@@ -101,7 +102,7 @@ public:
 		return state() == Connected && isRunning();
 	}
 
-	const QString &host() const
+	const QString& host() const
 	{
 		return m_host;
 	}
@@ -126,7 +127,7 @@ public:
 		return m_quality;
 	}
 
-	void enqueueEvent( MessageEvent *e );
+	void enqueueEvent( MessageEvent* event );
 
 	QSize framebufferSize() const
 	{
@@ -173,22 +174,20 @@ public:
 
 
 signals:
-	void newClient( rfbClient *c );
+	void newClient( rfbClient* c );
 	void imageUpdated( int x, int y, int w, int h );
 	void framebufferUpdateComplete();
 	void framebufferSizeChanged( int w, int h );
 	void cursorPosChanged( int x, int y );
 	void cursorShapeUpdated( const QPixmap& cursorShape, int xh, int yh );
-	void gotCut( const QString &text );
-	void passwordRequest();
-	void outputErrorMessage( const QString &message );
+	void gotCut( const QString& text );
 	void stateChanged();
 
 
 public slots:
 	void mouseEvent( int x, int y, int buttonMask );
 	void keyEvent( unsigned int key, bool pressed );
-	void clientCut( const QString &text );
+	void clientCut( const QString& text );
 
 
 protected:
@@ -238,7 +237,7 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	FramebufferState m_framebufferState;
-	rfbClient *m_cl;
+	rfbClient* m_cl;
 	RfbVeyonAuth::Type m_veyonAuthType;
 	QualityLevels m_quality;
 	QString m_host;
