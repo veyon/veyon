@@ -120,7 +120,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	}
 	else if( command == QStringLiteral("export") )
 	{
-		CommandLineIO::print( tr("\nUSAGE\n\n%1 export <FILE> [room <ROOM>] [format <FORMAT-STRING-WITH-VARIABLES>] "
+		CommandLineIO::print( tr("\nUSAGE\n\n%1 export <FILE> [room <ROOM>] [format <FORMAT-STRING-WITH-VARIABLES>]\n\n"
 								 "Valid variables: %type% %name% %host% %mac% %room%\n\n"
 								 "Examples:\n\n"
 								 "* Export all objects to a CSV file:\n\n"
