@@ -134,7 +134,8 @@ void ComputerControlInterface::stop()
 
 void ComputerControlInterface::ping()
 {
-	if( m_builtinFeatures )
+	if( m_builtinFeatures &&
+			m_vncConnection && m_vncConnection->state() == VncConnection::Connected )
 	{
 		m_builtinFeatures->monitoringMode().ping( weakPointer() );
 	}
