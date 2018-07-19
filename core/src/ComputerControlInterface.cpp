@@ -26,6 +26,7 @@
 #include "ComputerControlInterface.h"
 #include "Computer.h"
 #include "FeatureControl.h"
+#include "MonitoringMode.h"
 #include "UserSessionControl.h"
 #include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
@@ -42,8 +43,12 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 	m_vncConnection( nullptr ),
 	m_connection( nullptr ),
 	m_builtinFeatures( nullptr ),
+	m_connectionWatchdogTimer( this ),
 	m_screenUpdated( false )
 {
+	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
+	m_connectionWatchdogTimer.setSingleShot( true );
+	connect( &m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection );
 }
 
 
@@ -92,6 +97,12 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 
 		connect( m_connection, &VeyonConnection::featureMessageReceived,
 				 this, &ComputerControlInterface::handleFeatureMessage );
+
+		auto pingTimer = new QTimer( m_connection );
+		connect( pingTimer, &QTimer::timeout, this, &ComputerControlInterface::ping );
+		pingTimer->start( PingInterval );
+
+		m_connectionWatchdogTimer.start();
 	}
 	else
 	{
@@ -116,7 +127,26 @@ void ComputerControlInterface::stop()
 		m_vncConnection = nullptr;
 	}
 
+	m_connectionWatchdogTimer.stop();
+
 	m_state = Disconnected;
+}
+
+
+
+void ComputerControlInterface::ping()
+{
+	if( m_builtinFeatures )
+	{
+		m_builtinFeatures->monitoringMode().ping( weakPointer() );
+	}
+}
+
+
+
+void ComputerControlInterface::pong()
+{
+	m_connectionWatchdogTimer.start();
 }
 
 
@@ -197,6 +227,18 @@ void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& feature
 	if( m_connection && m_connection->isConnected() )
 	{
 		m_connection->sendFeatureMessage( featureMessage );
+	}
+}
+
+
+
+void ComputerControlInterface::restartConnection()
+{
+	if( m_vncConnection )
+	{
+		m_vncConnection->restart();
+
+		m_connectionWatchdogTimer.start();
 	}
 }
 

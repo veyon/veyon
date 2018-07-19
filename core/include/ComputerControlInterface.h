@@ -28,6 +28,7 @@
 #include <QList>
 #include <QObject>
 #include <QSize>
+#include <QTimer>
 
 #include "Computer.h"
 #include "Feature.h"
@@ -65,6 +66,9 @@ public:
 
 	void start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures );
 	void stop();
+
+	void ping();
+	void pong();
 
 	const Computer& computer() const
 	{
@@ -127,6 +131,8 @@ private slots:
 		m_screenUpdated = true;
 	}
 
+	void restartConnection();
+
 	void updateState();
 	void updateUser();
 	void updateActiveFeatures();
@@ -134,6 +140,9 @@ private slots:
 	void handleFeatureMessage( const FeatureMessage& message );
 
 private:
+	static const int PingInterval = 1000;
+	static const int ConnectionWatchdogTimeout = 3000;
+
 	Computer m_computer;
 
 	State m_state;
@@ -146,6 +155,7 @@ private:
 	VncConnection* m_vncConnection;
 	VeyonConnection* m_connection;
 	BuiltinFeatures* m_builtinFeatures;
+	QTimer m_connectionWatchdogTimer;
 
 	bool m_screenUpdated;
 
