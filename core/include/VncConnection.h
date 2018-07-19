@@ -244,7 +244,7 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	FramebufferState m_framebufferState;
-	rfbClient* m_cl;
+	rfbClient* m_client;
 	RfbVeyonAuth::Type m_veyonAuthType;
 	QualityLevels m_quality;
 	QString m_host;

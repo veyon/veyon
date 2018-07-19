@@ -223,7 +223,7 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
 	m_framebufferState( FramebufferInvalid ),
-	m_cl( nullptr ),
+	m_client( nullptr ),
 	m_veyonAuthType( RfbVeyonAuth::Logon ),
 	m_quality( DefaultQuality ),
 	m_port( -1 ),
@@ -419,39 +419,39 @@ void VncConnection::establishConnection()
 
 	while( isControlFlagSet( TerminateThread ) == false && m_state != Connected ) // try to connect as long as the server allows
 	{
-		m_cl = rfbGetClient( RfbBitsPerSample, RfbSamplesPerPixel, RfbBytesPerPixel );
-		m_cl->MallocFrameBuffer = hookInitFrameBuffer;
-		m_cl->canHandleNewFBSize = true;
-		m_cl->GotFrameBufferUpdate = hookUpdateFB;
-		m_cl->FinishedFrameBufferUpdate = hookFinishFrameBufferUpdate;
-		m_cl->HandleCursorPos = hookHandleCursorPos;
-		m_cl->GotCursorShape = hookCursorShape;
-		m_cl->GotXCutText = hookCutText;
-		rfbClientSetClientData( m_cl, nullptr, this );
+		m_client = rfbGetClient( RfbBitsPerSample, RfbSamplesPerPixel, RfbBytesPerPixel );
+		m_client->MallocFrameBuffer = hookInitFrameBuffer;
+		m_client->canHandleNewFBSize = true;
+		m_client->GotFrameBufferUpdate = hookUpdateFB;
+		m_client->FinishedFrameBufferUpdate = hookFinishFrameBufferUpdate;
+		m_client->HandleCursorPos = hookHandleCursorPos;
+		m_client->GotCursorShape = hookCursorShape;
+		m_client->GotXCutText = hookCutText;
+		rfbClientSetClientData( m_client, nullptr, this );
 
 		m_mutex.lock();
 
 		if( m_port < 0 ) // use default port?
 		{
-			m_cl->serverPort = VeyonCore::config().primaryServicePort();
+			m_client->serverPort = VeyonCore::config().primaryServicePort();
 		}
 		else
 		{
-			m_cl->serverPort = m_port;
+			m_client->serverPort = m_port;
 		}
 
-		free( m_cl->serverHost );
-		m_cl->serverHost = strdup( m_host.toUtf8().constData() );
+		free( m_client->serverHost );
+		m_client->serverHost = strdup( m_host.toUtf8().constData() );
 
 		m_mutex.unlock();
 
-		emit newClient( m_cl );
+		emit newClient( m_client );
 
 		setControlFlag( ServerReachable, false );
 
-		if( rfbInitClient( m_cl, nullptr, nullptr ) )
+		if( rfbInitClient( m_client, nullptr, nullptr ) )
 		{
-			VeyonCore::platform().networkFunctions().configureSocketKeepalive( m_cl->sock, true, SocketKeepaliveIdleTime,
+			VeyonCore::platform().networkFunctions().configureSocketKeepalive( m_client->sock, true, SocketKeepaliveIdleTime,
 																			   SocketKeepaliveInterval, SocketKeepaliveCount );
 
 			setState( Connected );
@@ -459,7 +459,7 @@ void VncConnection::establishConnection()
 		else
 		{
 			// rfbInitClient() calls rfbClientCleanup() when failed
-			m_cl = nullptr;
+			m_client = nullptr;
 
 			// guess reason why connection failed
 			if( isControlFlagSet( ServerReachable ) == false )
@@ -518,7 +518,7 @@ void VncConnection::handleConnection()
 	{
 		loopTimer.start();
 
-		const int i = WaitForMessage( m_cl, MessageWaitTimeout );
+		const int i = WaitForMessage( m_client, MessageWaitTimeout );
 		if( isControlFlagSet( TerminateThread ) || i < 0 )
 		{
 			break;
@@ -528,8 +528,8 @@ void VncConnection::handleConnection()
 			// handle all available messages
 			bool handledOkay = true;
 			do {
-				handledOkay &= HandleRFBServerMessage( m_cl );
-			} while( handledOkay && WaitForMessage( m_cl, 0 ) );
+				handledOkay &= HandleRFBServerMessage( m_client );
+			} while( handledOkay && WaitForMessage( m_client, 0 ) );
 
 			if( handledOkay == false )
 			{
@@ -549,7 +549,7 @@ void VncConnection::handleConnection()
 			m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( remainingUpdateInterval ) );
 			sleeperMutex.unlock();
 
-			SendFramebufferUpdateRequest( m_cl, 0, 0, m_cl->width, m_cl->height, true );
+			SendFramebufferUpdateRequest( m_client, 0, 0, m_client->width, m_client->height, true );
 		}
 	}
 
@@ -560,10 +560,10 @@ void VncConnection::handleConnection()
 
 void VncConnection::closeConnection()
 {
-	if( m_cl )
+	if( m_client )
 	{
-		rfbClientCleanup( m_cl );
-		m_cl = nullptr;
+		rfbClientCleanup( m_client );
+		m_client = nullptr;
 	}
 
 	setState( Disconnected );
@@ -680,7 +680,7 @@ void VncConnection::sendEvents()
 		// unlock the queue mutex during the runtime of ClientEvent::fire()
 		m_mutex.unlock();
 
-		event->fire( m_cl );
+		event->fire( m_client );
 		delete event;
 
 		// and lock it again
