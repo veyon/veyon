@@ -205,6 +205,10 @@ private:
 		SocketKeepaliveCount = 5
 	};
 
+	static const int RfbBitsPerSample = 8;
+	static const int RfbSamplesPerPixel = 3;
+	static const int RfbBytesPerPixel = 4;
+
 	enum ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,
 		ServerReachable = 0x02,

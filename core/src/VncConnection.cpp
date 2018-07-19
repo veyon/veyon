@@ -419,7 +419,7 @@ void VncConnection::establishConnection()
 
 	while( isControlFlagSet( TerminateThread ) == false && m_state != Connected ) // try to connect as long as the server allows
 	{
-		m_cl = rfbGetClient( 8, 3, 4 );
+		m_cl = rfbGetClient( RfbBitsPerSample, RfbSamplesPerPixel, RfbBytesPerPixel );
 		m_cl->MallocFrameBuffer = hookInitFrameBuffer;
 		m_cl->canHandleNewFBSize = true;
 		m_cl->GotFrameBufferUpdate = hookUpdateFB;
