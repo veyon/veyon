@@ -69,7 +69,7 @@ void PluginManager::upgradePlugins()
 		auto previousPluginVersion = QVersionNumber::fromString( versions.value( pluginUid ).toString() );
 		if( previousPluginVersion.isNull() )
 		{
-			previousPluginVersion = QVersionNumber( 1, 0 );
+			previousPluginVersion = QVersionNumber( 1, 1 );
 		}
 		const auto currentPluginVersion = pluginInterface->version();
 		if( currentPluginVersion > previousPluginVersion )
