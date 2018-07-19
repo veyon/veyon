@@ -131,7 +131,33 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 
 		return NoResult;
 	}
+	else if( command == QStringLiteral("add") )
+	{
+		CommandLineIO::print( tr("\nUSAGE\n\n%1 add <TYPE> <NAME> [<HOST ADDRESS> <MAC ADDRESS> <PARENT>]\n\n"
+								 "Adds an object where TYPE can be one of \"%2\" or \"%3\". PARENT can be specified by name or UUID.\n\n"
+								 "Examples:\n\n"
+								 "* Add a room:\n\n"
+								 "    %1 add room \"Room 01\"\n\n"
+								 "* Add a computer to room \"Room 01\":\n\n"
+								 "    %1 add computer \"Computer 01\" comp01.example.com 11:22:33:44:55:66 \"Room 01\"\n\n").
+							  arg( commandLineModuleName(), QStringLiteral("room"), QStringLiteral("computer") ) );
 
+		return NoResult;
+	}
+	else if( command == QStringLiteral("remove") )
+	{
+		CommandLineIO::print( tr("\nUSAGE\n\n%1 remove <OBJECT>\n\n"
+								 "Removes the specified object from the directory. OBJECT can be specified by name or UUID. "
+								 "Removing a room will also remove all computers inside.\n\n"
+								 "Examples:\n\n"
+								 "* Remove a computer by name:\n\n"
+								 "    %1 remove \"Computer 01\"\n\n"
+								 "* Remove an object by UUID:\n\n"
+								 "    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141\n\n").
+							  arg( commandLineModuleName(), QStringLiteral("room"), QStringLiteral("computer") ) );
+
+		return NoResult;
+	}
 
 	return Unknown;
 }
