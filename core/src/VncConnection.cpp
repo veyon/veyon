@@ -222,19 +222,23 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
+	m_state( Disconnected ),
 	m_framebufferState( FramebufferInvalid ),
+	m_controlFlags(),
 	m_client( nullptr ),
-	m_veyonAuthType( RfbVeyonAuth::Logon ),
 	m_quality( DefaultQuality ),
+	m_host(),
 	m_port( -1 ),
+	m_veyonAuthType( RfbVeyonAuth::Logon ),
+	m_globalMutex(),
+	m_controlFlagMutex(),
+	m_updateIntervalSleeper(),
 	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
 	m_scaledScreen(),
 	m_scaledSize(),
-	m_state( Disconnected ),
-	m_controlFlags(),
-	m_controlFlagMutex()
+	m_imgLock()
 {
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
@@ -313,7 +317,7 @@ void VncConnection::stop( bool deleteAfterFinished )
 
 void VncConnection::setHost( const QString& host )
 {
-	QMutexLocker locker( &m_mutex );
+	QMutexLocker locker( &m_globalMutex );
 	m_host = host;
 
 	// is IPv6-mapped IPv4 address?
@@ -347,7 +351,7 @@ void VncConnection::setPort( int port )
 {
 	if( port >= 0 )
 	{
-		QMutexLocker locker( &m_mutex );
+		QMutexLocker locker( &m_globalMutex );
 		m_port = port;
 	}
 }
@@ -429,7 +433,7 @@ void VncConnection::establishConnection()
 		m_client->GotXCutText = hookCutText;
 		rfbClientSetClientData( m_client, nullptr, this );
 
-		m_mutex.lock();
+		m_globalMutex.lock();
 
 		if( m_port < 0 ) // use default port?
 		{
@@ -443,7 +447,7 @@ void VncConnection::establishConnection()
 		free( m_client->serverHost );
 		m_client->serverHost = strdup( m_host.toUtf8().constData() );
 
-		m_mutex.unlock();
+		m_globalMutex.unlock();
 
 		emit newClient( m_client );
 
@@ -671,30 +675,30 @@ void VncConnection::finishFrameBufferUpdate()
 
 void VncConnection::sendEvents()
 {
-	m_mutex.lock();
+	m_globalMutex.lock();
 
 	while( m_eventQueue.isEmpty() == false )
 	{
 		auto event = m_eventQueue.dequeue();
 
 		// unlock the queue mutex during the runtime of ClientEvent::fire()
-		m_mutex.unlock();
+		m_globalMutex.unlock();
 
 		event->fire( m_client );
 		delete event;
 
 		// and lock it again
-		m_mutex.lock();
+		m_globalMutex.lock();
 	}
 
-	m_mutex.unlock();
+	m_globalMutex.unlock();
 }
 
 
 
 void VncConnection::enqueueEvent( MessageEvent* event)
 {
-	QMutexLocker lock( &m_mutex );
+	QMutexLocker lock( &m_globalMutex );
 	if( m_state != Connected )
 	{
 		return;

@@ -243,27 +243,33 @@ private:
 	static int8_t hookHandleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 	static void framebufferCleanup( void* framebuffer );
 
+	// states and flags
+	volatile State m_state;
 	FramebufferState m_framebufferState;
+	ControlFlags m_controlFlags;
+
+	// connection parameters and data
 	rfbClient* m_client;
-	RfbVeyonAuth::Type m_veyonAuthType;
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
-	QTimer m_terminateTimer;
+	RfbVeyonAuth::Type m_veyonAuthType;
+
+	// thread and timing control
+	QMutex m_globalMutex;
+	QMutex m_controlFlagMutex;
 	QWaitCondition m_updateIntervalSleeper;
+	QTimer m_terminateTimer;
 	int m_framebufferUpdateInterval;
-	QMutex m_mutex;
-	mutable QReadWriteLock m_imgLock;
+
+	// queue for RFB and custom events
 	QQueue<MessageEvent *> m_eventQueue;
 
+	// framebuffer data and thread synchronization objects
 	QImage m_image;
 	QImage m_scaledScreen;
 	QSize m_scaledSize;
-
-	volatile State m_state;
-
-	ControlFlags m_controlFlags;
-	QMutex m_controlFlagMutex;
+	mutable QReadWriteLock m_imgLock;
 
 } ;
 
