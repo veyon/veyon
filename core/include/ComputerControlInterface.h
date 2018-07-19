@@ -141,6 +141,8 @@ private slots:
 
 private:
 	static const int PingInterval = 1000;
+	static const int ActiveFeaturesUpdateInterval = 1000;
+	static const int UserUpdateInterval = 10000;
 	static const int ConnectionWatchdogTimeout = 3000;
 
 	Computer m_computer;

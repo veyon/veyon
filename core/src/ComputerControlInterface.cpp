@@ -88,8 +88,6 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		m_vncConnection->start();
 
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete ,this, &ComputerControlInterface::updateUser );
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::updateActiveFeatures );
 
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
@@ -101,6 +99,14 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		auto pingTimer = new QTimer( m_connection );
 		connect( pingTimer, &QTimer::timeout, this, &ComputerControlInterface::ping );
 		pingTimer->start( PingInterval );
+
+		auto userUpdateTimer = new QTimer( m_connection );
+		connect( userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
+		userUpdateTimer->start( UserUpdateInterval );
+
+		auto activeFeaturesUpdateTimer = new QTimer( m_connection );
+		connect( activeFeaturesUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateActiveFeatures );
+		activeFeaturesUpdateTimer->start( ActiveFeaturesUpdateInterval );
 	}
 	else
 	{
