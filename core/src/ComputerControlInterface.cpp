@@ -88,6 +88,7 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		m_vncConnection->start();
 
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::pong );
 
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
@@ -140,8 +141,7 @@ void ComputerControlInterface::stop()
 
 void ComputerControlInterface::ping()
 {
-	if( m_builtinFeatures &&
-			m_vncConnection && m_vncConnection->state() == VncConnection::Connected )
+	if( m_builtinFeatures && state() == Connected )
 	{
 		m_builtinFeatures->monitoringMode().ping( weakPointer() );
 	}
@@ -151,7 +151,10 @@ void ComputerControlInterface::ping()
 
 void ComputerControlInterface::pong()
 {
-	m_connectionWatchdogTimer.start();
+	if( state() == Connected )
+	{
+		m_connectionWatchdogTimer.start();
+	}
 }
 
 
@@ -241,9 +244,10 @@ void ComputerControlInterface::restartConnection()
 {
 	if( m_vncConnection )
 	{
+		qDebug() << Q_FUNC_INFO;
 		m_vncConnection->restart();
 
-		m_connectionWatchdogTimer.start();
+		m_connectionWatchdogTimer.stop();
 	}
 }
 
@@ -257,10 +261,7 @@ void ComputerControlInterface::updateState()
 		{
 		case VncConnection::Disconnected: m_state = Disconnected; break;
 		case VncConnection::Connecting: m_state = Connecting; break;
-		case VncConnection::Connected:
-			m_state = Connected;
-			m_connectionWatchdogTimer.start();
-			break;
+		case VncConnection::Connected: m_state = Connected; break;
 		case VncConnection::HostOffline: m_state = Offline; break;
 		case VncConnection::ServiceUnreachable: m_state = ServiceUnreachable; break;
 		case VncConnection::AuthenticationFailed: m_state = AuthenticationFailed; break;
@@ -310,5 +311,7 @@ void ComputerControlInterface::updateActiveFeatures()
 
 void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
 {
+	pong();
+
 	emit featureMessageReceived( message, weakPointer() );
 }
