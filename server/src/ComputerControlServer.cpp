@@ -124,6 +124,8 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 bool ComputerControlServer::sendFeatureMessageReply( const FeatureMessage& request, const FeatureMessage& reply )
 {
+	qDebug() << Q_FUNC_INFO << reply.featureUid() << reply.command() << reply.arguments();
+
 	char rfbMessageType = rfbVeyonFeatureMessage;
 	request.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
 
