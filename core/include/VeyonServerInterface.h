@@ -25,12 +25,14 @@
 #ifndef VEYON_SERVER_INTERFACE_H
 #define VEYON_SERVER_INTERFACE_H
 
+class FeatureMessage;
 class FeatureWorkerManager;
 
 class VeyonServerInterface
 {
 public:
 	virtual FeatureWorkerManager& featureWorkerManager() = 0;
+	virtual bool sendFeatureMessageReply( const FeatureMessage& request, const FeatureMessage& reply ) = 0;
 
 };
 

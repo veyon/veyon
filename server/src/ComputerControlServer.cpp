@@ -122,6 +122,16 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 
 
+bool ComputerControlServer::sendFeatureMessageReply( const FeatureMessage& request, const FeatureMessage& reply )
+{
+	char rfbMessageType = rfbVeyonFeatureMessage;
+	request.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
+
+	return reply.send( request.ioDevice() );
+}
+
+
+
 void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManager::AuthResult result, const QString& host, const QString& user )
 {
 	if( result == ServerAuthenticationManager::AuthResultSuccessful )
