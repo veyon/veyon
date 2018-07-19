@@ -25,7 +25,6 @@
 #include "FeatureControl.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonCore.h"
-#include "VeyonRfbExt.h"
 #include "VeyonServerInterface.h"
 
 
@@ -79,11 +78,7 @@ bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const F
 		FeatureMessage reply( message.featureUid(), message.command() );
 		reply.addArgument( ActiveFeatureList, server.featureWorkerManager().runningWorkers() );
 
-		char rfbMessageType = rfbVeyonFeatureMessage;
-		message.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
-		reply.send( message.ioDevice() );
-
-		return true;
+		return server.sendFeatureMessageReply( message, reply );
 	}
 
 	return false;
