@@ -286,7 +286,7 @@ void VncConnection::stop( bool deleteAfterFinished )
 
 		m_scaledScreen = QImage();
 
-		requestInterruption();
+		setControlFlag( TerminateThread, true );
 
 		m_updateIntervalSleeper.wakeAll();
 
@@ -391,7 +391,7 @@ void VncConnection::rescaleScreen()
 
 void VncConnection::run()
 {
-	while( isInterruptionRequested() == false )
+	while( isControlFlagSet( TerminateThread ) == false )
 	{
 		establishConnection();
 		handleConnection();
@@ -411,7 +411,7 @@ void VncConnection::establishConnection()
 
 	m_framebufferState = FramebufferInvalid;
 
-	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
+	while( isControlFlagSet( TerminateThread ) == false && m_state != Connected ) // try to connect as long as the server allows
 	{
 		m_cl = rfbGetClient( 8, 3, 4 );
 		m_cl->MallocFrameBuffer = hookInitFrameBuffer;
@@ -478,7 +478,7 @@ void VncConnection::establishConnection()
 			}
 
 			// do not sleep when already requested to stop
-			if( isInterruptionRequested() )
+			if( isControlFlagSet( TerminateThread ) )
 			{
 				break;
 			}
@@ -507,12 +507,12 @@ void VncConnection::handleConnection()
 	QElapsedTimer loopTimer;
 
 	// Main VNC event loop
-	while( isInterruptionRequested() == false )
+	while( isControlFlagSet( TerminateThread ) == false )
 	{
 		loopTimer.start();
 
 		const int i = WaitForMessage( m_cl, MessageWaitTimeout );
-		if( isInterruptionRequested() || i < 0 )
+		if( isControlFlagSet( TerminateThread ) || i < 0 )
 		{
 			break;
 		}
@@ -536,7 +536,7 @@ void VncConnection::handleConnection()
 
 		if( m_framebufferState == FramebufferValid &&
 				remainingUpdateInterval > 0 &&
-				isInterruptionRequested() == false )
+				isControlFlagSet( TerminateThread ) == false )
 		{
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( remainingUpdateInterval ) );

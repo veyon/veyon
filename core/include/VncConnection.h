@@ -206,7 +206,8 @@ private:
 	enum ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,
 		ServerReachable = 0x02,
-		TerminateThread = 0x04
+		TerminateThread = 0x04,
+		RestartConnection = 0x08,
 	};
 
 	Q_DECLARE_FLAGS(ControlFlags, ControlFlag)
