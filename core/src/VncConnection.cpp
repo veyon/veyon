@@ -397,8 +397,6 @@ void VncConnection::run()
 		handleConnection();
 		closeConnection();
 	}
-
-	setState( Disconnected );
 }
 
 
