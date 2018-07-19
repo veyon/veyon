@@ -198,6 +198,7 @@ protected:
 private:
 	enum {
 		ThreadTerminationTimeout = 10000,
+		ConnectionRetryInterval = 1000,
 		MessageWaitTimeout = 500,
 		SocketKeepaliveIdleTime = 1000,
 		SocketKeepaliveInterval = 500,

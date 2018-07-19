@@ -498,7 +498,7 @@ void VncConnection::establishConnection()
 			else
 			{
 				// default: retry every second
-				m_updateIntervalSleeper.wait( &sleeperMutex, 1000 );
+				m_updateIntervalSleeper.wait( &sleeperMutex, ConnectionRetryInterval );
 			}
 			sleeperMutex.unlock();
 		}
