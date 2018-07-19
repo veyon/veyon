@@ -26,9 +26,9 @@
 #define SCREENSHOT_FEATURE_PLUGIN_H
 
 #include "Feature.h"
-#include "FeatureProviderInterface.h"
+#include "SimpleFeatureProvider.h"
 
-class ScreenshotFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
+class ScreenshotFeaturePlugin : public QObject, SimpleFeatureProvider, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FeatureProviderInterface")
@@ -72,15 +72,6 @@ public:
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
-
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
-
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
 	const Feature m_screenshotFeature;
