@@ -62,13 +62,13 @@ private:
 
 
 
-static rfbClientProtocolExtension * __veyonProtocolExt = nullptr;
+static rfbClientProtocolExtension* __veyonProtocolExt = nullptr;
 static void* VeyonConnectionTag = reinterpret_cast<void *>( PortOffsetVncServer ); // an unique ID
 
 
 
-VeyonConnection::VeyonConnection( VncConnection *vncConn ):
-	m_vncConn( vncConn ),
+VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
+	m_vncConnection( vncConnection ),
 	m_user(),
 	m_userHomeDir()
 {
@@ -82,13 +82,11 @@ VeyonConnection::VeyonConnection( VncConnection *vncConn ):
 		rfbClientRegisterExtension( __veyonProtocolExt );
 	}
 
-	if (m_vncConn) {
-		connect( m_vncConn, &VncConnection::newClient,
-				this, &VeyonConnection::initNewClient,
-				Qt::DirectConnection );
+	if( m_vncConnection )
+	{
+		connect( m_vncConnection, &VncConnection::newClient, this, &VeyonConnection::initNewClient, Qt::DirectConnection );
 	}
 }
-
 
 
 
@@ -100,22 +98,21 @@ VeyonConnection::~VeyonConnection()
 
 void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 {
-	if( m_vncConn == nullptr )
+	if( m_vncConnection.isNull() )
 	{
-		qCritical( "VeyonConnection::sendFeatureMessage(): cannot call enqueueEvent - m_vncConn is NULL" );
+		qCritical( "VeyonConnection::sendFeatureMessage(): cannot call enqueueEvent as m_vncConnection is invalid" );
 		return;
 	}
 
-	m_vncConn->enqueueEvent( new FeatureMessageEvent( featureMessage ) );
+	m_vncConnection->enqueueEvent( new FeatureMessageEvent( featureMessage ) );
 }
 
 
 
-void VeyonConnection::initNewClient( rfbClient *cl )
+void VeyonConnection::initNewClient( rfbClient* client )
 {
-	rfbClientSetClientData( cl, VeyonConnectionTag, this );
+	rfbClientSetClientData( client, VeyonConnectionTag, this );
 }
-
 
 
 
@@ -129,7 +126,6 @@ rfbBool VeyonConnection::handleVeyonMessage( rfbClient* client, rfbServerToClien
 
 	return false;
 }
-
 
 
 

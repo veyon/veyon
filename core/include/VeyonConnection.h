@@ -39,49 +39,49 @@ class VEYON_CORE_EXPORT VeyonConnection : public QObject
 {
 	Q_OBJECT
 public:
-	VeyonConnection( VncConnection *vncConnection );
+	VeyonConnection( VncConnection* vncConnection );
 	~VeyonConnection() override;
 
-	VncConnection *vncConnection()
+	VncConnection* vncConnection()
 	{
-		return m_vncConn;
+		return m_vncConnection;
 	}
 
 	VncConnection::State state() const
 	{
-		return m_vncConn->state();
+		return m_vncConnection->state();
 	}
 
 	bool isConnected() const
 	{
-		return m_vncConn && m_vncConn->isConnected();
+		return m_vncConnection && m_vncConnection->isConnected();
 	}
 
-	const QString & user() const
+	const QString& user() const
 	{
 		return m_user;
 	}
 
-	const QString & userHomeDir() const
+	const QString& userHomeDir() const
 	{
 		return m_userHomeDir;
 	}
 
-	void sendFeatureMessage( const FeatureMessage &featureMessage );
+	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 signals:
 	void featureMessageReceived( const FeatureMessage& );
 
 private slots:
-	void initNewClient( rfbClient *client );
+	void initNewClient( rfbClient* client );
 
 private:
-	static rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg *msg );
+	static rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 
 
-	QPointer<VncConnection> m_vncConn;
+	QPointer<VncConnection> m_vncConnection;
 
 	QString m_user;
 	QString m_userHomeDir;
