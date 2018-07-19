@@ -27,21 +27,21 @@
 
 void CommandLineIO::print( const QString& message )
 {
-	printf( "%s\n", qPrintable( message ) );
+	printf( "%s\n", qUtf8Printable( message ) );
 }
 
 
 
 void CommandLineIO::info( const QString &message )
 {
-	fprintf( stderr, "[INFO] %s\n", qPrintable( message ) );
+	fprintf( stderr, "[INFO] %s\n", qUtf8Printable( message ) );
 }
 
 
 
 void CommandLineIO::error( const QString& message )
 {
-	fprintf( stderr, "[ERROR] %s\n", qPrintable( message ) );
+	fprintf( stderr, "[ERROR] %s\n", qUtf8Printable( message ) );
 }
 
 
@@ -106,7 +106,7 @@ void CommandLineIO::printTableRow( const TableColumnWidths& columnWidths, char v
 	for( int col = 0; col < columnWidths.size(); ++col )
 	{
 		const auto cell = row.value( col );
-		printf( " %s%c", qPrintable( cell + QString( columnWidths[col] - cell.size() - 1, ' ' ) ), vertical );
+		printf( " %s%c", qUtf8Printable( cell + QString( columnWidths[col] - cell.size() - 1, ' ' ) ), vertical );
 	}
 	printf( "\n" );
 }
