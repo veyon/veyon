@@ -375,12 +375,11 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
-	auto applicationName = toWCharArray( program );
 	auto commandLine = toWCharArray( QStringLiteral("\"%1\" %2").arg( program, parameters.join( ' ' ) ) );
 
 	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token
-				applicationName,			  // file to execute
+				nullptr,			  // file to execute
 				commandLine,	 // command line
 				nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 				nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
@@ -397,7 +396,6 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 		qCritical() << Q_FUNC_INFO << "CreateProcessAsUser()" << GetLastError();
 	}
 
-	delete[] applicationName;
 	delete[] commandLine;
 
 	delete[] si.lpDesktop;
