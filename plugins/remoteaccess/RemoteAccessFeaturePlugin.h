@@ -26,11 +26,11 @@
 #define REMOTE_ACCESS_FEATURE_PLUGIN_H
 
 #include "Computer.h"
-#include "FeatureProviderInterface.h"
+#include "SimpleFeatureProvider.h"
 #include "CommandLinePluginInterface.h"
 
 
-class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, FeatureProviderInterface, PluginInterface
+class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, SimpleFeatureProvider, PluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.RemoteAccess")
@@ -73,16 +73,6 @@ public:
 
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
-
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
-
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
-
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 	QString commandLineModuleName() const override
 	{

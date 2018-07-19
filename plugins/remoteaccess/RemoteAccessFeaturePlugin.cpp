@@ -122,50 +122,6 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 
 
 
-bool RemoteAccessFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-													  ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
-
-
-
-bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
-{
-	Q_UNUSED(server);
-	Q_UNUSED(message);
-
-	return false;
-}
-
-
-
-bool RemoteAccessFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
-{
-	Q_UNUSED(worker);
-	Q_UNUSED(message);
-
-	return false;
-}
-
-
-
 QStringList RemoteAccessFeaturePlugin::commands() const
 {
 	return m_commands.keys();
