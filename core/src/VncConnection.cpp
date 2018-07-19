@@ -590,7 +590,19 @@ void VncConnection::setState( State state )
 void VncConnection::setControlFlag( VncConnection::ControlFlag flag, bool on )
 {
 	m_controlFlagMutex.lock();
+#if (QT_VERSION < QT_VERSION_CHECK(5, 7, 0))
+#warning building compat code for Qt < 5.7
+	if( on )
+	{
+		m_controlFlags |= flag;
+	}
+	else
+	{
+		m_controlFlags &= ~static_cast<unsigned int>( flag );
+	}
+#else
 	m_controlFlags.setFlag( flag, on );
+#endif
 	m_controlFlagMutex.unlock();
 }
 
