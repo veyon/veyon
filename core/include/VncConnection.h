@@ -144,7 +144,7 @@ public:
 		if( m_scaledSize != s )
 		{
 			m_scaledSize = s;
-			m_scaledScreenNeedsUpdate = true;
+			setControlFlag( ScaledScreenNeedsUpdate, true );
 		}
 	}
 
@@ -204,11 +204,22 @@ private:
 		SocketKeepaliveCount = 5
 	};
 
+	enum ControlFlag {
+		ScaledScreenNeedsUpdate = 0x01,
+		ServerReachable = 0x02,
+		TerminateThread = 0x04
+	};
+
+	Q_DECLARE_FLAGS(ControlFlags, ControlFlag)
+
 	void establishConnection();
 	void handleConnection();
 	void closeConnection();
 
 	void setState( State state );
+
+	void setControlFlag( ControlFlag flag, bool on );
+	bool isControlFlagSet( ControlFlag flag );
 
 	bool initFrameBuffer( rfbClient* client );
 	void finishFrameBufferUpdate();
@@ -226,7 +237,6 @@ private:
 	static int8_t hookHandleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 	static void framebufferCleanup( void* framebuffer );
 
-	bool m_serviceReachable;
 	FramebufferState m_framebufferState;
 	rfbClient *m_cl;
 	RfbVeyonAuth::Type m_veyonAuthType;
@@ -241,12 +251,13 @@ private:
 	QQueue<MessageEvent *> m_eventQueue;
 
 	QImage m_image;
-	bool m_scaledScreenNeedsUpdate;
 	QImage m_scaledScreen;
 	QSize m_scaledSize;
 
 	volatile State m_state;
 
+	ControlFlags m_controlFlags;
+	QMutex m_controlFlagMutex;
 
 } ;
 

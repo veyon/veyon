@@ -222,7 +222,6 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
-	m_serviceReachable( false ),
 	m_framebufferState( FramebufferInvalid ),
 	m_cl( nullptr ),
 	m_veyonAuthType( RfbVeyonAuth::Logon ),
@@ -231,10 +230,11 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
-	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
 	m_scaledSize(),
-	m_state( Disconnected )
+	m_state( Disconnected ),
+	m_controlFlags(),
+	m_controlFlagMutex()
 {
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
@@ -375,7 +375,7 @@ void VncConnection::rescaleScreen()
 	if( m_image.size().isValid() == false ||
 			m_scaledSize.isNull() ||
 			hasValidFrameBuffer() == false ||
-			m_scaledScreenNeedsUpdate == false )
+			isControlFlagSet( ScaledScreenNeedsUpdate ) == false )
 	{
 		return;
 	}
@@ -383,7 +383,7 @@ void VncConnection::rescaleScreen()
 	QReadLocker locker( &m_imgLock );
 	m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
-	m_scaledScreenNeedsUpdate = false;
+	setControlFlag( ScaledScreenNeedsUpdate, false );
 }
 
 
@@ -441,7 +441,7 @@ void VncConnection::establishConnection()
 
 		emit newClient( m_cl );
 
-		m_serviceReachable = false;
+		setControlFlag( ServerReachable, false );
 
 		if( rfbInitClient( m_cl, nullptr, nullptr ) )
 		{
@@ -456,7 +456,7 @@ void VncConnection::establishConnection()
 			m_cl = nullptr;
 
 			// guess reason why connection failed
-			if( m_serviceReachable == false )
+			if( isControlFlagSet( ServerReachable ) == false )
 			{
 				if( VeyonCore::platform().networkFunctions().ping( m_host ) == false )
 				{
@@ -576,6 +576,24 @@ void VncConnection::setState( State state )
 
 
 
+void VncConnection::setControlFlag( VncConnection::ControlFlag flag, bool on )
+{
+	m_controlFlagMutex.lock();
+	m_controlFlags.setFlag( flag, on );
+	m_controlFlagMutex.unlock();
+}
+
+
+
+bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
+{
+	QMutexLocker locker( &m_controlFlagMutex );
+	return m_controlFlags.testFlag( flag );
+}
+
+
+
+
 bool VncConnection::initFrameBuffer( rfbClient* client )
 {
 	const auto size = static_cast<uint64_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
@@ -636,7 +654,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 void VncConnection::finishFrameBufferUpdate()
 {
 	m_framebufferState = FramebufferValid;
-	m_scaledScreenNeedsUpdate = true;
+	setControlFlag( ScaledScreenNeedsUpdate, true );
 
 	emit framebufferUpdateComplete();
 
@@ -856,7 +874,7 @@ void VncConnection::hookPrepareAuthentication( rfbClient* client )
 	{
 		// set our internal flag which indicates that we basically have communication with the client
 		// which means that the host is reachable
-		connection->m_serviceReachable = true;
+		connection->setControlFlag( ServerReachable, true );
 	}
 }
 
