@@ -135,6 +135,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, con
 	else if( m_userLogoutFeature.uid() == message.featureUid() )
 	{
 		VeyonCore::platform().userFunctions().logout();
+		return true;
 	}
 
 	return false;
