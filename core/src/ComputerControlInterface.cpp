@@ -101,8 +101,6 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		auto pingTimer = new QTimer( m_connection );
 		connect( pingTimer, &QTimer::timeout, this, &ComputerControlInterface::ping );
 		pingTimer->start( PingInterval );
-
-		m_connectionWatchdogTimer.start();
 	}
 	else
 	{
@@ -252,7 +250,10 @@ void ComputerControlInterface::updateState()
 		{
 		case VncConnection::Disconnected: m_state = Disconnected; break;
 		case VncConnection::Connecting: m_state = Connecting; break;
-		case VncConnection::Connected: m_state = Connected; break;
+		case VncConnection::Connected:
+			m_state = Connected;
+			m_connectionWatchdogTimer.start();
+			break;
 		case VncConnection::HostOffline: m_state = Offline; break;
 		case VncConnection::ServiceUnreachable: m_state = ServiceUnreachable; break;
 		case VncConnection::AuthenticationFailed: m_state = AuthenticationFailed; break;
