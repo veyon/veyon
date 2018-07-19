@@ -196,15 +196,15 @@ protected:
 
 
 private:
-	enum {
-		ThreadTerminationTimeout = 10000,
-		ConnectionRetryInterval = 1000,
-		MessageWaitTimeout = 500,
-		SocketKeepaliveIdleTime = 1000,
-		SocketKeepaliveInterval = 500,
-		SocketKeepaliveCount = 5
-	};
+	// intervals and timeouts
+	static const int ThreadTerminationTimeout = 10000;
+	static const int ConnectionRetryInterval = 1000;
+	static const int MessageWaitTimeout = 500;
+	static const int SocketKeepaliveIdleTime = 1000;
+	static const int SocketKeepaliveInterval = 500;
+	static const int SocketKeepaliveCount = 5;
 
+	// RFB parameters
 	static const int RfbBitsPerSample = 8;
 	static const int RfbSamplesPerPixel = 3;
 	static const int RfbBytesPerPixel = 4;
