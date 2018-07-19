@@ -512,8 +512,9 @@ void VncConnection::handleConnection()
 	QMutex sleeperMutex;
 	QElapsedTimer loopTimer;
 
-	// Main VNC event loop
-	while( isControlFlagSet( TerminateThread ) == false && isControlFlagSet( RestartConnection ) == false )
+	while( state() == Connected &&
+		   isControlFlagSet( TerminateThread ) == false &&
+		   isControlFlagSet( RestartConnection ) == false )
 	{
 		loopTimer.start();
 
