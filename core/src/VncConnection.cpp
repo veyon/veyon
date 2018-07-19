@@ -362,6 +362,13 @@ QImage VncConnection::image() const
 
 
 
+void VncConnection::restart()
+{
+	setControlFlag( RestartConnection, true );
+}
+
+
+
 void VncConnection::setFramebufferUpdateInterval( int interval )
 {
 	m_framebufferUpdateInterval = interval;
@@ -406,6 +413,7 @@ void VncConnection::establishConnection()
 	QMutex sleeperMutex;
 
 	setState( Connecting );
+	setControlFlag( RestartConnection, false );
 
 	m_framebufferState = FramebufferInvalid;
 
@@ -505,7 +513,7 @@ void VncConnection::handleConnection()
 	QElapsedTimer loopTimer;
 
 	// Main VNC event loop
-	while( isControlFlagSet( TerminateThread ) == false )
+	while( isControlFlagSet( TerminateThread ) == false && isControlFlagSet( RestartConnection ) == false )
 	{
 		loopTimer.start();
 

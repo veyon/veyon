@@ -87,6 +87,7 @@ public:
 
 	QImage image() const;
 
+	void restart();
 	void stop( bool deleteAfterFinished = false );
 
 	void setHost( const QString& host );
