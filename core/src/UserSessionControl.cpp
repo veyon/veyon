@@ -31,7 +31,7 @@
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
-#include "VeyonRfbExt.h"
+#include "VeyonServerInterface.h"
 #include "PlatformUserFunctions.h"
 
 
@@ -114,8 +114,6 @@ bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, con
 
 bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
 {
-	Q_UNUSED(server);
-
 	if( m_userSessionInfoFeature.uid() == message.featureUid() )
 	{
 		FeatureMessage reply( message.featureUid(), message.command() );
@@ -132,11 +130,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, con
 		}
 		m_userDataLock.unlock();
 
-		char rfbMessageType = rfbVeyonFeatureMessage;
-		message.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
-		reply.send( message.ioDevice() );
-
-		return true;
+		return server.sendFeatureMessageReply( message, reply );
 	}
 	else if( m_userLogoutFeature.uid() == message.featureUid() )
 	{
