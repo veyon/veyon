@@ -94,7 +94,7 @@ public:
 
 private:
 	void runProgramAsUser( const QString& commandLine );
-	void openWebsite( const QUrl& url );
+	bool openWebsite( const QString& urlString );
 
 	FeatureList predefinedPrograms() const;
 	FeatureList predefinedWebsites() const;

@@ -80,19 +80,13 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 	}
 	else if( feature == m_openWebsiteFeature )
 	{
-		QString urlAddress = QInputDialog::getText( master.mainWindow(),
+		const auto urlString = QInputDialog::getText( master.mainWindow(),
 													tr( "Open website" ),
 													tr( "Please enter the URL of the website to open:" ) );
-		QUrl url( urlAddress, QUrl::TolerantMode );
-		if( url.scheme().isEmpty() )
-		{
-			url = QUrl( QStringLiteral("http://") + urlAddress, QUrl::TolerantMode );
-		}
-
-		if( urlAddress.isEmpty() == false && url.isValid() )
+		if( urlString.isEmpty() == false )
 		{
 			sendFeatureMessage( FeatureMessage( feature.uid(), FeatureMessage::DefaultCommand ).
-								addArgument( WebsiteUrlArgument, url ), computerControlInterfaces );
+								addArgument( WebsiteUrlArgument, urlString ), computerControlInterfaces );
 		}
 	}
 	else if( m_predefinedProgramsFeatures.contains( feature ) )
@@ -151,7 +145,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 	}
 	else if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
-		openWebsite( message.argument( WebsiteUrlArgument ).toUrl() );
+		openWebsite( message.argument( WebsiteUrlArgument ).toString() );
 	}
 	else
 	{
@@ -215,8 +209,19 @@ void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& commandLine 
 
 
 
-void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
+bool DesktopServicesFeaturePlugin::openWebsite( const QString& urlString )
 {
+	QUrl url( urlString, QUrl::TolerantMode );
+	if( url.scheme().isEmpty() )
+	{
+		url = QUrl( QStringLiteral("http://") + urlString, QUrl::TolerantMode );
+	}
+
+	if( url.isEmpty() || url.isValid() == false )
+	{
+		return false;
+	}
+
 	if( QDesktopServices::openUrl( url ) == false )
 	{
 		qWarning() << "DesktopServicesFeaturePlugin: could not open URL" << url
@@ -226,6 +231,8 @@ void DesktopServicesFeaturePlugin::openWebsite( const QUrl& url )
 							  VeyonCore::platform().coreFunctions().genericUrlHandler(),
 							  url.toString() ) );
 	}
+
+	return true;
 }
 
 
