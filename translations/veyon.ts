@@ -2190,10 +2190,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2269,6 +2265,10 @@ Examples:
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2364,14 +2364,6 @@ Examples:
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2534,6 +2526,10 @@ Examples:
         <source>Only show powered on computers</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2670,7 +2666,7 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer caption content</source>
+        <source>Computer thumbnail caption</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
