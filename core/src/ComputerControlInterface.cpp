@@ -88,18 +88,14 @@ void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* b
 		m_vncConnection->start();
 
 		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::setScreenUpdateFlag );
-		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::pong );
+		connect( m_vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
 
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( m_vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
 
-		connect( m_connection, &VeyonConnection::featureMessageReceived,
-				 this, &ComputerControlInterface::handleFeatureMessage );
-
-		auto pingTimer = new QTimer( m_connection );
-		connect( pingTimer, &QTimer::timeout, this, &ComputerControlInterface::ping );
-		pingTimer->start( PingInterval );
+		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
+		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
 
 		auto userUpdateTimer = new QTimer( m_connection );
 		connect( userUpdateTimer, &QTimer::timeout, this, &ComputerControlInterface::updateUser );
@@ -135,26 +131,6 @@ void ComputerControlInterface::stop()
 	m_connectionWatchdogTimer.stop();
 
 	m_state = Disconnected;
-}
-
-
-
-void ComputerControlInterface::ping()
-{
-	if( m_builtinFeatures && state() == Connected )
-	{
-		m_builtinFeatures->monitoringMode().ping( weakPointer() );
-	}
-}
-
-
-
-void ComputerControlInterface::pong()
-{
-	if( state() == Connected )
-	{
-		m_connectionWatchdogTimer.start();
-	}
 }
 
 
@@ -240,6 +216,16 @@ void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& feature
 
 
 
+void ComputerControlInterface::resetWatchdog()
+{
+	if( state() == Connected )
+	{
+		m_connectionWatchdogTimer.start();
+	}
+}
+
+
+
 void ComputerControlInterface::restartConnection()
 {
 	if( m_vncConnection )
@@ -311,7 +297,5 @@ void ComputerControlInterface::updateActiveFeatures()
 
 void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
 {
-	pong();
-
 	emit featureMessageReceived( message, weakPointer() );
 }

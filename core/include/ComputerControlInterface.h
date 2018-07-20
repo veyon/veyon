@@ -68,9 +68,6 @@ public:
 	void start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures );
 	void stop();
 
-	void ping();
-	void pong();
-
 	const Computer& computer() const
 	{
 		return m_computer;
@@ -132,6 +129,7 @@ private slots:
 		m_screenUpdated = true;
 	}
 
+	void resetWatchdog();
 	void restartConnection();
 
 	void updateState();
@@ -141,7 +139,6 @@ private slots:
 	void handleFeatureMessage( const FeatureMessage& message );
 
 private:
-	static const int PingInterval = 1000;
 	static const int ActiveFeaturesUpdateInterval = 1000;
 	static const int UserUpdateInterval = 10000;
 	static const int ConnectionWatchdogTimeout = 10000;
