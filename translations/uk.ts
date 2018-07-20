@@ -904,10 +904,24 @@ Examples:
         <translation>Команди для керування каталогом вбудованих об&apos;єктів мережі</translation>
     </message>
     <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Немає рядка форматування або не вказано формальний вираз!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Не вдалося відкрити файл «%1» для запису!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Не вказано рядок формату!</translation>
+    </message>
+    <message>
         <source>
 USAGE
 
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
 
 Examples:
 
@@ -923,7 +937,7 @@ Examples:
         <translation>
 КОРИСТУВАННЯ
 
-%1 export &lt;ФАЙЛ&gt; [room &lt;КЛАС&gt;] [format &lt;РЯДОК ФОРМАТУВАННЯ ЗІ ЗМІННИМИ&gt;]
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
 
 Можливі змінні: %type% %name% %host% %mac% %room%
 
@@ -940,16 +954,80 @@ Examples:
 </translation>
     </message>
     <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Немає рядка форматування або не вказано формальний вираз!</translation>
+        <source>
+USAGE
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
+
+Examples:
+
+* Add a room:
+
+    %1 add room &quot;Room 01&quot;
+
+* Add a computer to room &quot;Room 01&quot;:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</source>
+        <translation>
+КОРИСТУВАННЯ
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Додає об&apos;єкт, де TYPE може мати значення «%2» або «%3». PARENT можна вказати за назвою або UUID.
+
+Приклади:
+
+* Додати клас:
+
+    %1 add room &quot;Клас 01&quot;
+
+* Додати комп&apos;ютер до класу &quot;Клас 01&quot;:
+
+    %1 add computer &quot;Комп&apos;ютер 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Клас 01&quot;
+
+</translation>
     </message>
     <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Не вдалося відкрити файл «%1» для запису!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>Не вказано рядок формату!</translation>
+        <source>
+USAGE
+
+%1 remove &lt;OBJECT&gt;
+
+Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
+
+Examples:
+
+* Remove a computer by name:
+
+    %1 remove &quot;Computer 01&quot;
+
+* Remove an object by UUID:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</source>
+        <translation>
+КОРИСТУВАННЯ
+
+%1 remove &lt;OBJECT&gt;
+
+Вилучає вказаний об&apos;єкт з каталогу. OBJECT можна вказати за назвою або UUID. Вилучення класу призводить до вилучення усіх комп&apos;ютерів у ньому.
+
+Приклади:
+
+* Вилучити комп&apos;ютер за назвою:
+
+    %1 remove &quot;Комп&apos;ютер 01&quot;
+
+* Вилучити об&apos;єкт за UUID:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
 </context>
 <context>

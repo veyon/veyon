@@ -911,10 +911,24 @@ Ejemplos:
         <translation>Comandos para administrar el directorio de objetos de red incorporado</translation>
     </message>
     <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>¡No se especificó ninguna cadena de formato o expresión regular!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>¡No se puede abrir el archivo &quot;%1&quot; para escribir!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>¡No se especificó una cadena de formato!</translation>
+    </message>
+    <message>
         <source>
 USAGE
 
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
 
 Examples:
 
@@ -927,34 +941,49 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation>
-USO
-
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
-
-Variables válidas: %type% %name% %host% %mac% %room%
-
-Ejemplos:
-
-* Exportar todos los objetos a un archivo CSV:
-
-%1 export objetos.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* Exportar todos los equipos de un aula a un archivo CSV:
-
-%1 export equipos.csv room &quot;Aula 01&quot; format &quot;%name%;%host%;%mac%&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>¡No se especificó ninguna cadena de formato o expresión regular!</translation>
+        <source>
+USAGE
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
+
+Examples:
+
+* Add a room:
+
+    %1 add room &quot;Room 01&quot;
+
+* Add a computer to room &quot;Room 01&quot;:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>¡No se puede abrir el archivo &quot;%1&quot; para escribir!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>¡No se especificó una cadena de formato!</translation>
+        <source>
+USAGE
+
+%1 remove &lt;OBJECT&gt;
+
+Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
+
+Examples:
+
+* Remove a computer by name:
+
+    %1 remove &quot;Computer 01&quot;
+
+* Remove an object by UUID:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

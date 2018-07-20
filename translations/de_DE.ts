@@ -904,10 +904,24 @@ Beispiele:
         <translation>Befehle zur Verwaltung des eingebauten Netzwerkobjektverzeichnisses</translation>
     </message>
     <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Kein Format-String oder regulärer Ausdruck angegeben!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Datei &quot;%1&quot; kann nicht zum Schreiben geöffnet werden!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Kein Format-String angegeben!</translation>
+    </message>
+    <message>
         <source>
 USAGE
 
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
 
 Examples:
 
@@ -920,19 +934,100 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+VERWENDUNG
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Gültige Variablen: %type% %name% %host% %mac% %room%
+
+Beispiele:
+
+* Alle Objekte in eine CSV-Datei exportieren:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Alle Computer eines Raumes in eine CSV-Datei exportieren:
+
+   %1 export computers.csv room &quot;Raum 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Kein Format-String oder regulärer Ausdruck angegeben!</translation>
+        <source>
+USAGE
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
+
+Examples:
+
+* Add a room:
+
+    %1 add room &quot;Room 01&quot;
+
+* Add a computer to room &quot;Room 01&quot;:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</source>
+        <translation>
+VERWENDUNG
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Fügt ein Objekt hinzu, wobei TYPE &quot;%2&quot; oder &quot;%3&quot; sein kann. PARENT kann als Name oder UUID angegeben werden.
+
+Beispiele:
+
+* Einen Raum hinzufügen
+
+    %1 add room &quot;Raum 01&quot;
+
+* Einen Computer zum Raum &quot;Raum 01&quot; hinzufügen:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Raum 01&quot;
+
+</translation>
     </message>
     <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Datei &quot;%1&quot; kann nicht zum Schreiben geöffnet werden!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>Kein Format-String angegeben!</translation>
+        <source>
+USAGE
+
+%1 remove &lt;OBJECT&gt;
+
+Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
+
+Examples:
+
+* Remove a computer by name:
+
+    %1 remove &quot;Computer 01&quot;
+
+* Remove an object by UUID:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</source>
+        <translation>
+VERWENDUNG
+
+%1 remove &lt;OBJECT&gt;
+
+Entfernt das angegebene Objekt aus dem Verzeichnis. OBJECT kann als Name oder UUID angegeben werden. Wenn ein Raum entfernt wird, werden alle darin befindlichen Computer ebenfalls entfernt.
+
+Beispiele:
+
+* Einen Computer über seinen Namen entfernen:
+
+    %1 remove &quot;Computer 01&quot;
+
+* Ein Objekt über seine UUID entfernen:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
 </context>
 <context>
@@ -1012,11 +1107,11 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Der Benutzer &quot;%1&quot; am Computer %2&quot; greift jetzt auf diesen Computer zu.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren!</translation>
     </message>
 </context>
 <context>
@@ -2654,19 +2749,19 @@ Examples:
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Benutzer- und Computername</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Nur Benutzername</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Nur Computername</translation>
     </message>
     <message>
         <source>Computer caption content</source>
-        <translation type="unfinished"/>
+        <translation>Inhalt der Computerbeschriftung</translation>
     </message>
 </context>
 <context>
@@ -2804,7 +2899,7 @@ Examples:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Fernzugriff</translation>
     </message>
 </context>
 <context>
@@ -3086,11 +3181,11 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>Benachrichtigung bei Fernzugriff anzeigen</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation type="unfinished"/>
+        <translation>Benachrichtigung bei fehlgeschlagenen Authentifizierungsversuchen anzeigen</translation>
     </message>
 </context>
 <context>

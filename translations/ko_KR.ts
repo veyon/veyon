@@ -907,10 +907,24 @@ Examples:
         <translation>내장 네트워크 오브젝트 폴더를 관리하는 명령어들</translation>
     </message>
     <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>형식 문자열 또는 표현식이 지정되지 않음!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>형식 문자열이 지정되지 않음!</translation>
+    </message>
+    <message>
         <source>
 USAGE
 
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] Valid variables: %type% %name% %host% %mac% %room%
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
 
 Examples:
 
@@ -923,33 +937,49 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation>
-사용법
-%1 내보내기&lt;FILE&gt; [교실&lt;ROOM&gt;] [형식&lt;FORMAT-STRING-WITH-VARIABLES&gt;] 유효 변수들: %type% %name% %host% %mac% %room%
-
-예제:
-
-* 모든 개체를 CSV 화일로 내보내기:
-
-    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
-
-* 교실내의 모든 컴퓨터를 CSV 화일로 내보내기:
-
-    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>형식 문자열 또는 표현식이 지정되지 않음!</translation>
+        <source>
+USAGE
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Adds an object where TYPE can be one of &quot;%2&quot; or &quot;%3&quot;. PARENT can be specified by name or UUID.
+
+Examples:
+
+* Add a room:
+
+    %1 add room &quot;Room 01&quot;
+
+* Add a computer to room &quot;Room 01&quot;:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>형식 문자열이 지정되지 않음!</translation>
+        <source>
+USAGE
+
+%1 remove &lt;OBJECT&gt;
+
+Removes the specified object from the directory. OBJECT can be specified by name or UUID. Removing a room will also remove all computers inside.
+
+Examples:
+
+* Remove a computer by name:
+
+    %1 remove &quot;Computer 01&quot;
+
+* Remove an object by UUID:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
