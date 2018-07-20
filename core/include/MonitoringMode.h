@@ -74,19 +74,7 @@ public:
 		return m_features;
 	}
 
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-							   ComputerControlInterface::Pointer computerControlInterface ) override;
-
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
-
-	void ping( ComputerControlInterface::Pointer computerControlInterface );
-
 private:
-	enum Commands {
-		PingCommand,
-		PongCommand,
-	};
-
 	const Feature m_monitoringModeFeature;
 	const FeatureList m_features;
 

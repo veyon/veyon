@@ -23,8 +23,6 @@
  */
 
 #include "MonitoringMode.h"
-#include "VeyonServerInterface.h"
-
 
 MonitoringMode::MonitoringMode( QObject* parent ) :
 	QObject( parent ),
@@ -36,41 +34,4 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 							 QStringLiteral( ":/resources/presentation-none.png" ) ),
 	m_features( { m_monitoringModeFeature } )
 {
-}
-
-
-
-bool MonitoringMode::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-										   ComputerControlInterface::Pointer computerControlInterface )
-{
-	if( message.featureUid() == m_monitoringModeFeature.uid() &&
-			message.command() == PongCommand )
-	{
-		computerControlInterface->pong();
-
-		return true;
-	}
-
-	return SimpleFeatureProvider::handleFeatureMessage( master, message, computerControlInterface );
-}
-
-
-
-bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
-{
-	if( message.featureUid() == m_monitoringModeFeature.uid() &&
-			message.command() == PingCommand )
-	{
-		return server.sendFeatureMessageReply( message, FeatureMessage( m_monitoringModeFeature.uid(), PongCommand ) );
-	}
-
-	return SimpleFeatureProvider::handleFeatureMessage( server, message );
-
-}
-
-
-
-void MonitoringMode::ping( ComputerControlInterface::Pointer computerControlInterface )
-{
-	computerControlInterface->sendFeatureMessage( FeatureMessage( m_monitoringModeFeature.uid(), PingCommand ) );
 }
