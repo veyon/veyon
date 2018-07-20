@@ -16,7 +16,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../core.qrc">
-    <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
+    <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -94,7 +94,7 @@
      <widget class="QWidget" name="tab">
       <attribute name="icon">
        <iconset resource="../core.qrc">
-        <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
+        <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
       </attribute>
       <attribute name="title">
        <string>About</string>
@@ -185,7 +185,7 @@
      <widget class="QWidget" name="tab_2">
       <attribute name="icon">
        <iconset resource="../core.qrc">
-        <normaloff>:/resources/authors.png</normaloff>:/resources/authors.png</iconset>
+        <normaloff>:/resources/user-group-new.png</normaloff>:/resources/user-group-new.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Contributors</string>
@@ -221,7 +221,7 @@
      <widget class="QWidget" name="tab_3">
       <attribute name="icon">
        <iconset resource="../core.qrc">
-        <normaloff>:/resources/locale.png</normaloff>:/resources/locale.png</iconset>
+        <normaloff>:/resources/languages.png</normaloff>:/resources/languages.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Translation</string>

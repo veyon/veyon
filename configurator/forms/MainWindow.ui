@@ -191,7 +191,7 @@
   <action name="actionAboutVeyon">
    <property name="icon">
     <iconset resource="../../core/core.qrc">
-     <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
+     <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
    </property>
    <property name="text">
     <string>About Veyon</string>
