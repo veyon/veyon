@@ -137,7 +137,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>Computer caption content</string>
+             <string>Computer thumbnail caption</string>
             </property>
            </widget>
           </item>
