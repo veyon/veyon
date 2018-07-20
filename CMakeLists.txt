@@ -52,6 +52,9 @@ IF(GIT_FOUND)
 		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -sne
 			            COMMAND cut -c8-
 						COMMAND grep -v root
+						COMMAND sed -e "s/<.*>//g"
+						COMMAND sed -e "s/Doerffel/Junghans/g"
+						COMMAND sort -u
 						OUTPUT_FILE "${CONTRIBUTORS}"
 						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 						TIMEOUT 10)
