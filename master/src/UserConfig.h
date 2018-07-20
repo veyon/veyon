@@ -39,6 +39,7 @@ public:
 	OP( UserConfig, VeyonMaster::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
 	OP( UserConfig, VeyonMaster::userConfig, JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI" );	\
 	OP( UserConfig, VeyonMaster::userConfig, BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig, BOOL, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI" );	\
 	OP( UserConfig, VeyonMaster::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
 	OP( UserConfig, VeyonMaster::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
 	OP( UserConfig, VeyonMaster::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" );	\
@@ -53,6 +54,7 @@ public slots:
 	void setCheckedNetworkObjects( const QJsonArray& );
 	void setComputerPositions( const QJsonArray& );
 	void setUseCustomComputerPositions( bool );
+	void setFilterPoweredOnComputers( bool );
 	void setMonitoringScreenSize( int );
 	void setDefaultRole( int );
 	void setToolButtonIconOnlyMode( bool );
