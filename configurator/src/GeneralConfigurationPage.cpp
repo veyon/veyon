@@ -53,6 +53,11 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	for( const auto& qmFile : qmFiles )
 	{
+		// ignore Qt's translation files
+		if( qmFile.startsWith( QStringLiteral("qt") ) )
+		{
+			continue;
+		}
 		QLocale loc( qmFile );
 		if( loc.language() == QLocale::C )
 		{
