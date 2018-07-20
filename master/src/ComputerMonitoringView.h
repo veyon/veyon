@@ -26,8 +26,8 @@
 #define COMPUTER_MONITORING_VIEW_H
 
 #include "ComputerControlInterface.h"
+#include "ComputerSortFilterProxyModel.h"
 
-#include <QSortFilterProxyModel>
 #include <QWidget>
 
 class QMenu;
@@ -57,6 +57,7 @@ public:
 
 public slots:
 	void setSearchFilter( const QString& searchFilter );
+	void setFilterPoweredOnComputers( bool enabled );
 	void setComputerScreenSize( int size );
 	void autoAdjustComputerScreenSize();
 	void setUseCustomComputerPositions( bool enabled );
@@ -81,7 +82,7 @@ private:
 
 	VeyonMaster* m_master;
 	QMenu* m_featureMenu;
-	QSortFilterProxyModel m_sortFilterProxyModel;
+	ComputerSortFilterProxyModel m_sortFilterProxyModel;
 
 signals:
 	void computerScreenSizeAdjusted( int size );

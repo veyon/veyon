@@ -63,6 +63,7 @@ ComputerMonitoringView::~ComputerMonitoringView()
 {
 	if( m_master )
 	{
+		m_master->userConfig().setFilterPoweredOnComputers( m_sortFilterProxyModel.stateFilter() != ComputerControlInterface::None );
 		m_master->userConfig().setComputerPositions( ui->listView->savePositions() );
 		m_master->userConfig().setUseCustomComputerPositions( ui->listView->flexible() );
 	}
@@ -88,6 +89,7 @@ void ComputerMonitoringView::setVeyonMaster( VeyonMaster& masterCore )
 	// attach computer list model to proxy model
 	m_sortFilterProxyModel.setSourceModel( &m_master->computerControlListModel() );
 	m_sortFilterProxyModel.setSortRole( Qt::InitialSortOrderRole );
+	m_sortFilterProxyModel.setStateRole( ComputerControlListModel::StateRole );
 	m_sortFilterProxyModel.sort( 0 );
 
 	// attach proxy model to view
@@ -122,6 +124,13 @@ ComputerControlInterfaceList ComputerMonitoringView::selectedComputerControlInte
 void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
 {
 	m_sortFilterProxyModel.setFilterRegExp( searchFilter );
+}
+
+
+
+void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
+{
+	m_sortFilterProxyModel.setStateFilter( enabled ? ComputerControlInterface::Connected : ComputerControlInterface::None );
 }
 
 
