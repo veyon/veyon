@@ -167,10 +167,10 @@
      <normaloff>:/resources/document-save.png</normaloff>:/resources/document-save.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save settings into file</string>
+    <string>&amp;Save settings to file</string>
    </property>
    <property name="toolTip">
-    <string>Save settings into file</string>
+    <string>Save settings to file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
