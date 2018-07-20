@@ -1,5 +1,5 @@
 <RCC>
   <qresource>
-    <file>@CONTRIBUTORS@</file>
+    <file alias="CONTRIBUTORS">@CONTRIBUTORS@</file>
   </qresource>
 </RCC>
