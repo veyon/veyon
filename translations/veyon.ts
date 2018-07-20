@@ -2530,6 +2530,10 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
