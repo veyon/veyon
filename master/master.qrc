@@ -12,5 +12,6 @@
         <file>resources/edit-find.png</file>
         <file>resources/align-grid.png</file>
         <file>resources/exchange-positions-zorder.png</file>
+        <file>resources/powered-on.png</file>
     </qresource>
 </RCC>

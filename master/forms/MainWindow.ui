@@ -255,6 +255,26 @@
         </rect>
        </property>
       </widget>
+      <widget class="QToolButton" name="filterPoweredOnComputersButton">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>570</y>
+         <width>69</width>
+         <height>37</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Only show powered on computers</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../master.qrc">
+         <normaloff>:/resources/powered-on.png</normaloff>:/resources/powered-on.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>

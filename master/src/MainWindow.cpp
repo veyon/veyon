@@ -71,6 +71,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->screenshotManagementButton );
 	ui->statusBar->addWidget( ui->spacerLabel1 );
 	ui->statusBar->addWidget( ui->filterLineEdit, 2 );
+	ui->statusBar->addWidget( ui->filterPoweredOnComputersButton );
 	ui->statusBar->addWidget( ui->spacerLabel2, 1 );
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoFitButton );
@@ -108,8 +109,11 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	}
 
 	// initialize search filter
+	ui->filterPoweredOnComputersButton->setChecked( m_master.userConfig().filterPoweredOnComputers() );
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
 			 ui->computerMonitoringView, &ComputerMonitoringView::setSearchFilter );
+	connect( ui->filterPoweredOnComputersButton, &QToolButton::toggled,
+			 ui->computerMonitoringView, &ComputerMonitoringView::setFilterPoweredOnComputers );
 
 	// initialize monitoring screen size slider
 	ui->gridSizeSlider->setMinimum( ComputerMonitoringView::MinimumComputerScreenSize );
