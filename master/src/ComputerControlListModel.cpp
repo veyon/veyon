@@ -100,6 +100,9 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	case UidRole:
 		return computerControl->computer().networkObjectUid();
 
+	case StateRole:
+		return computerControl->state();
+
 	default:
 		break;
 	}
