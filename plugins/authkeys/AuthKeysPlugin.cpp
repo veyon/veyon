@@ -88,11 +88,11 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 						 tr( "This command deletes the authentication key <KEY> from the configured key directory. "
 						 "Please note that a key can't be recovered once deleted." ) } ) },
 		{ QStringLiteral("export"),
-		  QStringList( { QStringLiteral("<%1> [%2]").arg( tr("KEY"), tr("FILE") ),
+		  QStringList( { QStringLiteral("<%1> [<%2>]").arg( tr("KEY"), tr("FILE") ),
 						 tr( "This command exports the authentication key <KEY> to <FILE>. "
 						 "If <FILE> is not specified a name will be constructed from name and type of <KEY>." ) } ) },
 		{ QStringLiteral("import"),
-		  QStringList( { QStringLiteral("<%1> [%2]").arg( tr( "KEY" ), tr( "FILE" ) ),
+		  QStringList( { QStringLiteral("<%1> [<%2>]").arg( tr( "KEY" ), tr( "FILE" ) ),
 						 tr( "This command imports the authentication key <KEY> from <FILE>. "
 						 "If <FILE> is not specified a name will be constructed from name and type of <KEY>." ) } ) },
 		{ QStringLiteral("list"),
