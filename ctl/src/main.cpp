@@ -90,8 +90,6 @@ int main( int argc, char **argv )
 
 	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
 	{
-		const auto commands = it.key()->commands();
-
 		if( it.key()->commandLineModuleName() == module )
 		{
 			auto runResult = CommandLinePluginInterface::Unknown;
@@ -154,6 +152,9 @@ int main( int argc, char **argv )
 				return -1;
 			}
 
+			auto commands = it.key()->commands();
+			std::sort( commands.begin(), commands.end() );
+
 			qInfo( "%s", qUtf8Printable( VeyonCore::tr( "Available commands:" ) ) );
 			for( const auto& command : commands )
 			{
@@ -179,12 +180,15 @@ int main( int argc, char **argv )
 		qCritical( "%s", qUtf8Printable( VeyonCore::tr( "No module specified or module not found - available modules are:" ) ) );
 	}
 
+	QStringList modulesHelpStrings;
 	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
 	{
-		qCritical( "    %s - %s",
-				   qUtf8Printable( it.key()->commandLineModuleName() ),
-				   qUtf8Printable( it.key()->commandLineModuleHelp() ) );
+		modulesHelpStrings.append( QStringLiteral( "%1 - %2" ).arg( it.key()->commandLineModuleName(),
+																		it.key()->commandLineModuleHelp() ) );
 	}
+
+	std::sort( modulesHelpStrings.begin(), modulesHelpStrings.end() );
+	std::for_each( modulesHelpStrings.begin(), modulesHelpStrings.end(), [](const QString& s) { qCritical( "    %s", qUtf8Printable( s ) ); } );
 
 	delete app;
 
