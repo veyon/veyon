@@ -194,7 +194,7 @@
           <item>
            <widget class="QCheckBox" name="openComputerManagementAtStart">
             <property name="text">
-             <string>Automatically open computer management</string>
+             <string>Automatically open computer rooms widget</string>
             </property>
            </widget>
           </item>
@@ -204,7 +204,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_6">
          <property name="title">
-          <string>Computer management</string>
+          <string>Computer rooms</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>

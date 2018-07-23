@@ -2614,10 +2614,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2646,10 +2642,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2667,6 +2659,14 @@ Examples:
     </message>
     <message>
         <source>Computer thumbnail caption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
