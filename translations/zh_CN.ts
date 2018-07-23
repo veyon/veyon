@@ -820,14 +820,6 @@ Examples:
         <translation>指定的类型无效，有效值是 &quot;%1&quot; 或 &quot;%2&quot;。</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>对象 UID</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>Parent UID</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>类型</translation>
     </message>
@@ -980,6 +972,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2227,10 +2227,6 @@ Examples:
         <translation>TLS 证书验证</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>安全模式</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>系统默认值</translation>
     </message>
@@ -2317,6 +2313,10 @@ Examples:
         <translation>无法绑定到 LDAP 服务器。 请检查服务器参数并绑定证书。
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2412,14 +2412,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>保存(&amp;S)</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>保存设置文件</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2577,6 +2569,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>无法以管理权限运行。 请确保您的桌面环境安装了类似 sudo 的程序！程序将以普通用户权限运行。</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2661,10 +2661,6 @@ Examples:
         <translation>隐藏计算机过滤器文本框</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>计算机管理</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>比如重新启动或关闭计算机的操作</translation>
     </message>
@@ -2693,10 +2689,6 @@ Examples:
         <translation>程序启动</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>自动打开计算机管理</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>模式和功能</translation>
     </message>
@@ -2713,8 +2705,16 @@ Examples:
         <translation>仅计算机名称</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>计算机标题内容</translation>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>计算机教室</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -819,14 +819,6 @@ Příklady:
         <translation>Zadán neplatný typ. Platné hodnoty jsou „%1“ nebo „%1“.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>Neopakující se identifikátor objektu</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>Neopakující se identifikátor nadřazeného</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -979,6 +971,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2226,10 +2226,6 @@ Examples:
         <translation>Ověření TLS certifikátu</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>Režim zabezpečení</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>Výchozí systémové</translation>
     </message>
@@ -2312,6 +2308,10 @@ Examples:
 
 %1</source>
         <translation>Nedaří se přihlásit k LDAP serveru. Zkontrolujte parametry serveru a přihlašovací údaje.</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2407,14 +2407,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>Uložit na&amp;stavení do souboru</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Uložit nastavení do souboru</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2572,6 +2564,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>Nedaří se spustit s oprávněními správce. Ověřte že je v desktopovém prostředí nainstalovaný program typu sudo ! Program bude spuštěný s běžnými uživatelskými oprávněními.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2656,10 +2656,6 @@ Examples:
         <translation>Skrýt kolonku filtr počítačů</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Správa počítače</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Akce jako například restart nebo vypnutí počítačů</translation>
     </message>
@@ -2688,10 +2684,6 @@ Examples:
         <translation>Spuštění aplikace</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>Automaticky otevřít správu počítače</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>Režimy a funkce</translation>
     </message>
@@ -2708,8 +2700,16 @@ Examples:
         <translation>Pouze název počítače</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>Obsah titulku počítače</translation>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Počítačové místnosti</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

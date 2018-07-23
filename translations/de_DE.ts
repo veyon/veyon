@@ -612,7 +612,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation>Dieser Befehl erzeugt ein neues Authentifizierungsschlüsselpaar mit name &lt;NAME&gt; und speichert privaten und öffentlichen Schlüssel im konfigurierten Schlüsselverzeichnis.</translation>
+        <translation>Dieser Befehl erzeugt ein neues Authentifizierungsschlüsselpaar mit dem Name &lt;NAME&gt; und speichert den privaten und öffentlichen Schlüssel im konfigurierten Schlüsselverzeichnis.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
@@ -816,14 +816,6 @@ Beispiele:
         <translation>Ungültiger Typ angegeben. Gültige Werte sind &quot;%1&quot; oder &quot;%2&quot;.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>Objekt-UID</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>Eltern-UID</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -937,7 +929,7 @@ Examples:
         <translation>
 VERWENDUNG
 
-%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+%1 export &lt;DATEI&gt; [room &lt;RAUM&gt;] [format &lt;FORMAT-STRING-MIT-VARIABLEN&gt;]
 
 Gültige Variablen: %type% %name% %host% %mac% %room%
 
@@ -1028,6 +1020,14 @@ Beispiele:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>Objekt-UUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>Eltern-UUID</translation>
     </message>
 </context>
 <context>
@@ -2274,10 +2274,6 @@ Beispiele:
         <translation>TLS-Zertifikatsüberprüfung</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>Sicherheitsmodus</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>Systemstandard</translation>
     </message>
@@ -2364,6 +2360,10 @@ Beispiele:
         <translation>Bind zum LDAP-Server fehlgeschlagen. Bitte überprüfen Sie die Serverparameter und Bind-Zugangsdaten.
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Verschlüsselungsprotokoll</translation>
     </message>
 </context>
 <context>
@@ -2459,14 +2459,6 @@ Beispiele:
     <message>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>Einstellungen in Datei &amp;speichern</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Einstellungen in Datei speichern</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2624,6 +2616,14 @@ Beispiele:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>Programmstart mit administrativen Rechten nicht möglich. Bitte stellen Sie sicher, dass ein sudo-ähnliches Programm für Ihre Desktop-Umgebung installiert ist! Das Programm wird nun mit normalen Benutzerrechten ausgeführt.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Nur eingeschaltete Computer anzeigen</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>Einstellungen in Datei &amp;speichern</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2708,10 +2708,6 @@ Beispiele:
         <translation>Filterfeld für Computer ausblenden</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Computerverwaltung</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Aktionen wie Computer neustarten oder ausschalten</translation>
     </message>
@@ -2740,10 +2736,6 @@ Beispiele:
         <translation>Programmstart</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>Computerverwaltung automatisch öffnen</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>Modi und Funktionen</translation>
     </message>
@@ -2760,8 +2752,16 @@ Beispiele:
         <translation>Nur Computername</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>Inhalt der Computerbeschriftung</translation>
+        <source>Computer thumbnail caption</source>
+        <translation>Computerminiaturbild-Beschriftung</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Computerräume</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation>Computerraumwidget automatisch öffnen</translation>
     </message>
 </context>
 <context>

@@ -819,14 +819,6 @@ Példák:
         <translation>Érvénytelen típusmeghatározás. &quot;%1&quot; vagy &quot;%2&quot; lehetséges.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>Objektum UID</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>Szülő UID</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
@@ -937,7 +929,24 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+HASZNÁLATA
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Használható változók: %type% %name% %host% %mac% %room%
+
+Példák:
+
+* Az összes objektum exportálása CSV fájlba:
+
+    %1 export objektumok.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Egy szoba összes számítógépének exportálása CSV fájlba:
+
+    %1 export 01SzobaSzamitogepei.csv room &quot;01 szoba&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -958,7 +967,24 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+HASZNÁLATA
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Egy objektumot ad hozzá, ahol a típus (TYPE) lehet &quot;%2&quot; vagy &quot;%3&quot;. A szülő (PARENT) megadható névvel vagy UUID-vel.
+
+Példák:
+
+* Egy szoba hozzáadása:
+
+    %1 add room &quot;Szoba 01&quot;
+
+* Egy számítógép hozzáadása a &quot;Szoba 01&quot; szobához:
+
+    %1 add computer &quot;Számítógép 01&quot; pc01.pelda.hu 11:22:33:44:55:66 &quot;Szoba 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -979,6 +1005,31 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation>
+HASZNÁLATA
+
+%1 remove &lt;OBJECT&gt;
+
+Eltávolítja a kiválasztott objektumot a mappából. Az objektum (OBJECT) megadható névvel vagy UUID-vel. Egy szoba eltávolítása a benne lévő összes számítógépet is eltávolítja.
+
+Példák:
+
+* Számítógép eltávolítása név alapján:
+
+    %1 remove &quot;Számítógép01&quot;
+
+* Objektum eltávolítása UUID alapján:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2226,10 +2277,6 @@ Examples:
         <translation>TLS tanúsítványhitelesítés</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>Biztonságos mód</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>Rendszer alapértelmezett értékei</translation>
     </message>
@@ -2316,6 +2363,10 @@ Examples:
         <translation>Nem sikerült kötést létrehozni a LDAP szerverrel. Kérem, ellenőrizd a szerver paramétereit és a kötést hitelesítő adatokat.
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Titkosítási protokoll</translation>
     </message>
 </context>
 <context>
@@ -2411,14 +2462,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>Beállítások &amp;mentése fájlba</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Beállítások mentése fájlba</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2576,6 +2619,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>Nem sikerült rendszergazdai jogosultsággal indulni. Kérem, ellenőrizd, hogy sudo-típusú program telepítve van az asztali környezetedre. A program normál felhasználói jogosultságokkal fog futni.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Csak a bekapcsolt számítógépek megjelenítése</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>Beállítások &amp;mentése fájlba</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2660,10 +2711,6 @@ Examples:
         <translation>Számítógépszűrő mező elrejtése</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Számítógép-kezelés</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Műveletek, mint a számítógépek újraindítása vagy kikapcsolása</translation>
     </message>
@@ -2681,7 +2728,7 @@ Examples:
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>Előképfrissítési időköz</translation>
+        <translation>Indexkép-frissítési időköz</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2690,10 +2737,6 @@ Examples:
     <message>
         <source>Program start</source>
         <translation>Program indítása</translation>
-    </message>
-    <message>
-        <source>Automatically open computer management</source>
-        <translation>Számítógép-kezelés automatikus megnyitása</translation>
     </message>
     <message>
         <source>Modes and features</source>
@@ -2712,8 +2755,16 @@ Examples:
         <translation>Csak számítógépnév</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>Számítógép-felirat tartalma</translation>
+        <source>Computer thumbnail caption</source>
+        <translation>Számítógép indexképének felirata</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Számítógéptermek</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

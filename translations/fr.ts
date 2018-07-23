@@ -819,14 +819,6 @@ Exemples:
         <translation>Le type spécifié est non valide! Les valeurs convenables sont &quot;%1&quot; ou &quot;%2&quot;.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>UID Objet</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>UID Parent</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Type</translation>
     </message>
@@ -1031,6 +1023,14 @@ Exemples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2277,10 +2277,6 @@ Exemples:
         <translation>Certificat de vérification TLS</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>Mode de sécurité</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>Paramètres par défaut du système</translation>
     </message>
@@ -2367,6 +2363,10 @@ Exemples:
         <translation>Authentification au serveur LDAP impossible. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Protocole de cryptage</translation>
     </message>
 </context>
 <context>
@@ -2462,14 +2462,6 @@ Exemples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>&amp;Enregistrer la configuration dans un fichier</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Enregistrer la configuration dans un fichier</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2627,6 +2619,14 @@ Exemples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>Impossible de démarrer avec des privilèges administrateurs. Veuillez vous assurez qu&apos;un programme de type &quot;sudo&quot; (permettant les droits admin), est installé pour votre environnement! Le programme sera exécuté avec des privilèges d&apos;utilisateur classique.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Montrer seulement les ordinateurs allumés</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>&amp;Sauver les paramètres vers un fichier</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2711,10 +2711,6 @@ Exemples:
         <translation>Masquer le champ filtre ordinateur</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Gestion ordinateur</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Actions comme le redémarrage ou l&apos;extinction d&apos;ordinateurs</translation>
     </message>
@@ -2743,10 +2739,6 @@ Exemples:
         <translation>Démarrage du programme</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>Ouvrir automatiquement la gestion ordinateur</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>Modes et paramétrages</translation>
     </message>
@@ -2763,8 +2755,16 @@ Exemples:
         <translation>Nom d&apos;ordinateur seulement</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>Contenu de la légende de l&apos;ordinateur</translation>
+        <source>Computer thumbnail caption</source>
+        <translation>Légende de la vignette ordinateur</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Salles d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

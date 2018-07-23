@@ -819,14 +819,6 @@ Valid variables: %name% %host% %mac% %room%
         <translation>指定的類型無效。 有效值 &quot;%1&quot; 或 &quot;%2&quot;.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>物件 UID</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>上層 UID</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>類型</translation>
     </message>
@@ -979,6 +971,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2226,10 +2226,6 @@ Examples:
         <translation>TLS 憑證驗證</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>安全性模式</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>系統預設值</translation>
     </message>
@@ -2316,6 +2312,10 @@ Examples:
         <translation>無法綁定到 LDAP 伺服器。 請檢查伺服器參數並綁定認證。
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2411,14 +2411,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>將設定存到檔案(&amp;S)</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>將設定存到檔案</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2576,6 +2568,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>無法以管理特權啟動。 請確認為您的桌面環境安裝類似于 sudo 的程式! 程式將以正常使用者特權執行。</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2660,10 +2660,6 @@ Examples:
         <translation>隱藏電腦篩選欄位</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>電腦管理</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>動作比如重新啟動或關閉電腦</translation>
     </message>
@@ -2692,10 +2688,6 @@ Examples:
         <translation>程式啟動</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>自動開啟電腦管理</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>模式和功能</translation>
     </message>
@@ -2712,7 +2704,15 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer caption content</source>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>電腦教室</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
         <translation type="unfinished"/>
     </message>
 </context>

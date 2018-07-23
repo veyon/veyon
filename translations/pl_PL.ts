@@ -792,14 +792,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -952,6 +944,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2190,10 +2190,6 @@ Examples:
         <translation>Weryfikacja certyfikatu TLS</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation type="unfinished"/>
     </message>
@@ -2269,6 +2265,10 @@ Examples:
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2365,14 +2365,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>&amp;Zapisz ustawienia jako plik</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Zapisz ustawienia do pliku</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2530,6 +2522,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2614,10 +2614,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Zarządzanie komputerem</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Akcje takie jak uruchom ponownie lub wyłącz komputery</translation>
     </message>
@@ -2646,10 +2642,6 @@ Examples:
         <translation>Uruchamianie programu</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>Tryby i funkcje</translation>
     </message>
@@ -2666,7 +2658,15 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer caption content</source>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Sale komputerowe</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
         <translation type="unfinished"/>
     </message>
 </context>

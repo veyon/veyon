@@ -823,14 +823,6 @@ Ejemplos:
         <translation>Tipo inválido especificado. Los valores válidos son &quot;%1&quot; o &quot;%2&quot;.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>UID de objeto</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>UID del padre</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
@@ -983,6 +975,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2230,10 +2230,6 @@ Examples:
         <translation>Verificación del certificado TLS</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>Modo de seguridad</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>Valores por defecto del sistema</translation>
     </message>
@@ -2320,6 +2316,10 @@ Examples:
         <translation>No se pudo vincular al servidor LDAP. Verifique los parámetros del servidor y las credenciales de enlace.
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2415,14 +2415,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>&amp;Guardar configuración en archivo</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Guardar configuración en archivo</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2580,6 +2572,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>No se pudo iniciar con privilegios administrativos. ¡Asegúrese de que esté instalado un programa similar a sudo para su entorno de escritorio! El programa se ejecutará con privilegios de usuario normales.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2664,10 +2664,6 @@ Examples:
         <translation>Ocultar campo de filtro de equipo</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Gestión de equipo</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Acciones como reiniciar o apagar equipos</translation>
     </message>
@@ -2696,10 +2692,6 @@ Examples:
         <translation>Iniciar el programa</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>Automáticamente abre la administración del equipo</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>Modos y funciones</translation>
     </message>
@@ -2716,7 +2708,15 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer caption content</source>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Aulas</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
         <translation type="unfinished"/>
     </message>
 </context>

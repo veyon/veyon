@@ -819,14 +819,6 @@ Examples:
         <translation>잘못된 형식 지정됨. 유효한 값들은 &quot;%1&quot;  또는 &quot;%2&quot;.</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>개체 UID</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>부모 UID</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>종류</translation>
     </message>
@@ -979,6 +971,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2227,10 +2227,6 @@ Examples:
         <translation>TLS 인증 검증</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>보안 모드</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>시스템 디폴트</translation>
     </message>
@@ -2315,6 +2311,10 @@ Examples:
         <translation>LDAP서버와 결합 불가. 결합인자와 서버 파라메터를 점검하세요.
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2410,14 +2410,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>&amp;S 화일에 설정 저장</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>화일에 설정 저장</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2575,6 +2567,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>관리자 권한으로 시작하지  못했습니다. 데스크탑 환경에 슈퍼유저 프로그램이 설치되었는지 확인하세요. 이 프로그램은 일반 유저 권한으로 실행됩니다.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2659,10 +2659,6 @@ Examples:
         <translation>컴퓨터 필터 필드 숨김</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>컴퓨터 관리</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>리부팅 또는 컴퓨터 파워 끄기</translation>
     </message>
@@ -2691,10 +2687,6 @@ Examples:
         <translation>프로그램 시작</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>컴퓨터 관리를 자동적으로 열기</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>모드와 기능들</translation>
     </message>
@@ -2711,8 +2703,16 @@ Examples:
         <translation>전용 컴퓨터 이름</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>컴퓨터 캡션 내용</translation>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>컴퓨터 교실</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

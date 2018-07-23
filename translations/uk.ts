@@ -816,14 +816,6 @@ Examples:
         <translation>Вказано некоректний тип. Коректними є значення «%1» і «%2».</translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation>UID об&apos;єкта</translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation>Батьківський UID</translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
@@ -1028,6 +1020,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>UUID об&apos;єкта</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>Батьківський UUID</translation>
     </message>
 </context>
 <context>
@@ -2274,10 +2274,6 @@ Examples:
         <translation>Перевірка сертифіката TLS</translation>
     </message>
     <message>
-        <source>Security mode</source>
-        <translation>Режим захисту</translation>
-    </message>
-    <message>
         <source>System defaults</source>
         <translation>Типове для системи</translation>
     </message>
@@ -2366,6 +2362,10 @@ Examples:
         <translation>Не вдалося прив&apos;язатися до сервера LDAP. Будь ласка, перевірте, чи правильно вказано параметри сервера та реєстраційні дані прив&apos;язки.
 
 %1</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Протокол шифрування</translation>
     </message>
 </context>
 <context>
@@ -2461,14 +2461,6 @@ Examples:
     <message>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings into file</source>
-        <translation>&amp;Зберегти параметри до файла</translation>
-    </message>
-    <message>
-        <source>Save settings into file</source>
-        <translation>Зберегти параметри до файла</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -2626,6 +2618,14 @@ Examples:
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
         <translation>Не вдалося запустити програму із правами доступу адміністратора. Будь ласка, переконайтеся, що у робочому середовищі встановлено sudo-подібну програму! Програму буде запущено із правами доступу звичайного користувача.</translation>
     </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Показувати лише увімкнені комп&apos;ютери</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>З&amp;берегти параметри до файла</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2710,10 +2710,6 @@ Examples:
         <translation>Приховати поле фільтрування комп&apos;ютерів</translation>
     </message>
     <message>
-        <source>Computer management</source>
-        <translation>Керування комп&apos;ютерами</translation>
-    </message>
-    <message>
         <source>Actions such as rebooting or powering down computers</source>
         <translation>Дії, зокрема перезавантаження та вимикання комп&apos;ютерів</translation>
     </message>
@@ -2742,10 +2738,6 @@ Examples:
         <translation>Запуск програми</translation>
     </message>
     <message>
-        <source>Automatically open computer management</source>
-        <translation>Автоматично відкривати вікно керування комп&apos;ютером</translation>
-    </message>
-    <message>
         <source>Modes and features</source>
         <translation>Режими і можливості</translation>
     </message>
@@ -2762,8 +2754,16 @@ Examples:
         <translation>Лише назва комп&apos;ютера</translation>
     </message>
     <message>
-        <source>Computer caption content</source>
-        <translation>Вміст підпису комп&apos;ютера</translation>
+        <source>Computer thumbnail caption</source>
+        <translation>Підпис мініатюри комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Computer rooms</source>
+        <translation>Комп’ютерні класи</translation>
+    </message>
+    <message>
+        <source>Automatically open computer rooms widget</source>
+        <translation>Автоматично відкривати віджет комп&apos;ютерних класів</translation>
     </message>
 </context>
 <context>
