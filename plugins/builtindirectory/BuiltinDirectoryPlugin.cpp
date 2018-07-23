@@ -221,7 +221,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_clear( cons
 
 CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_dump( const QStringList& arguments )
 {
-	CommandLineIO::TableHeader tableHeader( { tr("Object UID"), tr("Parent UID"), tr("Type"), tr("Name"), tr("Host address"), tr("MAC address") } );
+	CommandLineIO::TableHeader tableHeader( { tr("Object UUID"), tr("Parent UUID"), tr("Type"), tr("Name"), tr("Host address"), tr("MAC address") } );
 	CommandLineIO::TableRows tableRows;
 
 	const auto objects = m_configuration.networkObjects();
