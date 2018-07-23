@@ -792,14 +792,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Object UID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Parent UID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
@@ -952,6 +944,14 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
