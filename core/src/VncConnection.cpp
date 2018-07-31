@@ -552,8 +552,6 @@ void VncConnection::handleConnection()
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( remainingUpdateInterval ) );
 			sleeperMutex.unlock();
-
-			SendFramebufferUpdateRequest( m_client, 0, 0, m_client->width, m_client->height, true );
 		}
 	}
 
