@@ -263,8 +263,10 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
+	const auto usernameWithoutDomain = VeyonCore::stripDomain( username );
+
 	if( NetUserGetGroups( WindowsCoreFunctions::toConstWCharArray( dc ),
-						  WindowsCoreFunctions::toConstWCharArray( username ),
+						  WindowsCoreFunctions::toConstWCharArray( usernameWithoutDomain ),
 						  0, &outBuffer, MAX_PREFERRED_LENGTH,
 						  &entriesRead, &totalEntries ) == NERR_Success )
 	{
