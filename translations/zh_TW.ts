@@ -975,11 +975,11 @@ Examples:
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>物件 UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>上層 UUID</translation>
     </message>
 </context>
 <context>
@@ -1059,11 +1059,11 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 目前正在存取這部電腦。</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 嘗試存取這部電腦，但無法驗證成功!</translation>
     </message>
 </context>
 <context>
@@ -2315,7 +2315,7 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>加密協定</translation>
     </message>
 </context>
 <context>
@@ -2570,11 +2570,11 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>只顯示開機的電腦</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>儲存設定到檔案(&amp;S)</translation>
     </message>
 </context>
 <context>
@@ -2693,19 +2693,19 @@ Examples:
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>使用者和電腦名稱</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>只有使用者名稱</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>只有電腦名稱</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>電腦縮圖標題</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -2713,7 +2713,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>自動開啟電腦教室小工具</translation>
     </message>
 </context>
 <context>
@@ -2851,7 +2851,7 @@ Examples:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 遠端存取</translation>
     </message>
 </context>
 <context>
@@ -3133,11 +3133,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>遠端連線時顯示通知</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation type="unfinished"/>
+        <translation>驗證失敗時顯示通知</translation>
     </message>
 </context>
 <context>

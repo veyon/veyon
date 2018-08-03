@@ -929,7 +929,23 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+사용법
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+유효한 변수들: %type% %name% %host% %mac% %room%
+
+예:
+
+* 모든 오브젝트를 CSV 화일로 내보내기:
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* 룸안의 모든 컴퓨터를 CSV 화일로 내보내기:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -950,7 +966,24 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+사용법
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+TYPE 이 &quot;%2&quot; 또는 &quot;%3&quot; 인 오브젝트를 추가함 . PARENT _부모_는 이름 또는 UUID로 지정할 수 있음.
+
+예:
+
+* 룸 추가:
+
+    %1 add room &quot;Room 01&quot;
+
+* 컴퓨터를 룸이름 &quot;Room 01&quot;로 추가:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -971,15 +1004,32 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+사용법
+
+%1 remove &lt;OBJECT&gt;
+
+지정된 오브젝트를 디렉토리에서 제거함. OBJECT_오브젝튼_는 이름 또는 UUID로 지정할 수 있음. 룸을 제거하면 룸안의 모든 컴퓨터들도 제거됨.
+
+예:
+
+* 이름으로 컴퓨터 제거하기:
+
+    %1 remove &quot;Computer 01&quot;
+
+* UUID로 오브젝트를 제거하기:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Object UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>부모 UUID</translation>
     </message>
 </context>
 <context>
@@ -2314,7 +2364,7 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>암호화 프로토콜</translation>
     </message>
 </context>
 <context>
@@ -2569,11 +2619,11 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>전원이 켜진 컴퓨터만 보여주기</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;설정을 화일에 저장</translation>
     </message>
 </context>
 <context>
@@ -2704,7 +2754,7 @@ Examples:
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 썸네일 캡션</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -2712,7 +2762,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 룸의 위젯을 자동으로 열기</translation>
     </message>
 </context>
 <context>

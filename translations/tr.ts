@@ -142,15 +142,15 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı kümeleri arka ucu:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Eksik kullanıcı kümeleri arka ucu</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Öntanımlı kullanıcı kümeleri eklentisi bulunamadı. Lütfen kurulumunuzu gözden geçirin!</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme anahtarları</translation>
     </message>
     <message>
         <source>Introduction</source>
@@ -327,7 +327,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosyası dizinleri</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -347,19 +347,19 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar çifti oluştur</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Anahtarı sil</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Anahtarı içe aktar</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Anahtarı dışa aktar</translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -367,31 +367,31 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosyaları (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme anahtarı adı</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yetkilendirme anahtarı çifti oluşturulacak kullanıcı kümesinin veya rolün adını girin:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1/%2&quot; yetkilendirme anahtarını silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen silinecek anahtar seçin!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen içe aktarılacak yetkilendirme anahtarı için kullanıcı kümesinin veya rolün adını girin:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen dışa aktarılacak anahtar seçin!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -433,127 +433,127 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen izinlerinizi gözden geçirin.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar adı geçersiz karakterler içeriyor!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz anahtar türü belirtildi! Lütfen &quot;%1&quot; veya &quot;%2&quot; belirtin.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen anahtar yok! Lütfen tüm kurulu anahtarları listelemek için &quot;list&quot; komutunu kullanın.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Bir veya daha çok anahtar zaten var! Lütfen onları silmek için &quot;delete&quot; komutunu kullanın.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; için yeni anahtar çifti oluşturuluyor</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>Genel veya özel anahtar oluşturulamadı!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Yeni oluşturulan anahtar çifti &quot;%1&quot; ve &quot;%2&quot; konumuna kaydedildi.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; anahtar dosyası kaldırılamadı!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; anahtar dosyası dizini kaldırılamadı!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Çıktı dosyası için dizin oluşturulamadı.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası zaten var.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Çıktı dosyasına yazılamadı.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1/%2&quot; anahtarı başarıyla &quot;%3&quot; konumuna aktarıldı.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Girdi dosyası okunamadı.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası geçerli özel anahtar içermiyor!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation> &quot;%1&quot; dosyası geçerli genel anahtar içermiyor!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosyası için dizin oluşturulamadı.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation> &quot;%1&quot; anahtar dosyasına yazılamadı.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation> &quot;%1&quot; anahtar dosyası için izinler ayarlanamadı!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1/%2&quot; anahtarı başarıyla içe aktarıldı. Lütfen yetkisiz erişimleri önlemek için &quot;%3&quot; dosyasının izinlerini gözden geçirin.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Özel anahtar genel anahtara dönüştürülemedi</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; özel anahtar dosyası için dizin oluşturulamadı.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Özel anahtar &quot;%1&quot; dosyasına kaydedilemedi!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; özel anahtar dosyası için izinler ayarlanamadı!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; genel anahtar dosyası için dizin oluşturulamadı.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Genel anahtar &quot;%1&quot; dosyasına kaydedilemedi!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; genel anahtar dosyası için izinler ayarlanamadı!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosyasının sahibi &quot;%1&quot; iken &quot;%2&quot; yapılamadı.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; anahtar dosyası için izinler ayarlanamadı.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; anahtarı artık &quot;%2&quot; kullanıcı kümesi tarafından erişilebilir.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -561,34 +561,34 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Anahtar dosyası okunamadı.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>Yeni yetkilendirme anahtar çifti oluştur</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme anahtarını sil</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Yetkilendirme anahtarlarını listele</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Genel veya özel anahtar içe aktar</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Genel veya özel anahtar dışa aktar</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Var olan özel anahtardan genel anahtar elde et</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
@@ -2262,13 +2262,15 @@ Examples:
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Sertifika dosyaları (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP sunucusuna bağlanılamadı. Lütfen sunucu parametrelerini gözden geçirin.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
@@ -2278,7 +2280,7 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Şifreleme iletişim kuralı</translation>
     </message>
 </context>
 <context>
@@ -2289,7 +2291,7 @@ Examples:
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>Uygun LDAP hata açıklaması yok</translation>
     </message>
 </context>
 <context>
@@ -2312,15 +2314,15 @@ Examples:
     </message>
     <message>
         <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon için LDAP/AD tümleşmesi sağla</translation>
     </message>
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (bilgisayarları ve odaları LDAP/AD&apos;den yükle)</translation>
     </message>
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (kullanıcıları ve kümeleri LDAP/AD&apos;den yükle)</translation>
     </message>
 </context>
 <context>
@@ -2525,19 +2527,19 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>Yetersiz öncelikler</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Yönetici öncelikleriyle başlatılamıyor. Lütfen masaüstü ortamınız için sudo benzeri programın kurulu olduğundan emin olun! Program sıradan kullanıcı öncelikleriyle çalışacak.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca gücü açık bilgisayarları göster</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Ayarları dosyaya &amp;kaydet</translation>
     </message>
 </context>
 <context>
@@ -2636,11 +2638,11 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Arka plan rengi</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>Küçük resim güncelleme aralığı</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2656,19 +2658,19 @@ Examples:
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı ve bilgisayar adı</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca kullanıcı adı</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca bilgisayar adı</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar küçük resminin açıklaması</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -2676,7 +2678,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar odaları parçacığını kendiliğinden aç</translation>
     </message>
 </context>
 <context>

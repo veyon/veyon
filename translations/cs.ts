@@ -975,11 +975,11 @@ Examples:
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Nikde se neopakující identifikátor objektu</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Nikde se neopakující identifikátor nadřazeného</translation>
     </message>
 </context>
 <context>
@@ -2311,7 +2311,7 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Šifrovací protokol</translation>
     </message>
 </context>
 <context>
@@ -2566,11 +2566,11 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit pouze zapnuté počítače</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>Uložit na&amp;stavení do souboru</translation>
     </message>
 </context>
 <context>
@@ -2701,7 +2701,7 @@ Examples:
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Titulek náhledu počítače</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -2709,7 +2709,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky otevřít ovládací prvek počítačových místností</translation>
     </message>
 </context>
 <context>

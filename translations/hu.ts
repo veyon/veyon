@@ -1026,11 +1026,11 @@ Példák:
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Objektum UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Szülő UUID</translation>
     </message>
 </context>
 <context>
@@ -2764,7 +2764,7 @@ Példák:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépterem-minialkalmazás automatikus megnyitása</translation>
     </message>
 </context>
 <context>

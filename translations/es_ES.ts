@@ -979,11 +979,11 @@ Examples:
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID de objeto</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID del principal</translation>
     </message>
 </context>
 <context>
@@ -1063,11 +1063,11 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ahora está accediendo a esta equipo.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>¡Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ha intentado acceder a este equipo pero no se ha autenticado correctamente!</translation>
     </message>
 </context>
 <context>
@@ -2319,7 +2319,7 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Protocolo de encriptación</translation>
     </message>
 </context>
 <context>
@@ -2574,11 +2574,11 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar sólo los equipos encendidos</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Guardar configuración a un archivo</translation>
     </message>
 </context>
 <context>
@@ -2697,15 +2697,15 @@ Examples:
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Nombre del usuario y equipo</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Sólo nombre del usuario</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Sólo nombre del equipo</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2717,7 +2717,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>Abrir automáticamente el widget de aulas</translation>
     </message>
 </context>
 <context>
@@ -2855,7 +2855,7 @@ Examples:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Acceso remoto</translation>
     </message>
 </context>
 <context>
@@ -3137,11 +3137,11 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar notificación en conexión remota</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar notificación en intentos de autenticación fallidos</translation>
     </message>
 </context>
 <context>

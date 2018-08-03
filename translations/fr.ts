@@ -1026,11 +1026,11 @@ Exemples:
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID Objet</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID Parent </translation>
     </message>
 </context>
 <context>
@@ -2764,7 +2764,7 @@ Exemples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir automatiquement le widget des salles informatiques</translation>
     </message>
 </context>
 <context>
