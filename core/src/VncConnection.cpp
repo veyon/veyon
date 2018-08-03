@@ -275,6 +275,46 @@ VncConnection::~VncConnection()
 
 
 
+QImage VncConnection::image() const
+{
+	QReadLocker locker( &m_imgLock );
+	return m_image;
+}
+
+
+
+void VncConnection::restart()
+{
+	setControlFlag( RestartConnection, true );
+}
+
+
+
+void VncConnection::stop()
+{
+	m_scaledScreen = QImage();
+
+	setControlFlag( TerminateThread, true );
+
+	m_updateIntervalSleeper.wakeAll();
+}
+
+
+
+void VncConnection::stopAndDeleteLater()
+{
+	if( isRunning() )
+	{
+		connect( this, &VncConnection::finished, this, &VncConnection::deleteLater );
+		stop();
+	}
+	else
+	{
+		deleteLater();
+	}
+}
+
+
 
 void VncConnection::setHost( const QString& host )
 {
@@ -313,47 +353,6 @@ void VncConnection::setPort( int port )
 	{
 		QMutexLocker locker( &m_globalMutex );
 		m_port = port;
-	}
-}
-
-
-
-QImage VncConnection::image() const
-{
-	QReadLocker locker( &m_imgLock );
-	return m_image;
-}
-
-
-
-void VncConnection::restart()
-{
-	setControlFlag( RestartConnection, true );
-}
-
-
-
-void VncConnection::stop()
-{
-	m_scaledScreen = QImage();
-
-	setControlFlag( TerminateThread, true );
-
-	m_updateIntervalSleeper.wakeAll();
-}
-
-
-
-void VncConnection::stopAndDeleteLater()
-{
-	if( isRunning() )
-	{
-		connect( this, &VncConnection::finished, this, &VncConnection::deleteLater );
-		stop();
-	}
-	else
-	{
-		deleteLater();
 	}
 }
 
