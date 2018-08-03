@@ -141,7 +141,7 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 
 
 
-bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser)
+bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUser )
 {
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
