@@ -203,11 +203,15 @@ void VncConnection::hookOutputHandler( const char* format, ... )
 	va_list args;
 	va_start( args, format );
 
-	const auto message = QString::asprintf( format, args ); // Flawfinder: ignore
+	static const int MaxMessageLength = 256;
+	char message[MaxMessageLength];
+
+	vsnprintf( message, MaxMessageLength, format, args );
+	message[MaxMessageLength-1] = 0;
 
 	va_end(args);
 
-	qDebug() << "VncConnection: VNC message:" << message.trimmed();
+	qDebug( "VncConnection: VNC message: %s", message );
 }
 
 
