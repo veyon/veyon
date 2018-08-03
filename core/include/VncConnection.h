@@ -197,7 +197,7 @@ protected:
 
 private:
 	// intervals and timeouts
-	static const int ThreadTerminationTimeout = 10000;
+	static const int ThreadTerminationTimeout = 30000;
 	static const int ConnectionRetryInterval = 1000;
 	static const int MessageWaitTimeout = 500;
 	static const int SocketKeepaliveIdleTime = 1000;
