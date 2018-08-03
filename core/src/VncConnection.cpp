@@ -237,7 +237,6 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_globalMutex(),
 	m_controlFlagMutex(),
 	m_updateIntervalSleeper(),
-	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
 	m_scaledScreen(),
@@ -246,11 +245,6 @@ VncConnection::VncConnection( QObject* parent ) :
 {
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
-
-	m_terminateTimer.setSingleShot( true );
-	m_terminateTimer.setInterval( ThreadTerminationTimeout );
-
-	connect( &m_terminateTimer, &QTimer::timeout, this, &VncConnection::terminate );
 
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
 	{
@@ -279,43 +273,6 @@ VncConnection::~VncConnection()
 	}
 }
 
-
-
-
-void VncConnection::stop( bool deleteAfterFinished )
-{
-	if( isRunning() )
-	{
-		if( deleteAfterFinished )
-		{
-			connect( this, &VncConnection::finished,
-					 this, &VncConnection::deleteLater );
-		}
-
-		m_scaledScreen = QImage();
-
-		setControlFlag( TerminateThread, true );
-
-		m_updateIntervalSleeper.wakeAll();
-
-		// thread termination causes deadlock when calling any QThread functions such as isRunning()
-		// or the destructor if the thread itself is stuck in a blocking (e.g. network) function
-		// therefore do not terminate the thread on windows but let it run in background as long
-		// as the blocking function is running
-#ifndef Q_OS_WIN32
-		// terminate thread in background after timeout
-		m_terminateTimer.start();
-#endif
-
-		// stop timer if thread terminates properly before timeout
-		connect( this, &VncConnection::finished,
-				 &m_terminateTimer, &QTimer::stop );
-	}
-	else if( deleteAfterFinished )
-	{
-		deleteLater();
-	}
-}
 
 
 
@@ -350,7 +307,6 @@ void VncConnection::setHost( const QString& host )
 
 
 
-
 void VncConnection::setPort( int port )
 {
 	if( port >= 0 )
@@ -373,6 +329,32 @@ QImage VncConnection::image() const
 void VncConnection::restart()
 {
 	setControlFlag( RestartConnection, true );
+}
+
+
+
+void VncConnection::stop()
+{
+	m_scaledScreen = QImage();
+
+	setControlFlag( TerminateThread, true );
+
+	m_updateIntervalSleeper.wakeAll();
+}
+
+
+
+void VncConnection::stopAndDeleteLater()
+{
+	if( isRunning() )
+	{
+		connect( this, &VncConnection::finished, this, &VncConnection::deleteLater );
+		stop();
+	}
+	else
+	{
+		deleteLater();
+	}
 }
 
 

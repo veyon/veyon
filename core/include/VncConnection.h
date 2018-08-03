@@ -88,7 +88,8 @@ public:
 	QImage image() const;
 
 	void restart();
-	void stop( bool deleteAfterFinished = false );
+	void stop();
+	void stopAndDeleteLater();
 
 	void setHost( const QString& host );
 	void setPort( int port );
@@ -259,7 +260,6 @@ private:
 	QMutex m_globalMutex;
 	QMutex m_controlFlagMutex;
 	QWaitCondition m_updateIntervalSleeper;
-	QTimer m_terminateTimer;
 	int m_framebufferUpdateInterval;
 
 	// queue for RFB and custom events

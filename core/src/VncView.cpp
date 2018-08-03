@@ -112,7 +112,8 @@ VncView::~VncView()
 	unpressModifiers();
 	delete m_keyboardShortcutTrapper;
 
-	m_vncConn->stop( true );
+	m_vncConn->stopAndDeleteLater();
+	m_vncConn = nullptr;
 }
 
 

@@ -124,7 +124,7 @@ void ComputerControlInterface::stop()
 	if( m_vncConnection )
 	{
 		// do not delete VNC connection but let it delete itself after stopping automatically
-		m_vncConnection->stop( true );
+		m_vncConnection->stopAndDeleteLater();
 		m_vncConnection = nullptr;
 	}
 
