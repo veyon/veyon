@@ -28,7 +28,15 @@
 
 SasEventListener::SasEventListener()
 {
-	m_sasLibrary = LoadLibrary( L"sas.dll" );
+	const wchar_t* sasDll = L"\\sas.dll";
+	wchar_t sasPath[MAX_PATH + wcslen(sasDll) + 1 ] = { 0 };
+	if( GetSystemDirectory( sasPath, MAX_PATH ) == 0 )
+	{
+		qCritical() << Q_FUNC_INFO << "could not determine system directory";
+	}
+	wcscat( sasPath, sasDll );
+
+	m_sasLibrary = LoadLibrary( sasPath ); // Flawfinder: ignore
 	m_sendSas = (SendSas)GetProcAddress( m_sasLibrary, "SendSAS" );
 
 	if( m_sendSas == nullptr )
