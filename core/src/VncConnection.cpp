@@ -169,7 +169,7 @@ void VncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, i
 {
 	if( bpp != 4 )
 	{
-		qWarning( "VncConnection: bytes per pixel != 4" );
+		qWarning() << Q_FUNC_INFO << QThread::currentThreadId() << "bytes per pixel != 4";
 		return;
 	}
 
@@ -761,7 +761,7 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 #endif
 	}
 
-	qDebug() << "VncConnection::handleSecTypeVeyon(): received authentication types:" << authTypes;
+	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "received authentication types:" << authTypes;
 
 	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
 	if( authTypes.count() > 0 )
@@ -785,7 +785,8 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 		}
 	}
 
-	qDebug() << "VncConnection::handleSecTypeVeyon(): chose authentication type" << chosenAuthType;
+	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "chose authentication type:" << authTypes;
+
 	VariantArrayMessage authReplyMessage( &socketDevice );
 
 	authReplyMessage.write( chosenAuthType );
@@ -816,7 +817,7 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 
 			if( challenge.size() != CryptoCore::ChallengeSize )
 			{
-				qCritical( "VncConnection::handleSecTypeVeyon(): challenge size mismatch!" );
+				qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "challenge size mismatch!";
 				break;
 			}
 
@@ -824,7 +825,7 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 			auto key = VeyonCore::authenticationCredentials().privateKey();
 			if( key.isNull() || key.canSign() == false )
 			{
-				qCritical( "VncConnection::handleSecTypeVeyon(): invalid private key!" );
+				qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "invalid private key!";
 				break;
 			}
 
@@ -850,7 +851,7 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 
 		if( publicKey.canEncrypt() == false )
 		{
-			qCritical( "VncConnection::handleSecTypeVeyon(): can't encrypt with given public key!" );
+			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "can't encrypt with given public key!";
 			break;
 		}
 
@@ -858,7 +859,7 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
 		if( encryptedPassword.isEmpty() )
 		{
-			qCritical( "VncConnection::handleSecTypeVeyon(): password encryption failed!" );
+			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "password encryption failed!";
 			break;
 		}
 
