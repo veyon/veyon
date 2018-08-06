@@ -61,8 +61,6 @@ public:
 		return "VEYON_LOG_LEVEL";
 	}
 
-	static void log( LogLevel ll, const QString &msg );
-
 
 private:
 	void initLogFile();
@@ -70,19 +68,22 @@ private:
 	void closeLogFile();
 	void clearLogFile();
 	void rotateLogFile();
-	void outputMessage( const QString &msg );
+
+	void log( LogLevel logLevel, const QString& message );
+	void outputMessage( const QString& message );
 
 	static QString formatMessage( LogLevel ll, const QString &msg );
 	static void qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const QString& msg );
 
-	static LogLevel logLevel;
-	static Logger *instance;
-	static QMutex logMutex;
+	static Logger* s_instance;
 
-	static LogLevel lastMsgLevel;
-	static QString lastMsg;
-	static int lastMsgCount;
-	static bool logToSystem;
+	LogLevel m_logLevel;
+	QMutex m_logMutex;
+
+	LogLevel m_lastMessageLevel;
+	QString m_lastMessage;
+	int m_lastMessageCount;
+	bool m_logToSystem;
 
 	QString m_appName;
 
