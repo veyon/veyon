@@ -197,8 +197,7 @@ void VncConnection::hookCutText( rfbClient* client, const char* text, int textle
 
 
 
-
-void VncConnection::hookOutputHandler( const char* format, ... )
+void VncConnection::rfbClientLogDebug( const char* format, ... )
 {
 	va_list args;
 	va_start( args, format );
@@ -211,7 +210,15 @@ void VncConnection::hookOutputHandler( const char* format, ... )
 
 	va_end(args);
 
-	qDebug( "VncConnection: VNC message: %s", message );
+	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << message;
+}
+
+
+
+
+void VncConnection::rfbClientLogNone( const char* format, ... )
+{
+	Q_UNUSED(format);
 }
 
 
@@ -243,8 +250,16 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_scaledSize(),
 	m_imgLock()
 {
-	rfbClientLog = hookOutputHandler;
-	rfbClientErr = hookOutputHandler;
+	if( VeyonCore::isDebugging() )
+	{
+		rfbClientLog = rfbClientLogDebug;
+		rfbClientErr = rfbClientLogDebug;
+	}
+	else
+	{
+		rfbClientLog = rfbClientLogNone;
+		rfbClientErr = rfbClientLogNone;
+	}
 
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
 	{

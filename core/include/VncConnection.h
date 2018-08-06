@@ -240,7 +240,8 @@ private:
 	static int8_t hookHandleCursorPos( rfbClient* client, int x, int y );
 	static void hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
 	static void hookCutText( rfbClient* client, const char *text, int textlen );
-	static void hookOutputHandler( const char* format, ... );
+	static void rfbClientLogDebug( const char* format, ... );
+	static void rfbClientLogNone( const char* format, ... );
 	static int8_t hookHandleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 	static void framebufferCleanup( void* framebuffer );
 
