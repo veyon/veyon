@@ -311,6 +311,13 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 
 
 
+bool VeyonCore::isDebugging()
+{
+	return instance()->m_logger->logLevel() >= Logger::LogLevelDebug;
+}
+
+
+
 QString VeyonCore::stripDomain( const QString& username )
 {
 	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")

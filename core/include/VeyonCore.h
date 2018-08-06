@@ -128,6 +128,8 @@ public:
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
 
+	static bool isDebugging();
+
 	static QString stripDomain( const QString& username );
 	static QString formattedUuid( QUuid uuid );
 
