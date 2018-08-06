@@ -61,6 +61,11 @@ public:
 		return "VEYON_LOG_LEVEL";
 	}
 
+	LogLevel logLevel() const
+	{
+		return m_logLevel;
+	}
+
 
 private:
 	void initLogFile();
