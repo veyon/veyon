@@ -1,6 +1,8 @@
 language: cpp
 services:
     - docker
+git:
+    depth: false
 dist: trusty
 sudo: required
 matrix:
