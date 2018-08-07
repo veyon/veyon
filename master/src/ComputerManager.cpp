@@ -112,15 +112,11 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 
 	for( const auto& computer : computers )
 	{
-		QModelIndex networkObjectIndex = findNetworkObject( computer.networkObjectUid() );
+		const auto networkObjectIndex = findNetworkObject( computer.networkObjectUid() );
 		if( networkObjectIndex.isValid() )
 		{
-			// create index for user column
-			networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(),
-																		 OverlayDataColumnUsername,
-																		 networkObjectIndex.parent() );
 			// fetch user
-			const auto user = m_networkObjectOverlayDataModel->data( networkObjectIndex ).toString();
+			const auto user = m_networkObjectOverlayDataModel->data( mapToUserNameModelIndex( networkObjectIndex ) ).toString();
 			// create new line with computer and user
 			lines += computer.name() + ";" + computer.hostAddress() + ";" + user; // clazy:exclude=reserve-candidates
 		}
@@ -144,14 +140,11 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 
 void ComputerManager::updateUser( ComputerControlInterface::Pointer controlInterface )
 {
-	auto networkObjectIndex = findNetworkObject( controlInterface->computer().networkObjectUid() );
+	const auto networkObjectIndex = findNetworkObject( controlInterface->computer().networkObjectUid() );
 
 	if( networkObjectIndex.isValid() )
 	{
-		networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(),
-																	 OverlayDataColumnUsername,
-																	 networkObjectIndex.parent() );
-		m_networkObjectOverlayDataModel->setData( networkObjectIndex,
+		m_networkObjectOverlayDataModel->setData( mapToUserNameModelIndex( networkObjectIndex ),
 												  controlInterface->user(),
 												  Qt::DisplayRole );
 	}
@@ -436,4 +429,14 @@ QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObject
 	}
 
 	return QModelIndex();
+}
+
+
+
+QModelIndex ComputerManager::mapToUserNameModelIndex( const QModelIndex& networkObjectIndex )
+{
+	// map arbitrary index from m_networkObjectModel to username column in m_networkObjectOverlayDataModel
+	const auto parent = m_networkObjectOverlayDataModel->mapFromSource( networkObjectIndex.parent() );
+
+	return m_networkObjectOverlayDataModel->index( networkObjectIndex.row(), OverlayDataColumnUsername, parent );
 }
