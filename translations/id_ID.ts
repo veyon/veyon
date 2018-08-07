@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versi</translation>
+        <translation>Versi:</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -74,11 +74,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Silakan tambahkan grup yang anggotanya harus diotorisasi untuk mengakses komputer di jaringan Veyon Anda.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Kelompok pengguna yang diotorisasi</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -90,15 +90,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Aturan kontrol akses</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Tambah aturan kontrol akses</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Hapus aturan kontrol akses</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
@@ -209,7 +209,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Jika lebih dari satu kondisi diaktifkan, setiap kondisi harus dipenuhi untuk membuat aturan berlaku (logika AND). Jika hanya satu dari beberapa kondisi yang harus dipenuhi (OR logis), buat beberapa aturan kontrol akses.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -284,7 +284,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan informasi pengguna dan komputer berikut untuk menguji kumpulan aturan yang dikonfigurasi.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -407,15 +407,15 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Buat pasangan kunci di komputer master.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Tetapkan grup akses yang anggotanya harus diizinkan untuk mengakses komputer lain.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Ekspor kunci publik dan impor pada semua komputer klien dengan nama yang sama.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -426,14 +426,17 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Sepasang kunci otentikasi terdiri dari dua kunci kriptografi yang digabungkan, kunci pribadi dan kunci publik. 
+Kunci privat memungkinkan pengguna pada komputer master untuk mengakses komputer klien. 
+Penting bahwa hanya pengguna yang berwenang yang memiliki akses baca ke file kunci pribadi. 
+Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan koneksi masuk.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Bahasa:</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -1210,7 +1213,7 @@ Examples:
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Server demo</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1234,7 +1237,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1265,7 +1268,7 @@ Examples:
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Server demo</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
@@ -1284,15 +1287,15 @@ Examples:
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation type="unfinished"/>
+        <translation>Konfirmasi akses desktop</translation>
     </message>
     <message>
         <source>Never for this session</source>
-        <translation type="unfinished"/>
+        <translation>Tidak pernah untuk sesi ini</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation type="unfinished"/>
+        <translation>Selalu untuk sesi ini</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1530,7 +1533,7 @@ Examples:
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -2392,7 +2395,7 @@ Examples:
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Keluar</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -2824,47 +2827,47 @@ Examples:
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished"/>
+        <translation>Layar penuh</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
+        <translation>Jendela</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Keluar</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
-        <translation type="unfinished"/>
+        <translation>Win</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -2872,7 +2875,7 @@ Examples:
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>Tersambung.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -2898,7 +2901,7 @@ Examples:
     </message>
     <message>
         <source>Run programs</source>
-        <translation type="unfinished"/>
+        <translation>Jalankan program</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -2909,11 +2912,11 @@ Examples:
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"/>
+        <translation>Kunci</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>Buka kunci</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3132,23 +3135,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Daftarkan Layanan Veyon</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan Pendaftaran Layanan Veyon</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Mulai Layanan Veyon</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Hentikan Layanan Veyon</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Restart Layanan Veyon</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -3182,7 +3185,7 @@ Typically this is required to support terminal servers.</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikon baki sistem</translation>
     </message>
 </context>
 <context>
@@ -3223,7 +3226,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>Kirim pesan pada pengguna</translation>
     </message>
 </context>
 <context>
@@ -3287,7 +3290,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
@@ -3326,7 +3329,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Layanan Veyon</translation>
     </message>
 </context>
 <context>
