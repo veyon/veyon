@@ -32,7 +32,8 @@
 #include "Logger.h"
 #include "PlatformCoreFunctions.h"
 
-Logger* Logger::s_instance = nullptr;
+QAtomicPointer<Logger> Logger::s_instance = nullptr;
+QMutex Logger::s_instanceMutex;
 
 
 Logger::Logger( const QString &appName ) :
@@ -47,9 +48,12 @@ Logger::Logger( const QString &appName ) :
 	m_logFileSizeLimit( -1 ),
 	m_logFileRotationCount( -1 )
 {
+	s_instanceMutex.lock();
+
 	Q_ASSERT(s_instance == nullptr);
 
 	s_instance = this;
+	s_instanceMutex.unlock();
 
 	auto configuredLogLevel = VeyonCore::config().logLevel();
 	if( qEnvironmentVariableIsSet( logLevelEnvironmentVariable() ) )
@@ -88,7 +92,9 @@ Logger::~Logger()
 
 	qInstallMessageHandler(nullptr);
 
+	s_instanceMutex.lock();
 	s_instance = nullptr;
+	s_instanceMutex.unlock();
 
 	delete m_logFile;
 }
@@ -231,6 +237,13 @@ QString Logger::formatMessage( LogLevel ll, const QString& message )
 
 void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& context, const QString& message )
 {
+	QMutexLocker instanceLocker( &s_instanceMutex );
+
+	if( s_instance.load() == nullptr )
+	{
+		return;
+	}
+
 	LogLevel logLevel = LogLevelDefault;
 
 	switch( messageType )
@@ -246,11 +259,11 @@ void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& cont
 
 	if( context.category && strcmp(context.category, "default") != 0 )
 	{
-		s_instance->log( logLevel, QStringLiteral( "[%1] " ).arg(context.category) + message );
+		s_instance.load()->log( logLevel, QStringLiteral( "[%1] " ).arg(context.category) + message );
 	}
 	else
 	{
-		s_instance->log( logLevel, message );
+		s_instance.load()->log( logLevel, message );
 	}
 }
 

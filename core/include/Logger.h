@@ -80,7 +80,8 @@ private:
 	static QString formatMessage( LogLevel ll, const QString &msg );
 	static void qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const QString& msg );
 
-	static Logger* s_instance;
+	static QAtomicPointer<Logger> s_instance;
+	static QMutex s_instanceMutex;
 
 	LogLevel m_logLevel;
 	QMutex m_logMutex;
