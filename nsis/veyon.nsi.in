@@ -33,10 +33,11 @@ XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
 InstallDir "$PROGRAMFILES64\Veyon"
 ShowInstDetails show
-RequestExecutionLevel highest
+RequestExecutionLevel admin
 
 ######################################################################
 
+!include "LogicLib.nsh"
 !include "MUI2.nsh"
 !include "FileFunc.nsh"
 
@@ -200,11 +201,17 @@ FunctionEnd
 ######################################################################
 
 Function .onInit
-#!insertmacro MUI_LANGDLL_DISPLAY
 ${GetParameters} $R0
 ${GetOptions} $R0 "/NoMaster" $R1
 ${IfNot} ${Errors}
   !insertmacro UnselectSection ${SEC_MASTER}
+${EndIf}
+UserInfo::GetAccountType
+pop $0
+${If} $0 != "admin"
+	MessageBox mb_iconstop "Please run the installer with administrative rights!"
+	SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
+	Quit
 ${EndIf}
 FunctionEnd
 
