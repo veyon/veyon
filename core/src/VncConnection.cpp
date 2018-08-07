@@ -465,6 +465,12 @@ void VncConnection::establishConnection()
 			// rfbInitClient() calls rfbClientCleanup() when failed
 			m_client = nullptr;
 
+			// do not sleep when already requested to stop
+			if( isControlFlagSet( TerminateThread ) )
+			{
+				break;
+			}
+
 			// guess reason why connection failed
 			if( isControlFlagSet( ServerReachable ) == false )
 			{
@@ -485,12 +491,6 @@ void VncConnection::establishConnection()
 			{
 				// failed for an unknown reason
 				setState( ConnectionFailed );
-			}
-
-			// do not sleep when already requested to stop
-			if( isControlFlagSet( TerminateThread ) )
-			{
-				break;
 			}
 
 			// wait a bit until next connect
