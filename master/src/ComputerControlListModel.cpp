@@ -257,6 +257,11 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 void ComputerControlListModel::stopComputerControlInterface( ComputerControlInterface::Pointer controlInterface )
 {
 	m_master->stopAllModeFeatures( { controlInterface } );
+
+	controlInterface->disconnect( &m_master->computerManager() );
+
+	controlInterface->setUser( QString() );
+	m_master->computerManager().updateUser( controlInterface );
 }
 
 
