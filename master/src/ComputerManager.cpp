@@ -116,8 +116,9 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 		if( networkObjectIndex.isValid() )
 		{
 			// create index for user column
-			networkObjectIndex = m_networkObjectOverlayDataModel->
-					index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
+			networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(),
+																		 OverlayDataColumnUsername,
+																		 networkObjectIndex.parent() );
 			// fetch user
 			const auto user = m_networkObjectOverlayDataModel->data( networkObjectIndex ).toString();
 			// create new line with computer and user
@@ -147,7 +148,9 @@ void ComputerManager::updateUser( ComputerControlInterface::Pointer controlInter
 
 	if( networkObjectIndex.isValid() )
 	{
-		networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(), 1, networkObjectIndex.parent() );
+		networkObjectIndex = m_networkObjectOverlayDataModel->index( networkObjectIndex.row(),
+																	 OverlayDataColumnUsername,
+																	 networkObjectIndex.parent() );
 		m_networkObjectOverlayDataModel->setData( networkObjectIndex,
 												  controlInterface->user(),
 												  Qt::DisplayRole );

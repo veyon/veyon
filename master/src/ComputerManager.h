@@ -76,6 +76,8 @@ private:
 
 	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
+	static const int OverlayDataColumnUsername = 1;
+
 	UserConfig& m_config;
 
 	NetworkObjectDirectory* m_networkObjectDirectory;
