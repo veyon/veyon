@@ -161,6 +161,9 @@ public:
 
 	void rescaleScreen();
 
+	static void* clientData( rfbClient* client, int tag );
+	void setClientData( int tag, void* data );
+
 	// authentication
 	static void handleSecTypeVeyon( rfbClient* client );
 	static void handleMsLogonIIAuth( rfbClient* client );
@@ -176,7 +179,7 @@ public:
 
 
 signals:
-	void newClient( rfbClient* c );
+	void connectionEstablished();
 	void imageUpdated( int x, int y, int w, int h );
 	void framebufferUpdateComplete();
 	void framebufferSizeChanged( int w, int h );
@@ -209,6 +212,8 @@ private:
 	static const int RfbBitsPerSample = 8;
 	static const int RfbSamplesPerPixel = 3;
 	static const int RfbBytesPerPixel = 4;
+
+	static const int VncConnectionTag = 0x590123;
 
 	enum ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,

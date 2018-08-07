@@ -115,7 +115,7 @@ private:
 
 rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
 {
-	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
 		return connection->initFrameBuffer( client );
@@ -129,7 +129,7 @@ rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
 
 void VncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h )
 {
-	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
 		emit connection->imageUpdated( x, y, w, h );
@@ -141,7 +141,7 @@ void VncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h 
 
 void VncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
 {
-	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
 		connection->finishFrameBufferUpdate();
@@ -153,7 +153,7 @@ void VncConnection::hookFinishFrameBufferUpdate( rfbClient* client )
 
 rfbBool VncConnection::hookHandleCursorPos( rfbClient* client, int x, int y )
 {
-	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
 		emit connection->cursorPosChanged( x, y );
@@ -179,18 +179,22 @@ void VncConnection::hookCursorShape( rfbClient* client, int xh, int yh, int w, i
 	QPixmap cursorShape( QPixmap::fromImage( QImage( client->rcSource, w, h, QImage::Format_RGB32 ) ) );
 	cursorShape.setMask( QBitmap::fromImage( alpha ) );
 
-	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
-	emit connection->cursorShapeUpdated( cursorShape, xh, yh );
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
+	if( connection )
+	{
+		emit connection->cursorShapeUpdated( cursorShape, xh, yh );
+	}
 }
 
 
 
 void VncConnection::hookCutText( rfbClient* client, const char* text, int textlen )
 {
-	QString cutText = QString::fromUtf8( text, textlen );
-	if( !cutText.isEmpty() )
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
+	const auto cutText = QString::fromUtf8( text, textlen );
+
+	if( connection && cutText.isEmpty() == false  )
 	{
-		auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 		emit connection->gotCut( cutText );
 	}
 }
@@ -307,6 +311,8 @@ void VncConnection::restart()
 
 void VncConnection::stop()
 {
+	setClientData( VncConnectionTag, nullptr );
+
 	m_scaledScreen = QImage();
 
 	setControlFlag( TerminateThread, true );
@@ -399,6 +405,31 @@ void VncConnection::rescaleScreen()
 
 
 
+void* VncConnection::clientData( rfbClient* client, int tag )
+{
+	if( client )
+	{
+		return rfbClientGetClientData( client, reinterpret_cast<void *>( tag ) );
+	}
+
+	return nullptr;
+}
+
+
+
+void VncConnection::setClientData( int tag, void* data )
+{
+	m_globalMutex.lock();
+
+	if( m_client )
+	{
+		rfbClientSetClientData( m_client, reinterpret_cast<void *>( tag ), data );
+	}
+
+	m_globalMutex.unlock();
+}
+
+
 
 void VncConnection::run()
 {
@@ -431,7 +462,7 @@ void VncConnection::establishConnection()
 		m_client->HandleCursorPos = hookHandleCursorPos;
 		m_client->GotCursorShape = hookCursorShape;
 		m_client->GotXCutText = hookCutText;
-		rfbClientSetClientData( m_client, nullptr, this );
+		setClientData( VncConnectionTag, this );
 
 		m_globalMutex.lock();
 
@@ -449,12 +480,13 @@ void VncConnection::establishConnection()
 
 		m_globalMutex.unlock();
 
-		emit newClient( m_client );
-
 		setControlFlag( ServerReachable, false );
 
-		if( rfbInitClient( m_client, nullptr, nullptr ) )
+		if( rfbInitClient( m_client, nullptr, nullptr ) &&
+				isControlFlagSet( TerminateThread ) == false )
 		{
+			emit connectionEstablished();
+
 			VeyonCore::platform().networkFunctions().configureSocketKeepalive( m_client->sock, true, SocketKeepaliveIdleTime,
 																			   SocketKeepaliveInterval, SocketKeepaliveCount );
 
@@ -742,6 +774,12 @@ void VncConnection::clientCut( const QString& text )
 
 void VncConnection::handleSecTypeVeyon( rfbClient* client )
 {
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
+	if( connection == nullptr )
+	{
+		return;
+	}
+
 	SocketDevice socketDevice( libvncClientDispatcher, client );
 	VariantArrayMessage message( &socketDevice );
 	message.receive();
@@ -771,16 +809,12 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 		// look whether the VncConnection recommends a specific
 		// authentication type (e.g. VeyonAuthHostBased when running as
 		// demo client)
-		auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
 
-		if( connection != nullptr )
+		for( auto authType : authTypes )
 		{
-			for( auto authType : authTypes )
+			if( connection->veyonAuthType() == authType )
 			{
-				if( connection->veyonAuthType() == authType )
-				{
-					chosenAuthType = authType;
-				}
+				chosenAuthType = authType;
 			}
 		}
 	}
@@ -887,7 +921,7 @@ void VncConnection::handleSecTypeVeyon( rfbClient* client )
 
 void VncConnection::hookPrepareAuthentication( rfbClient* client )
 {
-	auto connection = static_cast<VncConnection *>( rfbClientGetClientData( client, nullptr ) );
+	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
 		// set our internal flag which indicates that we basically have communication with the client

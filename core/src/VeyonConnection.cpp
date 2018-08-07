@@ -63,7 +63,6 @@ private:
 
 
 static rfbClientProtocolExtension* __veyonProtocolExt = nullptr;
-static void* VeyonConnectionTag = reinterpret_cast<void *>( PortOffsetVncServer ); // an unique ID
 
 
 
@@ -84,7 +83,7 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 
 	if( m_vncConnection )
 	{
-		connect( m_vncConnection, &VncConnection::newClient, this, &VeyonConnection::initNewClient, Qt::DirectConnection );
+		connect( m_vncConnection, &VncConnection::connectionEstablished, this, &VeyonConnection::registerConnection, Qt::DirectConnection );
 	}
 }
 
@@ -92,6 +91,7 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 
 VeyonConnection::~VeyonConnection()
 {
+	unregisterConnection();
 }
 
 
@@ -109,16 +109,29 @@ void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 
 
 
-void VeyonConnection::initNewClient( rfbClient* client )
+void VeyonConnection::registerConnection()
 {
-	rfbClientSetClientData( client, VeyonConnectionTag, this );
+	if( m_vncConnection.isNull() == false )
+	{
+		m_vncConnection->setClientData( VeyonConnectionTag, this );
+	}
+}
+
+
+
+void VeyonConnection::unregisterConnection()
+{
+	if( m_vncConnection.isNull() == false )
+	{
+		m_vncConnection->setClientData( VeyonConnectionTag, nullptr );
+	}
 }
 
 
 
 rfbBool VeyonConnection::handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 {
-	auto connection = reinterpret_cast<VeyonConnection *>( rfbClientGetClientData( client, VeyonConnectionTag ) );
+	auto connection = reinterpret_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnectionTag ) );
 	if( connection )
 	{
 		return connection->handleServerMessage( client, msg->type );
@@ -146,7 +159,7 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 				 << featureMessage.command()
 				 << "with arguments" << featureMessage.arguments();
 
-		emit featureMessageReceived(  featureMessage );
+		emit featureMessageReceived( featureMessage );
 
 		return true;
 	}

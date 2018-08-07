@@ -73,13 +73,15 @@ signals:
 	void featureMessageReceived( const FeatureMessage& );
 
 private slots:
-	void initNewClient( rfbClient* client );
+	void registerConnection();
+	void unregisterConnection();
 
 private:
 	static rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 
+	static const int VeyonConnectionTag = 0xFE14A11;
 
 	QPointer<VncConnection> m_vncConnection;
 
