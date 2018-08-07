@@ -86,9 +86,11 @@ bool NetworkObjectOverlayDataModel::setData( const QModelIndex& index, const QVa
 
 	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::UidRole ).toUuid();
 
-	m_overlayData[networkObjectUid] = value;
-
-	emit dataChanged( index, index, QVector<int>( { m_overlayDataRole } ) );
+	if( m_overlayData[networkObjectUid] != value )
+	{
+		m_overlayData[networkObjectUid] = value;
+		emit dataChanged( index, index, QVector<int>( { m_overlayDataRole } ) );
+	}
 
 	return true;
 }
