@@ -49,12 +49,9 @@ IF(GIT_FOUND)
 	#   git shortlog -sne v3.0.2 | cut -c8-
 	SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
 	IF(NOT EXISTS "${CONTRIBUTORS}")
-		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -sne
+		EXECUTE_PROCESS(COMMAND "${GIT_EXECUTABLE}" shortlog -s d160d147165271516589c304cb1b8f5e48f8527d..HEAD
 			            COMMAND cut -c8-
-						COMMAND grep -v root
-						COMMAND sed -e "s/<.*>//g"
-						COMMAND sed -e "s/Doerffel/Junghans/g"
-						COMMAND sort -u
+						COMMAND sort -f
 						OUTPUT_FILE "${CONTRIBUTORS}"
 						WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 						TIMEOUT 10)
