@@ -166,16 +166,10 @@ public:
 
 	// authentication
 	static void handleSecTypeVeyon( rfbClient* client );
-	static void handleMsLogonIIAuth( rfbClient* client );
 	static void hookPrepareAuthentication( rfbClient* client );
 
 	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 										  SocketDevice::SocketOperation operation, void * user );
-
-	void cursorShapeUpdatedExternal( const QPixmap& cursorShape, int xh, int yh )
-	{
-		emit cursorShapeUpdated( cursorShape, xh, yh );
-	}
 
 
 signals:
