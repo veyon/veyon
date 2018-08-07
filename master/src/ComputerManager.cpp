@@ -159,6 +159,19 @@ void ComputerManager::updateUser( ComputerControlInterface::Pointer controlInter
 
 
 
+void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles )
+{
+	Q_UNUSED(topLeft);
+	Q_UNUSED(bottomRight);
+
+	if( roles.contains( Qt::CheckStateRole ) )
+	{
+		emit computerSelectionChanged();
+	}
+}
+
+
+
 void ComputerManager::initRooms()
 {
 	for( const auto& hostName : qAsConst( m_localHostNames ) )
@@ -254,7 +267,7 @@ void ComputerManager::initComputerTreeModel()
 			 this, &ComputerManager::computerSelectionReset );
 
 	connect( computerTreeModel(), &QAbstractItemModel::dataChanged,
-			 this, &ComputerManager::computerSelectionChanged );
+			 this, &ComputerManager::checkChangedData );
 	connect( computerTreeModel(), &QAbstractItemModel::rowsInserted,
 			 this, &ComputerManager::computerSelectionChanged );
 	connect( computerTreeModel(), &QAbstractItemModel::rowsRemoved,

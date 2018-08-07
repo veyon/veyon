@@ -64,6 +64,9 @@ signals:
 	void computerSelectionReset();
 	void computerSelectionChanged();
 
+private slots:
+	void checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles );
+
 private:
 	void initRooms();
 	void initNetworkObjectLayer();
