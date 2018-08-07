@@ -73,7 +73,6 @@ public slots:
 	void reload();
 
 signals:
-	void rowAboutToBeRemoved( QModelIndex );
 	void activeFeaturesChanged( QModelIndex );
 
 private slots:
@@ -83,6 +82,7 @@ private slots:
 
 private:
 	void startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, QModelIndex index );
+	void stopComputerControlInterface( ComputerControlInterface::Pointer controlInterface );
 
 	QSize computerScreenSize() const;
 

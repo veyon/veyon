@@ -89,7 +89,6 @@ public:
 
 public slots:
 	void runFeature( const Feature& feature );
-	void shutdownComputerControlInterface( const QModelIndex& index );
 	void enforceDesignatedMode( const QModelIndex& index );
 	void stopAllModeFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
 

@@ -47,9 +47,6 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_mainWindow( nullptr ),
 	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
 {
-	connect( m_computerControlListModel, &ComputerControlListModel::rowAboutToBeRemoved,
-			 this, &VeyonMaster::shutdownComputerControlInterface );
-
 	if( VeyonCore::config().enforceSelectedModeForClients() )
 	{
 		connect( m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
@@ -142,17 +139,6 @@ void VeyonMaster::runFeature( const Feature& feature )
 	else
 	{
 		m_featureManager->startFeature( *this, feature, computerControlInterfaces );
-	}
-}
-
-
-
-void VeyonMaster::shutdownComputerControlInterface( const QModelIndex& index )
-{
-	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
-	if( controlInterface )
-	{
-		stopAllModeFeatures( { controlInterface } );
 	}
 }
 

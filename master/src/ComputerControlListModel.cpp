@@ -171,8 +171,9 @@ void ComputerControlListModel::update()
 	{
 		if( newComputerList.contains( (*it)->computer() ) == false )
 		{
+			stopComputerControlInterface( *it );
+
 			beginRemoveRows( QModelIndex(), row, row );
-			emit rowAboutToBeRemoved( index( row ) );
 			it = m_computerControlInterfaces.erase( it );
 			endRemoveRows();
 		}
@@ -249,6 +250,13 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 	connect( controlInterface.data(), &ComputerControlInterface::userChanged,
 			 &m_master->computerManager(),
 			 [=] () { m_master->computerManager().updateUser( controlInterfaceWeakRef ); } );
+}
+
+
+
+void ComputerControlListModel::stopComputerControlInterface( ComputerControlInterface::Pointer controlInterface )
+{
+	m_master->stopAllModeFeatures( { controlInterface } );
 }
 
 
