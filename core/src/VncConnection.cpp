@@ -687,7 +687,7 @@ void VncConnection::sendEvents()
 {
 	m_globalMutex.lock();
 
-	while( m_eventQueue.isEmpty() == false )
+	while( isControlFlagSet( TerminateThread ) == false && m_eventQueue.isEmpty() == false )
 	{
 		auto event = m_eventQueue.dequeue();
 
