@@ -135,6 +135,13 @@ production systems) by running the following command as root:
 
 A PKGBUILD can be found in the [AUR](https://aur.archlinux.org/packages/veyon/).
 
+### PPA
+
+This PPA contains official Veyon packages for Ubuntu suitable for use both on desktop computers and ARM boards (e.g. Raspberry Pi). Even though only packages for LTS releases are available they should work for subsequent non-LTS releases as well.
+
+	sudo add-apt-repository ppa:veyon/stable
+	sudo apt-get update
+
 ## Join development
 
 If you are interested in Veyon, its programming, artwork, testing or something like that, you're welcome to participate in the development of Veyon!
