@@ -121,7 +121,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	connect( m_parent->m_vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
 	connect( m_parent->m_vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
-	setFixedHeight( 52 );
+	setFixedHeight( m_quitButton->height() );
 
 	m_showHideTimeLine.setFrameRange( 0, height() );
 	m_showHideTimeLine.setDuration( 800 );
