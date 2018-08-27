@@ -235,3 +235,5 @@ const char *MENU_CLASS_NAME = "WinVNC Tray Icon";
 
 
 HWND G_MENU_HWND = NULL;
+
+bool G_USE_PIXEL = false;
