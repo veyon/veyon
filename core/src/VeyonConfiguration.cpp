@@ -53,7 +53,6 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	VeyonConfiguration c( nullptr );
 
 	c.setApplicationName( QString() );
-	c.setHighDPIScalingEnabled( false );
 	c.setUiLanguage( QString() );
 
 	c.setNetworkObjectDirectoryUpdateInterval( NetworkObjectDirectory::DefaultUpdateInterval );

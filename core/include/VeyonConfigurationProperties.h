@@ -32,9 +32,7 @@
 
 #define FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, applicationName, setApplicationName, "ApplicationName", "UI" );			\
-	OP( VeyonConfiguration, VeyonCore::config(), STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
-	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
-
+	OP( VeyonConfiguration, VeyonCore::config(), STRING, uiLanguage, setUiLanguage, "Language", "UI" );
 
 #define FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\

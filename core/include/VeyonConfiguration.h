@@ -55,7 +55,6 @@ public slots:
 	void setInstallationID( const QString& );
 	void setApplicationName( const QString& );
 	void setUiLanguage( const QString& );
-	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
 	void setFailedAuthenticationNotificationsEnabled( bool );
 	void setRemoteConnectionNotificationsEnabled( bool );

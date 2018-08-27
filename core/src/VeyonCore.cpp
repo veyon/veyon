@@ -193,12 +193,7 @@ void VeyonCore::setupApplicationParameters()
 	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
 	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
 
-	if( VeyonConfiguration().isHighDPIScalingEnabled() )
-	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-		QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
-#endif
-	}
+	QApplication::setAttribute( Qt::AA_UseHighDpiPixmaps );
 }
 
 
