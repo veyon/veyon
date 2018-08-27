@@ -161,7 +161,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 				m_failedAuthHosts += host;
 				m_builtinFeatures.systemTrayIcon().showMessage(
 							tr( "Authentication error" ),
-							tr( "User \"%1\" at host \"%2\" tried to access this computer "
+							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
 								"but could not authenticate successfully!" ).arg( user, host ),
 							m_featureWorkerManager );
 			}
