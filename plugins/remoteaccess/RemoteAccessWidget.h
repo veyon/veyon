@@ -68,7 +68,6 @@ private:
 	QTimeLine m_iconStateTimeLine;
 
 	bool m_connecting;
-	QPixmap m_icon;
 
 	ToolButton* m_viewOnlyButton;
 	ToolButton* m_sendShortcutButton;

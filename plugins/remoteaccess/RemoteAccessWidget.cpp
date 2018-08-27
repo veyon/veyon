@@ -46,7 +46,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_showHideTimeLine(),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
-	m_icon( QPixmap( QStringLiteral(":/resources/icon128.png") ).scaled( QSize( 48, 48 ), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
 	m_viewOnlyButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) ),
 	m_sendShortcutButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/preferences-desktop-keyboard.png") ), tr( "Send shortcut" ) ) ),
 	m_screenshotButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/camera-photo.png") ), tr( "Screenshot" ) ) ),
@@ -192,8 +191,6 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 	p.setOpacity( 0.8-0.8*m_showHideTimeLine.currentValue() );
 	p.fillRect( paintEv->rect(), palette().brush( QPalette::Window ) );
 	p.setOpacity( 1 );
-
-	p.drawPixmap( 5, 2, m_icon );
 
 	f.setPointSize( 12 );
 	f.setBold( true );
