@@ -323,7 +323,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Giriş</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -729,27 +729,27 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Komutlar için yardım göster</translation>
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Oda ve bilgisayar ekle</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Tüm odaları ve bilgisayarları sil</translation>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Tüm odaları ve bilgisayarları tek tek boşalt</translation>
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Bütün odaları ve bilgisayarları listele</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Oda yada bilgisayar sil</translation>
     </message>
     <message>
         <source>Import objects from given file</source>

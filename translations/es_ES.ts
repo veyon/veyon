@@ -933,7 +933,24 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Variables válidas: %type% %name% %host% %mac% %room%
+
+Ejemplos:
+
+* Exportar todos los objetos a un archivo  CSV:
+
+    %1 export objetos.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Exportar todos los equipos en un aula a un archivo CSV:
+
+    %1 export equipos.csv room &quot;Aula 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -954,7 +971,24 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Añade un objeto donde TYPE puede ser uno de &quot;%2&quot; o &quot;%3&quot;. PARENT se puede especificar por nombre o UUID.
+
+Ejemplos:
+
+* Añadir un aula:
+
+    %1 add room &quot;Aula 01&quot;
+
+* Añadir un equipo al aula &quot;Aula 01&quot;:
+
+    %1 add computer &quot;Equipo 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Aula 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -975,7 +1009,24 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 remove &lt;OBJECT&gt;
+
+Elimina el objeto especificado del directorio. OBJECT se puede especificar por nombre o UUID. Eliminar un aula también eliminará todos los equipos que estén dentro.
+
+Ejemplos:
+
+* Eliminar un equipo por nombre:
+
+    %1 remove &quot;Equipo 01&quot;
+
+* Eliminar un objeto por UUID:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
@@ -2709,7 +2760,7 @@ Examples:
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de miniatura</translation>
     </message>
     <message>
         <source>Computer rooms</source>
