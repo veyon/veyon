@@ -85,8 +85,29 @@ private:
 	static bool s_toolTipsDisabled;
 	static bool s_iconOnlyMode;
 
+	int iconSize() const
+	{
+		return static_cast<int>( 32 * m_pixelRatio );
+	}
+
+	int margin() const
+	{
+		return static_cast<int>( 8 * m_pixelRatio );
+	}
+
+	int roundness() const
+	{
+		return static_cast<int>( 3 * m_pixelRatio );
+	}
+
+	int stepSize() const
+	{
+		return static_cast<int>( 8 * m_pixelRatio );
+	}
+
+	qreal m_pixelRatio;
+	QIcon m_icon;
 	QPixmap m_pixmap;
-	QPixmap m_smallPixmap;
 	bool m_mouseOver;
 
 	QString m_label;
@@ -101,9 +122,8 @@ class ToolButtonTip : public QWidget
 {
 	Q_OBJECT
 public:
-	ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
-				const QString & _description,
-				QWidget * _parent, QWidget * _tool_btn = nullptr );
+	ToolButtonTip( const QIcon& icon, const QString& title, const QString& description,
+				QWidget* parent, QWidget* toolButton = nullptr );
 
 	QSize sizeHint( void ) const override;
 
@@ -116,13 +136,21 @@ protected:
 private:
 	void updateMask( void );
 
-	QPixmap m_icon;
+	int margin() const
+	{
+		return static_cast<int>( 8 * m_pixelRatio );
+	}
+
+	const int ROUNDED = 2000;
+
+	qreal m_pixelRatio;
+	QPixmap m_pixmap;
 	QString m_title;
 	QString m_description;
 
 	QImage m_bg;
 
-	QWidget * m_toolButton;
+	QWidget* m_toolButton;
 
 } ;
 

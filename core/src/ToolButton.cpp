@@ -35,10 +35,6 @@
 
 #include "ToolButton.h"
 
-
-const int MARGIN = 10;
-const int ROUNDED = 2000;
-
 bool ToolButton::s_toolTipsDisabled = false;
 bool ToolButton::s_iconOnlyMode = false;
 
@@ -48,8 +44,9 @@ ToolButton::ToolButton( const QIcon& icon,
 						const QString& altLabel,
 						const QString& description,
 						const QKeySequence& shortcut ) :
-	m_pixmap( icon.pixmap( 128, 128 ) ),
-	m_smallPixmap( icon.pixmap( 32, 32 ) ),
+	m_pixelRatio( 1 ),
+	m_icon( icon ),
+	m_pixmap(),
 	m_mouseOver( false ),
 	m_label( label ),
 	m_altLabel( altLabel ),
@@ -108,9 +105,9 @@ void ToolButton::enterEvent( QEvent* event )
 		QRect screen = QApplication::desktop()->screenGeometry( screenNumber );
 #endif
 
-		auto tbt = new ToolButtonTip( m_pixmap, m_label,
-							m_descr,
-				QApplication::desktop()->screen( screenNumber ), this );
+		auto tbt = new ToolButtonTip( m_icon.pixmap( 128, 128 ), m_label,
+									  m_descr,
+									  QApplication::desktop()->screen( screenNumber ), this );
 		connect( this, &ToolButton::mouseLeftButton, tbt, &QWidget::close );
 
 		if( p.x() + tbt->width() > screen.x() + screen.width() )
@@ -195,25 +192,28 @@ void ToolButton::paintEvent( QPaintEvent* )
 
 	painter.setBrush(brush);
 
-	painter.drawRoundedRect( 0, 0, width(), height(), 5, 5 );
+	painter.drawRoundedRect( rect(), roundness(), roundness() );
 
-	const int dd = active ? 1 : 0;
-	QPoint pt = QPoint( ( width() - m_smallPixmap.width() ) / 2 + dd, 3 + dd );
+	const int delta = active ? 1 : 0;
+	QPoint pixmapPos( ( width() - m_pixmap.width() ) / 2 + delta, margin() / 2 + delta );
 	if( s_iconOnlyMode )
 	{
-		pt.setY( ( height() - m_smallPixmap.height() ) / 2 - 1 + dd );
+		pixmapPos.setY( ( height() - m_pixmap.height() ) / 2 - 1 + delta );
 	}
-	painter.drawPixmap( pt, m_smallPixmap );
+	painter.drawPixmap( pixmapPos, m_pixmap );
 
 	if( s_iconOnlyMode == false )
 	{
-		const QString l = ( active && m_altLabel.isEmpty() == false ) ?
-								m_altLabel : m_label;
-		const int w = painter.fontMetrics().width( l );
+		const auto label = ( active && m_altLabel.isEmpty() == false ) ? m_altLabel : m_label;
+		const int labelX = 1 + ( width() - painter.fontMetrics().width( label ) ) / 2;
+		const int deltaNormal = delta - 1;
+		const int deltaShadow = deltaNormal + 1;
+
 		painter.setPen( Qt::black );
-		painter.drawText( ( width() - w ) / 2 +1+dd, height() - 4+dd, l );
+		painter.drawText( labelX + deltaShadow, height() - margin() / 2 + deltaShadow, label );
+
 		painter.setPen( Qt::white );
-		painter.drawText( ( width() - w ) / 2 +dd, height() - 5+dd, l );
+		painter.drawText( labelX + deltaNormal, height() - margin() / 2 + deltaNormal, label );
 	}
 }
 
@@ -223,7 +223,7 @@ void ToolButton::paintEvent( QPaintEvent* )
 bool ToolButton::checkForLeaveEvent()
 {
 	if( QRect( mapToGlobal( QPoint( 0, 0 ) ), size() ).
-					contains( QCursor::pos() ) )
+			contains( QCursor::pos() ) )
 	{
 		QTimer::singleShot( 20, this, &ToolButton::checkForLeaveEvent );
 	}
@@ -242,21 +242,26 @@ bool ToolButton::checkForLeaveEvent()
 
 void ToolButton::updateSize()
 {
-	QFont f = font();
-	f.setPointSizeF( 8 );
+	auto f = QApplication::font();
+	f.setPointSizeF( qMax( 7.5, f.pointSizeF() * 0.9 ) );
 	setFont( f );
 
-	QFontMetrics metrics( f );
+	m_pixelRatio = fontInfo().pixelSize() / fontInfo().pointSizeF();
 
-	int minWidth = ( ( ( qMax( metrics.width( m_label ), metrics.width( m_altLabel ) ) + MARGIN ) / 8 + 1 ) * 8 );
+	const auto metrics = fontMetrics();
+
+	m_pixmap = m_icon.pixmap( static_cast<int>( iconSize() ) );
 
 	if( s_iconOnlyMode )
 	{
-		setFixedSize( 52, 48 );
+		setFixedSize( margin() + iconSize(), margin() + iconSize() );
 	}
 	else
 	{
-		setFixedSize( qMax( minWidth, 88 ), 48 );
+		const int textWidth = ( qMax( metrics.width( m_label ), metrics.width( m_altLabel ) ) / stepSize() + 1 ) * stepSize();
+		const int width = qMax( textWidth, iconSize() * 3 / 2 );
+		const int height = iconSize() + fontInfo().pixelSize();
+		setFixedSize( width + margin(), height + margin() );
 	}
 }
 
@@ -266,11 +271,12 @@ void ToolButton::updateSize()
 
 
 
-ToolButtonTip::ToolButtonTip( const QPixmap& pixmap, const QString &title,
-				const QString & _description,
-				QWidget * _parent, QWidget * _tool_btn ) :
+ToolButtonTip::ToolButtonTip( const QIcon& icon, const QString &title,
+							  const QString & _description,
+							  QWidget * _parent, QWidget * _tool_btn ) :
 	QWidget( _parent, Qt::ToolTip ),
-	m_icon( pixmap.scaled( 72, 72, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
+	m_pixelRatio( fontInfo().pixelSize() / fontInfo().pointSizeF() ),
+	m_pixmap( icon.pixmap( static_cast<int>( 64 * m_pixelRatio ) ) ),
 	m_title( title ),
 	m_description( _description ),
 	m_toolButton( _tool_btn )
@@ -287,17 +293,14 @@ ToolButtonTip::ToolButtonTip( const QPixmap& pixmap, const QString &title,
 
 QSize ToolButtonTip::sizeHint() const
 {
-	QFont f = font();
+	auto f = font();
 	f.setBold( true );
-	int title_w = QFontMetrics( f ).width( m_title );
-	QRect desc_rect = fontMetrics().boundingRect( QRect( 0, 0, 250, 100 ),
-					Qt::TextWordWrap, m_description );
 
-	return QSize( MARGIN + m_icon.width() + MARGIN +
-				qMax( title_w, desc_rect.width() ) + MARGIN,
-			MARGIN + qMax( m_icon.height(), fontMetrics().height() +
-						MARGIN + desc_rect.height() ) +
-								MARGIN );
+	const auto titleWidth = QFontMetrics( f ).width( m_title );
+	const auto descriptionRect = fontMetrics().boundingRect( QRect( 0, 0, 250, 100 ), Qt::TextWordWrap, m_description );
+
+	return QSize( margin() + m_pixmap.width() + margin() + qMax( titleWidth, descriptionRect.width() ) + margin(),
+				  margin() + qMax( m_pixmap.height(), fontMetrics().height() + margin() + descriptionRect.height() ) + margin() );
 }
 
 
@@ -324,14 +327,14 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 	p.setPen( pen );
 	QLinearGradient grad( 0, 0, 0, height() );
 	const QColor color_top = palette().color( QPalette::Active,
-						QPalette::Window ).light( 120 );
+											  QPalette::Window ).light( 120 );
 	grad.setColorAt( 0, color_top );
 	grad.setColorAt( 1, palette().color( QPalette::Active,
-						QPalette::Window ).
-							light( 80 ) );
+										 QPalette::Window ).
+					 light( 80 ) );
 	p.setBrush( grad );
 	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					ROUNDED / width(), ROUNDED / height() );
+					 ROUNDED / width(), ROUNDED / height() );
 	if( m_toolButton )
 	{
 		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
@@ -339,7 +342,7 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 		p.setBrush( color_top );
 		p.setRenderHint( QPainter::Antialiasing, false );
 		p.drawLine( pt.x() - x(), 0,
-				pt.x() + m_toolButton->width() - x() - 2, 0 );
+					pt.x() + m_toolButton->width() - x() - 2, 0 );
 		const int dx = pt.x() - x();
 		p.setRenderHint( QPainter::Antialiasing, true );
 		if( dx < 10 && dx >= 0 )
@@ -351,20 +354,21 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 	}
 	p.setPen( Qt::black );
 
-	p.drawPixmap( MARGIN, MARGIN, m_icon );
+	p.drawPixmap( margin(), margin(), m_pixmap );
 	QFont f = p.font();
 	f.setBold( true );
 	p.setFont( f );
-	const int title_x = MARGIN + m_icon.width() + MARGIN;
-	const int title_y = MARGIN + fontMetrics().height() - 2;
-	p.drawText( title_x, title_y, m_title );
+	const auto titleX = margin() + m_pixmap.width() + margin();
+	const auto titleY = margin() + fontMetrics().height() - 2;
+	p.drawText( titleX, titleY, m_title );
 
 	f.setBold( false );
 	p.setFont( f );
-	p.drawText( QRect( title_x, title_y + MARGIN,
-					width() - MARGIN - title_x,
-					height() - MARGIN - title_y ),
-					Qt::TextWordWrap, m_description );
+	p.drawText( QRect( titleX,
+					   titleY + margin(),
+					   width() - margin() - titleX,
+					   height() - margin() - titleY ),
+				Qt::TextWordWrap, m_description );
 
 	updateMask();
 	QWidget::resizeEvent( _re );
@@ -385,7 +389,7 @@ void ToolButtonTip::updateMask()
 	p.setBrush( Qt::color1 );
 	p.setPen( Qt::color1 );
 	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					ROUNDED / width(), ROUNDED / height() );
+					 ROUNDED / width(), ROUNDED / height() );
 
 	if( m_toolButton )
 	{
