@@ -197,8 +197,12 @@ ${INSTALL_TYPE}
 SetOutPath "$INSTDIR"
 File "veyon-master.exe"
 
+${GetParameters} $R0
+${GetOptions} $R0 "/NoStartMenuFolder" $R1
+${If} ${Errors}
 CreateDirectory "$SMPROGRAMS\Veyon"
 CreateShortCut "$SMPROGRAMS\Veyon\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+${EndIf}
 CreateShortCut "$DESKTOP\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 SectionEnd
 
@@ -230,11 +234,15 @@ Section -Icons_Reg
 SetOutPath "$INSTDIR"
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
+${GetParameters} $R0
+${GetOptions} $R0 "/NoStartMenuFolder" $R1
+${If} ${Errors}
 CreateDirectory "$SMPROGRAMS\Veyon"
 CreateShortCut "$SMPROGRAMS\Veyon\Veyon Configurator.lnk" "$INSTDIR\veyon-configurator.exe"
 CreateShortCut "$SMPROGRAMS\Veyon\Uninstall Veyon.lnk" "$INSTDIR\uninstall.exe"
 WriteIniStr "$INSTDIR\Veyon website.url" "InternetShortcut" "URL" "${WEB_SITE}"
 CreateShortCut "$SMPROGRAMS\Veyon\Veyon Website.lnk" "$INSTDIR\Veyon website.url"
+${EndIf}
 
 WriteRegStr ${REG_ROOT} "${REG_APP_PATH}" "" "$INSTDIR\${MAIN_APP_EXE}"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "Veyon"
