@@ -210,11 +210,11 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 		{
 			dots += '.';
 		}
-		p.drawText( 64, 40, tr( "Connecting %1" ).arg( dots ) );
+		p.drawText( 32, height() / 2 + fontMetrics().height(), tr( "Connecting %1" ).arg( dots ) );
 	}
 	else
 	{
-		p.drawText( 64, 40, tr( "Connected." ) );
+		p.drawText( 32, height() / 2 + fontMetrics().height(), tr( "Connected." ) );
 	}
 }
 
