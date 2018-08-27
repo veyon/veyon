@@ -138,6 +138,12 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 		return true;
 	}
 
+	if( strcmp( valname, "autocapt" ) == 0 )
+	{
+		*out = 0;
+		return true;
+	}
+
 	return false;
 }
 
