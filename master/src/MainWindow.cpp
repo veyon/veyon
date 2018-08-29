@@ -144,7 +144,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 
 	// create the main toolbar
-	ui->toolBar->layout()->setSpacing( 4 );
+	ui->toolBar->layout()->setSpacing( 2 );
 	ui->toolBar->toggleViewAction()->setEnabled( false );
 
 	addToolBar( Qt::TopToolBarArea, ui->toolBar );
