@@ -92,13 +92,13 @@
              <string> ms</string>
             </property>
             <property name="minimum">
-             <number>500</number>
+             <number>250</number>
             </property>
             <property name="maximum">
              <number>60000</number>
             </property>
             <property name="singleStep">
-             <number>500</number>
+             <number>250</number>
             </property>
             <property name="value">
              <number>1000</number>
