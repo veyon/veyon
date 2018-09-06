@@ -1117,7 +1117,7 @@ Ejemplos:
         <translation>Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ahora está accediendo a esta equipo.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>¡Usuario &quot;%1&quot; en el anfitrión &quot;%2&quot; ha intentado acceder a este equipo pero no se ha autenticado correctamente!</translation>
     </message>
 </context>
@@ -1513,10 +1513,6 @@ Ejemplos:
     <message>
         <source>Use system language setting</source>
         <translation>Usar configuración de idioma del sistema</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Habilitar escalado DPI alto</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3369,10 +3365,6 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Control de sesión de usuario</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Desconectar usuario</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Haga clic en este botón para cerrar sesión a los usuarios de todos los equipos.</translation>
     </message>
@@ -3383,6 +3375,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>¿Realmente desea cerrar la sesión con los usuarios seleccionados?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Desconectar</translation>
     </message>
 </context>
 <context>

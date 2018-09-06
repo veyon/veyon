@@ -1033,7 +1033,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1429,10 +1429,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>Χρήση της γλώσσας του συστήματος</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Veyon</source>
@@ -3265,10 +3261,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Αποσύνδεση χρήστη</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Πατήστε το κουμπί για να αποσυνδέσετε τους χρήστες από τους υπολογιστές.</translation>
     </message>
@@ -3279,6 +3271,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Είστε σίγουρος/η ότι θέλετε να αποσυνδέσετε τους επιλεγμένους χρήστες;</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

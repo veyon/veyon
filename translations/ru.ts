@@ -193,7 +193,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is located in room</source>
-        <translation>расположен в помещении</translation>
+        <translation>расположен в классе</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
@@ -257,7 +257,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Доступ к компьютеру, находящемуся в той же комнате, что и локальный компьютер</translation>
+        <translation>Доступ к компьютеру, находящемуся в том же классе, что и локальный компьютер</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -460,206 +460,206 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось создать открытый или закрытый ключ!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Вновь созданная пара ключей была сохранена в &quot;%1&quot; и &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось удалить файл ключа &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось удалить каталог файла ключа &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось создать каталог для файла вывода данных.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Файл &quot;%1&quot; уже существует.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось выполнить запись в файл вывода.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Ключ &quot;%1/%2&quot; был успешно экспортирован в &quot;%3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось прочитать файл входных данных.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation type="unfinished"/>
+        <translation>В файле &quot;%1&quot; не содержится корректного закрытого ключа!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation type="unfinished"/>
+        <translation>В файле &quot;%1&quot; не содержится корректного открытого ключа!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось создать каталог для файла ключа.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось записать файл ключа &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить права доступа к файлу ключа &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation type="unfinished"/>
+        <translation>Ключ &quot;%1/%2» был успешно импортирован. Пожалуйста, проверьте права доступа к файлу &quot;%3», чтобы предотвратить неуполномоченный доступ.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось превратить закрытый ключ в открытый</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось создать каталог файла закрытого ключа &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось сохранить закрытый ключ в файл &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить права доступа к файлу закрытого ключа &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось создать каталог для файла открытого ключа &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось сохранить открытый ключ в файл &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить права доступа к файлу открытого ключа &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить владельца файла ключа &quot;%1&quot; в значение &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить права доступа к файлу ключа &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Ключ &quot;%1&quot; теперь доступен для группы пользователей &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;н/д&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось прочитать файл ключа.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>Создать новую пару ключей для аутентификации</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation type="unfinished"/>
+        <translation>Удалить ключ аутентификации</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Вывести список ключей аутентификации</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Импортировать открытый или закрытый ключ</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation type="unfinished"/>
+        <translation>Экспортировать открытый или закрытый ключ</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation type="unfinished"/>
+        <translation>Добыть открытый ключ из имеющегося закрытого ключа</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation type="unfinished"/>
+        <translation>Установить группу пользователей, которые будут иметь доступ к ключу</translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>КЛЮЧ</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>ГРУППА ДОСТУПА</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда корректирует права доступа к файлу &lt;КЛЮЧ&gt; так, что право на чтение этого файла получают только участники группы &lt;ГРУППА ДОСТУПА&gt;.</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>ИМЯ</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда создаёт новую пару ключей для распознавания под названием &lt;ИМЯ&gt; и сохраняет закрытый и открытый ключи в настроенных каталогах ключей.</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once deleted.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда удаляет ключ аутентификации &lt;КЛЮЧ&gt; из настроенного каталога ключей. Пожалуйста, обратите внимание, что после удаления ключ нельзя будет восстановить.</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ФАЙЛ</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда экспортирует ключ аутентификации &lt;КЛЮЧ&gt; в файл &lt;ФАЙЛ&gt;. Если файл &lt;ФАЙЛ&gt; не указан, то его название будет построено на основе данных о названии и типе ключа &lt;КЛЮЧ&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда импортирует ключ аутентификации &lt;КЛЮЧ&gt; из файла &lt;файл&gt; Если файл &lt;ФАЙЛ&gt; не указан, то его название будет построено на основе данных о названии и типе ключа &lt;КЛЮЧ&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда выводит список всех ключей аутентификации в настроенном каталоге ключей. Если выбрана опция &quot;%1&quot;, то вместо списка будет выведена таблица с подробностями про ключи. Некоторые параметры ключа могут быть не показаны, если доступ к ключу ограничен, например из-за нехватки прав на чтение файла ключа.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key.</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда добывает часть, связанную с открытым ключом, из закрытого ключа &lt;КЛЮЧ&gt; и сохраняет её в соответствующий файла открытого ключа.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, укажите команду, для которой следует показать справку!</translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>ТИП</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ИД ПАРЫ</translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Поддержка управления ключами аутентификации в командной строке</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Команды для управления ключами аутентификации</translation>
     </message>
 </context>
 <context>
@@ -674,18 +674,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Группа доступа</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Rooms &amp; computers</source>
-        <translation>Комнаты и компьютеры</translation>
+        <translation>Классы и компьютеры</translation>
     </message>
     <message>
         <source>Rooms</source>
-        <translation>Комнаты</translation>
+        <translation>Классы</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -705,11 +705,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new room</source>
-        <translation>Добавить новую комнату</translation>
+        <translation>Добавить новый класс</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation>Удалить выделенную комнату</translation>
+        <translation>Удалить выделенный класс</translation>
     </message>
     <message>
         <source>Add new computer</source>
@@ -721,7 +721,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New room</source>
-        <translation>Новая комната</translation>
+        <translation>Новый класс</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -732,35 +732,35 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>Показать справку по определённой команде</translation>
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Добавить класс или компьютер</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Удалить все записи классов и компьютеров</translation>
     </message>
     <message>
         <source>Dump all or individual rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Создать дамп всех или отдельных классов и компьютеров</translation>
     </message>
     <message>
         <source>List all rooms and computers</source>
-        <translation type="unfinished"/>
+        <translation>Вывести список всех классов и компьютеров</translation>
     </message>
     <message>
         <source>Remove a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>Удалить класс или компьютер</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation type="unfinished"/>
+        <translation>Импортировать объекты из указанного файла</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
+        <translation>Экспортировать объекты в указанный файл</translation>
     </message>
     <message>
         <source>
@@ -788,11 +788,35 @@ Examples:
 
     %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
-        <translation type="unfinished"/>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАСС&gt;] [format &lt;СТРОКА ФОРМАТИРОВАНИЯ С ПЕРЕМЕННЫМИ&gt;] [regex &lt;РЕГУЛЯРНОЕ ВЫРАЖЕНИЕ С ПЕРЕМЕННЫМИ&gt;]
+
+Возможные переменные: %name% %host% %mac% %room%
+
+примеры:
+
+* Импорт простого файла CSV из одной записи класса:
+
+%1 import computers.csv room &quot;Класс 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Импорт CSV-файла с названием класса в первом столбце:
+
+%1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%
+
+* Импорт текстового файла с парами ключ-значение с помощью регулярных выражений:
+
+%1 import hostlist.txt room &quot;Класс 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Импортировать в произвольном форматировании:
+
+%1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Указан некорректный тип. Корректными являются значения &quot;%1&quot; и &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Type</source>
@@ -804,7 +828,7 @@ Examples:
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Адрес хоста</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -812,79 +836,79 @@ Examples:
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation type="unfinished"/>
+        <translation>Указанного объекта не найдено.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Файла &quot;%1&quot; не существует!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл &quot;%1&quot; для чтения!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Неизвестный аргумент &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Room &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Класс &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Компьютер &quot;%1&quot; (адрес хоста: &quot;%2&quot; MAC-адрес: &quot;%3&quot;)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Неклассифицированный объект &quot;%1&quot; с идентификатором &quot;%2&quot;</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>Класс</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Компьютер</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Корень</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Некорректный</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ошибка при обработке строки %1.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
+        <translation>Каталог объектов сети, где хранятся объекты в локальной конфигурации</translation>
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
-        <translation type="unfinished"/>
+        <translation>Встроенное (компьютеры и классы в локальных настройках)</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
+        <translation>Команды для управления каталогом встроенных объектов сети</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
+        <translation>Нет строки форматирования или не указано регулярное выражение!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл &quot;%1&quot; для записи!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation type="unfinished"/>
+        <translation>Не указано строки формата!</translation>
     </message>
     <message>
         <source>
@@ -905,7 +929,23 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 export &lt;ФАЙЛ&gt; [room &lt;КЛАСС&gt;] [format &lt;СТРОКА ФОРМАТИРОВАНИЯ С ПЕРЕМЕННЫМИ&gt;]
+
+Возможные переменные: %type% %name% %host% %mac% %room%
+
+примеры:
+
+* Экспортировать все объекты в файл CSV:
+
+%1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Экспортировать все записи компьютеров в классе в файл CSV:
+
+%1 export computers.csv room &quot;Класс 01&quot; format &quot;%name%;%host%;%mac%&quot;
+</translation>
     </message>
     <message>
         <source>
@@ -926,7 +966,23 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 add &lt;ТИП&gt; &lt;ИМЯ&gt; [&lt;ИМЯ ХОСТА&gt; &lt;МАК АДРЕС&gt; &lt;РОДИТЕЛЬ&gt;]
+
+Добавляет объект, где ТИП может иметь значение &quot;%2&quot; или &quot;%3&quot;. РОДИТЕЛЬ можно указать по названию или UUID.
+
+примеры:
+
+* Добавить класс:
+
+%1 add room &quot;Класс 01&quot;
+
+* Добавить компьютер к классу &quot;Класс 01&quot;:
+
+%1 add computer &quot;Компьютер 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Класс 01&quot;
+</translation>
     </message>
     <message>
         <source>
@@ -947,15 +1003,31 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 remove &lt;ОБЪЕКТ&gt;
+
+Удалить указанный объект из каталога. ОБЪЕКТ можно указать по названию или UUID. Удаление класса приводит к удалению всех компьютеров в нём.
+
+примеры:
+
+* Удалить компьютер под названием:
+
+%1 remove &quot;Компьютер 01&quot;
+
+* Удалить объект по UUID:
+
+%1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID объекта</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Родительский UUID</translation>
     </message>
 </context>
 <context>
@@ -976,15 +1048,15 @@ Examples:
     <name>ComputerControlListModel</name>
     <message>
         <source>Room: %1</source>
-        <translation>Комната: %1</translation>
+        <translation>Класс: %1</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
-        <translation>Хост / IP-адрес: %1</translation>
+        <translation>Хост/IP-адрес: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
-        <translation type="unfinished"/>
+        <translation>Задействованные возможности: %1</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1023,7 +1095,7 @@ Examples:
     <name>ComputerControlServer</name>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Служба %2 в %3:%4</translation>
+        <translation>%1 Сервис %2 в %3:%4</translation>
     </message>
     <message>
         <source>Authentication error</source>
@@ -1035,11 +1107,11 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Сейчас доступ к этому компьютеру имеет пользователь &quot;%1&quot; на хосте &quot;%2&quot;.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
+        <translation>Пользователь &quot;%1&quot; на хосте &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию!</translation>
     </message>
 </context>
 <context>
@@ -1050,7 +1122,7 @@ Examples:
     </message>
     <message>
         <source>Add room</source>
-        <translation>Добавить комнату</translation>
+        <translation>Добавить класс</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1097,11 +1169,11 @@ Examples:
     </message>
     <message>
         <source>Room detection failed</source>
-        <translation>Не удалось обнаружить комнату</translation>
+        <translation>Не удалось обнаружить класс</translation>
     </message>
     <message>
         <source>Could not determine the room which this computer belongs to. This indicates a problem with the system configuration. All rooms will be shown in the computer management instead.</source>
-        <translation>Не удалось определить комнату, к которой принадлежит этот компьютер. Это указывает на проблему с настройками системы. Все комнаты будут отображаться в управлении компьютерами.</translation>
+        <translation>Не удалось определить класс, к которому принадлежит этот компьютер. Это указывает на проблему с настройками системы. Все классы будут отображаться в управлении компьютерами.</translation>
     </message>
 </context>
 <context>
@@ -1176,22 +1248,22 @@ Examples:
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>Обновить и сохранить настройки программы и дополнений</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Не удалось изменить свойство автозапуска для службы %1.</translation>
+        <translation>Не удалось изменить свойство автозапуска для сервиса %1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось настроить брандмауэр для сервера %1.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось настроить брандмауэр для рабочей станции %1.</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1199,7 +1271,7 @@ Examples:
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Файл настроек непригоден для записи. Пожалуйста, проверьте права доступа к нему!</translation>
     </message>
 </context>
 <context>
@@ -1306,11 +1378,11 @@ Examples:
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Программы и сайты</translation>
     </message>
     <message>
         <source>Predefined programs</source>
-        <translation type="unfinished"/>
+        <translation>Предварительно определённые программы</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1318,35 +1390,35 @@ Examples:
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Путь</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Добавить новую программу</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Удалить выделенную программу</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation type="unfinished"/>
+        <translation>Предварительно определённые сайты</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>Удалить выбранный сайт</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>Адрес</translation>
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>Новая программа</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>Новый сайт</translation>
     </message>
 </context>
 <context>
@@ -1369,7 +1441,7 @@ Examples:
     </message>
     <message>
         <source>Start programs and services in user desktop</source>
-        <translation>Запуск программ и служб на рабочем столе пользователя</translation>
+        <translation>Запуск программ и сервисов на рабочем столе пользователя</translation>
     </message>
     <message>
         <source>Click this button to run a program on all computers.</source>
@@ -1377,19 +1449,19 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Выполнить программу &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom program</source>
-        <translation type="unfinished"/>
+        <translation>Необычная программа</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Открыть сайт &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>Необычный сайт</translation>
     </message>
 </context>
 <context>
@@ -1434,10 +1506,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>Использовать настройки системного языка</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Включить масштабирование высокого разрешения</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1513,7 +1581,7 @@ Examples:
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Служба %1 должна быть временно приостановлена для того, чтобы удалить файлы журналов. Продолжить?</translation>
+        <translation>Сервис %1 должен быть временно приостановлен для того, чтобы удалить файлы журналов. Продолжить?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1549,7 +1617,7 @@ Examples:
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>Записывать в журнал операционной системы</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1557,7 +1625,7 @@ Examples:
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"/>
+        <translation>Метод:</translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -1572,11 +1640,11 @@ Examples:
     <name>InternetAccessControlConfigurationPage</name>
     <message>
         <source>Internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Управление доступом к интернету</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Параметры</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1587,30 +1655,30 @@ Examples:
     <name>InternetAccessControlDummy</name>
     <message>
         <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation type="unfinished"/>
+        <translation>Это фиктивный модуль, который не влияет на доступ к интернету. Выберите функциональный модуль, который подходит к вашей операционной системе и среде. Посетите &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;, чтобы узнать больше о том, как получить нужные вам модули дополнений.</translation>
     </message>
     <message>
         <source>Internet access control not available</source>
-        <translation type="unfinished"/>
+        <translation>Управление доступом к интернету недоступно</translation>
     </message>
     <message>
         <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Не настроен модуль управления доступом к интернету. Пожалуйста, воспользуйтесь средством настройки Veyon, чтобы изменить настройки.</translation>
     </message>
     <message>
         <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"/>
+        <translation>Фиктивный модуль для управления доступом к интернету</translation>
     </message>
 </context>
 <context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Блокировать доступ к интернету</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Разрешить доступ к интернету</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1618,27 +1686,27 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Блокировать интернет</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Нажмите эту кнопку, чтобы заблокировать доступ к интернету.</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Разблокировать интернет</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Нажмите эту кнопку, чтобы разрешить доступ к интернету.</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Управление доступом к интернету</translation>
     </message>
     <message>
         <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Команды для управления доступом к интернету</translation>
     </message>
 </context>
 <context>
@@ -2107,43 +2175,43 @@ Examples:
     </message>
     <message>
         <source>List all members of a computer room</source>
-        <translation>Список участников компьютерной комнаты</translation>
+        <translation>Список участников компьютерного класса</translation>
     </message>
     <message>
         <source>List all computer rooms</source>
-        <translation>Список компьютерных комнат</translation>
+        <translation>Список компьютерных классов</translation>
     </message>
     <message>
         <source>Enter computer room name</source>
-        <translation>Введите имя компьютерной комнаты</translation>
+        <translation>Введите имя компьютерного класса</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room (wildcards allowed):</source>
-        <translation>Пожалуйста, введите имя компьютерной комнаты (можно использовать символы-заменители):</translation>
+        <translation>Пожалуйста, введите имя компьютерного класса (можно использовать символы-заменители):</translation>
     </message>
     <message>
         <source>computer rooms</source>
-        <translation>компьютерные комнаты</translation>
+        <translation>компьютерные классы</translation>
     </message>
     <message>
         <source>computer room attribute</source>
-        <translation>атрибут компьютерной комнаты</translation>
+        <translation>атрибут компьютерного класса</translation>
     </message>
     <message>
         <source>Please enter the name of a computer room whose members to query:</source>
-        <translation>Пожалуйста, введите имя компьютерной комнаты, запрос к участникам которого следует выполнить:</translation>
+        <translation>Пожалуйста, введите имя компьютерного класса, запрос к участникам которого следует выполнить:</translation>
     </message>
     <message>
         <source>computer room members</source>
-        <translation>участники компьютерной комнаты</translation>
+        <translation>участники компьютерного класса</translation>
     </message>
     <message>
         <source>computer group filter or computer room member aggregation</source>
-        <translation>фильтр группы компьютеров или сбора участников в компьютерную группу</translation>
+        <translation>фильтр группы компьютеров или сбора участников в компьютерный класс</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Компьютерные комнаты</translation>
+        <translation>Компьютерные классы</translation>
     </message>
     <message>
         <source>Integration tests</source>
@@ -2151,11 +2219,11 @@ Examples:
     </message>
     <message>
         <source>Computer room attribute</source>
-        <translation>Атрибут компьютерной комнаты</translation>
+        <translation>Атрибут компьютерного класса</translation>
     </message>
     <message>
         <source>Aggregate computers in a room via:</source>
-        <translation>Собирать компьютеры в комнату на основе:</translation>
+        <translation>Собирать компьютеры в класс на основе:</translation>
     </message>
     <message>
         <source>Computer groups</source>
@@ -2163,7 +2231,7 @@ Examples:
     </message>
     <message>
         <source>Computer room attribute in computer objects</source>
-        <translation>Атрибуты компьютерной комнаты в объектах компьютеров</translation>
+        <translation>Атрибуты компьютерного класса в объектах компьютеров</translation>
     </message>
     <message>
         <source>Test not applicable</source>
@@ -2171,7 +2239,7 @@ Examples:
     </message>
     <message>
         <source>Computer room name attribute</source>
-        <translation>Атрибут имени компьютерной комнаты</translation>
+        <translation>Атрибут имени компьютерного класса</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2187,101 +2255,111 @@ Examples:
     </message>
     <message>
         <source>Please change the computer room settings to use computer groups or computer containers as computer rooms. Then the specified attribute instead of the common name of computer groups or container objects will be queried. Otherwise you don&apos;t need to configure this attribute.</source>
-        <translation>Пожалуйста, измените настройки компьютерной комнаты, чтобы использовать как компьютерные комнаты группы компьютеров или контейнеры компьютеров. Если вы это сделаете, запрос будет выполняться не в отношении общего названия (CN) групп компьютеров или контейнеров, по указанному атрибуту. Если потребности в таких настройках нет, то не следует определять этот атрибут.</translation>
+        <translation>Пожалуйста, измените настройки компьютерного класса, чтобы использовать как компьютерные классы группы компьютеров или контейнеры компьютеров. Если вы это сделаете, запрос будет выполняться не в отношении общего названия (CN) групп компьютеров или контейнеров, по указанному атрибуту. Если потребности в таких настройках нет, то не следует определять этот атрибут.</translation>
     </message>
     <message>
         <source>Please change the computer room settings below to use computer containers as computer rooms. Otherwise you don&apos;t need to configure this filter.</source>
-        <translation>Пожалуйста, измените следующие параметры компьютерной комнаты, чтобы использовать контейнеры компьютеров как компьютерные комнаты. Если потребности в такой настройке нет, то не определяйте этот фильтр.</translation>
+        <translation>Пожалуйста, измените следующие параметры компьютерного класса, чтобы использовать контейнеры компьютеров как компьютерные классы. Если потребности в такой настройке нет, то не определяйте этот фильтр.</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>Защита соединения</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>Проверка сертификата TLS</translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>Системные установки по умолчанию</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>Никогда (небезопасно!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Необычный файл службы сертификации (CA)</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>например, (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>например, (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>например, (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>например, (objectClass=room) или (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>например, (objectClass=container) или (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось опросить настроенный базовый DN. Пожалуйста, проверите, правильно ли указан параметр базового DN.
+
+%1</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Успешно опрошен базовый DN LDAP. Найдены следующие записи:
+
+%1</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось опросить базовый DN через контексты именования. Пожалуйста, проверите, правильно ли указан параметр атрибута контекста именования.
+
+%1</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Файлы сертификатов (*.pem)</translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось соединиться с сервером LDAP. Пожалуйста, проверьте, правильно ли указаны параметры сервера.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось привязаться к серверу LDAP. Пожалуйста, проверьте, правильно ли указаны параметры сервера и регистрационные данные привязки.
+
+%1</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>Протокол шифрования</translation>
     </message>
 </context>
 <context>
@@ -2292,7 +2370,7 @@ Examples:
     </message>
     <message>
         <source>No LDAP error description available</source>
-        <translation type="unfinished"/>
+        <translation>Нет доступного описания ошибки LDAP</translation>
     </message>
 </context>
 <context>
@@ -2315,15 +2393,15 @@ Examples:
     </message>
     <message>
         <source>Provide LDAP/AD integration for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Предоставляет возможности по интеграции LDAP/AD в Veyon</translation>
     </message>
     <message>
         <source>LDAP (load computers and rooms from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (загрузить записи компьютеров и классов с LDAP/AD)</translation>
     </message>
     <message>
         <source>LDAP (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>LDAP (загрузить записи пользователей и групп с LDAP/AD)</translation>
     </message>
 </context>
 <context>
@@ -2452,7 +2530,7 @@ Examples:
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Компьютерные комнаты</translation>
+        <translation>Компьютерные классы</translation>
     </message>
     <message>
         <source>About</source>
@@ -2516,11 +2594,11 @@ Examples:
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Выравнивать компьютеры по сетке</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
-        <translation type="unfinished"/>
+        <translation>Использовать необычное расположение компьютеров</translation>
     </message>
     <message>
         <source>%1 Configurator</source>
@@ -2528,19 +2606,19 @@ Examples:
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>Недостаточные права доступа</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось запустить программу с правами администратора. Пожалуйста, убедитесь, что в рабочей среде установлена sudo-подобная программа! Программа будет запущена с правами доступа обычного пользователя.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>Показывать только работающие компьютеры</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Сохранить параметры в файл</translation>
     </message>
 </context>
 <context>
@@ -2563,7 +2641,7 @@ Examples:
     </message>
     <message>
         <source>Automatically switch to current room at start</source>
-        <translation>Автоматически переключаться на текущую комнату при запуске</translation>
+        <translation>Автоматически переключаться на текущий класс при запуске</translation>
     </message>
     <message>
         <source>Features</source>
@@ -2607,11 +2685,11 @@ Examples:
     </message>
     <message>
         <source>Only show current room</source>
-        <translation>Отображать только текущую комнату</translation>
+        <translation>Отображать только текущий класс</translation>
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation>Разрешить добавление комнат вручную</translation>
+        <translation>Разрешить добавление классов вручную</translation>
     </message>
     <message>
         <source>Hide local computer</source>
@@ -2619,7 +2697,7 @@ Examples:
     </message>
     <message>
         <source>Hide empty rooms</source>
-        <translation>Скрыть пустые комнаты</translation>
+        <translation>Скрыть пустые классы</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -2639,11 +2717,11 @@ Examples:
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Цвет фона</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <translation>Интервал обновления миниатюры</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2651,35 +2729,35 @@ Examples:
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Запуск программы</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Режимы и возможности</translation>
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Пользователь и имя компьютера</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Только имя пользователя</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Только имя компьютера</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>Подпись миниатюры компьютера</translation>
     </message>
     <message>
         <source>Computer rooms</source>
-        <translation>Компьютерные комнаты</translation>
+        <translation>Компьютерные классы</translation>
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>Автоматически открывать виджет компьютерных классов</translation>
     </message>
 </context>
 <context>
@@ -2694,14 +2772,14 @@ Examples:
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
-        <translation>Это режим по умолчанию. Он предоставляет вам возможность следить за всеми компьютерами в одной или нескольких комнатах.</translation>
+        <translation>Это режим по умолчанию. Он предоставляет вам возможность следить за всеми компьютерами в одном или нескольких классах.</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Room/Computer</source>
-        <translation>Комната/Компьютер</translation>
+        <translation>Класс/Компьютер</translation>
     </message>
 </context>
 <context>
@@ -2817,7 +2895,7 @@ Examples:
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 — %2, удалённый доступ</translation>
     </message>
 </context>
 <context>
@@ -2895,7 +2973,7 @@ Examples:
     <name>RoomSelectionDialog</name>
     <message>
         <source>Room selection</source>
-        <translation>Выбор комнаты</translation>
+        <translation>Выбор класса</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -3073,7 +3151,7 @@ Examples:
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить службу %1. Перезапустить её сейчас?</translation>
+        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить сервис %1. Перезапустить его сейчас?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -3085,47 +3163,48 @@ Examples:
     </message>
     <message>
         <source>Primary service port</source>
-        <translation>Порт основной службы</translation>
+        <translation>Порт основного сервиса</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Включение этого пункта приведёт к тому, что сервис будет запускать процесс сервера для каждого интерактивного сеанса на компьютере.
+По умолчанию эта настройка требуется для реализации поддержки терминальных серверов.</translation>
     </message>
     <message>
         <source>Multi session support (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Поддержка нескольких сеансов (экспериментальная)</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation type="unfinished"/>
+        <translation>Показывать оповещение по удалённому доступу</translation>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation type="unfinished"/>
+        <translation>Показывать оповещение о неудачных попыткам пройти аутентификацию</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Запускаем сервис %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Останавливаем сервис %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Регистрируем сервис %1</translation>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
+        <translation>Отменяем регистрацию сервиса %1</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation type="unfinished"/>
+        <translation>Управление сервисам</translation>
     </message>
 </context>
 <context>
@@ -3140,7 +3219,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>Настройка и управление службой Veyon</translation>
+        <translation>Настройка и управление сервисом Veyon</translation>
     </message>
     <message>
         <source>Register Veyon Service</source>
@@ -3164,30 +3243,30 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Определить состояние службы Veyon</translation>
+        <translation>Определить состояние сервиса Veyon</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation>Команды для настройки и управления службой Veyon</translation>
+        <translation>Команды для настройки и управления сервисом Veyon</translation>
     </message>
 </context>
 <context>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation type="unfinished"/>
+        <translation>Запустить командный файл</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Файла &quot;%1&quot; не существует!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation type="unfinished"/>
+        <translation>Интерактивная оболочка и средство выполнения скриптов для Управления Veyon</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation type="unfinished"/>
+        <translation>Команды для возможностей оболочки</translation>
     </message>
 </context>
 <context>
@@ -3201,11 +3280,11 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>Модуль групп пользователей для групп пользователей системы</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>По умолчанию (группы пользователей системы)</translation>
     </message>
 </context>
 <context>
@@ -3279,10 +3358,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Управление сеансами пользователей</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Завершить работу</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Нажмите эту кнопку для выхода пользователей со всех компьютеров.</translation>
     </message>
@@ -3293,6 +3368,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Вы действительно хотите выполнить выход из системы для выбранных пользователей?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Выйти</translation>
     </message>
 </context>
 <context>
@@ -3331,14 +3410,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation type="unfinished"/>
+        <translation>Не указан модуль или модуль не найден. Доступные модули:</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Сервис Veyon</translation>
     </message>
 </context>
 <context>
@@ -3359,31 +3438,31 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: сервис &quot;%1&quot; уже установлен.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: не удалось установить сервис &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: сервис &quot;%1&quot; успешно установлен.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: не удалось удалить сервис &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: сервис &quot;%1&quot; успешно удалён.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: the start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: не удалось изменить тип запуска сервиса &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>WindowsServiceControl: service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>WindowsServiceControl: не удалось найти сервис &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>

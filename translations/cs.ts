@@ -929,7 +929,24 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+POUŽITÍ
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Platné proměnné: %type% %name% %host% %mac% %room%
+
+Příklady:
+
+* Export všech objektů do CSV souboru:
+
+    %1 export objekty.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* Export všech počítačů v místnosti do CSV souboru:
+
+    %1 export pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -950,7 +967,24 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+POUŽITÍ
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+Přidá objekty kde TYPE může být jeden z „%2“ nebo „%3“. PARENT je možné určit názvem nebo nikde se neopakujícím identifikátorem.
+
+Příklady:
+
+* Přidat místnost:
+
+    %1 add room &quot;Mistnost 01&quot;
+
+* Přidat počítač do místnosti &quot;Mistnost 01&quot;:
+
+    %1 add computer &quot;Pocitac 01&quot; poc01.example.com 11:22:33:44:55:66 &quot;Mistnost 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -971,7 +1005,24 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+POUŽITÍ
+
+%1 remove &lt;OBJECT&gt;
+
+Odebere určený objekt z adresáře. OBJECT může být určen názvem nebo nikde se neopakujícím identifikátorem. Odebrání místnosti odebere také všechny počítače v ní.
+
+Příklady:
+
+* Odebrat počítač podle názvu:
+
+    %1 remove &quot;Pocitac 01&quot;
+
+* Odebrat objekt podle nikde se neopakujícího se názvu:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
@@ -1062,8 +1113,8 @@ Examples:
         <translation>Uživatel „%1“ ze stroje „%2“ nyní přistupuje k tomuto počítači.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation>Uživatel „%1“ ze stroje „%2“ se pokusil přistoupit k tomuto počítači ale nepovedlo se mu ověřit se!</translation>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
+        <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači ale nebyl schopen se úspěšně ověřit!</translation>
     </message>
 </context>
 <context>
@@ -1458,10 +1509,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>Použit jazyková nastavení systému</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Zapnout přepočítávání zobrazení pro obrazovky s vysokým rozlišením (high DPI)</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3310,10 +3357,6 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Ovládání relace uživatele</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Odhlásit uživatele</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Kliknutím na toto tlačítko ze všech počítačů odhlásíte uživatele.</translation>
     </message>
@@ -3324,6 +3367,10 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Opravdu chcete označené uživatele odhlásit?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Odhlásit</translation>
     </message>
 </context>
 <context>

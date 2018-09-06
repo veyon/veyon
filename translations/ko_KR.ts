@@ -1112,7 +1112,7 @@ Examples:
         <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결합니다.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 인증에 성공하지 못했습니다.</translation>
     </message>
 </context>
@@ -1509,10 +1509,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>시스템 언어 설정 사용</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>high DPI 스케일링 활성화</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3363,10 +3359,6 @@ Typically this is required to support terminal servers.</source>
         <translation>사용자 세션제어</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>사용자 로그아웃</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>클릭하면 사용자를 모든 컴퓨터에서 로그아웃</translation>
     </message>
@@ -3377,6 +3369,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>선택된 컴퓨터를 로그아웃하시겠습니까 ?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>로그아웃</translation>
     </message>
 </context>
 <context>

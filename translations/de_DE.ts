@@ -1110,7 +1110,7 @@ Beispiele:
         <translation>Der Benutzer &quot;%1&quot; am Computer %2&quot; greift jetzt auf diesen Computer zu.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, konnte sich aber nicht erfolgreich authentifizieren!</translation>
     </message>
 </context>
@@ -1506,10 +1506,6 @@ Beispiele:
     <message>
         <source>Use system language setting</source>
         <translation>Spracheinstellung des Systems verwenden</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>High-DPI-Skalierung aktivieren</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3362,10 +3358,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Benutzersitzungssteuerung</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Benutzer abmelden</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Klicken Sie auf diesen Button, um die Benutzer von allen Computern abzumelden.</translation>
     </message>
@@ -3376,6 +3368,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Möchten Sie wirklich die gewählten Benutzer abmelden?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Abmelden</translation>
     </message>
 </context>
 <context>

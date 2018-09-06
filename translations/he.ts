@@ -3,15 +3,15 @@
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>אודות</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished"/>
+        <translation>תרגום</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>רישיון</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -19,15 +19,15 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>תורמים</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>גרסה:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>אתר אינטרנט:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -80,23 +80,23 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבוצות</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>כללי בקרת גישה</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>הוסף כלל בקרת גישה</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>הסר כלל בקרת גישה</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
@@ -112,7 +112,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>הכנס שם משתמש</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -120,7 +120,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>גישה מאופשרת</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -128,7 +128,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>גישה נדחתה</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -155,7 +155,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>ערוך כלל בקרת גישה</translation>
     </message>
     <message>
         <source>General</source>
@@ -215,11 +215,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>אפשר גישה</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>חסום גישה</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -337,7 +337,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
@@ -661,66 +661,66 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>סוג</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>קבוצת גישה</translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Rooms &amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>חדרים ומחשבים</translation>
     </message>
     <message>
         <source>Rooms</source>
-        <translation type="unfinished"/>
+        <translation>חדרים</translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>מחשבים</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation type="unfinished"/>
+        <translation>שם מחשב / IP</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>כתובת MAC</translation>
     </message>
     <message>
         <source>Add new room</source>
-        <translation type="unfinished"/>
+        <translation>הוסף חדר חדש</translation>
     </message>
     <message>
         <source>Remove selected room</source>
-        <translation type="unfinished"/>
+        <translation>הסר חדרים שנבחרו</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מחשב חדש</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation type="unfinished"/>
+        <translation>הסר מחשבים שנבחרו</translation>
     </message>
     <message>
         <source>New room</source>
-        <translation type="unfinished"/>
+        <translation>חדר חדש</translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>מחשב חדש</translation>
     </message>
 </context>
 <context>
@@ -731,7 +731,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room or computer</source>
-        <translation type="unfinished"/>
+        <translation>הוסף חדר או מחשב</translation>
     </message>
     <message>
         <source>Clear all rooms and computers</source>
@@ -791,11 +791,11 @@ Examples:
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>סוג</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -803,7 +803,7 @@ Examples:
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>כתובות MAC</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -839,11 +839,11 @@ Examples:
     </message>
     <message>
         <source>Room</source>
-        <translation type="unfinished"/>
+        <translation>חדר</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>מחשב</translation>
     </message>
     <message>
         <source>Root</source>
@@ -1033,7 +1033,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1045,11 +1045,11 @@ Examples:
     </message>
     <message>
         <source>Add room</source>
-        <translation type="unfinished"/>
+        <translation>הוסף חדר</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation type="unfinished"/>
+        <translation>שמור רשימת מחשבים / משתמשים</translation>
     </message>
     <message>
         <source>Select output filename</source>
@@ -1057,7 +1057,7 @@ Examples:
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>קובץ CSV (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
@@ -1076,7 +1076,7 @@ Examples:
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>משתמש</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1309,7 +1309,7 @@ Examples:
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1348,11 +1348,11 @@ Examples:
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Run program</source>
-        <translation type="unfinished"/>
+        <translation>הפעל תוכנית</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation type="unfinished"/>
+        <translation>פתח אתר אינטרנט</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
@@ -1406,7 +1406,7 @@ Examples:
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>סיסמה:</translation>
     </message>
 </context>
 <context>
@@ -1420,19 +1420,15 @@ Examples:
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>ממשק משתמש</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"/>
+        <translation>שפה:</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation type="unfinished"/>
+        <translation>השתמש בשפת המערכת</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -1448,7 +1444,7 @@ Examples:
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -1460,7 +1456,7 @@ Examples:
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation type="unfinished"/>
+        <translation>רק הודעות קריטיות</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
@@ -1540,7 +1536,7 @@ Examples:
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished"/>
+        <translation>שניות</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
@@ -1571,7 +1567,7 @@ Examples:
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1601,11 +1597,11 @@ Examples:
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>חסום גישה לאינטרנט</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>אפשר גישה לאינטרנט</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1613,7 +1609,7 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>חסום אינטרנט</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
@@ -1644,7 +1640,7 @@ Examples:
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות בסיסיות</translation>
     </message>
     <message>
         <source>General</source>
@@ -1772,7 +1768,7 @@ Examples:
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות מתקדמות</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -1865,7 +1861,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>הכנס שם משתמש</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -1905,7 +1901,7 @@ Examples:
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>הכנס שם מחשב</translation>
     </message>
     <message>
         <source>Please enter a computer host name to query:</source>
@@ -1949,15 +1945,15 @@ Examples:
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>משתמשים</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>קבוצות משתמשים</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation type="unfinished"/>
+        <translation>קבוצות מחשבים</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -1973,7 +1969,7 @@ Examples:
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>משתמש לא נמצא</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the user name or the user tree parameter.</source>
@@ -2021,7 +2017,7 @@ Examples:
     </message>
     <message>
         <source>computers</source>
-        <translation type="unfinished"/>
+        <translation>מחשבים</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2205,11 +2201,11 @@ Examples:
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2323,7 +2319,7 @@ Examples:
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות</translation>
     </message>
     <message>
         <source>Disable balloon tooltips</source>
@@ -2338,7 +2334,7 @@ Examples:
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation type="unfinished"/>
+        <translation>חלון ראשי</translation>
     </message>
     <message>
         <source>toolBar</source>
@@ -2398,11 +2394,11 @@ Examples:
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"/>
+        <translation>טען הגדרות מקובץ</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>שמור הגדרות לקובץ</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -2442,7 +2438,7 @@ Examples:
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>אודות</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2466,7 +2462,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>גישה נדחתה</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2474,7 +2470,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>צילומי מסך</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -2486,7 +2482,7 @@ Examples:
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation type="unfinished"/>
+        <translation>אפס הגדרות</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -2494,7 +2490,7 @@ Examples:
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>חפש משתמשים ומחשבים</translation>
     </message>
     <message>
         <source>Adjust optimal size</source>
@@ -2537,11 +2533,11 @@ Examples:
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>User configuration</source>
-        <translation type="unfinished"/>
+        <translation>הדגרות משתמש</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
@@ -2569,7 +2565,7 @@ Examples:
     </message>
     <message>
         <source>Screenshots</source>
-        <translation type="unfinished"/>
+        <translation>צילומי מסך</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -2581,7 +2577,7 @@ Examples:
     </message>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות בסיסיות</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -2621,7 +2617,7 @@ Examples:
     </message>
     <message>
         <source>User interface</source>
-        <translation type="unfinished"/>
+        <translation>ממשק משתמש</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -2687,18 +2683,18 @@ Examples:
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Room/Computer</source>
-        <translation type="unfinished"/>
+        <translation>חדר/מחשב</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>שם משתמש</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>סיסמה</translation>
     </message>
     <message>
         <source>Veyon Logon</source>
@@ -2749,11 +2745,11 @@ Examples:
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation type="unfinished"/>
+        <translation>אשר הפעלה מחדש</translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation type="unfinished"/>
+        <translation>אשר כיבוי</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -2810,7 +2806,7 @@ Examples:
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished"/>
+        <translation>צפייה בלבד</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -2822,11 +2818,11 @@ Examples:
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished"/>
+        <translation>מסך מלא</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished"/>
+        <translation>חלון</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -2834,23 +2830,23 @@ Examples:
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Esc</translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Tab</translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation type="unfinished"/>
+        <translation>Alt+F4</translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation type="unfinished"/>
+        <translation>Win+Tab</translation>
     </message>
     <message>
         <source>Win</source>
@@ -2862,7 +2858,7 @@ Examples:
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation type="unfinished"/>
+        <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
         <source>Connecting %1</source>
@@ -2870,11 +2866,11 @@ Examples:
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished"/>
+        <translation>מחובר.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>צילום מסך</translation>
     </message>
 </context>
 <context>
@@ -2934,14 +2930,14 @@ Examples:
     </message>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>צילום מסך</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>צילום מסך</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -2964,15 +2960,15 @@ Examples:
     <name>ScreenshotManagementView</name>
     <message>
         <source>User:</source>
-        <translation type="unfinished"/>
+        <translation>משתמש:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"/>
+        <translation>תאריך:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>זמן:</translation>
     </message>
     <message>
         <source>Show</source>
@@ -2980,7 +2976,7 @@ Examples:
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>מחק</translation>
     </message>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
@@ -2988,7 +2984,7 @@ Examples:
     </message>
     <message>
         <source>Computer:</source>
-        <translation type="unfinished"/>
+        <translation>מחשב:</translation>
     </message>
 </context>
 <context>
@@ -3007,7 +3003,7 @@ Examples:
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"/>
+        <translation>התחל שרות</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -3015,7 +3011,7 @@ Examples:
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"/>
+        <translation>הפסק שרות</translation>
     </message>
     <message>
         <source>State:</source>
@@ -3209,7 +3205,7 @@ Typically this is required to support terminal servers.</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation type="unfinished"/>
+        <translation>הודעת טקסט</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -3217,11 +3213,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished"/>
+        <translation>הודעה מהמורה</translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation type="unfinished"/>
+        <translation>שלח הודעה למשתמש</translation>
     </message>
 </context>
 <context>
@@ -3265,10 +3261,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>נתק משתמש</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation type="unfinished"/>
     </message>
@@ -3279,6 +3271,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>התנתק</translation>
     </message>
 </context>
 <context>

@@ -1113,8 +1113,8 @@ Exemples:
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; est en train d’accéder à cet ordinateur.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur mais n&apos;a pas pu s&apos;authentifier avec succès!</translation>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
+        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a essayé d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier !</translation>
     </message>
 </context>
 <context>
@@ -1509,10 +1509,6 @@ Exemples:
     <message>
         <source>Use system language setting</source>
         <translation>Utiliser les paramètres de langage du système</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Activer la mise à l&apos;échelle en haute résolution</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3365,10 +3361,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Contrôle de session utilisateur</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Déconnecter l&apos;utilisateur</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Cliquer sur ce bouton pour déconnecter les utilisateurs de tous les ordinateurs.</translation>
     </message>
@@ -3379,6 +3371,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Souhaitez-vous réellement déconnecter les utilisateurs sélectionnés ?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Déconnexion</translation>
     </message>
 </context>
 <context>

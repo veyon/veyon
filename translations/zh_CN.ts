@@ -930,7 +930,24 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+可用变量： %type% %name% %host% %mac% %room%
+
+范例：
+
+* 导出所有对象到一个 CSV 文件：
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* 导出一个教室里的所有计算机到一个 CSV 文件：
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -951,7 +968,23 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+添加一个对象，其中 TYPE 可以是 &quot;%2&quot; 或 &quot;%3&quot; 之一。PARENT 可以通过名称或 UUID 指定。
+范例：
+
+* 添加一个教室：
+
+    %1 add room &quot;Room 01&quot;
+
+* 添加一个计算机到 &quot;Room 01&quot;:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -972,15 +1005,32 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 remove &lt;OBJECT&gt;
+
+从目录中删除指定的对象。OBJECT 可以由名称或 UUID 指定。删除一个教室也会删除其中的所有计算机。
+
+范例：
+
+* 通过名称删除计算机：
+
+    %1 remove &quot;Computer 01&quot;
+
+* 通过 UUID 删除一个对象：
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>对象的 UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Parent UUID</translation>
     </message>
 </context>
 <context>
@@ -1063,8 +1113,8 @@ Examples:
         <translation>&quot;%2&quot; 主机上的用户 &quot;%1&quot; 正在访问这台计算机。</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation>&quot;%2&quot; 主机上的用户 &quot;%1&quot; 试图访问这台计算机，但是没有通过身份验证。</translation>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
+        <translation>主机 &quot;%2&quot; 上的用户 &quot;%1&quot; 尝试访问此计算机但没有通过身份验证！</translation>
     </message>
 </context>
 <context>
@@ -1459,10 +1509,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>使用系统语言设置</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>启用高 DPI 缩放</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -2316,7 +2362,7 @@ Examples:
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation type="unfinished"/>
+        <translation>加密协议</translation>
     </message>
 </context>
 <context>
@@ -2571,11 +2617,11 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>仅显示开机的计算机</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;S保存设置到文件</translation>
     </message>
 </context>
 <context>
@@ -2706,7 +2752,7 @@ Examples:
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <translation>计算机缩略图名称</translation>
     </message>
     <message>
         <source>Computer rooms</source>
@@ -2714,7 +2760,7 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
-        <translation type="unfinished"/>
+        <translation>自动打开计算机教室组件</translation>
     </message>
 </context>
 <context>
@@ -3315,10 +3361,6 @@ Typically this is required to support terminal servers.</source>
         <translation>用户会话控制</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>注销用户</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>点击此按钮所有计算机执行注销命令。</translation>
     </message>
@@ -3329,6 +3371,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>您确定要注销选定的用户？</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>退出</translation>
     </message>
 </context>
 <context>

@@ -1035,7 +1035,7 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1431,10 +1431,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>Sistem dil ayarını kullan</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Yüksek DPI ölçeklemeyi etkinleştir</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3278,10 +3274,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Kullanıcı oturum denetimi</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Kullanıcı çıkışı</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Tüm bilgisayarlardaki oturumları kapatmak için bu düğmeye tıklayın.</translation>
     </message>
@@ -3292,6 +3284,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Seçilen kullanıcıları çıkış yaptırmak istediğinize emin misiniz?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

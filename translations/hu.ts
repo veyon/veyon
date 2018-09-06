@@ -1113,8 +1113,8 @@ Példák:
         <translation>&quot;%1&quot; felhasználó &quot;%2&quot; kiszolgálóról éppen most eléri ezt a számítógépet.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de sikertelen hitelesítés miatt ez meghiúsult!</translation>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
+        <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de nem sikerült hitelesítenie magát!</translation>
     </message>
 </context>
 <context>
@@ -1509,10 +1509,6 @@ Példák:
     <message>
         <source>Use system language setting</source>
         <translation>Rendszernyelv beállításának használata</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Nagy DPI méretezés bekapcsolása</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3364,10 +3360,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Felhasználói munkamenet-vezérlés</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Felhasználó kijelentkeztetése</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Kattints erre a gombra, hogy felhasználókat kijelentkeztesd az össze számítógépről.</translation>
     </message>
@@ -3378,6 +3370,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Biztos, hogy kijelentkezteted a kiválasztott felhasználókat?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Kijelentkezés</translation>
     </message>
 </context>
 <context>

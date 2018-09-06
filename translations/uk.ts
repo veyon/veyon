@@ -1110,7 +1110,7 @@ Examples:
         <translation>Зараз доступ до цього комп&apos;ютера має користувач «%1» на вузлі «%2».</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
         <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але не зміг пройти розпізнавання!</translation>
     </message>
 </context>
@@ -1506,10 +1506,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>Параметри мови системи</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>Увімкнути масштабування високої роздільності</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3364,10 +3360,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Керування сеансами користувачів</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>Завершити роботу</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>Натисніть цю кнопку, щоб примусово виконати вихід користувачів на усіх комп’ютерах.</translation>
     </message>
@@ -3378,6 +3370,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>Ви справді хочете виконати вихід із системи для позначених користувачів?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation>Вийти</translation>
     </message>
 </context>
 <context>

@@ -1062,8 +1062,8 @@ Examples:
         <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 目前正在存取這部電腦。</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; tried to access this computer but could not authenticate successfully!</source>
-        <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 嘗試存取這部電腦，但無法驗證成功!</translation>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1458,10 +1458,6 @@ Examples:
     <message>
         <source>Use system language setting</source>
         <translation>使用系統語言設定</translation>
-    </message>
-    <message>
-        <source>Enable high DPI scaling</source>
-        <translation>啟用高 DPI 縮放</translation>
     </message>
     <message>
         <source>Veyon</source>
@@ -3314,10 +3310,6 @@ Typically this is required to support terminal servers.</source>
         <translation>使用者工作階段控制</translation>
     </message>
     <message>
-        <source>Logout user</source>
-        <translation>登出使用者</translation>
-    </message>
-    <message>
         <source>Click this button to logout users from all computers.</source>
         <translation>按一下這個按鈕從所有電腦登出使用者。</translation>
     </message>
@@ -3328,6 +3320,10 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Do you really want to logout the selected users?</source>
         <translation>您確定要登出選取的使用者嗎?</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
