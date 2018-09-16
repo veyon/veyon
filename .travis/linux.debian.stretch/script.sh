@@ -16,6 +16,8 @@ cd /veyon
 VERSION=$(git describe --tags --abbrev=0 | sed -e 's/^v//g')
 cp /build/CONTRIBUTORS .
 
+.travis/common/strip-ultravnc-sources.sh
+
 cd /
 tar --transform "s,^veyon,veyon-$VERSION," --exclude=".git" --exclude="*.deb" -cjf /build/veyon-$VERSION-src.tar.bz2 veyon
 
