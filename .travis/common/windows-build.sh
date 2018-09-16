@@ -4,6 +4,8 @@ CPUS=$(nproc)
 
 cd /veyon
 
+.travis/common/strip-ultravnc-sources.sh
+
 mkdir build
 cd build
 
