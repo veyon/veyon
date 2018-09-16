@@ -18,8 +18,6 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/IPC.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncencoderre.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncserver.cpp
-	${ultravnc_DIR}/winvnc/winvnc/vncabout.cpp
-	${ultravnc_DIR}/winvnc/winvnc/black_layered.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncsetauth.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncacceptdialog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbUpdateTracker.cpp
@@ -29,7 +27,6 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/security.cpp
 	${ultravnc_DIR}/winvnc/winvnc/buildtime.cpp
 	${ultravnc_DIR}/winvnc/winvnc/Timer.cpp
-	${ultravnc_DIR}/winvnc/winvnc/vncconndialog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncencoderCursor.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncencoder.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vnclog.cpp
@@ -45,13 +42,11 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/videodrivercheck.cpp
 	${ultravnc_DIR}/winvnc/winvnc/videodriver.cpp
 	${ultravnc_DIR}/winvnc/winvnc/read_write_ini.cpp
-	${ultravnc_DIR}/winvnc/winvnc/vnctimedmsgbox.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncDesktopSW.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncOSVersion.cpp
 	${ultravnc_DIR}/winvnc/winvnc/winvnc.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncauth.c
-	${ultravnc_DIR}/winvnc/winvnc/vncListDlg.cpp
 	${ultravnc_DIR}/winvnc/winvnc/stdhdrs.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncEncodeUltra.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncEncodeUltra2.cpp
@@ -67,7 +62,6 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/getinfo.cpp
 	${ultravnc_DIR}/winvnc/winvnc/Dtwinver.cpp
 	${ultravnc_DIR}/winvnc/winvnc/uvncUiAccess.cpp
-	${ultravnc_DIR}/winvnc/winvnc/blankmonitor.cpp
 	${ultravnc_DIR}/winvnc/winvnc/ScreenCapture.cpp
 	${ultravnc_DIR}/winvnc/winvnc/DeskdupEngine.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vsocket.cpp
