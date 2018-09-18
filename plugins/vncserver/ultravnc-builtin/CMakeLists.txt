@@ -54,7 +54,6 @@ SET(ultravnc_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/vncinsthandler.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncEncodeZlib.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncEncodeZlibHex.cpp
-	${ultravnc_DIR}/winvnc/winvnc/vncpropertiesPoll.cpp
 	${ultravnc_DIR}/winvnc/winvnc/helpers.cpp
 	${ultravnc_DIR}/winvnc/winvnc/service_motor.cpp
 	${ultravnc_DIR}/winvnc/winvnc/service.cpp
