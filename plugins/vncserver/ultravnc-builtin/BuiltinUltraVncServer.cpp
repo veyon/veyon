@@ -39,6 +39,7 @@ static BuiltinUltraVncServer* vncServerInstance = nullptr;
 extern BOOL multi;
 extern HINSTANCE hAppInstance;
 extern DWORD mainthreadId;
+extern HINSTANCE hInstResDLL;
 
 
 void ultravnc_veyon_load_password( char* out, int size )
@@ -183,6 +184,8 @@ void BuiltinUltraVncServer::prepareServer()
 	hAppInstance = GetModuleHandle( nullptr );
 	mainthreadId = GetCurrentThreadId();
 
+	hInstResDLL = hAppInstance;
+
 	m_logoffEventFilter = new LogoffEventFilter;
 }
 
@@ -214,6 +217,5 @@ void BuiltinUltraVncServer::runServer( int serverPort, const QString& password )
 		FreeLibrary( hUser32 );
 	}
 
-	Myinit( GetModuleHandle( NULL ) );
 	WinVNCAppMain();
 }
