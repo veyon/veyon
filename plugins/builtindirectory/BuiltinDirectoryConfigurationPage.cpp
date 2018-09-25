@@ -258,8 +258,8 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentComputerObject() const
 
 		return NetworkObject( NetworkObject::Host,
 							  nameItem->text(),
-							  hostAddressItem->text(),
-							  macAddressItem->text(),
+							  hostAddressItem->text().trimmed(),
+							  macAddressItem->text().trimmed(),
 							  QString(),
 							  nameItem->data( NetworkObjectModel::UidRole ).toUuid(),
 							  nameItem->data( NetworkObjectModel::ParentUidRole ).toUuid() );
