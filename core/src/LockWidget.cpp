@@ -55,8 +55,6 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 	QGuiApplication::setOverrideCursor( Qt::BlankCursor );
 
 	QCursor::setPos( mapToGlobal( QPoint( 0, 0 ) ) );
-
-	VeyonCore::platform().coreFunctions().disableScreenSaver();
 }
 
 
@@ -64,7 +62,6 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 LockWidget::~LockWidget()
 {
 	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
-	VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
 
 	QGuiApplication::restoreOverrideCursor();
 }
