@@ -24,8 +24,6 @@
 
 #include <windows.h>
 
-#include <QCoreApplication>
-
 #include "BuiltinUltraVncServer.h"
 #include "LogoffEventFilter.h"
 #include "UltraVncConfiguration.h"
@@ -198,7 +196,7 @@ void BuiltinUltraVncServer::runServer( int serverPort, const QString& password )
 
 	// only allow multiple instances when explicitely working with multiple
 	// service instances
-	if( QCoreApplication::arguments().contains( "-session" ) )
+	if( VeyonCore::hasSessionId() )
 	{
 		multi = true;
 	}
