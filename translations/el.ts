@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Συνεισφέροντες</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Ιστοσελίδα:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -37,7 +37,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Σχετικά %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
@@ -108,19 +108,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργασία επιλεγμένου κανόνα</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Εισάγετε όνομα χρήστη</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Παρακαλώ εισαγάγετε ένα όνομα σύνδεσης χρήστη, του οποίου τα δικαιώματα πρόσβασης θα ελεγχθούν:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Επιτρέπεται η πρόσβαση</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -128,7 +128,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Δεν επιτρέπεται η πρόσβαση</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -215,11 +215,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Επιτρέπεται η πρόσβαση</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Άρνηση πρόσβασης</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
@@ -227,7 +227,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Καμία (κανόνας απενεργοποιημένος)</translation>
     </message>
     <message>
         <source>Accessing user</source>
@@ -286,11 +286,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>Τοπικός χρήστης:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>Συνδεδεμένοι χρήστες:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -310,7 +310,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Αποτέλεσμα δοκιμής</translation>
     </message>
 </context>
 <context>
@@ -321,7 +321,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -349,15 +349,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή κλειδιού</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή κλειδιού</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Εξαγωγή κλειδιού</translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -365,7 +365,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία κλειδιού (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -381,7 +381,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα κλειδί για διαγραφή!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
@@ -389,7 +389,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα κλειδί για εξαγωγή!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -431,7 +431,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Ελέγξτε τα δικαιώματά σας.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -1861,7 +1861,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Εισάγετε όνομα χρήστη</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2462,7 +2462,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Δεν επιτρέπεται η πρόσβαση</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>

@@ -1063,7 +1063,7 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 嘗試存取這部電腦，但無法成功驗證!</translation>
     </message>
 </context>
 <context>
@@ -3323,7 +3323,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"/>
+        <translation>登出</translation>
     </message>
 </context>
 <context>

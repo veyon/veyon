@@ -243,7 +243,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>מחשב מקומי</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -274,7 +274,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer:</source>
-        <translation type="unfinished"/>
+        <translation>מחשב מקומי:</translation>
     </message>
     <message>
         <source>Accessing computer:</source>
@@ -286,11 +286,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local user:</source>
-        <translation type="unfinished"/>
+        <translation>משתמש מקומי:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation type="unfinished"/>
+        <translation>משתמשים מחוברים:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -598,7 +598,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>קבוצת גישה</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
