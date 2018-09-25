@@ -141,7 +141,7 @@ ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 
 void VeyonMaster::runFeature( const Feature& feature )
 {
-	const auto computerControlInterfaces = m_computerControlListModel->computerControlInterfaces();
+	const auto computerControlInterfaces = filteredComputerControlInterfaces();
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
