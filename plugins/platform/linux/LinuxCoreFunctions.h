@@ -34,6 +34,8 @@
 class LinuxCoreFunctions : public PlatformCoreFunctions
 {
 public:
+	LinuxCoreFunctions();
+
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
@@ -64,6 +66,14 @@ public:
 	static DBusInterfacePointer xfcePowerManager();
 	static DBusInterfacePointer systemdLoginManager();
 	static DBusInterfacePointer consoleKitManager();
+
+private:
+	int m_screenSaverTimeout;
+	int m_screenSaverPreferBlanking;
+	bool m_dpmsEnabled;
+	unsigned short m_dpmsStandbyTimeout;
+	unsigned short m_dpmsSuspendTimeout;
+	unsigned short m_dpmsOffTimeout;
 
 };
 

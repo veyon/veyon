@@ -35,6 +35,21 @@
 #include "LinuxUserFunctions.h"
 #include "PlatformUserFunctions.h"
 
+#include <X11/XKBlib.h>
+#include <X11/extensions/dpms.h>
+
+
+LinuxCoreFunctions::LinuxCoreFunctions() :
+	m_screenSaverTimeout( 0 ),
+	m_screenSaverPreferBlanking( 0 ),
+	m_dpmsEnabled( false ),
+	m_dpmsStandbyTimeout( 0 ),
+	m_dpmsSuspendTimeout( 0 ),
+	m_dpmsOffTimeout( 0 )
+{
+}
+
+
 
 void LinuxCoreFunctions::initNativeLoggingSystem( const QString& appName )
 {
@@ -104,14 +119,66 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget )
 
 void LinuxCoreFunctions::disableScreenSaver()
 {
-	// TODO
+	auto display = XOpenDisplay( nullptr );
+
+	// query and disable screen saver
+	int interval, allowExposures;
+	XGetScreenSaver( display, &m_screenSaverTimeout, &interval, &m_screenSaverPreferBlanking, &allowExposures );
+	XSetScreenSaver( display, 0, interval, 0, allowExposures );
+
+	// query and disable DPMS
+	int dummy;
+	if( DPMSQueryExtension( display, &dummy, &dummy ) )
+	{
+		CARD16 powerLevel;
+		BOOL state;
+		if( DPMSInfo( display, &powerLevel, &state ) && state )
+		{
+			m_dpmsEnabled = true;
+			DPMSDisable( display );
+		}
+		else
+		{
+			m_dpmsEnabled = false;
+		}
+
+		DPMSGetTimeouts( display, &m_dpmsStandbyTimeout, &m_dpmsSuspendTimeout, &m_dpmsOffTimeout );
+		DPMSSetTimeouts( display, 0, 0, 0 );
+	}
+	else
+	{
+		qWarning() << Q_FUNC_INFO << "DPMS extension not supported!";
+	}
+
+	XFlush( display );
+	XCloseDisplay( display );
 }
 
 
 
 void LinuxCoreFunctions::restoreScreenSaverSettings()
 {
-	// TODO
+	auto display = XOpenDisplay( nullptr );
+
+	// restore screensaver settings
+	int timeout, interval, preferBlanking, allowExposures;
+	XGetScreenSaver( display, &timeout, &interval, &preferBlanking, &allowExposures );
+	XSetScreenSaver( display, m_screenSaverTimeout, interval, m_screenSaverPreferBlanking, allowExposures );
+
+	// restore DPMS settings
+	int dummy;
+	if( DPMSQueryExtension( display, &dummy, &dummy ) )
+	{
+		if( m_dpmsEnabled )
+		{
+			DPMSEnable( display );
+		}
+
+		DPMSSetTimeouts( display, m_dpmsStandbyTimeout, m_dpmsSuspendTimeout, m_dpmsOffTimeout );
+	}
+
+	XFlush( display );
+	XCloseDisplay( display );
 }
 
 
