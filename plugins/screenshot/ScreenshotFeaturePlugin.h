@@ -31,7 +31,7 @@
 class ScreenshotFeaturePlugin : public QObject, SimpleFeatureProvider, PluginInterface
 {
 	Q_OBJECT
-	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FeatureProviderInterface")
+	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Screenshot")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	ScreenshotFeaturePlugin( QObject* parent = nullptr );
