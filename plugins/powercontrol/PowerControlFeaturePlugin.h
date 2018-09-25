@@ -25,14 +25,20 @@
 #ifndef POWER_CONTROL_FEATURE_PLUGIN_H
 #define POWER_CONTROL_FEATURE_PLUGIN_H
 
+#include "CommandLineIO.h"
+#include "CommandLinePluginInterface.h"
 #include "Feature.h"
 #include "FeatureProviderInterface.h"
 
-class PowerControlFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface
+class PowerControlFeaturePlugin : public QObject,
+		PluginInterface,
+		CommandLineIO,
+		CommandLinePluginInterface,
+		FeatureProviderInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.PowerControl")
-	Q_INTERFACES(PluginInterface FeatureProviderInterface)
+	Q_INTERFACES(PluginInterface CommandLinePluginInterface FeatureProviderInterface)
 public:
 	PowerControlFeaturePlugin( QObject* parent = nullptr );
 	~PowerControlFeaturePlugin() override {}
@@ -67,6 +73,19 @@ public:
 		return QStringLiteral("Tobias Junghans");
 	}
 
+	QString commandLineModuleName() const override
+	{
+		return QStringLiteral( "power" );
+	}
+
+	QString commandLineModuleHelp() const override
+	{
+		return tr( "Commands for controlling power status of computers" );
+	}
+
+	QStringList commands() const override;
+	QString commandHelp( const QString& command ) const override;
+
 	const FeatureList& featureList() const override;
 
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
@@ -82,9 +101,15 @@ public:
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
+public slots:
+	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_on( const QStringList& arguments );
+
 private:
 	bool confirmFeatureExecution( const Feature& feature, QWidget* parent );
-	static void broadcastWOLPacket( QString macAddress );
+	static bool broadcastWOLPacket( QString macAddress );
+
+	QMap<QString, QString> m_commands;
 
 	const Feature m_powerOnFeature;
 	const Feature m_rebootFeature;

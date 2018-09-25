@@ -35,6 +35,9 @@
 
 PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
+	m_commands( {
+{ "on", tr( "Power on a computer via Wake-on-LAN (WOL)" ) },
+				} ),
 	m_powerOnFeature( Feature::Action | Feature::AllComponents,
 					  Feature::Uid( "f483c659-b5e7-4dbc-bd91-2c9403e70ebd" ),
 					  Feature::Uid(),
@@ -57,6 +60,20 @@ PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
 						QStringLiteral(":/powercontrol/system-shutdown.png") ),
 	m_features( { m_powerOnFeature, m_rebootFeature, m_powerDownFeature } )
 {
+}
+
+
+
+QStringList PowerControlFeaturePlugin::commands() const
+{
+	return m_commands.keys();
+}
+
+
+
+QString PowerControlFeaturePlugin::commandHelp( const QString& command ) const
+{
+	return m_commands.value( command );
 }
 
 
@@ -154,6 +171,43 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& work
 
 
 
+CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_help( const QStringList& arguments )
+{
+	const auto command = arguments.value( 0 );
+
+	const QMap<QString, QStringList> commands = {
+		{ QStringLiteral("on"),
+		  QStringList( { QStringLiteral("<%1>").arg( tr("MAC ADDRESS") ),
+						 tr( "This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address." ) } ) },
+	};
+
+	if( commands.contains( command ) )
+	{
+		const auto& helpString = commands[command];
+		print( QStringLiteral("\n%1 %2 %3\n\n%4\n\n").arg( commandLineModuleName(), command, helpString[0], helpString[1] ) );
+
+		return NoResult;
+	}
+
+	print( tr("Please specify the command to display help for!") );
+
+	return Unknown;
+}
+
+
+
+CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_on( const QStringList& arguments )
+{
+	if( arguments.size() < 1 )
+	{
+		return NotEnoughArguments;
+	}
+
+	return broadcastWOLPacket( arguments.first() ) ? Successful : Failed;
+}
+
+
+
 bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature, QWidget* parent )
 {
 	if( VeyonCore::config().confirmDangerousActions() == false )
@@ -179,14 +233,14 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 
 
 
-void PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
+bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 {
 	const int MAC_SIZE = 6;
 	unsigned int mac[MAC_SIZE];  // Flawfinder: ignore
 
 	if( macAddress.isEmpty() )
 	{
-		return;
+		return false;
 	}
 
 	const auto originalMacAddress = macAddress;
@@ -205,8 +259,9 @@ void PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 				&mac[4],
 				&mac[5] ) != MAC_SIZE )
 	{
+		CommandLineIO::error( tr( "Invalid MAC address specified!" ) );
 		qWarning() << "PowerControlFeaturePlugin::broadcastWOLPacket(): invalid MAC address" << originalMacAddress;
-		return;
+		return false;
 	}
 
 	QByteArray datagram( MAC_SIZE*17, static_cast<char>( 0xff ) );
@@ -219,5 +274,5 @@ void PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 		}
 	}
 
-	QUdpSocket().writeDatagram( datagram, QHostAddress::Broadcast, 9 );
+	return QUdpSocket().writeDatagram( datagram, QHostAddress::Broadcast, 9 ) == datagram.size();
 }
