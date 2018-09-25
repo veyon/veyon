@@ -88,13 +88,7 @@ int main()
 	int err = pam_start( "su", nullptr, &pconv, &pamh );
 
 	err = pam_authenticate( pamh, PAM_SILENT );
-	if( err == PAM_SUCCESS )
-	{
-		pam_open_session( pamh, PAM_SILENT );
-		pam_end( pamh, err );
-		return 0;
-	}
-	else
+	if( err != PAM_SUCCESS )
 	{
 		printf( "%s\n", pam_strerror( pamh, err ) );
 	}
