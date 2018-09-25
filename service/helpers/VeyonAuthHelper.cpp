@@ -86,11 +86,17 @@ int main()
 	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t *pamh;
 	int err = pam_start( "su", nullptr, &pconv, &pamh );
-
-	err = pam_authenticate( pamh, PAM_SILENT );
-	if( err != PAM_SUCCESS )
+	if( err == PAM_SUCCESS )
 	{
-		printf( "%s\n", pam_strerror( pamh, err ) );
+		err = pam_authenticate( pamh, PAM_SILENT );
+		if( err != PAM_SUCCESS )
+		{
+			printf( "pam_authenticate: %s\n", pam_strerror( pamh, err ) );
+		}
+	}
+	else
+	{
+		printf( "pam_start: %s\n", pam_strerror( pamh, err ) );
 	}
 
 	pam_end( pamh, err );
