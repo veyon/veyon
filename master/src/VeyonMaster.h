@@ -93,6 +93,8 @@ public:
 
 	QWidget* mainWindow() override;
 
+	ComputerControlInterfaceList filteredComputerControlInterfaces();
+
 public slots:
 	void runFeature( const Feature& feature );
 	void enforceDesignatedMode( const QModelIndex& index );

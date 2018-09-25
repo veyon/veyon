@@ -123,6 +123,22 @@ QWidget* VeyonMaster::mainWindow()
 
 
 
+ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
+{
+	ComputerControlInterfaceList computerControlInterfaces;
+
+	for( int i = 0; i < m_computerSortFilterProxyModel->rowCount(); ++i )
+	{
+		const auto index = m_computerSortFilterProxyModel->index( i, 0 );
+		const auto sourceIndex = m_computerSortFilterProxyModel->mapToSource( index );
+		computerControlInterfaces.append( m_computerControlListModel->computerControlInterface( sourceIndex ) );
+	}
+
+	return computerControlInterfaces;
+}
+
+
+
 void VeyonMaster::runFeature( const Feature& feature )
 {
 	const auto computerControlInterfaces = m_computerControlListModel->computerControlInterfaces();
