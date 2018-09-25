@@ -30,6 +30,7 @@ ComputerSortFilterProxyModel::ComputerSortFilterProxyModel( QObject* parent ) :
 	m_stateRole( -1 ),
 	m_stateFilter( ComputerControlInterface::None )
 {
+	setFilterCaseSensitivity( Qt::CaseInsensitive );
 }
 
 
