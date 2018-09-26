@@ -213,7 +213,7 @@ bool AccessControlProvider::isLocatedInRoom( const QString &computer, const QStr
 bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QString &userTwo ) const
 {
 	const auto userOneGroups = m_dataBackend->groupsOfUser( userOne, m_queryDomainGroups );
-	const auto userTwoGroups = m_dataBackend->groupsOfUser( userOne, m_queryDomainGroups );
+	const auto userTwoGroups = m_dataBackend->groupsOfUser( userTwo, m_queryDomainGroups );
 
 	return intersects( userOneGroups.toSet(), userTwoGroups.toSet() );
 }
