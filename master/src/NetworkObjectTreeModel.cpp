@@ -53,13 +53,13 @@ QModelIndex NetworkObjectTreeModel::index(int row, int column, const QModelIndex
 		return QModelIndex();
 	}
 
-	quintptr parentId = 0;
+	int parentId = 0;
 	if( parent.isValid() && parent.internalId() == 0 )
 	{
 		parentId = parent.row() + 1;
 	}
 
-	return createIndex( row, column, parentId );
+	return createIndex( row, column, static_cast<quintptr>(parentId) );
 }
 
 
@@ -70,7 +70,7 @@ QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 	if( index.internalId() > 0 )
 	{
 		// use it as row index
-		return createIndex( index.internalId()-1, 0 );
+		return createIndex( static_cast<int>(index.internalId()) - 1, 0 );
 	}
 
 	return QModelIndex();
@@ -130,7 +130,7 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 
 	if( index.internalId() > 0 )
 	{
-		const auto& groupObject = rootObjects[index.internalId()-1];
+		const auto& groupObject = rootObjects[static_cast<int>(index.internalId())-1];
 		const auto groupObjects = m_directory->objects( groupObject );
 
 		networkObject = groupObjects[index.row()];
