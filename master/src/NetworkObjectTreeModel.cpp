@@ -100,6 +100,8 @@ int NetworkObjectTreeModel::rowCount( const QModelIndex& parent ) const
 
 int NetworkObjectTreeModel::columnCount( const QModelIndex& parent ) const
 {
+	Q_UNUSED(parent)
+
 	return 1;
 }
 
