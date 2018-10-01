@@ -61,18 +61,9 @@ QString Filesystem::expandPath( QString path ) const
 
 QString Filesystem::shrinkPath( QString path ) const
 {
-	if( QFileInfo( path ).isDir() )
-	{
-		// we replace parts of the path with strings returned by
-		// personalConfigDataPath() & friends which always return a path with
-		// a trailing dir separator - therefore add one so we don't miss a
-		// replace
-		path += QDir::separator();
-	}
-
 	path = QDir::toNativeSeparators( path );
 
-	const QString envVar( QStringLiteral( "%%1%" ) + QDir::separator() );
+	const QString envVar( QStringLiteral( "%%1%" ) );
 	const auto personalAppDataPath = VeyonCore::platform().filesystemFunctions().personalAppDataPath();
 	const auto globalAppDataPath = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
 

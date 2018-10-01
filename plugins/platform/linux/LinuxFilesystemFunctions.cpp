@@ -40,7 +40,7 @@ QString LinuxFilesystemFunctions::personalAppDataPath() const
 
 QString LinuxFilesystemFunctions::globalAppDataPath() const
 {
-	return QStringLiteral( "/etc/veyon/" );
+	return QStringLiteral( "/etc/veyon" );
 }
 
 
