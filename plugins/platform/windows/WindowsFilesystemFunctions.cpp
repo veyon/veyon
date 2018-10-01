@@ -62,6 +62,13 @@ QString WindowsFilesystemFunctions::globalAppDataPath() const
 
 
 
+QString WindowsFilesystemFunctions::globalTempPath() const
+{
+	return windowsConfigPath( FOLDERID_Windows ) + QDir::separator() + QStringLiteral("Temp");
+}
+
+
+
 QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 {
 	PSID ownerSID = nullptr;

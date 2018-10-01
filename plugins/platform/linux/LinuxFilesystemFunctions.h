@@ -34,6 +34,7 @@ class LinuxFilesystemFunctions : public PlatformFilesystemFunctions
 public:
 	QString personalAppDataPath() const override;
 	QString globalAppDataPath() const override;
+	QString globalTempPath() const override;
 
 	QString fileOwnerGroup( const QString& filePath ) override;
 	bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) override;

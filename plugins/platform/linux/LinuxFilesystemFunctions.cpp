@@ -45,6 +45,14 @@ QString LinuxFilesystemFunctions::globalAppDataPath() const
 
 
 
+QString LinuxFilesystemFunctions::globalTempPath() const
+{
+	return QStringLiteral( "/tmp" );
+
+}
+
+
+
 QString LinuxFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 {
 	return QFileInfo( filePath ).group();
