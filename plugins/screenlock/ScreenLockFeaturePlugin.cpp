@@ -27,6 +27,7 @@
 #include "ScreenLockFeaturePlugin.h"
 #include "FeatureWorkerManager.h"
 #include "LockWidget.h"
+#include "PlatformCoreFunctions.h"
 #include "VeyonServerInterface.h"
 
 
@@ -131,6 +132,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 		case StartLockCommand:
 			if( m_lockWidget == nullptr )
 			{
+				VeyonCore::platform().coreFunctions().disableScreenSaver();
+
 				m_lockWidget = new LockWidget( LockWidget::BackgroundPixmap,
 											   QPixmap( QStringLiteral(":/screenlock/locked-screen-background.png" ) ) );
 			}
@@ -139,6 +142,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 		case StopLockCommand:
 			delete m_lockWidget;
 			m_lockWidget = nullptr;
+
+			VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
 
 			QCoreApplication::quit();
 

@@ -82,12 +82,16 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 	}
 
 	VeyonCore::platform().coreFunctions().raiseWindow( m_toplevel );
+
+	VeyonCore::platform().coreFunctions().disableScreenSaver();
 }
 
 
 
 DemoClient::~DemoClient()
 {
+	VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
+
 	delete m_toplevel;
 }
 

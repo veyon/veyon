@@ -85,7 +85,7 @@ class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidget( ComputerControlInterface::Pointer computerControlInterface, bool _view_only = false );
+	RemoteAccessWidget( ComputerControlInterface::Pointer computerControlInterface, bool viewOnly = false );
 	~RemoteAccessWidget() override;
 
 

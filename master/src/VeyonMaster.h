@@ -37,6 +37,7 @@ class QModelIndex;
 class BuiltinFeatures;
 class ComputerControlListModel;
 class ComputerManager;
+class ComputerSortFilterProxyModel;
 class FeatureManager;
 class MainWindow;
 class UserConfig;
@@ -73,6 +74,11 @@ public:
 		return *m_computerControlListModel;
 	}
 
+	ComputerSortFilterProxyModel& computerSortFilterProxyModel()
+	{
+		return *m_computerSortFilterProxyModel;
+	}
+
 	const FeatureList& features() const
 	{
 		return m_features;
@@ -86,6 +92,8 @@ public:
 	}
 
 	QWidget* mainWindow() override;
+
+	ComputerControlInterfaceList filteredComputerControlInterfaces();
 
 public slots:
 	void runFeature( const Feature& feature );
@@ -101,6 +109,7 @@ private:
 	UserConfig* m_userConfig;
 	ComputerManager* m_computerManager;
 	ComputerControlListModel* m_computerControlListModel;
+	ComputerSortFilterProxyModel* m_computerSortFilterProxyModel;
 
 	MainWindow* m_mainWindow;
 

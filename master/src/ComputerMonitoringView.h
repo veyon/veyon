@@ -26,7 +26,6 @@
 #define COMPUTER_MONITORING_VIEW_H
 
 #include "ComputerControlInterface.h"
-#include "ComputerSortFilterProxyModel.h"
 
 #include <QWidget>
 
@@ -36,6 +35,7 @@ namespace Ui {
 class ComputerMonitoringView;
 }
 
+class ComputerSortFilterProxyModel;
 class VeyonMaster;
 
 class ComputerMonitoringView : public QWidget
@@ -69,6 +69,8 @@ private slots:
 	void runFeature( const Feature& feature );
 
 private:
+	ComputerSortFilterProxyModel& listModel();
+
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
 
@@ -82,7 +84,6 @@ private:
 
 	VeyonMaster* m_master;
 	QMenu* m_featureMenu;
-	ComputerSortFilterProxyModel m_sortFilterProxyModel;
 
 signals:
 	void computerScreenSizeAdjusted( int size );

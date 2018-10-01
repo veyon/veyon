@@ -157,6 +157,8 @@ void WindowsCoreFunctions::disableScreenSaver()
 		SystemParametersInfo( screenSaverSettingsGetList[i], 0, &screenSaverSettings[i], 0 );
 		SystemParametersInfo( screenSaverSettingsSetList[i], 0, nullptr, 0 );
 	}
+
+	SetThreadExecutionState( ES_CONTINUOUS | ES_DISPLAY_REQUIRED );
 }
 
 
@@ -167,6 +169,8 @@ void WindowsCoreFunctions::restoreScreenSaverSettings()
 	{
 		SystemParametersInfo( screenSaverSettingsSetList[i], screenSaverSettings[i], nullptr, 0 );
 	}
+
+	SetThreadExecutionState( ES_CONTINUOUS );
 }
 
 

@@ -17,7 +17,7 @@ matrix:
         - env: TARGET_OS=opensuse.42.3
         - env: TARGET_OS=sast
 script:
-    - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
+    - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:4.1 || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
     - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} /bin/sh /veyon/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
 deploy:
     provider: releases

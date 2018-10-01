@@ -25,6 +25,7 @@
 #include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
+#include "ComputerSortFilterProxyModel.h"
 #include "FeatureManager.h"
 #include "VncConnection.h"
 #include "VeyonConfiguration.h"
@@ -44,6 +45,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
+	m_computerSortFilterProxyModel( new ComputerSortFilterProxyModel( this ) ),
 	m_mainWindow( nullptr ),
 	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
 {
@@ -59,6 +61,12 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	} );
 
 	VeyonCore::localComputerControlInterface().start( QSize(), m_builtinFeatures );
+
+	// attach computer list model to proxy model
+	m_computerSortFilterProxyModel->setSourceModel( m_computerControlListModel );
+	m_computerSortFilterProxyModel->setSortRole( Qt::InitialSortOrderRole );
+	m_computerSortFilterProxyModel->setStateRole( ComputerControlListModel::StateRole );
+	m_computerSortFilterProxyModel->sort( 0 );
 
 	m_mainWindow = new MainWindow( *this );
 }
@@ -115,9 +123,25 @@ QWidget* VeyonMaster::mainWindow()
 
 
 
+ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
+{
+	ComputerControlInterfaceList computerControlInterfaces;
+
+	for( int i = 0; i < m_computerSortFilterProxyModel->rowCount(); ++i )
+	{
+		const auto index = m_computerSortFilterProxyModel->index( i, 0 );
+		const auto sourceIndex = m_computerSortFilterProxyModel->mapToSource( index );
+		computerControlInterfaces.append( m_computerControlListModel->computerControlInterface( sourceIndex ) );
+	}
+
+	return computerControlInterfaces;
+}
+
+
+
 void VeyonMaster::runFeature( const Feature& feature )
 {
-	const auto computerControlInterfaces = m_computerControlListModel->computerControlInterfaces();
+	const auto computerControlInterfaces = filteredComputerControlInterfaces();
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
