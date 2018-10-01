@@ -199,6 +199,7 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 	}
 
 	Computer remoteComputer;
+	remoteComputer.setName( hostAddress );
 	remoteComputer.setHostAddress( hostAddress );
 
 	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), viewOnly );
