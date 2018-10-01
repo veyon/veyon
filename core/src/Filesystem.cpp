@@ -61,22 +61,17 @@ QString Filesystem::expandPath( QString path ) const
 
 QString Filesystem::shrinkPath( QString path ) const
 {
-	if( QFileInfo( path ).isDir() )
-	{
-		// we replace parts of the path with strings returned by
-		// personalConfigDataPath() & friends which always return a path with
-		// a trailing dir separator - therefore add one so we don't miss a
-		// replace
-		path += QDir::separator();
-	}
-
 	path = QDir::toNativeSeparators( path );
 
-	const QString envVar( QStringLiteral( "%%1%" ) + QDir::separator() );
+	const QString envVar( QStringLiteral( "%%1%" ) );
 	const auto personalAppDataPath = VeyonCore::platform().filesystemFunctions().personalAppDataPath();
 	const auto globalAppDataPath = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
 
-	if( path.startsWith( personalAppDataPath ) )
+	if( path.startsWith( QDir::toNativeSeparators( QDir::tempPath() ) ) )
+	{
+		path.replace( QDir::toNativeSeparators( QDir::tempPath() ), envVar.arg( QStringLiteral( "TEMP" ) ) );
+	}
+	else if( path.startsWith( personalAppDataPath ) )
 	{
 		path.replace( personalAppDataPath, envVar.arg( QStringLiteral( "APPDATA" ) ) );
 	}
@@ -87,10 +82,6 @@ QString Filesystem::shrinkPath( QString path ) const
 	else if( path.startsWith( QDir::toNativeSeparators( QDir::homePath() ) ) )
 	{
 		path.replace( QDir::toNativeSeparators( QDir::homePath() ), envVar.arg( QStringLiteral( "HOME" ) ) );
-	}
-	else if( path.startsWith( QDir::toNativeSeparators( QDir::tempPath() ) ) )
-	{
-		path.replace( QDir::toNativeSeparators( QDir::tempPath() ), envVar.arg( QStringLiteral( "TEMP" ) ) );
 	}
 
 	// remove duplicate directory separators - however skip the first two chars

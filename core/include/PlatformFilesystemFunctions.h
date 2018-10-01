@@ -36,6 +36,7 @@ class PlatformFilesystemFunctions
 public:
 	virtual QString personalAppDataPath() const = 0;
 	virtual QString globalAppDataPath() const = 0;
+	virtual QString globalTempPath() const = 0;
 
 	virtual QString fileOwnerGroup( const QString& filePath ) = 0;
 	virtual bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) = 0;

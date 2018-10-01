@@ -31,6 +31,7 @@
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "NetworkObjectDirectoryManager.h"
+#include "PlatformFilesystemFunctions.h"
 #include "PluginManager.h"
 #include "VeyonServiceControl.h"
 #include "Configuration/UiMapping.h"
@@ -146,8 +147,11 @@ void GeneralConfigurationPage::clearLogFiles()
 	}
 
 	bool success = true;
+	const QStringList logFilesFilter( { QStringLiteral("Veyon*.log") } );
+
 	QDir d( VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() ) );
-	const auto localLogFiles = d.entryList( { QStringLiteral("Veyon*.log") } );
+	const auto localLogFiles = d.entryList( logFilesFilter );
+
 	for( const auto& f : localLogFiles )
 	{
 		if( f != QStringLiteral("VeyonConfigurator.log") )
@@ -156,7 +160,8 @@ void GeneralConfigurationPage::clearLogFiles()
 		}
 	}
 
-	const auto globalLogFiles = QDir::temp().entryList( { QStringLiteral("Veyon*.log") } );
+	d = QDir( VeyonCore::platform().filesystemFunctions().globalTempPath() );
+	const auto globalLogFiles = d.entryList( logFilesFilter );
 	for( const auto& f : globalLogFiles )
 	{
 		if( f != QStringLiteral("VeyonConfigurator.log") )
