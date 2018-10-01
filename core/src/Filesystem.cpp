@@ -67,7 +67,11 @@ QString Filesystem::shrinkPath( QString path ) const
 	const auto personalAppDataPath = VeyonCore::platform().filesystemFunctions().personalAppDataPath();
 	const auto globalAppDataPath = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
 
-	if( path.startsWith( personalAppDataPath ) )
+	if( path.startsWith( QDir::toNativeSeparators( QDir::tempPath() ) ) )
+	{
+		path.replace( QDir::toNativeSeparators( QDir::tempPath() ), envVar.arg( QStringLiteral( "TEMP" ) ) );
+	}
+	else if( path.startsWith( personalAppDataPath ) )
 	{
 		path.replace( personalAppDataPath, envVar.arg( QStringLiteral( "APPDATA" ) ) );
 	}
@@ -78,10 +82,6 @@ QString Filesystem::shrinkPath( QString path ) const
 	else if( path.startsWith( QDir::toNativeSeparators( QDir::homePath() ) ) )
 	{
 		path.replace( QDir::toNativeSeparators( QDir::homePath() ), envVar.arg( QStringLiteral( "HOME" ) ) );
-	}
-	else if( path.startsWith( QDir::toNativeSeparators( QDir::tempPath() ) ) )
-	{
-		path.replace( QDir::toNativeSeparators( QDir::tempPath() ), envVar.arg( QStringLiteral( "TEMP" ) ) );
 	}
 
 	// remove duplicate directory separators - however skip the first two chars
