@@ -232,8 +232,10 @@ IF(WIN32)
 	SET(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${COMPILER_VERSION_MAJOR_MINOR}-win32")
 	IF(VEYON_BUILD_WIN64)
 	    SET(DLL_GCC "libgcc_s_seh-1.dll")
+		SET(DLL_DDENGINE "ddengine64.dll")
 	ELSE()
 	    SET(DLL_GCC "libgcc_s_sjlj-1.dll")
+		SET(DLL_DDENGINE "ddengine.dll")
 	ENDIF()
 
 	ADD_CUSTOM_TARGET(win-nsi
@@ -241,6 +243,7 @@ IF(WIN32)
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/install-interception.exe ${TMP}
+			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/ddengine/${DLL_DDENGINE} ${TMP}
 			COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
 			COMMAND cp plugins/*/*.dll ${TMP}/plugins/
