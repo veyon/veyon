@@ -95,6 +95,7 @@ private slots:
 
 private:
 	bool initAuthentication();
+	bool remoteAccess( const QString& hostAddress, bool viewOnly );
 
 	const Feature m_remoteViewFeature;
 	const Feature m_remoteControlFeature;

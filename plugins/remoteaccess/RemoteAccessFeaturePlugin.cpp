@@ -143,19 +143,7 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( co
 		return NotEnoughArguments;
 	}
 
-	if( initAuthentication() == false )
-	{
-		return Failed;
-	}
-
-	Computer remoteComputer;
-	remoteComputer.setHostAddress( arguments.first() );
-
-	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), true );
-
-	qApp->exec();
-
-	return Successful;
+	return remoteAccess( arguments.first(), true ) ? Successful : Failed;
 }
 
 
@@ -167,19 +155,7 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 		return NotEnoughArguments;
 	}
 
-	if( initAuthentication() == false )
-	{
-		return Failed;
-	}
-
-	Computer remoteComputer;
-	remoteComputer.setHostAddress( arguments.first() );
-
-	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), false );
-
-	qApp->exec();
-
-	return Successful;
+	return remoteAccess( arguments.first(), false ) ? Successful : Failed;
 }
 
 
@@ -209,6 +185,25 @@ bool RemoteAccessFeaturePlugin::initAuthentication()
 		qWarning() << "Could not initialize authentication";
 		return false;
 	}
+
+	return true;
+}
+
+
+
+bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool viewOnly )
+{
+	if( initAuthentication() == false )
+	{
+		return false;
+	}
+
+	Computer remoteComputer;
+	remoteComputer.setHostAddress( hostAddress );
+
+	new RemoteAccessWidget( ComputerControlInterface::Pointer::create( remoteComputer ), viewOnly );
+
+	qApp->exec();
 
 	return true;
 }
