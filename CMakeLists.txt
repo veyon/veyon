@@ -241,8 +241,8 @@ IF(WIN32)
 	ADD_CUSTOM_TARGET(win-nsi
 		    COMMAND make
 			COMMAND rm -rf ${TMP}
-			COMMAND mkdir -p ${TMP}
-			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/install-interception.exe ${TMP}
+			COMMAND mkdir -p ${TMP}/interception
+			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/interception/* ${TMP}/interception
 			COMMAND cp ${CMAKE_SOURCE_DIR}/3rdparty/ddengine/${DLL_DDENGINE} ${TMP}
 			COMMAND cp core/veyon-core.dll server/veyon-server.exe service/veyon-service.exe plugins/vncserver/ultravnc-builtin/vnchooks/vnchooks.dll master/veyon-master.exe configurator/veyon-configurator.exe ctl/veyon-ctl.exe worker/veyon-worker.exe ${TMP}
 			COMMAND mkdir -p ${TMP}/plugins
