@@ -11,6 +11,9 @@ cd /build
 # add distribution name to file name
 rename '.x86_64' '.centos-73.x86_64' *.rpm
 
+# show files
+rpm -qlp *.rpm
+
 # show dependencies
 rpm -qpR *.rpm
 
