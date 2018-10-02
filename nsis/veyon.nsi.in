@@ -148,6 +148,8 @@ Section "Veyon Service"
 SectionIn RO
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\veyon-ctl.exe" service unregister'
+Delete "$INSTDIR\*.dll"
+Delete "$INSTDIR\install-interception.exe"
 Delete "$INSTDIR\plugins\*.dll"
 RmDir /r "$INSTDIR\plugins"
 SetOverwrite on
@@ -158,7 +160,6 @@ File "veyon-service.exe"
 File "veyon-configurator.exe"
 File "veyon-ctl.exe"
 File "veyon-worker.exe"
-File "install-interception.exe"
 File "*.dll"
 File "LICENSE.TXT"
 File "README.TXT"
@@ -174,7 +175,10 @@ File "crypto/*.dll"
 # Qt platform plugin
 SetOutPath "$INSTDIR\platforms"
 File "platforms/qwindows.dll"
-ExecWait '"$INSTDIR\install-interception.exe" /install'
+# interception driver
+SetOutPath "$INSTDIR\interception"
+File "interception/*"
+# configuration
 ExecWait '"$INSTDIR\veyon-ctl.exe" service register'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 1'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 1'
@@ -188,6 +192,10 @@ ${If} $R1 != ""
   ${If} $0 != 0
 	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
   ${EndIf}
+${EndIf}
+ExecWait '"$INSTDIR\interception\install-interception.exe" /install' $0
+${If} $0 != 0
+	MessageBox MB_OK|MB_ICONSTOP "Failed to install input device interception driver! Please run '$INSTDIR\interception\install.bat' manually!"
 ${EndIf}
 ExecWait '"$INSTDIR\veyon-ctl.exe" service start'
 SectionEnd
@@ -261,7 +269,7 @@ ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Service/SoftwareSASEnabled 0'
 ExecWait '"$INSTDIR\veyon-ctl.exe" config set Network/FirewallExceptionEnabled 0'
 ExecWait '"$INSTDIR\veyon-ctl.exe" service unregister'
-ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
+ExecWait '"$INSTDIR\interception\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
 
@@ -279,6 +287,7 @@ RmDir /r "$INSTDIR\crypto"
 RmDir /r "$INSTDIR\plugins"
 RmDir /r "$INSTDIR\platforms"
 RmDir /r "$INSTDIR\translations"
+RmDir /r "$INSTDIR\interception"
 
 RmDir "$INSTDIR"
 

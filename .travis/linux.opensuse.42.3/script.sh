@@ -12,6 +12,9 @@ cd /build
 # add distribution name to file name
 rename '.x86_64' '.opensuse-42.3.x86_64' /build/*.rpm
 
+# show files
+rpm -qlp *.rpm
+
 # show dependencies
 rpm -qpR *.rpm
 

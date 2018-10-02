@@ -9,6 +9,7 @@ cd /build
 # move generated DEB to mounted Docker volume
 rename "s/_amd64/-debian-stretch_amd64/g" *.deb
 
+dpkg -c *.deb
 dpkg -I *.deb
 
 # generate source tarball
