@@ -490,6 +490,10 @@ QStringList LdapDirectory::groupMembers(const QString &groupDn)
 QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 {
 	const auto userId = groupMemberUserIdentification( userDn );
+	if( userId.isEmpty() )
+	{
+		return {};
+	}
 
 	return d->queryDistinguishedNames( d->groupsDn,
 									   constructQueryFilter( d->groupMemberAttribute, userId, d->userGroupsFilter ),
@@ -501,6 +505,10 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 {
 	const auto computerId = groupMemberComputerIdentification( computerDn );
+	if( computerId.isEmpty() )
+	{
+		return {};
+	}
 
 	return d->queryDistinguishedNames( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 									   constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
@@ -521,6 +529,10 @@ QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 	}
 
 	const auto computerId = groupMemberComputerIdentification( computerDn );
+	if( computerId.isEmpty() )
+	{
+		return {};
+	}
 
 	return d->queryAttributes( d->computerGroupsDn.isEmpty() ? d->groupsDn : d->computerGroupsDn,
 							   d->computerRoomNameAttribute,
