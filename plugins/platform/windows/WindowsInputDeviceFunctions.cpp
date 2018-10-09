@@ -24,6 +24,7 @@
 
 #include <windows.h>
 
+#include "ConfigurationManager.h"
 #include "PlatformServiceFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsKeyboardShortcutTrapper.h"
@@ -123,6 +124,25 @@ bool WindowsInputDeviceFunctions::configureSoftwareSAS(bool enabled)
 
 
 
+void WindowsInputDeviceFunctions::checkInterceptionInstallation()
+{
+	const auto context = interception_create_context();
+	if( context )
+	{
+		// a valid context means the interception driver is installed properly
+		// so nothing to do here
+		interception_destroy_context( context );
+	}
+	// try to (re)install interception driver
+	else if( installInterception() == false )
+	{
+		// failed to uninstall it so we can try to install it again on next reboot
+		uninstallInterception();
+	}
+}
+
+
+
 void WindowsInputDeviceFunctions::enableInterception()
 {
 	m_interceptionContext = interception_create_context();
@@ -175,4 +195,25 @@ void WindowsInputDeviceFunctions::stopHIDService()
 	{
 		VeyonCore::platform().serviceFunctions().stop( m_hidServiceName );
 	}
+}
+
+
+
+bool WindowsInputDeviceFunctions::installInterception()
+{
+	return interceptionInstaller( QStringLiteral("/install") ) == 0;
+}
+
+
+
+bool WindowsInputDeviceFunctions::uninstallInterception()
+{
+	return interceptionInstaller( QStringLiteral("/uninstall") ) == 0;
+}
+
+
+
+int WindowsInputDeviceFunctions::interceptionInstaller( const QString& argument )
+{
+	return QProcess::execute( QCoreApplication::applicationDirPath() + QStringLiteral("/interception/install-interception.exe"), { argument } );
 }

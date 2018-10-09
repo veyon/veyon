@@ -23,6 +23,7 @@
  */
 
 #include <QMessageBox>
+#include <QNetworkInterface>
 #include <QUdpSocket>
 
 #include "Computer.h"
@@ -274,5 +275,22 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 		}
 	}
 
-	return QUdpSocket().writeDatagram( datagram, QHostAddress::Broadcast, 9 ) == datagram.size();
+	QUdpSocket udpSocket;
+
+	bool success = ( udpSocket.writeDatagram( datagram, QHostAddress::Broadcast, 9 ) == datagram.size() );
+
+	const auto networkInterfaces = QNetworkInterface::allInterfaces();
+	for( const auto& networkInterface : networkInterfaces )
+	{
+		const auto addressEntries = networkInterface.addressEntries();
+		for( const auto& addressEntry : addressEntries )
+		{
+			if( addressEntry.broadcast().isNull() == false )
+			{
+				success &= ( udpSocket.writeDatagram( datagram, addressEntry.broadcast(), 9 ) == datagram.size() );
+			}
+		}
+	}
+
+	return success;
 }

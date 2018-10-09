@@ -32,6 +32,7 @@
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
+#include "WindowsInputDeviceFunctions.h"
 #include "WtsSessionManager.h"
 
 
@@ -153,6 +154,8 @@ bool WindowsServiceCore::runAsService()
 
 void WindowsServiceCore::manageServerInstances()
 {
+	WindowsInputDeviceFunctions::checkInterceptionInstallation();
+
 	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
 	ResetEvent( m_serverShutdownEvent );
 

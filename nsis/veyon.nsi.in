@@ -193,10 +193,6 @@ ${If} $R1 != ""
 	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
   ${EndIf}
 ${EndIf}
-ExecWait '"$INSTDIR\interception\install-interception.exe" /install' $0
-${If} $0 != 0
-	MessageBox MB_OK|MB_ICONSTOP "Failed to install input device interception driver! Please run '$INSTDIR\interception\install.bat' manually!"
-${EndIf}
 ExecWait '"$INSTDIR\veyon-ctl.exe" service start'
 SectionEnd
 
