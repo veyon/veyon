@@ -44,12 +44,18 @@ public:
 
 	bool configureSoftwareSAS( bool enabled ) override;
 
+	static void checkInterceptionInstallation();
+
 private:
 	void enableInterception();
 	void disableInterception();
 	void initHIDServiceStatus();
 	void stopHIDService();
 	void restoreHIDService();
+
+	static bool installInterception();
+	static bool uninstallInterception();
+	static int interceptionInstaller( const QString& argument );
 
 	bool m_inputDevicesDisabled;
 	InterceptionContext m_interceptionContext;
