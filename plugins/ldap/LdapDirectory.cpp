@@ -490,7 +490,7 @@ QStringList LdapDirectory::groupMembers(const QString &groupDn)
 QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 {
 	const auto userId = groupMemberUserIdentification( userDn );
-	if( userId.isEmpty() )
+	if( d->groupMemberAttribute.isEmpty() || userId.isEmpty() )
 	{
 		return {};
 	}
@@ -505,7 +505,7 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 {
 	const auto computerId = groupMemberComputerIdentification( computerDn );
-	if( computerId.isEmpty() )
+	if( d->groupMemberAttribute.isEmpty() || computerId.isEmpty() )
 	{
 		return {};
 	}
@@ -529,7 +529,7 @@ QStringList LdapDirectory::computerRoomsOfComputer(const QString &computerDn)
 	}
 
 	const auto computerId = groupMemberComputerIdentification( computerDn );
-	if( computerId.isEmpty() )
+	if( d->groupMemberAttribute.isEmpty() || computerId.isEmpty() )
 	{
 		return {};
 	}
