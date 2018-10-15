@@ -26,7 +26,6 @@
 #define MAIN_WINDOW_H
 
 #include <QMainWindow>
-#include <QSystemTrayIcon>
 
 class QButtonGroup;
 class MasterCore;
@@ -60,12 +59,10 @@ protected:
 
 
 private slots:
-	void handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r );
 	void showAboutDialog();
 
 private:
 	void addFeaturesToToolBar();
-	void addFeaturesToSystemTrayMenu();
 
 	void updateModeButtonGroup();
 
@@ -74,9 +71,6 @@ private:
 	MasterCore& m_masterCore;
 
 	QButtonGroup* m_modeGroup;
-
-	QSystemTrayIcon m_systemTrayIcon;
-	QList<QAction *> m_sysTrayActions;
 
 	ComputerManagementView* m_computerManagementView;
 	ScreenshotManagementView* m_screenshotManagementView;
