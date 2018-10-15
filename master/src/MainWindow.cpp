@@ -54,8 +54,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	QMainWindow( parent ),
 	ui( new Ui::MainWindow ),
 	m_master( masterCore ),
-	m_modeGroup( new QButtonGroup( this ) ),
-	m_systemTrayIcon( this )
+	m_modeGroup( new QButtonGroup( this ) )
 {
 	ui->setupUi( this );
 
@@ -150,7 +149,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	addToolBar( Qt::TopToolBarArea, ui->toolBar );
 
 	addFeaturesToToolBar();
-	addFeaturesToSystemTrayMenu();
 
 	m_modeGroup->button( qHash( m_master.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
 
@@ -160,11 +158,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	icon.addFile( QStringLiteral(":/resources/icon32.png") );
 	icon.addFile( QStringLiteral(":/resources/icon64.png") );
 
-	m_systemTrayIcon.setIcon( icon );
-	m_systemTrayIcon.setToolTip( tr( "%1 Master Control" ).arg( VeyonCore::applicationName() ) );
-	m_systemTrayIcon.show();
-	connect( &m_systemTrayIcon, &QSystemTrayIcon::activated, this, &MainWindow::handleSystemTrayEvent );
-
 	VeyonCore::enforceBranding( this );
 }
 
@@ -173,7 +166,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 MainWindow::~MainWindow()
 {
-	m_systemTrayIcon.hide();
 }
 
 
@@ -274,54 +266,6 @@ void MainWindow::keyPressEvent( QKeyEvent* event )
 
 
 
-void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason reason )
-{
-	switch( reason )
-	{
-		case QSystemTrayIcon::Trigger:
-			setVisible( !isVisible() );
-			break;
-#if 0
-		case QSystemTrayIcon::Context:
-		{
-			QMenu m( this );
-			m.addAction( m_systemTrayIcon.toolTip() )->setEnabled( false );
-			for( auto action : qAsConst( m_sysTrayActions ) )
-			{
-				m.addAction( action );
-			}
-
-			m.addSeparator();
-
-			QMenu rcm( this );
-			QAction * rc = m.addAction( tr( "Remote control" ) );
-			rc->setMenu( &rcm );
-			for( const auto& computer : qAsConst( m_master.computerManager().computerList() ) )
-			{
-				rcm.addAction( computer.name() )->setData( computer.hostAddress() );
-			}
-			connect( &rcm, SIGNAL( triggered( QAction * ) ),
-				this,
-				SLOT( remoteControlClient( QAction * ) ) );
-
-			m.addSeparator();
-
-			QAction * qa = m.addAction(
-					QIcon( ":/resources/application-exit.png" ),
-					tr( "Quit" ) );
-			connect( qa, SIGNAL( triggered( bool ) ),
-					this, SLOT( close() ) );
-			m.exec( QCursor::pos() );
-			break;
-		}
-#endif
-		default:
-			break;
-	}
-}
-
-
-
 void MainWindow::showAboutDialog()
 {
 	AboutDialog( this ).exec();
@@ -382,13 +326,6 @@ void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid pa
 
 	button->setMenu( menu );
 	button->setPopupMode( ToolButton::InstantPopup );
-}
-
-
-
-void MainWindow::addFeaturesToSystemTrayMenu()
-{
-	// TODO
 }
 
 
