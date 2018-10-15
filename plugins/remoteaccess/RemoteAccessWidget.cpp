@@ -325,7 +325,7 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 
 
 
-void RemoteAccessWidget::checkKeyEvent( int key, bool pressed )
+void RemoteAccessWidget::checkKeyEvent( unsigned int key, bool pressed )
 {
 	if( pressed && key == XK_Escape && !m_connection->isConnected() )
 	{

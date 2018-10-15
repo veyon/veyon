@@ -98,7 +98,7 @@ protected:
 
 
 private slots:
-	void checkKeyEvent( int, bool );
+	void checkKeyEvent( unsigned int, bool );
 	void updateSize();
 
 
