@@ -92,8 +92,6 @@ public:
 		return m_vncView;
 	}
 
-
-public slots:
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool viewOnly );
 	void takeScreenshot();
@@ -105,12 +103,10 @@ protected:
 	void resizeEvent( QResizeEvent* event ) override;
 
 
-private slots:
+private:
 	void checkKeyEvent( unsigned int, bool );
 	void updateSize();
 
-
-private:
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncView* m_vncView;
 	VeyonConnection* m_connection;
