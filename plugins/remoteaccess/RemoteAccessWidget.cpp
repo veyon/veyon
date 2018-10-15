@@ -155,11 +155,13 @@ void RemoteAccessWidgetToolBar::disappear()
 {
 	if( !m_connecting && !rect().contains( mapFromGlobal( QCursor::pos() ) ) )
 	{
-		if( m_showHideTimeLine.state() != QTimeLine::Running )
-		{
-			m_showHideTimeLine.setDirection( QTimeLine::Forward );
-			m_showHideTimeLine.resume();
-		}
+		QTimer::singleShot( DisappearDelay, this, [this]() {
+			if( m_showHideTimeLine.state() != QTimeLine::Running )
+			{
+				m_showHideTimeLine.setDirection( QTimeLine::Forward );
+				m_showHideTimeLine.resume();
+			}
+		} );
 	}
 }
 
@@ -174,7 +176,7 @@ void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
 
 void RemoteAccessWidgetToolBar::leaveEvent( QEvent *event )
 {
-	QTimer::singleShot( 500, this, &RemoteAccessWidgetToolBar::disappear );
+	disappear();
 	QWidget::leaveEvent( event );
 }
 
@@ -251,7 +253,7 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 {
 	m_connecting = false;
 	m_iconStateTimeLine.stop();
-	QTimer::singleShot( 3000, this, &RemoteAccessWidgetToolBar::disappear );
+	disappear();
 
 	// within the next 1000ms the username should be known and therefore we update
 	QTimer::singleShot( 1000, this, QOverload<>::of( &RemoteAccessWidgetToolBar::update ) );
@@ -299,7 +301,8 @@ RemoteAccessWidget::~RemoteAccessWidget()
 
 void RemoteAccessWidget::enterEvent( QEvent* event )
 {
-	QTimer::singleShot( 500, m_toolBar, &RemoteAccessWidgetToolBar::disappear );
+	m_toolBar->disappear();
+
 	QWidget::enterEvent( event );
 }
 
@@ -307,7 +310,13 @@ void RemoteAccessWidget::enterEvent( QEvent* event )
 
 void RemoteAccessWidget::leaveEvent( QEvent* event )
 {
-	m_toolBar->appear();
+	QTimer::singleShot( AppearDelay, this, [this]() {
+		if( underMouse() == false )
+		{
+			m_toolBar->appear();
+		}
+	} );
+
 	QWidget::leaveEvent( event );
 }
 

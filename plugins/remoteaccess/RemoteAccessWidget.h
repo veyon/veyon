@@ -72,6 +72,7 @@ private:
 	ToolButton* m_quitButton;
 
 	static constexpr int ShowHideAnimationDuration = 300;
+	static constexpr int DisappearDelay = 500;
 
 } ;
 
@@ -109,6 +110,8 @@ private:
 	VncView* m_vncView;
 	VeyonConnection* m_connection;
 	RemoteAccessWidgetToolBar* m_toolBar;
+
+	static constexpr int AppearDelay = 500;
 
 	friend class RemoteAccessWidgetToolBar;
 
