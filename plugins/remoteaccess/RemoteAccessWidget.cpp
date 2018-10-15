@@ -275,7 +275,7 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
-	connect( m_vncView, &VncView::mouseAtTop, m_toolBar, &RemoteAccessWidgetToolBar::appear );
+	connect( m_vncView, &VncView::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
 	connect( m_vncView, &VncView::keyEvent, this, &RemoteAccessWidget::checkKeyEvent );
 	connect( m_vncView, &VncView::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 

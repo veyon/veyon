@@ -52,7 +52,8 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	m_initDone( false ),
 	m_buttonMask( 0 ),
 	m_establishingConnectionWidget( nullptr ),
-	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( this ) )
+	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( this ) ),
+	m_mouseBorderSignalTimer( this )
 {
 	m_vncConn->setHost( host );
 	m_vncConn->setPort( port );
@@ -82,6 +83,10 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	connect( m_keyboardShortcutTrapper, &KeyboardShortcutTrapper::shortcutTrapped,
 			 this, &VncView::handleShortcut );
 
+	// set up mouse border signal timer
+	m_mouseBorderSignalTimer.setSingleShot( true );
+	m_mouseBorderSignalTimer.setInterval( MouseBorderSignalDelay );
+	connect( &m_mouseBorderSignalTimer, &QTimer::timeout, this, &VncView::mouseAtBorder );
 
 	// set up background color
 	if( parent == nullptr )
@@ -759,11 +764,16 @@ void VncView::mouseEventHandler( QMouseEvent* event )
 	}
 	else
 	{
-		if( event->pos().y() < 2 )
+		if( event->pos().y() == 0 )
 		{
-			// special signal for allowing parent-widgets to
-			// show a toolbar etc.
-			emit mouseAtTop();
+			if( m_mouseBorderSignalTimer.isActive() == false )
+			{
+				m_mouseBorderSignalTimer.start();
+			}
+		}
+		else
+		{
+			m_mouseBorderSignalTimer.stop();
 		}
 	}
 

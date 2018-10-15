@@ -27,6 +27,7 @@
 
 #include <QEvent>
 #include <QPointer>
+#include <QTimer>
 #include <QWidget>
 
 #include "KeyboardShortcutTrapper.h"
@@ -88,7 +89,7 @@ public slots:
 
 
 signals:
-	void mouseAtTop();
+	void mouseAtBorder();
 	void keyEvent( unsigned int, bool );
 	void startConnection();
 	void connectionEstablished();
@@ -144,6 +145,9 @@ private:
 	ProgressWidget* m_establishingConnectionWidget;
 
 	KeyboardShortcutTrapper* m_keyboardShortcutTrapper;
+
+	static constexpr int MouseBorderSignalDelay = 500;
+	QTimer m_mouseBorderSignalTimer;
 
 } ;
 
