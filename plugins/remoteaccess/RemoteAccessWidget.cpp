@@ -72,7 +72,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	connect( m_screenshotButton, &QAbstractButton::clicked, parent, &RemoteAccessWidget::takeScreenshot );
 	connect( m_quitButton, &QAbstractButton::clicked, parent, &QWidget::close );
 
-	auto vncView = parent->m_vncView;
+	auto vncView = parent->vncView();
 
 	auto shortcutMenu = new QMenu();
 #if QT_VERSION < 0x050600
@@ -117,8 +117,8 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->addWidget( m_fullScreenButton );
 	layout->addWidget( m_quitButton );
 	layout->addSpacing( 5 );
-	connect( m_parent->m_vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
-	connect( m_parent->m_vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
+	connect( vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
+	connect( vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
 	setFixedHeight( m_quitButton->height() );
 

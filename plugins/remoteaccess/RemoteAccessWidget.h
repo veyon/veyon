@@ -87,6 +87,11 @@ public:
 	RemoteAccessWidget( ComputerControlInterface::Pointer computerControlInterface, bool viewOnly = false );
 	~RemoteAccessWidget() override;
 
+	VncView* vncView() const
+	{
+		return m_vncView;
+	}
+
 
 public slots:
 	void toggleFullScreen( bool );
@@ -112,8 +117,6 @@ private:
 	RemoteAccessWidgetToolBar* m_toolBar;
 
 	static constexpr int AppearDelay = 500;
-
-	friend class RemoteAccessWidgetToolBar;
 
 } ;
 
