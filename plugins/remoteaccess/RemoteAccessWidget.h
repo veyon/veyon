@@ -40,29 +40,25 @@ class RemoteAccessWidgetToolBar : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidgetToolBar( RemoteAccessWidget * _parent,
-							bool _view_only );
+	RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly );
 	~RemoteAccessWidgetToolBar() override;
 
-
-public slots:
 	void appear();
 	void disappear();
 	void updateControls( bool viewOnly );
 
 
 protected:
-	void leaveEvent( QEvent * _e ) override;
-	void paintEvent( QPaintEvent * _pe ) override;
+	void leaveEvent( QEvent* event ) override;
+	void paintEvent( QPaintEvent* event ) override;
 
 
-private slots:
+private:
 	void updateConnectionAnimation();
 	void updatePosition();
 	void startConnection();
 	void connectionEstablished();
 
-private:
 	RemoteAccessWidget * m_parent;
 	QTimeLine m_showHideTimeLine;
 	QTimeLine m_iconStateTimeLine;

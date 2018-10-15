@@ -177,7 +177,7 @@ void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
 
 void RemoteAccessWidgetToolBar::leaveEvent( QEvent *event )
 {
-	QTimer::singleShot( 500, this, SLOT( disappear() ) );
+	QTimer::singleShot( 500, this, &RemoteAccessWidgetToolBar::disappear );
 	QWidget::leaveEvent( event );
 }
 
@@ -253,10 +253,10 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 {
 	m_connecting = false;
 	m_iconStateTimeLine.stop();
-	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
-	// within the next 1000ms the username should be known and therefore
-	// we update
-	QTimer::singleShot( 1000, this, SLOT( update() ) );
+	QTimer::singleShot( 3000, this, &RemoteAccessWidgetToolBar::disappear );
+
+	// within the next 1000ms the username should be known and therefore we update
+	QTimer::singleShot( 1000, this, QOverload<>::of( &RemoteAccessWidgetToolBar::update ) );
 }
 
 
@@ -275,12 +275,9 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
-	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
-							SLOT( appear() ) );
-	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
-				this, SLOT( checkKeyEvent( int, bool ) ) );
-	connect( m_vncView, SIGNAL( sizeHintChanged() ),
-					this, SLOT( updateSize() ) );
+	connect( m_vncView, &VncView::mouseAtTop, m_toolBar, &RemoteAccessWidgetToolBar::appear );
+	connect( m_vncView, &VncView::keyEvent, this, &RemoteAccessWidget::checkKeyEvent );
+	connect( m_vncView, &VncView::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 
 	showMaximized();
 	VeyonCore::platform().coreFunctions().raiseWindow( this );
@@ -304,7 +301,7 @@ RemoteAccessWidget::~RemoteAccessWidget()
 
 void RemoteAccessWidget::enterEvent( QEvent* event )
 {
-	QTimer::singleShot( 500, m_toolBar, SLOT( disappear() ) );
+	QTimer::singleShot( 500, m_toolBar, &RemoteAccessWidgetToolBar::disappear );
 	QWidget::enterEvent( event );
 }
 
