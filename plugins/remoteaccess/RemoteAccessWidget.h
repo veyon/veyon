@@ -71,6 +71,8 @@ private:
 	ToolButton* m_fullScreenButton;
 	ToolButton* m_quitButton;
 
+	static constexpr int ShowHideAnimationDuration = 300;
+
 } ;
 
 

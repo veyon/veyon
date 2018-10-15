@@ -43,7 +43,7 @@
 RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly ) :
 	QWidget( parent ),
 	m_parent( parent ),
-	m_showHideTimeLine(),
+	m_showHideTimeLine( ShowHideAnimationDuration, this ),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
 	m_viewOnlyButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) ),
@@ -122,9 +122,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 
 	setFixedHeight( m_quitButton->height() );
 
-	m_showHideTimeLine.setFrameRange( 0, height() );
-	m_showHideTimeLine.setDuration( 800 );
-	m_showHideTimeLine.setCurveShape( QTimeLine::EaseInCurve );
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
 
 	m_iconStateTimeLine.setFrameRange( 0, 100 );
@@ -229,7 +226,8 @@ void RemoteAccessWidgetToolBar::updateConnectionAnimation()
 
 void RemoteAccessWidgetToolBar::updatePosition()
 {
-	const int newY = m_showHideTimeLine.currentFrame();
+	const auto newY = static_cast<int>( m_showHideTimeLine.currentValue() * height() );
+
 	if( newY != -y() )
 	{
 		move( x(), qMax( -height(), -newY ) );
