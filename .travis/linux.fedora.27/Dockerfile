@@ -13,4 +13,5 @@ RUN \
 		procps-devel \
 		lzo-devel \
 		qca-qt5-devel qca-qt5-ossl \
+		cyrus-sasl-devel \
 		openldap-devel

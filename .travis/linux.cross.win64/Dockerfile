@@ -20,6 +20,7 @@ RUN \
 		libjpeg-turbo-mingw-w64 \
 		interception-mingw-w64 \
 		openldap-mingw-w64 \
+		cyrus-sasl-mingw-w64 \
 		lzo2-mingw-w64 \
 		qca-mingw-w64 \
 	&& \

@@ -13,6 +13,7 @@ RUN \
 		libpam0g-dev \
 		libprocps-dev \
 		libldap2-dev \
+		libsasl2-dev \
 		liblzo2-dev \
 		libqca-qt5-2-dev libqca-qt5-2-plugins \
 		&& \
