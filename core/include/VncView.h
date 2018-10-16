@@ -27,6 +27,7 @@
 
 #include <QEvent>
 #include <QPointer>
+#include <QTimer>
 #include <QWidget>
 
 #include "KeyboardShortcutTrapper.h"
@@ -88,8 +89,8 @@ public slots:
 
 
 signals:
-	void mouseAtTop();
-	void keyEvent( int, bool );
+	void mouseAtBorder();
+	void keyEvent( unsigned int, bool );
 	void startConnection();
 	void connectionEstablished();
 	void sizeHintChanged();
@@ -104,20 +105,20 @@ private slots:
 	void updateConnectionState();
 
 private:
-	bool eventFilter( QObject * _obj, QEvent * _event ) override;
-	bool event( QEvent * _ev ) override;
-	void focusInEvent( QFocusEvent * ) override;
-	void focusOutEvent( QFocusEvent * ) override;
-	void paintEvent( QPaintEvent * ) override;
-	void resizeEvent( QResizeEvent * ) override;
+	bool eventFilter( QObject* obj, QEvent* event ) override;
+	bool event( QEvent* event ) override;
+	void focusInEvent( QFocusEvent* event ) override;
+	void focusOutEvent( QFocusEvent* event ) override;
+	void paintEvent( QPaintEvent* event ) override;
+	void resizeEvent( QResizeEvent* event ) override;
 
-	void keyEventHandler( QKeyEvent * );
-	void mouseEventHandler( QMouseEvent * );
-	void wheelEventHandler( QWheelEvent * );
+	void keyEventHandler( QKeyEvent* event );
+	void mouseEventHandler( QMouseEvent* event );
+	void wheelEventHandler( QWheelEvent* event );
 	void unpressModifiers();
 
 	bool isScaledView() const;
-	float scaleFactor() const;
+	qreal scaleFactor() const;
 	QPoint mapToFramebuffer( QPoint pos );
 	QRect mapFromFramebuffer( QRect rect );
 
@@ -144,6 +145,9 @@ private:
 	ProgressWidget* m_establishingConnectionWidget;
 
 	KeyboardShortcutTrapper* m_keyboardShortcutTrapper;
+
+	static constexpr int MouseBorderSignalDelay = 500;
+	QTimer m_mouseBorderSignalTimer;
 
 } ;
 

@@ -40,29 +40,25 @@ class RemoteAccessWidgetToolBar : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidgetToolBar( RemoteAccessWidget * _parent,
-							bool _view_only );
+	RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly );
 	~RemoteAccessWidgetToolBar() override;
 
-
-public slots:
 	void appear();
 	void disappear();
 	void updateControls( bool viewOnly );
 
 
 protected:
-	void leaveEvent( QEvent * _e ) override;
-	void paintEvent( QPaintEvent * _pe ) override;
+	void leaveEvent( QEvent* event ) override;
+	void paintEvent( QPaintEvent* event ) override;
 
 
-private slots:
+private:
 	void updateConnectionAnimation();
 	void updatePosition();
 	void startConnection();
 	void connectionEstablished();
 
-private:
 	RemoteAccessWidget * m_parent;
 	QTimeLine m_showHideTimeLine;
 	QTimeLine m_iconStateTimeLine;
@@ -74,6 +70,9 @@ private:
 	ToolButton* m_screenshotButton;
 	ToolButton* m_fullScreenButton;
 	ToolButton* m_quitButton;
+
+	static constexpr int ShowHideAnimationDuration = 300;
+	static constexpr int DisappearDelay = 500;
 
 } ;
 
@@ -88,8 +87,11 @@ public:
 	RemoteAccessWidget( ComputerControlInterface::Pointer computerControlInterface, bool viewOnly = false );
 	~RemoteAccessWidget() override;
 
+	VncView* vncView() const
+	{
+		return m_vncView;
+	}
 
-public slots:
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool viewOnly );
 	void takeScreenshot();
@@ -101,18 +103,16 @@ protected:
 	void resizeEvent( QResizeEvent* event ) override;
 
 
-private slots:
-	void checkKeyEvent( int, bool );
+private:
+	void checkKeyEvent( unsigned int, bool );
 	void updateSize();
 
-
-private:
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncView* m_vncView;
 	VeyonConnection* m_connection;
 	RemoteAccessWidgetToolBar* m_toolBar;
 
-	friend class RemoteAccessWidgetToolBar;
+	static constexpr int AppearDelay = 500;
 
 } ;
 

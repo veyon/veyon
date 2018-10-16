@@ -43,7 +43,7 @@
 RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly ) :
 	QWidget( parent ),
 	m_parent( parent ),
-	m_showHideTimeLine(),
+	m_showHideTimeLine( ShowHideAnimationDuration, this ),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
 	m_viewOnlyButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/kmag.png") ), tr( "View only" ), tr( "Remote control" ) ) ),
@@ -72,27 +72,27 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	connect( m_screenshotButton, &QAbstractButton::clicked, parent, &RemoteAccessWidget::takeScreenshot );
 	connect( m_quitButton, &QAbstractButton::clicked, parent, &QWidget::close );
 
-	auto vncView = parent->m_vncView;
+	auto vncView = parent->vncView();
 
 	auto shortcutMenu = new QMenu();
 #if QT_VERSION < 0x050600
 #warning Building legacy compat code for unsupported version of Qt
 	connect( shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); } );
 	connect( shortcutMenu->addAction( tr( "Ctrl+Esc" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); } );
 	connect( shortcutMenu->addAction( tr( "Alt+Tab" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); } );
 	connect( shortcutMenu->addAction( tr( "Alt+F4" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); } );
 	connect( shortcutMenu->addAction( tr( "Win+Tab" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); } );
 	connect( shortcutMenu->addAction( tr( "Win" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); } );
 	connect( shortcutMenu->addAction( tr( "Menu" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); } );
 	connect( shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ) ), &QAction::triggered,
-				vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); } );
+			 vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); } );
 #else
 	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
 	shortcutMenu->addAction( tr( "Ctrl+Esc" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
@@ -117,14 +117,11 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->addWidget( m_fullScreenButton );
 	layout->addWidget( m_quitButton );
 	layout->addSpacing( 5 );
-	connect( m_parent->m_vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
-	connect( m_parent->m_vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
+	connect( vncView, &VncView::startConnection, this, &RemoteAccessWidgetToolBar::startConnection );
+	connect( vncView, &VncView::connectionEstablished, this, &RemoteAccessWidgetToolBar::connectionEstablished );
 
 	setFixedHeight( m_quitButton->height() );
 
-	m_showHideTimeLine.setFrameRange( 0, height() );
-	m_showHideTimeLine.setDuration( 800 );
-	m_showHideTimeLine.setCurveShape( QTimeLine::EaseInCurve );
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
 
 	m_iconStateTimeLine.setFrameRange( 0, 100 );
@@ -158,11 +155,13 @@ void RemoteAccessWidgetToolBar::disappear()
 {
 	if( !m_connecting && !rect().contains( mapFromGlobal( QCursor::pos() ) ) )
 	{
-		if( m_showHideTimeLine.state() != QTimeLine::Running )
-		{
-			m_showHideTimeLine.setDirection( QTimeLine::Forward );
-			m_showHideTimeLine.resume();
-		}
+		QTimer::singleShot( DisappearDelay, this, [this]() {
+			if( m_showHideTimeLine.state() != QTimeLine::Running )
+			{
+				m_showHideTimeLine.setDirection( QTimeLine::Forward );
+				m_showHideTimeLine.resume();
+			}
+		} );
 	}
 }
 
@@ -177,7 +176,7 @@ void RemoteAccessWidgetToolBar::updateControls( bool viewOnly )
 
 void RemoteAccessWidgetToolBar::leaveEvent( QEvent *event )
 {
-	QTimer::singleShot( 500, this, SLOT( disappear() ) );
+	disappear();
 	QWidget::leaveEvent( event );
 }
 
@@ -229,7 +228,8 @@ void RemoteAccessWidgetToolBar::updateConnectionAnimation()
 
 void RemoteAccessWidgetToolBar::updatePosition()
 {
-	const int newY = m_showHideTimeLine.currentFrame();
+	const auto newY = static_cast<int>( m_showHideTimeLine.currentValue() * height() );
+
 	if( newY != -y() )
 	{
 		move( x(), qMax( -height(), -newY ) );
@@ -253,10 +253,10 @@ void RemoteAccessWidgetToolBar::connectionEstablished()
 {
 	m_connecting = false;
 	m_iconStateTimeLine.stop();
-	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
-	// within the next 1000ms the username should be known and therefore
-	// we update
-	QTimer::singleShot( 1000, this, SLOT( update() ) );
+	disappear();
+
+	// within the next 1000ms the username should be known and therefore we update
+	QTimer::singleShot( 1000, this, QOverload<>::of( &RemoteAccessWidgetToolBar::update ) );
 }
 
 
@@ -275,12 +275,9 @@ RemoteAccessWidget::RemoteAccessWidget( ComputerControlInterface::Pointer comput
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
-	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
-							SLOT( appear() ) );
-	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
-				this, SLOT( checkKeyEvent( int, bool ) ) );
-	connect( m_vncView, SIGNAL( sizeHintChanged() ),
-					this, SLOT( updateSize() ) );
+	connect( m_vncView, &VncView::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
+	connect( m_vncView, &VncView::keyEvent, this, &RemoteAccessWidget::checkKeyEvent );
+	connect( m_vncView, &VncView::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 
 	showMaximized();
 	VeyonCore::platform().coreFunctions().raiseWindow( this );
@@ -304,7 +301,8 @@ RemoteAccessWidget::~RemoteAccessWidget()
 
 void RemoteAccessWidget::enterEvent( QEvent* event )
 {
-	QTimer::singleShot( 500, m_toolBar, SLOT( disappear() ) );
+	m_toolBar->disappear();
+
 	QWidget::enterEvent( event );
 }
 
@@ -312,7 +310,13 @@ void RemoteAccessWidget::enterEvent( QEvent* event )
 
 void RemoteAccessWidget::leaveEvent( QEvent* event )
 {
-	m_toolBar->appear();
+	QTimer::singleShot( AppearDelay, this, [this]() {
+		if( underMouse() == false )
+		{
+			m_toolBar->appear();
+		}
+	} );
+
 	QWidget::leaveEvent( event );
 }
 
@@ -328,7 +332,7 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 
 
 
-void RemoteAccessWidget::checkKeyEvent( int key, bool pressed )
+void RemoteAccessWidget::checkKeyEvent( unsigned int key, bool pressed )
 {
 	if( pressed && key == XK_Escape && !m_connection->isConnected() )
 	{

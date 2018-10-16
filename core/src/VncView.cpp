@@ -52,7 +52,8 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	m_initDone( false ),
 	m_buttonMask( 0 ),
 	m_establishingConnectionWidget( nullptr ),
-	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( this ) )
+	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( this ) ),
+	m_mouseBorderSignalTimer( this )
 {
 	m_vncConn->setHost( host );
 	m_vncConn->setPort( port );
@@ -82,6 +83,10 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	connect( m_keyboardShortcutTrapper, &KeyboardShortcutTrapper::shortcutTrapped,
 			 this, &VncView::handleShortcut );
 
+	// set up mouse border signal timer
+	m_mouseBorderSignalTimer.setSingleShot( true );
+	m_mouseBorderSignalTimer.setInterval( MouseBorderSignalDelay );
+	connect( &m_mouseBorderSignalTimer, &QTimer::timeout, this, &VncView::mouseAtBorder );
 
 	// set up background color
 	if( parent == nullptr )
@@ -240,7 +245,7 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 		unpressKey( XK_Control_L );
 		break;
 	default:
-		qWarning( "VncView::sendShortcut(): unknown shortcut %d", (int) shortcut );
+		qWarning( "VncView::sendShortcut(): unknown shortcut %d", static_cast<int>( shortcut ) );
 		break;
 	}
 }
@@ -249,7 +254,7 @@ void VncView::sendShortcut( VncView::Shortcut shortcut )
 
 void VncView::handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut )
 {
-	int key = 0;
+	unsigned int key = 0;
 
 	switch( shortcut )
 	{
@@ -302,9 +307,10 @@ void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 {
 	const auto scale = scaleFactor();
 
-	m_cursorHotX = xh*scale;
-	m_cursorHotY = yh*scale;
-	m_cursorShape = cursorShape.scaled( cursorShape.width()*scale, cursorShape.height()*scale,
+	m_cursorHotX = static_cast<int>( xh*scale );
+	m_cursorHotY = static_cast<int>( yh*scale );
+	m_cursorShape = cursorShape.scaled( static_cast<int>( cursorShape.width()*scale ),
+										static_cast<int>( cursorShape.height()*scale ),
 										Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
 	if( isViewOnly() )
@@ -317,41 +323,41 @@ void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
 
 
 
-void VncView::focusInEvent( QFocusEvent * _e )
+void VncView::focusInEvent( QFocusEvent* event )
 {
 	if( !m_viewOnlyFocus )
 	{
 		setViewOnly( false );
 	}
-	QWidget::focusInEvent( _e );
+	QWidget::focusInEvent( event );
 }
 
 
 
-void VncView::focusOutEvent( QFocusEvent * _e )
+void VncView::focusOutEvent( QFocusEvent* event )
 {
 	m_viewOnlyFocus = isViewOnly();
 	if( !isViewOnly() )
 	{
 		setViewOnly( true );
 	}
-	QWidget::focusOutEvent( _e );
+	QWidget::focusOutEvent( event );
 }
 
 
 
 // our builtin keyboard-handler
-void VncView::keyEventHandler( QKeyEvent * _ke )
+void VncView::keyEventHandler( QKeyEvent* event )
 {
-	bool pressed = _ke->type() == QEvent::KeyPress;
+	bool pressed = event->type() == QEvent::KeyPress;
 
 #ifdef Q_OS_LINUX
 	// on Linux/X11 native key codes are equal to the ones used by RFB protocol
-	int key = _ke->nativeVirtualKey();
+	unsigned int key = event->nativeVirtualKey();
 
 	// we do not handle Key_Backtab separately as the Shift-modifier
 	// is already enabled
-	if( _ke->key() == Qt::Key_Backtab )
+	if( event->key() == Qt::Key_Backtab )
 	{
 		key = XK_Tab;
 	}
@@ -360,7 +366,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 	// hmm, either Win32-platform or too old Qt so we have to handle and
 	// translate Qt-key-codes to X-keycodes
 	unsigned int key = 0;
-	switch( _ke->key() )
+	switch( event->key() )
 	{
 		// modifiers are handled separately
 		case Qt::Key_Shift: key = XK_Shift_L; break;
@@ -445,16 +451,16 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 		case Qt::Key_Dead_Belowdot: key = XK_dead_belowdot; break;
 	}
 
-	if( _ke->key() >= Qt::Key_F1 && _ke->key() <= Qt::Key_F35 )
+	if( event->key() >= Qt::Key_F1 && event->key() <= Qt::Key_F35 )
 	{
-		key = XK_F1 + _ke->key() - Qt::Key_F1;
+		key = XK_F1 + event->key() - Qt::Key_F1;
 	}
 	else if( key == 0 )
 	{
 		if( m_mods.contains( XK_Control_L ) &&
-			QKeySequence( _ke->key() ).toString().length() == 1 )
+			QKeySequence( event->key() ).toString().length() == 1 )
 		{
-			QString s = QKeySequence( _ke->key() ).toString();
+			QString s = QKeySequence( event->key() ).toString();
 			if( !m_mods.contains( XK_Shift_L ) )
 			{
 				s = s.toLower();
@@ -463,7 +469,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 		}
 		else
 		{
-			key = _ke->text().utf16()[0];
+			key = event->text().utf16()[0];
 		}
 	}
 	// correct translation of AltGr+<character key> (non-US-keyboard layout
@@ -480,7 +486,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 	if( ( m_mods.contains( XK_Super_L ) ||
 			m_mods.contains( XK_Super_R ) ||
 			m_mods.contains( XK_Meta_L ) ) &&
-				_ke->key() == Qt::Key_Delete )
+				event->key() == Qt::Key_Delete )
 	{
 		if( pressed )
 		{
@@ -523,7 +529,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 		emit keyEvent( key, pressed );
 
 		// inform Qt that we handled the key event
-		_ke->accept();
+		event->accept();
 	}
 }
 
@@ -550,11 +556,11 @@ bool VncView::isScaledView() const
 
 
 
-float VncView::scaleFactor() const
+qreal VncView::scaleFactor() const
 {
 	if( isScaledView() )
 	{
-		return (float) scaledSize().width() / m_framebufferSize.width();
+		return static_cast<qreal>( scaledSize().width() ) / m_framebufferSize.width();
 	}
 
 	return 1;
@@ -582,11 +588,11 @@ QRect VncView::mapFromFramebuffer( QRect r )
 		return QRect();
 	}
 
-	const float dx = scaledSize().width() / (float) m_framebufferSize.width();
-	const float dy = scaledSize().height() / (float) m_framebufferSize.height();
+	const auto dx = scaledSize().width() / static_cast<qreal>( m_framebufferSize.width() );
+	const auto dy = scaledSize().height() / static_cast<qreal>( m_framebufferSize.height() );
 
-	return( QRect( (int)(r.x()*dx), (int)(r.y()*dy),
-				   (int)(r.width()*dx), (int)(r.height()*dy) ) );
+	return( QRect( static_cast<int>(r.x()*dx), static_cast<int>(r.y()*dy),
+				   static_cast<int>(r.width()*dx), static_cast<int>(r.height()*dy) ) );
 }
 
 
@@ -631,18 +637,15 @@ bool VncView::event( QEvent * event )
 		case QEvent::KeyRelease:
 			keyEventHandler( static_cast<QKeyEvent*>( event ) );
 			return true;
-			break;
 		case QEvent::MouseButtonDblClick:
 		case QEvent::MouseButtonPress:
 		case QEvent::MouseButtonRelease:
 		case QEvent::MouseMove:
 			mouseEventHandler( static_cast<QMouseEvent*>( event ) );
 			return true;
-			break;
 		case QEvent::Wheel:
 			wheelEventHandler( static_cast<QWheelEvent*>( event ) );
 			return true;
-			break;
 		default:
 			return QWidget::event(event);
 	}
@@ -650,7 +653,7 @@ bool VncView::event( QEvent * event )
 
 
 
-void VncView::paintEvent( QPaintEvent *paintEvent )
+void VncView::paintEvent( QPaintEvent* paintEvent )
 {
 	QPainter p( this );
 	p.setRenderHint( QPainter::SmoothPixmapTransform );
@@ -703,7 +706,7 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 
 
-void VncView::resizeEvent( QResizeEvent *event )
+void VncView::resizeEvent( QResizeEvent* event )
 {
 	update();
 
@@ -719,17 +722,16 @@ void VncView::resizeEvent( QResizeEvent *event )
 
 
 
-void VncView::wheelEventHandler( QWheelEvent * _we )
+void VncView::wheelEventHandler( QWheelEvent* event )
 {
-	const QPoint p = mapToFramebuffer( _we->pos() );
-	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask |
-		( ( _we->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
+	const QPoint p = mapToFramebuffer( event->pos() );
+	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask | ( ( event->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
 	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 }
 
 
 
-void VncView::mouseEventHandler( QMouseEvent * _me )
+void VncView::mouseEventHandler( QMouseEvent* event )
 {
 	struct buttonXlate
 	{
@@ -742,14 +744,14 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 			{ Qt::RightButton, rfbButton3Mask }
 		} ;
 
-	if( _me->type() != QEvent::MouseMove )
+	if( event->type() != QEvent::MouseMove )
 	{
 		for( auto i : map )
 		{
-			if( _me->button() == i.qt )
+			if( event->button() == i.qt )
 			{
-				if( _me->type() == QEvent::MouseButtonPress ||
-				_me->type() == QEvent::MouseButtonDblClick )
+				if( event->type() == QEvent::MouseButtonPress ||
+				event->type() == QEvent::MouseButtonDblClick )
 				{
 					m_buttonMask |= i.rfb;
 				}
@@ -762,17 +764,22 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 	}
 	else
 	{
-		if( _me->pos().y() < 2 )
+		if( event->pos().y() == 0 )
 		{
-			// special signal for allowing parent-widgets to
-			// show a toolbar etc.
-			emit mouseAtTop();
+			if( m_mouseBorderSignalTimer.isActive() == false )
+			{
+				m_mouseBorderSignalTimer.start();
+			}
+		}
+		else
+		{
+			m_mouseBorderSignalTimer.stop();
 		}
 	}
 
 	if( !m_viewOnly )
 	{
-		const QPoint p = mapToFramebuffer( _me->pos() );
+		const QPoint p = mapToFramebuffer( event->pos() );
 		m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 	}
 }

@@ -15,72 +15,74 @@
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Om Veyon</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation type="unfinished"/>
+        <translation>Medarbetare</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation type="unfinished"/>
+        <translation>Version:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation type="unfinished"/>
+        <translation>Hemsida</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>Nuvarande språk ej översatt än (eller originalspråk Engelska).
+
+Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett annat språk, vänligen kontakta en Veyon-utvecklare!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Om %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation type="unfinished"/>
+        <translation>Stöd Veyon-projektet med en donation</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Datoråtkomstskontroll</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Bevilja åtkomst för alla autentiserade användare (standard)</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>Begränsa åtkomst för medlemmar av vissa grupper</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Processåtkomstkontroll-regler</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Användargrupper auktoriserade för datoråtkomst</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>Vänligen lägg till grupperna vilkas medlemmar ska vara auktoriserade för att komma åt datorer i ditt Veyon-nätverk.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>Auktoriserade användargrupper</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"/>
+        <translation>Alla grupper</translation>
     </message>
     <message>
         <source>...</source>
@@ -88,74 +90,74 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstregler</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till åtkomstregel</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort åtkomstregel</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Flytta vald regel nedåt</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Flytta vald regel uppåt</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation type="unfinished"/>
+        <translation>Redigera vald regel</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Skriv in användarnamn</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Vänligen skriv in ett användarnamn vars åtkomstbehörigheter ska testas:</translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomst beviljad</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Den specificerade användaren är tillåten att komma åt datorer med den här konfigurationen.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomst nekad</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Den specificerade användaren är inte tillåten att komma åt datorer med den här konfigurationen.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Aktivera användandet av domängrupper</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Backend för användargrupper:</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Saknad backend för användargrupper</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Inget standard användargrupp-plugin kunde hittas. Vänligen kontrollera din installation!</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Redigera åtkomstregel</translation>
     </message>
     <message>
         <source>General</source>
@@ -163,110 +165,110 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>skriv in ett kort namn på regeln här</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>Regelnamn:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>skriv in en beskrivning av regeln här</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>Regelbeskrivning:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation type="unfinished"/>
+        <translation>Invertera alla villkor (&quot;är/har&quot; tolkas som &quot;är/har inte&quot;)</translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation type="unfinished"/>
+        <translation>Villkor</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation type="unfinished"/>
+        <translation>är medlem av gruppen</translation>
     </message>
     <message>
         <source>is located in room</source>
-        <translation type="unfinished"/>
+        <translation>är belägen i rum</translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstdator är localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstanvändare är inloggad användare</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstanvändare är redan ansluten</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Om fler än ett villkor aktiveras behöver varje villkor mötas för att regeln ska gälla (logiskt OCH). Om endast en av flera villkor behöver mötas (logiskt ELLER) vänligen skapa flera åtkomstregler.</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Åtgärd</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>Bevilja åtkomst</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>Neka åtkomst</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Fråga inloggad användare om tillstånd</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>Inga (regel inaktiverad)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstanvändare</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstdator</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Lokal (inloggad) användare</translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation type="unfinished"/>
+        <translation>Lokal dator</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>Bearbeta alltid regel- och ignoreringsvillkor</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Ingen användare inloggad</translation>
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation type="unfinished"/>
+        <translation>Åktmostdator är belägen i samma rum som den lokala datorn</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstanvändaren har en eller flera grupper gemensamt med lokal (inloggad) användare</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomstregel-test</translation>
     </message>
     <message>
         <source>Accessing user:</source>
@@ -1007,7 +1009,7 @@ Examples:
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Ingen användare inloggad</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1668,7 +1670,7 @@ Examples:
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"/>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -1861,7 +1863,7 @@ Examples:
     </message>
     <message>
         <source>Enter username</source>
-        <translation type="unfinished"/>
+        <translation>Skriv in användarnamn</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2426,7 +2428,7 @@ Examples:
     </message>
     <message>
         <source>About Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Om Veyon</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2462,7 +2464,7 @@ Examples:
     </message>
     <message>
         <source>Access denied</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomst nekad</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
