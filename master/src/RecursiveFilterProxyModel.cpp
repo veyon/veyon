@@ -46,8 +46,9 @@ bool RecursiveFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelInd
 	}
 
 	const auto rowIndex = sourceModel()->index( sourceRow, 0, sourceParent );
+	const auto rowCount = sourceModel()->rowCount( rowIndex );
 
-	for( int i = 0; i < sourceModel()->rowCount( rowIndex ); ++i )
+	for( int i = 0; i < rowCount; ++i )
 	{
 		if( filterAcceptsRow( i, rowIndex ) )
 		{
