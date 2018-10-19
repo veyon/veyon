@@ -2,12 +2,10 @@ INCLUDE(WindowsBuildHelpers)
 
 FILE(GLOB configurator_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB configurator_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/veyon-configurator.qrc)
-
-QT5_ADD_RESOURCES(configurator_RCC_out ${QRC_FILE})
+SET(configurator_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/veyon-configurator.qrc)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-ADD_EXECUTABLE(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RCC_out})
+ADD_EXECUTABLE(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RESOURCES})
 TARGET_LINK_LIBRARIES(veyon-configurator veyon-core)
 
 ADD_WINDOWS_RESOURCE(veyon-configurator)

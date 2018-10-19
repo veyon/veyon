@@ -11,7 +11,6 @@ BUILD_PLUGIN(desktopservices
 	DesktopServicesConfigurationPage.h
 	DesktopServicesFeaturePlugin.h
 	RunProgramDialog.h
-	RESOURCES
 	desktopservices.qrc
 	COTIRE
 )

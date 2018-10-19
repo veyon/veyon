@@ -45,7 +45,6 @@ BUILD_PLUGIN(ldap
 	LdapConfigurationPage.h
 	LdapDirectory.h
 	LdapNetworkObjectDirectory.h
-	RESOURCES
 	ldap.qrc
 	COTIRE
 )

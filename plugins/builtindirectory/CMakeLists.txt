@@ -9,7 +9,6 @@ BUILD_PLUGIN(builtindirectory
 	BuiltinDirectoryConfiguration.h
 	BuiltinDirectoryConfigurationPage.h
 	BuiltinDirectory.h
-	RESOURCES
 	builtindirectory.qrc
 	COTIRE
 )

@@ -7,6 +7,8 @@ FILE(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
 )
 
+SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
+
 # find Qt's translation directory
 IF(NOT VEYON_BUILD_WIN32)
 	GET_TARGET_PROPERTY(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
@@ -28,12 +30,10 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/common/turbojpeg.c)
 
 
-QT5_ADD_RESOURCES(veyoncore_RCC_out ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
-
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
-ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES})
+ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${core_RESOURCES} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES})
 
 SET_TARGET_PROPERTIES(veyon-core PROPERTIES AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/forms)
 

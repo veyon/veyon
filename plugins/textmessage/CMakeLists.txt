@@ -5,7 +5,6 @@ BUILD_PLUGIN(textmessage
 	TextMessageDialog.cpp
 	TextMessageFeaturePlugin.h
 	TextMessageDialog.h
-	RESOURCES
 	textmessage.qrc
 )
 
