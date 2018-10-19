@@ -9,8 +9,6 @@ BUILD_PLUGIN(authkeys
 	AuthKeysConfigurationPage.h
 	AuthKeysTableModel.h
 	AuthKeysManager.h
-	FORMS
-	AuthKeysConfigurationPage.ui
 	RESOURCES
 	authkeys.qrc
 	COTIRE

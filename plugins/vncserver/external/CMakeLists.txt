@@ -7,8 +7,6 @@ BUILD_PLUGIN(external-vnc-server
 	ExternalVncServer.h
 	ExternalVncServerConfiguration.h
 	ExternalVncServerConfigurationWidget.h
-	FORMS
-	ExternalVncServerConfigurationWidget.ui
 	COTIRE
 )
 

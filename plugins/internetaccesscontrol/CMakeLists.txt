@@ -9,8 +9,6 @@ BUILD_PLUGIN(internetaccesscontrol
 	InternetAccessControlPlugin.h
 	InternetAccessControlConfiguration.h
 	InternetAccessControlConfigurationPage.h
-	FORMS
-	InternetAccessControlConfigurationPage.ui
 	RESOURCES
 	internetaccesscontrol.qrc
 	COTIRE

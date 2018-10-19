@@ -15,8 +15,6 @@ BUILD_PLUGIN(demo
 	DemoServerConnection.h
 	DemoServerProtocol.h
 	DemoClient.h
-	FORMS
-	DemoConfigurationPage.ui
 	RESOURCES demo.qrc
 	COTIRE
 )

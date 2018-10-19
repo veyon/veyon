@@ -13,9 +13,6 @@ BUILD_PLUGIN(desktopservices
 	RunProgramDialog.h
 	RESOURCES
 	desktopservices.qrc
-	FORMS
-	DesktopServicesConfigurationPage.ui
-	RunProgramDialog.ui
 	COTIRE
 )
 

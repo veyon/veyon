@@ -11,7 +11,5 @@ BUILD_PLUGIN(builtindirectory
 	BuiltinDirectory.h
 	RESOURCES
 	builtindirectory.qrc
-	FORMS
-	BuiltinDirectoryConfigurationPage.ui
 	COTIRE
 )

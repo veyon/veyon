@@ -2,18 +2,18 @@ INCLUDE(WindowsBuildHelpers)
 
 FILE(GLOB configurator_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB configurator_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-FILE(GLOB configurator_UI ${CMAKE_CURRENT_SOURCE_DIR}/forms/*.ui)
 SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/veyon-configurator.qrc)
 
-QT5_WRAP_UI(configurator_UIC_out ${configurator_UI})
 QT5_ADD_RESOURCES(configurator_RCC_out ${QRC_FILE})
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-ADD_EXECUTABLE(veyon-configurator ${configurator_UIC_out} ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RCC_out})
+ADD_EXECUTABLE(veyon-configurator ${configurator_SOURCES} ${configurator_INCLUDES} ${configurator_RCC_out})
 TARGET_LINK_LIBRARIES(veyon-configurator veyon-core)
 
 ADD_WINDOWS_RESOURCE(veyon-configurator)
 MAKE_GRAPHICAL_APP(veyon-configurator)
+
+SET_TARGET_PROPERTIES(veyon-configurator PROPERTIES AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/forms)
 
 INSTALL(TARGETS veyon-configurator RUNTIME DESTINATION bin)
 

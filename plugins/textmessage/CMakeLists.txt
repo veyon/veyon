@@ -7,7 +7,5 @@ BUILD_PLUGIN(textmessage
 	TextMessageDialog.h
 	RESOURCES
 	textmessage.qrc
-	FORMS
-	TextMessageDialog.ui
 )
 

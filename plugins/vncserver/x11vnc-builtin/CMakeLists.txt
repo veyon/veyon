@@ -244,7 +244,7 @@ BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.h
 	X11VncConfigurationWidget.h
 	X11VncConfiguration.h
-	FORMS X11VncConfigurationWidget.ui)
+)
 
 IF(NOT VEYON_X11VNC_EXTERNAL)
 TARGET_LINK_LIBRARIES(builtin-x11vnc-server
