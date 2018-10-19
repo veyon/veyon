@@ -25,6 +25,8 @@
 #ifndef OBJECT_MANAGER_H
 #define OBJECT_MANAGER_H
 
+#include <QJsonArray>
+
 #include "VeyonCore.h"
 
 template<class T>
@@ -41,12 +43,14 @@ public:
 		return m_objects;
 	}
 
-	void add( const T& object )
+	const QJsonArray& add( const T& object )
 	{
 		m_objects.append( object.toJson() );
+
+		return m_objects;
 	}
 
-	void update( const T& object )
+	const QJsonArray& update( const T& object )
 	{
 		for( auto it = m_objects.begin(); it != m_objects.end(); ++it )
 		{
@@ -57,9 +61,11 @@ public:
 				break;
 			}
 		}
+
+		return m_objects;
 	}
 
-	void remove( const T& object, bool recursive = false )
+	const QJsonArray& remove( const T& object, bool recursive = false )
 	{
 		if( recursive )
 		{
@@ -78,6 +84,8 @@ public:
 				++it;
 			}
 		}
+
+		return m_objects;
 	}
 
 	void removeChildren( const T& object )
