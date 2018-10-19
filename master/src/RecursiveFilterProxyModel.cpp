@@ -1,5 +1,5 @@
 /*
- * RecursiveFilterProxyModel.cpp - proxy model for recursive filtering 
+ * RecursiveFilterProxyModel.cpp - proxy model for recursive filtering
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@veyon.io>
  *
@@ -24,9 +24,16 @@
 
 #include "RecursiveFilterProxyModel.h"
 
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
+
 RecursiveFilterProxyModel::RecursiveFilterProxyModel( QObject* parent ) :
 	QSortFilterProxyModel( parent )
 {
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+#endif
 }
 
 

@@ -24,12 +24,20 @@
 
 #include "ComputerSortFilterProxyModel.h"
 
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
+
 
 ComputerSortFilterProxyModel::ComputerSortFilterProxyModel( QObject* parent ) :
 	QSortFilterProxyModel( parent ),
 	m_stateRole( -1 ),
 	m_stateFilter( ComputerControlInterface::None )
 {
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+#endif
+
 	setFilterCaseSensitivity( Qt::CaseInsensitive );
 }
 

@@ -32,6 +32,10 @@
 #include "UserConfig.h"
 #include "VeyonConfiguration.h"
 
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
+
 
 ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
 	QAbstractListModel( parent ),
@@ -41,6 +45,10 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
 {
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+#endif
+
 	loadIcons();
 
 	connect( &m_master->computerManager(), &ComputerManager::computerSelectionReset,

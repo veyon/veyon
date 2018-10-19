@@ -25,11 +25,19 @@
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectTreeModel.h"
 
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#endif
+
 
 NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* directory, QObject* parent ) :
 	NetworkObjectModel( parent ),
 	m_directory( directory )
 {
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+#endif
+
 	connect( m_directory, &NetworkObjectDirectory::objectsAboutToBeInserted,
 			 this, &NetworkObjectTreeModel::beginInsertObjects );
 	connect( m_directory, &NetworkObjectDirectory::objectsInserted,
