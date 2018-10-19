@@ -11,8 +11,6 @@ TARGET_LINK_LIBRARIES(veyon-configurator veyon-core)
 ADD_WINDOWS_RESOURCE(veyon-configurator)
 MAKE_GRAPHICAL_APP(veyon-configurator)
 
-SET_TARGET_PROPERTIES(veyon-configurator PROPERTIES AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/forms)
-
 INSTALL(TARGETS veyon-configurator RUNTIME DESTINATION bin)
 
 IF(VEYON_BUILD_LINUX)
