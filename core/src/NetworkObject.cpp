@@ -180,6 +180,10 @@ NetworkObject::Uid NetworkObject::calculateUid() const
 	{
 		return QUuid::createUuidV5( networkObjectNamespace, directoryAddress() );
 	}
+	else if( type() == Root )
+	{
+		return QUuid::createUuidV5( networkObjectNamespace, QByteArrayLiteral("Root") );
+	}
 
 	return QUuid::createUuidV5( networkObjectNamespace, name() + hostAddress() + macAddress() + parentUid().toString() );
 }
