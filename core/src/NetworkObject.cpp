@@ -120,6 +120,26 @@ bool NetworkObject::exactMatch( const NetworkObject& other ) const
 
 
 
+NetworkObject::ModelId NetworkObject::modelId() const
+{
+	auto id =
+			( static_cast<ModelId>( uid().data1 ) << 0 ) |
+			( static_cast<ModelId>( uid().data2 ) << 32 ) |
+			( static_cast<ModelId>( uid().data3 ) << 48 ) |
+			( static_cast<ModelId>( uid().data4[0] ) << 0 ) |
+			( static_cast<ModelId>( uid().data4[1] ) << 8 ) |
+			( static_cast<ModelId>( uid().data4[2] ) << 16 ) |
+			( static_cast<ModelId>( uid().data4[3] ) << 24 ) |
+			( static_cast<ModelId>( uid().data4[4] ) << 32 ) |
+			( static_cast<ModelId>( uid().data4[5] ) << 40 ) |
+			( static_cast<ModelId>( uid().data4[6] ) << 48 ) |
+			( static_cast<ModelId>( uid().data4[7] ) << 56 );
+
+	return id;
+}
+
+
+
 QJsonObject NetworkObject::toJson() const
 {
 	QJsonObject json;

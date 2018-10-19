@@ -35,6 +35,7 @@ class VEYON_CORE_EXPORT NetworkObject
 public:
 	typedef QUuid Uid;
 	typedef QString Name;
+	typedef quintptr ModelId;
 
 	typedef enum Types
 	{
@@ -75,6 +76,8 @@ public:
 	{
 		return m_parentUid;
 	}
+
+	ModelId modelId() const;
 
 	Type type() const
 	{
