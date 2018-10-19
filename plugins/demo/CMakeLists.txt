@@ -15,6 +15,7 @@ BUILD_PLUGIN(demo
 	DemoServerConnection.h
 	DemoServerProtocol.h
 	DemoClient.h
+	demo.qrc
 	COTIRE
 )
 
