@@ -1,16 +1,21 @@
 INCLUDE(WindowsBuildHelpers)
 
+SET(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src)
+SET(kitemmodels_SOURCES ${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.cpp)
+SET(kitemmodels_HEADERS ${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.h)
+
 FILE(GLOB master_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB master_UI ${CMAKE_CURRENT_SOURCE_DIR}/forms/*.ui)
 SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/master.qrc)
-QT5_WRAP_CPP(master_MOC_out ${master_INCLUDES})
 QT5_WRAP_UI(master_UIC_out ${master_UI})
 QT5_ADD_RESOURCES(master_RCC_out ${QRC_FILE})
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-ADD_EXECUTABLE(veyon-master ${master_UIC_out} ${master_SOURCES} ${master_INCLUDES} ${master_MOC_out} ${master_RCC_out})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src ${kitemmodels_SOURCE_DIR})
+ADD_EXECUTABLE(veyon-master ${master_UIC_out} ${master_SOURCES} ${master_INCLUDES} ${master_RCC_out} ${kitemmodels_SOURCES} ${kitemmodels_HEADERS})
 TARGET_LINK_LIBRARIES(veyon-master veyon-core)
+
+SET_TARGET_PROPERTIES(veyon-master PROPERTIES AUTOMOC TRUE)
 
 ADD_WINDOWS_RESOURCE(veyon-master)
 MAKE_GRAPHICAL_APP(veyon-master)
