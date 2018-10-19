@@ -25,8 +25,6 @@
 #ifndef LDAP_NETWORK_OBJECT_DIRECTORY_H
 #define LDAP_NETWORK_OBJECT_DIRECTORY_H
 
-#include <QHash>
-
 #include "LdapDirectory.h"
 #include "NetworkObjectDirectory.h"
 
@@ -34,25 +32,22 @@ class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parent );
+	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parentId );
 
-	QList<NetworkObject> objects( const NetworkObject& parent ) override;
-
-	QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name ) override;
-	NetworkObject queryParent( const NetworkObject& object ) override;
+	NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name ) override;
+	NetworkObject queryParent( const NetworkObject& childId ) override;
 
 private slots:
 	void update() override;
-	void updateComputerRoom( const QString& computerRoom );
+	void updateGroup( const NetworkObject& groupObject );
 
 private:
-	QList<NetworkObject> queryGroups( const QString& name );
-	QList<NetworkObject> queryHosts( const QString& name );
+	NetworkObjectList queryGroups( const QString& name );
+	NetworkObjectList queryHosts( const QString& name );
 
 	NetworkObject computerToObject( const QString& computerDn, bool populateMacAddres );
 
 	LdapDirectory m_ldapDirectory;
-	QHash<NetworkObject, QList<NetworkObject>> m_objects;
 };
 
 #endif // LDAP_NETWORK_OBJECT_DIRECTORY_H

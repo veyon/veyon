@@ -36,24 +36,7 @@ LdapNetworkObjectDirectory::LdapNetworkObjectDirectory( const LdapConfiguration&
 
 
 
-QList<NetworkObject> LdapNetworkObjectDirectory::objects( const NetworkObject& parent )
-{
-	if( parent.type() == NetworkObject::Root )
-	{
-		return m_objects.keys();
-	}
-	else if( parent.type() == NetworkObject::Group &&
-			 m_objects.contains( parent ) )
-	{
-		return qAsConst(m_objects)[parent];
-	}
-
-	return QList<NetworkObject>();
-}
-
-
-
-QList<NetworkObject> LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
 {
 	switch( type )
 	{
@@ -87,97 +70,63 @@ NetworkObject LdapNetworkObjectDirectory::queryParent( const NetworkObject& obje
 
 void LdapNetworkObjectDirectory::update()
 {
-	const auto computerRooms = m_ldapDirectory.computerRooms();
+	const auto groups = m_ldapDirectory.computerRooms();
 	const NetworkObject rootObject( NetworkObject::Root );
 
-	for( const auto& computerRoom : qAsConst( computerRooms ) )
+	for( const auto& computerRoom : qAsConst( groups ) )
 	{
-		NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
+		const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
 
-		if( m_objects.contains( computerRoomObject ) == false )
-		{
-			emit objectsAboutToBeInserted( rootObject, m_objects.count(), 1 );
-			m_objects[computerRoomObject] = QList<NetworkObject>();
-			emit objectsInserted();
-		}
+		insertObject( computerRoomObject, NetworkObject::Root );
 
-		updateComputerRoom( computerRoom );
+		updateGroup( computerRoomObject );
 	}
 
-	int index = 0;
-	for( auto it = m_objects.begin(); it != m_objects.end(); )	// clazy:exclude=detaching-member
-	{
-		if( computerRooms.contains( it.key().name() ) == false )
-		{
-			emit objectsAboutToBeRemoved( rootObject, index, 1 );
-			it = m_objects.erase( it );
-			emit objectsRemoved();
-		}
-		else
-		{
-			++it;
-			++index;
-		}
-	}
+	removeObjects( NetworkObject::Root, [groups]( const NetworkObject& object ) {
+		return object.type() == NetworkObject::Group && groups.contains( object.name() ) == false; } );
 }
 
 
 
-void LdapNetworkObjectDirectory::updateComputerRoom( const QString& computerRoom )
+void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
 {
-	const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
-	QList<NetworkObject>& computerRoomObjects = m_objects[computerRoomObject]; // clazy:exclude=detaching-member
+	auto& groupObjects = objectList( groupObject ); // clazy:exclude=detaching-member
 
-	const auto computers = m_ldapDirectory.computerRoomMembers( computerRoom );
+	const auto computers = m_ldapDirectory.computerRoomMembers( groupObject.name() );
 
 	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().computerMacAddressAttribute().count() > 0 );
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
-		const auto computerObject = computerToObject( computer, hasMacAddressAttribute );
-		if( computerObject.type() != NetworkObject::Host )
+		const auto hostObject = computerToObject( computer, hasMacAddressAttribute );
+		if( hostObject.type() != NetworkObject::Host )
 		{
 			continue;
 		}
 
-		const auto index = computerRoomObjects.indexOf( computerObject );
+		const auto index = groupObjects.indexOf( hostObject );
 		if( index < 0 )
 		{
-			emit objectsAboutToBeInserted( computerRoomObject, computerRoomObjects.count(), 1 );
-			computerRoomObjects += computerObject; // clazy:exclude=reserve-candidates
-			emit objectsInserted();
+			insertObject( hostObject, groupObject );
 		}
-		else if( computerRoomObjects[index].exactMatch( computerObject ) == false )
+		else if( groupObjects[index].exactMatch( hostObject ) == false )
 		{
-			computerRoomObjects.replace( index, computerObject );
-			emit objectChanged( computerRoomObject, index );
+			groupObjects.replace( index, hostObject );
+			emit objectChanged( groupObject, index );
 		}
 	}
 
-	int index = 0;
-	for( auto it = computerRoomObjects.begin(); it != computerRoomObjects.end(); )
-	{
-		if( computers.contains( it->directoryAddress() ) == false )
-		{
-			emit objectsAboutToBeRemoved( computerRoomObject, index, 1 );
-			it = computerRoomObjects.erase( it );
-			emit objectsRemoved();
-		}
-		else
-		{
-			++it;
-			++index;
-		}
-	}
+	removeObjects( groupObject, [computers]( const NetworkObject& object ) {
+		return object.type() == NetworkObject::Host && computers.contains( object.directoryAddress() ) == false; } );
 }
 
 
 
-QList<NetworkObject> LdapNetworkObjectDirectory::queryGroups( const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryGroups( const QString& name )
 {
 	const auto groups = m_ldapDirectory.computerRooms( name );
 
-	QList<NetworkObject> groupObjects;
+	NetworkObjectList groupObjects;
 	groupObjects.reserve( groups.size() );
 
 	for( const auto& group : groups )
@@ -190,11 +139,11 @@ QList<NetworkObject> LdapNetworkObjectDirectory::queryGroups( const QString& nam
 
 
 
-QList<NetworkObject> LdapNetworkObjectDirectory::queryHosts( const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
 {
 	const auto computers = m_ldapDirectory.computers( name );
 
-	QList<NetworkObject> hostObjects;
+	NetworkObjectList hostObjects;
 	hostObjects.reserve( computers.size() );
 
 	for( const auto& computer : computers )
