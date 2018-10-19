@@ -459,7 +459,7 @@ Qt::ItemFlags ComputerControlListModel::flags( const QModelIndex& index ) const
 		 return Qt::ItemIsDragEnabled | defaultFlags;
 	}
 
-	return Qt::ItemIsDropEnabled | Qt::ItemIsDragEnabled | defaultFlags;
+	return Qt::ItemIsDropEnabled | defaultFlags;
 }
 
 
