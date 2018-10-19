@@ -5,7 +5,6 @@ BUILD_PLUGIN(authkeys
 	AuthKeysConfigurationPage.cpp
 	AuthKeysTableModel.cpp
 	AuthKeysManager.cpp
-	MOCFILES
 	AuthKeysPlugin.h
 	AuthKeysConfigurationPage.h
 	AuthKeysTableModel.h

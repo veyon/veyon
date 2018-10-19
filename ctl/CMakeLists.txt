@@ -3,10 +3,8 @@ INCLUDE(WindowsBuildHelpers)
 FILE(GLOB ctl_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 FILE(GLOB ctl_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-QT5_WRAP_CPP(ctl_MOC_out ${ctl_INCLUDES})
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-ADD_EXECUTABLE(veyon-ctl ${ctl_UIC_out} ${ctl_SOURCES} ${ctl_INCLUDES} ${ctl_MOC_out})
+ADD_EXECUTABLE(veyon-ctl ${ctl_UIC_out} ${ctl_SOURCES} ${ctl_INCLUDES})
 TARGET_LINK_LIBRARIES(veyon-ctl veyon-core Qt5::Network)
 
 ADD_WINDOWS_RESOURCE(veyon-ctl ${CMAKE_CURRENT_BINARY_DIR}/veyon-ctl.rc)

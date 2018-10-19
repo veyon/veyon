@@ -18,7 +18,6 @@ BUILD_PLUGIN(linux-platform
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
 	LinuxUserFunctions.cpp
-	MOCFILES
 	LinuxPlatformPlugin.h
 	LinuxCoreFunctions.h
 	LinuxDesktopIntegration.h

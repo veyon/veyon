@@ -40,7 +40,6 @@ BUILD_PLUGIN(ldap
 	LdapNetworkObjectDirectory.cpp
 	KLdapIntegration.cpp
 	${kldap_SOURCES}
-	MOCFILES
 	LdapPlugin.h
 	LdapConfiguration.h
 	LdapConfigurationPage.h

@@ -80,7 +80,6 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	UltraVncConfiguration.cpp
 	UltraVncConfigurationWidget.cpp
 	${ultravnc_SOURCES}
-	MOCFILES
 	BuiltinUltraVncServer.h
 	LogoffEventFilter.h
 	UltraVncConfigurationWidget.h

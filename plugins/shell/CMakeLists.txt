@@ -1,3 +1,3 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(shell ShellCommandLinePlugin.cpp MOCFILES ShellCommandLinePlugin.h)
+BUILD_PLUGIN(shell ShellCommandLinePlugin.cpp ShellCommandLinePlugin.h)

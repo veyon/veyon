@@ -5,7 +5,6 @@ BUILD_PLUGIN(builtindirectory
 	BuiltinDirectoryConfiguration.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectory.cpp
-	MOCFILES
 	BuiltinDirectoryPlugin.h
 	BuiltinDirectoryConfiguration.h
 	BuiltinDirectoryConfigurationPage.h

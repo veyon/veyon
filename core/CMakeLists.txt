@@ -30,14 +30,13 @@ SET(libvncclient_SOURCES
 	${libvncserver_DIR}/common/turbojpeg.c)
 
 
-QT5_WRAP_CPP(veyoncore_MOC_out ${veyoncore_INCLUDES})
 QT5_WRAP_UI(veyoncore_UIC_out ${veyoncore_UI})
 QT5_ADD_RESOURCES(veyoncore_RCC_out ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
 ADD_DEFINITIONS(-DBUILD_VEYON_CORE_LIBRARY)
 
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${libvncserver_DIR}/common/)
-ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_MOC_out} ${veyoncore_UIC_out} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES})
+ADD_LIBRARY(veyon-core SHARED ${veyoncore_SOURCES} ${veyoncore_INCLUDES} ${veyoncore_UIC_out} ${veyoncore_RCC_out} ${veyoncore_qt_qm_out} ${libvncclient_SOURCES})
 
 SET_SOURCE_FILES_PROPERTIES(${libvncclient_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-variable -Wno-unused-label -Wno-maybe-uninitialized -Wno-misleading-indentation -Wno-pointer-sign -Wno-int-in-bool-context")
 

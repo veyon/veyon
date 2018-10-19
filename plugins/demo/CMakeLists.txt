@@ -8,7 +8,6 @@ BUILD_PLUGIN(demo
 	DemoServerConnection.cpp
 	DemoServerProtocol.cpp
 	DemoClient.cpp
-	MOCFILES
 	DemoFeaturePlugin.h
 	DemoConfiguration.h
 	DemoConfigurationPage.h

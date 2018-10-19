@@ -1,3 +1,3 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(internetaccesscontrol-dummy InternetAccessControlDummy.cpp MOCFILES InternetAccessControlDummy.h)
+BUILD_PLUGIN(internetaccesscontrol-dummy InternetAccessControlDummy.cpp InternetAccessControlDummy.h)

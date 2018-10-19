@@ -6,7 +6,6 @@ BUILD_PLUGIN(internetaccesscontrol
 	InternetAccessControlPlugin.cpp
 	InternetAccessControlConfiguration.cpp
 	InternetAccessControlConfigurationPage.cpp
-	MOCFILES
 	InternetAccessControlPlugin.h
 	InternetAccessControlConfiguration.h
 	InternetAccessControlConfigurationPage.h

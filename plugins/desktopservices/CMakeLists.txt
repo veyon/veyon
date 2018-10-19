@@ -6,7 +6,6 @@ BUILD_PLUGIN(desktopservices
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesFeaturePlugin.cpp
 	RunProgramDialog.cpp
-	MOCFILES
 	DesktopServiceObject.h
 	DesktopServicesConfiguration.h
 	DesktopServicesConfigurationPage.h

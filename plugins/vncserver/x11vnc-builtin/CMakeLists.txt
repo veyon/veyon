@@ -241,7 +241,6 @@ BUILD_PLUGIN(builtin-x11vnc-server
 	X11VncConfigurationWidget.cpp
 	${libvncserver_SOURCES}
 	${x11vnc_SOURCES}
-	MOCFILES
 	BuiltinX11VncServer.h
 	X11VncConfigurationWidget.h
 	X11VncConfiguration.h

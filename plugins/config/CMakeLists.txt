@@ -1,3 +1,3 @@
 INCLUDE(BuildPlugin)
 
-BUILD_PLUGIN(config ConfigCommandLinePlugin.cpp MOCFILES ConfigCommandLinePlugin.h)
+BUILD_PLUGIN(config ConfigCommandLinePlugin.cpp ConfigCommandLinePlugin.h)

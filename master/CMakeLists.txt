@@ -15,8 +15,6 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src 
 ADD_EXECUTABLE(veyon-master ${master_UIC_out} ${master_SOURCES} ${master_INCLUDES} ${master_RCC_out} ${kitemmodels_SOURCES} ${kitemmodels_HEADERS})
 TARGET_LINK_LIBRARIES(veyon-master veyon-core)
 
-SET_TARGET_PROPERTIES(veyon-master PROPERTIES AUTOMOC TRUE)
-
 ADD_WINDOWS_RESOURCE(veyon-master)
 MAKE_GRAPHICAL_APP(veyon-master)
 
