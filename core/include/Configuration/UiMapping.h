@@ -105,10 +105,20 @@ inline void initWidgetFromProperty( Config* config, QUuid (Config::*getter)() co
 
 // specializations for special properties which can't be mapped to widgets
 template<class Config>
-inline void initWidgetFromProperty( Config* config, QJsonArray (Config::*getter)() const, QGroupBox* ptr) { }
+inline void initWidgetFromProperty( Config* config, QJsonArray (Config::*getter)() const, QLabel* widget)
+{
+	Q_UNUSED(config)
+	Q_UNUSED(getter)
+	Q_UNUSED(widget)
+}
 
 template<class Config>
-inline void initWidgetFromProperty( Config* config, QStringList (Config::*getter)() const, QGroupBox* ptr) { }
+inline void initWidgetFromProperty( Config* config, QStringList (Config::*getter)() const, QLabel* widget)
+{
+	Q_UNUSED(config)
+	Q_UNUSED(getter)
+	Q_UNUSED(widget)
+}
 
 // widget initialization
 #define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey)	\
@@ -197,10 +207,20 @@ inline void connectWidgetToProperty( Config* config, void (Config::*setter)( QUu
 // specializations for special properties which can't be connected to widgets
 
 template<class Config>
-inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QStringList& ), QGroupBox* widget ) { }
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QStringList& ), QLabel* widget )
+{
+	Q_UNUSED(config)
+	Q_UNUSED(setter)
+	Q_UNUSED(widget)
+}
 
 template<class Config>
-inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QJsonArray& ), QGroupBox* widget ) { }
+inline void connectWidgetToProperty( Config* config, void (Config::*setter)( const QJsonArray& ), QLabel* widget )
+{
+	Q_UNUSED(config)
+	Q_UNUSED(setter)
+	Q_UNUSED(widget)
+}
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey)	\
 	connectWidgetToProperty( &config, &className::set, ui->get );

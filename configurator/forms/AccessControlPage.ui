@@ -104,7 +104,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="authorizedUserGroups">
+    <widget class="QGroupBox" name="groupBox">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -133,7 +133,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLabel" name="label_41">
+       <widget class="QLabel" name="authorizedUserGroups">
         <property name="text">
          <string>Authorized user groups</string>
         </property>
@@ -212,7 +212,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="accessControlRules">
+    <widget class="QGroupBox" name="groupBox_2">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -220,59 +220,7 @@
       <string>Access control rules</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_23">
-      <item row="0" column="1">
-       <widget class="QPushButton" name="addAccessControlRuleButton">
-        <property name="toolTip">
-         <string>Add access control rule</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../../core/core.qrc">
-          <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="removeAccessControlRule">
-        <property name="toolTip">
-         <string>Remove access control rule</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../../core/core.qrc">
-          <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QPushButton" name="moveAccessControlRuleDownButton">
-        <property name="toolTip">
-         <string>Move selected rule down</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/go-down.png</normaloff>:/resources/go-down.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" rowspan="6">
-       <widget class="QListView" name="accessControlRulesView">
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
+      <item row="6" column="1">
        <spacer name="verticalSpacer_12">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -313,6 +261,65 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="addAccessControlRuleButton">
+        <property name="toolTip">
+         <string>Add access control rule</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="removeAccessControlRule">
+        <property name="toolTip">
+         <string>Remove access control rule</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/core.qrc">
+          <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" rowspan="7">
+       <widget class="QListView" name="accessControlRulesView">
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="moveAccessControlRuleDownButton">
+        <property name="toolTip">
+         <string>Move selected rule down</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../veyon-configurator.qrc">
+          <normaloff>:/resources/go-down.png</normaloff>:/resources/go-down.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="accessControlRules">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -336,8 +343,8 @@
   <tabstop>moveAccessControlRuleDownButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../veyon-configurator.qrc"/>
   <include location="../../core/core.qrc"/>
+  <include location="../veyon-configurator.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -455,7 +462,7 @@
   <connection>
    <sender>isAccessRestrictedToUserGroups</sender>
    <signal>toggled(bool)</signal>
-   <receiver>authorizedUserGroups</receiver>
+   <receiver>groupBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -471,7 +478,7 @@
   <connection>
    <sender>isAccessControlRulesProcessingEnabled</sender>
    <signal>toggled(bool)</signal>
-   <receiver>accessControlRules</receiver>
+   <receiver>groupBox_2</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
