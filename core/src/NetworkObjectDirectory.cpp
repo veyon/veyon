@@ -77,6 +77,122 @@ const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& p
 
 
 
+const NetworkObject &NetworkObjectDirectory::object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const
+{
+	if( parent == 0 )
+	{
+		parent = m_rootObject.modelId();
+	}
+
+	const auto it = m_objects.find( parent );
+	if( it != m_objects.end() )
+	{
+		int index = 0;
+		for( const auto& entry : *it )
+		{
+			if( entry.modelId() == object )
+			{
+				return entry;
+			}
+			++index;
+		}
+	}
+
+	return m_invalidObject;
+}
+
+
+
+int NetworkObjectDirectory::index( NetworkObject::ModelId parent, NetworkObject::ModelId child ) const
+{
+	if( parent == 0 )
+	{
+		parent = m_rootObject.modelId();
+	}
+
+	const auto it = m_objects.find( parent );
+	if( it != m_objects.end() )
+	{
+		int index = 0;
+		for( const auto& entry : *it )
+		{
+			if( entry.modelId() == child )
+			{
+				return index;
+			}
+			++index;
+		}
+	}
+
+	return -1;
+}
+
+
+
+int NetworkObjectDirectory::childCount( NetworkObject::ModelId parent ) const
+{
+	if( parent == 0 )
+	{
+		parent = m_rootObject.modelId();
+	}
+
+	const auto it = m_objects.find( parent );
+	if( it != m_objects.end() )
+	{
+		return it->count();
+	}
+
+	return 0;
+}
+
+
+
+NetworkObject::ModelId NetworkObjectDirectory::childId( NetworkObject::ModelId parent, int index ) const
+{
+	if( parent == 0 )
+	{
+		parent = m_rootObject.modelId();
+	}
+
+	const auto it = m_objects.find( parent );
+	if( it != m_objects.end() )
+	{
+		if( index < it->count() )
+		{
+			return it->at( index ).modelId();
+		}
+	}
+
+	return 0;
+}
+
+
+
+NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId child ) const
+{
+	if( child == m_rootObject.modelId() )
+	{
+		return 0;
+	}
+
+	for( auto it = m_objects.begin(); it != m_objects.end(); ++it )
+	{
+		auto& objectList = it.value();
+
+		for( auto& object : objectList )
+		{
+			if( object.modelId() == child )
+			{
+				return it.key();
+			}
+		}
+	}
+
+	return 0;
+}
+
+
+
 NetworkObjectList& NetworkObjectDirectory::objectList( const NetworkObject& parent )
 {
 	if( parent.type() == NetworkObject::Root ||

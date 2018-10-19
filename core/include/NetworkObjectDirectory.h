@@ -48,8 +48,14 @@ public:
 
 	const NetworkObjectList& objects( const NetworkObject& parent ) const;
 
-	virtual QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name = QString() ) = 0;
-	virtual NetworkObject queryParent( const NetworkObject& object ) = 0;
+	const NetworkObject& object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const;
+	int index( NetworkObject::ModelId parent, NetworkObject::ModelId child ) const;
+	int childCount( NetworkObject::ModelId parent ) const;
+	NetworkObject::ModelId childId( NetworkObject::ModelId parent, int index ) const;
+	NetworkObject::ModelId parentId( NetworkObject::ModelId child ) const;
+
+	virtual NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name = QString() ) = 0;
+	virtual NetworkObject queryParent( const NetworkObject& child ) = 0;
 
 public slots:
 	virtual void update() = 0;
