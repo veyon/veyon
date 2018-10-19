@@ -128,6 +128,8 @@ private:
 
 Q_DECLARE_METATYPE(NetworkObject::Type)
 
+typedef QList<NetworkObject> NetworkObjectList;
+
 static inline uint qHash( const NetworkObject& networkObject )
 {
 	return qHash( networkObject.uid() );

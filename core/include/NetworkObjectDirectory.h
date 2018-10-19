@@ -25,6 +25,7 @@
 #ifndef NETWORK_OBJECT_DIRECTORY_H
 #define NETWORK_OBJECT_DIRECTORY_H
 
+#include <QHash>
 #include <QObject>
 
 #include "NetworkObject.h"
@@ -45,7 +46,7 @@ public:
 
 	void setUpdateInterval( int interval );
 
-	virtual QList<NetworkObject> objects( const NetworkObject& parent ) = 0;
+	const NetworkObjectList& objects( const NetworkObject& parent ) const;
 
 	virtual QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name = QString() ) = 0;
 	virtual NetworkObject queryParent( const NetworkObject& object ) = 0;
@@ -53,8 +54,19 @@ public:
 public slots:
 	virtual void update() = 0;
 
+protected:
+	typedef std::function<bool(const NetworkObject &)> NetworkObjectFilter;
+
+	NetworkObjectList& objectList( const NetworkObject& parent );
+	bool insertObject( const NetworkObject& networkObject, const NetworkObject& parent );
+	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
+
 private:
 	QTimer* m_updateTimer;
+	QHash<NetworkObject::ModelId, NetworkObjectList> m_objects;
+	NetworkObject m_invalidObject;
+	NetworkObject m_rootObject;
+	NetworkObjectList m_defaultObjectList;
 
 signals:
 	void objectsAboutToBeInserted( const NetworkObject& parent, int index, int count );
