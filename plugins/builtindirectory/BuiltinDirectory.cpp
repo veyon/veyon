@@ -34,24 +34,7 @@ BuiltinDirectory::BuiltinDirectory( BuiltinDirectoryConfiguration& configuration
 
 
 
-QList<NetworkObject> BuiltinDirectory::objects( const NetworkObject& parent )
-{
-	if( parent.type() == NetworkObject::Root )
-	{
-		return m_objects.keys();
-	}
-	else if( parent.type() == NetworkObject::Group &&
-			 m_objects.contains( parent ) )
-	{
-		return qAsConst(m_objects)[parent];
-	}
-
-	return QList<NetworkObject>();
-}
-
-
-
-QList<NetworkObject> BuiltinDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+NetworkObjectList BuiltinDirectory::queryObjects( NetworkObject::Type type, const QString& name )
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
@@ -100,9 +83,7 @@ void BuiltinDirectory::update()
 
 	const auto networkObjects = m_configuration.networkObjects();
 
-	const NetworkObject rootObject( NetworkObject::Root );
-
-	QVector<NetworkObject::Uid> roomUids;
+	QList<NetworkObject::Uid> groupUids;
 
 	for( const auto& networkObjectValue : networkObjects )
 	{
@@ -110,44 +91,23 @@ void BuiltinDirectory::update()
 
 		if( networkObject.type() == NetworkObject::Group )
 		{
-			roomUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
+			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
-			if( m_objects.contains( networkObject ) == false )
-			{
-				emit objectsAboutToBeInserted( rootObject, m_objects.count(), 1 );
-				m_objects[networkObject] = QList<NetworkObject>();
-				emit objectsInserted();
-			}
+			insertObject( networkObject, NetworkObject::Root );
 
-			updateRoom( networkObject );
+			updateRoom( networkObject, networkObjects );
 		}
 	}
 
-	int index = 0;
-	for( auto it = m_objects.begin(); it != m_objects.end(); ) // clazy:exclude=detaching-member
-	{
-		if( it.key().type() == NetworkObject::Group &&
-				roomUids.contains( it.key().uid() ) == false )
-		{
-			emit objectsAboutToBeRemoved( rootObject, index, 1 );
-			it = m_objects.erase( it );
-			emit objectsRemoved();
-		}
-		else
-		{
-			++it;
-			++index;
-		}
-	}
+	removeObjects( NetworkObject::Root, [groupUids]( const NetworkObject& object ) {
+		return object.type() == NetworkObject::Group && groupUids.contains( object.uid() ) == false; } );
 }
 
 
 
-void BuiltinDirectory::updateRoom( const NetworkObject& roomObject )
+void BuiltinDirectory::updateRoom( const NetworkObject& roomObject, const QJsonArray& networkObjects )
 {
-	const auto networkObjects = m_configuration.networkObjects();
-
-	QList<NetworkObject>& computerObjects = m_objects[roomObject]; // clazy:exclude=detaching-member
+	auto& computerObjects = objectList( roomObject ); // clazy:exclude=detaching-member
 
 	QVector<NetworkObject::Uid> computerUids;
 
@@ -162,9 +122,7 @@ void BuiltinDirectory::updateRoom( const NetworkObject& roomObject )
 			int index = computerObjects.indexOf( networkObject );
 			if( index < 0 )
 			{
-				emit objectsAboutToBeInserted( roomObject, computerObjects.count(), 1 );
-				computerObjects += networkObject; // clazy:exclude=reserve-candidates
-				emit objectsInserted();
+				insertObject( networkObject, roomObject );
 			}
 			else if( computerObjects[index].exactMatch( networkObject ) == false )
 			{
@@ -174,19 +132,7 @@ void BuiltinDirectory::updateRoom( const NetworkObject& roomObject )
 		}
 	}
 
-	int index = 0;
-	for( auto it = computerObjects.begin(); it != computerObjects.end(); )
-	{
-		if( computerUids.contains( it->uid() ) == false )
-		{
-			emit objectsAboutToBeRemoved( roomObject, index, 1 );
-			it = computerObjects.erase( it );
-			emit objectsRemoved();
-		}
-		else
-		{
-			++it;
-			++index;
-		}
-	}
+	removeObjects( roomObject, [computerUids]( const NetworkObject& object ) {
+		return object.type() == NetworkObject::Host && computerUids.contains( object.uid() ) == false; } );
+
 }

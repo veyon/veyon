@@ -25,8 +25,6 @@
 #ifndef BUILTIN_DIRECTORY_H
 #define BUILTIN_DIRECTORY_H
 
-#include <QHash>
-
 #include "NetworkObjectDirectory.h"
 
 class BuiltinDirectoryConfiguration;
@@ -35,20 +33,18 @@ class BuiltinDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent );
+	BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parentId );
 
-	QList<NetworkObject> objects( const NetworkObject& parent ) override;
-
-	QList<NetworkObject> queryObjects( NetworkObject::Type type, const QString& name ) override;
-	NetworkObject queryParent( const NetworkObject& object ) override;
+	NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name ) override;
+	NetworkObject queryParent( const NetworkObject& childId ) override;
 
 	void update() override;
 
 private:
-	void updateRoom( const NetworkObject& roomObject );
+	void updateRoom( const NetworkObject& roomObject, const QJsonArray& networkObjects );
 
 	BuiltinDirectoryConfiguration& m_configuration;
-	QHash<NetworkObject, QList<NetworkObject>> m_objects;
+
 };
 
 #endif // BUILTIN_DIRECTORY_H
