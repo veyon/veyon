@@ -22,37 +22,25 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_OVERLAY_DATA_MODEL_H
-#define NETWORK_OBJECT_OVERLAY_DATA_MODEL_H
+#pragma once
 
-#include <QIdentityProxyModel>
-
+#include "kextracolumnsproxymodel.h"
 #include "NetworkObject.h"
 
-class NetworkObjectOverlayDataModel : public QIdentityProxyModel
+class NetworkObjectOverlayDataModel : public KExtraColumnsProxyModel
 {
 	Q_OBJECT
 public:
-	NetworkObjectOverlayDataModel( int overlayDataColumn,
-								   int overlayDataRole,
-								   const QVariant& overlayDataColumnHeaderData,
+	NetworkObjectOverlayDataModel( const QString& overlayDataHeader,
 								   QObject *parent = nullptr );
 
-	int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+	QVariant extraColumnData( const QModelIndex &parent, int row, int extraColumn, int role ) const override;
 
-	QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const override;
-
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-	bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+	bool setExtraColumnData( const QModelIndex &parent, int row, int extraColumn, const QVariant &data, int role ) override;
 
 
 private:
-	int m_overlayDataColumn;
 	int m_overlayDataRole;
-	QVariant m_overlayDataColumnHeaderData;
 	QHash<NetworkObject::Uid, QVariant> m_overlayData;
 
 };
-
-#endif // NETWORK_OBJECT_OVERLAY_DATA_MODEL_H

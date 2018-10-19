@@ -25,47 +25,35 @@
 #include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectModel.h"
 
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#include <QAbstractItemModelTester>
+#include <QStandardItemModel>
+#endif
 
-NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel( int overlayDataColumn,
-															  int overlayDataRole,
-															  const QVariant& overlayDataColumnHeaderData,
+
+NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel( const QString& overlayDataHeader,
 															  QObject *parent ) :
-	QIdentityProxyModel( parent ),
-	m_overlayDataColumn( overlayDataColumn ),
-	m_overlayDataRole( overlayDataRole ),
-	m_overlayDataColumnHeaderData( overlayDataColumnHeaderData )
+	KExtraColumnsProxyModel( parent ),
+	m_overlayDataRole( Qt::DisplayRole )
 {
+#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	// base class relies on source model being set when tested by QAbstractItemModelTester
+	setSourceModel( new QStandardItemModel );
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+#endif
+	appendColumn( overlayDataHeader );
 }
 
 
 
-int NetworkObjectOverlayDataModel::columnCount( const QModelIndex& parent ) const
+QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &parent, int row, int extraColumn, int role) const
 {
-	return qMax<int>( QIdentityProxyModel::columnCount( parent ), m_overlayDataColumn + 1 );
-}
-
-
-
-QVariant NetworkObjectOverlayDataModel::headerData( int section, Qt::Orientation orientation, int role ) const
-{
-	if( section == m_overlayDataColumn && role == Qt::DisplayRole && orientation == Qt::Horizontal )
+	if( extraColumn != 0 || role != m_overlayDataRole )
 	{
-		return m_overlayDataColumnHeaderData;
+		return QVariant();
 	}
 
-	return QIdentityProxyModel::headerData( section, orientation, role );
-}
-
-
-
-QVariant NetworkObjectOverlayDataModel::data( const QModelIndex& index, int role ) const
-{
-	if( index.column() != m_overlayDataColumn || role != m_overlayDataRole )
-	{
-		return QIdentityProxyModel::data( index, role );
-	}
-
-	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::UidRole ).toUuid();
+	NetworkObject::Uid networkObjectUid = data( index( row, 0, parent ), NetworkObjectModel::UidRole ).toUuid();
 
 	if( networkObjectUid.isNull() == false && m_overlayData.contains( networkObjectUid ) )
 	{
@@ -76,20 +64,19 @@ QVariant NetworkObjectOverlayDataModel::data( const QModelIndex& index, int role
 }
 
 
-
-bool NetworkObjectOverlayDataModel::setData( const QModelIndex& index, const QVariant& value, int role )
+bool NetworkObjectOverlayDataModel::setExtraColumnData( const QModelIndex &parent, int row, int extraColumn, const QVariant &data, int role)
 {
-	if( index.column() != m_overlayDataColumn || role != m_overlayDataRole )
+	if( extraColumn != 0 || role != m_overlayDataRole )
 	{
-		return QIdentityProxyModel::setData( index, value, role );
+		return false;
 	}
 
-	NetworkObject::Uid networkObjectUid = data( index, NetworkObjectModel::UidRole ).toUuid();
+	const auto networkObjectUid = KExtraColumnsProxyModel::data( index( row, 0, parent ), NetworkObjectModel::UidRole ).toUuid();
 
-	if( m_overlayData[networkObjectUid] != value )
+	if( m_overlayData[networkObjectUid] != data )
 	{
-		m_overlayData[networkObjectUid] = value;
-		emit dataChanged( index, index, QVector<int>( { m_overlayDataRole } ) );
+		m_overlayData[networkObjectUid] = data;
+		extraColumnDataChanged( parent, row, extraColumn, { m_overlayDataRole } );
 	}
 
 	return true;
