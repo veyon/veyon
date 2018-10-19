@@ -54,54 +54,52 @@ NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* director
 
 
 
-QModelIndex NetworkObjectTreeModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex NetworkObjectTreeModel::index( int row, int column, const QModelIndex &parent ) const
 {
-	if( parent.isValid() && parent.column() != 0 )
+	if( row < 0 || column < 0 )
 	{
 		return QModelIndex();
 	}
 
-	int parentId = 0;
-	if( parent.isValid() && parent.internalId() == 0 )
+	NetworkObject::ModelId parentId = 0;
+	if( parent.isValid() )
 	{
-		parentId = parent.row() + 1;
+		parentId = parent.internalId();
 	}
 
-	return createIndex( row, column, static_cast<quintptr>(parentId) );
+	return createIndex( row, column, m_directory->childId( parentId, row ) );
 }
 
 
 
 QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 {
-	// parent ID set?
-	if( index.internalId() > 0 )
+	if( index.isValid() == false || index.internalId() == 0 )
 	{
-		// use it as row index
-		return createIndex( static_cast<int>(index.internalId()) - 1, 0 );
+		return QModelIndex();
 	}
 
-	return QModelIndex();
+	auto parentId = m_directory->parentId( index.internalId() );
+	if( parentId )
+	{
+		return objectIndex( parentId, index.column() );
+	}
+	else
+	{
+		return QModelIndex();
+	}
 }
 
 
 
 int NetworkObjectTreeModel::rowCount( const QModelIndex& parent ) const
 {
-	if( !parent.isValid() )
+	if( parent.isValid() == false )
 	{
-		return m_directory->objects( NetworkObject( NetworkObject::Root ) ).count();
+		return m_directory->childCount( 0 );
 	}
 
-	if( parent.internalId() == 0 )
-	{
-		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
-		const NetworkObject groupObject = rootObjects[parent.row()];
-
-		return m_directory->objects( groupObject ).count();
-	}
-
-	return 0;
+	return m_directory->childCount( parent.internalId() );
 }
 
 
@@ -134,20 +132,11 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 		return QVariant();
 	}
 
-	NetworkObject networkObject;
+	const auto& networkObject = m_directory->object( index.parent().internalId(), index.internalId() );
 
-	const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
-
-	if( index.internalId() > 0 )
+	if( networkObject.isValid() == false )
 	{
-		const auto& groupObject = rootObjects[static_cast<int>(index.internalId())-1];
-		const auto groupObjects = m_directory->objects( groupObject );
-
-		networkObject = groupObjects[index.row()];
-	}
-	else
-	{
-		networkObject = rootObjects[index.row()];
+		return QVariant();
 	}
 
 	switch( role )
@@ -168,24 +157,7 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 
 void NetworkObjectTreeModel::beginInsertObjects( const NetworkObject& parent, int index, int count )
 {
-	if( parent.type() == NetworkObject::Root )
-	{
-		beginInsertRows( createIndex( -1, -1 ), index, index+count-1 );
-	}
-	else if( parent.type() == NetworkObject::Group )
-	{
-		int groupIndex = 0;
-		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
-		for( const auto& groupObject : rootObjects )
-		{
-			if( groupObject == parent )
-			{
-				beginInsertRows( createIndex( groupIndex, 0 ), index, index+count-1 );
-				break;
-			}
-			++groupIndex;
-		}
-	}
+	beginInsertRows( objectIndex( parent.modelId() ), index, index+count-1 );
 }
 
 
@@ -199,24 +171,7 @@ void NetworkObjectTreeModel::endInsertObjects()
 
 void NetworkObjectTreeModel::beginRemoveObjects( const NetworkObject& parent, int index, int count )
 {
-	if( parent.type() == NetworkObject::Root )
-	{
-		beginRemoveRows( createIndex( -1, -1 ), index, index+count-1 );
-	}
-	else if( parent.type() == NetworkObject::Group )
-	{
-		int groupIndex = 0;
-		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
-		for( const auto& groupObject : rootObjects )
-		{
-			if( groupObject == parent )
-			{
-				beginRemoveRows( createIndex( groupIndex, 0 ), index, index+count-1 );
-				break;
-			}
-			++groupIndex;
-		}
-	}
+	beginRemoveRows( objectIndex( parent.modelId() ), index, index+count-1 );
 }
 
 
@@ -230,32 +185,26 @@ void NetworkObjectTreeModel::endRemoveObjects()
 
 void NetworkObjectTreeModel::updateObject( const NetworkObject& parent, int row )
 {
-	const auto index = objectIndex( parent, row );
+	const auto index = createIndex( row, 0, parent.modelId() );
 
 	emit dataChanged( index, index );
 }
 
 
 
-QModelIndex NetworkObjectTreeModel::objectIndex( const NetworkObject& parent, int row ) const
+QModelIndex NetworkObjectTreeModel::objectIndex( NetworkObject::ModelId object, int column ) const
 {
-	if( parent.type() == NetworkObject::Root )
+	if( object == 0 )
 	{
-		return index( row, 0 );
+		return QModelIndex();
 	}
-	else if( parent.type() == NetworkObject::Group )
+
+	const auto parentId = m_directory->parentId( object );
+	const auto parentRow = m_directory->index( parentId, object );
+
+	if( parentRow >= 0 )
 	{
-		int groupIndex = 0;
-		const auto rootObjects = m_directory->objects( NetworkObject( NetworkObject::Root ) );
-		for( const auto& groupObject : rootObjects )
-		{
-			if( groupObject == parent )
-			{
-				auto parentIndex = createIndex( groupIndex, 0 );
-				return index( row, 0, parentIndex );
-			}
-			++groupIndex;
-		}
+		return createIndex( parentRow, column, object );
 	}
 
 	return QModelIndex();

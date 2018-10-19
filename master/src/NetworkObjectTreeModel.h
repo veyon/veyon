@@ -57,7 +57,7 @@ private slots:
 	void updateObject( const NetworkObject& parent, int index );
 
 private:
-	QModelIndex objectIndex( const NetworkObject& parent, int row ) const;
+	QModelIndex objectIndex( NetworkObject::ModelId object, int column = 0 ) const;
 
 	NetworkObjectDirectory* m_directory;
 
