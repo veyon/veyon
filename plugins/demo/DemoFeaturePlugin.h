@@ -39,7 +39,7 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
 	DemoFeaturePlugin( QObject* parent = nullptr );
-	~DemoFeaturePlugin() override;
+	~DemoFeaturePlugin() = default;
 
 	Plugin::Uid uid() const override
 	{

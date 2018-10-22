@@ -53,7 +53,7 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 
 	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
 
-	if( m_tcpServer->listen( QHostAddress::Any, VeyonCore::config().demoServerPort() ) == false )
+	if( m_tcpServer->listen( QHostAddress::Any, static_cast<quint16>( VeyonCore::config().demoServerPort() ) ) == false )
 	{
 		qCritical( "DemoServer: could not listen to demo server port!" );
 		return;
@@ -110,7 +110,7 @@ void DemoServer::reconnectToVncServer()
 {
 	m_vncClientProtocol.start();
 
-	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, m_vncServerPort );
+	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( m_vncServerPort ) );
 }
 
 
@@ -170,7 +170,8 @@ bool DemoServer::receiveVncServerMessage()
 		}
 		else
 		{
-			qWarning( "DemoServer: skipping server message of type %d", (int) m_vncClientProtocol.lastMessageType() );
+			qWarning( "DemoServer: skipping server message of type %d",
+					  static_cast<int>( m_vncClientProtocol.lastMessageType() ) );
 		}
 
 		return true;

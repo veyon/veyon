@@ -101,7 +101,7 @@ bool DemoServerConnection::receiveClientMessage()
 		if( m_socket->bytesAvailable() >= sz_rfbSetEncodingsMsg )
 		{
 			rfbSetEncodingsMsg setEncodingsMessage;
-			if( m_socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
+			if( m_socket->peek( reinterpret_cast<char *>( &setEncodingsMessage ), sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
 			{
 				const qint64 totalSize = sz_rfbSetEncodingsMsg + qFromBigEndian(setEncodingsMessage.nEncodings) * sizeof(uint32_t);
 				if( m_socket->bytesAvailable() >= totalSize )

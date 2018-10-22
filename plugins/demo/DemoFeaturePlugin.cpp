@@ -24,17 +24,17 @@
 
 #include <QCoreApplication>
 
+#include "DemoServer.h"
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
 #include "CryptoCore.h"
 #include "DemoClient.h"
 #include "DemoConfigurationPage.h"
 #include "DemoFeaturePlugin.h"
-#include "DemoServer.h"
+#include "Logger.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
-#include "Logger.h"
 
 
 DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
@@ -69,12 +69,6 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 
 
 
-DemoFeaturePlugin::~DemoFeaturePlugin()
-{
-}
-
-
-
 bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									  const ComputerControlInterfaceList& computerControlInterfaces )
 {
@@ -87,7 +81,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		VeyonCore::localComputerControlInterface().sendFeatureMessage( featureMessage );
 
-		for( auto computerControlInterface : computerControlInterfaces )
+		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
 			m_demoClientHosts += computerControlInterface->computer().hostAddress();
 		}
@@ -112,7 +106,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 	{
 		sendFeatureMessage( FeatureMessage( feature.uid(), StopDemoClient ), computerControlInterfaces );
 
-		for( auto computerControlInterface : computerControlInterfaces )
+		for( const auto& computerControlInterface : computerControlInterfaces )
 		{
 			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
 		}
@@ -191,7 +185,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 			server.featureWorkerManager().startWorker( message.featureUid(), FeatureWorkerManager::ManagedSystemProcess );
 		}
 
-		QTcpSocket* socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
+		auto socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
 		if( socket == nullptr )
 		{
 			qCritical( "DemoFeaturePlugin::handleFeatureMessage( VeyonServer& server,): socket is NULL!" );
