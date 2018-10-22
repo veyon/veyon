@@ -112,7 +112,7 @@ Plugin::Uid FeatureManager::pluginUid( const Feature& feature ) const
 		}
 	}
 
-	return Plugin::Uid();
+	return {};
 }
 
 
