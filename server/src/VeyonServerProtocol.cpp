@@ -22,6 +22,8 @@
  *
  */
 
+#include "rfb/rfbproto.h"
+
 #include <QHostAddress>
 #include <QTcpSocket>
 
@@ -31,8 +33,6 @@
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VeyonServerProtocol.h"
-
-#include "rfb/rfbproto.h"
 
 
 VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,

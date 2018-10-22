@@ -51,7 +51,7 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed );
 	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed );
 
-	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, vncServerPort );
+	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( vncServerPort ) );
 }
 
 
@@ -182,7 +182,7 @@ bool VncProxyConnection::receiveClientMessage()
 	auto socket = proxyClientSocket();
 
 	uint8_t messageType = 0;
-	if( socket->peek( (char *) &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	if( socket->peek( reinterpret_cast<char *>( &messageType ), sizeof(messageType) ) != sizeof(messageType) )
 	{
 		return false;
 	}
@@ -193,7 +193,7 @@ bool VncProxyConnection::receiveClientMessage()
 		if( socket->bytesAvailable() >= sz_rfbSetEncodingsMsg )
 		{
 			rfbSetEncodingsMsg setEncodingsMessage;
-			if( socket->peek( (char *) &setEncodingsMessage, sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
+			if( socket->peek( reinterpret_cast<char *>( &setEncodingsMessage ), sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
 			{
 				const auto nEncodings = qFromBigEndian(setEncodingsMessage.nEncodings);
 				if( nEncodings > MAX_ENCODINGS )
@@ -210,7 +210,7 @@ bool VncProxyConnection::receiveClientMessage()
 	default:
 		if( m_rfbClientToServerMessageSizes.contains( messageType ) == false )
 		{
-			qCritical( "VncProxyConnection::receiveClientMessage(): received unknown message type: %d", (int) messageType );
+			qCritical( "VncProxyConnection::receiveClientMessage(): received unknown message type: %d", static_cast<int>( messageType ) );
 			socket->close();
 			return false;
 		}
