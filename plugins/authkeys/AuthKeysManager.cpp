@@ -65,7 +65,7 @@ bool AuthKeysManager::createKeyPair( const QString& name )
 	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
 	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
 
-	if( QFileInfo( privateKeyFileName ).exists() || QFileInfo( publicKeyFileName ).exists() )
+	if( QFileInfo::exists( privateKeyFileName ) || QFileInfo::exists( publicKeyFileName ) )
 	{
 		m_resultMessage = m_keysAlreadyExists;
 		return false;
@@ -144,7 +144,7 @@ bool AuthKeysManager::exportKey( const QString& name, const QString& type, const
 		return false;
 	}
 
-	if( QFileInfo( outputFile ).exists() )
+	if( QFileInfo::exists( outputFile ) )
 	{
 		m_resultMessage = tr( "File \"%1\" already exists." ).arg( outputFile );
 		return false;
@@ -207,7 +207,7 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 		return false;
 	}
 
-	if( QFileInfo( keyFileName ).exists() )
+	if( QFileInfo::exists( keyFileName ) )
 	{
 		m_resultMessage = m_keysAlreadyExists;
 		return false;
@@ -284,13 +284,13 @@ bool AuthKeysManager::extractPublicFromPrivateKey( const QString& name )
 	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
 	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
 
-	if( QFileInfo( privateKeyFileName ).exists() == false )
+	if( QFileInfo::exists( privateKeyFileName ) == false )
 	{
 		m_resultMessage = m_keyDoesNotExist;
 		return false;
 	}
 
-	if( QFileInfo( publicKeyFileName ).exists() )
+	if( QFileInfo::exists( publicKeyFileName ) )
 	{
 		m_resultMessage = m_keysAlreadyExists;
 		return false;
