@@ -73,10 +73,10 @@ VncClientProtocol::VncClientProtocol( QTcpSocket* socket, const QString& vncPass
 	m_state( Disconnected ),
 	m_vncPassword( vncPassword.toUtf8() ),
 	m_serverInitMessage(),
+	m_pixelFormat( { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } ),
 	m_framebufferWidth( 0 ),
 	m_framebufferHeight( 0 )
 {
-	memset( &m_pixelFormat, 0, sz_rfbPixelFormat );
 }
 
 
