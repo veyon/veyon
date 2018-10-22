@@ -25,6 +25,8 @@
  *
  */
 
+#include <rfb/rfbclient.h>
+
 #include <QBitmap>
 #include <QElapsedTimer>
 #include <QHostAddress>
@@ -40,77 +42,7 @@
 #include "VncConnection.h"
 #include "SocketDevice.h"
 #include "VariantArrayMessage.h"
-
-extern "C"
-{
-#include <rfb/rfbclient.h>
-}
-
-// clazy:excludeall=copyable-polymorphic
-
-class KeyClientEvent : public MessageEvent
-{
-public:
-	KeyClientEvent( unsigned int key, bool pressed ) :
-		m_key( key ),
-		m_pressed( pressed )
-	{
-	}
-
-	void fire( rfbClient* client ) override
-	{
-		SendKeyEvent( client, m_key, m_pressed );
-	}
-
-private:
-	unsigned int m_key;
-	bool m_pressed;
-} ;
-
-
-
-class PointerClientEvent : public MessageEvent
-{
-public:
-	PointerClientEvent( int x, int y, int buttonMask ) :
-		m_x( x ),
-		m_y( y ),
-		m_buttonMask( buttonMask )
-	{
-	}
-
-	void fire( rfbClient* client ) override
-	{
-		SendPointerEvent( client, m_x, m_y, m_buttonMask );
-	}
-
-private:
-	int m_x;
-	int m_y;
-	int m_buttonMask;
-} ;
-
-
-
-class ClientCutEvent : public MessageEvent
-{
-public:
-	ClientCutEvent( const QString& text ) :
-		m_text( text.toUtf8() )
-	{
-	}
-
-	void fire( rfbClient* client ) override
-	{
-		SendClientCutText( client, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
-	}
-
-private:
-	QByteArray m_text;
-} ;
-
-
-
+#include "VncEvents.h"
 
 
 rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
@@ -343,7 +275,7 @@ void VncConnection::setHost( const QString& host )
 	m_host = host;
 
 	// is IPv6-mapped IPv4 address?
-	QRegExp rx( "::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)" );
+	QRegExp rx( QStringLiteral( "::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)" ) );
 	if( rx.indexIn( m_host ) == 0 )
 	{
 		// then use plain IPv4 address as libvncclient cannot handle
@@ -738,7 +670,7 @@ void VncConnection::sendEvents()
 
 
 
-void VncConnection::enqueueEvent( MessageEvent* event)
+void VncConnection::enqueueEvent( VncEvent* event)
 {
 	QMutexLocker lock( &m_globalMutex );
 	if( m_state != Connected )
@@ -753,21 +685,21 @@ void VncConnection::enqueueEvent( MessageEvent* event)
 
 void VncConnection::mouseEvent( int x, int y, int buttonMask )
 {
-	enqueueEvent( new PointerClientEvent( x, y, buttonMask ) );
+	enqueueEvent( new VncPointerEvent( x, y, buttonMask ) );
 }
 
 
 
 void VncConnection::keyEvent( unsigned int key, bool pressed )
 {
-	enqueueEvent( new KeyClientEvent( key, pressed ) );
+	enqueueEvent( new VncKeyEvent( key, pressed ) );
 }
 
 
 
 void VncConnection::clientCut( const QString& text )
 {
-	enqueueEvent( new ClientCutEvent( text ) );
+	enqueueEvent( new VncClientCutEvent( text ) );
 }
 
 
@@ -935,14 +867,14 @@ void VncConnection::hookPrepareAuthentication( rfbClient* client )
 qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
 												   SocketDevice::SocketOperation operation, void* user )
 {
-	rfbClient* client = static_cast<rfbClient *>( user );
+	auto client = static_cast<rfbClient *>( user );
 	switch( operation )
 	{
 	case SocketDevice::SocketOpRead:
-		return ReadFromRFBServer( client, buffer, bytes ) ? bytes : 0;
+		return ReadFromRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
 
 	case SocketDevice::SocketOpWrite:
-		return WriteToRFBServer( client, buffer, bytes ) ? bytes : 0;
+		return WriteToRFBServer( client, buffer, static_cast<int>( bytes ) ) ? bytes : 0;
 	}
 
 	return 0;

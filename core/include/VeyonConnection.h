@@ -22,14 +22,10 @@
  *
  */
 
-#ifndef VEYON_CONNECTION_H
-#define VEYON_CONNECTION_H
+#pragma once
 
 #include <QPointer>
 
-#include "rfb/rfbproto.h"
-
-#include "VeyonCore.h"
 #include "VncConnection.h"
 
 
@@ -69,19 +65,16 @@ public:
 
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
+	bool handleServerMessage( rfbClient* client, uint8_t msg );
+
+	static constexpr auto VeyonConnectionTag = 0xFE14A11;
+
 signals:
 	void featureMessageReceived( const FeatureMessage& );
 
-private slots:
+private:
 	void registerConnection();
 	void unregisterConnection();
-
-private:
-	static rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
-
-	bool handleServerMessage( rfbClient* client, uint8_t msg );
-
-	static const int VeyonConnectionTag = 0xFE14A11;
 
 	QPointer<VncConnection> m_vncConnection;
 
@@ -90,4 +83,3 @@ private:
 
 } ;
 
-#endif

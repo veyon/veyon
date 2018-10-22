@@ -25,8 +25,7 @@
  *
  */
 
-#ifndef VNC_CONNECTION_H
-#define VNC_CONNECTION_H
+#pragma once
 
 #include <QMutex>
 #include <QQueue>
@@ -36,19 +35,10 @@
 #include <QWaitCondition>
 #include <QImage>
 
-#include "rfb/rfbproto.h"
-
 #include "RfbVeyonAuth.h"
 #include "SocketDevice.h"
 
-class MessageEvent	// clazy:exclude=copyable-polymorphic
-{
-public:
-	virtual ~MessageEvent() {}
-	virtual void fire( rfbClient* client ) = 0;
-
-} ;
-
+class VncEvent;
 
 class VEYON_CORE_EXPORT VncConnection : public QThread
 {
@@ -129,7 +119,7 @@ public:
 		return m_quality;
 	}
 
-	void enqueueEvent( MessageEvent* event );
+	void enqueueEvent( VncEvent* event );
 
 	QSize framebufferSize() const
 	{
@@ -241,7 +231,6 @@ private:
 	static void hookCutText( rfbClient* client, const char *text, int textlen );
 	static void rfbClientLogDebug( const char* format, ... );
 	static void rfbClientLogNone( const char* format, ... );
-	static int8_t hookHandleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg );
 	static void framebufferCleanup( void* framebuffer );
 
 	// states and flags
@@ -263,7 +252,7 @@ private:
 	int m_framebufferUpdateInterval;
 
 	// queue for RFB and custom events
-	QQueue<MessageEvent *> m_eventQueue;
+	QQueue<VncEvent *> m_eventQueue;
 
 	// framebuffer data and thread synchronization objects
 	QImage m_image;
@@ -272,6 +261,3 @@ private:
 	mutable QReadWriteLock m_imgLock;
 
 } ;
-
-#endif
-

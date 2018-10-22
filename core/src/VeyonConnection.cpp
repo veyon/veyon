@@ -22,43 +22,23 @@
  *
  */
 
-#include "FeatureMessage.h"
+#include <rfb/rfbclient.h>
+
+#include "VncFeatureMessageEvent.h"
 #include "VeyonConnection.h"
 #include "SocketDevice.h"
 
-extern "C"
+
+rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 {
-	#include <rfb/rfbclient.h>
+	auto connection = reinterpret_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnection::VeyonConnectionTag ) );
+	if( connection )
+	{
+		return connection->handleServerMessage( client, msg->type );
+	}
+
+	return false;
 }
-
-// clazy:excludeall=copyable-polymorphic
-
-class FeatureMessageEvent : public MessageEvent
-{
-public:
-	FeatureMessageEvent( const FeatureMessage& featureMessage ) :
-		m_featureMessage( featureMessage )
-	{
-	}
-
-	void fire( rfbClient* client ) override
-	{
-		qDebug() << "FeatureMessageEvent::fire(): sending message" << m_featureMessage.featureUid()
-				 << "command" << m_featureMessage.command()
-				 << "arguments" << m_featureMessage.arguments();
-
-		SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
-		char messageType = rfbVeyonFeatureMessage;
-		socketDevice.write( &messageType, sizeof(messageType) );
-
-		m_featureMessage.send( &socketDevice );
-	}
-
-
-private:
-	FeatureMessage m_featureMessage;
-
-} ;
 
 
 
@@ -104,40 +84,7 @@ void VeyonConnection::sendFeatureMessage( const FeatureMessage& featureMessage )
 		return;
 	}
 
-	m_vncConnection->enqueueEvent( new FeatureMessageEvent( featureMessage ) );
-}
-
-
-
-void VeyonConnection::registerConnection()
-{
-	if( m_vncConnection.isNull() == false )
-	{
-		m_vncConnection->setClientData( VeyonConnectionTag, this );
-	}
-}
-
-
-
-void VeyonConnection::unregisterConnection()
-{
-	if( m_vncConnection.isNull() == false )
-	{
-		m_vncConnection->setClientData( VeyonConnectionTag, nullptr );
-	}
-}
-
-
-
-rfbBool VeyonConnection::handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
-{
-	auto connection = reinterpret_cast<VeyonConnection *>( VncConnection::clientData( client, VeyonConnectionTag ) );
-	if( connection )
-	{
-		return connection->handleServerMessage( client, msg->type );
-	}
-
-	return false;
+	m_vncConnection->enqueueEvent( new VncFeatureMessageEvent( featureMessage ) );
 }
 
 
@@ -171,4 +118,24 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 	}
 
 	return false;
+}
+
+
+
+void VeyonConnection::registerConnection()
+{
+	if( m_vncConnection.isNull() == false )
+	{
+		m_vncConnection->setClientData( VeyonConnectionTag, this );
+	}
+}
+
+
+
+void VeyonConnection::unregisterConnection()
+{
+	if( m_vncConnection.isNull() == false )
+	{
+		m_vncConnection->setClientData( VeyonConnectionTag, nullptr );
+	}
 }
