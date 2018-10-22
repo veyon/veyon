@@ -658,8 +658,14 @@ bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
 		for( uint x = rx; x < rx+rw; x += 16 )
 		{
 			uint w = 16, h = 16;
-			if( rx+rw - x < 16 ) w = rx+rw - x;
-			if( ry+rh - y < 16 ) h = ry+rh - y;
+			if( rx+rw - x < 16 )
+			{
+				w = rx+rw - x;
+			}
+			if( ry+rh - y < 16 )
+			{
+				h = ry+rh - y;
+			}
 
 			uint8_t subEncoding = 0;
 			if( buffer.read( reinterpret_cast<char *>( &subEncoding ), 1 ) != 1 )
