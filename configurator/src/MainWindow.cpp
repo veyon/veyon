@@ -81,13 +81,6 @@ MainWindow::MainWindow( QWidget* parent ) :
 
 
 
-
-MainWindow::~MainWindow()
-{
-}
-
-
-
 void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )

@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 public:
 	MainWindow( QWidget* parent = nullptr );
-	~MainWindow() override;
+	~MainWindow() = default;
 
 	void reset( bool onlyUI = false );
 	void apply();
