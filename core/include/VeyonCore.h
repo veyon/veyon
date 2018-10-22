@@ -120,7 +120,7 @@ public:
 	}
 
 	static void setupApplicationParameters();
-	bool initAuthentication( int credentialTypes );
+	bool initAuthentication( unsigned int credentialTypes );
 
 	static bool hasSessionId();
 	static int sessionId();

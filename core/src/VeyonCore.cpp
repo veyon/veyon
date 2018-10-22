@@ -198,7 +198,7 @@ void VeyonCore::setupApplicationParameters()
 
 
 
-bool VeyonCore::initAuthentication( int credentialTypes )
+bool VeyonCore::initAuthentication( unsigned int credentialTypes )
 {
 	if( m_authenticationCredentials )
 	{
