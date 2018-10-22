@@ -269,6 +269,8 @@ bool DemoServer::setVncServerPixelFormat()
 	format.redMax = 0xff;
 	format.greenMax = 0xff;
 	format.blueMax = 0xff;
+	format.pad1 = 0;
+	format.pad2 = 0;
 
 	return m_vncClientProtocol.setPixelFormat( format );
 }
