@@ -56,7 +56,7 @@ bool LogoffEventFilter::nativeEventFilter( const QByteArray& eventType, void* me
 	Q_UNUSED(eventType);
 	Q_UNUSED(result);
 
-	DWORD winMsg = ( ( MSG *) message )->message;
+	const auto winMsg = reinterpret_cast<MSG *>( message )->message;
 
 	if( winMsg == WM_QUERYENDSESSION )
 	{
