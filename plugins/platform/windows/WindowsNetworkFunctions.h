@@ -35,7 +35,7 @@ public:
 	bool ping( const QString& hostAddress ) override;
 	bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) override;
 
-	bool configureSocketKeepalive( int socket, bool enabled, int idleTime, int interval, int probes ) override;
+	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
 
 };
 

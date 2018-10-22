@@ -264,10 +264,12 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 
 
 
-bool WindowsNetworkFunctions::configureSocketKeepalive( int socket, bool enabled, int idleTime, int interval, int probes )
+bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes )
 {
+	Q_UNUSED(probes)
+
 	DWORD optval;
-	DWORD optlen = sizeof(optval);
+	int optlen = sizeof(optval);
 
 	optval = enabled ? 1 : 0;
 	if( setsockopt( socket, SOL_SOCKET, SO_KEEPALIVE, reinterpret_cast<const char *>( &optval ), optlen ) != 0 )
