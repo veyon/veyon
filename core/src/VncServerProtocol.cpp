@@ -22,6 +22,8 @@
  *
  */
 
+#include "rfb/rfbproto.h"
+
 #include <QHostAddress>
 #include <QTcpSocket>
 
@@ -29,8 +31,6 @@
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
-
-#include "rfb/rfbproto.h"
 
 
 
@@ -267,8 +267,8 @@ bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
 	{
 	case VncServerClient::AuthFinishedSuccess:
 	{
-		uint32_t authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
-		m_socket->write( reinterpret_cast<char *>( &authResult ), sizeof(authResult) );
+		const auto authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
+		m_socket->write( reinterpret_cast<const char *>( &authResult ), sizeof(authResult) );
 
 		setState( AccessControl );
 		return true;
