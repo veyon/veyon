@@ -138,7 +138,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 
 
 
-void ComputerManager::updateUser( ComputerControlInterface::Pointer controlInterface )
+void ComputerManager::updateUser( const ComputerControlInterface::Pointer& controlInterface )
 {
 	const auto networkObjectIndex = findNetworkObject( controlInterface->computer().networkObjectUid() );
 

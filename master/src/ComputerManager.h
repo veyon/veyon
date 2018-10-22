@@ -58,7 +58,7 @@ public:
 
 	bool saveComputerAndUsersList( const QString& fileName );
 
-	void updateUser( ComputerControlInterface::Pointer controlInterface );
+	void updateUser( const ComputerControlInterface::Pointer& controlInterface );
 
 signals:
 	void computerSelectionReset();

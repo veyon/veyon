@@ -81,19 +81,19 @@ private slots:
 	void updateComputerScreens();
 
 private:
-	void startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, QModelIndex index );
-	void stopComputerControlInterface( ComputerControlInterface::Pointer controlInterface );
+	void startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface, const QModelIndex& index );
+	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );
 
 	QSize computerScreenSize() const;
 
 	void loadIcons();
 	QImage prepareIcon( const QImage& icon );
-	QImage computerDecorationRole( ComputerControlInterface::Pointer controlInterface ) const;
-	QString computerToolTipRole( ComputerControlInterface::Pointer controlInterface ) const;
-	QString computerDisplayRole( ComputerControlInterface::Pointer controlInterface ) const;
-	static QString computerStateDescription( ComputerControlInterface::Pointer controlInterface );
-	static QString loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface );
-	QString activeFeatures(  ComputerControlInterface::Pointer controlInterface ) const;
+	QImage computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const;
+	QString computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const;
+	QString computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const;
+	static QString computerStateDescription( const ComputerControlInterface::Pointer& controlInterface );
+	static QString loggedOnUserInformation( const ComputerControlInterface::Pointer& controlInterface );
+	QString activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const;
 
 	VeyonMaster* m_master;
 
