@@ -43,12 +43,6 @@ AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 
 
 
-AuthKeysPlugin::~AuthKeysPlugin()
-{
-}
-
-
-
 QStringList AuthKeysPlugin::commands() const
 {
 	return m_commands.keys();

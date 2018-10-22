@@ -48,12 +48,6 @@ AuthKeysManager::AuthKeysManager( QObject* parent ) :
 
 
 
-AuthKeysManager::~AuthKeysManager()
-{
-}
-
-
-
 bool AuthKeysManager::createKeyPair( const QString& name )
 {
 	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
