@@ -174,7 +174,7 @@ QJsonArray CheckableItemProxyModel::saveStates()
 
 void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 {
-	emit beginResetModel();
+	beginResetModel();
 
 	m_checkStates.clear();
 
@@ -190,5 +190,5 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 		}
 	}
 
-	emit endResetModel();
+	endResetModel();
 }
