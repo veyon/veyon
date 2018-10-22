@@ -25,12 +25,6 @@
 #include "SimpleFeatureProvider.h"
 
 
-SimpleFeatureProvider::~SimpleFeatureProvider()
-{
-}
-
-
-
 bool SimpleFeatureProvider::startFeature( VeyonMasterInterface& master,
 										  const Feature& feature,
 										  const ComputerControlInterfaceList& computerControlInterfaces )

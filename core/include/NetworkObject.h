@@ -55,7 +55,7 @@ public:
 				   Uid uid = Uid(),
 				   Uid parentUid = Uid() );
 	NetworkObject( const QJsonObject& jsonObject );
-	~NetworkObject();
+	~NetworkObject() = default;
 
 	NetworkObject& operator=( const NetworkObject& other );
 

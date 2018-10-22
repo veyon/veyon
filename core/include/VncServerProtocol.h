@@ -52,7 +52,7 @@ public:
 
 	VncServerProtocol( QTcpSocket* socket,
 					   VncServerClient* client );
-	virtual ~VncServerProtocol();
+	virtual ~VncServerProtocol() = default;
 
 	State state() const;
 

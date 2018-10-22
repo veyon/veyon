@@ -55,12 +55,6 @@ ProgressWidget::ProgressWidget( const QString& text, const QString& animationPix
 
 
 
-ProgressWidget::~ProgressWidget()
-{
-}
-
-
-
 void ProgressWidget::nextFrame()
 {
 	m_curFrame = ( m_curFrame+1 ) % m_frames;

@@ -40,12 +40,6 @@ FeatureControl::FeatureControl( QObject* parent ) :
 
 
 
-FeatureControl::~FeatureControl()
-{
-}
-
-
-
 bool FeatureControl::queryActiveFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
 {
 	return sendFeatureMessage( FeatureMessage( m_featureControlFeature.uid(), QueryActiveFeatures ),

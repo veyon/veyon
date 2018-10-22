@@ -37,6 +37,8 @@ public:
 		PingProcessTimeout = PingTimeout*2
 	};
 
+	virtual ~PlatformNetworkFunctions() = default;
+
 	virtual bool ping( const QString& hostAddress ) = 0;
 	virtual bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) = 0;
 

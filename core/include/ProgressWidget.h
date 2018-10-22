@@ -33,7 +33,7 @@ class ProgressWidget : public QWidget
 	Q_OBJECT
 public:
 	ProgressWidget( const QString& text, const QString& animationPixmapBase, int frames, QWidget* parent = nullptr );
-	~ProgressWidget() override;
+	~ProgressWidget() = default;
 
 protected:
 	void paintEvent( QPaintEvent* event ) override;

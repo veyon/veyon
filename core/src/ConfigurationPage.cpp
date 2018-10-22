@@ -28,10 +28,3 @@ ConfigurationPage::ConfigurationPage( QWidget* parent ) :
 	QWidget( parent )
 {
 }
-
-
-
-ConfigurationPage::~ConfigurationPage()
-{
-}
-

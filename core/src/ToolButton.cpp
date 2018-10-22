@@ -61,13 +61,6 @@ ToolButton::ToolButton( const QIcon& icon,
 
 
 
-
-ToolButton::~ToolButton()
-{
-}
-
-
-
 void ToolButton::setIconOnlyMode( bool enabled )
 {
 	s_iconOnlyMode = enabled;

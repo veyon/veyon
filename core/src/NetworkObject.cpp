@@ -79,12 +79,6 @@ NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
 
 
 
-NetworkObject::~NetworkObject()
-{
-}
-
-
-
 NetworkObject& NetworkObject::operator=( const NetworkObject& other )
 {
 	m_type = other.type();

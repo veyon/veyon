@@ -30,7 +30,7 @@
 class VEYON_CORE_EXPORT SimpleFeatureProvider : public FeatureProviderInterface
 {
 public:
-	virtual ~SimpleFeatureProvider();
+	~SimpleFeatureProvider() = default;
 
 	bool startFeature( VeyonMasterInterface& master,
 					   const Feature& feature,

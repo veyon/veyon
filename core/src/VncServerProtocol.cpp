@@ -45,12 +45,6 @@ VncServerProtocol::VncServerProtocol( QTcpSocket* socket,
 
 
 
-VncServerProtocol::~VncServerProtocol()
-{
-}
-
-
-
 VncServerProtocol::State VncServerProtocol::state() const
 {
 	return m_client->protocolState();
