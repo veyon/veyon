@@ -41,12 +41,6 @@ BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
 
 
 
-BuiltinX11VncServer::~BuiltinX11VncServer()
-{
-}
-
-
-
 QWidget* BuiltinX11VncServer::configurationWidget()
 {
 	return new X11VncConfigurationWidget( m_configuration );
