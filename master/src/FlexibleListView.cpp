@@ -38,12 +38,6 @@ FlexibleListView::FlexibleListView( QWidget* parent ) :
 
 
 
-FlexibleListView::~FlexibleListView()
-{
-}
-
-
-
 void FlexibleListView::setUidRole( int role )
 {
 	m_uidRole = role;
@@ -119,10 +113,10 @@ void FlexibleListView::loadPositions( const QJsonArray& data )
 	for( const auto& item : data )
 	{
 		const auto object = item.toObject();
-		const QUuid uid( object["uid"].toString() );
+		const QUuid uid( object[QStringLiteral("uid")].toString() );
 		if( uid.isNull() == false )
 		{
-			m_positions[uid] = QPointF( object["x"].toDouble(), object["y"].toDouble() );
+			m_positions[uid] = QPointF( object[QStringLiteral("x")].toDouble(), object[QStringLiteral("y")].toDouble() );
 		}
 	}
 }
@@ -198,25 +192,25 @@ QSizeF FlexibleListView::effectiveGridSize() const
 		return iconSize() + QSize( spacing(), spacing() );
 	}
 
-	return QSizeF( spacing() + 1, spacing() + 1 );
+	return { spacing() + 1.0, spacing() + 1.0 };
 }
 
 
 
-QPointF FlexibleListView::toGridPoint( const QPoint& pos ) const
+QPointF FlexibleListView::toGridPoint( QPoint pos ) const
 {
 	const auto gridSize = effectiveGridSize();
 
-	return QPointF( ( pos.x() - spacing() ) / gridSize.width(),
-					( pos.y() - spacing() ) / gridSize.height() );
+	return { ( pos.x() - spacing() ) / gridSize.width(),
+				( pos.y() - spacing() ) / gridSize.height() };
 }
 
 
 
-QPoint FlexibleListView::toItemPosition( const QPointF& gridPoint ) const
+QPoint FlexibleListView::toItemPosition( QPointF gridPoint ) const
 {
 	const auto gridSize = effectiveGridSize();
 
-	return QPoint( spacing() + qMax<int>( 0, gridPoint.x() * gridSize.width() ),
-				   spacing() + qMax<int>( 0, gridPoint.y() * gridSize.height() ) );
+	return { spacing() + qMax<int>( 0, static_cast<int>( gridPoint.x() * gridSize.width() ) ),
+				spacing() + qMax<int>( 0, static_cast<int>( gridPoint.y() * gridSize.height() ) ) };
 }

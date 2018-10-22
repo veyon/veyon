@@ -428,7 +428,7 @@ QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObject
 		}
 	}
 
-	return QModelIndex();
+	return {};
 }
 
 

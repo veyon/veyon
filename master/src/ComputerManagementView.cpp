@@ -78,7 +78,8 @@ bool ComputerManagementView::eventFilter( QObject *watched, QEvent *event )
 {
 	if( watched == ui->treeView &&
 			event->type() == QEvent::KeyPress &&
-			static_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete )
+			dynamic_cast<QKeyEvent*>(event) != nullptr &&
+			dynamic_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete )
 	{
 		removeRoom();
 		return true;

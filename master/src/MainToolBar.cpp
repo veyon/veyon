@@ -46,12 +46,6 @@ MainToolBar::MainToolBar( QWidget* parent ) :
 
 
 
-MainToolBar::~MainToolBar()
-{
-}
-
-
-
 void MainToolBar::contextMenuEvent( QContextMenuEvent* event )
 {
 	QMenu menu( this );

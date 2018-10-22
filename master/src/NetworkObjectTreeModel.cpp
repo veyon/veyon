@@ -58,7 +58,7 @@ QModelIndex NetworkObjectTreeModel::index( int row, int column, const QModelInde
 {
 	if( row < 0 || column < 0 )
 	{
-		return QModelIndex();
+		return {};
 	}
 
 	NetworkObject::ModelId parentId = 0;
@@ -76,7 +76,7 @@ QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 {
 	if( index.isValid() == false || index.internalId() == 0 )
 	{
-		return QModelIndex();
+		return {};
 	}
 
 	auto parentId = m_directory->parentId( index.internalId() );
@@ -86,7 +86,7 @@ QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 	}
 	else
 	{
-		return QModelIndex();
+		return {};
 	}
 }
 
@@ -196,7 +196,7 @@ QModelIndex NetworkObjectTreeModel::objectIndex( NetworkObject::ModelId object, 
 {
 	if( object == 0 )
 	{
-		return QModelIndex();
+		return {};
 	}
 
 	const auto parentId = m_directory->parentId( object );
@@ -207,5 +207,5 @@ QModelIndex NetworkObjectTreeModel::objectIndex( NetworkObject::ModelId object, 
 		return createIndex( parentRow, column, object );
 	}
 
-	return QModelIndex();
+	return {};
 }

@@ -277,8 +277,8 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 
 QSize ComputerControlListModel::computerScreenSize() const
 {
-	return QSize( m_master->userConfig().monitoringScreenSize(),
-				  m_master->userConfig().monitoringScreenSize() * 9 / 16 );
+	return { m_master->userConfig().monitoringScreenSize(),
+				m_master->userConfig().monitoringScreenSize() * 9 / 16 };
 }
 
 

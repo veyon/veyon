@@ -32,7 +32,7 @@ class FlexibleListView : public QListView
 	Q_OBJECT
 public:
 	FlexibleListView( QWidget *parent = nullptr );
-	~FlexibleListView() override;
+	~FlexibleListView() = default;
 
 	void setUidRole( int role );
 
@@ -53,8 +53,8 @@ private:
 
 private:
 	QSizeF effectiveGridSize() const;
-	QPointF toGridPoint( const QPoint& pos ) const;
-	QPoint toItemPosition( const QPointF& gridPoint ) const;
+	QPointF toGridPoint( QPoint pos ) const;
+	QPoint toItemPosition( QPointF gridPoint ) const;
 
 	int m_uidRole;
 	QHash<QUuid, QPointF> m_positions;
