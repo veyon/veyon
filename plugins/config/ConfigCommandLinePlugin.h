@@ -35,7 +35,7 @@ class ConfigCommandLinePlugin : public QObject, CommandLinePluginInterface, Plug
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ConfigCommandLinePlugin( QObject* parent = nullptr );
-	~ConfigCommandLinePlugin() override;
+	~ConfigCommandLinePlugin() = default;
 
 	Plugin::Uid uid() const override
 	{

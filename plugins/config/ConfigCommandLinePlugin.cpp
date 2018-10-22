@@ -50,12 +50,6 @@ ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
 
 
 
-ConfigCommandLinePlugin::~ConfigCommandLinePlugin()
-{
-}
-
-
-
 QStringList ConfigCommandLinePlugin::commands() const
 {
 	return m_commands.keys();
