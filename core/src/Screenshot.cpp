@@ -48,7 +48,7 @@ Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
 
 
 
-void Screenshot::take( ComputerControlInterface::Pointer computerControlInterface )
+void Screenshot::take( const ComputerControlInterface::Pointer& computerControlInterface )
 {
 	QString u = computerControlInterface->user();
 	if( u.isEmpty() )

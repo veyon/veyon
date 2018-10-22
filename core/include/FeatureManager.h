@@ -61,7 +61,8 @@ public:
 					  const ComputerControlInterfaceList& computerControlInterfaces );
 
 public slots:
-	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message, ComputerControlInterface::Pointer computerControlInterface );
+	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
+							   const ComputerControlInterface::Pointer& computerControlInterface );
 	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message );
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message );
 

@@ -162,7 +162,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 
 
 bool FeatureManager::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-										   ComputerControlInterface::Pointer computerControlInterface )
+										   const ComputerControlInterface::Pointer& computerControlInterface )
 {
 	qDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()

@@ -38,7 +38,7 @@ class VEYON_CORE_EXPORT Screenshot : public QObject
 public:
 	Screenshot( const QString &fileName = QString(), QObject* parent = nullptr );
 
-	void take( ComputerControlInterface::Pointer computerControlInterface );
+	void take( const ComputerControlInterface::Pointer& computerControlInterface );
 
 	bool isValid() const
 	{
