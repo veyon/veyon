@@ -31,6 +31,7 @@
 #include <QLayout>
 #include <QLinearGradient>
 #include <QPainter>
+#include <QScreen>
 #include <QToolBar>
 
 #include "ToolButton.h"
@@ -87,36 +88,46 @@ void ToolButton::enterEvent( QEvent* event )
 	m_mouseOver = true;
 	if( !s_toolTipsDisabled && !m_label.isEmpty() && !m_descr.isEmpty() )
 	{
-		QPoint p = mapToGlobal( QPoint( 0, 0 ) );
-		int screenNumber = QApplication::desktop()->isVirtualDesktop() ?
-					QApplication::desktop()->screenNumber( p ) :
-					QApplication::desktop()->screenNumber( this );
-
-#ifdef Q_WS_MAC
-		QRect screen = QApplication::desktop()->availableGeometry( screenNumber );
+		auto toolTipPos = mapToGlobal( QPoint( 0, 0 ) );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+		const auto screenRect = QGuiApplication::screenAt( toolTipPos )->availableGeometry();
 #else
-		QRect screen = QApplication::desktop()->screenGeometry( screenNumber );
+		int screenNumber = QApplication::desktop()->isVirtualDesktop() ?
+					QApplication::desktop()->screenNumber( toolTipPos ) :
+					QApplication::desktop()->screenNumber( this );
+		const auto screenRect = QApplication::desktop()->screenGeometry( screenNumber );
 #endif
 
-		auto tbt = new ToolButtonTip( m_icon.pixmap( 128, 128 ), m_label,
-									  m_descr,
-									  QApplication::desktop()->screen( screenNumber ), this );
-		connect( this, &ToolButton::mouseLeftButton, tbt, &QWidget::close );
+		auto toolTip = new ToolButtonTip( m_icon.pixmap( 128, 128 ), m_label, m_descr, nullptr, this );
+		connect( this, &ToolButton::mouseLeftButton, toolTip, &QWidget::close );
 
-		if( p.x() + tbt->width() > screen.x() + screen.width() )
-			p.rx() -= 4;// + tbt->width();
-		if( p.y() + tbt->height() > screen.y() + screen.height() )
-			p.ry() -= 30 + tbt->height();
-		if( p.y() < screen.y() )
-			p.setY( screen.y() );
-		if( p.x() + tbt->width() > screen.x() + screen.width() )
-			p.setX( screen.x() + screen.width() - tbt->width() );
-		if( p.x() < screen.x() )
-			p.setX( screen.x() );
-		if( p.y() + tbt->height() > screen.y() + screen.height() )
-			p.setY( screen.y() + screen.height() - tbt->height() );
-		tbt->move( p += QPoint( -4, height() ) );
-		tbt->show();
+		if( toolTipPos.x() + toolTip->width() > screenRect.x() + screenRect.width() )
+		{
+			toolTipPos.rx() -= 4;
+		}
+		if( toolTipPos.y() + toolTip->height() > screenRect.y() + screenRect.height() )
+		{
+			toolTipPos.ry() -= 30 + toolTip->height();
+		}
+		if( toolTipPos.y() < screenRect.y() )
+		{
+			toolTipPos.setY( screenRect.y() );
+		}
+		if( toolTipPos.x() + toolTip->width() > screenRect.x() + screenRect.width() )
+		{
+			toolTipPos.setX( screenRect.x() + screenRect.width() - toolTip->width() );
+		}
+		if( toolTipPos.x() < screenRect.x() )
+		{
+			toolTipPos.setX( screenRect.x() );
+		}
+		if( toolTipPos.y() + toolTip->height() > screenRect.y() + screenRect.height() )
+		{
+			toolTipPos.setY( screenRect.y() + screenRect.height() - toolTip->height() );
+		}
+
+		toolTip->move( toolTipPos += QPoint( -4, height() ) );
+		toolTip->show();
 	}
 
 	QToolButton::enterEvent( event );
@@ -292,8 +303,8 @@ QSize ToolButtonTip::sizeHint() const
 	const auto titleWidth = QFontMetrics( f ).width( m_title );
 	const auto descriptionRect = fontMetrics().boundingRect( QRect( 0, 0, 250, 100 ), Qt::TextWordWrap, m_description );
 
-	return QSize( margin() + m_pixmap.width() + margin() + qMax( titleWidth, descriptionRect.width() ) + margin(),
-				  margin() + qMax( m_pixmap.height(), fontMetrics().height() + margin() + descriptionRect.height() ) + margin() );
+	return { margin() + m_pixmap.width() + margin() + qMax( titleWidth, descriptionRect.width() ) + margin(),
+				margin() + qMax( m_pixmap.height(), fontMetrics().height() + margin() + descriptionRect.height() ) + margin() };
 }
 
 
