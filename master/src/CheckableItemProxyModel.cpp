@@ -93,6 +93,8 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUuid()] = checkState;
 
+	const auto parentIndex = index.parent();
+
 	int childrenCount = rowCount( index );
 
 	if( childrenCount > 0 )
@@ -102,7 +104,7 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 			setData( this->index( i, 0, index ), value, role );
 		}
 
-		emit dataChanged( this->index( 0, 0, index ), this->index( childrenCount, 0, index ), QVector<int>( { role } ) );
+		emit dataChanged( this->index( 0, 0, parentIndex ), this->index( childrenCount-1, 0, parentIndex ), { role } );
 	}
 	else if( index.parent().isValid() )
 	{
