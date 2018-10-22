@@ -41,7 +41,7 @@ class RemoteAccessWidgetToolBar : public QWidget
 	Q_OBJECT
 public:
 	RemoteAccessWidgetToolBar( RemoteAccessWidget* parent, bool viewOnly );
-	~RemoteAccessWidgetToolBar() override;
+	~RemoteAccessWidgetToolBar() override = default;
 
 	void appear();
 	void disappear();
@@ -84,7 +84,7 @@ class RemoteAccessWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteAccessWidget( ComputerControlInterface::Pointer computerControlInterface, bool viewOnly = false );
+	RemoteAccessWidget( const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly = false );
 	~RemoteAccessWidget() override;
 
 	VncView* vncView() const

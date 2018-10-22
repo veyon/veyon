@@ -56,12 +56,6 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 
 
 
-RemoteAccessFeaturePlugin::~RemoteAccessFeaturePlugin()
-{
-}
-
-
-
 const FeatureList &RemoteAccessFeaturePlugin::featureList() const
 {
 	return m_features;
