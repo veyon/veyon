@@ -24,6 +24,7 @@
 
 #define XK_KOREAN
 #include "rfb/keysym.h"
+#include "rfb/rfbproto.h"
 
 #include "VncView.h"
 #include "PlatformInputDeviceFunctions.h"
@@ -133,7 +134,9 @@ bool VncView::eventFilter(QObject *obj, QEvent *event)
 			event->type() == QEvent::MouseButtonPress ||
 			event->type() == QEvent::MouseButtonRelease ||
 			event->type() == QEvent::Wheel )
-		return true;
+		{
+			return true;
+		}
 	}
 
 	return QWidget::eventFilter(obj, event);
@@ -349,6 +352,11 @@ void VncView::focusOutEvent( QFocusEvent* event )
 // our builtin keyboard-handler
 void VncView::keyEventHandler( QKeyEvent* event )
 {
+	if( event == nullptr )
+	{
+		return;
+	}
+
 	bool pressed = event->type() == QEvent::KeyPress;
 
 #ifdef Q_OS_LINUX
@@ -572,11 +580,11 @@ QPoint VncView::mapToFramebuffer( QPoint pos )
 {
 	if( m_framebufferSize.isEmpty() )
 	{
-		return QPoint( 0, 0 );
+		return { 0, 0 };
 	}
 
-	return QPoint( pos.x() * m_framebufferSize.width() / scaledSize().width(),
-				   pos.y() * m_framebufferSize.height() / scaledSize().height() );
+	return { pos.x() * m_framebufferSize.width() / scaledSize().width(),
+				pos.y() * m_framebufferSize.height() / scaledSize().height() };
 }
 
 
@@ -585,14 +593,14 @@ QRect VncView::mapFromFramebuffer( QRect r )
 {
 	if( m_framebufferSize.isEmpty() )
 	{
-		return QRect();
+		return {};
 	}
 
 	const auto dx = scaledSize().width() / static_cast<qreal>( m_framebufferSize.width() );
 	const auto dy = scaledSize().height() / static_cast<qreal>( m_framebufferSize.height() );
 
-	return( QRect( static_cast<int>(r.x()*dx), static_cast<int>(r.y()*dy),
-				   static_cast<int>(r.width()*dx), static_cast<int>(r.height()*dy) ) );
+	return { static_cast<int>(r.x()*dx), static_cast<int>(r.y()*dy),
+				static_cast<int>(r.width()*dx), static_cast<int>(r.height()*dy) };
 }
 
 
@@ -635,16 +643,16 @@ bool VncView::event( QEvent * event )
 	{
 		case QEvent::KeyPress:
 		case QEvent::KeyRelease:
-			keyEventHandler( static_cast<QKeyEvent*>( event ) );
+			keyEventHandler( dynamic_cast<QKeyEvent*>( event ) );
 			return true;
 		case QEvent::MouseButtonDblClick:
 		case QEvent::MouseButtonPress:
 		case QEvent::MouseButtonRelease:
 		case QEvent::MouseMove:
-			mouseEventHandler( static_cast<QMouseEvent*>( event ) );
+			mouseEventHandler( dynamic_cast<QMouseEvent*>( event ) );
 			return true;
 		case QEvent::Wheel:
-			wheelEventHandler( static_cast<QWheelEvent*>( event ) );
+			wheelEventHandler( dynamic_cast<QWheelEvent*>( event ) );
 			return true;
 		default:
 			return QWidget::event(event);
@@ -724,7 +732,12 @@ void VncView::resizeEvent( QResizeEvent* event )
 
 void VncView::wheelEventHandler( QWheelEvent* event )
 {
-	const QPoint p = mapToFramebuffer( event->pos() );
+	if( event == nullptr )
+	{
+		return;
+	}
+
+	const auto p = mapToFramebuffer( event->pos() );
 	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask | ( ( event->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
 	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 }
@@ -733,6 +746,11 @@ void VncView::wheelEventHandler( QWheelEvent* event )
 
 void VncView::mouseEventHandler( QMouseEvent* event )
 {
+	if( event == nullptr )
+	{
+		return;
+	}
+
 	struct buttonXlate
 	{
 		Qt::MouseButton qt;
