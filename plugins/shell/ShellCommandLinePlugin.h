@@ -34,7 +34,7 @@ class ShellCommandLinePlugin : public QObject, CommandLinePluginInterface, Plugi
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ShellCommandLinePlugin( QObject* parent = nullptr );
-	~ShellCommandLinePlugin() override;
+	~ShellCommandLinePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{

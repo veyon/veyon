@@ -40,12 +40,6 @@ ShellCommandLinePlugin::ShellCommandLinePlugin( QObject* parent ) :
 
 
 
-ShellCommandLinePlugin::~ShellCommandLinePlugin()
-{
-}
-
-
-
 QStringList ShellCommandLinePlugin::commands() const
 {
 	return m_commands.keys();
