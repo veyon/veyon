@@ -47,7 +47,7 @@ class BuiltinDirectoryPlugin : public QObject,
 				 CommandLinePluginInterface)
 public:
 	BuiltinDirectoryPlugin( QObject* paren = nullptr );
-	~BuiltinDirectoryPlugin() override;
+	~BuiltinDirectoryPlugin() = default;
 
 	Plugin::Uid uid() const override
 	{

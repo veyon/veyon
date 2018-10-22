@@ -50,12 +50,6 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 
 
 
-BuiltinDirectoryPlugin::~BuiltinDirectoryPlugin()
-{
-}
-
-
-
 void BuiltinDirectoryPlugin::upgrade( const QVersionNumber& oldVersion )
 {
 	if( oldVersion < QVersionNumber( 1, 1 ) &&
@@ -300,7 +294,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_import( con
 		return NotEnoughArguments;
 	}
 
-	const auto inputFileName = arguments.first();
+	const auto& inputFileName = arguments.first();
 	QFile inputFile( inputFileName );
 
 	if( inputFile.exists() == false )
@@ -382,7 +376,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_export( con
 		return NotEnoughArguments;
 	}
 
-	const auto outputFileName = arguments.first();
+	const auto& outputFileName = arguments.first();
 	QFile outputFile( outputFileName );
 
 	if( outputFile.open( QFile::WriteOnly | QFile::Truncate | QFile::Text ) == false )
@@ -473,14 +467,12 @@ QString BuiltinDirectoryPlugin::listNetworkObject( const NetworkObject& object )
 	case NetworkObject::Host:
 		return QChar('\t') +
 				tr( "Computer \"%1\" (host address: \"%2\" MAC address: \"%3\")" ).
-				arg( object.name() ).
-				arg( object.hostAddress() ).
-				arg( object.macAddress() );
+				arg( object.name(), object.hostAddress(), object.macAddress() );
 	default:
 		break;
 	}
 
-	return tr( "Unclassified object \"%1\" with ID \"%2\"" ).arg( object.name() ).arg( object.uid().toString() );
+	return tr( "Unclassified object \"%1\" with ID \"%2\"" ).arg( object.name(), object.uid().toString() );
 }
 
 
@@ -575,7 +567,7 @@ bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& forma
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 
-	const auto networkObjects = objectManager.objects();
+	const auto& networkObjects = objectManager.objects();
 
 	NetworkObject roomObject;
 	if( room.isEmpty() == false )
