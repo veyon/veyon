@@ -58,7 +58,7 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_main()
 {
 	QTextStream stream( stdin );
 
-	while( 1 )
+	while( true )
 	{
 		printf("VEYON> ");
 
