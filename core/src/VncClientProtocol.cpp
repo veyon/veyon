@@ -22,17 +22,15 @@
  *
  */
 
-#include "VeyonCore.h"
-
-#include <QBuffer>
-#include <QRegion>
-#include <QTcpSocket>
-
 extern "C"
 {
 #include "rfb/rfbproto.h"
 #include "common/d3des.h"
 }
+
+#include <QBuffer>
+#include <QRegion>
+#include <QTcpSocket>
 
 #include "VncClientProtocol.h"
 
