@@ -58,7 +58,7 @@ Logger::Logger( const QString &appName ) :
 	auto configuredLogLevel = VeyonCore::config().logLevel();
 	if( qEnvironmentVariableIsSet( logLevelEnvironmentVariable() ) )
 	{
-		configuredLogLevel = qgetenv( logLevelEnvironmentVariable() ).toInt();
+		configuredLogLevel = qEnvironmentVariableIntValue( logLevelEnvironmentVariable() );
 	}
 
 	m_logLevel = qBound( LogLevelMin, static_cast<LogLevel>( configuredLogLevel ), LogLevelMax );
