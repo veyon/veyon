@@ -117,19 +117,19 @@ bool NetworkObject::exactMatch( const NetworkObject& other ) const
 NetworkObject::ModelId NetworkObject::modelId() const
 {
 	auto id =
-			( static_cast<ModelId>( uid().data1 ) << 0 ) |
-			( static_cast<ModelId>( uid().data2 ) << 32 ) |
-			( static_cast<ModelId>( uid().data3 ) << 48 ) |
-			( static_cast<ModelId>( uid().data4[0] ) << 0 ) |
-			( static_cast<ModelId>( uid().data4[1] ) << 8 ) |
-			( static_cast<ModelId>( uid().data4[2] ) << 16 ) |
-			( static_cast<ModelId>( uid().data4[3] ) << 24 ) |
-			( static_cast<ModelId>( uid().data4[4] ) << 32 ) |
-			( static_cast<ModelId>( uid().data4[5] ) << 40 ) |
-			( static_cast<ModelId>( uid().data4[6] ) << 48 ) |
-			( static_cast<ModelId>( uid().data4[7] ) << 56 );
+			( static_cast<quint64>( uid().data1 ) << 0u ) +
+			( static_cast<quint64>( uid().data2 ) << 32u ) +
+			( static_cast<quint64>( uid().data3 ) << 48u ) +
+			( static_cast<quint64>( uid().data4[0] ) << 0u ) +
+			( static_cast<quint64>( uid().data4[1] ) << 8u ) +
+			( static_cast<quint64>( uid().data4[2] ) << 16u ) +
+			( static_cast<quint64>( uid().data4[3] ) << 24u ) +
+			( static_cast<quint64>( uid().data4[4] ) << 32u ) +
+			( static_cast<quint64>( uid().data4[5] ) << 40u ) +
+			( static_cast<quint64>( uid().data4[6] ) << 48u ) +
+			( static_cast<quint64>( uid().data4[7] ) << 56u );
 
-	return id;
+	return static_cast<ModelId>( id );
 }
 
 
