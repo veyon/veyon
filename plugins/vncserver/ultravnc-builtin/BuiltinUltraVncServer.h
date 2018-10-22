@@ -108,6 +108,8 @@ public:
 private:
 	UltraVncConfiguration m_configuration;
 
+	static constexpr auto DefaultServerPort = 5900;
+
 	int m_serverPort;
 	QString m_password;
 

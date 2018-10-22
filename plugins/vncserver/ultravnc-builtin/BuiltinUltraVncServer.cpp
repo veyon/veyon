@@ -150,6 +150,7 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 
 BuiltinUltraVncServer::BuiltinUltraVncServer() :
 	m_configuration(),
+	m_serverPort( DefaultServerPort ),
 	m_logoffEventFilter( nullptr )
 {
 	vncServerInstance = this;
