@@ -106,31 +106,31 @@ bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &
 
 		emit dataChanged( this->index( 0, 0, parentIndex ), this->index( childrenCount-1, 0, parentIndex ), { role } );
 	}
-	else if( index.parent().isValid() )
+	else if( parentIndex.isValid() )
 	{
-		childrenCount = rowCount( index.parent() );
+		childrenCount = rowCount( parentIndex );
 
 		Qt::CheckState parentCheckState = checkState;
 
 		for( int i = 0; i < childrenCount; ++i )
 		{
-			if( checkStateFromVariant( data( this->index( i, 0, index.parent() ), role ) ) != parentCheckState )
+			if( checkStateFromVariant( data( this->index( i, 0, parentIndex ), role ) ) != parentCheckState )
 			{
 				parentCheckState = Qt::PartiallyChecked;
 				break;
 			}
 		}
 
-		if( checkStateFromVariant( data( index.parent(), Qt::CheckStateRole ) ) != parentCheckState )
+		if( checkStateFromVariant( data( parentIndex, Qt::CheckStateRole ) ) != parentCheckState )
 		{
-			setData( index.parent(), parentCheckState, role );
+			setData( parentIndex, parentCheckState, role );
 			if( m_callDepth == 0 )
 			{
-				emit dataChanged( index.parent(), index.parent(), QVector<int>( { role } ) );
+				emit dataChanged( parentIndex, parentIndex, { role } );
 			}
 		}
 
-		emit dataChanged( index, index, QVector<int>( { role } ) );
+		emit dataChanged( index, index, { role } );
 	}
 
 	--m_callDepth;
