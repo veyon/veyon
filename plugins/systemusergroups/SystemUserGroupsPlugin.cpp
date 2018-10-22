@@ -34,12 +34,6 @@ SystemUserGroupsPlugin::SystemUserGroupsPlugin( QObject* parent ) :
 
 
 
-SystemUserGroupsPlugin::~SystemUserGroupsPlugin()
-{
-}
-
-
-
 void SystemUserGroupsPlugin::reloadConfiguration()
 {
 }

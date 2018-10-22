@@ -34,7 +34,7 @@ class SystemUserGroupsPlugin : public QObject, PluginInterface, UserGroupsBacken
 	Q_INTERFACES(PluginInterface UserGroupsBackendInterface)
 public:
 	SystemUserGroupsPlugin( QObject* paren = nullptr );
-	virtual ~SystemUserGroupsPlugin();
+	~SystemUserGroupsPlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
