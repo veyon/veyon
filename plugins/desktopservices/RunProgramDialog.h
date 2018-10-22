@@ -32,7 +32,7 @@ class RunProgramDialog : public QDialog
 	Q_OBJECT
 public:
 	RunProgramDialog( QWidget *parent );
-	~RunProgramDialog() override;
+	~RunProgramDialog() = default;
 
 	const QStringList& programs() const
 	{

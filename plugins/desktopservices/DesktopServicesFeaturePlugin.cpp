@@ -247,7 +247,7 @@ FeatureList DesktopServicesFeaturePlugin::predefinedPrograms() const
 	{
 		programFeatures.reserve( programs.size() + 1 );
 
-		for( const auto program : programs )
+		for( const auto& program : programs )
 		{
 			const auto programObject = DesktopServiceObject( program.toObject() );
 			programFeatures.append( Feature( Feature::Action | Feature::Master, programObject.uid(), m_runProgramFeature.uid(),
@@ -275,7 +275,7 @@ FeatureList DesktopServicesFeaturePlugin::predefinedWebsites() const
 	{
 		websiteFeatures.reserve( websites.size() + 1 );
 
-		for( const auto website : websites )
+		for( const auto& website : websites )
 		{
 			const auto websiteObject = DesktopServiceObject( website.toObject() );
 			websiteFeatures.append( Feature( Feature::Action | Feature::Master, websiteObject.uid(), m_openWebsiteFeature.uid(),
@@ -298,7 +298,7 @@ QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFea
 {
 	for( const auto& services : { m_configuration.predefinedPrograms(), m_configuration.predefinedWebsites() } )
 	{
-		for( const auto service : services )
+		for( const auto& service : services )
 		{
 			const auto serviceObject = DesktopServiceObject( service.toObject() );
 			if( serviceObject.uid() == subFeatureUid )

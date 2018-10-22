@@ -25,8 +25,9 @@
 #ifndef DESKTOP_SERVICE_OBJECT_H
 #define DESKTOP_SERVICE_OBJECT_H
 
-#include <QUuid>
+#include <QMetaType>
 #include <QString>
+#include <QUuid>
 
 class QJsonObject;
 
@@ -49,7 +50,7 @@ public:
 						  const Name& name = QString(),
 						  const QString& path = QString(),
 						  Uid uid = Uid() );
-	DesktopServiceObject( const QJsonObject& jsonObject );
+	explicit DesktopServiceObject( const QJsonObject& jsonObject );
 
 	bool operator==( const DesktopServiceObject& other ) const;
 
