@@ -42,12 +42,6 @@ ExternalVncServer::ExternalVncServer( QObject* parent ) :
 
 
 
-ExternalVncServer::~ExternalVncServer()
-{
-}
-
-
-
 void ExternalVncServer::upgrade( const QVersionNumber& oldVersion )
 {
 	if( oldVersion < QVersionNumber( 1, 1 ) )

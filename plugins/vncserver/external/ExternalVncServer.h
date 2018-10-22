@@ -36,7 +36,6 @@ class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterf
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
 	ExternalVncServer( QObject* parent = nullptr );
-	~ExternalVncServer() override;
 
 	Plugin::Uid uid() const override
 	{
