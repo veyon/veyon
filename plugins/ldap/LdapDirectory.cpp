@@ -37,11 +37,7 @@
 class LdapDirectory::LdapDirectoryPrivate
 {
 public:
-	LdapDirectoryPrivate() :
-		state( Disconnected ),
-		queryRetry( false )
-	{
-	}
+	LdapDirectoryPrivate() = default;
 
 	QStringList queryAttributes(const QString &dn, const QString &attribute,
 								const QString& filter = QStringLiteral( "(objectclass=*)" ),
@@ -232,12 +228,9 @@ public:
 	QString computersDn;
 	QString computerGroupsDn;
 
-	KLDAP::LdapUrl::Scope defaultSearchScope;
-
 	QString userLoginAttribute;
 	QString groupMemberAttribute;
 	QString computerHostNameAttribute;
-	bool computerHostNameAsFQDN;
 	QString computerMacAddressAttribute;
 	QString computerRoomNameAttribute;
 
@@ -247,22 +240,26 @@ public:
 	QString computerGroupsFilter;
 	QString computerParentsFilter;
 
-	bool identifyGroupMembersByNameAttribute;
-	bool computerRoomMembersByContainer;
-	bool computerRoomMembersByAttribute;
 	QString computerRoomAttribute;
 
-	typedef enum States
+	KLDAP::LdapUrl::Scope defaultSearchScope = KLDAP::LdapUrl::Base;
+
+	bool identifyGroupMembersByNameAttribute = false;
+	bool computerRoomMembersByContainer = false;
+	bool computerRoomMembersByAttribute = false;
+	bool computerHostNameAsFQDN = false;
+
+	using State = enum States
 	{
 		Disconnected,
 		Connected,
 		Bound,
 		StateCount
-	} State;
+	} ;
 
-	State state;
+	State state = Disconnected;
 
-	bool queryRetry;
+	bool queryRetry = false;
 
 };
 
