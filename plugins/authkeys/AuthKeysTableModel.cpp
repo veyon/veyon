@@ -43,11 +43,11 @@ AuthKeysTableModel::~AuthKeysTableModel()
 
 void AuthKeysTableModel::reload()
 {
-	emit beginResetModel();
+	beginResetModel();
 
 	m_keys = m_manager->listKeys();
 
-	emit endResetModel();
+	endResetModel();
 }
 
 
