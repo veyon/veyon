@@ -79,7 +79,7 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 
 	if( feature == m_powerOnFeature )
 	{
-		for( auto controlInterface : computerControlInterfaces )
+		for( const auto& controlInterface : computerControlInterfaces )
 		{
 			broadcastWOLPacket( controlInterface->computer().macAddress() );
 		}
