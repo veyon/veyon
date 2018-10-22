@@ -56,7 +56,7 @@ bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const 
 {
 	if( feature.uid() == m_screenshotFeature.uid() )
 	{
-		for( auto controlInterface : computerControlInterfaces )
+		for( const auto& controlInterface : computerControlInterfaces )
 		{
 			Screenshot().take( controlInterface );
 
