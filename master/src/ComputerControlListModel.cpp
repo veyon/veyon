@@ -240,7 +240,8 @@ void ComputerControlListModel::updateComputerScreens()
 
 
 
-void ComputerControlListModel::startComputerControlInterface( ComputerControlInterface::Pointer controlInterface, QModelIndex index )
+void ComputerControlListModel::startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface,
+															  const QModelIndex& index )
 {
 	controlInterface->start( computerScreenSize(), &m_master->builtinFeatures() );
 
@@ -262,7 +263,7 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 
 
 
-void ComputerControlListModel::stopComputerControlInterface( ComputerControlInterface::Pointer controlInterface )
+void ComputerControlListModel::stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface )
 {
 	m_master->stopAllModeFeatures( { controlInterface } );
 
@@ -302,7 +303,7 @@ QImage ComputerControlListModel::prepareIcon(const QImage &icon)
 
 
 
-QImage ComputerControlListModel::computerDecorationRole( ComputerControlInterface::Pointer controlInterface ) const
+QImage ComputerControlListModel::computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	QImage image;
 
@@ -333,7 +334,7 @@ QImage ComputerControlListModel::computerDecorationRole( ComputerControlInterfac
 
 
 
-QString ComputerControlListModel::computerToolTipRole( ComputerControlInterface::Pointer controlInterface ) const
+QString ComputerControlListModel::computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	const QString state( computerStateDescription( controlInterface ) );
 	const QString room( tr( "Room: %1" ).arg( controlInterface->computer().room() ) );
@@ -351,7 +352,7 @@ QString ComputerControlListModel::computerToolTipRole( ComputerControlInterface:
 
 
 
-QString ComputerControlListModel::computerDisplayRole( ComputerControlInterface::Pointer controlInterface ) const
+QString ComputerControlListModel::computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	if( m_displayRoleContent != DisplayComputerName &&
 			controlInterface->state() == ComputerControlInterface::Connected &&
@@ -393,7 +394,7 @@ QString ComputerControlListModel::computerDisplayRole( ComputerControlInterface:
 
 
 
-QString ComputerControlListModel::computerStateDescription( ComputerControlInterface::Pointer controlInterface )
+QString ComputerControlListModel::computerStateDescription( const ComputerControlInterface::Pointer& controlInterface )
 {
 	switch( controlInterface->state() )
 	{
@@ -421,7 +422,7 @@ QString ComputerControlListModel::computerStateDescription( ComputerControlInter
 
 
 
-QString ComputerControlListModel::loggedOnUserInformation( ComputerControlInterface::Pointer controlInterface )
+QString ComputerControlListModel::loggedOnUserInformation( const ComputerControlInterface::Pointer& controlInterface )
 {
 	if( controlInterface->state() == ComputerControlInterface::Connected )
 	{
@@ -438,7 +439,7 @@ QString ComputerControlListModel::loggedOnUserInformation( ComputerControlInterf
 
 
 
-QString ComputerControlListModel::activeFeatures( ComputerControlInterface::Pointer controlInterface ) const
+QString ComputerControlListModel::activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	QStringList featureNames;
 
