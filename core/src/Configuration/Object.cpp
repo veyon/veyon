@@ -87,9 +87,12 @@ Object& Object::operator=( const Object& ref )
 			ref.m_customStore == false &&
 			ref.m_store )
 	{
+		const auto backend = ref.m_store->backend();
+		const auto scope = ref.m_store->scope();
+
 		delete m_store;
 
-		m_store = createStore( ref.m_store->backend(), ref.m_store->scope() );
+		m_store = createStore( backend, scope );
 	}
 
 	m_data = ref.data();
