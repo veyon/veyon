@@ -86,7 +86,7 @@ QStringList AccessControlProvider::roomsOfComputer( const QString& computer ) co
 	QStringList roomList;
 	roomList.reserve( computers.size() );
 
-	for( auto computer : computers )
+	for( const auto& computer : computers )
 	{
 		roomList.append( m_networkObjectDirectory->queryParent( computer ).name() );
 	}
