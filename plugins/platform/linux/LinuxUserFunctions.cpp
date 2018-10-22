@@ -156,7 +156,7 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	}
 
 	// remove all empty entries
-	groupList.removeAll( QStringLiteral("") );
+	groupList.removeAll( QString() );
 
 	return groupList;
 }
@@ -186,7 +186,7 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 		}
 	}
 
-	groupList.removeAll( QStringLiteral("") );
+	groupList.removeAll( QString() );
 
 	return groupList;
 }

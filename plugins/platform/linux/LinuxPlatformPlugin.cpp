@@ -37,9 +37,3 @@ LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
 	// make sure to load global config from default config dirs independent of environment variables
 	qunsetenv( "XDG_CONFIG_DIRS" );
 }
-
-
-
-LinuxPlatformPlugin::~LinuxPlatformPlugin()
-{
-}

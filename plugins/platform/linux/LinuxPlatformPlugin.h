@@ -41,7 +41,7 @@ class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInter
 	Q_INTERFACES(PluginInterface PlatformPluginInterface)
 public:
 	LinuxPlatformPlugin( QObject* parent = nullptr );
-	~LinuxPlatformPlugin() override;
+	~LinuxPlatformPlugin() = default;
 
 	Plugin::Uid uid() const override
 	{

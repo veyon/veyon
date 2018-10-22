@@ -225,7 +225,8 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 
 	class UserProcess : public QProcess {
 	public:
-		UserProcess( uid_t uid ) :
+		explicit UserProcess( uid_t uid, QObject* parent = nullptr ) :
+			QProcess( parent ),
 			m_uid( uid )
 		{
 		}

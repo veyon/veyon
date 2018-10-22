@@ -31,14 +31,11 @@
 static char* pam_username = nullptr;
 static char* pam_password = nullptr;
 
-static int pam_conv( int num_msg, const struct pam_message **msg,
-						struct pam_response **resp,
-						void *appdata_ptr )
+static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_response** resp, void * )
 {
-	struct pam_response *reply = nullptr;
-
-	reply = (pam_response *) malloc( sizeof(struct pam_response) * num_msg );
-	if( !reply )
+	auto reply = reinterpret_cast<pam_response *>(
+				malloc( sizeof(struct pam_response) * static_cast<size_t>( num_msg ) ) );
+	if( reply == nullptr )
 	{
 		return PAM_CONV_ERR;
 	}
