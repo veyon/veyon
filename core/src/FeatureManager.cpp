@@ -45,7 +45,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
 
-	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
+	for( const auto& pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
 
@@ -82,7 +82,7 @@ const FeatureList& FeatureManager::features( Plugin::Uid pluginUid ) const
 
 const Feature& FeatureManager::feature( Feature::Uid featureUid ) const
 {
-	for( auto featureInterface : m_featurePluginInterfaces )
+	for( const auto& featureInterface : m_featurePluginInterfaces )
 	{
 		for( const auto& feature : featureInterface->featureList() )
 		{
@@ -130,7 +130,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 
 	if( feature.testFlag( Feature::Mode ) )
 	{
-		for( auto controlInterface : computerControlInterfaces )
+		for( const auto& controlInterface : computerControlInterfaces )
 		{
 			controlInterface->setDesignatedModeFeature( feature.uid() );
 		}
@@ -145,12 +145,12 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 {
 	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
-	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		featureInterface->stopFeature( master, feature, computerControlInterfaces );
 	}
 
-	for( auto controlInterface : computerControlInterfaces )
+	for( const auto& controlInterface : computerControlInterfaces )
 	{
 		if( controlInterface->designatedModeFeature() == feature.uid() )
 		{
@@ -171,7 +171,7 @@ bool FeatureManager::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 	bool handled = false;
 
-	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		if( featureInterface->handleFeatureMessage( master, message, computerControlInterface ) )
 		{
@@ -200,7 +200,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server, const F
 
 	bool handled = false;
 
-	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		if( featureInterface->handleFeatureMessage( server, message ) )
 		{
@@ -222,7 +222,7 @@ bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 
 	bool handled = false;
 
-	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
 		if( featureInterface->handleFeatureMessage( worker, message ) )
 		{
