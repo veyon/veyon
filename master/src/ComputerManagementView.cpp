@@ -44,6 +44,7 @@ ComputerManagementView::ComputerManagementView( ComputerManager& computerManager
 {
 	m_filterProxyModel->setSourceModel( computerManager.computerTreeModel() );
 	m_filterProxyModel->setFilterCaseSensitivity( Qt::CaseInsensitive );
+	m_filterProxyModel->setFilterKeyColumn( -1 ); // filter all columns instead of first one only
 
 	ui->setupUi(this);
 
