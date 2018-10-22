@@ -40,7 +40,7 @@ static HHOOK __lowLevelKeyboardHookHandle = nullptr; // hook handle
 
 LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 {
-	KBDLLHOOKSTRUCT *pkh = (KBDLLHOOKSTRUCT *) lp;
+	auto pkh = reinterpret_cast<KBDLLHOOKSTRUCT *>( static_cast<intptr_t>( lp ) );
 	static QList<KeyboardShortcutTrapper::Shortcut> pressed;
 
 	if( nCode == HC_ACTION )

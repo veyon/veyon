@@ -88,7 +88,7 @@ bool WindowsServiceControl::start()
 	SERVICE_STATUS status;
 	status.dwCurrentState = SERVICE_START_PENDING;
 
-	if( StartService( m_serviceHandle, 0, NULL ) )
+	if( StartService( m_serviceHandle, 0, nullptr ) )
 	{
 		while( QueryServiceStatus( m_serviceHandle, &status ) )
 		{
@@ -163,11 +163,11 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 				SERVICE_AUTO_START,	// start type
 				SERVICE_ERROR_NORMAL,	// error control type
 				WindowsCoreFunctions::toConstWCharArray( filePath ),		// service's binary
-				NULL,			// no load ordering group
-				NULL,			// no tag identifier
-				NULL,			// dependencies
-				NULL,			// LocalSystem account
-				NULL );			// no password
+				nullptr,			// no load ordering group
+				nullptr,			// no tag identifier
+				nullptr,			// dependencies
+				nullptr,			// LocalSystem account
+				nullptr );			// no password
 
 	if( m_serviceHandle == nullptr )
 	{
@@ -190,8 +190,8 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 
 	SERVICE_FAILURE_ACTIONS serviceFailureActions;
 	serviceFailureActions.dwResetPeriod = 0;
-	serviceFailureActions.lpRebootMsg = NULL;
-	serviceFailureActions.lpCommand = NULL;
+	serviceFailureActions.lpRebootMsg = nullptr;
+	serviceFailureActions.lpCommand = nullptr;
 	serviceFailureActions.lpsaActions = &serviceActions;
 	serviceFailureActions.cActions = 1;
 	ChangeServiceConfig2( m_serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS, &serviceFailureActions );
@@ -238,15 +238,15 @@ bool WindowsServiceControl::setStartType( int startType )
 
 	if( ChangeServiceConfig( m_serviceHandle,
 							 SERVICE_NO_CHANGE,	// dwServiceType
-							 startType,
+							 static_cast<DWORD>( startType ),
 							 SERVICE_NO_CHANGE,	// dwErrorControl
-							 NULL,	// lpBinaryPathName
-							 NULL,	// lpLoadOrderGroup
-							 NULL,	// lpdwTagId
-							 NULL,	// lpDependencies
-							 NULL,	// lpServiceStartName
-							 NULL,	// lpPassword
-							 NULL	// lpDisplayName
+							 nullptr,	// lpBinaryPathName
+							 nullptr,	// lpLoadOrderGroup
+							 nullptr,	// lpdwTagId
+							 nullptr,	// lpDependencies
+							 nullptr,	// lpServiceStartName
+							 nullptr,	// lpPassword
+							 nullptr	// lpDisplayName
 							 ) == false )
 	{
 		qCritical( qUtf8Printable( tr( "WindowsServiceControl: the start type of service \"%1\" could not be changed." ).arg( m_name ) ) );

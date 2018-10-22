@@ -101,7 +101,7 @@ DWORD WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
 {
 	PWTS_PROCESS_INFO processInfo = nullptr;
 	DWORD processCount = 0;
-	DWORD pid = static_cast<DWORD>( -1 );
+	auto pid = static_cast<DWORD>( -1 );
 
 	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
 	{

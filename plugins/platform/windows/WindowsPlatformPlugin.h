@@ -41,7 +41,7 @@ class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInt
 	Q_INTERFACES(PluginInterface PlatformPluginInterface)
 public:
 	WindowsPlatformPlugin( QObject* parent = nullptr );
-	~WindowsPlatformPlugin() override;
+	~WindowsPlatformPlugin() = default;
 
 	Plugin::Uid uid() const override
 	{

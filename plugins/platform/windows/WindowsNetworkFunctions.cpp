@@ -40,7 +40,7 @@ static HRESULT WindowsFirewallInitialize2( INetFwPolicy2** fwPolicy2 )
 
 	// Create an instance of the firewall settings manager.
 	hr = CoCreateInstance( CLSID_NetFwPolicy2, nullptr, CLSCTX_INPROC_SERVER,
-							IID_INetFwPolicy2, (void**)fwPolicy2 );
+							IID_INetFwPolicy2, reinterpret_cast<void**>( fwPolicy2 ) );
 	if( FAILED( hr ) )
 	{
 		qCritical() << Q_FUNC_INFO << "CoCreateInstance() returned" << hr;
@@ -84,7 +84,7 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 	// Create an instance of an authorized application.
 	hr = CoCreateInstance( CLSID_NetFwRule, nullptr,
 							CLSCTX_INPROC_SERVER,
-							IID_INetFwRule, (void**)&pFwRule );
+							IID_INetFwRule, reinterpret_cast<void**>( &pFwRule ) );
 	if( FAILED( hr ) )
 	{
 		qCritical() << Q_FUNC_INFO << "CoCreateInstance() returned" << hr;
@@ -179,16 +179,16 @@ cleanup:
 static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t* fwApplicationPath, const wchar_t* fwName, bool enabled )
 {
 	// always remove firewall exception first
-	HRESULT hr = WindowsFirewallRemoveApp2( fwPolicy2, fwName );
+	WindowsFirewallRemoveApp2( fwPolicy2, fwName );
 
 	if( enabled )
 	{
 		// add service to the list of authorized applications
-		hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
+		auto hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
 		if( FAILED( hr ) )
 		{
 			// failed because firewall service not running / disabled?
-			if( (DWORD) hr == 0x800706D9 )
+			if( static_cast<DWORD>( hr ) == 0x800706D9 )
 			{
 				// then assume this is intended, log a warning and
 				// pretend everything went well
@@ -222,7 +222,7 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 	HRESULT hr = S_OK;
 
 	// initialize COM
-	HRESULT comInit = CoInitializeEx( 0, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE );
+	HRESULT comInit = CoInitializeEx( nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE );
 
 	// Ignore RPC_E_CHANGED_MODE; this just means that COM has already been
 	// initialized with a different mode. Since we don't care what the mode is,
@@ -279,10 +279,10 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 		return false;
 	}
 
-	tcp_keepalive keepalive;
+	tcp_keepalive keepalive{};
 	keepalive.onoff = enabled ? 1 : 0;
-	keepalive.keepalivetime = idleTime;
-	keepalive.keepaliveinterval = interval;
+	keepalive.keepalivetime = static_cast<u_long>( idleTime );
+	keepalive.keepaliveinterval = static_cast<u_long>( interval );
 
 	DWORD bytesReturned = 0;
 

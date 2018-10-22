@@ -62,12 +62,14 @@ CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
 	}
 #endif
 
-	m_hEventLog = NULL;
-	m_pszAppName = NULL;
+	m_hEventLog = nullptr;
+	m_pszAppName = nullptr;
 
 	// open event log
 	if (lpszApp && (lpszApp[0] != _T('\0')))
+	{
 		Init(lpszApp, lpszEventMessageDll);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -84,8 +86,10 @@ CXEventLog::~CXEventLog()
 {
 	Close();
 	if (m_pszAppName)
+	{
 		delete [] m_pszAppName;
-	m_pszAppName = NULL;
+	}
+	m_pszAppName = nullptr;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -101,8 +105,10 @@ CXEventLog::~CXEventLog()
 void CXEventLog::Close()
 {
 	if (m_hEventLog)
+	{
 		::DeregisterEventSource(m_hEventLog);
-	m_hEventLog = NULL;
+	}
+	m_hEventLog = nullptr;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -140,9 +146,11 @@ LPTSTR CXEventLog::GetAppName()
 //
 BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /* = NULL*/)
 {
-	_ASSERTE((lpszApp != NULL) && (lpszApp[0] != _T('\0')));
+	_ASSERTE((lpszApp != nullptr) && (lpszApp[0] != _T('\0')));
 	if (!lpszApp || lpszApp[0] == _T('\0'))
+	{
 		return FALSE;
+	}
 
 	Close();		// close event log if already open
 
@@ -153,12 +161,12 @@ BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /* = NULL*/)
 
 	if (bRet)
 	{
-		m_hEventLog = ::RegisterEventSource(NULL, lpszApp);
+		m_hEventLog = ::RegisterEventSource(nullptr, lpszApp);
 	}
 
-	_ASSERTE(m_hEventLog != NULL);
+	_ASSERTE(m_hEventLog != nullptr);
 
-	return (m_hEventLog != NULL);
+	return (m_hEventLog != nullptr);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -176,16 +184,18 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 {
 	BOOL bRet = TRUE;
 
-	_ASSERTE(m_hEventLog != NULL);
+	_ASSERTE(m_hEventLog != nullptr);
 	if (!m_hEventLog)
 	{
 		// Init() not called
 		return FALSE;
 	}
 
-	_ASSERTE(lpszMessage != NULL);
+	_ASSERTE(lpszMessage != nullptr);
 	if (!lpszMessage)
+	{
 		return FALSE;
+	}
 
 	_ASSERTE((wType == EVENTLOG_ERROR_TYPE)       ||
 			 (wType == EVENTLOG_WARNING_TYPE)     ||
@@ -206,10 +216,12 @@ BOOL CXEventLog::Write(WORD wType, LPCTSTR lpszMessage)
 						 1,					// number of strings to merge with message
 						 0,					// size of binary data, in bytes
 						 lpStrings,			// array of strings to merge with message
-						 NULL);				// address of binary data
+						 nullptr);				// address of binary data
 
 	if (pSid)
+	{
 		HeapFree(GetProcessHeap(), 0, pSid);
+	}
 
 	return bRet;
 }
@@ -258,7 +270,9 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 {
 	_ASSERTE((lpszApp != NULL) && (lpszApp[0] != _T('\0')));
 	if (!lpszApp || lpszApp[0] == _T('\0'))
+	{
 		return FALSE;
+	}
 
 	TCHAR szRegPath[] =
 		_T("SYSTEM\\CurrentControlSet\\Services\\Eventlog\\Application\\");
@@ -270,9 +284,9 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 
 	// open the registry event source key
 	DWORD dwResult = 0;
-	HKEY hKey = NULL;
-	LONG lRet = ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0, NULL,
-					REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwResult);
+	HKEY hKey = nullptr;
+	LONG lRet = ::RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0, nullptr,
+					REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr, &hKey, &dwResult);
 
 	if (lRet == ERROR_SUCCESS)
 	{
@@ -308,7 +322,7 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 								 EVENTLOG_AUDIT_FAILURE;
 
 		::RegSetValueEx(hKey, _T("TypesSupported"), 0, REG_DWORD,
-			(const BYTE *) &dwSupportedTypes, sizeof(DWORD));
+						reinterpret_cast<const BYTE *>( &dwSupportedTypes ), sizeof(DWORD));
 
 		::RegCloseKey(hKey);
 
@@ -331,60 +345,77 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 //
 PSID CXEventLog::GetUserSid()
 {
-	HANDLE       hToken   = NULL;
-	PTOKEN_USER  ptiUser  = NULL;
+	HANDLE       hToken   = nullptr;
 	DWORD        cbti     = 0;
 
 	// get calling thread's access token
 	if (!OpenThreadToken(GetCurrentThread(), TOKEN_QUERY, TRUE,	&hToken))
 	{
 		if (GetLastError() != ERROR_NO_TOKEN)
-			return NULL;
+		{
+			return nullptr;
+		}
 
 		// retry for process token if no thread token exists
 		if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken))
-			return NULL;
+		{
+			return nullptr;
+		}
 	}
 
 	// get size of the user information in the token
-	if (GetTokenInformation(hToken, TokenUser, NULL, 0, &cbti))
+	if (GetTokenInformation(hToken, TokenUser, nullptr, 0, &cbti))
 	{
 		// call should have failed due to zero-length buffer.
-		return NULL;
+		return nullptr;
 	}
 	else
 	{
 		// call should have failed due to zero-length buffer
 		if (GetLastError() != ERROR_INSUFFICIENT_BUFFER)
-			return NULL;
+		{
+			return nullptr;
+		}
 	}
 
 	// allocate buffer for user information in the token
-	ptiUser = (PTOKEN_USER) HeapAlloc(GetProcessHeap(), 0, cbti);
+	auto ptiUser = reinterpret_cast<PTOKEN_USER>( HeapAlloc(GetProcessHeap(), 0, cbti) );
 	if (!ptiUser)
-		return NULL;
+	{
+		return nullptr;
+	}
 
 	// retrieve the user information from the token
 	if (!GetTokenInformation(hToken, TokenUser, ptiUser, cbti, &cbti))
-		return NULL;
+	{
+		return nullptr;
+	}
 
 	DWORD dwLen = ::GetLengthSid(ptiUser->User.Sid);
 
 	// allocate buffer for SID
-	PSID psid = (PSID) HeapAlloc(GetProcessHeap(), 0, dwLen);
+	auto psid = reinterpret_cast<PSID>( HeapAlloc(GetProcessHeap(), 0, dwLen) );
 	if (!psid)
-		return NULL;
+	{
+		return nullptr;
+	}
 
 	BOOL bRet = ::CopySid(dwLen, psid, ptiUser->User.Sid);
 	if (!bRet)
-		return NULL;
+	{
+		return nullptr;
+	}
 
 	// close access token
 	if (hToken)
+	{
 		CloseHandle(hToken);
+	}
 
 	if (ptiUser)
+	{
 		HeapFree(GetProcessHeap(), 0, ptiUser);
+	}
 
 	return psid;
 }
@@ -402,9 +433,13 @@ PSID CXEventLog::GetUserSid()
 void CXEventLog::SetAppName(LPCTSTR lpszApp)
 {
 	if (!lpszApp)
+	{
 		return;
+	}
 	if (!m_pszAppName)
+	{
 		m_pszAppName = new TCHAR [_MAX_PATH*2];
+	}
 	if (m_pszAppName)
 	{
 		memset(m_pszAppName, 0, _MAX_PATH*2*sizeof(TCHAR));

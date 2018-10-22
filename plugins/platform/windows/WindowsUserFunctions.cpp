@@ -53,7 +53,7 @@ QString WindowsUserFunctions::fullName( const QString& username )
 	LPUSER_INFO_2 buf = nullptr;
 	NET_API_STATUS nStatus = NetUserGetInfo( reinterpret_cast<LPCWSTR>( domainController ),
 											 WindowsCoreFunctions::toConstWCharArray( realUsername ),
-											 2, (LPBYTE *) &buf );
+											 2, reinterpret_cast<LPBYTE *>( &buf ) );
 	if( nStatus == NERR_Success && buf != nullptr )
 	{
 		fullName = QString::fromWCharArray( buf->usri2_full_name );
@@ -84,7 +84,7 @@ QStringList WindowsUserFunctions::userGroups( bool queryDomainGroups )
 	}
 
 	groupList.removeDuplicates();
-	groupList.removeAll( QStringLiteral("") );
+	groupList.removeAll( QString() );
 
 	return groupList;
 }
@@ -101,7 +101,7 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 	}
 
 	groupList.removeDuplicates();
-	groupList.removeAll( QStringLiteral("") );
+	groupList.removeAll( QString() );
 
 	return groupList;
 }
@@ -201,7 +201,7 @@ QString WindowsUserFunctions::domainController()
 
 	if( NetGetDCName( nullptr, nullptr, &outBuffer ) == NERR_Success )
 	{
-		dcName = QString::fromUtf16( (const ushort *) outBuffer );
+		dcName = QString::fromUtf16( reinterpret_cast<const ushort *>( outBuffer ) );
 
 		NetApiBufferFree( outBuffer );
 	}
@@ -227,13 +227,13 @@ QStringList WindowsUserFunctions::domainUserGroups()
 
 	if( NetGroupEnum( WindowsCoreFunctions::toConstWCharArray( dc ), 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, nullptr ) == NERR_Success )
 	{
-		const GROUP_INFO_0* groupInfos = (GROUP_INFO_0 *) outBuffer;
+		const auto* groupInfos = reinterpret_cast<GROUP_INFO_0 *>( outBuffer );
 
-		groupList.reserve( entriesRead );
+		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			groupList += QString::fromUtf16( (const ushort *) groupInfos[i].grpi0_name );
+			groupList += QString::fromUtf16( reinterpret_cast<const ushort *>( groupInfos[i].grpi0_name ) );
 		}
 
 		if( entriesRead < totalEntries )
@@ -270,13 +270,13 @@ QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
 						  0, &outBuffer, MAX_PREFERRED_LENGTH,
 						  &entriesRead, &totalEntries ) == NERR_Success )
 	{
-		const GROUP_USERS_INFO_0* groupUsersInfo = (GROUP_USERS_INFO_0 *) outBuffer;
+		const auto* groupUsersInfo = reinterpret_cast<GROUP_USERS_INFO_0 *>( outBuffer );
 
-		groupList.reserve( entriesRead );
+		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			groupList += QString::fromUtf16( (const ushort *) groupUsersInfo[i].grui0_name );
+			groupList += QString::fromUtf16( reinterpret_cast<const ushort *>( groupUsersInfo[i].grui0_name ) );
 		}
 
 		if( entriesRead < totalEntries )
@@ -300,19 +300,19 @@ QStringList WindowsUserFunctions::localUserGroups()
 {
 	QStringList groupList;
 
-	LPBYTE outBuffer = NULL;
+	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
 	if( NetLocalGroupEnum( nullptr, 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, nullptr ) == NERR_Success )
 	{
-		LOCALGROUP_INFO_0* groupInfos = (LOCALGROUP_INFO_0 *) outBuffer;
+		const auto* groupInfos = reinterpret_cast<LOCALGROUP_INFO_0 *>( outBuffer );
 
-		groupList.reserve( entriesRead );
+		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			groupList += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
+			groupList += QString::fromUtf16( reinterpret_cast<const ushort *>( groupInfos[i].lgrpi0_name ) );
 		}
 
 		if( entriesRead < totalEntries )
@@ -344,13 +344,13 @@ QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
 							   0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
 							   &entriesRead, &totalEntries ) == NERR_Success )
 	{
-		const LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
+		const auto* localGroupUsersInfo = reinterpret_cast<LOCALGROUP_USERS_INFO_0 *>( outBuffer );
 
-		groupList.reserve( entriesRead );
+		groupList.reserve( static_cast<int>( entriesRead ) );
 
 		for( DWORD i = 0; i < entriesRead; ++i )
 		{
-			groupList += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
+			groupList += QString::fromUtf16( reinterpret_cast<const ushort *>( localGroupUsersInfo[i].lgrui0_name ) );
 		}
 
 		if( entriesRead < totalEntries )
