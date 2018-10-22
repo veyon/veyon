@@ -29,32 +29,9 @@
 #endif
 
 RecursiveFilterProxyModel::RecursiveFilterProxyModel( QObject* parent ) :
-	QSortFilterProxyModel( parent )
+	KRecursiveFilterProxyModel( parent )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
 #endif
-}
-
-
-
-bool RecursiveFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
-{
-	if( sourceParent.isValid() )
-	{
-		return QSortFilterProxyModel::filterAcceptsRow( sourceRow, sourceParent );
-	}
-
-	const auto rowIndex = sourceModel()->index( sourceRow, 0, sourceParent );
-	const auto rowCount = sourceModel()->rowCount( rowIndex );
-
-	for( int i = 0; i < rowCount; ++i )
-	{
-		if( filterAcceptsRow( i, rowIndex ) )
-		{
-			return true;
-		}
-	}
-
-	return false;
 }

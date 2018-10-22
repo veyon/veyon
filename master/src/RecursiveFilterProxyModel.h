@@ -22,19 +22,13 @@
  *
  */
 
-#ifndef RECURSIVE_FILTER_PROXY_MODEL_H
-#define RECURSIVE_FILTER_PROXY_MODEL_H
+#pragma once
 
-#include <QSortFilterProxyModel>
+#include "krecursivefilterproxymodel.h"
 
-class RecursiveFilterProxyModel : public QSortFilterProxyModel
+class RecursiveFilterProxyModel : public KRecursiveFilterProxyModel
 {
-	Q_OBJECT
 public:
-	RecursiveFilterProxyModel( QObject* parent = nullptr );
-
-	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
+	RecursiveFilterProxyModel( QObject* parent );
 
 };
-
-#endif // RECURSIVE_FILTER_PROXY_MODEL_H
