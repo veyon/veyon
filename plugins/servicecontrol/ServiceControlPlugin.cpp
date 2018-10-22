@@ -41,14 +41,10 @@ ServiceControlPlugin::ServiceControlPlugin( QObject* parent ) :
 
 
 
-ServiceControlPlugin::~ServiceControlPlugin()
-{
-}
-
-
-
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( const QStringList& arguments )
 {
+	Q_UNUSED(arguments)
+
 	VeyonServiceControl serviceControl;
 	serviceControl.registerService();
 
@@ -59,6 +55,7 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_register( con
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_unregister( const QStringList& arguments )
 {
+	Q_UNUSED(arguments)
 	VeyonServiceControl serviceControl;
 	serviceControl.unregisterService();
 
@@ -69,6 +66,8 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_unregister( c
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_start( const QStringList& arguments )
 {
+	Q_UNUSED(arguments)
+
 	VeyonServiceControl serviceControl;
 	serviceControl.startService();
 
@@ -79,6 +78,8 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_start( const 
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_stop( const QStringList& arguments )
 {
+	Q_UNUSED(arguments)
+
 	VeyonServiceControl serviceControl;
 	serviceControl.stopService();
 
@@ -97,6 +98,8 @@ CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_restart( cons
 
 CommandLinePluginInterface::RunResult ServiceControlPlugin::handle_status( const QStringList& arguments )
 {
+	Q_UNUSED(arguments)
+
 	if( VeyonServiceControl().isServiceRunning() )
 	{
 		CommandLineIO::print( tr( "Service is running" ) );

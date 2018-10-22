@@ -34,7 +34,7 @@ class ServiceControlPlugin : public QObject, CommandLinePluginInterface, PluginI
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
 	ServiceControlPlugin( QObject* parent = nullptr );
-	~ServiceControlPlugin() override;
+	~ServiceControlPlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
