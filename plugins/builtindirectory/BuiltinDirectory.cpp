@@ -83,7 +83,7 @@ void BuiltinDirectory::update()
 
 	const auto networkObjects = m_configuration.networkObjects();
 
-	QList<NetworkObject::Uid> groupUids;
+	NetworkObjectUidList groupUids;
 
 	for( const auto& networkObjectValue : networkObjects )
 	{
@@ -107,7 +107,7 @@ void BuiltinDirectory::update()
 
 void BuiltinDirectory::updateRoom( const NetworkObject& roomObject, const QJsonArray& networkObjects )
 {
-	QVector<NetworkObject::Uid> computerUids;
+	NetworkObjectUidList computerUids;
 
 	for( const auto& networkObjectValue : networkObjects )
 	{
