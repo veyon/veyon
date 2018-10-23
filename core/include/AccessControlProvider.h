@@ -26,9 +26,9 @@
 #define ACCESS_CONTROL_PROVIDER_H
 
 #include "AccessControlRule.h"
+#include "NetworkObject.h"
 
 class UserGroupsBackendInterface;
-class NetworkObject;
 class NetworkObjectDirectory;
 
 class VEYON_CORE_EXPORT AccessControlProvider
