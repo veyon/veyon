@@ -78,6 +78,11 @@ public:
 		return m_parentUid;
 	}
 
+	void setParentUid( const Uid& parentUid )
+	{
+		m_parentUid = parentUid;
+	}
+
 	ModelId modelId() const;
 
 	Type type() const
@@ -114,6 +119,7 @@ public:
 
 private:
 	Uid calculateUid() const;
+	static ModelId calculateModelId( Uid uid );
 
 	Type m_type;
 	QString m_name;
