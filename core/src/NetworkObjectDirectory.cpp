@@ -65,7 +65,7 @@ const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& p
 	if( parent.type() == NetworkObject::Root ||
 			parent.type() == NetworkObject::Group )
 	{
-		const auto it = m_objects.find( parent.modelId() );
+		const auto it = m_objects.constFind( parent.modelId() );
 		if( it != m_objects.end() )
 		{
 			return it.value();
@@ -77,14 +77,14 @@ const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& p
 
 
 
-const NetworkObject &NetworkObjectDirectory::object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const
+const NetworkObject& NetworkObjectDirectory::object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const
 {
 	if( parent == 0 )
 	{
 		parent = m_rootObject.modelId();
 	}
 
-	const auto it = m_objects.find( parent );
+	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
 		int index = 0;
@@ -110,7 +110,7 @@ int NetworkObjectDirectory::index( NetworkObject::ModelId parent, NetworkObject:
 		parent = m_rootObject.modelId();
 	}
 
-	const auto it = m_objects.find( parent );
+	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
 		int index = 0;
@@ -136,7 +136,7 @@ int NetworkObjectDirectory::childCount( NetworkObject::ModelId parent ) const
 		parent = m_rootObject.modelId();
 	}
 
-	const auto it = m_objects.find( parent );
+	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
 		return it->count();
@@ -154,7 +154,7 @@ NetworkObject::ModelId NetworkObjectDirectory::childId( NetworkObject::ModelId p
 		parent = m_rootObject.modelId();
 	}
 
-	const auto it = m_objects.find( parent );
+	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
 		if( index < it->count() )
@@ -175,11 +175,11 @@ NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId 
 		return 0;
 	}
 
-	for( auto it = m_objects.begin(); it != m_objects.end(); ++it )
+	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
 	{
-		auto& objectList = it.value();
+		const auto& objectList = it.value();
 
-		for( auto& object : objectList )
+		for( const auto& object : objectList )
 		{
 			if( object.modelId() == child )
 			{
@@ -226,24 +226,30 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 		return;
 	}
 
+	auto completeNetworkObject = networkObject;
+	if( completeNetworkObject.parentUid().isNull() )
+	{
+		completeNetworkObject.setParentUid( parent.uid() );
+	}
+
 	auto& objectList = m_objects[parent.modelId()];
-	const auto index = objectList.indexOf( networkObject );
+	const auto index = objectList.indexOf( completeNetworkObject );
 
 	if( index < 0 )
 	{
 		emit objectsAboutToBeInserted( parent, objectList.count(), 1 );
 
-		objectList.append( networkObject );
-		if( networkObject.type() == NetworkObject::Group )
+		objectList.append( completeNetworkObject );
+		if( completeNetworkObject.type() == NetworkObject::Group )
 		{
-			m_objects[networkObject.modelId()] = {};
+			m_objects[completeNetworkObject.modelId()] = {};
 		}
 
 		emit objectsInserted();
 	}
-	else if( objectList[index].exactMatch( networkObject ) == false )
+	else if( objectList[index].exactMatch( completeNetworkObject ) == false )
 	{
-		objectList.replace( index, networkObject );
+		objectList.replace( index, completeNetworkObject );
 		emit objectChanged( parent, index );
 	}
 }
