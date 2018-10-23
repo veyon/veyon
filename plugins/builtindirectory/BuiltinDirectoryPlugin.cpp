@@ -513,7 +513,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 										 const QString& room )
 {
 	int lineCount = 0;
-	QMap<QString, QList<NetworkObject> > networkObjects;
+	QMap<QString, NetworkObjectList > networkObjects;
 	while( inputFile.atEnd() == false )
 	{
 		++lineCount;

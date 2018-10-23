@@ -417,7 +417,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 
 
-QStringList AccessControlProvider::objectNames( const QList<NetworkObject>& objects )
+QStringList AccessControlProvider::objectNames( const NetworkObjectList& objects )
 {
 	QStringList nameList;
 	nameList.reserve( objects.size() );

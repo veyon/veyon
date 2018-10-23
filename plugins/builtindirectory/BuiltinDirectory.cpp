@@ -38,7 +38,7 @@ NetworkObjectList BuiltinDirectory::queryObjects( NetworkObject::Type type, cons
 {
 	const auto networkObjects = m_configuration.networkObjects();
 
-	QList<NetworkObject> objects;
+	NetworkObjectList objects;
 
 	// search for corresponding group whose UID matches parent UID of computer object
 	for( const auto& networkObjectValue : networkObjects )

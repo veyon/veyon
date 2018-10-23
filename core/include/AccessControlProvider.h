@@ -78,7 +78,7 @@ private:
 						  const QString& localUser, const QString& localComputer,
 						  const QStringList& connectedUsers ) const;
 
-	static QStringList objectNames( const QList<NetworkObject>& objects );
+	static QStringList objectNames( const NetworkObjectList& objects );
 
 	QList<AccessControlRule> m_accessControlRules;
 	UserGroupsBackendInterface* m_userGroupsBackend;
