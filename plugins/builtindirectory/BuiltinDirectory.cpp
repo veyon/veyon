@@ -93,7 +93,7 @@ void BuiltinDirectory::update()
 		{
 			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
-			insertObject( networkObject, NetworkObject::Root );
+			addOrUpdateObject( networkObject, NetworkObject::Root );
 
 			updateRoom( networkObject, networkObjects );
 		}
@@ -107,8 +107,6 @@ void BuiltinDirectory::update()
 
 void BuiltinDirectory::updateRoom( const NetworkObject& roomObject, const QJsonArray& networkObjects )
 {
-	auto& computerObjects = objectList( roomObject ); // clazy:exclude=detaching-member
-
 	QVector<NetworkObject::Uid> computerUids;
 
 	for( const auto& networkObjectValue : networkObjects )
@@ -118,21 +116,10 @@ void BuiltinDirectory::updateRoom( const NetworkObject& roomObject, const QJsonA
 		if( networkObject.parentUid() == roomObject.uid() )
 		{
 			computerUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
-
-			int index = computerObjects.indexOf( networkObject );
-			if( index < 0 )
-			{
-				insertObject( networkObject, roomObject );
-			}
-			else if( computerObjects[index].exactMatch( networkObject ) == false )
-			{
-				computerObjects.replace( index, networkObject );
-				emit objectChanged( roomObject, index );
-			}
+			addOrUpdateObject( networkObject, roomObject );
 		}
 	}
 
 	removeObjects( roomObject, [computerUids]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Host && computerUids.contains( object.uid() ) == false; } );
-
 }

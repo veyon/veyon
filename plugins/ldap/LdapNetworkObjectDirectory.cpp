@@ -77,7 +77,7 @@ void LdapNetworkObjectDirectory::update()
 	{
 		const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
 
-		insertObject( computerRoomObject, NetworkObject::Root );
+		addOrUpdateObject( computerRoomObject, rootObject );
 
 		updateGroup( computerRoomObject );
 	}
@@ -90,8 +90,6 @@ void LdapNetworkObjectDirectory::update()
 
 void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
 {
-	auto& groupObjects = objectList( groupObject ); // clazy:exclude=detaching-member
-
 	const auto computers = m_ldapDirectory.computerRoomMembers( groupObject.name() );
 
 	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().computerMacAddressAttribute().count() > 0 );
@@ -99,20 +97,9 @@ void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
 	for( const auto& computer : qAsConst( computers ) )
 	{
 		const auto hostObject = computerToObject( computer, hasMacAddressAttribute );
-		if( hostObject.type() != NetworkObject::Host )
+		if( hostObject.type() == NetworkObject::Host )
 		{
-			continue;
-		}
-
-		const auto index = groupObjects.indexOf( hostObject );
-		if( index < 0 )
-		{
-			insertObject( hostObject, groupObject );
-		}
-		else if( groupObjects[index].exactMatch( hostObject ) == false )
-		{
-			groupObjects.replace( index, hostObject );
-			emit objectChanged( groupObject, index );
+			addOrUpdateObject( hostObject, groupObject );
 		}
 	}
 

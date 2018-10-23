@@ -213,17 +213,18 @@ NetworkObjectList& NetworkObjectDirectory::objectList( const NetworkObject& pare
 
 
 
-bool NetworkObjectDirectory::insertObject( const NetworkObject& networkObject, const NetworkObject& parent )
+void NetworkObjectDirectory::insertOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent )
 {
 	if( m_objects.contains( parent.modelId() ) == false )
 	{
-		qWarning() << Q_FUNC_INFO << networkObject.toJson() << parent.toJson();
-		return false;
+		qCritical() << Q_FUNC_INFO << "parent" << parent.toJson() << "does not exist for object" << networkObject.toJson();
+		return;
 	}
 
 	auto& objectList = m_objects[parent.modelId()];
+	const auto index = objectList.indexOf( networkObject );
 
-	if( objectList.contains( networkObject ) == false )
+	if( index < 0 )
 	{
 		emit objectsAboutToBeInserted( parent, objectList.count(), 1 );
 
@@ -234,11 +235,12 @@ bool NetworkObjectDirectory::insertObject( const NetworkObject& networkObject, c
 		}
 
 		emit objectsInserted();
-
-		return true;
 	}
-
-	return false;
+	else if( objectList[index].exactMatch( networkObject ) == false )
+	{
+		objectList.replace( index, networkObject );
+		emit objectChanged( parent, index );
+	}
 }
 
 

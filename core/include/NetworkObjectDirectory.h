@@ -64,7 +64,7 @@ protected:
 	typedef std::function<bool(const NetworkObject &)> NetworkObjectFilter;
 
 	NetworkObjectList& objectList( const NetworkObject& parent );
-	bool insertObject( const NetworkObject& networkObject, const NetworkObject& parent );
+	void insertOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent );
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
 
 private:
