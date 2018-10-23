@@ -31,8 +31,7 @@
 
 CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent ) :
 	QIdentityProxyModel(parent),
-	m_uidRole( uidRole ),
-	m_callDepth( 0 )
+	m_uidRole( uidRole )
 {
 	connect( this, &QIdentityProxyModel::rowsInserted,
 			 this, &CheckableItemProxyModel::updateNewRows );
@@ -67,7 +66,7 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 
 	if( role == Qt::CheckStateRole && index.column() == 0 )
 	{
-		return m_checkStates.value( QIdentityProxyModel::data( index, m_uidRole ).toUuid() );
+		return m_checkStates.value( indexToUuid( index ) );
 	}
 
 	return QIdentityProxyModel::data(index, role);
@@ -75,65 +74,24 @@ QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
 
 
 
-bool CheckableItemProxyModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool CheckableItemProxyModel::setData( const QModelIndex& index, const QVariant& value, int role )
 {
 	if( role != Qt::CheckStateRole || index.column() > 0 )
 	{
 		return QIdentityProxyModel::setData( index, value, role );
 	}
 
-	if( m_callDepth > 1 )
-	{
-		return false;
-	}
-
-	++m_callDepth;
-
+	const auto uuid = indexToUuid( index );
 	const auto checkState = checkStateFromVariant( value );
 
-	m_checkStates[QIdentityProxyModel::data( index, m_uidRole ).toUuid()] = checkState;
-
-	const auto parentIndex = index.parent();
-
-	int childrenCount = rowCount( index );
-
-	if( childrenCount > 0 )
+	if( m_checkStates[uuid] != checkState )
 	{
-		for( int i = 0; i < childrenCount; ++i )
-		{
-			setData( this->index( i, 0, index ), value, role );
-		}
+		m_checkStates[uuid] = checkState;
+		emit dataChanged( index, index, { Qt::CheckStateRole } );
 
-		emit dataChanged( this->index( 0, 0, parentIndex ), this->index( childrenCount-1, 0, parentIndex ), { role } );
+		setChildData( index, checkState );
+		setParentData( index.parent(), checkState );
 	}
-	else if( parentIndex.isValid() )
-	{
-		childrenCount = rowCount( parentIndex );
-
-		Qt::CheckState parentCheckState = checkState;
-
-		for( int i = 0; i < childrenCount; ++i )
-		{
-			if( checkStateFromVariant( data( this->index( i, 0, parentIndex ), role ) ) != parentCheckState )
-			{
-				parentCheckState = Qt::PartiallyChecked;
-				break;
-			}
-		}
-
-		if( checkStateFromVariant( data( parentIndex, Qt::CheckStateRole ) ) != parentCheckState )
-		{
-			setData( parentIndex, parentCheckState, role );
-			if( m_callDepth == 0 )
-			{
-				emit dataChanged( parentIndex, parentIndex, { role } );
-			}
-		}
-
-		emit dataChanged( index, index, { role } );
-	}
-
-	--m_callDepth;
 
 	return true;
 }
@@ -200,4 +158,78 @@ void CheckableItemProxyModel::loadStates( const QJsonArray& data )
 	}
 
 	endResetModel();
+}
+
+
+
+QUuid CheckableItemProxyModel::indexToUuid( const QModelIndex& index ) const
+{
+	return QIdentityProxyModel::data( index, m_uidRole ).toUuid();
+}
+
+
+
+bool CheckableItemProxyModel::setChildData( const QModelIndex& index, Qt::CheckState checkState )
+{
+	bool modified = false;
+
+	const auto childCount = rowCount( index );
+
+	if( childCount > 0 )
+	{
+		for( int i = 0; i < childCount; ++i )
+		{
+			const auto childIndex = this->index( i, 0, index );
+			const auto childUuid = indexToUuid( childIndex );
+
+			if( m_checkStates[childUuid] != checkState )
+			{
+				m_checkStates[childUuid] = checkState;
+				modified = true;
+			}
+
+			if( setChildData( childIndex, checkState ) )
+			{
+				modified = true;
+			}
+		}
+
+		if( modified )
+		{
+			emit dataChanged( this->index( 0, 0, index ), this->index( childCount-1, 0, index ), { Qt::CheckStateRole } );
+		}
+	}
+
+	return modified;
+}
+
+
+
+void CheckableItemProxyModel::setParentData( const QModelIndex& index, Qt::CheckState checkState )
+{
+	if( index.isValid() == false )
+	{
+		return;
+	}
+
+	const auto childCount = rowCount( index );
+
+	for( int i = 0; i < childCount; ++i )
+	{
+		if( checkStateFromVariant( data( this->index( i, 0, index ), Qt::CheckStateRole ) ) != checkState )
+		{
+			checkState = Qt::PartiallyChecked;
+			break;
+		}
+	}
+
+	const auto uuid = indexToUuid( index );
+
+	if( m_checkStates[uuid] != checkState )
+	{
+		m_checkStates[uuid] = checkState;
+		emit dataChanged( index, index, { Qt::CheckStateRole } );
+
+		setParentData( index.parent(), checkState );
+	}
 }

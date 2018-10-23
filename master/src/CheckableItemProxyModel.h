@@ -48,6 +48,10 @@ public:
 	void loadStates( const QJsonArray& data );
 
 private:
+	QUuid indexToUuid( const QModelIndex& index ) const;
+	bool setChildData( const QModelIndex &index, Qt::CheckState checkState );
+	void setParentData( const QModelIndex &index, Qt::CheckState checkState );
+
 	Qt::CheckState checkStateFromVariant( const QVariant& data )
 	{
 #if QT_VERSION < 0x050600
@@ -61,7 +65,6 @@ private:
 
 	int m_uidRole;
 	QHash<QUuid, Qt::CheckState> m_checkStates;
-	int m_callDepth;
 
 };
 
