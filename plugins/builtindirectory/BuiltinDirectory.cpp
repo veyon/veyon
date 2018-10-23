@@ -34,29 +34,6 @@ BuiltinDirectory::BuiltinDirectory( BuiltinDirectoryConfiguration& configuration
 
 
 
-NetworkObjectList BuiltinDirectory::queryObjects( NetworkObject::Type type, const QString& name )
-{
-	const auto networkObjects = m_configuration.networkObjects();
-
-	NetworkObjectList objects;
-
-	// search for corresponding group whose UID matches parent UID of computer object
-	for( const auto& networkObjectValue : networkObjects )
-	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
-
-		if( ( type == NetworkObject::None || networkObject.type() == type ) &&
-				( name.isEmpty() || networkObject.name().compare( name, Qt::CaseInsensitive ) == 0 ) )
-		{
-			objects.append( networkObject );
-		}
-	}
-
-	return objects;
-}
-
-
-
 void BuiltinDirectory::update()
 {
 	m_configuration.reloadFromStore();
