@@ -193,6 +193,29 @@ NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId 
 
 
 
+NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
+{
+	NetworkObjectList objects;
+
+	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+	{
+		const auto& objectList = it.value();
+
+		for( const auto& object : objectList )
+		{
+			if( ( type == NetworkObject::None || object.type() == type ) &&
+					( name.isEmpty() || object.name().compare( name, Qt::CaseInsensitive ) == 0 ) )
+			{
+				objects.append( object );
+			}
+		}
+	}
+
+	return objects;
+}
+
+
+
 NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& child )
 {
 	if( child.type() == NetworkObject::Root )

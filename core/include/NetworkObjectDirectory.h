@@ -54,7 +54,7 @@ public:
 	NetworkObject::ModelId childId( NetworkObject::ModelId parent, int index ) const;
 	NetworkObject::ModelId parentId( NetworkObject::ModelId child ) const;
 
-	virtual NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name = QString() ) = 0;
+	virtual NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name = QString() );
 	virtual NetworkObjectList queryParents( const NetworkObject& child );
 
 public slots:
