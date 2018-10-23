@@ -36,8 +36,3 @@ WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
 {
 }
 
-
-
-WindowsPlatformPlugin::~WindowsPlatformPlugin()
-{
-}
