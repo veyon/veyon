@@ -195,6 +195,11 @@ NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId 
 
 NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type, const QString& name )
 {
+	if( m_objects.isEmpty() )
+	{
+		update();
+	}
+
 	NetworkObjectList objects;
 
 	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
@@ -218,6 +223,11 @@ NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type
 
 NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& child )
 {
+	if( m_objects.isEmpty() )
+	{
+		update();
+	}
+
 	if( child.type() == NetworkObject::Root )
 	{
 		return {};
