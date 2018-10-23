@@ -28,6 +28,7 @@
 #include <QUuid>
 #include <QString>
 
+#include "HashList.h"
 #include "VeyonCore.h"
 
 class VEYON_CORE_EXPORT NetworkObject
@@ -129,5 +130,6 @@ private:
 Q_DECLARE_METATYPE(NetworkObject::Type)
 
 typedef QList<NetworkObject> NetworkObjectList;
+typedef HashList<NetworkObject::Uid> NetworkObjectUidList;
 
 #endif // NETWORK_OBJECT_H
