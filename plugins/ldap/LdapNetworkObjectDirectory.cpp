@@ -50,20 +50,20 @@ NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type 
 
 
 
-NetworkObject LdapNetworkObjectDirectory::queryParent( const NetworkObject& object )
+NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject& object )
 {
 	switch( object.type() )
 	{
 	case NetworkObject::Host:
-		return NetworkObject( NetworkObject::Group,
-							  m_ldapDirectory.computerRoomsOfComputer( object.directoryAddress() ).value( 0 ) );
+		return { NetworkObject( NetworkObject::Group,
+								m_ldapDirectory.computerRoomsOfComputer( object.directoryAddress() ).value( 0 ) ) };
 	case NetworkObject::Group:
-		return NetworkObject::Root;
+		return { NetworkObject::Root };
 	default:
 		break;
 	}
 
-	return NetworkObject::None;
+	return { NetworkObject::None };
 }
 
 

@@ -33,10 +33,9 @@ class BuiltinDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parentId );
+	BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent );
 
 	NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name ) override;
-	NetworkObject queryParent( const NetworkObject& childId ) override;
 
 	void update() override;
 

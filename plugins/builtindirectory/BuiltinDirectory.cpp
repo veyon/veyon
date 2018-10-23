@@ -57,26 +57,6 @@ NetworkObjectList BuiltinDirectory::queryObjects( NetworkObject::Type type, cons
 
 
 
-NetworkObject BuiltinDirectory::queryParent( const NetworkObject& object )
-{
-	const auto networkObjects = m_configuration.networkObjects();
-	const auto parentUid = object.parentUid();
-
-	for( const auto& networkObjectValue : networkObjects )
-	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
-
-		if( networkObject.uid() == parentUid )
-		{
-			return networkObject;
-		}
-	}
-
-	return NetworkObject();
-}
-
-
-
 void BuiltinDirectory::update()
 {
 	m_configuration.reloadFromStore();

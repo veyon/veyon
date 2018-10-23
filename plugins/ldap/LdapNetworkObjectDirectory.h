@@ -32,10 +32,10 @@ class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parentId );
+	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parent );
 
 	NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name ) override;
-	NetworkObject queryParent( const NetworkObject& childId ) override;
+	NetworkObjectList queryParents( const NetworkObject& childId ) override;
 
 private slots:
 	void update() override;

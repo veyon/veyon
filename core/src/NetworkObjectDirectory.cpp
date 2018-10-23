@@ -193,6 +193,31 @@ NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId 
 
 
 
+NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& child )
+{
+	if( child.type() == NetworkObject::Root )
+	{
+		return {};
+	}
+
+	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+	{
+		const auto& objectList = it.value();
+
+		for( const auto& object : objectList )
+		{
+			if( object.uid() == child.parentUid() )
+			{
+				return queryParents( object ) + NetworkObjectList( { object } );
+			}
+		}
+	}
+
+	return {};
+}
+
+
+
 void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent )
 {
 	if( m_objects.contains( parent.modelId() ) == false )
