@@ -102,7 +102,8 @@ bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, con
 
 	if( message.featureUid() == m_userSessionInfoFeature.uid() )
 	{
-		computerControlInterface->setUser( message.argument( UserName ).toString() );
+		computerControlInterface->setUserLoginName( message.argument( UserLoginName ).toString() );
+		computerControlInterface->setUserFullName( message.argument( UserFullName ).toString() );
 
 		return true;
 	}
@@ -119,14 +120,16 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, con
 		FeatureMessage reply( message.featureUid(), message.command() );
 
 		m_userDataLock.lockForRead();
-		if( m_userName.isEmpty() )
+		if( m_userLoginName.isEmpty() )
 		{
 			queryUserInformation();
-			reply.addArgument( UserName, QString() );
+			reply.addArgument( UserLoginName, QString() );
+			reply.addArgument( UserFullName, QString() );
 		}
 		else
 		{
-			reply.addArgument( UserName, QString( QStringLiteral( "%1 (%2)" ) ).arg( m_userName, m_userFullName ) );
+			reply.addArgument( UserLoginName, m_userLoginName );
+			reply.addArgument( UserFullName, m_userFullName );
 		}
 		m_userDataLock.unlock();
 
@@ -153,10 +156,10 @@ void UserSessionControl::queryUserInformation()
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
 	m_userInfoQueryTimer->singleShot( 0, m_userInfoQueryTimer, [=]() {
-		const auto userName = VeyonCore::platform().userFunctions().currentUser();
-		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userName );
+		const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
+		const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
 		m_userDataLock.lockForWrite();
-		m_userName = userName;
+		m_userLoginName = userLoginName;
 		m_userFullName = userFullName;
 		m_userDataLock.unlock();
 	} );

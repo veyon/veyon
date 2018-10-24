@@ -99,12 +99,19 @@ public:
 		m_screenUpdated = false;
 	}
 
-	const QString& user() const
+	const QString& userLoginName() const
 	{
-		return m_user;
+		return m_userLoginName;
 	}
 
-	void setUser( const QString& user );
+	void setUserLoginName( const QString& userLoginName );
+
+	const QString& userFullName() const
+	{
+		return m_userFullName;
+	}
+
+	void setUserFullName( const QString& userFullName );
 
 	const FeatureUidList& activeFeatures() const
 	{
@@ -146,7 +153,8 @@ private:
 	Computer m_computer;
 
 	State m_state;
-	QString m_user;
+	QString m_userLoginName;
+	QString m_userFullName;
 	FeatureUidList m_activeFeatures;
 	Feature::Uid m_designatedModeFeature;
 

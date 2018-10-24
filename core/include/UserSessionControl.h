@@ -95,7 +95,8 @@ private:
 
 	enum Arguments
 	{
-		UserName,
+		UserLoginName,
+		UserFullName,
 	};
 
 	void queryUserInformation();
@@ -109,7 +110,7 @@ private:
 	QTimer* m_userInfoQueryTimer;
 
 	QReadWriteLock m_userDataLock;
-	QString m_userName;
+	QString m_userLoginName;
 	QString m_userFullName;
 
 };

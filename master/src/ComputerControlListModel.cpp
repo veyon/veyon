@@ -104,7 +104,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 	case Qt::InitialSortOrderRole:
 		return computerControl->computer().room() + computerControl->computer().name() +
-				computerControl->computer().hostAddress() + computerControl->user();
+				computerControl->computer().hostAddress() + computerControl->userLoginName();
 
 	case UidRole:
 		return computerControl->computer().networkObjectUid();
@@ -270,7 +270,8 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 
 	controlInterface->disconnect( &m_master->computerManager() );
 
-	controlInterface->setUser( QString() );
+	controlInterface->setUserLoginName( QString() );
+	controlInterface->setUserFullName( QString() );
 	m_master->computerManager().updateUser( controlInterface );
 }
 
@@ -357,22 +358,12 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 {
 	if( m_displayRoleContent != DisplayComputerName &&
 			controlInterface->state() == ComputerControlInterface::Connected &&
-			controlInterface->user().isEmpty() == false )
+			controlInterface->userLoginName().isEmpty() == false )
 	{
-		auto user = controlInterface->user();
-
-		// do we have full name information?
-		QRegExp fullNameRX( QStringLiteral("(.*) \\((.*)\\)") );
-		if( fullNameRX.indexIn( user ) >= 0 )
+		auto user = controlInterface->userFullName();
+		if( user.isEmpty() )
 		{
-			if( fullNameRX.cap( 2 ).isEmpty() == false )
-			{
-				user = fullNameRX.cap( 2 );
-			}
-			else
-			{
-				user = fullNameRX.cap( 1 );
-			}
+			user = controlInterface->userLoginName();
 		}
 
 		if( m_displayRoleContent == DisplayUserName )
@@ -427,12 +418,18 @@ QString ComputerControlListModel::loggedOnUserInformation( const ComputerControl
 {
 	if( controlInterface->state() == ComputerControlInterface::Connected )
 	{
-		if( controlInterface->user().isEmpty() )
+		if( controlInterface->userLoginName().isEmpty() )
 		{
 			return tr( "No user logged on" );
 		}
 
-		return tr( "Logged on user: %1" ).arg( controlInterface->user() );
+		auto user = controlInterface->userLoginName();
+		if( controlInterface->userFullName().isEmpty() == false )
+		{
+			user = QStringLiteral( "%1 (%2)" ).arg( user, controlInterface->userFullName() );
+		}
+
+		return tr( "Logged on user: %1" ).arg( user );
 	}
 
 	return QString();

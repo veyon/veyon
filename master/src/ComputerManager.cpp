@@ -144,8 +144,13 @@ void ComputerManager::updateUser( const ComputerControlInterface::Pointer& contr
 
 	if( networkObjectIndex.isValid() )
 	{
+		auto user = controlInterface->userFullName();
+		if( user.isEmpty() )
+		{
+			user = controlInterface->userLoginName();
+		}
 		m_networkObjectOverlayDataModel->setData( mapToUserNameModelIndex( networkObjectIndex ),
-												  controlInterface->user(),
+												  user,
 												  Qt::DisplayRole );
 	}
 }

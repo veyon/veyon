@@ -38,7 +38,8 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 	QObject( parent ),
 	m_computer( computer ),
 	m_state( Disconnected ),
-	m_user(),
+	m_userLoginName(),
+	m_userFullName(),
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
 	m_connection( nullptr ),
@@ -173,11 +174,23 @@ QImage ComputerControlInterface::screen() const
 
 
 
-void ComputerControlInterface::setUser( const QString& user )
+void ComputerControlInterface::setUserLoginName( const QString& userLoginName )
 {
-	if( user != m_user )
+	if( userLoginName != m_userLoginName )
 	{
-		m_user = user;
+		m_userLoginName = userLoginName;
+
+		emit userChanged();
+	}
+}
+
+
+
+void ComputerControlInterface::setUserFullName( const QString& userFullName )
+{
+	if( userFullName != m_userFullName )
+	{
+		m_userFullName = userFullName;
 
 		emit userChanged();
 	}
@@ -268,14 +281,15 @@ void ComputerControlInterface::updateUser()
 {
 	if( m_vncConnection && m_connection && state() == Connected )
 	{
-		if( user().isEmpty() )
+		if( userLoginName().isEmpty() )
 		{
 			m_builtinFeatures->userSessionControl().getUserSessionInfo( { weakPointer() } );
 		}
 	}
 	else
 	{
-		setUser( QString() );
+		setUserLoginName( QString() );
+		setUserFullName( QString() );
 	}
 }
 

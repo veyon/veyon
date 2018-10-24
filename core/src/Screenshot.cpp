@@ -50,27 +50,17 @@ Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
 
 void Screenshot::take( const ComputerControlInterface::Pointer& computerControlInterface )
 {
-	QString u = computerControlInterface->user();
-	if( u.isEmpty() )
+	auto userLogin = computerControlInterface->userLoginName();
+	if( userLogin.isEmpty() )
 	{
-		u = tr( "unknown" );
-	}
-	if( !u.contains( '(' ) )
-	{
-		u = QString( QStringLiteral( "%1 (%2)" ) ).arg( u, u );
+		userLogin = tr( "unknown" );
 	}
 
-	// construct text
-	QString txt = u + "@" + computerControlInterface->computer().hostAddress() + " " +
-			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
-			" " + QTime( QTime::currentTime() ).
-							toString( Qt::ISODate );
-	const QString dir = VeyonCore::filesystem().expandPath( VeyonCore::config().screenshotDirectory() );
+	const auto dir = VeyonCore::filesystem().expandPath( VeyonCore::config().screenshotDirectory() );
+
 	if( VeyonCore::filesystem().ensurePathExists( dir ) == false )
 	{
-		QString msg = tr( "Could not take a screenshot as directory %1 "
-								"doesn't exist and couldn't be "
-								"created." ).arg( dir );
+		const auto msg = tr( "Could not take a screenshot as directory %1 doesn't exist and couldn't be created." ).arg( dir );
 		qCritical() << msg.toUtf8().constData();
 		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
@@ -86,8 +76,19 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 						QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
 					replace( ':', '-' );
 
-	m_fileName = dir + QDir::separator() +
-					u.section( '(', 1, 1 ).section( ')', 0, 0 ) + m_fileName;
+	m_fileName = dir + QDir::separator() + userLogin + m_fileName;
+
+	// construct caption
+	auto user = userLogin;
+	if( computerControlInterface->userFullName().isEmpty() == false )
+	{
+		user = QStringLiteral( "%1 (%2)" ).arg( userLogin, computerControlInterface->userFullName() );
+	}
+
+	const auto caption = QStringLiteral( "%1@%2 %3 %4" ).arg( user,
+															  computerControlInterface->computer().hostAddress(),
+															  QDate::currentDate().toString( Qt::ISODate ),
+															  QTime::currentTime().toString( Qt::ISODate ) );
 
 	const int FONT_SIZE = 14;
 	const int RECT_MARGIN = 10;
@@ -108,7 +109,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	const int rx = RECT_MARGIN;
 	const int ry = m_image.height() - RECT_MARGIN - 2 * RECT_INNER_MARGIN - FONT_SIZE;
 	const int rw = RECT_MARGIN + 4 * RECT_INNER_MARGIN +
-					fm.size( Qt::TextSingleLine, txt ).width() + icon.width();
+					fm.size( Qt::TextSingleLine, caption ).width() + icon.width();
 	const int rh = 2 * RECT_INNER_MARGIN + FONT_SIZE;
 	const int ix = rx + RECT_INNER_MARGIN + 1;
 	const int iy = ry + RECT_INNER_MARGIN - 2;
@@ -117,7 +118,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 	p.fillRect( rx, ry, rw, rh, QColor( 255, 255, 255, 160 ) );
 	p.drawPixmap( ix, iy, icon );
-	p.drawText( tx, ty, txt );
+	p.drawText( tx, ty, caption );
 
 	m_image.save( m_fileName, "PNG", 50 );
 }
