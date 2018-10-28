@@ -82,6 +82,7 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Screenshots" ) ) );
 	c.setComputerMonitoringUpdateInterval( 1000 );
 	c.setComputerMonitoringBackgroundColor( Qt::white );
+	c.setComputerMonitoringTextColor( Qt::black );
 
 	c.setAuthenticationMethod( VeyonCore::LogonAuthentication );
 

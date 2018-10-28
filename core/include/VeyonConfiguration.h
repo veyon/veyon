@@ -84,6 +84,7 @@ public slots:
 	void setComputerMonitoringUpdateInterval( int );
 	void setComputerDisplayRoleContent( int );
 	void setComputerMonitoringBackgroundColor( const QColor& );
+	void setComputerMonitoringTextColor( const QColor& );
 	void setAccessControlForMasterEnabled( bool );
 	void setAutoAdjustGridSize( bool );
 	void setAutoSwitchToCurrentRoom( bool );
