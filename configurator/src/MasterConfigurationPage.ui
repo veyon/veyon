@@ -79,10 +79,46 @@
           <string>User interface</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
+          <item row="3" column="1">
+           <widget class="QComboBox" name="computerDisplayRoleContent">
+            <item>
+             <property name="text">
+              <string>User and computer name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only user name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only computer name</string>
+             </property>
+            </item>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string>Thumbnail update interval</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Computer thumbnail caption</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Background color</string>
             </property>
            </widget>
           </item>
@@ -105,41 +141,15 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_6">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_9">
             <property name="text">
-             <string>Background color</string>
+             <string>Text color</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="computerDisplayRoleContent">
-            <item>
-             <property name="text">
-              <string>User and computer name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Only user name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Only computer name</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Computer thumbnail caption</string>
-            </property>
-           </widget>
+           <widget class="QPushButton" name="computerMonitoringTextColor"/>
           </item>
          </layout>
         </widget>
@@ -394,6 +404,8 @@
   <tabstop>openScreenshotDirectory</tabstop>
   <tabstop>computerMonitoringUpdateInterval</tabstop>
   <tabstop>computerMonitoringBackgroundColor</tabstop>
+  <tabstop>computerMonitoringTextColor</tabstop>
+  <tabstop>computerDisplayRoleContent</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSwitchToCurrentRoom</tabstop>
   <tabstop>autoAdjustGridSize</tabstop>

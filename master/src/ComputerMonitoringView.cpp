@@ -82,6 +82,7 @@ void ComputerMonitoringView::setVeyonMaster( VeyonMaster& masterCore )
 
 	auto palette = ui->listView->palette();
 	palette.setColor( QPalette::Base, VeyonCore::config().computerMonitoringBackgroundColor() );
+	palette.setColor( QPalette::Text, VeyonCore::config().computerMonitoringTextColor() );
 	ui->listView->setPalette( palette );
 
 	// attach proxy model to view
