@@ -81,6 +81,13 @@ MainWindow::MainWindow( QWidget* parent ) :
 
 
 
+MainWindow::~MainWindow()
+{
+	delete ui;
+}
+
+
+
 void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )
