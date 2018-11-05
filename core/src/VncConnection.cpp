@@ -651,14 +651,18 @@ void VncConnection::sendEvents()
 {
 	m_globalMutex.lock();
 
-	while( isControlFlagSet( TerminateThread ) == false && m_eventQueue.isEmpty() == false )
+	while( m_eventQueue.isEmpty() == false )
 	{
 		auto event = m_eventQueue.dequeue();
 
 		// unlock the queue mutex during the runtime of ClientEvent::fire()
 		m_globalMutex.unlock();
 
-		event->fire( m_client );
+		if( isControlFlagSet( TerminateThread ) == false )
+		{
+			event->fire( m_client );
+		}
+
 		delete event;
 
 		// and lock it again
