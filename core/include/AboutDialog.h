@@ -39,6 +39,7 @@ class VEYON_CORE_EXPORT AboutDialog : public QDialog
 	Q_OBJECT
 public:
 	AboutDialog( QWidget *parent );
+	~AboutDialog() override;
 
 private slots:
 	void openDonationWebsite();

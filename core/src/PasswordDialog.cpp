@@ -51,9 +51,9 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 
 
 
-
 PasswordDialog::~PasswordDialog()
 {
+	delete ui;
 }
 
 
