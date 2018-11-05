@@ -51,6 +51,13 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 
 
 
+PasswordDialog::~PasswordDialog()
+{
+	delete ui;
+}
+
+
+
 QString PasswordDialog::username() const
 {
 	return ui->username->text();
