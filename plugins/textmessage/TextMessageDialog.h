@@ -37,7 +37,7 @@ class TextMessageDialog : public QDialog
 	Q_OBJECT
 public:
 	TextMessageDialog( QString &msgStr, QWidget *parent );
-
+	~TextMessageDialog() override;
 
 private slots:
 	void accept() override;

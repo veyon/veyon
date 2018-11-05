@@ -42,6 +42,13 @@ TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
 
 
 
+TextMessageDialog::~TextMessageDialog()
+{
+	delete ui;
+}
+
+
+
 void TextMessageDialog::accept()
 {
 	m_msgStr = ui->textEdit->toPlainText();
