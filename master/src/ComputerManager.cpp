@@ -44,7 +44,7 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	QObject( parent ),
 	m_config( config ),
 	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
-	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory ) ),
+	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory, this ) ),
 	m_networkObjectOverlayDataModel( new NetworkObjectOverlayDataModel( tr( "User" ), this ) ),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) ),
