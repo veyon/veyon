@@ -163,11 +163,10 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 
 
-
 MainWindow::~MainWindow()
 {
+	delete ui;
 }
-
 
 
 
