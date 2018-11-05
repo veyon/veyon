@@ -35,7 +35,7 @@ NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* director
 	m_directory( directory )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 
 	connect( m_directory, &NetworkObjectDirectory::objectsAboutToBeInserted,

@@ -37,7 +37,7 @@ NetworkObjectFilterProxyModel::NetworkObjectFilterProxyModel( QObject* parent ) 
 	m_excludeEmptyGroups( false )
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 }
 

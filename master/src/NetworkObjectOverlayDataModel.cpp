@@ -38,8 +38,8 @@ NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel( const QString& ove
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	// base class relies on source model being set when tested by QAbstractItemModelTester
-	setSourceModel( new QStandardItemModel );
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning );
+	setSourceModel( new QStandardItemModel( this ) );
+	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 	appendColumn( overlayDataHeader );
 }
