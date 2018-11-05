@@ -163,6 +163,13 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 
 
+MainWindow::~MainWindow()
+{
+	delete ui;
+}
+
+
+
 bool MainWindow::initAuthentication()
 {
 	if( VeyonCore::instance()->initAuthentication( AuthenticationCredentials::AllTypes ) )
