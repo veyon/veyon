@@ -36,6 +36,13 @@ RunProgramDialog::RunProgramDialog( QWidget* parent ) :
 
 
 
+RunProgramDialog::~RunProgramDialog()
+{
+	delete ui;
+}
+
+
+
 void RunProgramDialog::accept()
 {
 	m_programs = ui->programInputTextEdit->toPlainText().split( '\n' );
