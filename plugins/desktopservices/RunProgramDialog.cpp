@@ -38,6 +38,7 @@ RunProgramDialog::RunProgramDialog( QWidget* parent ) :
 
 RunProgramDialog::~RunProgramDialog()
 {
+	delete ui;
 }
 
 
