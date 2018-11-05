@@ -50,11 +50,11 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation type="unfinished"/>
+        <translation>Datora piekļuves kontrole</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>Piešķirt piekļuvi katram autentificētam lietotājam (noklusējuma)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -62,15 +62,15 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Restrict access to members of certain user groups</source>
-        <translation type="unfinished"/>
+        <translation>Ierobežot piekļuvi noteiktiem grupu dalībniekiem</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Procesa piekļuves kontroles noteikumi</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>Lietotāju grupas, kurām ir atļauta piekļuve datoram</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
@@ -90,23 +90,23 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Access control rules</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuves kontroles noteikumi</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot piekļuves kontroles noteikumu</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation type="unfinished"/>
+        <translation>Noņemt piekļuves kontroles noteikumu</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"/>
+        <translation>Pazemināt izvēlēto noteikumu</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation type="unfinished"/>
+        <translation>Paaugstināt izvēlēto noteikumu</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
@@ -308,7 +308,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>Errors: Nezināma darbība</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -343,7 +343,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Pieejamās autentifikācijas atslēgas</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -371,7 +371,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas atslēgas nosaukums</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
