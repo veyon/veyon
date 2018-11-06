@@ -31,6 +31,7 @@
 #include "FeatureWorkerManager.h"
 #include "PlatformCoreFunctions.h"
 #include "VeyonServerInterface.h"
+#include "VeyonWorkerInterface.h"
 
 
 DesktopAccessDialog::DesktopAccessDialog( QObject* parent ) :
@@ -105,8 +106,6 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, co
 
 bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker);
-
 	if( message.featureUid() != m_desktopAccessDialogFeature.uid() ||
 			message.command() != RequestDesktopAccess )
 	{
@@ -116,9 +115,10 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, co
 	int result = requestDesktopAccess( message.argument( UserArgument ).toString(),
 									   message.argument( HostArgument ).toString() );
 
-	return FeatureMessage( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessChoice ).
-			addArgument( ChoiceArgument, result ).
-			send( message.ioDevice() );
+	FeatureMessage reply( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessChoice );
+	reply.addArgument( ChoiceArgument, result );
+
+	return worker.sendFeatureMessageReply( reply );
 }
 
 
