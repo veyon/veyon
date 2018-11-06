@@ -34,14 +34,10 @@
 #include <QPixmap>
 #include <QTime>
 
-#include "AuthenticationCredentials.h"
-#include "CryptoCore.h"
 #include "PlatformNetworkFunctions.h"
-#include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VncConnection.h"
 #include "SocketDevice.h"
-#include "VariantArrayMessage.h"
 #include "VncEvents.h"
 
 
@@ -176,7 +172,6 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_quality( DefaultQuality ),
 	m_host(),
 	m_port( -1 ),
-	m_veyonAuthType( RfbVeyonAuth::Logon ),
 	m_globalMutex(),
 	m_controlFlagMutex(),
 	m_updateIntervalSleeper(),
@@ -195,11 +190,6 @@ VncConnection::VncConnection( QObject* parent ) :
 	{
 		rfbClientLog = rfbClientLogNone;
 		rfbClientErr = rfbClientLogNone;
-	}
-
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
-	{
-		m_veyonAuthType = RfbVeyonAuth::KeyFile;
 	}
 }
 
@@ -311,6 +301,13 @@ void VncConnection::setPort( int port )
 
 
 
+void VncConnection::setServerReachable()
+{
+	setControlFlag( ServerReachable, true );
+}
+
+
+
 void VncConnection::setFramebufferUpdateInterval( int interval )
 {
 	m_framebufferUpdateInterval = interval;
@@ -395,6 +392,8 @@ void VncConnection::establishConnection()
 		m_client->GotCursorShape = hookCursorShape;
 		m_client->GotXCutText = hookCutText;
 		setClientData( VncConnectionTag, this );
+
+		emit connectionPrepared();
 
 		m_globalMutex.lock();
 
@@ -708,166 +707,6 @@ void VncConnection::clientCut( const QString& text )
 
 
 
-void VncConnection::handleSecTypeVeyon( rfbClient* client )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection == nullptr )
-	{
-		return;
-	}
-
-	SocketDevice socketDevice( libvncClientDispatcher, client );
-	VariantArrayMessage message( &socketDevice );
-	message.receive();
-
-	int authTypeCount = message.read().toInt();
-
-	QList<RfbVeyonAuth::Type> authTypes;
-	authTypes.reserve( authTypeCount );
-
-	for( int i = 0; i < authTypeCount; ++i )
-	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		authTypes.append( static_cast<RfbVeyonAuth::Type>( message.read().toInt() ) );
-#else
-		authTypes.append( message.read().value<RfbVeyonAuth::Type>() );
-#endif
-	}
-
-	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "received authentication types:" << authTypes;
-
-	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
-	if( authTypes.count() > 0 )
-	{
-		chosenAuthType = authTypes.first();
-
-		// look whether the VncConnection recommends a specific
-		// authentication type (e.g. VeyonAuthHostBased when running as
-		// demo client)
-
-		for( auto authType : authTypes )
-		{
-			if( connection->veyonAuthType() == authType )
-			{
-				chosenAuthType = authType;
-			}
-		}
-	}
-
-	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "chose authentication type:" << authTypes;
-
-	VariantArrayMessage authReplyMessage( &socketDevice );
-
-	authReplyMessage.write( chosenAuthType );
-
-	// send username which is used when displaying an access confirm dialog
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
-	{
-		authReplyMessage.write( VeyonCore::authenticationCredentials().logonUsername() );
-	}
-	else
-	{
-		authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
-	}
-
-	authReplyMessage.send();
-
-	VariantArrayMessage authAckMessage( &socketDevice );
-	authAckMessage.receive();
-
-	switch( chosenAuthType )
-	{
-	case RfbVeyonAuth::KeyFile:
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::PrivateKey ) )
-		{
-			VariantArrayMessage challengeReceiveMessage( &socketDevice );
-			challengeReceiveMessage.receive();
-			const auto challenge = challengeReceiveMessage.read().toByteArray();
-
-			if( challenge.size() != CryptoCore::ChallengeSize )
-			{
-				qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "challenge size mismatch!";
-				break;
-			}
-
-			// create local copy of private key so we can modify it within our own thread
-			auto key = VeyonCore::authenticationCredentials().privateKey();
-			if( key.isNull() || key.canSign() == false )
-			{
-				qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "invalid private key!";
-				break;
-			}
-
-			const auto signature = key.signMessage( challenge, CryptoCore::DefaultSignatureAlgorithm );
-
-			VariantArrayMessage challengeResponseMessage( &socketDevice );
-			challengeResponseMessage.write( VeyonCore::instance()->authenticationKeyName() );
-			challengeResponseMessage.write( signature );
-			challengeResponseMessage.send();
-		}
-		break;
-
-	case RfbVeyonAuth::HostWhiteList:
-		// nothing to do - we just get accepted because the host white list contains our IP
-		break;
-
-	case RfbVeyonAuth::Logon:
-	{
-		VariantArrayMessage publicKeyMessage( &socketDevice );
-		publicKeyMessage.receive();
-
-		CryptoCore::PublicKey publicKey = CryptoCore::PublicKey::fromPEM( publicKeyMessage.read().toString() );
-
-		if( publicKey.canEncrypt() == false )
-		{
-			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "can't encrypt with given public key!";
-			break;
-		}
-
-		CryptoCore::SecureArray plainTextPassword( VeyonCore::authenticationCredentials().logonPassword().toUtf8() );
-		CryptoCore::SecureArray encryptedPassword = publicKey.encrypt( plainTextPassword, CryptoCore::DefaultEncryptionAlgorithm );
-		if( encryptedPassword.isEmpty() )
-		{
-			qCritical() << Q_FUNC_INFO << QThread::currentThreadId() << "password encryption failed!";
-			break;
-		}
-
-		VariantArrayMessage passwordResponse( &socketDevice );
-		passwordResponse.write( encryptedPassword.toByteArray() );
-		passwordResponse.send();
-		break;
-	}
-
-	case RfbVeyonAuth::Token:
-	{
-		VariantArrayMessage tokenAuthMessage( &socketDevice );
-		tokenAuthMessage.write( VeyonCore::authenticationCredentials().token() );
-		tokenAuthMessage.send();
-		break;
-	}
-
-	default:
-		// nothing to do - we just get accepted
-		break;
-	}
-}
-
-
-
-void VncConnection::hookPrepareAuthentication( rfbClient* client )
-{
-	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
-	{
-		// set our internal flag which indicates that we basically have communication with the client
-		// which means that the host is reachable
-		connection->setControlFlag( ServerReachable, true );
-	}
-}
-
-
-
 qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
 												   SocketDevice::SocketOperation operation, void* user )
 {
@@ -878,16 +717,8 @@ qint64 VncConnection::libvncClientDispatcher( char* buffer, const qint64 bytes,
 		return ReadFromRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
 
 	case SocketDevice::SocketOpWrite:
-		return WriteToRFBServer( client, buffer, static_cast<int>( bytes ) ) ? bytes : 0;
+		return WriteToRFBServer( client, buffer, static_cast<unsigned int>( bytes ) ) ? bytes : 0;
 	}
 
 	return 0;
-}
-
-
-
-void handleSecTypeVeyon( rfbClient *client )
-{
-	VncConnection::hookPrepareAuthentication( client );
-	VncConnection::handleSecTypeVeyon( client );
 }

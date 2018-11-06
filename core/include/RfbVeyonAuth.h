@@ -27,7 +27,8 @@
 #define RFB_VEYON_AUTH_H
 
 #include "VeyonCore.h"
-#include "VeyonRfbExt.h"
+
+static constexpr char rfbSecTypeVeyon = 40;
 
 class VEYON_CORE_EXPORT RfbVeyonAuth
 {

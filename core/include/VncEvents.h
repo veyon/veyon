@@ -26,7 +26,7 @@
 
 #include <QString>
 
-#include "VeyonRfbExt.h"
+typedef struct _rfbClient rfbClient;
 
 // clazy:excludeall=copyable-polymorphic
 

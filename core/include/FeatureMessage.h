@@ -39,6 +39,8 @@ public:
 	typedef qint32 Command;
 	typedef QMap<QString, QVariant> Arguments;
 
+	static constexpr unsigned char RfbMessageType = 41;
+
 	enum SpecialCommands
 	{
 		DefaultCommand = 0,

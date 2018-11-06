@@ -36,6 +36,7 @@
 class ProgressWidget;
 class RemoteControlWidget;
 class KeyboardShortcutTrapper;
+class VeyonConnection;
 
 class VEYON_CORE_EXPORT VncView : public QWidget
 {
@@ -127,6 +128,7 @@ private:
 	void unpressKey( unsigned int key );
 
 	VncConnection* m_vncConn;
+	VeyonConnection* m_veyonConnection;
 
 	Mode m_mode;
 	QPixmap m_cursorShape;

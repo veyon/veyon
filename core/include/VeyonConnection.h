@@ -1,7 +1,7 @@
 /*
  * VeyonConnection.h - declaration of class VeyonConnection
  *
- * Copyright (c) 2008-2016 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2008-2018 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *
@@ -26,6 +26,7 @@
 
 #include <QPointer>
 
+#include "RfbVeyonAuth.h"
 #include "VncConnection.h"
 
 
@@ -63,11 +64,22 @@ public:
 		return m_userHomeDir;
 	}
 
+	void setVeyonAuthType( RfbVeyonAuth::Type authType )
+	{
+		m_veyonAuthType = authType;
+	}
+
+	RfbVeyonAuth::Type veyonAuthType() const
+	{
+		return m_veyonAuthType;
+	}
+
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
 
 	static constexpr auto VeyonConnectionTag = 0xFE14A11;
+
 
 signals:
 	void featureMessageReceived( const FeatureMessage& );
@@ -76,10 +88,15 @@ private:
 	void registerConnection();
 	void unregisterConnection();
 
+	// authentication
+	static int8_t handleSecTypeVeyon( rfbClient* client, uint32_t authScheme );
+	static void hookPrepareAuthentication( rfbClient* client );
+
 	QPointer<VncConnection> m_vncConnection;
+
+	RfbVeyonAuth::Type m_veyonAuthType;
 
 	QString m_user;
 	QString m_userHomeDir;
 
 } ;
-

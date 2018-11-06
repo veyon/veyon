@@ -126,7 +126,7 @@ bool ComputerControlServer::sendFeatureMessageReply( const FeatureMessage& reque
 {
 	qDebug() << Q_FUNC_INFO << reply.featureUid() << reply.command() << reply.arguments();
 
-	char rfbMessageType = rfbVeyonFeatureMessage;
+	char rfbMessageType = FeatureMessage::RfbMessageType;
 	request.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
 
 	return reply.send( request.ioDevice() );

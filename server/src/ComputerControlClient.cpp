@@ -66,7 +66,7 @@ bool ComputerControlClient::receiveClientMessage()
 		return false;
 	}
 
-	if( messageType == rfbVeyonFeatureMessage )
+	if( messageType == FeatureMessage::RfbMessageType )
 	{
 		return m_server->handleFeatureMessage( socket );
 	}

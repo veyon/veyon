@@ -30,6 +30,7 @@
 #include "PlatformInputDeviceFunctions.h"
 #include "KeyboardShortcutTrapper.h"
 #include "ProgressWidget.h"
+#include "VeyonConnection.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -41,6 +42,7 @@
 VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
 	m_vncConn( new VncConnection( QCoreApplication::instance() ) ),
+	m_veyonConnection( new VeyonConnection( m_vncConn ) ),
 	m_mode( mode ),
 	m_cursorShape(),
 	m_cursorX( 0 ),
@@ -62,7 +64,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 	if( m_mode == DemoMode )
 	{
 		m_vncConn->setQuality( VncConnection::DefaultQuality );
-		m_vncConn->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
+		m_veyonConnection->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
 		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( m_vncConn->host() ),
 					QStringLiteral( ":/resources/watch%1.png" ), 16, this );
@@ -117,6 +119,9 @@ VncView::~VncView()
 
 	unpressModifiers();
 	delete m_keyboardShortcutTrapper;
+
+	delete m_veyonConnection;
+	m_veyonConnection = nullptr;
 
 	m_vncConn->stopAndDeleteLater();
 	m_vncConn = nullptr;

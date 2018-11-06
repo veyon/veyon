@@ -35,8 +35,10 @@
 #include <QWaitCondition>
 #include <QImage>
 
-#include "RfbVeyonAuth.h"
+#include "VeyonCore.h"
 #include "SocketDevice.h"
+
+typedef struct _rfbClient rfbClient;
 
 class VncEvent;
 
@@ -99,16 +101,6 @@ public:
 		return m_host;
 	}
 
-	void setVeyonAuthType( RfbVeyonAuth::Type authType )
-	{
-		m_veyonAuthType = authType;
-	}
-
-	RfbVeyonAuth::Type veyonAuthType() const
-	{
-		return m_veyonAuthType;
-	}
-
 	void setQuality( QualityLevels qualityLevel )
 	{
 		m_quality = qualityLevel;
@@ -118,6 +110,8 @@ public:
 	{
 		return m_quality;
 	}
+
+	void setServerReachable();
 
 	void enqueueEvent( VncEvent* event );
 
@@ -151,18 +145,17 @@ public:
 
 	void rescaleScreen();
 
+	static constexpr int VncConnectionTag = 0x590123;
+
 	static void* clientData( rfbClient* client, int tag );
 	void setClientData( int tag, void* data );
-
-	// authentication
-	static void handleSecTypeVeyon( rfbClient* client );
-	static void hookPrepareAuthentication( rfbClient* client );
 
 	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 										  SocketDevice::SocketOperation operation, void * user );
 
 
 signals:
+	void connectionPrepared();
 	void connectionEstablished();
 	void imageUpdated( int x, int y, int w, int h );
 	void framebufferUpdateComplete();
@@ -196,8 +189,6 @@ private:
 	static const int RfbBitsPerSample = 8;
 	static const int RfbSamplesPerPixel = 3;
 	static const int RfbBytesPerPixel = 4;
-
-	static const int VncConnectionTag = 0x590123;
 
 	enum ControlFlag {
 		ScaledScreenNeedsUpdate = 0x01,
@@ -243,7 +234,6 @@ private:
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
-	RfbVeyonAuth::Type m_veyonAuthType;
 
 	// thread and timing control
 	QMutex m_globalMutex;

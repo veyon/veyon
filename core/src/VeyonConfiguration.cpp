@@ -27,7 +27,6 @@
 
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
-#include "VeyonRfbExt.h"
 #include "Logger.h"
 #include "NetworkObjectDirectory.h"
 
@@ -71,10 +70,10 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 	c.setLogFileRotationCount( 10 );
 	c.setLogFileDirectory( QStringLiteral( "$TEMP" ) );
 
-	c.setPrimaryServicePort( PortOffsetPrimaryServiceServer );
-	c.setVncServerPort( PortOffsetVncServer );
-	c.setFeatureWorkerManagerPort( PortOffsetFeatureManagerPort );
-	c.setDemoServerPort( PortOffsetDemoServer );
+	c.setPrimaryServicePort( 11100 );
+	c.setVncServerPort( 11200 );
+	c.setFeatureWorkerManagerPort( 11300 );
+	c.setDemoServerPort( 11400 );
 	c.setFirewallExceptionEnabled( true );
 	c.setSoftwareSASEnabled( true );
 
