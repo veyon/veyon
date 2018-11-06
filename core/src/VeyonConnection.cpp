@@ -104,8 +104,8 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 	if( msg == FeatureMessage::RfbMessageType )
 	{
 		SocketDevice socketDev( VncConnection::libvncClientDispatcher, client );
-		FeatureMessage featureMessage( &socketDev );
-		if( featureMessage.receive() == false )
+		FeatureMessage featureMessage;
+		if( featureMessage.receive( &socketDev ) == false )
 		{
 			qDebug( "VeyonConnection: could not receive feature message" );
 

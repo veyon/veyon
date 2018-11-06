@@ -108,28 +108,28 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 	}
 
 	// receive message
-	FeatureMessage featureMessage( socket );
-	if( featureMessage.isReadyForReceive() == false )
+	FeatureMessage featureMessage;
+	if( featureMessage.isReadyForReceive( socket ) == false )
 	{
 		socket->ungetChar( messageType );
 		return false;
 	}
 
-	featureMessage.receive();
+	featureMessage.receive( socket );
 
-	return m_featureManager.handleFeatureMessage( *this, featureMessage );
+	return m_featureManager.handleFeatureMessage( *this, MessageContext( socket ), featureMessage );
 }
 
 
 
-bool ComputerControlServer::sendFeatureMessageReply( const FeatureMessage& request, const FeatureMessage& reply )
+bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply )
 {
 	qDebug() << Q_FUNC_INFO << reply.featureUid() << reply.command() << reply.arguments();
 
 	char rfbMessageType = FeatureMessage::RfbMessageType;
-	request.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
+	context.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
 
-	return reply.send( request.ioDevice() );
+	return reply.send( context.ioDevice() );
 }
 
 

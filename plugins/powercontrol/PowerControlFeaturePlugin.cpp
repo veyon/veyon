@@ -116,33 +116,12 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 
 
 
-bool PowerControlFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces )
+bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
+													  const MessageContext& messageContext,
+													  const FeatureMessage& message )
 {
-	Q_UNUSED(master);
-	Q_UNUSED(feature);
-	Q_UNUSED(computerControlInterfaces);
-
-	return false;
-}
-
-
-
-bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
-													  ComputerControlInterface::Pointer computerControlInterface )
-{
-	Q_UNUSED(master);
-	Q_UNUSED(message);
-	Q_UNUSED(computerControlInterface);
-
-	return false;
-}
-
-
-
-bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
-{
-	Q_UNUSED(server);
+	Q_UNUSED(server)
+	Q_UNUSED(messageContext)
 
 	if( message.featureUid() == m_powerDownFeature.uid() )
 	{
@@ -158,16 +137,6 @@ bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonServerInterface& serv
 	}
 
 	return true;
-}
-
-
-
-bool PowerControlFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
-{
-	Q_UNUSED(worker);
-	Q_UNUSED(message);
-
-	return false;
 }
 
 

@@ -86,7 +86,9 @@ public:
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
+	bool handleFeatureMessage( VeyonServerInterface& server,
+							   const MessageContext& messageContext,
+							   const FeatureMessage& message ) override;
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 

@@ -141,7 +141,9 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master, cons
 
 
 
-bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
+											  const MessageContext& messageContext,
+											  const FeatureMessage& message )
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
@@ -185,7 +187,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 			server.featureWorkerManager().startWorker( message.featureUid(), FeatureWorkerManager::ManagedSystemProcess );
 		}
 
-		auto socket = dynamic_cast<QTcpSocket *>( message.ioDevice() );
+		auto socket = dynamic_cast<QTcpSocket *>( messageContext.ioDevice() );
 		if( socket == nullptr )
 		{
 			qCritical( "DemoFeaturePlugin::handleFeatureMessage( VeyonServer& server,): socket is NULL!" );
@@ -216,7 +218,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, cons
 
 bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker);
+	Q_UNUSED(worker)
 
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{

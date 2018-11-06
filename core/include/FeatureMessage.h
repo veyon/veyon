@@ -28,6 +28,7 @@
 #include <QVariant>
 
 #include "Feature.h"
+#include "MessageContext.h"
 
 class QIODevice;
 
@@ -48,8 +49,7 @@ public:
 		InitCommand = -2,
 	};
 
-	explicit FeatureMessage( QIODevice* ioDevice = nullptr ) :
-		m_ioDevice( ioDevice ),
+	explicit FeatureMessage() :
 		m_featureUid(),
 		m_command( InvalidCommand ),
 		m_arguments()
@@ -57,7 +57,6 @@ public:
 	}
 
 	explicit FeatureMessage( FeatureUid featureUid, Command command ) :
-		m_ioDevice( nullptr ),
 		m_featureUid( featureUid ),
 		m_command( command ),
 		m_arguments()
@@ -65,7 +64,6 @@ public:
 	}
 
 	explicit FeatureMessage( const FeatureMessage& other ) :
-		m_ioDevice( other.ioDevice() ),
 		m_featureUid( other.featureUid() ),
 		m_command( other.command() ),
 		m_arguments( other.arguments() )
@@ -76,7 +74,6 @@ public:
 
 	FeatureMessage& operator=( const FeatureMessage& other )
 	{
-		m_ioDevice = other.ioDevice();
 		m_featureUid = other.featureUid();
 		m_command = other.command();
 		m_arguments = other.arguments();
@@ -115,21 +112,13 @@ public:
 		return m_arguments.contains( QString::number( index ) );
 	}
 
-	bool send();
 	bool send( QIODevice* ioDevice ) const;
 
-	bool isReadyForReceive();
+	bool isReadyForReceive( QIODevice* ioDevice );
 
-	bool receive();
-
-	QIODevice* ioDevice() const
-	{
-		return m_ioDevice;
-	}
+	bool receive( QIODevice* ioDevice );
 
 private:
-	QIODevice* m_ioDevice;
-
 	FeatureUid m_featureUid;
 	Command m_command;
 	Arguments m_arguments;

@@ -63,7 +63,9 @@ public:
 public slots:
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 							   const ComputerControlInterface::Pointer& computerControlInterface );
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message );
+	bool handleFeatureMessage( VeyonServerInterface& server,
+							   const MessageContext& messageContext,
+							   const FeatureMessage& message );
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message );
 
 private:

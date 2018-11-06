@@ -79,8 +79,12 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 
-bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server,
+										   const MessageContext& messageContext,
+										   const FeatureMessage& message )
 {
+	Q_UNUSED(messageContext)
+
 	if( m_systemTrayIconFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker
@@ -101,7 +105,7 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server, const F
 
 bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker);
+	Q_UNUSED(worker)
 
 	if( message.featureUid() != m_systemTrayIconFeature.uid() )
 	{

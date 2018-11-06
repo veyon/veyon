@@ -30,6 +30,8 @@ class QWidget;
 class VeyonMasterInterface
 {
 public:
+	virtual ~VeyonMasterInterface() = default;
+
 	virtual QWidget* mainWindow() = 0;
 
 };

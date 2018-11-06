@@ -214,8 +214,8 @@ void FeatureWorkerManager::acceptConnection()
 
 void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 {
-	FeatureMessage message( socket );
-	message.receive();
+	FeatureMessage message;
+	message.receive( socket );
 
 	m_workersMutex.lock();
 
@@ -231,7 +231,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		if( message.command() >= 0 )
 		{
-			m_featureManager.handleFeatureMessage( m_server, message );
+			m_featureManager.handleFeatureMessage( m_server, MessageContext( socket ), message );
 		}
 
 	}

@@ -39,7 +39,7 @@ class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterf
 	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
 	DemoFeaturePlugin( QObject* parent = nullptr );
-	~DemoFeaturePlugin() = default;
+	~DemoFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
@@ -85,7 +85,9 @@ public:
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
+	bool handleFeatureMessage( VeyonServerInterface& server,
+							   const MessageContext& messageContext,
+							   const FeatureMessage& message ) override;
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 

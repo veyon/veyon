@@ -104,8 +104,12 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& maste
 
 
 
-bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
+													 const MessageContext& messageContext,
+													 const FeatureMessage& message )
 {
+	Q_UNUSED(messageContext)
+
 	if( m_textMessageFeature.uid() == message.featureUid() )
 	{
 		// forward message to worker

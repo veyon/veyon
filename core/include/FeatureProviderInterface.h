@@ -28,6 +28,7 @@
 #include "ComputerControlInterface.h"
 #include "FeatureMessage.h"
 #include "Feature.h"
+#include "MessageContext.h"
 #include "PluginInterface.h"
 
 class VeyonMasterInterface;
@@ -39,6 +40,8 @@ class VeyonWorkerInterface;
 class VEYON_CORE_EXPORT FeatureProviderInterface
 {
 public:
+	virtual ~FeatureProviderInterface() = default;
+
 	/*!
 	 * \brief Returns a list of features implemented by the feature class
 	 */
@@ -80,6 +83,7 @@ public:
 	 * \param message the message which has been received and needs to be handled
 	 */
 	virtual bool handleFeatureMessage( VeyonServerInterface& server,
+									   const MessageContext& messageContext,
 									   const FeatureMessage& message ) = 0;
 
 	/*!
@@ -87,8 +91,7 @@ public:
 	 * \param worker a reference to a worker instance implementing the VeyonWorkerInterface
 	 * \param message the message which has been received and needs to be handled
 	 */
-	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker,
-									   const FeatureMessage& message ) = 0;
+	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) = 0;
 
 protected:
 	bool sendFeatureMessage( const FeatureMessage& message,

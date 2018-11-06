@@ -1,5 +1,5 @@
 /*
- * VeyonServerInterface.h - interface class for VeyonServer
+ * MessageContext.h - header for transporting context for message I/O
  *
  * Copyright (c) 2018 Tobias Junghans <tobydox@veyon.io>
  *
@@ -22,21 +22,32 @@
  *
  */
 
-#ifndef VEYON_SERVER_INTERFACE_H
-#define VEYON_SERVER_INTERFACE_H
+#pragma once
 
-class FeatureMessage;
-class FeatureWorkerManager;
-class MessageContext;
+#include <QPointer>
 
-class VeyonServerInterface
+#include "VeyonCore.h"
+
+class QIODevice;
+
+class VEYON_CORE_EXPORT MessageContext
 {
 public:
-	virtual ~VeyonServerInterface() = default;
+	typedef QPointer<QIODevice> IODevice;
 
-	virtual FeatureWorkerManager& featureWorkerManager() = 0;
-	virtual bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) = 0;
+	explicit MessageContext( QIODevice* ioDevice ) :
+		m_ioDevice( ioDevice )
+	{
+	}
 
-};
+	~MessageContext() = default;
 
-#endif
+	QIODevice* ioDevice() const
+	{
+		return m_ioDevice;
+	}
+
+private:
+	IODevice m_ioDevice;
+
+} ;

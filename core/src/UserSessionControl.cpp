@@ -113,7 +113,9 @@ bool UserSessionControl::handleFeatureMessage( VeyonMasterInterface& master, con
 
 
 
-bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server,
+											   const MessageContext& messageContext,
+											   const FeatureMessage& message )
 {
 	if( m_userSessionInfoFeature.uid() == message.featureUid() )
 	{
@@ -133,7 +135,7 @@ bool UserSessionControl::handleFeatureMessage( VeyonServerInterface& server, con
 		}
 		m_userDataLock.unlock();
 
-		return server.sendFeatureMessageReply( message, reply );
+		return server.sendFeatureMessageReply( messageContext, reply );
 	}
 	else if( m_userLogoutFeature.uid() == message.featureUid() )
 	{

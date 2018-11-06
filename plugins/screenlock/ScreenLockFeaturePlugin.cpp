@@ -100,8 +100,12 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& master
 
 
 
-bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
+													const MessageContext& messageContext,
+													const FeatureMessage& message )
 {
+	Q_UNUSED(messageContext)
+
 	if( m_screenLockFeature.uid() == message.featureUid() )
 	{
 		if( server.featureWorkerManager().isWorkerRunning( m_screenLockFeature ) == false &&

@@ -83,8 +83,12 @@ void DesktopAccessDialog::abort( FeatureWorkerManager* featureWorkerManager )
 
 
 
-bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
+												const MessageContext& messageContext,
+												const FeatureMessage& message )
 {
+	Q_UNUSED(messageContext)
+
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 			message.command() == ReportDesktopAccessChoice )
 	{

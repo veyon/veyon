@@ -26,13 +26,6 @@
 #include "VariantArrayMessage.h"
 
 
-bool FeatureMessage::send()
-{
-	return send( m_ioDevice );
-}
-
-
-
 bool FeatureMessage::send( QIODevice* ioDevice ) const
 {
 	if( ioDevice )
@@ -53,19 +46,19 @@ bool FeatureMessage::send( QIODevice* ioDevice ) const
 
 
 
-bool FeatureMessage::isReadyForReceive()
+bool FeatureMessage::isReadyForReceive( QIODevice* ioDevice )
 {
-	return m_ioDevice != nullptr &&
-			VariantArrayMessage( m_ioDevice ).isReadyForReceive();
+	return ioDevice != nullptr &&
+			VariantArrayMessage( ioDevice ).isReadyForReceive();
 }
 
 
 
-bool FeatureMessage::receive()
+bool FeatureMessage::receive( QIODevice* ioDevice )
 {
-	if( m_ioDevice )
+	if( ioDevice != nullptr )
 	{
-		VariantArrayMessage message( m_ioDevice );
+		VariantArrayMessage message( ioDevice );
 
 		if( message.receive() )
 		{

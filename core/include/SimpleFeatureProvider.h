@@ -30,7 +30,7 @@
 class VEYON_CORE_EXPORT SimpleFeatureProvider : public FeatureProviderInterface
 {
 public:
-	~SimpleFeatureProvider() = default;
+	~SimpleFeatureProvider() override = default;
 
 	bool startFeature( VeyonMasterInterface& master,
 					   const Feature& feature,
@@ -43,10 +43,11 @@ public:
 	bool handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 							   ComputerControlInterface::Pointer computerControlInterface ) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message ) override;
-
-	bool handleFeatureMessage( VeyonWorkerInterface& worker,
+	bool handleFeatureMessage( VeyonServerInterface& server,
+							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
+
+	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 };
 

@@ -131,7 +131,9 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonMasterInterface& m
 
 
 
-bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
+														 const MessageContext& messageContext,
+														 const FeatureMessage& message )
 {
 	Q_UNUSED(server);
 

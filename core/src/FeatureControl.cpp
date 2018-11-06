@@ -65,14 +65,16 @@ bool FeatureControl::handleFeatureMessage( VeyonMasterInterface& master, const F
 
 
 
-bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server, const FeatureMessage& message )
+bool FeatureControl::handleFeatureMessage( VeyonServerInterface& server,
+										   const MessageContext& messageContext,
+										   const FeatureMessage& message )
 {
 	if( m_featureControlFeature.uid() == message.featureUid() )
 	{
 		FeatureMessage reply( message.featureUid(), message.command() );
 		reply.addArgument( ActiveFeatureList, server.featureWorkerManager().runningWorkers() );
 
-		return server.sendFeatureMessageReply( message, reply );
+		return server.sendFeatureMessageReply( messageContext, reply );
 	}
 
 	return false;

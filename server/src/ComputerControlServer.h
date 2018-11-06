@@ -65,7 +65,7 @@ public:
 
 	bool handleFeatureMessage( QTcpSocket* socket );
 
-	bool sendFeatureMessageReply( const FeatureMessage& request, const FeatureMessage& reply ) override;
+	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
 
 	void setAllowedIPs( const QStringList &allowedIPs );
 
