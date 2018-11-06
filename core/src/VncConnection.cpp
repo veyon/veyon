@@ -181,16 +181,6 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_scaledSize(),
 	m_imgLock()
 {
-	if( VeyonCore::isDebugging() )
-	{
-		rfbClientLog = rfbClientLogDebug;
-		rfbClientErr = rfbClientLogDebug;
-	}
-	else
-	{
-		rfbClientLog = rfbClientLogNone;
-		rfbClientErr = rfbClientLogNone;
-	}
 }
 
 
@@ -211,6 +201,22 @@ VncConnection::~VncConnection()
 
 		terminate();
 		wait();
+	}
+}
+
+
+
+void VncConnection::initLogging( bool debug )
+{
+	if( debug )
+	{
+		rfbClientLog = rfbClientLogDebug;
+		rfbClientErr = rfbClientLogDebug;
+	}
+	else
+	{
+		rfbClientLog = rfbClientLogNone;
+		rfbClientErr = rfbClientLogNone;
 	}
 }
 
