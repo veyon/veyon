@@ -254,17 +254,6 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_scaledSize(),
 	m_imgLock()
 {
-	if( VeyonCore::isDebugging() )
-	{
-		rfbClientLog = rfbClientLogDebug;
-		rfbClientErr = rfbClientLogDebug;
-	}
-	else
-	{
-		rfbClientLog = rfbClientLogNone;
-		rfbClientErr = rfbClientLogNone;
-	}
-
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::KeyFileAuthentication )
 	{
 		m_veyonAuthType = RfbVeyonAuth::KeyFile;
@@ -289,6 +278,22 @@ VncConnection::~VncConnection()
 
 		terminate();
 		wait();
+	}
+}
+
+
+
+void VncConnection::initLogging( bool debug )
+{
+	if( debug )
+	{
+		rfbClientLog = rfbClientLogDebug;
+		rfbClientErr = rfbClientLogDebug;
+	}
+	else
+	{
+		rfbClientLog = rfbClientLogNone;
+		rfbClientErr = rfbClientLogNone;
 	}
 }
 

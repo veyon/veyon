@@ -46,6 +46,7 @@
 #include "PluginManager.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
+#include "VncConnection.h"
 
 
 VeyonCore* VeyonCore::s_instance = nullptr;
@@ -385,6 +386,8 @@ void VeyonCore::initLogging( const QString& appComponentName )
 	{
 		m_logger = new Logger( appComponentName );
 	}
+
+	VncConnection::initLogging( isDebugging() );
 }
 
 

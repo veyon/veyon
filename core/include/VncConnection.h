@@ -85,6 +85,8 @@ public:
 	explicit VncConnection( QObject *parent = nullptr );
 	~VncConnection() override;
 
+	static void initLogging( bool debug );
+
 	QImage image() const;
 
 	void restart();
