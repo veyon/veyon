@@ -61,3 +61,10 @@ VeyonWorker::VeyonWorker( const QString& featureUid, QObject* parent ) :
 
 	qInfo() << "Running worker for feature" << workerFeature->displayName();
 }
+
+
+
+bool VeyonWorker::sendFeatureMessageReply( const FeatureMessage& reply )
+{
+	return m_workerManagerConnection->sendMessage( reply );
+}

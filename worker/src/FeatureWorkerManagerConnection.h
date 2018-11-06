@@ -30,6 +30,7 @@
 #include "Feature.h"
 
 class FeatureManager;
+class FeatureMessage;
 class VeyonWorkerInterface;
 
 class FeatureWorkerManagerConnection : public QObject
@@ -39,8 +40,10 @@ public:
 	FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
 									FeatureManager& featureManager,
 									Feature::Uid featureUid,
-								 	QObject* parent = nullptr );
+									QObject* parent = nullptr );
 
+
+	bool sendMessage( const FeatureMessage& message );
 
 private slots:
 	void sendInitMessage();

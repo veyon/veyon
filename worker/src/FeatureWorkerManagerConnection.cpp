@@ -55,6 +55,13 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 
 
 
+bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message )
+{
+	return message.send( &m_socket );
+}
+
+
+
 void FeatureWorkerManagerConnection::sendInitMessage()
 {
 	qDebug() << Q_FUNC_INFO << m_featureUid;
@@ -66,11 +73,11 @@ void FeatureWorkerManagerConnection::sendInitMessage()
 
 void FeatureWorkerManagerConnection::receiveMessage()
 {
-	FeatureMessage featureMessage( &m_socket );
+	FeatureMessage featureMessage;
 
-	while( featureMessage.isReadyForReceive() )
+	while( featureMessage.isReadyForReceive( &m_socket ) )
 	{
-		if( featureMessage.receive() )
+		if( featureMessage.receive( &m_socket ) )
 		{
 			m_featureManager.handleFeatureMessage( m_worker, featureMessage );
 		}

@@ -25,9 +25,14 @@
 #ifndef VEYON_WORKER_INTERFACE_H
 #define VEYON_WORKER_INTERFACE_H
 
+class FeatureMessage;
+
 class VeyonWorkerInterface
 {
 public:
+	virtual ~VeyonWorkerInterface() = default;
+
+	virtual bool sendFeatureMessageReply( const FeatureMessage& reply ) = 0;
 
 };
 
