@@ -62,7 +62,7 @@ QString LinuxFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 
 bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
 {
-	struct stat statBuffer;
+	struct stat statBuffer{};
 	if( stat( filePath.toUtf8().constData(), &statBuffer ) != 0 )
 	{
 		qCritical() << Q_FUNC_INFO << "failed to stat file" << filePath;
