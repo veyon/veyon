@@ -123,6 +123,7 @@ private:
 	static QStringList dumpNetworkObject( const NetworkObject& object );
 	static QString listNetworkObject( const NetworkObject& object );
 	static QString networkObjectTypeName( const NetworkObject& object );
+	static NetworkObject::Type parseNetworkObjectType( const QString& typeName );
 
 	CommandLinePluginInterface::RunResult saveConfiguration();
 
@@ -135,6 +136,21 @@ private:
 	static QString toFormattedString( const NetworkObject& networkObject, const QString& formatString, const QString& room );
 
 	static QStringList fileImportVariables();
+
+	static QString typeNameRoom()
+	{
+		return tr( "Room" );
+	}
+
+	static QString typeNameComputer()
+	{
+		return tr( "Computer" );
+	}
+
+	static QString typeNameRoot()
+	{
+		return tr( "Root" );
+	}
 
 	BuiltinDirectoryConfiguration m_configuration;
 	QMap<QString, QString> m_commands;

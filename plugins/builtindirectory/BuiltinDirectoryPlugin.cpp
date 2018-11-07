@@ -98,7 +98,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 	{
 		CommandLineIO::print( tr("\nUSAGE\n\n%1 import <FILE> [room <ROOM>] [format <FORMAT-STRING-WITH-VARIABLES>] "
 								 "[regex <REGULAR-EXPRESSION-WITH-VARIABLES>]\n\n"
-								 "Valid variables: %name% %host% %mac% %room%\n\n"
+								 "Valid variables: %type% %name% %host% %mac% %room%\n\n"
 								 "Examples:\n\n"
 								 "* Import simple CSV file to a single room:\n\n"
 								 "    %1 import computers.csv room \"Room 01\" format \"%name%;%host%;%mac%\"\n\n"
@@ -482,14 +482,34 @@ QString BuiltinDirectoryPlugin::networkObjectTypeName( const NetworkObject& obje
 	switch( object.type() )
 	{
 	case NetworkObject::None: return tr( "None" );
-	case NetworkObject::Group: return tr( "Room" );
-	case NetworkObject::Host: return tr( "Computer" );
-	case NetworkObject::Root: return tr( "Root");
+	case NetworkObject::Group: return typeNameRoom();
+	case NetworkObject::Host: return typeNameComputer();
+	case NetworkObject::Root: return typeNameRoot();
 	default:
 		break;
 	}
 
 	return tr( "Invalid" );
+}
+
+
+
+NetworkObject::Type BuiltinDirectoryPlugin::parseNetworkObjectType( const QString& typeName )
+{
+	if( typeName == typeNameRoom() )
+	{
+		return NetworkObject::Group;
+	}
+	else if( typeName == typeNameComputer() )
+	{
+		return NetworkObject::Host;
+	}
+	else if( typeName == typeNameRoot() )
+	{
+		return NetworkObject::Root;
+	}
+
+	return NetworkObject::None;
 }
 
 
@@ -539,10 +559,16 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 	for( auto it = networkObjects.constBegin(), end = networkObjects.constEnd(); it != end; ++it )
 	{
 		auto parentRoom = objectManager.findByName( it.key() );
-		if( parentRoom.isValid() == false )
+		auto parentRoomUid = parentRoom.uid();
+		if( it.key().isEmpty() )
+		{
+			parentRoomUid = QUuid();
+		}
+		else if( parentRoom.isValid() == false )
 		{
 			parentRoom = NetworkObject( NetworkObject::Group, it.key() );
 			objectManager.add( parentRoom );
+			parentRoomUid = parentRoom.uid();
 		}
 
 		for( const NetworkObject& networkObject : qAsConst(it.value()) )
@@ -552,7 +578,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 											  networkObject.hostAddress(),
 											  networkObject.macAddress(),
 											  QString(), NetworkObject::Uid(),
-											  parentRoom.uid() ) );
+											  parentRoomUid ) );
 		}
 	}
 
@@ -644,18 +670,31 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 	QRegExp rx( rxString );
 	if( rx.indexIn( line ) != -1 )
 	{
+		auto objectType = NetworkObject::Host;
+		const auto typeIndex = variables.indexOf( QStringLiteral("%type%") );
+		if( typeIndex != -1 )
+		{
+			objectType = parseNetworkObjectType( rx.cap( 1 + typeIndex ) );
+		}
+
 		const auto roomIndex = variables.indexOf( QStringLiteral("%room%") );
 		const auto nameIndex = variables.indexOf( QStringLiteral("%name%") );
 		const auto hostIndex = variables.indexOf( QStringLiteral("%host%") );
 		const auto macIndex = variables.indexOf( QStringLiteral("%mac%") );
 
+		auto name = ( nameIndex != -1 ) ? rx.cap( 1 + nameIndex ).trimmed() : QString();
+		auto host = ( hostIndex != -1 ) ? rx.cap( 1 + hostIndex ).trimmed() : QString();
+		auto mac = ( macIndex != -1 ) ? rx.cap( 1 + macIndex ).trimmed() : QString();
+
+		if( objectType == NetworkObject::Group )
+		{
+			return NetworkObject( NetworkObject::Group, name );
+		}
+
 		if( room.isEmpty() && roomIndex != -1 )
 		{
 			room = rx.cap( 1 + roomIndex ).trimmed();
 		}
-		auto name = ( nameIndex != -1 ) ? rx.cap( 1 + nameIndex ).trimmed() : QString();
-		auto host = ( hostIndex != -1 ) ? rx.cap( 1 + hostIndex ).trimmed() : QString();
-		auto mac = ( macIndex != -1 ) ? rx.cap( 1 + macIndex ).trimmed() : QString();
 
 		if( host.isEmpty() )
 		{
@@ -689,5 +728,5 @@ QString BuiltinDirectoryPlugin::toFormattedString( const NetworkObject& networkO
 
 QStringList BuiltinDirectoryPlugin::fileImportVariables()
 {
-	return { "%room%", "%name%", "%host%", "%mac%" };
+	return { "%room%", "%name%", "%host%", "%mac%", "%type%" };
 }
