@@ -192,6 +192,11 @@ FOREACH(f ${IN_FILES})
     CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
 
+IF(SANITIZE)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=thread -fsanitize=undefined")
+ENDIF()
+
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-exceptions -std=c++11 -fstack-protector-strong ${CXXFLAGS}")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fstack-protector-strong ${CFLAGS}")
 IF(NOT VEYON_BUILD_WIN32)
