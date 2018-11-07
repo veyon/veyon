@@ -29,7 +29,6 @@
 #include "UltraVncConfiguration.h"
 #include "UltraVncConfigurationWidget.h"
 
-extern bool Myinit( HINSTANCE hInstance );
 extern int WinVNCAppMain();
 
 static BuiltinUltraVncServer* vncServerInstance = nullptr;
