@@ -62,10 +62,10 @@ ToolButton::ToolButton( const QIcon& icon,
 
 
 
-void ToolButton::setIconOnlyMode( bool enabled )
+void ToolButton::setIconOnlyMode( QWidget* mainWindow, bool enabled )
 {
 	s_iconOnlyMode = enabled;
-	const auto toolButtons = QApplication::activeWindow()->findChildren<ToolButton *>();
+	const auto toolButtons = mainWindow->findChildren<ToolButton *>();
 	for( auto toolButton : toolButtons )
 	{
 		toolButton->updateSize();

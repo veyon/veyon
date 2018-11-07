@@ -41,7 +41,7 @@ MainToolBar::MainToolBar( QWidget* parent ) :
 	setPalette( pal );
 
 	ToolButton::setToolTipsDisabled( m_mainWindow->masterCore().userConfig().noToolTips() );
-	ToolButton::setIconOnlyMode( m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
+	ToolButton::setIconOnlyMode( m_mainWindow, m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
 }
 
 
@@ -100,6 +100,6 @@ void MainToolBar::toggleIconMode()
 {
 	bool newToolButtonIconMode = !m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode();
 
-	ToolButton::setIconOnlyMode( newToolButtonIconMode );
+	ToolButton::setIconOnlyMode( m_mainWindow, newToolButtonIconMode );
 	m_mainWindow->masterCore().userConfig().setToolButtonIconOnlyMode( newToolButtonIconMode );
 }
