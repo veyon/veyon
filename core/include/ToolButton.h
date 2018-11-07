@@ -44,7 +44,7 @@ public:
 				const QKeySequence& shortcut = QKeySequence() );
 	~ToolButton() override;
 
-	static void setIconOnlyMode( bool enabled );
+	static void setIconOnlyMode( QWidget* mainWindow, bool enabled );
 
 	static bool iconOnlyMode()
 	{
