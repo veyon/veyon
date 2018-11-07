@@ -31,6 +31,7 @@
 #include "Configuration/JsonStore.h"
 #include "ConfigCommandLinePlugin.h"
 #include "ConfigurationManager.h"
+#include "CryptoCore.h"
 
 
 ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
@@ -203,15 +204,20 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
 	}
 
+	QVariant configValue = value;
+
 	if( type == QStringLiteral("json") ||
 			VeyonCore::config().value( key, parentKey ).userType() == QMetaType::type( "QJsonArray" ) )
 	{
-		VeyonCore::config().setValue( key, QJsonDocument::fromJson( value.toUtf8() ).array(), parentKey );
+		configValue = QJsonDocument::fromJson( value.toUtf8() ).array();
 	}
-	else
+	else if( key.contains( QStringLiteral("password"), Qt::CaseInsensitive ) ||
+			 type == QStringLiteral("password") )
 	{
-		VeyonCore::config().setValue( key, value, parentKey );
+		configValue = VeyonCore::cryptoCore().encryptPassword( value );
 	}
+
+	VeyonCore::config().setValue( key, configValue, parentKey );
 
 	return applyConfiguration();
 }
