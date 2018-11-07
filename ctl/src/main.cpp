@@ -56,6 +56,7 @@ int main( int argc, char **argv )
 		if( arguments.last() == QStringLiteral("-v") || arguments.last() == QStringLiteral("--version") )
 		{
 			printf( "%s\n", qUtf8Printable( VeyonCore::version() ) );
+			delete app;
 			return 0;
 		}
 		else if( arguments.last() == QStringLiteral("about") )
@@ -63,6 +64,7 @@ int main( int argc, char **argv )
 			printf( "Veyon: %s (%s)\n", qUtf8Printable( VeyonCore::version() ), __DATE__ );
 			printf( "Qt: %s (built against %s/%s)\n", qVersion(), QT_VERSION_STR, qUtf8Printable( QSysInfo::buildAbi() ) );
 			printf( "OpenSSL: %s\n", SSLeay_version(SSLEAY_VERSION) );
+			delete app;
 			return 0;
 		}
 	}
