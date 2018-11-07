@@ -41,16 +41,6 @@ LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
 
 
 
-LinuxInputDeviceFunctions::~LinuxInputDeviceFunctions()
-{
-	if( m_inputDevicesDisabled )
-	{
-		enableInputDevices();
-	}
-}
-
-
-
 void LinuxInputDeviceFunctions::enableInputDevices()
 {
 	if( m_inputDevicesDisabled )

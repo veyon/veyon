@@ -33,7 +33,7 @@ class LinuxInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
 	LinuxInputDeviceFunctions();
-	~LinuxInputDeviceFunctions();
+	virtual ~LinuxInputDeviceFunctions() = default;
 
 	void enableInputDevices() override;
 	void disableInputDevices() override;
