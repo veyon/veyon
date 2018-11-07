@@ -223,7 +223,8 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 {
 	Q_UNUSED(desktop);
 
-	class UserProcess : public QProcess {
+	class UserProcess : public QProcess // clazy:exclude=missing-qobject-macro
+	{
 	public:
 		explicit UserProcess( uid_t uid, QObject* parent = nullptr ) :
 			QProcess( parent ),
