@@ -12,6 +12,5 @@ BUILD_PLUGIN(desktopservices
 	DesktopServicesFeaturePlugin.h
 	RunProgramDialog.h
 	desktopservices.qrc
-	COTIRE
 )
 

@@ -10,6 +10,5 @@ BUILD_PLUGIN(internetaccesscontrol
 	InternetAccessControlConfiguration.h
 	InternetAccessControlConfigurationPage.h
 	internetaccesscontrol.qrc
-	COTIRE
 )
 

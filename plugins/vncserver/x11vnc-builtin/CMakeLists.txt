@@ -235,6 +235,8 @@ SET(x11vnc_SOURCES x11vnc-veyon.c
 
 ENDIF()
 
+SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers" COTIRE_EXCLUDED TRUE)
+
 BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfiguration.cpp
@@ -276,4 +278,3 @@ ENDIF()
 ENDIF()
 
 
-SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES COMPILE_FLAGS "-Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-unused-but-set-variable -Wno-misleading-indentation -Wno-deprecated-declarations -Wno-address -Wno-format -Wno-discarded-qualifiers")

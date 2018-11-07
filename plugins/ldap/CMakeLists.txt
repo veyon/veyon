@@ -46,7 +46,6 @@ BUILD_PLUGIN(ldap
 	LdapDirectory.h
 	LdapNetworkObjectDirectory.h
 	ldap.qrc
-	COTIRE
 )
 
 INCLUDE_DIRECTORIES(${Ldap_INCLUDE_DIRS} ${kldap_SOURCE_DIR})

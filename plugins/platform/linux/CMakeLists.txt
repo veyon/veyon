@@ -28,7 +28,6 @@ BUILD_PLUGIN(linux-platform
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
 	LinuxUserFunctions.h
-	COTIRE
 )
 
 TARGET_LINK_LIBRARIES(linux-platform

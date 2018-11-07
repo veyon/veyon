@@ -16,7 +16,6 @@ BUILD_PLUGIN(demo
 	DemoServerProtocol.h
 	DemoClient.h
 	demo.qrc
-	COTIRE
 )
 
 TARGET_LINK_LIBRARIES(demo ${LZO_LIBRARIES})

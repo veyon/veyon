@@ -10,5 +10,4 @@ BUILD_PLUGIN(builtindirectory
 	BuiltinDirectoryConfigurationPage.h
 	BuiltinDirectory.h
 	builtindirectory.qrc
-	COTIRE
 )

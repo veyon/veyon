@@ -9,5 +9,4 @@ BUILD_PLUGIN(authkeys
 	AuthKeysConfigurationPage.h
 	AuthKeysTableModel.h
 	AuthKeysManager.h
-	COTIRE
 )

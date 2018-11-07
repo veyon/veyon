@@ -31,7 +31,6 @@ BUILD_PLUGIN(windows-platform
 	WtsSessionManager.h
 	SasEventListener.h
 	XEventLog.h
-	COTIRE
 )
 
 INCLUDE_DIRECTORIES(${ultravnc_DIR}/addon/ms-logon/authSSP)
