@@ -280,7 +280,7 @@ IF(WIN32)
 			COMMAND cp ${DLLDIR_GCC}/${DLL_GCC} ${TMP}
 			COMMAND mkdir -p ${TMP}/crypto
 			COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${TMP}/crypto
-			COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${TMP}
+			COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${TMP}
 			COMMAND mkdir -p ${TMP}/platforms
 			COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${TMP}/platforms
 			COMMAND ${STRIP} ${TMP}/*.dll ${TMP}/*.exe ${TMP}/plugins/*.dll ${TMP}/platforms/*.dll ${TMP}/crypto/*.dll
