@@ -31,7 +31,9 @@
 
 CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent ) :
 	QIdentityProxyModel(parent),
-	m_uidRole( uidRole )
+	m_uidRole( uidRole ),
+	m_exceptionRole( -1 ),
+	m_exceptionData()
 {
 	connect( this, &QIdentityProxyModel::rowsInserted,
 			 this, &CheckableItemProxyModel::updateNewRows );
@@ -45,9 +47,22 @@ CheckableItemProxyModel::CheckableItemProxyModel( int uidRole, QObject *parent )
 
 
 
-Qt::ItemFlags CheckableItemProxyModel::flags(const QModelIndex &index) const
+void CheckableItemProxyModel::setException( int exceptionRole, const QVariant& exceptionData )
 {
-	if( index.isValid() == false || index.column() > 0 )
+	beginResetModel();
+
+	m_exceptionRole = exceptionRole;
+	m_exceptionData = exceptionData;
+
+	endResetModel();
+}
+
+
+
+Qt::ItemFlags CheckableItemProxyModel::flags( const QModelIndex& index ) const
+{
+	if( index.isValid() == false || index.column() > 0 ||
+			( m_exceptionRole >= 0 && QIdentityProxyModel::data( index, m_exceptionRole ) == m_exceptionData ) )
 	{
 		return QIdentityProxyModel::flags( index );
 	}
@@ -57,14 +72,15 @@ Qt::ItemFlags CheckableItemProxyModel::flags(const QModelIndex &index) const
 
 
 
-QVariant CheckableItemProxyModel::data(const QModelIndex &index, int role) const
+QVariant CheckableItemProxyModel::data( const QModelIndex& index, int role ) const
 {
 	if( !index.isValid() )
 	{
 		return QVariant();
 	}
 
-	if( role == Qt::CheckStateRole && index.column() == 0 )
+	if( role == Qt::CheckStateRole && index.column() == 0 &&
+			flags( index ).testFlag( Qt::ItemIsUserCheckable ) )
 	{
 		return m_checkStates.value( indexToUuid( index ) );
 	}

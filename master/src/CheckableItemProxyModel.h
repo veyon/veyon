@@ -35,6 +35,8 @@ class CheckableItemProxyModel : public QIdentityProxyModel
 public:
 	CheckableItemProxyModel( int uidRole, QObject *parent = nullptr );
 
+	void setException( int exceptionRole, const QVariant& exceptionFilterData );
+
 	Qt::ItemFlags flags(const QModelIndex &index) const override;
 
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -64,6 +66,8 @@ private:
 	}
 
 	int m_uidRole;
+	int m_exceptionRole;
+	QVariant m_exceptionData;
 	QHash<QUuid, Qt::CheckState> m_checkStates;
 
 };
