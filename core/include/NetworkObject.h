@@ -44,6 +44,7 @@ public:
 		Root,
 		Group,
 		Host,
+		Label,
 		TypeCount
 	} Type;
 
