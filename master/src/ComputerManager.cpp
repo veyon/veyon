@@ -211,6 +211,7 @@ void ComputerManager::initNetworkObjectLayer()
 	m_networkObjectDirectory->setUpdateInterval( VeyonCore::config().networkObjectDirectoryUpdateInterval() );
 	m_networkObjectOverlayDataModel->setSourceModel( m_networkObjectModel );
 	m_networkObjectFilterProxyModel->setSourceModel( m_networkObjectOverlayDataModel );
+	m_computerTreeModel->setException( NetworkObjectModel::TypeRole, NetworkObject::Label );
 	m_computerTreeModel->setSourceModel( m_networkObjectFilterProxyModel );
 
 	if( VeyonCore::config().localComputerHidden() )
