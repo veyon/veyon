@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/internetaccesscontrol" >
-        <file>internet-block.png</file>
-        <file>internet-unblock.png</file>
-        <file>globe.png</file>
-    </qresource>
-</RCC>
