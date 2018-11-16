@@ -35,6 +35,7 @@ SET(kldap_SOURCES
 BUILD_PLUGIN(ldap
 	LdapPlugin.cpp
 	LdapConfigurationPage.cpp
+	LdapConfigurationPage.ui
 	LdapDirectory.cpp
 	LdapNetworkObjectDirectory.cpp
 	KLdapIntegration.cpp

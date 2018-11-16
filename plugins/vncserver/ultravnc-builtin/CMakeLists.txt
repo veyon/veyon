@@ -78,6 +78,7 @@ BUILD_PLUGIN(builtin-ultravnc-server
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp
 	UltraVncConfigurationWidget.cpp
+	UltraVncConfigurationWidget.ui
 	${ultravnc_SOURCES}
 	BuiltinUltraVncServer.h
 	LogoffEventFilter.h

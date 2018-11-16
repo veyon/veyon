@@ -240,6 +240,7 @@ SET_SOURCE_FILES_PROPERTIES(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES
 BUILD_PLUGIN(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfigurationWidget.cpp
+	X11VncConfigurationWidget.ui
 	${libvncserver_SOURCES}
 	${x11vnc_SOURCES}
 	BuiltinX11VncServer.h
