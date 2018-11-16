@@ -661,13 +661,13 @@ bool LdapDirectory::reconnect( const QUrl &url )
 			d->server.setAuth( KLDAP::LdapServer::Anonymous );
 		}
 
-		const auto security = static_cast<LdapConfiguration::ConnectionSecurity>( m_configuration.connectionSecurity() );
+		const auto security = static_cast<ConnectionSecurity>( m_configuration.connectionSecurity() );
 		switch( security )
 		{
-		case LdapConfiguration::ConnectionSecurityTLS:
+		case ConnectionSecurityTLS:
 			d->server.setSecurity( KLDAP::LdapServer::TLS );
 			break;
-		case LdapConfiguration::ConnectionSecuritySSL:
+		case ConnectionSecuritySSL:
 			d->server.setSecurity( KLDAP::LdapServer::SSL );
 			break;
 		default:
@@ -676,7 +676,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 		}
 	}
 
-	if( m_configuration.connectionSecurity() != LdapConfiguration::ConnectionSecurityNone )
+	if( m_configuration.connectionSecurity() != ConnectionSecurityNone )
 	{
 		initTLS();
 	}
@@ -759,13 +759,13 @@ void LdapDirectory::initTLS()
 {
 	switch( m_configuration.tlsVerifyMode() )
 	{
-	case LdapConfiguration::TLSVerifyDefault:
+	case TLSVerifyDefault:
 		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertDefault );
 		break;
-	case LdapConfiguration::TLSVerifyNever:
+	case TLSVerifyNever:
 		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertNever );
 		break;
-	case LdapConfiguration::TLSVerifyCustomCert:
+	case TLSVerifyCustomCert:
 		d->server.setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertHard );
 		d->server.setTLSCACertFile( m_configuration.tlsCACertificateFile() );
 		break;

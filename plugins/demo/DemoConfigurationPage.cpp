@@ -50,22 +50,6 @@ DemoConfigurationPage::~DemoConfigurationPage()
 
 void DemoConfigurationPage::resetWidgets()
 {
-	// sanitize configuration
-	if( m_configuration.framebufferUpdateInterval() < ui->framebufferUpdateInterval->minimum() )
-	{
-		m_configuration.setFramebufferUpdateInterval( DemoConfiguration::DefaultFramebufferUpdateInterval );
-	}
-
-	if( m_configuration.keyFrameInterval() < ui->keyFrameInterval->minimum() )
-	{
-		m_configuration.setKeyFrameInterval( DemoConfiguration::DefaultKeyFrameInterval );
-	}
-
-	if( m_configuration.memoryLimit() < ui->memoryLimit->minimum() )
-	{
-		m_configuration.setMemoryLimit( DemoConfiguration::DefaultMemoryLimit );
-	}
-
 	FOREACH_DEMO_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 

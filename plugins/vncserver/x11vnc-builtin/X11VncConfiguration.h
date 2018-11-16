@@ -27,7 +27,7 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_X11VNC_CONFIG_PROPERTY(OP) \
-	OP( X11VncConfiguration, m_configuration, BOOL, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc" )	\
-	OP( X11VncConfiguration, m_configuration, STRING, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc" )
+	OP( X11VncConfiguration, m_configuration, BOOL, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc", false )	\
+	OP( X11VncConfiguration, m_configuration, STRING, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc", QString() )
 
 DECLARE_CONFIG_PROXY(X11VncConfiguration, FOREACH_X11VNC_CONFIG_PROPERTY)

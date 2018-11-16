@@ -26,62 +26,40 @@
 
 #include "Configuration/Proxy.h"
 #include "CryptoCore.h"
+#include "LdapDirectory.h"
 
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
-	OP( LdapConfiguration, m_configuration, STRING, serverHost, setServerHost, "ServerHost", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, INT, tlsVerifyMode, setTLSVerifyMode, "TLSVerifyMode", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, tlsCACertificateFile, setTLSCACertificateFile, "TLSCACertificateFile", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, PASSWORD, bindPassword, setBindPassword, "BindPassword", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, queryNamingContext, setQueryNamingContext, "QueryNamingContext", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, baseDn, setBaseDn, "BaseDN", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, namingContextAttribute, setNamingContextAttribute, "NamingContextAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, userTree, setUserTree, "UserTree", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, groupTree, setGroupTree, "GroupTree", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerTree, setComputerTree, "ComputerTree", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerGroupTree, setComputerGroupTree, "ComputerGroupTree", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, recursiveSearchOperations, setRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, userLoginAttribute, setUserLoginAttribute, "UserLoginAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, groupMemberAttribute, setGroupMemberAttribute, "GroupMemberAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerHostNameAttribute, setComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, computerHostNameAsFQDN, setComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerMacAddressAttribute, setComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerRoomNameAttribute, setComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, usersFilter, setUsersFilter, "UsersFilter", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, userGroupsFilter, setUserGroupsFilter, "UserGroupsFilter", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computersFilter, setComputersFilter, "ComputersFilter", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, identifyGroupMembersByNameAttribute, setIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerGroupsFilter, setComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerContainersFilter, setComputerContainersFilter, "ComputerContainersFilter", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByContainer, setComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByAttribute, setComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP" )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerRoomAttribute, setComputerRoomAttribute, "ComputerRoomAttribute", "LDAP" )	\
+	OP( LdapConfiguration, m_configuration, STRING, serverHost, setServerHost, "ServerHost", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "LDAP", 389 )	\
+	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP", LdapDirectory::ConnectionSecurityNone )	\
+	OP( LdapConfiguration, m_configuration, INT, tlsVerifyMode, setTLSVerifyMode, "TLSVerifyMode", "LDAP", LdapDirectory::TLSVerifyDefault )	\
+	OP( LdapConfiguration, m_configuration, STRING, tlsCACertificateFile, setTLSCACertificateFile, "TLSCACertificateFile", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, PASSWORD, bindPassword, setBindPassword, "BindPassword", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, BOOL, queryNamingContext, setQueryNamingContext, "QueryNamingContext", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, STRING, baseDn, setBaseDn, "BaseDN", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, namingContextAttribute, setNamingContextAttribute, "NamingContextAttribute", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, userTree, setUserTree, "UserTree", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, groupTree, setGroupTree, "GroupTree", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerTree, setComputerTree, "ComputerTree", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerGroupTree, setComputerGroupTree, "ComputerGroupTree", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, BOOL, recursiveSearchOperations, setRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, STRING, userLoginAttribute, setUserLoginAttribute, "UserLoginAttribute", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, groupMemberAttribute, setGroupMemberAttribute, "GroupMemberAttribute", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerHostNameAttribute, setComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerHostNameAsFQDN, setComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerMacAddressAttribute, setComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerRoomNameAttribute, setComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, usersFilter, setUsersFilter, "UsersFilter", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, userGroupsFilter, setUserGroupsFilter, "UserGroupsFilter", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, computersFilter, setComputersFilter, "ComputersFilter", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, BOOL, identifyGroupMembersByNameAttribute, setIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerGroupsFilter, setComputerGroupsFilter, "ComputerGroupsFilter", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerContainersFilter, setComputerContainersFilter, "ComputerContainersFilter", "LDAP", QString() )	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByContainer, setComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByAttribute, setComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP", false )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerRoomAttribute, setComputerRoomAttribute, "ComputerRoomAttribute", "LDAP", QString() )	\
 
 
-class LdapConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	enum ConnectionSecurity
-	{
-		ConnectionSecurityNone,
-		ConnectionSecurityTLS,
-		ConnectionSecuritySSL,
-		ConnectionSecurityCount,
-	};
-
-	enum TLSVerifyMode
-	{
-		TLSVerifyDefault,
-		TLSVerifyNever,
-		TLSVerifyCustomCert,
-		TLSVerifyModeCount
-	};
-	LdapConfiguration( QObject* parent = nullptr );
-
-	FOREACH_LDAP_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-} ;
+DECLARE_CONFIG_PROXY(LdapConfiguration, FOREACH_LDAP_CONFIG_PROPERTY)

@@ -121,7 +121,7 @@ inline void initWidgetFromProperty( Config* config, QStringList (Config::*getter
 }
 
 // widget initialization
-#define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey)	\
+#define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue)	\
 			initWidgetFromProperty<>( &config, &className::get, ui->get );
 
 
@@ -222,7 +222,7 @@ inline void connectWidgetToProperty( Config* config, void (Config::*setter)( con
 	Q_UNUSED(widget)
 }
 
-#define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey)	\
+#define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue)	\
 	connectWidgetToProperty( &config, &className::set, ui->get );
 
 #endif

@@ -2,7 +2,6 @@ INCLUDE(BuildPlugin)
 
 BUILD_PLUGIN(demo
 	DemoFeaturePlugin.cpp
-	DemoConfiguration.cpp
 	DemoConfigurationPage.cpp
 	DemoServer.cpp
 	DemoServerConnection.cpp

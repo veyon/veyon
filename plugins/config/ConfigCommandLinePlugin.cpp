@@ -166,7 +166,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 		return operationError( tr( "Specified key does not exist in current configuration!" ) );
 	}
 
-	CommandLineIO::print( printableConfigurationValue( VeyonCore::config().value( key, parentKey ) ) );
+	CommandLineIO::print( printableConfigurationValue( VeyonCore::config().value( key, parentKey, QVariant() ) ) );
 
 	return NoResult;
 }
@@ -201,7 +201,7 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 	QVariant configValue = value;
 
 	if( type == QStringLiteral("json") ||
-			VeyonCore::config().value( key, parentKey ).userType() == QMetaType::type( "QJsonArray" ) )
+			VeyonCore::config().value( key, parentKey, QVariant() ).userType() == QMetaType::type( "QJsonArray" ) )
 	{
 		configValue = QJsonDocument::fromJson( value.toUtf8() ).array();
 	}

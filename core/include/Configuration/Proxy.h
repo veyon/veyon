@@ -36,11 +36,11 @@ public:
 	Proxy( Object* object, QObject* parent = nullptr );
 	~Proxy() = default;
 
-	bool hasValue( const QString& key, const QString& parentKey = QString() ) const;
+	bool hasValue( const QString& key, const QString& parentKey ) const;
 
-	QVariant value( const QString& key, const QString& parentKey = QString() ) const;
+	QVariant value( const QString& key, const QString& parentKey, const QVariant& defaultValue ) const;
 
-	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );
+	void setValue( const QString& key, const QVariant& value, const QString& parentKey );
 
 	void removeValue( const QString &key, const QString &parentKey );
 

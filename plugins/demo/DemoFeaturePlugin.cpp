@@ -284,3 +284,7 @@ ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
 {
 	return new DemoConfigurationPage( m_configuration );
 }
+
+
+
+IMPLEMENT_CONFIG_PROXY(DemoConfiguration, &VeyonCore::config())

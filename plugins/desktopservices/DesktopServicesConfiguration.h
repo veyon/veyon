@@ -28,7 +28,7 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_DESKTOP_SERVICES_CONFIG_PROPERTY(OP) \
-	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedPrograms, setPredefinedPrograms, "PredefinedPrograms", "DesktopServices" )	\
-	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedWebsites, setPredefinedWebsites, "PredefinedWebsites", "DesktopServices" )	\
+	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedPrograms, setPredefinedPrograms, "PredefinedPrograms", "DesktopServices", QJsonArray() )	\
+	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedWebsites, setPredefinedWebsites, "PredefinedWebsites", "DesktopServices", QJsonArray() )	\
 
 DECLARE_CONFIG_PROXY(DesktopServicesConfiguration, FOREACH_DESKTOP_SERVICES_CONFIG_PROPERTY)

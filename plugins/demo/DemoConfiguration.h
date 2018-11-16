@@ -28,26 +28,9 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_DEMO_CONFIG_PROPERTY(OP) \
-	OP( DemoConfiguration, m_configuration, BOOL, multithreadingEnabled, setMultithreadingEnabled, "MultithreadingEnabled", "Demo" )	\
-	OP( DemoConfiguration, m_configuration, INT, framebufferUpdateInterval, setFramebufferUpdateInterval, "FramebufferUpdateInterval", "Demo" )	\
-	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo" )	\
-	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo" )	\
+	OP( DemoConfiguration, m_configuration, BOOL, multithreadingEnabled, setMultithreadingEnabled, "MultithreadingEnabled", "Demo", true )	\
+	OP( DemoConfiguration, m_configuration, INT, framebufferUpdateInterval, setFramebufferUpdateInterval, "FramebufferUpdateInterval", "Demo", 100 )	\
+	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo", 10 )	\
+	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo", 128 )	\
 
-//DECLARE_CONFIG_PROXY(DemoConfiguration, FOREACH_DEMO_CONFIG_PROPERTY)
-
-// clazy:excludeall=ctor-missing-parent-argument
-
-class DemoConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	enum {
-		DefaultFramebufferUpdateInterval = 100,	// in milliseconds
-		DefaultKeyFrameInterval = 10,			// in seconds
-		DefaultMemoryLimit = 128,				// in MB
-	};
-
-	DemoConfiguration();
-
-	FOREACH_DEMO_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-} ;
+DECLARE_CONFIG_PROXY(DemoConfiguration, FOREACH_DEMO_CONFIG_PROPERTY)

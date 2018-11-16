@@ -72,7 +72,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( browseCACertificateFile );
 
 	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=]() {
-		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapConfiguration::TLSVerifyCustomCert );
+		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapDirectory::TLSVerifyCustomCert );
 	} );
 }
 
@@ -87,12 +87,6 @@ LdapConfigurationPage::~LdapConfigurationPage()
 
 void LdapConfigurationPage::resetWidgets()
 {
-	// sanitize configuration
-	if( m_configuration.serverPort() <= 0 )
-	{
-		m_configuration.setServerPort( 389 );
-	}
-
 	FOREACH_LDAP_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 

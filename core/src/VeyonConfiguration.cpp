@@ -51,44 +51,5 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 {
 	VeyonConfiguration c( nullptr );
 
-	c.setApplicationName( QString() );
-	c.setUiLanguage( QString() );
-
-	c.setNetworkObjectDirectoryUpdateInterval( NetworkObjectDirectory::DefaultUpdateInterval );
-
-	c.setTrayIconHidden( false );
-	c.setFailedAuthenticationNotificationsEnabled( true );
-	c.setRemoteConnectionNotificationsEnabled( false );
-	c.setServiceAutostart( true );
-
-	c.setLogLevel( Logger::LogLevelDefault );
-	c.setLogFileSizeLimitEnabled( false );
-	c.setLogFileRotationEnabled( false );
-	c.setLogToStdErr( true );
-	c.setLogToSystem( false );
-	c.setLogFileSizeLimit( 100 );
-	c.setLogFileRotationCount( 10 );
-	c.setLogFileDirectory( QStringLiteral( "$TEMP" ) );
-
-	c.setPrimaryServicePort( 11100 );
-	c.setVncServerPort( 11200 );
-	c.setFeatureWorkerManagerPort( 11300 );
-	c.setDemoServerPort( 11400 );
-	c.setFirewallExceptionEnabled( true );
-	c.setSoftwareSASEnabled( true );
-
-	c.setUserConfigurationDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Config" ) ) );
-	c.setScreenshotDirectory( QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Screenshots" ) ) );
-	c.setComputerMonitoringUpdateInterval( 1000 );
-	c.setComputerMonitoringBackgroundColor( Qt::white );
-	c.setComputerMonitoringTextColor( Qt::black );
-
-	c.setAuthenticationMethod( VeyonCore::LogonAuthentication );
-
-	c.setPrivateKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/private" ) ) );
-	c.setPublicKeyBaseDir( QDir::toNativeSeparators( QStringLiteral( "%GLOBALAPPDATA%/keys/public" ) ) );
-
-	c.setAuthorizedUserGroups( QStringList() );
-
 	return c;
 }

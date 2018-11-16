@@ -28,6 +28,7 @@
 #include "LogoffEventFilter.h"
 #include "UltraVncConfiguration.h"
 #include "UltraVncConfigurationWidget.h"
+#include "VeyonConfiguration.h"
 
 extern int WinVNCAppMain();
 
@@ -217,3 +218,8 @@ void BuiltinUltraVncServer::runServer( int serverPort, const QString& password )
 
 	WinVNCAppMain();
 }
+
+
+
+IMPLEMENT_CONFIG_PROXY(UltraVncConfiguration, &VeyonCore::config())
+

@@ -26,23 +26,11 @@
 
 #include "Configuration/Proxy.h"
 
-#define FOREACH_ULTRAVNC_CONFIG_INIT_PROPERTY(OP) \
-	OP( UltraVncConfiguration, m_configuration, BOOL, isUltraVncConfigured, setUltraVncConfigured, "Configured", "UltraVNC" );
-
 #define FOREACH_ULTRAVNC_CONFIG_PROPERTY(OP) \
-	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC" );	\
-	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDualMonitorSupportEnabled, setUltraVncDualMonitorSupportEnabled, "DualMonitorSupportEnabled", "UltraVNC" );	\
-	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC" );			\
-	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC" );					\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC", true )	\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDualMonitorSupportEnabled, setUltraVncDualMonitorSupportEnabled, "DualMonitorSupportEnabled", "UltraVNC", true )	\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC", true )			\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC", true )					\
 
-class UltraVncConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	UltraVncConfiguration();
-
-	FOREACH_ULTRAVNC_CONFIG_INIT_PROPERTY(DECLARE_CONFIG_PROPERTY)
-	FOREACH_ULTRAVNC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-} ;
+DECLARE_CONFIG_PROXY(UltraVncConfiguration, FOREACH_ULTRAVNC_CONFIG_PROPERTY)
 

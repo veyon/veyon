@@ -34,11 +34,6 @@ ExternalVncServer::ExternalVncServer( QObject* parent ) :
 	QObject( parent ),
 	m_configuration()
 {
-	// sanitize configuration
-	if( m_configuration.serverPort() <= 0 )
-	{
-		m_configuration.setServerPort( 5900 );
-	}
 }
 
 

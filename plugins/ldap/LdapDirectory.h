@@ -36,6 +36,24 @@ class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
+	enum ConnectionSecurity
+	{
+		ConnectionSecurityNone,
+		ConnectionSecurityTLS,
+		ConnectionSecuritySSL,
+		ConnectionSecurityCount,
+	};
+	Q_ENUM(ConnectionSecurity)
+
+	enum TLSVerifyMode
+	{
+		TLSVerifyDefault,
+		TLSVerifyNever,
+		TLSVerifyCustomCert,
+		TLSVerifyModeCount
+	};
+	Q_ENUM(TLSVerifyMode)
+
 	LdapDirectory( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
 	~LdapDirectory();
 

@@ -28,7 +28,7 @@
 #include "CryptoCore.h"
 
 #define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
-	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer" ) \
-	OP( ExternalVncServerConfiguration, m_configuration, PASSWORD, password, setPassword, "Password", "ExternalVncServer" )
+	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer", 5900 ) \
+	OP( ExternalVncServerConfiguration, m_configuration, PASSWORD, password, setPassword, "Password", "ExternalVncServer", QString() )
 
 DECLARE_CONFIG_PROXY(ExternalVncServerConfiguration, FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY)

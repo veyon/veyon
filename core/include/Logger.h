@@ -37,7 +37,7 @@ class QFile;
 class VEYON_CORE_EXPORT Logger
 {
 public:
-	enum LogLevels
+	typedef enum LogLevels
 	{
 		LogLevelNothing,
 		LogLevelCritical,
@@ -49,9 +49,11 @@ public:
 		LogLevelMin = LogLevelNothing+1,
 		LogLevelMax = NumLogLevels-1,
 		LogLevelDefault = LogLevelInfo
-	} ;
+	} LogLevel;
 
-	typedef LogLevels LogLevel;
+	static constexpr int DefaultFileSizeLimit = 100;
+	static constexpr int DefaultFileRotationCount = 10;
+	static constexpr const char* DefaultLogFileDirectory = "$TEMP";
 
 	Logger( const QString &appName );
 	~Logger();

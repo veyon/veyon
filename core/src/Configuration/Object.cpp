@@ -164,7 +164,7 @@ bool Object::hasValue( const QString& key, const QString& parentKey ) const
 
 
 
-QVariant Object::value( const QString& key, const QString& parentKey ) const
+QVariant Object::value( const QString& key, const QString& parentKey, const QVariant& defaultValue ) const
 {
 	// empty parentKey?
 	if( parentKey.isEmpty() )
@@ -174,7 +174,7 @@ QVariant Object::value( const QString& key, const QString& parentKey ) const
 		{
 			return m_data[key];
 		}
-		return QVariant();
+		return defaultValue;
 	}
 
 	// recursively search through data maps and sub data-maps until
@@ -190,7 +190,7 @@ QVariant Object::value( const QString& key, const QString& parentKey ) const
 		}
 		else
 		{
-			return QVariant();
+			return defaultValue;
 		}
 	}
 
@@ -199,7 +199,7 @@ QVariant Object::value( const QString& key, const QString& parentKey ) const
 	{
 		return currentMap[key];
 	}
-	return QVariant();
+	return defaultValue;
 }
 
 

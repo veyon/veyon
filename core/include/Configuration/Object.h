@@ -52,11 +52,11 @@ public:
 	Object& operator=( const Object& ref );
 	Object& operator+=( const Object& ref );
 
-	bool hasValue( const QString& key, const QString& parentKey = QString() ) const;
+	bool hasValue( const QString& key, const QString& parentKey ) const;
 
-	QVariant value( const QString& key, const QString& parentKey = QString() ) const;
+	QVariant value( const QString& key, const QString& parentKey, const QVariant& defaultValue ) const;
 
-	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );
+	void setValue( const QString& key, const QVariant& value, const QString& parentKey );
 
 	void removeValue( const QString& key, const QString& parentKey );
 
@@ -108,110 +108,110 @@ private:
 } ;
 
 
-#define DECLARE_CONFIG_STRING_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_STRING_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:											\
 		QString get() const					\
 		{											\
-			return value( key, parentKey ).toString();			\
+			return value( key, parentKey, defaultValue ).toString();			\
 		} \
 		void set( const QString &val )						\
 		{																\
 			setValue( key, val,	parentKey );							\
 		}
 
-#define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:													\
 		QStringList get() const						\
 		{													\
-			return value( key, parentKey ).toStringList();	\
+			return value( key, parentKey, defaultValue ).toStringList();	\
 		} \
 		void set( const QStringList &val )					\
 		{																\
 			setValue( key, val,	parentKey );							\
 		}
 
-#define DECLARE_CONFIG_INT_PROPERTY(get,set,key,parentKey)	\
+#define DECLARE_CONFIG_INT_PROPERTY(get,set,key,parentKey,defaultValue)	\
 	public:												\
 		int get() const							\
 		{												\
-			return value( key, parentKey ).toInt();		\
+			return value( key, parentKey, defaultValue ).toInt();		\
 		} \
 		void set( int val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_BOOL_PROPERTY(get,set,key,parentKey)	\
+#define DECLARE_CONFIG_BOOL_PROPERTY(get,set,key,parentKey,defaultValue)	\
 	public:												\
 		bool get() const								\
 		{												\
-			return value( key, parentKey ).toBool();	\
+			return value( key, parentKey, defaultValue ).toBool();	\
 		} \
 		void set( bool val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:											\
 		QJsonObject get() const					\
 		{											\
-			return value( key, parentKey ).toJsonObject();			\
+			return value( key, parentKey, defaultValue ).toJsonObject();			\
 		} \
 		void set( const QJsonObject& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:											\
 		QJsonArray get() const					\
 		{											\
-			return value( key, parentKey ).toJsonArray();			\
+			return value( key, parentKey, defaultValue ).toJsonArray();			\
 		} \
 		void set( const QJsonArray& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_UUID_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_UUID_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:											\
 		QUuid get() const					\
 		{											\
-			return value( key, parentKey ).toUuid();			\
+			return value( key, parentKey,defaultValue ).toUuid();			\
 		} \
 		void set( QUuid val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_COLOR_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_COLOR_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:											\
 		QColor get() const					\
 		{											\
-			return value( key, parentKey ).value<QColor>();			\
+			return value( key, parentKey, defaultValue ).value<QColor>();			\
 		} \
 		void set( const QColor& val )									\
 		{																\
 			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_PASSWORD_PROPERTY(get,set,key,parentKey)\
+#define DECLARE_CONFIG_PASSWORD_PROPERTY(get,set,key,parentKey,defaultValue)\
 	public:											\
 		QString get() const					\
 		{											\
-			return VeyonCore::cryptoCore().decryptPassword( value( key, parentKey ).toString() );	\
+			return VeyonCore::cryptoCore().decryptPassword( value( key, parentKey, QVariant() ).toString() );	\
 		}	\
 		QString get##Plain() const					\
 		{											\
-			return value( key, parentKey ).toString().toUtf8();			\
+			return value( key, parentKey, QVariant() ).toString().toUtf8();			\
 		}	\
 		void set( const QString& val )									\
 		{																\
 			setValue( key, VeyonCore::cryptoCore().encryptPassword( val.toUtf8() ), parentKey );			\
 		}
 
-#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
-			DECLARE_CONFIG_##type##_PROPERTY(get,set,QStringLiteral(key),QStringLiteral(parentKey))
+#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey, defaultValue)			\
+			DECLARE_CONFIG_##type##_PROPERTY(get,set,QStringLiteral(key),QStringLiteral(parentKey),defaultValue)
 
 }
