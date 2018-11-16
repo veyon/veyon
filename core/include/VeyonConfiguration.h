@@ -39,8 +39,6 @@ public:
 	VeyonConfiguration();
 	VeyonConfiguration( Configuration::Store* store );
 
-	static VeyonConfiguration defaultConfiguration();
-
 	static QString expandPath( QString path );
 
 	FOREACH_VEYON_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)

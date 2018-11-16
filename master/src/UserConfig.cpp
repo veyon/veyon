@@ -30,7 +30,7 @@
 
 
 UserConfig::UserConfig( Configuration::Store::Backend backend ) :
-	Configuration::Object( backend, Configuration::Store::User, Configuration::Object(), QStringLiteral("VeyonMaster") )
+	Configuration::Object( backend, Configuration::Store::User, QStringLiteral("VeyonMaster") )
 {
 	if( isStoreWritable() == false )
 	{

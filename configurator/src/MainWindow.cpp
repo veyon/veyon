@@ -92,7 +92,7 @@ void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )
 	{
-		VeyonCore::config() = VeyonConfiguration::defaultConfiguration();
+		VeyonCore::config().clear();
 		VeyonCore::config().reloadFromStore();
 	}
 

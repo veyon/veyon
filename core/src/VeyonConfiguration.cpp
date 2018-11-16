@@ -33,8 +33,7 @@
 
 VeyonConfiguration::VeyonConfiguration() :
 	Configuration::Object( Configuration::Store::LocalBackend,
-						   Configuration::Store::System,
-						   defaultConfiguration() )
+						   Configuration::Store::System )
 {
 }
 
@@ -43,13 +42,4 @@ VeyonConfiguration::VeyonConfiguration() :
 VeyonConfiguration::VeyonConfiguration( Configuration::Store* store ) :
 	Configuration::Object( store )
 {
-}
-
-
-
-VeyonConfiguration VeyonConfiguration::defaultConfiguration()
-{
-	VeyonConfiguration c( nullptr );
-
-	return c;
 }

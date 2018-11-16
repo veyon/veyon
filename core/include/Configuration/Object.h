@@ -44,7 +44,7 @@ public:
 	typedef QMap<QString, QVariant> DataMap;
 
 	Object();
-	Object( Store::Backend backend, Store::Scope scope, const Object& defaults, const QString& storeName = QString() );
+	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = QString() );
 	Object( Store* store );
 	Object( const Object& );
 	~Object() override;
