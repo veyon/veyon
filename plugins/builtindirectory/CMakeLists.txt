@@ -2,7 +2,6 @@ INCLUDE(BuildPlugin)
 
 BUILD_PLUGIN(builtindirectory
 	BuiltinDirectoryPlugin.cpp
-	BuiltinDirectoryConfiguration.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectory.cpp
 	BuiltinDirectoryPlugin.h

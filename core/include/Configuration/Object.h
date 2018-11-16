@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_OBJECT_H
-#define CONFIGURATION_OBJECT_H
+#pragma once
 
 #include <QColor>
 #include <QJsonArray>
@@ -109,63 +108,95 @@ private:
 } ;
 
 
-#define DECLARE_CONFIG_STRING_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_STRING_PROPERTY(get,set,key,parentKey)\
 	public:											\
 		QString get() const					\
 		{											\
 			return value( key, parentKey ).toString();			\
+		} \
+		void set( const QString &val )						\
+		{																\
+			setValue( key, val,	parentKey );							\
 		}
 
-#define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,set,key,parentKey)\
 	public:													\
 		QStringList get() const						\
 		{													\
 			return value( key, parentKey ).toStringList();	\
+		} \
+		void set( const QStringList &val )					\
+		{																\
+			setValue( key, val,	parentKey );							\
 		}
 
-#define DECLARE_CONFIG_INT_PROPERTY(get,key,parentKey)	\
+#define DECLARE_CONFIG_INT_PROPERTY(get,set,key,parentKey)	\
 	public:												\
 		int get() const							\
 		{												\
 			return value( key, parentKey ).toInt();		\
+		} \
+		void set( int val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_BOOL_PROPERTY(get,key,parentKey)	\
+#define DECLARE_CONFIG_BOOL_PROPERTY(get,set,key,parentKey)	\
 	public:												\
 		bool get() const								\
 		{												\
 			return value( key, parentKey ).toBool();	\
+		} \
+		void set( bool val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_JSONOBJECT_PROPERTY(get,set,key,parentKey)\
 	public:											\
 		QJsonObject get() const					\
 		{											\
 			return value( key, parentKey ).toJsonObject();			\
+		} \
+		void set( const QJsonObject& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_JSONARRAY_PROPERTY(get,set,key,parentKey)\
 	public:											\
 		QJsonArray get() const					\
 		{											\
 			return value( key, parentKey ).toJsonArray();			\
+		} \
+		void set( const QJsonArray& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_UUID_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_UUID_PROPERTY(get,set,key,parentKey)\
 	public:											\
 		QUuid get() const					\
 		{											\
 			return value( key, parentKey ).toUuid();			\
+		} \
+		void set( QUuid val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_COLOR_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_COLOR_PROPERTY(get,set,key,parentKey)\
 	public:											\
 		QColor get() const					\
 		{											\
 			return value( key, parentKey ).value<QColor>();			\
+		} \
+		void set( const QColor& val )									\
+		{																\
+			setValue( key, val, parentKey );			\
 		}
 
-#define DECLARE_CONFIG_PASSWORD_PROPERTY(get,key,parentKey)\
+#define DECLARE_CONFIG_PASSWORD_PROPERTY(get,set,key,parentKey)\
 	public:											\
 		QString get() const					\
 		{											\
@@ -175,69 +206,12 @@ private:
 		{											\
 			return value( key, parentKey ).toString().toUtf8();			\
 		}	\
-
-#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
-			DECLARE_CONFIG_##type##_PROPERTY(get,QStringLiteral(key),QStringLiteral(parentKey))
-
-
-#define IMPLEMENT_CONFIG_SET_STRING_PROPERTY(className,set,key,parentKey)\
-		void className::set( const QString &val )						\
-		{																\
-			setValue( key, val,	parentKey );							\
-		}
-
-#define IMPLEMENT_CONFIG_SET_STRINGLIST_PROPERTY(className,set,key,parentKey)\
-		void className::set( const QStringList &val )					\
-		{																\
-			setValue( key, val,	parentKey );							\
-		}
-
-#define IMPLEMENT_CONFIG_SET_INT_PROPERTY(className,set,key,parentKey)	\
-		void className::set( int val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define IMPLEMENT_CONFIG_SET_BOOL_PROPERTY(className,set,key,parentKey)	\
-		void className::set( bool val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define IMPLEMENT_CONFIG_SET_JSONOBJECT_PROPERTY(className,set,key,parentKey)	\
-		void className::set( const QJsonObject& val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define IMPLEMENT_CONFIG_SET_JSONARRAY_PROPERTY(className,set,key,parentKey)	\
-		void className::set( const QJsonArray& val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define IMPLEMENT_CONFIG_SET_UUID_PROPERTY(className,set,key,parentKey)	\
-		void className::set( QUuid val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define IMPLEMENT_CONFIG_SET_COLOR_PROPERTY(className,set,key,parentKey)	\
-		void className::set( const QColor& val )									\
-		{																\
-			setValue( key, val, parentKey );			\
-		}
-
-#define IMPLEMENT_CONFIG_SET_PASSWORD_PROPERTY(className,set,key,parentKey)	\
-		void className::set( const QString& val )									\
+		void set( const QString& val )									\
 		{																\
 			setValue( key, VeyonCore::cryptoCore().encryptPassword( val.toUtf8() ), parentKey );			\
 		}
 
-#define IMPLEMENT_CONFIG_SET_PROPERTY(className, config,type, get, set, key, parentKey)	\
-			IMPLEMENT_CONFIG_SET_##type##_PROPERTY(className,set,QStringLiteral(key),QStringLiteral(parentKey))
-
+#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
+			DECLARE_CONFIG_##type##_PROPERTY(get,set,QStringLiteral(key),QStringLiteral(parentKey))
 
 }
-
-#endif

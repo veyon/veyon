@@ -22,30 +22,13 @@
  *
  */
 
-#ifndef EXTERNAL_VNC_SERVER_CONFIGURATION_H
-#define EXTERNAL_VNC_SERVER_CONFIGURATION_H
+#pragma once
 
 #include "Configuration/Proxy.h"
 #include "CryptoCore.h"
 
 #define FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(OP) \
-	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer" ); \
-	OP( ExternalVncServerConfiguration, m_configuration, PASSWORD, password, setPassword, "Password", "ExternalVncServer" );
+	OP( ExternalVncServerConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "ExternalVncServer" ) \
+	OP( ExternalVncServerConfiguration, m_configuration, PASSWORD, password, setPassword, "Password", "ExternalVncServer" )
 
-// clazy:excludeall=ctor-missing-parent-argument
-
-class ExternalVncServerConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	ExternalVncServerConfiguration();
-
-	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-public slots:
-	void setServerPort( int port );
-	void setPassword( const QString& );
-
-} ;
-
-#endif
+DECLARE_CONFIG_PROXY(ExternalVncServerConfiguration, FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY)

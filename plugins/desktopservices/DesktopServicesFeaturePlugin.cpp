@@ -34,6 +34,7 @@
 #include "RunProgramDialog.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "VeyonConfiguration.h"
 
 
 DesktopServicesFeaturePlugin::DesktopServicesFeaturePlugin( QObject* parent ) :
@@ -312,3 +313,6 @@ QString DesktopServicesFeaturePlugin::predefinedServicePath( Feature::Uid subFea
 
 	return QString();
 }
+
+
+IMPLEMENT_CONFIG_PROXY(DesktopServicesConfiguration, &VeyonCore::config())

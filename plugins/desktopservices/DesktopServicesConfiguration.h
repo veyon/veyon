@@ -22,28 +22,13 @@
  *
  */
 
-#ifndef DESKTOP_SERVICES_CONFIGURATION_H
-#define DESKTOP_SERVICES_CONFIGURATION_H
+#pragma once
 
+#include "VeyonConfiguration.h"
 #include "Configuration/Proxy.h"
 
 #define FOREACH_DESKTOP_SERVICES_CONFIG_PROPERTY(OP) \
-	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedPrograms, setPredefinedPrograms, "PredefinedPrograms", "DesktopServices" );	\
-	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedWebsites, setPredefinedWebsites, "PredefinedWebsites", "DesktopServices" );	\
+	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedPrograms, setPredefinedPrograms, "PredefinedPrograms", "DesktopServices" )	\
+	OP( DesktopServicesConfiguration, m_configuration, JSONARRAY, predefinedWebsites, setPredefinedWebsites, "PredefinedWebsites", "DesktopServices" )	\
 
-
-class DesktopServicesConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	DesktopServicesConfiguration( QObject* parent = nullptr );
-
-	FOREACH_DESKTOP_SERVICES_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-public slots:
-	void setPredefinedPrograms( const QJsonArray& );
-	void setPredefinedWebsites( const QJsonArray& );
-
-} ;
-
-#endif
+DECLARE_CONFIG_PROXY(DesktopServicesConfiguration, FOREACH_DESKTOP_SERVICES_CONFIG_PROPERTY)

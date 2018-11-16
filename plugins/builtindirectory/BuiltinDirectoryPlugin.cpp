@@ -730,3 +730,7 @@ QStringList BuiltinDirectoryPlugin::fileImportVariables()
 {
 	return { "%room%", "%name%", "%host%", "%mac%", "%type%" };
 }
+
+
+
+IMPLEMENT_CONFIG_PROXY(BuiltinDirectoryConfiguration, &VeyonCore::config())

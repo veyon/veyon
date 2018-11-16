@@ -22,30 +22,14 @@
  *
  */
 
-#ifndef BUILTIN_DIRECTORY_CONFIGURATION_H
-#define BUILTIN_DIRECTORY_CONFIGURATION_H
+#pragma once
 
+#include "VeyonConfiguration.h"
 #include "Configuration/Proxy.h"
 
 #define FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(OP) \
-	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory" );	\
+	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, networkObjects, setNetworkObjects, "NetworkObjects", "BuiltinDirectory" )	\
 	/* legacy properties required for upgrade */ \
-	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, localDataNetworkObjects, setLocalDataNetworkObjects, "NetworkObjects", "LocalData" );	\
+	OP( BuiltinDirectoryConfiguration, m_configuration, JSONARRAY, localDataNetworkObjects, setLocalDataNetworkObjects, "NetworkObjects", "LocalData" )	\
 
-// clazy:excludeall=ctor-missing-parent-argument
-
-class BuiltinDirectoryConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	BuiltinDirectoryConfiguration();
-
-	FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-public slots:
-	void setNetworkObjects( const QJsonArray& );
-	void setLocalDataNetworkObjects( const QJsonArray& );
-
-} ;
-
-#endif
+DECLARE_CONFIG_PROXY(BuiltinDirectoryConfiguration, FOREACH_BUILTIN_DIRECTORY_CONFIG_PROPERTY)

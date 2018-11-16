@@ -92,7 +92,3 @@ VeyonConfiguration VeyonConfiguration::defaultConfiguration()
 
 	return c;
 }
-
-
-
-FOREACH_VEYON_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)

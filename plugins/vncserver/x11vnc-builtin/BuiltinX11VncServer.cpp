@@ -28,6 +28,7 @@
 #include <QThread>
 
 #include "BuiltinX11VncServer.h"
+#include "VeyonConfiguration.h"
 #include "X11VncConfigurationWidget.h"
 
 extern "C" int x11vnc_main( int argc, char * * argv );
@@ -146,3 +147,6 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 	delete[] argv;
 #endif
 }
+
+
+IMPLEMENT_CONFIG_PROXY(X11VncConfiguration, &VeyonCore::config())

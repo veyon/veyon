@@ -22,7 +22,6 @@
  *
  */
 
-#include "VeyonConfiguration.h"
 #include "DemoConfiguration.h"
 
 
@@ -45,6 +44,3 @@ DemoConfiguration::DemoConfiguration() :
 		setMemoryLimit( DefaultMemoryLimit );
 	}
 }
-
-
-FOREACH_DEMO_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)

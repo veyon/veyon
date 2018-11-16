@@ -22,10 +22,9 @@
  *
  */
 
-#ifndef CONFIGURATION_PROXY_H
-#define CONFIGURATION_PROXY_H
+#pragma once
 
-#include "Configuration/Object.h"
+#include "Object.h"
 
 namespace Configuration
 {
@@ -34,46 +33,32 @@ class VEYON_CORE_EXPORT Proxy : public QObject
 {
 	Q_OBJECT
 public:
-	Proxy( Object* object, QObject* parent = nullptr ) :
-		QObject( parent ),
-		m_object( object )
-	{
-	}
+	Proxy( Object* object, QObject* parent = nullptr );
+	~Proxy() = default;
 
-	~Proxy() override
-	{
-	}
+	bool hasValue( const QString& key, const QString& parentKey = QString() ) const;
 
-	bool hasValue( const QString& key, const QString& parentKey = QString() ) const
-	{
-		return m_object->hasValue( key, parentKey );
-	}
+	QVariant value( const QString& key, const QString& parentKey = QString() ) const;
 
-	QVariant value( const QString& key, const QString& parentKey = QString() ) const
-	{
-		return m_object->value( key, parentKey );
-	}
+	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() );
 
-	void setValue( const QString& key, const QVariant& value, const QString& parentKey = QString() )
-	{
-		m_object->setValue( key, value, parentKey );
-	}
+	void removeValue( const QString &key, const QString &parentKey );
 
-	void removeValue( const QString &key, const QString &parentKey )
-	{
-		m_object->removeValue( key, parentKey );
-	}
-
-	void reloadFromStore()
-	{
-		m_object->reloadFromStore();
-	}
+	void reloadFromStore();
 
 private:
 	Object* m_object;
 
 } ;
 
-}
+#define DECLARE_CONFIG_PROXY(name, ops) \
+	class name : public Configuration::Proxy { \
+	public: \
+		name( QObject* parent = nullptr ); \
+		ops(DECLARE_CONFIG_PROPERTY) \
+	};
 
-#endif
+#define IMPLEMENT_CONFIG_PROXY(name, object) \
+	name::name( QObject* parent ) : Configuration::Proxy( object, parent ) { }
+
+}

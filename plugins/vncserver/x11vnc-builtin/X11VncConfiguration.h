@@ -22,29 +22,12 @@
  *
  */
 
-#ifndef X11VNC_CONFIGURATION_H
-#define X11VNC_CONFIGURATION_H
+#pragma once
 
 #include "Configuration/Proxy.h"
 
 #define FOREACH_X11VNC_CONFIG_PROPERTY(OP) \
-	OP( X11VncConfiguration, m_configuration, BOOL, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc" );	\
-	OP( X11VncConfiguration, m_configuration, STRING, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc" );
+	OP( X11VncConfiguration, m_configuration, BOOL, isXDamageDisabled, setXDamageDisabled, "XDamageDisabled", "X11Vnc" )	\
+	OP( X11VncConfiguration, m_configuration, STRING, extraArguments, setExtraArguments, "ExtraArguments", "X11Vnc" )
 
-// clazy:excludeall=ctor-missing-parent-argument
-
-class X11VncConfiguration : public Configuration::Proxy
-{
-	Q_OBJECT
-public:
-	X11VncConfiguration();
-
-	FOREACH_X11VNC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-public slots:
-	void setXDamageDisabled( bool );
-	void setExtraArguments( const QString& );
-
-} ;
-
-#endif
+DECLARE_CONFIG_PROXY(X11VncConfiguration, FOREACH_X11VNC_CONFIG_PROPERTY)

@@ -27,6 +27,7 @@
 #include "AuthenticationCredentials.h"
 #include "ExternalVncServer.h"
 #include "ExternalVncServerConfigurationWidget.h"
+#include "VeyonConfiguration.h"
 
 
 ExternalVncServer::ExternalVncServer( QObject* parent ) :
@@ -91,3 +92,7 @@ QString ExternalVncServer::configuredPassword()
 {
 	return m_configuration.password();
 }
+
+
+
+IMPLEMENT_CONFIG_PROXY(ExternalVncServerConfiguration, &VeyonCore::config())

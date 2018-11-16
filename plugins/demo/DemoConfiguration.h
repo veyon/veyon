@@ -22,16 +22,18 @@
  *
  */
 
-#ifndef DEMO_CONFIGURATION_H
-#define DEMO_CONFIGURATION_H
+#pragma once
 
+#include "VeyonConfiguration.h"
 #include "Configuration/Proxy.h"
 
 #define FOREACH_DEMO_CONFIG_PROPERTY(OP) \
-	OP( DemoConfiguration, m_configuration, BOOL, multithreadingEnabled, setMultithreadingEnabled, "MultithreadingEnabled", "Demo" );	\
-	OP( DemoConfiguration, m_configuration, INT, framebufferUpdateInterval, setFramebufferUpdateInterval, "FramebufferUpdateInterval", "Demo" );	\
-	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo" );	\
-	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo" );	\
+	OP( DemoConfiguration, m_configuration, BOOL, multithreadingEnabled, setMultithreadingEnabled, "MultithreadingEnabled", "Demo" )	\
+	OP( DemoConfiguration, m_configuration, INT, framebufferUpdateInterval, setFramebufferUpdateInterval, "FramebufferUpdateInterval", "Demo" )	\
+	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo" )	\
+	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo" )	\
+
+//DECLARE_CONFIG_PROXY(DemoConfiguration, FOREACH_DEMO_CONFIG_PROPERTY)
 
 // clazy:excludeall=ctor-missing-parent-argument
 
@@ -48,13 +50,4 @@ public:
 	DemoConfiguration();
 
 	FOREACH_DEMO_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-public slots:
-	void setMultithreadingEnabled( bool );
-	void setFramebufferUpdateInterval( int );
-	void setKeyFrameInterval( int );
-	void setMemoryLimit( int );
-
 } ;
-
-#endif

@@ -28,8 +28,6 @@
 #include "VeyonCore.h"
 #include "UserConfig.h"
 
-FOREACH_PERSONAL_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
-
 
 UserConfig::UserConfig( Configuration::Store::Backend backend ) :
 	Configuration::Object( backend, Configuration::Store::User, Configuration::Object(), QStringLiteral("VeyonMaster") )

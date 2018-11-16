@@ -23,10 +23,7 @@
  *
  */
 
-#ifndef VEYON_CONFIGURATION_H
-#define VEYON_CONFIGURATION_H
-
-#include <QStringList>
+#pragma once
 
 #include "VeyonCore.h"
 #include "Configuration/Object.h"
@@ -48,65 +45,6 @@ public:
 
 	FOREACH_VEYON_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
-	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
-	// macro expansion :-(
-public slots:
-	void setPluginVersions( const QJsonObject& );
-	void setInstallationID( const QString& );
-	void setApplicationName( const QString& );
-	void setUiLanguage( const QString& );
-	void setTrayIconHidden( bool );
-	void setFailedAuthenticationNotificationsEnabled( bool );
-	void setRemoteConnectionNotificationsEnabled( bool );
-	void setServiceAutostart( bool );
-	void setMultiSessionServiceEnabled( bool );
-	void setSoftwareSASEnabled( bool );
-	void setLogLevel( int );
-	void setLogToStdErr( bool );
-	void setLogToSystem( bool );
-	void setLogFileSizeLimitEnabled( bool );
-	void setLogFileRotationEnabled( bool );
-	void setLogFileSizeLimit( int );
-	void setLogFileRotationCount( int );
-	void setLogFileDirectory( const QString & );
-	void setNetworkObjectDirectoryPlugin( QUuid );
-	void setNetworkObjectDirectoryUpdateInterval( int );
-	void setDisabledFeatures( const QStringList& );
-	void setVncServerPlugin( QUuid );
-	void setPrimaryServicePort( int );
-	void setVncServerPort( int );
-	void setFeatureWorkerManagerPort( int );
-	void setDemoServerPort( int );
-	void setFirewallExceptionEnabled( bool );
-	void setLocalConnectOnly( bool );
-	void setUserConfigurationDirectory( const QString & );
-	void setScreenshotDirectory( const QString & );
-	void setComputerMonitoringUpdateInterval( int );
-	void setComputerDisplayRoleContent( int );
-	void setComputerMonitoringBackgroundColor( const QColor& );
-	void setComputerMonitoringTextColor( const QColor& );
-	void setAccessControlForMasterEnabled( bool );
-	void setAutoAdjustGridSize( bool );
-	void setAutoSwitchToCurrentRoom( bool );
-	void setOnlyCurrentRoomVisible( bool );
-	void setManualRoomAdditionAllowed( bool );
-	void setLocalComputerHidden( bool );
-	void setEmptyRoomsHidden( bool );
-	void setComputerFilterHidden( bool );
-	void setComputerDoubleClickFeature( QUuid );
-	void setEnforceSelectedModeForClients( bool );
-	void setOpenComputerManagementAtStart( bool );
-	void setConfirmDangerousActions( bool );
-	void setAuthenticationMethod( int );
-	void setPrivateKeyBaseDir( const QString & );
-	void setPublicKeyBaseDir( const QString & );
-	void setAccessControlUserGroupsBackend( QUuid );
-	void setDomainGroupsForAccessControlEnabled( bool );
-	void setAccessRestrictedToUserGroups( bool );
-	void setAccessControlRulesProcessingEnabled( bool );
-	void setAuthorizedUserGroups( const QStringList& );
-	void setAccessControlRules( const QJsonArray& );
 
 } ;
 
-#endif

@@ -2,7 +2,6 @@ INCLUDE(BuildPlugin)
 
 BUILD_PLUGIN(desktopservices
 	DesktopServiceObject.cpp
-	DesktopServicesConfiguration.cpp
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesFeaturePlugin.cpp
 	RunProgramDialog.cpp

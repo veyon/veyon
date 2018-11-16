@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ULTRAVNC_CONFIGURATION_H
-#define ULTRAVNC_CONFIGURATION_H
+#pragma once
 
 #include "Configuration/Proxy.h"
 
@@ -45,13 +44,5 @@ public:
 	FOREACH_ULTRAVNC_CONFIG_INIT_PROPERTY(DECLARE_CONFIG_PROPERTY)
 	FOREACH_ULTRAVNC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
-public slots:
-	void setUltraVncConfigured( bool );
-	void setUltraVncCaptureLayeredWindows( bool );
-	void setUltraVncDualMonitorSupportEnabled( bool );
-	void setUltraVncPollFullScreen( bool );
-	void setUltraVncLowAccuracy( bool );
-
 } ;
 
-#endif

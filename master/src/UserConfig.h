@@ -22,9 +22,9 @@
  *
  */
 
-#ifndef USER_CONFIG_H
-#define USER_CONFIG_H
+#pragma once
 
+#include "VeyonMaster.h"
 #include "Configuration/Object.h"
 
 // clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
@@ -36,32 +36,17 @@ public:
 	UserConfig( Configuration::Store::Backend backend );
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
-	OP( UserConfig, VeyonMaster::userConfig, JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, BOOL, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" );	\
-	OP( UserConfig, VeyonMaster::userConfig, BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, STRING, windowState, setWindowState, "WindowState", "UI" );	\
-	OP( UserConfig, VeyonMaster::userConfig, STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI" );	\
+	OP( UserConfig, VeyonMaster::userConfig(), JSONARRAY, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), JSONARRAY, computerPositions, setComputerPositions, "ComputerPositions", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, useCustomComputerPositions, setUseCustomComputerPositions, "UseCustomComputerPositions", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, filterPoweredOnComputers, setFilterPoweredOnComputers, "FilterPoweredOnComputers", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), INT, monitoringScreenSize, setMonitoringScreenSize, "MonitoringScreenSize", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), INT, defaultRole, setDefaultRole, "DefaultRole", "Authentication" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, toolButtonIconOnlyMode, setToolButtonIconOnlyMode, "ToolButtonIconOnlyMode", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), BOOL, noToolTips, setNoToolTips, "NoToolTips", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), STRING, windowState, setWindowState, "WindowState", "UI" )	\
+	OP( UserConfig, VeyonMaster::userConfig(), STRING, windowGeometry, setWindowGeometry, "WindowGeometry", "UI" )	\
 
 	FOREACH_PERSONAL_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
-
-public slots:
-	void setCheckedNetworkObjects( const QJsonArray& );
-	void setComputerPositions( const QJsonArray& );
-	void setUseCustomComputerPositions( bool );
-	void setFilterPoweredOnComputers( bool );
-	void setMonitoringScreenSize( int );
-	void setDefaultRole( int );
-	void setToolButtonIconOnlyMode( bool );
-	void setNoToolTips( bool );
-	void setWindowState( const QString& );
-	void setWindowGeometry( const QString& );
-
 } ;
-
-#endif

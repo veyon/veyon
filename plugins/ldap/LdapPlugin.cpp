@@ -279,3 +279,6 @@ LdapDirectory& LdapPlugin::ldapDirectory()
 
 	return *m_ldapDirectory;
 }
+
+
+IMPLEMENT_CONFIG_PROXY(LdapConfiguration, &VeyonCore::config())
