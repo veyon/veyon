@@ -694,6 +694,14 @@ void VncConnection::enqueueEvent( VncEvent* event)
 
 
 
+bool VncConnection::isEventQueueEmpty()
+{
+	QMutexLocker lock( &m_eventQueueMutex );
+	return m_eventQueue.isEmpty();
+}
+
+
+
 void VncConnection::mouseEvent( int x, int y, int buttonMask )
 {
 	enqueueEvent( new VncPointerEvent( x, y, buttonMask ) );

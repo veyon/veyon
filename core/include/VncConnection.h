@@ -116,6 +116,7 @@ public:
 	void setServerReachable();
 
 	void enqueueEvent( VncEvent* event );
+	bool isEventQueueEmpty();
 
 	QSize framebufferSize() const
 	{
