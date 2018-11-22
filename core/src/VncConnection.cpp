@@ -173,6 +173,7 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_host(),
 	m_port( -1 ),
 	m_globalMutex(),
+	m_eventQueueMutex(),
 	m_controlFlagMutex(),
 	m_updateIntervalSleeper(),
 	m_framebufferUpdateInterval( 0 ),
@@ -654,14 +655,14 @@ void VncConnection::finishFrameBufferUpdate()
 
 void VncConnection::sendEvents()
 {
-	m_globalMutex.lock();
+	m_eventQueueMutex.lock();
 
 	while( m_eventQueue.isEmpty() == false )
 	{
 		auto event = m_eventQueue.dequeue();
 
 		// unlock the queue mutex during the runtime of ClientEvent::fire()
-		m_globalMutex.unlock();
+		m_eventQueueMutex.unlock();
 
 		if( isControlFlagSet( TerminateThread ) == false )
 		{
@@ -671,22 +672,23 @@ void VncConnection::sendEvents()
 		delete event;
 
 		// and lock it again
-		m_globalMutex.lock();
+		m_eventQueueMutex.lock();
 	}
 
-	m_globalMutex.unlock();
+	m_eventQueueMutex.unlock();
 }
 
 
 
 void VncConnection::enqueueEvent( VncEvent* event)
 {
-	QMutexLocker lock( &m_globalMutex );
+	QMutexLocker globalLock( &m_globalMutex );
 	if( m_state != Connected )
 	{
 		return;
 	}
 
+	QMutexLocker queueLock( &m_eventQueueMutex );
 	m_eventQueue.enqueue( event );
 }
 

@@ -239,6 +239,7 @@ private:
 
 	// thread and timing control
 	QMutex m_globalMutex;
+	QMutex m_eventQueueMutex;
 	QMutex m_controlFlagMutex;
 	QWaitCondition m_updateIntervalSleeper;
 	int m_framebufferUpdateInterval;
