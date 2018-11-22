@@ -229,6 +229,18 @@ void ComputerControlInterface::sendFeatureMessage( const FeatureMessage& feature
 
 
 
+bool ComputerControlInterface::isMessageQueueEmpty()
+{
+	if( m_vncConnection && m_vncConnection->isConnected() )
+	{
+		return m_vncConnection->isEventQueueEmpty();
+	}
+
+	return true;
+}
+
+
+
 void ComputerControlInterface::resetWatchdog()
 {
 	if( state() == Connected )

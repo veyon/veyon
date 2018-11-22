@@ -128,6 +128,7 @@ public:
 	void setDesignatedModeFeature( Feature::Uid designatedModeFeature );
 
 	void sendFeatureMessage( const FeatureMessage& featureMessage );
+	bool isMessageQueueEmpty();
 
 
 private slots:
