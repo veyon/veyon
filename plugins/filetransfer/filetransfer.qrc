@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/filetransfer" >
+        <file>applications-office.png</file>
+    </qresource>
+</RCC>
