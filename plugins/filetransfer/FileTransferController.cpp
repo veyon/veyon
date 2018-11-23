@@ -35,6 +35,7 @@ FileTransferController::FileTransferController( FileTransferPlugin* plugin ) :
 	m_currentFileIndex( -1 ),
 	m_currentTransferId(),
 	m_files(),
+	m_flags( Transfer ),
 	m_interfaces(),
 	m_fileReadThread( nullptr ),
 	m_fileState( FileStateFinished ),
@@ -68,6 +69,13 @@ void FileTransferController::setFiles( const QStringList& files )
 void FileTransferController::setInterfaces( const ComputerControlInterfaceList& interfaces )
 {
 	m_interfaces = interfaces;
+}
+
+
+
+void FileTransferController::setFlags( Flags flags )
+{
+	m_flags = flags;
 }
 
 
@@ -154,6 +162,11 @@ void FileTransferController::process()
 
 		if( ++m_currentFileIndex >= m_files.count() )
 		{
+			if( m_flags.testFlag( OpenTransferFolder ) )
+			{
+				m_plugin->sendOpenTransferFolderMessage( m_interfaces );
+			}
+
 			m_processTimer.stop();
 			emit finished();
 		}
@@ -228,7 +241,7 @@ void FileTransferController::finishFile()
 		delete m_fileReadThread;
 		m_fileReadThread = nullptr;
 
-		m_plugin->sendFinishMessage( m_currentTransferId, m_interfaces );
+		m_plugin->sendFinishMessage( m_currentTransferId, m_flags.testFlag( OpenFilesInApplication ), m_interfaces );
 
 		m_currentTransferId = QUuid();
 	}

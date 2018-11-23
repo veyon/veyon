@@ -92,7 +92,9 @@ public:
 	void sendStartMessage( const QUuid& transferId, const QString& fileName, const ComputerControlInterfaceList& interfaces );
 	void sendDataMessage( const QUuid& transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces );
 	void sendCancelMessage( const QUuid& transferId, const ComputerControlInterfaceList& interfaces );
-	void sendFinishMessage( const QUuid& transferId, const ComputerControlInterfaceList& interfaces );
+	void sendFinishMessage( const QUuid& transferId, bool openFileInApplication,
+							const ComputerControlInterfaceList& interfaces );
+	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 
 private:
 	enum Commands
@@ -101,6 +103,7 @@ private:
 		FileTransferContinueCommand,
 		FileTransferCancelCommand,
 		FileTransferFinishCommand,
+		OpenTransferFolder,
 		CommandCount
 	};
 
@@ -109,6 +112,7 @@ private:
 		TransferId,
 		Filename,
 		DataChunk,
+		OpenFileInApplication,
 		ArgumentsCount
 	};
 

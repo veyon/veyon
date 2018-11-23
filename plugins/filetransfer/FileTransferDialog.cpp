@@ -61,8 +61,22 @@ FileTransferDialog::~FileTransferDialog()
 
 void FileTransferDialog::accept()
 {
+	ui->optionsGroupBox->setDisabled( true );
 	ui->buttonBox->setStandardButtons( QDialogButtonBox::Cancel );
 
+	FileTransferController::Flags flags( FileTransferController::Transfer );
+
+	if( ui->transferAndOpenFolder->isChecked() )
+	{
+		flags |= FileTransferController::OpenTransferFolder;
+	}
+
+	if( ui->transferAndOpenProgram->isChecked() )
+	{
+		flags |= FileTransferController::OpenFilesInApplication;
+	}
+
+	m_controller->setFlags( flags );
 	m_controller->start();
 }
 

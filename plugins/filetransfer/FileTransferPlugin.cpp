@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QMessageBox>
@@ -188,7 +189,15 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 
 		case FileTransferFinishCommand:
 			m_currentFile.close();
+			if( message.argument( OpenFileInApplication ).toBool() )
+			{
+				QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFile.fileName() ) );
+			}
 			m_currentFile.setFileName( QString() );
+			return true;
+
+		case OpenTransferFolder:
+			QDesktopServices::openUrl( QUrl::fromLocalFile( QDir::homePath() ) );
 			return true;
 
 		default:
@@ -232,9 +241,17 @@ void FileTransferPlugin::sendCancelMessage( const QUuid& transferId,
 
 
 
-void FileTransferPlugin::sendFinishMessage( const QUuid& transferId,
+void FileTransferPlugin::sendFinishMessage( const QUuid& transferId, bool openFileInApplication,
 											const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferFinishCommand ).
-						addArgument( TransferId, transferId ), interfaces );
+						addArgument( TransferId, transferId ).
+						addArgument( OpenFileInApplication, openFileInApplication ), interfaces );
+}
+
+
+
+void FileTransferPlugin::sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces )
+{
+	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), OpenTransferFolder ), interfaces );
 }

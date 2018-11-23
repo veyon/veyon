@@ -35,11 +35,20 @@ class FileTransferController : public QObject
 {
 	Q_OBJECT
 public:
+	enum Flag {
+		Transfer = 0x00,
+		OpenFilesInApplication = 0x01,
+		OpenTransferFolder = 0x02
+	};
+	Q_DECLARE_FLAGS(Flags, Flag)
+	Q_FLAG(Flags)
+
 	FileTransferController( FileTransferPlugin* plugin );
 	~FileTransferController() override;
 
 	void setFiles( const QStringList& files );
 	void setInterfaces( const ComputerControlInterfaceList& interfaces );
+	void setFlags( Flags flags );
 
 	void start();
 	void stop();
@@ -82,6 +91,7 @@ private:
 	int m_currentFileIndex;
 	QUuid m_currentTransferId;
 	QStringList m_files;
+	Flags m_flags;
 	ComputerControlInterfaceList m_interfaces;
 
 	FileReadThread* m_fileReadThread;
