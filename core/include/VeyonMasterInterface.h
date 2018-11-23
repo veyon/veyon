@@ -22,8 +22,9 @@
  *
  */
 
-#ifndef VEYON_MASTER_INTERFACE_H
-#define VEYON_MASTER_INTERFACE_H
+#pragma once
+
+#include "Configuration/Object.h"
 
 class QWidget;
 
@@ -33,7 +34,6 @@ public:
 	virtual ~VeyonMasterInterface() = default;
 
 	virtual QWidget* mainWindow() = 0;
+	virtual Configuration::Object* userConfigurationObject() = 0;
 
 };
-
-#endif

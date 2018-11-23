@@ -92,6 +92,7 @@ public:
 	}
 
 	QWidget* mainWindow() override;
+	Configuration::Object* userConfigurationObject() override;
 
 	ComputerControlInterfaceList filteredComputerControlInterfaces();
 

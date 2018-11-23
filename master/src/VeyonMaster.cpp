@@ -123,6 +123,13 @@ QWidget* VeyonMaster::mainWindow()
 
 
 
+Configuration::Object* VeyonMaster::userConfigurationObject()
+{
+	return m_userConfig;
+}
+
+
+
 ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 {
 	ComputerControlInterfaceList computerControlInterfaces;
