@@ -30,6 +30,7 @@
 #include "FileTransferController.h"
 #include "FileTransferDialog.h"
 #include "FileTransferPlugin.h"
+#include "FileTransferUserConfiguration.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
@@ -63,15 +64,17 @@ FileTransferPlugin::~FileTransferPlugin()
 bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	Q_UNUSED(master)
-
 	if( feature == m_fileTransferFeature )
 	{
+		FileTransferUserConfiguration config( master.userConfigurationObject() );
+
 		const auto files = QFileDialog::getOpenFileNames( master.mainWindow(),
 														  tr( "Select one or more files to transfer" ),
-														  QDir::homePath() );
+														  config.lastFileTransferSourceDirectory() );
 		if( files.isEmpty() == false )
 		{
+			config.setLastFileTransferSourceDirectory( QFileInfo( files.first() ).absolutePath() );
+
 			if( m_fileTransferController == nullptr )
 			{
 				m_fileTransferController = new FileTransferController( this );
