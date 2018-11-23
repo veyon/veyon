@@ -690,6 +690,8 @@ void VncConnection::enqueueEvent( VncEvent* event)
 
 	QMutexLocker queueLock( &m_eventQueueMutex );
 	m_eventQueue.enqueue( event );
+
+	m_updateIntervalSleeper.wakeAll();
 }
 
 
