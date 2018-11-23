@@ -5,6 +5,11 @@ BUILD_PLUGIN(filetransfer
 	FileTransferPlugin.h
 	FileTransferController.cpp
 	FileTransferController.h
+	FileTransferListModel.cpp
+	FileTransferListModel.h
+	FileTransferDialog.cpp
+	FileTransferDialog.h
+	FileTransferDialog.ui
 	FileReadThread.cpp
 	FileReadThread.h
 	filetransfer.qrc

@@ -32,11 +32,12 @@
 FileTransferController::FileTransferController( FileTransferPlugin* plugin ) :
 	QObject( plugin ),
 	m_plugin( plugin ),
-	m_currentFile(),
+	m_currentFileIndex( -1 ),
 	m_currentTransferId(),
-	m_fileList(),
+	m_files(),
 	m_interfaces(),
 	m_fileReadThread( nullptr ),
+	m_fileState( FileStateFinished ),
 	m_processTimer( this )
 {
 	m_processTimer.setInterval( ProcessInterval );
@@ -55,13 +56,31 @@ FileTransferController::~FileTransferController()
 
 
 
-void FileTransferController::start( const QStringList& fileList, const ComputerControlInterfaceList& interfaces )
+void FileTransferController::setFiles( const QStringList& files )
 {
-	if( isRunning() == false )
+	m_files = files;
+	m_currentFileIndex = 0;
+	emit filesChanged();
+}
+
+
+
+void FileTransferController::setInterfaces( const ComputerControlInterfaceList& interfaces )
+{
+	m_interfaces = interfaces;
+}
+
+
+
+void FileTransferController::start()
+{
+	if( isRunning() == false && m_files.isEmpty() == false )
 	{
-		m_fileList = fileList;
-		m_interfaces = interfaces;
+		m_currentFileIndex = 0;
+		m_fileState = FileStateOpen;
 		m_processTimer.start();
+
+		emit started();
 	}
 }
 
@@ -87,6 +106,20 @@ void FileTransferController::stop()
 
 
 
+const QStringList& FileTransferController::files() const
+{
+	return m_files;
+}
+
+
+
+int FileTransferController::currentFileIndex() const
+{
+	return m_currentFileIndex;
+}
+
+
+
 bool FileTransferController::isRunning() const
 {
 	return m_processTimer.isActive();
@@ -96,51 +129,124 @@ bool FileTransferController::isRunning() const
 
 void FileTransferController::process()
 {
-	// wait for all clients to catch up and current data chunk to be read completely
-	if( allQueuesEmpty() == false ||
-			( m_fileReadThread && m_fileReadThread->isChunkReady() == false ) )
+	switch( m_fileState )
 	{
-		return;
-	}
-
-	if( m_fileReadThread )
-	{
-		m_plugin->sendDataMessage( m_currentTransferId, m_fileReadThread->currentChunk(), m_interfaces );
-
-		emit progressChanged( m_currentFile, m_fileReadThread->progress() );
-
-		m_fileReadThread->readNextChunk( ChunkSize );
-
-		if( m_fileReadThread->atEnd() )
+	case FileStateOpen:
+		if( openFile() )
 		{
-			delete m_fileReadThread;
-			m_plugin->sendFinishMessage( m_currentTransferId, m_interfaces );
+			m_fileState = FileStateTransferring;
 		}
-		return;
+		else
+		{
+			m_fileState = FileStateFinished;
+		}
+		break;
+
+	case FileStateTransferring:
+		if( transferFile() )
+		{
+			m_fileState = FileStateFinished;
+		}
+		break;
+
+	case FileStateFinished:
+		finishFile();
+
+		if( ++m_currentFileIndex >= m_files.count() )
+		{
+			m_processTimer.stop();
+			emit finished();
+		}
+		else
+		{
+			m_fileState = FileStateOpen;
+		}
+		break;
 	}
 
-	if( m_fileList.isEmpty() )
+	updateProgress();
+}
+
+
+
+bool FileTransferController::openFile()
+{
+	if( m_currentFileIndex >= m_files.count() )
 	{
-		m_processTimer.stop();
-		emit finished();
-		return;
+		return false;
 	}
 
-	m_currentFile = m_fileList.takeFirst();
-	m_currentTransferId = QUuid::createUuid();
-
-	m_fileReadThread = new FileReadThread( m_currentFile, this );
+	m_fileReadThread = new FileReadThread( m_files[m_currentFileIndex], this );
 
 	if( m_fileReadThread->start() == false )
 	{
-		emit errorOccured( tr( "Could not open file \"%1\" for reading! Please check your permissions!" ).arg( m_currentFile ) );
-		return;
+		delete m_fileReadThread;
+		m_fileReadThread = nullptr;
+		emit errorOccured( tr( "Could not open file \"%1\" for reading! Please check your permissions!" ).arg( m_currentFileIndex ) );
+		return false;
 	}
 
 	// start reading initial chunk in background
 	m_fileReadThread->readNextChunk( ChunkSize );
 
-	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo( m_currentFile ).fileName(), m_interfaces );
+	m_currentTransferId = QUuid::createUuid();
+
+	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo( m_files[m_currentFileIndex] ).fileName(), m_interfaces );
+
+	return true;
+}
+
+
+
+bool FileTransferController::transferFile()
+{
+	if( m_fileReadThread == nullptr )
+	{
+		// something went wrong so finish this file
+		return true;
+	}
+
+	// wait for all clients to catch up and current data chunk to be read completely
+	if( allQueuesEmpty() == false || m_fileReadThread->isChunkReady() == false )
+	{
+		return false;
+	}
+
+	m_plugin->sendDataMessage( m_currentTransferId, m_fileReadThread->currentChunk(), m_interfaces );
+
+	m_fileReadThread->readNextChunk( ChunkSize );
+
+	return m_fileReadThread->atEnd();
+}
+
+
+
+void FileTransferController::finishFile()
+{
+	if( m_fileReadThread )
+	{
+		delete m_fileReadThread;
+		m_fileReadThread = nullptr;
+
+		m_plugin->sendFinishMessage( m_currentTransferId, m_interfaces );
+
+		m_currentTransferId = QUuid();
+	}
+}
+
+
+
+void FileTransferController::updateProgress()
+{
+	if( m_files.isEmpty() == false && m_fileReadThread )
+	{
+		emit progressChanged( m_currentFileIndex * 100 / m_files.count() +
+							  m_fileReadThread->progress() / m_files.count() );
+	}
+	else if( m_files.count() > 0 && m_currentFileIndex >= m_files.count() )
+	{
+		emit progressChanged( 100 );
+	}
 }
 
 

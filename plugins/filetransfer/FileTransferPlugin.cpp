@@ -27,6 +27,7 @@
 #include <QMessageBox>
 
 #include "FileTransferController.h"
+#include "FileTransferDialog.h"
 #include "FileTransferPlugin.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonMasterInterface.h"
@@ -75,7 +76,12 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 				m_fileTransferController = new FileTransferController( this );
 			}
 
-			m_fileTransferController->start( files, computerControlInterfaces );
+			m_fileTransferController->setFiles( files );
+			m_fileTransferController->setInterfaces( computerControlInterfaces );
+
+			auto dialog = new FileTransferDialog( m_fileTransferController, master.mainWindow() );
+			connect( dialog, &QDialog::finished, dialog, &QDialog::deleteLater );
+			dialog->exec();
 		}
 
 		return true;

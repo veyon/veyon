@@ -38,31 +38,55 @@ public:
 	FileTransferController( FileTransferPlugin* plugin );
 	~FileTransferController() override;
 
-	void start( const QStringList& fileList, const ComputerControlInterfaceList& interfaces );
+	void setFiles( const QStringList& files );
+	void setInterfaces( const ComputerControlInterfaceList& interfaces );
+
+	void start();
 	void stop();
+
+	const QStringList& files() const;
+
+	int currentFileIndex() const;
 
 	bool isRunning() const;
 
 signals:
 	void errorOccured( const QString& message );
-	void progressChanged( const QString& file, int progress );
+	void filesChanged();
+	void progressChanged( int progress );
+	void started();
 	void finished();
 
 private:
+	enum FileState {
+		FileStateOpen,
+		FileStateTransferring,
+		FileStateFinished
+	};
+
 	void process();
+
+	bool openFile();
+	bool transferFile();
+	void finishFile();
+
+	void updateProgress();
+
 	bool allQueuesEmpty();
 
-	static constexpr int ProcessInterval = 50;
+	static constexpr int ProcessInterval = 25;
 	static constexpr int ChunkSize = 256*1024;
 
 	FileTransferPlugin* m_plugin;
 
-	QString m_currentFile;
+	int m_currentFileIndex;
 	QUuid m_currentTransferId;
-	QStringList m_fileList;
+	QStringList m_files;
 	ComputerControlInterfaceList m_interfaces;
 
 	FileReadThread* m_fileReadThread;
+
+	FileState m_fileState;
 
 	QTimer m_processTimer;
 
