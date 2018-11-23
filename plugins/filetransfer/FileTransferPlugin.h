@@ -28,6 +28,8 @@
 
 #include "FeatureProviderInterface.h"
 
+class FileTransferController;
+
 class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface
 {
 	Q_OBJECT
@@ -35,7 +37,7 @@ class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInter
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
 	FileTransferPlugin( QObject* parent = nullptr );
-	~FileTransferPlugin() override = default;
+	~FileTransferPlugin() override;
 
 	Plugin::Uid uid() const override
 	{
@@ -87,35 +89,35 @@ public:
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
+	void sendStartMessage( const QUuid& transferId, const QString& fileName, const ComputerControlInterfaceList& interfaces );
+	void sendDataMessage( const QUuid& transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces );
+	void sendCancelMessage( const QUuid& transferId, const ComputerControlInterfaceList& interfaces );
+	void sendFinishMessage( const QUuid& transferId, const ComputerControlInterfaceList& interfaces );
+
 private:
-	void processFileTransfer();
-	bool allQueuesEmpty();
-
-	static constexpr int ProcessInterval = 50;
-	static constexpr int ChunkSize = 1024*1024;
-
 	enum Commands
 	{
 		FileTransferStartCommand,
 		FileTransferContinueCommand,
+		FileTransferCancelCommand,
 		FileTransferFinishCommand,
 		CommandCount
 	};
 
 	enum Arguments
 	{
-		FilenameArgument,
-		FileDataChunk,
+		TransferId,
+		Filename,
+		DataChunk,
 		ArgumentsCount
 	};
 
 	const Feature m_fileTransferFeature;
 	const FeatureList m_features;
 
-	QStringList m_fileList;
-	QFile m_currentFile;
-	ComputerControlInterfaceList m_activeTransferInterfaces;
+	FileTransferController* m_fileTransferController;
 
-	QTimer m_processTimer;
+	QFile m_currentFile;
+	QUuid m_currentTransferId;
 
 };

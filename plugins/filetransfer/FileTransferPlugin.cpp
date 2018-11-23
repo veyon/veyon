@@ -26,6 +26,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
+#include "FileTransferController.h"
 #include "FileTransferPlugin.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonMasterInterface.h"
@@ -42,12 +43,17 @@ FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 							   "computers." ),
 						   QStringLiteral(":/filetransfer/applications-office.png") ),
 	m_features( { m_fileTransferFeature } ),
-	m_fileList(),
+	m_fileTransferController( nullptr ),
 	m_currentFile(),
-	m_activeTransferInterfaces(),
-	m_processTimer( this )
+	m_currentTransferId()
 {
-	connect( &m_processTimer, &QTimer::timeout, this, &FileTransferPlugin::processFileTransfer );
+}
+
+
+
+FileTransferPlugin::~FileTransferPlugin()
+{
+	delete m_fileTransferController;
 }
 
 
@@ -64,9 +70,12 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 														  QDir::homePath() );
 		if( files.isEmpty() == false )
 		{
-			m_fileList = files;
-			m_activeTransferInterfaces = computerControlInterfaces;
-			m_processTimer.start();
+			if( m_fileTransferController == nullptr )
+			{
+				m_fileTransferController = new FileTransferController( this );
+			}
+
+			m_fileTransferController->start( files, computerControlInterfaces );
 		}
 
 		return true;
@@ -136,9 +145,13 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 		case FileTransferStartCommand:
 			m_currentFile.close();
 			// TODO: make path configurable
-			m_currentFile.setFileName( QDir::homePath() + QDir::separator() + message.argument( FilenameArgument ).toString() );
+			m_currentFile.setFileName( QDir::homePath() + QDir::separator() + message.argument( Filename ).toString() );
 			// TODO: check for existing files
-			if( m_currentFile.open( QFile::WriteOnly | QFile::Truncate ) == false )
+			if( m_currentFile.open( QFile::WriteOnly | QFile::Truncate ) )
+			{
+				m_currentTransferId = message.argument( TransferId ).toUuid();
+			}
+			else
 			{
 				QMessageBox::critical( nullptr, tr( "File transfer"),
 									   tr( "Could not open file \"%1\" for writing!" ).arg( m_currentFile.fileName() ) );
@@ -146,11 +159,30 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			return true;
 
 		case FileTransferContinueCommand:
-			m_currentFile.write( message.argument( FileDataChunk ).toByteArray() );
+			if( message.argument( TransferId ).toUuid() == m_currentTransferId )
+			{
+				m_currentFile.write( message.argument( DataChunk ).toByteArray() );
+			}
+			else
+			{
+				qWarning() << Q_FUNC_INFO << "received chunk for unknown transfer ID";
+			}
+			return true;
+
+		case FileTransferCancelCommand:
+			if( message.argument( TransferId ).toUuid() == m_currentTransferId )
+			{
+				m_currentFile.remove();
+			}
+			else
+			{
+				qWarning() << Q_FUNC_INFO << "received chunk for unknown transfer ID";
+			}
 			return true;
 
 		case FileTransferFinishCommand:
 			m_currentFile.close();
+			m_currentFile.setFileName( QString() );
 			return true;
 
 		default:
@@ -163,59 +195,40 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 
 
 
-void FileTransferPlugin::processFileTransfer()
+void FileTransferPlugin::sendStartMessage( const QUuid& transferId, const QString& fileName,
+										   const ComputerControlInterfaceList& interfaces )
 {
-	// wait for all clients to catch up
-	if( allQueuesEmpty() == false )
-	{
-		return;
-	}
-
-	if( m_currentFile.isOpen() )
-	{
-		sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferContinueCommand ).
-							addArgument( FileDataChunk, m_currentFile.read( ChunkSize ) ),
-							m_activeTransferInterfaces );
-
-		if( m_currentFile.atEnd() )
-		{
-			m_currentFile.close();
-			sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferFinishCommand ),
-								m_activeTransferInterfaces );
-		}
-		return;
-	}
-
-	if( m_fileList.isEmpty() )
-	{
-		m_processTimer.stop();
-		return;
-	}
-
-	m_currentFile.setFileName( m_fileList.takeFirst() );
-	if( m_currentFile.open( QFile::ReadOnly ) == false )
-	{
-		QMessageBox::critical( nullptr, tr( "File transfer" ),
-							   tr( "Could not open file \"%1\" for reading! Please check your permissions!" ).arg( m_currentFile.fileName() ) );
-		return;
-	}
-
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferStartCommand ).
-						addArgument( FilenameArgument, QFileInfo( m_currentFile.fileName() ).fileName() ),
-						m_activeTransferInterfaces );
+						addArgument( TransferId, transferId ).
+						addArgument( Filename, fileName ),
+						interfaces );
 }
 
 
 
-bool FileTransferPlugin::allQueuesEmpty()
+void FileTransferPlugin::sendDataMessage( const QUuid& transferId, const QByteArray& data,
+										  const ComputerControlInterfaceList& interfaces )
 {
-	for( auto controlInterface : m_activeTransferInterfaces )
-	{
-		if( controlInterface->isMessageQueueEmpty() == false )
-		{
-			return false;
-		}
-	}
+	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferContinueCommand ).
+						addArgument( TransferId, transferId ).
+						addArgument( DataChunk, data ),
+						interfaces );
+}
 
-	return true;
+
+
+void FileTransferPlugin::sendCancelMessage( const QUuid& transferId,
+											const ComputerControlInterfaceList& interfaces )
+{
+	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferCancelCommand ).
+						addArgument( TransferId, transferId ), interfaces );
+}
+
+
+
+void FileTransferPlugin::sendFinishMessage( const QUuid& transferId,
+											const ComputerControlInterfaceList& interfaces )
+{
+	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferFinishCommand ).
+						addArgument( TransferId, transferId ), interfaces );
 }
