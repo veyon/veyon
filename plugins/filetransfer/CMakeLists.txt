@@ -10,6 +10,7 @@ BUILD_PLUGIN(filetransfer
 	FileTransferDialog.cpp
 	FileTransferDialog.h
 	FileTransferDialog.ui
+	FileTransferUserConfiguration.h
 	FileReadThread.cpp
 	FileReadThread.h
 	filetransfer.qrc
