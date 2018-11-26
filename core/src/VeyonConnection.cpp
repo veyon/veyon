@@ -77,6 +77,8 @@ VeyonConnection::VeyonConnection( VncConnection* vncConnection ):
 		__veyonProtocolExt->encodings = nullptr;
 		__veyonProtocolExt->handleEncoding = nullptr;
 		__veyonProtocolExt->handleMessage = handleVeyonMessage;
+		__veyonProtocolExt->securityTypes = nullptr;
+		__veyonProtocolExt->handleAuthentication = nullptr;
 
 		rfbClientRegisterExtension( __veyonProtocolExt );
 	}
