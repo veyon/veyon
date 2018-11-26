@@ -677,6 +677,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Access group</source>
         <translation>访问组</translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>配对 ID</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -762,58 +766,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>导出对象到指定的文件</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-用法
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-可用的变量: %name% %host% %mac% %room%
-
-范例:
-
-* 将单纯的 CSV 文件导入单个房间：:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* 导入第一列中带有房间名称的 CSV 文件:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* 使用正则表达式导入导入键/值对文本文件:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* 导入已格式化的数据:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -1031,6 +983,58 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>Parent UUID</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+用法：
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+可用的变量： %type% %name% %host% %mac% %room%
+
+范例：
+
+* 将简单的 CSV 文件导入单个教室：
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* 导入在第一列中带有房间名称的 CSV 文件：
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* 使用正则表达式导入带有键/值对的文本文件：
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+*导入任意格式的数据：
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1497,6 +1501,33 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1646,12 +1677,16 @@ Examples:
         <translation>互联网访问控制</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>设置</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>后端：</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>常规设置</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>后台设置</translation>
     </message>
 </context>
 <context>
@@ -2480,14 +2515,6 @@ Examples:
         <translation>无法认证</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>远程控制</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>退出</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>配置文件不可写</translation>
     </message>
@@ -2550,10 +2577,6 @@ Examples:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>本地配置后端报告配置不可写入！ 请以更高的权限来运行 %1 配置程序。</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>%1 主控器</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2762,6 +2785,10 @@ Examples:
         <source>Automatically open computer rooms widget</source>
         <translation>自动打开计算机教室组件</translation>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation>文本颜色</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2776,6 +2803,145 @@ Examples:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>这是默认模式，并允许您监视一个或多个房间中的所有计算机。</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>网络发现</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>模式</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>扫描网络范围</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>例如： 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>扫描计算机的所有子网</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>扫描指定的子网</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>扫描会话在本地计算机上</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>网络范围</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>添加新的组</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>移除选中的组</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>组</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>第一个地址</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>最后一个地址</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>添加新的网络范围</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>移除选中的网络范围</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>可调参数</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>并行扫描</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>扫描超时</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>毫秒</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>会话扫描限制</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>新建组</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>正在扫描...</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>查找计算机</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>为指定的命令显示帮助</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>扫描一个子网</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+用法：
+
+%1 scan [&lt;SUBNET&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>网络中，可自动发现计算机的网络对象目录</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>网络发现(Veyon 客户端的扫描网络)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>用于管理网络发现目录的命令</translation>
     </message>
 </context>
 <context>
@@ -2857,6 +3023,30 @@ Examples:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>你确定要关闭选定的电脑吗？</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>通过局域网唤醒(WOL)打开计算机电源</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC 地址(网卡物理地)</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>此命令将网络唤醒(WOL)数据包广播到网络，以便使用给定的MAC地址打开计算机的电源。</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>请指定需要显示用法命令！</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>指定的 MAC 地址无效！</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>用于控制计算机电源状态的命令</translation>
     </message>
 </context>
 <context>
@@ -2981,6 +3171,32 @@ Examples:
     <message>
         <source>enter search filter...</source>
         <translation>输入搜索管理器...</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>通过修改路由表来控制 Internet 访问</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>删除默认路由以阻止 Internet 访问</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>通过添加自定义路由来阻止访问互联网</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>目标地址</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>网关</translation>
     </message>
 </context>
 <context>

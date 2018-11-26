@@ -676,6 +676,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Access group</source>
         <translation>存取群組</translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>配對 ID</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -761,58 +765,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>匯出物件到給予的檔案</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-用法
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-範例:
-
-* 匯入簡單 CSV 檔到單一教室:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* 匯入教室名稱在首欄的 CSV 檔:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* 匯入文字檔，含使用正則表示式的鍵值/值配對:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* 匯入任意格式化的資料:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -929,7 +881,24 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 export &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+有效變數: %type% %name% %host% %mac% %room%
+
+範例:
+
+* 匯出所有物件到 CSV 檔案:
+
+    %1 export objects.csv format &quot;%type%;%name%;%host%;%mac%&quot;
+
+* 匯出教室中所有電腦到 CSV 檔案:
+
+    %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -950,7 +919,24 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 add &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt; &lt;MAC ADDRESS&gt; &lt;PARENT&gt;]
+
+加入物件，其 TYPE 可以是 &quot;%2&quot; 或 &quot;%3&quot; 之一。 PARENT 能以名稱或 UUID 指定。
+
+範例:
+
+* 加入教室:
+
+    %1 add room &quot;Room 01&quot;
+
+* 加入電腦到教室 &quot;Room 01&quot;:
+
+    %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -971,7 +957,24 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 remove &lt;OBJECT&gt;
+
+從目錄移除指定物件。 OBJECT 能以名稱或 UUID 指定。 移除教室也將移除其中的所有電腦。
+
+範例:
+
+* 以名稱移除電腦:
+
+    %1 remove &quot;Computer 01&quot;
+
+* 以 UUID 移除物件:
+
+    %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
@@ -980,6 +983,58 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>上層 UUID</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+用法
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+有效變數: %type% %name% %host% %mac% %room%
+
+範例:
+
+* 匯入簡單 CSV 檔到單一教室:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* 匯入 CSV 檔含教室名稱在首欄:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* 匯入文字檔以機碼/數值配對，使用正則表示式:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* 匯入任意格式的資料:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1059,11 +1114,11 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 目前正在存取這部電腦。</translation>
+        <translation>主機 &quot;%2&quot; 的使用者 &quot;%1&quot; 目前正在存取這部電腦。</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation>使用者 &quot;%1&quot; 在主機 &quot;%2&quot; 嘗試存取這部電腦，但無法成功驗證!</translation>
+        <translation>主機 &quot;%2&quot; 的使用者 &quot;%1&quot; 嘗試存取這部電腦，但無法成功進行身份驗證!</translation>
     </message>
 </context>
 <context>
@@ -1215,7 +1270,7 @@ Examples:
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>無法組態 %1 工人的防火牆設定。</translation>
+        <translation>無法組態 %1 Worker 的防火牆設定。</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1446,6 +1501,33 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1595,12 +1677,16 @@ Examples:
         <translation>Internet 存取控制</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>設定</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>後台:</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>一般設定</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>後台設定</translation>
     </message>
 </context>
 <context>
@@ -2429,14 +2515,6 @@ Examples:
         <translation>無法驗證</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>遠端控制</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>離開</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>組態無法寫入</translation>
     </message>
@@ -2499,10 +2577,6 @@ Examples:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>本機組態後台報告組態不可寫入! 請以較高特權執行 %1 組態器。</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>%1 主控制</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2570,7 +2644,7 @@ Examples:
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>儲存設定到檔案(&amp;S)</translation>
+        <translation>將設定儲存到檔案(&amp;S)</translation>
     </message>
 </context>
 <context>
@@ -2641,7 +2715,7 @@ Examples:
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation>手動允許加入教室</translation>
+        <translation>允許手動加入教室</translation>
     </message>
     <message>
         <source>Hide local computer</source>
@@ -2693,11 +2767,11 @@ Examples:
     </message>
     <message>
         <source>Only user name</source>
-        <translation>只有使用者名稱</translation>
+        <translation>僅使用者名稱</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation>只有電腦名稱</translation>
+        <translation>僅電腦名稱</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2710,6 +2784,10 @@ Examples:
     <message>
         <source>Automatically open computer rooms widget</source>
         <translation>自動開啟電腦教室小工具</translation>
+    </message>
+    <message>
+        <source>Text color</source>
+        <translation>文字色彩</translation>
     </message>
 </context>
 <context>
@@ -2725,6 +2803,145 @@ Examples:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>這是預設模式，允許您監視在一個或數個教室的所有電腦。</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>網路探索</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>模式</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>掃描網路範圍</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>例如: 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>掃描電腦的所有子網路</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>掃描自訂子網路</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>掃描本機電腦上的工作階段</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>測試</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>網路範圍</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>加入新群組</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>刪除選取的群組</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>群組</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>第一個位址</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>最後位址</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>加入新的網路範圍</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>刪除選取的網路範圍</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>可調整</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>並行掃描</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>掃描逾時</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> 毫秒</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>工作階段掃描限制</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>新群組</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>正在掃描...</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>發現的電腦</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>顯示指定命令的說明</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>掃描子網路</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+用法
+
+%1 scan [&lt;子網路&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>自動探索網路中的電腦的網路物件目錄</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>網路探索 (掃描 Veyon 用戶端的網路)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>用於管理網路探索目錄的命令</translation>
     </message>
 </context>
 <context>
@@ -2806,6 +3023,30 @@ Examples:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>您確定要關閉選取的電腦嗎?</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>透過 Wake-on-LAN (WOL) 開啟電腦電源</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC 位址</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>這個命令將 Wake-on-LAN (WOL) 封包廣播到網路，以便使用給予的 MAC 位址開啟電腦電源。</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>請指定顯示說明的命令!</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>指定的 MAC 位址無效!</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>用於控制電腦電源狀態的命令</translation>
     </message>
 </context>
 <context>
@@ -2930,6 +3171,32 @@ Examples:
     <message>
         <source>enter search filter...</source>
         <translation>請輸入搜尋篩選器...</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>透過修改路由表控制 Internet 存取</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>移除預設路由以封鎖 Internet 存取</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>加入自訂路由以封鎖 Internet</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>目的地</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>閘道</translation>
     </message>
 </context>
 <context>
@@ -3133,7 +3400,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification on failed authentication attempts</source>
-        <translation>驗證失敗時顯示通知</translation>
+        <translation>嘗試身份驗證失敗時顯示通知</translation>
     </message>
 </context>
 <context>

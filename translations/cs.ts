@@ -676,6 +676,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Access group</source>
         <translation>Přístupová skupina</translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>Identifikátor dvojice</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -761,58 +765,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Export objects to given file</source>
         <translation>Exportovat objekty do zadaného souboru</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-POUŽITÍ
-
-%1 import &lt;FILE&gt; [mistnost &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regularni_vyraz &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Platné proměnné: %name% %host% %mac% %room%
-
-Příklady:
-
-* Import jednoduchého CSV souboru na jednu místnost:
-
-    %1 import pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV souboru s názvem místnosti v prvním sloupci:
-
-    %1 import pocitace-s-mistnostmi.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import textového souboru s dvojicemi klíč/hodnota pomocí regulárních výrazů:
-
-    %1 import hostlist.txt room &quot;Mistnost 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import libovolných formátovaných dat:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -1031,6 +983,58 @@ Příklady:
     <message>
         <source>Parent UUID</source>
         <translation>Nikde se neopakující identifikátor nadřazeného</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+POUŽITÍ
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Platné proměnné: %type% %name% %host% %mac% %room%
+
+Příklady:
+
+* Import jednoduchého CSV souboru do jedné místnosti:
+
+    %1 import pocitace.csv room &quot;Mistnost 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV souboru s názvem místnosti v prvním sloupci:
+
+    %1 import pocitace-s-mistnostmi.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import textového souboru s dvojicemi klíč/hodnota pomocí regulárních výrazů:
+
+    %1 import seznamstrojů.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import libovolně formátovaných dat:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1497,6 +1501,33 @@ Příklady:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Přenos souboru</translation>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation>Kliknutím na toto tlačítko zkopírujete soubory ze svého počítače na všechny ostatní.</translation>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Vyberte jeden nebo více souborů k přenosu</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation>Soubor „%1“ se nedaří otevřít pro zápis!</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>Soubor „%1“ se nedaří otevřít pro čtení! Zkontrolujte svá oprávnění!</translation>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Přenést soubory na vzdálený počítač</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1646,12 +1677,16 @@ Příklady:
         <translation>Řízení přístupu k Internetu</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>Nastavení</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>Podpůrná vrstva (backend):</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>Obecná nastavení</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>Nastavení podpůrné vrstvy</translation>
     </message>
 </context>
 <context>
@@ -2476,14 +2511,6 @@ Příklady:
         <translation>Ověření není možné</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>Ovládání na dálku</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Ukončit</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Nastavení není přístupné pro zápis</translation>
     </message>
@@ -2546,10 +2573,6 @@ Příklady:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Podpůrná vrstva (backend) nastavení na tomto počítači hlásí, že do nastavení nelze zapisovat! Spusťte konzolu pro správu %1 s vyššími oprávněními.</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>%1 hlavní ovládání</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2758,6 +2781,10 @@ Příklady:
         <source>Automatically open computer rooms widget</source>
         <translation>Automaticky otevřít ovládací prvek počítačových místností</translation>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation>Barva textu</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2772,6 +2799,145 @@ Příklady:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Toto je výchozí režim a umožňuje monitorovat veškeré počítače v jedné a více místnostech.</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>Prozkoumávání sítě</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Režim</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>Skenovat síťové rozsahy</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>např. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>Skenovat všechny podsítě počítače</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>Skenovat uživatelsky určenou podsíť</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>Skenovací relace na tomto počítači</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Vyzkoušet funkčnost</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>Síťové rozsahy</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>Přidat novou skupinu</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>Odebrat označenou skupinu</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>Skupiny</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>První adresa</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>Poslední adresa</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Přidat nový síťový rozsah</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Odebrat označený síťový rozsah</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Vyladitelné</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>Souběžné skeny</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>Časový limit skenování</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>Limit skenu relace</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>Nová skupina</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>Skenování…</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>Objevené počítače</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>Skenovat podsíť</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+POUŽITÍ
+
+%1 scan [&lt;SUBNET&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>Adresář síťových objektů který automaticky objevuje počítače v síti</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>Průzkum sítě (skenuje přítomnost Veyon klientů na síti)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>Příkazy pro správu adresáře průzkumu sítě</translation>
     </message>
 </context>
 <context>
@@ -2853,6 +3019,30 @@ Příklady:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Opravdu chcete vybrané počítače vypnout?</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Zapnout počítač prostřednictvím probouzení po síti (WoL)</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADRESA</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Tento příkaz vyšle na celou síť probouzecí (WoL) paket, kterými probudí počítač s danou MAC adresou.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Zadejte příkaz pro který chcete zobrazit nápovědu!</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>Zadána neplatná MAC adresa!</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Příkazy pro řízení stavu napájení počítačů</translation>
     </message>
 </context>
 <context>
@@ -2977,6 +3167,32 @@ Příklady:
     <message>
         <source>enter search filter...</source>
         <translation>zadejte vyhledávací filtr…</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>Ovládá přístup k Internetu prostřednictvím upravování směrovacích tabulek</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>Odebrat výchozí trasy pro blokování přístupu k Internetu</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>Přidat uživatelsky určenou trasu pro blokování přístupu k Internetu</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>Cíl</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>Brána</translation>
     </message>
 </context>
 <context>

@@ -671,6 +671,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Access group</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -755,34 +759,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -950,6 +926,34 @@ Examples:
     </message>
     <message>
         <source>Parent UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1417,6 +1421,33 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1566,11 +1597,15 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Settings</source>
+        <source>Backend:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Backend:</source>
+        <source>General settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend settings</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2381,14 +2416,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>Απομακρυσμένος έλεγχος</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Έξοδος</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation type="unfinished"/>
     </message>
@@ -2450,10 +2477,6 @@ Examples:
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2663,6 +2686,10 @@ Examples:
         <source>Automatically open computer rooms widget</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2676,6 +2703,140 @@ Examples:
     </message>
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Δοκιμή</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2757,6 +2918,30 @@ Examples:
     </message>
     <message>
         <source>Do you really want to power down the selected computer?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2881,6 +3066,32 @@ Examples:
     </message>
     <message>
         <source>enter search filter...</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Gateway</source>
         <translation type="unfinished"/>
     </message>
 </context>

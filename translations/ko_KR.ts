@@ -676,6 +676,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Access group</source>
         <translation>접근 그룹</translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>페어(짝) ID</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -761,58 +765,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>지정된 화일로 개체 내보내기</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-사용법
-
-%1 import &lt;FILE&gt; [교실&lt;ROOM&gt;] [형식 &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [정규표현식&lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-유효한 변수들: %name% %host% %mac% %room%
-
-예제:
-
-* 간단한 CSV 화일을 한 교실로 가져오기::
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* 첫째 컬럼에 교실 이름이 있는 CSV 가져오기:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-*정규표현식을 사용하는 키/값 페어를 다음을 이용해서 가져오기 ::
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* 임의 형식으로 된 데이터 가져오기:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -1030,6 +982,58 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>부모 UUID</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+사용법
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+유효한 변수들: %type% %name% %host% %mac% %room%
+
+사용예:
+
+* 싱글룸에 간단한 CSV 파일을 불러 옴:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+*첫 열에 룸 이름과 CSV 파일을 불러 옴:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* 정규 표현식을 이용하여 키/값과 함께 텍스트 화일을 불러 옴:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* 임의의 형식으로 포맷된 데이타를 불러 옴:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1497,6 +1501,33 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation>화일 전송</translation>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation>다른 모든 컴퓨터로 화일을 전송하려면 이버튼을 클릭하세요</translation>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>전송하려는 하나 또는 여러개의 화일을 선택하세요</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>화일 &quot;%1&quot;을 읽을 수 없습니다! 권한을 점검하기 바랍니다!</translation>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>원격 컴퓨터로 화일 전송</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1646,12 +1677,16 @@ Examples:
         <translation>인터넷 연결 제어</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>설정</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>백엔드:</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>일반 설정</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>백엔드 설정</translation>
     </message>
 </context>
 <context>
@@ -2478,14 +2513,6 @@ Examples:
         <translation>인증 불가</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>원격제어</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>종료</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>설정 저장 불가</translation>
     </message>
@@ -2548,10 +2575,6 @@ Examples:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1 Configurator  를 관리자 권한으로 실행하세요</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>%1 마스터 제어</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2760,6 +2783,10 @@ Examples:
         <source>Automatically open computer rooms widget</source>
         <translation>컴퓨터 룸의 위젯을 자동으로 열기</translation>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation>글자색</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2774,6 +2801,145 @@ Examples:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>이 모드는 기본 모드로서 하나 또는 그 이상의 방의 모든 컴퓨터들의 모니터를 가능하게 합니다.</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>네트워크 발견</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>모드</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>네트워크 범위 검색</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>e.g. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>컴퓨터의 모든 서브넷 검색</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>사용자 서브넷 검색</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>로컬 컴퓨터 스캔 세션</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>테스트</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>네트워크 범위</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>새 그룹 추가</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>선택된 그룹 삭제</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>그룹</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>첫번째 주소</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>마지막 주소</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>새로운 네트워크 범위 추가</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>선택된 네트워크 범위 삭제</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>조정할수 있는 항목들</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>병행 스캔</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>시간 시간 초과</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>세션 스캔 제한</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>새그룹</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>스캐닝...</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>검색된 컴퓨터들</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>특정 명령어에 대한 도움말 보여줌</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>서브넷 스캔</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+사용법
+
+%1 scan [&lt;SUBNET&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>네트워크의 컴퓨터들을 자동으로 검색하기 위한 네트워크 오브젝트 폴더</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>네트워크 검색(Veyon 클라이언트용 네트워크 검색)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>네트워크 검색 폴더를 제어하기 위한 명령어들</translation>
     </message>
 </context>
 <context>
@@ -2855,6 +3021,30 @@ Examples:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>선택된 컴퓨터 파워를 끄시겠습니까 ?</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Wake-on-LAN(WOL)을 사용하여 컴퓨터 파워를 켬</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>맥 어드레스</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>도움말을 표시할 명령어를 지정하세요</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>유효하지 않은 MAC 주소가 선택됨!</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>컴퓨터 파워 상태를 제어하기 위한 명령어들</translation>
     </message>
 </context>
 <context>
@@ -2979,6 +3169,32 @@ Examples:
     <message>
         <source>enter search filter...</source>
         <translation>검색 필터 입력 ....</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>라우팅 테이블을 수정하여 인터넷 접속 제어</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>인터넷 접속을 제한하기 위해 기본 루트 제거</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>인터넷 제한하기 위한 사용자 루트 추가</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>목적지</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>게이트 웨이</translation>
     </message>
 </context>
 <context>
