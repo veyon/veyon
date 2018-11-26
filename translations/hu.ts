@@ -197,15 +197,15 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Localhost-hoz fér hozzá</translation>
+        <translation>A hozzáférő számítógép a helyi számítógép</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Bejelentkezett felhasználó fér hozzá</translation>
+        <translation>A hozzáférő felhasználó már bejelentkezett</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Már csatlakozott felhasználó fér hozzá</translation>
+        <translation>A hozzáférő felhasználó már csatlakozott</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -237,7 +237,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Elérni kívánt gép</translation>
+        <translation>Hozzáférő számítógép</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -257,7 +257,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Accessing computer is located in the same room as local computer</source>
-        <translation>Az elérni kívánt számítógép a helyi számítógéppel egy szobában van</translation>
+        <translation>A hozzáférő számítógép a helyi számítógéppel egy szobában van</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -280,7 +280,7 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Elérni kívánt számítógép:</translation>
+        <translation>Hozzáférő számítógép:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -659,7 +659,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation>Parancsok a hitelesítési kulcsok kezeléséhez</translation>
+        <translation>A hitelesítési kulcsokat kezelő parancsok</translation>
     </message>
 </context>
 <context>
@@ -675,6 +675,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Access group</source>
         <translation>Hozzáférési csoport</translation>
+    </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>Pár ID</translation>
     </message>
 </context>
 <context>
@@ -763,58 +767,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Objektumok exportálása a megadott fájlba</translation>
     </message>
     <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-HASZNÁLATA
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Használható változók: %name% %host% %mac% %room%
-
-Példák:
-
-* Egy egyszerű CSV fájl importálása egy szobába:
-
-    %1 import szamitogepek.csv room &quot;01 szoba&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Az első oszlopban a szobát tartalmazó CSV fájl importálása:
-
-    %1 import szamitogepekSzobakkal.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Reguláris kifejezések megadott kulcs/érték párok importálása:
-
-    %1 import kiszolgaloLista.txt room &quot;01 szoba&quot; regex &quot;^NEV:(%name%:.*)\s+KISZOLGALO:(%host%:.*)$&quot;
-
-* Önkényesen formázott adatok importálása:
-
-    %1 import adat.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
-    </message>
-    <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
         <translation>Érvénytelen típusmeghatározás. &quot;%1&quot; vagy &quot;%2&quot; lehetséges.</translation>
     </message>
@@ -888,7 +840,7 @@ Példák:
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation>A helyi konfigurációban objektumokat tároló hálózatiobjektum-könyvtár</translation>
+        <translation>Hálózatobjektum-mappa, ami objektumokat tároló a helyi konfigurációban</translation>
     </message>
     <message>
         <source>Builtin (computers and rooms in local configuration)</source>
@@ -896,7 +848,7 @@ Példák:
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation>Parancsok a beépített hálózatiobjektum-könyvtárak kezeléséhez</translation>
+        <translation>A beépített hálózatobjektum-mappát kezelő parancsok</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
@@ -1032,6 +984,58 @@ Példák:
         <source>Parent UUID</source>
         <translation>Szülő UUID</translation>
     </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+HASZNÁLATA
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Használható változók: %type% %name% %host% %mac% %room%
+
+Példák:
+
+* Egy egyszerű CSV fájl importálása egy egyszerű szobába:
+
+    %1 import szamitogepek.csv room &quot;Szoba 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Az első oszlopban a szobát tartalmazó CSV fájl importálása:
+
+    %1 import szamitogepekSzobakkal.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Reguláris kifejezések megadott kulcs/érték párokat tartalmazó TXT fájl importálása:
+
+    %1 import kiszolgaloLista.txt room &quot;01 Szoba&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Önkényesen formázott adatok importálása:
+
+    %1 import adat.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1160,11 +1164,11 @@ Példák:
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>Hiányzik a hálózati objektummappa-bővítmény</translation>
+        <translation>Hiányzik a hálózatobjektummappa-bővítmény</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Hiányzik az alapértelmezett hálózati objektummappa-bővítmény. Ellenőrizd telepítésed vagy állítsd be egy másik hálózati objektummappa-hátteret &quot;%1&quot; Konfigurátorral.</translation>
+        <translation>Hiányzik az alapértelmezett hálózatobjektummappa-bővítmény. Ellenőrizd telepítésed vagy állítsd be egy másik hálózatobjektummappa-hátteret &quot;%1&quot; Konfigurátorral.</translation>
     </message>
     <message>
         <source>Computer name;Host name;User</source>
@@ -1497,6 +1501,33 @@ Példák:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1568,7 +1599,7 @@ Példák:
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>Hálózati objektum mappa</translation>
+        <translation>Hálózatobjektum-mappa</translation>
     </message>
     <message>
         <source>Backend:</source>
@@ -1646,12 +1677,16 @@ Példák:
         <translation>Internethozzáférés-vezérlés</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>Beállítások</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>Háttér:</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>Általános beállítások</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>Háttér beállításai</translation>
     </message>
 </context>
 <context>
@@ -2480,14 +2515,6 @@ Példák:
         <translation>Hitelesítés nem lehetséges</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>Távoli vezérlés</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Kilépés</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Konfiguráció nem írható</translation>
     </message>
@@ -2550,10 +2577,6 @@ Példák:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>A helyi konfiguráció háttere azt jelzi, hogy a konfiguráció nem írható. Futtasd %1 Konfigurátort magasabb jogosultságokkal.</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>%1 Mester Vezérlés</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2762,6 +2785,10 @@ Példák:
         <source>Automatically open computer rooms widget</source>
         <translation>Számítógépterem-minialkalmazás automatikus megnyitása</translation>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation>Betűszín</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2776,6 +2803,145 @@ Példák:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Ez az alapértelmezett mód, ami lehetővé teszi, hogy monitorozd az egy vagy több szobában lévő összes számítógépet.</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>Hálózat felderítése</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Mód</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>Hálózati tartományok átvizsgálása</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>pl. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>A számítógép összes alhálózatának átvizsgálása</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>Egyéni alhálózat átvizsgálása</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>A helyi számítógép munkameneteinek átvizsgálása</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Tesztelés</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>Hálózati tartományok</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>Új csoport hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>Kiválasztott csoport eltávolítása</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>Csoportok</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>Első cím</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>Utolsó cím</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Új hálózati tartomány hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Hangolhatók</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>Párhuzamos átvizsgálások</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>Átvizsgálási időtúllépés</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>Átvizsgálás munkamenetének korlátja</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>Új csoport</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>Átvizsgálás...</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>Felderített számítógépek</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Konkrét parancsról segítség megjelenítése</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>Egy alhálózat átvizsgálása</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+HASZNÁLATA
+
+%1 scan [&lt;SUBNET&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>Hálózatobjektum-felderítő, ami automatikusan felderíti a hálózat számítógépeit</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>Hálózat felderítése (hálózat átvizsgálása Veyon kliens után)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>A hálózatfelderítő-mappát kezelő parancsok</translation>
     </message>
 </context>
 <context>
@@ -2857,6 +3023,30 @@ Példák:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Egy számítógép bekapcsolása hálózati ébresztéssel (WOL)</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>FIZIKAI CÍM</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Ez a parancs egy hálózati ébresztő jelcsomagot (WOL) szór a hálózaton, hogy a megadott fizikai című számítógépeket bekapcsolja.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>A fizikai cím érvénytelen!</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>A számítógépek működési állapotát módosító parancsok </translation>
     </message>
 </context>
 <context>
@@ -2981,6 +3171,32 @@ Példák:
     <message>
         <source>enter search filter...</source>
         <translation>írd ide a keresési szűrőt...</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>Az internetelérés módosítása az útvonaltábla módosításával</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>Az alapértelmezett útvonalak eltávolítása az internetelérés blokkolásáért</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>Egyéni útvonal hozzáadása az internet blokkolásáért</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>Cél</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>Átjáró</translation>
     </message>
 </context>
 <context>

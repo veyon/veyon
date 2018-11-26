@@ -673,6 +673,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Access group</source>
         <translation>Група доступу</translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>Ід. пари</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -758,58 +762,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Export objects to given file</source>
         <translation>Експортувати об&apos;єкти до вказаного файла</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-КОРИСТУВАННЯ
-
-%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАС&gt;] [format &lt;РЯДОК ФОРМАТУВАННЯ ЗІ ЗМІННИМИ&gt;] [regex &lt;ФОРМАЛЬНИЙ ВИРАЗ ЗІ ЗМІННИМИ&gt;]
-
-Можливі змінні: %name% %host% %mac% %room%
-
-Приклади:
-
-* Імпортувати простий файл CSV до одного запису класу:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Імпортувати файл CSV із назвою класу у першому стовпчику:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Імпортувати текстовий файл із парами ключ-значення за допомогою формальних виразів:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Імпортувати дані у довільному форматуванні:
-
-    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -1028,6 +980,58 @@ Examples:
     <message>
         <source>Parent UUID</source>
         <translation>Батьківський UUID</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+КОРИСТУВАННЯ
+
+%1 import &lt;ФАЙЛ&gt; [room &lt;КЛАС&gt;] [format &lt;РЯДОК ФОРМАТУВАННЯ ЗІ ЗМІННИМИ&gt;] [regex &lt;ФОРМАЛЬНИЙ ВИРАЗ ЗІ ЗМІННИМИ&gt;]
+
+Можливі змінні: %type% %name% %host% %mac% %room%
+
+Приклади:
+
+* Імпортувати простий файл CSV до одного запису класу:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Імпортувати файл CSV із назвою класу у першому стовпчику:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Імпортувати текстовий файл із парами ключ-значення за допомогою формальних виразів:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Імпортувати дані у довільному форматуванні:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1494,6 +1498,33 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передавання файлів</translation>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation>Натисніть цю кнопку, щоб передати файли з вашого комп&apos;ютера на усі комп&apos;ютери.</translation>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Виберіть один або декілька файлів для передавання</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation>Не вдалося відкрити файл «%1» для запису!</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>Не вдалося відкрити файл «%1» для читання! Будь ласка, перевірте, чи маєте ви достатні права доступу!</translation>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Передати файли на інший комп&apos;ютер</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1643,12 +1674,16 @@ Examples:
         <translation>Керування доступом до інтернету</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>Параметри</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>Модуль:</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>Загальні параметри</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>Параметри модулів</translation>
     </message>
 </context>
 <context>
@@ -2479,14 +2514,6 @@ Examples:
         <translation>Розпізнавання неможливе</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>Віддалене керування</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Вийти</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>Не вдалося записати налаштування</translation>
     </message>
@@ -2549,10 +2576,6 @@ Examples:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування %1 із ширшими правами доступу.</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>Основне керування %1</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2761,6 +2784,10 @@ Examples:
         <source>Automatically open computer rooms widget</source>
         <translation>Автоматично відкривати віджет комп&apos;ютерних класів</translation>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation>Колір тексту</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2775,6 +2802,145 @@ Examples:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Це типовий режим. Він надає вам змогу стежити за усіма комп’ютерами у одному або декількох класах.</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>Виявлення мережі</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Режим</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>Сканувати діапазони мережі</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>Приклад: 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>Сканувати усі підмережі комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>Сканувати нетипову підмережу</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>Сканувати сеанси на локальному комп&apos;ютері</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>Діапазони мережі</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>Додати нову групу</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>Вилучити позначену групу</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>Групи</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>Перша адреса</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>Остання адреса</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Додати новий діапазон мережі</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Вилучити позначений діапазон мережі</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Налаштовувані</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>Паралельне сканування</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>Час очікування на сканування</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>Обмеження сканування сеансів</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>Нова група</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>Сканування…</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>Виявлені комп&apos;ютери</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Показати довідку щодо певної команди</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>Сканувати підмережу</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+КОРИСТУВАННЯ
+
+%1 scan [&lt;SUBNET&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>Каталог об&apos;єктів мережі, який автоматично виявляє комп&apos;ютери у мережі</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>Виявлення мережі (пошук у мережі клієнтів Veyon)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>Команди для керування каталогом виявлення мережі</translation>
     </message>
 </context>
 <context>
@@ -2856,6 +3022,30 @@ Examples:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>Ви справді хочете вимкнути позначений комп&apos;ютер?</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Увімкнути комп&apos;ютер за допомогою Wake-on-LAN (WOL)</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC-АДРЕСА</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Ця команда транслює пакет Wake-on-LAN (WOL) до мережі з метою вмикання живлення на комп&apos;ютері із вказаною MAC-адресою.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку!</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>Вказано некоректну MAC-адресу!</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Команди для керування станом живлення комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -2980,6 +3170,32 @@ Examples:
     <message>
         <source>enter search filter...</source>
         <translation>введіть фільтр пошуку…</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>Керування доступом до інтернету шляхом внесення змін до таблиці маршрутизації</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>Вилучити типові маршрути для блокування доступу до інтернету</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>Додати нетиповий маршрут для блокування інтернету</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>Призначення</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>Шлюз</translation>
     </message>
 </context>
 <context>

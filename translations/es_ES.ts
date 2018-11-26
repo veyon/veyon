@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Contribuidores</translation>
+        <translation>Colaboradores</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -678,6 +678,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Access group</source>
         <translation>Grupo de acceso</translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation>ID del par</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -763,60 +767,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Export objects to given file</source>
         <translation>Exportar objetos a un archivo</translation>
-    </message>
-    <message>
-        <source>
-USAGE
-
-%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Valid variables: %name% %host% %mac% %room%
-
-Examples:
-
-* Import simple CSV file to a single room:
-
-    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Import CSV file with room name in first column:
-
-    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
-
-* Import text file with with key/value pairs using regular expressions:
-
-    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
-
-* Import arbitrarily formatted data:
-
-    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
-</source>
-        <translation>
-USO
-
-%1 import &lt;FILE&gt; [room&lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
-
-Variables válidas: %name% %host% %mac% %room%
-
-Ejemplos:
-
-* Importar archivo CSV simple a un aula individual:
-
-%1 import equipos.csv room &quot;Aula 01&quot; format &quot;%name%;%host%;%mac%&quot;
-
-* Importar archivo CSV con el nombre del aula en la primera columna:
-
-%1 import equipos-con-aulas.csv &quot; format %room%,%name%,%mac%&quot;
-
-* Importar archivo de texto con pares clave/valor usando expresiones regulares:
-
-%1 import lista-equipos.txt room &quot;Aula 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST: (%host%:.*) $&quot;
-
-* Importar datos formateados arbitrariamente:
-
-%1 import datos.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
-
-
-</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -1035,6 +985,58 @@ Ejemplos:
     <message>
         <source>Parent UUID</source>
         <translation>UUID del principal</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 import &lt;FILE&gt; [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Valid variables: %type% %name% %host% %mac% %room%
+
+Examples:
+
+* Import simple CSV file to a single room:
+
+    %1 import computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Import CSV file with room name in first column:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Import text file with with key/value pairs using regular expressions:
+
+    %1 import hostlist.txt room &quot;Room 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Import arbitrarily formatted data:
+
+    %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
+</source>
+        <translation>
+USO
+
+%1 import &lt;FILE&gt;  [room &lt;ROOM&gt;] [format &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;]
+
+Variables válidas: %type% %name% %host% %mac% %room%
+
+Ejemplos:
+
+* Importar un simple archivo CSV a una sola aula:
+
+    %1 import computers.csv room &quot;Aula 01&quot; format &quot;%name%;%host%;%mac%&quot;
+
+* Importar archivo CSV con el nombre del aula en la primera columna:
+
+    %1 import computers-with-rooms.csv format &quot;%room%,%name%,%mac%&quot;
+
+* Importar archivo de texto con pares clave/valor usando expresiones regulares:
+
+    %1 import hostlist.txt room &quot;Aula 01&quot; regex &quot;^NAME:(%name%:.*)\s+HOST:(%host%:.*)$&quot;
+
+* Importar datos con formato arbitrario:
+
+    %1 import data.txt regex &apos;^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1501,6 +1503,33 @@ Ejemplos:
     </message>
 </context>
 <context>
+    <name>FileTransferPlugin</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transferir archivo</translation>
+    </message>
+    <message>
+        <source>Click this button to transfer files from your computer to all computers.</source>
+        <translation>Clic en este botón para transferir archivos desde su equipo a todos los equipos.</translation>
+    </message>
+    <message>
+        <source>Select one or more files to transfer</source>
+        <translation>Seleccione uno o más archivos para transferir</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for writing!</source>
+        <translation>¡No se pudo abrir el archivo &quot;%1&quot; para su escritura!</translation>
+    </message>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>¡No se pudo abrir el archivo &quot;%1&quot; para su lectura! ¡Por favor compruebe sus permisos!</translation>
+    </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Transferir archivos al equipo remoto</translation>
+    </message>
+</context>
+<context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
@@ -1650,12 +1679,16 @@ Ejemplos:
         <translation>Control de acceso a Internet</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>Configuración</translation>
-    </message>
-    <message>
         <source>Backend:</source>
         <translation>Backend:</translation>
+    </message>
+    <message>
+        <source>General settings</source>
+        <translation>Configuración general</translation>
+    </message>
+    <message>
+        <source>Backend settings</source>
+        <translation>Configuración de backend</translation>
     </message>
 </context>
 <context>
@@ -1724,7 +1757,7 @@ Ejemplos:
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>Ajustes básicos</translation>
+        <translation>Configuración básica</translation>
     </message>
     <message>
         <source>General</source>
@@ -1852,7 +1885,7 @@ Ejemplos:
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>Ajustes avanzados</translation>
+        <translation>Configuración avanzada</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2302,23 +2335,23 @@ Ejemplos:
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation>v.g. (objectClass=computer)</translation>
+        <translation>ej. (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>v.g. (objectClass=group)</translation>
+        <translation>ej. (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>v.g. (objectClass=person)</translation>
+        <translation>ej. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>v.g. (objectClass=room) o (objectClass=computerLab)</translation>
+        <translation>ej. (objectClass=room) o (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>v.g. (objectClass=container) o (objectClass=organizationalUnit)</translation>
+        <translation>ej. (objectClass=container) o (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2484,14 +2517,6 @@ Ejemplos:
         <translation>Autenticación imposible</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>Control remoto</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Salir</translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation>La configuración no se puede escribir</translation>
     </message>
@@ -2505,11 +2530,11 @@ Ejemplos:
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Ajustes no guardados</translation>
+        <translation>Configuración no guardada</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Hay ajustes no guardados. ¿Salir de todas maneras?</translation>
+        <translation>Hay configuraciones no guardadas. ¿Salir de todas maneras?</translation>
     </message>
     <message>
         <source>Veyon Configurator</source>
@@ -2554,10 +2579,6 @@ Ejemplos:
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>¡El backend de configuración local informó que la configuración no es escribible! Ejecute el Configurador de %1 con privilegios más altos.</translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
-        <translation>Control Maestro %1</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2680,7 +2701,7 @@ Ejemplos:
     </message>
     <message>
         <source>Basic settings</source>
-        <translation>Ajustes básicos</translation>
+        <translation>Configuración básica</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -2766,6 +2787,10 @@ Ejemplos:
         <source>Automatically open computer rooms widget</source>
         <translation>Abrir automáticamente el widget de aulas</translation>
     </message>
+    <message>
+        <source>Text color</source>
+        <translation>Color del texto</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2780,6 +2805,145 @@ Ejemplos:
     <message>
         <source>This is the default mode and allows you to monitor all computers in one or more rooms.</source>
         <translation>Este es el modo predeterminado y le permite monitorizar todos los equipos en una o más habitaciones.</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryConfigurationPage</name>
+    <message>
+        <source>Network discovery</source>
+        <translation>Detección de redes</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>Modo</translation>
+    </message>
+    <message>
+        <source>Scan network ranges</source>
+        <translation>Analizar rangos de red</translation>
+    </message>
+    <message>
+        <source>e.g. 192.168.1.0/24</source>
+        <translation>ej. 192.168.1.0/24</translation>
+    </message>
+    <message>
+        <source>Scan all subnets of computer</source>
+        <translation>Analizar todas las subredes del equipo</translation>
+    </message>
+    <message>
+        <source>Scan custom subnet</source>
+        <translation>Analizar subred personalizada</translation>
+    </message>
+    <message>
+        <source>Scan sessions on local computer</source>
+        <translation>Analizar sesiones en un equipo local</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Comprobar</translation>
+    </message>
+    <message>
+        <source>Network ranges</source>
+        <translation>Rangos de red</translation>
+    </message>
+    <message>
+        <source>Add new group</source>
+        <translation>Añadir nuevo grupo</translation>
+    </message>
+    <message>
+        <source>Remove selected group</source>
+        <translation>Eliminar grupo seleccionado</translation>
+    </message>
+    <message>
+        <source>Groups</source>
+        <translation>Grupos</translation>
+    </message>
+    <message>
+        <source>First address</source>
+        <translation>Primera dirección</translation>
+    </message>
+    <message>
+        <source>Last address</source>
+        <translation>Última dirección</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Añadir nuevo rango de red</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Eliminar el rango de red seleccionado</translation>
+    </message>
+    <message>
+        <source>Tunables</source>
+        <translation>Ajustes</translation>
+    </message>
+    <message>
+        <source>Parallel scans</source>
+        <translation>Análisis paralelos</translation>
+    </message>
+    <message>
+        <source>Scan timeout</source>
+        <translation>Tiempo de espera de análisis</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>Session scan limit</source>
+        <translation>Límite de análisis de sesión</translation>
+    </message>
+    <message>
+        <source>New group</source>
+        <translation>Nuevo grupo</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDirectory</name>
+    <message>
+        <source>Scanning...</source>
+        <translation>Analizando...</translation>
+    </message>
+    <message>
+        <source>Discovered computers</source>
+        <translation>Equipos detectados</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Mostrar ayuda para un comando específico</translation>
+    </message>
+    <message>
+        <source>Scan a subnet</source>
+        <translation>Analizar una subred</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 scan [&lt;SUBNET&gt;]
+
+</source>
+        <translation>
+USO
+
+%1 analizado [&lt;SUBNET&gt;]
+
+</translation>
+    </message>
+    <message>
+        <source>Network object directory which automatically discovers computers in the network</source>
+        <translation>Directorio de objetos de red que detecta automáticamente los equipos en la red</translation>
+    </message>
+    <message>
+        <source>Network discovery (scan network for Veyon clients)</source>
+        <translation>Detección de redes (analizar la red para clientes Veyon)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the network discovery directory</source>
+        <translation>Comandos para administrar el directorio de detección de redes</translation>
     </message>
 </context>
 <context>
@@ -2861,6 +3025,30 @@ Ejemplos:
     <message>
         <source>Do you really want to power down the selected computer?</source>
         <translation>¿Realmente desea apagar el equipo seleccionado?</translation>
+    </message>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Encienda un equipo a través de Wake-on-LAN (WOL)</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>DIRECCIÓN MAC</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Este comando transmite un paquete Wake-on-LAN (WOL) a la red para encender el equipo con la dirección MAC proporcionada.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Por favor, ¡especifique el comando sobre el cual mostrar ayuda!</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>¡Dirección MAC especificada inválida!</translation>
+    </message>
+    <message>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Comandos para controlar el estado de energía de los equipos</translation>
     </message>
 </context>
 <context>
@@ -2985,6 +3173,32 @@ Ejemplos:
     <message>
         <source>enter search filter...</source>
         <translation>introduzca el filtro de búsqueda ...</translation>
+    </message>
+</context>
+<context>
+    <name>Routing</name>
+    <message>
+        <source>Control internet access by modifying routing table</source>
+        <translation>Controlar el acceso a Internet modificando la tabla de enrutamiento</translation>
+    </message>
+</context>
+<context>
+    <name>RoutingConfigurationWidget</name>
+    <message>
+        <source>Remove default routes to block internet access</source>
+        <translation>Eliminar las rutas predeterminadas para bloquear el acceso a Internet</translation>
+    </message>
+    <message>
+        <source>Add custom route to block internet</source>
+        <translation>Añadir una ruta personalizada para bloquear Internet</translation>
+    </message>
+    <message>
+        <source>Destination</source>
+        <translation>Destino</translation>
+    </message>
+    <message>
+        <source>Gateway</source>
+        <translation>Puerta de enlace</translation>
     </message>
 </context>
 <context>
@@ -3158,7 +3372,7 @@ Ejemplos:
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Todos los ajustes se guardaron correctamente. Para tener efecto es necesario reiniciar el servicio %1. ¿Reiniciarlo ahora?</translation>
+        <translation>Todos las configuraciones se guardaron correctamente. Para tener efecto es necesario reiniciar el servicio %1. ¿Reiniciar ahora?</translation>
     </message>
     <message>
         <source>Running</source>
