@@ -22,9 +22,9 @@
  *
  */
 
-#ifndef VEYON_SERVER_INTERFACE_H
-#define VEYON_SERVER_INTERFACE_H
+#pragma once
 
+class BuiltinFeatures;
 class FeatureMessage;
 class FeatureWorkerManager;
 class MessageContext;
@@ -34,9 +34,9 @@ class VeyonServerInterface
 public:
 	virtual ~VeyonServerInterface() = default;
 
+	virtual BuiltinFeatures& builtinFeatures() = 0;
+
 	virtual FeatureWorkerManager& featureWorkerManager() = 0;
 	virtual bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) = 0;
 
 };
-
-#endif

@@ -63,6 +63,11 @@ public:
 		return m_serverAccessControlManager;
 	}
 
+	BuiltinFeatures& builtinFeatures() override
+	{
+		return m_builtinFeatures;
+	}
+
 	bool handleFeatureMessage( QTcpSocket* socket );
 
 	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
