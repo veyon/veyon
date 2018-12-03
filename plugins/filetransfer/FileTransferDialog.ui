@@ -18,6 +18,13 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QCheckBox" name="overwriteExistingFiles">
+        <property name="text">
+         <string>Overwrite existing files</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QRadioButton" name="transferOnly">
         <property name="text">
          <string>Transfer only</string>
@@ -81,6 +88,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>overwriteExistingFiles</tabstop>
+  <tabstop>transferOnly</tabstop>
+  <tabstop>transferAndOpenProgram</tabstop>
+  <tabstop>transferAndOpenFolder</tabstop>
+  <tabstop>fileListView</tabstop>
+ </tabstops>
  <resources>
   <include location="filetransfer.qrc"/>
  </resources>

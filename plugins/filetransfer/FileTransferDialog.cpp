@@ -76,6 +76,11 @@ void FileTransferDialog::accept()
 		flags |= FileTransferController::OpenFilesInApplication;
 	}
 
+	if( ui->overwriteExistingFiles->isChecked() )
+	{
+		flags |= FileTransferController::OverwriteExistingFiles;
+	}
+
 	m_controller->setFlags( flags );
 	m_controller->start();
 }

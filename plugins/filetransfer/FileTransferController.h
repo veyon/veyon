@@ -38,7 +38,8 @@ public:
 	enum Flag {
 		Transfer = 0x00,
 		OpenFilesInApplication = 0x01,
-		OpenTransferFolder = 0x02
+		OpenTransferFolder = 0x02,
+		OverwriteExistingFiles = 0x04,
 	};
 	Q_DECLARE_FLAGS(Flags, Flag)
 	Q_FLAG(Flags)

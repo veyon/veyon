@@ -89,7 +89,8 @@ public:
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
-	void sendStartMessage( const QUuid& transferId, const QString& fileName, const ComputerControlInterfaceList& interfaces );
+	void sendStartMessage( const QUuid& transferId, const QString& fileName,
+						   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces );
 	void sendDataMessage( const QUuid& transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces );
 	void sendCancelMessage( const QUuid& transferId, const ComputerControlInterfaceList& interfaces );
 	void sendFinishMessage( const QUuid& transferId, bool openFileInApplication,
@@ -113,6 +114,7 @@ private:
 		Filename,
 		DataChunk,
 		OpenFileInApplication,
+		OverwriteExistingFile,
 		ArgumentsCount
 	};
 

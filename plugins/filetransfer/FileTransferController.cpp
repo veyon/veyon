@@ -204,7 +204,8 @@ bool FileTransferController::openFile()
 
 	m_currentTransferId = QUuid::createUuid();
 
-	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo( m_files[m_currentFileIndex] ).fileName(), m_interfaces );
+	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo( m_files[m_currentFileIndex] ).fileName(),
+								m_flags.testFlag( OverwriteExistingFiles ), m_interfaces );
 
 	return true;
 }

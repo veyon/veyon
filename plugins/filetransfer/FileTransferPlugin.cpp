@@ -156,15 +156,23 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			m_currentFile.close();
 			// TODO: make path configurable
 			m_currentFile.setFileName( QDir::homePath() + QDir::separator() + message.argument( Filename ).toString() );
-			// TODO: check for existing files
+			if( m_currentFile.exists() && message.argument( OverwriteExistingFile ).toBool() == false )
+			{
+				QMessageBox::critical( nullptr, tr( "File transfer" ),
+									   tr( "Could not receive file \"%1\" as it already exists." ).
+									   arg( m_currentFile.fileName() ) );
+				return true;
+			}
+
 			if( m_currentFile.open( QFile::WriteOnly | QFile::Truncate ) )
 			{
 				m_currentTransferId = message.argument( TransferId ).toUuid();
 			}
 			else
 			{
-				QMessageBox::critical( nullptr, tr( "File transfer"),
-									   tr( "Could not open file \"%1\" for writing!" ).arg( m_currentFile.fileName() ) );
+				QMessageBox::critical( nullptr, tr( "File transfer" ),
+									   tr( "Could not receive file \"%1\" as it could not be opened for writing!" ).
+									   arg( m_currentFile.fileName() ) );
 			}
 			return true;
 
@@ -214,11 +222,12 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 
 
 void FileTransferPlugin::sendStartMessage( const QUuid& transferId, const QString& fileName,
-										   const ComputerControlInterfaceList& interfaces )
+										   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferStartCommand ).
 						addArgument( TransferId, transferId ).
-						addArgument( Filename, fileName ),
+						addArgument( Filename, fileName ).
+						addArgument( OverwriteExistingFile, overwriteExistingFile ),
 						interfaces );
 }
 
