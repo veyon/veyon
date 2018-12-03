@@ -49,7 +49,7 @@ public:
 	VeyonMaster( QObject* parent = nullptr );
 	~VeyonMaster() override;
 
-	BuiltinFeatures& builtinFeatures()
+	BuiltinFeatures& builtinFeatures() override
 	{
 		return *m_builtinFeatures;
 	}

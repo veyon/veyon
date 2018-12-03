@@ -26,6 +26,7 @@
 
 #include "Configuration/Object.h"
 
+class BuiltinFeatures;
 class QWidget;
 
 class VeyonMasterInterface
@@ -35,5 +36,7 @@ public:
 
 	virtual QWidget* mainWindow() = 0;
 	virtual Configuration::Object* userConfigurationObject() = 0;
+
+	virtual BuiltinFeatures& builtinFeatures() = 0;
 
 };
