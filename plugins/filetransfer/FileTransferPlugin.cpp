@@ -27,13 +27,16 @@
 #include <QFileInfo>
 #include <QMessageBox>
 
+#include "BuiltinFeatures.h"
 #include "FileTransferController.h"
 #include "FileTransferDialog.h"
 #include "FileTransferPlugin.h"
 #include "FileTransferUserConfiguration.h"
 #include "FeatureWorkerManager.h"
+#include "SystemTrayIcon.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
+#include "VeyonWorkerInterface.h"
 
 
 FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
@@ -133,6 +136,14 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 			server.featureWorkerManager().startWorker( m_fileTransferFeature, FeatureWorkerManager::UnmanagedSessionProcess );
 		}
 
+		if( message.command() == FileTransferFinishCommand )
+		{
+			server.builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
+																   tr( "Received file \"%1\"." ).
+																   arg( message.argument( Filename ).toString() ),
+																   server.featureWorkerManager() );
+		}
+
 		// forward message to worker
 		server.featureWorkerManager().sendMessage( message );
 
@@ -158,7 +169,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			m_currentFile.setFileName( QDir::homePath() + QDir::separator() + message.argument( Filename ).toString() );
 			if( m_currentFile.exists() && message.argument( OverwriteExistingFile ).toBool() == false )
 			{
-				QMessageBox::critical( nullptr, tr( "File transfer" ),
+				QMessageBox::critical( nullptr, m_fileTransferFeature.displayName(),
 									   tr( "Could not receive file \"%1\" as it already exists." ).
 									   arg( m_currentFile.fileName() ) );
 				return true;
@@ -170,7 +181,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			}
 			else
 			{
-				QMessageBox::critical( nullptr, tr( "File transfer" ),
+				QMessageBox::critical( nullptr, m_fileTransferFeature.displayName(),
 									   tr( "Could not receive file \"%1\" as it could not be opened for writing!" ).
 									   arg( m_currentFile.fileName() ) );
 			}
@@ -253,11 +264,12 @@ void FileTransferPlugin::sendCancelMessage( const QUuid& transferId,
 
 
 
-void FileTransferPlugin::sendFinishMessage( const QUuid& transferId, bool openFileInApplication,
-											const ComputerControlInterfaceList& interfaces )
+void FileTransferPlugin::sendFinishMessage( const QUuid& transferId, const QString& fileName,
+											bool openFileInApplication, const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferFinishCommand ).
 						addArgument( TransferId, transferId ).
+						addArgument( Filename, fileName ).
 						addArgument( OpenFileInApplication, openFileInApplication ), interfaces );
 }
 

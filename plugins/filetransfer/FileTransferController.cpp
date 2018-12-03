@@ -242,7 +242,8 @@ void FileTransferController::finishFile()
 		delete m_fileReadThread;
 		m_fileReadThread = nullptr;
 
-		m_plugin->sendFinishMessage( m_currentTransferId, m_flags.testFlag( OpenFilesInApplication ), m_interfaces );
+		m_plugin->sendFinishMessage( m_currentTransferId, QFileInfo( m_files[m_currentFileIndex] ).fileName(),
+									 m_flags.testFlag( OpenFilesInApplication ), m_interfaces );
 
 		m_currentTransferId = QUuid();
 	}

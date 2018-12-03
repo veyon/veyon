@@ -93,8 +93,8 @@ public:
 						   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces );
 	void sendDataMessage( const QUuid& transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces );
 	void sendCancelMessage( const QUuid& transferId, const ComputerControlInterfaceList& interfaces );
-	void sendFinishMessage( const QUuid& transferId, bool openFileInApplication,
-							const ComputerControlInterfaceList& interfaces );
+	void sendFinishMessage( const QUuid& transferId, const QString& fileName,
+							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 
 private:
