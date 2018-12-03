@@ -22,9 +22,9 @@
  *
  */
 
-#ifndef VEYON_WORKER_INTERFACE_H
-#define VEYON_WORKER_INTERFACE_H
+#pragma once
 
+class BuiltinFeatures;
 class FeatureMessage;
 
 class VeyonWorkerInterface
@@ -32,8 +32,8 @@ class VeyonWorkerInterface
 public:
 	virtual ~VeyonWorkerInterface() = default;
 
+	virtual BuiltinFeatures& builtinFeatures() = 0;
+
 	virtual bool sendFeatureMessageReply( const FeatureMessage& reply ) = 0;
 
 };
-
-#endif

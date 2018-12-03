@@ -37,6 +37,11 @@ class VeyonWorker : public QObject, VeyonWorkerInterface
 public:
 	VeyonWorker( const QString& featureUid, QObject* parent = nullptr );
 
+	BuiltinFeatures& builtinFeatures() override
+	{
+		return m_builtinFeatures;
+	}
+
 	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
 
 private:
