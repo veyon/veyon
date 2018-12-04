@@ -175,7 +175,7 @@ void VncClientProtocol::requestFramebufferUpdate( bool incremental )
 
 	if( m_socket->write( reinterpret_cast<const char *>( &updateRequest ), sz_rfbFramebufferUpdateRequestMsg ) != sz_rfbFramebufferUpdateRequestMsg )
 	{
-		qDebug( "VncClientProtocol::requestFramebufferUpdate(): could not write to socket - closing connection" );
+		vDebug( "VncClientProtocol::requestFramebufferUpdate(): could not write to socket - closing connection" );
 		m_socket->close();
 	}
 }
@@ -343,7 +343,7 @@ bool VncClientProtocol::receiveSecurityResult()
 			return false;
 		}
 
-		qDebug( "VncClientProtocol::receiveSecurityResult(): authentication successful" );
+		vDebug( "VncClientProtocol::receiveSecurityResult(): authentication successful" );
 
 		// finally send client init message
 		rfbClientInitMsg clientInitMessage;

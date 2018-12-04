@@ -73,11 +73,11 @@ Logger::Logger( const QString &appName ) :
 	if( QCoreApplication::instance() )
 	{
 		// log current application start up
-		qDebug() << "Startup with arguments" << QCoreApplication::arguments();
+		vDebug() << "Startup with arguments" << QCoreApplication::arguments();
 	}
 	else
 	{
-		qDebug() << "Startup without QCoreApplication instance";
+		vDebug() << "Startup without QCoreApplication instance";
 	}
 }
 
@@ -86,7 +86,7 @@ Logger::Logger( const QString &appName ) :
 
 Logger::~Logger()
 {
-	qDebug( "Shutdown" );
+	vDebug( "Shutdown" );
 
 	QMutexLocker l( &m_logMutex );
 

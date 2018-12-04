@@ -32,7 +32,7 @@ CryptoCore::CryptoCore() :
 {
 	const auto features = QCA::supportedFeatures();
 
-	qDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << features;
+	vDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << features;
 
 	if( features.contains( QStringLiteral( "rsa" ) ) == false )
 	{
@@ -47,7 +47,7 @@ CryptoCore::CryptoCore() :
 
 CryptoCore::~CryptoCore()
 {
-	qDebug( "CryptoCore instance destroyed" );
+	vDebug( "CryptoCore instance destroyed" );
 }
 
 

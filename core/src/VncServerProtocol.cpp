@@ -91,7 +91,7 @@ bool VncServerProtocol::read()
 		return processFramebufferInit();
 
 	case Close:
-		qDebug( "VncServerProtocol::read(): closing connection per protocol state" );
+		vDebug( "VncServerProtocol::read(): closing connection per protocol state" );
 		m_socket->close();
 		break;
 

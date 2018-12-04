@@ -255,7 +255,7 @@ void ComputerControlInterface::restartConnection()
 {
 	if( m_vncConnection )
 	{
-		qDebug() << Q_FUNC_INFO;
+		vDebug() << Q_FUNC_INFO;
 		m_vncConnection->restart();
 
 		m_connectionWatchdogTimer.stop();

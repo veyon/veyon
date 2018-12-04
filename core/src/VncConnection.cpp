@@ -142,7 +142,7 @@ void VncConnection::rfbClientLogDebug( const char* format, ... )
 
 	va_end(args);
 
-	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << message;
+	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << message;
 }
 
 

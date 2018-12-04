@@ -74,7 +74,7 @@ void PluginManager::upgradePlugins()
 		const auto currentPluginVersion = pluginInterface->version();
 		if( currentPluginVersion > previousPluginVersion )
 		{
-			qDebug() << "Upgrading plugin" << pluginInterface->name()
+			vDebug() << "Upgrading plugin" << pluginInterface->name()
 					 << "from" << previousPluginVersion.toString()
 					 << "to" << currentPluginVersion.toString();
 			pluginInterface->upgrade( previousPluginVersion );
@@ -156,7 +156,7 @@ void PluginManager::initPluginSearchPath()
 		const auto pluginSearchPath = dir.absolutePath();
 		if( m_noDebugMessages == false )
 		{
-			qDebug() << "Adding plugin search path" << pluginSearchPath;
+			vDebug() << "Adding plugin search path" << pluginSearchPath;
 		}
 		QDir::addSearchPath( QStringLiteral( "plugins" ), pluginSearchPath );
 	}
@@ -177,7 +177,7 @@ void PluginManager::loadPlugins( const QString& nameFilter )
 		{
 			if( m_noDebugMessages == false )
 			{
-				qDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
+				vDebug() << "PluginManager: discovered plugin" << pluginInterface->name() << "at" << fileInfo.filePath();
 			}
 			m_pluginInterfaces += pluginInterface;	// clazy:exclude=reserve-candidates
 			m_pluginObjects += pluginObject;		// clazy:exclude=reserve-candidates

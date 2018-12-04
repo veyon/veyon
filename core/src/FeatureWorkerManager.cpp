@@ -96,12 +96,12 @@ void FeatureWorkerManager::startWorker( const Feature& feature, WorkerProcessMod
 		connect( worker.process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
 				 worker.process, &QProcess::deleteLater );
 
-		qDebug() << "Starting worker (managed system process) for feature" << feature.displayName() << featureUid;
+		vDebug() << "Starting worker (managed system process) for feature" << feature.displayName() << featureUid;
 		worker.process->start( VeyonCore::filesystem().workerFilePath(), { featureUid } );
 	}
 	else
 	{
-		qDebug() << "Starting worker (unmanaged session process) for feature" << feature.displayName() << featureUid;
+		vDebug() << "Starting worker (unmanaged session process) for feature" << feature.displayName() << featureUid;
 		VeyonCore::platform().coreFunctions().runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { featureUid },
 																VeyonCore::platform().userFunctions().currentUser(),
 																VeyonCore::platform().coreFunctions().activeDesktopName() );
@@ -127,7 +127,7 @@ void FeatureWorkerManager::stopWorker( const Feature &feature )
 
 	if( m_workers.contains( feature.uid() ) )
 	{
-		qDebug() << "Stopping worker for feature" << feature.displayName() << feature.uid();
+		vDebug() << "Stopping worker for feature" << feature.displayName() << feature.uid();
 
 		auto& worker = m_workers[feature.uid()];
 
@@ -198,7 +198,7 @@ FeatureUidList FeatureWorkerManager::runningWorkers()
 
 void FeatureWorkerManager::acceptConnection()
 {
-	qDebug( "FeatureWorkerManager: accepting connection" );
+	vDebug( "FeatureWorkerManager: accepting connection" );
 
 	QTcpSocket* socket = m_tcpServer.nextPendingConnection();
 
@@ -253,7 +253,7 @@ void FeatureWorkerManager::closeConnection( QTcpSocket* socket )
 	{
 		if( it.value().socket == socket )
 		{
-			qDebug() << "FeatureWorkerManager::closeConnection(): removing worker after socket has been closed";
+			vDebug() << "FeatureWorkerManager::closeConnection(): removing worker after socket has been closed";
 			it = m_workers.erase( it );
 		}
 		else

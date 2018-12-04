@@ -107,12 +107,12 @@ bool VeyonConnection::handleServerMessage( rfbClient* client, uint8_t msg )
 		FeatureMessage featureMessage;
 		if( featureMessage.receive( &socketDev ) == false )
 		{
-			qDebug( "VeyonConnection: could not receive feature message" );
+			vDebug( "VeyonConnection: could not receive feature message" );
 
 			return false;
 		}
 
-		qDebug() << "VeyonConnection: received feature message"
+		vDebug() << "VeyonConnection: received feature message"
 				 << featureMessage.command()
 				 << "with arguments" << featureMessage.arguments();
 
@@ -186,7 +186,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 #endif
 	}
 
-	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "received authentication types:" << authTypes;
+	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "received authentication types:" << authTypes;
 
 	RfbVeyonAuth::Type chosenAuthType = RfbVeyonAuth::Token;
 	if( authTypes.count() > 0 )
@@ -206,7 +206,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		}
 	}
 
-	qDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "chose authentication type:" << authTypes;
+	vDebug() << Q_FUNC_INFO << QThread::currentThreadId() << "chose authentication type:" << authTypes;
 
 	VariantArrayMessage authReplyMessage( &socketDevice );
 

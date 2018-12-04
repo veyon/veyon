@@ -129,14 +129,14 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 	}
 	else
 	{
-		qDebug( "AccessControlProvider::checkAccess(): "
+		vDebug( "AccessControlProvider::checkAccess(): "
 				"no access control method configured, allowing access." );
 
 		// no access control method configured, therefore grant access
 		return AccessAllow;
 	}
 
-	qDebug( "AccessControlProvider::checkAccess(): "
+	vDebug( "AccessControlProvider::checkAccess(): "
 			"configured access control method did not succeed, denying access." );
 
 	// configured access control method did not succeed, therefore deny access
@@ -147,7 +147,7 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 
 bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUser )
 {
-	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
+	vDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
 	return intersects( m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups ).toSet(),
 						VeyonCore::config().authorizedUserGroups().toSet() );
@@ -161,7 +161,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 																			const QString& localComputer,
 																			const QStringList& connectedUsers )
 {
-	qDebug() << "AccessControlProvider::processAccessControlRules(): processing rules for"
+	vDebug() << "AccessControlProvider::processAccessControlRules(): processing rules for"
 			 << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
 
 	for( const auto& rule : qAsConst( m_accessControlRules ) )
@@ -176,13 +176,13 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 		if( rule.areConditionsIgnored() ||
 				matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers ) )
 		{
-			qDebug() << "AccessControlProvider::processAccessControlRules(): rule"
+			vDebug() << "AccessControlProvider::processAccessControlRules(): rule"
 					 << rule.name() << "matched with action" << rule.action();
 			return rule.action();
 		}
 	}
 
-	qDebug() << "AccessControlProvider::processAccessControlRules(): no matching rule, denying access";
+	vDebug() << "AccessControlProvider::processAccessControlRules(): no matching rule, denying access";
 
 	return AccessControlRule::ActionDeny;
 }
@@ -309,7 +309,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	// we have to check against the opposite boolean value
 	bool matchResult = rule.areConditionsInverted() == false;
 
-	qDebug() << "AccessControlProvider::matchConditions():" << rule.toJson() << matchResult;
+	vDebug() << "AccessControlProvider::matchConditions():" << rule.toJson() << matchResult;
 
 	auto condition = AccessControlRule::ConditionMemberOfUserGroup;
 

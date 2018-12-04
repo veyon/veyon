@@ -121,7 +121,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 								   const Feature& feature,
 								   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
+	vDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -143,7 +143,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 								  const Feature& feature,
 								  const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	qDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
+	vDebug() << Q_FUNC_INFO << "feature" << feature.displayName() << feature.uid() << computerControlInterfaces;
 
 	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
 	{
@@ -164,7 +164,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 bool FeatureManager::handleFeatureMessage( VeyonMasterInterface& master, const FeatureMessage& message,
 										   const ComputerControlInterface::Pointer& computerControlInterface )
 {
-	qDebug() << Q_FUNC_INFO
+	vDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
@@ -188,7 +188,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 										   const MessageContext& messageContext,
 										   const FeatureMessage& message )
 {
-	qDebug() << Q_FUNC_INFO
+	vDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();
@@ -217,7 +217,7 @@ bool FeatureManager::handleFeatureMessage( VeyonServerInterface& server,
 
 bool FeatureManager::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	qDebug() << Q_FUNC_INFO
+	vDebug() << Q_FUNC_INFO
 			 << "feature" << message.featureUid()
 			 << "command" << message.command()
 			 << "arguments" << message.arguments();

@@ -74,7 +74,7 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 
 bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
 {
-	qDebug() << "AuthenticationCredentials: loading private key" << privateKeyFile;
+	vDebug() << "AuthenticationCredentials: loading private key" << privateKeyFile;
 
 	if( privateKeyFile.isEmpty() )
 	{
