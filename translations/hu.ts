@@ -1501,29 +1501,75 @@ Példák:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>&quot;%1&quot; fájl nem nyitható meg olvasásra. Kérem, ellenőrizd a jogosultságaidat.</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Fájlátvitel</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Fájlátvitel</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kattints erre gombra, hogy számítógépedről fájlokat küld át az összes számítógépre.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Válasszon ki egy vagy több fájlt az átvitelhez</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
+        <translation>Fájlok átvitele távoli számítógépre</translation>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation type="unfinished"/>
     </message>
 </context>

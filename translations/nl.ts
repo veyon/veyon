@@ -54,7 +54,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Verleen toegang aan elke geauthentiseerde gebruiker (standaard)</translation>
+        <translation>Verleen toegang aan elke geauthenticeerde gebruiker (standaard)</translation>
     </message>
     <message>
         <source>Test</source>
@@ -138,7 +138,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik van domeingroepen inschakelen</translation>
     </message>
     <message>
         <source>User groups backend:</source>
@@ -150,7 +150,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Er werd geen standaard gebruikersgroepplugin gevonden. Controleer de installatie!</translation>
     </message>
 </context>
 <context>
@@ -351,15 +351,15 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder key</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Importeer key</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Exporteer key</translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -449,7 +449,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation type="unfinished"/>
+        <translation>Eén of meer key files bestaan al! Verwijder ze door gebruik te maken van het commando &quot;verwijder&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
@@ -1307,7 +1307,7 @@ Examples:
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Programs &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Programma&apos;s &amp; websites</translation>
     </message>
     <message>
         <source>Predefined programs</source>
@@ -1319,15 +1319,15 @@ Examples:
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>Pad</translation>
     </message>
     <message>
         <source>Add new program</source>
-        <translation type="unfinished"/>
+        <translation>Nieuw programma toevoegen</translation>
     </message>
     <message>
         <source>Remove selected program</source>
-        <translation type="unfinished"/>
+        <translation>Geselecteerd programma verwijderen</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1335,7 +1335,7 @@ Examples:
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>Geselecteerde website verwijderen</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1343,11 +1343,11 @@ Examples:
     </message>
     <message>
         <source>New program</source>
-        <translation type="unfinished"/>
+        <translation>Nieuw programma</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>Nieuwe website</translation>
     </message>
 </context>
 <context>
@@ -1378,7 +1378,7 @@ Examples:
     </message>
     <message>
         <source>Run program &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Programma &quot;%1&quot; uitvoeren</translation>
     </message>
     <message>
         <source>Custom program</source>
@@ -1386,7 +1386,7 @@ Examples:
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Open website &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1423,6 +1423,48 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
@@ -1430,22 +1472,26 @@ Examples:
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Klik op deze knop om bestanden van jouw computer naar alle computers over te zetten.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer één of meerdere bestanden om over te zetten.</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1604,7 +1650,7 @@ Examples:
     </message>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Algemene instellingen</translation>
     </message>
     <message>
         <source>Backend settings</source>
@@ -1634,11 +1680,11 @@ Examples:
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Toegang tot internet blokkeren</translation>
     </message>
     <message>
         <source>Allow access to the internet</source>
-        <translation type="unfinished"/>
+        <translation>Toegang tot internet toestaan</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -1646,19 +1692,19 @@ Examples:
     </message>
     <message>
         <source>Block internet</source>
-        <translation type="unfinished"/>
+        <translation>Blokkeer internet</translation>
     </message>
     <message>
         <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Klik op deze knop om toegang tot internet te blokkeren</translation>
     </message>
     <message>
         <source>Unblock internet</source>
-        <translation type="unfinished"/>
+        <translation>Deblokkeer internet</translation>
     </message>
     <message>
         <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"/>
+        <translation>Klik op deze knop om toegang tot internet toe te staan</translation>
     </message>
     <message>
         <source>Control access to the internet</source>
@@ -2253,23 +2299,23 @@ Examples:
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>bv. (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>bv. (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>bv. (objectClass=person)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>bv. (objectClass=room) of (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>bv. (objectClass=container) of (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2297,7 +2343,9 @@ Examples:
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Kon geen verbinding maken met de LDAP server. Controleer de server parameters.
+
+%1</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
@@ -2530,7 +2578,7 @@ Examples:
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Computers uitlijnen op rooster</translation>
     </message>
     <message>
         <source>Use custom computer placement</source>
@@ -2550,11 +2598,11 @@ Examples:
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>Toon alleen de ingeschakelde computers</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Instellingen opslaan naar bestand</translation>
     </message>
 </context>
 <context>
@@ -2665,7 +2713,7 @@ Examples:
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Start programma</translation>
     </message>
     <message>
         <source>Modes and features</source>
@@ -2673,15 +2721,15 @@ Examples:
     </message>
     <message>
         <source>User and computer name</source>
-        <translation type="unfinished"/>
+        <translation>Gebruiker en computer naam</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Alleen gebruikersnaam</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Alleen computernaam</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -2697,7 +2745,7 @@ Examples:
     </message>
     <message>
         <source>Text color</source>
-        <translation type="unfinished"/>
+        <translation>Tekstkleur</translation>
     </message>
 </context>
 <context>
@@ -2755,23 +2803,23 @@ Examples:
     </message>
     <message>
         <source>Add new group</source>
-        <translation type="unfinished"/>
+        <translation>Nieuwe groep toevoegen</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation type="unfinished"/>
+        <translation>Geselecteerde groep verwijderen</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation type="unfinished"/>
+        <translation>Groepen</translation>
     </message>
     <message>
         <source>First address</source>
-        <translation type="unfinished"/>
+        <translation>Eerste adres</translation>
     </message>
     <message>
         <source>Last address</source>
-        <translation type="unfinished"/>
+        <translation>Laatste adres</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -2803,7 +2851,7 @@ Examples:
     </message>
     <message>
         <source>New group</source>
-        <translation type="unfinished"/>
+        <translation>Nieuwe groep</translation>
     </message>
 </context>
 <context>
@@ -2935,7 +2983,7 @@ USAGE
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC ADRES</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -2947,7 +2995,7 @@ USAGE
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Ongeldig MAC adres!</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
@@ -3494,7 +3542,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"/>
+        <translation>Afmelden</translation>
     </message>
 </context>
 <context>

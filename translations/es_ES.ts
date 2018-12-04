@@ -1503,6 +1503,48 @@ Ejemplos:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>¡No se pudo abrir el archivo &quot;%1&quot; para su lectura! ¡Por favor compruebe sus permisos!</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transferir archivo</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
@@ -1517,16 +1559,20 @@ Ejemplos:
         <translation>Seleccione uno o más archivos para transferir</translation>
     </message>
     <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation>¡No se pudo abrir el archivo &quot;%1&quot; para su escritura!</translation>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>¡No se pudo abrir el archivo &quot;%1&quot; para su lectura! ¡Por favor compruebe sus permisos!</translation>
-    </message>
-    <message>
         <source>Transfer files to remote computer</source>
         <translation>Transferir archivos al equipo remoto</translation>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1498,6 +1498,48 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>Не вдалося відкрити файл «%1» для читання! Будь ласка, перевірте, чи маєте ви достатні права доступу!</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передавання файлів</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Параметри</translation>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation>Лише передавання</translation>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation>Передати і відкрити файли за допомогою пов&apos;язаної програми</translation>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation>Передати і відкрити теку призначення</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>Файли</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Почати</translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation>Перезаписати наявні файли</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
@@ -1512,16 +1554,20 @@ Examples:
         <translation>Виберіть один або декілька файлів для передавання</translation>
     </message>
     <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation>Не вдалося відкрити файл «%1» для запису!</translation>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Не вдалося відкрити файл «%1» для читання! Будь ласка, перевірте, чи маєте ви достатні права доступу!</translation>
-    </message>
-    <message>
         <source>Transfer files to remote computer</source>
         <translation>Передати файли на інший комп&apos;ютер</translation>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation>Отримано файл «%1».</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation>Не вдалося отримати файл «%1», оскільки такий файл вже існує.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation>Не вдалося отримати файл «%1», оскільки не вдалося відкрити відповідний файл для запису даних!</translation>
     </message>
 </context>
 <context>
