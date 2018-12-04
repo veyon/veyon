@@ -180,4 +180,6 @@ private:
 
 };
 
+#define vDebug if( VeyonCore::isDebugging()==false ); else qDebug
+
 #endif
