@@ -1498,6 +1498,48 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>Не удалось открыть файл &quot;%1&quot; для чтения! Пожалуйста, проверьте, есть ли у вас достаточные права доступа!</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation>Только передача</translation>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation>Передать и открыть файл(ы) с помощью связанной программы</translation>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation>Передать и открыть папку назначения</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>Файлы</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Начать</translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation>Перезаписать существующие файлы</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
@@ -1512,16 +1554,20 @@ Examples:
         <translation>Выберите один или несколько файлов для передачи</translation>
     </message>
     <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation>Не удалось открыть файл &quot;%1&quot; для записи!</translation>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Не удалось открыть файл &quot;%1&quot; для чтения! Пожалуйста, проверьте, есть ли у вас достаточные права доступа!</translation>
-    </message>
-    <message>
         <source>Transfer files to remote computer</source>
         <translation>Передать файлы на другой компьютер</translation>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation>Получен файл &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation>Не удалось получить файл &quot;%1&quot;, поскольку такой файл уже существует.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation>Не удалось получить файл &quot;%1&quot;, поскольку не удалось открыть соответствующий файл для записи данных!</translation>
     </message>
 </context>
 <context>

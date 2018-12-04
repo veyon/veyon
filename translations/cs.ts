@@ -1501,6 +1501,48 @@ Příklady:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>Soubor „%1“ se nedaří otevřít pro čtení! Zkontrolujte svá oprávnění!</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Přenos souboru</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Volby</translation>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation>Pouze přenos</translation>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation>Přenést a otevřít soubory pomocí přiřazeného programu</translation>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation>Přenést a otevřít cílovou složku</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>Soubory</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Spustit</translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation>Přepsat existující soubory</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
@@ -1515,16 +1557,20 @@ Příklady:
         <translation>Vyberte jeden nebo více souborů k přenosu</translation>
     </message>
     <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation>Soubor „%1“ se nedaří otevřít pro zápis!</translation>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Soubor „%1“ se nedaří otevřít pro čtení! Zkontrolujte svá oprávnění!</translation>
-    </message>
-    <message>
         <source>Transfer files to remote computer</source>
         <translation>Přenést soubory na vzdálený počítač</translation>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation>Obdržen soubor „%1“.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation>Není možné přijmout soubor „%1“, protože už existuje.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation>Není možné přijmout soubor „%1“, protože by ho nebylo možné otevřít pro zápis!</translation>
     </message>
 </context>
 <context>

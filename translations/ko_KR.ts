@@ -1501,6 +1501,48 @@ Examples:
     </message>
 </context>
 <context>
+    <name>FileTransferController</name>
+    <message>
+        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
+        <translation>화일 &quot;%1&quot;을 읽을 수 없습니다! 권한을 점검하기 바랍니다!</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>화일 전송</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>옵션</translation>
+    </message>
+    <message>
+        <source>Transfer only</source>
+        <translation>전송만 함</translation>
+    </message>
+    <message>
+        <source>Transfer and open file(s) with associated program</source>
+        <translation>전송한 후 화일과 연결되어 있는 프로그램으로 화일(들) 열기</translation>
+    </message>
+    <message>
+        <source>Transfer and open destination folder</source>
+        <translation>전송하고 도착 폴더를 열기</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>화일</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation>기존 화일을 덮어 씀</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
@@ -1515,16 +1557,20 @@ Examples:
         <translation>전송하려는 하나 또는 여러개의 화일을 선택하세요</translation>
     </message>
     <message>
-        <source>Could not open file &quot;%1&quot; for writing!</source>
-        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
-    </message>
-    <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>화일 &quot;%1&quot;을 읽을 수 없습니다! 권한을 점검하기 바랍니다!</translation>
-    </message>
-    <message>
         <source>Transfer files to remote computer</source>
         <translation>원격 컴퓨터로 화일 전송</translation>
+    </message>
+    <message>
+        <source>Received file &quot;%1&quot;.</source>
+        <translation>받은 화일 &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
+        <translation>화일 &quot;%1&quot; 이 이미 존재하므로 덮어 쓸 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
+        <translation>화일 &quot;%1&quot; 이 쓸수 있도록 열리지 않아 화일을 받을 수 없습니다!</translation>
     </message>
 </context>
 <context>
