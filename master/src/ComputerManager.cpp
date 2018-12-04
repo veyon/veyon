@@ -174,17 +174,17 @@ void ComputerManager::initRooms()
 {
 	for( const auto& hostName : qAsConst( m_localHostNames ) )
 	{
-		qDebug() << "ComputerManager::initRooms(): initializing rooms for host name" << hostName;
+		vDebug() << "ComputerManager::initRooms(): initializing rooms for host name" << hostName;
 	}
 
 	for( const auto& address : qAsConst( m_localHostAddresses ) )
 	{
-		qDebug() << "ComputerManager::initRooms(): initializing rooms for host address" << address.toString();
+		vDebug() << "ComputerManager::initRooms(): initializing rooms for host address" << address.toString();
 	}
 
 	m_currentRooms.append( findRoomOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
 
-	qDebug() << "ComputerManager::initRooms(): found local rooms" << m_currentRooms;
+	vDebug() << "ComputerManager::initRooms(): found local rooms" << m_currentRooms;
 
 	if( VeyonCore::config().onlyCurrentRoomVisible() )
 	{
@@ -229,7 +229,7 @@ void ComputerManager::initNetworkObjectLayer()
 			localHostNames.append( address.toString() ); // clazy:exclude=reserve-candidates
 		}
 
-		qDebug() << "ComputerManager::initNetworkObjectLayer(): excluding local computer via" << localHostNames;
+		vDebug() << "ComputerManager::initNetworkObjectLayer(): excluding local computer via" << localHostNames;
 
 		m_networkObjectFilterProxyModel->setComputerExcludeFilter( localHostNames );
 	}
