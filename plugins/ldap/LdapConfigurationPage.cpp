@@ -116,7 +116,7 @@ void LdapConfigurationPage::testBaseDn()
 {
 	if( testBindQuietly() )
 	{
-		qDebug() << "[TEST][LDAP] Testing base DN";
+		vDebug() << "[TEST][LDAP] Testing base DN";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		QStringList entries = ldapDirectory.queryBaseDn();
@@ -144,7 +144,7 @@ void LdapConfigurationPage::testNamingContext()
 {
 	if( testBindQuietly() )
 	{
-		qDebug() << "[TEST][LDAP] Testing naming context";
+		vDebug() << "[TEST][LDAP] Testing naming context";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		QString baseDn = ldapDirectory.queryNamingContext();
@@ -172,7 +172,7 @@ void LdapConfigurationPage::testUserTree()
 {
 	if( testBindQuietly() )
 	{
-		qDebug() << "[TEST][LDAP] Testing user tree";
+		vDebug() << "[TEST][LDAP] Testing user tree";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
@@ -189,7 +189,7 @@ void LdapConfigurationPage::testGroupTree()
 {
 	if( testBindQuietly() )
 	{
-		qDebug() << "[TEST][LDAP] Testing group tree";
+		vDebug() << "[TEST][LDAP] Testing group tree";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
@@ -206,7 +206,7 @@ void LdapConfigurationPage::testComputerTree()
 {
 	if( testBindQuietly() )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer tree";
+		vDebug() << "[TEST][LDAP] Testing computer tree";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
@@ -223,7 +223,7 @@ void LdapConfigurationPage::testComputerGroupTree()
 {
 	if( testBindQuietly() )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer group tree";
+		vDebug() << "[TEST][LDAP] Testing computer group tree";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
@@ -242,7 +242,7 @@ void LdapConfigurationPage::testUserLoginAttribute()
 										  tr( "Please enter a user login name (wildcards allowed) which to query:") );
 	if( userFilter.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing user login attribute for" << userFilter;
+		vDebug() << "[TEST][LDAP] Testing user login attribute for" << userFilter;
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
@@ -260,7 +260,7 @@ void LdapConfigurationPage::testGroupMemberAttribute()
 										  tr( "Please enter a group name whose members to query:") );
 	if( groupFilter.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing group member attribute for" << groupFilter;
+		vDebug() << "[TEST][LDAP] Testing group member attribute for" << groupFilter;
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
@@ -309,7 +309,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 			return;
 		}
 
-		qDebug() << "[TEST][LDAP] Testing computer host name attribute";
+		vDebug() << "[TEST][LDAP] Testing computer host name attribute";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
@@ -327,7 +327,7 @@ void LdapConfigurationPage::testComputerMacAddressAttribute()
 										  tr( "Please enter the DN of a computer whose MAC address to query:") );
 	if( computerDn.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer MAC address attribute";
+		vDebug() << "[TEST][LDAP] Testing computer MAC address attribute";
 
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableFilters();
@@ -348,7 +348,7 @@ void LdapConfigurationPage::testComputerRoomAttribute()
 										  tr( "Please enter the name of a computer room (wildcards allowed):") );
 	if( computerRoomName.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
+		vDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
@@ -379,7 +379,7 @@ void LdapConfigurationPage::testComputerRoomNameAttribute()
 
 void LdapConfigurationPage::testUsersFilter()
 {
-	qDebug() << "[TEST][LDAP] Testing users filter";
+	vDebug() << "[TEST][LDAP] Testing users filter";
 
 	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.users().count();
@@ -391,7 +391,7 @@ void LdapConfigurationPage::testUsersFilter()
 
 void LdapConfigurationPage::testUserGroupsFilter()
 {
-	qDebug() << "[TEST][LDAP] Testing user groups filter";
+	vDebug() << "[TEST][LDAP] Testing user groups filter";
 
 	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.userGroups().count();
@@ -403,7 +403,7 @@ void LdapConfigurationPage::testUserGroupsFilter()
 
 void LdapConfigurationPage::testComputersFilter()
 {
-	qDebug() << "[TEST][LDAP] Testing computers filter";
+	vDebug() << "[TEST][LDAP] Testing computers filter";
 
 	LdapDirectory ldapDirectory( m_configuration );
 	const auto count = ldapDirectory.computers().count();
@@ -415,7 +415,7 @@ void LdapConfigurationPage::testComputersFilter()
 
 void LdapConfigurationPage::testComputerGroupsFilter()
 {
-	qDebug() << "[TEST][LDAP] Testing computer groups filter";
+	vDebug() << "[TEST][LDAP] Testing computer groups filter";
 
 	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.computerGroups().count();
@@ -447,7 +447,7 @@ void LdapConfigurationPage::testGroupsOfUser()
 										  tr( "Please enter a user login name whose group memberships to query:") );
 	if( username.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing groups of user" << username;
+		vDebug() << "[TEST][LDAP] Testing groups of user" << username;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
@@ -476,7 +476,7 @@ void LdapConfigurationPage::testGroupsOfComputer()
 										  tr( "Please enter a computer host name whose group memberships to query:") );
 	if( computerHostName.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing groups of computer for" << computerHostName;
+		vDebug() << "[TEST][LDAP] Testing groups of computer for" << computerHostName;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
@@ -505,13 +505,13 @@ void LdapConfigurationPage::testComputerObjectByIpAddress()
 										  tr( "Please enter a computer IP address which to resolve to an computer object:") );
 	if( computerIpAddress.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer object resolve by IP address" << computerIpAddress;
+		vDebug() << "[TEST][LDAP] Testing computer object resolve by IP address" << computerIpAddress;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
 		QString computerName = ldapDirectory.hostToLdapFormat( computerIpAddress );
 
-		qDebug() << "[TEST][LDAP] Resolved IP address to computer name" << computerName;
+		vDebug() << "[TEST][LDAP] Resolved IP address to computer name" << computerName;
 
 		if( computerName.isEmpty() )
 		{
@@ -536,7 +536,7 @@ void LdapConfigurationPage::testComputerRoomMembers()
 													  tr( "Please enter the name of a computer room whose members to query:") );
 	if( computerRoomName.isEmpty() == false )
 	{
-		qDebug() << "[TEST][LDAP] Testing computer room members for" << computerRoomName;
+		vDebug() << "[TEST][LDAP] Testing computer room members for" << computerRoomName;
 
 		LdapDirectory ldapDirectory( m_configuration );
 		reportLdapObjectQueryResults( tr( "computer room members" ),
@@ -549,7 +549,7 @@ void LdapConfigurationPage::testComputerRoomMembers()
 
 void LdapConfigurationPage::testComputerRooms()
 {
-	qDebug() << "[TEST][LDAP] Querying all computer rooms";
+	vDebug() << "[TEST][LDAP] Querying all computer rooms";
 
 	LdapDirectory ldapDirectory( m_configuration );
 	reportLdapObjectQueryResults( tr( "computer rooms" ),
@@ -573,7 +573,7 @@ void LdapConfigurationPage::browseCACertificateFile()
 
 bool LdapConfigurationPage::testBind( bool quiet )
 {
-	qDebug() << "[TEST][LDAP] Testing bind";
+	vDebug() << "[TEST][LDAP] Testing bind";
 
 	LdapDirectory ldapDirectory( m_configuration );
 

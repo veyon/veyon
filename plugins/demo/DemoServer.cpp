@@ -68,11 +68,11 @@ DemoServer::DemoServer( int vncServerPort, const QString& vncServerPassword, con
 
 DemoServer::~DemoServer()
 {
-	qDebug() << Q_FUNC_INFO << "disconnecting signals";
+	vDebug() << Q_FUNC_INFO << "disconnecting signals";
 	m_vncServerSocket->disconnect( this );
 	m_tcpServer->disconnect( this );
 
-	qDebug() << Q_FUNC_INFO << "deleting connections";
+	vDebug() << Q_FUNC_INFO << "deleting connections";
 
 	QList<DemoServerConnection *> l;
 	while( !( l = findChildren<DemoServerConnection *>() ).isEmpty() )
@@ -80,13 +80,13 @@ DemoServer::~DemoServer()
 		delete l.front();
 	}
 
-	qDebug() << Q_FUNC_INFO << "deleting server socket";
+	vDebug() << Q_FUNC_INFO << "deleting server socket";
 	delete m_vncServerSocket;
 
-	qDebug() << Q_FUNC_INFO << "deleting TCP server";
+	vDebug() << Q_FUNC_INFO << "deleting TCP server";
 	delete m_tcpServer;
 
-	qDebug() << Q_FUNC_INFO << "finished";
+	vDebug() << Q_FUNC_INFO << "finished";
 }
 
 
@@ -201,7 +201,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
 			const auto memTotal = framebufferUpdateMessageQueueSize() / 1024;
-			qDebug() << Q_FUNC_INFO
+			vDebug() << Q_FUNC_INFO
 					 << "   MEMTOTAL:" << memTotal
 					 << "   KB/s:" << ( memTotal * 1000 ) / m_keyFrameTimer.elapsed();
 		}

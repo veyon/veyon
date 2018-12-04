@@ -98,7 +98,7 @@ public:
 				}
 			}
 
-			qDebug() << "LdapDirectory::queryAttributes(): results:" << entries;
+			vDebug() << "LdapDirectory::queryAttributes(): results:" << entries;
 		}
 
 		if( result == -1 )
@@ -144,7 +144,7 @@ public:
 			{
 				distinguishedNames += operation.object().dn().toString();
 			}
-			qDebug() << "LdapDirectory::queryDistinguishedNames(): results:" << distinguishedNames;
+			vDebug() << "LdapDirectory::queryDistinguishedNames(): results:" << distinguishedNames;
 		}
 
 		if( result == -1 )
@@ -857,7 +857,7 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 #else
 		hostAddress = hostInfo.addresses().constFirst();
 #endif
-		qDebug() << "LdapDirectory::hostToLdapFormat(): no valid IP address given, resolved IP address of host"
+		vDebug() << "LdapDirectory::hostToLdapFormat(): no valid IP address given, resolved IP address of host"
 				 << host << "to" << hostAddress.toString();
 	}
 
@@ -873,14 +873,14 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 	// are we working with fully qualified domain name?
 	if( d->computerHostNameAsFQDN )
 	{
-		qDebug() << "LdapDirectory::hostToLdapFormat(): Resolved FQDN" << hostInfo.hostName();
+		vDebug() << "LdapDirectory::hostToLdapFormat(): Resolved FQDN" << hostInfo.hostName();
 		return hostInfo.hostName();
 	}
 
 	// return first part of host name which should be the actual machine name
 	const QString hostName = hostInfo.hostName().split( '.' ).value( 0 );
 
-	qDebug() << "LdapDirectory::hostToLdapFormat(): resolved host name" << hostName;
+	vDebug() << "LdapDirectory::hostToLdapFormat(): resolved host name" << hostName;
 	return hostName;
 }
 

@@ -321,7 +321,7 @@ bool LinuxUserFunctions::authenticate( const QString& username, const QString& p
 		return false;
 	}
 
-	qDebug( "User authenticated successfully" );
+	vDebug( "User authenticated successfully" );
 	return true;
 }
 

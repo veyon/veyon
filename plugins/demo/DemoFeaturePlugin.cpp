@@ -86,7 +86,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 			m_demoClientHosts += computerControlInterface->computer().hostAddress();
 		}
 
-		qDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
+		vDebug() << "DemoFeaturePlugin::startMasterFeature(): clients:" << m_demoClientHosts;
 
 		return sendFeatureMessage( FeatureMessage( feature.uid(), StartDemoClient ).addArgument( DemoAccessToken, m_demoAccessToken ),
 								   computerControlInterfaces );
@@ -111,7 +111,7 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 			m_demoClientHosts.removeAll( computerControlInterface->computer().hostAddress() );
 		}
 
-		qDebug() << "DemoFeaturePlugin::stopMasterFeature(): clients:" << m_demoClientHosts;
+		vDebug() << "DemoFeaturePlugin::stopMasterFeature(): clients:" << m_demoClientHosts;
 
 		// no demo clients left?
 		if( m_demoClientHosts.isEmpty() )
@@ -257,7 +257,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 				const auto demoServerHost = message.argument( DemoServerHost ).toString();
 				const auto isFullscreenDemo = message.featureUid() == m_fullscreenDemoFeature.uid();
 
-				qDebug() << "DemoClient: connecting with master" << demoServerHost;
+				vDebug() << "DemoClient: connecting with master" << demoServerHost;
 				m_demoClient = new DemoClient( demoServerHost, isFullscreenDemo );
 			}
 			return true;

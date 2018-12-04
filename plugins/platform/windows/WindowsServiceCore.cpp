@@ -412,7 +412,7 @@ bool WindowsServiceCore::reportStatus( DWORD state, DWORD exitCode, DWORD waitHi
 		m_status.dwCheckPoint = checkpoint++;
 	}
 
-	qDebug( "Reporting service status: %d", (int) state );
+	vDebug( "Reporting service status: %d", (int) state );
 
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( m_statusHandle, &m_status ) ) )

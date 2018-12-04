@@ -180,7 +180,7 @@ ConfigurationPage* DesktopServicesFeaturePlugin::createConfigurationPage()
 
 void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& commandLine )
 {
-	qDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching" << commandLine;
+	vDebug() << "DesktopServicesFeaturePlugin::runProgramAsUser(): launching" << commandLine;
 
 	QString program;
 	QStringList parameters;

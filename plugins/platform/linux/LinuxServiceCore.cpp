@@ -91,7 +91,7 @@ void LinuxServiceCore::connectToLoginManager()
 	}
 	else
 	{
-		qDebug( "LinuxServiceCore: connected to login manager" );
+		vDebug( "LinuxServiceCore: connected to login manager" );
 	}
 }
 
@@ -143,7 +143,7 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	if( sessionUptime >= 0 && sessionUptime < SessionUptimeSecondsMinimum )
 	{
-		qDebug() << "Session" << sessionPath << "too young - retrying in" << SessionUptimeProbingInterval << "msecs";
+		vDebug() << "Session" << sessionPath << "too young - retrying in" << SessionUptimeProbingInterval << "msecs";
 		QTimer::singleShot( SessionUptimeProbingInterval, this, [=]() { startServer( login1SessionId, sessionObjectPath ); } );
 		return;
 	}
