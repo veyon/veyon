@@ -177,6 +177,7 @@ private:
 
 	QString m_applicationName;
 	QString m_authenticationKeyName;
+	bool m_debugging;
 
 };
 

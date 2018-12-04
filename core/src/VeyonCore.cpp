@@ -66,7 +66,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_networkObjectDirectoryManager( nullptr ),
 	m_localComputerControlInterface( nullptr ),
 	m_applicationName( QStringLiteral( "Veyon" ) ),
-	m_authenticationKeyName()
+	m_authenticationKeyName(),
+	m_debugging( false )
 {
 	Q_ASSERT( application != nullptr );
 
@@ -309,7 +310,7 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 
 bool VeyonCore::isDebugging()
 {
-	return instance()->m_logger->logLevel() >= Logger::LogLevelDebug;
+	return instance()->m_debugging;
 }
 
 
@@ -386,6 +387,8 @@ void VeyonCore::initLogging( const QString& appComponentName )
 	{
 		m_logger = new Logger( appComponentName );
 	}
+
+	m_debugging = ( m_logger->logLevel() >= Logger::LogLevelDebug );
 
 	VncConnection::initLogging( isDebugging() );
 }
