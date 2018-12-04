@@ -66,7 +66,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 
 ComputerControlServer::~ComputerControlServer()
 {
-	qDebug(Q_FUNC_INFO);
+	vDebug(Q_FUNC_INFO);
 
 	m_vncProxyServer.stop();
 }
@@ -124,7 +124,7 @@ bool ComputerControlServer::handleFeatureMessage( QTcpSocket* socket )
 
 bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply )
 {
-	qDebug() << Q_FUNC_INFO << reply.featureUid() << reply.command() << reply.arguments();
+	vDebug() << Q_FUNC_INFO << reply.featureUid() << reply.command() << reply.arguments();
 
 	char rfbMessageType = FeatureMessage::RfbMessageType;
 	context.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );

@@ -73,7 +73,7 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient* client,
 																VariantArrayMessage& message )
 {
-	qDebug() << "ServerAuthenticationManager::processAuthenticationMessage():"
+	vDebug() << "ServerAuthenticationManager::processAuthenticationMessage():"
 			 << "state" << client->authState()
 			 << "type" << client->authType()
 			 << "host" << client->hostAddress()
@@ -152,7 +152,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 
 		if( VeyonCore::isAuthenticationKeyNameValid( authKeyName ) == false )
 		{
-			qDebug( "ServerAuthenticationManager::performKeyAuthentication(): invalid auth key name!" );
+			vDebug( "ServerAuthenticationManager::performKeyAuthentication(): invalid auth key name!" );
 			return VncServerClient::AuthFinishedFail;
 		}
 
@@ -162,7 +162,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 
 		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath( authKeyName );
 
-		qDebug() << "ServerAuthenticationManager: loading public key" << publicKeyPath;
+		vDebug() << "ServerAuthenticationManager: loading public key" << publicKeyPath;
 		CryptoCore::PublicKey publicKey( publicKeyPath );
 
 		if( publicKey.isNull() || publicKey.isPublic() == false ||
@@ -172,7 +172,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 			return VncServerClient::AuthFinishedFail;
 		}
 
-		qDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
+		vDebug( "ServerAuthenticationManager::performKeyAuthentication(): SUCCESS" );
 		return VncServerClient::AuthFinishedSuccess;
 	}
 
@@ -203,7 +203,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 			return VncServerClient::AuthPassword;
 		}
 
-		qDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
+		vDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
 		return VncServerClient::AuthFinishedFail;
 	}
 
@@ -228,11 +228,11 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 		if( VeyonCore::platform().userFunctions().authenticate( client->username(),
 																QString::fromUtf8( decryptedPassword.toByteArray() ) ) )
 		{
-			qDebug( "ServerAuthenticationManager::performLogonAuthentication(): SUCCESS" );
+			vDebug( "ServerAuthenticationManager::performLogonAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;
 		}
 
-		qDebug( "ServerAuthenticationManager::performLogonAuthentication(): FAIL" );
+		vDebug( "ServerAuthenticationManager::performLogonAuthentication(): FAIL" );
 		return VncServerClient::AuthFinishedFail;
 	}
 
@@ -259,7 +259,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performHostWhitelistAuth
 
 	if( m_allowedIPs.contains( client->hostAddress() ) )
 	{
-		qDebug( "ServerAuthenticationManager::performHostWhitelistAuth(): SUCCESS" );
+		vDebug( "ServerAuthenticationManager::performHostWhitelistAuth(): SUCCESS" );
 		return VncServerClient::AuthFinishedSuccess;
 	}
 
@@ -286,11 +286,11 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Token ) &&
 				token == VeyonCore::authenticationCredentials().token() )
 		{
-			qDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
+			vDebug( "ServerAuthenticationManager::performTokenAuthentication(): SUCCESS" );
 			return VncServerClient::AuthFinishedSuccess;
 		}
 
-		qDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
+		vDebug( "ServerAuthenticationManager::performTokenAuthentication(): FAIL" );
 		return VncServerClient::AuthFinishedFail;
 	}
 

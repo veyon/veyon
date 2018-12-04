@@ -77,14 +77,14 @@ VncServer::VncServer( QObject* parent ) :
 
 VncServer::~VncServer()
 {
-	qDebug(Q_FUNC_INFO);
+	vDebug(Q_FUNC_INFO);
 }
 
 
 
 void VncServer::prepare()
 {
-	qDebug(Q_FUNC_INFO);
+	vDebug(Q_FUNC_INFO);
 
 	if( m_pluginInterface )
 	{
@@ -122,7 +122,7 @@ void VncServer::run()
 {
 	if( m_pluginInterface )
 	{
-		qDebug() << Q_FUNC_INFO << "running";
+		vDebug() << Q_FUNC_INFO << "running";
 
 		if( m_pluginInterface->configuredServerPort() > 0 )
 		{
@@ -136,6 +136,6 @@ void VncServer::run()
 
 		m_pluginInterface->runServer( serverPort(), password() );
 
-		qDebug() << Q_FUNC_INFO << "finished";
+		vDebug() << Q_FUNC_INFO << "finished";
 	}
 }

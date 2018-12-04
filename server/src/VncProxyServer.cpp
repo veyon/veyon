@@ -67,7 +67,7 @@ bool VncProxyServer::start( int vncServerPort, const QString& vncServerPassword 
 		return false;
 	}
 
-	qDebug( "VncProxyServer started on port %d", m_listenPort );
+	vDebug( "VncProxyServer started on port %d", m_listenPort );
 	return true;
 }
 
