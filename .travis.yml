@@ -15,6 +15,7 @@ matrix:
         - env: TARGET_OS=centos.73
         - env: TARGET_OS=fedora.28
         - env: TARGET_OS=opensuse.42.3
+        - env: TARGET_OS=opensuse.15.0
         - env: TARGET_OS=sast
 script:
     - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:latest || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
