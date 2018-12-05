@@ -48,8 +48,29 @@ SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins")
 SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
 
+FUNCTION(ReadRelease valuename FROM filename INTO varname)
+  file (STRINGS ${filename} _distrib
+    REGEX "^${valuename}="
+    )
+  string (REGEX REPLACE
+    "^${valuename}=\"?\(.*\)" "\\1" ${varname} "${_distrib}"
+    )
+  # remove trailing quote that got globbed by the wildcard (greedy match)
+  string (REGEX REPLACE
+    "\"$" "" ${varname} "${${varname}}"
+    )
+  set (${varname} "${${varname}}" PARENT_SCOPE)
+ENDFUNCTION()
+
 # RPM package
-IF(EXISTS /etc/SuSE-release)
+IF(EXISTS /etc/os-release)
+ReadRelease("NAME" FROM /etc/os-release INTO OS_NAME)
+IF(OS_NAME MATCHES ".*openSUSE.*")
+	SET(OS_OPENSUSE TRUE)
+ENDIF()
+ENDIF()
+
+IF(OS_OPENSUSE)
 SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "libqca-qt5-plugins")
 ELSE()
 SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "qca-qt5-ossl")
@@ -71,7 +92,7 @@ IF (WIN32)    # TODO
 ELSEIF ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")   # TODO
      SET(CPACK_GENERATOR "PackageMake")
 ELSE ()
-     IF(EXISTS /etc/redhat-release OR EXISTS /etc/fedora-release OR EXISTS /etc/SuSE-release)
+     IF(EXISTS /etc/redhat-release OR EXISTS /etc/fedora-release OR OS_OPENSUSE)
         SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CPACK_SYSTEM_NAME}")
         SET(CPACK_GENERATOR "RPM")
      ENDIF ()
