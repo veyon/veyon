@@ -232,7 +232,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 
 
 
-void FileTransferPlugin::sendStartMessage( const QUuid& transferId, const QString& fileName,
+void FileTransferPlugin::sendStartMessage( QUuid transferId, const QString& fileName,
 										   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferStartCommand ).
@@ -244,7 +244,7 @@ void FileTransferPlugin::sendStartMessage( const QUuid& transferId, const QStrin
 
 
 
-void FileTransferPlugin::sendDataMessage( const QUuid& transferId, const QByteArray& data,
+void FileTransferPlugin::sendDataMessage( QUuid transferId, const QByteArray& data,
 										  const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferContinueCommand ).
@@ -255,7 +255,7 @@ void FileTransferPlugin::sendDataMessage( const QUuid& transferId, const QByteAr
 
 
 
-void FileTransferPlugin::sendCancelMessage( const QUuid& transferId,
+void FileTransferPlugin::sendCancelMessage( QUuid transferId,
 											const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferCancelCommand ).
@@ -264,7 +264,7 @@ void FileTransferPlugin::sendCancelMessage( const QUuid& transferId,
 
 
 
-void FileTransferPlugin::sendFinishMessage( const QUuid& transferId, const QString& fileName,
+void FileTransferPlugin::sendFinishMessage( QUuid transferId, const QString& fileName,
 											bool openFileInApplication, const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferFinishCommand ).
