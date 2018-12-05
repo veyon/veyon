@@ -71,12 +71,15 @@ Requirements for Debian-based distributions:
 - LZO: liblzo2-dev
 - QCA: libqca2-dev libqca-qt5-2-dev
 - LDAP: libldap2-dev
+- SASL: libsasl2-dev
 
 As root you can run
 
 	apt install g++ make cmake qtbase5-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools \
 	            xorg-dev libxtst-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
-	            libprocps-dev liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev
+	            libprocps-dev liblzo2-dev libqca2-dev libqca-qt5-2-dev libldap2-dev \
+	            libsasl2-dev
+
 
 
 Requirements for RedHat-based distributions:
@@ -92,12 +95,13 @@ Requirements for RedHat-based distributions:
 - LZO: lzo-devel
 - QCA: qca-devel qca-qt5-devel
 - LDAP: openldap-devel
+- SASL: cyrus-sasl-devel
 
 As root you can run
 
 	dnf install gcc-c++ make cmake rpm-build qt5-devel libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel \
              libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libjpeg-turbo-devel zlib-devel \
-             openssl-devel pam-devel procps-devel lzo-devel qca-devel qca-qt5-devel openldap-devel
+             openssl-devel pam-devel procps-devel lzo-devel qca-devel qca-qt5-devel openldap-devel cyrus-sasl-devel
 
 
 ### Configuring and building sources
