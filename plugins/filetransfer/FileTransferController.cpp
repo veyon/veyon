@@ -268,7 +268,7 @@ void FileTransferController::updateProgress()
 
 bool FileTransferController::allQueuesEmpty()
 {
-	for( auto controlInterface : m_interfaces )
+	for( const auto& controlInterface : qAsConst(m_interfaces) )
 	{
 		if( controlInterface->isMessageQueueEmpty() == false )
 		{
