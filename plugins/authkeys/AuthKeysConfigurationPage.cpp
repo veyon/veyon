@@ -127,7 +127,7 @@ void AuthKeysConfigurationPage::deleteKey()
 {
 	const auto title = ui->deleteKey->text();
 
-	const auto nameAndType = selectedKey().split('/');
+	const auto nameAndType = selectedKey().split(QLatin1Char('/'));
 
 	if( nameAndType.size() > 1 )
 	{
@@ -187,7 +187,7 @@ void AuthKeysConfigurationPage::exportKey()
 {
 	const auto title = ui->exportKey->text();
 
-	const auto nameAndType = selectedKey().split('/');
+	const auto nameAndType = selectedKey().split(QLatin1Char('/'));
 
 	if( nameAndType.size() > 1 )
 	{

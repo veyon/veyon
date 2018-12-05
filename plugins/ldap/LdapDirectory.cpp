@@ -94,7 +94,7 @@ public:
 				const auto values = operation.object().values( realAttributeName );
 				for( const auto& value : values )
 				{
-					entries += value;
+					entries += QString::fromUtf8( value );
 				}
 			}
 
@@ -343,7 +343,7 @@ QString LdapDirectory::queryNamingContext()
 
 QString LdapDirectory::parentDn( const QString& dn )
 {
-	const auto separatorPos = dn.indexOf( ',' );
+	const auto separatorPos = dn.indexOf( QLatin1Char(',') );
 	if( separatorPos > 0 && separatorPos+1 < dn.size() )
 	{
 		return dn.mid( separatorPos + 1 );
@@ -785,7 +785,7 @@ QString LdapDirectory::constructSubDn( const QString& subtree, const QString& ba
 		return baseDn;
 	}
 
-	return subtree + "," + baseDn;
+	return subtree + QLatin1Char(',') + baseDn;
 }
 
 
@@ -878,7 +878,7 @@ QString LdapDirectory::hostToLdapFormat( const QString& host )
 	}
 
 	// return first part of host name which should be the actual machine name
-	const QString hostName = hostInfo.hostName().split( '.' ).value( 0 );
+	const QString hostName = hostInfo.hostName().split( QLatin1Char('.') ).value( 0 );
 
 	vDebug() << "LdapDirectory::hostToLdapFormat(): resolved host name" << hostName;
 	return hostName;

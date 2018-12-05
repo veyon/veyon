@@ -40,7 +40,7 @@ QString LinuxUserFunctions::fullName( const QString& username )
 
 	if( pw_entry )
 	{
-		QString shell( pw_entry->pw_shell );
+		auto shell = QString::fromUtf8( pw_entry->pw_shell );
 
 		// Skip not real users
 		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
@@ -48,7 +48,7 @@ QString LinuxUserFunctions::fullName( const QString& username )
 				shell.endsWith( QStringLiteral( "/null" ) ) ||
 				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
 		{
-			return QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
+			return QString::fromUtf8( pw_entry->pw_gecos ).split( QLatin1Char(',') ).first();
 		}
 	}
 
@@ -67,87 +67,87 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
 	getentProcess.waitForFinished();
 
-	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
+	const auto groups = QString::fromUtf8( getentProcess.readAll() ).split( QLatin1Char('\n') );
 
 	groupList.reserve( groups.size() );
 
 	for( const auto& group : groups )
 	{
-		groupList += group.split( ':' ).first();
+		groupList += group.split( QLatin1Char(':') ).first();
 	}
 
 	const QStringList ignoredGroups( {
-		"daemon",
-		"bin",
-		"tty",
-		"disk",
-		"lp",
-		"mail",
-		"news",
-		"uucp",
-		"man",
-		"proxy",
-		"kmem",
-		"dialout",
-		"fax",
-		"voice",
-		"cdrom",
-		"tape",
-		"audio",
-		"dip",
-		"www-data",
-		"backup",
-		"list",
-		"irc",
-		"src",
-		"gnats",
-		"shadow",
-		"utmp",
-		"video",
-		"sasl",
-		"plugdev",
-		"games",
-		"nogroup",
-		"libuuid",
-		"syslog",
-		"fuse",
-		"lpadmin",
-		"ssl-cert",
-		"messagebus",
-		"crontab",
-		"mlocate",
-		"avahi-autoipd",
-		"netdev",
-		"saned",
-		"sambashare",
-		"haldaemon",
-		"polkituser",
-		"mysql",
-		"avahi",
-		"klog",
-		"floppy",
-		"oprofile",
-		"netdev",
-		"dirmngr",
-		"vboxusers",
-		"bluetooth",
-		"colord",
-		"libvirtd",
-		"nm-openvpn",
-		"input",
-		"kvm",
-		"pulse",
-		"pulse-access",
-		"rtkit",
-		"scanner",
-		"sddm",
-		"systemd-bus-proxy",
-		"systemd-journal",
-		"systemd-network",
-		"systemd-resolve",
-		"systemd-timesync",
-		"utempter",
-		"uuidd",
+		QStringLiteral("daemon"),
+		QStringLiteral("bin"),
+		QStringLiteral("tty"),
+		QStringLiteral("disk"),
+		QStringLiteral("lp"),
+		QStringLiteral("mail"),
+		QStringLiteral("news"),
+		QStringLiteral("uucp"),
+		QStringLiteral("man"),
+		QStringLiteral("proxy"),
+		QStringLiteral("kmem"),
+		QStringLiteral("dialout"),
+		QStringLiteral("fax"),
+		QStringLiteral("voice"),
+		QStringLiteral("cdrom"),
+		QStringLiteral("tape"),
+		QStringLiteral("audio"),
+		QStringLiteral("dip"),
+		QStringLiteral("www-data"),
+		QStringLiteral("backup"),
+		QStringLiteral("list"),
+		QStringLiteral("irc"),
+		QStringLiteral("src"),
+		QStringLiteral("gnats"),
+		QStringLiteral("shadow"),
+		QStringLiteral("utmp"),
+		QStringLiteral("video"),
+		QStringLiteral("sasl"),
+		QStringLiteral("plugdev"),
+		QStringLiteral("games"),
+		QStringLiteral("nogroup"),
+		QStringLiteral("libuuid"),
+		QStringLiteral("syslog"),
+		QStringLiteral("fuse"),
+		QStringLiteral("lpadmin"),
+		QStringLiteral("ssl-cert"),
+		QStringLiteral("messagebus"),
+		QStringLiteral("crontab"),
+		QStringLiteral("mlocate"),
+		QStringLiteral("avahi-autoipd"),
+		QStringLiteral("netdev"),
+		QStringLiteral("saned"),
+		QStringLiteral("sambashare"),
+		QStringLiteral("haldaemon"),
+		QStringLiteral("polkituser"),
+		QStringLiteral("mysql"),
+		QStringLiteral("avahi"),
+		QStringLiteral("klog"),
+		QStringLiteral("floppy"),
+		QStringLiteral("oprofile"),
+		QStringLiteral("netdev"),
+		QStringLiteral("dirmngr"),
+		QStringLiteral("vboxusers"),
+		QStringLiteral("bluetooth"),
+		QStringLiteral("colord"),
+		QStringLiteral("libvirtd"),
+		QStringLiteral("nm-openvpn"),
+		QStringLiteral("input"),
+		QStringLiteral("kvm"),
+		QStringLiteral("pulse"),
+		QStringLiteral("pulse-access"),
+		QStringLiteral("rtkit"),
+		QStringLiteral("scanner"),
+		QStringLiteral("sddm"),
+		QStringLiteral("systemd-bus-proxy"),
+		QStringLiteral("systemd-journal"),
+		QStringLiteral("systemd-network"),
+		QStringLiteral("systemd-resolve"),
+		QStringLiteral("systemd-timesync"),
+		QStringLiteral("utempter"),
+		QStringLiteral("uuidd"),
 							   } );
 
 	for( const auto& ignoredGroup : ignoredGroups )
@@ -175,12 +175,12 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
 	getentProcess.waitForFinished();
 
-	const auto groups = QString( getentProcess.readAll() ).split( '\n' );
+	const auto groups = QString::fromUtf8( getentProcess.readAll() ).split( QLatin1Char('\n') );
 	for( const auto& group : groups )
 	{
-		const auto groupComponents = group.split( ':' );
+		const auto groupComponents = group.split( QLatin1Char(':') );
 		if( groupComponents.size() == 4 &&
-				groupComponents.last().split( ',' ).contains( strippedUsername ) )
+				groupComponents.last().split( QLatin1Char(',') ).contains( strippedUsername ) )
 		{
 			groupList += groupComponents.first(); // clazy:exclude=reserve-candidates
 		}
@@ -212,7 +212,7 @@ QString LinuxUserFunctions::currentUser()
 
 	if( pw_entry )
 	{
-		QString shell( pw_entry->pw_shell );
+		const auto shell = QString::fromUtf8( pw_entry->pw_shell );
 
 		// Skip not real users
 		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
@@ -226,7 +226,7 @@ QString LinuxUserFunctions::currentUser()
 
 	if( username.isEmpty() )
 	{
-		return envUser;
+		return QString::fromUtf8( envUser );
 	}
 
 	return username;
@@ -250,7 +250,7 @@ QStringList LinuxUserFunctions::loggedOnUsers()
 	const auto lines = whoProcess.readAll().split( '\n' );
 	for( const auto& line : lines )
 	{
-		const auto user = line.split( ' ' ).value( 0 );
+		const auto user = QString::fromUtf8( line.split( ' ' ).value( 0 ) );
 		if( user.isEmpty() == false && users.contains( user ) == false )
 		{
 			users.append( user ); // clazy:exclude=reserve-candidates

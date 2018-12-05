@@ -57,17 +57,17 @@ void BuiltinX11VncServer::prepareServer()
 
 void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 {
-	QStringList cmdline = { "-localhost",
-							"-nosel",			// do not exchange clipboard-contents
-							"-nosetclipboard",	// do not exchange clipboard-contents
-							"-rfbport", QString::number( serverPort ) // set port at which the VNC server should listen
+	QStringList cmdline = { QStringLiteral("-localhost"),
+							QStringLiteral("-nosel"),			// do not exchange clipboard-contents
+							QStringLiteral("-nosetclipboard"),	// do not exchange clipboard-contents
+							QStringLiteral("-rfbport"), QString::number( serverPort ) // set port at which the VNC server should listen
 						  } ;
 
 	const auto extraArguments = m_configuration.extraArguments();
 
 	if( extraArguments.isEmpty() == false )
 	{
-		cmdline.append( extraArguments.split( ' ' ) );
+		cmdline.append( extraArguments.split( QLatin1Char(' ') ) );
 	}
 
 	if( m_configuration.isXDamageDisabled() )
@@ -120,7 +120,7 @@ void BuiltinX11VncServer::runServer( int serverPort, const QString& password )
 		x11vnc.waitForFinished( -1 );
 	}
 #else
-	cmdline.append( { "-passwd", password } );
+	cmdline.append( { QStringLiteral("-passwd"), password } );
 
 	// build new C-style command line array based on cmdline-QStringList
 	const auto appArguments = QCoreApplication::arguments();

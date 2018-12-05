@@ -136,6 +136,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonServerInterface& s
 														 const MessageContext& messageContext,
 														 const FeatureMessage& message )
 {
+	Q_UNUSED(messageContext)
 	Q_UNUSED(server);
 
 	if( message.featureUid() == m_runProgramFeature.uid() )
@@ -186,16 +187,16 @@ void DesktopServicesFeaturePlugin::runProgramAsUser( const QString& commandLine 
 	QStringList parameters;
 
 	// parse command line format "C:\Program Files\..." -foo -bar
-	if( commandLine.startsWith( '"' ) && commandLine.count( '"' ) > 1 )
+	if( commandLine.startsWith( QLatin1Char('"') ) && commandLine.count( QLatin1Char('"') ) > 1 )
 	{
-		const auto commandLineSplit = commandLine.split( '"' );
+		const auto commandLineSplit = commandLine.split( QLatin1Char('"') );
 		program = commandLineSplit.value( 1 );
-		parameters = commandLine.mid( program.size() + 2 ).split( ' ' );
+		parameters = commandLine.mid( program.size() + 2 ).split( QLatin1Char(' ') );
 	}
 	// parse command line format program.exe -foo -bar
-	else if( commandLine.contains( ' ' ) )
+	else if( commandLine.contains( QLatin1Char(' ') ) )
 	{
-		const auto commandLineSplit = commandLine.split( ' ' );
+		const auto commandLineSplit = commandLine.split( QLatin1Char(' ') );
 		program = commandLineSplit.first();
 		parameters = commandLineSplit.mid( 1 );
 	}

@@ -40,7 +40,7 @@ QString WindowsUserFunctions::fullName( const QString& username )
 	QString realUsername = username;
 	PBYTE domainController = nullptr;
 
-	const auto nameParts = username.split( '\\' );
+	const auto nameParts = username.split( QLatin1Char('\\') );
 	if( nameParts.size() > 1 )
 	{
 		realUsername = nameParts[1];
@@ -134,7 +134,7 @@ QString WindowsUserFunctions::currentUser()
 		return username;
 	}
 
-	return domainName + '\\' + username;
+	return domainName + QLatin1Char('\\') + username;
 }
 
 
@@ -168,7 +168,7 @@ bool WindowsUserFunctions::authenticate( const QString& username, const QString&
 	QString domain;
 	QString user;
 
-	const auto userNameParts = username.split( '\\' );
+	const auto userNameParts = username.split( QLatin1Char('\\') );
 	if( userNameParts.count() == 2 )
 	{
 		domain = userNameParts[0];

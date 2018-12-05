@@ -64,7 +64,7 @@ static void loadJsonTree( Object* obj, const QJsonObject& jsonParent, const QStr
 			}
 			else
 			{
-				const QString subParentKey = parentKey + ( parentKey.isEmpty() ? "" : "/" ) + it.key();
+				const QString subParentKey = parentKey + ( parentKey.isEmpty() ? QString() : QLatin1String("/") ) + it.key();
 				loadJsonTree( obj, it.value().toObject(), subParentKey );
 			}
 		}
@@ -178,9 +178,6 @@ QString JsonStore::configurationFilePath() const
 	case System:
 		base = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
 		break;
-	default:
-		base = QDir::homePath();
-		break;
 	}
 
 	base = VeyonCore::filesystem().expandPath( base );
@@ -193,7 +190,7 @@ QString JsonStore::configurationFilePath() const
 		fileNameBase = configurationNameFromScope();
 	}
 
-	return QDir::toNativeSeparators( base + QDir::separator() + fileNameBase + ".json" );
+	return QDir::toNativeSeparators( base + QDir::separator() + fileNameBase + QLatin1String(".json") );
 }
 
 }

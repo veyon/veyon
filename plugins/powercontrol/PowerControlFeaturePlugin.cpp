@@ -37,7 +37,7 @@
 PowerControlFeaturePlugin::PowerControlFeaturePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ "on", tr( "Power on a computer via Wake-on-LAN (WOL)" ) },
+{ QStringLiteral("on"), tr( "Power on a computer via Wake-on-LAN (WOL)" ) },
 				} ),
 	m_powerOnFeature( Feature::Action | Feature::AllComponents,
 					  Feature::Uid( "f483c659-b5e7-4dbc-bd91-2c9403e70ebd" ),
@@ -216,9 +216,9 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 	const auto originalMacAddress = macAddress;
 
 	// remove all possible delimiters
-	macAddress.replace( ':', QString() );
-	macAddress.replace( '-', QString() );
-	macAddress.replace( '.', QString() );
+	macAddress.replace( QLatin1Char(':'), QString() );
+	macAddress.replace( QLatin1Char('-'), QString() );
+	macAddress.replace( QLatin1Char('.'), QString() );
 
 	if( sscanf( macAddress.toUtf8().constData(),
 				"%2x%2x%2x%2x%2x%2x",

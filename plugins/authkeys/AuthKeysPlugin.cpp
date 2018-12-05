@@ -30,13 +30,13 @@
 AuthKeysPlugin::AuthKeysPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ "create", tr( "Create new authentication key pair" ) },
-{ "delete", tr( "Delete authentication key" ) },
-{ "list", tr( "List authentication keys" ) },
-{ "import", tr( "Import public or private key" ) },
-{ "export", tr( "Export public or private key" ) },
-{ "extract", tr( "Extract public key from existing private key" ) },
-{ "setaccessgroup", tr( "Set user group allowed to access a key" ) },
+{ QStringLiteral("create"), tr( "Create new authentication key pair" ) },
+{ QLatin1String("delete"), tr( "Delete authentication key" ) },
+{ QStringLiteral("list"), tr( "List authentication keys" ) },
+{ QStringLiteral("import"), tr( "Import public or private key" ) },
+{ QStringLiteral("export"), tr( "Export public or private key" ) },
+{ QStringLiteral("extract"), tr( "Extract public key from existing private key" ) },
+{ QStringLiteral("setaccessgroup"), tr( "Set user group allowed to access a key" ) },
 				} )
 {
 }
@@ -93,7 +93,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_help( const QString
 		  QStringList( { QStringLiteral("[details]"),
 						 tr( "This command lists all available authentication keys in the configured key directory. "
 						 "If the option \"%1\" is specified a table with key details will be displayed instead. "
-						 "Some details might be missing if a key is not accessible e.g. due to the lack of read permissions." ).arg( "details" ) } ) },
+						 "Some details might be missing if a key is not accessible e.g. due to the lack of read permissions." ).arg( QLatin1String("details") ) } ) },
 		{ QStringLiteral("extract"),
 		  QStringList( { QStringLiteral("<%1>").arg( tr("KEY") ),
 						 tr( "This command extracts the public key part from the private key <KEY> and saves it as the "
@@ -169,7 +169,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_delete( const QStri
 		return NotEnoughArguments;
 	}
 
-	const auto nameAndType = arguments.first().split( '/' );
+	const auto nameAndType = arguments.first().split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 
@@ -195,7 +195,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_export( const QStri
 		return NotEnoughArguments;
 	}
 
-	const auto nameAndType = arguments[0].split( '/' );
+	const auto nameAndType = arguments[0].split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 
@@ -228,7 +228,7 @@ CommandLinePluginInterface::RunResult AuthKeysPlugin::handle_import( const QStri
 		return NotEnoughArguments;
 	}
 
-	const auto nameAndType = arguments[0].split( '/' );
+	const auto nameAndType = arguments[0].split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 

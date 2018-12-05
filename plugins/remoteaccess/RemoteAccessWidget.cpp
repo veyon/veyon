@@ -201,7 +201,7 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 		QString dots;
 		for( int i = 0; i < ( m_iconStateTimeLine.currentTime() / 120 ) % 6; ++i )
 		{
-			dots += '.';
+			dots += QLatin1Char('.');
 		}
 		p.drawText( 32, height() / 2 + fontMetrics().height(), tr( "Connecting %1" ).arg( dots ) );
 	}

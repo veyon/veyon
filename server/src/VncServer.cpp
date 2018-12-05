@@ -38,7 +38,7 @@ VncServer::VncServer( QObject* parent ) :
 	m_pluginInterface( nullptr )
 {
 	VeyonCore::authenticationCredentials().setInternalVncServerPassword(
-				CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) );
+				QString::fromLatin1( CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) ) );
 
 	VncServerPluginInterfaceList defaultVncServerPlugins;
 

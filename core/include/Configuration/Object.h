@@ -204,11 +204,11 @@ private:
 		}	\
 		QString get##Plain() const					\
 		{											\
-			return value( key, parentKey, QVariant() ).toString().toUtf8();			\
+			return value( key, parentKey, QVariant() ).toString();			\
 		}	\
 		void set( const QString& val )									\
 		{																\
-			setValue( key, VeyonCore::cryptoCore().encryptPassword( val.toUtf8() ), parentKey );			\
+			setValue( key, VeyonCore::cryptoCore().encryptPassword( val ), parentKey );			\
 		}
 
 #define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey, defaultValue)			\

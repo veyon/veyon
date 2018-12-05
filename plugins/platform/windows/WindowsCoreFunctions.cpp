@@ -227,7 +227,7 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 
 bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
 {
-	const auto parametersJoined = parameters.join( ' ' );
+	const auto parametersJoined = parameters.join( QLatin1Char(' ') );
 
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
 	sei.lpVerb = L"runas";
@@ -379,7 +379,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 	DuplicateTokenEx( userProcessToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
 					  SecurityImpersonation, TokenPrimary, &newToken );
 
-	auto commandLine = toWCharArray( QStringLiteral("\"%1\" %2").arg( program, parameters.join( ' ' ) ) );
+	auto commandLine = toWCharArray( QStringLiteral("\"%1\" %2").arg( program, parameters.join( QLatin1Char(' ') ) ) );
 
 	auto createProcessResult = CreateProcessAsUser(
 				newToken,			// client's access token

@@ -48,7 +48,7 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 	for( const auto& g : childGroups )
 	{
 		const QString subParentKey = parentKey +
-									( parentKey.isEmpty() ? "" : "/" ) + g;
+									( parentKey.isEmpty() ? QString() : QLatin1String("/") ) + g;
 		s->beginGroup( g );
 		loadSettingsTree( obj, s, subParentKey );
 		s->endGroup();
@@ -109,10 +109,12 @@ static QString serializeJsonValue( const QJsonValue& jsonValue )
 	}
 	else
 	{
-		qCritical( "LocalStore: trying to save unknown JSON value type %d!", (int) jsonValue.type() );
+		qCritical( "LocalStore: trying to save unknown JSON value type %d!",
+				   static_cast<int>( jsonValue.type() ) );
 	}
 
-	return QStringLiteral("@JsonValue(%1)").arg( QString( QJsonDocument( jsonObject ).toJson( QJsonDocument::Compact ).toBase64() ) );
+	return QStringLiteral("@JsonValue(%1)").arg(
+				QString::fromLatin1( QJsonDocument( jsonObject ).toJson( QJsonDocument::Compact ).toBase64() ) );
 }
 
 

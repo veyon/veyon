@@ -75,7 +75,8 @@ QByteArray CryptoCore::generateChallenge()
 
 QString CryptoCore::encryptPassword( const QString& password ) const
 {
-	return m_defaultPrivateKey.toPublicKey().encrypt( password.toUtf8(), DefaultEncryptionAlgorithm ).toByteArray().toHex();
+	return QString::fromLatin1( m_defaultPrivateKey.toPublicKey().
+								encrypt( password.toUtf8(), DefaultEncryptionAlgorithm ).toByteArray().toHex() );
 }
 
 
@@ -87,7 +88,7 @@ QString CryptoCore::decryptPassword( const QString& encryptedPassword ) const
 	if( PrivateKey( m_defaultPrivateKey ).decrypt( QByteArray::fromHex( encryptedPassword.toUtf8() ),
 												   &decryptedPassword, DefaultEncryptionAlgorithm ) )
 	{
-		return decryptedPassword.toByteArray();
+		return QString::fromUtf8( decryptedPassword.toByteArray() );
 	}
 
 	qCritical("CryptoCore: failed to decrypt password!" );

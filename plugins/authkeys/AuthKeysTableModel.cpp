@@ -81,8 +81,8 @@ QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
 
 	switch( index.column() )
 	{
-	case ColumnKeyName: return key.split( '/' ).value( 0 );
-	case ColumnKeyType: return key.split( '/' ).value( 1 );
+	case ColumnKeyName: return key.split( QLatin1Char('/') ).value( 0 );
+	case ColumnKeyType: return key.split( QLatin1Char('/') ).value( 1 );
 	case ColumnAccessGroup: return m_manager->accessGroup( key );
 	case ColumnKeyPairID: return m_manager->keyPairId( key );
 	default: break;

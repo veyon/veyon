@@ -43,11 +43,11 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 
 	QFile authors( QStringLiteral( ":/CONTRIBUTORS" ) );
 	authors.open( QFile::ReadOnly ); // Flawfinder: ignore
-	ui->authors->setPlainText( authors.readAll() );
+	ui->authors->setPlainText( QString::fromUtf8( authors.readAll() ) );
 
 	QFile license( QStringLiteral( ":/COPYING" ) );
 	license.open( QFile::ReadOnly ); // Flawfinder: ignore
-	ui->license->setPlainText( license.readAll() );
+	ui->license->setPlainText( QString::fromUtf8( license.readAll() ) );
 
 	VeyonCore::enforceBranding( this );
 }

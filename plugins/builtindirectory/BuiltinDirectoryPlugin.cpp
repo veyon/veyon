@@ -36,14 +36,14 @@ BuiltinDirectoryPlugin::BuiltinDirectoryPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration(),
 	m_commands( {
-{ "help", tr( "Show help for specific command" ) },
-{ "add", tr( "Add a room or computer" ) },
-{ "clear", tr( "Clear all rooms and computers" ) },
-{ "dump", tr( "Dump all or individual rooms and computers" ) },
-{ "list", tr( "List all rooms and computers" ) },
-{ "remove", tr( "Remove a room or computer" ) },
-{ "import", tr( "Import objects from given file" ) },
-{ "export", tr( "Export objects to given file" ) },
+{ QStringLiteral("help"), tr( "Show help for specific command" ) },
+{ QStringLiteral("add"), tr( "Add a room or computer" ) },
+{ QStringLiteral("clear"), tr( "Clear all rooms and computers" ) },
+{ QStringLiteral("dump"), tr( "Dump all or individual rooms and computers" ) },
+{ QStringLiteral("list"), tr( "List all rooms and computers" ) },
+{ QStringLiteral("remove"), tr( "Remove a room or computer" ) },
+{ QStringLiteral("import"), tr( "Import objects from given file" ) },
+{ QStringLiteral("export"), tr( "Export objects to given file" ) },
 				} )
 {
 }
@@ -465,7 +465,7 @@ QString BuiltinDirectoryPlugin::listNetworkObject( const NetworkObject& object )
 	case NetworkObject::Group:
 		return tr( "Room \"%1\"" ).arg( object.name() );
 	case NetworkObject::Host:
-		return QChar('\t') +
+		return QLatin1Char('\t') +
 				tr( "Computer \"%1\" (host address: \"%2\" MAC address: \"%3\")" ).
 				arg( object.name(), object.hostAddress(), object.macAddress() );
 	default:
@@ -541,7 +541,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 		QString targetRoom = room;
 
 		const auto line = inputFile.readLine();
-		const auto networkObject = toNetworkObject( line, regExWithVariables, targetRoom );
+		const auto networkObject = toNetworkObject( QString::fromUtf8( line ), regExWithVariables, targetRoom );
 
 		if( networkObject.isValid() )
 		{
@@ -652,7 +652,7 @@ NetworkObject BuiltinDirectoryPlugin::findNetworkObject( const QString& uidOrNam
 NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, const QString& regExWithVariables, QString& room )
 {
 	QStringList variables;
-	QRegExp varDetectionRX( "\\((%\\w+%):[^)]+\\)" );
+	QRegExp varDetectionRX( QStringLiteral("\\((%\\w+%):[^)]+\\)") );
 	int pos = 0;
 
 	while( ( pos = varDetectionRX.indexIn( regExWithVariables, pos ) ) != -1 )
@@ -728,7 +728,7 @@ QString BuiltinDirectoryPlugin::toFormattedString( const NetworkObject& networkO
 
 QStringList BuiltinDirectoryPlugin::fileImportVariables()
 {
-	return { "%room%", "%name%", "%host%", "%mac%", "%type%" };
+	return { QStringLiteral("%room%"), QStringLiteral("%name%"), QStringLiteral("%host%"), QStringLiteral("%mac%"), QStringLiteral("%type%") };
 }
 
 

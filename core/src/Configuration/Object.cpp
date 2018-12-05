@@ -141,7 +141,7 @@ bool Object::hasValue( const QString& key, const QString& parentKey ) const
 
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
-	const QStringList subLevels = parentKey.split( '/' );
+	const QStringList subLevels = parentKey.split( QLatin1Char('/') );
 	DataMap currentMap = m_data;
 
 	for( const auto& level : subLevels )
@@ -179,7 +179,7 @@ QVariant Object::value( const QString& key, const QString& parentKey, const QVar
 
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
-	const QStringList subLevels = parentKey.split( '/' );
+	const QStringList subLevels = parentKey.split( QLatin1Char('/') );
 	DataMap currentMap = m_data;
 	for( const auto& level : subLevels )
 	{
@@ -251,7 +251,7 @@ void Object::setValue( const QString& key, const QVariant& value, const QString&
 {
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
-	QStringList subLevels = parentKey.split( '/' );
+	QStringList subLevels = parentKey.split( QLatin1Char('/') );
 	DataMap data = setValueRecursive( m_data, subLevels, key, value );
 
 	if( data != m_data )
@@ -294,7 +294,7 @@ static Object::DataMap removeValueRecursive( Object::DataMap data,
 
 void Object::removeValue( const QString& key, const QString& parentKey )
 {
-	QStringList subLevels = parentKey.split( '/' );
+	QStringList subLevels = parentKey.split( QLatin1Char('/') );
 	DataMap data = removeValueRecursive( m_data, subLevels, key );
 	if( data != m_data )
 	{
@@ -317,7 +317,7 @@ static void addSubObjectRecursive( const Object::DataMap& dataMap,
 			auto newParentKey = it.key();
 			if( parentKey.isEmpty() == false )
 			{
-				newParentKey = parentKey + "/" + newParentKey;
+				newParentKey = parentKey + QLatin1Char('/') + newParentKey;
 			}
 			addSubObjectRecursive( it.value().toMap(), _this, newParentKey );
 		}

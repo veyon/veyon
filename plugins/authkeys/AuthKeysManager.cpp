@@ -104,7 +104,7 @@ bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
 
 	if( keyFile.remove() == false )
 	{
-		m_resultMessage = tr( "Could not remove key file \"%1\"!" ).arg( keyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Could not remove key file \"%1\"!" ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -114,7 +114,7 @@ bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
 
 	if( keyFileBaseDirectory.rmdir( keyFileDirectory.dirName() ) == false )
 	{
-		m_resultMessage = tr( "Could not remove key file directory \"%1\"!" ).arg( keyFileDirectory.path() ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Could not remove key file directory \"%1\"!" ).arg( keyFileDirectory.path() ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -146,7 +146,7 @@ bool AuthKeysManager::exportKey( const QString& name, const QString& type, const
 
 	if( QFile::copy( keyFileName, outputFile ) == false )
 	{
-		m_resultMessage = tr( "Failed to write output file." ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to write output file." ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -167,7 +167,7 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 
 	if( QFileInfo( inputFile ).isReadable() == false )
 	{
-		m_resultMessage = tr( "Failed read input file." ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed read input file." ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -209,19 +209,19 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 
 	if( VeyonCore::filesystem().ensurePathExists( QFileInfo( keyFileName ).path() ) == false )
 	{
-		m_resultMessage = tr( "Failed to create directory for key file." ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to create directory for key file." ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( QFile::copy( inputFile, keyFileName ) == false )
 	{
-		m_resultMessage = tr( "Failed to write key file \"%1\"." ).arg( keyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to write key file \"%1\"." ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( setKeyFilePermissions( name, type ) == false )
 	{
-		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"!" ).arg( keyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"!" ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -306,19 +306,19 @@ bool AuthKeysManager::writePrivateKeyFile( const CryptoCore::PrivateKey& private
 {
 	if( VeyonCore::filesystem().ensurePathExists( QFileInfo( privateKeyFileName ).path() ) == false )
 	{
-		m_resultMessage = tr( "Failed to create directory for private key file \"%1\"." ).arg( privateKeyFileName) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to create directory for private key file \"%1\"." ).arg( privateKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( privateKey.toPEMFile( privateKeyFileName ) == false )
 	{
-		m_resultMessage = tr( "Failed to save private key in file \"%1\"!" ).arg( privateKeyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to save private key in file \"%1\"!" ).arg( privateKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( setPrivateKeyFilePermissions( privateKeyFileName ) == false )
 	{
-		m_resultMessage = tr( "Failed to set permissions for private key file \"%1\"!" ).arg( privateKeyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to set permissions for private key file \"%1\"!" ).arg( privateKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -331,19 +331,19 @@ bool AuthKeysManager::writePublicKeyFile( const CryptoCore::PublicKey& publicKey
 {
 	if(	VeyonCore::filesystem().ensurePathExists( QFileInfo( publicKeyFileName ).path() ) == false )
 	{
-		m_resultMessage = tr( "Failed to create directory for public key file \"%1\"." ).arg( publicKeyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to create directory for public key file \"%1\"." ).arg( publicKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( publicKey.toPEMFile( publicKeyFileName ) == false )
 	{
-		m_resultMessage = tr( "Failed to save public key in file \"%1\"!" ).arg( publicKeyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to save public key in file \"%1\"!" ).arg( publicKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( setPublicKeyFilePermissions( publicKeyFileName ) == false )
 	{
-		m_resultMessage = tr( "Failed to set permissions for public key file \"%1\"!" ).arg( publicKeyFileName ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to set permissions for public key file \"%1\"!" ).arg( publicKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -373,7 +373,7 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 
 bool AuthKeysManager::setAccessGroup( const QString& key, const QString& group )
 {
-	const auto nameAndType = key.split( '/' );
+	const auto nameAndType = key.split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 
@@ -387,14 +387,14 @@ bool AuthKeysManager::setAccessGroup( const QString& key, const QString& group )
 	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, group ) == false )
 	{
 		m_resultMessage = tr( "Failed to set owner of key file \"%1\" to \"%2\"." ).
-				arg( keyFileName, group ) + ' ' + m_checkPermissions;
+				arg( keyFileName, group ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	if( VeyonCore::platform().filesystemFunctions().
 			setFileOwnerGroupPermissions( keyFileName, QFile::ReadOwner | QFile::ReadGroup ) == false )
 	{
-		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"." ).arg( keyFileName ) + ' ' + m_checkPermissions;
+		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"." ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -407,7 +407,7 @@ bool AuthKeysManager::setAccessGroup( const QString& key, const QString& group )
 
 QString AuthKeysManager::accessGroup( const QString& key )
 {
-	const auto nameAndType = key.split( '/' );
+	const auto nameAndType = key.split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 
@@ -423,7 +423,7 @@ QString AuthKeysManager::accessGroup( const QString& key )
 
 QString AuthKeysManager::keyPairId( const QString& key )
 {
-	const auto nameAndType = key.split( '/' );
+	const auto nameAndType = key.split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );
 	const auto type = nameAndType.value( 1 );
 
@@ -498,7 +498,7 @@ bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool c
 
 	if( checkIsReadable && keyFileInfo.isReadable() == false )
 	{
-		m_resultMessage = tr( "Failed to read key file." ) + " " + m_checkPermissions;
+		m_resultMessage = tr( "Failed to read key file." ) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 

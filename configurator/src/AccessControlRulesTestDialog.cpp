@@ -62,12 +62,12 @@ int AccessControlRulesTestDialog::exec()
 
 void AccessControlRulesTestDialog::accept()
 {
-	AccessControlRule::Action result =
+	const auto result =
 			AccessControlProvider().processAccessControlRules( ui->accessingUserLineEdit->text(),
 															   ui->accessingComputerLineEdit->text(),
 															   ui->localUserLineEdit->text(),
 															   ui->localComputerLineEdit->text(),
-															   ui->connectedUsersLineEdit->text().split( ',' ) );
+															   ui->connectedUsersLineEdit->text().split( QLatin1Char(',') ) );
 	QString resultText;
 
 	switch( result )

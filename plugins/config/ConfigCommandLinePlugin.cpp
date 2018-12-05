@@ -37,14 +37,14 @@
 ConfigCommandLinePlugin::ConfigCommandLinePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ "clear", tr( "Clear system-wide Veyon configuration" ) },
-{ "list", tr( "List all configuration keys and values" ) },
-{ "import", tr( "Import configuration from given file" ) },
-{ "export", tr( "Export configuration to given file" ) },
-{ "get", tr( "Read and output configuration value for given key" ) },
-{ "set", tr( "Write given value to given configuration key" ) },
-{ "unset", tr( "Unset (remove) given configuration key" ) },
-{ "upgrade", tr( "Upgrade and save configuration of program and plugins" ) },
+{ QStringLiteral("clear"), tr( "Clear system-wide Veyon configuration" ) },
+{ QStringLiteral("list"), tr( "List all configuration keys and values" ) },
+{ QStringLiteral("import"), tr( "Import configuration from given file" ) },
+{ QStringLiteral("export"), tr( "Export configuration to given file" ) },
+{ QStringLiteral("get"), tr( "Read and output configuration value for given key" ) },
+{ QStringLiteral("set"), tr( "Write given value to given configuration key" ) },
+{ QStringLiteral("unset"), tr( "Unset (remove) given configuration key" ) },
+{ QStringLiteral("upgrade"), tr( "Upgrade and save configuration of program and plugins" ) },
 				} )
 {
 }
@@ -152,13 +152,13 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_get( const
 		return operationError( tr( "Please specify a valid key." ) );
 	}
 
-	QStringList keyParts = key.split( '/' );
+	QStringList keyParts = key.split( QLatin1Char('/') );
 	key = keyParts.last();
 	QString parentKey;
 
 	if( keyParts.size() > 1 )
 	{
-		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
+		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
 	}
 
 	if( VeyonCore::config().hasValue( key, parentKey ) == false )
@@ -189,13 +189,13 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_set( const
 		return operationError( tr( "Please specify a valid value." ) );
 	}
 
-	const auto keyParts = key.split( '/' );
+	const auto keyParts = key.split( QLatin1Char('/') );
 	key = keyParts.last();
 	QString parentKey;
 
 	if( keyParts.size() > 1 )
 	{
-		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
+		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
 	}
 
 	QVariant configValue = value;
@@ -227,13 +227,13 @@ CommandLinePluginInterface::RunResult ConfigCommandLinePlugin::handle_unset( con
 		return operationError( tr( "Please specify a valid key." ) );
 	}
 
-	QStringList keyParts = key.split( '/' );
+	QStringList keyParts = key.split( QLatin1Char('/') );
 	key = keyParts.last();
 	QString parentKey;
 
 	if( keyParts.size() > 1 )
 	{
-		parentKey = keyParts.mid( 0, keyParts.size()-1).join( '/' );
+		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
 	}
 
 	VeyonCore::config().removeValue( key, parentKey );
@@ -258,7 +258,7 @@ void ConfigCommandLinePlugin::listConfiguration( const VeyonConfiguration::DataM
 {
 	for( auto it = map.begin(); it != map.end(); ++it )
 	{
-		QString curParentKey = parentKey.isEmpty() ? it.key() : parentKey + "/" + it.key();
+		QString curParentKey = parentKey.isEmpty() ? it.key() : parentKey + QLatin1Char('/') + it.key();
 
 		if( it.value().type() == QVariant::Map )
 		{
@@ -310,9 +310,9 @@ QString ConfigCommandLinePlugin::printableConfigurationValue( const QVariant& va
 		QStringList list = value.toStringList();
 		for( auto& str : list )
 		{
-			str = "\"" + str + "\"";
+			str = QLatin1Char('"') + str + QLatin1Char('"');
 		}
-		return "(" + list.join( ',' ) + ")";
+		return QLatin1Char('(') + list.join( QLatin1Char(',') ) + QLatin1Char(')');
 	}
 	else if( value.userType() == QMetaType::type( "QJsonArray" ) )
 	{

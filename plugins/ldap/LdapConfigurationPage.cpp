@@ -133,7 +133,7 @@ void LdapConfigurationPage::testBaseDn()
 			QMessageBox::information( this, tr( "LDAP base DN test successful" ),
 							tr( "The LDAP base DN has been queried successfully. "
 								"The following entries were found:\n\n%1" ).
-									  arg( entries.join('\n') ) );
+									  arg( entries.join(QLatin1Char('\n')) ) );
 		}
 	}
 }
@@ -291,7 +291,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 	if( computerName.isEmpty() == false )
 	{
 		if( m_configuration.computerHostNameAsFQDN() &&
-				computerName.contains( '.' ) == false )
+				computerName.contains( QLatin1Char('.') ) == false )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
 								   tr( "You configured computer host names to be stored "
@@ -300,7 +300,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 			return;
 		}
 		else if( m_configuration.computerHostNameAsFQDN() == false &&
-				 computerName.contains( '.') )
+				 computerName.contains( QLatin1Char('.') ) )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
 								   tr( "You configured computer host names to be stored "

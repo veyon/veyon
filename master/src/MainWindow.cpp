@@ -236,8 +236,8 @@ void MainWindow::closeEvent( QCloseEvent* event )
 		return;
 	}
 
-	m_master.userConfig().setWindowState( saveState().toBase64() );
-	m_master.userConfig().setWindowGeometry( saveGeometry().toBase64() );
+	m_master.userConfig().setWindowState( QString::fromLatin1( saveState().toBase64() ) );
+	m_master.userConfig().setWindowGeometry( QString::fromLatin1( saveGeometry().toBase64() ) );
 
 	QMainWindow::closeEvent( event );
 }

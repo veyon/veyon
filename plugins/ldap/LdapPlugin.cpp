@@ -59,7 +59,7 @@ void LdapPlugin::upgrade( const QVersionNumber& oldVersion )
 	{
 		const auto upgradeFilter = []( const QString& filter ) {
 			if( filter.isEmpty() == false &&
-					filter.startsWith( '(' ) == false )
+					filter.startsWith( QLatin1Char('(') ) == false )
 			{
 				return QStringLiteral("(%1)").arg( filter );
 			}

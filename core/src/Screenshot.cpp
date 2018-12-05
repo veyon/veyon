@@ -47,7 +47,6 @@ Screenshot::Screenshot( const QString &fileName, QObject* parent ) :
 
 
 
-
 void Screenshot::take( const ComputerControlInterface::Pointer& computerControlInterface )
 {
 	auto userLogin = computerControlInterface->userLoginName();
@@ -74,7 +73,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	m_fileName =  QString( QStringLiteral( "_%1_%2_%3.png" ) ).arg( computerControlInterface->computer().hostAddress(),
 						QDate( QDate::currentDate() ).toString( Qt::ISODate ),
 						QTime( QTime::currentTime() ).toString( Qt::ISODate ) ).
-					replace( ':', '-' );
+					replace( QLatin1Char(':'), QLatin1Char('-') );
 
 	m_fileName = dir + QDir::separator() + userLogin + m_fileName;
 
@@ -125,35 +124,29 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 
 
-
 QString Screenshot::user() const
 {
-	return QFileInfo( fileName() ).fileName().section( '_', 0, 0 );
+	return QFileInfo( fileName() ).fileName().section( QLatin1Char('_'), 0, 0 );
 }
-
 
 
 
 QString Screenshot::host() const
 {
-	return fileName().section( '_', 1, 1 );
+	return fileName().section( QLatin1Char('_'), 1, 1 );
 }
-
 
 
 
 QString Screenshot::date() const
 {
-	return QDate::fromString( fileName().section( '_', 2, 2 ),
+	return QDate::fromString( fileName().section( QLatin1Char('_'), 2, 2 ),
 										Qt::ISODate ).toString( Qt::LocalDate );
 }
 
 
 
-
 QString Screenshot::time() const
 {
-	return fileName().section( '_', 3, 3 ).section( '.', 0, 0 ).replace( '-', ':' );
+	return fileName().section( QLatin1Char('_'), 3, 3 ).section( QLatin1Char('.'), 0, 0 ).replace( QLatin1Char('-'), QLatin1Char(':') );
 }
-
-

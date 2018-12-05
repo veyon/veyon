@@ -190,7 +190,7 @@ void Logger::rotateLogFile()
 #endif
 	{
 		bool numberOk = false;
-		int logFileIndex = it->section( '.', -1 ).toInt( &numberOk );
+		int logFileIndex = it->section( QLatin1Char('.'), -1 ).toInt( &numberOk );
 		if( numberOk )
 		{
 			const auto oldFileName = QString( QStringLiteral( "%1.%2" ) ).arg( m_logFile->fileName() ).arg( logFileIndex );
@@ -253,13 +253,11 @@ void Logger::qtMsgHandler( QtMsgType messageType, const QMessageLogContext& cont
 	case QtWarningMsg: logLevel = LogLevelWarning; break;
 	case QtCriticalMsg: logLevel = LogLevelError; break;
 	case QtFatalMsg: logLevel = LogLevelCritical; break;
-	default:
-		break;
 	}
 
 	if( context.category && strcmp(context.category, "default") != 0 )
 	{
-		s_instance.load()->log( logLevel, QStringLiteral( "[%1] " ).arg(context.category) + message );
+		s_instance.load()->log( logLevel, QStringLiteral( "[%1] " ).arg(QLatin1String(context.category)) + message );
 	}
 	else
 	{

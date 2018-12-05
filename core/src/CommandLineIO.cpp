@@ -106,7 +106,7 @@ void CommandLineIO::printTableRow( const TableColumnWidths& columnWidths, char v
 	for( int col = 0; col < columnWidths.size(); ++col )
 	{
 		const auto cell = row.value( col );
-		printf( " %s%c", qUtf8Printable( cell + QString( columnWidths[col] - cell.size() - 1, ' ' ) ), vertical );
+		printf( " %s%c", qUtf8Printable( cell + QString( columnWidths[col] - cell.size() - 1, QLatin1Char(' ') ) ), vertical );
 	}
 	printf( "\n" );
 }

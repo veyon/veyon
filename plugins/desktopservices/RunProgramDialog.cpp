@@ -45,7 +45,7 @@ RunProgramDialog::~RunProgramDialog()
 
 void RunProgramDialog::accept()
 {
-	m_programs = ui->programInputTextEdit->toPlainText().split( '\n' );
+	m_programs = ui->programInputTextEdit->toPlainText().split( QLatin1Char('\n') );
 
 	QDialog::accept();
 }

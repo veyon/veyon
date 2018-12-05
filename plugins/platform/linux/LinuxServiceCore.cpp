@@ -363,8 +363,8 @@ QProcessEnvironment LinuxServiceCore::getSessionEnvironment( int sessionLeaderPi
 		{
 			for( int i = 0; procInfo->environ[i]; ++i )
 			{
-				const auto env = QString( procInfo->environ[i] ).split( '=' );
-				sessionEnv.insert( env.first(), env.mid( 1 ).join( '=' ) );
+				const auto env = QString::fromUtf8( procInfo->environ[i] ).split( QLatin1Char('=') );
+				sessionEnv.insert( env.first(), env.mid( 1 ).join( QLatin1Char('=') ) );
 			}
 
 			ppids.append( procInfo->tid );

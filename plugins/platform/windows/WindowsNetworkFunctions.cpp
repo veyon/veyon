@@ -209,7 +209,7 @@ static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t*
 bool WindowsNetworkFunctions::ping( const QString& hostAddress )
 {
 	QProcess pingProcess;
-	pingProcess.start( QStringLiteral("ping"), { "-n", "1", "-w", QString::number( PingTimeout ), hostAddress } );
+	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-n"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout ), hostAddress } );
 	pingProcess.waitForFinished( PingProcessTimeout );
 
 	return pingProcess.exitCode() == 0;

@@ -35,7 +35,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, installationID, setInstallationID, "InstallationID", "Core", QString() )			\
 
 #define FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
-	OP( VeyonConfiguration, VeyonCore::config(), STRING, applicationName, setApplicationName, "ApplicationName", "UI", "Veyon" )			\
+	OP( VeyonConfiguration, VeyonCore::config(), STRING, applicationName, setApplicationName, "ApplicationName", "UI", QStringLiteral("Veyon") )			\
 	OP( VeyonConfiguration, VeyonCore::config(), STRING, uiLanguage, setUiLanguage, "Language", "UI", QString() )
 
 #define FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)				\
@@ -61,7 +61,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), BOOL, logToSystem, setLogToSystem, "LogToSystem", "Logging", false )	\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging", Logger::DefaultFileSizeLimit )		\
 	OP( VeyonConfiguration, VeyonCore::config(), INT, logFileRotationCount, setLogFileRotationCount, "LogFileRotationCount", "Logging", Logger::DefaultFileRotationCount )		\
-	OP( VeyonConfiguration, VeyonCore::config(), STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging", Logger::DefaultLogFileDirectory )		\
+	OP( VeyonConfiguration, VeyonCore::config(), STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging", QLatin1String(Logger::DefaultLogFileDirectory) )		\
 
 #define FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), UUID, vncServerPlugin, setVncServerPlugin, "Plugin", "VncServer", QUuid() )	\

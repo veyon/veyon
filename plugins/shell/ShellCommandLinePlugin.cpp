@@ -33,7 +33,7 @@
 ShellCommandLinePlugin::ShellCommandLinePlugin( QObject* parent ) :
 	QObject( parent ),
 	m_commands( {
-{ "run", tr( "Run command file" ) },
+{ QStringLiteral("run"), tr( "Run command file" ) },
 				} )
 {
 }
@@ -89,7 +89,7 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_run( const 
 
 	while( scriptFile.canReadLine() )
 	{
-		runCommand( scriptFile.readLine() );
+		runCommand( QString::fromUtf8( scriptFile.readLine() ) );
 	}
 
 	return Successful;
@@ -100,5 +100,5 @@ CommandLinePluginInterface::RunResult ShellCommandLinePlugin::handle_run( const 
 void ShellCommandLinePlugin::runCommand( const QString& command )
 {
 	// TODO: properly split arguments containing spaces
-	QProcess::execute( QCoreApplication::applicationFilePath(), command.split( ' ' ) );
+	QProcess::execute( QCoreApplication::applicationFilePath(), command.split( QLatin1Char(' ') ) );
 }

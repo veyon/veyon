@@ -152,7 +152,7 @@ QString VeyonCore::pluginDir()
 
 QString VeyonCore::translationsDirectory()
 {
-	return QCoreApplication::applicationDirPath() + QDir::separator() + VEYON_TRANSLATIONS_DIR;
+	return QCoreApplication::applicationDirPath() + QDir::separator() + QLatin1String(VEYON_TRANSLATIONS_DIR);
 }
 
 
@@ -318,7 +318,7 @@ bool VeyonCore::isDebugging()
 QString VeyonCore::stripDomain( const QString& username )
 {
 	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-	int domainSeparator = username.indexOf( '\\' );
+	int domainSeparator = username.indexOf( QLatin1Char('\\') );
 	if( domainSeparator >= 0 )
 	{
 		return username.mid( domainSeparator + 1 );
@@ -342,7 +342,7 @@ QString VeyonCore::formattedUuid( QUuid uuid )
 
 bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 {
-	return QRegExp( "\\w+" ).exactMatch( authKeyName );
+	return QRegExp( QStringLiteral("\\w+") ).exactMatch( authKeyName );
 }
 
 

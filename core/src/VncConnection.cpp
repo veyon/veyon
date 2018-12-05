@@ -283,10 +283,10 @@ void VncConnection::setHost( const QString& host )
 	{
 		m_host = QHostAddress( QHostAddress::LocalHost ).toString();
 	}
-	else if( m_host.count( ':' ) == 1 )
+	else if( m_host.count( QLatin1Char(':') ) == 1 )
 	{
 		// host name + port number?
-		QRegExp rx2( "(.*[^:]):(\\d+)$" );
+		QRegExp rx2( QStringLiteral("(.*[^:]):(\\d+)$") );
 		if( rx2.indexIn( m_host ) == 0 )
 		{
 			m_host = rx2.cap( 1 );
