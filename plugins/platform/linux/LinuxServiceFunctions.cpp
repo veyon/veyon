@@ -28,7 +28,7 @@
 
 QString LinuxServiceFunctions::veyonServiceName() const
 {
-	return QStringLiteral("veyon-service");
+	return QStringLiteral("veyon");
 }
 
 
