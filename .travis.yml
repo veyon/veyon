@@ -12,7 +12,7 @@ matrix:
         - env: TARGET_OS=ubuntu.xenial
         - env: TARGET_OS=cross.win32
         - env: TARGET_OS=cross.win64
-        - env: TARGET_OS=centos.73
+        - env: TARGET_OS=centos.74
         - env: TARGET_OS=fedora.28
         - env: TARGET_OS=opensuse.42.3
         - env: TARGET_OS=opensuse.15.0

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source scl_source enable devtoolset-6
+source scl_source enable devtoolset-7
 
 set -e
 
@@ -9,7 +9,7 @@ set -e
 cd /build
 
 # add distribution name to file name
-rename '.x86_64' '.centos-73.x86_64' *.rpm
+rename '.x86_64' '.centos-74.x86_64' *.rpm
 
 # show files
 rpm -qlp *.rpm
