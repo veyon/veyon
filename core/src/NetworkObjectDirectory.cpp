@@ -265,7 +265,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 		completeNetworkObject.setParentUid( parent.uid() );
 	}
 
-	auto& objectList = m_objects[parent.modelId()];
+	auto& objectList = m_objects[parent.modelId()]; // clazy:exclude=detaching-member
 	const auto index = objectList.indexOf( completeNetworkObject );
 
 	if( index < 0 )
@@ -296,7 +296,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 		return;
 	}
 
-	auto& objectList = m_objects[parent.modelId()];
+	auto& objectList = m_objects[parent.modelId()]; // clazy:exclude=detaching-member
 	int index = 0;
 	QList<NetworkObject::ModelId> groupsToRemove;
 

@@ -188,7 +188,7 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
 	qInfo() << "Stopping server for removed session" << sessionPath;
 
-	auto process = m_serverProcesses[sessionPath];
+	auto process = qAsConst(m_serverProcesses)[sessionPath];
 	process->terminate();
 
 	QElapsedTimer serverStopTimer;

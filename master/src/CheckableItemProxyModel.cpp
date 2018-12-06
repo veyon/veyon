@@ -100,7 +100,7 @@ bool CheckableItemProxyModel::setData( const QModelIndex& index, const QVariant&
 	const auto uuid = indexToUuid( index );
 	const auto checkState = checkStateFromVariant( value );
 
-	if( m_checkStates[uuid] != checkState )
+	if( qAsConst(m_checkStates)[uuid] != checkState )
 	{
 		m_checkStates[uuid] = checkState;
 		emit dataChanged( index, index, { Qt::CheckStateRole } );
@@ -198,7 +198,7 @@ bool CheckableItemProxyModel::setChildData( const QModelIndex& index, Qt::CheckS
 			const auto childIndex = this->index( i, 0, index );
 			const auto childUuid = indexToUuid( childIndex );
 
-			if( m_checkStates[childUuid] != checkState )
+			if( qAsConst(m_checkStates)[childUuid] != checkState )
 			{
 				m_checkStates[childUuid] = checkState;
 				modified = true;
@@ -241,7 +241,7 @@ void CheckableItemProxyModel::setParentData( const QModelIndex& index, Qt::Check
 
 	const auto uuid = indexToUuid( index );
 
-	if( m_checkStates[uuid] != checkState )
+	if( qAsConst(m_checkStates)[uuid] != checkState )
 	{
 		m_checkStates[uuid] = checkState;
 		emit dataChanged( index, index, { Qt::CheckStateRole } );
