@@ -22,8 +22,6 @@
  *
  */
 
-#include <QHostAddress>
-
 #include "AuthenticationCredentials.h"
 #include "ServerAuthenticationManager.h"
 #include "CryptoCore.h"
@@ -38,8 +36,6 @@ ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
 	m_allowedIPs(),
 	m_failedAuthHosts()
 {
-
-
 }
 
 
@@ -191,25 +187,19 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 	switch( client->authState() )
 	{
 	case VncServerClient::AuthInit:
-	{
-		CryptoCore::PrivateKey privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
+		client->setPrivateKey( CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize ) );
 
-		client->setPrivateKey( privateKey.toPEM() );
-
-		CryptoCore::PublicKey publicKey = privateKey.toPublicKey();
-
-		if( VariantArrayMessage( message.ioDevice() ).write( publicKey.toPEM() ).send() )
+		if( VariantArrayMessage( message.ioDevice() ).write( client->privateKey().toPublicKey().toPEM() ).send() )
 		{
 			return VncServerClient::AuthPassword;
 		}
 
 		vDebug( "ServerAuthenticationManager::performLogonAuthentication(): failed to send public key" );
 		return VncServerClient::AuthFinishedFail;
-	}
 
 	case VncServerClient::AuthPassword:
 	{
-		CryptoCore::PrivateKey privateKey = CryptoCore::PrivateKey::fromPEM( client->privateKey() );
+		auto privateKey = client->privateKey();
 
 		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
 

@@ -22,11 +22,11 @@
  *
  */
 
-#ifndef VNC_SERVER_CLIENT_H
-#define VNC_SERVER_CLIENT_H
+#pragma once
 
 #include <QElapsedTimer>
 
+#include "CryptoCore.h"
 #include "VncServerProtocol.h"
 
 class VEYON_CORE_EXPORT VncServerClient : public QObject
@@ -138,12 +138,12 @@ public:
 		m_challenge = challenge;
 	}
 
-	const QString& privateKey() const
+	const CryptoCore::PrivateKey& privateKey() const
 	{
 		return m_privateKey;
 	}
 
-	void setPrivateKey( const QString& privateKey )
+	void setPrivateKey( const CryptoCore::PrivateKey& privateKey )
 	{
 		m_privateKey = privateKey;
 	}
@@ -166,10 +166,8 @@ private:
 	QString m_username;
 	QString m_hostAddress;
 	QByteArray m_challenge;
-	QString m_privateKey;
+	CryptoCore::PrivateKey m_privateKey;
 
 } ;
 
 typedef QList<VncServerClient *> VncServerClientList;
-
-#endif
