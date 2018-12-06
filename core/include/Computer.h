@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@veyon.io>
  *
- * This file is part of Veyon - http://veyon.io
+ * This file is part of Veyon - https://veyon.io
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public

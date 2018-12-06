@@ -12,7 +12,7 @@ BEGIN
     BLOCK "040904E4"
     //language ID = U.S. English, charset = Windows, Multilingual
     BEGIN
-      VALUE "Comments",		"Virtual Eye On Networks (http://veyon.io)\0"
+      VALUE "Comments",		"Virtual Eye On Networks (https://veyon.io)\0"
       VALUE "CompanyName",	"Veyon Solutions\0"
       VALUE "FileDescription",	"Veyon Service\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"

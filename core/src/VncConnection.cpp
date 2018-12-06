@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2008-2018 Tobias Junghans <tobydox@veyon.io>
  *
- * This file is part of Veyon - http://veyon.io
+ * This file is part of Veyon - https://veyon.io
  *
  * code partly taken from KRDC / vncclientthread.cpp:
  * Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
