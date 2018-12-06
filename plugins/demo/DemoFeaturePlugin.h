@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DEMO_FEATURE_PLUGIN_H
-#define DEMO_FEATURE_PLUGIN_H
+#pragma once
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
@@ -122,5 +121,3 @@ private:
 	DemoClient* m_demoClient;
 
 };
-
-#endif // DEMO_FEATURE_PLUGIN_H

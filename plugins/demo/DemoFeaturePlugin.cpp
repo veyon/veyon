@@ -187,7 +187,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			server.featureWorkerManager().startWorker( message.featureUid(), FeatureWorkerManager::ManagedSystemProcess );
 		}
 
-		auto socket = dynamic_cast<QTcpSocket *>( messageContext.ioDevice() );
+		auto socket = qobject_cast<QTcpSocket *>( messageContext.ioDevice() );
 		if( socket == nullptr )
 		{
 			qCritical( "DemoFeaturePlugin::handleFeatureMessage( VeyonServer& server,): socket is NULL!" );
