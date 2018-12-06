@@ -186,6 +186,11 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 
 void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
+	if( m_serverProcesses.contains( sessionPath ) == false )
+	{
+		return;
+	}
+
 	qInfo() << "Stopping server for removed session" << sessionPath;
 
 	auto process = qAsConst(m_serverProcesses)[sessionPath];

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_SERVICE_CORE_H
-#define LINUX_SERVICE_CORE_H
+#pragma once
 
 #include <QProcessEnvironment>
 
@@ -90,5 +89,3 @@ private:
 	bool m_multiSession;
 
 };
-
-#endif // LINUX_SERVICE_CORE_H
