@@ -23,6 +23,8 @@
  */
 
 #include <QCoreApplication>
+#include <QHostAddress>
+#include <QHostInfo>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QTimer>
@@ -129,10 +131,27 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, co
 
 DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess( const QString& user, const QString& host )
 {
+	auto hostName = host;
+
+	const QHostAddress address( host );
+	if( address.protocol() == QAbstractSocket::IPv4Protocol ||
+			address.protocol() == QAbstractSocket::IPv6Protocol )
+	{
+		hostName = QHostInfo::fromName( host ).hostName();
+		if( hostName.isEmpty() )
+		{
+			hostName = host;
+		}
+		else
+		{
+			hostName = QStringLiteral( "%1 (%2)" ).arg( hostName, host );
+		}
+	}
+
 	QMessageBox m( QMessageBox::Question,
 				   tr( "Confirm desktop access" ),
 				   tr( "The user %1 at computer %2 wants to access your desktop. Do you want to grant access?" ).
-				   arg( user, host ), QMessageBox::Yes | QMessageBox::No );
+				   arg( user, hostName ), QMessageBox::Yes | QMessageBox::No );
 
 	auto neverBtn = m.addButton( tr( "Never for this session" ), QMessageBox::NoRole );
 	auto alwaysBtn = m.addButton( tr( "Always for this session" ), QMessageBox::YesRole );
