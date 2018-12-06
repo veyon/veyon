@@ -94,7 +94,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonServerInterface& server,
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
 			message.command() == ReportDesktopAccessChoice )
 	{
-		m_choice = static_cast<Choice>( message.argument( ChoiceArgument ).toInt() );
+		m_choice = message.argument( ChoiceArgument ).value<Choice>();
 
 		server.featureWorkerManager().stopWorker( m_desktopAccessDialogFeature );
 
@@ -118,8 +118,8 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, co
 		return false;
 	}
 
-	int result = requestDesktopAccess( message.argument( UserArgument ).toString(),
-									   message.argument( HostArgument ).toString() );
+	const auto result = requestDesktopAccess( message.argument( UserArgument ).toString(),
+											  message.argument( HostArgument ).toString() );
 
 	FeatureMessage reply( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessChoice );
 	reply.addArgument( ChoiceArgument, result );

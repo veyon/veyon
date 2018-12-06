@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public SimpleFeatu
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	typedef enum Choices
+	enum Choice
 	{
 		ChoiceNone,
 		ChoiceYes,
@@ -44,7 +44,8 @@ public:
 		ChoiceAlways,
 		ChoiceNever,
 		ChoiceCount
-	} Choice;
+	} ;
+	Q_ENUM(Choice)
 
 	DesktopAccessDialog( QObject* parent = nullptr );
 	~DesktopAccessDialog() override {}
