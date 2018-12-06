@@ -26,8 +26,8 @@
 #include <QHostInfo>
 
 #include "AccessControlProvider.h"
-#include "ComputerControlServer.h"
 #include "ComputerControlClient.h"
+#include "ComputerControlServer.h"
 #include "FeatureMessage.h"
 #include "VeyonConfiguration.h"
 #include "SystemTrayIcon.h"
@@ -51,8 +51,8 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 {
 	m_builtinFeatures.systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
-					QHostInfo::localHostName(),
-					QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) ),
+													QHostInfo::localHostName(),
+													QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) ),
 				m_featureWorkerManager );
 
 	// make app terminate once the VNC server thread has finished
