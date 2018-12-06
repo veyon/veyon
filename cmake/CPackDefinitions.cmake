@@ -17,10 +17,10 @@ set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSIO
 SET(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}_${CPACK_SYSTEM_NAME}")
 SET(CPACK_PACKAGE_CONTACT "Tobias Junghans <tobydox@veyon.io>")
-SET(CPACK_PACKAGE_HOMEPAGE "http://veyon.io")
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Virtual Eye On Networks - OpenSource classroom management")
+SET(CPACK_PACKAGE_HOMEPAGE "https://veyon.io")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open source computer monitoring and classroom management")
 # SET(CPACK_PACKAGE_DESCRIPTION_FILE  "${CMAKE_SOURCE_DIR}/DESCRIPTION")
-# SET(CPACK_PACKAGE_VENDOR "Veyon Solutions")
+SET(CPACK_PACKAGE_VENDOR "Veyon Solutions")
 SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
 SET(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
 SET(CPACK_INCLUDE_TOPLEVEL_DIRECTORY TRUE)
@@ -28,9 +28,9 @@ SET(CPACK_SOURCE_IGNORE_FILES "${CMAKE_SOURCE_DIR}/build/;${CMAKE_SOURCE_DIR}/.g
 SET(CPACK_STRIP_FILES  TRUE)
 
 # DEB package
-SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Virtual Eye On Networks - OpenSource classroom management
-  Veyon is an Open Source computer monitoring and classroom management software. 
-  It enables teachers to view and control computer labs and interact with students. 
+SET(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Veyon, an open source computer monitoring and classroom management software
+  Veyon is an open source computer monitoring and classroom management software.
+  It enables teachers to view and control computer labs and interact with students.
   Veyon is available in different languages and provides lots of useful features:
   .
   * see what's going on in computer labs in overview mode and take screenshots
@@ -76,8 +76,7 @@ ELSE()
 SET(CPACK_RPM_PACKAGE_REQUIRES ${CPACK_RPM_PACKAGE_REQUIRES} "qca-qt5-ossl")
 ENDIF()
 SET(CPACK_RPM_PACKAGE_LICENSE "GPLv2")
-SET(CPACK_RPM_PACKAGE_DESCRIPTION "Veyon is an Open Source computer monitoring and classroom management software.
-It enables teachers to view and control computer labs and interact with students." )
+SET(CPACK_RPM_PACKAGE_DESCRIPTION ${CPACK_DEBIAN_PACKAGE_DESCRIPTION})
 SET(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION /lib)
 
 
