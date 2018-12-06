@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_RULE_H
-#define ACCESS_CONTROL_RULE_H
+#pragma once
 
 #include <QObject>
 #include <QJsonObject>
@@ -196,5 +195,3 @@ private:
 	bool m_ignoreConditions;
 
 } ;
-
-#endif

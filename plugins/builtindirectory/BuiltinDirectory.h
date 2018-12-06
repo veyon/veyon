@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef BUILTIN_DIRECTORY_H
-#define BUILTIN_DIRECTORY_H
+#pragma once
 
 #include "NetworkObjectDirectory.h"
 
@@ -43,5 +42,3 @@ private:
 	BuiltinDirectoryConfiguration& m_configuration;
 
 };
-
-#endif // BUILTIN_DIRECTORY_H

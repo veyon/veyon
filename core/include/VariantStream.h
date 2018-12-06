@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VARIANT_STREAM_H
-#define VARIANT_STREAM_H
+#pragma once
 
 #include <QDataStream>
 
@@ -42,5 +41,3 @@ private:
 	QDataStream m_dataStream;
 
 } ;
-
-#endif

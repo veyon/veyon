@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FILE_SYSTEM_BROWSER_H
-#define FILE_SYSTEM_BROWSER_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -70,5 +69,3 @@ private:
 	bool m_shrinkPath;
 
 } ;
-
-#endif

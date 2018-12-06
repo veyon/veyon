@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_WORKER_MANAGER_CONNECTION_H
-#define FEATURE_WORKER_MANAGER_CONNECTION_H
+#pragma once
 
 #include <QTcpSocket>
 
@@ -56,5 +55,3 @@ private:
 	Feature::Uid m_featureUid;
 
 } ;
-
-#endif

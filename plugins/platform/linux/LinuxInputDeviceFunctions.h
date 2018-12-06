@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_INPUT_DEVICE_FUNCTIONS_H
-#define LINUX_INPUT_DEVICE_FUNCTIONS_H
+#pragma once
 
 #include "PlatformInputDeviceFunctions.h"
 
@@ -54,5 +53,3 @@ private:
 	int m_keySymsPerKeyCode;
 
 };
-
-#endif // LINUX_INPUT_DEVICE_FUNCTIONS_H

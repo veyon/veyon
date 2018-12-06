@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_FILTER_PROXY_MODEL_H
-#define NETWORK_OBJECT_FILTER_PROXY_MODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
@@ -49,5 +48,3 @@ private:
 	bool m_excludeEmptyGroups;
 
 };
-
-#endif // NETWORK_OBJECT_FILTER_PROXY_MODEL_H

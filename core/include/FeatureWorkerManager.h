@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_WORKER_MANAGER_H
-#define FEATURE_WORKER_MANAGER_H
+#pragma once
 
 #include <QMutex>
 #include <QPointer>
@@ -107,5 +106,3 @@ private:
 	QMutex m_workersMutex;
 
 } ;
-
-#endif

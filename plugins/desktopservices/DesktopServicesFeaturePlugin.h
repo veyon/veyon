@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DESKTOP_SERVICES_FEATURE_PLUGIN_H
-#define DESKTOP_SERVICES_FEATURE_PLUGIN_H
+#pragma once
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DesktopServicesConfiguration.h"
@@ -117,5 +116,3 @@ private:
 	const FeatureList m_features;
 
 };
-
-#endif // DESKTOP_SERVICES_FEATURE_PLUGIN_H

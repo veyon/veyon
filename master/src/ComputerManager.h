@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_MANAGER_H
-#define COMPUTER_MANAGER_H
+#pragma once
 
 #include "CheckableItemProxyModel.h"
 #include "ComputerControlInterface.h"
@@ -98,5 +97,3 @@ private:
 	QList<QHostAddress> m_localHostAddresses;
 
 };
-
-#endif // COMPUTER_MANAGER_H

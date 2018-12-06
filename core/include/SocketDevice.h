@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SOCKET_DEVICE_H
-#define SOCKET_DEVICE_H
+#pragma once
 
 #include <QIODevice>
 
@@ -91,5 +90,3 @@ private:
 	void * m_user;
 
 } ;
-
-#endif

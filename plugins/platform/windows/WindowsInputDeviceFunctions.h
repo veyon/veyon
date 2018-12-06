@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_INPUT_DEVICE_FUNCTIONS_H
-#define WINDOWS_INPUT_DEVICE_FUNCTIONS_H
+#pragma once
 
 #include <interception.h>
 
@@ -64,5 +63,3 @@ private:
 	bool m_hidServiceActivated;
 
 };
-
-#endif // WINDOWS_INPUT_DEVICE_FUNCTIONS_H

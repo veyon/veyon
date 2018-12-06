@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ULTRAVNC_CONFIGURATION_WIDGET_H
-#define ULTRAVNC_CONFIGURATION_WIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -46,5 +45,3 @@ private:
 	UltraVncConfiguration& m_configuration;
 
 };
-
-#endif // ULTRAVNC_CONFIGURATION_WIDGET_H

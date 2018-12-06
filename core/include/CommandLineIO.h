@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMMAND_LINE_IO_H
-#define COMMAND_LINE_IO_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -49,5 +48,3 @@ private:
 	static void printTableRow( const TableColumnWidths& columnWidths, char vertical, const TableRow& row );
 
 } ;
-
-#endif

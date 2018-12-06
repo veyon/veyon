@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_DIRECTORY_MANAGER_H
-#define NETWORK_OBJECT_DIRECTORY_MANAGER_H
+#pragma once
 
 #include "VeyonCore.h"
 #include "Plugin.h"
@@ -49,5 +48,3 @@ private:
 	NetworkObjectDirectory* m_configuredDirectory;
 
 };
-
-#endif // NETWORK_OBJECT_DIRECTORY_MANAGER_H

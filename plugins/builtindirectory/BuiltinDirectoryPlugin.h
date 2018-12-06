@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef BUILTIN_DIRECTORY_PLUGIN_H
-#define BUILTIN_DIRECTORY_PLUGIN_H
+#pragma once
 
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
@@ -156,5 +155,3 @@ private:
 	QMap<QString, QString> m_commands;
 
 };
-
-#endif // BUILTIN_DIRECTORY_PLUGIN_H

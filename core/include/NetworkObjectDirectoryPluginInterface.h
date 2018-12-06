@@ -23,8 +23,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_DIRECTORY_PLUGIN_INTERFACE_H
-#define NETWORK_OBJECT_DIRECTORY_PLUGIN_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -45,5 +44,3 @@ typedef QList<NetworkObjectDirectoryPluginInterface> NetworkObjectDirectoryPlugi
 #define NetworkObjectDirectoryPluginInterface_iid "io.veyon.Veyon.Plugins.NetworkObjectPluginInterface"
 
 Q_DECLARE_INTERFACE(NetworkObjectDirectoryPluginInterface, NetworkObjectDirectoryPluginInterface_iid)
-
-#endif // NETWORK_OBJECT_DIRECTORY_PLUGIN_INTERFACE_H

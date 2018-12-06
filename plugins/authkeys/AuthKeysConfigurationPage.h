@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef AUTH_KEYS_CONFIGURATION_PAGE_H
-#define AUTH_KEYS_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "AuthKeysTableModel.h"
 #include "ConfigurationPage.h"
@@ -62,5 +61,3 @@ private:
 	const QString m_keyFilesFilter;
 
 };
-
-#endif // AUTH_KEYS_CONFIGURATION_PAGE_H

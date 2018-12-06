@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_CONTROL_LIST_MODEL_H
-#define COMPUTER_CONTROL_LIST_MODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QImage>
@@ -106,5 +105,3 @@ private:
 	ComputerControlInterfaceList m_computerControlInterfaces;
 
 };
-
-#endif // COMPUTER_LIST_MODEL_H

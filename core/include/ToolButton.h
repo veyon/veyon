@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef TOOL_BUTTON_H
-#define TOOL_BUTTON_H
+#pragma once
 
 #include <QToolButton>
 
@@ -153,5 +152,3 @@ private:
 	QWidget* m_toolButton;
 
 } ;
-
-#endif

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WTS_SESSION_MANAGER_H
-#define WTS_SESSION_MANAGER_H
+#pragma once
 
 #include <windows.h>
 
@@ -59,5 +58,3 @@ public:
 	static QStringList loggedOnUsers();
 
 } ;
-
-#endif

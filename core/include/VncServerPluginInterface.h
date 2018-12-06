@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_SERVER_PLUGIN_INTERFACE_H
-#define VNC_SERVER_PLUGIN_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -57,5 +56,3 @@ typedef QList<VncServerPluginInterface *> VncServerPluginInterfaceList;
 #define VncServerPluginInterface_iid "io.veyon.Veyon.Plugins.VncServerPluginInterface"
 
 Q_DECLARE_INTERFACE(VncServerPluginInterface, VncServerPluginInterface_iid)
-
-#endif

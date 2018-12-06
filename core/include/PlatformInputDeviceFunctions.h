@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_INPUT_DEVICE_FUNCTIONS_H
-#define PLATFORM_INPUT_DEVICE_FUNCTIONS_H
+#pragma once
 
 #include "PlatformPluginInterface.h"
 
@@ -42,5 +41,3 @@ public:
 	virtual bool configureSoftwareSAS( bool enabled ) = 0;
 
 };
-
-#endif // PLATFORM_INPUT_DEVICE_FUNCTIONS_H

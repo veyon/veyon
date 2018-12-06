@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DEMO_CONFIGURATION_PAGE_H
-#define DEMO_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "ConfigurationPage.h"
 
@@ -51,5 +50,3 @@ private:
 	DemoConfiguration& m_configuration;
 
 };
-
-#endif // DEMO_CONFIGURATION_PAGE_H

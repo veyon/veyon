@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SCREENSHOT_FEATURE_PLUGIN_H
-#define SCREENSHOT_FEATURE_PLUGIN_H
+#pragma once
 
 #include "Feature.h"
 #include "SimpleFeatureProvider.h"
@@ -78,5 +77,3 @@ private:
 	const FeatureList m_features;
 
 };
-
-#endif // SCREENSHOT_FEATURE_PLUGIN_H

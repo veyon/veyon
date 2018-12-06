@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_PLUGIN_MANAGER_H
-#define PLATFORM_PLUGIN_MANAGER_H
+#pragma once
 
 #include "PlatformPluginInterface.h"
 
@@ -42,5 +41,3 @@ private:
 	PlatformPluginInterface* m_platformPlugin;
 
 };
-
-#endif // PLATFORM_PLUGIN_MANAGER_H

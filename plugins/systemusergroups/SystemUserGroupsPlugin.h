@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SYSTEM_USER_GROUPS_PLUGIN_H
-#define SYSTEM_USER_GROUPS_PLUGIN_H
+#pragma once
 
 #include "UserGroupsBackendInterface.h"
 
@@ -82,5 +81,3 @@ public:
 	QStringList groupsOfUser( const QString& username,  bool queryDomainGroups ) override;
 
 };
-
-#endif // SYSTEM_USER_GROUPS_PLUGIN_H

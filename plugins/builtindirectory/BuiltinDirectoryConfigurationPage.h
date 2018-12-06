@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef BUILTIN_DIRECTORY_CONFIGURATION_PAGE_H
-#define BUILTIN_DIRECTORY_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "ConfigurationPage.h"
 #include "NetworkObject.h"
@@ -65,5 +64,3 @@ private:
 	BuiltinDirectoryConfiguration& m_configuration;
 
 };
-
-#endif // BUILTIN_DIRECTORY_CONFIGURATION_PAGE_H

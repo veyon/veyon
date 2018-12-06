@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_USER_FUNCTIONS_H
-#define PLATFORM_USER_FUNCTIONS_H
+#pragma once
 
 #include "PlatformPluginInterface.h"
 
@@ -46,5 +45,3 @@ public:
 	virtual bool authenticate( const QString& username, const QString& password ) = 0;
 
 };
-
-#endif // PLATFORM_USER_FUNCTIONS_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_DESKTOP_INTEGRATION
-#define LINUX_DESKTOP_INTEGRATION
+#pragma once
 
 class LinuxDesktopIntegration
 {
@@ -70,4 +69,3 @@ public:
 	};
 };
 
-#endif // LINUX_DESKTOP_INTEGRATION

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef QT_COMPAT_H
-#define QT_COMPAT_H
+#pragma once
 
 #include <QtGlobal>
 #include <QSet>
@@ -338,6 +337,4 @@ struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
 	static Q_DECL_CONSTEXPR auto of(R (*ptr)(Args...)) Q_DECL_NOTHROW -> decltype(ptr)
 	{ return ptr; }
 };
-#endif
-
 #endif

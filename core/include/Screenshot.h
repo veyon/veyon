@@ -21,8 +21,7 @@
  *  USA.
  */
 
-#ifndef SCREENSHOT_H
-#define SCREENSHOT_H
+#pragma once
 
 #include "ComputerControlInterface.h"
 #include "VeyonCore.h"
@@ -71,6 +70,4 @@ private:
 	QImage m_image;
 
 } ;
-
-#endif
 

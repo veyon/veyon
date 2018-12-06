@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_USER_FUNCTIONS_H
-#define LINUX_USER_FUNCTIONS_H
+#pragma once
 
 #include "PlatformUserFunctions.h"
 
@@ -54,5 +53,3 @@ private:
 		WhoProcessTimeout = 3000
 	};
 };
-
-#endif // LINUX_USER_FUNCTIONS_H

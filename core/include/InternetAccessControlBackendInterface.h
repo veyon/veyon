@@ -23,8 +23,7 @@
  *
  */
 
-#ifndef INTERNET_ACCESS_CONTROL_BACKEND_INTERFACE_H
-#define INTERNET_ACCESS_CONTROL_BACKEND_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -55,5 +54,3 @@ typedef QList<InternetAccessControlBackendInterface *> InternetAccessControlBack
 #define InternetAccessControlBackendInterface_iid "io.veyon.Veyon.Plugins.InternetAccessControl.BackendInterface"
 
 Q_DECLARE_INTERFACE(InternetAccessControlBackendInterface, InternetAccessControlBackendInterface_iid)
-
-#endif // INTERNET_ACCESS_CONTROL_BACKEND_INTERFACE_H

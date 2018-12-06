@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef AUTHENTICATION_CREDENTIALS_H
-#define AUTHENTICATION_CREDENTIALS_H
+#pragma once
 
 #include "CryptoCore.h"
 #include "VeyonCore.h"
@@ -107,5 +106,3 @@ private:
 	QString m_internalVncServerPassword;
 
 } ;
-
-#endif

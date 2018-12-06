@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_SERVICE_CORE_H
-#define PLATFORM_SERVICE_CORE_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -49,5 +48,3 @@ private:
 	QMap<SessionId, QVariant> m_sessions;
 
 };
-
-#endif // PLATFORM_SERVICE_CORE_H

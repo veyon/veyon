@@ -22,13 +22,10 @@
  *
  */
 
-#ifndef LDAP_DEBUG_H
-#define LDAP_DEBUG_H
+#pragma once
 
 #include <QDebug>
 #include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(LDAP_LOG);
-
-#endif
 

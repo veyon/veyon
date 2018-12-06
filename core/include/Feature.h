@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_H
-#define FEATURE_H
+#pragma once
 
 #include <QIcon>
 #include <QKeySequence>
@@ -206,5 +205,3 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(Feature::Flags)
 
 typedef QList<Feature> FeatureList;
 typedef QStringList FeatureUidList;
-
-#endif // FEATURE_H

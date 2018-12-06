@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_MESSAGE_H
-#define FEATURE_MESSAGE_H
+#pragma once
 
 #include <QVariant>
 
@@ -124,5 +123,3 @@ private:
 	Arguments m_arguments;
 
 } ;
-
-#endif // FEATURE_MESSAGE_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLUGIN_H
-#define PLUGIN_H
+#pragma once
 
 #include <QObject>
 #include <QList>
@@ -47,5 +46,3 @@ public:
 };
 
 typedef QList<Plugin::Uid> PluginUidList;
-
-#endif // PLUGIN_H

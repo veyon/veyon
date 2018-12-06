@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef AUTH_KEYS_PLUGIN_H
-#define AUTH_KEYS_PLUGIN_H
+#pragma once
 
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
@@ -109,5 +108,3 @@ private:
 	QMap<QString, QString> m_commands;
 
 };
-
-#endif // AUTH_KEYS_COMMAND_LINE_PLUGIN_H

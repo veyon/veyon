@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_RULE_LIST_MODEL_H
-#define ACCESS_CONTROL_RULE_LIST_MODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 
@@ -45,5 +44,3 @@ private:
 	QList<AccessControlRule> m_accessControlRules;
 
 };
-
-#endif // ACCESS_CONTROL_RULE_LIST_MODEL_H

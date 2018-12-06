@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SERVICE_CONTROL_H
-#define SERVICE_CONTROL_H
+#pragma once
 
 #include <QFuture>
 
@@ -65,5 +64,3 @@ private:
 	QWidget* m_parent;
 
 };
-
-#endif // SERVICE_CONTROL_H

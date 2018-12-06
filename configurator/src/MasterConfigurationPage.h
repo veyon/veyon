@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef MASTER_CONFIGURATION_PAGE_H
-#define MASTER_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "ConfigurationPage.h"
 #include "FeatureManager.h"
@@ -63,5 +62,3 @@ private:
 	QStringList m_disabledFeatures;
 
 };
-
-#endif // MASTER_CONFIGURATION_PAGE_H

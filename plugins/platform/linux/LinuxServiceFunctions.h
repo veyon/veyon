@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_SERVICE_FUNCTIONS_H
-#define LINUX_SERVICE_FUNCTIONS_H
+#pragma once
 
 #include "PlatformServiceFunctions.h"
 
@@ -49,5 +48,3 @@ private:
 	static int systemctl( const QStringList& arguments );
 
 };
-
-#endif // LINUX_SERVICE_FUNCTIONS_H

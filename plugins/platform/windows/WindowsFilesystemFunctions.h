@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_FILESYSTEM_FUNCTIONS_H
-#define WINDOWS_FILESYSTEM_FUNCTIONS_H
+#pragma once
 
 #include "PlatformFilesystemFunctions.h"
 
@@ -41,5 +40,3 @@ public:
 	bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) override;
 
 };
-
-#endif // WINDOWS_FILESYSTEM_FUNCTIONS_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef POWER_CONTROL_FEATURE_PLUGIN_H
-#define POWER_CONTROL_FEATURE_PLUGIN_H
+#pragma once
 
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
@@ -111,5 +110,3 @@ private:
 	const FeatureList m_features;
 
 };
-
-#endif // POWER_CONTROL_FEATURE_PLUGIN_H

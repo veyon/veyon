@@ -21,8 +21,7 @@
  * USA.
  */
 
-#ifndef MAIN_TOOL_BAR_H
-#define MAIN_TOOL_BAR_H
+#pragma once
 
 #include <QToolBar>
 
@@ -48,5 +47,3 @@ private:
 	MainWindow* m_mainWindow;
 
 } ;
-
-#endif

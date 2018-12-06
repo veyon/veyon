@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_MONITORING_VIEW_H
-#define COMPUTER_MONITORING_VIEW_H
+#pragma once
 
 #include "ComputerControlInterface.h"
 
@@ -89,5 +88,3 @@ signals:
 	void computerScreenSizeAdjusted( int size );
 
 };
-
-#endif // COMPUTER_MONITORING_VIEW_H

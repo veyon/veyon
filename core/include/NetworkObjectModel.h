@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_MODEL_H
-#define NETWORK_OBJECT_MODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 
@@ -51,5 +50,3 @@ public:
 	} Role;
 
 };
-
-#endif // NETWORK_OBJECT_MODEL_H

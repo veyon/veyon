@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_TEST_CONTROLLER_H
-#define CONFIGURATION_TEST_CONTROLLER_H
+#pragma once
 
 #include <QStringList>
 
@@ -44,5 +43,3 @@ private:
 	QStringList m_testArguments;
 
 };
-
-#endif // CONFIGURATION_TEST_CONTROLLER_H

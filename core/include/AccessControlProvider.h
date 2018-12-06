@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_PROVIDER_H
-#define ACCESS_CONTROL_PROVIDER_H
+#pragma once
 
 #include "AccessControlRule.h"
 #include "NetworkObject.h"
@@ -86,5 +85,3 @@ private:
 	bool m_queryDomainGroups;
 
 } ;
-
-#endif

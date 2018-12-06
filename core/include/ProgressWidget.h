@@ -21,8 +21,7 @@
  *  USA.
  */
 
-#ifndef PROGRESS_WIDGET_H
-#define PROGRESS_WIDGET_H
+#pragma once
 
 #include <QPixmap>
 #include <QVector>
@@ -49,5 +48,3 @@ private:
 	QVector<QPixmap> m_pixmaps;
 
 } ;
-
-#endif

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VEYONCORE_LOGGER_H
-#define VEYONCORE_LOGGER_H
+#pragma once
 
 #include <QMutex>
 #include <QTextStream>
@@ -100,5 +99,3 @@ private:
 	int m_logFileRotationCount;
 
 } ;
-
-#endif

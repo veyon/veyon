@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_SERVICE_H
-#define WINDOWS_SERVICE_H
+#pragma once
 
 #include <windows.h>
 
@@ -52,5 +51,3 @@ private:
 	SC_HANDLE m_serviceHandle;
 
 } ;
-
-#endif

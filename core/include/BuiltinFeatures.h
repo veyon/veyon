@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef BUILTIN_FEATURES_H
-#define BUILTIN_FEATURES_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -73,5 +72,3 @@ private:
 	DesktopAccessDialog* m_desktopAccessDialog;
 	UserSessionControl* m_userSessionControl;
 };
-
-#endif // BUILTIN_FEATURES_H

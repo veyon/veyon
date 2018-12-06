@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VEYON_WORKER_H
-#define VEYON_WORKER_H
+#pragma once
 
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
@@ -51,5 +50,3 @@ private:
 	FeatureWorkerManagerConnection* m_workerManagerConnection;
 
 } ;
-
-#endif

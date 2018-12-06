@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CHECKABLE_ITEM_PROXY_MODEL_H
-#define CHECKABLE_ITEM_PROXY_MODEL_H
+#pragma once
 
 #include <QJsonArray>
 #include <QIdentityProxyModel>
@@ -71,5 +70,3 @@ private:
 	QHash<QUuid, Qt::CheckState> m_checkStates;
 
 };
-
-#endif // CHECKABLE_ITEM_PROXY_MODEL_H

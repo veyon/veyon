@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SERVER_ACCESS_CONTROL_MANAGER_H
-#define SERVER_ACCESS_CONTROL_MANAGER_H
+#pragma once
 
 #include "DesktopAccessDialog.h"
 #include "RfbVeyonAuth.h"
@@ -68,5 +67,3 @@ private:
 	DesktopAccessChoiceMap m_desktopAccessChoices;
 
 } ;
-
-#endif

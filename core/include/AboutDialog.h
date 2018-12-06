@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ABOUT_DIALOG_H
-#define ABOUT_DIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -47,5 +46,3 @@ private slots:
 private:
 	Ui::AboutDialog *ui;
 } ;
-
-#endif

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SAS_EVENT_LISTENER_H
-#define SAS_EVENT_LISTENER_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -50,5 +49,3 @@ private:
 	HANDLE m_stopEvent;
 
 };
-
-#endif

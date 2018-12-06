@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_PROXY_CONNECTION_H
-#define VNC_PROXY_CONNECTION_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -82,5 +81,3 @@ signals:
 	void serverConnectionClosed();
 
 } ;
-
-#endif

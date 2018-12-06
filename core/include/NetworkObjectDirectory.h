@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_DIRECTORY_H
-#define NETWORK_OBJECT_DIRECTORY_H
+#pragma once
 
 #include <QHash>
 #include <QObject>
@@ -81,5 +80,3 @@ signals:
 	void objectChanged( const NetworkObject& parent, int index );
 
 };
-
-#endif // NETWORK_OBJECT_DIRECTORY_H

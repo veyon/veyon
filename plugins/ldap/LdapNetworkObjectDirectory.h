@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LDAP_NETWORK_OBJECT_DIRECTORY_H
-#define LDAP_NETWORK_OBJECT_DIRECTORY_H
+#pragma once
 
 #include "LdapDirectory.h"
 #include "NetworkObjectDirectory.h"
@@ -49,5 +48,3 @@ private:
 
 	LdapDirectory m_ldapDirectory;
 };
-
-#endif // LDAP_NETWORK_OBJECT_DIRECTORY_H

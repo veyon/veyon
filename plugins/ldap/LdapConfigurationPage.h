@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LDAP_CONFIGURATION_PAGE_H
-#define LDAP_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "ConfigurationPage.h"
 
@@ -91,5 +90,3 @@ private:
 	LdapConfiguration& m_configuration;
 
 };
-
-#endif // LDAP_CONFIGURATION_PAGE_H

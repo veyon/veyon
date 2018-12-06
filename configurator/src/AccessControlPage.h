@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_PAGE_H
-#define ACCESS_CONTROL_PAGE_H
+#pragma once
 
 #include "AccessControlRuleListModel.h"
 #include "AccessControlRulesTestDialog.h"
@@ -70,5 +69,3 @@ private:
 	AccessControlRulesTestDialog m_accessControlRulesTestDialog;
 
 };
-
-#endif // ACCESS_CONTROL_PAGE_H

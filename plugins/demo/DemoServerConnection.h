@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DEMO_SERVER_CONNECTION_H
-#define DEMO_SERVER_CONNECTION_H
+#pragma once
 
 #include "DemoServerProtocol.h"
 
@@ -67,5 +66,3 @@ private:
 	const int m_framebufferUpdateInterval;
 
 } ;
-
-#endif

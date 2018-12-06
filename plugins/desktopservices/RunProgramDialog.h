@@ -20,8 +20,7 @@
  *
  */
 
-#ifndef RUN_PROGRAM_DIALOG_H
-#define RUN_PROGRAM_DIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -47,5 +46,3 @@ private:
 	QStringList m_programs;
 
 } ;
-
-#endif

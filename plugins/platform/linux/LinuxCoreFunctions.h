@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_CORE_FUNCTIONS_H
-#define LINUX_CORE_FUNCTIONS_H
+#pragma once
 
 #include <QDBusInterface>
 
@@ -76,5 +75,3 @@ private:
 	unsigned short m_dpmsOffTimeout;
 
 };
-
-#endif // LINUX_CORE_FUNCTIONS_H

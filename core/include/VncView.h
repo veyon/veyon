@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_VIEW_H
-#define VNC_VIEW_H
+#pragma once
 
 #include <QEvent>
 #include <QPointer>
@@ -152,5 +151,3 @@ private:
 	QTimer m_mouseBorderSignalTimer;
 
 } ;
-
-#endif

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_H
-#define NETWORK_OBJECT_H
+#pragma once
 
 #include <QUuid>
 #include <QString>
@@ -138,5 +137,3 @@ Q_DECLARE_METATYPE(NetworkObject::Type)
 
 typedef QList<NetworkObject> NetworkObjectList;
 typedef HashList<NetworkObject::Uid> NetworkObjectUidList;
-
-#endif // NETWORK_OBJECT_H

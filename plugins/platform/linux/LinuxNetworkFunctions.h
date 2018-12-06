@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_NETWORK_FUNCTIONS_H
-#define LINUX_NETWORK_FUNCTIONS_H
+#pragma once
 
 #include "PlatformNetworkFunctions.h"
 
@@ -38,5 +37,3 @@ public:
 	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
 
 };
-
-#endif // LINUX_NETWORK_FUNCTIONS_H

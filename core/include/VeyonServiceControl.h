@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VEYON_SERVICE_CONTROL_H
-#define VEYON_SERVICE_CONTROL_H
+#pragma once
 
 #include "ServiceControl.h"
 
@@ -41,5 +40,3 @@ public:
 	static QString filePath();
 	static QString displayName();
 };
-
-#endif // VEYON_SERVICE_CONTROL_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DESKTOP_SERVICE_OBJECT_H
-#define DESKTOP_SERVICE_OBJECT_H
+#pragma once
 
 #include <QMetaType>
 #include <QString>
@@ -90,5 +89,3 @@ private:
 };
 
 Q_DECLARE_METATYPE(DesktopServiceObject::Type)
-
-#endif // DESKTOP_SERVICE_OBJECT_H

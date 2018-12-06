@@ -21,8 +21,7 @@
  *  USA.
  */
 
-#ifndef REMOTE_ACCESS_WIDGET_H
-#define REMOTE_ACCESS_WIDGET_H
+#pragma once
 
 #include "ComputerControlInterface.h"
 
@@ -115,5 +114,3 @@ private:
 	static constexpr int AppearDelay = 500;
 
 } ;
-
-#endif

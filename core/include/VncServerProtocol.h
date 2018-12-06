@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_SERVER_PROTOCOL_H
-#define VNC_SERVER_PROTOCOL_H
+#pragma once
 
 #include "RfbVeyonAuth.h"
 
@@ -101,5 +100,3 @@ private:
 	QByteArray m_serverInitMessage;
 
 } ;
-
-#endif

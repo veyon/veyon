@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VEYON_SERVER_PROTOCOL_H
-#define VEYON_SERVER_PROTOCOL_H
+#pragma once
 
 #include "VncServerProtocol.h"
 
@@ -50,5 +49,3 @@ private:
 	ServerAccessControlManager& m_serverAccessControlManager;
 
 } ;
-
-#endif

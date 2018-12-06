@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_SERVICE_FUNCTIONS_H
-#define WINDOWS_SERVICE_FUNCTIONS_H
+#pragma once
 
 #include "PlatformServiceFunctions.h"
 
@@ -49,5 +48,3 @@ private:
 	static int windowsServiceStartType( StartMode startMode );
 
 };
-
-#endif // WINDOWS_SERVICE_FUNCTIONS_H

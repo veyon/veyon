@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef BUILTIN_X11VNC_SERVER_H
-#define BUILTIN_X11VNC_SERVER_H
+#pragma once
 
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
@@ -92,5 +91,3 @@ private:
 	X11VncConfiguration m_configuration;
 
 };
-
-#endif // BUILTIN_X11VNC_SERVER_H

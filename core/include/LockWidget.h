@@ -21,8 +21,7 @@
  *  USA.
  */
 
-#ifndef LOCK_WIDGET_H
-#define LOCK_WIDGET_H
+#pragma once
 
 #include <QWidget>
 #include <QPixmap>
@@ -52,5 +51,3 @@ private:
 	Mode m_mode;
 
 } ;
-
-#endif

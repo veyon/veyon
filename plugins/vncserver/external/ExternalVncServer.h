@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef EXTERNAL_VNC_SERVER_H
-#define EXTERNAL_VNC_SERVER_H
+#pragma once
 
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
@@ -92,5 +91,3 @@ private:
 	ExternalVncServerConfiguration m_configuration;
 
 };
-
-#endif // EXTERNAL_VNC_SERVER_H

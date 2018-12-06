@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_USER_FUNCTIONS_H
-#define WINDOWS_USER_FUNCTIONS_H
+#pragma once
 
 #include "PlatformUserFunctions.h"
 
@@ -55,5 +54,3 @@ private:
 	static QStringList localGroupsOfUser( const QString& username );
 
 };
-
-#endif // WINDOWS_USER_FUNCTIONS_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_RULES_TEST_DIALOG_H
-#define ACCESS_CONTROL_RULES_TEST_DIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -45,5 +44,3 @@ public:
 private:
 	Ui::AccessControlRulesTestDialog *ui;
 };
-
-#endif // ACCESS_CONTROL_RULES_TEST_DIALOG_H

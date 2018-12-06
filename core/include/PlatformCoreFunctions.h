@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_CORE_FUNCTIONS_H
-#define PLATFORM_CORE_FUNCTIONS_H
+#pragma once
 
 #include <QFile>
 
@@ -59,5 +58,3 @@ public:
 	virtual QString genericUrlHandler() const = 0;
 
 };
-
-#endif // PLATFORM_CORE_FUNCTIONS_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef GENERAL_CONFIGURATION_PAGE_H
-#define GENERAL_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "ConfigurationPage.h"
 
@@ -51,5 +50,3 @@ private:
 	Ui::GeneralConfigurationPage *ui;
 
 } ;
-
-#endif

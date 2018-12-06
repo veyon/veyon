@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLUGIN_MANAGER_H
-#define PLUGIN_MANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -75,5 +74,3 @@ signals:
 	void pluginsLoaded();
 
 };
-
-#endif // PLUGIN_MANAGER_H

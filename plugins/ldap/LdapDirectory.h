@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LDAP_DIRECTORY_H
-#define LDAP_DIRECTORY_H
+#pragma once
 
 #include <QObject>
 #include <QUrl>
@@ -123,5 +122,3 @@ private:
 	QScopedPointer<LdapDirectoryPrivate> d;
 
 };
-
-#endif

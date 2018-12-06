@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef BUILTIN_ULTRAVNC_SERVER_H
-#define BUILTIN_ULTRAVNC_SERVER_H
+#pragma once
 
 #include "UltraVncConfiguration.h"
 #include "VncServerPluginInterface.h"
@@ -116,5 +115,3 @@ private:
 	LogoffEventFilter* m_logoffEventFilter;
 
 };
-
-#endif // BUILTIN_ULTRAVNC_SERVER_H

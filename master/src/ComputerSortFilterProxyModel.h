@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_SORT_FILTER_PROXY_MODEL_H
-#define COMPUTER_SORT_FILTER_PROXY_MODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
@@ -57,5 +56,3 @@ private:
 	ComputerControlInterface::State m_stateFilter;
 
 };
-
-#endif // COMPUTER_SORT_FILTER_PROXY_MODEL_H

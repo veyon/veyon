@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ACCESS_CONTROL_RULE_EDIT_DIALOG_H
-#define ACCESS_CONTROL_RULE_EDIT_DIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -49,5 +48,3 @@ private:
 	QMap<AccessControlRule::Subject, QString> m_subjectNameMap;
 
 };
-
-#endif // ACCESS_CONTROL_RULE_EDIT_DIALOG_H

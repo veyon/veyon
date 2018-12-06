@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_PROXY_SERVER_H
-#define VNC_PROXY_SERVER_H
+#pragma once
 
 #include <QHostAddress>
 #include <QVector>
@@ -66,5 +65,3 @@ private:
 	VncProxyConnectionList m_connections;
 
 } ;
-
-#endif

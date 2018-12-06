@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef AUTH_KEYS_TABLE_MODEL_H
-#define AUTH_KEYS_TABLE_MODEL_H
+#pragma once
 
 #include <QAbstractTableModel>
 
@@ -61,5 +60,3 @@ private:
 	QStringList m_keys;
 
 };
-
-#endif // AUTH_KEYS_TABLE_MODEL_H

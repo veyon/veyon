@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CRYPTO_CORE_H
-#define CRYPTO_CORE_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -60,5 +59,3 @@ private:
 	PrivateKey m_defaultPrivateKey;
 
 };
-
-#endif

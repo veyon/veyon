@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SCREENSHOT_MANAGEMENT_VIEW_H
-#define SCREENSHOT_MANAGEMENT_VIEW_H
+#pragma once
 
 #include <QFileSystemModel>
 #include <QWidget>
@@ -58,5 +57,3 @@ private:
 	QFileSystemModel m_fsModel;
 
 } ;
-
-#endif

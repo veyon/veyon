@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_PLUGIN_INTERFACE_H
-#define PLATFORM_PLUGIN_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -53,5 +52,3 @@ typedef QList<PlatformPluginInterface *> PlatformPluginInterfaceList;
 #define PlatformPluginInterface_iid "io.veyon.Veyon.Plugins.PlatformPluginInterface"
 
 Q_DECLARE_INTERFACE(PlatformPluginInterface, PlatformPluginInterface_iid)
-
-#endif // PLATFORM_PLUGIN_INTERFACE_H

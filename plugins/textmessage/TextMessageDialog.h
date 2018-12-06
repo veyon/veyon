@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef TEXT_MESSAGE_DIALOG_H
-#define TEXT_MESSAGE_DIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -48,5 +47,3 @@ private:
 	QString &m_msgStr;
 
 } ;
-
-#endif

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_PAGE_H
-#define CONFIGURATION_PAGE_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -41,5 +40,3 @@ public:
 	virtual void applyConfiguration() = 0;
 
 };
-
-#endif // CONFIGURATION_PAGE_H

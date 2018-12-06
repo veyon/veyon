@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DESKTOP_ACCESS_DIALOG_H
-#define DESKTOP_ACCESS_DIALOG_H
+#pragma once
 
 #include <QTimer>
 
@@ -134,5 +133,3 @@ signals:
 	void finished();
 
 };
-
-#endif // DESKTOP_ACCESS_DIALOG_H

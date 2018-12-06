@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef USER_GROUPS_BACKEND_INTERFACE_H
-#define USER_GROUPS_BACKEND_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -46,5 +45,3 @@ typedef QList<UserGroupsBackendInterface> UserGroupsBackendInterfaceList;
 #define UserGroupsBackendInterface_iid "io.veyon.Veyon.Plugins.UserGroupsBackendInterface"
 
 Q_DECLARE_INTERFACE(UserGroupsBackendInterface, UserGroupsBackendInterface_iid)
-
-#endif // USER_GROUPS_BACKEND_INTERFACE_H

@@ -22,10 +22,7 @@
  *
  */
 
-#ifndef KLDAP_EXPORT_H
-#define KLDAP_EXPORT_H
+#pragma once
 
 #define KLDAP_EXPORT
 #define KLDAP_NO_EXPORT __attribute__((visibility("hidden")))
-
-#endif

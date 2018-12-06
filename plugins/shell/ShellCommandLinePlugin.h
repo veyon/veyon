@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SHELL_COMMAND_LINE_PLUGIN_H
-#define SHELL_COMMAND_LINE_PLUGIN_H
+#pragma once
 
 #include "CommandLinePluginInterface.h"
 
@@ -89,5 +88,3 @@ private:
 	QMap<QString, QString> m_commands;
 
 };
-
-#endif // SHELL_COMMAND_LINE_PLUGIN_H

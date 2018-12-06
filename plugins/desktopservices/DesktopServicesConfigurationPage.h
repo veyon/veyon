@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DESKTOP_SERVICES_CONFIGURATION_PAGE_H
-#define DESKTOP_SERVICES_CONFIGURATION_PAGE_H
+#pragma once
 
 #include "ConfigurationPage.h"
 #include "DesktopServiceObject.h"
@@ -68,5 +67,3 @@ private:
 	DesktopServicesConfiguration& m_configuration;
 
 };
-
-#endif // DESKTOP_SERVICES_CONFIGURATION_PAGE_H

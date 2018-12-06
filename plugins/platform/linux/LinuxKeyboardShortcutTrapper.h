@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_KEYBOARD_SHORTCUT_TRAPPER_H
-#define LINUX_KEYBOARD_SHORTCUT_TRAPPER_H
+#pragma once
 
 #include "KeyboardShortcutTrapper.h"
 
@@ -46,5 +45,3 @@ public:
 	}
 
 } ;
-
-#endif

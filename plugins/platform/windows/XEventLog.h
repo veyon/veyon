@@ -12,8 +12,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef XEVENTLOG_H
-#define XEVENTLOG_H
+#pragma once
 
 class CXEventLog
 {
@@ -40,5 +39,3 @@ protected:
 	BOOL	RegisterSource(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll);
 	void	SetAppName(LPCTSTR lpszApp);
 };
-
-#endif //XEVENTLOG_H

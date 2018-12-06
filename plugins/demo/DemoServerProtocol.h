@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DEMO_SERVER_PROTOCOL_H
-#define DEMO_SERVER_PROTOCOL_H
+#pragma once
 
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
@@ -46,5 +45,3 @@ private:
 	const QString m_demoAccessToken;
 
 } ;
-
-#endif

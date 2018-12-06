@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef ROOM_SELECTION_DIALOG_H
-#define ROOM_SELECTION_DIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QSortFilterProxyModel>
@@ -54,5 +53,3 @@ private:
 	QSortFilterProxyModel m_sortFilterProxyModel;
 	QString m_selectedRoom;
 };
-
-#endif // ROOM_SELECTION_DIALOG_H

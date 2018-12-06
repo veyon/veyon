@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef USER_GROUPS_BACKEND_MANAGER_H
-#define USER_GROUPS_BACKEND_MANAGER_H
+#pragma once
 
 #include "UserGroupsBackendInterface.h"
 
@@ -45,5 +44,3 @@ private:
 	UserGroupsBackendInterface* m_accessControlBackend;
 
 };
-
-#endif // USER_GROUPS_BACKEND_MANAGER_H

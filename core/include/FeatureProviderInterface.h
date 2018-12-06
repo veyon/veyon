@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_PROVIDER_INTERFACE_H
-#define FEATURE_PROVIDER_INTERFACE_H
+#pragma once
 
 #include "ComputerControlInterface.h"
 #include "FeatureMessage.h"
@@ -112,5 +111,3 @@ typedef QList<FeatureProviderInterface *> FeatureProviderInterfaceList;
 #define FeatureProviderInterface_iid "io.veyon.Veyon.FeatureProviderInterface"
 
 Q_DECLARE_INTERFACE(FeatureProviderInterface, FeatureProviderInterface_iid)
-
-#endif // FEATURE_PROVIDER_INTERFACE_H

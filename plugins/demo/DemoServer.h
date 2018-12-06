@@ -23,8 +23,7 @@
  *
  */
 
-#ifndef DEMO_SERVER_H
-#define DEMO_SERVER_H
+#pragma once
 
 #include <QElapsedTimer>
 #include <QReadWriteLock>
@@ -109,5 +108,3 @@ private:
 	MessageList m_framebufferUpdateMessages;
 
 } ;
-
-#endif

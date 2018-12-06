@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef MONITORING_MODE_H
-#define MONITORING_MODE_H
+#pragma once
 
 #include "SimpleFeatureProvider.h"
 
@@ -79,5 +78,3 @@ private:
 	const FeatureList m_features;
 
 };
-
-#endif // MONITORING_MODE_H

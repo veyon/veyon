@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_PLATFORM_PLUGIN_H
-#define WINDOWS_PLATFORM_PLUGIN_H
+#pragma once
 
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
@@ -117,5 +116,3 @@ private:
 	WindowsUserFunctions m_windowsUserFunctions;
 
 };
-
-#endif // WINDOWS_PLATFORM_PLUGIN_H

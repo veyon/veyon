@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SIMPLE_FEATURE_PROVIDER_H
-#define SIMPLE_FEATURE_PROVIDER_H
+#pragma once
 
 #include "FeatureProviderInterface.h"
 
@@ -50,5 +49,3 @@ public:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 };
-
-#endif // SIMPLE_FEATURE_PROVIDER_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SERVER_AUTHENTICATION_MANAGER_H
-#define SERVER_AUTHENTICATION_MANAGER_H
+#pragma once
 
 #include <QMutex>
 #include <QStringList>
@@ -68,5 +67,3 @@ private:
 	QStringList m_failedAuthHosts;
 
 } ;
-
-#endif

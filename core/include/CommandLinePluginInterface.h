@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMMAND_LINE_PLUGIN_INTERFACE_H
-#define COMMAND_LINE_PLUGIN_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -59,5 +58,3 @@ typedef QList<CommandLinePluginInterface *> CommandLinePluginInterfaceList;
 #define CommandLinePluginInterface_iid "io.veyon.Veyon.Plugins.CommandLinePluginInterface"
 
 Q_DECLARE_INTERFACE(CommandLinePluginInterface, CommandLinePluginInterface_iid)
-
-#endif // COMMAND_LINE_PLUGIN_INTERFACE_H

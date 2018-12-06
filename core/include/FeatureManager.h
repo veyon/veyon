@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_MANAGER_H
-#define FEATURE_MANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -76,5 +75,3 @@ private:
 	const Feature m_dummyFeature;
 
 };
-
-#endif // FEATURE_MANAGER_H

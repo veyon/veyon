@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SYSTEM_TRAY_ICON_H
-#define SYSTEM_TRAY_ICON_H
+#pragma once
 
 #include "SimpleFeatureProvider.h"
 
@@ -106,5 +105,3 @@ private:
 	QSystemTrayIcon* m_systemTrayIcon;
 
 };
-
-#endif // SYSTEM_TRAY_ICON_H

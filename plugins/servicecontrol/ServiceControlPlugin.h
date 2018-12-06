@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SERVICE_CONTROL_PLUGIN_H
-#define SERVICE_CONTROL_PLUGIN_H
+#pragma once
 
 #include "CommandLinePluginInterface.h"
 
@@ -98,5 +97,3 @@ private:
 	QMap<QString, QString> m_commands;
 
 };
-
-#endif // SERVICE_CONTROL_PLUGIN_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_CORE_FUNCTIONS_H
-#define WINDOWS_CORE_FUNCTIONS_H
+#pragma once
 
 #include <windows.h>
 
@@ -76,5 +75,3 @@ private:
 	CXEventLog* m_eventLog;
 
 };
-
-#endif // WINDOWS_CORE_FUNCTIONS_H

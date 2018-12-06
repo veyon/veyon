@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef KEYBOARD_SHORTCUT_TRAPPER_H
-#define KEYBOARD_SHORTCUT_TRAPPER_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -55,5 +54,3 @@ signals:
 	void shortcutTrapped( Shortcut );
 
 } ;
-
-#endif

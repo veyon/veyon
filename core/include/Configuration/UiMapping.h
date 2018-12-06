@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_UI_MAPPING_H
-#define CONFIGURATION_UI_MAPPING_H
+#pragma once
 
 #include <QCheckBox>
 #include <QColorDialog>
@@ -224,5 +223,3 @@ inline void connectWidgetToProperty( Config* config, void (Config::*setter)( con
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue)	\
 	connectWidgetToProperty( &config, &className::set, ui->get );
-
-#endif

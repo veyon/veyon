@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_FILESYSTEM_FUNCTIONS_H
-#define LINUX_FILESYSTEM_FUNCTIONS_H
+#pragma once
 
 #include "PlatformFilesystemFunctions.h"
 
@@ -41,5 +40,3 @@ public:
 	bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) override;
 
 };
-
-#endif // LINUX_FILESYSTEM_FUNCTIONS_H

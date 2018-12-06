@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef AUTH_KEYS_MANAGER_H
-#define AUTH_KEYS_MANAGER_H
+#pragma once
 
 #include "CryptoCore.h"
 
@@ -77,5 +76,3 @@ private:
 	QString m_resultMessage;
 
 };
-
-#endif // AUTH_KEYS_MANAGER_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LOGOFF_EVENT_FILTER_H
-#define LOGOFF_EVENT_FILTER_H
+#pragma once
 
 #include <windows.h>
 
@@ -41,5 +40,3 @@ private:
 	HANDLE m_shutdownEventHandle;
 
 };
-
-#endif // LOGOFF_EVENT_FILTER_H

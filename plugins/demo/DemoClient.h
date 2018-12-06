@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef DEMO_CLIENT_H
-#define DEMO_CLIENT_H
+#pragma once
 
 #include <QObject>
 
@@ -47,5 +46,3 @@ private:
 	VncView* m_vncView;
 
 } ;
-
-#endif

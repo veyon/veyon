@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef X11VNC_CONFIGURATION_WIDGET_H
-#define X11VNC_CONFIGURATION_WIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -46,5 +45,3 @@ private:
 	X11VncConfiguration& m_configuration;
 
 };
-
-#endif // X11VNC_CONFIGURATION_WIDGET_H

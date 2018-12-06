@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_CONTROL_SERVER_H
-#define COMPUTER_CONTROL_SERVER_H
+#pragma once
 
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>
@@ -99,5 +98,3 @@ private:
 	VncProxyServer m_vncProxyServer;
 
 } ;
-
-#endif

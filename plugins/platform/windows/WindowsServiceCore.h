@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_SERVICE_CORE_H
-#define WINDOWS_SERVICE_CORE_H
+#pragma once
 
 #include "PlatformServiceCore.h"
 
@@ -61,5 +60,3 @@ private:
 	QAtomicInt m_sessionChangeEvent;
 
 } ;
-
-#endif

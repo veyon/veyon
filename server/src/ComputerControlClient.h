@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_CONTROL_CLIENT_H
-#define COMPUTER_CONTROL_CLIENT_H
+#pragma once
 
 #include "VncClientProtocol.h"
 #include "VncProxyConnection.h"
@@ -65,5 +64,3 @@ private:
 	VncClientProtocol m_clientProtocol;
 
 } ;
-
-#endif

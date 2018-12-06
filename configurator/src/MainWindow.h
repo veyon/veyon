@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#pragma once
 
 #include <QMainWindow>
 
@@ -63,5 +62,3 @@ private:
 	bool m_configChanged;
 
 } ;
-
-#endif

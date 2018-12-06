@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H
-#define EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -46,5 +45,3 @@ private:
 	ExternalVncServerConfiguration& m_configuration;
 
 };
-
-#endif // EXTERNAL_VNC_SERVER_CONFIGURATION_WIDGET_H

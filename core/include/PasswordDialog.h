@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PASSWORD_DIALOG_H
-#define PASSWORD_DIALOG_H
+#pragma once
 
 #include "AuthenticationCredentials.h"
 
@@ -53,5 +52,3 @@ private:
 	Ui::PasswordDialog *ui;
 
 } ;
-
-#endif

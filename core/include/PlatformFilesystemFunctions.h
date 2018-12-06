@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_FILESYSTEM_FUNCTIONS_H
-#define PLATFORM_FILESYSTEM_FUNCTIONS_H
+#pragma once
 
 #include <QFile>
 
@@ -44,5 +43,3 @@ public:
 
 
 };
-
-#endif // PLATFORM_FILESYSTEM_FUNCTIONS_H

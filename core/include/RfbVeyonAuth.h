@@ -23,8 +23,7 @@
  *
  */
 
-#ifndef RFB_VEYON_AUTH_H
-#define RFB_VEYON_AUTH_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -61,5 +60,3 @@ public:
 	Q_ENUM(Type)
 
 };
-
-#endif

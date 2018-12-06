@@ -23,8 +23,7 @@
  *
  */
 
-#ifndef VNC_SERVER_H
-#define VNC_SERVER_H
+#pragma once
 
 #include <QThread>
 
@@ -49,5 +48,3 @@ private:
 	VncServerPluginInterface* m_pluginInterface;
 
 } ;
-
-#endif

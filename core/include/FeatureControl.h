@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FEATURE_CONTROL_H
-#define FEATURE_CONTROL_H
+#pragma once
 
 #include "SimpleFeatureProvider.h"
 
@@ -96,5 +95,3 @@ private:
 	FeatureUidList m_activeFeatures;
 
 };
-
-#endif // FEATURE_CONTROL_H

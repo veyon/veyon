@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_MANAGER_VIEW_H
-#define COMPUTER_MANAGER_VIEW_H
+#pragma once
 
 #include <QModelIndexList>
 #include <QWidget>
@@ -58,5 +57,3 @@ private:
 	QModelIndexList m_expandedGroups;
 
 };
-
-#endif // COMPUTER_MANAGER_VIEW_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SCREEN_LOCK_FEATURE_PLUGIN_H
-#define SCREEN_LOCK_FEATURE_PLUGIN_H
+#pragma once
 
 #include "FeatureProviderInterface.h"
 
@@ -102,5 +101,3 @@ private:
 	LockWidget* m_lockWidget;
 
 };
-
-#endif // SCREEN_LOCK_FEATURE_PLUGIN_H

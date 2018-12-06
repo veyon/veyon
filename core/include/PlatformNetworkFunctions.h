@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_NETWORK_FUNCTIONS_H
-#define PLATFORM_NETWORK_FUNCTIONS_H
+#pragma once
 
 #include "PlatformPluginInterface.h"
 
@@ -47,5 +46,3 @@ public:
 	virtual bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) = 0;
 
 };
-
-#endif // PLATFORM_NETWORK_FUNCTIONS_H

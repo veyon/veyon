@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef LINUX_PLATFORM_PLUGIN_H
-#define LINUX_PLATFORM_PLUGIN_H
+#pragma once
 
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
@@ -117,5 +116,3 @@ private:
 	LinuxUserFunctions m_linuxUserFunctions;
 
 };
-
-#endif // LINUX_PLATFORM_PLUGIN_H

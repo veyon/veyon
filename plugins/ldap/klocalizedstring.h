@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef KLOCALIZEDSTRING_H
-#define KLOCALIZEDSTRING_H
+#pragma once
 
 #include <QObject>
 
@@ -47,6 +46,4 @@ static inline QString i18np(const char* singular, const char* plural, T arg)
 	}
 	return QObject::tr(singular).arg(arg);
 }
-
-#endif
 

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef NETWORK_OBJECT_TREE_MODEL_H
-#define NETWORK_OBJECT_TREE_MODEL_H
+#pragma once
 
 #include "NetworkObjectModel.h"
 
@@ -62,5 +61,3 @@ private:
 	NetworkObjectDirectory* m_directory;
 
 };
-
-#endif // NETWORK_OBJECT_TREE_MODEL_H

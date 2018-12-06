@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIG_COMMAND_LINE_PLUGIN_H
-#define CONFIG_COMMAND_LINE_PLUGIN_H
+#pragma once
 
 #include "CommandLinePluginInterface.h"
 #include "VeyonConfiguration.h"
@@ -102,5 +101,3 @@ private:
 	QMap<QString, QString> m_commands;
 
 };
-
-#endif // CONFIG_COMMAND_LINE_PLUGIN_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_CONTROL_INTERFACE_H
-#define COMPUTER_CONTROL_INTERFACE_H
+#pragma once
 
 #include <QList>
 #include <QObject>
@@ -176,5 +175,3 @@ signals:
 };
 
 typedef QVector<ComputerControlInterface::Pointer> ComputerControlInterfaceList;
-
-#endif // COMPUTER_CONTROL_INTERFACE_H

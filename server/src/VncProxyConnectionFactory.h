@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_PROXY_CONNECTION_FACTORY_H
-#define VNC_PROXY_CONNECTION_FACTORY_H
+#pragma once
 
 class QObject;
 class QTcpSocket;
@@ -40,5 +39,3 @@ public:
 														  QObject* parent ) = 0;
 
 } ;
-
-#endif

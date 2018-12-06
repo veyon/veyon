@@ -1,5 +1,4 @@
-#ifndef ULTRAVNC_RFB_PROTO_H
-#define ULTRAVNC_RFB_PROTO_H
+#pragma once
 
 #define KEEPALIVE_HEADROOM 1
 #define KEEPALIVE_INTERVAL 5
@@ -87,7 +86,4 @@ typedef enum {
 
 } rfbExtendedClipboardDataFlags;
 
-
-
-#endif
 

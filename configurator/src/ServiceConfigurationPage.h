@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef SERVICE_CONFIGURATION_PAGE_H
-#define SERVICE_CONFIGURATION_PAGE_H
+#pragma once
 
 #include <QMap>
 
@@ -65,5 +64,3 @@ private:
 	QWidget* m_vncServerPluginConfigurationWidget;
 
 };
-
-#endif // SERVICE_CONFIGURATION_PAGE_H

@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_STORE_H
-#define CONFIGURATION_STORE_H
+#pragma once
 
 #include <QtCore/QMap>
 #include <QtCore/QString>
@@ -112,5 +111,3 @@ private:
 } ;
 
 }
-
-#endif

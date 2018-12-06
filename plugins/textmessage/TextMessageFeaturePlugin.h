@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef TEXT_MESSAGE_FEATURE_PLUGIN_H
-#define TEXT_MESSAGE_FEATURE_PLUGIN_H
+#pragma once
 
 #include "Feature.h"
 #include "FeatureProviderInterface.h"
@@ -99,5 +98,3 @@ private:
 	const FeatureList m_features;
 
 };
-
-#endif // TEXT_MESSAGE_FEATURE_PLUGIN_H

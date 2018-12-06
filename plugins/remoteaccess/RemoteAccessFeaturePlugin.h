@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef REMOTE_ACCESS_FEATURE_PLUGIN_H
-#define REMOTE_ACCESS_FEATURE_PLUGIN_H
+#pragma once
 
 #include "Computer.h"
 #include "SimpleFeatureProvider.h"
@@ -104,5 +103,3 @@ private:
 	QMap<QString, QString> m_commands;
 
 };
-
-#endif // REMOTE_ACCESS_FEATURE_PLUGIN_H

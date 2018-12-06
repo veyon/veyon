@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef USER_SESSION_CONTROL_H
-#define USER_SESSION_CONTROL_H
+#pragma once
 
 #include <QReadWriteLock>
 
@@ -116,5 +115,3 @@ private:
 	QString m_userFullName;
 
 };
-
-#endif // USER_SESSION_CONTROL_H

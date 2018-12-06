@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FILESYSTEM_H
-#define FILESYSTEM_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -43,5 +42,3 @@ public:
 	QString workerFilePath() const;
 
 };
-
-#endif

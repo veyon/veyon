@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef WINDOWS_KEYBOARD_SHORTCUT_TRAPPER_H
-#define WINDOWS_KEYBOARD_SHORTCUT_TRAPPER_H
+#pragma once
 
 #include "KeyboardShortcutTrapper.h"
 
@@ -54,5 +53,3 @@ private:
 	QTimer m_pollTimer;
 
 } ;
-
-#endif

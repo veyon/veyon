@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef COMPUTER_H
-#define COMPUTER_H
+#pragma once
 
 #include <QString>
 #include <QVector>
@@ -106,5 +105,3 @@ private:
 };
 
 typedef QVector<Computer> ComputerList;
-
-#endif // COMPUTER_H

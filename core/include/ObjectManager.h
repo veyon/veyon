@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef OBJECT_MANAGER_H
-#define OBJECT_MANAGER_H
+#pragma once
 
 #include <QJsonArray>
 
@@ -137,5 +136,3 @@ private:
 	QJsonArray m_objects;
 
 };
-
-#endif // OBJECT_MANAGER_H

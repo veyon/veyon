@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VNC_CLIENT_PROTOCOL_H
-#define VNC_CLIENT_PROTOCOL_H
+#pragma once
 
 #include <QRect>
 
@@ -138,5 +137,3 @@ private:
 	QRect m_lastUpdatedRect;
 
 } ;
-
-#endif

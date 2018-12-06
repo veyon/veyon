@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef PLATFORM_SERVICE_FUNCTIONS_H
-#define PLATFORM_SERVICE_FUNCTIONS_H
+#pragma once
 
 #include "PlatformPluginInterface.h"
 
@@ -53,5 +52,3 @@ public:
 	virtual void manageServerInstances() = 0;
 
 };
-
-#endif // PLATFORM_SERVICE_FUNCTIONS_H

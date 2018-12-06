@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_PAGE_PLUGIN_INTERFACE_H
-#define CONFIGURATION_PAGE_PLUGIN_INTERFACE_H
+#pragma once
 
 #include "PluginInterface.h"
 
@@ -43,5 +42,3 @@ typedef QList<ConfigurationPagePluginInterface> ConfigurationPagePluginInterface
 #define ConfigurationPagePluginInterface_iid "io.veyon.Veyon.Plugins.ConfigurationPagePluginInterface"
 
 Q_DECLARE_INTERFACE(ConfigurationPagePluginInterface, ConfigurationPagePluginInterface_iid)
-
-#endif // CONFIGURATION_PAGE_PLUGIN_INTERFACE_H

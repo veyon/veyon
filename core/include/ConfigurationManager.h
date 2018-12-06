@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_MANAGER_H
-#define CONFIGURATION_MANAGER_H
+#pragma once
 
 #include "VeyonCore.h"
 
@@ -51,5 +50,3 @@ private:
 	QString m_errorString;
 
 } ;
-
-#endif
