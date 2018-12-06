@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef FLEXIBLE_LIST_VIEW_H
-#define FLEXIBLE_LIST_VIEW_H
+#pragma once
 
 #include <QListView>
 
@@ -32,7 +31,7 @@ class FlexibleListView : public QListView
 	Q_OBJECT
 public:
 	FlexibleListView( QWidget *parent = nullptr );
-	~FlexibleListView() = default;
+	~FlexibleListView() override = default;
 
 	void setUidRole( int role );
 
@@ -60,5 +59,3 @@ private:
 	QHash<QUuid, QPointF> m_positions;
 
 };
-
-#endif // FLEXIBLE_LIST_VIEW_H
