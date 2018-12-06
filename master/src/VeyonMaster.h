@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef MASTER_CORE_H
-#define MASTER_CORE_H
+#pragma once
 
 #include <QObject>
 
@@ -117,5 +116,3 @@ private:
 	Feature::Uid m_currentMode;
 
 } ;
-
-#endif

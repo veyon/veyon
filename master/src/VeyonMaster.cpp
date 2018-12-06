@@ -132,9 +132,12 @@ Configuration::Object* VeyonMaster::userConfigurationObject()
 
 ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces()
 {
-	ComputerControlInterfaceList computerControlInterfaces;
+	const auto rowCount = m_computerSortFilterProxyModel->rowCount();
 
-	for( int i = 0; i < m_computerSortFilterProxyModel->rowCount(); ++i )
+	ComputerControlInterfaceList computerControlInterfaces;
+	computerControlInterfaces.reserve( rowCount );
+
+	for( int i = 0; i < rowCount; ++i )
 	{
 		const auto index = m_computerSortFilterProxyModel->index( i, 0 );
 		const auto sourceIndex = m_computerSortFilterProxyModel->mapToSource( index );
