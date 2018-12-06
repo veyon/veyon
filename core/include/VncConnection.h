@@ -156,6 +156,9 @@ public:
 	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
 										  SocketDevice::SocketOperation operation, void * user );
 
+	void mouseEvent( int x, int y, int buttonMask );
+	void keyEvent( unsigned int key, bool pressed );
+	void clientCut( const QString& text );
 
 signals:
 	void connectionPrepared();
@@ -168,16 +171,8 @@ signals:
 	void gotCut( const QString& text );
 	void stateChanged();
 
-
-public slots:
-	void mouseEvent( int x, int y, int buttonMask );
-	void keyEvent( unsigned int key, bool pressed );
-	void clientCut( const QString& text );
-
-
 protected:
 	void run() override;
-
 
 private:
 	// intervals and timeouts
