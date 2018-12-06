@@ -516,7 +516,7 @@ bool VncClientProtocol::receiveXvpMessage()
 
 
 
-bool VncClientProtocol::readMessage( qint64 size )
+bool VncClientProtocol::readMessage( int size )
 {
 	if( m_socket->bytesAvailable() < size )
 	{
@@ -553,12 +553,12 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 	case rfbEncodingXCursor:
 		return width * height == 0 ||
 				( buffer.read( sz_rfbXCursorColors ).size() == sz_rfbXCursorColors &&
-				  buffer.read( 2 * bytesPerRow * height ).size() == static_cast<qint64>( 2 * bytesPerRow * height ) );
+				  buffer.read( 2 * bytesPerRow * height ).size() == static_cast<int>( 2 * bytesPerRow * height ) );
 
 	case rfbEncodingRichCursor:
 		return width * height == 0 ||
-				( buffer.read( width * height * bytesPerPixel ).size() == static_cast<qint64>( width * height * bytesPerPixel ) &&
-				  buffer.read( bytesPerRow * height ).size() == static_cast<qint64>( bytesPerRow * height ) );
+				( buffer.read( width * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel ) &&
+				  buffer.read( bytesPerRow * height ).size() == static_cast<int>( bytesPerRow * height ) );
 
 	case rfbEncodingSupportedMessages:
 		return buffer.read( sz_rfbSupportedMessages ).size() == sz_rfbSupportedMessages;
@@ -566,10 +566,10 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 	case rfbEncodingSupportedEncodings:
 	case rfbEncodingServerIdentity:
 		// width = byte count
-		return buffer.read( width ).size() == static_cast<qint64>( width );
+		return buffer.read( width ).size() == static_cast<int>( width );
 
 	case rfbEncodingRaw:
-		return buffer.read( width * height * bytesPerPixel ).size() == static_cast<qint64>( width * height * bytesPerPixel );
+		return buffer.read( width * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel );
 
 	case rfbEncodingCopyRect:
 		return buffer.read( sz_rfbCopyRect ).size() == sz_rfbCopyRect;
@@ -619,7 +619,7 @@ bool VncClientProtocol::handleRectEncodingRRE( QBuffer& buffer, uint bytesPerPix
 	}
 
 	const auto rectDataSize = qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + sz_rfbRectangle );
-	const auto totalDataSize = static_cast<qint64>( bytesPerPixel + rectDataSize );
+	const auto totalDataSize = static_cast<int>( bytesPerPixel + rectDataSize );
 
 	return buffer.read( totalDataSize ).size() == totalDataSize;
 }
@@ -636,7 +636,7 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, uint bytesPerP
 	}
 
 	const auto rectDataSize = qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + 4 );
-	const auto totalDataSize = static_cast<qint64>( bytesPerPixel + rectDataSize );
+	const auto totalDataSize = static_cast<int>( bytesPerPixel + rectDataSize );
 
 	return buffer.read( totalDataSize ).size() == totalDataSize;
 
@@ -675,7 +675,7 @@ bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
 
 			if( subEncoding & rfbHextileRaw )
 			{
-				const auto dataSize = static_cast<qint64>( w * h * bytesPerPixel );
+				const auto dataSize = static_cast<int>( w * h * bytesPerPixel );
 				if( buffer.read( dataSize ).size() != dataSize )
 				{
 					return false;
@@ -685,7 +685,7 @@ bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
 
 			if( subEncoding & rfbHextileBackgroundSpecified )
 			{
-				if( buffer.read( bytesPerPixel ).size() != static_cast<qint64>( bytesPerPixel ) )
+				if( buffer.read( bytesPerPixel ).size() != static_cast<int>( bytesPerPixel ) )
 				{
 					return false;
 				}
@@ -693,7 +693,7 @@ bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
 
 			if( subEncoding & rfbHextileForegroundSpecified )
 			{
-				if( buffer.read( bytesPerPixel ).size() != static_cast<qint64>( bytesPerPixel ) )
+				if( buffer.read( bytesPerPixel ).size() != static_cast<int>( bytesPerPixel ) )
 				{
 					return false;
 				}
@@ -710,11 +710,11 @@ bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
 				return false;
 			}
 
-			int64_t subRectDataSize = 0;
+			int subRectDataSize = 0;
 
 			if( subEncoding & rfbHextileSubrectsColoured )
 			{
-				subRectDataSize = nSubrects * ( 2 + bytesPerPixel );
+				subRectDataSize = static_cast<int>( nSubrects * ( 2 + bytesPerPixel ) );
 			}
 			else
 			{
@@ -744,7 +744,7 @@ bool VncClientProtocol::handleRectEncodingZlib( QBuffer& buffer )
 
 	const auto n = qFromBigEndian( hdr.nBytes );
 
-	return buffer.read( n ).size() == static_cast<int64_t>( n );
+	return buffer.read( n ).size() == static_cast<int>( n );
 }
 
 
@@ -760,7 +760,7 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 
 	const auto n = qFromBigEndian( hdr.length );
 
-	return buffer.read( n ).size() == static_cast<int64_t>( n );
+	return buffer.read( n ).size() == static_cast<int>( n );
 }
 
 

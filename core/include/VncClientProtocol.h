@@ -109,7 +109,7 @@ private:
 	bool receiveResizeFramebufferMessage();
 	bool receiveXvpMessage();
 
-	bool readMessage( qint64 size );
+	bool readMessage( int size );
 
 	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader rectHeader );
 	bool handleRectEncodingRRE( QBuffer& buffer, uint bytesPerPixel );
