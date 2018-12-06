@@ -3,7 +3,7 @@
 [![Build status](https://img.shields.io/travis/veyon/veyon.svg)](https://travis-ci.org/veyon/veyon)
 [![Latest stable release](https://img.shields.io/github/release/veyon/veyon.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
 [![Overall downloads on Github](https://img.shields.io/github/downloads/veyon/veyon/total.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
-[![Documentation Status](https://readthedocs.org/projects/veyon/badge/?version=latest)](http://veyon.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/veyon/badge/?version=latest)](https://docs.veyon.io/)
 [![Localise on Transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/veyon-solutions/veyon/)
 [![license](https://img.shields.io/badge/license-GPLv2-green.svg)](LICENSE)
 
@@ -37,13 +37,13 @@ See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
 ## Installation and configuration
 
-Please refer to the official Veyon Administrator Manual at http://docs.veyon.io/en/latest/admin/index.html
+Please refer to the official Veyon Administrator Manual at https://docs.veyon.io/en/latest/admin/index.html
 for information on the installation and configuration of Veyon.
 
 
 ## Usage
 
-Please refer to the official Veyon User Manual at http://docs.veyon.io/en/latest/user/index.html
+Please refer to the official Veyon User Manual at https://docs.veyon.io/en/latest/user/index.html
 for information on how to use Veyon.
 
 
@@ -155,7 +155,7 @@ Before starting the implementation of a new feature, please always open an issue
 
 ## More information
 
-* http://veyon.io/
-* http://docs.veyon.io/
-* http://facebook.com/veyon.io/
+* https://veyon.io/
+* https://docs.veyon.io/
+* https://facebook.com/veyon.io/
 * https://twitter.com/veyon_io
