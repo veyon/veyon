@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_LOCAL_STORE_H
-#define CONFIGURATION_LOCAL_STORE_H
+#pragma once
 
 #include "Configuration/Store.h"
 
@@ -49,5 +48,3 @@ public:
 } ;
 
 }
-
-#endif

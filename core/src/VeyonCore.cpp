@@ -152,7 +152,7 @@ QString VeyonCore::pluginDir()
 
 QString VeyonCore::translationsDirectory()
 {
-	return QCoreApplication::applicationDirPath() + QDir::separator() + QLatin1String(VEYON_TRANSLATIONS_DIR);
+	return QCoreApplication::applicationDirPath() + QDir::separator() + QStringLiteral(VEYON_TRANSLATIONS_DIR);
 }
 
 
@@ -170,7 +170,7 @@ QString VeyonCore::qtTranslationsDirectory()
 
 QString VeyonCore::executableSuffix()
 {
-	return QStringLiteral( VEYON_EXECUTABLE_SUFFIX );
+	return QStringLiteral( VEYON_EXECUTABLE_SUFFIX ); // clazy:exclude=empty-qstringliteral
 }
 
 

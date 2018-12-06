@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef CONFIGURATION_JSON_STORE_H
-#define CONFIGURATION_JSON_STORE_H
+#pragma once
 
 #include "Configuration/Store.h"
 
@@ -50,5 +49,3 @@ private:
 } ;
 
 }
-
-#endif

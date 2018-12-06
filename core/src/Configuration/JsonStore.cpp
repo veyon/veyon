@@ -64,7 +64,7 @@ static void loadJsonTree( Object* obj, const QJsonObject& jsonParent, const QStr
 			}
 			else
 			{
-				const QString subParentKey = parentKey + ( parentKey.isEmpty() ? QString() : QLatin1String("/") ) + it.key();
+				const QString subParentKey = parentKey + ( parentKey.isEmpty() ? QString() : QStringLiteral("/") ) + it.key();
 				loadJsonTree( obj, it.value().toObject(), subParentKey );
 			}
 		}
@@ -190,7 +190,7 @@ QString JsonStore::configurationFilePath() const
 		fileNameBase = configurationNameFromScope();
 	}
 
-	return QDir::toNativeSeparators( base + QDir::separator() + fileNameBase + QLatin1String(".json") );
+	return QDir::toNativeSeparators( base + QDir::separator() + fileNameBase + QLatin1String(".json") ); // clazy:exclude=qstring-allocations
 }
 
 }

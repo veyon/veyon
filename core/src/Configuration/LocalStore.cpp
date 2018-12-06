@@ -48,7 +48,7 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 	for( const auto& g : childGroups )
 	{
 		const QString subParentKey = parentKey +
-									( parentKey.isEmpty() ? QString() : QLatin1String("/") ) + g;
+									( parentKey.isEmpty() ? QString() : QStringLiteral("/") ) + g;
 		s->beginGroup( g );
 		loadSettingsTree( obj, s, subParentKey );
 		s->endGroup();

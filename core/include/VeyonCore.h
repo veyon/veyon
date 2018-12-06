@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VEYON_CORE_H
-#define VEYON_CORE_H
+#pragma once
 
 #include <QtEndian>
 #include <QString>
@@ -182,5 +181,3 @@ private:
 };
 
 #define vDebug if( VeyonCore::isDebugging()==false ); else qDebug
-
-#endif
