@@ -22,23 +22,15 @@
  *
  */
 
-#include "rfb/rfbproto.h"
-
-#include <QHostAddress>
-#include <QTcpSocket>
-
-#include "AuthenticationCredentials.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
-#include "VariantArrayMessage.h"
-#include "VncServerClient.h"
 #include "VeyonServerProtocol.h"
 
 
 VeyonServerProtocol::VeyonServerProtocol( QTcpSocket* socket,
-											VncServerClient* client,
-											ServerAuthenticationManager& serverAuthenticationManager,
-											ServerAccessControlManager& serverAccessControlManager ) :
+										  VncServerClient* client,
+										  ServerAuthenticationManager& serverAuthenticationManager,
+										  ServerAccessControlManager& serverAccessControlManager ) :
 	VncServerProtocol( socket, client ),
 	m_serverAuthenticationManager( serverAuthenticationManager ),
 	m_serverAccessControlManager( serverAccessControlManager )
