@@ -22,8 +22,7 @@
  *
  */
 
-#ifndef VARIANT_ARRAY_MESSAGE_H
-#define VARIANT_ARRAY_MESSAGE_H
+#pragma once
 
 #include <QBuffer>
 #include <QVariant>
@@ -64,5 +63,3 @@ private:
 	QIODevice* m_ioDevice;
 
 } ;
-
-#endif // VARIANT_ARRAY_MESSAGE_H

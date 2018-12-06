@@ -59,7 +59,7 @@ bool VariantArrayMessage::isReadyForReceive()
 	{
 		messageSize = qFromBigEndian(messageSize);
 
-		return m_ioDevice->bytesAvailable() >= static_cast<qint64>( sizeof(messageSize) + messageSize );
+		return m_ioDevice->bytesAvailable() >= static_cast<MessageSize>( sizeof(messageSize) + messageSize );
 	}
 
 	return false;
