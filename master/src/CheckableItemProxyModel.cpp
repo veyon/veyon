@@ -23,6 +23,7 @@
  */
 
 #include "CheckableItemProxyModel.h"
+#include "QtCompat.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>

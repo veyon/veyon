@@ -27,6 +27,7 @@
 #include <QUuid>
 
 #include "FlexibleListView.h"
+#include "QtCompat.h"
 
 
 FlexibleListView::FlexibleListView( QWidget* parent ) :
