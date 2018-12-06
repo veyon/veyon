@@ -10,7 +10,7 @@
 
 ## What is Veyon?
 
-Veyon is a free and Open Source software for computer monitoring and classroom
+Veyon is a free and open source software for computer monitoring and classroom
 management supporting Windows and Linux. It enables teachers to view and control
 computer labs and interact with students. Veyon is available in different
 languages and provides lots of useful features:
