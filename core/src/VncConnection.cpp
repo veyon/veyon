@@ -587,7 +587,7 @@ bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
 
 bool VncConnection::initFrameBuffer( rfbClient* client )
 {
-	const auto size = static_cast<uint64_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
+	const auto size = static_cast<uint32_t>( client->width * client->height * ( client->format.bitsPerPixel / 8 ) );
 
 	client->frameBuffer = new uint8_t[size];
 
