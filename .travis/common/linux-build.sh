@@ -24,6 +24,6 @@ cd $LIBDIR
 find $BUILD_PWD/plugins -name "*.so" -exec ln -s '{}' ';'
 cd $BUILD_PWD
 
-./ctl/veyon-ctl help
-./ctl/veyon-ctl about
+./cli/veyon-cli help
+./cli/veyon-cli about
 

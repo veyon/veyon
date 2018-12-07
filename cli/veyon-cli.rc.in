@@ -14,10 +14,10 @@ BEGIN
     BEGIN
       VALUE "Comments",		"Virtual Eye On Networks (https://veyon.io)\0"
       VALUE "CompanyName",	"Veyon Solutions\0"
-      VALUE "FileDescription",	"Veyon Control\0"
+      VALUE "FileDescription",	"Veyon Command Line Interface\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
       VALUE "LegalCopyright",	"Copyright (c) 2017-2018 Tobias Junghans\0"
-      VALUE "OriginalFilename",	"veyon-ctl.exe\0"
+      VALUE "OriginalFilename",	"veyon-cli.exe\0"
       VALUE "ProductName",	"Veyon\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
     END

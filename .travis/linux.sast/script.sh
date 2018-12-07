@@ -4,5 +4,5 @@ set -e
 
 cd /veyon
 
-flawfinder -Q -c core plugins master server service configurator ctl worker
+flawfinder -Q -c core plugins master server service configurator cli worker
 

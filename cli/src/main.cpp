@@ -1,5 +1,5 @@
 /*
- * main.cpp - main file for Veyon Control
+ * main.cpp - main file for Veyon CLI
  *
  * Copyright (c) 2017-2018 Tobias Junghans <tobydox@veyon.io>
  *
@@ -75,7 +75,7 @@ int main( int argc, char **argv )
 		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( Logger::LogLevelNothing ) );
 	}
 
-	VeyonCore* core = new VeyonCore( app, QStringLiteral("Control") );
+	VeyonCore* core = new VeyonCore( app, QStringLiteral("CLI") );
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 	const auto pluginObjects = core->pluginManager().pluginObjects();
