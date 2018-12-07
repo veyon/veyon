@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH VEYON-SERVICE 1 2018-12-07 Veyon
+.TH VEYON-WORKER 1 2018-12-05 Veyon
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -16,30 +16,30 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-veyon-service \- Veyon Service
+veyon-worker \- Veyon Worker
 .SH SYNOPSIS
-.B veyon-service
+.B veyon-worker
 .br
 .SH DESCRIPTION
 .PP
 .\" TeX users may be more comfortable with the \fB<whatever>\fP and
 .\" \fI<whatever>\fP escape sequences to invode bold face and italics,
 .\" respectively.
-\fBVEYON-SERVICE\fR is a non-graphical service application which monitors
-user sessions on a computer and starts Veyon Server instances within
-these sessions.
-.PP
-The service and its server subprocesses are required to run on all
-computers including teacher computers.
+
+\fBVEYON-WORKER\fR is  helper program started by the server to provide
+specific functions in an isolated environment or in the context of the
+user that is currently logged in. Those specific functions include the
+demo server for the teacher computer and the demo client on the student
+computers.
 
 .SH SEE ALSO
-veyon-server(1), veyon-configurator(1), veyon-auth-helper(8)
+veyon-server(1), veyon-master(1), veyon-configurator(1), veyon-auth-helper(8)
 .PP
 https://veyon.io/
 
 .SH AUTHOR
 Veyon has been written by Tobias Junghans.
 .PP
-This manual page has been written by Tobias Junghans and updated by Mike
-Gabriel. It was originally written for the Debian project (but may be
-used by others).
+This manual page has been written by Tobias Junghans and Mike Gabriel. It
+was originally written for the Debian project (but may be used by
+others).
