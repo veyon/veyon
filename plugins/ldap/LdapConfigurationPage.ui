@@ -76,8 +76,8 @@
                <string>Test</string>
               </property>
               <property name="icon">
-               <iconset resource="ldap.qrc">
-                <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+               <iconset resource="../../core/resources/core.qrc">
+                <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
               </property>
              </widget>
             </item>
@@ -205,8 +205,8 @@
           <item row="2" column="2">
            <widget class="QToolButton" name="browseCACertificateFile">
             <property name="icon">
-             <iconset resource="../../core/core.qrc">
-              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
             </property>
            </widget>
           </item>
@@ -232,8 +232,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -286,8 +286,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -347,8 +347,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -372,8 +372,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -383,8 +383,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -408,8 +408,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -477,8 +477,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -488,8 +488,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -499,8 +499,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -510,8 +510,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -535,8 +535,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -574,8 +574,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -635,8 +635,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -681,8 +681,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -692,8 +692,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -703,8 +703,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -742,8 +742,8 @@
              <string>Test</string>
             </property>
             <property name="icon">
-             <iconset resource="ldap.qrc">
-              <normaloff>:/ldap/dialog-ok-apply.png</normaloff>:/ldap/dialog-ok-apply.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -991,9 +991,7 @@
   <tabstop>testComputerRooms</tabstop>
  </tabstops>
  <resources>
-  <include location="../../core/core.qrc"/>
-  <include location="../../core/core.qrc"/>
-  <include location="ldap.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
   <include location="ldap.qrc"/>
  </resources>
  <connections>
@@ -1111,9 +1109,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="bindConfigurationGroup"/>
-  <buttongroup name="computerGroupingGroup"/>
   <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="baseDnConfigGroup"/>
+  <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>

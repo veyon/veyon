@@ -8,7 +8,7 @@ FILE(GLOB veyoncore_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
 )
 
-SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
+SET(core_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 
 # find Qt's translation directory
 IF(NOT VEYON_BUILD_WIN32)

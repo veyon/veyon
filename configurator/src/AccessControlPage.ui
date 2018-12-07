@@ -51,8 +51,8 @@
          <string>Test</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
         </property>
        </widget>
       </item>
@@ -75,8 +75,8 @@
          <string>Test</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
         </property>
        </widget>
       </item>
@@ -177,8 +177,8 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
-            <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
+           <iconset resource="../resources/configurator.qrc">
+            <normaloff>:/configurator/go-next.png</normaloff>:/configurator/go-next.png</iconset>
           </property>
          </widget>
         </item>
@@ -188,8 +188,8 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../veyon-configurator.qrc">
-            <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
+           <iconset resource="../resources/configurator.qrc">
+            <normaloff>:/configurator/go-previous.png</normaloff>:/configurator/go-previous.png</iconset>
           </property>
          </widget>
         </item>
@@ -242,8 +242,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/go-up.png</normaloff>:/resources/go-up.png</iconset>
+         <iconset resource="../resources/configurator.qrc">
+          <normaloff>:/configurator/go-up.png</normaloff>:/configurator/go-up.png</iconset>
         </property>
        </widget>
       </item>
@@ -256,8 +256,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/document-edit.png</normaloff>:/resources/document-edit.png</iconset>
+         <iconset resource="../resources/configurator.qrc">
+          <normaloff>:/configurator/document-edit.png</normaloff>:/configurator/document-edit.png</iconset>
         </property>
        </widget>
       </item>
@@ -270,8 +270,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../../core/core.qrc">
-          <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/list-add.png</normaloff>:/core/list-add.png</iconset>
         </property>
        </widget>
       </item>
@@ -284,8 +284,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../../core/core.qrc">
-          <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
         </property>
        </widget>
       </item>
@@ -308,8 +308,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../veyon-configurator.qrc">
-          <normaloff>:/resources/go-down.png</normaloff>:/resources/go-down.png</iconset>
+         <iconset resource="../resources/configurator.qrc">
+          <normaloff>:/configurator/go-down.png</normaloff>:/configurator/go-down.png</iconset>
         </property>
        </widget>
       </item>
@@ -343,8 +343,8 @@
   <tabstop>moveAccessControlRuleDownButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../../core/core.qrc"/>
-  <include location="../veyon-configurator.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/configurator.qrc"/>
  </resources>
  <connections>
   <connection>

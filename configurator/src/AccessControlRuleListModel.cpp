@@ -82,10 +82,10 @@ QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) co
 	{
 		switch( rule.action() )
 		{
-		case AccessControlRule::ActionAllow: return QIcon( QStringLiteral(":/resources/vcs-normal.png") );
-		case AccessControlRule::ActionDeny: return QIcon( QStringLiteral(":/resources/vcs-conflicting.png") );
-		case AccessControlRule::ActionAskForPermission: return QIcon( QStringLiteral(":/resources/access-rule-ask.png") );
-		default: return QIcon( QStringLiteral(":/resources/vcs-removed.png") );
+		case AccessControlRule::ActionAllow: return QIcon( QStringLiteral(":/configurator/vcs-normal.png") );
+		case AccessControlRule::ActionDeny: return QIcon( QStringLiteral(":/configurator/vcs-conflicting.png") );
+		case AccessControlRule::ActionAskForPermission: return QIcon( QStringLiteral(":/configurator/access-rule-ask.png") );
+		default: return QIcon( QStringLiteral(":/configurator/vcs-removed.png") );
 		}
 	}
 	else if( role == Qt::DisplayRole )

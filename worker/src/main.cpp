@@ -30,7 +30,7 @@
 int main( int argc, char **argv )
 {
 	QApplication app( argc, argv );
-	app.setWindowIcon( QIcon( QStringLiteral(":/resources/icon64.png") ) );
+	app.setWindowIcon( QIcon( QStringLiteral(":/core/icon64.png") ) );
 
 	const auto arguments = app.arguments();
 

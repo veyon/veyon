@@ -53,7 +53,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_quitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Quit" ) ) )
 {
 	QPalette pal = palette();
-	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/resources/toolbar-background.png") ) );
+	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
 	setPalette( pal );
 
 	setAttribute( Qt::WA_NoSystemBackground, true );

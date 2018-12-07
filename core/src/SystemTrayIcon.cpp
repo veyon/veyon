@@ -116,10 +116,10 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 	{
 		m_systemTrayIcon = new QSystemTrayIcon( this );
 
-		QIcon icon( QStringLiteral( ":/resources/icon16.png" ) );
-		icon.addFile( QStringLiteral( ":/resources/icon22.png" ) );
-		icon.addFile( QStringLiteral( ":/resources/icon32.png" ) );
-		icon.addFile( QStringLiteral( ":/resources/icon64.png" ) );
+		QIcon icon( QStringLiteral( ":/core/icon16.png" ) );
+		icon.addFile( QStringLiteral( ":/core/icon22.png" ) );
+		icon.addFile( QStringLiteral( ":/core/icon32.png" ) );
+		icon.addFile( QStringLiteral( ":/core/icon64.png" ) );
 
 		m_systemTrayIcon->setIcon( icon );
 		m_systemTrayIcon->show();

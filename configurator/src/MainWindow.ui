@@ -6,8 +6,8 @@
    <string>Veyon Configurator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../veyon-configurator.qrc">
-    <normaloff>:/resources/veyon-configurator.png</normaloff>:/resources/veyon-configurator.png</iconset>
+   <iconset resource="../resources/configurator.qrc">
+    <normaloff>:/configurator/veyon-configurator.png</normaloff>:/configurator/veyon-configurator.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
@@ -59,8 +59,8 @@
         <string>General</string>
        </property>
        <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/configure-shortcuts.png</normaloff>:/resources/configure-shortcuts.png</iconset>
+        <iconset resource="../resources/configurator.qrc">
+         <normaloff>:/configurator/configure-shortcuts.png</normaloff>:/configurator/configure-shortcuts.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -71,8 +71,8 @@
         <string>Service</string>
        </property>
        <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/application-x-sharedlib.png</normaloff>:/resources/application-x-sharedlib.png</iconset>
+        <iconset resource="../resources/configurator.qrc">
+         <normaloff>:/configurator/application-x-sharedlib.png</normaloff>:/configurator/application-x-sharedlib.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -83,8 +83,8 @@
         <string>Master</string>
        </property>
        <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/application-x-ms-dos-executable.png</normaloff>:/resources/application-x-ms-dos-executable.png</iconset>
+        <iconset resource="../resources/configurator.qrc">
+         <normaloff>:/configurator/application-x-ms-dos-executable.png</normaloff>:/configurator/application-x-ms-dos-executable.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -95,8 +95,8 @@
         <string>Access control</string>
        </property>
        <property name="icon">
-        <iconset resource="../veyon-configurator.qrc">
-         <normaloff>:/resources/network-vpn.png</normaloff>:/resources/network-vpn.png</iconset>
+        <iconset resource="../resources/configurator.qrc">
+         <normaloff>:/configurator/network-vpn.png</normaloff>:/configurator/network-vpn.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -163,8 +163,8 @@
   </action>
   <action name="actionSaveSettings">
    <property name="icon">
-    <iconset resource="../../core/core.qrc">
-     <normaloff>:/resources/document-save.png</normaloff>:/resources/document-save.png</iconset>
+    <iconset resource="../../core/resources/core.qrc">
+     <normaloff>:/core/document-save.png</normaloff>:/core/document-save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save settings to file</string>
@@ -178,8 +178,8 @@
   </action>
   <action name="actionLoadSettings">
    <property name="icon">
-    <iconset resource="../../core/core.qrc">
-     <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+    <iconset resource="../../core/resources/core.qrc">
+     <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
    </property>
    <property name="text">
     <string>L&amp;oad settings from file</string>
@@ -190,8 +190,8 @@
   </action>
   <action name="actionAboutVeyon">
    <property name="icon">
-    <iconset resource="../../core/core.qrc">
-     <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
+    <iconset resource="../../core/resources/core.qrc">
+     <normaloff>:/core/help-about.png</normaloff>:/core/help-about.png</iconset>
    </property>
    <property name="text">
     <string>About Veyon</string>
@@ -204,8 +204,8 @@
   </action>
   <action name="actionResetConfiguration">
    <property name="icon">
-    <iconset resource="../../core/core.qrc">
-     <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+    <iconset resource="../../core/resources/core.qrc">
+     <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
    </property>
    <property name="text">
     <string>Reset configuration</string>
@@ -239,8 +239,8 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../core/core.qrc"/>
-  <include location="../veyon-configurator.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/configurator.qrc"/>
  </resources>
  <connections>
   <connection>

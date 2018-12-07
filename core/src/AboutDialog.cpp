@@ -45,7 +45,7 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 	authors.open( QFile::ReadOnly ); // Flawfinder: ignore
 	ui->authors->setPlainText( QString::fromUtf8( authors.readAll() ) );
 
-	QFile license( QStringLiteral( ":/COPYING" ) );
+	QFile license( QStringLiteral( ":/core/COPYING" ) );
 	license.open( QFile::ReadOnly ); // Flawfinder: ignore
 	ui->license->setPlainText( QString::fromUtf8( license.readAll() ) );
 

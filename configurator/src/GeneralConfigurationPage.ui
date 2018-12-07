@@ -74,8 +74,8 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../../core/core.qrc">
-            <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
           </property>
          </widget>
         </item>
@@ -255,8 +255,8 @@
            <string>Clear all log files</string>
           </property>
           <property name="icon">
-           <iconset resource="../../core/core.qrc">
-            <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
           </property>
          </widget>
         </item>
@@ -354,7 +354,7 @@
  </widget>
  <resources>
   <include location="../veyon-configurator.qrc"/>
-  <include location="../../core/core.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
   <connection>

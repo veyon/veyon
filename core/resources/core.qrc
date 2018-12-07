@@ -1,0 +1,39 @@
+<RCC>
+  <qresource prefix="/core">
+    <file>../../COPYING</file>
+    <file>icon64.png</file>
+    <file>application-x-pem-key.png</file>
+    <file>license.png</file>
+    <file>user-group-new.png</file>
+    <file>languages.png</file>
+    <file>presentation-none.png</file>
+    <file>system-suspend-hibernate.png</file>
+    <file>icon16.png</file>
+    <file>icon22.png</file>
+    <file>icon32.png</file>
+    <file>watch1.png</file>
+    <file>watch2.png</file>
+    <file>watch3.png</file>
+    <file>watch4.png</file>
+    <file>watch5.png</file>
+    <file>watch6.png</file>
+    <file>watch7.png</file>
+    <file>watch8.png</file>
+    <file>watch9.png</file>
+    <file>watch10.png</file>
+    <file>watch11.png</file>
+    <file>watch12.png</file>
+    <file>watch13.png</file>
+    <file>watch14.png</file>
+    <file>watch15.png</file>
+    <file>watch16.png</file>
+    <file>toolbar-background.png</file>
+    <file>document-open.png</file>
+    <file>document-save.png</file>
+    <file>list-add.png</file>
+    <file>edit-delete.png</file>
+    <file>help-about.png</file>
+    <file>dialog-ok-apply.png</file>
+    <file>default-pkey.pem</file>
+  </qresource>
+</RCC>

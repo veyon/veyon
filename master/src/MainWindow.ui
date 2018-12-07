@@ -14,8 +14,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../core/core.qrc">
-    <normaloff>:/resources/icon64.png</normaloff>:/resources/icon64.png</iconset>
+   <iconset resource="../../core/resources/core.qrc">
+    <normaloff>:/core/icon64.png</normaloff>:/core/icon64.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="centralLayout">
@@ -52,8 +52,8 @@
         <string>Auto</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/zoom-fit-best.png</normaloff>:/resources/zoom-fit-best.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/zoom-fit-best.png</normaloff>:/master/zoom-fit-best.png</iconset>
        </property>
       </widget>
       <widget class="QSlider" name="gridSizeSlider">
@@ -97,8 +97,8 @@
         <string>Computer rooms</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/applications-education.png</normaloff>:/resources/applications-education.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/applications-education.png</normaloff>:/master/applications-education.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -123,8 +123,8 @@
         <string>Screenshots</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/camera-photo.png</normaloff>:/resources/camera-photo.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/camera-photo.png</normaloff>:/master/camera-photo.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -165,8 +165,8 @@
         <string>About</string>
        </property>
        <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/help-about.png</normaloff>:/core/help-about.png</iconset>
        </property>
       </widget>
       <widget class="QLabel" name="spacerLabel3">
@@ -221,8 +221,8 @@
         <string>Align computers to grid</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/align-grid.png</normaloff>:/resources/align-grid.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/align-grid.png</normaloff>:/master/align-grid.png</iconset>
        </property>
       </widget>
       <widget class="QToolButton" name="useCustomComputerPlacementButton">
@@ -238,8 +238,8 @@
         <string>Use custom computer placement</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/exchange-positions-zorder.png</normaloff>:/resources/exchange-positions-zorder.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/exchange-positions-zorder.png</normaloff>:/master/exchange-positions-zorder.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -268,8 +268,8 @@
         <string>Only show powered on computers</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/powered-on.png</normaloff>:/resources/powered-on.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/powered-on.png</normaloff>:/master/powered-on.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -306,8 +306,8 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../core/core.qrc"/>
-  <include location="../master.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/master.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -95,7 +95,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 	m_image = QImage( computerControlInterface->screen() );
 
-	QPixmap icon( QStringLiteral( ":/resources/icon16.png" ) );
+	QPixmap icon( QStringLiteral( ":/core/icon16.png" ) );
 
 	QPainter p( &m_image );
 	QFont fnt = p.font();

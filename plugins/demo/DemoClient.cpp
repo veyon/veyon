@@ -48,7 +48,7 @@ DemoClient::DemoClient( const QString& host, bool fullscreen, QObject* parent ) 
 	}
 
 	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( VeyonCore::applicationName() ) );
-	m_toplevel->setWindowIcon( QPixmap( QStringLiteral(":/resources/display.png") ) );
+	m_toplevel->setWindowIcon( QPixmap( QStringLiteral(":/core/icon64.png") ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 
 	if( fullscreen == false )

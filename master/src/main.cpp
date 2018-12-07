@@ -38,7 +38,7 @@ int main( int argc, char * * argv )
 
 	VeyonCore core( &app, QStringLiteral("Master") );
 
-	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/resources/splash.png") ) );
+	QSplashScreen splashScreen( QPixmap( QStringLiteral(":/master/splash.png") ) );
 	splashScreen.show();
 
 	if( MainWindow::initAuthentication() == false ||

@@ -67,7 +67,7 @@ VncView::VncView( const QString &host, int port, QWidget *parent, Mode mode ) :
 		m_veyonConnection->setVeyonAuthType( RfbVeyonAuth::HostWhiteList );
 		m_establishingConnectionWidget = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( m_vncConn->host() ),
-					QStringLiteral( ":/resources/watch%1.png" ), 16, this );
+					QStringLiteral( ":/core/watch%1.png" ), 16, this );
 		connect( m_vncConn, &VncConnection::stateChanged,
 				 this, &VncView::updateConnectionState );
 	}

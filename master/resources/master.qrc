@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/master">
+        <file>zoom-fit-best.png</file>
+        <file>camera-photo.png</file>
+        <file>preferences-desktop-display.png</file>
+        <file>preferences-desktop-display-blue.png</file>
+        <file>preferences-desktop-display-orange.png</file>
+        <file>preferences-desktop-display-gray.png</file>
+        <file>preferences-desktop-display-red.png</file>
+        <file>splash.png</file>
+        <file>applications-education.png</file>
+        <file>edit-find.png</file>
+        <file>align-grid.png</file>
+        <file>exchange-positions-zorder.png</file>
+        <file>powered-on.png</file>
+    </qresource>
+</RCC>

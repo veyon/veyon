@@ -15,8 +15,8 @@
    <string>About Veyon</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../core.qrc">
-    <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
+   <iconset resource="../resources/core.qrc">
+    <normaloff>:/core/help-about.png</normaloff>:/core/help-about.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -66,7 +66,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../core.qrc">:/resources/icon64.png</pixmap>
+        <pixmap resource="../resources/core.qrc">:/core/icon64.png</pixmap>
        </property>
       </widget>
      </item>
@@ -93,8 +93,8 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
-       <iconset resource="../core.qrc">
-        <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
+       <iconset resource="../resources/core.qrc">
+        <normaloff>:/core/help-about.png</normaloff>:/core/help-about.png</iconset>
       </attribute>
       <attribute name="title">
        <string>About</string>
@@ -184,8 +184,8 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="icon">
-       <iconset resource="../core.qrc">
-        <normaloff>:/resources/user-group-new.png</normaloff>:/resources/user-group-new.png</iconset>
+       <iconset resource="../resources/core.qrc">
+        <normaloff>:/core/user-group-new.png</normaloff>:/core/user-group-new.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Contributors</string>
@@ -220,8 +220,8 @@
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="icon">
-       <iconset resource="../core.qrc">
-        <normaloff>:/resources/languages.png</normaloff>:/resources/languages.png</iconset>
+       <iconset resource="../resources/core.qrc">
+        <normaloff>:/core/languages.png</normaloff>:/core/languages.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Translation</string>
@@ -261,8 +261,8 @@ If you're interested in translating Veyon into your local or another language or
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="icon">
-       <iconset resource="../core.qrc">
-        <normaloff>:/resources/license.png</normaloff>:/resources/license.png</iconset>
+       <iconset resource="../resources/core.qrc">
+        <normaloff>:/core/license.png</normaloff>:/core/license.png</iconset>
       </attribute>
       <attribute name="title">
        <string>License</string>
@@ -298,7 +298,7 @@ If you're interested in translating Veyon into your local or another language or
   </layout>
  </widget>
  <resources>
-  <include location="../core.qrc"/>
+  <include location="../resources/core.qrc"/>
  </resources>
  <connections>
   <connection>

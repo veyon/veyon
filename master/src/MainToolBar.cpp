@@ -37,7 +37,7 @@ MainToolBar::MainToolBar( QWidget* parent ) :
 	m_mainWindow( dynamic_cast<MainWindow *>( parent ) )
 {
 	QPalette pal = palette();
-	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/resources/toolbar-background.png") ) );
+	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
 	setPalette( pal );
 
 	ToolButton::setToolTipsDisabled( m_mainWindow->masterCore().userConfig().noToolTips() );

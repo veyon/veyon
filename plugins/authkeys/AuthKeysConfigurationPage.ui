@@ -6,8 +6,8 @@
    <string>Authentication keys</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../core/core.qrc">
-    <normaloff>:/resources/application-x-pem-key.png</normaloff>:/resources/application-x-pem-key.png</iconset>
+   <iconset resource="../../core/resources/core.qrc">
+    <normaloff>:/core/application-x-pem-key.png</normaloff>:/core/application-x-pem-key.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
@@ -134,8 +134,8 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../../core/core.qrc">
-            <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
           </property>
          </widget>
         </item>
@@ -145,8 +145,8 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="../../core/core.qrc">
-            <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
           </property>
          </widget>
         </item>
@@ -244,7 +244,7 @@ The public key is used on client computers to authenticate incoming connection r
   </layout>
  </widget>
  <resources>
-  <include location="../../core/core.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections/>
 </ui>

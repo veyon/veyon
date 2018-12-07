@@ -287,9 +287,9 @@ QSize ComputerControlListModel::computerScreenSize() const
 
 void ComputerControlListModel::loadIcons()
 {
-	m_iconDefault = prepareIcon( QImage( QStringLiteral(":/resources/preferences-desktop-display-gray.png") ) );
-	m_iconConnectionProblem = prepareIcon( QImage( QStringLiteral(":/resources/preferences-desktop-display-red.png") ) );
-	m_iconDemoMode = prepareIcon( QImage( QStringLiteral(":/resources/preferences-desktop-display-orange.png") ) );
+	m_iconDefault = prepareIcon( QImage( QStringLiteral(":/master/preferences-desktop-display-gray.png") ) );
+	m_iconConnectionProblem = prepareIcon( QImage( QStringLiteral(":/master/preferences-desktop-display-red.png") ) );
+	m_iconDemoMode = prepareIcon( QImage( QStringLiteral(":/master/preferences-desktop-display-orange.png") ) );
 }
 
 

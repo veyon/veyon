@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>ScreenshotManagementView</class>
  <widget class="QWidget" name="ScreenshotManagementView">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>286</width>
-    <height>496</height>
-   </rect>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QListView" name="list">
@@ -107,8 +99,8 @@
         <string>Show</string>
        </property>
        <property name="icon">
-        <iconset resource="../master.qrc">
-         <normaloff>:/resources/edit-find.png</normaloff>:/resources/edit-find.png</iconset>
+        <iconset resource="../resources/master.qrc">
+         <normaloff>:/master/edit-find.png</normaloff>:/master/edit-find.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -124,8 +116,8 @@
         <string>Delete</string>
        </property>
        <property name="icon">
-        <iconset resource="../../configurator/veyon-configurator.qrc">
-         <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -156,8 +148,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../configurator/veyon-configurator.qrc"/>
-  <include location="../master.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/master.qrc"/>
  </resources>
  <connections/>
 </ui>

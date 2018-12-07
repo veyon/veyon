@@ -46,7 +46,7 @@ UserSessionControl::UserSessionControl( QObject* parent ) :
 						 Feature::Uid(),
 						 tr( "Logout" ), QString(),
 						 tr( "Click this button to logout users from all computers." ),
-						 QStringLiteral( ":/resources/system-suspend-hibernate.png" ) ),
+						 QStringLiteral( ":/core/system-suspend-hibernate.png" ) ),
 	m_features( { m_userSessionInfoFeature, m_userLogoutFeature } ),
 	m_userInfoQueryThread( new QThread ),
 	m_userInfoQueryTimer( new QTimer )

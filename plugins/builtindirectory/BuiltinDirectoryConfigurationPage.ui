@@ -93,8 +93,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/list-add.png</normaloff>:/core/list-add.png</iconset>
        </property>
       </widget>
      </item>
@@ -107,8 +107,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/edit-delete.png</normaloff>:/resource/edit-delete.png</iconset>
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/edit-delete.png</normaloff>:/resource/edit-delete.png</iconset>
        </property>
       </widget>
      </item>
@@ -138,8 +138,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/list-add.png</normaloff>:/resources/list-add.png</iconset>
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/list-add.png</normaloff>:/core/list-add.png</iconset>
        </property>
       </widget>
      </item>
@@ -152,8 +152,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../../core/core.qrc">
-         <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
        </property>
       </widget>
      </item>
@@ -176,7 +176,7 @@
  </widget>
  <resources>
   <include location="builtindirectory.qrc"/>
-  <include location="../../core/core.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
   <connection>

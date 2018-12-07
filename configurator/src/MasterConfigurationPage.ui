@@ -34,8 +34,8 @@
              <string>...</string>
             </property>
             <property name="icon">
-             <iconset resource="../../core/core.qrc">
-              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
             </property>
            </widget>
           </item>
@@ -65,8 +65,8 @@
              <string>...</string>
             </property>
             <property name="icon">
-             <iconset resource="../../core/core.qrc">
-              <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
             </property>
            </widget>
           </item>
@@ -354,8 +354,8 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="../veyon-configurator.qrc">
-               <normaloff>:/resources/go-next.png</normaloff>:/resources/go-next.png</iconset>
+              <iconset resource="../resources/configurator.qrc">
+               <normaloff>:/configurator/go-next.png</normaloff>:/configurator/go-next.png</iconset>
              </property>
             </widget>
            </item>
@@ -365,8 +365,8 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="../veyon-configurator.qrc">
-               <normaloff>:/resources/go-previous.png</normaloff>:/resources/go-previous.png</iconset>
+              <iconset resource="../resources/configurator.qrc">
+               <normaloff>:/configurator/go-previous.png</normaloff>:/configurator/go-previous.png</iconset>
              </property>
             </widget>
            </item>
@@ -424,8 +424,8 @@
   <tabstop>disabledFeaturesListWidget</tabstop>
  </tabstops>
  <resources>
-  <include location="../../core/core.qrc"/>
-  <include location="../veyon-configurator.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/configurator.qrc"/>
  </resources>
  <connections>
   <connection>
