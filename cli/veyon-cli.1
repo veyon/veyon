@@ -1,0 +1,371 @@
+.TH VEYON-CLI 1 2018-12-07 Veyon
+.SH NAME
+veyon-cli \- Veyon Command Line Interface
+.SH SYNOPSIS
+\fBveyon-cli\fP \fIhelp\fR
+
+\fBveyon-cli\fP \fI<module>\fR \fIhelp\fR
+
+\fBveyon-cli\fP \fI<module>\fR \fIhelp\fR \fI<command>\fR
+
+\fBveyon-cli\fP \fI<module>\fR \fI<command>\fR [\fIparameters\fP]
+
+.SH DESCRIPTION
+
+\fBVEYON-CLI\fR is a command line tool that in addition to the Veyon
+Configurator allows various configuration adjustments, automated tasks
+and the use of some Veyon functions without graphical interaction. The
+program is run either interactively on the command line or script
+controlled with usually elevated privileges.
+
+For administrative tasks, the Veyon Configurator and the command line
+tool Veyon Control are available. Veyon Control can be started via the
+command \fBveyon-cli\fR in the command line. If the Veyon installation
+directory is not in the $PATH environment variable, you must first change
+to the installation directory or prepend the directory to the program
+name.
+
+Veyon Control falls into various control modules. For each module a
+set of commands is available.
+
+Available modules are:
+
+.TP
+\fIauthkeys\fR
+Commands for managing authentication keys
+
+.TP
+\fIconfig\fR
+Commands for managing the configuration of Veyon
+
+.TP
+\fIldap\fR
+Commands for configuring and testing LDAP/AD integration
+
+.TP
+\fInetworkobjects\fR
+Commands for managing the builtin network object directory
+
+.TP
+\fIremoteaccess\fR
+Remote view or control a computer
+
+.TP
+\fIservice\fR
+Commands for configuring and controlling Veyon Service
+
+.TP
+\fIshell\fR
+Commands for shell functionalities
+
+If the \fBveyon-cli\fR command is called with the \fIhelp\fR parameter, a
+list of all available modules is displayed. The list can vary depending
+on the installed Veyon plugins.
+
+Each module supports the \fIhelp\fR command, so that a list of all available
+commands can be displayed for each module.
+
+.SH AUTHKEYS MODULE
+
+The authkeys module allows the management of authentication keys so that
+common operations such as importing an authentication key or assigning a
+user group can be easily automated.
+
+.TP
+\fIcreate <NAME>\fR
+This command creates a new pair of authentication keys and stores the
+private and public keys in the configured key directory. The parameter
+must be a name for the key, which may only contain letters.
+
+.TP
+\fIdelete <KEY>\fR
+This command deletes the <KEY> authentication key from the configured key
+directory. Please note that a key cannot be recovered once it has been
+deleted.
+
+.TP
+\fIexport <KEY> [<FILE>]\fR
+This command exports the <KEY> to <FILE> authentication key. If <FILE> is
+not specified, the file name is derived from the name and type of <KEY>.
+.TP
+\fIextract <KEY>\fR
+This command extracts the public key part from the private key <KEY> and
+saves it as the associated public key. When setting up another master
+computer, it is therefore sufficient to transfer the private key. The
+public key can then be extracted.
+.TP
+\fIimport <KEY> [<FILE>]\fR
+This command imports the authentication key <KEY> from <FILE>. If <FILE>
+is not specified, the file name is derived from the name and type of
+<KEY>.
+.TP
+\fIlist [details]\fR
+This command lists all available authentication keys in the configured
+key directory. If the details option is specified, a table with key
+details is output instead. Some details may be missing if a key cannot be
+accessed, e.g. due to missing read permissions.
+.TP
+\fIsetaccessgroup <KEY> <ACCESS GROUP>\fR
+This command adjusts the file access permissions on the <KEY> so that
+only the user group <ACCESS GROUP> has read access to it.
+
+.SH CONFIG MODULE
+
+Available commands for the config module are:
+
+.TP
+.I clear
+Clear system-wide Veyon configuration. This command resets the entire
+local configuration by deleting all configuration keys. Use this command
+to recreate a defined state before importing another configuration:
+
+    \fBveyon-cli\fR config clear
+
+.TP
+.I export
+Export configuration to given file.This command exports the local
+configuration to a file. The name of the destination file must be
+specified as an additional parameter:
+
+    \fBveyon-cli\fR config export myconfig.json
+
+.TP
+.I get
+Read and output configuration value for given key. This command allows
+reading a single configuration key. The name of the key must be supplied
+as a parameter.
+
+    \fBveyon-cli\fR config get Network/PrimaryServicePort
+
+.TP
+.I import
+Import configuration from given file. This command imports a previously
+exported configuration file into the local configuration. The name of the
+configuration file to be imported must be specified as an additional
+argument:
+
+    \fBveyon-cli\fR config import myconfig.json
+
+.TP
+.I list
+List all configuration keys and values. This command shows a list of all
+configuration keys and their corresponding values.
+
+    \fBveyon-cli\fR config list
+
+Using this command you can find the names of configuration keys in order
+to get oder set them one by one.
+
+.TP
+.I set
+Write given value to given configuration key. With this command a single
+configuration key can be written. The name of the key and the desired
+value must be passed as additional arguments:
+
+    \fBveyon-cli\fR config set Network/PrimaryServicePort 12345
+
+    \fBveyon-cli\fR config set Service/Autostart true
+
+    \fBveyon-cli\fR config set UI/Language de_DE
+
+.TP
+.I unset
+Unset (remove) given configuration key. This command deletes a single
+configuration key resulting in Veyon using the internal index:`default
+value for this key. The name of the key must be passed as an additional
+argument:
+
+    \fBveyon-cli\fR config unset Directories/Screenshots
+
+.TP
+.I upgrade
+Upgrade and save configuration of program and plugins. With this command
+the configuration of Veyon and all plugins can be updated and saved. This
+may be necessary if settings or configuration formats have changed due to
+program or plugin updates.
+
+.SH LDAP MODULE
+There are several LDAP specific operations provided through Veyon Control
+All operations are provided through the LDAP module. All lists of all
+supported commands is printed on entering
+
+    \fBveyon-cli\fR ldap help
+
+whereas command specific help texts can be shown via
+
+    \fBveyon-cli\fR ldap help <command>
+
+The available commands are:
+
+.TP
+.I autoconfigurebasedn
+This command can be used to automatically determine the used Base DN and
+permanently write it to the configuration. An LDAP server URL and
+optionally a naming context attribute have to be supplied as parameters:
+
+    \fBveyon-cli\fR ldap autoconfigurebasedn ldap://192.168.1.2/ namingContexts
+
+    \fBveyon-cli\fR ldap autoconfigurebasedn ldap://Administrator:MYPASSWORD@192.168.1.2:389/
+
+.TP
+.I query
+This command allows querying LDAP objects (rooms, computers, groups,
+users) and is designed mainly for debugging purposes. However, the
+function can also be used for developing scripts that may be helpful for
+system integration.
+
+    \fBveyon-cli\fR ldap query users
+
+    \fBveyon-cli\fR ldap query computers
+
+.SH NETWORKOBJECTS MODULE
+
+Veyon provides a built-in network object directory that can be used when
+no LDAP server is available. This network object directory can be managed
+in the Veyon Configurator as well as on the command line. Certain
+operations such as CSV import are currently only available on the command
+line. For most commands, a detailed description with examples is
+available in the command-specific help. The following commands can be
+used in the NETWORKOBJECTS module:
+
+
+.TP
+.I add <TYPE> <NAME> [<HOST ADDRESS> <MAC ADDRESS> <PARENT>]
+This command adds an object, where <TYPE> can be room or computer.
+<PARENT> can be specified as name or UUID.
+
+.TP
+.I clear
+This command resets the entire network object directory, i.e. all rooms
+and computers are removed. This operation is particularly useful before
+any automated import.
+
+.TP
+.I dump
+This command outputs the complete network object directory as a flat
+table. Each property such as object UID, type or name is displayed as a
+separate column.
+
+.TP
+.I export <FILE> [room <ROOM>] [format <FORMAT-STRING-WITH-VARIABLES>]
+This command can be used to export either the complete network object
+dictionary or only the specified room to a text file. The formatting can
+be controlled via a format string and the variables it contains, so that,
+for example, a CSV file can be generated. Valid variables are %type%,
+%name%, %host%, %mac% and %room%. Various examples are given in the
+command help (\fBveyon-cli\fR networkobjects help export).
+
+.TP
+.I import <FILE> [room < SPACE>] [format <FORMAT-STRING-WITH-VARIABLES>] [regex <REGULAR-EXPRESSION-WITH-VARIABLES>]
+This command can be used to import a text file into the network object
+directory. The processing of the input data can be controlled via a
+format string or a regular expression and contained variables. This way
+both CSV files and otherwise structured data can be imported. Valid
+variables are %name%, %host%, %mac% and %room%. Various examples are
+given in the command help (\fBveyon-cli\fR networkobjects help import).
+
+.TP
+.I list
+This command prints the complete network object directory as a formatted
+list. Unlike the dump command, the hierarchy of rooms and computers is
+represented by appropriate formatting.
+
+.TP
+.I remove <OBJECT>
+This command removes the specified object from the directory. <OBJECT>
+can be specified as name or UUID. When a room is removed, all computers
+in it are also removed.
+
+.SH REMOTEACCESS MODULE
+
+The remoteaccess module provides functions for a graphical remote access
+to computers. These are the same function that can be accessed from the
+Veyon Master. For example, the function provided by the command line tool
+can be used to create a program shortcut for direct access to a
+particular computer.
+
+.TP
+.I control
+This command opens a window with the remote control function that can be
+used to control a remote computer. The computer name or IP address (and
+optionally the TCP port) must be passed as an argument:
+
+    \fBveyon-cli\fR remoteaccess control 192.168.1.2
+.TP
+.I view
+This command opens a window with the remote view function to monitor a
+remote computer. In this mode the screen content is displayed in real
+time, but interaction with the computer is not possible until the
+corresponding button on the tool bar has been clicked. The computer or IP
+address (and optionally the TCP port) has to be passed as an argument:
+
+    \fBveyon-cli\fR remoteaccess view pc5:5900
+
+.SH SERVICE MODULE
+
+The local Veyon Service can be controlled using the service module.
+
+
+.TP
+.I register
+This command registers the Veyon Service in the operating system as a
+service so that it starts automatically when the computer starts up.
+
+    \fBveyon-cli\fR service register
+.TP
+.I unregister
+This command removes the service registration in the operating system so
+that the Veyon Service will not start automatically on startup.
+
+    \fBveyon-cli\fR service unregister
+.TP
+.I start
+This command starts the Veyon Service.
+
+    \fBveyon-cli\fR service start
+.TP
+.I stop
+This command stops the Veyon Service.
+
+    \fBveyon-cli\fR service stop
+.TP
+.I restart
+This command restarts the Veyon Service.
+
+    \fBveyon-cli\fR service restart
+.TP
+.I status
+This command queries and displays the status of the Veyon Service.
+
+    \fBveyon-cli\fR service status
+
+.SH SHELL MODULE
+Simple shell functionalities are provided by the shell module. If this
+module is called without further arguments, an interactive mode is
+started. In this mode, all CLI commands can be entered direcliy without
+having to specify and call the \fBveyon-cli\fR program for each command. The
+mode can be exited by entering the keyword exit.
+
+Additionally the module can be used for automated processing of commands
+in a text file in order to implement simple batch processing:
+
+.TP
+.I run <FILE>
+This command executes the commands specified in the text file line by
+line. Operations are executed independently of the result of previous
+operations, i.e. an error does not lead to termination.
+
+.SH FURTHER INFORMATION
+For more information about the \fB\fBveyon-cli\fR\fR command, point your browser to
+file:///usr/share/doc/veyon-cli/ or https://veyon.io/.
+
+.SH SEE ALSO
+veyon-service(1), veyon-master(1), veyon-configurator(1)
+
+.PP
+https://veyon.io/
+
+.SH AUTHOR
+Veyon has been written by Tobias Junghans.
+.PP
+This manual page has been written by Tobias Junghans and Mike Gabriel.

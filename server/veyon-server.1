@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH VEYON-SERVICE 1 2013-08-12 Veyon
+.TH VEYON-SERVER 1 2018-12-07 Veyon
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -23,17 +23,23 @@ veyon-server \- Veyon Server
 .SH DESCRIPTION
 .PP
 .\" TeX users may be more comfortable with the \fB<whatever>\fP and
-.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
 .\" respectively.
-.B VEYON-SERVER
-is the software which needs to run on student computers in order to access them using Veyon Master. It provides a VNC server and a service daemon which is necessary for taking control over the computer.
+\fBVEYON-SERVER\fR is a server application which provides access to a
+computer as well as control and application functions.
+.PP
+Under normal conditions this program is started by the Veyon Service
+automatically and with elevated privileges so it can’t be terminated by
+users.
 .PP
 .SH SEE ALSO
-.IR veyon-server (1), veyon-master (1), veyon-configurator (8), veyon-auth-helper (1)
+veyon-service(1), veyon-master(1), veyon-configurator(8), veyon-auth-helper(1)
 .PP
-.IR https://veyon.io/
+https://veyon.io/
 
 .SH AUTHOR
 Veyon has been written by Tobias Junghans.
 .PP
-This manual page has been written by Tobias Junghans and updated by Mike Gabriel. It was originally written for the Debian project (but may be used by others).
+This manual page has been written by Tobias Junghans and Mike Gabriel. It
+was originally written for the Debian project (but may be used by
+others).

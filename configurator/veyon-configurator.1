@@ -1,68 +1,14 @@
-.TH VEYON-CONFIGURATOR 1 2013-08-12 Veyon
+.TH VEYON-CONFIGURATOR 1 2018-12-07 Veyon
 .SH NAME
 veyon-configurator \- Veyon Configurator
 .SH SYNOPSIS
-\fBveyon-configurator\fP [\fIoptions\fP]
+\fBveyon-configurator\fP
 .SH DESCRIPTION
 
-veyon-configurator is a graphical program to modify the various settings used by veyon-service and veyon-master.
-
-veyon-configurator is free software delivered as a ready-to-run binary distribution or as source code that you can freely use, copy, modify, and distribute. Its license is compatible with the GPL. It runs on all major operating systems.
-
-Most of the functionality of veyon-configurator is provided by its graphical user interface however a few things can be changed from the command line as well.
-
-In the paragraphs below, find a short description for each command line option. If you are just getting acquainted with veyon-configurator, start the program without any options.
-.
-.SH OPTIONS
-.B -l, -ListConfig
-
-The current configuration with all keys and values will be listed. This will give an output like
-   ...
-   Logging/LogLevel=1
-   Network/CoreServerPort=11100
-   Network/DemoServerPort=11400
-   ...
-
-.TP
-.B -s, -SetConfigValue
-
-The value of a configuration property can be changed with this option.
-Examples:
-  veyon-configurator -s Logging/LogLevel=4
-  veyon-configurator -SetConfigValue Logging/LogFileDirectory /tmp/veyon
-
-.TP
-.B -a, -ApplySettings
-
-You can apply the settings previously saved in a settings file using this command.
-Examples:
-  veyon-configurator -ApplySettings MyCustomSettings.xml
-
-.TP
-.B -i, -ImportPublicKey
-
-You can import a public key file which has been exported during the installation
-of the Veyon master computer using this command or its abbreviation.
-
-You can omit the the second parameter which specifies the public key file if it
-is located in the directory from which you launch the Veyon Configurator. It will
-automatically search for a *.key.txt file. If it finds exactly one, it'll import
-this one.
-Examples:
-  veyon-configurator -ImportPublicKey MyPublicKey.key.txt
-  veyon-configurator -i
-
-.TP
-.B -CreateKeypair <path>
-
-creates a new key pair for the default role (teacher) with the specified "path" as base dir. If "path" is omitted 
-the path is taken from the settings file. This is used in conjunction with role. If role is omitted the default
-role is "teacher".
-
-.TP
-.B -role [supporter|teacher|admin]
-
-in connection with "CreateKeypair" creates a key pair for the specified role.
+\fBVEYON-CONFIGURATOR\fR is a configuration tool which allows the site
+admin to configure and customize all components of a local Veyon
+installation through a graphical user interface. The program is started
+by the administrator with elevated privileges whenever necessary.
 
 .PP
 For more information about the veyon-configurator, point your browser to file:///usr/share/doc/packages/veyon-configurator or https://veyon.io/.

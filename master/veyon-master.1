@@ -2,31 +2,30 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH VEYON MASTER 1 2013-08-12 Veyon
+.TH VEYON MASTER 1 2018-12-07 Veyon
 .SH NAME
 veyon-master \- Veyon Master Application
 .SH SYNOPSIS
 .B veyon-master
 .SH DESCRIPTION
-.B Veyon MASTER
-is the graphical user interface to control student computers which have the Veyon service installed. Using the program you can remote control, lock, shutdown/reboot computers as well as show a demo, send text messages to users and much more.
-.
-.SH OPTIONS
-.IP "\fB\-rctrl\fP \fIhost:[port]\fP
-.IP
-Directly remote control the specified host. You can omit port if the server is running at the default port (11100).
-.
-.IP "\fB\-screen\fP \fI<screen-number>\fP
-.IP
-Place the remote control window on another screen if running on a multi-headed workstation.
-.
+\fBVEYON MASTER\fR is an application program that can be used for
+monitoring and controlling other computers as well as for accessing Veyon
+features.
 .PP
+Usually the program is started by the end user. It accesses other
+computers through the Veyon Service.
+.PP
+Using the program you can remote control, lock, shutdown/reboot computers
+as well as show a demo, send text messages to users and much more.
+
 .SH SEE ALSO
-.IR veyon-service (1), veyon-configurator (8), veyon-auth-helper(1)
+veyon-service(1), veyon-configurator(8), veyon-auth-helper(1)
 .PP
-.IR https://veyon.io
+https://veyon.io
+
 .SH AUTHOR
 Veyon has been written by Tobias Junghans.
 .PP
-This manual page has been written by Steffen Joeris
-and Tobias Junghans and updated by Mike Gabriel. It was originally written for the Debian project (but may be used by others).
+This manual page has been written by Tobias Junghans and Mike Gabriel. It
+was originally written for the Debian project (but may be used by
+others).
