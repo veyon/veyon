@@ -3,6 +3,7 @@ Description=Veyon Service
 After=network-online.target dbus.service systemd-logind.service
 Wants=network-online.target
 Requires=dbus.service systemd-logind.service
+Documentation=man:veyon-service(1)
 
 [Service]
 ExecStart=@CMAKE_INSTALL_PREFIX@/bin/veyon-service
