@@ -44,8 +44,15 @@ public:
 		DisplayUserAndComputerName,
 		DisplayUserName,
 		DisplayComputerName,
-		DisplayRoleContentCount
 	};
+	Q_ENUM(DisplayRoleContent)
+
+	enum SortOrder {
+		SortByComputerAndUserName,
+		SortByUserName,
+		SortByComputerName,
+	};
+	Q_ENUM(SortOrder)
 
 	ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
 
@@ -90,6 +97,7 @@ private:
 	QImage computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	QString computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const;
+	QString computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	static QString computerStateDescription( const ComputerControlInterface::Pointer& controlInterface );
 	static QString loggedOnUserInformation( const ComputerControlInterface::Pointer& controlInterface );
 	QString activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const;
@@ -97,6 +105,7 @@ private:
 	VeyonMaster* m_master;
 
 	DisplayRoleContent m_displayRoleContent;
+	SortOrder m_sortOrder;
 
 	QImage m_iconDefault;
 	QImage m_iconConnectionProblem;

@@ -41,6 +41,7 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	QAbstractListModel( parent ),
 	m_master( masterCore ),
 	m_displayRoleContent( static_cast<DisplayRoleContent>( VeyonCore::config().computerDisplayRoleContent() ) ),
+	m_sortOrder( static_cast<SortOrder>( VeyonCore::config().computerDisplayRoleContent() ) ),
 	m_iconDefault(),
 	m_iconConnectionProblem(),
 	m_iconDemoMode()
@@ -103,8 +104,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 		return computerDisplayRole( computerControl );
 
 	case Qt::InitialSortOrderRole:
-		return computerControl->computer().room() + computerControl->computer().name() +
-				computerControl->computer().hostAddress() + computerControl->userLoginName();
+		return computerSortRole( computerControl );
 
 	case UidRole:
 		return computerControl->computer().networkObjectUid();
@@ -382,6 +382,32 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 	}
 
 	return QString();
+}
+
+
+
+QString ComputerControlListModel::computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const
+{
+	switch( m_sortOrder )
+	{
+	case SortByComputerAndUserName:
+		return controlInterface->computer().room() + controlInterface->computer().name() +
+				controlInterface->computer().hostAddress() + controlInterface->userLoginName();
+
+	case SortByComputerName:
+		return controlInterface->computer().room() + controlInterface->computer().name() +
+				controlInterface->computer().hostAddress();
+
+	case SortByUserName:
+		if( controlInterface->userFullName().isEmpty() == false )
+		{
+			return controlInterface->userFullName();
+		}
+
+		return controlInterface->userLoginName();
+	}
+
+	return {};
 }
 
 
