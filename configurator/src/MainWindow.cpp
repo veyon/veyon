@@ -240,11 +240,14 @@ void MainWindow::loadConfigurationPagePlugins()
 		if( pluginInterface && configurationPagePluginInterface )
 		{
 			auto page = configurationPagePluginInterface->createConfigurationPage();
-			ui->configPages->addWidget( page );
+			if( page )
+			{
+				ui->configPages->addWidget( page );
 
-			auto item = new QListWidgetItem( page->windowIcon(), page->windowTitle() );
-			item->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-			ui->pageSelector->addItem( item );
+				auto item = new QListWidgetItem( page->windowIcon(), page->windowTitle() );
+				item->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+				ui->pageSelector->addItem( item );
+			}
 		}
 	}
 
