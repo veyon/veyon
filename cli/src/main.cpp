@@ -26,6 +26,7 @@
 
 #include <openssl/crypto.h>
 
+#include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
 #include "Logger.h"
 #include "PluginManager.h"
@@ -55,15 +56,17 @@ int main( int argc, char **argv )
 	{
 		if( arguments.last() == QStringLiteral("-v") || arguments.last() == QStringLiteral("--version") )
 		{
-			printf( "%s\n", qUtf8Printable( VeyonCore::version() ) );
+			CommandLineIO::print( VeyonCore::version() );
 			delete app;
 			return 0;
 		}
 		else if( arguments.last() == QStringLiteral("about") )
 		{
-			printf( "Veyon: %s (%s)\n", qUtf8Printable( VeyonCore::version() ), __DATE__ );
-			printf( "Qt: %s (built against %s/%s)\n", qVersion(), QT_VERSION_STR, qUtf8Printable( QSysInfo::buildAbi() ) );
-			printf( "OpenSSL: %s\n", SSLeay_version(SSLEAY_VERSION) );
+			CommandLineIO::print( QStringLiteral("Veyon: %1 (%2)").arg( VeyonCore::version(), QLatin1String(__DATE__) ) );
+			CommandLineIO::print( QStringLiteral("Qt: %1 (built against %2/%3)").arg( QLatin1String(qVersion()),
+																					  QLatin1String(QT_VERSION_STR),
+																					  QSysInfo::buildAbi() ) );
+			CommandLineIO::print( QStringLiteral("OpenSSL: %1").arg( QLatin1String(SSLeay_version(SSLEAY_VERSION)) ) );
 			delete app;
 			return 0;
 		}
@@ -103,9 +106,9 @@ int main( int argc, char **argv )
 				{
 					QMetaObject::invokeMethod( it.value(),
 											   QStringLiteral( "handle_%1" ).arg( arguments[2] ).toUtf8().constData(),
-											   Qt::DirectConnection,
-											   Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
-											   Q_ARG( QStringList, arguments.mid( 3 ) ) );
+							Qt::DirectConnection,
+							Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
+							Q_ARG( QStringList, arguments.mid( 3 ) ) );
 				}
 				else if( arguments[2] != QStringLiteral("help") )
 				{
@@ -131,38 +134,38 @@ int main( int argc, char **argv )
 			case CommandLinePluginInterface::NoResult:
 				return 0;
 			case CommandLinePluginInterface::Successful:
-				qInfo( "%s", qUtf8Printable( VeyonCore::tr( "[OK]" ) ) );
+				CommandLineIO::print( VeyonCore::tr( "[OK]" ) );
 				return 0;
 			case CommandLinePluginInterface::Failed:
-				qInfo( "%s", qUtf8Printable( VeyonCore::tr( "[FAIL]" ) ) );
+				CommandLineIO::print( VeyonCore::tr( "[FAIL]" ) );
 				return -1;
 			case CommandLinePluginInterface::InvalidCommand:
-				qCritical( "%s", qUtf8Printable( VeyonCore::tr( "Invalid command!" ) ) );
+				CommandLineIO::error( VeyonCore::tr( "Invalid command!" ) );
 				break;
 			case CommandLinePluginInterface::InvalidArguments:
-				qCritical( "%s", qUtf8Printable( VeyonCore::tr( "Invalid arguments given" ) ) );
+				CommandLineIO::error( VeyonCore::tr( "Invalid arguments given" ) );
 				return -1;
 			case CommandLinePluginInterface::NotEnoughArguments:
-				qCritical( "%s", qUtf8Printable(
-							   VeyonCore::tr( "Not enough arguments given - "
-											  "use \"%1 help\" for more information" ).arg( module ) ) );
+				CommandLineIO::error( VeyonCore::tr( "Not enough arguments given - "
+													 "use \"%1 help\" for more information" ).arg( module ) );
+				return -1;
+			case CommandLinePluginInterface::NotLicensed:
+				CommandLineIO::error( VeyonCore::tr( "Plugin not licensed" ) );
 				return -1;
 			case CommandLinePluginInterface::Unknown:
 				break;
 			default:
-				qCritical( "%s", qUtf8Printable( VeyonCore::tr( "Unknown result!" ) ) );
+				CommandLineIO::error( VeyonCore::tr( "Unknown result!" ) );
 				return -1;
 			}
 
 			auto commands = it.key()->commands();
 			std::sort( commands.begin(), commands.end() );
 
-			qInfo( "%s", qUtf8Printable( VeyonCore::tr( "Available commands:" ) ) );
+			CommandLineIO::print( VeyonCore::tr( "Available commands:" ) );
 			for( const auto& command : commands )
 			{
-				qInfo( "    %s - %s",
-					   qUtf8Printable( command ),
-					   qUtf8Printable( it.key()->commandHelp( command ) ) );
+				CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
 			}
 			return -1;
 		}
@@ -174,23 +177,24 @@ int main( int argc, char **argv )
 
 	if( module == QStringLiteral("help") )
 	{
-		qCritical( "%s", qUtf8Printable( VeyonCore::tr( "Available modules:" ) ) );
+		CommandLineIO::print( VeyonCore::tr( "Available modules:" ) );
 		rc = 0;
 	}
 	else
 	{
-		qCritical( "%s", qUtf8Printable( VeyonCore::tr( "No module specified or module not found - available modules are:" ) ) );
+		CommandLineIO::error( VeyonCore::tr( "No module specified or module not found - available modules are:" ) );
 	}
 
 	QStringList modulesHelpStrings;
 	for( auto it = commandLinePluginInterfaces.constBegin(), end = commandLinePluginInterfaces.constEnd(); it != end; ++it )
 	{
 		modulesHelpStrings.append( QStringLiteral( "%1 - %2" ).arg( it.key()->commandLineModuleName(),
-																		it.key()->commandLineModuleHelp() ) );
+																	it.key()->commandLineModuleHelp() ) );
 	}
 
 	std::sort( modulesHelpStrings.begin(), modulesHelpStrings.end() );
-	std::for_each( modulesHelpStrings.begin(), modulesHelpStrings.end(), [](const QString& s) { qCritical( "    %s", qUtf8Printable( s ) ); } );
+	std::for_each( modulesHelpStrings.begin(), modulesHelpStrings.end(), [](const QString& s) {
+		CommandLineIO::print( QStringLiteral( "    " ) + s ); } );
 
 	delete app;
 
