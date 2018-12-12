@@ -241,6 +241,13 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 
 
 
+void ComputerControlInterface::setScreenUpdateFlag()
+{
+	m_screenUpdated = true;
+}
+
+
+
 void ComputerControlInterface::resetWatchdog()
 {
 	if( state() == Connected )

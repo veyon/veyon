@@ -130,11 +130,8 @@ public:
 	bool isMessageQueueEmpty();
 
 
-private slots:
-	void setScreenUpdateFlag()
-	{
-		m_screenUpdated = true;
-	}
+private:
+	void setScreenUpdateFlag();
 
 	void resetWatchdog();
 	void restartConnection();
