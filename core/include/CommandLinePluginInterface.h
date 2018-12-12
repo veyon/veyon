@@ -40,6 +40,7 @@ public:
 		InvalidArguments,
 		NotEnoughArguments,
 		InvalidCommand,
+		NotLicensed,
 		NoResult,
 		RunResultCount
 	} RunResult;
