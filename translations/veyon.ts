@@ -728,6 +728,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1654,25 +1658,6 @@ Examples:
     </message>
     <message>
         <source>Backend settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>Internet access control not available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;https://veyon.io&quot;&gt;https://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2874,6 +2859,14 @@ USAGE
         <source>Text color</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3724,6 +3717,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>ERROR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>licensed for</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
