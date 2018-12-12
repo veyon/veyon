@@ -34,14 +34,14 @@ void CommandLineIO::print( const QString& message )
 
 void CommandLineIO::info( const QString &message )
 {
-	fprintf( stderr, "[INFO] %s\n", qUtf8Printable( message ) );
+	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "INFO" ) ), qUtf8Printable( message ) );
 }
 
 
 
 void CommandLineIO::error( const QString& message )
 {
-	fprintf( stderr, "[ERROR] %s\n", qUtf8Printable( message ) );
+	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "ERROR" ) ), qUtf8Printable( message ) );
 }
 
 
