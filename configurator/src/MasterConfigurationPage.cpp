@@ -38,7 +38,6 @@
 MasterConfigurationPage::MasterConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::MasterConfigurationPage),
-	m_builtinFeatures( new BuiltinFeatures ),
 	m_featureManager()
 {
 	ui->setupUi(this);
@@ -57,7 +56,6 @@ MasterConfigurationPage::MasterConfigurationPage() :
 MasterConfigurationPage::~MasterConfigurationPage()
 {
 	delete ui;
-	delete m_builtinFeatures;
 }
 
 
@@ -165,7 +163,7 @@ void MasterConfigurationPage::updateFeatureLists()
 	for( const auto& feature : qAsConst( m_featureManager.features() ) )
 	{
 		if( feature.testFlag( Feature::Master ) == false ||
-				feature == m_builtinFeatures->monitoringMode().feature() )
+				feature == VeyonCore::builtinFeatures().monitoringMode().feature() )
 		{
 			continue;
 		}

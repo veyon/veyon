@@ -150,7 +150,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	addFeaturesToToolBar();
 
-	m_modeGroup->button( qHash( m_master.builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
+	m_modeGroup->button( qHash( VeyonCore::builtinFeatures().monitoringMode().feature().uid() ) )->setChecked( true );
 
 	// setup system tray icon
 	QIcon icon( QStringLiteral(":/core/icon16.png") );
@@ -225,7 +225,7 @@ bool MainWindow::initAccessControl()
 
 void MainWindow::closeEvent( QCloseEvent* event )
 {
-	if( m_master.currentMode() != m_master.builtinFeatures().monitoringMode().feature().uid() )
+	if( m_master.currentMode() != VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 	{
 		const Feature& activeFeature = m_master.featureManager().feature( m_master.currentMode() );
 
@@ -331,7 +331,7 @@ void MainWindow::addSubFeaturesToToolButton( ToolButton* button, Feature::Uid pa
 
 void MainWindow::updateModeButtonGroup()
 {
-	const Feature::Uid& monitoringMode = m_master.builtinFeatures().monitoringMode().feature().uid();
+	const Feature::Uid& monitoringMode = VeyonCore::builtinFeatures().monitoringMode().feature().uid();
 
 	if( m_master.currentMode() == monitoringMode )
 	{

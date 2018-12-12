@@ -35,7 +35,6 @@
 
 class QImage;
 
-class BuiltinFeatures;
 class FeatureMessage;
 class VncConnection;
 class VeyonConnection;
@@ -64,7 +63,7 @@ public:
 
 	Pointer weakPointer();
 
-	void start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures );
+	void start( QSize scaledScreenSize );
 	void stop();
 
 	const Computer& computer() const
@@ -159,7 +158,6 @@ private:
 
 	VncConnection* m_vncConnection;
 	VeyonConnection* m_connection;
-	BuiltinFeatures* m_builtinFeatures;
 	QTimer m_connectionWatchdogTimer;
 
 	bool m_screenUpdated;

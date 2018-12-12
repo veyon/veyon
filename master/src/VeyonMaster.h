@@ -48,11 +48,6 @@ public:
 	VeyonMaster( QObject* parent = nullptr );
 	~VeyonMaster() override;
 
-	BuiltinFeatures& builtinFeatures() override
-	{
-		return *m_builtinFeatures;
-	}
-
 	FeatureManager& featureManager()
 	{
 		return *m_featureManager;
@@ -103,7 +98,6 @@ public slots:
 private:
 	FeatureList featureList() const;
 
-	BuiltinFeatures* m_builtinFeatures;
 	FeatureManager* m_featureManager;
 	const FeatureList m_features;
 	UserConfig* m_userConfig;

@@ -27,7 +27,6 @@
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>
 
-#include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "RfbVeyonAuth.h"
@@ -62,11 +61,6 @@ public:
 		return m_serverAccessControlManager;
 	}
 
-	BuiltinFeatures& builtinFeatures() override
-	{
-		return m_builtinFeatures;
-	}
-
 	bool handleFeatureMessage( QTcpSocket* socket );
 
 	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
@@ -87,7 +81,6 @@ private:
 
 	QStringList m_failedAuthHosts;
 
-	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
 	FeatureWorkerManager m_featureWorkerManager;
 

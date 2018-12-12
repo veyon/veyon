@@ -44,6 +44,7 @@ class QCoreApplication;
 class QWidget;
 
 class AuthenticationCredentials;
+class BuiltinFeatures;
 class ComputerControlInterface;
 class CryptoCore;
 class Filesystem;
@@ -98,6 +99,11 @@ public:
 	static PlatformPluginInterface& platform()
 	{
 		return *( instance()->m_platformPlugin );
+	}
+
+	static BuiltinFeatures& builtinFeatures()
+	{
+		return *( instance()->m_builtinFeatures );
 	}
 
 	static UserGroupsBackendManager& userGroupsBackendManager()
@@ -169,6 +175,7 @@ private:
 	PluginManager* m_pluginManager;
 	PlatformPluginManager* m_platformPluginManager;
 	PlatformPluginInterface* m_platformPlugin;
+	BuiltinFeatures* m_builtinFeatures;
 	UserGroupsBackendManager* m_userGroupsBackendManager;
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 

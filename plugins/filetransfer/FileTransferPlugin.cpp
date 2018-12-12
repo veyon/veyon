@@ -138,7 +138,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 		if( message.command() == FileTransferFinishCommand )
 		{
-			server.builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
+			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
 																   tr( "Received file \"%1\"." ).
 																   arg( message.argument( Filename ).toString() ),
 																   server.featureWorkerManager() );

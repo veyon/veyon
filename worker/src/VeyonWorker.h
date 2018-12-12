@@ -24,7 +24,6 @@
 
 #pragma once
 
-#include "BuiltinFeatures.h"
 #include "FeatureManager.h"
 #include "VeyonWorkerInterface.h"
 
@@ -36,16 +35,10 @@ class VeyonWorker : public QObject, VeyonWorkerInterface
 public:
 	VeyonWorker( const QString& featureUid, QObject* parent = nullptr );
 
-	BuiltinFeatures& builtinFeatures() override
-	{
-		return m_builtinFeatures;
-	}
-
 	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
 
 private:
 	VeyonCore m_core;
-	BuiltinFeatures m_builtinFeatures;
 	FeatureManager m_featureManager;
 	FeatureWorkerManagerConnection* m_workerManagerConnection;
 

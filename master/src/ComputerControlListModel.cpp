@@ -244,7 +244,7 @@ void ComputerControlListModel::updateComputerScreens()
 void ComputerControlListModel::startComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface,
 															  const QModelIndex& index )
 {
-	controlInterface->start( computerScreenSize(), &m_master->builtinFeatures() );
+	controlInterface->start( computerScreenSize() );
 
 	connect( controlInterface.data(), &ComputerControlInterface::featureMessageReceived, this,
 			 [=]( const FeatureMessage& featureMessage, ComputerControlInterface::Pointer computerControlInterface ) {

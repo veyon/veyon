@@ -26,6 +26,7 @@
 #include <QHostInfo>
 
 #include "AccessControlProvider.h"
+#include "BuiltinFeatures.h"
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"
 #include "FeatureMessage.h"
@@ -37,11 +38,10 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 	QObject( parent ),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
-	m_builtinFeatures(),
 	m_featureManager(),
 	m_featureWorkerManager( *this, m_featureManager ),
 	m_serverAuthenticationManager( this ),
-	m_serverAccessControlManager( m_featureWorkerManager, m_builtinFeatures.desktopAccessDialog(), this ),
+	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),
 	m_vncServer(),
 	m_vncProxyServer( VeyonCore::config().localConnectOnly() || AccessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
@@ -49,7 +49,7 @@ ComputerControlServer::ComputerControlServer( QObject* parent ) :
 					  this,
 					  this )
 {
-	m_builtinFeatures.systemTrayIcon().setToolTip(
+	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip(
 				tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::version(),
 													QHostInfo::localHostName(),
 													QString::number( VeyonCore::config().primaryServicePort() + VeyonCore::sessionId() ) ),
@@ -142,7 +142,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 
 		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
 		{
-			m_builtinFeatures.systemTrayIcon().showMessage(
+			VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 						tr( "Remote access" ),
 						tr( "User \"%1\" at host \"%2\" is now accessing this computer." ).arg( user, host ),
 						m_featureWorkerManager );
@@ -159,7 +159,7 @@ void ComputerControlServer::showAuthenticationMessage( ServerAuthenticationManag
 			if( m_failedAuthHosts.contains( host ) == false )
 			{
 				m_failedAuthHosts += host;
-				m_builtinFeatures.systemTrayIcon().showMessage(
+				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
 							tr( "Authentication error" ),
 							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
 								"but could not authenticate successfully!" ).arg( user, host ),

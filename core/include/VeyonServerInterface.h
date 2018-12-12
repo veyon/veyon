@@ -34,8 +34,6 @@ class VeyonServerInterface
 public:
 	virtual ~VeyonServerInterface() = default;
 
-	virtual BuiltinFeatures& builtinFeatures() = 0;
-
 	virtual FeatureWorkerManager& featureWorkerManager() = 0;
 	virtual bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) = 0;
 

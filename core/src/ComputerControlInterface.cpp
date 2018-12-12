@@ -43,7 +43,6 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer,
 	m_scaledScreenSize(),
 	m_vncConnection( nullptr ),
 	m_connection( nullptr ),
-	m_builtinFeatures( nullptr ),
 	m_connectionWatchdogTimer( this ),
 	m_screenUpdated( false )
 {
@@ -68,13 +67,12 @@ ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 
 
 
-void ComputerControlInterface::start( QSize scaledScreenSize, BuiltinFeatures* builtinFeatures )
+void ComputerControlInterface::start( QSize scaledScreenSize )
 {
 	// make sure we do not leak
 	stop();
 
 	m_scaledScreenSize = scaledScreenSize;
-	m_builtinFeatures = builtinFeatures;
 
 	if( m_computer.hostAddress().isEmpty() == false )
 	{
@@ -302,7 +300,7 @@ void ComputerControlInterface::updateUser()
 	{
 		if( userLoginName().isEmpty() )
 		{
-			m_builtinFeatures->userSessionControl().getUserSessionInfo( { weakPointer() } );
+			VeyonCore::builtinFeatures().userSessionControl().getUserSessionInfo( { weakPointer() } );
 		}
 	}
 	else
@@ -318,7 +316,7 @@ void ComputerControlInterface::updateActiveFeatures()
 {
 	if( m_vncConnection && m_connection && state() == Connected )
 	{
-		m_builtinFeatures->featureControl().queryActiveFeatures( { weakPointer() } );
+		VeyonCore::builtinFeatures().featureControl().queryActiveFeatures( { weakPointer() } );
 	}
 	else
 	{

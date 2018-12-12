@@ -35,6 +35,7 @@
 #include <QLabel>
 #include <QProcessEnvironment>
 
+#include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
 #include "Filesystem.h"
 #include "Logger.h"
@@ -62,6 +63,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, const QString& appComponent
 	m_pluginManager( nullptr ),
 	m_platformPluginManager( nullptr ),
 	m_platformPlugin( nullptr ),
+	m_builtinFeatures( nullptr ),
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_localComputerControlInterface( nullptr ),
@@ -447,6 +449,8 @@ void VeyonCore::initPlugins()
 	// load all other (non-platform) plugins
 	m_pluginManager->loadPlugins();
 	m_pluginManager->upgradePlugins();
+
+	m_builtinFeatures = new BuiltinFeatures();
 }
 
 

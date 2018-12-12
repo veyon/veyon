@@ -37,6 +37,4 @@ public:
 	virtual QWidget* mainWindow() = 0;
 	virtual Configuration::Object* userConfigurationObject() = 0;
 
-	virtual BuiltinFeatures& builtinFeatures() = 0;
-
 };

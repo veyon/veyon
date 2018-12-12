@@ -33,7 +33,6 @@ VeyonWorker::VeyonWorker( const QString& featureUid, QObject* parent ) :
 	QObject( parent ),
 	m_core( QCoreApplication::instance(),
 			QStringLiteral( "FeatureWorker-" ) + VeyonCore::formattedUuid( featureUid ) ),
-	m_builtinFeatures(),
 	m_featureManager(),
 	m_workerManagerConnection( nullptr )
 {

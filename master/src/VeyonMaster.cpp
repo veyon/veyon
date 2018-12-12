@@ -39,7 +39,6 @@
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
 	QObject( parent ),
-	m_builtinFeatures( new BuiltinFeatures() ),
 	m_featureManager( new FeatureManager() ),
 	m_features( featureList() ),
 	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
@@ -47,7 +46,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
 	m_computerSortFilterProxyModel( new ComputerSortFilterProxyModel( this ) ),
 	m_mainWindow( nullptr ),
-	m_currentMode( m_builtinFeatures->monitoringMode().feature().uid() )
+	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
 	if( VeyonCore::config().enforceSelectedModeForClients() )
 	{
@@ -60,7 +59,7 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 			 m_featureManager->handleFeatureMessage( *this, featureMessage, computerControlInterface );
 	} );
 
-	VeyonCore::localComputerControlInterface().start( QSize(), m_builtinFeatures );
+	VeyonCore::localComputerControlInterface().start( QSize() );
 
 	// attach computer list model to proxy model
 	m_computerSortFilterProxyModel->setSourceModel( m_computerControlListModel );
@@ -85,8 +84,6 @@ VeyonMaster::~VeyonMaster()
 	delete m_userConfig;
 
 	delete m_featureManager;
-
-	delete m_builtinFeatures;
 }
 
 
@@ -159,7 +156,7 @@ void VeyonMaster::runFeature( const Feature& feature )
 
 		if( m_currentMode == feature.uid() )
 		{
-			const Feature& monitoringModeFeature = m_builtinFeatures->monitoringMode().feature();
+			const Feature& monitoringModeFeature = VeyonCore::builtinFeatures().monitoringMode().feature();
 
 			m_featureManager->startFeature( *this, monitoringModeFeature, computerControlInterfaces );
 			m_currentMode = monitoringModeFeature.uid();
@@ -194,7 +191,7 @@ void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 			}
 		}
 
-		if( designatedModeFeature != m_builtinFeatures->monitoringMode().feature() )
+		if( designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature() )
 		{
 			featureManager().startFeature( *this, designatedModeFeature, { controlInterface } );
 		}
