@@ -76,27 +76,31 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::configuredDirectory()
 NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory()
 {
 	const auto configuredPluginUuid = VeyonCore::config().networkObjectDirectoryPlugin();
-	NetworkObjectDirectoryPluginInterface* defaultPluginInterface = nullptr;
 
 	for( auto it = m_directoryPluginInterfaces.constBegin(), end = m_directoryPluginInterfaces.constEnd(); it != end; ++it )
 	{
-		const auto pluginInterface = it.key();
-
-		if( pluginInterface->uid() == configuredPluginUuid )
+		if( it.key()->uid() == configuredPluginUuid )
 		{
-			return it.value()->createNetworkObjectDirectory( this );
-		}
-		else if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
-		{
-			defaultPluginInterface = it.value();
+			auto directory = it.value()->createNetworkObjectDirectory( this );
+			if( directory )
+			{
+				return directory;
+			}
 		}
 	}
 
-	if( defaultPluginInterface == nullptr )
+	for( auto it = m_directoryPluginInterfaces.constBegin(), end = m_directoryPluginInterfaces.constEnd(); it != end; ++it )
 	{
-		qCritical() << "NetworkObjectDirectoryManager: no default plugin available! configured plugin:" << configuredPluginUuid;
-		return nullptr;
+		if( it.key()->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
+		{
+			auto defaultDirectory = it.value()->createNetworkObjectDirectory( this );
+			if( defaultDirectory )
+			{
+				return defaultDirectory;
+			}
+		}
 	}
 
-	return defaultPluginInterface->createNetworkObjectDirectory( this );
+	qCritical() << "NetworkObjectDirectoryManager: no default plugin available! configured plugin:" << configuredPluginUuid;
+	return nullptr;
 }
