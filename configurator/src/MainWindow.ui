@@ -10,7 +10,7 @@
     <normaloff>:/configurator/veyon-configurator.png</normaloff>:/configurator/veyon-configurator.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_4">
+   <layout class="QGridLayout" name="centralLayout" columnstretch="0,1">
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
