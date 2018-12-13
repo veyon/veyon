@@ -30,6 +30,11 @@ SET(kldap_SOURCES
 	${kldap_SOURCE_DIR}/ldapoperation.cpp
 	${kldap_SOURCE_DIR}/ldapcontrol.cpp
 	${kldap_SOURCE_DIR}/ldapdn.cpp
+	${kldap_SOURCE_DIR}/ldapmodel.cpp
+	${kldap_SOURCE_DIR}/ldapmodel_p.cpp
+	${kldap_SOURCE_DIR}/ldapmodelnode_p.cpp
+	${kldap_SOURCE_DIR}/ldapsearch.cpp
+	${kldap_SOURCE_DIR}/ldapstructureproxymodel.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/KLdapIntegration.cpp
 )
 
