@@ -21,16 +21,24 @@ SET(kldap_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/kldap/src)
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/3rdparty/kldap/src/kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
 
 SET(kldap_SOURCES
-  ${kldap_SOURCE_DIR}/ber.cpp
-  ${kldap_SOURCE_DIR}/ldif.cpp
-  ${kldap_SOURCE_DIR}/ldapurl.cpp
-  ${kldap_SOURCE_DIR}/ldapserver.cpp
-  ${kldap_SOURCE_DIR}/ldapobject.cpp
-  ${kldap_SOURCE_DIR}/ldapconnection.cpp
-  ${kldap_SOURCE_DIR}/ldapoperation.cpp
-  ${kldap_SOURCE_DIR}/ldapcontrol.cpp
-  ${kldap_SOURCE_DIR}/ldapdn.cpp
+	${kldap_SOURCE_DIR}/ber.cpp
+	${kldap_SOURCE_DIR}/ldif.cpp
+	${kldap_SOURCE_DIR}/ldapurl.cpp
+	${kldap_SOURCE_DIR}/ldapserver.cpp
+	${kldap_SOURCE_DIR}/ldapobject.cpp
+	${kldap_SOURCE_DIR}/ldapconnection.cpp
+	${kldap_SOURCE_DIR}/ldapoperation.cpp
+	${kldap_SOURCE_DIR}/ldapcontrol.cpp
+	${kldap_SOURCE_DIR}/ldapdn.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/KLdapIntegration.cpp
 )
+
+ADD_LIBRARY(kldap-light SHARED ${kldap_SOURCES})
+TARGET_LINK_LIBRARIES(kldap-light Qt5::Core ${Ldap_LIBRARIES} Sasl2::Sasl2)
+TARGET_INCLUDE_DIRECTORIES(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
+TARGET_INCLUDE_DIRECTORIES(kldap-light PUBLIC ${kldap_SOURCE_DIR})
+SET_TARGET_PROPERTIES(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+INSTALL(TARGETS kldap-light LIBRARY DESTINATION ${VEYON_LIB_DIR})
 
 BUILD_PLUGIN(ldap
 	LdapPlugin.cpp
@@ -38,8 +46,6 @@ BUILD_PLUGIN(ldap
 	LdapConfigurationPage.ui
 	LdapDirectory.cpp
 	LdapNetworkObjectDirectory.cpp
-	KLdapIntegration.cpp
-	${kldap_SOURCES}
 	LdapPlugin.h
 	LdapConfiguration.h
 	LdapConfigurationPage.h
@@ -48,7 +54,5 @@ BUILD_PLUGIN(ldap
 	ldap.qrc
 )
 
-INCLUDE_DIRECTORIES(${Ldap_INCLUDE_DIRS} ${kldap_SOURCE_DIR})
-
-TARGET_LINK_LIBRARIES(ldap ${Ldap_LIBRARIES} Sasl2::Sasl2)
+TARGET_LINK_LIBRARIES(ldap kldap-light)
 
