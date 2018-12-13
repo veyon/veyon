@@ -43,6 +43,8 @@ COTIRE_VEYON(kldap-light)
 
 BUILD_PLUGIN(ldap
 	LdapPlugin.cpp
+	LdapClient.cpp
+	LdapClient.h
 	LdapConfigurationPage.cpp
 	LdapConfigurationPage.ui
 	LdapDirectory.cpp

@@ -34,6 +34,7 @@
 LdapPlugin::LdapPlugin( QObject* parent ) :
 	QObject( parent ),
 	m_configuration(),
+	m_ldapClient( nullptr ),
 	m_ldapDirectory( nullptr ),
 	m_commands( {
 { QStringLiteral("autoconfigurebasedn"), tr( "Auto-configure the base DN via naming context" ) },
@@ -49,6 +50,9 @@ LdapPlugin::~LdapPlugin()
 {
 	delete m_ldapDirectory;
 	m_ldapDirectory = nullptr;
+
+	delete m_ldapClient;
+	m_ldapClient = nullptr;
 }
 
 
@@ -117,7 +121,7 @@ QStringList LdapPlugin::userGroups( bool queryDomainGroups )
 {
 	Q_UNUSED(queryDomainGroups);
 
-	return ldapDirectory().toRelativeDnList( ldapDirectory().userGroups() );
+	return ldapClient().toRelativeDnList( ldapDirectory().userGroups() );
 }
 
 
@@ -136,7 +140,7 @@ QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainG
 		return QStringList();
 	}
 
-	return ldapDirectory().toRelativeDnList( ldapDirectory().groupsOfUser( userDn ) );
+	return ldapClient().toRelativeDnList( ldapDirectory().groupsOfUser( userDn ) );
 }
 
 
@@ -170,8 +174,8 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 		m_configuration.setNamingContextAttribute( namingContextAttribute );
 	}
 
-	LdapDirectory ldapDirectory( m_configuration, ldapUrl );
-	QString baseDn = ldapDirectory.queryNamingContext();
+	LdapClient ldapClient( m_configuration, ldapUrl );
+	QString baseDn = ldapClient.queryNamingContext();
 
 	if( baseDn.isEmpty() )
 	{
@@ -264,6 +268,20 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_help( const QStringList
 	}
 
 	return InvalidCommand;
+}
+
+
+
+LdapClient& LdapPlugin::ldapClient()
+{
+	if( m_ldapClient == nullptr )
+	{
+		m_ldapClient = new LdapClient( m_configuration );
+	}
+
+	// TODO: check whether still connected and reconnect if neccessary
+
+	return *m_ldapClient;
 }
 
 

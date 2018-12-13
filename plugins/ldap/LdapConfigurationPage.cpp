@@ -72,7 +72,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( browseCACertificateFile );
 
 	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=]() {
-		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapDirectory::TLSVerifyCustomCert );
+		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapClient::TLSVerifyCustomCert );
 	} );
 }
 
@@ -118,21 +118,21 @@ void LdapConfigurationPage::testBaseDn()
 	{
 		vDebug() << "[TEST][LDAP] Testing base DN";
 
-		LdapDirectory ldapDirectory( m_configuration );
-		QStringList entries = ldapDirectory.queryBaseDn();
+		LdapClient ldapClient( m_configuration );
+		QStringList entries = ldapClient.queryBaseDn();
 
 		if( entries.isEmpty() )
 		{
 			QMessageBox::critical( this, tr( "LDAP base DN test failed"),
 								   tr( "Could not query the configured base DN. "
 									   "Please check the base DN parameter.\n\n"
-									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+									   "%1" ).arg( ldapClient.errorDescription() ) );
 		}
 		else
 		{
 			QMessageBox::information( this, tr( "LDAP base DN test successful" ),
-							tr( "The LDAP base DN has been queried successfully. "
-								"The following entries were found:\n\n%1" ).
+									  tr( "The LDAP base DN has been queried successfully. "
+										  "The following entries were found:\n\n%1" ).
 									  arg( entries.join(QLatin1Char('\n')) ) );
 		}
 	}
@@ -146,21 +146,21 @@ void LdapConfigurationPage::testNamingContext()
 	{
 		vDebug() << "[TEST][LDAP] Testing naming context";
 
-		LdapDirectory ldapDirectory( m_configuration );
-		QString baseDn = ldapDirectory.queryNamingContext();
+		LdapClient ldapClient( m_configuration );
+		QString baseDn = ldapClient.queryNamingContext();
 
 		if( baseDn.isEmpty() )
 		{
 			QMessageBox::critical( this, tr( "LDAP naming context test failed"),
 								   tr( "Could not query the base DN via naming contexts. "
 									   "Please check the naming context attribute parameter.\n\n"
-									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+									   "%1" ).arg( ldapClient.errorDescription() ) );
 		}
 		else
 		{
 			QMessageBox::information( this, tr( "LDAP naming context test successful" ),
-							tr( "The LDAP naming context has been queried successfully. "
-								"The following base DN was found:\n%1" ).
+									  tr( "The LDAP naming context has been queried successfully. "
+										  "The following base DN was found:\n%1" ).
 									  arg( baseDn ) );
 		}
 	}
@@ -179,7 +179,7 @@ void LdapConfigurationPage::testUserTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users().count();
 
-		reportLdapTreeQueryResult( tr( "user tree" ), count, ldapDirectory.ldapErrorDescription() );
+		reportLdapTreeQueryResult( tr( "user tree" ), count, ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -196,7 +196,7 @@ void LdapConfigurationPage::testGroupTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groups().count();
 
-		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.ldapErrorDescription() );
+		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -213,7 +213,7 @@ void LdapConfigurationPage::testComputerTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computers().count();
 
-		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.ldapErrorDescription() );
+		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -230,7 +230,7 @@ void LdapConfigurationPage::testComputerGroupTree()
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computerGroups().count();
 
-		reportLdapTreeQueryResult( tr( "computer group tree" ), count, ldapDirectory.ldapErrorDescription() );
+		reportLdapTreeQueryResult( tr( "computer group tree" ), count, ldapDirectory.client().errorDescription() );
 	}
 }
 
@@ -239,7 +239,7 @@ void LdapConfigurationPage::testComputerGroupTree()
 void LdapConfigurationPage::testUserLoginAttribute()
 {
 	QString userFilter = QInputDialog::getText( this, tr( "Enter username" ),
-										  tr( "Please enter a user login name (wildcards allowed) which to query:") );
+												tr( "Please enter a user login name (wildcards allowed) which to query:") );
 	if( userFilter.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing user login attribute for" << userFilter;
@@ -257,7 +257,7 @@ void LdapConfigurationPage::testUserLoginAttribute()
 void LdapConfigurationPage::testGroupMemberAttribute()
 {
 	QString groupFilter = QInputDialog::getText( this, tr( "Enter group name" ),
-										  tr( "Please enter a group name whose members to query:") );
+												 tr( "Please enter a group name whose members to query:") );
 	if( groupFilter.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing group member attribute for" << groupFilter;
@@ -287,7 +287,7 @@ void LdapConfigurationPage::testGroupMemberAttribute()
 void LdapConfigurationPage::testComputerHostNameAttribute()
 {
 	QString computerName = QInputDialog::getText( this, tr( "Enter computer name" ),
-										  tr( "Please enter a computer host name to query:") );
+												  tr( "Please enter a computer host name to query:") );
 	if( computerName.isEmpty() == false )
 	{
 		if( m_configuration.computerHostNameAsFQDN() &&
@@ -324,7 +324,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 void LdapConfigurationPage::testComputerMacAddressAttribute()
 {
 	QString computerDn = QInputDialog::getText( this, tr( "Enter computer DN" ),
-										  tr( "Please enter the DN of a computer whose MAC address to query:") );
+												tr( "Please enter the DN of a computer whose MAC address to query:") );
 	if( computerDn.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing computer MAC address attribute";
@@ -345,7 +345,7 @@ void LdapConfigurationPage::testComputerMacAddressAttribute()
 void LdapConfigurationPage::testComputerRoomAttribute()
 {
 	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
-										  tr( "Please enter the name of a computer room (wildcards allowed):") );
+													  tr( "Please enter the name of a computer room (wildcards allowed):") );
 	if( computerRoomName.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
@@ -384,7 +384,7 @@ void LdapConfigurationPage::testUsersFilter()
 	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.users().count();
 
-	reportLdapFilterTestResult( tr( "users" ), count, ldapDirectory.ldapErrorDescription() );
+	reportLdapFilterTestResult( tr( "users" ), count, ldapDirectory.client().errorDescription() );
 }
 
 
@@ -396,7 +396,7 @@ void LdapConfigurationPage::testUserGroupsFilter()
 	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.userGroups().count();
 
-	reportLdapFilterTestResult( tr( "user groups" ), count, ldapDirectory.ldapErrorDescription() );
+	reportLdapFilterTestResult( tr( "user groups" ), count, ldapDirectory.client().errorDescription() );
 }
 
 
@@ -408,7 +408,7 @@ void LdapConfigurationPage::testComputersFilter()
 	LdapDirectory ldapDirectory( m_configuration );
 	const auto count = ldapDirectory.computers().count();
 
-	reportLdapFilterTestResult( tr( "computers" ), count, ldapDirectory.ldapErrorDescription() );
+	reportLdapFilterTestResult( tr( "computers" ), count, ldapDirectory.client().errorDescription() );
 }
 
 
@@ -420,7 +420,7 @@ void LdapConfigurationPage::testComputerGroupsFilter()
 	LdapDirectory ldapDirectory( m_configuration );
 	int count = ldapDirectory.computerGroups().count();
 
-	reportLdapFilterTestResult( tr( "computer groups" ), count, ldapDirectory.ldapErrorDescription() );
+	reportLdapFilterTestResult( tr( "computer groups" ), count, ldapDirectory.client().errorDescription() );
 }
 
 
@@ -444,7 +444,7 @@ void LdapConfigurationPage::testComputerContainersFilter()
 void LdapConfigurationPage::testGroupsOfUser()
 {
 	QString username = QInputDialog::getText( this, tr( "Enter username" ),
-										  tr( "Please enter a user login name whose group memberships to query:") );
+											  tr( "Please enter a user login name whose group memberships to query:") );
 	if( username.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing groups of user" << username;
@@ -473,7 +473,7 @@ void LdapConfigurationPage::testGroupsOfUser()
 void LdapConfigurationPage::testGroupsOfComputer()
 {
 	QString computerHostName = QInputDialog::getText( this, tr( "Enter host name" ),
-										  tr( "Please enter a computer host name whose group memberships to query:") );
+													  tr( "Please enter a computer host name whose group memberships to query:") );
 	if( computerHostName.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing groups of computer for" << computerHostName;
@@ -502,7 +502,7 @@ void LdapConfigurationPage::testGroupsOfComputer()
 void LdapConfigurationPage::testComputerObjectByIpAddress()
 {
 	QString computerIpAddress = QInputDialog::getText( this, tr( "Enter computer IP address" ),
-										  tr( "Please enter a computer IP address which to resolve to an computer object:") );
+													   tr( "Please enter a computer IP address which to resolve to an computer object:") );
 	if( computerIpAddress.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing computer object resolve by IP address" << computerIpAddress;
@@ -553,7 +553,7 @@ void LdapConfigurationPage::testComputerRooms()
 
 	LdapDirectory ldapDirectory( m_configuration );
 	reportLdapObjectQueryResults( tr( "computer rooms" ),
-									  tr( "computer group filter or computer room member aggregation" ),
+								  tr( "computer group filter or computer room member aggregation" ),
 								  ldapDirectory.computerRooms(), ldapDirectory );
 }
 
@@ -575,22 +575,22 @@ bool LdapConfigurationPage::testBind( bool quiet )
 {
 	vDebug() << "[TEST][LDAP] Testing bind";
 
-	LdapDirectory ldapDirectory( m_configuration );
+	LdapClient ldapClient( m_configuration );
 
-	if( ldapDirectory.isConnected() == false )
+	if( ldapClient.isConnected() == false )
 	{
 		QMessageBox::critical( this, tr( "LDAP connection failed"),
 							   tr( "Could not connect to the LDAP server. "
 								   "Please check the server parameters.\n\n"
-								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+								   "%1" ).arg( ldapClient.errorDescription() ) );
 	}
-	else if( ldapDirectory.isBound() == false )
+	else if( ldapClient.isBound() == false )
 	{
 		QMessageBox::critical( this, tr( "LDAP bind failed"),
 							   tr( "Could not bind to the LDAP server. "
 								   "Please check the server parameters "
 								   "and bind credentials.\n\n"
-								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+								   "%1" ).arg( ldapClient.errorDescription() ) );
 	}
 	else if( quiet == false )
 	{
@@ -601,7 +601,7 @@ bool LdapConfigurationPage::testBind( bool quiet )
 									  "configured correctly." ) );
 	}
 
-	return ldapDirectory.isConnected() && ldapDirectory.isBound();
+	return ldapClient.isConnected() && ldapClient.isBound();
 }
 
 
@@ -619,8 +619,8 @@ void LdapConfigurationPage::reportLdapTreeQueryResult(const QString &name, int c
 	else
 	{
 		QMessageBox::information( this, tr( "LDAP %1 test successful" ).arg( name ),
-						tr( "The %1 has been queried successfully and "
-							"%2 entries were found." ).arg( name ).arg( count ) );
+								  tr( "The %1 has been queried successfully and "
+									  "%2 entries were found." ).arg( name ).arg( count ) );
 	}
 }
 
@@ -629,19 +629,19 @@ void LdapConfigurationPage::reportLdapTreeQueryResult(const QString &name, int c
 
 
 void LdapConfigurationPage::reportLdapObjectQueryResults( const QString &objectsName, const QString& parameterName,
-											   const QStringList& results, const LdapDirectory &directory )
+														  const QStringList& results, const LdapDirectory &directory )
 {
 	if( results.isEmpty() )
 	{
 		QMessageBox::critical( this, tr( "LDAP %1 test failed").arg( parameterName ),
 							   tr( "Could not query any %1. "
 								   "Please check the %2 parameter or enter the name of an existing object.\n\n"
-								   "%3" ).arg( objectsName, parameterName, directory.ldapErrorDescription() ) );
+								   "%3" ).arg( objectsName, parameterName, directory.client().errorDescription() ) );
 	}
 	else
 	{
 		QMessageBox::information( this, tr( "LDAP %1 test successful" ).arg( parameterName ),
-						tr( "%1 %2 have been queried successfully:\n\n%3" ).
+								  tr( "%1 %2 have been queried successfully:\n\n%3" ).
 								  arg( results.count() ).
 								  arg( objectsName, formatResultsString( results ) ) );
 	}
@@ -663,7 +663,7 @@ void LdapConfigurationPage::reportLdapFilterTestResult( const QString &filterObj
 	else
 	{
 		QMessageBox::information( this, tr( "LDAP filter test successful" ),
-						tr( "%1 %2 have been queried successfully using the configured filter." ).
+								  tr( "%1 %2 have been queried successfully using the configured filter." ).
 								  arg( count ).arg( filterObjects ) );
 	}
 }

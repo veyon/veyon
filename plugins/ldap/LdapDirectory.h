@@ -24,35 +24,16 @@
 
 #pragma once
 
-#include <QObject>
-#include <QUrl>
-
+#include "LdapClient.h"
 #include "VeyonCore.h"
 
 class LdapConfiguration;
+class LdapClient;
 
 class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	enum ConnectionSecurity
-	{
-		ConnectionSecurityNone,
-		ConnectionSecurityTLS,
-		ConnectionSecuritySSL,
-		ConnectionSecurityCount,
-	};
-	Q_ENUM(ConnectionSecurity)
-
-	enum TLSVerifyMode
-	{
-		TLSVerifyDefault,
-		TLSVerifyNever,
-		TLSVerifyCustomCert,
-		TLSVerifyModeCount
-	};
-	Q_ENUM(TLSVerifyMode)
-
 	LdapDirectory( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
 	~LdapDirectory();
 
@@ -61,23 +42,13 @@ public:
 		return m_configuration;
 	}
 
-	bool isConnected() const;
-	bool isBound() const;
+	const LdapClient& client() const
+	{
+		return m_client;
+	}
 
 	void disableAttributes();
 	void disableFilters();
-
-	QString ldapErrorDescription() const;
-
-	QStringList queryBaseDn();
-
-	QString queryNamingContext();
-
-	static QString parentDn( const QString& dn );
-	QString toRelativeDn( const QString& fullDn );
-	QString toFullDn( const QString& relativeDn );
-
-	QStringList toRelativeDnList( const QStringList& fullDnList );
 
 	QStringList users( const QString& filterValue = QString() );
 	QStringList groups( const QString& filterValue = QString() );
@@ -105,20 +76,35 @@ public:
 
 
 private:
-	bool reconnect( const QUrl& url );
-	void initTLS();
-
-	static QString constructSubDn( const QString& subtree, const QString& baseDn );
-
-	static QString constructQueryFilter( const QString& filterAttribute,
-										 const QString& filterValue,
-										 const QString& extraFilter = QString() );
-
-	static QString escapeFilterValue( const QString& filterValue );
-
-	class LdapDirectoryPrivate;
-
 	const LdapConfiguration& m_configuration;
-	QScopedPointer<LdapDirectoryPrivate> d;
+	LdapClient m_client;
+
+	KLDAP::LdapUrl::Scope m_defaultSearchScope = KLDAP::LdapUrl::Base;
+
+	//QString m_baseDn;
+	//QString namingContextAttribute;
+	QString m_usersDn;
+	QString m_groupsDn;
+	QString m_computersDn;
+	QString m_computerGroupsDn;
+
+	QString m_userLoginAttribute;
+	QString m_groupMemberAttribute;
+	QString m_computerHostNameAttribute;
+	QString m_computerMacAddressAttribute;
+	QString m_computerRoomNameAttribute;
+
+	QString m_usersFilter;
+	QString m_userGroupsFilter;
+	QString m_computersFilter;
+	QString m_computerGroupsFilter;
+	QString m_computerParentsFilter;
+
+	QString m_computerRoomAttribute;
+
+	bool m_identifyGroupMembersByNameAttribute = false;
+	bool m_computerRoomMembersByContainer = false;
+	bool m_computerRoomMembersByAttribute = false;
+	bool m_computerHostNameAsFQDN = false;
 
 };

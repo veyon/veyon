@@ -124,9 +124,11 @@ private:
 		MaximumPlaintextPasswordLength = 64
 	};
 
+	LdapClient& ldapClient();
 	LdapDirectory& ldapDirectory();
 
 	LdapConfiguration m_configuration;
+	LdapClient* m_ldapClient;
 	LdapDirectory* m_ldapDirectory;
 	QMap<QString, QString> m_commands;
 

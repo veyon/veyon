@@ -26,13 +26,13 @@
 
 #include "Configuration/Proxy.h"
 #include "CryptoCore.h"
-#include "LdapDirectory.h"
+#include "LdapClient.h"
 
 #define FOREACH_LDAP_CONFIG_PROPERTY(OP) \
 	OP( LdapConfiguration, m_configuration, STRING, serverHost, setServerHost, "ServerHost", "LDAP", QString() )	\
 	OP( LdapConfiguration, m_configuration, INT, serverPort, setServerPort, "ServerPort", "LDAP", 389 )	\
-	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP", LdapDirectory::ConnectionSecurityNone )	\
-	OP( LdapConfiguration, m_configuration, INT, tlsVerifyMode, setTLSVerifyMode, "TLSVerifyMode", "LDAP", LdapDirectory::TLSVerifyDefault )	\
+	OP( LdapConfiguration, m_configuration, INT, connectionSecurity, setConnectionSecurity, "ConnectionSecurity", "LDAP", LdapClient::ConnectionSecurityNone )	\
+	OP( LdapConfiguration, m_configuration, INT, tlsVerifyMode, setTLSVerifyMode, "TLSVerifyMode", "LDAP", LdapClient::TLSVerifyDefault )	\
 	OP( LdapConfiguration, m_configuration, STRING, tlsCACertificateFile, setTLSCACertificateFile, "TLSCACertificateFile", "LDAP", QString() )	\
 	OP( LdapConfiguration, m_configuration, BOOL, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP", false )	\
 	OP( LdapConfiguration, m_configuration, STRING, bindDn, setBindDn, "BindDN", "LDAP", QString() )	\
