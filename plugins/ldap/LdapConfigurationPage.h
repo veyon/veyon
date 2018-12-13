@@ -44,7 +44,9 @@ public:
 	void connectWidgetsToProperties() override;
 	void applyConfiguration() override;
 
-private slots:
+private:
+	void browseBaseDn();
+
 	void testBindInteractively();
 	void testBaseDn();
 	void testNamingContext();

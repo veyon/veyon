@@ -30,6 +30,7 @@
 #include "LdapConfigurationPage.h"
 #include "Configuration/UiMapping.h"
 #include "LdapDirectory.h"
+#include "LdapBrowseDialog.h"
 
 #include "ui_LdapConfigurationPage.h"
 
@@ -43,6 +44,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 #define CONNECT_BUTTON_SLOT(name)	connect( ui->name, &QAbstractButton::clicked, this, &LdapConfigurationPage::name );
 
 	CONNECT_BUTTON_SLOT( testBindInteractively );
+	CONNECT_BUTTON_SLOT( browseBaseDn );
 	CONNECT_BUTTON_SLOT( testBaseDn );
 	CONNECT_BUTTON_SLOT( testNamingContext );
 	CONNECT_BUTTON_SLOT( testUserTree );
@@ -101,6 +103,13 @@ void LdapConfigurationPage::connectWidgetsToProperties()
 
 void LdapConfigurationPage::applyConfiguration()
 {
+}
+
+
+
+void LdapConfigurationPage::browseBaseDn()
+{
+	LdapBrowseDialog( m_configuration, this ).exec();
 }
 
 
