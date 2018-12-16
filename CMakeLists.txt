@@ -287,7 +287,7 @@ IF(WIN32)
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
 			COMMAND cp ${CMAKE_SOURCE_DIR}/README.md ${TMP}/README.TXT
-			COMMAND todos ${TMP}/*.txt ${TMP}/*.TXT
+			COMMAND todos ${TMP}/*.TXT
 			COMMAND cp nsis/veyon.nsi ${TMP}
 			COMMAND makensis ${TMP}/veyon.nsi
 			COMMAND mv ${TMP}/veyon-*setup.exe .
