@@ -180,9 +180,6 @@ File "crypto/*.dll"
 # Qt platform plugin
 SetOutPath "$INSTDIR\platforms"
 File "platforms/qwindows.dll"
-# interception driver
-SetOutPath "$INSTDIR\interception"
-File "interception/*"
 # configuration
 ExecWait '"$INSTDIR\veyon-cliw.exe" service register'
 ExecWait '"$INSTDIR\veyon-cliw.exe" config set Network/FirewallExceptionEnabled 1'
@@ -215,6 +212,12 @@ ${EndIf}
 CreateShortCut "$DESKTOP\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 SectionEnd
 
+Section "Interception driver" SEC_INTERCEPTION
+${INSTALL_TYPE}
+SetOutPath "$INSTDIR\interception"
+File "interception/*"
+SectionEnd
+
 Function RunConfigurator
 	Exec '"$INSTDIR\veyon-configurator.exe"'
 FunctionEnd
@@ -227,6 +230,10 @@ ${GetParameters} $R0
 ${GetOptions} $R0 "/NoMaster" $R1
 ${IfNot} ${Errors}
   !insertmacro UnselectSection ${SEC_MASTER}
+${EndIf}
+${GetOptions} $R0 "/NoInterception" $R1
+${IfNot} ${Errors}
+  !insertmacro UnselectSection ${SEC_INTERCEPTION}
 ${EndIf}
 UserInfo::GetAccountType
 pop $0
