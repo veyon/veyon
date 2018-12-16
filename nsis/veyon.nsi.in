@@ -147,7 +147,11 @@ RequestExecutionLevel admin
 Section "Veyon Service"
 SectionIn RO
 ${INSTALL_TYPE}
-ExecWait '"$INSTDIR\veyon-cli.exe" service unregister'
+ClearErrors
+ExecWait '"$INSTDIR\veyon-cliw.exe" service unregister'
+${If} $0 != 0
+  ExecWait '"$INSTDIR\veyon-cli.exe" service unregister'
+${EndIf}
 Delete "$INSTDIR\*.dll"
 Delete "$INSTDIR\install-interception.exe"
 Delete "$INSTDIR\plugins\*.dll"
@@ -180,21 +184,21 @@ File "platforms/qwindows.dll"
 SetOutPath "$INSTDIR\interception"
 File "interception/*"
 # configuration
-ExecWait '"$INSTDIR\veyon-cli.exe" service register'
-ExecWait '"$INSTDIR\veyon-cli.exe" config set Network/FirewallExceptionEnabled 1'
-ExecWait '"$INSTDIR\veyon-cli.exe" config set Service/SoftwareSASEnabled 1'
+ExecWait '"$INSTDIR\veyon-cliw.exe" service register'
+ExecWait '"$INSTDIR\veyon-cliw.exe" config set Network/FirewallExceptionEnabled 1'
+ExecWait '"$INSTDIR\veyon-cliw.exe" config set Service/SoftwareSASEnabled 1'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
   ClearErrors
-  ExecWait '"$INSTDIR\veyon-cli.exe" config import "$R1"' $0
+  ExecWait '"$INSTDIR\veyon-cliw.exe" config import "$R1"' $0
   ${If} $0 != 0
 	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
   ${EndIf}
 ${EndIf}
-ExecWait '"$INSTDIR\veyon-cli.exe" service start'
+ExecWait '"$INSTDIR\veyon-cliw.exe" service start'
 SectionEnd
 
 Section "Veyon Master" SEC_MASTER
@@ -263,9 +267,9 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 
-ExecWait '"$INSTDIR\veyon-cli.exe" config set Service/SoftwareSASEnabled 0'
-ExecWait '"$INSTDIR\veyon-cli.exe" config set Network/FirewallExceptionEnabled 0'
-ExecWait '"$INSTDIR\veyon-cli.exe" service unregister'
+ExecWait '"$INSTDIR\veyon-cliw.exe" config set Service/SoftwareSASEnabled 0'
+ExecWait '"$INSTDIR\veyon-cliw.exe" config set Network/FirewallExceptionEnabled 0'
+ExecWait '"$INSTDIR\veyon-cliw.exe" service unregister'
 ExecWait '"$INSTDIR\interception\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
@@ -273,7 +277,7 @@ Sleep 2000
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ClearConfig" $R1
 ${IfNot} ${Errors}
-	ExecWait '"$INSTDIR\veyon-cli.exe" config clear'
+	ExecWait '"$INSTDIR\veyon-cliw.exe" config clear'
 ${EndIf}
 
 Delete "$INSTDIR\*.exe"
