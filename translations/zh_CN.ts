@@ -732,6 +732,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation>新计算机</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1504,73 +1508,73 @@ Examples:
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>无法打开文件 &quot;%1&quot; 进行阅读！ 请检查你的权限！</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>文件传输</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>首选项</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>仅传输</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>传输并用关联的程序打开</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>传输并打开目标文件夹</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>文件</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>开始</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>覆盖已存在的文件</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>发布文件</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>单击此按钮可将文件从您的计算机发送到所有计算机。</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>选择一个或多个要发送的文件</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>发送文件到远程计算机</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>接收文件 &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>不能接收文件 &quot;%1&quot; ，因为它已经存在。</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>不能接收文件 &quot;%1&quot; ，因为它无法写入。</translation>
     </message>
 </context>
 <context>
@@ -1733,25 +1737,6 @@ Examples:
     <message>
         <source>Backend settings</source>
         <translation>后台设置</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation> 这是对互联网访问没有影响的虚拟后端。请选择适合您的操作系统和环境的功能后端。请访问 &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; 以获取有关如何获取更多后端插件的信息。</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>互联网访问控制不可用</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>没有配置互联网访问控制后端。 请使用Veyon 配置管理器更改配置。</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>互联网访问控制的虚拟后端</translation>
     </message>
 </context>
 <context>
@@ -2489,6 +2474,142 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>添加新的网络范围</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>移除选中的网络范围</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>为指定的命令显示帮助</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2835,6 +2956,14 @@ Examples:
         <source>Text color</source>
         <translation>文本颜色</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2918,10 +3047,6 @@ Examples:
         <translation>移除选中的网络范围</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>可调参数</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>并行扫描</translation>
     </message>
@@ -2940,6 +3065,14 @@ Examples:
     <message>
         <source>New group</source>
         <translation>新建组</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>首选项</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3676,6 +3809,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>没有指定的模块或找不到模块 - 可用模块为：</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

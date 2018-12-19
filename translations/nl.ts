@@ -142,11 +142,11 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
+        <translation>Gebruikersgroepen backend</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
+        <translation>Ontbrekende gebruikersgroepen backend</translation>
     </message>
     <message>
         <source>No default user groups plugin was found. Please check your installation!</source>
@@ -727,6 +727,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>New computer</source>
         <translation>Nieuwe computer</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1658,25 +1662,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
@@ -2401,6 +2386,142 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2747,6 +2868,14 @@ Examples:
         <source>Text color</source>
         <translation>Tekstkleur</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2830,10 +2959,6 @@ Examples:
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>Tunables</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation type="unfinished"/>
     </message>
@@ -2852,6 +2977,14 @@ Examples:
     <message>
         <source>New group</source>
         <translation>Nieuwe groep</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3581,6 +3714,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -731,6 +731,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>New computer</source>
         <translation>Nov računalnik</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1480,18 +1484,18 @@ Examples:
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Žal ne morem odpreti datoteke &quot;%1&quot; za branje! Prosimo, preverite svoja dovoljenja!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Prenos datoteke</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Možnosti</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1507,42 +1511,42 @@ Examples:
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Začetek</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Prepiši obstoječe datoteke</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Prenos datoteke</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Klikni na ta gumb za prenos datotek iz vašega računalnika na vse računalnike.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Izberi eno ali več datotek za prenos</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>Prenesi datoteke na oddaljeni računalnik</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Prejeta datoteka &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Ne morem prejeti datoteke &quot;%1&quot;, ker že obstaja.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
@@ -1704,30 +1708,11 @@ Examples:
     </message>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Splošne nastavitve</translation>
     </message>
     <message>
         <source>Backend settings</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>To je nepravo ozadje, ki nima vpliva na dostop do interneta. Prosimo, izberite funkcionalno hrbtno stran, ki ustreza vašemu operacijskemu sistemu in okolju. Obiščite &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; za več informacij o tem, kako pridobiti dodatne hrbtne vtičnike.</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Nadzor dostopa do interneta ni na voljo</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>Konfigurirano je bilo brez ozadja nadzora dostopa do interneta. Prosimo, uporabite Veyon konfiguratorja za spremembo konfiguracije.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Nepravo ozadje za nadzor dostopa do interneta</translation>
+        <translation>Nastavitve ozadja</translation>
     </message>
 </context>
 <context>
@@ -2465,6 +2450,142 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Prikaži pomoč za določen ukaz</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2809,6 +2930,14 @@ Examples:
     </message>
     <message>
         <source>Text color</source>
+        <translation>Barva besedila</translation>
+    </message>
+    <message>
+        <source>Sort order</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2843,7 +2972,7 @@ Examples:
     </message>
     <message>
         <source>e.g. 192.168.1.0/24</source>
-        <translation type="unfinished"/>
+        <translation>npr. 192.168.1.0/24</translation>
     </message>
     <message>
         <source>Scan all subnets of computer</source>
@@ -2867,15 +2996,15 @@ Examples:
     </message>
     <message>
         <source>Add new group</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj novo skupino</translation>
     </message>
     <message>
         <source>Remove selected group</source>
-        <translation type="unfinished"/>
+        <translation>Odstrani izbrano skupino</translation>
     </message>
     <message>
         <source>Groups</source>
-        <translation type="unfinished"/>
+        <translation>Skupine</translation>
     </message>
     <message>
         <source>First address</source>
@@ -2892,10 +3021,6 @@ Examples:
     <message>
         <source>Remove selected network range</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Tunables</source>
-        <translation>Tuneli</translation>
     </message>
     <message>
         <source>Parallel scans</source>
@@ -2915,6 +3040,14 @@ Examples:
     </message>
     <message>
         <source>New group</source>
+        <translation>Nova skupina</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Možnosti</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2926,7 +3059,7 @@ Examples:
     </message>
     <message>
         <source>Discovered computers</source>
-        <translation type="unfinished"/>
+        <translation>Odkriti računalniki</translation>
     </message>
 </context>
 <context>
@@ -3047,7 +3180,7 @@ USAGE
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>MAC naslov</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -3059,7 +3192,7 @@ USAGE
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Neveljavni MAC naslov</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
@@ -3647,6 +3780,22 @@ Običajno je to potrebno za podporo terminalskih strežnikov.</translation>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Ni določenega modula ali modula ni mogoče najti - razpoložljivi moduli so:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

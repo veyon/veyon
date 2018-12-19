@@ -733,6 +733,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>New computer</source>
         <translation>Nuevo equipo</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Directorio incorporado</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1517,31 +1521,31 @@ Ejemplos:
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opciones</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>Solo transferencia</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>Transferir y abrir archivo/s con programa asociado</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Transferir y abrir carpeta de destino</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Archivos</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Sobrescribir archivos existentes</translation>
     </message>
 </context>
 <context>
@@ -1564,15 +1568,15 @@ Ejemplos:
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Archivo recibido &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>No se pudo recibir el archivo &quot;%1&quot; porque ya existe.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudo recibir el archivo &quot;%1&quot; ya que no se pudo abrir para su escritura!</translation>
     </message>
 </context>
 <context>
@@ -1735,25 +1739,6 @@ Ejemplos:
     <message>
         <source>Backend settings</source>
         <translation>Configuración de backend</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>Este es el backend ficticio que no tiene ningún efecto en el acceso a internet. Elija un backend funcional adecuado para su sistema operativo y entorno. Visite &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; para obtener más información sobre cómo obtener complementos de backend adicionales.</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Control de acceso a Internet no disponible</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>No se configuró ningún backend de control de acceso a Internet. Utilice el Configurador de Veyon para cambiar la configuración.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Backend ficticio para el control de acceso a Internet</translation>
     </message>
 </context>
 <context>
@@ -2491,6 +2476,152 @@ Ejemplos:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation>Licencias</translation>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation>Licencias instaladas</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Añadir nuevo rango de red</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Eliminar el rango de red seleccionado</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation>Característica</translation>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation>Válido hasta</translation>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation>Licencia</translation>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation>Buscar archivo de licencia</translation>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation>Archivos de licencia de Veyon (*.vlf)</translation>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation>Eliminar licencia</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation>¿Realmente desea eliminar la licencia seleccionada?</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation>Archivo de licencia no válido</translation>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation>¡No se pudo abrir el archivo de licencia para su lectura!</translation>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation>El archivo de licencia seleccionado no contiene datos válidos.</translation>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation>El archivo de licencia seleccionado no pudo ser verificado.</translation>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation>El archivo de licencia seleccionado no es válido para esta instalación.</translation>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation>El archivo de licencia seleccionado ha expirado.</translation>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation>La licencia ya está instalada.</translation>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Mostrar ayuda para un comando específico</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation>Mostrar todas las licencias instaladas</translation>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation>Añadir archivo de licencia</translation>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation>Eliminar licencia instalada</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation>
+USO
+
+Añadir %1 &lt;LICENSE FILE&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation>
+USO
+
+Eliminar %1 &lt;LICENSE ID&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation>No se ha encontrado ningún certificado con un ID proporcionado</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation>Administración de licencias</translation>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation>Comandos para gestionar claves de licencia</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2837,6 +2968,14 @@ Ejemplos:
         <source>Text color</source>
         <translation>Color del texto</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation>Orden de clasificación</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Equipo y nombre del usuario</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2920,10 +3059,6 @@ Ejemplos:
         <translation>Eliminar el rango de red seleccionado</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>Ajustes</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>Análisis paralelos</translation>
     </message>
@@ -2942,6 +3077,14 @@ Ejemplos:
     <message>
         <source>New group</source>
         <translation>Nuevo grupo</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Opciones</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation>Búsqueda inversa de direcciones IP descubiertas a nombres de host</translation>
     </message>
 </context>
 <context>
@@ -3678,6 +3821,22 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>No se especificó ningún módulo o no se encontró el módulo; los módulos disponibles son:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation>Complemento no licenciado</translation>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation>INFO</translation>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation>ERROR</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>licenciado para</translation>
     </message>
 </context>
 <context>
