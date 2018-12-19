@@ -673,6 +673,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Access group</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pair ID</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
@@ -1562,79 +1566,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlConfigurationPage</name>
-    <message>
-        <source>Internet access control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Backend:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlPlugin</name>
-    <message>
-        <source>Block access to the internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow access to the internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show help about command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Block internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Click this button to block access to the internet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unblock internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Click this button to allow access to the internet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Control access to the internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Commands for controlling access to the internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2383,14 +2314,6 @@ Examples:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Configuration not writable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2452,10 +2375,6 @@ Examples:
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 Master Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2663,6 +2582,10 @@ Examples:
     </message>
     <message>
         <source>Automatically open computer rooms widget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text color</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
