@@ -731,6 +731,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation>새 컴퓨터</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>게시물 폴더</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1736,25 +1740,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>이것은 인터넷 연결에 아무런 효과가 없는 더미 백엔드입니다. 당신의 환경과 OS에 적합한 작동하는 백엔드를 선택하세요.  어떻게 추가적인 백엔드 플러그인을 얻을 수 있는지 알려면 다음 사이트를 방문하세요 &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; .</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>인터넷 허용 제어 항목이 존재하지 않음</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>인터넷 접근 제어 백엔드가 설정되지 않았습니다. Veyon 설정기에서 설정을 변경하세요.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>인터넷 연결제어용 더미 백엔드</translation>
-    </message>
-</context>
-<context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
@@ -2487,6 +2472,152 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation>Licensing</translation>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation>설치된 라이센스</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>새로운 네트워크 범위 추가</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>선택된 네트워크 범위 삭제</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation>기능</translation>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation>다음 기간동안 유효함</translation>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation>사용권자</translation>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation>라이센스 파일 찾아보기</translation>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation>Veyon 라이센스 파일 (*.vlf)</translation>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation>라이센스 제거</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation>선택된 라이센스를 제거하시겠습니까 ?</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation>유효하지 않은 라이센스 파일</translation>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation>라이센스 파일을 읽을 수 없습니다!</translation>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation>선택된 라이센스 파일에 유효한 데이터가 없습니다.</translation>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation>선택한 라이센스 파일을 검증할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation>선택된 라이센스 파일을 이번 설치에 사용할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation>선택된 라이센스 파일의 유효기간이 지났습니다.</translation>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation>이 라이센스는 이미 설치 되었습니다.</translation>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>특정 명령어에 대한 도움말 보여줌</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation>설치된 모든 라이센스를 보여주기</translation>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation>라이센스 파일을 추가</translation>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation>설치된 라이센스 제거</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation>
+사용법
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation>
+사용법
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation>주어진 ID에 해당하는 인증서가 발견되지 않음</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation>라이센스 관리</translation>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation>라이센스 키 관리용 명령어들</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2833,6 +2964,14 @@ Examples:
         <source>Text color</source>
         <translation>글자색</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation>정렬 순서</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>켬퓨터 및 사용자 이름</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2916,10 +3055,6 @@ Examples:
         <translation>선택된 네트워크 범위 삭제</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>조정할수 있는 항목들</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>병행 스캔</translation>
     </message>
@@ -2938,6 +3073,14 @@ Examples:
     <message>
         <source>New group</source>
         <translation>새그룹</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>옵션</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation>발견된 IP 주소를 호스트 이름으로 검색하기</translation>
     </message>
 </context>
 <context>
@@ -3674,6 +3817,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>모듈이 지정되지 않았거나 찾을 수 없음 - 사용가능한 모듈들은:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation>플러그인 라이센스 안됨</translation>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation>정보</translation>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation>에러</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>에게 사용허가 됨  </translation>
     </message>
 </context>
 <context>

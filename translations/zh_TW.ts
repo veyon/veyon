@@ -367,7 +367,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>金鑰檔 (*. pem)</translation>
+        <translation>金鑰檔 (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -730,6 +730,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>New computer</source>
         <translation>新電腦</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,73 +1508,73 @@ Examples:
     <name>FileTransferController</name>
     <message>
         <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟檔案 &quot;%1&quot; 來讀取! 請檢查您的權限!</translation>
     </message>
 </context>
 <context>
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>檔案傳輸</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>選項</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>只傳輸</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>傳輸並使用關聯開啟檔案</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>傳輸並開啟目的地資料夾</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>檔案</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>開始</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>覆寫現有檔案</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>檔案傳輸</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>按一下這個按鈕以傳輸檔案從您的電腦到所有電腦</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>選取一個或多個檔案來傳輸</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation type="unfinished"/>
+        <translation>傳輸檔案到遠端電腦</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>已接收檔案 &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>無法接收檔案 &quot;%1&quot;，因為已經存在。</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>無法接收檔案 &quot;%1&quot;，因為無法開起來寫入!</translation>
     </message>
 </context>
 <context>
@@ -1733,25 +1737,6 @@ Examples:
     <message>
         <source>Backend settings</source>
         <translation>後台設定</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>這是對 internet 存取沒有影響的虛擬後台。 請選擇適合您的作業系統和環境的功能後台。 訪問 &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; 取得更多關於如何獲得額外後台外掛資訊。</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Internet 存取控制不可用</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>沒有組態 internet 存取控制後台。 請使用 Veyon Configurator 變更組態。</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Internet  存取控制的虛擬後台</translation>
     </message>
 </context>
 <context>
@@ -2489,6 +2474,142 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>加入新的網路範圍</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>刪除選取的網路範圍</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;不適用&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>顯示指定命令的說明</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;不適用&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2835,6 +2956,14 @@ Examples:
         <source>Text color</source>
         <translation>文字色彩</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2918,10 +3047,6 @@ Examples:
         <translation>刪除選取的網路範圍</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>可調整</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>並行掃描</translation>
     </message>
@@ -2940,6 +3065,14 @@ Examples:
     <message>
         <source>New group</source>
         <translation>新群組</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>選項</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3676,6 +3809,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>未指定模組或找不到模組 - 可用模組為:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

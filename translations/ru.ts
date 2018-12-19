@@ -731,6 +731,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New computer</source>
         <translation>Новый компьютер</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Встроенный каталог</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1733,25 +1737,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>Это фиктивный модуль, который не влияет на доступ к интернету. Выберите функциональный модуль, который подходит к вашей операционной системе и среде. Посетите &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;, чтобы узнать больше о том, как получить нужные вам модули дополнений.</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Управление доступом к интернету недоступно</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>Не настроен модуль управления доступом к интернету. Пожалуйста, воспользуйтесь средством настройки Veyon, чтобы изменить настройки.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Фиктивный модуль для управления доступом к интернету</translation>
-    </message>
-</context>
-<context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
@@ -2486,6 +2471,152 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation>Лицензирование</translation>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation>Установленные лицензии</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Добавить новый диапазон сети</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Удалить выделенный диапазон сети</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>Идентификатор</translation>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation>Функция</translation>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation>В силе до</translation>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation>Лицензиат</translation>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation>Просмотреть файл лицензии</translation>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation>файлы лицензий Veyon (*.vlf)</translation>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation>Удалить лицензию</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation>Вы действительно хотите удалить выбранную лицензию?</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;н/д&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation>Некорректный файл лицензии</translation>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation>Не удалось открыть файл лицензии для чтения!</translation>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation>В указанном файле лицензии не содержится корректных данных.</translation>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation>Выделенный файл лицензии не удалось проверить.</translation>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation>Выделенный файл лицензии не действует для этой установки.</translation>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation>Срок действия выделенного файла лицензии истек.</translation>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation>Эта лицензия уже установлена.</translation>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Показать справку по определённой команде</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation>Показать все установленные лицензии</translation>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation>Добавить файл лицензии</translation>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation>Удалить установленную лицензию</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation>
+ИСПОЛЬЗОВАНИЕ
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation>Не найдено сертификата с указанным идентификатором</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;н/д&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation>Управление лицензиями</translation>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation>Команды для управления файлами лицензий</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2832,6 +2963,14 @@ Examples:
         <source>Text color</source>
         <translation>Цвет текста</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation>Порядок сортировки</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Имя компьютера и пользователя</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2915,10 +3054,6 @@ Examples:
         <translation>Удалить выделенный диапазон сети</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>Параметры настройки</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>Параллельное сканирование</translation>
     </message>
@@ -2937,6 +3072,14 @@ Examples:
     <message>
         <source>New group</source>
         <translation>Новая группа</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation>Обратным поиском определены IP-адреса для названий узлов</translation>
     </message>
 </context>
 <context>
@@ -3673,6 +3816,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Не указан модуль или модуль не найден. Доступные модули:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation>Плагин не лицензирован</translation>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation>ИНФОРМАЦИЯ</translation>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation>ОШИБКА</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>лицензировано для</translation>
     </message>
 </context>
 <context>

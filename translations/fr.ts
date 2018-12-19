@@ -731,6 +731,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>New computer</source>
         <translation>Nouvel ordinateur</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Répertoire intégré</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1736,25 +1740,6 @@ Exemples:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>Ceci est le processus d&apos;essai qui n&apos;a strictement aucun effet sur l&apos;accès internet. Veuillez choisir le bon processus fonctionnel adapté à votre système d&apos;exploitation. Visitez &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; pour plus d&apos;information sur comment obtenir des greffons processus supplémentaires.</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Le contrôle d&apos;accès Internet n&apos;est pas disponible</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>Aucun processus de contrôle d&apos;accès Internet n&apos;a été configuré. Veuillez utiliser la Console de gestion Veyon pour modifier la configuration.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Processus d&apos;essai pour le contrôle d&apos;accès internet</translation>
-    </message>
-</context>
-<context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
@@ -2489,6 +2474,152 @@ Exemples:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation>Licence</translation>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation>Licences installées</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Ajouter une nouvelle plage réseau</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Supprimer la plage réseau sélectionnée</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation>Fonctionnalité</translation>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation>Valable jusqu&apos;à</translation>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation>Licencié</translation>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation>Parcourir fichier licence</translation>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation>Fichiers licence Veyon (*.vlf)</translation>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation>Retirer licence</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation>Voulez-vous réellement retirer la licence sélectionnée ?</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt; Sans Objet &gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation>Fichier licence invalide</translation>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation>Impossible d&apos;ouvrir le fichier licence en lecture !</translation>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation>Le fichier de licence sélectionné ne contient pas de données valides.</translation>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation>Le fichier de licence sélectionné n&apos;a pas pu être vérifié.</translation>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation>Le fichier de licence sélectionné n&apos;est pas valide pour cette installation.</translation>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation>Le fichier de licence sélectionné a expiré.</translation>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation>La licence est déjà installée.</translation>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Affiche l&apos;aide pour une commande spécifique</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation>Afficher toutes les licences installées</translation>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation>Ajouter un fichier de licence</translation>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation>Supprimer la licence installée</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation>Aucun certificat trouvé avec l&apos;ID donné</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt; Sans Objet &gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation>Gestion des licences</translation>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation>Commandes de gestion des clés de licence</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2835,6 +2966,14 @@ Exemples:
         <source>Text color</source>
         <translation>Couleur du texte</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation>Ordre de tri</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Ordinateur et nom d&apos;utilisateur</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2918,10 +3057,6 @@ Exemples:
         <translation>Supprimer la plage réseau sélectionnée</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>Réglables</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>Scans parallèles</translation>
     </message>
@@ -2940,6 +3075,14 @@ Exemples:
     <message>
         <source>New group</source>
         <translation>Nouveau groupe</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Options</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation>Recherche inversée des adresses IP découvertes en noms d&apos;hôte</translation>
     </message>
 </context>
 <context>
@@ -3676,6 +3819,22 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Aucun module spécifié ou module non trouvé - les modules disponibles sont:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation>Greffon sans licence</translation>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation>INFO</translation>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation>ERREUR</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>sous licence pour</translation>
     </message>
 </context>
 <context>

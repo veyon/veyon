@@ -731,6 +731,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>New computer</source>
         <translation>Nový počítač</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Vestavěný adresář</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1736,25 +1740,6 @@ Příklady:
     </message>
 </context>
 <context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>Toto je nastrčená podpůrná vrstva která nemá efekt na přístup k Internetu. Zvolte funkční podpůrnou vrstvu použitelnou pro váš operační systém a prostředí. Další informace o tom, jak získat další zásuvné moduly podpůrné vrstvy navštivte &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Řízení přístupu k internetu není k dispozici</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>Nebyla nastavena žádná podpůrná vrstva pro ovládání přístupu k Internetu. Změňte to v nastavení Veyon.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Výplňová podpůrná vrstva pro ovládání přístupu k Internetu</translation>
-    </message>
-</context>
-<context>
     <name>InternetAccessControlPlugin</name>
     <message>
         <source>Block access to the internet</source>
@@ -2485,6 +2470,152 @@ Příklady:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation>Licencování</translation>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation>Nainstalované licence</translation>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Přidat nový síťový rozsah</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Odebrat označený síťový rozsah</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>Identif.</translation>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation>Funkce</translation>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation>Platné do</translation>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation>Držitel licence</translation>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation>Nalistovat soubor s licencí</translation>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation>Soubory s licencí pro Veyon (*.vlf)</translation>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation>Odebrat licenci</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation>Opravdu chcete odebrat vybranou licenci?</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation>Neplatný soubor s licencí</translation>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation>Nedaří se otevřít soubor s licencí pro čtení!</translation>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation>Zvolený soubor s licencí neobsahuje platná data.</translation>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation>Zvolený soubor s licencí se nepodařilo ověřit.</translation>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation>Zvolený soubor s licencí není platný pro tuto instalaci.</translation>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation>Platnost zvoleného souboru s licencí skončila.</translation>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation>Tato licence už je nainstalována.</translation>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Zobrazit nápovědu pro konkrétní příkaz</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation>Zobrazit všechny nainstalované licence</translation>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation>Přidat licenční soubor</translation>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation>Odebrat nainstalovanou licenci</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation>
+POUŽITÍ
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation>
+POUŽITÍ
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation>U daného identif. nenalezen certifikát</translation>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation>Správa licencí</translation>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation>Příkazy pro správu licenčních klíčů</translation>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2831,6 +2962,14 @@ Příklady:
         <source>Text color</source>
         <translation>Barva textu</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation>Pořadí řazení</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Počítač a uživatelské jméno</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2914,10 +3053,6 @@ Příklady:
         <translation>Odebrat označený síťový rozsah</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>Vyladitelné</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>Souběžné skeny</translation>
     </message>
@@ -2936,6 +3071,14 @@ Příklady:
     <message>
         <source>New group</source>
         <translation>Nová skupina</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Volby</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation>Překládat objevené IP adresy na názvy strojů</translation>
     </message>
 </context>
 <context>
@@ -3672,6 +3815,22 @@ Typicky je toto třeba na terminálových serverech.</translation>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>Modul nebyl určen nebo nalezen – k dispozici jsou moduly:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation>Zásuvný modul není licencován</translation>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation>INFORMACE</translation>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation>CHYBA</translation>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation>licencováno pro</translation>
     </message>
 </context>
 <context>

@@ -731,6 +731,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>New computer</source>
         <translation>Új számítógép</translation>
     </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
@@ -1515,31 +1519,31 @@ Példák:
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Lehetőség</translation>
     </message>
     <message>
         <source>Transfer only</source>
-        <translation type="unfinished"/>
+        <translation>Csak átvitel</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation type="unfinished"/>
+        <translation>Átvitel és a fájl(ok) megnyitása a társított programmal</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation type="unfinished"/>
+        <translation>Átvitel és a célmappa megnyitása</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Indítás</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok felülírása</translation>
     </message>
 </context>
 <context>
@@ -1562,15 +1566,15 @@ Példák:
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; fájl fogadva.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; fájl nem fogadható, mert már létezik.</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; fájl nem fogadható, mert nem nyitható meg írásra!</translation>
     </message>
 </context>
 <context>
@@ -1733,25 +1737,6 @@ Példák:
     <message>
         <source>Backend settings</source>
         <translation>Háttér beállításai</translation>
-    </message>
-</context>
-<context>
-    <name>InternetAccessControlDummy</name>
-    <message>
-        <source>This is the dummy backend which has no effect on internet access. Please choose a functional backend suitable for your operating system and environment. Visit &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; for more information on how to obtain additional backend plugins.</source>
-        <translation>Ez egy kamu háttér, aminek nincs hatása az internet elérésére. Kérem, válassz egy, az operációs rendszeredhez és a környezethez passzoló, működő hátteret. További háttér bővítmények beszerzésével kapcsolatos információkért látogasd meg a &lt;a href=&quot;http://veyon.io&quot;&gt;http://veyon.io&lt;/a&gt; oldalt.</translation>
-    </message>
-    <message>
-        <source>Internet access control not available</source>
-        <translation>Internethozzáférés-vezérlés nem érhető el</translation>
-    </message>
-    <message>
-        <source>No internet access control backend has been configured. Please use the Veyon Configurator to change the configuration.</source>
-        <translation>Nincs internethozzáféréskezelő-háttér konfigurálva. Kérem, használja a konfiguráció módosításához a Veyon konfigurátort.</translation>
-    </message>
-    <message>
-        <source>Dummy backend for internet access control</source>
-        <translation>Internethozzáférés-vezérléshez kamu háttér</translation>
     </message>
 </context>
 <context>
@@ -2489,6 +2474,142 @@ Példák:
     </message>
 </context>
 <context>
+    <name>LicensingConfigurationPage</name>
+    <message>
+        <source>Licensing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add new network range</source>
+        <translation>Új hálózati tartomány hozzáadása</translation>
+    </message>
+    <message>
+        <source>Remove selected network range</source>
+        <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Valid until</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Licensee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Browse license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Veyon license files (*.vlf)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to remove the selected license?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Invalid license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the license file for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file does not contain valid data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file could not be verified.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is not valid for this installation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The selected license file is expired.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The license is already installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LicensingPlugin</name>
+    <message>
+        <source>Show help for specific command</source>
+        <translation>Konkrét parancsról segítség megjelenítése</translation>
+    </message>
+    <message>
+        <source>Show all installed licenses</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add license file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove installed license</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 add &lt;LICENSE FILE&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>
+USAGE
+
+%1 remove &lt;LICENSE ID&gt;
+
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No certificate found with given ID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;N/A&gt;</source>
+        <translation>&lt;N/A&gt;</translation>
+    </message>
+    <message>
+        <source>Licensing management</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing license keys</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
@@ -2835,6 +2956,14 @@ Példák:
         <source>Text color</source>
         <translation>Betűszín</translation>
     </message>
+    <message>
+        <source>Sort order</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -2918,10 +3047,6 @@ Példák:
         <translation>Kiválasztott hálózati tartomány eltávolítása</translation>
     </message>
     <message>
-        <source>Tunables</source>
-        <translation>Hangolhatók</translation>
-    </message>
-    <message>
         <source>Parallel scans</source>
         <translation>Párhuzamos átvizsgálások</translation>
     </message>
@@ -2940,6 +3065,14 @@ Példák:
     <message>
         <source>New group</source>
         <translation>Új csoport</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Lehetőség</translation>
+    </message>
+    <message>
+        <source>Reverse lookup discovered IP addresses to host names</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3675,6 +3808,22 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>No module specified or module not found - available modules are:</source>
         <translation>A modul nincs megadva vagy nem található - az elérhető modulok:</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>INFO</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ERROR</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>licensed for</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
