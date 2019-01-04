@@ -501,15 +501,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās izveidot mapi atslēgas failam.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās ierakstīt atslēgas failā &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation type="unfinished"/>
+        <translation>Neizdevās piešķirt atļaujas atslēgas failam &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -1441,7 +1441,7 @@ Examples:
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Iespējas</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -2972,7 +2972,7 @@ USAGE
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Iespējas</translation>
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
@@ -2983,11 +2983,11 @@ USAGE
     <name>NetworkDiscoveryDirectory</name>
     <message>
         <source>Scanning...</source>
-        <translation type="unfinished"/>
+        <translation>Skenējas...</translation>
     </message>
     <message>
         <source>Discovered computers</source>
-        <translation type="unfinished"/>
+        <translation>Atklātie datori</translation>
     </message>
 </context>
 <context>
@@ -2998,7 +2998,7 @@ USAGE
     </message>
     <message>
         <source>Scan a subnet</source>
-        <translation type="unfinished"/>
+        <translation>Skenēt apakštīklu</translation>
     </message>
     <message>
         <source>
@@ -3266,11 +3266,11 @@ USAGE
     </message>
     <message>
         <source>Add custom route to block internet</source>
-        <translation type="unfinished"/>
+        <translation>Pievienot papildus ceļu lai bloķētu internetu</translation>
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"/>
+        <translation>Mērķis</translation>
     </message>
     <message>
         <source>Gateway</source>
@@ -3334,7 +3334,7 @@ USAGE
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>Lieto šo funkciju lai uzņemtu ekrānšāviņu izvēlētajiem datoriem.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
@@ -3342,11 +3342,11 @@ USAGE
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Ekrānšāviņs veiksmīgi uzņemts datoram %1.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>Uzņemt datora ekrānšāviņu un saglabāt lokāli.</translation>
     </message>
 </context>
 <context>
@@ -3519,23 +3519,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Register Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Reģistrēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Atcelt reģistrāciju Veyon pakalpojumam</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Sāknēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Apturēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Restartēt Veyon pakalpojumu</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
