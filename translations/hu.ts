@@ -733,7 +733,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Beépített mappa</translation>
     </message>
 </context>
 <context>
@@ -2477,11 +2477,11 @@ Példák:
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation type="unfinished"/>
+        <translation>Licencelés</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>Telepített licencek</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -2493,35 +2493,35 @@ Példák:
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>Szolgáltatás</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>Érvényes eddig</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>Licencelő</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>Licencfájlok böngészése</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>Veyon licencfájlok (*.vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>Licenc eltávolítása</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy eltávolítod a kiválasztott licenceket?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2529,31 +2529,31 @@ Példák:
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation type="unfinished"/>
+        <translation>Érvénytelen licencfájlok</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
+        <translation>A licencfájl nem nyitható meg olvasásra!</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott licencfájl nem tartalmaz érvényes adatot.</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott licencfájl nem ellenőrizhető.</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott licencfájl nem érvényes ehhez a telepítéshez.</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott licencfájl lejárt.</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>A licencet már telepítették.</translation>
     </message>
 </context>
 <context>
@@ -2564,15 +2564,15 @@ Példák:
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>Az összes telepített licenc megjelenítése</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation type="unfinished"/>
+        <translation>Licencfájlok hozzáadása</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation type="unfinished"/>
+        <translation>Telepített licencek eltávolítása</translation>
     </message>
     <message>
         <source>
@@ -2581,7 +2581,12 @@ USAGE
 %1 add &lt;LICENSE FILE&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+HASZNÁLAT
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
     </message>
     <message>
         <source>
@@ -2590,11 +2595,16 @@ USAGE
 %1 remove &lt;LICENSE ID&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+HASZNÁLAT
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
+        <translation>A megadott ID-vel nem található tanúsítvány </translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2602,11 +2612,11 @@ USAGE
     </message>
     <message>
         <source>Licensing management</source>
-        <translation type="unfinished"/>
+        <translation>Licenckezelése</translation>
     </message>
     <message>
         <source>Commands for managing license keys</source>
-        <translation type="unfinished"/>
+        <translation>Licenckulcs-kezelési parancsok</translation>
     </message>
 </context>
 <context>
@@ -2958,11 +2968,11 @@ USAGE
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Rendezés</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Számítógép és felhasználónév</translation>
     </message>
 </context>
 <context>
@@ -3072,7 +3082,7 @@ USAGE
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
+        <translation>A fordított keresés IP-címeket talált a kiszolgálónevekhez</translation>
     </message>
 </context>
 <context>
@@ -3811,19 +3821,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>A bővítmény nem licencelt</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>HIBA</translation>
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>licencelt</translation>
     </message>
 </context>
 <context>

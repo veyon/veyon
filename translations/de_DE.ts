@@ -730,7 +730,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>Integriertes Verzeichnis</translation>
     </message>
 </context>
 <context>
@@ -2965,11 +2965,11 @@ VERWENDUNG
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Sortierreihenfolge</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Computer- und Benutzername</translation>
     </message>
 </context>
 <context>
@@ -3830,7 +3830,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>lizenziert für</translation>
     </message>
 </context>
 <context>
