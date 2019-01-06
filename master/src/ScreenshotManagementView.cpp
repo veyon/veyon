@@ -1,7 +1,7 @@
 /*
  * ScreenshotManagementView.cpp - implementation of screenshot management view
  *
- * Copyright (c) 2004-2018 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2004-2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - http://veyon.io
  *
