@@ -10,11 +10,11 @@ ADD_WINDOWS_RESOURCE(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
 MAKE_CONSOLE_APP(veyon-cli)
 
 IF(VEYON_BUILD_WIN32)
-ADD_EXECUTABLE(veyon-cliw ${cli_SOURCES})
-TARGET_LINK_LIBRARIES(veyon-cliw veyon-core Qt5::Network)
+ADD_EXECUTABLE(veyon-wcli ${cli_SOURCES})
+TARGET_LINK_LIBRARIES(veyon-wcli veyon-core Qt5::Network)
 
-ADD_WINDOWS_RESOURCE(veyon-cliw ${CMAKE_CURRENT_BINARY_DIR}/veyon-cliw.rc)
-MAKE_GRAPHICAL_APP(veyon-cliw)
+ADD_WINDOWS_RESOURCE(veyon-wcli ${CMAKE_CURRENT_BINARY_DIR}/veyon-wcli.rc)
+MAKE_GRAPHICAL_APP(veyon-wcli)
 ENDIF()
 
 INSTALL(TARGETS veyon-cli RUNTIME DESTINATION bin)

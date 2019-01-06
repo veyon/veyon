@@ -148,7 +148,7 @@ Section "Veyon Service" SEC_SERVICE
 SectionIn RO
 ${INSTALL_TYPE}
 ClearErrors
-ExecWait '"$INSTDIR\veyon-cliw.exe" service unregister'
+ExecWait '"$INSTDIR\veyon-wcli.exe" service unregister'
 ${If} $0 != 0
   ExecWait '"$INSTDIR\veyon-cli.exe" service unregister'
 ${EndIf}
@@ -163,7 +163,7 @@ File "veyon-server.exe"
 File "veyon-service.exe"
 File "veyon-configurator.exe"
 File "veyon-cli.exe"
-File "veyon-cliw.exe"
+File "veyon-wcli.exe"
 File "veyon-worker.exe"
 File "*.dll"
 File "LICENSE.TXT"
@@ -181,21 +181,21 @@ File "crypto/*.dll"
 SetOutPath "$INSTDIR\platforms"
 File "platforms/qwindows.dll"
 # configuration
-ExecWait '"$INSTDIR\veyon-cliw.exe" service register'
-ExecWait '"$INSTDIR\veyon-cliw.exe" config set Network/FirewallExceptionEnabled 1'
-ExecWait '"$INSTDIR\veyon-cliw.exe" config set Service/SoftwareSASEnabled 1'
+ExecWait '"$INSTDIR\veyon-wcli.exe" service register'
+ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 1'
+ExecWait '"$INSTDIR\veyon-wcli.exe" config set Service/SoftwareSASEnabled 1'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ApplyConfig=" $R1
 ${If} $R1 != ""
   ClearErrors
-  ExecWait '"$INSTDIR\veyon-cliw.exe" config import "$R1"' $0
+  ExecWait '"$INSTDIR\veyon-wcli.exe" config import "$R1"' $0
   ${If} $0 != 0
 	   MessageBox MB_OK|MB_ICONSTOP "Could not apply specified configuration file!"
   ${EndIf}
 ${EndIf}
-ExecWait '"$INSTDIR\veyon-cliw.exe" service start'
+ExecWait '"$INSTDIR\veyon-wcli.exe" service start'
 SectionEnd
 
 Section "Veyon Master" SEC_MASTER
@@ -274,9 +274,9 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 
-ExecWait '"$INSTDIR\veyon-cliw.exe" config set Service/SoftwareSASEnabled 0'
-ExecWait '"$INSTDIR\veyon-cliw.exe" config set Network/FirewallExceptionEnabled 0'
-ExecWait '"$INSTDIR\veyon-cliw.exe" service unregister'
+ExecWait '"$INSTDIR\veyon-wcli.exe" config set Service/SoftwareSASEnabled 0'
+ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 0'
+ExecWait '"$INSTDIR\veyon-wcli.exe" service unregister'
 ExecWait '"$INSTDIR\interception\install-interception.exe" /uninstall'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
@@ -284,7 +284,7 @@ Sleep 2000
 ${GetParameters} $R0
 ${GetOptions} $R0 "/ClearConfig" $R1
 ${IfNot} ${Errors}
-	ExecWait '"$INSTDIR\veyon-cliw.exe" config clear'
+	ExecWait '"$INSTDIR\veyon-wcli.exe" config clear'
 ${EndIf}
 
 Delete "$INSTDIR\*.exe"
