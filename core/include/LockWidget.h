@@ -1,7 +1,7 @@
 /*
  *  LockWidget.h - widget for locking a client
  *
- *  Copyright (c) 2006-2018 Tobias Junghans <tobydox@veyon.io>
+ *  Copyright (c) 2006-2019 Tobias Junghans <tobydox@veyon.io>
  *
  *  This file is part of Veyon - https://veyon.io
  *

@@ -30,7 +30,7 @@ languages and provides lots of useful features:
 
 ## License
 
-Copyright (c) 2004-2018 Tobias Junghans / Veyon Solutions.
+Copyright (c) 2004-2019 Tobias Junghans / Veyon Solutions.
 
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
