@@ -3,7 +3,7 @@ services:
     - docker
 git:
     depth: false
-dist: trusty
+dist: xenial
 sudo: required
 matrix:
     include:
