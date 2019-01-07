@@ -367,7 +367,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>金鑰檔 (*.pem)</translation>
+        <translation>金鑰檔 (*. pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -733,7 +733,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>內建目錄</translation>
     </message>
 </context>
 <context>
@@ -1274,7 +1274,7 @@ Examples:
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>無法組態 %1 Worker 的防火牆設定。</translation>
+        <translation>無法組態 %1 工人的防火牆設定。</translation>
     </message>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
@@ -1527,7 +1527,7 @@ Examples:
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>傳輸並使用關聯開啟檔案</translation>
+        <translation>傳輸並使用關聯的程式開啟檔案</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
@@ -1554,27 +1554,27 @@ Examples:
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>按一下這個按鈕以傳輸檔案從您的電腦到所有電腦</translation>
+        <translation>按一下這個按鈕可將檔案從電腦傳輸到所有電腦。</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>選取一個或多個檔案來傳輸</translation>
+        <translation>選擇要傳輸的一個或多個檔案</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
-        <translation>傳輸檔案到遠端電腦</translation>
+        <translation>將檔案傳輸到遠端電腦</translation>
     </message>
     <message>
         <source>Received file &quot;%1&quot;.</source>
-        <translation>已接收檔案 &quot;%1&quot;.</translation>
+        <translation>收到的檔案 &quot;%1&quot;。</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>無法接收檔案 &quot;%1&quot;，因為已經存在。</translation>
+        <translation>無法接收檔案 &quot;%1&quot;，因為它已經存在。</translation>
     </message>
     <message>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>無法接收檔案 &quot;%1&quot;，因為無法開起來寫入!</translation>
+        <translation>無法接收檔案 &quot;%1&quot;，因為無法開啟來寫入!</translation>
     </message>
 </context>
 <context>
@@ -2240,7 +2240,7 @@ Examples:
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>例如: 教室或 computerLab</translation>
+        <translation>例如: room 或 computerLab</translation>
     </message>
     <message>
         <source>List all members of a computer room</source>
@@ -2376,11 +2376,11 @@ Examples:
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>例如: (objectClass=room) or (objectClass=computerLab)</translation>
+        <translation>例如: (objectClass=room) 或 (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>例如: (objectClass=container) or (objectClass=organizationalUnit)</translation>
+        <translation>例如: (objectClass=container) 或 (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2477,11 +2477,11 @@ Examples:
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation type="unfinished"/>
+        <translation>授權</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>已安裝的授權</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -2493,35 +2493,35 @@ Examples:
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>功能</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>有效期至</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>授權</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>瀏覽授權檔</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 授權檔案 (*.vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>移除授權</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
+        <translation>是否真的要移除選取的授權?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2529,31 +2529,31 @@ Examples:
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation type="unfinished"/>
+        <translation>授權檔無效</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟授權檔來讀取!</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
+        <translation>選取的授權檔不包含有效資料。</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
+        <translation>無法驗證選取的授權檔。</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
+        <translation>選取的授權檔對此安裝無效。</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
+        <translation>選取的授權檔已過期。</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>授權已安裝。</translation>
     </message>
 </context>
 <context>
@@ -2564,15 +2564,15 @@ Examples:
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>顯示所有已安裝的授權</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation type="unfinished"/>
+        <translation>加入授權檔</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation type="unfinished"/>
+        <translation>移除已安裝的授權</translation>
     </message>
     <message>
         <source>
@@ -2581,7 +2581,12 @@ USAGE
 %1 add &lt;LICENSE FILE&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
     </message>
     <message>
         <source>
@@ -2590,11 +2595,16 @@ USAGE
 %1 remove &lt;LICENSE ID&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
+        <translation>找不到具有給予 ID 的憑證</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2602,11 +2612,11 @@ USAGE
     </message>
     <message>
         <source>Licensing management</source>
-        <translation type="unfinished"/>
+        <translation>授權管理</translation>
     </message>
     <message>
         <source>Commands for managing license keys</source>
-        <translation type="unfinished"/>
+        <translation>用於管理授權金鑰的命令</translation>
     </message>
 </context>
 <context>
@@ -2751,7 +2761,7 @@ USAGE
     </message>
     <message>
         <source>Access denied</source>
-        <translation>存取拒絕</translation>
+        <translation>拒絕存取</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -2882,7 +2892,7 @@ USAGE
     </message>
     <message>
         <source>Allow adding rooms manually</source>
-        <translation>允許手動加入教室</translation>
+        <translation>手動允許加入教室</translation>
     </message>
     <message>
         <source>Hide local computer</source>
@@ -2958,11 +2968,11 @@ USAGE
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>排序</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>電腦和使用者名稱</translation>
     </message>
 </context>
 <context>
@@ -3072,7 +3082,7 @@ USAGE
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
+        <translation>反向對應發現的主機名稱的 IP 位址</translation>
     </message>
 </context>
 <context>
@@ -3812,19 +3822,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式未授權</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>資訊</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>錯誤</translation>
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>授權於</translation>
     </message>
 </context>
 <context>

@@ -197,7 +197,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Il computer in cui si sta entrando è localhost (computer locale)</translation>
+        <translation>Il computer in cui si sta entrando è localhost</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -419,7 +419,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Per ulteriori informazioni, consultare il Manuale dell&apos;amministratore di Veyon.</translation>
+        <translation>Per ulteriori informazioni, consultare il &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manuale dell&apos;amministratore di Veyon&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -625,8 +625,7 @@ e salva la chiave privata e pubblica per le directory chiave configurate.</trans
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Questo comando esporta la chiave di autenticazione. Se non viene specificato un nome sarà costruito dal nome e tipo.
-</translation>
+        <translation>Questo comando esporta la chiave di autenticazione&lt;KEY&gt; su &lt;FILE&gt;. Se &lt;FILE&gt;non viene specificato un nome sarà costruito dal nome e tipo di &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -885,7 +884,24 @@ Examples:
     %1 export computers.csv room &quot;Room 01&quot; format &quot;%name%;%host%;%mac%&quot;
 
 </source>
-        <translation>] Valori validi:% tipo%% nome%% host%% mac%% room% Esempi: * Esporta tutti gli oggetti in un file CSV: % 1 export objects.csv format &quot;% type%; % name%;% host%;% mac% &quot; * Esporta tutti i computer in una stanza in un file CSV: % 1 export computers.csv room&quot; Room 01 &quot;format&quot;% name%;% host%;% mac% &quot;</translation>
+        <translation>
+USO
+
+%1 export &lt;FILE&gt; [stanza &lt;ROOM&gt;] [formato &lt;FORMAT-STRING-WITH-VARIABLES&gt;]
+
+Variabili valide: %tipo% %nome% %host% %mac% %room% 
+
+Esempi: 
+
+* Esporta tutti gli oggetti in un file CSV:
+
+ %1 export objects.csv format &quot;%type%; %name%;%host%;%mac%&quot;
+
+ * Esporta tutti i computer in una stanza in un file CSV: 
+
+%1 export computers.csv room &quot;Room 01&quot; format&quot;%name%;%host%;%mac%&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -906,7 +922,23 @@ Examples:
     %1 add computer &quot;Computer 01&quot; comp01.example.com 11:22:33:44:55:66 &quot;Room 01&quot;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 aggiungi &lt;TYPE&gt; &lt;NAME&gt; [&lt;HOST ADDRESS&gt;&lt;MAC ADDRESS&gt;&lt;PARENT&gt;]
+Aggiunge un oggetto in cui TYPE può essere uno di &quot;%2&quot; o &quot;%3&quot;. PARENT può essere specificato per nome o UUID.
+
+Esempi:
+
+ * Aggiungi una stanza:
+
+ %1 aggiungi stanza &quot;Stanza 01&quot; 
+
+* Aggiungi un computer alla stanza &quot;Stanza 01&quot;:
+
+ %1 aggiungi computer &quot; Computer 01 &quot;comp01.example.com 11: 22: 33: 44: 55: 66 &quot;Stanza 01&quot;
+
+</translation>
     </message>
     <message>
         <source>
@@ -927,15 +959,29 @@ Examples:
     %1 remove 068914fc-0f87-45df-a5b9-099a2a6d9141
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+%1 rimuovi &lt;OBJECT&gt;
+
+Rimuove l&apos;oggetto specificato dalla directory. OBJECT può essere specificato per nome o UUID. La rimozione di una stanza rimuoverà anche tutti i computer all&apos;interno.
+
+Esempi: 
+
+* Rimuovi un computer per nome: %1 rimuovi &quot;Computer 01&quot;
+
+* Rimuovi un oggetto da UUID:
+
+ %1 rimuovi 068914fc-0f87-45df-a5b9-099a2a6d9141
+
+</translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation type="unfinished"/>
+        <translation>Oggetto UUID</translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation type="unfinished"/>
+        <translation>Genitore UUID</translation>
     </message>
     <message>
         <source>
@@ -963,7 +1009,29 @@ Examples:
 
     %1 import data.txt regex '^&quot;(%room%:[^&quot;]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$'
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+%1 importazione&lt;FILE&gt; [stanza &lt;ROOM&gt;] [formato &lt;FORMAT-STRING-WITH-VARIABLES&gt;] [regex &lt;REGULAR-EXPRESSION-WITH-VARIABLES&gt;] 
+
+Variabili valide: %type% % nome% %host% %mac% %stanza% 
+
+Esempi: 
+
+* Importa file CSV semplice in una singola stanza: 
+
+%1 import stanza computers.csv &quot;Stanza 01&quot; formato &quot;%nome%,%host%,%mac%&quot; 
+
+* Importa file CSV con nome stanza nella prima colonna: %1 importazione computer-con-stanze.csv formato &quot;%stanza%,% nome%,%mac%&quot;
+
+ * Importa il file di testo con le coppie chiave / valore usando le espressioni regolari: 
+
+%1 import hostlist.txt room &quot;Stanza 01&quot; regex &quot;^NAME:(%nome%:. *)\s+HOST:(%host%..*)$&quot;
+
+* Importa dati formattati arbitrariamente:
+
+%1 import data.txt regex &apos;^&quot;(%room%:[^]+)&quot;;&quot;(%host%:[a-z\d\.]+)&quot;.*$&apos;
+</translation>
     </message>
 </context>
 <context>
@@ -1043,11 +1111,11 @@ Examples:
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;utente &quot;% 1&quot; sull&apos;host &quot;% 2&quot; sta ora accedendo a questo computer.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully!</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;utente &quot;% 1&quot; sull&apos;host &quot;% 2&quot; ha tentato di accedere a questo computer ma non è riuscito ad autenticarsi correttamente!</translation>
     </message>
 </context>
 <context>
@@ -1148,7 +1216,7 @@ Examples:
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>Non è possibile leggere il file di configurazione (permessi o locazione non corretti)</translation>
+        <translation>Non è possibile leggere il file di configurazione!</translation>
     </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
@@ -1176,7 +1244,7 @@ Examples:
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Rimuovi la chiave di configurazione</translation>
+        <translation>Dimentica (rimuovi) la chiave di configurazione data</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
@@ -1280,7 +1348,7 @@ Examples:
     </message>
     <message>
         <source>In this mode your screen is being displayed in fullscreen mode on all computers while input devices of the users are locked.</source>
-        <translation>In questa modalità il tuo schermo sarà visualizzato su tutti i computer client a tutto schermo. Inoltre gli utenti non saranno in grado di svolgere altre azioni, in quanto le periferiche di input (mouse-tastiera) saranno bloccate.</translation>
+        <translation>In questa modalità il tuo schermo sarà visualizzato su tutti i computer client a tutto schermo. Inoltre gli utenti non saranno in grado di svolgere altre azioni, in quanto le periferiche di input saranno bloccate.</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -2293,19 +2361,19 @@ Examples:
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>per esempio:(Oggetto Classe = gruppo)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>per esempio: (oggetto Classe=persona)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>per esempio: (oggetto Classe=stanza) or (oggetto Classe=Laboratorio computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>per esempio (oggetto Classe=container) o (oggetto Classe=Unità Organizzativa)</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2412,31 +2480,31 @@ Examples:
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>Funzionalità</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>Valido fino a</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>Licenziatario</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>Sfoglia il file di licenza</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>File di licenza Veyon (* .vlf)</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi la licenza</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi veramente rimuovere la licenza selezionata?</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2444,31 +2512,31 @@ Examples:
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation type="unfinished"/>
+        <translation>File di licenza non valido</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile aprire il file di licenza per la lettura!</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
+        <translation>Il file di licenza selezionato non contiene dati validi.</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
+        <translation>Non è stato possibile verificare il file di licenza selezionato.</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
+        <translation>Il file di licenza selezionato non è valido per questa installazione.</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
+        <translation>Il file di licenza selezionato è scaduto.</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>La licenza è già installata.</translation>
     </message>
 </context>
 <context>
@@ -2479,15 +2547,15 @@ Examples:
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>Mostra tutte le licenze installate</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi il file di licenza</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovere la licenza installata</translation>
     </message>
     <message>
         <source>
@@ -2496,7 +2564,12 @@ USAGE
 %1 add &lt;LICENSE FILE&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+USO
+
+ %1 aggiungi &lt;LICENSE FILE&gt;
+
+</translation>
     </message>
     <message>
         <source>
@@ -2505,11 +2578,16 @@ USAGE
 %1 remove &lt;LICENSE ID&gt;
 
 </source>
-        <translation>USAGE% 1 rimuovi</translation>
+        <translation>
+USO
+
+%1 rimuovi &lt;LICENSE ID&gt;
+
+</translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
+        <translation>Nessun certificato trovato con un dato ID</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -3018,7 +3096,12 @@ USAGE
 %1 scan [&lt;SUBNET&gt;]
 
 </source>
-        <translation>USO  % 1 scansione </translation>
+        <translation>
+USO 
+
+ % 1 scansione[&lt;SUBNET&gt;]
+
+</translation>
     </message>
     <message>
         <source>Network object directory which automatically discovers computers in the network</source>
