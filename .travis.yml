@@ -18,6 +18,7 @@ matrix:
         - env: TARGET_OS=opensuse.15.0
         - env: TARGET_OS=sast
 script:
+    - wget http://archive.ubuntu.com/ubuntu/pool/main/libs/libseccomp/libseccomp2_2.3.3-3ubuntu1_amd64.deb && sudo dpkg -i libseccomp2*deb
     - docker pull veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS}:4.1 || docker build -t veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/
     - docker run -v ${TRAVIS_BUILD_DIR}:/veyon:rw veyon/travis.${TRAVIS_OS_NAME}.${TARGET_OS} /bin/sh /veyon/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}/script.sh
 deploy:
