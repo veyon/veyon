@@ -353,7 +353,6 @@
   </layout>
  </widget>
  <resources>
-  <include location="../veyon-configurator.qrc"/>
   <include location="../../core/resources/core.qrc"/>
  </resources>
  <connections>
