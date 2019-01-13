@@ -28,9 +28,10 @@
 
 #define FOREACH_ULTRAVNC_CONFIG_PROPERTY(OP) \
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC", true )	\
-	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDualMonitorSupportEnabled, setUltraVncDualMonitorSupportEnabled, "DualMonitorSupportEnabled", "UltraVNC", true )	\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncMultiMonitorSupportEnabled, setUltraVncMultiMonitorSupportEnabled, "MultiMonitorSupport", "UltraVNC", true )	\
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC", true )			\
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC", true )					\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDeskDupEngineEnabled, setUltraVncDeskDupEngineEnabled, "DeskDupEngine", "UltraVNC", true )	\
 
 DECLARE_CONFIG_PROXY(UltraVncConfiguration, FOREACH_ULTRAVNC_CONFIG_PROPERTY)
 

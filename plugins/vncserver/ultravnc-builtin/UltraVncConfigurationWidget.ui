@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>UltraVncConfigurationWidget</class>
  <widget class="QWidget" name="UltraVncConfigurationWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>616</width>
-    <height>128</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Builtin UltraVNC server configuration</string>
   </property>
@@ -26,6 +18,20 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="ultraVncPollFullScreen">
+     <property name="text">
+      <string>Poll full screen (leave this enabled per default)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="ultraVncMultiMonitorSupportEnabled">
+     <property name="text">
+      <string>Enable multi monitor support</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QCheckBox" name="ultraVncCaptureLayeredWindows">
      <property name="text">
@@ -33,29 +39,29 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="ultraVncPollFullScreen">
-     <property name="text">
-      <string>Poll full screen (leave this enabled per default)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QCheckBox" name="ultraVncLowAccuracy">
      <property name="text">
       <string>Low accuracy (turbo mode)</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QCheckBox" name="ultraVncDualMonitorSupportEnabled">
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="ultraVncDeskDupEngineEnabled">
      <property name="text">
-      <string>Enable dual monitor support</string>
+      <string>Enable Desktop Duplication Engine on Windows 8 and newer</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>ultraVncCaptureLayeredWindows</tabstop>
+  <tabstop>ultraVncMultiMonitorSupportEnabled</tabstop>
+  <tabstop>ultraVncPollFullScreen</tabstop>
+  <tabstop>ultraVncDeskDupEngineEnabled</tabstop>
+  <tabstop>ultraVncLowAccuracy</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
