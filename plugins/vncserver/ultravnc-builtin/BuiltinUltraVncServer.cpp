@@ -88,6 +88,11 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 		*out = vncServerInstance->configuration().ultraVncLowAccuracy() ? 1 : 0;
 		return true;
 	}
+	if( strcmp( valname, "DeskDupEngine" ) == 0 )
+	{
+		*out = vncServerInstance->configuration().ultraVncDeskDupEngineEnabled() ? 1 : 0;
+		return true;
+	}
 	if( strcmp( valname, "NewMSLogon" ) == 0 )
 	{
 		*out = 0;
@@ -133,7 +138,7 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
 
 	if( strcmp( valname, "secondary" ) == 0 )
 	{
-		*out = vncServerInstance->configuration().ultraVncDualMonitorSupportEnabled();
+		*out = vncServerInstance->configuration().ultraVncMultiMonitorSupportEnabled();
 		return true;
 	}
 

@@ -32,9 +32,10 @@
 
 #define FOREACH_ULTRAVNC_CONFIG_PROPERTY(OP) \
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncCaptureLayeredWindows, setUltraVncCaptureLayeredWindows, "CaptureLayeredWindows", "UltraVNC" );	\
-	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDualMonitorSupportEnabled, setUltraVncDualMonitorSupportEnabled, "DualMonitorSupportEnabled", "UltraVNC" );	\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncMultiMonitorSupportEnabled, setUltraVncMultiMonitorSupportEnabled, "DualMonitorSupportEnabled", "UltraVNC" );	\
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncPollFullScreen, setUltraVncPollFullScreen, "PollFullScreen", "UltraVNC" );			\
 	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncLowAccuracy, setUltraVncLowAccuracy, "LowAccuracy", "UltraVNC" );					\
+	OP( UltraVncConfiguration, m_configuration, BOOL, ultraVncDeskDupEngineEnabled, setUltraVncDeskDupEngineEnabled, "DeskDupEngine", "UltraVNC" );	\
 
 class UltraVncConfiguration : public Configuration::Proxy
 {
@@ -48,9 +49,10 @@ public:
 public slots:
 	void setUltraVncConfigured( bool );
 	void setUltraVncCaptureLayeredWindows( bool );
-	void setUltraVncDualMonitorSupportEnabled( bool );
+	void setUltraVncMultiMonitorSupportEnabled( bool );
 	void setUltraVncPollFullScreen( bool );
 	void setUltraVncLowAccuracy( bool );
+	void setUltraVncDeskDupEngineEnabled( bool );
 
 } ;
 

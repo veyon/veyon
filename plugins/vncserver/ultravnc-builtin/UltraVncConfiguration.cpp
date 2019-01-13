@@ -34,6 +34,7 @@ UltraVncConfiguration::UltraVncConfiguration() :
 		setUltraVncCaptureLayeredWindows( true );
 		setUltraVncPollFullScreen( true );
 		setUltraVncLowAccuracy( true );
+		setUltraVncDeskDupEngineEnabled( true );
 
 		setUltraVncConfigured( true );
 	}
