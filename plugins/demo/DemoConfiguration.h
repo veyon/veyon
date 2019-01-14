@@ -28,9 +28,9 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_DEMO_CONFIG_PROPERTY(OP) \
-	OP( DemoConfiguration, m_configuration, BOOL, multithreadingEnabled, setMultithreadingEnabled, "MultithreadingEnabled", "Demo", true )	\
-	OP( DemoConfiguration, m_configuration, INT, framebufferUpdateInterval, setFramebufferUpdateInterval, "FramebufferUpdateInterval", "Demo", 100 )	\
-	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo", 10 )	\
-	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo", 128 )	\
+	OP( DemoConfiguration, m_configuration, BOOL, multithreadingEnabled, setMultithreadingEnabled, "MultithreadingEnabled", "Demo", true, Configuration::Object::HiddenProperty )	\
+	OP( DemoConfiguration, m_configuration, INT, framebufferUpdateInterval, setFramebufferUpdateInterval, "FramebufferUpdateInterval", "Demo", 100, Configuration::Object::AdvancedProperty )	\
+	OP( DemoConfiguration, m_configuration, INT, keyFrameInterval, setKeyFrameInterval, "KeyFrameInterval", "Demo", 10, Configuration::Object::AdvancedProperty )	\
+	OP( DemoConfiguration, m_configuration, INT, memoryLimit, setMemoryLimit, "MemoryLimit", "Demo", 128, Configuration::Object::AdvancedProperty )	\
 
 DECLARE_CONFIG_PROXY(DemoConfiguration, FOREACH_DEMO_CONFIG_PROPERTY)

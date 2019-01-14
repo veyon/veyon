@@ -41,6 +41,14 @@ class VEYON_CORE_EXPORT Object : public QObject
 {
 	Q_OBJECT
 public:
+	enum PropertyFlag {
+		StandardProperty = 0x01,
+		AdvancedProperty = 0x02,
+		HiddenProperty = 0x04
+	};
+	Q_DECLARE_FLAGS(PropertyFlags, PropertyFlag)
+	Q_FLAG(PropertyFlags)
+
 	typedef QMap<QString, QVariant> DataMap;
 
 	Object();
@@ -211,7 +219,7 @@ private:
 			setValue( key, VeyonCore::cryptoCore().encryptPassword( val ), parentKey );			\
 		}
 
-#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey, defaultValue)			\
+#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey, defaultValue, flags)			\
 			DECLARE_CONFIG_##type##_PROPERTY(get,set,QStringLiteral(key),QStringLiteral(parentKey),defaultValue)
 
 }

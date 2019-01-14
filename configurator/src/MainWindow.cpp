@@ -30,6 +30,7 @@
 #include <QMessageBox>
 
 #include "Configuration/JsonStore.h"
+#include "Configuration/UiMapping.h"
 
 #include "AboutDialog.h"
 #include "ConfigurationPagePluginInterface.h"
@@ -65,12 +66,22 @@ MainWindow::MainWindow( QWidget* parent ) :
 	for( auto page : pages )
 	{
 		page->connectWidgetsToProperties();
+		connect( page, &ConfigurationPage::widgetsChanged, this, &MainWindow::updateView );
 	}
 
 	connect( ui->buttonBox, &QDialogButtonBox::clicked, this, &MainWindow::resetOrApply );
 
 	connect( ui->actionLoadSettings, &QAction::triggered, this, &MainWindow::loadSettingsFromFile );
 	connect( ui->actionSaveSettings, &QAction::triggered, this, &MainWindow::saveSettingsToFile );
+
+	auto viewModeGroup = new QActionGroup( this );
+	viewModeGroup->addAction( ui->viewModeStandard );
+	viewModeGroup->addAction( ui->viewModeAdvanced );
+	viewModeGroup->setExclusive( true );
+	ui->viewModeStandard->setChecked( true );
+
+	connect( viewModeGroup, &QActionGroup::triggered, this, &MainWindow::updateView );
+	switchToStandardView();
 
 	connect( ui->actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt );
 
@@ -121,6 +132,20 @@ void MainWindow::apply()
 
 		ui->buttonBox->setEnabled( false );
 		m_configChanged = false;
+	}
+}
+
+
+
+void MainWindow::updateView()
+{
+	if( ui->viewModeAdvanced->isChecked() )
+	{
+		switchToAdvancedView();
+	}
+	else
+	{
+		switchToStandardView();
 	}
 }
 
@@ -194,7 +219,7 @@ void MainWindow::resetConfiguration()
 	if( QMessageBox::warning( this, tr( "Reset configuration" ),
 							  tr( "Do you really want to reset the local configuration and revert "
 								  "all settings to their defaults?" ), QMessageBox::Yes | QMessageBox::No, QMessageBox::No ) ==
-			QMessageBox::Yes )
+		QMessageBox::Yes )
 	{
 		ConfigurationManager().clearConfiguration();
 		reset( false );
@@ -210,12 +235,66 @@ void MainWindow::aboutVeyon()
 
 
 
+void MainWindow::switchToStandardView()
+{
+	const auto widgets = findChildren<QWidget *>();
+
+	// hide widgets with advanced property flag
+	for( auto widget : widgets )
+	{
+		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
+		if( flags & Configuration::Object::StandardProperty )
+		{
+			widget->show();
+		}
+		else if( flags & Configuration::Object::AdvancedProperty )
+		{
+			widget->hide();
+		}
+	}
+
+	// hide page selector items for advanced pages
+	for( int i = 0; i < ui->pageSelector->count(); ++i )
+	{
+		auto item = ui->pageSelector->item( i );
+		auto page = item->data( Qt::UserRole ).value<ConfigurationPage *>();
+		if( page )
+		{
+			const auto flags = page->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
+
+			ui->pageSelector->setRowHidden( i, flags & Configuration::Object::AdvancedProperty );
+		}
+	}
+}
+
+
+
+void MainWindow::switchToAdvancedView()
+{
+	const auto widgets = findChildren<QWidget *>();
+	for( auto widget : widgets )
+	{
+		const auto flags = widget->property( CONFIG_UI_PROPERTY_FLAGS ).value<Configuration::Object::PropertyFlags>();
+		if( flags & Configuration::Object::AdvancedProperty )
+		{
+			widget->show();
+		}
+	}
+
+	for( int i = 0; i < ui->pageSelector->count(); ++i )
+	{
+		ui->pageSelector->setRowHidden( i, false );
+	}
+}
+
+
+
 bool MainWindow::applyConfiguration()
 {
 	ConfigurationManager configurationManager;
 
 	if( configurationManager.saveConfiguration() == false ||
-			configurationManager.applyConfiguration() == false )
+		configurationManager.applyConfiguration() == false )
 	{
 		qCritical() << Q_FUNC_INFO << configurationManager.errorString().toUtf8().constData();
 
@@ -246,6 +325,7 @@ void MainWindow::loadConfigurationPagePlugins()
 
 				auto item = new QListWidgetItem( page->windowIcon(), page->windowTitle() );
 				item->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+				item->setData( Qt::UserRole, QVariant::fromValue( page ) );
 				ui->pageSelector->addItem( item );
 			}
 		}
@@ -261,11 +341,11 @@ void MainWindow::loadConfigurationPagePlugins()
 void MainWindow::closeEvent( QCloseEvent *closeEvent )
 {
 	if( m_configChanged &&
-			QMessageBox::question( this, tr( "Unsaved settings" ),
-								   tr( "There are unsaved settings. "
-									   "Quit anyway?" ),
-								   QMessageBox::Yes | QMessageBox::No ) !=
-			QMessageBox::Yes )
+		QMessageBox::question( this, tr( "Unsaved settings" ),
+							   tr( "There are unsaved settings. "
+								   "Quit anyway?" ),
+							   QMessageBox::Yes | QMessageBox::No ) !=
+		QMessageBox::Yes )
 	{
 		closeEvent->ignore();
 		return;

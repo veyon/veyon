@@ -43,6 +43,9 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 {
 	ui->setupUi(this);
 
+	ui->networkGroupBox->setProperty( CONFIG_UI_PROPERTY_FLAGS, QVariant::fromValue<Configuration::Object::PropertyFlags>(
+										  Configuration::Object::AdvancedProperty ) );
+
 	// TODO: finish multi session support
 	ui->isMultiSessionServiceEnabled->hide();
 
@@ -146,6 +149,8 @@ void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
 			ui->vncServerGroupBoxLayout->addWidget( m_vncServerPluginConfigurationWidget );
 		}
 	}
+
+	emit widgetsChanged();
 }
 
 

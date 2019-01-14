@@ -123,7 +123,7 @@ Typically this is required to support terminal servers.</string>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_8">
+    <widget class="QGroupBox" name="networkGroupBox">
      <property name="title">
       <string>Network</string>
      </property>

@@ -42,6 +42,7 @@ public:
 	void reset( bool onlyUI = false );
 	void apply();
 
+	void updateView();
 
 private slots:
 	void configurationChanged();
@@ -53,6 +54,9 @@ private slots:
 
 
 private:
+	void switchToStandardView();
+	void switchToAdvancedView();
+
 	bool applyConfiguration();
 	void loadConfigurationPagePlugins();
 

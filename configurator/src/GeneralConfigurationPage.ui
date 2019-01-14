@@ -126,67 +126,8 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <property name="spacing">
-         <number>32</number>
-        </property>
-        <item>
-         <widget class="QCheckBox" name="logFileSizeLimitEnabled">
-          <property name="text">
-           <string>Limit log file size</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="logFileSizeLimit">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="suffix">
-           <string> MB</string>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>999</number>
-          </property>
-          <property name="value">
-           <number>100</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <property name="spacing">
-         <number>32</number>
-        </property>
-        <item>
-         <widget class="QCheckBox" name="logFileRotationEnabled">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Rotate log files</string>
-          </property>
-         </widget>
-        </item>
-        <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="1">
          <widget class="QSpinBox" name="logFileRotationCount">
           <property name="enabled">
            <bool>false</bool>
@@ -205,15 +146,51 @@
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="horizontalSpacer_8">
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="logFileRotationEnabled">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Rotate log files</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="logFileSizeLimit">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="suffix">
+           <string> MB</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>999</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="logFileSizeLimitEnabled">
+          <property name="text">
+           <string>Limit log file size</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
             <width>40</width>
-            <height>20</height>
+            <height>0</height>
            </size>
           </property>
          </spacer>
@@ -352,6 +329,23 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>applicationName</tabstop>
+  <tabstop>uiLanguage</tabstop>
+  <tabstop>logFileDirectory</tabstop>
+  <tabstop>openLogFileDirectory</tabstop>
+  <tabstop>logLevel</tabstop>
+  <tabstop>logFileSizeLimitEnabled</tabstop>
+  <tabstop>logFileSizeLimit</tabstop>
+  <tabstop>logFileRotationEnabled</tabstop>
+  <tabstop>logFileRotationCount</tabstop>
+  <tabstop>logToStdErr</tabstop>
+  <tabstop>logToSystem</tabstop>
+  <tabstop>clearLogFiles</tabstop>
+  <tabstop>networkObjectDirectoryPlugin</tabstop>
+  <tabstop>networkObjectDirectoryUpdateInterval</tabstop>
+  <tabstop>authenticationMethod</tabstop>
+ </tabstops>
  <resources>
   <include location="../../core/resources/core.qrc"/>
  </resources>

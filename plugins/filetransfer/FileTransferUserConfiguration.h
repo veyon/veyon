@@ -29,7 +29,7 @@
 #include "Configuration/Proxy.h"
 
 #define FOREACH_FILE_TRANSFER_USER_CONFIG_PROPERTIES(OP) \
-	OP( FileTransferUserConfiguration, config, STRING, lastFileTransferSourceDirectory, setLastFileTransferSourceDirectory, "LastSourceDirectory", "FileTransfer", QDir::homePath() )
+	OP( FileTransferUserConfiguration, config, STRING, lastFileTransferSourceDirectory, setLastFileTransferSourceDirectory, "LastSourceDirectory", "FileTransfer", QDir::homePath(), Configuration::Object::StandardProperty )
 
 class FileTransferUserConfiguration : public Configuration::Proxy
 {

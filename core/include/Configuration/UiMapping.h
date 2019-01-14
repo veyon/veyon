@@ -35,6 +35,10 @@
 #include <QSpinBox>
 #include <QUuid>
 
+#include "Configuration/Object.h"
+
+#define CONFIG_UI_PROPERTY_FLAGS "ConfigPropertyFlags"
+
 class QLabel;
 
 template<class Config, typename DataType, class WidgetType>
@@ -119,9 +123,15 @@ inline void initWidgetFromProperty( Config* config, QStringList (Config::*getter
 	Q_UNUSED(widget)
 }
 
+inline void initWidgetProperties( QWidget* widget, Configuration::Object::PropertyFlags flags )
+{
+	widget->setProperty( CONFIG_UI_PROPERTY_FLAGS, QVariant::fromValue( flags ) );
+}
+
 // widget initialization
-#define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue)	\
-			initWidgetFromProperty<>( &config, &className::get, ui->get );
+#define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
+			initWidgetFromProperty<>( &config, &className::get, ui->get ); \
+			initWidgetProperties( ui->get, flags);
 
 
 // connect widget signals to configuration property write methods
@@ -221,5 +231,9 @@ inline void connectWidgetToProperty( Config* config, void (Config::*setter)( con
 	Q_UNUSED(widget)
 }
 
-#define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue)	\
+#define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
 	connectWidgetToProperty( &config, &className::set, ui->get );
+
+//inline void mapPropertyFlagsToWidget( QWidget* widget, bool
+#define MAP_PROPERTY_FLAGS_TO_WIDGET(className, config, type, get, set, key, parentKey, defaultValue, flags)	\
+	ui->get->setVisible( flags & Object::AdvancedSettingProperty );

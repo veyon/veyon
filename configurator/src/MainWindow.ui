@@ -124,14 +124,6 @@
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>572</width>
-     <height>36</height>
-    </rect>
-   </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
@@ -150,7 +142,15 @@
     <addaction name="actionAboutVeyon"/>
     <addaction name="actionAboutQt"/>
    </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="viewModeStandard"/>
+    <addaction name="viewModeAdvanced"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_View"/>
    <addaction name="menu_Help"/>
   </widget>
   <action name="actionQuit">
@@ -209,6 +209,22 @@
    </property>
    <property name="text">
     <string>Reset configuration</string>
+   </property>
+  </action>
+  <action name="viewModeStandard">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Standard</string>
+   </property>
+  </action>
+  <action name="viewModeAdvanced">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Advanced</string>
    </property>
   </action>
  </widget>
