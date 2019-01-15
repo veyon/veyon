@@ -401,6 +401,11 @@ QString LdapClient::stripBaseDn( const QString& dn, const QString& baseDn )
 
 QString LdapClient::addBaseDn( const QString& relativeDn, const QString& baseDn )
 {
+	if( relativeDn.isEmpty() )
+	{
+		return baseDn;
+	}
+
 	return relativeDn + QLatin1Char( ',' ) + baseDn;
 }
 
