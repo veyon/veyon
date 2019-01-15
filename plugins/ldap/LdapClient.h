@@ -27,8 +27,6 @@
 #include <QObject>
 #include <QUrl>
 
-#include "VeyonCore.h"
-
 #include "ldapurl.h"
 
 namespace KLDAP {
@@ -72,9 +70,9 @@ public:
 	bool isConnected() const;
 	bool isBound() const;
 
-	QStringList queryAttributes(const QString &dn, const QString &attribute,
-								const QString& filter = QStringLiteral( "(objectclass=*)" ),
-								KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base );
+	QStringList queryAttributeValues( const QString &dn, const QString &attribute,
+									  const QString& filter = QStringLiteral( "(objectclass=*)" ),
+									  KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base );
 
 	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope );
 
@@ -82,15 +80,15 @@ public:
 
 	QStringList queryBaseDn();
 
-	QString queryNamingContext();
+	QStringList queryNamingContexts( const QString& attribute = QString() );
 
 	const QString& baseDn() const;
 
 	static QString parentDn( const QString& dn );
-	QString toRelativeDn( const QString& fullDn );
-	QString toFullDn( const QString& relativeDn );
+	static QString stripBaseDn( const QString& dn, const QString& baseDn );
+	static QString addBaseDn( const QString& rdns, const QString& baseDn );
 
-	QStringList toRelativeDnList( const QStringList& fullDnList );
+	static QStringList stripBaseDn( const QStringList& dns, const QString& baseDn );
 
 	static QString constructSubDn( const QString& subtree, const QString& baseDn );
 

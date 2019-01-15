@@ -36,26 +36,28 @@ class LdapClient::LdapClientPrivate
 public:
 	LdapClientPrivate() = default;
 
-	QStringList queryAttributes(const QString &dn, const QString &attribute,
-								const QString& filter, KLDAP::LdapUrl::Scope scope )
+	QStringList queryAttributeValues( const QString &dn, const QString &attribute,
+									  const QString& filter, KLDAP::LdapUrl::Scope scope )
 	{
 		QStringList entries;
 
+		vDebug() << Q_FUNC_INFO << "called with" << dn << attribute << filter << scope;
+
 		if( state != Bound && reconnect() == false )
 		{
-			qCritical( "LdapClient::queryAttributes(): not bound to server!" );
+			qCritical() << Q_FUNC_INFO << "not bound to server!";
 			return entries;
 		}
 
 		if( dn.isEmpty() && attribute != namingContextAttribute )
 		{
-			qCritical( "LdapClient::queryAttributes(): DN is empty!" );
+			qCritical() << Q_FUNC_INFO << "DN is empty!";
 			return entries;
 		}
 
 		if( attribute.isEmpty() )
 		{
-			qCritical( "LdapClient::queryAttributes(): attribute is empty!" );
+			qCritical( "LdapClient::queryAttributeValues(): attribute is empty!" );
 			return entries;
 		}
 
@@ -94,7 +96,7 @@ public:
 				}
 			}
 
-			vDebug() << "LdapClient::queryAttributes(): results:" << entries;
+			vDebug() << Q_FUNC_INFO << "results:" << entries;
 		}
 
 		if( result == -1 )
@@ -106,7 +108,7 @@ public:
 				// close connection and try again
 				queryRetry = true;
 				state = Disconnected;
-				entries = queryAttributes( dn, attribute, filter, scope );
+				entries = queryAttributeValues( dn, attribute, filter, scope );
 				queryRetry = false;
 			}
 		}
@@ -114,19 +116,22 @@ public:
 		return entries;
 	}
 
+
 	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope )
 	{
 		QStringList distinguishedNames;
 
+		vDebug() << Q_FUNC_INFO << dn << filter << scope;
+
 		if( state != Bound && reconnect() == false )
 		{
-			qCritical() << "LdapClient::queryDistinguishedNames(): not bound to server!";
+			qCritical() << Q_FUNC_INFO << "not bound to server!";
 			return distinguishedNames;
 		}
 
 		if( dn.isEmpty() )
 		{
-			qCritical() << "LdapClient::queryDistinguishedNames(): DN is empty!";
+			qCritical() << Q_FUNC_INFO << "DN is empty!";
 
 			return distinguishedNames;
 		}
@@ -140,7 +145,7 @@ public:
 			{
 				distinguishedNames += operation.object().dn().toString();
 			}
-			vDebug() << "LdapClient::queryDistinguishedNames(): results:" << distinguishedNames;
+			vDebug() << Q_FUNC_INFO << "results" << distinguishedNames;
 		}
 
 		if( result == -1 )
@@ -274,10 +279,10 @@ bool LdapClient::isBound() const
 
 
 
-QStringList LdapClient::queryAttributes( const QString& dn, const QString& attribute,
-										 const QString& filter, KLDAP::LdapUrl::Scope scope )
+QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& attribute,
+											  const QString& filter, KLDAP::LdapUrl::Scope scope )
 {
-	return d->queryAttributes( dn, attribute, filter, scope );
+	return d->queryAttributeValues( dn, attribute, filter, scope );
 }
 
 
@@ -303,9 +308,9 @@ QStringList LdapClient::queryBaseDn()
 
 
 
-QString LdapClient::queryNamingContext()
+QStringList LdapClient::queryNamingContexts( const QString& attribute )
 {
-	return queryAttributes( QString(), d->namingContextAttribute ).value( 0 );
+	return queryAttributeValues( QString(), attribute.isEmpty() ? d->namingContextAttribute : attribute );
 }
 
 
@@ -330,41 +335,45 @@ QString LdapClient::parentDn( const QString& dn )
 
 
 
-QString LdapClient::toRelativeDn( const QString& fullDn )
+QString LdapClient::stripBaseDn( const QString& dn, const QString& baseDn )
 {
-	const auto fullDnLower = fullDn.toLower();
-	const auto baseDnLower = d->baseDn.toLower();
+	const auto fullDnLower = dn.toLower();
+	const auto baseDnLower = baseDn.toLower();
 
-	if( fullDnLower.endsWith( QLatin1Char( ',' ) + baseDnLower ) &&
-			fullDn.length() > d->baseDn.length()+1 )
+	if( fullDnLower.endsWith( QLatin1Char( ',' ) + baseDnLower ) && dn.length() > baseDn.length()+1 )
 	{
 		// cut off comma and base DN
-		return fullDn.left( fullDn.length() - d->baseDn.length() - 1 );
+		return dn.left( dn.length() - baseDn.length() - 1 );
 	}
-	return fullDn;
-}
-
-
-
-QString LdapClient::toFullDn( const QString& relativeDn )
-{
-	return relativeDn + QLatin1Char( ',' ) + d->baseDn;
-}
-
-
-
-QStringList LdapClient::toRelativeDnList( const QStringList& fullDnList )
-{
-	QStringList relativeDnList;
-
-	relativeDnList.reserve( fullDnList.size() );
-
-	for( const auto& fullDn : fullDnList )
+	else if( fullDnLower == baseDnLower )
 	{
-		relativeDnList += toRelativeDn( fullDn );
+		return {};
 	}
 
-	return relativeDnList;
+	return dn;
+}
+
+
+
+QString LdapClient::addBaseDn( const QString& relativeDn, const QString& baseDn )
+{
+	return relativeDn + QLatin1Char( ',' ) + baseDn;
+}
+
+
+
+QStringList LdapClient::stripBaseDn( const QStringList& dns, const QString& baseDn )
+{
+	QStringList strippedDns;
+
+	strippedDns.reserve( dns.size() );
+
+	for( const auto& dn : dns )
+	{
+		strippedDns += stripBaseDn( dn, baseDn );
+	}
+
+	return strippedDns;
 }
 
 
@@ -427,7 +436,7 @@ bool LdapClient::reconnect( const QUrl &url )
 	// query base DN via naming context if configured
 	if( m_configuration.queryNamingContext() )
 	{
-		d->baseDn = queryNamingContext();
+		d->baseDn = queryNamingContexts().value( 0 );
 	}
 	else
 	{

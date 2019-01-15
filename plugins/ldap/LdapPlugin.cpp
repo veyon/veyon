@@ -121,7 +121,7 @@ QStringList LdapPlugin::userGroups( bool queryDomainGroups )
 {
 	Q_UNUSED(queryDomainGroups);
 
-	return ldapClient().toRelativeDnList( ldapDirectory().userGroups() );
+	return LdapClient::stripBaseDn( ldapDirectory().userGroups(), ldapClient().baseDn() );
 }
 
 
@@ -140,7 +140,7 @@ QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainG
 		return QStringList();
 	}
 
-	return ldapClient().toRelativeDnList( ldapDirectory().groupsOfUser( userDn ) );
+	return LdapClient::stripBaseDn( ldapDirectory().groupsOfUser( userDn ), ldapClient().baseDn() );
 }
 
 
@@ -175,7 +175,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_autoconfigurebasedn( co
 	}
 
 	LdapClient ldapClient( m_configuration, ldapUrl );
-	QString baseDn = ldapClient.queryNamingContext();
+	QString baseDn = ldapClient.queryNamingContexts().value( 0 );
 
 	if( baseDn.isEmpty() )
 	{
