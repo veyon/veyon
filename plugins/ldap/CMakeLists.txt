@@ -51,6 +51,8 @@ BUILD_PLUGIN(ldap
 	LdapBrowseDialog.cpp
 	LdapBrowseDialog.h
 	LdapBrowseDialog.ui
+	LdapBrowseModel.cpp
+	LdapBrowseModel.h
 	LdapClient.cpp
 	LdapClient.h
 	LdapConfigurationPage.cpp
