@@ -1,7 +1,7 @@
 /*
- * LdapBrowseDialog.h - class representing the LDAP directory and providing access to directory entries
+ * LdapBrowseDialog.h - dialog for browsing LDAP directories
  *
- * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -28,33 +28,28 @@
 
 #include "VeyonCore.h"
 
-namespace KLDAP {
-class LdapModel;
-};
-
 namespace Ui {
 class LdapBrowseDialog;
 }
 
-class QSortFilterProxyModel;
-class LdapClient;
 class LdapConfiguration;
+class LdapBrowseModel;
 
 class LdapBrowseDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	LdapBrowseDialog( const LdapConfiguration& ldapConfiguration, QWidget* parent = nullptr );
+	LdapBrowseDialog( const LdapConfiguration& configuration, QWidget* parent = nullptr );
 	~LdapBrowseDialog();
 
-private:
-	void setModels();
+	QString browseBaseDn( const QString& dn );
+	QString browseDn( const QString& dn );
+	QString browseAttribute( const QString& dn );
 
-	LdapClient* m_ldapClient;
+private:
+	QString browse( LdapBrowseModel* model, const QString& dn, bool expandSelected );
 
 	Ui::LdapBrowseDialog* ui;
-
-	KLDAP::LdapModel* m_ldapModel;
-	QSortFilterProxyModel* m_sortFilterProxyModel;
+	const LdapConfiguration& m_configuration;
 
 };

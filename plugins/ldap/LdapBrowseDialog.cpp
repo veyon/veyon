@@ -1,7 +1,7 @@
-/*:;
- * LdapBrowseDialog.cpp - class representing the LDAP directory and providing access to directory entries
+/*
+ * LdapBrowseDialog.cpp - dialog for browsing LDAP directories
  *
- * Copyright (c) 2016-2019 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -22,26 +22,19 @@
  *
  */
 
-#include "LdapClient.h"
 #include "LdapBrowseDialog.h"
-
-#include "ldapstructureproxymodel.h"
-#include "ldapmodel.h"
+#include "LdapBrowseModel.h"
+#include "LdapConfiguration.h"
 
 #include "ui_LdapBrowseDialog.h"
 
-LdapBrowseDialog::LdapBrowseDialog( const LdapConfiguration& ldapConfiguration, QWidget* parent ) :
+
+LdapBrowseDialog::LdapBrowseDialog( const LdapConfiguration& configuration, QWidget* parent ) :
 	QDialog( parent ),
-	m_ldapClient( new LdapClient( ldapConfiguration, QUrl(), this ) ),
 	ui( new Ui::LdapBrowseDialog ),
-	m_ldapModel( new KLDAP::LdapModel( this ) ),
-	m_sortFilterProxyModel( new KLDAP::LdapStructureProxyModel( this ) )
+	m_configuration( configuration )
 {
 	ui->setupUi( this );
-
-	connect( m_ldapModel, &KLDAP::LdapModel::ready, this, &LdapBrowseDialog::setModels );
-
-	m_ldapModel->setConnection( m_ldapClient->connection() );
 }
 
 
@@ -49,13 +42,55 @@ LdapBrowseDialog::LdapBrowseDialog( const LdapConfiguration& ldapConfiguration, 
 LdapBrowseDialog::~LdapBrowseDialog()
 {
 	delete ui;
-	delete m_ldapClient;
 }
 
 
 
-void LdapBrowseDialog::setModels()
+QString LdapBrowseDialog::browseBaseDn( const QString& dn )
 {
-	m_sortFilterProxyModel->setSourceModel( m_ldapModel );
-	ui->treeView->setModel( m_sortFilterProxyModel );
+	LdapBrowseModel model( LdapBrowseModel::BrowseBaseDN, m_configuration, this );
+
+	return browse( &model, dn, false );
+}
+
+
+
+QString LdapBrowseDialog::browseDn( const QString& dn )
+{
+	LdapBrowseModel model( LdapBrowseModel::BrowseObjects, m_configuration, this );
+
+	return browse( &model, dn, dn.toLower() == model.baseDn().toLower() );
+}
+
+
+
+QString LdapBrowseDialog::browseAttribute( const QString& dn )
+{
+	LdapBrowseModel model( LdapBrowseModel::BrowseAttributes, m_configuration, this );
+
+	return browse( &model, dn, true );
+}
+
+
+
+QString LdapBrowseDialog::browse( LdapBrowseModel* model, const QString& dn, bool expandSelected )
+{
+	ui->treeView->setModel( model );
+
+	if( dn.isEmpty() == false )
+	{
+		const auto dnIndex = model->dnToIndex( dn );
+		ui->treeView->selectionModel()->setCurrentIndex( dnIndex, QItemSelectionModel::SelectCurrent );
+		if( expandSelected )
+		{
+			ui->treeView->expand( dnIndex );
+		}
+	}
+
+	if( exec() == QDialog::Accepted )
+	{
+		return model->data( ui->treeView->selectionModel()->currentIndex(), LdapBrowseModel::ItemNameRole ).toString();
+	}
+
+	return {};
 }
