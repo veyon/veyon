@@ -41,20 +41,20 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 {
 	ui->setupUi(this);
 
-#define CONNECT_BUTTON_SLOT(name)	connect( ui->name, &QAbstractButton::clicked, this, &LdapConfigurationPage::name );
+#define CONNECT_BUTTON_SLOT(name)	connect( ui->name, &QPushButton::clicked, this, &LdapConfigurationPage::name );
 
-	connect( ui->browseBaseDn, &QToolButton::clicked, this, &LdapConfigurationPage::browseBaseDn );
-	connect( ui->browseUserTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->userTree ); } );
-	connect( ui->browseGroupTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->groupTree ); } );
-	connect( ui->browseComputerTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->computerTree ); } );
-	connect( ui->browseComputerGroupTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->computerGroupTree ); } );
+	connect( ui->browseBaseDn, &QPushButton::clicked, this, &LdapConfigurationPage::browseBaseDn );
+	connect( ui->browseUserTree, &QPushButton::clicked, this, [this]() { browseObjectTree( ui->userTree ); } );
+	connect( ui->browseGroupTree, &QPushButton::clicked, this, [this]() { browseObjectTree( ui->groupTree ); } );
+	connect( ui->browseComputerTree, &QPushButton::clicked, this, [this]() { browseObjectTree( ui->computerTree ); } );
+	connect( ui->browseComputerGroupTree, &QPushButton::clicked, this, [this]() { browseObjectTree( ui->computerGroupTree ); } );
 
-	connect( ui->browseUserLoginAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->userLoginAttribute, m_configuration.userTree() ); } );
-	connect( ui->browseGroupMemberAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->groupMemberAttribute, m_configuration.groupTree() ); } );
-	connect( ui->browseComputerHostNameAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerHostNameAttribute, m_configuration.computerTree() ); } );
-	connect( ui->browseComputerMacAddressAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerMacAddressAttribute, m_configuration.computerTree() ); } );
-	connect( ui->browseComputerRoomAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerRoomAttribute, m_configuration.computerTree() ); } );
-	connect( ui->browseComputerRoomNameAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerRoomNameAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseUserLoginAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->userLoginAttribute, m_configuration.userTree() ); } );
+	connect( ui->browseGroupMemberAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->groupMemberAttribute, m_configuration.groupTree() ); } );
+	connect( ui->browseComputerHostNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerHostNameAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerMacAddressAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerMacAddressAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerRoomAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerRoomAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerRoomNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerRoomNameAttribute, m_configuration.computerTree() ); } );
 
 	CONNECT_BUTTON_SLOT( testBindInteractively );
 	CONNECT_BUTTON_SLOT( testBaseDn );
