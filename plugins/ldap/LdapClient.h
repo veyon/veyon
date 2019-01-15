@@ -102,7 +102,7 @@ public:
 
 
 private:
-	bool reconnect( const QUrl& url );
+	bool connectAndBind( const QUrl& url );
 	void initTLS();
 
 	class LdapClientPrivate;

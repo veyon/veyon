@@ -283,7 +283,7 @@ LdapClient::LdapClient( const LdapConfiguration& configuration, const QUrl& url,
 	m_configuration( configuration ),
 	d( new LdapClientPrivate )
 {
-	reconnect( url );
+	connectAndBind( url );
 }
 
 
@@ -422,7 +422,7 @@ QStringList LdapClient::stripBaseDn( const QStringList& dns, const QString& base
 
 
 
-bool LdapClient::reconnect( const QUrl &url )
+bool LdapClient::connectAndBind( const QUrl& url )
 {
 	if( url.isValid() )
 	{
