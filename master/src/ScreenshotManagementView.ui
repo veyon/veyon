@@ -99,8 +99,8 @@
         <string>Show</string>
        </property>
        <property name="icon">
-        <iconset resource="../resources/master.qrc">
-         <normaloff>:/master/edit-find.png</normaloff>:/master/edit-find.png</iconset>
+        <iconset resource="../core/resources/core.qrc">
+         <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
        </property>
        <property name="iconSize">
         <size>
