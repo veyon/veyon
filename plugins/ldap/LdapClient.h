@@ -76,6 +76,8 @@ public:
 
 	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope );
 
+	QStringList queryObjectAttributes( const QString& dn );
+
 	QString errorDescription() const;
 
 	QStringList queryBaseDn();

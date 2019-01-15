@@ -25,6 +25,8 @@
 #include "LdapConfiguration.h"
 #include "LdapClient.h"
 
+#include <ldap.h>
+
 #include "ldapconnection.h"
 #include "ldapoperation.h"
 #include "ldapserver.h"
@@ -165,6 +167,41 @@ public:
 		return distinguishedNames;
 	}
 
+	QStringList queryObjectAttributes( const QString &dn )
+	{
+		vDebug() << Q_FUNC_INFO << "called with" << dn;
+
+		if( state != Bound && reconnect() == false )
+		{
+			qCritical() << Q_FUNC_INFO << "not bound to server!";
+			return {};
+		}
+
+		if( dn.isEmpty() )
+		{
+			qCritical() << Q_FUNC_INFO << "DN is empty!";
+			return {};
+		}
+
+		int id = 0;
+		if( ldap_search_ext( static_cast<LDAP *>( connection.handle() ),
+							 dn.toUtf8().data(), LDAP_SCOPE_BASE, "objectClass=*",
+							 nullptr, 1, nullptr, nullptr, nullptr,
+							 connection.sizeLimit(), &id ) != 0 )
+		{
+			return {};
+		}
+
+		if( operation.waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		{
+			const auto keys = operation.object().attributes().keys();
+			vDebug() << Q_FUNC_INFO << "results" << keys;
+			return keys;
+		}
+
+		return {};
+	}
+
 	QString errorString() const
 	{
 		if( connection.handle() == nullptr )
@@ -290,6 +327,13 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope )
 {
 	return d->queryDistinguishedNames( dn, filter, scope );
+}
+
+
+
+QStringList LdapClient::queryObjectAttributes( const QString& dn )
+{
+	return d->queryObjectAttributes( dn );
 }
 
 
