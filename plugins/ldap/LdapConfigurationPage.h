@@ -33,6 +33,8 @@ namespace Ui {
 class LdapConfigurationPage;
 }
 
+class QLineEdit;
+
 class LdapConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
@@ -46,6 +48,8 @@ public:
 
 private:
 	void browseBaseDn();
+	void browseObjectTree( QLineEdit* lineEdit );
+	void browseAttribute( QLineEdit* lineEdit, const QString& tree );
 
 	void testBindInteractively();
 	void testBaseDn();
@@ -73,7 +77,6 @@ private:
 
 	void browseCACertificateFile();
 
-private:
 	bool testBindQuietly()
 	{
 		return testBind( true );

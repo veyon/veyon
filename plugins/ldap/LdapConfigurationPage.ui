@@ -295,7 +295,7 @@
            <widget class="QToolButton" name="browseBaseDn">
             <property name="icon">
              <iconset resource="../../core/resources/core.qrc">
-              <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
@@ -328,53 +328,7 @@
           <string>Object trees</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_21">
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="userTree">
-            <property name="placeholderText">
-             <string>e.g. OU=Users</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_29">
-            <property name="text">
-             <string>Computer tree</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="groupTree">
-            <property name="placeholderText">
-             <string>e.g. OU=Groups</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="QPushButton" name="testComputerGroupTree">
-            <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="3">
-           <widget class="QCheckBox" name="recursiveSearchOperations">
-            <property name="text">
-             <string>Perform recursive search operations in object trees</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_28">
-            <property name="text">
-             <string>Group tree</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
+          <item row="1" column="3">
            <widget class="QPushButton" name="testGroupTree">
             <property name="text">
              <string>Test</string>
@@ -385,21 +339,24 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="testUserTree">
-            <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="computerGroupTree">
+            <property name="placeholderText">
+             <string>(only if different from group tree)</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_40">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_29">
             <property name="text">
-             <string>Computer group tree</string>
+             <string>Computer tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="4">
+           <widget class="QCheckBox" name="recursiveSearchOperations">
+            <property name="text">
+             <string>Perform recursive search operations in object trees</string>
             </property>
            </widget>
           </item>
@@ -410,7 +367,46 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="computerTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Computers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="testComputerGroupTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Group tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_40">
+            <property name="text">
+             <string>Computer group tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="userTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Users</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
            <widget class="QPushButton" name="testComputerTree">
             <property name="text">
              <string>Test</string>
@@ -421,17 +417,53 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="computerTree">
-            <property name="placeholderText">
-             <string>e.g. OU=Computers</string>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="testUserTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="computerGroupTree">
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="groupTree">
             <property name="placeholderText">
-             <string>(only if different from group tree)</string>
+             <string>e.g. OU=Groups</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="browseUserTree">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="browseGroupTree">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QToolButton" name="browseComputerTree">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QToolButton" name="browseComputerGroupTree">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
@@ -444,31 +476,11 @@
           <string>Object attributes</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_22">
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="groupMemberAttribute">
-            <property name="placeholderText">
-             <string>e.g. member or memberUid</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QLineEdit" name="computerRoomNameAttribute">
-            <property name="placeholderText">
-             <string>e.g. name or description</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_33">
-            <property name="text">
-             <string>User login attribute</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_39">
-            <property name="text">
-             <string>Computer MAC address attribute</string>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="browseUserLoginAttribute">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
@@ -479,41 +491,58 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="testGroupMemberAttribute">
+          <item row="3" column="0" colspan="4">
+           <widget class="QCheckBox" name="computerHostNameAsFQDN">
             <property name="text">
-             <string>Test</string>
+             <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
             </property>
-            <property name="icon">
-             <iconset resource="../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="computerRoomNameAttribute">
+            <property name="placeholderText">
+             <string>e.g. name or description</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="groupMemberAttribute">
+            <property name="placeholderText">
+             <string>e.g. member or memberUid</string>
             </property>
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QPushButton" name="testComputerMacAddressAttribute">
-            <property name="text">
-             <string>Test</string>
-            </property>
+           <widget class="QToolButton" name="browseComputerMacAddressAttribute">
             <property name="icon">
              <iconset resource="../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
-          <item row="6" column="2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_33">
+            <property name="text">
+             <string>User login attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="userLoginAttribute">
+            <property name="placeholderText">
+             <string>e.g. uid or sAMAccountName</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_42">
+            <property name="text">
+             <string>Computer room name attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="3">
            <widget class="QPushButton" name="testComputerRoomNameAttribute">
-            <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2">
-           <widget class="QPushButton" name="testComputerRoomAttribute">
             <property name="text">
              <string>Test</string>
             </property>
@@ -530,14 +559,41 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_38">
-            <property name="text">
-             <string>Computer host name attribute</string>
+          <item row="2" column="2">
+           <widget class="QToolButton" name="browseComputerHostNameAttribute">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
+          <item row="1" column="2">
+           <widget class="QToolButton" name="browseGroupMemberAttribute">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_39">
+            <property name="text">
+             <string>Computer MAC address attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QPushButton" name="testComputerMacAddressAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
            <widget class="QPushButton" name="testUserLoginAttribute">
             <property name="text">
              <string>Test</string>
@@ -548,24 +604,10 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3">
-           <widget class="QCheckBox" name="computerHostNameAsFQDN">
-            <property name="text">
-             <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_35">
-            <property name="text">
-             <string>Group member attribute</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="userLoginAttribute">
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="computerHostNameAttribute">
             <property name="placeholderText">
-             <string>e.g. uid or sAMAccountName</string>
+             <string>e.g. dNSHostName</string>
             </property>
            </widget>
           </item>
@@ -576,7 +618,25 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
+          <item row="1" column="3">
+           <widget class="QPushButton" name="testGroupMemberAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="text">
+             <string>Computer host name attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
            <widget class="QPushButton" name="testComputerHostNameAttribute">
             <property name="text">
              <string>Test</string>
@@ -587,17 +647,37 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_42">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_35">
             <property name="text">
-             <string>Computer room name attribute</string>
+             <string>Group member attribute</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="computerHostNameAttribute">
-            <property name="placeholderText">
-             <string>e.g. dNSHostName</string>
+          <item row="5" column="3">
+           <widget class="QPushButton" name="testComputerRoomAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QToolButton" name="browseComputerRoomAttribute">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QToolButton" name="browseComputerRoomNameAttribute">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
@@ -959,9 +1039,13 @@
   <tabstop>groupTree</tabstop>
   <tabstop>computerTree</tabstop>
   <tabstop>computerGroupTree</tabstop>
+  <tabstop>browseUserTree</tabstop>
   <tabstop>testUserTree</tabstop>
+  <tabstop>browseGroupTree</tabstop>
   <tabstop>testGroupTree</tabstop>
+  <tabstop>browseComputerTree</tabstop>
   <tabstop>testComputerTree</tabstop>
+  <tabstop>browseComputerGroupTree</tabstop>
   <tabstop>testComputerGroupTree</tabstop>
   <tabstop>recursiveSearchOperations</tabstop>
   <tabstop>userLoginAttribute</tabstop>
@@ -971,11 +1055,17 @@
   <tabstop>computerMacAddressAttribute</tabstop>
   <tabstop>computerRoomAttribute</tabstop>
   <tabstop>computerRoomNameAttribute</tabstop>
+  <tabstop>browseUserLoginAttribute</tabstop>
   <tabstop>testUserLoginAttribute</tabstop>
+  <tabstop>browseGroupMemberAttribute</tabstop>
   <tabstop>testGroupMemberAttribute</tabstop>
+  <tabstop>browseComputerHostNameAttribute</tabstop>
   <tabstop>testComputerHostNameAttribute</tabstop>
+  <tabstop>browseComputerMacAddressAttribute</tabstop>
   <tabstop>testComputerMacAddressAttribute</tabstop>
+  <tabstop>browseComputerRoomAttribute</tabstop>
   <tabstop>testComputerRoomAttribute</tabstop>
+  <tabstop>browseComputerRoomNameAttribute</tabstop>
   <tabstop>testComputerRoomNameAttribute</tabstop>
   <tabstop>usersFilter</tabstop>
   <tabstop>userGroupsFilter</tabstop>
@@ -1117,9 +1207,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="computerGroupingGroup"/>
-  <buttongroup name="bindConfigurationGroup"/>
   <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="baseDnConfigGroup"/>
+  <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>

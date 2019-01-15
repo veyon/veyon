@@ -43,8 +43,20 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 
 #define CONNECT_BUTTON_SLOT(name)	connect( ui->name, &QAbstractButton::clicked, this, &LdapConfigurationPage::name );
 
+	connect( ui->browseBaseDn, &QToolButton::clicked, this, &LdapConfigurationPage::browseBaseDn );
+	connect( ui->browseUserTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->userTree ); } );
+	connect( ui->browseGroupTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->groupTree ); } );
+	connect( ui->browseComputerTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->computerTree ); } );
+	connect( ui->browseComputerGroupTree, &QToolButton::clicked, this, [this]() { browseObjectTree( ui->computerGroupTree ); } );
+
+	connect( ui->browseUserLoginAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->userLoginAttribute, m_configuration.userTree() ); } );
+	connect( ui->browseGroupMemberAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->groupMemberAttribute, m_configuration.groupTree() ); } );
+	connect( ui->browseComputerHostNameAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerHostNameAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerMacAddressAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerMacAddressAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerRoomAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerRoomAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerRoomNameAttribute, &QToolButton::clicked, this, [this]() { browseAttribute( ui->computerRoomNameAttribute, m_configuration.computerTree() ); } );
+
 	CONNECT_BUTTON_SLOT( testBindInteractively );
-	CONNECT_BUTTON_SLOT( browseBaseDn );
 	CONNECT_BUTTON_SLOT( testBaseDn );
 	CONNECT_BUTTON_SLOT( testNamingContext );
 	CONNECT_BUTTON_SLOT( testUserTree );
@@ -109,7 +121,42 @@ void LdapConfigurationPage::applyConfiguration()
 
 void LdapConfigurationPage::browseBaseDn()
 {
-	LdapBrowseDialog( m_configuration, this ).exec();
+	const auto baseDn = LdapBrowseDialog( m_configuration, this ).browseBaseDn( m_configuration.baseDn() );
+
+	if( baseDn.isEmpty() == false )
+	{
+		ui->baseDn->setText( baseDn );
+	}
+}
+
+
+
+void LdapConfigurationPage::browseObjectTree( QLineEdit* lineEdit )
+{
+	auto dn = LdapClient::addBaseDn( lineEdit->text(), m_configuration.baseDn() );
+
+	dn = LdapBrowseDialog( m_configuration, this ).browseDn( dn );
+
+	if( dn.isEmpty() == false )
+	{
+		dn = LdapClient::stripBaseDn( dn, m_configuration.baseDn() );
+
+		lineEdit->setText( dn );
+	}
+}
+
+
+
+void LdapConfigurationPage::browseAttribute( QLineEdit* lineEdit, const QString& tree )
+{
+	const auto treeDn = LdapClient::addBaseDn( tree, m_configuration.baseDn() );
+
+	const auto attribute = LdapBrowseDialog( m_configuration, this ).browseAttribute( treeDn );
+
+	if( attribute.isEmpty() == false )
+	{
+		lineEdit->setText( attribute );
+	}
 }
 
 
@@ -156,7 +203,7 @@ void LdapConfigurationPage::testNamingContext()
 		vDebug() << "[TEST][LDAP] Testing naming context";
 
 		LdapClient ldapClient( m_configuration );
-		QString baseDn = ldapClient.queryNamingContext();
+		const auto baseDn = ldapClient.queryNamingContexts().value( 0 );
 
 		if( baseDn.isEmpty() )
 		{
