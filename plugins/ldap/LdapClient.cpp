@@ -51,7 +51,8 @@ public:
 			return entries;
 		}
 
-		if( dn.isEmpty() && attribute != namingContextAttribute )
+		if( dn.isEmpty() && attribute != namingContextAttribute &&
+			attribute.toLower().contains( QLatin1String("namingcontext") ) == false )
 		{
 			qCritical() << Q_FUNC_INFO << "DN is empty!";
 			return entries;
