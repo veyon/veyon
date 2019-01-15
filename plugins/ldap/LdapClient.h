@@ -100,6 +100,7 @@ public:
 
 	static QString escapeFilterValue( const QString& filterValue );
 
+	static QStringList toRDNs( const QString& dn );
 
 private:
 	bool connectAndBind( const QUrl& url );

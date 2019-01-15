@@ -571,3 +571,28 @@ QString LdapClient::escapeFilterValue( const QString& filterValue )
 			.replace( QStringLiteral("("), QStringLiteral("\\(") )
 			.replace( QStringLiteral(")"), QStringLiteral("\\)") );
 }
+
+
+
+QStringList LdapClient::toRDNs( const QString& dn )
+{
+	QStringList strParts;
+	int index = 0;
+	int searchFrom = 0;
+	int strPartStartIndex = 0;
+	while( ( index = dn.indexOf( QLatin1Char(','), searchFrom ) ) != -1)
+	{
+		const auto prev = dn[std::max(0, index - 1)];
+		if (prev != QLatin1Char('\\')) {
+			strParts.append( dn.mid(strPartStartIndex, index - strPartStartIndex) );
+			strPartStartIndex = index + 1;
+		}
+
+		searchFrom = index + 1;
+	}
+
+	strParts.append( dn.mid(strPartStartIndex) );
+
+	return strParts;
+
+}
