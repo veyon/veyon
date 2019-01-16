@@ -24,7 +24,6 @@
 
 #include "CommandLineIO.h"
 #include "ConfigurationManager.h"
-#include "VeyonConfiguration.h"
 #include "LdapNetworkObjectDirectory.h"
 #include "LdapPlugin.h"
 #include "LdapConfigurationPage.h"
@@ -297,6 +296,3 @@ LdapDirectory& LdapPlugin::ldapDirectory()
 
 	return *m_ldapDirectory;
 }
-
-
-IMPLEMENT_CONFIG_PROXY(LdapConfiguration, &VeyonCore::config())

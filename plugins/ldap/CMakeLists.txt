@@ -41,26 +41,33 @@ SET_TARGET_PROPERTIES(kldap-light PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
 INSTALL(TARGETS kldap-light DESTINATION ${VEYON_LIB_DIR})
 COTIRE_VEYON(kldap-light)
 
-BUILD_PLUGIN(ldap
-	LdapPlugin.cpp
+SET(ldap_common_SOURCES
 	LdapBrowseDialog.cpp
-	LdapBrowseDialog.h
 	LdapBrowseDialog.ui
 	LdapBrowseModel.cpp
-	LdapBrowseModel.h
 	LdapClient.cpp
 	LdapClient.h
+	LdapConfiguration.cpp
+	LdapConfiguration.h
+	LdapConfigurationPage.h
 	LdapConfigurationPage.cpp
 	LdapConfigurationPage.ui
 	LdapDirectory.cpp
-	LdapNetworkObjectDirectory.cpp
-	LdapPlugin.h
-	LdapConfiguration.h
-	LdapConfigurationPage.h
 	LdapDirectory.h
+	LdapNetworkObjectDirectory.cpp
 	LdapNetworkObjectDirectory.h
+	)
+
+ADD_LIBRARY(ldap-common SHARED ${ldap_common_SOURCES})
+TARGET_LINK_LIBRARIES(ldap-common kldap-light veyon-core)
+SET_TARGET_PROPERTIES(ldap-common PROPERTIES LINK_FLAGS "-Wl,-no-undefined")
+INSTALL(TARGETS ldap-common DESTINATION ${VEYON_LIB_DIR})
+COTIRE_VEYON(ldap-common)
+
+BUILD_PLUGIN(ldap
+	LdapPlugin.cpp
+	LdapPlugin.h
 	ldap.qrc
 )
 
-TARGET_LINK_LIBRARIES(ldap kldap-light)
-
+TARGET_LINK_LIBRARIES(ldap ldap-common)
