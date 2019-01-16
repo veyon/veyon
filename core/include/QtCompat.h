@@ -37,6 +37,10 @@ static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
 #endif
 }
 
+#define Q_DISABLE_MOVE(Class) \
+	Class(const Class &&) Q_DECL_EQ_DELETE;\
+	Class &operator=(const Class &&) Q_DECL_EQ_DELETE;
+
 #if QT_VERSION >= 0x050600
 #include <QVersionNumber>
 #else
