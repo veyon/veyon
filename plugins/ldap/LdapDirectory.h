@@ -81,8 +81,6 @@ private:
 
 	LdapClient::Scope m_defaultSearchScope = LdapClient::Scope::Base;
 
-	//QString m_baseDn;
-	//QString namingContextAttribute;
 	QString m_usersDn;
 	QString m_groupsDn;
 	QString m_computersDn;
