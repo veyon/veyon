@@ -30,6 +30,7 @@
 #include <QAbstractItemModelTester>
 #endif
 
+// clazy:excludeall=rule-of-three
 
 class LdapBrowseModelNode {
 public:
@@ -55,6 +56,9 @@ public:
 	{
 		qDeleteAll(m_childItems);
 	}
+
+	Q_DISABLE_COPY(LdapBrowseModelNode)
+	Q_DISABLE_MOVE(LdapBrowseModelNode)
 
 	Type type() const
 	{
@@ -144,7 +148,7 @@ QModelIndex LdapBrowseModel::index( int row, int col, const QModelIndex& parent 
 		return createIndex( row, col, childNode );
 	}
 
-	return QModelIndex();
+	return {};
 }
 
 
@@ -179,7 +183,7 @@ QVariant LdapBrowseModel::data( const QModelIndex& index, int role ) const
 	switch( role )
 	{
 	case Qt::DisplayRole:
-		return LdapClient::toRDNs( toNode( index )->name() ).first();
+		return LdapClient::toRDNs( toNode( index )->name() ).value( 0 );
 
 	case Qt::DecorationRole:
 		switch( toNode( index )->type() )
@@ -378,7 +382,7 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 				node->appendChild( new Node( Node::DN, dn, node ) );
 			}
 
-			for( const auto& attribute : attributes )
+			for( const auto& attribute : qAsConst(attributes) )
 			{
 				node->appendChild( new Node( Node::Attribute, attribute, node ) );
 			}
