@@ -29,10 +29,10 @@
 #include "LdapDirectory.h"
 
 
-LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl& url, QObject* parent ) :
+LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),
-	m_client( configuration, url, this )
+	m_client( configuration, QUrl(), this )
 {
 	m_usersDn = m_client.constructSubDn( m_configuration.userTree(), m_client.baseDn() );
 	m_groupsDn = m_client.constructSubDn( m_configuration.groupTree(), m_client.baseDn() );
