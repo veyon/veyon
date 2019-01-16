@@ -83,12 +83,6 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl
 
 
 
-LdapDirectory::~LdapDirectory()
-{
-}
-
-
-
 /*!
  * \brief Disables any configured attributes which is required for some test scenarious
  */
