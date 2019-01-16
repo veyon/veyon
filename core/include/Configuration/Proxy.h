@@ -46,8 +46,21 @@ public:
 
 	void reloadFromStore();
 
+	const QString& instanceId() const
+	{
+		return m_instanceId;
+	}
+
+	void setInstanceId( const QString& instanceId )
+	{
+		m_instanceId = instanceId;
+	}
+
 private:
+	QString instanceParentKey( const QString& parentKey ) const;
+
 	Object* m_object;
+	QString m_instanceId;
 
 } ;
 
