@@ -21,13 +21,13 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_4">
+     <widget class="QWidget" name="basicSettings">
       <attribute name="title">
        <string>Basic settings</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QGroupBox" name="isLdapIntegrationEnabled">
+        <widget class="QGroupBox" name="generalSettings">
          <property name="title">
           <string>General</string>
          </property>
@@ -308,13 +308,13 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="environmentSettings">
       <attribute name="title">
        <string>Environment settings</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QGroupBox" name="groupBox_17">
+        <widget class="QGroupBox" name="objectTrees">
          <property name="title">
           <string>Object trees</string>
          </property>
@@ -450,7 +450,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_18">
+        <widget class="QGroupBox" name="objectAttributes">
          <property name="title">
           <string>Object attributes</string>
          </property>
@@ -522,6 +522,9 @@
           </item>
           <item row="5" column="1">
            <widget class="QLineEdit" name="computerRoomAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="placeholderText">
              <string>e.g. room or computerLab</string>
             </property>
@@ -580,6 +583,9 @@
           </item>
           <item row="5" column="2">
            <widget class="QPushButton" name="browseComputerRoomAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="icon">
              <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
@@ -628,6 +634,9 @@
           </item>
           <item row="5" column="3">
            <widget class="QPushButton" name="testComputerRoomAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="icon">
              <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
@@ -660,13 +669,13 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="advancedSettings">
       <attribute name="title">
        <string>Advanced settings</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_15">
        <item>
-        <widget class="QGroupBox" name="groupBox_15">
+        <widget class="QGroupBox" name="objectFilters">
          <property name="title">
           <string>Optional object filters</string>
          </property>
@@ -785,7 +794,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_16">
+        <widget class="QGroupBox" name="groupMemberIdentification">
          <property name="title">
           <string>Group member identification</string>
          </property>
@@ -817,7 +826,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_13">
+        <widget class="QGroupBox" name="computerRooms">
          <property name="title">
           <string>Computer rooms</string>
          </property>
@@ -883,7 +892,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="integrationTests">
       <attribute name="title">
        <string>Integration tests</string>
       </attribute>
@@ -1136,18 +1145,146 @@
    </hints>
   </connection>
   <connection>
-   <sender>isLdapIntegrationEnabled</sender>
+   <sender>computerRoomMembersByAttribute</sender>
    <signal>toggled(bool)</signal>
-   <receiver>tabWidget</receiver>
+   <receiver>computerRoomAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>97</x>
-     <y>12</y>
+     <x>438</x>
+     <y>657</y>
     </hint>
     <hint type="destinationlabel">
-     <x>237</x>
-     <y>319</y>
+     <x>545</x>
+     <y>608</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>browseComputerRoomAttribute</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>770</x>
+     <y>608</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testComputerRoomAttribute</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>608</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>computerRoomNameAttribute</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>545</x>
+     <y>651</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>browseComputerRoomNameAttribute</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>770</x>
+     <y>651</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testComputerRoomNameAttribute</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>651</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByGroups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>computerGroupTree</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>575</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>492</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByGroups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>browseComputerGroupTree</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>575</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>770</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerRoomMembersByGroups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testComputerGroupTree</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>575</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>249</y>
     </hint>
    </hints>
   </connection>
