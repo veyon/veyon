@@ -363,7 +363,7 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 
 	if( node->isPopulated() == false )
 	{
-		const auto dns = m_client->queryDistinguishedNames( node->name(), QString(), KLDAP::LdapUrl::One );
+		const auto dns = m_client->queryDistinguishedNames( node->name(), QString(), LdapClient::Scope::One );
 		QStringList attributes;
 
 		if( m_mode == BrowseAttributes )

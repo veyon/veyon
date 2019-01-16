@@ -27,8 +27,6 @@
 #include <QObject>
 #include <QUrl>
 
-#include "ldapurl.h"
-
 namespace KLDAP {
 class LdapConnection;
 class LdapOperation;
@@ -41,6 +39,13 @@ class LdapClient : public QObject
 {
 	Q_OBJECT
 public:
+	enum class Scope {
+		Base,
+		One,
+		Sub
+	};
+	Q_ENUM(Scope)
+
 	enum ConnectionSecurity
 	{
 		ConnectionSecurityNone,
@@ -82,9 +87,9 @@ public:
 
 	QStringList queryAttributeValues( const QString &dn, const QString &attribute,
 									  const QString& filter = QStringLiteral( "(objectclass=*)" ),
-									  KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base );
+									  Scope scope = Scope::Base );
 
-	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope );
+	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, Scope scope );
 
 	QStringList queryObjectAttributes( const QString& dn );
 

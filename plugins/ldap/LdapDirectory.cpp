@@ -49,11 +49,11 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, const QUrl
 
 	if( m_configuration.recursiveSearchOperations() )
 	{
-		m_defaultSearchScope = KLDAP::LdapUrl::Sub;
+		m_defaultSearchScope = LdapClient::Scope::Sub;
 	}
 	else
 	{
-		m_defaultSearchScope = KLDAP::LdapUrl::One;
+		m_defaultSearchScope = LdapClient::Scope::One;
 	}
 
 	m_userLoginAttribute = m_configuration.userLoginAttribute();
@@ -266,9 +266,9 @@ QString LdapDirectory::userLoginName( const QString& userDn )
 QString LdapDirectory::groupName( const QString& groupDn )
 {
 	return m_client.queryAttributeValues( groupDn,
-									 QStringLiteral( "cn" ),
-									 QStringLiteral( "(objectclass=*)" ),
-									 KLDAP::LdapUrl::Base ).
+										  QStringLiteral( "cn" ),
+										  QStringLiteral( "(objectclass=*)" ),
+										  LdapClient::Scope::Base ).
 			value( 0 );
 }
 

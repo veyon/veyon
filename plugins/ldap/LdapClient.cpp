@@ -32,6 +32,19 @@
 #include "ldapserver.h"
 
 
+static inline KLDAP::LdapUrl::Scope kldapUrlScope( LdapClient::Scope scope )
+{
+	switch( scope )
+	{
+	case LdapClient::Scope::Base: return KLDAP::LdapUrl::Base;
+	case LdapClient::Scope::One: return KLDAP::LdapUrl::One;
+	case LdapClient::Scope::Sub: return KLDAP::LdapUrl::Sub;
+	}
+
+	return KLDAP::LdapUrl::Base;
+}
+
+
 
 LdapClient::LdapClient( const LdapConfiguration& configuration, const QUrl& url, QObject* parent ) :
 	QObject( parent ),
@@ -80,7 +93,7 @@ QString LdapClient::errorDescription() const
 
 
 QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& attribute,
-											  const QString& filter, KLDAP::LdapUrl::Scope scope )
+											  const QString& filter, Scope scope )
 {
 	QStringList entries;
 
@@ -106,7 +119,7 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 	}
 
 	int result = -1;
-	int id = m_operation->search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
+	int id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList( attribute ) );
 
 	if( id != -1 )
 	{
@@ -162,7 +175,7 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 
 
 
-QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope )
+QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QString& filter, Scope scope )
 {
 	QStringList distinguishedNames;
 
@@ -182,7 +195,7 @@ QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QStrin
 	}
 
 	int result = -1;
-	int id = m_operation->search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
+	int id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList() );
 
 	if( id != -1 )
 	{
@@ -251,7 +264,7 @@ QStringList LdapClient::queryObjectAttributes( const QString& dn )
 
 QStringList LdapClient::queryBaseDn()
 {
-	return queryDistinguishedNames( baseDn(), QStringLiteral( "(objectclass=*)" ), KLDAP::LdapUrl::Base );
+	return queryDistinguishedNames( baseDn(), QStringLiteral( "(objectclass=*)" ), Scope::Base );
 }
 
 

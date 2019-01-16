@@ -79,7 +79,7 @@ private:
 	const LdapConfiguration& m_configuration;
 	LdapClient m_client;
 
-	KLDAP::LdapUrl::Scope m_defaultSearchScope = KLDAP::LdapUrl::Base;
+	LdapClient::Scope m_defaultSearchScope = LdapClient::Scope::Base;
 
 	//QString m_baseDn;
 	//QString namingContextAttribute;
