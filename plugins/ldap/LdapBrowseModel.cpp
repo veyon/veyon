@@ -180,13 +180,15 @@ QVariant LdapBrowseModel::data( const QModelIndex& index, int role ) const
 		return {};
 	}
 
+	const auto node = toNode( index );
+
 	switch( role )
 	{
 	case Qt::DisplayRole:
-		return LdapClient::toRDNs( toNode( index )->name() ).value( 0 );
+		return LdapClient::toRDNs( node->name() ).value( 0 );
 
 	case Qt::DecorationRole:
-		switch( toNode( index )->type() )
+		switch( node->type() )
 		{
 		case Node::Root: break;
 		case Node::DN: return m_objectIcon;
@@ -195,7 +197,7 @@ QVariant LdapBrowseModel::data( const QModelIndex& index, int role ) const
 		break;
 
 	case ItemNameRole:
-		return toNode( index )->name();
+		return node->name();
 
 	default:
 		break;
