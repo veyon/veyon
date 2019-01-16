@@ -31,6 +31,8 @@
 
 namespace KLDAP {
 class LdapConnection;
+class LdapOperation;
+class LdapServer;
 }
 
 class LdapConfiguration;
@@ -65,10 +67,18 @@ public:
 		return m_configuration;
 	}
 
-	KLDAP::LdapConnection& connection() const;
+	bool isConnected() const
+	{
+		return m_state >= Connected;
+	}
 
-	bool isConnected() const;
-	bool isBound() const;
+	bool isBound() const
+	{
+		return m_state >= Bound;
+	}
+
+	QString errorString() const;
+	QString errorDescription() const;
 
 	QStringList queryAttributeValues( const QString &dn, const QString &attribute,
 									  const QString& filter = QStringLiteral( "(objectclass=*)" ),
@@ -78,13 +88,14 @@ public:
 
 	QStringList queryObjectAttributes( const QString& dn );
 
-	QString errorDescription() const;
-
 	QStringList queryBaseDn();
 
 	QStringList queryNamingContexts( const QString& attribute = QString() );
 
-	const QString& baseDn() const;
+	const QString& baseDn() const
+	{
+		return m_baseDn;
+	}
 
 	static QString parentDn( const QString& dn );
 	static QString stripBaseDn( const QString& dn, const QString& baseDn );
@@ -103,12 +114,31 @@ public:
 	static QStringList toRDNs( const QString& dn );
 
 private:
+	static constexpr int LdapQueryTimeout = 3000;
+	static constexpr int LdapConnectionTimeout = 60*1000;
+
+	bool reconnect();
 	bool connectAndBind( const QUrl& url );
 	void initTLS();
 
-	class LdapClientPrivate;
-
 	const LdapConfiguration& m_configuration;
-	LdapClientPrivate* d;
+	KLDAP::LdapServer* m_server;
+	KLDAP::LdapConnection* m_connection;
+	KLDAP::LdapOperation* m_operation;
+
+	enum State
+	{
+		Disconnected,
+		Connected,
+		Bound,
+		StateCount
+	} ;
+
+	State m_state = Disconnected;
+
+	bool m_queryRetry = false;
+
+	QString m_baseDn;
+	QString m_namingContextAttribute;
 
 };
