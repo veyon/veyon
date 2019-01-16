@@ -73,6 +73,7 @@ private:
 	Node* m_root;
 
 	QIcon m_objectIcon;
+	QIcon m_ouIcon;
 	QIcon m_attributeIcon;
 
 };

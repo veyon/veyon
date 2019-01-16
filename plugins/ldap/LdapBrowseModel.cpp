@@ -122,6 +122,7 @@ LdapBrowseModel::LdapBrowseModel( Mode mode, const LdapConfiguration& configurat
 	m_client( new LdapClient( configuration, QUrl(), this ) ),
 	m_root( new Node( Node::Root, QString(), nullptr ) ),
 	m_objectIcon( QStringLiteral(":/core/document-open.png") ),
+	m_ouIcon( QStringLiteral( ":/ldap/folder-stash.png") ),
 	m_attributeIcon( QStringLiteral(":/ldap/attribute.png") )
 {
 	populateRoot();
@@ -191,7 +192,7 @@ QVariant LdapBrowseModel::data( const QModelIndex& index, int role ) const
 		switch( node->type() )
 		{
 		case Node::Root: break;
-		case Node::DN: return m_objectIcon;
+		case Node::DN: return node->name().startsWith( QLatin1String("ou="), Qt::CaseInsensitive ) ? m_ouIcon : m_objectIcon;
 		case Node::Attribute: return m_attributeIcon;
 		}
 		break;
