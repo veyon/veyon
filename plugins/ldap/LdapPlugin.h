@@ -61,12 +61,12 @@ public:
 
 	QString name() const override
 	{
-		return QStringLiteral( "LDAP" );
+		return QStringLiteral( "LDAP Basic" );
 	}
 
 	QString description() const override
 	{
-		return tr( "Provide LDAP/AD integration for Veyon" );
+		return tr( "Basic LDAP/AD support for Veyon" );
 	}
 
 	QString vendor() const override
