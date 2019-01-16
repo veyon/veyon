@@ -327,7 +327,17 @@ void LdapBrowseModel::populateRoot() const
 		namingContexts.append( m_client->queryNamingContexts( QStringLiteral("namingContexts") ) );
 		namingContexts.append( m_client->queryNamingContexts( QStringLiteral("defaultNamingContext") ) );
 		namingContexts.removeDuplicates();
-		std::sort( namingContexts.begin(), namingContexts.end() );
+
+		// remove sub naming contexts
+		for( const auto& context : namingContexts )
+		{
+			if( context.isEmpty() == false )
+			{
+				namingContexts.replaceInStrings( QRegExp( QStringLiteral(".*,%1").arg( context ) ), QString() );
+			}
+		}
+		namingContexts.removeAll( QString() );
+		namingContexts.sort();
 	}
 	else
 	{
