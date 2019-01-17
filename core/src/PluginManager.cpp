@@ -23,7 +23,6 @@
  */
 
 #include <QCoreApplication>
-#include <QDebug>
 #include <QDir>
 #include <QPluginLoader>
 
@@ -166,9 +165,15 @@ void PluginManager::initPluginSearchPath()
 
 void PluginManager::loadPlugins( const QString& nameFilter )
 {
-	auto plugins = QDir( QStringLiteral( "plugins:" ) ).entryInfoList( { nameFilter } );
+	const auto plugins = QDir( QStringLiteral( "plugins:" ) ).entryInfoList( { nameFilter } );
 	for( const auto& fileInfo : plugins )
 	{
+		// skip simple shared libraries
+		if( fileInfo.fileName().startsWith( QStringLiteral("lib") ) )
+		{
+			continue;
+		}
+
 		auto pluginObject = QPluginLoader( fileInfo.filePath() ).instance();
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 
