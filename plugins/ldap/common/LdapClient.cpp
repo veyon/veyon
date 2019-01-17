@@ -106,7 +106,7 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 	}
 
 	if( dn.isEmpty() && attribute != m_namingContextAttribute &&
-		attribute.toLower().contains( QLatin1String("namingcontext") ) == false )
+		attribute.contains( QLatin1String("namingcontext"), Qt::CaseInsensitive ) == false )
 	{
 		qCritical() << Q_FUNC_INFO << "DN is empty!";
 		return entries;
