@@ -66,5 +66,7 @@ void RoomSelectionDialog::updateSearchFilter()
 
 void RoomSelectionDialog::updateSelection( const QModelIndex& current, const QModelIndex& previous )
 {
+	Q_UNUSED(previous)
+
 	m_selectedRoom = m_sortFilterProxyModel.data( current ).toString();
 }
