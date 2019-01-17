@@ -2,6 +2,8 @@
 
 CPUS=$(nproc)
 
+apt-get update && apt-get -y dist-upgrade
+
 cd /veyon
 
 .travis/common/strip-ultravnc-sources.sh
