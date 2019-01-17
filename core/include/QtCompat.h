@@ -342,3 +342,9 @@ struct QOverload : QConstOverload<Args...>, QNonConstOverload<Args...>
 	{ return ptr; }
 };
 #endif
+
+#if QT_VERSION < 0x051200
+#define QDeadlineTimer(x) static_cast<unsigned long int>(x)
+#else
+#include <QDeadlineTimer>
+#endif
