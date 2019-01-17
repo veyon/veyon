@@ -247,7 +247,7 @@ bool VncClientProtocol::readProtocol()
 			return false;
 		}
 
-		m_socket->write( protocol, sz_rfbProtocolVersionMsg );
+		m_socket->write( protocol );
 
 		m_state = SecurityInit;
 

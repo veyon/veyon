@@ -202,7 +202,7 @@ QString LinuxUserFunctions::currentUser()
 	struct passwd * pw_entry = nullptr;
 	if( envUser.isEmpty() == false )
 	{
-		pw_entry = getpwnam( envUser );
+		pw_entry = getpwnam( envUser.constData() );
 	}
 
 	if( pw_entry == nullptr )
