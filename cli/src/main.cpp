@@ -62,10 +62,11 @@ int main( int argc, char **argv )
 		}
 		else if( arguments.last() == QStringLiteral("about") )
 		{
-			CommandLineIO::print( QStringLiteral("Veyon: %1 (%2)").arg( VeyonCore::version(), QLatin1String(__DATE__) ) );
-			CommandLineIO::print( QStringLiteral("Qt: %1 (built against %2/%3)").arg( QLatin1String(qVersion()),
-																					  QLatin1String(QT_VERSION_STR),
-																					  QSysInfo::buildAbi() ) );
+			CommandLineIO::print( QStringLiteral("Veyon: %1 (%2)").arg( VeyonCore::version() ).arg( QLatin1String(__DATE__) ) );
+			CommandLineIO::print( QStringLiteral("Qt: %1 (built against %2/%3)").
+								  arg( QLatin1String(qVersion() ) ).
+								  arg( QLatin1String(QT_VERSION_STR) ).
+								  arg( QSysInfo::buildAbi() ) );
 			CommandLineIO::print( QStringLiteral("OpenSSL: %1").arg( QLatin1String(SSLeay_version(SSLEAY_VERSION)) ) );
 			delete app;
 			return 0;
