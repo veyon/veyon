@@ -214,7 +214,6 @@ bool VncClientProtocol::receiveMessage()
 		qCritical( "VncClientProtocol::receiveMessage(): received unknown message type: %d",
 				   static_cast<int>( messageType ) );
 		m_socket->close();
-		return false;
 	}
 
 	return false;
