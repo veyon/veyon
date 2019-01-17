@@ -467,12 +467,12 @@ void VncConnection::establishConnection()
 			sleeperMutex.lock();
 			if( m_framebufferUpdateInterval > 0 )
 			{
-				m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( m_framebufferUpdateInterval ) );
+				m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( m_framebufferUpdateInterval ) );
 			}
 			else
 			{
 				// default: retry every second
-				m_updateIntervalSleeper.wait( &sleeperMutex, ConnectionRetryInterval );
+				m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( ConnectionRetryInterval ) );
 			}
 			sleeperMutex.unlock();
 		}
@@ -520,7 +520,7 @@ void VncConnection::handleConnection()
 				isControlFlagSet( TerminateThread ) == false )
 		{
 			sleeperMutex.lock();
-			m_updateIntervalSleeper.wait( &sleeperMutex, static_cast<unsigned long>( remainingUpdateInterval ) );
+			m_updateIntervalSleeper.wait( &sleeperMutex, QDeadlineTimer( remainingUpdateInterval ) );
 			sleeperMutex.unlock();
 		}
 	}
