@@ -453,7 +453,7 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 	m_lastUpdatedRect = updatedRegion.boundingRect();
 
 	// save as much data as we read by processing rects
-	return readMessage( buffer.pos() );
+	return readMessage( static_cast<int>( buffer.pos() ) );
 }
 
 
