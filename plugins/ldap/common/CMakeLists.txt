@@ -1,7 +1,9 @@
 SET(ldap_common_SOURCES
 	LdapBrowseDialog.cpp
 	LdapBrowseDialog.ui
+	LdapBrowseDialog.h
 	LdapBrowseModel.cpp
+	LdapBrowseModel.h
 	LdapClient.cpp
 	LdapClient.h
 	LdapConfiguration.cpp
