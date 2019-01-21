@@ -72,6 +72,13 @@ void Proxy::reloadFromStore()
 
 
 
+void Proxy::removeInstance( const QString& parentKey )
+{
+	m_object->removeValue( instanceId(), parentKey );
+}
+
+
+
 QString Proxy::instanceParentKey( const QString& parentKey ) const
 {
 	if( m_instanceId.isEmpty() )

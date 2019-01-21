@@ -56,6 +56,8 @@ public:
 		m_instanceId = instanceId;
 	}
 
+	void removeInstance( const QString& parentKey );
+
 private:
 	QString instanceParentKey( const QString& parentKey ) const;
 
