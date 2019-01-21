@@ -37,7 +37,8 @@ NetworkObject::NetworkObject( const NetworkObject& other ) :
 	m_macAddress( other.macAddress() ),
 	m_directoryAddress( other.directoryAddress() ),
 	m_uid( other.uid() ),
-	m_parentUid( other.parentUid() )
+	m_parentUid( other.parentUid() ),
+	m_populated( other.isPopulated() )
 {
 }
 
@@ -56,7 +57,8 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 	m_macAddress( macAddress ),
 	m_directoryAddress( directoryAddress ),
 	m_uid( uid ),
-	m_parentUid( parentUid )
+	m_parentUid( parentUid ),
+	m_populated( false )
 {
 	if( m_uid.isNull() )
 	{
@@ -73,7 +75,8 @@ NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
 	m_macAddress( jsonObject.value( QStringLiteral( "MacAddress" ) ).toString() ),
 	m_directoryAddress( jsonObject.value( QStringLiteral( "DirectoryAddress" ) ).toString() ),
 	m_uid( jsonObject.value( QStringLiteral( "Uid" ) ).toString() ),
-	m_parentUid( jsonObject.value( QStringLiteral( "ParentUid" ) ).toString() )
+	m_parentUid( jsonObject.value( QStringLiteral( "ParentUid" ) ).toString() ),
+	m_populated( false )
 {
 }
 

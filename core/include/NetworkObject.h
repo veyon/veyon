@@ -68,6 +68,16 @@ public:
 		return type() != None;
 	}
 
+	bool isPopulated() const
+	{
+		return m_populated;
+	}
+
+	void setPopulated()
+	{
+		m_populated = true;
+	}
+
 	const Uid& uid() const
 	{
 		return m_uid;
@@ -128,6 +138,7 @@ private:
 	QString m_directoryAddress;
 	Uid m_uid;
 	Uid m_parentUid;
+	bool m_populated;
 
 	static const QUuid networkObjectNamespace;
 
