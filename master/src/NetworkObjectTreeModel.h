@@ -46,7 +46,7 @@ public:
 	QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
 
-private slots:
+private:
 	void beginInsertObjects( const NetworkObject& parent, int index, int count );
 	void endInsertObjects();
 
@@ -55,7 +55,6 @@ private slots:
 
 	void updateObject( const NetworkObject& parent, int index );
 
-private:
 	QModelIndex objectIndex( NetworkObject::ModelId object, int column = 0 ) const;
 
 	NetworkObjectDirectory* m_directory;
