@@ -79,7 +79,7 @@ QString Proxy::instanceParentKey( const QString& parentKey ) const
 		return parentKey;
 	}
 
-	return parentKey + QLatin1Char(',') + m_instanceId;
+	return parentKey + QLatin1Char('/') + m_instanceId;
 }
 
 }
