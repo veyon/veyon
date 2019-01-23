@@ -1779,6 +1779,24 @@ Příklady:
     </message>
 </context>
 <context>
+    <name>LdapBrowseDialog</name>
+    <message>
+        <source>Browse LDAP</source>
+        <translation>Procházet LDAP</translation>
+    </message>
+</context>
+<context>
+    <name>LdapClient</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Popis LDAP chyby: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Není k dispozici žádný popis LDAP chyby</translation>
+    </message>
+</context>
+<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2428,17 +2446,6 @@ Příklady:
     </message>
 </context>
 <context>
-    <name>LdapDirectory</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Popis LDAP chyby: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Není k dispozici žádný popis LDAP chyby</translation>
-    </message>
-</context>
-<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2818,6 +2825,18 @@ POUŽITÍ
     <message>
         <source>&amp;Save settings to file</source>
         <translation>Uložit na&amp;stavení do souboru</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Zobrazení</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standardní</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Pokročilé</translation>
     </message>
 </context>
 <context>
@@ -3740,8 +3759,12 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Nastavení vestavěného UltraVNC serveru</translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
-        <translation>Zapnout podporu dvou monitorů</translation>
+        <source>Enable multi monitor support</source>
+        <translation>Zapnout podporu vícero monitorů</translation>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation>Zapnout Desktop Duplication Engine na Windows 8 a novějších</translation>
     </message>
 </context>
 <context>

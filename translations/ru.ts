@@ -1776,6 +1776,24 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapBrowseDialog</name>
+    <message>
+        <source>Browse LDAP</source>
+        <translation>Навигация LDAP</translation>
+    </message>
+</context>
+<context>
+    <name>LdapClient</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Описание ошибки LDAP: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Нет доступного описания ошибки LDAP</translation>
+    </message>
+</context>
+<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2429,17 +2447,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LdapDirectory</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Описание ошибки LDAP: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Нет доступного описания ошибки LDAP</translation>
-    </message>
-</context>
-<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2819,6 +2826,18 @@ USAGE
     <message>
         <source>&amp;Save settings to file</source>
         <translation>&amp;Сохранить параметры в файл</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Просмотр</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>С&amp;тандартный</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Рвсширенный</translation>
     </message>
 </context>
 <context>
@@ -3741,8 +3760,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Настройка встроенного сервера UltraVNC</translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
-        <translation>Включить поддержку двух мониторов</translation>
+        <source>Enable multi monitor support</source>
+        <translation>Включить поддержку нескольких мониторов</translation>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation>Включить двигатель дублирования рабочего стола в Windows 8 и более новых версиях</translation>
     </message>
 </context>
 <context>

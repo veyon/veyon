@@ -1772,6 +1772,24 @@ Esempi:
     </message>
 </context>
 <context>
+    <name>LdapBrowseDialog</name>
+    <message>
+        <source>Browse LDAP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapClient</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Descrizione errore LDAP: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>Nessuna descrizione dell&apos;errore LDAP disponibile</translation>
+    </message>
+</context>
+<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2415,17 +2433,6 @@ Esempi:
     </message>
 </context>
 <context>
-    <name>LdapDirectory</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Descrizione errore LDAP: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>Nessuna descrizione dell&apos;errore LDAP disponibile</translation>
-    </message>
-</context>
-<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2805,6 +2812,18 @@ USO
     <message>
         <source>&amp;Save settings to file</source>
         <translation>&amp; Salva le impostazioni nel file</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3726,8 +3745,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Configurazione del server UltraVNC integrato</translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
-        <translation>Abilita supporto monitor doppio</translation>
+        <source>Enable multi monitor support</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
