@@ -734,7 +734,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation type="unfinished"/>
+        <translation>内置目录</translation>
     </message>
 </context>
 <context>
@@ -1779,6 +1779,24 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapBrowseDialog</name>
+    <message>
+        <source>Browse LDAP</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LdapClient</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP错误描述： %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>没有可用的 LDAP 错误说明</translation>
+    </message>
+</context>
+<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2432,17 +2450,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LdapDirectory</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>LDAP错误描述： %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>没有可用的 LDAP 错误说明</translation>
-    </message>
-</context>
-<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2477,11 +2484,11 @@ Examples:
     <name>LicensingConfigurationPage</name>
     <message>
         <source>Licensing</source>
-        <translation type="unfinished"/>
+        <translation>许可</translation>
     </message>
     <message>
         <source>Installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>已安装的许可证</translation>
     </message>
     <message>
         <source>Add new network range</source>
@@ -2493,35 +2500,35 @@ Examples:
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Feature</source>
-        <translation type="unfinished"/>
+        <translation>特性</translation>
     </message>
     <message>
         <source>Valid until</source>
-        <translation type="unfinished"/>
+        <translation>有效期至</translation>
     </message>
     <message>
         <source>Licensee</source>
-        <translation type="unfinished"/>
+        <translation>被许可人</translation>
     </message>
     <message>
         <source>Browse license file</source>
-        <translation type="unfinished"/>
+        <translation>浏览许可证文件</translation>
     </message>
     <message>
         <source>Veyon license files (*.vlf)</source>
-        <translation type="unfinished"/>
+        <translation>Veyon  许可证文件</translation>
     </message>
     <message>
         <source>Remove license</source>
-        <translation type="unfinished"/>
+        <translation>删除许可证</translation>
     </message>
     <message>
         <source>Do you really want to remove the selected license?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要删除所选的许可证吗？</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2529,31 +2536,31 @@ Examples:
     </message>
     <message>
         <source>Invalid license file</source>
-        <translation type="unfinished"/>
+        <translation>无效的许可证文件</translation>
     </message>
     <message>
         <source>Could not open the license file for reading!</source>
-        <translation type="unfinished"/>
+        <translation>无法打开打开并读取许可证文件！</translation>
     </message>
     <message>
         <source>The selected license file does not contain valid data.</source>
-        <translation type="unfinished"/>
+        <translation>选定的许可证文件不包含有效数据。</translation>
     </message>
     <message>
         <source>The selected license file could not be verified.</source>
-        <translation type="unfinished"/>
+        <translation>无法验证所选的许可证文件。</translation>
     </message>
     <message>
         <source>The selected license file is not valid for this installation.</source>
-        <translation type="unfinished"/>
+        <translation>选定的许可证文件对此安装无效。</translation>
     </message>
     <message>
         <source>The selected license file is expired.</source>
-        <translation type="unfinished"/>
+        <translation>选定的许可证文件已过期。</translation>
     </message>
     <message>
         <source>The license is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>许可证已安装。</translation>
     </message>
 </context>
 <context>
@@ -2564,15 +2571,15 @@ Examples:
     </message>
     <message>
         <source>Show all installed licenses</source>
-        <translation type="unfinished"/>
+        <translation>显示所有已安装的许可</translation>
     </message>
     <message>
         <source>Add license file</source>
-        <translation type="unfinished"/>
+        <translation>添加许可证文件</translation>
     </message>
     <message>
         <source>Remove installed license</source>
-        <translation type="unfinished"/>
+        <translation>删除已安装的许可证</translation>
     </message>
     <message>
         <source>
@@ -2581,7 +2588,12 @@ USAGE
 %1 add &lt;LICENSE FILE&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法：
+
+%1 add &lt;LICENSE FILE&gt;
+
+</translation>
     </message>
     <message>
         <source>
@@ -2590,11 +2602,16 @@ USAGE
 %1 remove &lt;LICENSE ID&gt;
 
 </source>
-        <translation type="unfinished"/>
+        <translation>
+用法：
+
+%1 remove &lt;LICENSE ID&gt;
+
+</translation>
     </message>
     <message>
         <source>No certificate found with given ID</source>
-        <translation type="unfinished"/>
+        <translation>找不到给定 ID 的许可证书</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -2602,11 +2619,11 @@ USAGE
     </message>
     <message>
         <source>Licensing management</source>
-        <translation type="unfinished"/>
+        <translation>许可管理</translation>
     </message>
     <message>
         <source>Commands for managing license keys</source>
-        <translation type="unfinished"/>
+        <translation>用于管理许可证密钥的命令</translation>
     </message>
 </context>
 <context>
@@ -2813,6 +2830,18 @@ USAGE
         <source>&amp;Save settings to file</source>
         <translation>&amp;S保存设置到文件</translation>
     </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2958,11 +2987,11 @@ USAGE
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>排序</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>计算机和用户名</translation>
     </message>
 </context>
 <context>
@@ -3072,7 +3101,7 @@ USAGE
     </message>
     <message>
         <source>Reverse lookup discovered IP addresses to host names</source>
-        <translation type="unfinished"/>
+        <translation>反向查找已发现的IP地址到主机名</translation>
     </message>
 </context>
 <context>
@@ -3734,8 +3763,12 @@ Typically this is required to support terminal servers.</source>
         <translation>内置 UltraVNC 服务配置</translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
-        <translation>启用双显示器支持</translation>
+        <source>Enable multi monitor support</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3812,19 +3845,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation type="unfinished"/>
+        <translation>插件没有许可</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>ERROR</translation>
     </message>
     <message>
         <source>licensed for</source>
-        <translation type="unfinished"/>
+        <translation>许可给</translation>
     </message>
 </context>
 <context>

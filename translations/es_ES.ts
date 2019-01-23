@@ -1781,6 +1781,24 @@ Ejemplos:
     </message>
 </context>
 <context>
+    <name>LdapBrowseDialog</name>
+    <message>
+        <source>Browse LDAP</source>
+        <translation>Buscar LDAP</translation>
+    </message>
+</context>
+<context>
+    <name>LdapClient</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>Descripción del error LDAP: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>No hay descripción de error de LDAP disponible</translation>
+    </message>
+</context>
+<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2434,17 +2452,6 @@ Ejemplos:
     </message>
 </context>
 <context>
-    <name>LdapDirectory</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>Descripción del error LDAP: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>No hay descripción de error de LDAP disponible</translation>
-    </message>
-</context>
-<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2824,6 +2831,18 @@ Eliminar %1 &lt;LICENSE ID&gt;
     <message>
         <source>&amp;Save settings to file</source>
         <translation>&amp;Guardar configuración a un archivo</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Ver</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Estándar</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Avanzado</translation>
     </message>
 </context>
 <context>
@@ -3537,7 +3556,7 @@ USO
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Activar excepción en el cortafuegos</translation>
+        <translation>Habilitar excepción en el cortafuegos</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3735,7 +3754,7 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Sondeo de pantalla completa (dejar activado por defecto)</translation>
+        <translation>Sondeo de pantalla completa (dejar habilitado por defecto)</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -3746,8 +3765,12 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <translation>Configuración de servidor UltraVNC incorporado</translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
-        <translation>Habilitar el soporte de doble monitor</translation>
+        <source>Enable multi monitor support</source>
+        <translation>Habilitar soporte multi-monitor</translation>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation>Habilitar duplicación de escritorio en Windows 8 y versiones posteriores</translation>
     </message>
 </context>
 <context>

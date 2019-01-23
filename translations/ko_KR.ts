@@ -1779,6 +1779,24 @@ Examples:
     </message>
 </context>
 <context>
+    <name>LdapBrowseDialog</name>
+    <message>
+        <source>Browse LDAP</source>
+        <translation>LDAP 찾아보기</translation>
+    </message>
+</context>
+<context>
+    <name>LdapClient</name>
+    <message>
+        <source>LDAP error description: %1</source>
+        <translation>LDAP 에러 설명: %1</translation>
+    </message>
+    <message>
+        <source>No LDAP error description available</source>
+        <translation>LDAP 에러 설명이 없음</translation>
+    </message>
+</context>
+<context>
     <name>LdapConfigurationPage</name>
     <message>
         <source>LDAP</source>
@@ -2430,17 +2448,6 @@ Examples:
     </message>
 </context>
 <context>
-    <name>LdapDirectory</name>
-    <message>
-        <source>LDAP error description: %1</source>
-        <translation>LDAP 에러 설명: %1</translation>
-    </message>
-    <message>
-        <source>No LDAP error description available</source>
-        <translation>LDAP 에러 설명이 없음</translation>
-    </message>
-</context>
-<context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
@@ -2820,6 +2827,18 @@ USAGE
     <message>
         <source>&amp;Save settings to file</source>
         <translation>&amp;설정을 화일에 저장</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;View 보기</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standard 표준</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Advanced 고급</translation>
     </message>
 </context>
 <context>
@@ -3742,8 +3761,12 @@ Typically this is required to support terminal servers.</source>
         <translation>내장 UltraVNC 서버 설정</translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
-        <translation>듀얼 모니터 기능 활성화</translation>
+        <source>Enable multi monitor support</source>
+        <translation>다중 모니터 지원 활성화</translation>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
+        <translation>윈도8 또는 상위버전에서 데스크탑 복제엔진 활성화</translation>
     </message>
 </context>
 <context>
