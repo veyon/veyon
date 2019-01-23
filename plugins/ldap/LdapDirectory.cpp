@@ -179,10 +179,10 @@ public:
 		const auto errorString = ldapErrorString();
 		if( errorString.isEmpty() == false )
 		{
-			return LdapDirectory::tr( "LDAP error description: %1" ).arg( errorString );
+			return LdapClient::tr( "LDAP error description: %1" ).arg( errorString );
 		}
 
-		return LdapDirectory::tr( "No LDAP error description available");
+		return LdapClient::tr( "No LDAP error description available");
 	}
 
 	bool reconnect()
