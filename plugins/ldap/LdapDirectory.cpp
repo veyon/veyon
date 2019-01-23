@@ -370,13 +370,6 @@ QString LdapDirectory::toRelativeDn( const QString& fullDn )
 
 
 
-QString LdapDirectory::toFullDn( const QString& relativeDn )
-{
-	return relativeDn + QLatin1Char( ',' ) + d->baseDn;
-}
-
-
-
 QStringList LdapDirectory::toRelativeDnList( const QStringList& fullDnList )
 {
 	QStringList relativeDnList;
