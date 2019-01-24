@@ -2829,7 +2829,7 @@ VERWENDUNG
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Anzeige</translation>
+        <translation>&amp;Ansicht</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
@@ -3764,7 +3764,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>Desktop-Duplikationsmodul unter Windows 8 und neuer aktivieren</translation>
+        <translation>Desktop-Duplication-Engine unter Windows 8 und neuer aktivieren</translation>
     </message>
 </context>
 <context>
