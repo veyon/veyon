@@ -255,6 +255,7 @@ IF(WIN32)
 			COMMAND cp ${DLLDIR}/libpng16-16.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libqca-qt5.dll ${TMP}
+			COMMAND cp ${DLLDIR}/libsasl2-3.dll ${TMP}
 			COMMAND cp ${DLLDIR}/libldap.dll ${DLLDIR}/liblber.dll ${TMP}
 			COMMAND cp ${DLLDIR}/interception.dll ${TMP}
 			COMMAND cp ${DLLDIR}/liblzo2-2.dll ${TMP}
