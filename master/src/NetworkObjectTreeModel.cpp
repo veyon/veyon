@@ -132,7 +132,7 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 		return QVariant();
 	}
 
-	const auto& networkObject = m_directory->object( index.parent().internalId(), index.internalId() );
+	const auto& networkObject = object( index );
 
 	if( networkObject.isValid() == false )
 	{
@@ -208,4 +208,11 @@ QModelIndex NetworkObjectTreeModel::objectIndex( NetworkObject::ModelId object, 
 	}
 
 	return {};
+}
+
+
+
+const NetworkObject& NetworkObjectTreeModel::object( const QModelIndex& index ) const
+{
+	return m_directory->object( index.parent().internalId(), index.internalId() );
 }

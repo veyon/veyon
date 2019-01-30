@@ -56,6 +56,7 @@ private:
 	void updateObject( const NetworkObject& parent, int index );
 
 	QModelIndex objectIndex( NetworkObject::ModelId object, int column = 0 ) const;
+	const NetworkObject& object( const QModelIndex& index ) const;
 
 	NetworkObjectDirectory* m_directory;
 
