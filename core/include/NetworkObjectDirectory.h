@@ -56,8 +56,8 @@ public:
 	virtual NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name = QString() );
 	virtual NetworkObjectList queryParents( const NetworkObject& child );
 
-public slots:
 	virtual void update() = 0;
+	virtual void fetchObjects( const NetworkObject& object );
 
 protected:
 	typedef std::function<bool(const NetworkObject &)> NetworkObjectFilter;

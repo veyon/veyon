@@ -251,6 +251,26 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 
 
 
+void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
+{
+	const auto objectModelId = object.modelId();
+
+	auto it = m_objects.find( parentId( objectModelId ) );
+	if( it != m_objects.end() )
+	{
+		for( auto& entry : *it )
+		{
+			if( entry.modelId() == objectModelId )
+			{
+				entry.setPopulated();
+				break;
+			}
+		}
+	}
+}
+
+
+
 void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent )
 {
 	if( m_objects.contains( parent.modelId() ) == false )
