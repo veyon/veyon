@@ -155,6 +155,36 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 
 
 
+bool NetworkObjectTreeModel::hasChildren( const QModelIndex& parent ) const
+{
+	switch( object( parent ).type() )
+	{
+	case NetworkObject::Host:
+	case NetworkObject::Label:
+		return false;
+	default:
+		break;
+	}
+
+	return NetworkObjectModel::hasChildren( parent );
+}
+
+
+
+bool NetworkObjectTreeModel::canFetchMore( const QModelIndex& parent ) const
+{
+	return object( parent ).isPopulated() == false;
+}
+
+
+
+void NetworkObjectTreeModel::fetchMore( const QModelIndex& parent )
+{
+	m_directory->fetchObjects( object( parent ) );
+}
+
+
+
 void NetworkObjectTreeModel::beginInsertObjects( const NetworkObject& parent, int index, int count )
 {
 	beginInsertRows( objectIndex( parent.modelId() ), index, index+count-1 );
