@@ -119,6 +119,11 @@ bool NetworkObject::exactMatch( const NetworkObject& other ) const
 
 NetworkObject::ModelId NetworkObject::modelId() const
 {
+	if( type() == Root )
+	{
+		return 0;
+	}
+
 	auto id =
 			( static_cast<quint64>( uid().data1 ) << 0u ) +
 			( static_cast<quint64>( uid().data2 ) << 32u ) +
