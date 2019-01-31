@@ -92,6 +92,101 @@ QString LdapClient::errorDescription() const
 
 
 
+LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringList& attributes,
+													 const QString& filter, LdapClient::Scope scope )
+{
+	vDebug() << Q_FUNC_INFO << "called with" << dn << attributes << filter << scope;
+
+	if( m_state != Bound && reconnect() == false )
+	{
+		qCritical() << Q_FUNC_INFO << "not bound to server!";
+		return {};
+	}
+
+	if( dn.isEmpty() )
+	{
+		qCritical() << Q_FUNC_INFO << "DN is empty!";
+		return {};
+	}
+
+	if( attributes.isEmpty() )
+	{
+		qCritical() << Q_FUNC_INFO << "attributes empty!";
+		return {};
+	}
+
+	Objects entries;
+
+	int result = -1;
+	auto id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList( attributes ) );
+
+	if( id != -1 )
+	{
+		auto realAttributeNames = attributes;
+		for( auto& attribute : realAttributeNames )
+		{
+			attribute = attribute.toLower();
+		}
+
+		auto isFirstResult = true;
+
+		while( ( result = m_operation->waitForResult( id, LdapQueryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		{
+			if( isFirstResult )
+			{
+				isFirstResult = false;
+
+				// match attribute name from result with requested attribute name in order
+				// to keep result aggregation below case-insensitive
+				const auto attributes = m_operation->object().attributes();
+				for( auto it = attributes.constBegin(), end = attributes.constEnd(); it != end; ++it )
+				{
+					for( auto& attribute : realAttributeNames )
+					{
+						if( QString::compare( it.key().toLower(), attribute, Qt::CaseInsensitive ) == 0 )
+						{
+							attribute = it.key();
+							break;
+						}
+					}
+				}
+			}
+
+			// convert result list from type QList<QByteArray> to QStringList
+			const auto dn = m_operation->object().dn().toString();
+			for( const auto& attribute : realAttributeNames )
+			{
+				const auto values = m_operation->object().values( attribute );
+				for( const auto& value : values )
+				{
+					entries[dn][attribute] += QString::fromUtf8( value );
+				}
+			}
+		}
+
+		vDebug() << Q_FUNC_INFO << "results:" << entries;
+	}
+
+	if( result == -1 )
+	{
+		qWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
+
+		if( m_state == Bound && m_queryRetry == false )
+		{
+			// close connection and try again
+			m_queryRetry = true;
+			m_state = Disconnected;
+			entries = queryObjects( dn, attributes, filter, scope );
+			m_queryRetry = false;
+		}
+	}
+
+	return entries;
+
+}
+
+
+
 QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& attribute,
 											  const QString& filter, Scope scope )
 {

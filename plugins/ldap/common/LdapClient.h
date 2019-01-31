@@ -64,6 +64,8 @@ public:
 	};
 	Q_ENUM(TLSVerifyMode)
 
+	typedef QMap<QString, QMap<QString, QStringList> > Objects;
+
 	LdapClient( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
 	~LdapClient();
 
@@ -84,6 +86,8 @@ public:
 
 	QString errorString() const;
 	QString errorDescription() const;
+
+	Objects queryObjects( const QString& dn, const QStringList& attributes, const QString& filter, Scope scope );
 
 	QStringList queryAttributeValues( const QString &dn, const QString &attribute,
 									  const QString& filter = QStringLiteral( "(objectclass=*)" ),
