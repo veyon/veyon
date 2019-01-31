@@ -47,6 +47,11 @@ public:
 		return m_client;
 	}
 
+	LdapClient& client()
+	{
+		return m_client;
+	}
+
 	void disableAttributes();
 	void disableFilters();
 
