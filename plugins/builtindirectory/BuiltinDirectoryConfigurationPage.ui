@@ -7,7 +7,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="builtindirectory.qrc">
-    <normaloff>:/builtindirectory/application-msonenote.png</normaloff>:/builtindirectory/application-msonenote.png</iconset>
+    <normaloff>:/builtindirectory/builtindirectory.png</normaloff>:/builtindirectory/builtindirectory.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
