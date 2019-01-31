@@ -2,10 +2,13 @@
 <ui version="4.0">
  <class>MasterConfigurationPage</class>
  <widget class="QWidget" name="MasterConfigurationPage">
-  <property name="windowTitle">
-   <string notr="true">Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout_6">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
