@@ -245,20 +245,7 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 
 void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
 {
-	const auto objectModelId = object.modelId();
-
-	auto it = m_objects.find( parentId( objectModelId ) );
-	if( it != m_objects.end() )
-	{
-		for( auto& entry : *it )
-		{
-			if( entry.modelId() == objectModelId )
-			{
-				entry.setPopulated();
-				break;
-			}
-		}
-	}
+	setObjectPopulated( object );
 }
 
 
@@ -335,5 +322,25 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 	for( const auto& groupId : groupsToRemove )
 	{
 		m_objects.remove( groupId );
+	}
+}
+
+
+
+void NetworkObjectDirectory::setObjectPopulated( const NetworkObject& networkObject )
+{
+	const auto objectModelId = networkObject.modelId();
+
+	auto it = m_objects.find( parentId( objectModelId ) );
+	if( it != m_objects.end() )
+	{
+		for( auto& entry : *it )
+		{
+			if( entry.modelId() == objectModelId )
+			{
+				entry.setPopulated();
+				break;
+			}
+		}
 	}
 }

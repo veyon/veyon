@@ -66,6 +66,7 @@ protected:
 
 	void addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent );
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
+	void setObjectPopulated( const NetworkObject& networkObject );
 
 private:
 	QTimer* m_updateTimer;
