@@ -190,6 +190,11 @@ bool CheckableItemProxyModel::setChildData( const QModelIndex& index, Qt::CheckS
 {
 	bool modified = false;
 
+	if( canFetchMore( index ) )
+	{
+		fetchMore( index );
+	}
+
 	const auto childCount = rowCount( index );
 
 	if( childCount > 0 )
