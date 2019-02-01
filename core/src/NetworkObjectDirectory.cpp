@@ -40,7 +40,7 @@ NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
 
 	// insert root item
-	m_objects[m_rootObject.modelId()] = {};
+	m_objects[rootId()] = {};
 }
 
 
@@ -79,9 +79,9 @@ const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& p
 
 const NetworkObject& NetworkObjectDirectory::object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const
 {
-	if( parent == 0 )
+	if( object == rootId() )
 	{
-		parent = m_rootObject.modelId();
+		return m_rootObject;
 	}
 
 	const auto it = m_objects.constFind( parent );
@@ -105,11 +105,6 @@ const NetworkObject& NetworkObjectDirectory::object( NetworkObject::ModelId pare
 
 int NetworkObjectDirectory::index( NetworkObject::ModelId parent, NetworkObject::ModelId child ) const
 {
-	if( parent == 0 )
-	{
-		parent = m_rootObject.modelId();
-	}
-
 	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
@@ -131,11 +126,6 @@ int NetworkObjectDirectory::index( NetworkObject::ModelId parent, NetworkObject:
 
 int NetworkObjectDirectory::childCount( NetworkObject::ModelId parent ) const
 {
-	if( parent == 0 )
-	{
-		parent = m_rootObject.modelId();
-	}
-
 	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
@@ -149,11 +139,6 @@ int NetworkObjectDirectory::childCount( NetworkObject::ModelId parent ) const
 
 NetworkObject::ModelId NetworkObjectDirectory::childId( NetworkObject::ModelId parent, int index ) const
 {
-	if( parent == 0 )
-	{
-		parent = m_rootObject.modelId();
-	}
-
 	const auto it = m_objects.constFind( parent );
 	if( it != m_objects.end() )
 	{
@@ -170,7 +155,7 @@ NetworkObject::ModelId NetworkObjectDirectory::childId( NetworkObject::ModelId p
 
 NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId child ) const
 {
-	if( child == m_rootObject.modelId() )
+	if( child == rootId() )
 	{
 		return 0;
 	}
@@ -189,6 +174,13 @@ NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId 
 	}
 
 	return 0;
+}
+
+
+
+NetworkObject::ModelId NetworkObjectDirectory::rootId() const
+{
+	return m_rootObject.modelId();
 }
 
 

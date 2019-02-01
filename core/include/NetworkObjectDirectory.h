@@ -53,6 +53,8 @@ public:
 	NetworkObject::ModelId childId( NetworkObject::ModelId parent, int index ) const;
 	NetworkObject::ModelId parentId( NetworkObject::ModelId child ) const;
 
+	NetworkObject::ModelId rootId() const;
+
 	virtual NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name = QString() );
 	virtual NetworkObjectList queryParents( const NetworkObject& child );
 
