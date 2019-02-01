@@ -245,6 +245,11 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 
 void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
 {
+	if( object.type() == NetworkObject::Root )
+	{
+		update();
+	}
+
 	setObjectPopulated( object );
 }
 

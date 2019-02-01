@@ -158,6 +158,7 @@ bool NetworkObjectTreeModel::hasChildren( const QModelIndex& parent ) const
 
 	switch( networkObject.type() )
 	{
+	case NetworkObject::None:
 	case NetworkObject::Host:
 	case NetworkObject::Label:
 		return false;
