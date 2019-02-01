@@ -54,27 +54,21 @@ NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* director
 
 
 
-QModelIndex NetworkObjectTreeModel::index( int row, int column, const QModelIndex &parent ) const
+QModelIndex NetworkObjectTreeModel::index( int row, int column, const QModelIndex& parent ) const
 {
 	if( row < 0 || column < 0 )
 	{
 		return {};
 	}
 
-	NetworkObject::ModelId parentId = 0;
-	if( parent.isValid() )
-	{
-		parentId = parent.internalId();
-	}
-
-	return createIndex( row, column, m_directory->childId( parentId, row ) );
+	return createIndex( row, column, m_directory->childId( parent.internalId(), row ) );
 }
 
 
 
 QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 {
-	if( index.isValid() == false || index.internalId() == 0 )
+	if( index.isValid() == false || index.internalId() == m_directory->rootId() )
 	{
 		return {};
 	}
@@ -84,10 +78,8 @@ QModelIndex NetworkObjectTreeModel::parent( const QModelIndex& index ) const
 	{
 		return objectIndex( parentId, index.column() );
 	}
-	else
-	{
-		return {};
-	}
+
+	return {};
 }
 
 
@@ -96,7 +88,7 @@ int NetworkObjectTreeModel::rowCount( const QModelIndex& parent ) const
 {
 	if( parent.isValid() == false )
 	{
-		return m_directory->childCount( 0 );
+		return m_directory->childCount( m_directory->rootId() );
 	}
 
 	return m_directory->childCount( parent.internalId() );
@@ -127,16 +119,16 @@ QVariant NetworkObjectTreeModel::headerData( int section, Qt::Orientation orient
 
 QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) const
 {
-	if( index.isValid() == false )
+	if( index.isValid() == false || index.internalId() == m_directory->rootId() )
 	{
-		return QVariant();
+		return {};
 	}
 
 	const auto& networkObject = object( index );
 
 	if( networkObject.isValid() == false )
 	{
-		return QVariant();
+		return {};
 	}
 
 	switch( role )
@@ -150,14 +142,21 @@ QVariant NetworkObjectTreeModel::data( const QModelIndex& index, int role ) cons
 	default: break;
 	}
 
-	return QVariant();
+	return {};
 }
 
 
 
 bool NetworkObjectTreeModel::hasChildren( const QModelIndex& parent ) const
 {
-	switch( object( parent ).type() )
+	if( parent.isValid() == false )
+	{
+		return NetworkObjectModel::hasChildren( parent );
+	}
+
+	const auto& networkObject = object( parent );
+
+	switch( networkObject.type() )
 	{
 	case NetworkObject::Host:
 	case NetworkObject::Label:
@@ -166,14 +165,29 @@ bool NetworkObjectTreeModel::hasChildren( const QModelIndex& parent ) const
 		break;
 	}
 
-	return NetworkObjectModel::hasChildren( parent );
+	if( m_directory->childCount( networkObject.modelId() ) > 0 )
+	{
+		return true;
+	}
+
+	if( networkObject.isPopulated() )
+	{
+		return false;
+	}
+
+	return true;
 }
 
 
 
 bool NetworkObjectTreeModel::canFetchMore( const QModelIndex& parent ) const
 {
-	return object( parent ).isPopulated() == false;
+	if( parent.isValid() )
+	{
+		return object( parent ).isPopulated() == false;
+	}
+
+	return false;
 }
 
 
@@ -224,7 +238,7 @@ void NetworkObjectTreeModel::updateObject( const NetworkObject& parent, int row 
 
 QModelIndex NetworkObjectTreeModel::objectIndex( NetworkObject::ModelId object, int column ) const
 {
-	if( object == 0 )
+	if( object == m_directory->rootId() )
 	{
 		return {};
 	}
