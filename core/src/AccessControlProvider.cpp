@@ -22,7 +22,7 @@
  *
  */
 
-#include <QDebug>
+#include <QRegularExpression>
 #include <QHostInfo>
 
 #include "UserGroupsBackendManager.h"
@@ -218,11 +218,11 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 												 const QString &groupName ) const
 {
-	QRegExp groupNameRX( groupName );
+	const QRegularExpression groupNameRX( groupName );
 
 	if( groupNameRX.isValid() )
 	{
-		return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).indexOf( QRegExp( groupName ) ) >= 0;
+		return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).indexOf( groupNameRX ) >= 0;
 	}
 
 	return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).contains( groupName );
