@@ -14,6 +14,7 @@
 #include <QJsonValue>
 #include <QMutex>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QThread>
 #ifdef QT_NETWORK_LIB
 #include <QTcpSocket>
