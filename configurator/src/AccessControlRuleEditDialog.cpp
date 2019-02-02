@@ -32,11 +32,11 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui(new Ui::AccessControlRuleEditDialog),
 	m_rule( rule ),
 	m_subjectNameMap( {
-			{ AccessControlRule::SubjectAccessingUser, tr( "Accessing user" ) },
-			{ AccessControlRule::SubjectAccessingComputer, tr( "Accessing computer" ) },
-			{ AccessControlRule::SubjectLocalUser, tr( "Local (logged on) user" ) },
-			{ AccessControlRule::SubjectLocalComputer, tr( "Local computer" ) },
-		} )
+{ AccessControlRule::SubjectAccessingUser, tr( "Accessing user" ) },
+{ AccessControlRule::SubjectAccessingComputer, tr( "Accessing computer" ) },
+{ AccessControlRule::SubjectLocalUser, tr( "Local (logged on) user" ) },
+{ AccessControlRule::SubjectLocalComputer, tr( "Local computer" ) },
+					  } )
 {
 	ui->setupUi(this);
 
@@ -47,12 +47,12 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->isMemberOfGroupSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalUser], AccessControlRule::SubjectLocalUser );
 
 	// populate computer subject comboboxes
-	ui->isLocatedInRoomSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectAccessingComputer], AccessControlRule::SubjectAccessingComputer );
-	ui->isLocatedInRoomSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalComputer], AccessControlRule::SubjectLocalComputer );
+	ui->isInLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectAccessingComputer], AccessControlRule::SubjectAccessingComputer );
+	ui->isInLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::SubjectLocalComputer], AccessControlRule::SubjectLocalComputer );
 
-	// populate groups and rooms comboboxes
+	// populate groups and locations comboboxes
 	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
-	ui->roomsComboBox->addItems( accessControlProvider.rooms() );
+	ui->locationsComboBox->addItems( accessControlProvider.locations() );
 
 	// load general settings
 	ui->ruleNameLineEdit->setText( rule.name() );
@@ -65,8 +65,8 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	// load condition states
 	ui->isMemberOfGroupCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionMemberOfUserGroup ) );
 	ui->hasCommonGroupsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionGroupsInCommon ) );
-	ui->isLocatedInRoomCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedInRoom ) );
-	ui->isLocatedInSameRoomCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedInSameRoom ) );
+	ui->isInLocationCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionLocatedIn ) );
+	ui->hasCommonLocationsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionSameLocation ) );
 	ui->isLocalHostAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost ) );
 	ui->isLocalUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromLocalUser ) );
 	ui->isSameUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::ConditionAccessFromAlreadyConnectedUser ) );
@@ -74,11 +74,11 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 
 	// load selected condition subjects
 	ui->isMemberOfGroupSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionMemberOfUserGroup ) ) );
-	ui->isLocatedInRoomSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionLocatedInRoom ) ) );
+	ui->isInLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::ConditionLocatedIn ) ) );
 
 	// load condition arguments
 	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionMemberOfUserGroup ) );
-	ui->roomsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionLocatedInRoom ) );
+	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::ConditionLocatedIn ) );
 
 	// load action
 	ui->actionNoneRadioButton->setChecked( rule.action() == AccessControlRule::ActionNone );
@@ -122,16 +122,16 @@ void AccessControlRuleEditDialog::accept()
 								ui->hasCommonGroupsCheckBox->isChecked() );
 
 	// located in room
-	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedInRoom,
-								ui->isLocatedInRoomCheckBox->isChecked() );
-	m_rule.setSubject( AccessControlRule::ConditionLocatedInRoom,
-					   m_subjectNameMap.key( ui->isLocatedInRoomSubjectComboBox->currentText() ) );
-	m_rule.setArgument( AccessControlRule::ConditionLocatedInRoom,
-						ui->roomsComboBox->currentText() );
+	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedIn,
+								ui->isInLocationCheckBox->isChecked() );
+	m_rule.setSubject( AccessControlRule::ConditionLocatedIn,
+					   m_subjectNameMap.key( ui->isInLocationSubjectComboBox->currentText() ) );
+	m_rule.setArgument( AccessControlRule::ConditionLocatedIn,
+						ui->locationsComboBox->currentText() );
 
 	// located in same room as
-	m_rule.setConditionEnabled( AccessControlRule::ConditionLocatedInSameRoom,
-								ui->isLocatedInSameRoomCheckBox->isChecked() );
+	m_rule.setConditionEnabled( AccessControlRule::ConditionSameLocation,
+								ui->hasCommonLocationsCheckBox->isChecked() );
 
 	m_rule.setConditionEnabled( AccessControlRule::ConditionAccessFromLocalHost,
 								ui->isLocalHostAccessCheckBox->isChecked() );

@@ -3,7 +3,7 @@
  <class>BuiltinDirectoryConfigurationPage</class>
  <widget class="QWidget" name="BuiltinDirectoryConfigurationPage">
   <property name="windowTitle">
-   <string>Rooms &amp; computers</string>
+   <string>Locations &amp; computers</string>
   </property>
   <property name="windowIcon">
    <iconset resource="builtindirectory.qrc">
@@ -32,7 +32,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Rooms</string>
+         <string>Locations</string>
         </property>
        </widget>
       </item>
@@ -115,9 +115,9 @@
       <item row="2" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="addRoomButton">
+         <widget class="QPushButton" name="addLocationButton">
           <property name="toolTip">
-           <string>Add new room</string>
+           <string>Add new location</string>
           </property>
           <property name="text">
            <string/>
@@ -129,9 +129,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="removeRoomButton">
+         <widget class="QPushButton" name="removeLocationButton">
           <property name="toolTip">
-           <string>Remove selected room</string>
+           <string>Remove selected location</string>
           </property>
           <property name="text">
            <string/>
@@ -158,7 +158,7 @@
        </layout>
       </item>
       <item row="1" column="0">
-       <widget class="QTableWidget" name="roomTableWidget">
+       <widget class="QTableWidget" name="locationTableWidget">
         <attribute name="horizontalHeaderVisible">
          <bool>false</bool>
         </attribute>
@@ -170,7 +170,7 @@
         </attribute>
         <column>
          <property name="text">
-          <string>Rooms</string>
+          <string>Locations</string>
          </property>
         </column>
        </widget>
@@ -233,10 +233,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>removeRoomButton</sender>
+   <sender>removeLocationButton</sender>
    <signal>clicked()</signal>
    <receiver>BuiltinDirectoryConfigurationPage</receiver>
-   <slot>removeRoom()</slot>
+   <slot>removeLocation()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>108</x>
@@ -249,10 +249,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>addRoomButton</sender>
+   <sender>addLocationButton</sender>
    <signal>clicked()</signal>
    <receiver>BuiltinDirectoryConfigurationPage</receiver>
-   <slot>addRoom()</slot>
+   <slot>addLocation()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>56</x>
@@ -265,10 +265,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>roomTableWidget</sender>
+   <sender>locationTableWidget</sender>
    <signal>cellChanged(int,int)</signal>
    <receiver>BuiltinDirectoryConfigurationPage</receiver>
-   <slot>updateRoom()</slot>
+   <slot>updateLocation()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>150</x>
@@ -298,11 +298,11 @@
   </connection>
  </connections>
  <slots>
-  <slot>addRoom()</slot>
-  <slot>removeRoom()</slot>
+  <slot>addLocation()</slot>
+  <slot>removeLocation()</slot>
   <slot>addComputer()</slot>
   <slot>removeComputer()</slot>
-  <slot>updateRoom()</slot>
+  <slot>updateLocation()</slot>
   <slot>updateComputer()</slot>
  </slots>
 </ui>

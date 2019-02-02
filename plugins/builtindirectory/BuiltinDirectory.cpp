@@ -46,23 +46,23 @@ void BuiltinDirectory::update()
 	{
 		const NetworkObject networkObject( networkObjectValue.toObject() );
 
-		if( networkObject.type() == NetworkObject::Group )
+		if( networkObject.type() == NetworkObject::Location )
 		{
 			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
 
 			addOrUpdateObject( networkObject, NetworkObject::Root );
 
-			updateRoom( networkObject, networkObjects );
+			updateLocation( networkObject, networkObjects );
 		}
 	}
 
 	removeObjects( NetworkObject::Root, [groupUids]( const NetworkObject& object ) {
-		return object.type() == NetworkObject::Group && groupUids.contains( object.uid() ) == false; } );
+		return object.type() == NetworkObject::Location && groupUids.contains( object.uid() ) == false; } );
 }
 
 
 
-void BuiltinDirectory::updateRoom( const NetworkObject& roomObject, const QJsonArray& networkObjects )
+void BuiltinDirectory::updateLocation( const NetworkObject& locationObject, const QJsonArray& networkObjects )
 {
 	NetworkObjectUidList computerUids;
 
@@ -70,13 +70,13 @@ void BuiltinDirectory::updateRoom( const NetworkObject& roomObject, const QJsonA
 	{
 		NetworkObject networkObject( networkObjectValue.toObject() );
 
-		if( networkObject.parentUid() == roomObject.uid() )
+		if( networkObject.parentUid() == locationObject.uid() )
 		{
 			computerUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
-			addOrUpdateObject( networkObject, roomObject );
+			addOrUpdateObject( networkObject, locationObject );
 		}
 	}
 
-	removeObjects( roomObject, [computerUids]( const NetworkObject& object ) {
+	removeObjects( locationObject, [computerUids]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Host && computerUids.contains( object.uid() ) == false; } );
 }

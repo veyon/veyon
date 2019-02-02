@@ -96,7 +96,7 @@ public:
 
 	QString directoryName() const override
 	{
-		return tr( "LDAP (load computers and rooms from LDAP/AD)" );
+		return tr( "LDAP (load computers and locations from LDAP/AD)" );
 	}
 
 	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;

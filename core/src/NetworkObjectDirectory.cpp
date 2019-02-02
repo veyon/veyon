@@ -63,7 +63,7 @@ void NetworkObjectDirectory::setUpdateInterval( int interval )
 const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& parent ) const
 {
 	if( parent.type() == NetworkObject::Root ||
-			parent.type() == NetworkObject::Group )
+			parent.type() == NetworkObject::Location )
 	{
 		const auto it = m_objects.constFind( parent.modelId() );
 		if( it != m_objects.end() )
@@ -277,7 +277,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 		emit objectsAboutToBeInserted( parent, objectList.count(), 1 );
 
 		objectList.append( completeNetworkObject );
-		if( completeNetworkObject.type() == NetworkObject::Group )
+		if( completeNetworkObject.type() == NetworkObject::Location )
 		{
 			m_objects[completeNetworkObject.modelId()] = {};
 		}
@@ -308,7 +308,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 	{
 		if( removeObjectFilter( *it ) )
 		{
-			if( it->type() == NetworkObject::Group )
+			if( it->type() == NetworkObject::Location )
 			{
 				groupsToRemove.append( it->modelId() );
 			}

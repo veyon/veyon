@@ -40,7 +40,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type 
 {
 	switch( type )
 	{
-	case NetworkObject::Group: return queryGroups( name );
+	case NetworkObject::Location: return queryGroups( name );
 	case NetworkObject::Host: return queryHosts( name );
 	default: break;
 	}
@@ -55,9 +55,9 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject&
 	switch( object.type() )
 	{
 	case NetworkObject::Host:
-		return { NetworkObject( NetworkObject::Group,
-								m_ldapDirectory.computerRoomsOfComputer( object.directoryAddress() ).value( 0 ) ) };
-	case NetworkObject::Group:
+		return { NetworkObject( NetworkObject::Location,
+								m_ldapDirectory.locationsOfComputer( object.directoryAddress() ).value( 0 ) ) };
+	case NetworkObject::Location:
 		return { NetworkObject::Root };
 	default:
 		break;
@@ -70,27 +70,27 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents( const NetworkObject&
 
 void LdapNetworkObjectDirectory::update()
 {
-	const auto groups = m_ldapDirectory.computerRooms();
+	const auto locations = m_ldapDirectory.computerLocations();
 	const NetworkObject rootObject( NetworkObject::Root );
 
-	for( const auto& computerRoom : qAsConst( groups ) )
+	for( const auto& location : qAsConst( locations ) )
 	{
-		const NetworkObject computerRoomObject( NetworkObject::Group, computerRoom );
+		const NetworkObject locationObject( NetworkObject::Location, location );
 
-		addOrUpdateObject( computerRoomObject, rootObject );
+		addOrUpdateObject( locationObject, rootObject );
 
-		updateGroup( computerRoomObject );
+		updateGroup( locationObject );
 	}
 
-	removeObjects( NetworkObject::Root, [groups]( const NetworkObject& object ) {
-		return object.type() == NetworkObject::Group && groups.contains( object.name() ) == false; } );
+	removeObjects( NetworkObject::Root, [locations]( const NetworkObject& object ) {
+		return object.type() == NetworkObject::Location && locations.contains( object.name() ) == false; } );
 }
 
 
 
 void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
 {
-	const auto computers = m_ldapDirectory.computerRoomMembers( groupObject.name() );
+	const auto computers = m_ldapDirectory.computerLocationEntries( groupObject.name() );
 
 	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().computerMacAddressAttribute().count() > 0 );
 
@@ -111,14 +111,14 @@ void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
 
 NetworkObjectList LdapNetworkObjectDirectory::queryGroups( const QString& name )
 {
-	const auto groups = m_ldapDirectory.computerRooms( name );
+	const auto groups = m_ldapDirectory.computerLocations( name );
 
 	NetworkObjectList groupObjects;
 	groupObjects.reserve( groups.size() );
 
 	for( const auto& group : groups )
 	{
-		groupObjects.append( NetworkObject( NetworkObject::Group, group ) );
+		groupObjects.append( NetworkObject( NetworkObject::Location, group ) );
 	}
 
 	return groupObjects;

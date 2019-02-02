@@ -45,18 +45,18 @@ public:
 	void applyConfiguration() override;
 
 private slots:
-	void addRoom();
-	void updateRoom();
-	void removeRoom();
+	void addLocation();
+	void updateLocation();
+	void removeLocation();
 	void addComputer();
 	void updateComputer();
 	void removeComputer();
 
 private:
-	void populateRooms();
+	void populateLocations();
 	void populateComputers();
 
-	NetworkObject currentRoomObject() const;
+	NetworkObject currentLocationObject() const;
 	NetworkObject currentComputerObject() const;
 
 	Ui::BuiltinDirectoryConfigurationPage *ui;

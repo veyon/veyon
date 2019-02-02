@@ -53,8 +53,8 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	connect( ui->browseGroupMemberAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->groupMemberAttribute, m_configuration.groupTree() ); } );
 	connect( ui->browseComputerHostNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerHostNameAttribute, m_configuration.computerTree() ); } );
 	connect( ui->browseComputerMacAddressAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerMacAddressAttribute, m_configuration.computerTree() ); } );
-	connect( ui->browseComputerRoomAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerRoomAttribute, m_configuration.computerTree() ); } );
-	connect( ui->browseComputerRoomNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerRoomNameAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseComputerLocationAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerLocationAttribute, m_configuration.computerTree() ); } );
+	connect( ui->browseLocationNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->locationNameAttribute, m_configuration.computerTree() ); } );
 
 	CONNECT_BUTTON_SLOT( testBindInteractively );
 	CONNECT_BUTTON_SLOT( testBaseDn );
@@ -68,8 +68,8 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testGroupMemberAttribute );
 	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute );
 	CONNECT_BUTTON_SLOT( testComputerMacAddressAttribute );
-	CONNECT_BUTTON_SLOT( testComputerRoomAttribute );
-	CONNECT_BUTTON_SLOT( testComputerRoomNameAttribute );
+	CONNECT_BUTTON_SLOT( testComputerLocationAttribute );
+	CONNECT_BUTTON_SLOT( testLocationNameAttribute );
 
 	CONNECT_BUTTON_SLOT( testUsersFilter );
 	CONNECT_BUTTON_SLOT( testUserGroupsFilter );
@@ -80,8 +80,8 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testGroupsOfComputer );
 	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress );
-	CONNECT_BUTTON_SLOT( testComputerRoomMembers );
-	CONNECT_BUTTON_SLOT( testComputerRooms );
+	CONNECT_BUTTON_SLOT( testLocationEntries );
+	CONNECT_BUTTON_SLOT( testLocations );
 
 	CONNECT_BUTTON_SLOT( browseCACertificateFile );
 
@@ -347,7 +347,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 	if( computerName.isEmpty() == false )
 	{
 		if( m_configuration.computerHostNameAsFQDN() &&
-				computerName.contains( QLatin1Char('.') ) == false )
+			computerName.contains( QLatin1Char('.') ) == false )
 		{
 			QMessageBox::critical( this, tr( "Invalid host name" ),
 								   tr( "You configured computer host names to be stored "
@@ -398,37 +398,37 @@ void LdapConfigurationPage::testComputerMacAddressAttribute()
 
 
 
-void LdapConfigurationPage::testComputerRoomAttribute()
+void LdapConfigurationPage::testComputerLocationAttribute()
 {
-	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
-													  tr( "Please enter the name of a computer room (wildcards allowed):") );
-	if( computerRoomName.isEmpty() == false )
+	const auto locationName = QInputDialog::getText( this, tr( "Enter computer location name" ),
+														 tr( "Please enter the name of a computer location (wildcards allowed):") );
+	if( locationName.isEmpty() == false )
 	{
-		vDebug() << "[TEST][LDAP] Testing computer room attribute for" << computerRoomName;
+		vDebug() << "[TEST][LDAP] Testing computer location attribute for" << locationName;
 
 		LdapDirectory ldapDirectory( m_configuration );
 
-		reportLdapObjectQueryResults( tr( "computer rooms" ), tr( "computer room attribute" ),
-									  ldapDirectory.computerRooms( computerRoomName ), ldapDirectory );
+		reportLdapObjectQueryResults( tr( "computer locations" ), tr( "computer location attribute" ),
+									  ldapDirectory.computerLocations( locationName ), ldapDirectory );
 	}
 }
 
 
 
-void LdapConfigurationPage::testComputerRoomNameAttribute()
+void LdapConfigurationPage::testLocationNameAttribute()
 {
-	if( m_configuration.computerRoomMembersByAttribute() )
+	if( m_configuration.computerLocationsByAttribute() )
 	{
 		QMessageBox::information( this, tr( "Test not applicable" ),
-								  tr( "Please change the computer room settings to use computer groups "
-									  "or computer containers as computer rooms. Then the "
+								  tr( "Please change the computer location settings to use computer groups "
+									  "or computer containers as computer locations. Then the "
 									  "specified attribute instead of the common name of computer groups "
 									  "or container objects will be queried. "
 									  "Otherwise you don't need to configure this attribute." ) );
 		return;
 	}
 
-	testComputerRoomAttribute();
+	testComputerLocationAttribute();
 }
 
 
@@ -483,16 +483,15 @@ void LdapConfigurationPage::testComputerGroupsFilter()
 
 void LdapConfigurationPage::testComputerContainersFilter()
 {
-	if( m_configuration.computerRoomMembersByContainer() == false )
+	if( m_configuration.computerLocationsByContainer() == false )
 	{
 		QMessageBox::information( this, tr( "Test not applicable" ),
-								  tr( "Please change the computer room settings below to use computer containers "
-									  "as computer rooms. Otherwise you don't need to "
-									  "configure this filter." ) );
+								  tr( "Please change the computer location settings below to use computer containers "
+									  "as computer locations. Otherwise you don't need to configure this filter." ) );
 		return;
 	}
 
-	testComputerRooms();
+	testLocations();
 }
 
 
@@ -586,31 +585,31 @@ void LdapConfigurationPage::testComputerObjectByIpAddress()
 
 
 
-void LdapConfigurationPage::testComputerRoomMembers()
+void LdapConfigurationPage::testLocationEntries()
 {
-	QString computerRoomName = QInputDialog::getText( this, tr( "Enter computer room name" ),
-													  tr( "Please enter the name of a computer room whose members to query:") );
-	if( computerRoomName.isEmpty() == false )
+	const auto locationName = QInputDialog::getText( this, tr( "Enter location name" ),
+													 tr( "Please enter the name of a location whose entries to query:") );
+	if( locationName.isEmpty() == false )
 	{
-		vDebug() << "[TEST][LDAP] Testing computer room members for" << computerRoomName;
+		vDebug() << "[TEST][LDAP] Testing location entries for" << locationName;
 
 		LdapDirectory ldapDirectory( m_configuration );
-		reportLdapObjectQueryResults( tr( "computer room members" ),
-									  tr( "computer group filter or computer room member aggregation" ),
-									  ldapDirectory.computerRoomMembers( computerRoomName ), ldapDirectory );
+		reportLdapObjectQueryResults( tr( "location entries" ),
+									  tr( "computer group filter or computer location identifiaction" ),
+									  ldapDirectory.computerLocationEntries( locationName ), ldapDirectory );
 	}
 }
 
 
 
-void LdapConfigurationPage::testComputerRooms()
+void LdapConfigurationPage::testLocations()
 {
-	vDebug() << "[TEST][LDAP] Querying all computer rooms";
+	vDebug() << "[TEST][LDAP] Querying all locations";
 
 	LdapDirectory ldapDirectory( m_configuration );
-	reportLdapObjectQueryResults( tr( "computer rooms" ),
-								  tr( "computer group filter or computer room member aggregation" ),
-								  ldapDirectory.computerRooms(), ldapDirectory );
+	reportLdapObjectQueryResults( tr( "location entries" ),
+								  tr( "computer group filter or computer location identification" ),
+								  ldapDirectory.computerLocations(), ldapDirectory );
 }
 
 

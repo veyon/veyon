@@ -37,9 +37,9 @@ BuiltinDirectoryConfigurationPage::BuiltinDirectoryConfigurationPage( BuiltinDir
 {
 	ui->setupUi(this);
 
-	populateRooms();
+	populateLocations();
 
-	connect( ui->roomTableWidget, &QTableWidget::currentItemChanged,
+	connect( ui->locationTableWidget, &QTableWidget::currentItemChanged,
 			 this, &BuiltinDirectoryConfigurationPage::populateComputers );
 }
 
@@ -54,9 +54,9 @@ BuiltinDirectoryConfigurationPage::~BuiltinDirectoryConfigurationPage()
 
 void BuiltinDirectoryConfigurationPage::resetWidgets()
 {
-	populateRooms();
+	populateLocations();
 
-	ui->roomTableWidget->setCurrentCell( 0, 0 );
+	ui->locationTableWidget->setCurrentCell( 0, 0 );
 }
 
 
@@ -73,63 +73,63 @@ void BuiltinDirectoryConfigurationPage::applyConfiguration()
 
 
 
-void BuiltinDirectoryConfigurationPage::addRoom()
+void BuiltinDirectoryConfigurationPage::addLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.add( NetworkObject( NetworkObject::Group, tr( "New room" ),
-											QString(), QString(), QString(), QUuid::createUuid() ) );
+	objectManager.add( NetworkObject( NetworkObject::Location, tr( "New location" ),
+									  QString(), QString(), QString(), QUuid::createUuid() ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	populateRooms();
+	populateLocations();
 
-	ui->roomTableWidget->setCurrentCell( ui->roomTableWidget->rowCount()-1, 0 );
+	ui->locationTableWidget->setCurrentCell( ui->locationTableWidget->rowCount()-1, 0 );
 }
 
 
 
-void BuiltinDirectoryConfigurationPage::updateRoom()
+void BuiltinDirectoryConfigurationPage::updateLocation()
 {
-	auto currentRoomIndex = ui->roomTableWidget->currentIndex();
-	if( currentRoomIndex.isValid() == false )
+	auto currentLocationIndex = ui->locationTableWidget->currentIndex();
+	if( currentLocationIndex.isValid() == false )
 	{
 		return;
 	}
 
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.update( currentRoomObject() );
+	objectManager.update( currentLocationObject() );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	populateRooms();
+	populateLocations();
 
-	ui->roomTableWidget->setCurrentIndex( currentRoomIndex );
+	ui->locationTableWidget->setCurrentIndex( currentLocationIndex );
 }
 
 
 
-void BuiltinDirectoryConfigurationPage::removeRoom()
+void BuiltinDirectoryConfigurationPage::removeLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.remove( currentRoomObject(), true );
+	objectManager.remove( currentLocationObject(), true );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	populateRooms();
+	populateLocations();
 }
 
 
 
 void BuiltinDirectoryConfigurationPage::addComputer()
 {
-	auto currentRoomUid = currentRoomObject().uid();
-	if( currentRoomUid.isNull() )
+	auto currentLocationUid = currentLocationObject().uid();
+	if( currentLocationUid.isNull() )
 	{
 		return;
 	}
 
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.add( NetworkObject( NetworkObject::Host, tr( "New computer" ),
-											QString(), QString(), QString(),
-											QUuid::createUuid(),
-											currentRoomUid ) );
+									  QString(), QString(), QString(),
+									  QUuid::createUuid(),
+									  currentLocationUid ) );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
@@ -169,10 +169,10 @@ void BuiltinDirectoryConfigurationPage::removeComputer()
 
 
 
-void BuiltinDirectoryConfigurationPage::populateRooms()
+void BuiltinDirectoryConfigurationPage::populateLocations()
 {
-	ui->roomTableWidget->setUpdatesEnabled( false );
-	ui->roomTableWidget->clear();
+	ui->locationTableWidget->setUpdatesEnabled( false );
+	ui->locationTableWidget->clear();
 
 	int rowCount = 0;
 
@@ -180,23 +180,23 @@ void BuiltinDirectoryConfigurationPage::populateRooms()
 	for( const auto& networkObjectValue : networkObjects )
 	{
 		const NetworkObject networkObject( networkObjectValue.toObject() );
-		if( networkObject.type() == NetworkObject::Group )
+		if( networkObject.type() == NetworkObject::Location )
 		{
 			auto item = new QTableWidgetItem( networkObject.name() );
 			item->setData( NetworkObjectModel::UidRole, networkObject.uid() );
-			ui->roomTableWidget->setRowCount( ++rowCount );
-			ui->roomTableWidget->setItem( rowCount-1, 0, item );
+			ui->locationTableWidget->setRowCount( ++rowCount );
+			ui->locationTableWidget->setItem( rowCount-1, 0, item );
 		}
 	}
 
-	ui->roomTableWidget->setUpdatesEnabled( true );
+	ui->locationTableWidget->setUpdatesEnabled( true );
 }
 
 
 
 void BuiltinDirectoryConfigurationPage::populateComputers()
 {
-	auto parentUid = currentRoomObject().uid();
+	auto parentUid = currentLocationObject().uid();
 
 	ui->computerTableWidget->setUpdatesEnabled( false );
 	ui->computerTableWidget->setRowCount( 0 );
@@ -209,7 +209,7 @@ void BuiltinDirectoryConfigurationPage::populateComputers()
 		const NetworkObject networkObject( networkObjectValue.toObject() );
 
 		if( networkObject.type() == NetworkObject::Host &&
-				networkObject.parentUid() == parentUid )
+			networkObject.parentUid() == parentUid )
 		{
 			auto nameItem = new QTableWidgetItem( networkObject.name() );
 			nameItem->setData( NetworkObjectModel::UidRole, networkObject.uid() );
@@ -228,18 +228,18 @@ void BuiltinDirectoryConfigurationPage::populateComputers()
 
 
 
-NetworkObject BuiltinDirectoryConfigurationPage::currentRoomObject() const
+NetworkObject BuiltinDirectoryConfigurationPage::currentLocationObject() const
 {
-	const auto selectedRoom = ui->roomTableWidget->currentItem();
-	if( selectedRoom )
+	const auto selectedLocation = ui->locationTableWidget->currentItem();
+	if( selectedLocation )
 	{
-		return NetworkObject( NetworkObject::Group,
-							  selectedRoom->text(),
+		return NetworkObject( NetworkObject::Location,
+							  selectedLocation->text(),
 							  QString(),
 							  QString(),
 							  QString(),
-							  selectedRoom->data( NetworkObjectModel::UidRole ).toUuid(),
-							  selectedRoom->data( NetworkObjectModel::ParentUidRole ).toUuid() );
+							  selectedLocation->data( NetworkObjectModel::UidRole ).toUuid(),
+							  selectedLocation->data( NetworkObjectModel::ParentUidRole ).toUuid() );
 	}
 
 	return NetworkObject();

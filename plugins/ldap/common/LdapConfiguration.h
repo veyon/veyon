@@ -50,16 +50,20 @@
 	OP( LdapConfiguration, m_configuration, STRING, computerHostNameAttribute, setComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, BOOL, computerHostNameAsFQDN, setComputerHostNameAsFQDN, "ComputerHostNameAsFQDN", "LDAP", false, Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, computerMacAddressAttribute, setComputerMacAddressAttribute, "ComputerMacAddressAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
-	OP( LdapConfiguration, m_configuration, STRING, computerRoomNameAttribute, setComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
+	OP( LdapConfiguration, m_configuration, STRING, locationNameAttribute, setLocationNameAttribute, "LocationNameAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, usersFilter, setUsersFilter, "UsersFilter", "LDAP", QString(), Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, userGroupsFilter, setUserGroupsFilter, "UserGroupsFilter", "LDAP", QString(), Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, computersFilter, setComputersFilter, "ComputersFilter", "LDAP", QString(), Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, BOOL, identifyGroupMembersByNameAttribute, setIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP", false, Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, computerGroupsFilter, setComputerGroupsFilter, "ComputerGroupsFilter", "LDAP", QString(), Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, computerContainersFilter, setComputerContainersFilter, "ComputerContainersFilter", "LDAP", QString(), Configuration::Object::StandardProperty )	\
-	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByContainer, setComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP", false, Configuration::Object::StandardProperty )	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerLocationsByContainer, setComputerLocationsByContainer, "ComputerLocationsByContainer", "LDAP", false, Configuration::Object::StandardProperty )	\
+	OP( LdapConfiguration, m_configuration, BOOL, computerLocationsByAttribute, setComputerLocationsByAttribute, "ComputerLocationsByAttribute", "LDAP", false, Configuration::Object::StandardProperty )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerLocationAttribute, setComputerLocationAttribute, "ComputerLocationAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
+/*	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByContainer, setComputerRoomMembersByContainer, "ComputerRoomMembersByContainer", "LDAP", false, Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, BOOL, computerRoomMembersByAttribute, setComputerRoomMembersByAttribute, "ComputerRoomMembersByAttribute", "LDAP", false, Configuration::Object::StandardProperty )	\
 	OP( LdapConfiguration, m_configuration, STRING, computerRoomAttribute, setComputerRoomAttribute, "ComputerRoomAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )	\
+	OP( LdapConfiguration, m_configuration, STRING, computerRoomNameAttribute, setComputerRoomNameAttribute, "ComputerRoomNameAttribute", "LDAP", QString(), Configuration::Object::StandardProperty )*/	\
 
 
 DECLARE_CONFIG_PROXY(LdapConfiguration, FOREACH_LDAP_CONFIG_PROPERTY)

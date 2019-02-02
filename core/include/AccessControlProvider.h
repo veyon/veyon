@@ -43,8 +43,8 @@ public:
 	AccessControlProvider();
 
 	QStringList userGroups() const;
-	QStringList rooms() const;
-	QStringList roomsOfComputer( const QString& computer ) const;
+	QStringList locations() const;
+	QStringList locationsOfComputer( const QString& computer ) const;
 
 	AccessResult checkAccess( const QString& accessingUser, const QString& accessingComputer,
 							  const QStringList& connectedUsers );
@@ -61,9 +61,9 @@ public:
 
 private:
 	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;
-	bool isLocatedInRoom( const QString& computer, const QString& roomName ) const;
+	bool isLocatedIn( const QString& computer, const QString& roomName ) const;
 	bool hasGroupsInCommon( const QString& userOne, const QString& userTwo ) const;
-	bool isLocatedInSameRoom( const QString& computerOne, const QString& computerTwo ) const;
+	bool hasLocationsInCommon( const QString& computerOne, const QString& computerTwo ) const;
 	bool isLocalHost( const QString& accessingComputer ) const;
 	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
 	bool isNoUserLoggedOn() const;

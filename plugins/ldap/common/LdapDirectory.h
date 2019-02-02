@@ -60,12 +60,12 @@ public:
 	QStringList userGroups( const QString& filterValue = QString() );
 	QStringList computers( const QString& filterValue = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
-	QStringList computerRooms( const QString& filterValue = QString() );
+	QStringList computerLocations( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );
 	QStringList groupsOfComputer( const QString& computerDn );
-	QStringList computerRoomsOfComputer( const QString& computerDn );
+	QStringList locationsOfComputer( const QString& computerDn );
 
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
@@ -74,7 +74,7 @@ public:
 	QString groupMemberUserIdentification( const QString& userDn );
 	QString groupMemberComputerIdentification( const QString& computerDn );
 
-	QStringList computerRoomMembers( const QString& computerRoomName );
+	QStringList computerLocationEntries( const QString& locationName );
 
 	QString hostToLdapFormat( const QString& host );
 	QString computerObjectFromHost( const QString& host );
@@ -95,7 +95,7 @@ private:
 	QString m_groupMemberAttribute;
 	QString m_computerHostNameAttribute;
 	QString m_computerMacAddressAttribute;
-	QString m_computerRoomNameAttribute;
+	QString m_locationNameAttribute;
 
 	QString m_usersFilter;
 	QString m_userGroupsFilter;
@@ -103,11 +103,11 @@ private:
 	QString m_computerGroupsFilter;
 	QString m_computerParentsFilter;
 
-	QString m_computerRoomAttribute;
+	QString m_computerLocationAttribute;
 
 	bool m_identifyGroupMembersByNameAttribute = false;
-	bool m_computerRoomMembersByContainer = false;
-	bool m_computerRoomMembersByAttribute = false;
+	bool m_computerLocationsByContainer = false;
+	bool m_computerLocationsByAttribute = false;
 	bool m_computerHostNameAsFQDN = false;
 
 };

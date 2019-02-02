@@ -37,7 +37,7 @@ public:
 	void update() override;
 
 private:
-	void updateRoom( const NetworkObject& roomObject, const QJsonArray& networkObjects );
+	void updateLocation( const NetworkObject& locationObject, const QJsonArray& networkObjects );
 
 	BuiltinDirectoryConfiguration& m_configuration;
 

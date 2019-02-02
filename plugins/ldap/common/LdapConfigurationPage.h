@@ -62,8 +62,8 @@ private:
 	void testGroupMemberAttribute();
 	void testComputerHostNameAttribute();
 	void testComputerMacAddressAttribute();
-	void testComputerRoomAttribute();
-	void testComputerRoomNameAttribute();
+	void testComputerLocationAttribute();
+	void testLocationNameAttribute();
 	void testUsersFilter();
 	void testUserGroupsFilter();
 	void testComputersFilter();
@@ -72,8 +72,8 @@ private:
 	void testGroupsOfUser();
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();
-	void testComputerRoomMembers();
-	void testComputerRooms();
+	void testLocationEntries();
+	void testLocations();
 
 	void browseCACertificateFile();
 

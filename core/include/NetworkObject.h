@@ -41,7 +41,7 @@ public:
 	{
 		None,
 		Root,
-		Group,
+		Location,
 		Host,
 		Label,
 		TypeCount
