@@ -95,6 +95,8 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 		}
 	}
 
+	std::sort( locationList.begin(), locationList.end() );
+
 	return locationList;
 }
 
