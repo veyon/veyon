@@ -79,6 +79,10 @@ public:
 	QString hostToLdapFormat( const QString& host );
 	QString computerObjectFromHost( const QString& host );
 
+	const QString& computersDn() const
+	{
+		return m_computersDn;
+	}
 
 private:
 	const LdapConfiguration& m_configuration;
