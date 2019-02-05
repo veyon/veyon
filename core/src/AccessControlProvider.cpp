@@ -84,7 +84,7 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 	}
 
 	QStringList locationList;
-	locationList.reserve( computers.size() );
+	locationList.reserve( computers.size()*3 );
 
 	for( const auto& computer : computers )
 	{
