@@ -373,13 +373,13 @@ QStringList LdapClient::queryNamingContexts( const QString& attribute )
 
 QString LdapClient::parentDn( const QString& dn )
 {
-	const auto separatorPos = dn.indexOf( QLatin1Char(',') );
-	if( separatorPos > 0 && separatorPos+1 < dn.size() )
+	auto rdns = toRDNs( dn );
+	if( rdns.size() > 1 )
 	{
-		return dn.mid( separatorPos + 1 );
+		return rdns.mid( 1 ).join( QLatin1Char( ',') );
 	}
 
-	return QString();
+	return {};
 }
 
 
