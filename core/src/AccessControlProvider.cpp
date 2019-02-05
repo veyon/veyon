@@ -247,7 +247,7 @@ bool AccessControlProvider::hasGroupsInCommon( const QString &userOne, const QSt
 
 
 
-bool AccessControlProvider::hasLocationsInCommon( const QString &computerOne, const QString &computerTwo ) const
+bool AccessControlProvider::haveSameLocations( const QString &computerOne, const QString &computerTwo ) const
 {
 	const auto computerOneLocations = locationsOfComputer( computerOne );
 	const auto computerTwoLocations = locationsOfComputer( computerTwo );
@@ -363,7 +363,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		hasConditions = true;
 
 		if( accessingComputer.isEmpty() || localComputer.isEmpty() ||
-			hasLocationsInCommon( accessingComputer, localComputer ) != matchResult )
+			haveSameLocations( accessingComputer, localComputer ) != matchResult )
 		{
 			return false;
 		}
