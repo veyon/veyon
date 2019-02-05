@@ -254,7 +254,8 @@ bool AccessControlProvider::haveSameLocations( const QString &computerOne, const
 	const auto computerOneLocations = locationsOfComputer( computerOne );
 	const auto computerTwoLocations = locationsOfComputer( computerTwo );
 
-	return intersects( computerOneLocations .toSet(), computerTwoLocations .toSet() );
+	return computerOneLocations.isEmpty() == false &&
+			computerOneLocations == computerTwoLocations;
 }
 
 
