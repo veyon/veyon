@@ -102,7 +102,7 @@ private:
 	QString m_userGroupsFilter;
 	QString m_computersFilter;
 	QString m_computerGroupsFilter;
-	QString m_computerParentsFilter;
+	QString m_computerContainersFilter;
 
 	QString m_computerLocationAttribute;
 

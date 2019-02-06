@@ -71,7 +71,7 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_userGroupsFilter = m_configuration.userGroupsFilter();
 	m_computersFilter = m_configuration.computersFilter();
 	m_computerGroupsFilter = m_configuration.computerGroupsFilter();
-	m_computerParentsFilter = m_configuration.computerContainersFilter();
+	m_computerContainersFilter = m_configuration.computerContainersFilter();
 
 	m_identifyGroupMembersByNameAttribute = m_configuration.identifyGroupMembersByNameAttribute();
 
@@ -111,7 +111,7 @@ void LdapDirectory::disableFilters()
 	m_userGroupsFilter.clear();
 	m_computersFilter.clear();
 	m_computerGroupsFilter.clear();
-	m_computerParentsFilter.clear();
+	m_computerContainersFilter.clear();
 }
 
 
@@ -181,7 +181,7 @@ QStringList LdapDirectory::computerLocations( const QString& filterValue )
 	{
 		locations = m_client.queryAttributeValues( m_computersDn,
 												   m_locationNameAttribute,
-												   LdapClient::constructQueryFilter( m_locationNameAttribute, filterValue, m_computerParentsFilter ) ,
+												   LdapClient::constructQueryFilter( m_locationNameAttribute, filterValue, m_computerContainersFilter ) ,
 												   m_defaultSearchScope );
 	}
 	else
@@ -339,7 +339,7 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 	}
 	else if( m_computerLocationsByContainer )
 	{
-		const auto locationDnFilter = LdapClient::constructQueryFilter( m_locationNameAttribute, locationName, m_computerParentsFilter );
+		const auto locationDnFilter = LdapClient::constructQueryFilter( m_locationNameAttribute, locationName, m_computerContainersFilter );
 		const auto locationDns = m_client.queryDistinguishedNames( m_computersDn, locationDnFilter, m_defaultSearchScope );
 
 		return m_client.queryDistinguishedNames( locationDns.value( 0 ),
