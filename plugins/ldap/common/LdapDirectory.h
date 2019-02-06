@@ -37,10 +37,7 @@ public:
 	LdapDirectory( const LdapConfiguration& configuration, QObject* parent = nullptr );
 	~LdapDirectory() = default;
 
-	const LdapConfiguration& configuration() const
-	{
-		return m_configuration;
-	}
+	const QString& configInstanceId() const;
 
 	const LdapClient& client() const
 	{

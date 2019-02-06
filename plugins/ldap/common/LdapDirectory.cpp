@@ -83,6 +83,13 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 
 
 
+const QString& LdapDirectory::configInstanceId() const
+{
+	return m_configuration.instanceId();
+}
+
+
+
 /*!
  * \brief Disables any configured attributes which is required for some test scenarious
  */
