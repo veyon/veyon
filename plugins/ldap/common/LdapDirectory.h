@@ -81,6 +81,36 @@ public:
 		return m_computersDn;
 	}
 
+	const QString& computersFilter() const
+	{
+		return m_computersFilter;
+	}
+
+	const QString& computerContainersFilter() const
+	{
+		return m_computerContainersFilter;
+	}
+
+	const QString& locationNameAttribute() const
+	{
+		return m_locationNameAttribute;
+	}
+
+	const QString& computerHostNameAttribute() const
+	{
+		return m_computerHostNameAttribute;
+	}
+
+	const QString& computerMacAddressAttribute() const
+	{
+		return m_computerMacAddressAttribute;
+	}
+
+	bool computerLocationsByContainer() const
+	{
+		return m_computerLocationsByContainer;
+	}
+
 private:
 	const LdapConfiguration& m_configuration;
 	LdapClient m_client;
