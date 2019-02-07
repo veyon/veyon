@@ -40,10 +40,10 @@ public:
 
 private slots:
 	void update() override;
-	void updateGroup( const NetworkObject& groupObject );
+	void updateLocation( const NetworkObject& locationObject );
 
 private:
-	NetworkObjectList queryGroups( const QString& name );
+	NetworkObjectList queryLocations( const QString& name );
 	NetworkObjectList queryHosts( const QString& name );
 
 	LdapDirectory m_ldapDirectory;

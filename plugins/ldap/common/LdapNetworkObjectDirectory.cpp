@@ -40,7 +40,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryObjects( NetworkObject::Type 
 {
 	switch( type )
 	{
-	case NetworkObject::Location: return queryGroups( name );
+	case NetworkObject::Location: return queryLocations( name );
 	case NetworkObject::Host: return queryHosts( name );
 	default: break;
 	}
@@ -79,7 +79,7 @@ void LdapNetworkObjectDirectory::update()
 
 		addOrUpdateObject( locationObject, rootObject );
 
-		updateGroup( locationObject );
+		updateLocation( locationObject );
 	}
 
 	removeObjects( NetworkObject::Root, [locations]( const NetworkObject& object ) {
@@ -88,40 +88,38 @@ void LdapNetworkObjectDirectory::update()
 
 
 
-void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
+void LdapNetworkObjectDirectory::updateLocation( const NetworkObject& locationObject )
 {
-	const auto computers = m_ldapDirectory.computerLocationEntries( groupObject.name() );
-
-	bool hasMacAddressAttribute = ( m_ldapDirectory.configuration().computerMacAddressAttribute().count() > 0 );
+	const auto computers = m_ldapDirectory.computerLocationEntries( locationObject.name() );
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
 		const auto hostObject = computerToObject( &m_ldapDirectory, computer );
 		if( hostObject.type() == NetworkObject::Host )
 		{
-			addOrUpdateObject( hostObject, groupObject );
+			addOrUpdateObject( hostObject, locationObject );
 		}
 	}
 
-	removeObjects( groupObject, [computers]( const NetworkObject& object ) {
+	removeObjects( locationObject, [computers]( const NetworkObject& object ) {
 		return object.type() == NetworkObject::Host && computers.contains( object.directoryAddress() ) == false; } );
 }
 
 
 
-NetworkObjectList LdapNetworkObjectDirectory::queryGroups( const QString& name )
+NetworkObjectList LdapNetworkObjectDirectory::queryLocations( const QString& name )
 {
-	const auto groups = m_ldapDirectory.computerLocations( name );
+	const auto locations = m_ldapDirectory.computerLocations( name );
 
-	NetworkObjectList groupObjects;
-	groupObjects.reserve( groups.size() );
+	NetworkObjectList locationObjects;
+	locationObjects.reserve( locations.size() );
 
-	for( const auto& group : groups )
+	for( const auto& location : locations )
 	{
-		groupObjects.append( NetworkObject( NetworkObject::Location, group ) );
+		locationObjects.append( NetworkObject( NetworkObject::Location, location ) );
 	}
 
-	return groupObjects;
+	return locationObjects;
 }
 
 
