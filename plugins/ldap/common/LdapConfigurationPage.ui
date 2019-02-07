@@ -455,6 +455,20 @@
           <string>Object attributes</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_22">
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="locationNameAttribute">
+            <property name="placeholderText">
+             <string>e.g. name or description</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="4">
+           <widget class="QCheckBox" name="computerHostNameAsFQDN">
+            <property name="text">
+             <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="2">
            <widget class="QPushButton" name="browseUserLoginAttribute">
             <property name="icon">
@@ -463,39 +477,13 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_44">
-            <property name="text">
-             <string>Computer location attribute</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="4">
-           <widget class="QCheckBox" name="computerHostNameAsFQDN">
-            <property name="text">
-             <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
-            </property>
-           </widget>
-          </item>
           <item row="6" column="1">
-           <widget class="QLineEdit" name="locationNameAttribute">
-            <property name="placeholderText">
-             <string>e.g. name or description</string>
+           <widget class="QLineEdit" name="computerLocationAttribute">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="groupMemberAttribute">
             <property name="placeholderText">
-             <string>e.g. member or memberUid</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QPushButton" name="browseComputerMacAddressAttribute">
-            <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+             <string>e.g. room or computerLab</string>
             </property>
            </widget>
           </item>
@@ -506,71 +494,25 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="userLoginAttribute">
-            <property name="placeholderText">
-             <string>e.g. uid or sAMAccountName</string>
-            </property>
-           </widget>
-          </item>
           <item row="6" column="0">
-           <widget class="QLabel" name="label_42">
+           <widget class="QLabel" name="label_44">
             <property name="text">
-             <string>Location name attribute</string>
+             <string>Computer location attribute</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="computerLocationAttribute">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="groupMemberAttribute">
             <property name="placeholderText">
-             <string>e.g. room or computerLab</string>
+             <string>e.g. member or memberUid</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="browseComputerHostNameAttribute">
+          <item row="5" column="3">
+           <widget class="QPushButton" name="testComputerMacAddressAttribute">
             <property name="icon">
              <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="browseGroupMemberAttribute">
-            <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_39">
-            <property name="text">
-             <string>Computer MAC address attribute</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="computerHostNameAttribute">
-            <property name="placeholderText">
-             <string>e.g. dNSHostName</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="computerMacAddressAttribute">
-            <property name="placeholderText">
-             <string>e.g. hwAddress</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_38">
-            <property name="text">
-             <string>Computer host name attribute</string>
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -578,25 +520,6 @@
            <widget class="QLabel" name="label_35">
             <property name="text">
              <string>Group member attribute</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2">
-           <widget class="QPushButton" name="browseComputerLocationAttribute">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2">
-           <widget class="QPushButton" name="browseLocationNameAttribute">
-            <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
           </item>
@@ -608,6 +531,54 @@
             </property>
            </widget>
           </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="computerMacAddressAttribute">
+            <property name="placeholderText">
+             <string>e.g. hwAddress</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_39">
+            <property name="text">
+             <string>Computer MAC address attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="computerHostNameAttribute">
+            <property name="placeholderText">
+             <string>e.g. dNSHostName</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="browseComputerHostNameAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="testComputerHostNameAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QPushButton" name="browseComputerLocationAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="3">
            <widget class="QPushButton" name="testGroupMemberAttribute">
             <property name="icon">
@@ -616,23 +587,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="3">
-           <widget class="QPushButton" name="testComputerHostNameAttribute">
-            <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3">
-           <widget class="QPushButton" name="testComputerMacAddressAttribute">
-            <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
-              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="3">
+          <item row="6" column="3">
            <widget class="QPushButton" name="testComputerLocationAttribute">
             <property name="enabled">
              <bool>false</bool>
@@ -643,8 +598,83 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="3">
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="userLoginAttribute">
+            <property name="placeholderText">
+             <string>e.g. uid or sAMAccountName</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="computerDisplayNameAttributeLabel">
+            <property name="text">
+             <string>Computer display name attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="text">
+             <string>Computer host name attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_42">
+            <property name="text">
+             <string>Location name attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="browseGroupMemberAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2">
+           <widget class="QPushButton" name="browseLocationNameAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QPushButton" name="browseComputerMacAddressAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="3">
            <widget class="QPushButton" name="testLocationNameAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="computerDisplayNameAttribute">
+            <property name="placeholderText">
+             <string>e.g. cn or displayName</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="browseComputerDisplayNameAttribute">
+            <property name="icon">
+             <iconset resource="../../../core/resources/core.qrc">
+              <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QPushButton" name="testComputerDisplayNameAttribute">
             <property name="icon">
              <iconset resource="../../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
@@ -1005,6 +1035,7 @@
   <tabstop>recursiveSearchOperations</tabstop>
   <tabstop>userLoginAttribute</tabstop>
   <tabstop>groupMemberAttribute</tabstop>
+  <tabstop>computerDisplayNameAttribute</tabstop>
   <tabstop>computerHostNameAttribute</tabstop>
   <tabstop>computerHostNameAsFQDN</tabstop>
   <tabstop>computerMacAddressAttribute</tabstop>
@@ -1014,6 +1045,8 @@
   <tabstop>testUserLoginAttribute</tabstop>
   <tabstop>browseGroupMemberAttribute</tabstop>
   <tabstop>testGroupMemberAttribute</tabstop>
+  <tabstop>browseComputerDisplayNameAttribute</tabstop>
+  <tabstop>testComputerDisplayNameAttribute</tabstop>
   <tabstop>browseComputerHostNameAttribute</tabstop>
   <tabstop>testComputerHostNameAttribute</tabstop>
   <tabstop>browseComputerMacAddressAttribute</tabstop>

@@ -55,6 +55,7 @@ public:
 	QStringList users( const QString& filterValue = QString() );
 	QStringList groups( const QString& filterValue = QString() );
 	QStringList userGroups( const QString& filterValue = QString() );
+	QStringList computersByDisplayName( const QString& filterValue = QString() );
 	QStringList computers( const QString& filterValue = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
 	QStringList computerLocations( const QString& filterValue = QString() );
@@ -65,6 +66,7 @@ public:
 	QStringList locationsOfComputer( const QString& computerDn );
 
 	QString userLoginName( const QString& userDn );
+	QString computerDisplayName( const QString& computerDn );
 	QString computerHostName( const QString& computerDn );
 	QString computerMacAddress( const QString& computerDn );
 	QString groupMemberUserIdentification( const QString& userDn );
@@ -123,6 +125,7 @@ private:
 
 	QString m_userLoginAttribute;
 	QString m_groupMemberAttribute;
+	QString m_computerDisplayNameAttribute;
 	QString m_computerHostNameAttribute;
 	QString m_computerMacAddressAttribute;
 	QString m_locationNameAttribute;

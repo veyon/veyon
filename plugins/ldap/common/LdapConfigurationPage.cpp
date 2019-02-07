@@ -51,6 +51,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 
 	connect( ui->browseUserLoginAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->userLoginAttribute, m_configuration.userTree() ); } );
 	connect( ui->browseGroupMemberAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->groupMemberAttribute, m_configuration.groupTree() ); } );
+	connect( ui->browseComputerDisplayNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerDisplayNameAttribute, m_configuration.computerTree() ); } );
 	connect( ui->browseComputerHostNameAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerHostNameAttribute, m_configuration.computerTree() ); } );
 	connect( ui->browseComputerMacAddressAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerMacAddressAttribute, m_configuration.computerTree() ); } );
 	connect( ui->browseComputerLocationAttribute, &QPushButton::clicked, this, [this]() { browseAttribute( ui->computerLocationAttribute, m_configuration.computerTree() ); } );
@@ -66,6 +67,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 
 	CONNECT_BUTTON_SLOT( testUserLoginAttribute );
 	CONNECT_BUTTON_SLOT( testGroupMemberAttribute );
+	CONNECT_BUTTON_SLOT( testComputerDisplayNameAttribute );
 	CONNECT_BUTTON_SLOT( testComputerHostNameAttribute );
 	CONNECT_BUTTON_SLOT( testComputerMacAddressAttribute );
 	CONNECT_BUTTON_SLOT( testComputerLocationAttribute );
@@ -336,6 +338,25 @@ void LdapConfigurationPage::testGroupMemberAttribute()
 									  "tree parameter.").arg( groupFilter ) );
 		}
 	}
+}
+
+
+
+void LdapConfigurationPage::testComputerDisplayNameAttribute()
+{
+	auto computerName = QInputDialog::getText( this, tr( "Enter computer display name" ),
+											   tr( "Please enter a computer display name to query:") );
+	if( computerName.isEmpty() == false )
+	{
+		vDebug() << "[TEST][LDAP] Testing computer display name attribute";
+
+		LdapDirectory ldapDirectory( m_configuration );
+		ldapDirectory.disableFilters();
+
+		reportLdapObjectQueryResults( tr( "computer objects" ), ui->computerDisplayNameAttributeLabel->text(),
+									  ldapDirectory.computersByDisplayName( computerName ), ldapDirectory );
+	}
+
 }
 
 

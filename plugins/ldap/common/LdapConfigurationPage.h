@@ -60,6 +60,7 @@ private:
 	void testComputerGroupTree();
 	void testUserLoginAttribute();
 	void testGroupMemberAttribute();
+	void testComputerDisplayNameAttribute();
 	void testComputerHostNameAttribute();
 	void testComputerMacAddressAttribute();
 	void testComputerLocationAttribute();

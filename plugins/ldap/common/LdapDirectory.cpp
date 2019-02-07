@@ -58,6 +58,7 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 
 	m_userLoginAttribute = m_configuration.userLoginAttribute();
 	m_groupMemberAttribute = m_configuration.groupMemberAttribute();
+	m_computerDisplayNameAttribute = m_configuration.computerDisplayNameAttribute();
 	m_computerHostNameAttribute = m_configuration.computerHostNameAttribute();
 	m_computerHostNameAsFQDN = m_configuration.computerHostNameAsFQDN();
 	m_computerMacAddressAttribute = m_configuration.computerMacAddressAttribute();
@@ -96,6 +97,7 @@ const QString& LdapDirectory::configInstanceId() const
 void LdapDirectory::disableAttributes()
 {
 	m_userLoginAttribute.clear();
+	m_computerDisplayNameAttribute.clear();
 	m_computerHostNameAttribute.clear();
 	m_computerMacAddressAttribute.clear();
 }
@@ -141,6 +143,16 @@ QStringList LdapDirectory::userGroups( const QString& filterValue )
 											 LdapClient::constructQueryFilter( QStringLiteral( "cn" ), filterValue, m_userGroupsFilter ),
 											 m_defaultSearchScope );
 }
+
+
+
+QStringList LdapDirectory::computersByDisplayName( const QString& filterValue )
+{
+	return m_client.queryDistinguishedNames( m_computersDn,
+											 LdapClient::constructQueryFilter( m_computerDisplayNameAttribute, filterValue, m_computersFilter ),
+											 m_defaultSearchScope );
+}
+
 
 
 /*!
@@ -266,6 +278,14 @@ QStringList LdapDirectory::locationsOfComputer( const QString& computerDn )
 QString LdapDirectory::userLoginName( const QString& userDn )
 {
 	return m_client.queryAttributeValues( userDn, m_userLoginAttribute ).value( 0 );
+}
+
+
+
+QString LdapDirectory::computerDisplayName( const QString& computerDn )
+{
+	return m_client.queryAttributeValues( computerDn, m_computerDisplayNameAttribute ).value( 0 );
+
 }
 
 
