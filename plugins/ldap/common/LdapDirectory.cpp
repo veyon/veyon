@@ -270,17 +270,6 @@ QString LdapDirectory::userLoginName( const QString& userDn )
 
 
 
-QString LdapDirectory::groupName( const QString& groupDn )
-{
-	return m_client.queryAttributeValues( groupDn,
-										  QStringLiteral( "cn" ),
-										  QStringLiteral( "(objectclass=*)" ),
-										  LdapClient::Scope::Base ).
-			value( 0 );
-}
-
-
-
 QString LdapDirectory::computerHostName( const QString& computerDn )
 {
 	if( computerDn.isEmpty() )

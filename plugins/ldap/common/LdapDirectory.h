@@ -65,7 +65,6 @@ public:
 	QStringList locationsOfComputer( const QString& computerDn );
 
 	QString userLoginName( const QString& userDn );
-	QString groupName( const QString& groupDn );
 	QString computerHostName( const QString& computerDn );
 	QString computerMacAddress( const QString& computerDn );
 	QString groupMemberUserIdentification( const QString& userDn );
