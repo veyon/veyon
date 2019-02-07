@@ -96,7 +96,7 @@ void LdapNetworkObjectDirectory::updateGroup( const NetworkObject& groupObject )
 
 	for( const auto& computer : qAsConst( computers ) )
 	{
-		const auto hostObject = computerToObject( computer, hasMacAddressAttribute );
+		const auto hostObject = computerToObject( &m_ldapDirectory, computer );
 		if( hostObject.type() == NetworkObject::Host )
 		{
 			addOrUpdateObject( hostObject, groupObject );
@@ -135,7 +135,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
 
 	for( const auto& computer : computers )
 	{
-		hostObjects.append( computerToObject( computer, false ) );
+		hostObjects.append( computerToObject( &m_ldapDirectory, computer ) );
 	}
 
 	return hostObjects;
@@ -143,23 +143,32 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
 
 
 
-NetworkObject LdapNetworkObjectDirectory::computerToObject( const QString& computerDn, bool populateMacAddres )
+NetworkObject LdapNetworkObjectDirectory::computerToObject( LdapDirectory* directory, const QString& computerDn )
 {
-	const auto computerHostName = m_ldapDirectory.computerHostName( computerDn );
-	if( computerHostName.isEmpty() )
+	auto hostNameAttribute = directory->computerHostNameAttribute();
+	if( hostNameAttribute.isEmpty() )
 	{
-		return NetworkObject::None;
+		hostNameAttribute = QStringLiteral("cn");
 	}
 
-	QString computerMacAddress;
-	if( populateMacAddres )
+	QStringList computerAttributes{ hostNameAttribute };
+	if( directory->computerMacAddressAttribute().isEmpty() == false )
 	{
-		computerMacAddress = m_ldapDirectory.computerMacAddress( computerDn );
+		computerAttributes.append( directory->computerMacAddressAttribute() );
 	}
 
-	return NetworkObject( NetworkObject::Host,
-						  computerHostName,
-						  computerHostName,
-						  computerMacAddress,
-						  computerDn );
+	const auto macAddressIndex = computerAttributes.indexOf( directory->computerMacAddressAttribute() );
+
+	const auto computers = directory->client().queryObjects( computerDn, computerAttributes,
+															 directory->computersFilter(), LdapClient::Scope::Base );
+	if( computers.isEmpty() == false )
+	{
+		const auto& computer = computers.first();
+		const auto hostName = computer[hostNameAttribute].value( 0 );
+		const auto macAddress = ( macAddressIndex >= 0 ) ? computer[computerAttributes[macAddressIndex]].value( 0 ) : QString();
+
+		return NetworkObject( NetworkObject::Host, hostName, hostName, macAddress, computer.firstKey() );
+	}
+
+	return NetworkObject::None;
 }

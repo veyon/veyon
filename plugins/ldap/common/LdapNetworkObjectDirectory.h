@@ -36,6 +36,8 @@ public:
 	NetworkObjectList queryObjects( NetworkObject::Type type, const QString& name ) override;
 	NetworkObjectList queryParents( const NetworkObject& childId ) override;
 
+	static NetworkObject computerToObject( LdapDirectory* directory, const QString& computerDn );
+
 private slots:
 	void update() override;
 	void updateGroup( const NetworkObject& groupObject );
@@ -43,8 +45,6 @@ private slots:
 private:
 	NetworkObjectList queryGroups( const QString& name );
 	NetworkObjectList queryHosts( const QString& name );
-
-	NetworkObject computerToObject( const QString& computerDn, bool populateMacAddres );
 
 	LdapDirectory m_ldapDirectory;
 };
