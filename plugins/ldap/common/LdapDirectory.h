@@ -56,7 +56,7 @@ public:
 	QStringList groups( const QString& filterValue = QString() );
 	QStringList userGroups( const QString& filterValue = QString() );
 	QStringList computersByDisplayName( const QString& filterValue = QString() );
-	QStringList computers( const QString& filterValue = QString() );
+	QStringList computersByHostName( const QString& filterValue = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
 	QStringList computerLocations( const QString& filterValue = QString() );
 

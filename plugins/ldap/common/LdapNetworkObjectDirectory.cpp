@@ -126,7 +126,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryLocations( const QString& nam
 
 NetworkObjectList LdapNetworkObjectDirectory::queryHosts( const QString& name )
 {
-	const auto computers = m_ldapDirectory.computers( name );
+	const auto computers = m_ldapDirectory.computersByHostName( name );
 
 	NetworkObjectList hostObjects;
 	hostObjects.reserve( computers.size() );

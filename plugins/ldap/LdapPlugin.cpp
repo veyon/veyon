@@ -212,7 +212,7 @@ CommandLinePluginInterface::RunResult LdapPlugin::handle_query( const QStringLis
 	}
 	else if( objectType == QStringLiteral("computers") )
 	{
-		results = ldapDirectory().computers( filter );
+		results = ldapDirectory().computersByHostName( filter );
 	}
 	else if( objectType == QStringLiteral("groups") )
 	{

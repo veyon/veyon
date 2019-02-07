@@ -160,7 +160,7 @@ QStringList LdapDirectory::computersByDisplayName( const QString& filterValue )
  * \param filterValue A filter value which is used to query the host name attribute
  * \return List of DNs of all matching computer objects
  */
-QStringList LdapDirectory::computers( const QString& filterValue )
+QStringList LdapDirectory::computersByHostName( const QString& filterValue )
 {
 	return m_client.queryDistinguishedNames( m_computersDn,
 											 LdapClient::constructQueryFilter( m_computerHostNameAttribute, filterValue, m_computersFilter ),
@@ -364,7 +364,7 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 		auto memberComputersSet = memberComputers.toSet();
 
 		// then return intersection of filtered computer list and group members
-		return memberComputersSet.intersect( computers().toSet() ).toList();
+		return memberComputersSet.intersect( computersByHostName().toSet() ).toList();
 	}
 
 	return memberComputers;
@@ -431,7 +431,7 @@ QString LdapDirectory::computerObjectFromHost( const QString& host )
 		return QString();
 	}
 
-	QStringList computerObjects = computers( hostName );
+	QStringList computerObjects = computersByHostName( hostName );
 	if( computerObjects.count() == 1 )
 	{
 		return computerObjects.first();

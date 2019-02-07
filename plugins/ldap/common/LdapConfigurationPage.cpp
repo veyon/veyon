@@ -269,7 +269,7 @@ void LdapConfigurationPage::testComputerTree()
 		LdapDirectory ldapDirectory( m_configuration );
 		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
-		int count = ldapDirectory.computers().count();
+		int count = ldapDirectory.computersByHostName().count();
 
 		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.client().errorDescription() );
 	}
@@ -392,7 +392,7 @@ void LdapConfigurationPage::testComputerHostNameAttribute()
 		ldapDirectory.disableFilters();
 
 		reportLdapObjectQueryResults( tr( "computer objects" ), tr( "computer host name attribute" ),
-									  ldapDirectory.computers( computerName ), ldapDirectory );
+									  ldapDirectory.computersByHostName( computerName ), ldapDirectory );
 	}
 }
 
@@ -422,7 +422,7 @@ void LdapConfigurationPage::testComputerMacAddressAttribute()
 void LdapConfigurationPage::testComputerLocationAttribute()
 {
 	const auto locationName = QInputDialog::getText( this, tr( "Enter computer location name" ),
-														 tr( "Please enter the name of a computer location (wildcards allowed):") );
+													 tr( "Please enter the name of a computer location (wildcards allowed):") );
 	if( locationName.isEmpty() == false )
 	{
 		vDebug() << "[TEST][LDAP] Testing computer location attribute for" << locationName;
@@ -483,7 +483,7 @@ void LdapConfigurationPage::testComputersFilter()
 	vDebug() << "[TEST][LDAP] Testing computers filter";
 
 	LdapDirectory ldapDirectory( m_configuration );
-	const auto count = ldapDirectory.computers().count();
+	const auto count = ldapDirectory.computersByHostName().count();
 
 	reportLdapFilterTestResult( tr( "computers" ), count, ldapDirectory.client().errorDescription() );
 }
@@ -556,7 +556,7 @@ void LdapConfigurationPage::testGroupsOfComputer()
 
 		LdapDirectory ldapDirectory( m_configuration );
 
-		QStringList computerObjects = ldapDirectory.computers(computerHostName);
+		QStringList computerObjects = ldapDirectory.computersByHostName(computerHostName);
 
 		if( computerObjects.isEmpty() == false )
 		{
@@ -598,7 +598,7 @@ void LdapConfigurationPage::testComputerObjectByIpAddress()
 		else
 		{
 			reportLdapObjectQueryResults( tr( "computers" ), tr( "computer host name attribute" ),
-										  ldapDirectory.computers( computerName ), ldapDirectory );
+										  ldapDirectory.computersByHostName( computerName ), ldapDirectory );
 		}
 
 	}
