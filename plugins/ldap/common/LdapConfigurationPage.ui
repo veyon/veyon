@@ -488,14 +488,14 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_33">
+           <widget class="QLabel" name="userLoginAttributeLabel">
             <property name="text">
              <string>User login attribute</string>
             </property>
            </widget>
           </item>
           <item row="6" column="0">
-           <widget class="QLabel" name="label_44">
+           <widget class="QLabel" name="computerLocationAttributeLabel">
             <property name="text">
              <string>Computer location attribute</string>
             </property>
@@ -517,7 +517,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="label_35">
+           <widget class="QLabel" name="groupMemberAttributeLabel">
             <property name="text">
              <string>Group member attribute</string>
             </property>
@@ -539,7 +539,7 @@
            </widget>
           </item>
           <item row="5" column="0">
-           <widget class="QLabel" name="label_39">
+           <widget class="QLabel" name="computerMacAddressAttributeLabel">
             <property name="text">
              <string>Computer MAC address attribute</string>
             </property>
@@ -613,7 +613,7 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="label_38">
+           <widget class="QLabel" name="computerHostNameAttributeLabel">
             <property name="text">
              <string>Computer host name attribute</string>
             </property>
@@ -711,7 +711,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_14">
           <item row="3" column="0">
-           <widget class="QLabel" name="label_37">
+           <widget class="QLabel" name="computerGroupsFilterLabel">
             <property name="text">
              <string>Filter for computer groups</string>
             </property>
@@ -856,9 +856,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="computerLocations">
+        <widget class="QGroupBox" name="computerLocationsIdentifications">
          <property name="title">
-          <string>Computer locations</string>
+          <string>Computer locations identification</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -1323,9 +1323,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="computerGroupingGroup"/>
-  <buttongroup name="bindConfigurationGroup"/>
   <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="baseDnConfigGroup"/>
+  <buttongroup name="computerGroupingGroup"/>
+  <buttongroup name="bindConfigurationGroup"/>
  </buttongroups>
 </ui>
