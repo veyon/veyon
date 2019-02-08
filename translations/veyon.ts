@@ -3164,7 +3164,11 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable dual monitor support</source>
+        <source>Enable multi monitor support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
